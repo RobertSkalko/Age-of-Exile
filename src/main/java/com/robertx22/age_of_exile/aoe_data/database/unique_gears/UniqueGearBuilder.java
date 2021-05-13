@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears;
 
-import com.ibm.icu.impl.Assert;
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
@@ -13,6 +12,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ErrorUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.tag.Tag;
@@ -147,11 +147,12 @@ public class UniqueGearBuilder {
     }
 
     public UniqueGear build() {
-        Assert.assrt(!uniq.uniqueStats.isEmpty());
-        Assert.assrt(!uniq.stat_req.isEmpty());
-        Assert.assrt((uniq.base_stats.size() + uniq.uniqueStats.size()) < UniqueStatsData.MAX_STATS);
+        ErrorUtils.ifFalse(!uniq.uniqueStats.isEmpty());
+        ErrorUtils.ifFalse(!uniq.stat_req.isEmpty());
+        ErrorUtils.ifFalse((uniq.base_stats.size() + uniq.uniqueStats.size()) < UniqueStatsData.MAX_STATS);
 
         uniq.addToSerializables();
         return uniq;
     }
+
 }

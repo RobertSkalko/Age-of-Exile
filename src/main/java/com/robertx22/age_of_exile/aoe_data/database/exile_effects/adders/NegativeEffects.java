@@ -39,9 +39,19 @@ public class NegativeEffects implements ISlashRegistryInit {
     public static EffectCtx BLIND = new EffectCtx("blind", "Blind", 10, Elements.Light, EffectType.negative);
     public static EffectCtx STUN = new EffectCtx("stun", "Stun", 11, Elements.Physical, EffectType.negative);
     public static EffectCtx SLOW = new EffectCtx("slow", "Slow", 12, Elements.Physical, EffectType.negative);
+    public static EffectCtx CURSE_OF_AGONY = new EffectCtx("curse_of_agony", "Curse of Agony", 13, Elements.Dark, EffectType.negative);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(MUMMY_CURSE)
+            .maxStacks(1)
+            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic), ModType.FLAT)
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 1D)
+                    .onTick(10D))
+                .buildForEffect())
+            .build();
 
         ExileEffectBuilder.of(SLOW)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -25, ModType.GLOBAL_INCREASE, UUID.fromString("3fb10485-f309-468f-afc6-a23b0d6cf4c1")))

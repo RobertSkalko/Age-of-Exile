@@ -224,10 +224,7 @@ public class TileGearSalvage extends BaseSkillStation {
 
     @Override
     public boolean isValidInput(ItemStack stack) {
-        return this.getSmeltingResultForItem(stack)
-            .stream()
-            .anyMatch(x -> !x.isEmpty());
-
+        return true;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.LeechInfo;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
@@ -878,6 +879,43 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(-5, Stats.ATTACK_SPEED.get()),
             new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW)),
             new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED))
+        );
+        PerkBuilder.bigStat("spore_aura", "Spore Aura",
+            new OptScaleExactStat(5, new AttackDamage(Elements.Nature), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON))
+        );
+
+        PerkBuilder.bigStat("metamorphosis", "Metamorphosis",
+            new OptScaleExactStat(15, Stats.DOT_DAMAGE.get()),
+            new OptScaleExactStat(-5, Stats.TOTAL_DAMAGE.get())
+        );
+
+        PerkBuilder.bigStat("blossom", "Blossom",
+            new OptScaleExactStat(5, Stats.HEAL_CRIT_DAMAGE.get()),
+            new OptScaleExactStat(5, Stats.HEAL_CRIT_CHANCE.get()),
+            new OptScaleExactStat(3, Intelligence.INSTANCE),
+            new OptScaleExactStat(3, Wisdom.INSTANCE)
+        );
+
+        PerkBuilder.bigStat("oath", "Oath",
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.health)),
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.mana))
+        );
+        PerkBuilder.bigStat("photosynthesis", "Photosynthesis",
+            new OptScaleExactStat(2, Stats.ELEMENT_LEECH_RESOURCE.get(new LeechInfo(Elements.Nature, ResourceType.health))),
+            new OptScaleExactStat(10, Stats.HEALING_RECEIVED.get()),
+            new OptScaleExactStat(3, new AttackDamage(Elements.Nature), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(3, Wisdom.INSTANCE)
+        );
+        PerkBuilder.bigStat("purify", "Purify",
+            new OptScaleExactStat(10, SpecialStats.HEAL_CLEANSE),
+            new OptScaleExactStat(1, HealthRegen.getInstance())
+        );
+
+        PerkBuilder.bigStat("keeper_of_the_grove", "Keeper of the Grove",
+            new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Water)),
+            new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature))
         );
     }
 

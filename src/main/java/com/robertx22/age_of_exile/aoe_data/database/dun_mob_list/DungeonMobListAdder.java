@@ -9,6 +9,16 @@ public class DungeonMobListAdder implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        DungeonMobListBuilder.of("mossy")
+            .addMob(EntityType.SKELETON)
+            .addMob(EntityType.ZOMBIE)
+            .addMob(EntityType.PILLAGER, 200)
+            .addMob(EntityType.STRAY, 200)
+            .addMob(EntityType.WITCH, 50)
+
+            .addBoss(ModRegistry.ENTITIES.FIRE_MAGE_BOSS)
+            .build();
+
         DungeonMobListBuilder.of("undead")
             .addMob(EntityType.SKELETON)
             .addMob(EntityType.ZOMBIE)

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.enumclasses;
 
-import com.ibm.icu.impl.Assert;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ErrorUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -34,7 +34,7 @@ public enum WeaponTypes {
         this.weapon_offhand_stat_util = weapon_offhand_stat_util;
         this.atkPerSec = atkPerSec;
 
-        Assert.assrt(this.id.equals(this.name()));
+        ErrorUtils.ifFalse(this.id.equals(this.name()));
     }
 
     public int weapon_offhand_stat_util;

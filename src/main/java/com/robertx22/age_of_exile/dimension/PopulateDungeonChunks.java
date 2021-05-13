@@ -8,12 +8,14 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.world_of_exile.main.ModLoottables;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -144,6 +146,11 @@ public class PopulateDungeonChunks {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            } else if (be instanceof SignBlockEntity) {
+                SignBlockEntity sign = (SignBlockEntity) be;
+                if (SignUtils.has("[chest]", sign)) {
+                    setChest(world, blockPos);
+                }
             }
         }
 
@@ -205,11 +212,7 @@ public class PopulateDungeonChunks {
             }
             data.chests++;
 
-            world.setBlockState(p, Blocks.CHEST.getDefaultState(), 2);
-
-            ChestBlockEntity chest = (ChestBlockEntity) world.getBlockEntity(p);
-
-            chest.setLootTable(ModLoottables.DUNGEON_DEFAULT, world.random.nextLong());
+            setChest(world, p);
 
             list.remove(p);
         }
@@ -237,4 +240,10 @@ public class PopulateDungeonChunks {
 
     }
 
+    public static void setChest(World world, BlockPos p) {
+        world.setBlockState(p, Blocks.CHEST.getDefaultState(), 2);
+        ChestBlockEntity chest = (ChestBlockEntity) world.getBlockEntity(p);
+        chest.setLootTable(ModLoottables.DUNGEON_DEFAULT, world.random.nextLong());
+
+    }
 }

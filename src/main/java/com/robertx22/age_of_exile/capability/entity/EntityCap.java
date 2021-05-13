@@ -70,15 +70,14 @@ public class EntityCap {
     private static final String EXP = "exp";
     private static final String HP = "hp";
     private static final String UUID = "uuid";
-    private static final String MOB_SAVED_ONCE = "mob_saved_once";
     private static final String SET_MOB_STATS = "set_mob_stats";
     private static final String NEWBIE_STATUS = "is_a_newbie";
-    private static final String EQUIPS_CHANGED = "EQUIPS_CHANGED";
+    private static final String EQUIPS_CHANGED = "eq_changed";
     private static final String TIER = "TIER";
     private static final String AFFIXES = "affix";
-    private static final String SHOULD_SYNC = "SHOULD_SYNC";
+    private static final String SHOULD_SYNC = "do_sync";
     private static final String ENTITY_TYPE = "ENTITY_TYPE";
-    private static final String RESOURCES_LOC = "RESOURCES_LOC";
+    private static final String RESOURCES_LOC = "res_loc";
     private static final String STATUSES = "statuses";
     private static final String SCROLL_BUFF_SEED = "sb_seed";
     private static final String COOLDOWNS = "cds";
@@ -198,9 +197,7 @@ public class EntityCap {
 
         LivingEntity entity;
 
-        //dont save this
-        EntityGears gears = new EntityGears();
-        // dont
+        transient EntityGears gears = new EntityGears();
 
         // sync these for mobs
         Unit unit = new Unit();
@@ -279,15 +276,6 @@ public class EntityCap {
                 statusEffects = new EntityStatusEffectsData();
             }
 
-            this.cooldowns = LoadSave.Load(CooldownsData.class, new CooldownsData(), nbt, COOLDOWNS);
-            if (cooldowns == null) {
-                cooldowns = new CooldownsData();
-            }
-
-            this.threat = LoadSave.Load(ThreatData.class, new ThreatData(), nbt, THREAT);
-            if (threat == null) {
-                threat = new ThreatData();
-            }
         }
 
         @Override
@@ -297,7 +285,6 @@ public class EntityCap {
 
             nbt.putInt(EXP, exp);
             nbt.putString(UUID, uuid);
-            nbt.putBoolean(MOB_SAVED_ONCE, true);
             nbt.putBoolean(SET_MOB_STATS, setMobStats);
             nbt.putBoolean(NEWBIE_STATUS, this.isNewbie);
             nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
@@ -359,6 +346,10 @@ public class EntityCap {
                 this.customExactStats = new CustomExactStatsData();
             }
 
+            this.threat = LoadSave.Load(ThreatData.class, new ThreatData(), nbt, THREAT);
+            if (threat == null) {
+                threat = new ThreatData();
+            }
         }
 
         @Override

@@ -62,8 +62,15 @@ public class DungeonMobList implements ISerializedRegistryEntry<DungeonMobList>,
     }
 
     public EntityType getRandomMob() {
-        WeightedMobEntry random = RandomUtils.weightedRandom(mobs);
-        EntityType type = Registry.ENTITY_TYPE.get(new Identifier(random.id));
+        EntityType type = null;
+        try {
+            WeightedMobEntry random = RandomUtils.weightedRandom(mobs);
+            type = Registry.ENTITY_TYPE.get(new Identifier(random.id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return EntityType.ZOMBIE;
+        }
+
         return type;
     }
 
