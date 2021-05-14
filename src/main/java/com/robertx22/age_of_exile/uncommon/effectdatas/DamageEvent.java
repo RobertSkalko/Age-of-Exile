@@ -102,7 +102,7 @@ public class DamageEvent extends EffectEvent {
         }
 
         if (source instanceof PlayerEntity) {
-            if (getAttackType().isAttack()) {
+            if (data.isBasicAttack()) {
                 dmg = modifyByAttackSpeedIfMelee(dmg);
                 dmg = modifyIfArrowDamage(dmg);
             }

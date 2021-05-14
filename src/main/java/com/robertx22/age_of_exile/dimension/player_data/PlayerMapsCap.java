@@ -71,7 +71,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         return cachedBorder;
     }
 
-    public void onEnterDungeon(Boolean isteam, BlockPos teleporterPos, String uuid) {
+    public void onStartDungeon(Boolean isteam, BlockPos teleporterPos, String uuid) {
 
         try {
 
@@ -163,7 +163,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             for (BlockPos x : list) {
                 if (player.world.getBlockState(x)
-                    .isAir()) {
+                    .isAir() || player.world.getBlockState(x)
+                    .getBlock() == ModRegistry.BLOCKS.PORTAL) {
                     player.world.setBlockState(x, ModRegistry.BLOCKS.PORTAL.getDefaultState());
                     PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
                     be.dungeonPos = tpPos;

@@ -73,7 +73,7 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
                 }
             }
 
-            maps.onEnterDungeon(isTeam, pos, uuid);
+            maps.onStartDungeon(isTeam, pos, uuid);
         }
     }
 

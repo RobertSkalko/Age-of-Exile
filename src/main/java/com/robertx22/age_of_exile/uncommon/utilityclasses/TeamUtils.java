@@ -34,6 +34,10 @@ public class TeamUtils {
             e.printStackTrace();
         }
 
+        if (players.isEmpty()) {
+            players.add(player);
+        }
+
         return players;
     }
 

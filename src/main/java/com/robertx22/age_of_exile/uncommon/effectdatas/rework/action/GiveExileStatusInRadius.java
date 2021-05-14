@@ -42,7 +42,7 @@ public class GiveExileStatusInRadius extends StatEffect {
 
         EntityFinder.start(en, LivingEntity.class, en.getBlockPos())
             .finder(EntityFinder.SelectionType.RADIUS)
-            .searchFor(AllyOrEnemy.all)
+            .searchFor(ally_or_enemy)
             .radius(radius)
             .build()
             .forEach(x -> {

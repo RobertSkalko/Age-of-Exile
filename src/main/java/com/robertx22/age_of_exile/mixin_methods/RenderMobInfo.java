@@ -107,28 +107,36 @@ public class RenderMobInfo {
                     MinecraftClient.getInstance().options.getTextBackgroundOpacity(0.25F);
                 int bgColor = (int) (bgAlpha * 255.0F) << 24;
 
-                textRenderer.draw(text,
-                    -textRenderer.getWidth(text) / 2.0f,
-                    -12, -1, true, matrix4f,
-                    vertex, false, bgColor, i);
+                if (matrix4f == null || textRenderer == null) {
+                    return;
+                }
 
-                textRenderer.draw(hpText, -textRenderer.getWidth(hpText) / 2.0f,
-                    0, -1, true, matrix4f,
-                    vertex, false, bgColor, i);
+                try {
+                    textRenderer.draw(text,
+                        -textRenderer.getWidth(text) / 2.0f,
+                        -12, -1, true, matrix4f,
+                        vertex, false, bgColor, i);
 
-                MobRarity rar = Database.MobRarities()
-                    .get(data.getRarity());
+                    textRenderer.draw(hpText, -textRenderer.getWidth(hpText) / 2.0f,
+                        0, -1, true, matrix4f,
+                        vertex, false, bgColor, i);
 
-                String icon = rar.name_add;
-                if (!icon.isEmpty()) {
-                    icon = rar.textFormatting() + icon;
+                    MobRarity rar = Database.MobRarities()
+                        .get(data.getRarity());
 
-                    matrixStack.scale(2, 2, 2);
-                    textRenderer.draw(icon, -textRenderer.getWidth(icon) / 2.0f,
-                        -15, -1, true, matrix4f,
-                        vertex, false, Formatting.YELLOW
-                            .getColorIndex(), i);
-                    matrixStack.scale(0.5F, 0.5F, 0.5F);
+                    String icon = rar.name_add;
+                    if (!icon.isEmpty()) {
+                        icon = rar.textFormatting() + icon;
+
+                        matrixStack.scale(2, 2, 2);
+                        textRenderer.draw(icon, -textRenderer.getWidth(icon) / 2.0f,
+                            -15, -1, true, matrix4f,
+                            vertex, false, Formatting.YELLOW
+                                .getColorIndex(), i);
+                        matrixStack.scale(0.5F, 0.5F, 0.5F);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
                 matrixStack.pop();

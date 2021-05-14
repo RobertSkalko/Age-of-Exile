@@ -15,10 +15,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ForceChoosingRace;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
 import com.robertx22.library_of_exile.main.Packets;
@@ -132,29 +129,31 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 }
                 if (data.ticksToLvlWarning > TicksToLevelWarning) {
 
-                    OnTickGiveTpBack.give(player);
+                    if (!WorldUtils.isDungeonWorld(player.world)) {
+                        OnTickGiveTpBack.give(player);
 
-                    boolean wasnt = false;
-                    if (!data.isInHighLvlZone) {
-                        wasnt = true;
-                    }
-
-                    int lvl = Load.Unit(player)
-                        .getLevel();
-
-                    if (lvl < 20) {
-                        data.isInHighLvlZone = LevelUtils.determineLevel(player.world, player.getBlockPos(), player) - lvl > 10;
-
-                        if (wasnt && data.isInHighLvlZone) {
-                            OnScreenMessageUtils.sendMessage(
-                                player,
-                                new LiteralText("YOU ARE ENTERING").formatted(Formatting.RED)
-                                    .formatted(Formatting.BOLD),
-                                new LiteralText("A HIGH LEVEL ZONE").formatted(Formatting.RED)
-                                    .formatted(Formatting.BOLD));
+                        boolean wasnt = false;
+                        if (!data.isInHighLvlZone) {
+                            wasnt = true;
                         }
+
+                        int lvl = Load.Unit(player)
+                            .getLevel();
+
+                        if (lvl < 20) {
+                            data.isInHighLvlZone = LevelUtils.determineLevel(player.world, player.getBlockPos(), player) - lvl > 10;
+
+                            if (wasnt && data.isInHighLvlZone) {
+                                OnScreenMessageUtils.sendMessage(
+                                    player,
+                                    new LiteralText("YOU ARE ENTERING").formatted(Formatting.RED)
+                                        .formatted(Formatting.BOLD),
+                                    new LiteralText("A HIGH LEVEL ZONE").formatted(Formatting.RED)
+                                        .formatted(Formatting.BOLD));
+                            }
+                        }
+                        data.ticksToLvlWarning = 0;
                     }
-                    data.ticksToLvlWarning = 0;
                 }
 
                 if (data.ticksToSpellCooldowns >= TicksToSpellCooldowns) {

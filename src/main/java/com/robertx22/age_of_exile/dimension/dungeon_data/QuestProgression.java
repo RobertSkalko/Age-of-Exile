@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.vanilla_mc.commands.TeamCommand;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 
 import java.util.List;
@@ -35,9 +36,23 @@ public class QuestProgression {
     public QuestProgression() {
     }
 
-    public void increaseProgressBy(PlayerEntity player, int num, DungeonData dungeon) {
+    public void increaseProgressBy(PlayerEntity player, int num, SingleDungeonData single) {
+
+        DungeonData dungeon = single.data;
 
         if (!finished) {
+
+            List<PlayerEntity> members = TeamUtils.getOnlineMembers(player);
+
+            if (members
+                .size() > 1) {
+                for (PlayerEntity p : members) {
+                    if (p.getUuidAsString()
+                        .equals(single.ownerUUID)) {
+                        player = p;
+                    }
+                }
+            }
 
             number += num;
 
@@ -58,15 +73,14 @@ public class QuestProgression {
                     player.sendMessage(new LiteralText("You can't receive quest rewards as you are too high level for this dungeon."), false);
                 } else {
 
-                    List<PlayerEntity> members = TeamUtils.getOnlineMembers(player);
                     if (members.size() > 1) {
                         members.forEach(x -> {
-                            TeamCommand.sendDamageCharts(x);
+                            TeamCommand.sendDpsCharts(x);
                         });
                     }
-                    dungeon.quest_rew.stacks.forEach(x -> {
+                    for (ItemStack x : dungeon.quest_rew.stacks) {
                         PlayerUtils.giveItem(x, player);
-                    });
+                    }
                 }
 
                 Load.playerMaps(player)

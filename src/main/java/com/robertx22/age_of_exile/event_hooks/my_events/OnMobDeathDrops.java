@@ -87,7 +87,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
                     if (WorldUtils.isDungeonWorld(mobKilled.world)) {
                         SingleDungeonData dungeon = Load.dungeonData(mobKilled.world).data.get(mobKilled.getBlockPos());
-                        dungeon.quest.increaseProgressBy(player, 1, dungeon.data);
+                        dungeon.quest.increaseProgressBy(player, 1, dungeon);
                     }
 
                 }

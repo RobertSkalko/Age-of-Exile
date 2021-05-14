@@ -47,7 +47,7 @@ public class IntSupportGems implements ISlashRegistryInit {
 
         SkillGemBuilder.of("cooldown", "Less Cooldown Support", new StatRequirement().setBaseInt(25)
                 .setInt(0.4F), StatAttribute.INT, 1.25F,
-            Arrays.asList(SpellTag.values()),
+            Arrays.asList(),
             new StatModifier(10, 30, Stats.COOLDOWN_REDUCTION.get())
         );
 

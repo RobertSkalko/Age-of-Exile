@@ -17,7 +17,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 
 public class TeamCommand {
 
-    public static void sendDamageCharts(PlayerEntity player) {
+    public static void listMembers(PlayerEntity player) {
         List<PlayerEntity> players = TeamUtils.getOnlineMembers(player);
 
         player.sendMessage(new LiteralText("Team members:"), false);
@@ -25,6 +25,21 @@ public class TeamCommand {
         players.forEach(e -> {
             player.sendMessage(e.getDisplayName(), false);
         });
+    }
+
+    public static void sendDpsCharts(PlayerEntity player) {
+        List<PlayerEntity> members = TeamUtils.getOnlineMembers(player);
+
+        player.sendMessage(new LiteralText("Damage Charts:"), false);
+
+        members.forEach(e -> {
+            Text text = new LiteralText("").append(e.getDisplayName())
+                .append(": " + (int) PlayerDamageChart.getDamage(e));
+
+            player.sendMessage(text, false);
+
+        });
+
     }
 
     public static void register(CommandDispatcher<ServerCommandSource> commandDispatcher) {
@@ -50,25 +65,14 @@ public class TeamCommand {
                         PlayerEntity player = x.getSource()
                             .getPlayer();
 
-                        List<PlayerEntity> members = TeamUtils.getOnlineMembers(player);
-
-                        player.sendMessage(new LiteralText("Damage Charts:"), false);
-
-                        members.forEach(e -> {
-                            Text text = new LiteralText("").append(e.getDisplayName())
-                                .append(": " + (int) PlayerDamageChart.getDamage(e));
-
-                            player.sendMessage(text, false);
-
-                        });
-
+                        sendDpsCharts(player);
                         return 0;
                     }))
                     .then(literal("list_members").executes(x -> {
 
                         PlayerEntity player = x.getSource()
                             .getPlayer();
-                        sendDamageCharts(player);
+                        listMembers(player);
 
                         return 0;
                     }))
