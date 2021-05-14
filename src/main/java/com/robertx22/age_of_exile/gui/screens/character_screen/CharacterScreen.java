@@ -69,11 +69,11 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
     MinecraftClient mc = MinecraftClient.getInstance();
 
     public enum StatType {
-        HUB("Hub"),
-        MAIN("Main"),
-        ELEMENTAL("Elemental"),
-        RESISTS("Resists"),
-        MISC("Misc.");
+        HUB("hub"),
+        MAIN("main"),
+        ELEMENTAL("elemental"),
+        RESISTS("resists"),
+        MISC("misc");
 
         String id;
 
