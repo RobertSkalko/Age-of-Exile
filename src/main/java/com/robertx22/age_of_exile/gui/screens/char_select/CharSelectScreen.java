@@ -162,7 +162,7 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
 
                 //GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 20, 1, "Level " + data.lvl, Formatting.YELLOW);
 
-                String race = "Race not selected";
+                String race = "Race Not Selected";
 
                 if (!data.race.isEmpty()) {
                     race = CLOC.translate(Database.Races()

@@ -104,7 +104,7 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
             return tier_map.get(tier).mods;
         }
 
-        System.out.println("Tier number not found, returning default. Affix: " + GUID() + " tier: " + tier);
+        System.out.println("Tier number not found, returning default. Affix: " + GUID() + " Tier: " + tier);
 
         return tier_map.values()
             .stream()

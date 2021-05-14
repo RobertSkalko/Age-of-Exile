@@ -81,7 +81,7 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
 
     @Override
     public String locDescForLangFile() {
-        return "Re-rolls explicit numbers on a gear";
+        return "Re-rolls explicit numbers on a gear.";
     }
 
     @Override

@@ -9,7 +9,7 @@ public enum Words implements IAutoLocName {
     DungeonKey("Dungeon Key"),
     SavesNamedOrEnchanted("Doesn't auto salvage named or enchanted items."),
     BagUpgradeDesc("Backpack Upgrade Item."),
-    DidYouKnow("Did you know?"),
+    DidYouKnow("Did You Know?"),
     BlacksmithDesc("Blacksmithing turns stones and minerals into useful tools."),
     AlchemyDesc("Alchemy is about making potions in the alchemy station."),
     CookingDesc("Cooking is about creating foods that give helpful buffs to help you in your journey! Farming provides wheat, and Fishing provides fish."),
@@ -110,7 +110,7 @@ public enum Words implements IAutoLocName {
     CooldownSeconds("Cooldown Seconds"), NatureBalm("Nature's Balm"),
 
     CooldownTicks("Cooldown Ticks"),
-    CastSpeed("Cast speed"),
+    CastSpeed("Cast Speed"),
     ManaCost("Mana Cost"),
     ProjectileSpeed("Projectile Speed"),
     Cooldown("Cooldown"),
@@ -128,8 +128,8 @@ public enum Words implements IAutoLocName {
 
     Chance("Chance"),
 
-    IsNotMaxRarity("Is not max rarity"),
-    IsNotMaxTier("Is not max tier"),
+    IsNotMaxRarity("Is not max rarity."),
+    IsNotMaxTier("Is not max tier."),
 
     CooldownReductionEfficiency("Cooldown Reduction Efficiency"),
 
@@ -177,7 +177,7 @@ public enum Words implements IAutoLocName {
 
     PoisonedWeapons("Poisoned Weapons"),
 
-    BlazingInferno("Blazing Inferno"), SpearOfJudgement("Spear of Judgement"),
+    BlazingInferno("Blazing Inferno"), SpearOfJudgement("Spear of Judgment"),
 
     DivineTribulation("Divine Tribulation"), PurifyingFires("Purifying Fires"),
 
@@ -248,7 +248,7 @@ public enum Words implements IAutoLocName {
 
     Compendium("Compendium"),
 
-    KillMobsCollectRarityPoints("Kill mobs, collect rarity points"),
+    KillMobsCollectRarityPoints("Kill mobs, collect rarity points!"),
 
     KillMobs("Kill Mobs"),
 
@@ -325,7 +325,7 @@ public enum Words implements IAutoLocName {
 
     IsCommon("Is Common Rarity"),
 
-    LvlLessThanMax("Lvl Less than max lvl"),
+    LvlLessThanMax("Lvl less than max lvl"),
 
     NoSuffix("Doesn't have suffix"),
     HasHigherRarity("Has higher rarity"),

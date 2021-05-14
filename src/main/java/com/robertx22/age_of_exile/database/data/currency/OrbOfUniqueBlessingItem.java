@@ -75,7 +75,7 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
 
     @Override
     public String locDescForLangFile() {
-        return "Re-rolls unique stat numbers";
+        return "Re-rolls unique stat numbers.";
     }
 
     @Override

@@ -113,7 +113,7 @@ public class RerollAffixIntoSocket extends CurrencyItem implements ICurrencyItem
 
     @Override
     public String locDescForLangFile() {
-        return "Rerolls a random affix into one that adds sockets";
+        return "Re-rolls a random affix into one that adds sockets.";
     }
 
     @Override
