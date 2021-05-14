@@ -111,7 +111,7 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
         public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
             super.renderButton(matrix, x, y, ticks);
 
-            String choose = "Choose a Race";
+            String choose = "Choose Your Race";
 
             screen.mc.textRenderer.drawWithShadow(matrix, choose, this.x + xSize / 2 - screen.mc.textRenderer.getWidth(choose) / 2, this.y - 25, Formatting.WHITE.getColorValue());
 

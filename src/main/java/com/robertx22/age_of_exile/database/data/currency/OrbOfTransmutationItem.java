@@ -83,7 +83,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
 
     @Override
     public String locDescForLangFile() {
-        return "Transform Common Item into higher rarity";
+        return "Transform common item into higher rarity.";
     }
 
     @Override

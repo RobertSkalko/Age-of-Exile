@@ -66,7 +66,7 @@ public class OwnerButton extends TexturedButtonWidget {
             txt = CLOC.translate(owner.getDisplayName());
         } else {
 
-            txt = "No owner";
+            txt = "No Owner";
         }
 
         int width = mc.textRenderer.getWidth(txt);
