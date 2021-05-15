@@ -34,11 +34,11 @@ public class StrSpells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        SpellBuilder.of("shout_warn", SpellConfiguration.Builder.instant(10, 120 * 20), "Warning Shout",
+        SpellBuilder.of("shout_warn", SpellConfiguration.Builder.instant(10, 60 * 20), "Warning Shout",
             Arrays.asList(SpellTag.area, SpellTag.shout, SpellTag.shield))
             .attackStyle(PlayStyle.melee)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WOLF_HOWL, 1D, 1D))
-            .onCast(PartBuilder.giveShieldInRadius(10D, ValueCalculation.base("shout_warn", 10), 5D))
+            .onCast(PartBuilder.giveShieldInRadius(10D, ValueCalculation.base("shout_warn", 20), 10D))
             .build();
 
         SpellBuilder.of("thorn_armor", SpellConfiguration.Builder.instant(15, 200 * 20), "Thorn Armor",
@@ -149,7 +149,7 @@ public class StrSpells implements ISlashRegistryInit {
             )
             .build();
 
-        SpellBuilder.of("taunt", SpellConfiguration.Builder.instant(5, 15)
+        SpellBuilder.of("taunt", SpellConfiguration.Builder.instant(5, 20 * 30)
                 .setSwingArm(), "Taunt",
             Arrays.asList(SpellTag.area))
             .attackStyle(PlayStyle.melee)

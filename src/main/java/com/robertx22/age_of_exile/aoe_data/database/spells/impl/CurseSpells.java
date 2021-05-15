@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class CurseSpells implements ISlashRegistryInit {
 
     static void curse(String id, String name, EffectCtx effect) {
-        SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 30, 50)
+        SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 30, 40)
             , name,
             Arrays.asList(SpellTag.area, SpellTag.curse))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_SKELETON_HURT, 1D, 1D))

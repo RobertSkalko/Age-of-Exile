@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.server;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.robertx22.age_of_exile.vanilla_mc.commands.RollCommand;
 import com.robertx22.age_of_exile.vanilla_mc.commands.RunTestCommand;
 import com.robertx22.age_of_exile.vanilla_mc.commands.SyncDatapacks;
 import com.robertx22.age_of_exile.vanilla_mc.commands.TeamCommand;
@@ -50,6 +51,7 @@ public class CommandRegister {
         ListStats.register(dispatcher);
 
         TeamCommand.register(dispatcher);
+        RollCommand.register(dispatcher);
 
         RunTestCommand.register(dispatcher);
 

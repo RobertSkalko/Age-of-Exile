@@ -787,8 +787,8 @@ public class NewPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("vessel", "Vessel",
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(-2, Intelligence.INSTANCE),
             new OptScaleExactStat(-2, Wisdom.INSTANCE)
         );

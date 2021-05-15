@@ -130,8 +130,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
                         if (e.getValue() instanceof SignBlockEntity) {
                             if (SignUtils.has("[moblist]", (SignBlockEntity) e.getValue())) {
-                                moblist = SignUtils.getText((SignBlockEntity) e.getValue())
-                                    .get(1);
+                                moblist = SignUtils.removeBraces(SignUtils.getText((SignBlockEntity) e.getValue())
+                                    .get(1));
                             }
                         }
                         if (dimWorld.getBlockState(e.getKey())

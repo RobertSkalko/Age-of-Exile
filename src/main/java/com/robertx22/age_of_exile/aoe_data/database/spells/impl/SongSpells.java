@@ -23,12 +23,12 @@ public class SongSpells implements ISlashRegistryInit {
 
     static void song(String id, String name, EffectCtx effect) {
 
-        SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 10, 20 * 2)
+        SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 10, 30)
             , name,
             Arrays.asList(SpellTag.area, SpellTag.song))
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.NOTE, 50D, 3D))
-            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(3D, effect.effectId, 20 * 15D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(3D, effect.effectId, 20 * 20D))
             .build();
     }
 

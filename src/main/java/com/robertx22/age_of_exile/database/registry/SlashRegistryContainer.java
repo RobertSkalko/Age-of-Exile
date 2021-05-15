@@ -100,7 +100,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     public static void logRegistryError(String text) {
 
         try {
-            throw new Exception("[Mine and Slash Registry Error]: " + text);
+            throw new Exception("[Age of Exile Registry Error]: " + text);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -278,7 +278,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private void tryLogAddition(C c) {
         if (logAdditionsToRegistry && ModConfig.get().Server.LOG_REGISTRY_ENTRIES) {
             System.out.println(
-                "[Mine and Slash Registry Addition]: " + c.GUID() + " to " + type.toString() + " registry");
+                "[Age of Exile Registry Addition]: " + c.GUID() + " to " + type.toString() + " registry");
         }
 
     }

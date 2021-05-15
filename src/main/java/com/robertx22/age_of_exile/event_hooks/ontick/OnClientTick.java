@@ -43,6 +43,10 @@ public class OnClientTick implements ClientTickEvents.EndTick {
 
         if (player.isPartOf(player)) {
 
+            Load.Unit(player)
+                .getResources()
+                .onTickBlock(player);
+
             NO_MANA_SOUND_COOLDOWN--;
 
             EntitySpellCap.ISpellsCap spells = Load.spells(player);

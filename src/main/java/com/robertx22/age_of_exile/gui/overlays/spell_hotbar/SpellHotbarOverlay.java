@@ -67,7 +67,6 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
             if (mc.player.isSpectator()) {
                 return;
             }
-            data = Load.spells(mc.player);
 
             RenderSystem.enableBlend(); // enables transparency
 

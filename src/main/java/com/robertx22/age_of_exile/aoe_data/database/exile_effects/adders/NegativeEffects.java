@@ -51,9 +51,9 @@ public class NegativeEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(AGONY)
             .maxStacks(1)
-            .stat(10, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee))
-            .stat(10, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
-            .stat(10, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
+            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee))
+            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
+            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
             .stat(-10, DatapackStats.MOVE_SPEED)
 
             .spell(SpellBuilder.forEffect()
@@ -66,9 +66,9 @@ public class NegativeEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(WEAKNESS)
             .maxStacks(1)
-            .stat(-20, Armor.getInstance())
-            .stat(-20, DodgeRating.getInstance())
-            .stat(-10, new ElementalResist(Elements.Elemental))
+            .stat(-30, Armor.getInstance())
+            .stat(-30, DodgeRating.getInstance())
+            .stat(-15, new ElementalResist(Elements.Elemental))
 
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
@@ -80,7 +80,7 @@ public class NegativeEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(DESPAIR)
             .maxStacks(1)
-            .stat(-10, Stats.TOTAL_DAMAGE.get())
+            .stat(-20, Stats.TOTAL_DAMAGE.get())
             .spell(SpellBuilder.forEffect()
                 .onExpire(PartBuilder.damage(ValueCalculation.base("despair", 3F), Elements.Dark))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)

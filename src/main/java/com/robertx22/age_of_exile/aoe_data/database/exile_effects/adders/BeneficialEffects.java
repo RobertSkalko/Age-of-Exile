@@ -60,13 +60,14 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx PERSEVERANCE = new EffectCtx("perseverance", "Perseverance", 19, Elements.Physical, EffectType.beneficial);
     public static EffectCtx VIGOR = new EffectCtx("vigor", "Vigor", 20, Elements.Physical, EffectType.beneficial);
     public static EffectCtx TAUNT_STANCE = new EffectCtx("taunt_stance", "Taunt Stance", 21, Elements.Physical, EffectType.beneficial);
+    //public static EffectCtx TAUNT_STANCE = new EffectCtx("taunt_stance", "Taunt Stance", 21, Elements.Physical, EffectType.beneficial);
 
     @Override
     public void registerAll() {
 
         ExileEffectBuilder.of(TAUNT_STANCE)
-            .stat(10, Stats.THREAT_GENERATED.get())
-            .stat(25, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
+            .stat(25, Stats.THREAT_GENERATED.get())
+            .stat(50, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
 
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.base("taunt_stance", 2), AggroAction.Type.AGGRO))
@@ -77,9 +78,8 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(VIGOR)
-            .stat(1, HealthRegen.getInstance())
-            .stat(1, ManaRegen.getInstance())
-            .oneOfAKind("song")
+            .stat(2, HealthRegen.getInstance())
+            .stat(2, ManaRegen.getInstance())
             .maxStacks(3)
             .build();
 
@@ -87,15 +87,13 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee))
             .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
             .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
-            .oneOfAKind("song")
             .maxStacks(3)
             .build();
 
         ExileEffectBuilder.of(VALOR)
             .stat(10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
-            .stat(3, Stats.ATTACK_SPEED.get(), ModType.FLAT)
-            .stat(3, Stats.CAST_SPEED.get(), ModType.FLAT)
-            .oneOfAKind("song")
+            .stat(5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
+            .stat(5, Stats.CAST_SPEED.get(), ModType.FLAT)
             .maxStacks(3)
             .build();
 

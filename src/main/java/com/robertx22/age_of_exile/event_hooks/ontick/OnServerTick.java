@@ -54,6 +54,10 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 }
 
                 Load.Unit(player)
+                    .getResources()
+                    .onTickBlock(player);
+
+                Load.Unit(player)
                     .getCooldowns()
                     .onTicksPass(1);
 
@@ -128,9 +132,9 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 }
                 if (data.ticksToLvlWarning > TicksToLevelWarning) {
+                    OnTickGiveTpBack.give(player);
 
                     if (!WorldUtils.isDungeonWorld(player.world)) {
-                        OnTickGiveTpBack.give(player);
 
                         boolean wasnt = false;
                         if (!data.isInHighLvlZone) {

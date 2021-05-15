@@ -17,6 +17,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -96,7 +97,12 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
     public StationShapelessFactory getStationRecipe() {
         if (type.getCraftItem(tier, exileEffect.color) != null) {
             StationShapelessFactory fac = StationShapelessFactory.create(ModRegistry.RECIPE_SER.FOOD, this);
-            fac.input(ModRegistry.FOOD_ITEMS.EXTRACT_MAP.get(this.exileEffect.color));
+
+            if (this.type == FoodType.FISH) {
+                fac.input(Items.COAL);
+            } else {
+                fac.input(ModRegistry.FOOD_ITEMS.EXTRACT_MAP.get(this.exileEffect.color));
+            }
             fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier));
             fac.input(type.getCraftItem(tier, exileEffect.color));
             return fac.criterion("player_level", trigger());

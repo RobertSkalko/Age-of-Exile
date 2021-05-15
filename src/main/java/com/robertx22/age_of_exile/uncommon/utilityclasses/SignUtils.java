@@ -13,6 +13,11 @@ public class SignUtils {
         return getText(sign).contains(id);
     }
 
+    public static String removeBraces(String id) {
+        return id.replace("[", "")
+            .replace("]", "");
+    }
+
     public static List<String> getText(SignBlockEntity sign) {
         SignDuck duck = (SignDuck) sign;
 

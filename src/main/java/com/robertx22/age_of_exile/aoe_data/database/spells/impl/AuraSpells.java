@@ -25,9 +25,9 @@ public class AuraSpells implements ISlashRegistryInit {
 
         SpellBuilder.aura(PlayStyle.melee, "unwavering_stance", "Unwavering Stance", new AuraSpellData(0.2F,
             Arrays.asList(
-                new StatModifier(-5, -15, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee)),
-                new StatModifier(-5, -15, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged)),
-                new StatModifier(-5, -15, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic)),
+                new StatModifier(-10, -25, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee)),
+                new StatModifier(-10, -20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged)),
+                new StatModifier(-10, -15, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic)),
                 new StatModifier(-10, -10, DatapackStats.MOVE_SPEED)
             )))
             .build();

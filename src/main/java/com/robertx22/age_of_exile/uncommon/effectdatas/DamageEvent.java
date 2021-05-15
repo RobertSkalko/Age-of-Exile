@@ -79,6 +79,12 @@ public class DamageEvent extends EffectEvent {
     }
 
     private void calcBlock() {
+
+        if (targetData.getResources()
+            .getBlock() < 1) {
+            return;
+        }
+
         // blocking check
         if (target.isBlocking() && attackInfo != null) {
             Vec3d vec3d = attackInfo.getSource()

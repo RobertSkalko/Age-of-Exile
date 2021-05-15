@@ -59,7 +59,7 @@ public class RegistryPackets {
 
                     if (reg
                         .isEmpty()) {
-                        throw new RuntimeException("Mine and Slash Registry of type " + reg.getType() + " is EMPTY after datapack loading!");
+                        throw new RuntimeException("Age of Exile Registry of type " + reg.getType() + " is EMPTY after datapack loading!");
                     } else {
                         // System.out.println(type.name() + " registry load on client succeeded with: " + reg.getSize() + " entries.");
 

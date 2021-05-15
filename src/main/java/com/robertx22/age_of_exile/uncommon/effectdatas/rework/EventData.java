@@ -154,6 +154,10 @@ public class EventData {
         return ResourceType.valueOf(strings.getOrDefault(RESOURCE_TYPE, ResourceType.health.name()));
     }
 
+    public RestoreType getRestoreType() {
+        return RestoreType.valueOf(strings.getOrDefault(RESTORE_TYPE, RestoreType.heal.name()));
+    }
+
     public boolean isSpellEffect() {
         return Database.Spells()
             .isRegistered(getString(SPELL));
