@@ -1,5 +1,9 @@
 package com.robertx22.age_of_exile.database.data.currency.key;
 
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import net.minecraft.item.Item;
+
 public class TenTierIncrease extends IncreaseDungeonKeyTier {
 
     public TenTierIncrease() {
@@ -24,6 +28,11 @@ public class TenTierIncrease extends IncreaseDungeonKeyTier {
     @Override
     public int increaseTierBy() {
         return 10;
+    }
+
+    @Override
+    public Item craftItem() {
+        return ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER2);
     }
 }
 

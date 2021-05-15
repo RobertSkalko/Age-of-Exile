@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -62,6 +63,8 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public String identifier = "";
     public AttachedSpell attached = new AttachedSpell();
     public SpellConfiguration config = new SpellConfiguration();
+
+    public String effect_tip = "";
 
     public AttachedSpell getAttached() {
         return attached;
@@ -321,6 +324,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         if (Screen.hasShiftDown()) {
 
             Set<ExileEffect> effect = new HashSet<>();
+
+            if (Database.ExileEffects()
+                .isRegistered(effect_tip)) {
+                effect.add(Database.ExileEffects()
+                    .get(effect_tip));
+            }
 
             try {
                 this.getAttached()

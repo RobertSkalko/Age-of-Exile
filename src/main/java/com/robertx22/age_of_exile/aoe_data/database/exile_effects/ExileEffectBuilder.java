@@ -69,6 +69,10 @@ public class ExileEffectBuilder {
         return this;
     }
 
+    public ExileEffectBuilder stat(float first, Stat stat) {
+        return stat(first, stat, ModType.FLAT);
+    }
+
     public ExileEffect build() {
         effect.addToSerializables();
         return effect;

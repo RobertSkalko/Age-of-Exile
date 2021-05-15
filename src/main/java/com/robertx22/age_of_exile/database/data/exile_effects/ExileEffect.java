@@ -81,7 +81,7 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
             list.add(Words.Stats.locName()
                 .append(": ")
                 .formatted(Formatting.GREEN));
-            stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
+            stats.forEach(x -> list.addAll(x.GetTooltipString(info, data.lvl)));
         }
         if (spell != null) {
             // list.add(new LiteralText("Effect:"));

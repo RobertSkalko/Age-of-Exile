@@ -4,10 +4,12 @@ healing_aura
 song_of_valor
 thorn_armor
 fire_chance
+boss_fire_bombs
 whirlwind
 armor_aura
 ele_res_aura
 poison_chance
+curse_of_despair
 gorgons_gaze
 frostburn_chance
 mana_leech
@@ -20,8 +22,10 @@ fire_dmg
 less_radius
 fire_breath
 shout_warn
+curse_of_weak
 frost_armor
 heal_ray
+song_of_perseverance
 crit_rate
 health_leech
 crit_aura
@@ -33,9 +37,12 @@ hp_reg_aura
 atk_speed
 tidal_strike
 more_radius
+song_of_vigor
 less_mana_cost
 recoil_shot
+taunt_stance
 thirst_strike
+unwavering_stance
 poison_ball
 piercing_proj
 teleport
@@ -52,6 +59,7 @@ heart_of_ice
 nature_dmg
 poison_arrow
 frost_breath
+curse_of_agony
 frostball
 flame_strike
 meteor

@@ -5,11 +5,14 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
@@ -39,18 +42,51 @@ public class NegativeEffects implements ISlashRegistryInit {
     public static EffectCtx BLIND = new EffectCtx("blind", "Blind", 10, Elements.Light, EffectType.negative);
     public static EffectCtx STUN = new EffectCtx("stun", "Stun", 11, Elements.Physical, EffectType.negative);
     public static EffectCtx SLOW = new EffectCtx("slow", "Slow", 12, Elements.Physical, EffectType.negative);
-    public static EffectCtx CURSE_OF_AGONY = new EffectCtx("curse_of_agony", "Curse of Agony", 13, Elements.Dark, EffectType.negative);
+    public static EffectCtx AGONY = new EffectCtx("agony", "Curse of Agony", 13, Elements.Dark, EffectType.negative);
+    public static EffectCtx WEAKNESS = new EffectCtx("weak", "Curse of Weakness", 14, Elements.Dark, EffectType.negative);
+    public static EffectCtx DESPAIR = new EffectCtx("despair", "Curse of Despair", 15, Elements.Dark, EffectType.negative);
 
     @Override
     public void registerAll() {
 
-        ExileEffectBuilder.of(MUMMY_CURSE)
+        ExileEffectBuilder.of(AGONY)
             .maxStacks(1)
-            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic), ModType.FLAT)
+            .stat(10, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee))
+            .stat(10, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
+            .stat(10, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
+            .stat(-10, DatapackStats.MOVE_SPEED)
+
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 1D)
-                    .onTick(10D))
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
+                    .onTick(20D))
                 .buildForEffect())
+
+            .addTags(EffectTags.curse)
+            .build();
+
+        ExileEffectBuilder.of(WEAKNESS)
+            .maxStacks(1)
+            .stat(-20, Armor.getInstance())
+            .stat(-20, DodgeRating.getInstance())
+            .stat(-10, new ElementalResist(Elements.Elemental))
+
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
+                    .onTick(20D))
+                .buildForEffect())
+
+            .addTags(EffectTags.curse)
+            .build();
+
+        ExileEffectBuilder.of(DESPAIR)
+            .maxStacks(1)
+            .stat(-10, Stats.TOTAL_DAMAGE.get())
+            .spell(SpellBuilder.forEffect()
+                .onExpire(PartBuilder.damage(ValueCalculation.base("despair", 3F), Elements.Dark))
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
+                    .onTick(20D))
+                .buildForEffect())
+            .addTags(EffectTags.curse)
             .build();
 
         ExileEffectBuilder.of(SLOW)

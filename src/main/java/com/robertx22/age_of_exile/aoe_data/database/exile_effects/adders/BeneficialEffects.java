@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
@@ -25,6 +26,7 @@ import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.effect.StatusEffects;
@@ -55,9 +57,39 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx BLOODLUST = new EffectCtx("bloodlust", "Bloodlust", 16, Elements.Physical, EffectType.beneficial);
     public static EffectCtx OVERLOAD = new EffectCtx("overload", "Overload", 17, Elements.Physical, EffectType.beneficial);
     public static EffectCtx VALOR = new EffectCtx("valor", "Valor", 18, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx PERSEVERANCE = new EffectCtx("perseverance", "Perseverance", 19, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx VIGOR = new EffectCtx("vigor", "Vigor", 20, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx TAUNT_STANCE = new EffectCtx("taunt_stance", "Taunt Stance", 21, Elements.Physical, EffectType.beneficial);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(TAUNT_STANCE)
+            .stat(10, Stats.THREAT_GENERATED.get())
+            .stat(25, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
+
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.base("taunt_stance", 2), AggroAction.Type.AGGRO))
+                    .setTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
+                    .onTick(60D))
+                .buildForEffect())
+            .maxStacks(1)
+            .build();
+
+        ExileEffectBuilder.of(VIGOR)
+            .stat(1, HealthRegen.getInstance())
+            .stat(1, ManaRegen.getInstance())
+            .oneOfAKind("song")
+            .maxStacks(3)
+            .build();
+
+        ExileEffectBuilder.of(PERSEVERANCE)
+            .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee))
+            .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
+            .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
+            .oneOfAKind("song")
+            .maxStacks(3)
+            .build();
 
         ExileEffectBuilder.of(VALOR)
             .stat(10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)

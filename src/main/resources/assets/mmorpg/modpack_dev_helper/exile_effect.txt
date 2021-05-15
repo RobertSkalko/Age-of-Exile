@@ -2,6 +2,7 @@ These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 negative/0
 negative/1
+beneficial/20
 negative/6
 negative/7
 negative/8
@@ -10,6 +11,7 @@ negative/2
 negative/3
 negative/4
 negative/5
+beneficial/19
 beneficial/18
 beneficial/13
 beneficial/12
@@ -28,7 +30,11 @@ beneficial/1
 beneficial/4
 beneficial/3
 beneficial/9
+negative/15
 beneficial/0
+negative/13
+beneficial/21
+negative/14
 negative/11
 negative/12
 negative/10

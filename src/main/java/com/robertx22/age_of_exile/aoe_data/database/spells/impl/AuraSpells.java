@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.spells.components.AuraSpellData;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
@@ -22,10 +23,25 @@ public class AuraSpells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        SpellBuilder.aura(PlayStyle.melee, "unwavering_stance", "Unwavering Stance", new AuraSpellData(0.2F,
+            Arrays.asList(
+                new StatModifier(-5, -15, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee)),
+                new StatModifier(-5, -15, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged)),
+                new StatModifier(-5, -15, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic)),
+                new StatModifier(-10, -10, DatapackStats.MOVE_SPEED)
+            )))
+            .build();
+
+        SpellBuilder.aura(PlayStyle.melee, "taunt_stance", "Taunt Stance", new AuraSpellData(0.2F,
+            Arrays.asList(
+                new StatModifier(1, 1, Stats.GIVE_EFFECT_TO_SELF_ON_TICK.get(BeneficialEffects.TAUNT_STANCE))
+            )))
+            .addEffectToTooltip(BeneficialEffects.TAUNT_STANCE)
+            .build();
+
         SpellBuilder.aura(PlayStyle.melee, "hp_reg_aura", "Health Regeneration Aura", new AuraSpellData(0.1F,
             Arrays.asList(
-                new StatModifier(1, 4, HealthRegen.getInstance()),
-                new StatModifier(1, 1, Stats.GIVE_EFFECT_TO_ALLIES_IN_RADIUS.get(BeneficialEffects.REGENERATE))
+                new StatModifier(1, 4, HealthRegen.getInstance())
             )))
             .build();
 

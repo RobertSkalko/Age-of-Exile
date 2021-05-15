@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.exile_effects;
 public enum EffectTags {
     immobilizing("Immobilizing"),
     offensive("Offensive"),
+    curse("Curse"),
     defensive("Defensive"),
     positive("Positive"),
     negative("Negative"),

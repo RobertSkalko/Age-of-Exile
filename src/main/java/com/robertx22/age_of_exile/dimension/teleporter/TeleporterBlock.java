@@ -13,6 +13,7 @@ import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -20,11 +21,22 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider {
 
     public TeleporterBlock() {
         super(Settings.of(Material.STONE)
             .strength(5F, 2));
+    }
+
+    @Override
+    @Deprecated
+    public List<ItemStack> getDroppedStacks(BlockState blockstate, LootContext.Builder context) {
+        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+        items.add(new ItemStack(this));
+        return items;
     }
 
     @Override

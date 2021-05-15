@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.PlayerDamageChart;
+import com.robertx22.age_of_exile.capability.entity.CooldownsData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
@@ -355,6 +356,9 @@ public class DamageEvent extends EffectEvent {
 
         if (dmg > 0) {
             if (source instanceof PlayerEntity) {
+                sourceData.getCooldowns()
+                    .setOnCooldown(CooldownsData.IN_COMBAT, 20 * 15);
+
                 if (target instanceof MobEntity) {
                     PlayerDamageChart.onDamage((PlayerEntity) source, dmg);
 
@@ -363,6 +367,9 @@ public class DamageEvent extends EffectEvent {
                 }
             } else if (source instanceof MobEntity) {
                 if (target instanceof PlayerEntity) {
+                    targetData.getCooldowns()
+                        .setOnCooldown(CooldownsData.IN_COMBAT, 20 * 15);
+
                     GenerateThreatEvent threatEvent = new GenerateThreatEvent((PlayerEntity) target, (MobEntity) source, ThreatGenType.take_dmg, dmg);
                     threatEvent.Activate();
                 }

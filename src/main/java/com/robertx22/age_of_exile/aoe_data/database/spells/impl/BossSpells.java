@@ -22,7 +22,7 @@ import static com.robertx22.age_of_exile.mmorpg.ModRegistry.MISC_ITEMS;
 
 public class BossSpells implements ISlashRegistryInit {
 
-    public static String FIRE_BOMBS = "fire_bombs";
+    public static String FIRE_BOMBS = "boss_fire_bombs";
 
     @Override
     public void registerAll() {

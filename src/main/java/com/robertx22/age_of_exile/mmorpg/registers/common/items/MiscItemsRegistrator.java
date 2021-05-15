@@ -111,8 +111,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item SMITHING_STATION = blockItem(ModRegistry.BLOCKS.SMITHING_STATION);
     public Item TELEPORTER_BLOCK = blockItem(ModRegistry.BLOCKS.TELEPORTER);
 
-    public Item MANA_PLANT = item(new ProduceItem("Mana Fruit"), "plant/mana");
-    public Item LIFE_PLANT = item(new ProduceItem("Life Fruit"), "plant/life");
+    public Item MANA_PLANT = item(new ProduceItem("Astral Fruit"), "plant/mana");
+    public Item LIFE_PLANT = item(new ProduceItem("Life Berry"), "plant/life");
 
     static Item.Settings stationProp = new Item.Settings().group(CreativeTabs.MyModTab);
 

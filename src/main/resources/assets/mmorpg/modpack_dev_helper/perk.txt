@@ -14,7 +14,6 @@ big_tenacious_combatant
 spell_dark_damage
 fire_dark_spell_dmg
 dex
-dark_light_spell_dmg
 hammer_damage
 ele_glove_damage
 mindful_heart
@@ -204,7 +203,6 @@ spell_fire_damage
 ritual
 ele_hammer_damage
 crit_damage
-gamechanger_spellslinger
 mana_vortex
 big_health_mana_cost
 spell_dmg_flat_mana
@@ -362,7 +360,6 @@ big_fast_barbarian
 photosynthesis
 ele_axe_damage
 guild_license
-gamechanger_songbird
 metamorphosis
 water_weapon_damage
 warmth

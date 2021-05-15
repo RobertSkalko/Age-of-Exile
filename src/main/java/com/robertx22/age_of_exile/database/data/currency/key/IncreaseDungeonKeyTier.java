@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.currency.key;
 
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
+import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
@@ -9,14 +10,17 @@ import com.robertx22.age_of_exile.uncommon.datasaving.ItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class IncreaseDungeonKeyTier extends CurrencyItem implements ICurrencyItemEffect {
+public abstract class IncreaseDungeonKeyTier extends CurrencyItem implements ICurrencyItemEffect, IShapelessRecipe {
 
     public IncreaseDungeonKeyTier() {
         super("");
@@ -72,4 +76,14 @@ public abstract class IncreaseDungeonKeyTier extends CurrencyItem implements ICu
         return "Increases the tier of the dungeon key by " + increaseTierBy() + " tiers.";
     }
 
+    public abstract Item craftItem();
+
+    @Override
+    public ShapelessRecipeJsonFactory getRecipe() {
+        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this);
+        fac.input(Items.IRON_INGOT);
+        fac.input(Items.GOLD_INGOT);
+        fac.input(craftItem());
+        return fac.criterion("player_level", trigger());
+    }
 }

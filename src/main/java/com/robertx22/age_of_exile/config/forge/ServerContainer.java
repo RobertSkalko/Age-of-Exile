@@ -17,6 +17,7 @@ public class ServerContainer {
     public double EXP_LOSS_ON_DEATH = 0.1F;
     public double EXP_GAIN_MULTI = 1F;
     public double PARTY_RADIUS = 200;
+    public double RANDOM_SKILL_GEM_SALVAGE_CHANCE = 30;
 
     public double CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL = 20;
     public double START_CORRUPT_AT_LVL = 30;

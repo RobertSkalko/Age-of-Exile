@@ -27,6 +27,7 @@ is_crossbow_wep_type
 is_undead_is_false
 is_target_low_hp
 spell_has_tag_technique
+threat_gen_type_is_spell
 effect_has_tag_heal_over_time
 spell_has_tag_damage
 random_roll
@@ -47,6 +48,7 @@ restore_type_is_leech
 attack_type_is_dot
 is_glove_wep_type
 spell_has_tag_shout
+effect_has_tag_curse
 is_wand_wep_type
 restore_type_is_heal
 spell_has_tag_shield
@@ -68,6 +70,7 @@ restore_type_is_regen
 is_none_wep_type
 is_scythe_wep_type
 spell_has_tag_heal
+spell_has_tag_curse
 resource_type_is_mana
 effect_has_tag_negative
 is_hammer_wep_type

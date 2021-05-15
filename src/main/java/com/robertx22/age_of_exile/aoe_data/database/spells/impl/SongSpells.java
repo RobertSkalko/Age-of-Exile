@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -20,16 +21,23 @@ import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
 public class SongSpells implements ISlashRegistryInit {
 
-    @Override
-    public void registerAll() {
+    static void song(String id, String name, EffectCtx effect) {
 
-        SpellBuilder.of("song_of_valor", SpellConfiguration.Builder.nonInstant(10, 20 * 10, 20 * 2)
-            , "Song of Valor",
+        SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 10, 20 * 2)
+            , name,
             Arrays.asList(SpellTag.area, SpellTag.song))
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.NOTE, 50D, 3D))
-            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(3D, BeneficialEffects.VALOR.effectId, 20 * 15D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(3D, effect.effectId, 20 * 15D))
             .build();
+    }
+
+    @Override
+    public void registerAll() {
+
+        song("song_of_valor", "Song of Valor", BeneficialEffects.VALOR);
+        song("song_of_perseverance", "Song of Perseverance", BeneficialEffects.PERSEVERANCE);
+        song("song_of_vigor", "Song of Vigor", BeneficialEffects.VIGOR);
 
         SpellBuilder.of("power_chord", SpellConfiguration.Builder.instant(7, 15)
                 .setSwingArm(), "Power Chord",

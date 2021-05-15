@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 @Storable
 public class CooldownsData {
 
+    public static String IN_COMBAT = "in_combat";
+
     @Store
     private HashMap<String, Integer> map = new HashMap<>();
 

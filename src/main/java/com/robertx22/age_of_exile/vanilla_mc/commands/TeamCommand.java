@@ -82,6 +82,12 @@ public class TeamCommand {
                                 PlayerEntity player = x.getSource()
                                     .getPlayer();
 
+                                if (!Load.team(player)
+                                    .isOnTeam()) {
+                                    player.sendMessage(new LiteralText("You are not in a team."), false);
+                                    return 0;
+                                }
+
                                 PlayerEntity other = EntityArgumentType.getPlayer(x, "player");
 
                                 other.sendMessage(new LiteralText("").append(player.getDisplayName())

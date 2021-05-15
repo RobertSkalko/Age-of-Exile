@@ -87,6 +87,28 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<EffectCtx> GIVE_EFFECT_TO_SELF_ON_TICK = DatapackStatBuilder
+        .<EffectCtx>of(x -> "give_" + x.id + "_to_self_on_tick", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.TAUNT_STANCE
+        ))
+        .worksWithEvent(RestoreResourceEvent.ID) // todo should be tick event, BUT LAG
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.regen))
+        .addEffect(e -> StatEffects.GIVE_SELF_EFFECT.get(e))
+        .setLocName(x -> Stat.format(
+            "Give " + x.locname + " to self"
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 1;
+            x.is_long = true;
+        })
+        .build();
+
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_KILL = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_to_get_" + x.id + "_on_kill", x -> x.element)
         .addAllOfType(Arrays.asList(

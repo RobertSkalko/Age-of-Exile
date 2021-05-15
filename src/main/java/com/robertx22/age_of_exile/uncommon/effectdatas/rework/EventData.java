@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas.rework;
 
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.GiveOrTake;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
@@ -53,7 +54,7 @@ public class EventData {
     private HashMap<String, String> strings = new HashMap<>();
 
     private void tryFreezeErrorMessage() {
-        if (isFrozen) {
+        if (isFrozen && MMORPG.RUN_DEV_TOOLS) {
             try {
                 throw new RuntimeException("Event data frozen but code tried to modify it.");
             } catch (RuntimeException e) {

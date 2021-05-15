@@ -69,10 +69,12 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
         if (posSource == PositionSource.SOURCE_ENTITY) {
             pos = ctx.sourceEntity.getPos();
         }
+        boolean silent = data.getOrDefault(MapField.IS_SILENT, false);
 
         ProjectileCastHelper builder = new ProjectileCastHelper(pos, data, ctx.caster, projectile.get(), ctx.calculatedSpellData);
         builder.projectilesAmount = data.get(MapField.PROJECTILE_COUNT)
             .intValue() + ctx.calculatedSpellData.extra_proj;
+        builder.silent = silent;
 
         builder.shootSpeed = data.get(MapField.PROJECTILE_SPEED)
             .floatValue();

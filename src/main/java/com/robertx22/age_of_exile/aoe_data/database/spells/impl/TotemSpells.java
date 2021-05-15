@@ -9,7 +9,8 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
-import net.minecraft.block.Blocks;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
@@ -23,12 +24,12 @@ public class TotemSpells implements ISlashRegistryInit {
 
     static Double RADIUS = 3D;
 
-    SpellBuilder of(String id, SpellConfiguration config, String name, List<SpellTag> tags, DefaultParticleType particle) {
+    SpellBuilder of(Block block, String id, SpellConfiguration config, String name, List<SpellTag> tags, DefaultParticleType particle) {
 
         return SpellBuilder.of(id, config, name, tags)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.FURNACE, 20D * 15D)
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(block, 20D * 15D)
                 .put(MapField.ENTITY_NAME, "block")
                 .put(MapField.BLOCK_FALL_SPEED, 0D)
                 .put(MapField.FIND_NEAREST_SURFACE, false)
@@ -46,13 +47,13 @@ public class TotemSpells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        of("astral_totem", SpellConfiguration.Builder.instant(18, 20 * 30), "Astral Totem",
+        of(ModRegistry.BLOCKS.BLUE_TOTEM, "astral_totem", SpellConfiguration.Builder.instant(18, 20 * 30), "Astral Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.WITCH)
             .onTick("block", PartBuilder.restoreManaInRadius(ValueCalculation.base("totem_mana", 5), RADIUS)
                 .onTick(20D))
             .build();
 
-        of("rejuv_totem", SpellConfiguration.Builder.instant(18, 20 * 30), "Rejuvenating Totem",
+        of(ModRegistry.BLOCKS.GREEN_TOTEM, "rejuv_totem", SpellConfiguration.Builder.instant(18, 20 * 30), "Rejuvenating Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.HAPPY_VILLAGER)
             .onTick("block", PartBuilder.healInAoe(ValueCalculation.base("totem_heal", 3), RADIUS)
                 .onTick(20D))

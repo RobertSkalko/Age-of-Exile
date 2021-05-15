@@ -60,20 +60,11 @@ public class PotionRegister {
             ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.negative, i));
             exileEffectsMap.put(key, eff);
         }
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 25; i++) {
             String key = ExileStatusEffect.getIdPath(EffectType.beneficial, i);
             ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.beneficial, i));
             exileEffectsMap.put(key, eff);
         }
-        /*
-        for (int i = 0; i < 20; i++) {
-
-            String key = ExileStatusEffect.getIdPath(EffectType.BUFF, i);
-            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.BUFF, i));
-            exileEffectsMap.put(key, eff);
-        }
-
-         */
 
         Registry.register(Registry.STATUS_EFFECT, Ref.id("knockback_resist"), KNOCKBACK_RESISTANCE);
         Registry.register(Registry.STATUS_EFFECT, Ref.id("anti_wither"), ANTI_WITHER);

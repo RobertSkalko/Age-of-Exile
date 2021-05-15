@@ -71,6 +71,7 @@ dark_dmg_ignore_res
 dodge
 chance_on_basic_atk_to_give_blade_dance_to_self
 bonus_swamp_biome_yield
+inc_effect_of_curse_buff_on_you
 fire_vuln_crit
 chance_to_give_bloodlust_to_self
 bonus_blacksmithing_exp
@@ -116,6 +117,7 @@ inc_effect_of_negative_buff_given
 all_dot_damage
 dark_vuln_crit
 max_fire_resist
+curse_spell_dmg
 more_food_stats
 physical_mana_leech
 chance_of_mana_reg_on_heal_crit
@@ -168,6 +170,7 @@ bonus_exploration_yield
 armor_to_water_damage
 light_vuln_crit
 all_fire_damage
+curse_eff_duration
 sword_damage
 crit_heal_chance
 all_attributes
@@ -217,6 +220,7 @@ inc_effect_of_auras
 light_weapon_damage
 max_water_resist
 bonus_farming_yield
+give_taunt_stance_to_self_on_tick
 damage_cdr
 nature_resist
 all_mana_leech
@@ -225,8 +229,10 @@ magic_dmg_received
 bonus_exploration_exp
 fire_resist
 triple_drop_chance
+curse_eff_dur_u_cast
 health
 elemental_health_leech
+inc_effect_of_curse_buff_given
 transfer_health_to_physical_weapon_damage
 damage_reflected
 staff_damage
@@ -301,6 +307,7 @@ bonus_mining_yield
 crit_water_dmg_mana
 negative_eff_duration
 chance_to_get_mark_on_kill
+curse_cdr
 arrow_spell_dmg
 chance_of_frostburn
 max_elemental_resist

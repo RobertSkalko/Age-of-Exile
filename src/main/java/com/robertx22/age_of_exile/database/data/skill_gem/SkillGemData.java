@@ -1,11 +1,12 @@
 package com.robertx22.age_of_exile.database.data.skill_gem;
 
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
-import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext;
@@ -20,6 +21,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 
@@ -149,10 +151,16 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
 
     @Override
     public List<ItemStack> getSalvageResult(float salvageBonus) {
-        SalvageOutput sal = RandomUtils.weightedRandom(Database.SalvageOutputs()
-            .getFiltered(x -> x.isForItem(this.lvl))
-        );
-        return sal.getResult(this);
+        List<ItemStack> list = new ArrayList<>();
+
+        if (RandomUtils.roll(ModConfig.get().Server.RANDOM_SKILL_GEM_SALVAGE_CHANCE)) {
+            SkillGemBlueprint blueprint = new SkillGemBlueprint(this.lvl);
+            list.add(blueprint.createStack());
+        } else {
+            list.add(new ItemStack(Items.GUNPOWDER));
+        }
+
+        return list;
     }
 
     @Override

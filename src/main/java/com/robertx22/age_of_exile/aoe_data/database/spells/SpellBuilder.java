@@ -1,13 +1,17 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.*;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
+import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import net.minecraft.item.Items;
 import net.minecraft.particle.DefaultParticleType;
 
 import java.util.ArrayList;
@@ -15,19 +19,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
+
 public class SpellBuilder {
     Spell spell;
 
     public static SpellBuilder breath(String id, String name, Elements ele, DefaultParticleType particle) {
 
         return SpellBuilder.of(id, SpellConfiguration.Builder.instant(2, 1), name,
-            Arrays.asList(SpellTag.area, SpellTag.damage))
+            Arrays.asList(SpellTag.damage))
+
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false))
+                .addCondition(EffectCondition.CHANCE.create(20D)))
+            .onHit(PartBuilder.damage(ValueCalculation.base(id, 2), ele))
             .onCast(PartBuilder.Particle.builder(particle, 50D, 0.3D)
                 .set(MapField.MOTION, ParticleMotion.CasterLook.name())
                 .set(MapField.HEIGHT, 1D)
-                .build())
-            .onCast(PartBuilder.onTickRaycast(10D, ValueCalculation.base("breath_dmg", 3), ele, 15D));
-
+                .build());
     }
 
     public static SpellBuilder of(String id, SpellConfiguration config, String name, List<SpellTag> tags) {
@@ -91,40 +99,40 @@ public class SpellBuilder {
     }
 
     public SpellBuilder onTick(ComponentPart comp) {
-        return this.addEffect(Spell.DEFAULT_EN_NAME, comp);
+        return this.addEntityAction(Spell.DEFAULT_EN_NAME, comp);
     }
 
     public SpellBuilder onExpire(ComponentPart comp) {
         comp.addActivationRequirement(EntityActivation.ON_EXPIRE);
-        return this.addEffect(Spell.DEFAULT_EN_NAME, comp);
+        return this.addEntityAction(Spell.DEFAULT_EN_NAME, comp);
     }
 
     public SpellBuilder onHit(ComponentPart comp) {
         comp.addActivationRequirement(EntityActivation.ON_HIT);
-        return this.addEffect(Spell.DEFAULT_EN_NAME, comp);
+        return this.addEntityAction(Spell.DEFAULT_EN_NAME, comp);
     }
 
     public SpellBuilder onTick(String entity, ComponentPart comp) {
-        return this.addEffect(entity, comp);
+        return this.addEntityAction(entity, comp);
     }
 
     public SpellBuilder onCast(String entity, ComponentPart comp) {
         this.spell.attached.on_cast.add(comp);
         comp.addActivationRequirement(EntityActivation.ON_CAST);
-        return this.addEffect(entity, comp);
+        return this.addEntityAction(entity, comp);
     }
 
     public SpellBuilder onExpire(String entity, ComponentPart comp) {
         comp.addActivationRequirement(EntityActivation.ON_EXPIRE);
-        return this.addEffect(entity, comp);
+        return this.addEntityAction(entity, comp);
     }
 
     public SpellBuilder onHit(String entity, ComponentPart comp) {
         comp.addActivationRequirement(EntityActivation.ON_HIT);
-        return this.addEffect(entity, comp);
+        return this.addEntityAction(entity, comp);
     }
 
-    private SpellBuilder addEffect(String entity, ComponentPart comp) {
+    private SpellBuilder addEntityAction(String entity, ComponentPart comp) {
         Objects.requireNonNull(comp);
 
         if (!spell.attached.entity_components.containsKey(entity)) {
@@ -134,6 +142,11 @@ public class SpellBuilder {
         this.spell.attached.getDataForEntity(entity)
             .add(comp);
 
+        return this;
+    }
+
+    public SpellBuilder addEffectToTooltip(EffectCtx eff) {
+        this.spell.effect_tip = eff.effectId;
         return this;
     }
 

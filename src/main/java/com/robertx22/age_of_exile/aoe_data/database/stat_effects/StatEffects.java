@@ -22,6 +22,7 @@ public class StatEffects implements ISlashRegistryInit {
     public static DataHolder<EffectCtx, StatEffect> GIVE_SELF_EFFECT = new DataHolder<>(
         Arrays.asList(
             BeneficialEffects.BLOODLUST,
+            BeneficialEffects.TAUNT_STANCE,
             BeneficialEffects.GATHER_STORM,
             BeneficialEffects.INFUSED_BLADE,
             BeneficialEffects.BLADE_DANCE,
@@ -114,7 +115,6 @@ public class StatEffects implements ISlashRegistryInit {
         INCREASE_MANA_COST.addToSerializables();
         SET_PIERCE.addToSerializables();
         INCREASE_AREA.addToSerializables();
-        SET_PIERCE.addToSerializables();
         INCREASE_PROJ_SPEED.addToSerializables();
         DECREASE_CAST_TIME.addToSerializables();
         LEECH_PERCENT_OF_DAMAGE_AS_RESOURCE.addToSerializables();

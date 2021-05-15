@@ -156,7 +156,7 @@ public class StrSpells implements ISlashRegistryInit {
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1D, 1D))
 
-            .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(AggroAction.Type.AGGRO))
+            .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.base("taunt", 10), AggroAction.Type.AGGRO))
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 20D, 3D))
 
