@@ -49,6 +49,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     public MapsData mapsData = new MapsData();
 
+    public int ticksinPortal = 0;
+
     public MapsPathingData data = new MapsPathingData();
 
     public PlayerMapsCap(PlayerEntity player) {
@@ -168,6 +170,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     player.world.setBlockState(x, ModRegistry.BLOCKS.PORTAL.getDefaultState());
                     PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
                     be.dungeonPos = tpPos;
+                    be.tpbackpos = teleporterPos.up();
                 }
             }
 
@@ -218,11 +221,13 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     public CompoundTag toTag(CompoundTag nbt) {
         LoadSave.Save(mapsData, nbt, LOC);
         LoadSave.Save(data, nbt, "path");
+        nbt.putInt("t", ticksinPortal);
         return nbt;
     }
 
     @Override
     public void fromTag(CompoundTag nbt) {
+        this.ticksinPortal = nbt.getInt("t");
         this.mapsData = LoadSave.Load(MapsData.class, new MapsData(), nbt, LOC);
         this.data = LoadSave.Load(MapsPathingData.class, new MapsPathingData(), nbt, "path");
 

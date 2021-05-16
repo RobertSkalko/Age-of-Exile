@@ -4,6 +4,7 @@ healing_aura
 song_of_valor
 thorn_armor
 boss_fire_bombs
+ethereal_form
 whirlwind
 armor_aura
 ele_res_aura
@@ -32,9 +33,11 @@ unwavering_stance
 poison_ball
 teleport
 nature_balm
+black_hole
 rejuv_totem
 fireball
 levitation
+veil_of_night
 explosive_arrow
 charge
 heart_of_ice
@@ -48,6 +51,7 @@ frost_nova
 make_arrows
 fire_bombs
 power_chord
+pull
 awaken_mana
 mana_reg_aura
 fire_nova

@@ -72,5 +72,6 @@ is_scythe_wep_type
 spell_has_tag_heal
 spell_has_tag_curse
 resource_type_is_mana
+resource_type_is_block
 effect_has_tag_negative
 is_hammer_wep_type

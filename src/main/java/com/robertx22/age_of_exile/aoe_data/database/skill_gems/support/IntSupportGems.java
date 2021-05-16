@@ -17,7 +17,7 @@ public class IntSupportGems implements ISlashRegistryInit {
     public void registerAll() {
 
         SkillGemBuilder.of("spell_crit_rate", "Spell Critical Chance Support", new StatRequirement().setBaseInt(20)
-                .setInt(0.2F), StatAttribute.INT, 1.25F,
+                .setInt(0.2F), StatAttribute.INT, 1.2F,
             Arrays.asList(SpellTag.damage),
             new StatModifier(5, 25, Stats.SPELL_CRIT_CHANCE.get())
         );
@@ -29,37 +29,37 @@ public class IntSupportGems implements ISlashRegistryInit {
         );
 
         SkillGemBuilder.of("fire_chance", "Chance to Burn Support", new StatRequirement().setBaseInt(20)
-                .setInt(0.2F), StatAttribute.INT, 1.25F,
+                .setInt(0.2F), StatAttribute.INT, 1.2F,
             Arrays.asList(SpellTag.damage),
             new StatModifier(10, 20, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN))
         );
         SkillGemBuilder.of("frostburn_chance", "Chance to Frostburn Support", new StatRequirement().setBaseInt(20)
-                .setInt(0.2F), StatAttribute.INT, 1.25F,
+                .setInt(0.2F), StatAttribute.INT, 1.2F,
             Arrays.asList(SpellTag.damage),
             new StatModifier(10, 20, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN))
         );
 
         SkillGemBuilder.of("cast_speed", "Faster Casting Support", new StatRequirement().setBaseInt(25)
-                .setInt(0.4F), StatAttribute.INT, 1.25F,
+                .setInt(0.4F), StatAttribute.INT, 1.2F,
             Arrays.asList(SpellTag.damage),
             new StatModifier(5, 25, Stats.CAST_SPEED.get())
         );
 
         SkillGemBuilder.of("cooldown", "Less Cooldown Support", new StatRequirement().setBaseInt(25)
-                .setInt(0.4F), StatAttribute.INT, 1.25F,
+                .setInt(0.4F), StatAttribute.INT, 1.2F,
             Arrays.asList(),
             new StatModifier(10, 30, Stats.COOLDOWN_REDUCTION.get())
         );
 
         SkillGemBuilder.of("less_radius", "Concentrated Impact Support", new StatRequirement().setBaseInt(25)
-                .setInt(0.5F), StatAttribute.INT, 1.25F,
+                .setInt(0.5F), StatAttribute.INT, 1.1F,
             Arrays.asList(SpellTag.damage, SpellTag.area),
             new StatModifier(-10, -20, Stats.INCREASED_AREA.get()),
             new StatModifier(15, 25, Stats.AREA_DAMAGE.get())
         );
 
         SkillGemBuilder.of("more_radius", "Expanded Area Support", new StatRequirement().setBaseInt(25)
-                .setInt(0.5F), StatAttribute.INT, 1.25F,
+                .setInt(0.5F), StatAttribute.INT, 1.1F,
             Arrays.asList(SpellTag.damage, SpellTag.area),
             new StatModifier(10, 20, Stats.INCREASED_AREA.get())
         );

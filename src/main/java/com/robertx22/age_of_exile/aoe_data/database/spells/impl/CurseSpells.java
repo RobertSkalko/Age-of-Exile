@@ -19,7 +19,7 @@ public class CurseSpells implements ISlashRegistryInit {
             , name,
             Arrays.asList(SpellTag.area, SpellTag.curse))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_SKELETON_HURT, 1D, 1D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 50D, 3D))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.SOUL, 50D, 3D, 1D))
             .onCast(PartBuilder.addExileEffectToEnemiesInAoe(effect.effectId, 3D, 20 * 15D))
             .build();
     }

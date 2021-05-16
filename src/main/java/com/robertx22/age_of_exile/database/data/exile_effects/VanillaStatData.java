@@ -49,11 +49,13 @@ public class VanillaStatData {
         EntityAttributeModifier mod = new EntityAttributeModifier(UUID.fromString(uuid), "", val, type.operation);
         EntityAttribute attri = getAttribute();
 
-        if (en.getAttributeInstance(attri)
-            .hasModifier(mod)) {
-            en.getAttributeInstance(attri)
-                .removeModifier(mod);
+        if (en.getAttributeInstance(attri) != null) {
+
+            if (en.getAttributeInstance(attri)
+                .hasModifier(mod)) {
+                en.getAttributeInstance(attri)
+                    .removeModifier(mod);
+            }
         }
     }
-
 }

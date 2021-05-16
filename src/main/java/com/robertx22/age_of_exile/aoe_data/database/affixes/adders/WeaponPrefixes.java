@@ -94,6 +94,24 @@ public class WeaponPrefixes implements ISlashRegistryInit {
             .Prefix()
             .Build();
 
+        AffixBuilder.Normal("heal_crit_prefix")
+            .Named("Truthful")
+            .tier(1, new StatModifier(9, 12, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(6, 9, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(4, 6, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT))
+            .includesTags(SlotTag.scepter)
+            .Prefix()
+            .Build();
+
+        AffixBuilder.Normal("heal_crit_dmg_prefix")
+            .Named("Inspiring")
+            .tier(1, new StatModifier(15, 20, Stats.HEAL_CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(10, 15, Stats.HEAL_CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 10, Stats.HEAL_CRIT_DAMAGE.get(), ModType.FLAT))
+            .includesTags(SlotTag.scepter)
+            .Prefix()
+            .Build();
+
     }
 
 }

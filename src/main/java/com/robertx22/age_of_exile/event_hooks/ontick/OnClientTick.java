@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ChatUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCancelSpellCast;
 import com.robertx22.library_of_exile.main.Packets;
@@ -39,6 +40,12 @@ public class OnClientTick implements ClientTickEvents.EndTick {
 
         if (player == null) {
             return;
+        }
+
+        if (ChatUtils.isChatOpen()) {
+            ClientOnly.ticksSinceChatWasOpened = 0;
+        } else {
+            ClientOnly.ticksSinceChatWasOpened--;
         }
 
         if (player.isPartOf(player)) {

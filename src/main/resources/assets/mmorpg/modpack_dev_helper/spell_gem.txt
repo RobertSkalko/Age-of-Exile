@@ -5,6 +5,7 @@ song_of_valor
 thorn_armor
 fire_chance
 boss_fire_bombs
+ethereal_form
 whirlwind
 armor_aura
 ele_res_aura
@@ -50,9 +51,11 @@ spell_crit_rate
 crit_dmg
 faster_proj
 nature_balm
+black_hole
 rejuv_totem
 fireball
 levitation
+veil_of_night
 explosive_arrow
 charge
 heart_of_ice
@@ -69,6 +72,7 @@ make_arrows
 fire_bombs
 spell_crit_dmg
 power_chord
+pull
 awaken_mana
 mana_reg_aura
 fire_nova

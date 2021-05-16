@@ -19,7 +19,6 @@ public class MagicShieldPrefixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(3, 4, Mana.getInstance(), ModType.FLAT), new StatModifier(2, 2.5F, Armor.getInstance(), ModType.FLAT))
             .tier(2, new StatModifier(2, 3, Mana.getInstance(), ModType.FLAT), new StatModifier(1.5F, 2, Armor.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(1, 2, Mana.getInstance(), ModType.FLAT), new StatModifier(1.2F, 1.5F, Armor.getInstance(), ModType.FLAT))
-            .tier(4, new StatModifier(0, 1, Mana.getInstance(), ModType.FLAT), new StatModifier(1.0F, 1.2F, Armor.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.magic_shield_stat)
             .Prefix()
             .Build();

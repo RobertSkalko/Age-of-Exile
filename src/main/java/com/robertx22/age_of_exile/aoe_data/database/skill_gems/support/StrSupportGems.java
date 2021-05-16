@@ -23,19 +23,19 @@ public class StrSupportGems implements ISlashRegistryInit {
             new StatModifier(25, 50, Stats.THREAT_GENERATED.get())
         );
         SkillGemBuilder.of("bleed_chance", "Chance to Bleed Support", new StatRequirement().setBaseStr(20)
-                .setStr(0.2F), StatAttribute.STR, 1.25F,
+                .setStr(0.2F), StatAttribute.STR, 1.1F,
             Arrays.asList(SpellTag.damage),
             new StatModifier(10, 20, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED))
         );
 
         SkillGemBuilder.of("health_leech", "Health Leech Support", new StatRequirement().setBaseStr(25)
-                .setStr(0.4F), StatAttribute.STR, 1.25F,
+                .setStr(0.4F), StatAttribute.STR, 1.2F,
             Arrays.asList(SpellTag.damage),
             new StatModifier(2, 3, Stats.LIFESTEAL.get())
         );
 
         SkillGemBuilder.of("crit_rate", "Critical Chance Support", new StatRequirement().setBaseStr(20)
-                .setStr(0.2F), StatAttribute.STR, 1.25F,
+                .setStr(0.2F), StatAttribute.STR, 1.2F,
             Arrays.asList(SpellTag.damage),
             new StatModifier(5, 25, Stats.CRIT_CHANCE.get())
         );
@@ -53,13 +53,13 @@ public class StrSupportGems implements ISlashRegistryInit {
         );
 
         SkillGemBuilder.of("fire_dmg", "Fire Damage Support", new StatRequirement().setBaseStr(20)
-                .setStr(0.2F), StatAttribute.STR, 1.2F,
+                .setStr(0.2F), StatAttribute.STR, 1.1F,
             Arrays.asList(SpellTag.damage),
             new StatModifier(5, 30, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire))
         );
 
         SkillGemBuilder.of("nature_dmg", "Poison Damage Support", new StatRequirement().setBaseStr(20)
-                .setStr(0.2F), StatAttribute.STR, 1.2F,
+                .setStr(0.2F), StatAttribute.STR, 1.1F,
             Arrays.asList(SpellTag.damage),
             new StatModifier(5, 30, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature))
         );

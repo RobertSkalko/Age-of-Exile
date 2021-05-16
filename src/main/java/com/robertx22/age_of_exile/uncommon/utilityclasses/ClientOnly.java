@@ -13,6 +13,8 @@ import java.util.UUID;
 
 public class ClientOnly {
 
+    public static int ticksSinceChatWasOpened = 0;
+
     public static Entity getEntityByUUID(World world, UUID id) {
 
         if (world instanceof ClientWorld) {

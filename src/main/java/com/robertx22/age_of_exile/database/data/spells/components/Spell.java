@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
-import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
@@ -169,8 +168,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         LivingEntity caster = ctx.caster;
 
-        EntitySavedSpellData data = EntitySavedSpellData.create(ctx.calcData.lvl, caster, this);
-
         ctx.castedThisTick = true;
 
         if (this.config.swing_arm) {
@@ -181,7 +178,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             ctx.spellsCap.triggerAura(this);
         }
 
-        attached.onCast(SpellCtx.onCast(caster, data));
+        attached.onCast(SpellCtx.onCast(caster, ctx.calcData));
     }
 
     public final int getCooldownTicks(SpellCastContext ctx) {

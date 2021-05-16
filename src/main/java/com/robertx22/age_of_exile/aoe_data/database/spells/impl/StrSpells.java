@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
@@ -20,6 +21,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -33,6 +35,18 @@ public class StrSpells implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        SpellBuilder.of("pull", SpellConfiguration.Builder.instant(5, 60 * 20), "Pull",
+            Arrays.asList(SpellTag.area, SpellTag.damage))
+            .attackStyle(PlayStyle.melee)
+            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_ANVIL_HIT, 1D, 1D))
+            .onCast(PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
+                .addActions(SpellAction.POTION.createGive(StatusEffects.SLOWNESS, 20D * 5))
+                .addActions(SpellAction.DEAL_DAMAGE.create(ValueCalculation.base("pull", 5), Elements.Physical))
+                .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.STUN.effectId, ExileEffectAction.GiveOrTake.GIVE_STACKS, 20D * 2))
+                .addTarget(TargetSelector.AOE.create(8D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 100D, 6D, 0.1D))
+            .build();
 
         SpellBuilder.of("shout_warn", SpellConfiguration.Builder.instant(10, 60 * 20), "Warning Shout",
             Arrays.asList(SpellTag.area, SpellTag.shout, SpellTag.shield))

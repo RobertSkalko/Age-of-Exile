@@ -32,15 +32,6 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .Suffix()
             .Build();
 
-        AffixBuilder.Normal("of_good_aim")
-            .Named("Of Good Aim")
-            .tier(1, new StatModifier(4, 8, Stats.CRIT_CHANCE.get(), ModType.FLAT))
-            .tier(2, new StatModifier(2, 4, Stats.CRIT_CHANCE.get(), ModType.FLAT))
-            .tier(3, new StatModifier(1, 2F, Stats.CRIT_CHANCE.get(), ModType.FLAT))
-            .includesTags(SlotTag.weapon_family)
-            .Suffix()
-            .Build();
-
         AffixBuilder.Normal("of_vampirism")
             .Named("Of Vampirism")
             .tier(1, new StatModifier(3, 5, Stats.LIFESTEAL.get(), ModType.FLAT))
@@ -50,6 +41,14 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .Suffix()
             .Build();
 
+        AffixBuilder.Normal("of_good_aim")
+            .Named("Of Good Aim")
+            .tier(1, new StatModifier(4, 8, Stats.CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(2, 4, Stats.CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(1, 2F, Stats.CRIT_CHANCE.get(), ModType.FLAT))
+            .includesTags(SlotTag.weapon_family)
+            .Suffix()
+            .Build();
         AffixBuilder.Normal("of_brutality")
             .Named("Of Brutality")
             .tier(1, new StatModifier(15, 20, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
@@ -94,7 +93,7 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(15, 20, Stats.CAST_SPEED.get(), ModType.FLAT))
             .tier(2, new StatModifier(12, 15, Stats.CAST_SPEED.get(), ModType.FLAT))
             .tier(3, new StatModifier(7, 12, Stats.CAST_SPEED.get(), ModType.FLAT))
-            .includesTags(SlotTag.wand, SlotTag.jewelry_family)
+            .includesTags(SlotTag.mage_weapon, SlotTag.jewelry_family)
             .Suffix()
             .Build();
 
@@ -103,7 +102,7 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(12, 15, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT))
             .tier(2, new StatModifier(10, 12, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT))
             .tier(3, new StatModifier(6, 10, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT))
-            .includesTags(SlotTag.wand, SlotTag.jewelry_family)
+            .includesTags(SlotTag.mage_weapon, SlotTag.jewelry_family)
             .Suffix()
             .Build();
 
@@ -112,9 +111,36 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(12, 15, SpellDamage.getInstance(), ModType.FLAT))
             .tier(2, new StatModifier(10, 12, SpellDamage.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(6, 10, SpellDamage.getInstance(), ModType.FLAT))
-            .includesTags(SlotTag.wand, SlotTag.jewelry_family)
+            .includesTags(SlotTag.mage_weapon, SlotTag.jewelry_family)
             .Suffix()
             .Build();
 
+        AffixBuilder.Normal("of_focus")
+            .Named("Of Focus")
+            .tier(1, new StatModifier(4, 8, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(2, 4, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(1, 2F, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT))
+            .includesTags(SlotTag.mage_weapon)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_devastation")
+            .Named("Of Devastation")
+            .tier(1, new StatModifier(15, 20, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(10, 15, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 10, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(4, new StatModifier(3, 5, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT))
+            .includesTags(SlotTag.mage_weapon)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("heal_suff")
+            .Named("Of Restoration")
+            .tier(1, new StatModifier(15, 20, Stats.HEAL_STRENGTH.get(), ModType.FLAT))
+            .tier(2, new StatModifier(10, 15, Stats.HEAL_STRENGTH.get(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 10, Stats.HEAL_STRENGTH.get(), ModType.FLAT))
+            .includesTags(SlotTag.scepter)
+            .Prefix()
+            .Build();
     }
 }

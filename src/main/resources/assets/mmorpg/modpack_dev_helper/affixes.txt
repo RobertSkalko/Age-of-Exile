@@ -2,8 +2,10 @@ These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 farming_exp
 nature_wep_dmg_jewelry
+of_devastation
 scaled
 jewel_accuracy_suffix
+heal_suff
 fire_ele_dmg_jewelry
 nature_res
 double_drop_chance_pre
@@ -12,8 +14,10 @@ seraphim
 of_consumption
 light_ele_dmg_jewelry
 socket_suff
+heal_crit_dmg_prefix
 water_ele_dmg_jewelry
 true_hit
+heal_crit_prefix
 light_res
 night_yield
 fire_wep_dmg
@@ -40,6 +44,7 @@ of_affluence
 water_res
 protective
 agile
+of_focus
 mining_exp
 light_wep_dmg
 mana_thief

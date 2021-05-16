@@ -16,6 +16,8 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeap
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
@@ -36,6 +38,21 @@ public class IntSpells implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        SpellBuilder.of("black_hole", SpellConfiguration.Builder.instant(30, 20 * 60)
+                .setSwingArm(), "Black Hole",
+            Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.area))
+            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.ENDER_PEARL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 100D, true)
+                .put(MapField.EXPIRE_ON_HIT, false)))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.PORTAL, 40D, 1.5D))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.WITCH, 8D, 2D))
+            .onTick(PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
+                .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
+            .onTick(PartBuilder.damageInAoe(ValueCalculation.base("black_hole", 3), Elements.Dark, 2D)
+                .onTick(40D))
+            .build();
 
         SpellBuilder.of(FROSTBALL_ID, SpellConfiguration.Builder.instant(7, 15)
                 .setSwingArm(), "Ice Ball",

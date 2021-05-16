@@ -4,11 +4,11 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.CooldownsData;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ChatUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -67,6 +67,12 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
             if (mc.player.isSpectator()) {
                 return;
             }
+            if (data == null) {
+                data = Load.spells(mc.player);
+            }
+            if (ChatUtils.isChatOpen()) {
+                return;
+            }
 
             RenderSystem.enableBlend(); // enables transparency
 
@@ -103,7 +109,6 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
         boolean render = true;
 
         Spell spell = null;
-        SpellCastContext ctx = null;
         try {
             spell = Load.spells(this.mc.player)
                 .getSpellByNumber(place);
@@ -111,7 +116,6 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
             if (spell == null) {
                 return;
             }
-            ctx = new SpellCastContext(mc.player, 0, spell);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,68 +135,67 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
         double scale = 0.6F;
         RenderSystem.scaled(scale, scale, scale);
 
-        int xs = (int) (x * 1 / scale);
-        int ys = (int) (y * 1 / scale);
+        try {
+            int xs = (int) (x * 1 / scale);
+            int ys = (int) (y * 1 / scale);
 
-        if (data.getCastingData().auras.getOrDefault(spell.GUID(), new SpellCastingData.AuraData()).active) {
-            mc.getTextureManager()
-                .bindTexture(AURA_ACTIVATED);
-        } else if (Load.Unit(mc.player)
-            .getCooldowns()
-            .getCooldownTicks(spell.GUID()) > 1) {
-            mc.getTextureManager()
-                .bindTexture(SPELL_ON_COOLDOWN);
-        } else if (!Load.Unit(this.mc.player)
-            .getResources()
-            .hasEnough(spell.getManaCostCtx(ctx))) {
-            mc.getTextureManager()
-                .bindTexture(SPELl_NO_MANA);
-        } else if (spell.config.isTechnique() && !Load.spells(mc.player)
-            .getCastingData()
-            .meetActionRequirements(spell)) {
-            mc.getTextureManager()
-                .bindTexture(TECHNIQUE_CANT_ACTIVATE);
-        } else if (spell.config.isTechnique() && Load.spells(mc.player)
-            .getCastingData()
-            .meetActionRequirements(spell)) {
-            mc.getTextureManager()
-                .bindTexture(TECHNIQUE_CAN_ACTIVATE);
-        } else {
-            mc.getTextureManager()
-                .bindTexture(SPELL_READY_TEX);
-        }
+            if (data.getCastingData().auras.getOrDefault(spell.GUID(), new SpellCastingData.AuraData()).active) {
+                mc.getTextureManager()
+                    .bindTexture(AURA_ACTIVATED);
+            } else if (Load.Unit(mc.player)
+                .getCooldowns()
+                .getCooldownTicks(spell.GUID()) > 1) {
+                mc.getTextureManager()
+                    .bindTexture(SPELL_ON_COOLDOWN);
+            } else if (spell.config.isTechnique() && !Load.spells(mc.player)
+                .getCastingData()
+                .meetActionRequirements(spell)) {
+                mc.getTextureManager()
+                    .bindTexture(TECHNIQUE_CANT_ACTIVATE);
+            } else if (spell.config.isTechnique() && Load.spells(mc.player)
+                .getCastingData()
+                .meetActionRequirements(spell)) {
+                mc.getTextureManager()
+                    .bindTexture(TECHNIQUE_CAN_ACTIVATE);
+            } else {
+                mc.getTextureManager()
+                    .bindTexture(SPELL_READY_TEX);
+            }
 
-        this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
-
-        if (spell != null) {
-            mc.getTextureManager()
-                .bindTexture(spell.getIconLoc());
             this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
 
-            CooldownsData cds = Load.Unit(mc.player)
-                .getCooldowns();
-
-            float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) spell.config.cooldown_ticks;
-            if (cds.getCooldownTicks(spell.GUID()) > 1) {
-                percent = MathHelper.clamp(percent, 0, 1F);
+            if (spell != null) {
                 mc.getTextureManager()
-                    .bindTexture(COOLDOWN_TEX);
-                this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
+                    .bindTexture(spell.getIconLoc());
+                this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
+
+                CooldownsData cds = Load.Unit(mc.player)
+                    .getCooldowns();
+
+                float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) spell.config.cooldown_ticks;
+                if (cds.getCooldownTicks(spell.GUID()) > 1) {
+                    percent = MathHelper.clamp(percent, 0, 1F);
+                    mc.getTextureManager()
+                        .bindTexture(COOLDOWN_TEX);
+                    this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
+                }
+
+                int cdsec = cds.getCooldownTicks(spell.GUID()) / 20;
+                if (cdsec > 1) {
+                    String stext = cdsec + "s";
+                    MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, stext, xs + 35, ys + 15, Formatting.YELLOW.getColorValue());
+                }
+
+                String txt = CLOC.translate(KeybindsRegister.getSpellHotbar(place)
+                    .getBoundKeyLocalizedText())
+                    .toUpperCase(Locale.ROOT);
+
+                GuiUtils.renderScaledText(matrix,
+                    xs + 23, ys + 23, 1.4F, txt, Formatting.GREEN);
+
             }
-
-            int cdsec = cds.getCooldownTicks(spell.GUID()) / 20;
-            if (cdsec > 1) {
-                String stext = cdsec + "s";
-                MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, stext, xs + 35, ys + 15, Formatting.YELLOW.getColorValue());
-            }
-
-            String txt = CLOC.translate(KeybindsRegister.getSpellHotbar(place)
-                .getBoundKeyLocalizedText())
-                .toUpperCase(Locale.ROOT);
-
-            GuiUtils.renderScaledText(matrix,
-                xs + 23, ys + 23, 1.4F, txt, Formatting.GREEN);
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
