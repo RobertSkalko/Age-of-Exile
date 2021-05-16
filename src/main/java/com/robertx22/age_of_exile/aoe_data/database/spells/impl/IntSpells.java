@@ -54,6 +54,18 @@ public class IntSpells implements ISlashRegistryInit {
                 .onTick(40D))
             .build();
 
+        SpellBuilder.of("shooting_star", SpellConfiguration.Builder.instant(7, 20)
+                .setSwingArm(), "Shooting Star",
+            Arrays.asList(SpellTag.projectile, SpellTag.heal))
+            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.NETHER_STAR, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
+                .put(MapField.HITS_ALLIES, true)))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SOUL_FIRE_FLAME, 2D, 0.15D))
+            .onExpire(PartBuilder.healInAoe(ValueCalculation.base("shooting_star", 8), 2D))
+            .onExpire(PartBuilder.aoeParticles(ParticleTypes.SOUL_FIRE_FLAME, 10D, 1D))
+            .build();
+
         SpellBuilder.of(FROSTBALL_ID, SpellConfiguration.Builder.instant(7, 15)
                 .setSwingArm(), "Ice Ball",
             Arrays.asList(SpellTag.projectile, SpellTag.damage))
@@ -143,15 +155,18 @@ public class IntSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("heal_ray", SpellConfiguration.Builder.instant(2, 1), "Healing Ray",
             Arrays.asList(SpellTag.heal))
-            .onCast(PartBuilder.Particle.builder(ParticleTypes.EFFECT, 40D, 0.3D)
+            .onCast(PartBuilder.Particle.builder(ParticleTypes.SOUL_FIRE_FLAME, 4D, 0.3D)
                 .set(MapField.MOTION, ParticleMotion.CasterLook.name())
                 .set(MapField.HEIGHT, 1D)
                 .build())
-            .onCast(PartBuilder.onTickRayHeal(10D, ValueCalculation.base("breath_heal", 3), 15D))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 3D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
+                .put(MapField.IS_SILENT, true)
+                .put(MapField.HITS_ALLIES, true))
+                .addCondition(EffectCondition.CHANCE.create(20D)))
+            .onHit(PartBuilder.healInAoe(ValueCalculation.base("breath_heal", 3), 2D))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CAT_HISS, 1D, 1D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(10D)))
             .build();
-        ;
 
         SpellBuilder.breath("frost_breath", "Frost Breath", Elements.Water, PARTICLES.FROST)
             .build();
@@ -241,11 +256,22 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 5D, 0.5D))
             .build();
 
-        SpellBuilder.of("shield_test", SpellConfiguration.Builder.instant(15, 20 * 5), "Shield Test",
-            Arrays.asList(SpellTag.shield))
-            .onCast(PartBuilder.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.GIVE_SHIELD.create(ValueCalculation.base("shield_test", 15), 10D))
-                .addTarget(TargetSelector.CASTER.create()))
+        SpellBuilder.of("banish", SpellConfiguration.Builder.instant(10, 20 * 45), "Banish", Arrays.asList())
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)
+                .put(MapField.ENTITY_NAME, "block")
+                .put(MapField.BLOCK_FALL_SPEED, 0D)
+                .put(MapField.FIND_NEAREST_SURFACE, false)
+                .put(MapField.IS_BLOCK_FALLING, false)))
+
+            .onTick("block", PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, 0.1D, ParticleMotion.Upwards))
+                .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
+            .onTick("block", PartBuilder.playSound(SoundEvents.BLOCK_SOUL_SOIL_HIT, 0.5D, 1D)
+                .addCondition(EffectCondition.EVERY_X_TICKS.create(40D)))
+
+            .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.SOUL_FIRE_FLAME, 15D, 3D, 0.5D)
+                .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
             .build();
 
     }

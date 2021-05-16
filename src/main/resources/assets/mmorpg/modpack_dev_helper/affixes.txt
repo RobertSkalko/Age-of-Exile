@@ -4,8 +4,8 @@ farming_exp
 nature_wep_dmg_jewelry
 of_devastation
 scaled
-jewel_accuracy_suffix
 heal_suff
+jewel_accuracy_suffix
 fire_ele_dmg_jewelry
 nature_res
 double_drop_chance_pre

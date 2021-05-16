@@ -19,6 +19,7 @@ curse_of_weak
 frost_armor
 heal_ray
 song_of_perseverance
+shooting_star
 crit_aura
 overload
 astral_totem
@@ -32,6 +33,7 @@ thirst_strike
 unwavering_stance
 poison_ball
 teleport
+banish
 nature_balm
 black_hole
 rejuv_totem

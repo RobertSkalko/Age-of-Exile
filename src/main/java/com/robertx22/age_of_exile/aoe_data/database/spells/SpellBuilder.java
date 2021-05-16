@@ -29,9 +29,10 @@ public class SpellBuilder {
         return SpellBuilder.of(id, SpellConfiguration.Builder.instant(2, 1), name,
             Arrays.asList(SpellTag.damage))
 
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
+                .put(MapField.IS_SILENT, true))
                 .addCondition(EffectCondition.CHANCE.create(20D)))
-            .onHit(PartBuilder.damage(ValueCalculation.base(id, 2), ele))
+            .onHit(PartBuilder.damageInAoe(ValueCalculation.base(id, 2), ele, 1.5D))
             .onCast(PartBuilder.Particle.builder(particle, 50D, 0.3D)
                 .set(MapField.MOTION, ParticleMotion.CasterLook.name())
                 .set(MapField.HEIGHT, 1D)

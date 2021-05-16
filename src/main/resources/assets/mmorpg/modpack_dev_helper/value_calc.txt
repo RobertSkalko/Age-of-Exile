@@ -28,6 +28,7 @@ fire_breath
 shout_warn
 direct_arrow_hit
 flame_strike
+shooting_star
 meteor
 frost_nova
 bleed

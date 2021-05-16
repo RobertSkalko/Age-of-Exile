@@ -45,6 +45,8 @@ public class ModBlocks {
     public TotemBlock BLUE_TOTEM = of("blue_totem", new TotemBlock());
     public TotemBlock GREEN_TOTEM = of("green_totem", new TotemBlock());
 
+    public TotemBlock GLYPH = of("glyph", new TotemBlock());
+
     public HashMap<SkillItemTier, Block> FARMING_PLANTS = new HashMap<>();
 
     public Block MANA_PLANT = plant("mana");

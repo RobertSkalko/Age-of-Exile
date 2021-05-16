@@ -28,7 +28,7 @@ public class SongSpells implements ISlashRegistryInit {
             Arrays.asList(SpellTag.area, SpellTag.song))
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.NOTE, 50D, 3D))
-            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, effect.effectId, 20 * 20D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, effect.effectId, 20 * 30D))
             .build();
     }
 

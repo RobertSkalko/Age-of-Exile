@@ -58,6 +58,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
     private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.STRING);
     private static final TrackedData<Boolean> EXPIRE_ON_HIT = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> HIT_ALLIES = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> PIERCE = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Integer> DEATH_TIME = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
@@ -236,9 +237,11 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
                 return !e.isSpectator() && e.collides() && e instanceof Entity && e != this.getCaster() && e != this.ignoreEntity;
             });
 
-        if (res != null && getCaster() != null && res.getEntity() instanceof LivingEntity) {
-            if (AllyOrEnemy.allies.is(getCaster(), (LivingEntity) res.getEntity())) {
-                return null; // don't hit allies with spells, let them pass
+        if (!this.dataTracker.get(HIT_ALLIES)) {
+            if (res != null && getCaster() != null && res.getEntity() instanceof LivingEntity) {
+                if (AllyOrEnemy.allies.is(getCaster(), (LivingEntity) res.getEntity())) {
+                    return null; // don't hit allies with spells, let them pass
+                }
             }
         }
         return res;
@@ -399,6 +402,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         this.dataTracker.startTracking(SPELL_DATA, new CompoundTag());
         this.dataTracker.startTracking(ENTITY_NAME, "");
         this.dataTracker.startTracking(EXPIRE_ON_HIT, true);
+        this.dataTracker.startTracking(HIT_ALLIES, false);
         this.dataTracker.startTracking(PIERCE, false);
         this.dataTracker.startTracking(DEATH_TIME, 100);
         super.initDataTracker();
@@ -467,6 +471,10 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
 
         if (data.pierce) {
             this.dataTracker.set(PIERCE, true);
+        }
+
+        if (holder.getOrDefault(MapField.HITS_ALLIES, false)) {
+            dataTracker.set(HIT_ALLIES, true);
         }
 
         data.item_id = holder.get(MapField.ITEM);

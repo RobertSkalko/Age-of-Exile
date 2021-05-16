@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "mmorpg:block/glyph" },
+        "facing=south": { "model": "mmorpg:block/glyph", "y": 180 },
+        "facing=west":  { "model": "mmorpg:block/glyph", "y": 270 },
+        "facing=east":  { "model": "mmorpg:block/glyph", "y": 90 }
+    }
+}

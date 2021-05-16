@@ -295,6 +295,12 @@ public class SpellCastingData {
                 .onAction((PlayerEntity) ctx.caster, PlayerAction.NOPE);
         }
         this.casting = false;
+
+        if (ctx.caster instanceof PlayerEntity) {
+
+            Load.Unit(ctx.caster)
+                .syncToClient((PlayerEntity) ctx.caster);
+        }
     }
 
 }

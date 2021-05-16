@@ -140,7 +140,7 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(10, 15, Stats.HEAL_STRENGTH.get(), ModType.FLAT))
             .tier(3, new StatModifier(5, 10, Stats.HEAL_STRENGTH.get(), ModType.FLAT))
             .includesTags(SlotTag.scepter)
-            .Prefix()
+            .Suffix()
             .Build();
     }
 }

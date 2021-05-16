@@ -29,6 +29,7 @@ heal_ray
 song_of_perseverance
 crit_rate
 health_leech
+shooting_star
 crit_aura
 overload
 astral_totem
@@ -48,6 +49,7 @@ poison_ball
 piercing_proj
 teleport
 spell_crit_rate
+banish
 crit_dmg
 faster_proj
 nature_balm

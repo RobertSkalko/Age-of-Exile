@@ -290,6 +290,8 @@ public class EntityCap {
             nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
             nbt.putBoolean(SHOULD_SYNC, shouldSync);
 
+            LoadSave.Save(cooldowns, nbt, COOLDOWNS);
+
             if (unit != null) {
                 UnitNbt.Save(nbt, unit);
             }
@@ -302,9 +304,6 @@ public class EntityCap {
                 LoadSave.Save(resources, nbt, RESOURCES_LOC);
             }
 
-            if (cooldowns != null) {
-                LoadSave.Save(cooldowns, nbt, COOLDOWNS);
-            }
             if (threat != null) {
                 LoadSave.Save(threat, nbt, THREAT);
             }
@@ -330,6 +329,11 @@ public class EntityCap {
             this.unit = UnitNbt.Load(nbt);
             if (this.unit == null) {
                 this.unit = new Unit();
+            }
+
+            cooldowns = LoadSave.Load(CooldownsData.class, new CooldownsData(), nbt, COOLDOWNS);
+            if (cooldowns == null) {
+                cooldowns = new CooldownsData();
             }
 
             try {

@@ -107,6 +107,7 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         val += getCalculatedBaseValue(lvl);
 
         return val;
+
     }
 
     public Text getShortTooltip(int lvl) {
