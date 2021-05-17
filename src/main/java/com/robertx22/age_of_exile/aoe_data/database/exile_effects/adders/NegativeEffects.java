@@ -13,7 +13,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -185,13 +184,14 @@ public class NegativeEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(BLIND)
-            .stat(-10, new AttackDamage(Elements.Physical), ModType.FLAT)
-            .stat(-25, Stats.CRIT_CHANCE.get(), ModType.FLAT)
+            .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_DAMAGE, -1000F, ModType.GLOBAL_INCREASE, UUID.fromString("5eccf34c-29f7-4eea-bbad-82a905594064")))
+            .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_SPEED, -1000F, ModType.GLOBAL_INCREASE, UUID.fromString("57eb6210-2a42-4ad3-a604-6f679d440a9b")))
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 3D, 1D)
                     .onTick(20D))
                 .buildForEffect()
             )
+            .addTags(EffectTags.immobilizing)
             .build();
 
         ExileEffectBuilder.of(WOUNDS)

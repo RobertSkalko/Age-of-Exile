@@ -33,6 +33,7 @@ shooting_star
 crit_aura
 overload
 astral_totem
+smoke_bomb
 gong_strike
 cast_speed
 hp_reg_aura

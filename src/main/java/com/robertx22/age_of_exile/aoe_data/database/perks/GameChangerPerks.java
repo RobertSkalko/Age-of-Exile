@@ -24,10 +24,11 @@ public class GameChangerPerks implements ISlashRegistryInit {
     public void registerAll() {
 
         PerkBuilder.gameChanger("gamechanger_one_with_nature", "One With Nature",
-            new OptScaleExactStat(-25, Stats.TOTAL_DAMAGE.get()),
+            new OptScaleExactStat(-25, Stats.HEAL_STRENGTH.get()),
+            new OptScaleExactStat(-10, Stats.TOTAL_DAMAGE.get()),
             new OptScaleExactStat(-25, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(25, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.heal_over_time)),
-            new OptScaleExactStat(25, Stats.COOLDOWN_REDUCTION.get()),
+            new OptScaleExactStat(50, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.heal_over_time)),
+            new OptScaleExactStat(20, Stats.COOLDOWN_REDUCTION.get()),
             new OptScaleExactStat(-25, Stats.MANA_COST.get())
         );
 

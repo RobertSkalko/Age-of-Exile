@@ -118,7 +118,7 @@ public class IntSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("teleport", SpellConfiguration.Builder.instant(20, 20 * 30), "Teleport",
-            Arrays.asList(SpellTag.damage)
+            Arrays.asList(SpellTag.damage, SpellTag.movement)
         )
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.TP_CASTER_IN_DIRECTION.create(12D)))

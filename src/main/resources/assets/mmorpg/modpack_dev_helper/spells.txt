@@ -23,6 +23,7 @@ shooting_star
 crit_aura
 overload
 astral_totem
+smoke_bomb
 gong_strike
 hp_reg_aura
 tidal_strike

@@ -15,6 +15,8 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.value_calc.ScalingStatCalculation;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -148,7 +150,7 @@ public class StrSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("charge", SpellConfiguration.Builder.multiCast(10, 20 * 10, 60, 60)
                 .setScaleManaToPlayer(), "Charge",
-            Arrays.asList(SpellTag.area, SpellTag.damage))
+            Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.movement))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_ANCIENT_DEBRIS_STEP, 1D, 1D))
@@ -165,14 +167,13 @@ public class StrSpells implements ISlashRegistryInit {
             )
             .build();
 
-        SpellBuilder.of("taunt", SpellConfiguration.Builder.instant(5, 20 * 30)
+        SpellBuilder.of("taunt", SpellConfiguration.Builder.instant(0, 20 * 30)
                 .setSwingArm(), "Taunt",
             Arrays.asList(SpellTag.area))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1D, 1D))
-
-            .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.base("taunt", 10), AggroAction.Type.AGGRO))
+            .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.scaleWithStat("taunt", new ScalingStatCalculation(Health.getInstance(), 0.02F), 10), AggroAction.Type.AGGRO))
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 20D, 3D))
 

@@ -61,24 +61,22 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx PERSEVERANCE = new EffectCtx("perseverance", "Perseverance", 19, Elements.Physical, EffectType.beneficial);
     public static EffectCtx VIGOR = new EffectCtx("vigor", "Vigor", 20, Elements.Physical, EffectType.beneficial);
     public static EffectCtx TAUNT_STANCE = new EffectCtx("taunt_stance", "Taunt Stance", 21, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx VEIL_OF_NIGHT = new EffectCtx("night_veil", "Veil of Night", 22, Elements.Dark, EffectType.beneficial);
     public static EffectCtx ETHEREAL_FORM = new EffectCtx("ethereal_form", "Ethereal Form", 23, Elements.Dark, EffectType.beneficial);
+    public static EffectCtx UNDYING_WILL = new EffectCtx("undying_will", "Undying Will", 24, Elements.Physical, EffectType.beneficial);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(UNDYING_WILL)
+            .stat(-75, Stats.DAMAGE_RECEIVED.get())
+            .maxStacks(1)
+            .build();
 
         ExileEffectBuilder.of(ETHEREAL_FORM)
             .stat(-100, Stats.THREAT_GENERATED.get())
             .stat(-75, Stats.TOTAL_DAMAGE.get())
             .stat(-75, Stats.DAMAGE_RECEIVED.get())
             .stat(25, DatapackStats.MOVE_SPEED)
-            .maxStacks(1)
-            .build();
-
-        ExileEffectBuilder.of(VEIL_OF_NIGHT)
-            .stat(-50, Stats.THREAT_GENERATED.get())
-            .stat(5, Stats.CRIT_CHANCE.get())
-            .stat(25, Stats.CRIT_DAMAGE.get())
             .maxStacks(1)
             .build();
 
