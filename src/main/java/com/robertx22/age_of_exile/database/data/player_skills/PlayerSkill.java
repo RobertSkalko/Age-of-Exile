@@ -113,25 +113,28 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
 
         List<ItemStack> list = new ArrayList<>();
 
-        for (SkillDropTable dropTable : dropTables) {
+        for (int i = 0; i < 10; i++) {
 
-            if (dropTable.tier == tierContext) {
+            for (SkillDropTable dropTable : dropTables) {
 
-                if (dropTable.req.isAllowed(player.world, player.getBlockPos())) {
-                    float chance = dropTable.loot_chance_per_action_exp * expForAction;
+                if (dropTable.tier == tierContext) {
 
-                    if (type_enum == PlayerSkillEnum.FISHING) {
-                        FishingLureItem lure = FishingLureItem.getCurrentLure(player);
-                        if (lure != null) {
-                            chance *= lure.getChanceMulti();
+                    if (dropTable.req.isAllowed(player.world, player.getBlockPos())) {
+                        float chance = dropTable.loot_chance_per_action_exp * expForAction;
+
+                        if (type_enum == PlayerSkillEnum.FISHING) {
+                            FishingLureItem lure = FishingLureItem.getCurrentLure(player);
+                            if (lure != null) {
+                                chance *= lure.getChanceMulti();
+                            }
                         }
-                    }
-                    if (RandomUtils.roll(chance)) {
-                        List<SkillDropReward> possible = dropTable.drop_rewards;
+                        if (RandomUtils.roll(chance)) {
+                            List<SkillDropReward> possible = dropTable.drop_rewards;
 
-                        if (!possible.isEmpty()) {
-                            list.add(RandomUtils.weightedRandom(possible)
-                                .getRewardStack());
+                            if (!possible.isEmpty()) {
+                                list.add(RandomUtils.weightedRandom(possible)
+                                    .getRewardStack());
+                            }
                         }
                     }
                 }

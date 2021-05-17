@@ -73,6 +73,7 @@ public class StatEffects implements ISlashRegistryInit {
     public static StatEffect SET_IS_CRIT = new SetBooleanEffect(EventData.CRIT);
     public static StatEffect SET_PIERCE = new SetBooleanEffect(EventData.PIERCE);
     public static StatEffect INCREASE_VALUE = new IncreaseNumberByPercentEffect(EventData.NUMBER);
+    public static StatEffect MULTIPLY_VALUE = new MultiplyNumberByPercentEffect(EventData.NUMBER);
     public static StatEffect DECREASE_VALUE = new DecreaseNumberByPercentEffect(EventData.NUMBER);
     public static StatEffect INCREASE_EFFECT_DURATION = new IncreaseNumberByPercentEffect(EventData.EFFECT_DURATION_TICKS);
     public static StatEffect INCREASE_SECONDS = new IncreaseNumberByPercentEffect(EventData.SECONDS);
@@ -103,6 +104,7 @@ public class StatEffects implements ISlashRegistryInit {
     public void registerAll() {
 
         GIVE_SELF_EFFECT.addToSerializables();
+        MULTIPLY_VALUE.addToSerializables();
         GIVE_EFFECT_TO_TARGET.addToSerializables();
         SET_IS_CRIT.addToSerializables();
         INCREASE_VALUE.addToSerializables();

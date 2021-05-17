@@ -301,6 +301,7 @@ public class Stats implements ISlashRegistryInit {
         .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.ATTACK_TYPE_MATCHES.get(x.attackType))
         .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e.resource))
         .setLocName(x -> x.resource.locname + " on " + x.attackType.locname + " Hit")
         .setLocDesc(x -> "")
@@ -497,7 +498,7 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.IF_CRIT)
         .addCondition(StatConditions.CRIT_ROLL_DIDNT_FAIL)
         .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
-        .addEffect(StatEffects.INCREASE_VALUE)
+        .addEffect(StatEffects.MULTIPLY_VALUE)
         .setLocName(x -> "Crit Damage")
         .setLocDesc(x -> "If Critical, multiply by x")
         .modifyAfterDone(x -> {
@@ -521,7 +522,7 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.IF_CRIT)
         .addCondition(StatConditions.CRIT_ROLL_DIDNT_FAIL)
         .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.spell))
-        .addEffect(StatEffects.INCREASE_VALUE)
+        .addEffect(StatEffects.MULTIPLY_VALUE)
         .setLocName(x -> "Spell Crit Damage")
         .setLocDesc(x -> "If Critical, multiply by x")
         .modifyAfterDone(x -> {
@@ -545,7 +546,7 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.IS_SPELL)
         .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
         .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
-        .addEffect(StatEffects.INCREASE_VALUE)
+        .addEffect(StatEffects.MULTIPLY_VALUE)
         .setLocName(x -> "Crit Heal Damage")
         .setLocDesc(x -> "If Critical, multiply by x")
         .modifyAfterDone(x -> {
@@ -1085,7 +1086,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(x -> StatConditions.EFFECT_HAS_TAG.get(x))
         .addEffect(e -> StatEffects.INCREASE_VALUE)
-        .setLocName(x -> Stat.VAL1 + "% to effectiveness of " + x.getLocName() + " buffs you cast.")
+        .setLocName(x -> Stat.VAL1 + "% to effectiveness of " + x.getLocName() + " effects you cast.")
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.is_long = true;
@@ -1126,6 +1127,7 @@ public class Stats implements ISlashRegistryInit {
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.is_perc = true;
+            x.is_long = true;
             x.min = 0;
             x.max = 100;
             x.scaling = StatScaling.NONE;

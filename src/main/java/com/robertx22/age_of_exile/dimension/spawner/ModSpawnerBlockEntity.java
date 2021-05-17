@@ -42,6 +42,7 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
     public void tick() {
 
         if (spawnsLeft < 1) {
+            this.world.removeBlock(pos, false);
             return;
         }
 

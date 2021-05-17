@@ -58,10 +58,13 @@ public class IntSpells implements ISlashRegistryInit {
                 .setSwingArm(), "Shooting Star",
             Arrays.asList(SpellTag.projectile, SpellTag.heal))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BEACON_ACTIVATE, 1D, 1.7D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.NETHER_STAR, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
                 .put(MapField.HITS_ALLIES, true)))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SOUL_FIRE_FLAME, 2D, 0.15D))
+            .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 1D, 0.5D)
+                .onTick(1D))
+            .onTick(PartBuilder.aoeParticles(ParticleTypes.ENCHANT, 1D, 0.7D)
+                .onTick(1D))
             .onExpire(PartBuilder.healInAoe(ValueCalculation.base("shooting_star", 8), 2D))
             .onExpire(PartBuilder.aoeParticles(ParticleTypes.SOUL_FIRE_FLAME, 10D, 1D))
             .build();
@@ -155,16 +158,16 @@ public class IntSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("heal_ray", SpellConfiguration.Builder.instant(2, 1), "Healing Ray",
             Arrays.asList(SpellTag.heal))
-            .onCast(PartBuilder.Particle.builder(ParticleTypes.SOUL_FIRE_FLAME, 4D, 0.3D)
+            .onCast(PartBuilder.Particle.builder(ParticleTypes.SOUL_FIRE_FLAME, 1D, 0.5D)
                 .set(MapField.MOTION, ParticleMotion.CasterLook.name())
-                .set(MapField.HEIGHT, 1D)
+                .set(MapField.HEIGHT, 0.1D)
                 .build())
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 3D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
                 .put(MapField.IS_SILENT, true)
                 .put(MapField.HITS_ALLIES, true))
                 .addCondition(EffectCondition.CHANCE.create(20D)))
             .onHit(PartBuilder.healInAoe(ValueCalculation.base("breath_heal", 3), 2D))
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CAT_HISS, 1D, 1D)
+            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BEACON_ACTIVATE, 0.3D, 2D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(10D)))
             .build();
 
@@ -267,9 +270,9 @@ public class IntSpells implements ISlashRegistryInit {
 
             .onTick("block", PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, 0.1D, ParticleMotion.Upwards))
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
+
             .onTick("block", PartBuilder.playSound(SoundEvents.BLOCK_SOUL_SOIL_HIT, 0.5D, 1D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(40D)))
-
             .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.SOUL_FIRE_FLAME, 15D, 3D, 0.5D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
             .build();

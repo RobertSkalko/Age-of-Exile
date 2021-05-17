@@ -26,19 +26,25 @@ public class SpellMotionAction extends SpellAction {
             float str = data.get(PUSH_STRENGTH)
                 .floatValue();
 
-            Vec3d motion = ParticleMotion.valueOf(data.get(MapField.MOTION))
+            ParticleMotion pm = ParticleMotion.valueOf(data.get(MapField.MOTION));
+
+            Vec3d motion = pm
                 .getMotion(ctx.vecPos, ctx)
                 .multiply(str);
 
             SetAdd setAdd = data.getSetAdd();
 
-            targets.forEach(x -> {
+            if (data.getOrDefault(MapField.IGNORE_Y, false)) {
+                motion = new Vec3d(motion.x, 0, motion.z);
+            }
+
+            for (LivingEntity x : targets) {
                 if (setAdd == SetAdd.SET) {
                     x.setVelocity(motion);
                 } else {
                     x.addVelocity(motion.x, motion.y, motion.z);
                 }
-            });
+            }
 
         } catch (IllegalArgumentException e) {
             e.printStackTrace();

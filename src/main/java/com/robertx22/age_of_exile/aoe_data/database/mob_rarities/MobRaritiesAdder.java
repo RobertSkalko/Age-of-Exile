@@ -15,7 +15,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         normal.stat_multi = 1;
         normal.min_lvl = 0;
         normal.dmg_multi = 1;
-        normal.extra_hp_multi = 0.75f;
+        normal.extra_hp_multi = 1F;
         normal.exp_multi = 1;
         normal.loot_multi = 1;
         normal.weight = 1000;

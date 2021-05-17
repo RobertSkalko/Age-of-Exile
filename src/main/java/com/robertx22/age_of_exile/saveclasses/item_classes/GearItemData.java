@@ -469,7 +469,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
                 SalvageOutput sal = RandomUtils.weightedRandom(Database.SalvageOutputs()
                     .getFiltered(x -> x.isForItem(this.lvl))
                 );
-                return sal.getResult(this);
+                if (sal != null) {
+                    return sal.getResult(this);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

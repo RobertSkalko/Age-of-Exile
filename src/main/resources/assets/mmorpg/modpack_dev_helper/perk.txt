@@ -86,7 +86,6 @@ for_the_living
 big_blood_siphon
 fire_water_spell_dmg
 big_breath_of_light
-nature_dom
 confrontation
 dark_resist
 mendacity
@@ -161,7 +160,6 @@ steady_hand
 cataclysm
 nature_resist
 big_heart_of_fire
-water_dom
 armor_health
 mana_and_regen
 refined_taste
@@ -216,7 +214,6 @@ beyond_good_and_evil
 nature_penetration
 devastation
 falling_dragon
-fire_dom
 dark_light_spell_damage
 big_faith_armor
 big_heal_wis
@@ -291,7 +288,6 @@ chance_of_poison
 mana
 nature_water_spell_dmg
 bloodscent
-light_dom
 mana_and_health
 huge_wis
 violent_strike
@@ -366,11 +362,9 @@ warmth
 hp_res
 big_force_of_will
 nature_dark_spell_dmg
-dark_dom
 area_dmg_mana
 inc_area_spell_dmg
 worship
-big_aura_eff
 water_penetration
 tale_of_love
 stubborn
@@ -403,7 +397,6 @@ owl
 outlaw
 big_inc_area_spell_dmg
 mana_regen
-ranged_dmg
 drunken_boxing
 big_aspect_of_nature
 mana_battery

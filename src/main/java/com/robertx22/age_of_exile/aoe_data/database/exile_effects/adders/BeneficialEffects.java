@@ -61,7 +61,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx VIGOR = new EffectCtx("vigor", "Vigor", 20, Elements.Physical, EffectType.beneficial);
     public static EffectCtx TAUNT_STANCE = new EffectCtx("taunt_stance", "Taunt Stance", 21, Elements.Physical, EffectType.beneficial);
     public static EffectCtx VEIL_OF_NIGHT = new EffectCtx("night_veil", "Veil of Night", 22, Elements.Dark, EffectType.beneficial);
-    public static EffectCtx ETHEREAL_FORM = new EffectCtx("ethereal_form", "Ethereal Form", 22, Elements.Dark, EffectType.beneficial);
+    public static EffectCtx ETHEREAL_FORM = new EffectCtx("ethereal_form", "Ethereal Form", 23, Elements.Dark, EffectType.beneficial);
 
     @Override
     public void registerAll() {

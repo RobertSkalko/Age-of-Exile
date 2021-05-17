@@ -35,7 +35,7 @@ public class RestoreResourceEvent extends EffectEvent {
         if (this.data.getResourceType() == ResourceType.health) {
             if (data.getRestoreType() == RestoreType.heal) {
                 if (source instanceof PlayerEntity) {
-                    float threat = (int) (data.getNumber() * 0.2F);
+                    float threat = (int) (data.getNumber() * 0.1F);
                     List<MobEntity> mobs = EntityFinder.start(source, MobEntity.class, source.getBlockPos())
                         .radius(10)
                         .build();

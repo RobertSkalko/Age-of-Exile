@@ -52,14 +52,6 @@ public class TeamUtils {
         }
 
         return false;
-        /*
-
-        boolean vanilla = p1.getScoreboardTeam() != null && p2.getScoreboardTeam() != null && p1.getScoreboardTeam()
-            .isEqual(p2.getScoreboardTeam());
-
-        return vanilla;
-
-         */
 
     }
 

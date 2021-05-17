@@ -51,9 +51,17 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
 
         stack.decrement(1);
         if (player instanceof PlayerEntity) {
+            PlayerEntity p = (PlayerEntity) player;
+
+            for (AlchemyPotionItem x : ModRegistry.ALCHEMY.POTIONS_MAP.values()) {
+                p.getItemCooldownManager()
+                    .set(x, 20 * 30);
+            }
+
             PlayerUtils.giveItem(new ItemStack(Items.GLASS_BOTTLE), (PlayerEntity) player);
         }
         if (!world.isClient) {
+
             EntityCap.UnitData unitdata = Load.Unit(player);
 
             int restore = (int) (tier.percent_healed / 100F * unitdata.getResources()

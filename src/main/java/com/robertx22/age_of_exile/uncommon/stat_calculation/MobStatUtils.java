@@ -43,13 +43,26 @@ public class MobStatUtils {
                 .IsPercent())
             .collect(Collectors.toList())) {
 
-            data.multiplyFlat(tier.stat_multi);
+            int num = (int) ((tier.stat_multi - 1F) * 100F);
+            ExactStatData.noScaling(num, num, ModType.LOCAL_INCREASE, data.GetStat()
+                .GUID())
+                .applyStats(mobdata);
+
+            //data.multiplyFlat(tier.stat_multi);
         }
 
+        int hp = (int) ((tier.hp_multi - 1F) * 100F);
+
+        ExactStatData.noScaling(hp, hp, ModType.LOCAL_INCREASE, Health.getInstance()
+            .GUID())
+            .applyStats(mobdata);
+
+        /*
         unit.getStats()
             .getStatInCalculation(Health.getInstance())
             .multiplyFlat(tier.hp_multi);
 
+         */
         if (WorldUtils.isDungeonWorld(en.world)) {
             DungeonData data = Load.dungeonData(en.world).data.get(en.getBlockPos()).data;
             if (!data.isEmpty()) {
@@ -57,7 +70,6 @@ public class MobStatUtils {
                     .forEach(x -> x.applyStats(mobdata));
 
                 if (data.is_team) {
-                    // todo
                     ExactStatData.noScaling(500, 500, ModType.GLOBAL_INCREASE, Health.getInstance()
                         .GUID())
                         .applyStats(mobdata);
@@ -65,6 +77,13 @@ public class MobStatUtils {
                         .GUID())
                         .applyStats(mobdata);
                     ExactStatData.noScaling(100, 100, ModType.LOCAL_INCREASE, HealthRegen.getInstance()
+                        .GUID())
+                        .applyStats(mobdata);
+                } else {
+                    ExactStatData.noScaling(100, 100, ModType.GLOBAL_INCREASE, Health.getInstance()
+                        .GUID())
+                        .applyStats(mobdata);
+                    ExactStatData.noScaling(25, 25, ModType.FLAT, Stats.TOTAL_DAMAGE.get()
                         .GUID())
                         .applyStats(mobdata);
                 }
