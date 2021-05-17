@@ -22,6 +22,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
+import com.robertx22.age_of_exile.database.data.value_calc.ScalingStatCalculation;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -67,15 +68,16 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public void registerAll() {
 
         ExileEffectBuilder.of(ETHEREAL_FORM)
-            .stat(-50, Stats.THREAT_GENERATED.get())
-            .stat(10, Stats.SPELL_CRIT_CHANCE.get())
-            .stat(25, Stats.SPELL_CRIT_DAMAGE.get())
+            .stat(-100, Stats.THREAT_GENERATED.get())
+            .stat(-75, Stats.TOTAL_DAMAGE.get())
+            .stat(-75, Stats.DAMAGE_RECEIVED.get())
+            .stat(25, DatapackStats.MOVE_SPEED)
             .maxStacks(1)
             .build();
 
         ExileEffectBuilder.of(VEIL_OF_NIGHT)
             .stat(-50, Stats.THREAT_GENERATED.get())
-            .stat(10, Stats.CRIT_CHANCE.get())
+            .stat(5, Stats.CRIT_CHANCE.get())
             .stat(25, Stats.CRIT_DAMAGE.get())
             .maxStacks(1)
             .build();
@@ -85,7 +87,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(50, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
 
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.base("taunt_stance", 2), AggroAction.Type.AGGRO))
+                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.scaleWithStat("taunt_stance", new ScalingStatCalculation(HealthRegen.getInstance(), 0.05F), 2), AggroAction.Type.AGGRO))
                     .setTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
                     .onTick(60D))
                 .buildForEffect())
@@ -93,8 +95,8 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(VIGOR)
-            .stat(2, HealthRegen.getInstance())
-            .stat(2, ManaRegen.getInstance())
+            .stat(0.5F, HealthRegen.getInstance())
+            .stat(0.5F, ManaRegen.getInstance())
             .maxStacks(3)
             .build();
 

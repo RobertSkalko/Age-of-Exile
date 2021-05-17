@@ -54,6 +54,7 @@ make_arrows
 fire_bombs
 power_chord
 pull
+test_command
 awaken_mana
 mana_reg_aura
 fire_nova

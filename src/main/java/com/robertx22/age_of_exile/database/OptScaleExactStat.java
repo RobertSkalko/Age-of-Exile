@@ -98,6 +98,14 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
 
     }
 
+    public ExactStatData ToExactScaleToLevel(int lvl) {
+        Stat stat = Database.Stats()
+            .get(this.stat);
+
+        return ExactStatData.of(v1, v2, stat, getModType(), lvl);
+
+    }
+
     public String getDebugString() {
 
         return "" + (int) v1 + " " + getModType().name() + " " + CLOC.translate(getStat().locName());

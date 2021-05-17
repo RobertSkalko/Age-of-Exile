@@ -207,6 +207,19 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_RECEIVED = DatapackStatBuilder
+        .ofSingle("dmg_received", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage Received")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.group = StatGroup.Misc;
+        })
+        .build();
     public static DataPackStatAccessor<PlayStyle> STYLE_DAMAGE_RECEIVED = DatapackStatBuilder
         .<PlayStyle>of(x -> x.name() + "_dmg_received", x -> Elements.Physical)
         .addAllOfType(PlayStyle.values())

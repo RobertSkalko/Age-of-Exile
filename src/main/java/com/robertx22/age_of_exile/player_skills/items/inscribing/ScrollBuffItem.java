@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.player_skills.items.inscribing;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.fabricmc.api.EnvType;
@@ -56,17 +57,23 @@ public class ScrollBuffItem extends AutoItem {
         if (user instanceof ServerPlayerEntity) {
 
             try {
+
                 stack.decrement(1);
                 ScrollBuffData data = getData(stack);
-                ServerPlayerEntity p = (ServerPlayerEntity) user;
-                p.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.SCROLL_BUFF, 20 * 60));
 
-                Load.Unit(p)
-                    .getStatusEffectsData().sb = data;
-                Load.Unit(p)
-                    .setEquipsChanged(true);
-                Load.Unit(p)
-                    .tryRecalculateStats();
+                TeamUtils.getOnlineTeamMembersInRange((PlayerEntity) user, 50)
+                    .forEach(x -> {
+                        ServerPlayerEntity p = (ServerPlayerEntity) user;
+                        p.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.SCROLL_BUFF, 20 * 60 * 3));
+
+                        Load.Unit(p)
+                            .getStatusEffectsData().sb = data;
+                        Load.Unit(p)
+                            .setEquipsChanged(true);
+                        Load.Unit(p)
+                            .tryRecalculateStats();
+                    });
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

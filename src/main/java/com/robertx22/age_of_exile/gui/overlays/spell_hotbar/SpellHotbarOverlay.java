@@ -172,7 +172,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                 CooldownsData cds = Load.Unit(mc.player)
                     .getCooldowns();
 
-                float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) spell.config.cooldown_ticks;
+                float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) cds.getNeededTicks(spell.GUID());
                 if (cds.getCooldownTicks(spell.GUID()) > 1) {
                     percent = MathHelper.clamp(percent, 0, 1F);
                     mc.getTextureManager()

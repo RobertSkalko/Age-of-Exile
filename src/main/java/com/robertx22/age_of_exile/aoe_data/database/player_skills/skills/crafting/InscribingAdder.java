@@ -10,7 +10,7 @@ public class InscribingAdder {
     public static PlayerSkill createSkill() {
 
         PlayerSkillBuilder b = PlayerSkillBuilder.of(7, PlayerSkillEnum.INSCRIBING);
-        b.skill.exp_per_action = 15;
+        b.skill.exp_per_action = 25;
         b.addDefaultBonusExpRewards();
         b.addDefaultHpMsMana();
 

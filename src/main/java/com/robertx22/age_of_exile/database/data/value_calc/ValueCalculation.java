@@ -45,11 +45,13 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         return data;
     }
 
-    public ValueCalculation(String id, ScalingStatCalculation calc, int base) {
-        this.stat_scalings.add(calc);
-        this.base_val = base;
-        this.id = id;
-        this.addToSerializables();
+    public static ValueCalculation scaleWithStat(String id, ScalingStatCalculation stat, float base) {
+        ValueCalculation data = new ValueCalculation();
+        data.id = id;
+        data.stat_scalings.add(stat);
+        data.base_val = base;
+        data.addToSerializables();
+        return data;
     }
 
     @Factory

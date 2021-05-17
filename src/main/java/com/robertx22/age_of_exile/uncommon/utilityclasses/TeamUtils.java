@@ -9,11 +9,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TeamUtils {
+    public static List<PlayerEntity> getOnlineTeamMembersInRange(PlayerEntity player, double range) {
+        return getOnlineMembers(player).stream()
+            .filter(x -> player.distanceTo(x) < range)
+            .collect(Collectors.toList());
+
+    }
 
     public static List<PlayerEntity> getOnlineTeamMembersInRange(PlayerEntity player) {
-        return getOnlineMembers(player).stream()
-            .filter(x -> player.distanceTo(x) < ModConfig.get().Server.PARTY_RADIUS)
-            .collect(Collectors.toList());
+
+        return getOnlineTeamMembersInRange(player, ModConfig.get().Server.PARTY_RADIUS);
 
     }
 

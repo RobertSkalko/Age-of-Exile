@@ -143,7 +143,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         unique.is_unique_item = true;
 
         GearRarity fabled = new GearRarity();
-        fabled.drops_after_tier = 25;
+        fabled.drops_after_tier = 50;
         fabled.unidentified_chance = 100;
         fabled.stat_req_multi = 1;
         fabled.spawn_durability_hit = new MinMax(20, 50);

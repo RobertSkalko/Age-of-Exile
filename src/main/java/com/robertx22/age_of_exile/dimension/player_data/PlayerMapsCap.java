@@ -167,6 +167,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 if (player.world.getBlockState(x)
                     .isAir() || player.world.getBlockState(x)
                     .getBlock() == ModRegistry.BLOCKS.PORTAL) {
+                    player.world.breakBlock(x, false);
                     player.world.setBlockState(x, ModRegistry.BLOCKS.PORTAL.getDefaultState());
                     PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
                     be.dungeonPos = tpPos;

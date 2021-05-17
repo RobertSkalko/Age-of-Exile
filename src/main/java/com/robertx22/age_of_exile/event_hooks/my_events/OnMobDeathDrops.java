@@ -149,6 +149,15 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
             List<PlayerEntity> list = TeamUtils.getOnlineTeamMembersInRange(killer);
 
+            int members = list.size() - 1;
+            if (members > 10) {
+                members = 10;
+            }
+
+            float teamMulti = 1 + (0.1F * members);
+
+            exp *= teamMulti;
+
             exp /= list.size();
 
             if (exp > 0) {

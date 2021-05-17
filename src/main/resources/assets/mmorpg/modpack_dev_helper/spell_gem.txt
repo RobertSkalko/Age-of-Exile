@@ -75,6 +75,7 @@ fire_bombs
 spell_crit_dmg
 power_chord
 pull
+test_command
 awaken_mana
 mana_reg_aura
 fire_nova
