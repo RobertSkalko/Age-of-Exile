@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
-import com.robertx22.age_of_exile.capability.player.data.OnePlayerCharData;
+import com.robertx22.age_of_exile.capability.player.data.OneLoadoutData;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
@@ -10,18 +10,18 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 
-public class CharSelectPackets extends MyPacket<CharSelectPackets> {
+public class LoadoutSelectPackets extends MyPacket<LoadoutSelectPackets> {
 
     public enum Action {DELETE, LOAD}
 
     public int num;
     public Action action;
 
-    public CharSelectPackets() {
+    public LoadoutSelectPackets() {
 
     }
 
-    public CharSelectPackets(int charNumber, Action act) {
+    public LoadoutSelectPackets(int charNumber, Action act) {
         this.num = charNumber;
         this.action = act;
 
@@ -49,20 +49,20 @@ public class CharSelectPackets extends MyPacket<CharSelectPackets> {
         PlayerEntity p = ctx.getPlayer();
 
         if (action == Action.DELETE) {
-            OnePlayerCharData data = Load.characters(p).data.characters.get(num);
+            OneLoadoutData data = Load.loadouts(p).data.loadouts.get(num);
             if (data.gearIsEmpty()) {
-                Load.characters(p).data.characters.remove(num);
+                Load.loadouts(p).data.loadouts.remove(num);
             } else {
                 ctx.getPlayer()
                     .sendMessage(new LiteralText("You can't delete a character that is wearing gear."), false);
             }
         } else if (action == Action.LOAD) {
-            Load.characters(p).data.load(num, p);
+            Load.loadouts(p).data.load(num, p);
         }
     }
 
     @Override
-    public MyPacket<CharSelectPackets> newInstance() {
-        return new CharSelectPackets();
+    public MyPacket<LoadoutSelectPackets> newInstance() {
+        return new LoadoutSelectPackets();
     }
 }

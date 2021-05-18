@@ -15,7 +15,7 @@ public class C2SPacketRegister {
 
         Packets.registerClientToServerPacket(new StartDungeonPacket());
         Packets.registerClientToServerPacket(new ModifyItemPacket());
-        Packets.registerClientToServerPacket(new CharSelectPackets());
+        Packets.registerClientToServerPacket(new LoadoutSelectPackets());
         Packets.registerClientToServerPacket(new ChooseRacePacket());
         Packets.registerClientToServerPacket(new RequestSyncCapToClient());
         Packets.registerClientToServerPacket(new TellServerToCastSpellPacket());

@@ -21,6 +21,7 @@ all_water_damage
 hammer_damage
 ele_glove_damage
 heal_crit_dmg
+inc_effect_of_song_buff_given
 convert_water_to_phys
 arrow_cdr
 nature_weapon_damage
@@ -51,6 +52,7 @@ elemental_mana_leech
 critical_hit
 light_health_leech
 health_on_attack_hit
+song_eff_duration
 dmg_when_target_near_full_hp
 inc_effect_of_immobilizing_buff_on_you
 faster_projectiles
@@ -198,6 +200,7 @@ water_mana_leech
 intelligence
 song_spell_dmg
 spear_damage
+song_eff_dur_u_cast
 day_night_dmg
 spell_damage
 night_dmg
@@ -266,6 +269,7 @@ day_dmg
 convert_light_to_phys
 critical_damage
 mana_cost
+inc_effect_of_song_buff_on_you
 dodge_to_nature_damage
 max_light_resist
 ele_trident_damage

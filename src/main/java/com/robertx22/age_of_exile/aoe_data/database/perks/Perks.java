@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
@@ -67,10 +68,15 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(4, Stats.HEAL_STRENGTH.get(), ModType.FLAT));
+        PerkBuilder.stat("healing_strength", new OptScaleExactStat(4, Stats.HEAL_STRENGTH.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.DOT_DAMAGE.get(), ModType.FLAT));
+        PerkBuilder.stat("dot_damage", new OptScaleExactStat(3, Stats.DOT_DAMAGE.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE));
+        PerkBuilder.stat("small_positive_effect_increase",
+            new OptScaleExactStat(3, Stats.EFFECT_OF_BUFFS_ON_YOU_PER_EFFECT_TAG.get(EffectTags.positive))
+        );
 
         PerkBuilder.stat("cooldown_reduction", new OptScaleExactStat(3, Stats.COOLDOWN_REDUCTION.get()));
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.COOLDOWN_REDUCTION.get()));
@@ -80,6 +86,8 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT));
+
+        PerkBuilder.stat("decrease_aggro_gain_by_2_percent", new OptScaleExactStat(-2, Stats.THREAT_GENERATED.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(3, Armor.getInstance(), ModType.LOCAL_INCREASE));
@@ -102,6 +110,11 @@ public class Perks implements ISlashRegistryInit {
         Stats.WEAPON_DAMAGE.getAll()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.FLAT));
+            });
+
+        Stats.RESOURCE_ON_KILL.getAll()
+            .forEach(x -> {
+                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(10, x, ModType.FLAT));
             });
 
         Stats.ELEMENTAL_WEAPON_DAMAGE.getAll()

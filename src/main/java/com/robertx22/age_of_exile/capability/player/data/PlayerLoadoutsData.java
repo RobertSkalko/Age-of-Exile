@@ -9,33 +9,33 @@ import net.minecraft.nbt.CompoundTag;
 import java.util.HashMap;
 
 @Storable
-public class PlayerCharsData {
+public class PlayerLoadoutsData {
 
     @Store
-    public HashMap<Integer, OnePlayerCharData> characters = new HashMap<>();
+    public HashMap<Integer, OneLoadoutData> loadouts = new HashMap<>();
 
     public void load(Integer num, PlayerEntity p) {
 
-        OnePlayerCharData data = new OnePlayerCharData();
+        OneLoadoutData data = new OneLoadoutData();
         data.save(p);
 
-        if (characters.containsKey(num)) {
+        if (loadouts.containsKey(num)) {
             // load saved character and replace it with current one
-            characters.get(num)
+            loadouts.get(num)
                 .load(p);
-            characters.put(num, data);
+            loadouts.put(num, data);
         } else {
 
             //new character
 
             for (PlayerCaps cap : PlayerCaps.values()) {
-                if (cap.shouldSaveToPlayerCharacter()) {
+                if (cap.shouldSaveToLoadout()) {
                     cap.getCap(p)
                         .fromTag(new CompoundTag());
                 }
             }
 
-            characters.put(num, data);
+            loadouts.put(num, data);
 
         }
     }

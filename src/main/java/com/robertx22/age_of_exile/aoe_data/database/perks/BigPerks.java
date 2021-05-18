@@ -95,7 +95,12 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.PROJECTILE_SPEED.get(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT)
         );
-
+        PerkBuilder.bigStat("big_fury", "Fury",
+            new OptScaleExactStat(5, Stats.ATTACK_SPEED.get(), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
+            new OptScaleExactStat(50, Stats.ACCURACY.get()),
+            new OptScaleExactStat(10, Strength.INSTANCE, ModType.FLAT)
+        );
         PerkBuilder.bigStat("big_blood_thirst", "Blood thirst",
             new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(3, Stats.LIFESTEAL.get(), ModType.FLAT),
@@ -414,6 +419,7 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(3, Wisdom.INSTANCE, ModType.FLAT)
         );
+
     }
 }
 

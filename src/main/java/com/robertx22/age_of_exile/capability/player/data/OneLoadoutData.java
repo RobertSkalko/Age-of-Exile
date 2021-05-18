@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 // If ANYTHING goes wrong in this class, player gear can be wiped !!!
 @Storable
-public class OnePlayerCharData {
+public class OneLoadoutData {
 
     // these are just for preview on the character screen
     @Store
@@ -54,7 +54,7 @@ public class OnePlayerCharData {
 
     public boolean gearIsEmpty() {
         return wep == null && f == null && p == null && c == null
-                && h == null && o == null && r1 == null && r2 == null && n == null;
+            && h == null && o == null && r1 == null && r2 == null && n == null;
     }
 
     @Store
@@ -103,18 +103,18 @@ public class OnePlayerCharData {
     private CompoundTag getNullOrTagAndDeleteCurios(String slot, int index, PlayerEntity p) {
         try {
             ItemStack stack = MyCurioUtils.getAllSlots(Arrays.asList(slot), p)
-                    .get(index);
+                .get(index);
 
             if (Gear.has(stack)) {
                 CompoundTag tag = new CompoundTag();
                 stack.toTag(tag);
 
                 MyCurioUtils.getHandlers(Arrays.asList(slot), p)
-                        .forEach(x -> {
-                            x.getStacks()
-                                    .setStack(index, ItemStack.EMPTY);
+                    .forEach(x -> {
+                        x.getStacks()
+                            .setStack(index, ItemStack.EMPTY);
 
-                        });
+                    });
                 return tag;
             }
         } catch (Exception e) {
@@ -150,15 +150,15 @@ public class OnePlayerCharData {
                 ItemStack stack = ItemStack.fromTag(itemnbt);
 
                 if (MyCurioUtils.getAllSlots(Arrays.asList(slot), p)
-                        .get(index)
-                        .isEmpty()) {
+                    .get(index)
+                    .isEmpty()) {
 
                     MyCurioUtils.getHandlers(Arrays.asList(slot), p)
-                            .forEach(x -> {
-                                x.getStacks()
-                                        .setStack(index, stack);
+                        .forEach(x -> {
+                            x.getStacks()
+                                .setStack(index, stack);
 
-                            });
+                        });
                 } else {
                     PlayerUtils.giveItem(stack, p);
                 }
@@ -175,7 +175,7 @@ public class OnePlayerCharData {
                 ItemStack stack = ItemStack.fromTag(itemnbt);
 
                 if (p.getEquippedStack(slot)
-                        .isEmpty()) {
+                    .isEmpty()) {
                     p.equipStack(slot, stack);
                 } else {
                     PlayerUtils.giveItem(stack, p);
@@ -189,20 +189,20 @@ public class OnePlayerCharData {
     public void save(PlayerEntity player) {
 
         this.lvl = Load.Unit(player)
-                .getLevel();
+            .getLevel();
         try {
             this.race = Load.Unit(player)
-                    .getRace()
-                    .GUID();
+                .getRace()
+                .GUID();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         for (PlayerCaps cap : PlayerCaps.values()) {
-            if (cap.shouldSaveToPlayerCharacter()) {
+            if (cap.shouldSaveToLoadout()) {
                 CompoundTag nbt = new CompoundTag();
                 cap.getCap(player)
-                        .toTag(nbt);
+                    .toTag(nbt);
                 map.put(cap, nbt);
             }
 
@@ -215,7 +215,7 @@ public class OnePlayerCharData {
     public void load(PlayerEntity player) {
 
         for (PlayerCaps cap : PlayerCaps.values()) {
-            if (cap.shouldSaveToPlayerCharacter()) {
+            if (cap.shouldSaveToLoadout()) {
 
                 CompoundTag nbt = map.getOrDefault(cap, new CompoundTag());
                 ICommonPlayerCap pcap = cap.getCap(player);
@@ -226,9 +226,9 @@ public class OnePlayerCharData {
         }
 
         if (player instanceof ServerPlayerEntity) {
-            Load.Unit(player).onLogin(player);
+            Load.Unit(player)
+                .onLogin(player);
         }
-
 
         loadGear(player);
 

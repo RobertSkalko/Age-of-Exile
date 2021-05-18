@@ -917,6 +917,39 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Water)),
             new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature))
         );
+
+        PerkBuilder.bigStat("impish_smile", "Impish Smile",
+            new OptScaleExactStat(3, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.mana))
+        );
+
+        PerkBuilder.bigStat("nimble_hands", "Nible Hands",
+            new OptScaleExactStat(10, Stats.PROJECTILE_SPEED.get()),
+            new OptScaleExactStat(50, DodgeRating.getInstance()),
+            new OptScaleExactStat(3, Stats.PROJECTILE_DAMAGE.get())
+        );
+        PerkBuilder.bigStat("barefoot", "Barefoot",
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(3, DatapackStats.MOVE_SPEED)
+        );
+        PerkBuilder.bigStat("antidote", "Antidote",
+            new OptScaleExactStat(5, SpecialStats.HEAL_CLEANSE)
+        );
+
+        PerkBuilder.bigStat("barefoot", "Barefoot",
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(3, DatapackStats.MOVE_SPEED)
+        );
+        PerkBuilder.bigStat("aristocrat", "Aristocrat",
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(100, SpellDodge.getInstance()),
+            new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED))
+        );
+        PerkBuilder.bigStat("street_musician", "Street Musician",
+            new OptScaleExactStat(10, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.song))
+        );
+
     }
 
 }

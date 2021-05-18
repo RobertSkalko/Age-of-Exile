@@ -6,6 +6,7 @@ public enum EffectTags {
     curse("Curse"),
     defensive("Defensive"),
     positive("Positive"),
+    song("Song"),
     negative("Negative"),
     heal_over_time("Heal over Time");
 

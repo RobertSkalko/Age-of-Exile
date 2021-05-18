@@ -31,6 +31,7 @@ threat_gen_type_is_spell
 effect_has_tag_heal_over_time
 spell_has_tag_damage
 random_roll
+effect_has_tag_song
 is_crit_true_is_false
 spell_has_tag_projectile
 is_spell

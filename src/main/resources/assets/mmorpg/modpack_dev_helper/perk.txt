@@ -63,6 +63,7 @@ light_fire_spell_dmg
 astralwalk
 big_blood_thirst
 rune_circle
+impish_smile
 pitchfork
 big_swishing_winds
 harmony
@@ -104,6 +105,7 @@ ele_dagger_damage
 spell_dmg_atk_speed
 spell_water_damage
 necronomicon
+mana_health
 deceiver
 songbird
 staff_mastery
@@ -144,6 +146,7 @@ going_dark_side
 hammer_smash
 pathfinder
 scepter_mastery
+dot_damage
 big_breath_of_water
 spear_damage
 big_heal_strength
@@ -195,6 +198,7 @@ critical_damage
 water_light_spell_dmg
 swiftness
 mana_cost
+barefoot
 ele_trident_damage
 big_warrior_path
 physical_weapon_damage
@@ -206,6 +210,7 @@ crit_damage
 mana_vortex
 big_health_mana_cost
 spell_dmg_flat_mana
+antidote
 righteous_warrior
 big_fury_bolt
 big_divine_light
@@ -295,6 +300,7 @@ light_dom
 mana_and_health
 huge_wis
 violent_strike
+street_musician
 cristal_hands
 big_lord_of_arcane
 hp_mana_cost
@@ -360,7 +366,9 @@ big_fast_barbarian
 photosynthesis
 ele_axe_damage
 guild_license
+small_positive_effect_increase
 metamorphosis
+healing_strength
 water_weapon_damage
 warmth
 hp_res
@@ -383,10 +391,12 @@ big_str
 crit_proj_dmg
 light_weapon_damage
 nightcrawler
+nimble_hands
 huge_agi
 holy_envoy
 tale_of_dreams
 fire_resist
+decrease_aggro_gain_by_2_percent
 jagged_blades
 fury
 inc_aura_effect
@@ -406,6 +416,7 @@ mana_regen
 ranged_dmg
 drunken_boxing
 big_aspect_of_nature
+mana_on_kill
 mana_battery
 wand_damage
 emptiness
@@ -443,6 +454,8 @@ firstblood
 wis
 eternity
 big_sadist
+aristocrat
+health_on_kill
 int
 big_balistic
 big_heart_of_nature

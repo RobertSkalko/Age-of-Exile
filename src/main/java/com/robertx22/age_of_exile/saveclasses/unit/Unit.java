@@ -291,8 +291,6 @@ public class Unit {
 
                 Load.statPoints((PlayerEntity) entity).data.addStats(data);
                 statContexts.addAll(PlayerStatUtils.AddPlayerBaseStats(entity));
-                statContexts.addAll(Load.characters((PlayerEntity) entity)
-                    .getStats());
                 statContexts.addAll(Load.perks(entity)
                     .getStatAndContext(entity));
                 statContexts.addAll(Load.playerSkills((PlayerEntity) entity)

@@ -30,6 +30,11 @@ public class ComboPerks implements ISlashRegistryInit {
             new OptScaleExactStat(2, Armor.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
+        PerkBuilder.stat("mana_health",
+            new OptScaleExactStat(2, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
         PerkBuilder.stat("dodge_mana",
             new OptScaleExactStat(2, Mana.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)

@@ -42,9 +42,6 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     public SchoolType schoolType;
 
-    Identifier BACKGROUND_TEXTURE = new Identifier(
-        Ref.MODID, "textures/gui/skill_tree/water.png");
-
     public SkillTreeScreen(SchoolType type) {
         super(MinecraftClient.getInstance()
             .getWindow()

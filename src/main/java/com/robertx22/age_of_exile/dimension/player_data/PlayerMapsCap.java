@@ -50,6 +50,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     public MapsData mapsData = new MapsData();
 
     public int ticksinPortal = 0;
+    public int highestTierDone = 0;
 
     public MapsPathingData data = new MapsPathingData();
 
@@ -214,12 +215,14 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         LoadSave.Save(mapsData, nbt, LOC);
         LoadSave.Save(data, nbt, "path");
         nbt.putInt("t", ticksinPortal);
+        nbt.putInt("h", highestTierDone);
         return nbt;
     }
 
     @Override
     public void fromTag(CompoundTag nbt) {
         this.ticksinPortal = nbt.getInt("t");
+        this.highestTierDone = nbt.getInt("h");
         this.mapsData = LoadSave.Load(MapsData.class, new MapsData(), nbt, LOC);
         this.data = LoadSave.Load(MapsPathingData.class, new MapsPathingData(), nbt, "path");
 

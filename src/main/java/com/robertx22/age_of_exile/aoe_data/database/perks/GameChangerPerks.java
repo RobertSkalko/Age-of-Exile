@@ -52,7 +52,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
         PerkBuilder.gameChanger("songbird", "Songbird",
             new OptScaleExactStat(-50, Stats.TOTAL_DAMAGE.get(), ModType.FLAT),
-            new OptScaleExactStat(25, Stats.INCREASED_EFFECT_OF_AURAS_GIVEN.get()),
+            new OptScaleExactStat(25, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.song)),
             new OptScaleExactStat(25, Stats.HEAL_CRIT_CHANCE.get()),
             new OptScaleExactStat(20, Stats.COOLDOWN_REDUCTION.get())
         );

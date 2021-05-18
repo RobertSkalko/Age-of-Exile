@@ -97,6 +97,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(0.5F, HealthRegen.getInstance())
             .stat(0.5F, ManaRegen.getInstance())
             .maxStacks(3)
+            .addTags(EffectTags.song)
             .build();
 
         ExileEffectBuilder.of(PERSEVERANCE)
@@ -104,6 +105,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
             .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
             .maxStacks(3)
+            .addTags(EffectTags.song)
             .build();
 
         ExileEffectBuilder.of(VALOR)
@@ -111,6 +113,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
             .stat(5, Stats.CAST_SPEED.get(), ModType.FLAT)
             .maxStacks(3)
+            .addTags(EffectTags.song)
             .build();
 
         ExileEffectBuilder.of(BLADE_DANCE)

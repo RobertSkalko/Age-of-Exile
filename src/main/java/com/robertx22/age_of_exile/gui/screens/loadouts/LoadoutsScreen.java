@@ -1,8 +1,8 @@
-package com.robertx22.age_of_exile.gui.screens.char_select;
+package com.robertx22.age_of_exile.gui.screens.loadouts;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.capability.player.PlayerCharCap;
-import com.robertx22.age_of_exile.capability.player.data.OnePlayerCharData;
+import com.robertx22.age_of_exile.capability.player.PlayerLoadoutsCap;
+import com.robertx22.age_of_exile.capability.player.data.OneLoadoutData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
@@ -13,7 +13,7 @@ import com.robertx22.age_of_exile.gui.screens.race_select.RaceSelectScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.vanilla_mc.packets.CharSelectPackets;
+import com.robertx22.age_of_exile.vanilla_mc.packets.LoadoutSelectPackets;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.library_of_exile.main.Packets;
@@ -30,16 +30,13 @@ import net.minecraft.stat.StatHandler;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-public class CharSelectScreen extends BaseSelectionScreen implements INamedScreen, ILeftRight {
+public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen, ILeftRight {
 
-    //this.client.player = this.client.interactionManager.createPlayer(this.world, new StatHandler(), new ClientRecipeBook());
-    //
-
-    public CharSelectScreen() {
+    public LoadoutsScreen() {
         super();
         this.mc = MinecraftClient.getInstance();
         this.data = Load.Unit(mc.player);
-        Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.CHARACTERS));
+        Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.LOADOUTS));
     }
 
     int index = 0;
@@ -47,7 +44,7 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
     @Override
     public void goLeft() {
         if (index <= 0) {
-            index = ModConfig.get().Server.MAX_CHARACTERS;
+            index = ModConfig.get().Server.MAX_LOADOUTS;
         } else {
             index--;
         }
@@ -57,7 +54,7 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
 
     @Override
     public void goRight() {
-        if (index >= ModConfig.get().Server.MAX_CHARACTERS - 1 - 3) {
+        if (index >= ModConfig.get().Server.MAX_LOADOUTS - 1 - 3) {
             index = 0;
         } else {
             index++;
@@ -71,30 +68,30 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
 
         this.buttons.clear();
 
-        PlayerCharCap cap = Load.characters(mc.player);
+        PlayerLoadoutsCap cap = Load.loadouts(mc.player);
 
         int x = 0;
-        int y = this.height / 2 - CharButton.ySize / 2;
+        int y = this.height / 2 - LoadoutButton.ySize / 2;
 
-        int slots = this.width / (CharButton.xSize + 50);
+        int slots = this.width / (LoadoutButton.xSize + 50);
 
         if (slots > 3) {
             slots = 3;
         }
 
-        if (slots > ModConfig.get().Server.MAX_CHARACTERS) {
-            slots = ModConfig.get().Server.MAX_CHARACTERS;
+        if (slots > ModConfig.get().Server.MAX_LOADOUTS) {
+            slots = ModConfig.get().Server.MAX_LOADOUTS;
         }
 
-        x = (this.width - (CharButton.xSize + 5) * slots) / 2;
+        x = (this.width - (LoadoutButton.xSize + 5) * slots) / 2;
 
-        this.addButton(new RaceSelectScreen.LeftRightButton(this, x - 30, y + CharButton.ySize / 2, true));
+        this.addButton(new RaceSelectScreen.LeftRightButton(this, x - 30, y + LoadoutButton.ySize / 2, true));
 
         for (int i = index; i < index + slots; i++) {
 
-            OnePlayerCharData data = cap.data.characters.get(i);
+            OneLoadoutData data = cap.data.loadouts.get(i);
 
-            this.addButton(new CharButton(data, x, y));
+            this.addButton(new LoadoutButton(data, x, y));
 
             if (data != null) {
 
@@ -102,19 +99,19 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
                 PlayerEntity player = client.interactionManager.createPlayer(client.world, new StatHandler(), new ClientRecipeBook());
                 data.load(player);
 
-                addButton(new PlayerGearButton(player, this, x + CharButton.xSize / 2 - PlayerGearButton.xSize / 2, y + 30));
+                addButton(new PlayerGearButton(player, this, x + LoadoutButton.xSize / 2 - PlayerGearButton.xSize / 2, y + 30));
             }  // create new player so it can be rendered
 
-            this.addButton(new Button(this, i, CharSelectPackets.Action.LOAD, cap.data.characters.get(i), x + CharButton.xSize / 2 - Button.xSize / 2, y + CharButton.ySize - 5 - Button.ySize + 35));
+            this.addButton(new Button(this, i, LoadoutSelectPackets.Action.LOAD, cap.data.loadouts.get(i), x + LoadoutButton.xSize / 2 - Button.xSize / 2, y + LoadoutButton.ySize - 5 - Button.ySize + 35));
 
-            if (cap.data.characters.containsKey(i)) {
-                this.addButton(new Button(this, i, CharSelectPackets.Action.DELETE, cap.data.characters.get(i), x + CharButton.xSize / 2 - Button.xSize / 2, y + CharButton.ySize - 5 - (2 + Button.ySize * 2) + 80));
+            if (cap.data.loadouts.containsKey(i)) {
+                this.addButton(new Button(this, i, LoadoutSelectPackets.Action.DELETE, cap.data.loadouts.get(i), x + LoadoutButton.xSize / 2 - Button.xSize / 2, y + LoadoutButton.ySize - 5 - (2 + Button.ySize * 2) + 80));
             }
-            x += 5 + CharButton.xSize;
+            x += 5 + LoadoutButton.xSize;
 
         }
 
-        this.addButton(new RaceSelectScreen.LeftRightButton(this, x + 25 - RaceSelectScreen.LeftRightButton.xSize, y + CharButton.ySize / 2, false));
+        this.addButton(new RaceSelectScreen.LeftRightButton(this, x + 25 - RaceSelectScreen.LeftRightButton.xSize, y + LoadoutButton.ySize / 2, false));
 
     }
 
@@ -127,25 +124,25 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
 
     @Override
     public Words screenName() {
-        return Words.CharacterSelect;
+        return Words.Loadouts;
     }
 
-    static class CharButton extends TexturedButtonWidget {
+    static class LoadoutButton extends TexturedButtonWidget {
 
         public static int xSize = 150;
         public static int ySize = 200;
 
         static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/char_select/background.png");
-        boolean noChar = false;
-        OnePlayerCharData data;
+        boolean noLoadout = false;
+        OneLoadoutData data;
 
-        public CharButton(@Nullable OnePlayerCharData data, int xPos, int yPos) {
+        public LoadoutButton(@Nullable OneLoadoutData data, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, 0, buttonLoc, (button) -> {
             });
             this.data = data;
 
             if (data == null) {
-                this.noChar = true;
+                this.noLoadout = true;
             }
 
         }
@@ -154,9 +151,9 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
         public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
             super.renderButton(matrix, x, y, ticks);
 
-            if (noChar) {
+            if (noLoadout) {
 
-                GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 30, 1, "Empty Character Slot", Formatting.YELLOW);
+                GuiUtils.renderScaledText(matrix, this.x + LoadoutButton.xSize / 2, this.y + 30, 1, "Empty Loadout Slot", Formatting.YELLOW);
 
             } else {
 
@@ -169,7 +166,7 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
                         .get(data.race)
                         .locName());
                 }
-                GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 10, 1, race, Formatting.RED);
+                GuiUtils.renderScaledText(matrix, this.x + LoadoutButton.xSize / 2, this.y + 10, 1, race, Formatting.RED);
 
             }
 
@@ -182,23 +179,23 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
         public static int ySize = 20;
 
         static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/char_select/button.png");
-        boolean noChar = false;
-        OnePlayerCharData data;
+        boolean noLoadout = false;
+        OneLoadoutData data;
         int num;
-        CharSelectPackets.Action action;
+        LoadoutSelectPackets.Action action;
 
-        public Button(Screen screen, int charnum, CharSelectPackets.Action action, @Nullable OnePlayerCharData data, int xPos, int yPos) {
+        public Button(Screen screen, int loadoutNum, LoadoutSelectPackets.Action action, @Nullable OneLoadoutData data, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, 0, buttonLoc, (button) -> {
-                Packets.sendToServer(new CharSelectPackets(charnum, action));
+                Packets.sendToServer(new LoadoutSelectPackets(loadoutNum, action));
                 screen.onClose();
 
             });
             this.data = data;
-            this.num = charnum;
+            this.num = loadoutNum;
             this.action = action;
 
             if (data == null) {
-                this.noChar = true;
+                this.noLoadout = true;
             }
 
         }
@@ -210,15 +207,15 @@ public class CharSelectScreen extends BaseSelectionScreen implements INamedScree
             String text = "";
             Formatting format = Formatting.GREEN;
 
-            if (noChar) {
-                text = "Create Character";
+            if (noLoadout) {
+                text = "Create Loadout";
 
             } else {
-                if (this.action == CharSelectPackets.Action.DELETE) {
-                    text = "Delete Character";
+                if (this.action == LoadoutSelectPackets.Action.DELETE) {
+                    text = "Delete Loadout";
                     format = Formatting.RED;
                 } else {
-                    text = "Load Character";
+                    text = "Load Loadout";
 
                 }
 
