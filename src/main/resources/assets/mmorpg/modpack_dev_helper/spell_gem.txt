@@ -1,5 +1,6 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+undying_will
 healing_aura
 song_of_valor
 thorn_armor
@@ -18,7 +19,7 @@ haste_aura
 water_dmg
 arrow_storm
 cooldown
-shield_test
+conjure_ender_chest
 fire_dmg
 less_radius
 fire_breath
@@ -58,7 +59,6 @@ black_hole
 rejuv_totem
 fireball
 levitation
-veil_of_night
 explosive_arrow
 charge
 heart_of_ice

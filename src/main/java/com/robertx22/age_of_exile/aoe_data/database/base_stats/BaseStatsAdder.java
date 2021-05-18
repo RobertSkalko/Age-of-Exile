@@ -20,7 +20,9 @@ public class BaseStatsAdder implements ISlashRegistryInit {
         c.id = PLAYER;
 
         c.nonScaled(Stats.CRIT_CHANCE.get(), 1);
-        c.nonScaled(Stats.CRIT_DAMAGE.get(), 0);
+        c.nonScaled(Stats.CRIT_DAMAGE.get(), 1);
+        c.nonScaled(Stats.SPELL_CRIT_DAMAGE.get(), 1);
+        c.nonScaled(Stats.HEAL_CRIT_DAMAGE.get(), 1);
         c.nonScaled(Stats.SPELL_CRIT_CHANCE.get(), 1);
         c.nonScaled(Stats.SPELL_CRIT_DAMAGE.get(), 0);
 

@@ -10,12 +10,10 @@ teleport
 whirlwind_dmg
 iceball
 explosive_arrow_eoe
-shield_test
 black_hole
 totem_heal
 default_bolt_dmg
 lose_aggro
-breath_dmg
 fireball
 arrow_storm_sec
 burn

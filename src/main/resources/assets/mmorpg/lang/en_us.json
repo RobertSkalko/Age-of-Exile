@@ -163,6 +163,7 @@
 	"mmorpg.skill_gem.boss_fire_bombs": "Fire Bombs Gem",
 	"mmorpg.skill_gem.cast_speed": "Faster Casting Support",
 	"mmorpg.skill_gem.charge": "Charge Gem",
+	"mmorpg.skill_gem.conjure_ender_chest": "Conjure Ender Chest Gem",
 	"mmorpg.skill_gem.cooldown": "Less Cooldown Support",
 	"mmorpg.skill_gem.crit_aura": "True Hit Aura Gem",
 	"mmorpg.skill_gem.crit_dmg": "Critical Damage Support",
@@ -702,6 +703,7 @@
 	"mmorpg.spell.black_hole": "Black Hole",
 	"mmorpg.spell.boss_fire_bombs": "Fire Bombs",
 	"mmorpg.spell.charge": "Charge",
+	"mmorpg.spell.conjure_ender_chest": "Conjure Ender Chest",
 	"mmorpg.spell.crit_aura": "True Hit Aura",
 	"mmorpg.spell.curse_of_agony": "Curse of Agony",
 	"mmorpg.spell.curse_of_despair": "Curse of Despair",
@@ -802,6 +804,7 @@
 	"mmorpg.one_of_a_kind.black_hole_mod": "Black Hole Modifier",
 	"mmorpg.one_of_a_kind.boss_fire_bombs_mod": "Fire Bombs Modifier",
 	"mmorpg.one_of_a_kind.charge_mod": "Charge Modifier",
+	"mmorpg.one_of_a_kind.conjure_ender_chest_mod": "Conjure Ender Chest Modifier",
 	"mmorpg.one_of_a_kind.crit_aura_mod": "True Hit Aura Modifier",
 	"mmorpg.one_of_a_kind.curse_of_agony_mod": "Curse of Agony Modifier",
 	"mmorpg.one_of_a_kind.curse_of_despair_mod": "Curse of Despair Modifier",
@@ -881,6 +884,30 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
+	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
+	"item.mmorpg.currency.fifty_tier": "Large Dungeon Key Upgrade",
+	"item.mmorpg.currency.level_spell": "§cOrb of Elevation",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.one_tier": "Small Dungeon Key Upgrade",
+	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.roll_socket": "§cOrb of Sockets",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+	"item.mmorpg.currency.ten_tier": "Medium Dungeon Key Upgrade",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 	"effect.mmorpg.beneficial.0": "Ele Resist",
@@ -925,30 +952,6 @@
 	"effect.mmorpg.negative.9": "Mummy Curse",
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
-
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
-	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
-	"item.mmorpg.currency.fifty_tier": "Large Dungeon Key Upgrade",
-	"item.mmorpg.currency.level_spell": "§cOrb of Elevation",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.one_tier": "Small Dungeon Key Upgrade",
-	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.roll_socket": "§cOrb of Sockets",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-	"item.mmorpg.currency.ten_tier": "Medium Dungeon Key Upgrade",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",

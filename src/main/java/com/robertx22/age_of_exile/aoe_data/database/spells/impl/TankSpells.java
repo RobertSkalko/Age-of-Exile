@@ -17,7 +17,8 @@ public class TankSpells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        SpellBuilder.of("undying_will", SpellConfiguration.Builder.instant(7, 20 * 60 * 2), "Undying Will",
+        SpellBuilder.of("undying_will", SpellConfiguration.Builder.instant(7, 20 * 60 * 2)
+                .setScaleManaToPlayer(), "Undying Will",
             Arrays.asList())
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.ANY_WEAPON)

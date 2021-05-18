@@ -27,6 +27,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
@@ -44,6 +45,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -63,7 +65,18 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public AttachedSpell attached = new AttachedSpell();
     public SpellConfiguration config = new SpellConfiguration();
 
+    public List<String> disabled_dims = new ArrayList<>();
     public String effect_tip = "";
+
+    public boolean isAllowedInDimension(World world) {
+        if (disabled_dims.isEmpty()) {
+            return true;
+        }
+        return disabled_dims.stream()
+            .map(x -> new Identifier(x))
+            .noneMatch(x -> x.equals(MapManager.getResourceLocation(world)));
+
+    }
 
     public AttachedSpell getAttached() {
         return attached;
@@ -230,6 +243,13 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             EntityCap.UnitData data = Load.Unit(caster);
 
             if (data != null) {
+
+                if (!isAllowedInDimension(caster.world)) {
+                    if (caster instanceof PlayerEntity) {
+                        ((PlayerEntity) caster).sendMessage(new LiteralText("You feel an entity watching you. [Spell can not be casted in this dimension]"), false);
+                    }
+                    return false;
+                }
 
                 SpendResourceEvent rctx = getManaCostCtx(ctx);
 

@@ -12,7 +12,6 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     maven { url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master' }
     maven { url "https://maven.theillusivec4.top" }
     maven { url 'https://dl.bintray.com/ladysnake/libs' }
@@ -47,8 +46,7 @@ dependencies {
     depend("net.kyrptonaught:customportalapi:${portal_api_version}")
     optionally("me.shedaniel:RoughlyEnoughItems:${rei_version}")
   
-	depend('software.bernie.geckolib:geckolib-fabric-1.16.5:3.0.33:dev')
-  
+
     // .dev .jar doesn't include included deps, so I have to add them for in IDE to work
     compile files("Library-Of-Exile-1.16.5-1.0.9-dev.jar")
     compile files("World-Of-Exile-1.16.5-1.2.1-dev.jar")

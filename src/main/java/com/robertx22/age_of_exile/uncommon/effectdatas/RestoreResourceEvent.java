@@ -3,9 +3,13 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Formatting;
 
 import java.util.List;
 
@@ -35,6 +39,14 @@ public class RestoreResourceEvent extends EffectEvent {
         if (this.data.getResourceType() == ResourceType.health) {
             if (data.getRestoreType() == RestoreType.heal) {
                 if (source instanceof PlayerEntity) {
+
+                    if (source != target) {
+                        String text = NumberUtils.format(data.getNumber());
+
+                        DmgNumPacket packet = new DmgNumPacket(target, text, data.isCrit(), Formatting.GREEN);
+                        Packets.sendToClient((PlayerEntity) source, packet);
+                    }
+
                     float threat = (int) (data.getNumber() * 0.1F);
                     List<MobEntity> mobs = EntityFinder.start(source, MobEntity.class, source.getBlockPos())
                         .radius(10)

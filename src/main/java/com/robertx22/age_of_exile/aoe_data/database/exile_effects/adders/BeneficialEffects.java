@@ -69,6 +69,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(UNDYING_WILL)
             .stat(-75, Stats.DAMAGE_RECEIVED.get())
+            .stat(2, HealthRegen.getInstance())
             .maxStacks(1)
             .build();
 

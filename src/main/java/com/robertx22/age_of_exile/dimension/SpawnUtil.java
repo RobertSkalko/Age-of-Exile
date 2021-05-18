@@ -9,7 +9,8 @@ public class SpawnUtil {
 
     public static boolean canPlaceMob(World world, EntityType type, BlockPos p) {
         Box box = type.createSimpleBoundingBox(p.getX(), p.getY(), p.getZ());
-        return world.isSpaceEmpty(box);
+        boolean can = world.isSpaceEmpty(box);
+        return can;
     }
 
     public static boolean canPlaceBlock(World world, BlockPos p) {

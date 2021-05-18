@@ -1,12 +1,11 @@
 package com.robertx22.age_of_exile.a_libraries.dmg_number_particle;
 
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
 
 public class DamageParticle {
-    public String str;
 
     public double x = 0;
     public double y = 0;
@@ -25,9 +24,18 @@ public class DamageParticle {
     public double vy = 0;
     public double vz = 0;
 
-    public Elements element;
+    public String renderString = "";
 
-    public DamageParticle(Entity entity, Elements element, String str) {
+    DmgNumPacket packet;
+
+    public DamageParticle(Entity entity, DmgNumPacket packet) {
+        this.packet = packet;
+
+        this.renderString = packet.format + packet.string;
+        if (packet.iscrit) {
+            this.renderString += "!";
+        }
+
         MinecraftClient mc = MinecraftClient.getInstance();
         Vec3d entityLocation = entity.getPos()
             .add(0, entity.getHeight(), 0);
@@ -40,8 +48,6 @@ public class DamageParticle {
         Vec3d pos = entityLocation.add(offset);
 
         age = 0;
-        this.str = str;
-        this.element = element;
 
         vx = mc.world.random.nextGaussian() * 0.01;
         vy = 0.05 + (mc.world.random.nextGaussian() * 0.01);

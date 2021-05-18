@@ -3,9 +3,6 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 import com.robertx22.age_of_exile.a_libraries.dmg_number_particle.DamageParticleAdder;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
-import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.LivingEntity;
@@ -15,24 +12,20 @@ import net.minecraft.util.Identifier;
 
 public class DmgNumPacket extends MyPacket<DmgNumPacket> {
 
-    public String element;
     public String string;
-
-    public boolean isExp;
-    public float number;
     public int id;
+    public boolean iscrit = false;
+    public Formatting format = Formatting.RED;
 
     public DmgNumPacket() {
 
     }
 
-    public DmgNumPacket(LivingEntity entity, Elements ele, String str, float number) {
-
-        element = ele.toString();
+    public DmgNumPacket(LivingEntity entity, String str, boolean iscrit, Formatting format) {
         string = str;
-        this.number = number;
         this.id = entity.getEntityId();
-
+        this.iscrit = iscrit;
+        this.format = format;
     }
 
     @Override
@@ -42,32 +35,26 @@ public class DmgNumPacket extends MyPacket<DmgNumPacket> {
 
     @Override
     public void loadFromData(PacketByteBuf tag) {
-        element = tag.readString();
-        isExp = tag.readBoolean();
         string = tag.readString();
-        number = tag.readFloat();
         id = tag.readInt();
+        this.iscrit = tag.readBoolean();
+        this.format = Formatting.byName(tag.readString(100));
 
     }
 
     @Override
     public void saveToData(PacketByteBuf tag) {
-        tag.writeString(element);
-        tag.writeBoolean(isExp);
         tag.writeString(string);
-        tag.writeFloat(number);
         tag.writeInt(id);
+        tag.writeBoolean(iscrit);
+        tag.writeString(format.getName());
 
     }
 
     @Override
     public void onReceived(PacketContext ctx) {
-        if (isExp && ModConfig.get().client.dmgParticleConfig.ENABLE_CHAT_EXP_MSG) {
-            ClientOnly.getPlayer()
-                .sendMessage(new SText(Formatting.GREEN + "" + Formatting.BOLD + "+" + (int) number + " EXP"), false);
-
-        } else if (isExp == false && ModConfig.get().client.dmgParticleConfig.ENABLE_FLOATING_DMG) {
-            DamageParticleAdder.displayParticle(ctx.getPlayer().world.getEntityById(id), element, string);
+        if (ModConfig.get().client.dmgParticleConfig.ENABLE_FLOATING_DMG) {
+            DamageParticleAdder.displayParticle(ctx.getPlayer().world.getEntityById(id), this);
         }
     }
 

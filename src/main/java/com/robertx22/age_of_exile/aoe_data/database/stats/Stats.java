@@ -217,9 +217,12 @@ public class Stats implements ISlashRegistryInit {
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.is_perc = true;
+            x.scaling = StatScaling.NONE;
             x.group = StatGroup.Misc;
+            x.max = 90;
         })
         .build();
+
     public static DataPackStatAccessor<PlayStyle> STYLE_DAMAGE_RECEIVED = DatapackStatBuilder
         .<PlayStyle>of(x -> x.name() + "_dmg_received", x -> Elements.Physical)
         .addAllOfType(PlayStyle.values())
@@ -232,7 +235,9 @@ public class Stats implements ISlashRegistryInit {
         .setLocDesc(x -> "Magic damage are mage spells, like fireball.")
         .modifyAfterDone(x -> {
             x.is_perc = true;
+            x.scaling = StatScaling.NONE;
             x.group = StatGroup.Misc;
+            x.max = 75;
         })
         .build();
 

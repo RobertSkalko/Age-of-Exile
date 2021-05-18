@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.item.Items;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -90,6 +91,11 @@ public class SpellBuilder {
 
     public SpellBuilder weight(int w) {
         this.spell.weight = w;
+        return this;
+    }
+
+    public SpellBuilder disableInDimension(Identifier id) {
+        this.spell.disabled_dims.add(id.toString());
         return this;
     }
 

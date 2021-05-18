@@ -191,7 +191,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             PopulateDungeonChunks.populateAll(dimWorld, cp, single);
 
-            int kills = (int) (single.pop.mobs * 0.9F);
+            int kills = (int) (single.pop.mobs * 0.8F);
 
             single.quest.target = kills;
 

@@ -167,6 +167,10 @@ public class EventData {
         return getBoolean(IS_BASIC_ATTACK);
     }
 
+    public boolean isCrit() {
+        return getBoolean(CRIT);
+    }
+
     public void setString(String id, String str) {
         tryFreezeErrorMessage();
         // careful about order here

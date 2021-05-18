@@ -38,6 +38,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -401,7 +402,7 @@ public class DamageEvent extends EffectEvent {
                     text = "Resist";
                 }
 
-                DmgNumPacket packet = new DmgNumPacket(target, this.getElement(), text, 0);
+                DmgNumPacket packet = new DmgNumPacket(target, text, false, Formatting.GOLD);
                 Packets.sendToClient(player, packet);
                 return;
             }
@@ -410,10 +411,10 @@ public class DamageEvent extends EffectEvent {
                 if (entry.getValue()
                     .intValue() > 0) {
 
-                    text = NumberUtils.formatDamageNumber(this, entry.getValue()
+                    text = entry.getKey().format + NumberUtils.formatDamageNumber(this, entry.getValue()
                         .intValue());
 
-                    DmgNumPacket packet = new DmgNumPacket(target, entry.getKey(), text, entry.getValue());
+                    DmgNumPacket packet = new DmgNumPacket(target, text, data.isCrit(), entry.getKey().format);
                     Packets.sendToClient(player, packet);
                 }
             }
