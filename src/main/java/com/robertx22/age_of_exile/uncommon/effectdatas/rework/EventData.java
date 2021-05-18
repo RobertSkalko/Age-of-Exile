@@ -56,7 +56,7 @@ public class EventData {
     private void tryFreezeErrorMessage() {
         if (isFrozen && MMORPG.RUN_DEV_TOOLS) {
             try {
-                throw new RuntimeException("Event data frozen but code tried to modify it.");
+                //throw new RuntimeException("Event data frozen but code tried to modify it.");
             } catch (RuntimeException e) {
                 e.printStackTrace();
             }

@@ -120,13 +120,13 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
                 List<ChunkPos> check = PopulateDungeonChunks.getChunksAround(cp);
 
-                boolean found = false;
+                boolean foundSpawn = false;
 
                 for (ChunkPos x : check) {
 
-                    Set<Map.Entry<BlockPos, BlockEntity>> bes = dimWorld.getChunk(x.x, x.z)
+                    Set<Map.Entry<BlockPos, BlockEntity>> bes = new HashSet<>(dimWorld.getChunk(x.x, x.z)
                         .getBlockEntities()
-                        .entrySet();
+                        .entrySet());
 
                     for (Map.Entry<BlockPos, BlockEntity> e : bes) {
 
@@ -135,21 +135,16 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                                 moblist = SignUtils.removeBraces(SignUtils.getText((SignBlockEntity) e.getValue())
                                     .get(1));
                             }
-                        }
-                        if (dimWorld.getBlockState(e.getKey())
+                        } else if (dimWorld.getBlockState(e.getKey())
                             .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK) {
                             tpPos = e.getKey();
-
                             dimWorld.breakBlock(tpPos, false);
-
-                            found = true;
-
-                            break;
+                            foundSpawn = true;
                         }
                     }
                 }
 
-                if (!found) {
+                if (!foundSpawn) {
                     player.sendMessage(new LiteralText("Couldnt find spawn position, you might be placed weirdly, and possibly die."), false);
                 }
 
@@ -189,11 +184,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 single.data.is_team = true;
             }
 
-            PopulateDungeonChunks.populateAll(dimWorld, cp, single);
-
-            int kills = (int) (single.pop.mobs * 0.8F);
-
-            single.quest.target = kills;
+            single.pop.startPopulating(cp);
 
             total.print("Total dungeon init");
 

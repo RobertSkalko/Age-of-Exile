@@ -775,25 +775,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
-
-	"mmorpg.runeword.all_knowing": "All Knowing",
-	"mmorpg.runeword.blaze_fury": "Blaze Fury",
-	"mmorpg.runeword.dawn_light": "Dawn Light",
-	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
-	"mmorpg.runeword.ele_fury": "Elemental Fury",
-	"mmorpg.runeword.infinity": "Infinity",
-	"mmorpg.runeword.momentum": "Momentum",
-	"mmorpg.runeword.rock_golem": "Rock Golem",
-	"mmorpg.runeword.scholar": "Scholar",
-	"mmorpg.runeword.sentinel": "Sentinel",
-	"mmorpg.runeword.shadow": "Shadow",
-	"mmorpg.runeword.starlight": "Starlight",
-	"mmorpg.runeword.venom": "Venom",
-
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
-
-
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
 
 	"mmorpg.one_of_a_kind.armor_aura_mod": "Armor Aura Modifier",
@@ -862,6 +843,25 @@
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
 
 
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+	"mmorpg.runeword.all_knowing": "All Knowing",
+	"mmorpg.runeword.blaze_fury": "Blaze Fury",
+	"mmorpg.runeword.dawn_light": "Dawn Light",
+	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
+	"mmorpg.runeword.ele_fury": "Elemental Fury",
+	"mmorpg.runeword.infinity": "Infinity",
+	"mmorpg.runeword.momentum": "Momentum",
+	"mmorpg.runeword.rock_golem": "Rock Golem",
+	"mmorpg.runeword.scholar": "Scholar",
+	"mmorpg.runeword.sentinel": "Sentinel",
+	"mmorpg.runeword.shadow": "Shadow",
+	"mmorpg.runeword.starlight": "Starlight",
+	"mmorpg.runeword.venom": "Venom",
+
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 	"mmorpg.mob_rarity.boss": "Boss",
@@ -882,30 +882,6 @@
 	"mmorpg.skill_gem_rarity.rare": "Rare",
 
 "_comment": " [CATEGORY]: RARITIES - NAMES",
-
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
-	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
-	"item.mmorpg.currency.fifty_tier": "Large Dungeon Key Upgrade",
-	"item.mmorpg.currency.level_spell": "§cOrb of Elevation",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.one_tier": "Small Dungeon Key Upgrade",
-	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.roll_socket": "§cOrb of Sockets",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-	"item.mmorpg.currency.ten_tier": "Medium Dungeon Key Upgrade",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
@@ -952,6 +928,30 @@
 	"effect.mmorpg.negative.9": "Mummy Curse",
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
+
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
+	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
+	"item.mmorpg.currency.fifty_tier": "Large Dungeon Key Upgrade",
+	"item.mmorpg.currency.level_spell": "§cOrb of Elevation",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.one_tier": "Small Dungeon Key Upgrade",
+	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.roll_socket": "§cOrb of Sockets",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+	"item.mmorpg.currency.ten_tier": "Medium Dungeon Key Upgrade",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -2169,31 +2169,6 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.foods.critical": "Critical",
-	"effect.mmorpg.foods.dark": "Night",
-	"effect.mmorpg.foods.def_blue": "Arcana Defense",
-	"effect.mmorpg.foods.def_gray": "Physical Defense",
-	"effect.mmorpg.foods.def_green": "Terra Defense",
-	"effect.mmorpg.foods.def_purple": "Magicka Defense",
-	"effect.mmorpg.foods.def_yellow": "Sky Defense",
-	"effect.mmorpg.foods.elemental_resist": "Elementum",
-	"effect.mmorpg.foods.exp": "Experience",
-	"effect.mmorpg.foods.fire": "Ignis",
-	"effect.mmorpg.foods.healing": "Sancti",
-	"effect.mmorpg.foods.health_regen": "Vitala",
-	"effect.mmorpg.foods.light": "Sky",
-	"effect.mmorpg.foods.mana_regen": "Arcana",
-	"effect.mmorpg.foods.nature": "Terra",
-	"effect.mmorpg.foods.physical": "Physical",
-	"effect.mmorpg.foods.spell_damage": "Enigma",
-	"effect.mmorpg.foods.treasure": "Treasure",
-	"effect.mmorpg.foods.water": "Aqua",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.jewelry.necklace.all_res_necklace_end": "Necklace",
@@ -2326,6 +2301,31 @@
 	"item.mmorpg.weapon.wand.wand4": "Wand",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.foods.critical": "Critical",
+	"effect.mmorpg.foods.dark": "Night",
+	"effect.mmorpg.foods.def_blue": "Arcana Defense",
+	"effect.mmorpg.foods.def_gray": "Physical Defense",
+	"effect.mmorpg.foods.def_green": "Terra Defense",
+	"effect.mmorpg.foods.def_purple": "Magicka Defense",
+	"effect.mmorpg.foods.def_yellow": "Sky Defense",
+	"effect.mmorpg.foods.elemental_resist": "Elementum",
+	"effect.mmorpg.foods.exp": "Experience",
+	"effect.mmorpg.foods.fire": "Ignis",
+	"effect.mmorpg.foods.healing": "Sancti",
+	"effect.mmorpg.foods.health_regen": "Vitala",
+	"effect.mmorpg.foods.light": "Sky",
+	"effect.mmorpg.foods.mana_regen": "Arcana",
+	"effect.mmorpg.foods.nature": "Terra",
+	"effect.mmorpg.foods.physical": "Physical",
+	"effect.mmorpg.foods.spell_damage": "Enigma",
+	"effect.mmorpg.foods.treasure": "Treasure",
+	"effect.mmorpg.foods.water": "Aqua",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: RACES - NAMES",

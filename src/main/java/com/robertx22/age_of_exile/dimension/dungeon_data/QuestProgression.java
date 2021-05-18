@@ -56,6 +56,10 @@ public class QuestProgression {
 
             number += num;
 
+            if (!single.pop.donePop) {
+                return; // don't check for completition if dungeon didn't finish generating
+            }
+
             player.sendMessage(new LiteralText("Dungeon Progress: " + number + "/" + target), false);
 
             if (number >= target) {

@@ -117,6 +117,9 @@ public class WorldUtils {
     }
 
     public static boolean isMapWorldClass(WorldView world) {
+        if (MMORPG.server == null) {
+            return false;
+        }
         return MMORPG.server.getRegistryManager()
             .getDimensionTypes()
             .getId(world.getDimension())

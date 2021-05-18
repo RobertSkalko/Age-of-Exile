@@ -2,11 +2,9 @@ package com.robertx22.age_of_exile.dimension;
 
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonPopulateData;
-import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
 import com.robertx22.age_of_exile.dimension.spawner.ModSpawnerBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
@@ -31,7 +29,9 @@ import java.util.Set;
 public class PopulateDungeonChunks {
 
     public static void tryPopulateChunksAroundPlayer(World world, PlayerEntity player) {
-
+        if (true) {
+            return;
+        }
         if (WorldUtils.isDungeonWorld(world)) {
 
             // Watch watch = new Watch();
@@ -63,43 +63,6 @@ public class PopulateDungeonChunks {
 
     }
 
-    public static void populateAll(World world, ChunkPos cpos, SingleDungeonData data) {
-
-        Watch watch = new Watch();
-
-        List<ChunkPos> toPopulate = new ArrayList<>();
-        List<ChunkPos> populated = new ArrayList<>();
-
-        toPopulate.addAll(getChunksAround(cpos));
-
-        int tries = 0;
-
-        while (!toPopulate.isEmpty()) {
-
-            if (populated.size() > 15) {
-                break; // dont populate more than 20, 20 is enough for the quest to figure out the kill number.
-                // populate the rest on demand
-            }
-
-            tries++;
-            if (tries > 100) {
-                break;
-            }
-
-            ChunkPos cp = toPopulate.get(0);
-            if (!populated.contains(cp)) {
-                populate(toPopulate, populated, world, world.getChunk(cp.x, cp.z), data.data, data.pop);
-            } else {
-                toPopulate.removeIf(x -> x.equals(cp));
-            }
-        }
-
-        System.out.print(populated.size() + " chunks");
-
-        watch.print("populating the whole dungeon ");
-
-    }
-
     public static List<ChunkPos> getChunksAround(ChunkPos cp) {
         List<ChunkPos> list = new ArrayList<>();
         list.add(cp);
@@ -120,16 +83,17 @@ public class PopulateDungeonChunks {
 
     }
 
-    public static void populate(List<ChunkPos> toPopulate, List<ChunkPos> populated, World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
+    public static void populate(Set<DungeonPopulateData.CP> toPopulate, Set<DungeonPopulateData.CP> populated, World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
 
         boolean has = populateChunk(world, chunk, dungeon, data);
 
         if (has) {
-            populated.add(chunk.getPos());
-            toPopulate.addAll(getChunksAround(chunk.getPos()));
-        }
+            populated.add(new DungeonPopulateData.CP(chunk.getPos()));
 
-        toPopulate.removeIf(x -> x.equals(chunk.getPos()));
+            getChunksAround(chunk.getPos()).forEach(x -> toPopulate.add(new DungeonPopulateData.CP(x)));
+        }
+        toPopulate.removeIf(x -> x.getChunkPos()
+            .equals(chunk.getPos()));
     }
 
     public static boolean populateChunk(World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
