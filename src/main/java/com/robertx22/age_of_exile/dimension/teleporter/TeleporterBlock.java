@@ -57,18 +57,21 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
             // TeleportedBlockEntity en = (TeleportedBlockEntity) tile;
 
             if (stack.getItem() instanceof DungeonKeyItem) {
-                int tier = DungeonKeyItem.getTier(stack);
+                if (!world.isClient) {
+                    int tier = DungeonKeyItem.getTier(stack);
 
-                Load.playerMaps(player)
-                    .initRandomMap((DungeonKeyItem) stack.getItem(), tier);
+                    Load.playerMaps(player)
+                        .initRandomMap((DungeonKeyItem) stack.getItem(), tier);
 
-                stack.decrement(1);
-                return ActionResult.SUCCESS;
-                // activate map
-
+                    stack.decrement(1);
+                    return ActionResult.SUCCESS;
+                    // activate map
+                }
             } else {
-                Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.MAPS));
-                ClientOnly.openMapsScreen(pos);
+                if (world.isClient) {
+                    Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.MAPS));
+                    ClientOnly.openMapsScreen(pos);
+                }
             }
             return ActionResult.SUCCESS;
         }

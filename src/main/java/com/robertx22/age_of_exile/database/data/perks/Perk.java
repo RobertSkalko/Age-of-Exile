@@ -169,7 +169,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
         STAT(2, 24, 24, 39, Formatting.WHITE),
         SPECIAL(3, 28, 28, 77, Formatting.LIGHT_PURPLE),
         MAJOR(1, 33, 33, 1, Formatting.RED),
-        START(4, 23, 23, 115, Formatting.YELLOW),
+        START(4, 35, 35, 115, Formatting.YELLOW),
         SPELL_MOD(5, 26, 26, 153, Formatting.BLACK);
 
         int order;

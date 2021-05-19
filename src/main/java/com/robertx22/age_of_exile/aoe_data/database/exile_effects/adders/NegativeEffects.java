@@ -60,7 +60,7 @@ public class NegativeEffects implements ISlashRegistryInit {
                     .onTick(20D))
                 .buildForEffect())
 
-            .addTags(EffectTags.curse)
+            .addTags(EffectTags.curse, EffectTags.negative)
             .build();
 
         ExileEffectBuilder.of(WEAKNESS)
@@ -74,7 +74,7 @@ public class NegativeEffects implements ISlashRegistryInit {
                     .onTick(20D))
                 .buildForEffect())
 
-            .addTags(EffectTags.curse)
+            .addTags(EffectTags.curse, EffectTags.negative)
             .build();
 
         ExileEffectBuilder.of(DESPAIR)
@@ -85,16 +85,17 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
                     .onTick(20D))
                 .buildForEffect())
-            .addTags(EffectTags.curse)
+            .addTags(EffectTags.curse, EffectTags.negative)
             .build();
 
         ExileEffectBuilder.of(SLOW)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -25, ModType.GLOBAL_INCREASE, UUID.fromString("3fb10485-f309-468f-afc6-a23b0d6cf4c1")))
             .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_SPEED, -10, ModType.GLOBAL_INCREASE, UUID.fromString("00fb60a7-904b-462f-a7cb-a557f02e362e")))
+            .addTags(EffectTags.negative)
             .build();
 
         ExileEffectBuilder.of(STUN)
-            .addTags(EffectTags.immobilizing)
+            .addTags(EffectTags.immobilizing, EffectTags.negative)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -100, ModType.GLOBAL_INCREASE, UUID.fromString("3fb10485-f309-468f-afc6-a23b0d6cf4c1")))
             .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_SPEED, -100, ModType.GLOBAL_INCREASE, UUID.fromString("00fb60a7-904b-462f-a7cb-a557f02e362e")))
             .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_DAMAGE, -100, ModType.GLOBAL_INCREASE, UUID.fromString("10fb60a7-904b-462f-a7cb-a557f02e362e")))
@@ -124,6 +125,7 @@ public class NegativeEffects implements ISlashRegistryInit {
             .build();
 
         ExileEffectBuilder.of(FROSTBURN)
+
             .maxStacks(5)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.05F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
             .stat(-4, new ElementalResist(Elements.Water), ModType.FLAT)

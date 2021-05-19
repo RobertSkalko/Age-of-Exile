@@ -105,7 +105,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
             .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
             .maxStacks(3)
-            .addTags(EffectTags.song)
+            .addTags(EffectTags.song, EffectTags.defensive)
             .build();
 
         ExileEffectBuilder.of(VALOR)
@@ -113,16 +113,20 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
             .stat(5, Stats.CAST_SPEED.get(), ModType.FLAT)
             .maxStacks(3)
-            .addTags(EffectTags.song)
+            .addTags(EffectTags.song, EffectTags.offensive)
             .build();
 
         ExileEffectBuilder.of(BLADE_DANCE)
             .stat(2, Stats.ATTACK_SPEED.get(), ModType.FLAT)
             .maxStacks(5)
+            .addTags(EffectTags.offensive)
             .build();
+
         ExileEffectBuilder.of(GATHER_STORM)
             .stat(5, Stats.AREA_DAMAGE.get(), ModType.FLAT)
             .maxStacks(5)
+            .addTags(EffectTags.offensive)
+
             .build();
 
         ExileEffectBuilder.of(BLESSING) // TODO
@@ -135,6 +139,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(INFUSED_BLADE)
             .stat(5, SpellDamage.getInstance(), ModType.FLAT)
+            .addTags(EffectTags.offensive)
             .maxStacks(5)
             .build();
 

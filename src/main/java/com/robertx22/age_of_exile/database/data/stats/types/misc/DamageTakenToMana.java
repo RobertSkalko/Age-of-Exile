@@ -43,7 +43,7 @@ public class DamageTakenToMana extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Of Damage Taken to Mana";
+        return "Damage Taken to Mana";
     }
 
     private static class Effect extends BaseDamageEffect {

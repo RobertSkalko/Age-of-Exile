@@ -35,7 +35,7 @@ public class GearSetsAdder implements ISlashRegistryInit {
             .build();
 
         GearSet.Builder.of(BLAZE_SET, "The Blaze")
-            .stat(2, new OptScaleExactStat(20, Stats.CHANCE_OF_APPLYING_EFFECT_ON_CRIT.get(NegativeEffects.BURN)))
+            .stat(2, new OptScaleExactStat(50, Stats.CHANCE_OF_APPLYING_EFFECT_ON_CRIT.get(NegativeEffects.BURN)))
             .build();
 
         GearSet.Builder.of(OAK_SET, "The Great Tree")

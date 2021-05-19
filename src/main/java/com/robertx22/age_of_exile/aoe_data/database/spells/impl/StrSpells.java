@@ -55,7 +55,7 @@ public class StrSpells implements ISlashRegistryInit {
             Arrays.asList(SpellTag.area, SpellTag.shout, SpellTag.shield))
             .attackStyle(PlayStyle.melee)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WOLF_HOWL, 1D, 1D))
-            .onCast(PartBuilder.giveShieldInRadius(10D, ValueCalculation.base("shout_warn", 20), 10D))
+            .onCast(PartBuilder.giveShieldInRadius(10D, ValueCalculation.scaleWithStat("shout_warn", new ScalingStatCalculation(Health.getInstance(), 0.05F), 20), 10D))
             .build();
 
         SpellBuilder.of("thorn_armor", SpellConfiguration.Builder.instant(15, 200 * 20), "Thorn Armor",
@@ -173,7 +173,7 @@ public class StrSpells implements ISlashRegistryInit {
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.scaleWithStat("taunt", new ScalingStatCalculation(Health.getInstance(), 0.02F), 10), AggroAction.Type.AGGRO))
+            .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.scaleWithStat("taunt", new ScalingStatCalculation(Health.getInstance(), 0.05F), 10), AggroAction.Type.AGGRO))
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 20D, 3D))
 

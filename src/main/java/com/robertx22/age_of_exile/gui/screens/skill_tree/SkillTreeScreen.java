@@ -480,6 +480,8 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     }
 
+    static Identifier BACKGROUND = Ref.guiId("skill_tree/background");
+
     public static void renderBackgroundDirt(Screen screen, int vOffset) {
         //copied from Scree
 
@@ -487,7 +489,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         BufferBuilder bufferBuilder = tessellator.getBuffer();
         MinecraftClient.getInstance()
             .getTextureManager()
-            .bindTexture(Screen.OPTIONS_BACKGROUND_TEXTURE);
+            .bindTexture(BACKGROUND);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         float f = 32.0F;
         bufferBuilder.begin(7, VertexFormats.POSITION_TEXTURE_COLOR);

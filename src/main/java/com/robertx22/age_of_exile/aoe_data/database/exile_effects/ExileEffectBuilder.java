@@ -32,7 +32,9 @@ public class ExileEffectBuilder {
 
     public ExileEffectBuilder addTags(EffectTags... tags) {
         for (EffectTags tag : tags) {
-            this.effect.tags.add(tag.name());
+            if (!effect.tags.contains(tag.name())) {
+                this.effect.tags.add(tag.name());
+            }
         }
         return this;
     }

@@ -21,14 +21,16 @@ public class OpenEnderChestAction extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
         if (ctx.caster instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) ctx.caster;
+            if (!ctx.caster.world.isClient) {
+                PlayerEntity player = (PlayerEntity) ctx.caster;
 
-            // copied from EnderChestBlock, if bug copy again
-            EnderChestInventory enderChestInventory = player.getEnderChestInventory();
+                // copied from EnderChestBlock, if bug copy again
+                EnderChestInventory enderChestInventory = player.getEnderChestInventory();
 
-            player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
-                return GenericContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory);
-            }, new TranslatableText("container.enderchest")));
+                player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
+                    return GenericContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory);
+                }, new TranslatableText("container.enderchest")));
+            }
         }
     }
 
