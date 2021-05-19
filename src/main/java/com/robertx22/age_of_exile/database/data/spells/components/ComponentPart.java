@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.CasterHasStatCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
@@ -9,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMai
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
@@ -134,10 +132,6 @@ public class ComponentPart {
         return this;
     }
 
-    public ComponentPart requiresSpellMod(DataGenKey<MarkerStat> mod) {
-        return addCondition(EffectCondition.CASTER_HAS_STAT.create(mod));
-    }
-
     public ComponentPart addCondition(MapHolder map) {
         this.ifs.add(map);
         return this;
@@ -148,7 +142,6 @@ public class ComponentPart {
 
         MutableText text = new LiteralText("");
 
-        String firstLetter = "*";
         boolean isSpellModifier = false;
 
         for (MapHolder part : acts) {

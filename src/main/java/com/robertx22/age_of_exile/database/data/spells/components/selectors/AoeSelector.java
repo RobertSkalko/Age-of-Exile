@@ -80,6 +80,14 @@ public class AoeSelector extends BaseTargetSelector implements ICTextTooltip {
             .collect(Collectors.toList());
     }
 
+    public MapHolder enemiesInRadius(Double radius) {
+        return create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies);
+    }
+
+    public MapHolder alliesInRadius(Double radius) {
+        return create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies);
+    }
+
     public MapHolder create(Double radius, EntityFinder.SelectionType type, AllyOrEnemy pred) {
         MapHolder d = new MapHolder();
         d.type = GUID();

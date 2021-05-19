@@ -109,6 +109,11 @@ public class SpellBuilder {
         return this.addEntityAction(Spell.DEFAULT_EN_NAME, comp);
     }
 
+    public SpellBuilder addSpecificAction(String id, ComponentPart comp) {
+        this.addEntityAction(id, comp);
+        return this;
+    }
+
     public SpellBuilder onExpire(ComponentPart comp) {
         comp.addActivationRequirement(EntityActivation.ON_EXPIRE);
         return this.addEntityAction(Spell.DEFAULT_EN_NAME, comp);

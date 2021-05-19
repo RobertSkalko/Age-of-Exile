@@ -22,6 +22,8 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
 
     public static HashMap<String, SpellAction> MAP = new HashMap<>();
 
+    public static DoActionForEachEffectOnTarget DO_ACTION_FOR_EACH_EFFECT_WITH_TAG_ON_TARGET = of(new DoActionForEachEffectOnTarget());
+    public static DoSpecificAction SPECIFIC_ACTION = of(new DoSpecificAction());
     public static RideAction RIDE = of(new RideAction());
     public static OpenEnderChestAction OPEN_ENDER_CHEST = of(new OpenEnderChestAction());
     public static SummonProjectileAction SUMMON_PROJECTILE = of(new SummonProjectileAction());

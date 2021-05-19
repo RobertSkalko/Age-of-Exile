@@ -896,6 +896,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
+            x.min = -75;
             x.max = 75;
         })
         .build();

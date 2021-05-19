@@ -11,6 +11,7 @@ public class RenderLayersRegister {
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.LIFE_PLANT, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.BLUE_TOTEM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GUARD_TOTEM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GREEN_TOTEM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GLYPH, RenderLayer.getCutout());
 

@@ -177,10 +177,10 @@ public class PerkButton extends TexturedButtonWidget {
         if (this.perk.isLockedToPlayer(mc.player)) {
 
             if (!this.isHovered()) {
-                mc.getTextureManager()
-                    .bindTexture(LOCKED_TEX);
+                //    mc.getTextureManager()
+                //       .bindTexture(LOCKED_TEX);
 
-                drawTexture(matrices, xPos(offset, posMulti), (int) (yPos(offset, posMulti) * 10 * posMulti), 0, 0, 16, 16, 16, 16);
+                // drawTexture(matrices, xPos(offset, posMulti), (int) (yPos(offset, posMulti) * 10 * posMulti), 0, 0, 16, 16, 16, 16);
             }
         }
 

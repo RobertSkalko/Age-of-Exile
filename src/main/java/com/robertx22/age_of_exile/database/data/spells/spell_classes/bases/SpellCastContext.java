@@ -48,12 +48,11 @@ public class SpellCastContext {
             try {
 
                 if (gem == null) {
-                    skillGemData = this.spellsCap.getSkillGemData()
-                        .getSkillGemOfSpell(spell);
 
-                    if (skillGemData == null) {
-                        this.skillGemData = new SkillGemData();
-                    }
+                    skillGemData = this.spellsCap.getSkillGemData()
+                        .getSkillGemOfSpell(spell)
+                        .orElseGet(() -> new SkillGemData());
+
                 } else {
                     skillGemData = gem;
                 }

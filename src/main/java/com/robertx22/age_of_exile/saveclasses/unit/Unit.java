@@ -72,7 +72,11 @@ public class Unit {
         SPELL1(0),
         SPELL2(1),
         SPELL3(2),
-        SPELL4(3);
+        SPELL4(3),
+        SPELL5(4),
+        SPELL6(5),
+        SPELL7(6),
+        SPELL8(7);
 
         StatContainerType(int place) {
             this.place = place;
@@ -377,15 +381,20 @@ public class Unit {
                         StatContainer copy = getStats().cloneForSpellStats();
                         stats.put(type, copy);
 
-                        List<SkillGemData> supportGems = Load.spells(entity)
+                        List<SkillGemData> gems = Load.spells(entity)
                             .getSkillGemData()
                             .getSupportGemsOf(type.place);
+                        gems.add(Load.spells(entity)
+                            .getSkillGemData()
+                            .getSkillGemOf(type.place));
+
+                        gems.removeIf(x -> x == null);
 
                         List<SkillGemData> noGemDuplicateList = new ArrayList<>();
 
                         Set<String> gemIdSet = new HashSet<>();
 
-                        supportGems.forEach(x -> {
+                        gems.forEach(x -> {
                             if (!gemIdSet.contains(x.id)) {// dont allow duplicate gems
                                 noGemDuplicateList.add(x);
                                 gemIdSet.add(x.id);
@@ -395,7 +404,7 @@ public class Unit {
 
                         for (SkillGemData sd : noGemDuplicateList) {
 
-                            if (true || sd.canPlayerUse((PlayerEntity) entity)) {
+                            if (sd.canPlayerUse((PlayerEntity) entity)) {
                                 sd.getSkillGem()
                                     .getConstantStats(sd)
                                     .forEach(s -> {

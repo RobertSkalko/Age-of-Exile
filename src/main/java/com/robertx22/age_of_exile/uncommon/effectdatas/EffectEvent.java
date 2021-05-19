@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DatapackStat;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.base.EffectWithCtx;
@@ -16,7 +15,6 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,34 +148,22 @@ public abstract class EffectEvent implements IGUID {
 
                     int place = -1;
 
-                    for (int i = 0; i < spells.getSkillGemData().stacks.size(); i++) {
-
-                        ItemStack stack = spells.getSkillGemData().stacks.get(i);
-
-                        SkillGemData sd = SkillGemData.fromStack(stack);
-                        if (sd != null && sd.getSkillGem() != null && sd.getSkillGem().spell_id.equals(spell.GUID())) {
-                            for (SkillGemsData.Places p : SkillGemsData.Places.values()) {
-                                if (p.index == i) {
-                                    place = p.place;
-                                }
+                    int n = 0;
+                    for (SkillGemData x : spells.getSkillGemData().gems) {
+                        if (x != null) {
+                            if (x.getSkillGem().spell_id.equals(spell.GUID())) {
+                                place = n;
+                                break;
                             }
                         }
-
+                        n++;
                     }
 
                     if (place > -1) {
-
-                        if (place == 0) {
-                            return Unit.StatContainerType.SPELL1;
-                        }
-                        if (place == 1) {
-                            return Unit.StatContainerType.SPELL2;
-                        }
-                        if (place == 2) {
-                            return Unit.StatContainerType.SPELL3;
-                        }
-                        if (place == 3) {
-                            return Unit.StatContainerType.SPELL4;
+                        for (Unit.StatContainerType type : Unit.StatContainerType.values()) {
+                            if (type.place == place) {
+                                return type;
+                            }
                         }
                     }
 

@@ -20,6 +20,8 @@ water_dmg
 arrow_storm
 cooldown
 conjure_ender_chest
+soul_harvest
+jump_field
 fire_dmg
 less_radius
 fire_breath
@@ -30,6 +32,7 @@ heal_ray
 song_of_perseverance
 crit_rate
 health_leech
+sacrifice
 shooting_star
 crit_aura
 overload
@@ -39,6 +42,7 @@ gong_strike
 cast_speed
 hp_reg_aura
 atk_speed
+lava_sphere
 tidal_strike
 more_radius
 song_of_vigor
@@ -52,6 +56,7 @@ piercing_proj
 teleport
 spell_crit_rate
 banish
+guard_totem
 crit_dmg
 faster_proj
 nature_balm
@@ -74,6 +79,7 @@ bleed_chance
 make_arrows
 fire_bombs
 spell_crit_dmg
+frost_sphere
 power_chord
 pull
 test_command
@@ -81,6 +87,7 @@ awaken_mana
 mana_reg_aura
 fire_nova
 threat
+shadow_ball
 poisoned_weapons
 taunt
 dodge_aura

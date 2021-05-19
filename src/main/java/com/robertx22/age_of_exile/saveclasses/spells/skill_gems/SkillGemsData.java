@@ -25,6 +25,9 @@ public class SkillGemsData implements Inventory {
     @Store
     public List<ItemStack> stacks = new ArrayList<>(DefaultedList.ofSize(SIZE, ItemStack.EMPTY));
 
+    @Store
+    public List<SkillGemData> gems = new ArrayList<>(DefaultedList.ofSize(SIZE, new SkillGemData())); // saved gem datas on close inventory so it's faster to get and calculate stuff
+
     public enum Places {
 
         B1(0, 0, EquipmentSlot.HEAD, SkillGemType.SUPPORT_GEM, 57, 9),
@@ -70,24 +73,35 @@ public class SkillGemsData implements Inventory {
         }
     }
 
+    @Override
+    public void onClose(PlayerEntity player) {
+
+        try {
+            this.gems.clear();
+
+            this.stacks.forEach(x -> {
+                gems.add(SkillGemData.fromStack(x));
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public List<SkillGemData> getSupportGemsOf(int place) {
-        List<ItemStack> list = new ArrayList<>();
+        List<SkillGemData> list = new ArrayList<>();
 
         for (Places en : Places.values()) {
             if (en.slotType == SkillGemType.SUPPORT_GEM) {
                 if (en.place == place) {
-                    list.add(stacks.get(en.index));
+
+                    list.add(gems.get(en.index));
                 }
             }
         }
         List<SkillGemData> gems = new ArrayList<>();
 
-        list.forEach(x -> {
-            SkillGemData d = SkillGemData.fromStack(x);
-            if (d != null) {
-                gems.add(d);
-            }
-        });
+        list.removeIf(x -> x == null);
 
         return gems;
     }
@@ -96,8 +110,7 @@ public class SkillGemsData implements Inventory {
         for (Places en : Places.values()) {
             if (en.place == place) {
                 if (en.slotType == SkillGemType.SKILL_GEM) {
-                    SkillGemData gem = SkillGemData.fromStack(stacks.get(en.index));
-                    return gem;
+                    return gems.get(en.index);
                 }
             }
         }
@@ -142,19 +155,16 @@ public class SkillGemsData implements Inventory {
 
     }
 
-    public SkillGemData getSkillGemOfSpell(Spell spell) {
+    public Optional<SkillGemData> getSkillGemOfSpell(Spell spell) {
         Objects.requireNonNull(spell);
 
-        Optional<SkillGemData> opt = stacks.stream()
-            .map(x -> {
-                return SkillGemData.fromStack(x);
-            })
+        Optional<SkillGemData> opt = gems.stream()
             .filter(x -> {
                 return x != null && x.getSkillGem() != null && x.getSkillGem().spell_id.equals(spell.GUID());
             })
             .findAny();
 
-        return opt.get();
+        return opt;
     }
 
     @Override

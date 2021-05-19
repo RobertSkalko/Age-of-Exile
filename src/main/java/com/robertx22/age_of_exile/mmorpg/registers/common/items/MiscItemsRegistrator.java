@@ -37,6 +37,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public ProjectileItem FIREBALL = item(new ProjectileItem("fireball"));
     public ProjectileItem SNOWBALL = item(new ProjectileItem("snowball"));
+    public ProjectileItem SHADOWBALL = item(new ProjectileItem("shadowball"));
     public ProjectileItem SLIMEBALL = item(new ProjectileItem("slimeball"));
 
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");

@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
+import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
@@ -46,6 +47,13 @@ public class TotemSpells implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        of(ModRegistry.BLOCKS.GUARD_TOTEM, "guard_totem", SpellConfiguration.Builder.instant(18, 20 * 30), "Guarding Totem",
+            Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.EFFECT)
+            .onTick("block", PartBuilder.justAction(SpellAction.GIVE_SHIELD.create(ValueCalculation.base("totem_guard", 5), 10D))
+                .addTarget(TargetSelector.AOE.alliesInRadius(3D))
+                .onTick(20D))
+            .build();
 
         of(ModRegistry.BLOCKS.BLUE_TOTEM, "astral_totem", SpellConfiguration.Builder.instant(18, 20 * 30), "Astral Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.WITCH)

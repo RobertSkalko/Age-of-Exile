@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
@@ -86,6 +87,16 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
             e.printStackTrace();
         }
 
+    }
+
+    public MapHolder giveSeconds(EffectCtx ctx, int seconds) {
+        MapHolder dmg = new MapHolder();
+        dmg.type = GUID();
+        dmg.put(COUNT, 1D);
+        dmg.put(POTION_DURATION, seconds * 20D);
+        dmg.put(POTION_ACTION, GiveOrTake.GIVE_STACKS.name());
+        dmg.put(EXILE_POTION_ID, ctx.effectId);
+        return dmg;
     }
 
     public MapHolder create(String id, GiveOrTake action, Double duration) {

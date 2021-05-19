@@ -14,12 +14,15 @@ gorgons_gaze
 haste_aura
 arrow_storm
 conjure_ender_chest
+soul_harvest
+jump_field
 fire_breath
 shout_warn
 curse_of_weak
 frost_armor
 heal_ray
 song_of_perseverance
+sacrifice
 shooting_star
 crit_aura
 overload
@@ -27,6 +30,7 @@ astral_totem
 smoke_bomb
 gong_strike
 hp_reg_aura
+lava_sphere
 tidal_strike
 song_of_vigor
 recoil_shot
@@ -36,6 +40,7 @@ unwavering_stance
 poison_ball
 teleport
 banish
+guard_totem
 nature_balm
 black_hole
 rejuv_totem
@@ -53,12 +58,14 @@ meteor
 frost_nova
 make_arrows
 fire_bombs
+frost_sphere
 power_chord
 pull
 test_command
 awaken_mana
 mana_reg_aura
 fire_nova
+shadow_ball
 poisoned_weapons
 taunt
 dodge_aura

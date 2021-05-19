@@ -48,8 +48,6 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
 
                 int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData.lvl);
 
-                int total = 0;
-
                 for (LivingEntity t : targets) {
 
                     RestoreResourceEvent restore = EventBuilder.ofRestore(ctx.caster, t, ResourceType.health, RestoreType.heal, value)
@@ -57,8 +55,6 @@ public class RestoreHealthAction extends SpellAction implements ICTextTooltip {
                         .build();
 
                     restore.Activate();
-
-                    total += restore.data.getNumber();
 
                 }
 

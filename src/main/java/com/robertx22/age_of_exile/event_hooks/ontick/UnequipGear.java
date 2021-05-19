@@ -66,6 +66,8 @@ public class UnequipGear {
                     PlayerUtils.giveItem(stack.copy(), player);
                     player.sendMessage(new LiteralText("Skill Gem uneqipped due to unmet requirements"), false);
                     gems.set(i, ItemStack.EMPTY);
+                    Load.spells(player)
+                        .getSkillGemData().gems.set(i, new SkillGemData());
                 }
             }
 

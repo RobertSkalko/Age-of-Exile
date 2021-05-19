@@ -61,10 +61,13 @@ public class MapField<T> implements IGUID {
     public static MapField<String> SHOOT_DIRECTION = make("shoot_way");
     public static MapField<String> SPELL_MODIFIER = make("spell_mod");
     public static MapField<String> DMG_EFFECT_TYPE = make("dmg_effect_type");
+    public static MapField<String> SPECIFIC_ACTION = make("specific_action");
+    public static MapField<String> EFFECT_TAG = make("effect_tag");
 
     // boolean
     public static MapField<Boolean> GRAVITY = make("gravity");
-    public static MapField<Boolean> EXPIRE_ON_HIT = make("expire_on_hit");
+    public static MapField<Boolean> EXPIRE_ON_ENTITY_HIT = make("expire_on_en_hit");
+    public static MapField<Boolean> EXPIRE_ON_BLOCK_HIT = make("expire_on_block_hit");
     public static MapField<Boolean> IS_BLOCK_FALLING = make("is_falling_block");
     public static MapField<Boolean> FIND_NEAREST_SURFACE = make("find_surface");
     public static MapField<Boolean> IS_SILENT = make("is_silent");

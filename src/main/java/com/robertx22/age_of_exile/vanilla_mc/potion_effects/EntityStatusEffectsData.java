@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class EntityStatusEffectsData {
 
     @Store
-    HashMap<String, ExileEffectInstanceData> exileMap = new HashMap<>();
+    public HashMap<String, ExileEffectInstanceData> exileMap = new HashMap<>();
 
     @Store
     public ScrollBuffData sb = null;
