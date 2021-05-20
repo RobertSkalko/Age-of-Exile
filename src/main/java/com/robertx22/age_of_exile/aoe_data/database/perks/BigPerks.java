@@ -27,12 +27,12 @@ public class BigPerks implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        PerkBuilder.bigStat("big_int", "Wisdom", new OptScaleExactStat(5, Intelligence.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_dex", "Skill", new OptScaleExactStat(5, Dexterity.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_str", "Power", new OptScaleExactStat(5, Strength.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_wis", "Power", new OptScaleExactStat(5, Wisdom.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_agi", "Power", new OptScaleExactStat(5, Agility.INSTANCE, ModType.FLAT));
-        PerkBuilder.bigStat("big_vit", "Power", new OptScaleExactStat(5, Vitality.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_int", "Intelligent", new OptScaleExactStat(5, Intelligence.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_dex", "Dexterous", new OptScaleExactStat(5, Dexterity.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_str", "Strong", new OptScaleExactStat(5, Strength.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_wis", "Wise", new OptScaleExactStat(5, Wisdom.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_agi", "Agile", new OptScaleExactStat(5, Agility.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_vit", "Virile", new OptScaleExactStat(5, Vitality.INSTANCE, ModType.FLAT));
 
         PerkBuilder.bigStat("huge_int", "Superior Wisdom", new OptScaleExactStat(10, Intelligence.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("huge_dex", "Superior Skill", new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT));
@@ -50,6 +50,10 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(15, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
 
+        PerkBuilder.bigStat("big_all_light_damage", "Sun",
+            new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Light))
+        );
+
         PerkBuilder.bigStat("big_eviscerator", "Eviscerator",
             new OptScaleExactStat(3, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
             new OptScaleExactStat(10, Stats.CRIT_CHANCE.get(), ModType.LOCAL_INCREASE),
@@ -58,7 +62,7 @@ public class BigPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_divine_light", "Divine Light",
             new OptScaleExactStat(5, SpellDamage.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(10, Stats.SPELL_CRIT_CHANCE.get(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(3, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
             new OptScaleExactStat(5, Strength.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(5, Intelligence.INSTANCE, ModType.FLAT)
         );
@@ -242,6 +246,9 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_mana", "Mana Pool",
             new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE)
         );
+        PerkBuilder.bigStat("big_manareg", "Astral Permanence",
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
         PerkBuilder.bigStat("big_lord_of_arcane", "Lord of Arcane",
             new OptScaleExactStat(10, Intelligence.INSTANCE, ModType.FLAT),
             new OptScaleExactStat(5, SpellDamage.getInstance(), ModType.FLAT),
@@ -305,8 +312,12 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(20, Mana.getInstance(), ModType.FLAT)
         );
 
+        PerkBuilder.bigStat("big_spell_critical_hit", "Destruction",
+            new OptScaleExactStat(5, Stats.SPELL_CRIT_CHANCE.get())
+        );
+
         PerkBuilder.bigStat("big_fire_water_spell_crit_dmg", "Frostfire Essence",
-            new OptScaleExactStat(10, Stats.SPELL_CRIT_CHANCE.get()),
+            new OptScaleExactStat(3, Stats.SPELL_CRIT_CHANCE.get()),
             new OptScaleExactStat(3, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire), ModType.FLAT),
             new OptScaleExactStat(3, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water), ModType.FLAT)
         );

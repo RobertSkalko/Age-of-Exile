@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.google.gson.Gson;
+import com.robertx22.age_of_exile.aoe_data.database.spells.SpellDesc;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
@@ -27,12 +28,14 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -53,7 +56,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistryEntry<Spell>, IAutoLocName {
+public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistryEntry<Spell>, IAutoLocName, IAutoLocDesc {
     public static Spell SERIALIZER = new Spell();
 
     public static String DEFAULT_EN_NAME = "default_entity_name";
@@ -69,6 +72,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public List<String> disabled_dims = new ArrayList<>();
     public String effect_tip = "";
 
+    public transient String locDesc = "";
     public transient List<StatModifier> statsForSkillGem = new ArrayList<>();
 
     public boolean isAllowedInDimension(World world) {
@@ -307,8 +311,16 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         TooltipUtils.addEmpty(list);
 
         if (Screen.hasShiftDown()) {
-            list.addAll(attached
-                .getTooltip(ctx.calcData));
+
+            String manualDesc = CLOC.translate(this.locDesc());
+
+            if (manualDesc.isEmpty()) {
+                list.addAll(attached
+                    .getTooltip(ctx.calcData));
+            } else {
+                SpellDesc.getTooltip(this)
+                    .forEach(x -> list.add(new LiteralText(x)));
+            }
         }
 
         TooltipUtils.addEmpty(list);
@@ -414,4 +426,18 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         return locName;
     }
 
+    @Override
+    public AutoLocGroup locDescGroup() {
+        return AutoLocGroup.Spells;
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return "spell.desc." + GUID();
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return locDesc;
+    }
 }

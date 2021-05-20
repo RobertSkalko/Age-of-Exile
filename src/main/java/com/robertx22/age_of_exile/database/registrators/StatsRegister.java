@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DarknessDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.DualWieldDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
@@ -89,6 +90,7 @@ public class StatsRegister implements ISlashRegistryInit {
                     add(Health.getInstance());
                     add(HealthRegen.getInstance());
 
+                    add(DualWieldDamage.getInstance());
                     add(Mana.getInstance());
                     add(ManaRegen.getInstance());
                     // Resources

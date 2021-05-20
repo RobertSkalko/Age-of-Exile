@@ -126,6 +126,7 @@ physical_mana_leech
 chance_of_mana_reg_on_heal_crit
 critical_hit_per_10_dexterity
 dark_resist
+accuracy_per_10_dexterity
 mana_per_10_wisdom
 bonus_mountain_biome_yield
 hp_regen_per_mana
@@ -233,6 +234,7 @@ nature_resist
 all_mana_leech
 offensive_eff_dur_u_cast
 magic_dmg_received
+dmg_per_curse_on_target
 bonus_exploration_exp
 fire_resist
 triple_drop_chance
@@ -303,6 +305,7 @@ inc_leech
 area_cdr
 health_per_10_dexterity
 physical_vuln_crit
+dual_wield_dmg
 spell_dodge
 nature_penetration
 crossbow_damage

@@ -32,6 +32,7 @@ tormentor
 all_elemental_damage
 big_steal_vit
 flat_ms_mana_regen
+big_all_attributes
 spell_light_damage_and_dot
 drums
 big_flame_of_life
@@ -57,6 +58,7 @@ big_thousand_fists
 big_agi
 spell_elemental_damage_and_dot
 open_the_curtain
+big_spell_critical_hit
 all_nature_damage
 hibernation
 nature_light_spell_dmg
@@ -65,6 +67,7 @@ light_fire_spell_dmg
 astralwalk
 big_blood_thirst
 rune_circle
+runetech_theory
 impish_smile
 pitchfork
 harmony
@@ -83,9 +86,11 @@ axe_mastery
 axe_damage
 hot_headed
 armor_and_ms
+accuracy_melee_dmg
 for_the_living
 incinerate
 big_blood_siphon
+all_dark_all_light
 fire_water_spell_dmg
 big_breath_of_light
 nature_dom
@@ -140,6 +145,7 @@ vessel
 magic_bubble
 red_mana_reserved
 infernal_weapons
+all_phys_less_atkspeed
 prism
 going_dark_side
 hammer_smash
@@ -149,6 +155,7 @@ dot_damage
 big_breath_of_water
 spear_damage
 spell_damage
+day_night_dmg
 bow_mastery
 conquerer
 scion
@@ -159,9 +166,11 @@ big_vit
 spell_critical_damage
 steady_hand
 cataclysm
+exoskeleton
 nature_resist
 big_heart_of_fire
 water_dom
+health_regen_and_mana_regen
 armor_health
 mana_and_regen
 refined_taste
@@ -172,6 +181,7 @@ staff_damage
 ele_spear_damage
 burning_eyes
 no_doubt
+ele_mace_damage_more_mana
 big_heart_of_light
 flat_mana_reg_melee_dmg
 big_warrior_heart
@@ -191,6 +201,7 @@ magic_dmg
 overflowing_vitality
 big_gambler
 mace_smash
+all_light_nature_damage
 critical_damage
 water_light_spell_dmg
 swiftness
@@ -201,11 +212,13 @@ big_warrior_path
 physical_weapon_damage
 scythe_mastery
 spell_fire_damage
+projectile_crit_damage
 ritual
 ele_hammer_damage
 crit_damage
 mana_vortex
 big_health_mana_cost
+light_focus
 spell_dmg_flat_mana
 antidote
 big_fury_bolt
@@ -229,6 +242,7 @@ big_will_of_mana
 fire_penetration
 manasensor
 runed_geode
+health_dodge_int
 big_mana
 big_fire_water_spell_crit_dmg
 shield_duration
@@ -244,6 +258,7 @@ unleashed
 scepter_damage
 big_health
 all_water_damage
+corrupted_blade
 juggler
 big_heart_of_dark
 big_mana_steal
@@ -286,6 +301,7 @@ wolf
 praise_zadall
 huge_int
 arcane_meditation
+more_dualwield_dmg
 chance_of_poison
 mana
 nature_water_spell_dmg
@@ -310,6 +326,7 @@ water_resist
 bow_damage
 big_endurance
 big_inner_sense
+big_all_light_damage
 third_arm
 big_spell_crit
 huge_dex
@@ -337,6 +354,7 @@ scythe_damage
 bright_presence
 demonic_seduction
 moonshine
+dodge_ele_resistance
 tale_of_ages
 potionmaster
 big_poison_alchemy
@@ -370,9 +388,12 @@ small_positive_effect_increase
 metamorphosis
 healing_strength
 water_weapon_damage
+big_manareg
 warmth
 hp_res
 big_force_of_will
+soundless
+dagger_and_gauntlet_damage
 nature_dark_spell_dmg
 dark_dom
 area_dmg_mana
@@ -383,6 +404,7 @@ water_penetration
 tale_of_love
 stubborn
 big_wisdom_of_the_elders
+chance_of_blind
 big_breath_of_nature
 big_eviscerator
 ancient_rune
@@ -390,7 +412,9 @@ hold_breath
 big_str
 crit_proj_dmg
 light_weapon_damage
+mace_mastery
 nightcrawler
+mana_cost_mana_regen
 nimble_hands
 huge_agi
 holy_envoy
@@ -423,6 +447,7 @@ emptiness
 infusion
 bear
 hunter
+all_dark_nature_damage
 no_common_sense
 big_poe
 moon_essence
@@ -431,6 +456,7 @@ sword_mastery
 dodge_and_ms
 big_self_reflection
 templar
+chance_of_bleed
 eclipse
 elemental_purity
 big_willpower
@@ -439,8 +465,11 @@ exorcism
 water_fire_spell_dmg
 big_primal
 blade_dance
+dark_focus
 duelist
 battle_mage
+ele_hammer_damage_more_armor
+health_armor
 angelic_judgement
 crossbow_damage
 spell_slinger
@@ -452,8 +481,10 @@ broad_knowledge
 firstblood
 wis
 eternity
+flat_dodge_ranged_damage
 big_sadist
 aristocrat
+less_aggro
 health_on_kill
 int
 big_balistic

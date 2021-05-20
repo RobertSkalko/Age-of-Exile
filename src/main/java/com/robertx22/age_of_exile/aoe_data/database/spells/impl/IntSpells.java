@@ -4,6 +4,8 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Benefic
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.SetAdd;
@@ -80,6 +82,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.WITCH, 1D, 0.15D))
             .onHit(PartBuilder.damage(ValueCalculation.base("shadow_ball", 8), Elements.Dark))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.PORTAL, 10D, 1D))
+            .addStat(new StatModifier(5, 5, Stats.DMG_PER_CURSE_ON_TARGET.get()))
             .build();
 
         SpellBuilder.of("lava_sphere", SpellConfiguration.Builder.nonInstant(20, 20 * 15, 20 * 2)

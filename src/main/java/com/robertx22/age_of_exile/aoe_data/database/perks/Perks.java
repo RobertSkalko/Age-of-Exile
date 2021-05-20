@@ -9,13 +9,16 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalFocus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.DualWieldDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
+import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
@@ -92,7 +95,7 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLIND), ModType.FLAT));
 
-        PerkBuilder.stat("decrease_aggro_gain_by_2_percent", new OptScaleExactStat(-2, Stats.THREAT_GENERATED.get(), ModType.FLAT));
+        PerkBuilder.stat("less_aggro", new OptScaleExactStat(-2, Stats.THREAT_GENERATED.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(3, Armor.getInstance(), ModType.LOCAL_INCREASE));
@@ -105,8 +108,14 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(1, Stats.STYLE_DAMAGE.get(PlayStyle.ranged), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, Stats.STYLE_DAMAGE.get(PlayStyle.magic), ModType.FLAT));
 
+        PerkBuilder.stat(new OptScaleExactStat(2, new ElementalFocus(Elements.Dark)));
+        PerkBuilder.stat(new OptScaleExactStat(2, new ElementalFocus(Elements.Light)));
+
         PerkBuilder.stat("mana_on_hit", new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack)), ModType.FLAT));
         PerkBuilder.stat("health_on_hit", new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.health, AttackType.attack)), ModType.FLAT));
+
+        PerkBuilder.stat("more_dualwield_dmg", new OptScaleExactStat(3, DualWieldDamage.getInstance()));
+        PerkBuilder.stat(new OptScaleExactStat(3, SpecialStats.DAY_NIGHT_DMG));
 
         Stats.ELEMENTAL_SPELL_DAMAGE.getAll()
             .forEach(x -> {

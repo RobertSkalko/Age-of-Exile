@@ -124,7 +124,7 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         }
 
         stat_scalings.forEach(x -> {
-            text.append(x.GetTooltipString()); // todo
+            text.append(" " + x.GetTooltipString()); // todo
         });
 
         return text;

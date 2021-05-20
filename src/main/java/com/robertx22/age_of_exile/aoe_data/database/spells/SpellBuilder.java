@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
+import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.*;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -94,6 +95,11 @@ public class SpellBuilder {
         return this;
     }
 
+    public SpellBuilder addStat(StatModifier stat) {
+        this.spell.statsForSkillGem.add(stat);
+        return this;
+    }
+
     public SpellBuilder disableInDimension(Identifier id) {
         this.spell.disabled_dims.add(id.toString());
         return this;
@@ -122,6 +128,11 @@ public class SpellBuilder {
     public SpellBuilder onHit(ComponentPart comp) {
         comp.addActivationRequirement(EntityActivation.ON_HIT);
         return this.addEntityAction(Spell.DEFAULT_EN_NAME, comp);
+    }
+
+    public SpellBuilder manualDesc(String desc) {
+        this.spell.locDesc = desc;
+        return this;
     }
 
     public SpellBuilder onTick(String entity, ComponentPart comp) {

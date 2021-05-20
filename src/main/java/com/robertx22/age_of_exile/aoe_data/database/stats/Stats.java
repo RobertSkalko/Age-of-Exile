@@ -766,6 +766,24 @@ public class Stats implements ISlashRegistryInit {
         .setLocName(x -> "Total Damage")
         .setLocDesc(x -> "Increases all your damage.")
         .modifyAfterDone(x -> {
+            x.scaling = StatScaling.NONE;
+            x.is_perc = true;
+            x.base = 0;
+            x.format = Formatting.RED.getName();
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DMG_PER_CURSE_ON_TARGET = DatapackStatBuilder
+        .ofSingle("dmg_per_curse_on_target", Elements.All)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.INC_VALUE_PER_CURSE_ON_TARGET)
+        .setLocName(x -> "Damage Per curse on target")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.scaling = StatScaling.NONE;
+            x.is_long = true;
             x.is_perc = true;
             x.base = 0;
             x.format = Formatting.RED.getName();

@@ -30,6 +30,7 @@ public class LoseAggroSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("smoke_bomb", SpellConfiguration.Builder.instant(7, 20 * 60), "Smoke Bomb",
             Arrays.asList())
+            .manualDesc("Throw out a smoke bomb, blinding enemies and reducing threat.")
             .attackStyle(PlayStyle.ranged)
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1D, 1D))

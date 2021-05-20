@@ -58,7 +58,7 @@ public class NewPerks implements ISlashRegistryInit {
 
         PerkBuilder.bigStat("big_ligthing_blare", "Lightning Blare",
             new OptScaleExactStat(10, new ElementalFocus(Elements.Light), ModType.FLAT),
-            new OptScaleExactStat(10, new ElementalPenetration(Elements.Light)),
+            new OptScaleExactStat(5, new ElementalPenetration(Elements.Light)),
             new OptScaleExactStat(-10, Stats.MANA_COST.get()),
             new OptScaleExactStat(5, DatapackStats.HEAL_TO_SPELL_DMG)
         );
@@ -123,6 +123,12 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light)),
             new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(5, new ElementalPenetration(Elements.Elemental))
+        );
+
+        PerkBuilder.bigStat("mace_mastery", "Mace Mastery",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.mace)),
+            new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),
+            new OptScaleExactStat(10, Vitality.INSTANCE)
         );
 
         PerkBuilder.bigStat("wand_mastery", "Wand Mastery",
@@ -859,6 +865,7 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.MANA_COST.get()),
             new OptScaleExactStat(10, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.technique))
         );
+
         PerkBuilder.bigStat("second_heart", "Second Heart",
             new OptScaleExactStat(5, Stats.ATTACK_SPEED.get()),
             new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)

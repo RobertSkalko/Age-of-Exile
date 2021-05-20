@@ -20,6 +20,7 @@ public class UtilitySpells implements ISlashRegistryInit {
         SpellBuilder.of("conjure_ender_chest", SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 2, 40)
                 .setScaleManaToPlayer(),
             "Conjure Ender Chest",
+
             Arrays.asList())
             .attackStyle(PlayStyle.magic)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_ENDER_CHEST_OPEN, 1D, 1D))
