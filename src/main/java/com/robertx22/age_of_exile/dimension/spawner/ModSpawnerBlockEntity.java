@@ -27,9 +27,9 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
 
     public static int DEFAULT_SPAWNS = 10;
 
-    private static int maxNearbyEntities = 6;
+    private static int maxNearbyEntities = 5;
     private static int requiredPlayerRange = 16;
-    private static int spawnRange = 4;
+    private static int spawnRange = 16;
 
     public ModSpawnerBlockEntity() {
         super(ModRegistry.BLOCK_ENTITIES.SPAWNER);

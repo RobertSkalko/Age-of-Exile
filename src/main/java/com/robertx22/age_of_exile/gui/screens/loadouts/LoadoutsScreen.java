@@ -104,9 +104,6 @@ public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen,
 
             this.addButton(new Button(this, i, LoadoutSelectPackets.Action.LOAD, cap.data.loadouts.get(i), x + LoadoutButton.xSize / 2 - Button.xSize / 2, y + LoadoutButton.ySize - 5 - Button.ySize + 35));
 
-            if (cap.data.loadouts.containsKey(i)) {
-                this.addButton(new Button(this, i, LoadoutSelectPackets.Action.DELETE, cap.data.loadouts.get(i), x + LoadoutButton.xSize / 2 - Button.xSize / 2, y + LoadoutButton.ySize - 5 - (2 + Button.ySize * 2) + 80));
-            }
             x += 5 + LoadoutButton.xSize;
 
         }
@@ -211,13 +208,7 @@ public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen,
                 text = "Create Loadout";
 
             } else {
-                if (this.action == LoadoutSelectPackets.Action.DELETE) {
-                    text = "Delete Loadout";
-                    format = Formatting.RED;
-                } else {
-                    text = "Load Loadout";
-
-                }
+                text = "Load Loadout";
 
             }
             GuiUtils.renderScaledText(matrix, this.x + xSize / 2, this.y + 10, 1, text, format);

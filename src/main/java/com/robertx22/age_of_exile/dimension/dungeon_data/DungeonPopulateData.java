@@ -78,7 +78,7 @@ public class DungeonPopulateData {
 
                     this.donePop = true;
 
-                    int kills = (int) (mobs * 0.8F);
+                    int kills = (int) (mobs * 0.6F);
                     data.quest.target = kills;
 
                     System.out.print("dungeon done populating");

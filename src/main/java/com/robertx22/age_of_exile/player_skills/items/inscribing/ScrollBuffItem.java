@@ -63,7 +63,7 @@ public class ScrollBuffItem extends AutoItem {
 
                 TeamUtils.getOnlineTeamMembersInRange((PlayerEntity) user, 50)
                     .forEach(x -> {
-                        ServerPlayerEntity p = (ServerPlayerEntity) user;
+                        ServerPlayerEntity p = (ServerPlayerEntity) x;
                         p.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.SCROLL_BUFF, 20 * 60 * 3));
 
                         Load.Unit(p)

@@ -208,7 +208,7 @@
 	"mmorpg.skill_gem.mana_reg_aura": "Mana Regeneration Aura Gem",
 	"mmorpg.skill_gem.meteor": "Meteor Gem",
 	"mmorpg.skill_gem.more_radius": "Expanded Area Support",
-	"mmorpg.skill_gem.nature_balm": "Nature's Balm Gem",
+	"mmorpg.skill_gem.nature_balm": "Rejuvenate Gem",
 	"mmorpg.skill_gem.nature_dmg": "Poison Damage Support",
 	"mmorpg.skill_gem.overload": "Overload Gem",
 	"mmorpg.skill_gem.piercing_proj": "Piercing Projectiles Support",
@@ -643,7 +643,7 @@
 	"mmorpg.spell.make_arrows": "Produce Arrows",
 	"mmorpg.spell.mana_reg_aura": "Mana Regeneration Aura",
 	"mmorpg.spell.meteor": "Meteor",
-	"mmorpg.spell.nature_balm": "Nature's Balm",
+	"mmorpg.spell.nature_balm": "Rejuvenate",
 	"mmorpg.spell.overload": "Overload",
 	"mmorpg.spell.poison_arrow": "Poison Arrow",
 	"mmorpg.spell.poison_ball": "Poison Ball",
@@ -833,7 +833,7 @@
 	"mmorpg.one_of_a_kind.make_arrows_mod": "Produce Arrows Modifier",
 	"mmorpg.one_of_a_kind.mana_reg_aura_mod": "Mana Regeneration Aura Modifier",
 	"mmorpg.one_of_a_kind.meteor_mod": "Meteor Modifier",
-	"mmorpg.one_of_a_kind.nature_balm_mod": "Nature's Balm Modifier",
+	"mmorpg.one_of_a_kind.nature_balm_mod": "Rejuvenate Modifier",
 	"mmorpg.one_of_a_kind.overload_mod": "Overload Modifier",
 	"mmorpg.one_of_a_kind.poison_arrow_mod": "Poison Arrow Modifier",
 	"mmorpg.one_of_a_kind.poison_ball_mod": "Poison Ball Modifier",
@@ -906,30 +906,6 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
-	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
-	"item.mmorpg.currency.fifty_tier": "Large Dungeon Key Upgrade",
-	"item.mmorpg.currency.level_spell": "§cOrb of Elevation",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.one_tier": "Small Dungeon Key Upgrade",
-	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.roll_socket": "§cOrb of Sockets",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-	"item.mmorpg.currency.ten_tier": "Medium Dungeon Key Upgrade",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 	"effect.mmorpg.beneficial.0": "Ele Resist",
@@ -951,7 +927,7 @@
 	"effect.mmorpg.beneficial.24": "Undying Will",
 	"effect.mmorpg.beneficial.3": "Mana Reg",
 	"effect.mmorpg.beneficial.4": "Infused Blade",
-	"effect.mmorpg.beneficial.5": "Regenerate",
+	"effect.mmorpg.beneficial.5": "Rejuvenate",
 	"effect.mmorpg.beneficial.6": "Thorn Armor",
 	"effect.mmorpg.beneficial.7": "Anger",
 	"effect.mmorpg.beneficial.8": "Divine Shield",
@@ -974,6 +950,30 @@
 	"effect.mmorpg.negative.9": "Mummy Curse",
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
+
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
+	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
+	"item.mmorpg.currency.fifty_tier": "Large Dungeon Key Upgrade",
+	"item.mmorpg.currency.level_spell": "§cOrb of Elevation",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.one_tier": "Small Dungeon Key Upgrade",
+	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.roll_socket": "§cOrb of Sockets",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+	"item.mmorpg.currency.ten_tier": "Medium Dungeon Key Upgrade",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -1771,7 +1771,7 @@
 	"mmorpg.stat.fire_resist": "Fire Defense",
 	"mmorpg.stat.fire_vuln_crit": "§7Fire Damage always crits you.",
 	"mmorpg.stat.fire_weapon_damage": "Fire Damage",
-	"mmorpg.stat.give_regenerate_to_allies_in_aoe": "§7Give Regenerate to allies in Radius.",
+	"mmorpg.stat.give_regenerate_to_allies_in_aoe": "§7Give Rejuvenate to allies in Radius.",
 	"mmorpg.stat.give_taunt_stance_to_self_on_tick": "§7Give Taunt Stance to self",
 	"mmorpg.stat.global_critical_damage": "All Crit Damage",
 	"mmorpg.stat.global_critical_damage_per_25_increased_quantity": "§7Gain §a[VAL1] §b❁ All Crit Damage§7 for each 25 §e♣ Item Find§7",
@@ -2202,31 +2202,6 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.foods.critical": "Critical",
-	"effect.mmorpg.foods.dark": "Night",
-	"effect.mmorpg.foods.def_blue": "Arcana Defense",
-	"effect.mmorpg.foods.def_gray": "Physical Defense",
-	"effect.mmorpg.foods.def_green": "Terra Defense",
-	"effect.mmorpg.foods.def_purple": "Magicka Defense",
-	"effect.mmorpg.foods.def_yellow": "Sky Defense",
-	"effect.mmorpg.foods.elemental_resist": "Elementum",
-	"effect.mmorpg.foods.exp": "Experience",
-	"effect.mmorpg.foods.fire": "Ignis",
-	"effect.mmorpg.foods.healing": "Sancti",
-	"effect.mmorpg.foods.health_regen": "Vitala",
-	"effect.mmorpg.foods.light": "Sky",
-	"effect.mmorpg.foods.mana_regen": "Arcana",
-	"effect.mmorpg.foods.nature": "Terra",
-	"effect.mmorpg.foods.physical": "Physical",
-	"effect.mmorpg.foods.spell_damage": "Enigma",
-	"effect.mmorpg.foods.treasure": "Treasure",
-	"effect.mmorpg.foods.water": "Aqua",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.jewelry.necklace.all_res_necklace_end": "Necklace",
@@ -2359,6 +2334,31 @@
 	"item.mmorpg.weapon.wand.wand4": "Wand",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.foods.critical": "Critical",
+	"effect.mmorpg.foods.dark": "Night",
+	"effect.mmorpg.foods.def_blue": "Arcana Defense",
+	"effect.mmorpg.foods.def_gray": "Physical Defense",
+	"effect.mmorpg.foods.def_green": "Terra Defense",
+	"effect.mmorpg.foods.def_purple": "Magicka Defense",
+	"effect.mmorpg.foods.def_yellow": "Sky Defense",
+	"effect.mmorpg.foods.elemental_resist": "Elementum",
+	"effect.mmorpg.foods.exp": "Experience",
+	"effect.mmorpg.foods.fire": "Ignis",
+	"effect.mmorpg.foods.healing": "Sancti",
+	"effect.mmorpg.foods.health_regen": "Vitala",
+	"effect.mmorpg.foods.light": "Sky",
+	"effect.mmorpg.foods.mana_regen": "Arcana",
+	"effect.mmorpg.foods.nature": "Terra",
+	"effect.mmorpg.foods.physical": "Physical",
+	"effect.mmorpg.foods.spell_damage": "Enigma",
+	"effect.mmorpg.foods.treasure": "Treasure",
+	"effect.mmorpg.foods.water": "Aqua",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: RACES - NAMES",

@@ -49,6 +49,7 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
         AbstractPool startBuilder = new Pool(Ref.id("dungeon/starts"));
         startBuilder.add(Ref.id("stone/start"), 1);
         startBuilder.add(Ref.id("mossy/mossy_start"));
+        startBuilder.add(Ref.id("desert/desert_start"));
 
         AbstractPool stone = new Pool(Ref.id("stone"));
         stone.add(Ref.id("stone/1"));

@@ -135,7 +135,7 @@ public class IntSpells implements ISlashRegistryInit {
                 .onTick(40D))
             .build();
 
-        SpellBuilder.of("shooting_star", SpellConfiguration.Builder.instant(7, 20)
+        SpellBuilder.of("shooting_star", SpellConfiguration.Builder.instant(10, 20)
                 .setSwingArm(), "Shooting Star",
             Arrays.asList(SpellTag.projectile, SpellTag.heal))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
@@ -146,7 +146,7 @@ public class IntSpells implements ISlashRegistryInit {
                 .onTick(1D))
             .onTick(PartBuilder.aoeParticles(ParticleTypes.ENCHANT, 1D, 0.7D)
                 .onTick(1D))
-            .onExpire(PartBuilder.healInAoe(ValueCalculation.base("shooting_star", 8), 2D))
+            .onExpire(PartBuilder.healInAoe(ValueCalculation.base("shooting_star", 10), 2D))
             .onExpire(PartBuilder.aoeParticles(ParticleTypes.SOUL_FIRE_FLAME, 10D, 1D))
             .build();
 
@@ -298,8 +298,8 @@ public class IntSpells implements ISlashRegistryInit {
             .onExpire("block", PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
             .build();
 
-        SpellBuilder.of("nature_balm", SpellConfiguration.Builder.instant(15, 60 * 20)
-                .setScaleManaToPlayer(), "Nature's Balm",
+        SpellBuilder.of("nature_balm", SpellConfiguration.Builder.nonInstant(15, 60 * 20, 30)
+                .setScaleManaToPlayer(), "Rejuvenate",
             Arrays.asList(SpellTag.heal))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveExileEffectToAlliesInRadius(3D, BeneficialEffects.REGENERATE.effectId, 20 * 15D))
@@ -340,7 +340,8 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 5D, 0.5D))
             .build();
 
-        SpellBuilder.of("banish", SpellConfiguration.Builder.instant(10, 20 * 45), "Banish", Arrays.asList())
+        SpellBuilder.of("banish", SpellConfiguration.Builder.instant(10, 20 * 45)
+            .setScaleManaToPlayer(), "Banish", Arrays.asList())
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)
@@ -358,7 +359,8 @@ public class IntSpells implements ISlashRegistryInit {
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
             .build();
 
-        SpellBuilder.of("jump_field", SpellConfiguration.Builder.instant(10, 20 * 45), "Jump Field", Arrays.asList())
+        SpellBuilder.of("jump_field", SpellConfiguration.Builder.instant(10, 20 * 45)
+            .setScaleManaToPlayer(), "Jump Field", Arrays.asList())
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)

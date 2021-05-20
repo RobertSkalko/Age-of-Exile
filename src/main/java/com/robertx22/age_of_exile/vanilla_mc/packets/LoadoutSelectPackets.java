@@ -1,18 +1,16 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
-import com.robertx22.age_of_exile.capability.player.data.OneLoadoutData;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 
 public class LoadoutSelectPackets extends MyPacket<LoadoutSelectPackets> {
 
-    public enum Action {DELETE, LOAD}
+    public enum Action {LOAD}
 
     public int num;
     public Action action;
@@ -48,15 +46,7 @@ public class LoadoutSelectPackets extends MyPacket<LoadoutSelectPackets> {
     public void onReceived(PacketContext ctx) {
         PlayerEntity p = ctx.getPlayer();
 
-        if (action == Action.DELETE) {
-            OneLoadoutData data = Load.loadouts(p).data.loadouts.get(num);
-            if (data.gearIsEmpty()) {
-                Load.loadouts(p).data.loadouts.remove(num);
-            } else {
-                ctx.getPlayer()
-                    .sendMessage(new LiteralText("You can't delete a character that is wearing gear."), false);
-            }
-        } else if (action == Action.LOAD) {
+        if (action == Action.LOAD) {
             Load.loadouts(p).data.load(num, p);
         }
     }
