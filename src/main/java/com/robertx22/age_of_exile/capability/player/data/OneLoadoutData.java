@@ -26,8 +26,6 @@ public class OneLoadoutData {
     // these are just for preview on the character screen
     @Store
     public int lvl = 1;
-    @Store
-    public String race = "";
     // these are just for preview on the character screen
 
     // saved gear stacks
@@ -190,13 +188,6 @@ public class OneLoadoutData {
 
         this.lvl = Load.Unit(player)
             .getLevel();
-        try {
-            this.race = Load.Unit(player)
-                .getRace()
-                .GUID();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         for (PlayerCaps cap : PlayerCaps.values()) {
             if (cap.shouldSaveToLoadout()) {

@@ -203,10 +203,15 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return this.serializables.get(key.GUID());
     }
 
+    boolean accessedEarly = false;
+
     public C get(String guid) {
 
         if (map.isEmpty() && serializables.isEmpty()) {
-            System.out.print("\n Accessed slash registry earlier than datapacks are loaded, returning empty: " + guid);
+            if (!accessedEarly) {
+                System.out.print("\n Accessed slash registry earlier than datapacks are loaded, returning empty: " + guid);
+            }
+            accessedEarly = true;
             return this.emptyDefault;
         }
 

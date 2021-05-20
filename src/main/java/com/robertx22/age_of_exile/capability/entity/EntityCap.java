@@ -754,7 +754,7 @@ public class EntityCap {
         @Override
         public PlayerRace getRace() {
             return Database.Races()
-                .get(race);
+                .get("empty");
         }
 
         @Override

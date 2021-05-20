@@ -15,6 +15,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalFocus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.DarknessDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -547,7 +548,7 @@ public class NewPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("last_rite", "Last Rite",
             new OptScaleExactStat(5, SpellDamage.getInstance()),
             new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-2, Mana.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(-5, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.bigStat("sandtomb", "Sand Tomb",
             new OptScaleExactStat(5, Vitality.INSTANCE),
@@ -950,6 +951,104 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.song))
         );
 
+        PerkBuilder.bigStat("incinerate", "Incinerate",
+            new OptScaleExactStat(10, Stats.CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG.get(NegativeEffects.BURN))
+        );
+        PerkBuilder.bigStat("condemn", "Condemn",
+            new OptScaleExactStat(10, Stats.CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG.get(NegativeEffects.BLIND))
+        );
+        PerkBuilder.bigStat("hoarfrost", "Hoarfrost",
+            new OptScaleExactStat(10, Stats.CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG.get(NegativeEffects.FROSTBURN))
+        );
+        PerkBuilder.bigStat("forced_alliance", "Forced Alliance",
+            new OptScaleExactStat(5, Stats.CAST_SPEED.get()),
+            new OptScaleExactStat(100, Mana.getInstance()),
+            new OptScaleExactStat(3, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(3, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
+            new OptScaleExactStat(3, Stats.ELEMENTAL_DAMAGE.get(Elements.Water))
+        );
+        PerkBuilder.bigStat("arcane_meditation", "Arcane Meditation",
+            new OptScaleExactStat(20, DatapackStats.MANA_PER_10_WIS),
+            new OptScaleExactStat(-10, DatapackStats.MINUS_MANA_PER_10_VIT),
+            new OptScaleExactStat(5, SpellDamage.getInstance())
+        );
+        PerkBuilder.bigStat("farsight", "Farsight",
+            new OptScaleExactStat(20, DatapackStats.ACCURACY_PER_DEX),
+            new OptScaleExactStat(1, DatapackStats.CRIT_PER_STR)
+        );
+
+        PerkBuilder.bigStat("open_the_curtain", "Open the Curtain",
+            new OptScaleExactStat(10, Stats.DAMAGE_WHEN_TARGET_IS_FULL_HP.get()),
+            new OptScaleExactStat(10, DarknessDamage.getInstance())
+        );
+        PerkBuilder.bigStat("far_reaching_aim", "Far Reaching Aim",
+            new OptScaleExactStat(100, Stats.ACCURACY.get()),
+            new OptScaleExactStat(1, DatapackStats.CRIT_PER_DEX),
+            new OptScaleExactStat(3, Stats.STYLE_DAMAGE.get(PlayStyle.ranged))
+
+        );
+        PerkBuilder.bigStat("parasite", "Parasite",
+            new OptScaleExactStat(100, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.FRENZY)),
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.health))
+        );
+        PerkBuilder.bigStat("potionmaster", "Potion Master",
+            new OptScaleExactStat(25, Stats.POTION_STRENGTH.get())
+        );
+        PerkBuilder.bigStat("hemophelia", "Hemophelia",
+            new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED)),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("gaseous", "Gaseous",
+            new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON)),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Stats.DOT_DAMAGE.get())
+        );
+
+        PerkBuilder.bigStat("hibernation", "Hibernation",
+            new OptScaleExactStat(1, DatapackStats.HP_REGEN_PER_WISDOM)
+        );
+        PerkBuilder.bigStat("bloodscent", "Bloodscent",
+            new OptScaleExactStat(3, Stats.CRIT_CHANCE.get()),
+            new OptScaleExactStat(5, Stats.CRIT_DAMAGE.get()),
+            new OptScaleExactStat(10, Stats.HEALING_RECEIVED.get()),
+            new OptScaleExactStat(1, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.health, AttackType.attack)))
+        );
+        PerkBuilder.bigStat("nocturnal", "Nocturnal",
+            new OptScaleExactStat(15, DarknessDamage.getInstance())
+        );
+
+        PerkBuilder.bigStat("thick_hide", "Thick Hide",
+            new OptScaleExactStat(25, DatapackStats.HP_PER_DEX)
+        );
+        PerkBuilder.bigStat("heartseeker", "Heartseeker",
+            new OptScaleExactStat(10, Stats.DAMAGE_WHEN_TARGET_IS_LOW_HP.get()),
+            new OptScaleExactStat(3, Stats.STYLE_DAMAGE.get(PlayStyle.ranged))
+        );
+        PerkBuilder.bigStat("bombardment", "Bombardment",
+            new OptScaleExactStat(10, Stats.AREA_DAMAGE.get()),
+            new OptScaleExactStat(5, Stats.INCREASED_AREA.get())
+        );
+        PerkBuilder.bigStat("runetech_theory", "Runetech Theory",
+            new OptScaleExactStat(10, Stats.SHIELD_DURATION.get()),
+            new OptScaleExactStat(5, SpellDamage.getInstance())
+        );
+
+        PerkBuilder.bigStat("exoskeleton", "Exoskeleton",
+            new OptScaleExactStat(3, DatapackStats.MOVE_SPEED),
+            new OptScaleExactStat(2, new ElementalResist(Elements.Elemental)),
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-5, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("soundless", "Soundless",
+            new OptScaleExactStat(10, Dexterity.INSTANCE),
+            new OptScaleExactStat(-10, Stats.THREAT_GENERATED.get()),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("corrupted_blade", "Corrupted Blade",
+            new OptScaleExactStat(5, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.MARK))
+        );
     }
 
 }

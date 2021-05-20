@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
-import com.robertx22.age_of_exile.vanilla_mc.packets.ForceChoosingRace;
 import com.robertx22.age_of_exile.vanilla_mc.packets.OnLoginClientPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.player.PlayerEntity;
@@ -46,10 +45,6 @@ public class OnLogin {
             data.onLogin(player);
 
             data.syncToClient(player);
-
-            if (!data.hasRace()) {
-                Packets.sendToClient(player, new ForceChoosingRace());
-            }
 
         } catch (
             Exception e) {

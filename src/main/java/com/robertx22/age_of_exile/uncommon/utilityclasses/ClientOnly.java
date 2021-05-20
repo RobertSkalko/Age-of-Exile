@@ -62,6 +62,7 @@ public class ClientOnly {
             MinecraftClient.getInstance()
                 .openScreen(new RaceSelectScreen());
         }
+
     }
 
 }

@@ -16,7 +16,6 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
-import com.robertx22.age_of_exile.vanilla_mc.packets.ForceChoosingRace;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -172,11 +171,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     data.playerSyncTick = 0;
 
                     OnTickSetGameMode.onTick(player);
-
-                    if (!Load.Unit(player)
-                        .hasRace()) {
-                        Packets.sendToClient(player, new ForceChoosingRace());
-                    }
 
                     CapSyncUtil.syncAll(player);
                     Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.world, player.getBlockPos(), player)));

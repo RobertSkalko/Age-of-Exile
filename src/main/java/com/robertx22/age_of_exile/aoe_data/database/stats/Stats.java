@@ -114,6 +114,7 @@ public class Stats implements ISlashRegistryInit {
         .addAllOfType(Arrays.asList(
             BeneficialEffects.BLOODLUST,
             BeneficialEffects.MARK,
+            BeneficialEffects.FRENZY,
             BeneficialEffects.BLESSING
         ))
         .worksWithEvent(OnMobKilledByDamageEvent.ID)
@@ -406,6 +407,35 @@ public class Stats implements ISlashRegistryInit {
             "Your " + x.element.getIconNameFormat() + " Attacks have " + Stat.VAL1 + "% chance of applying " + x.locname
         ))
         .setLocDesc(x -> "Chance to give effect")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_of_" + x.id, x -> x.element)
+        .addAllOfType(Arrays.asList(
+            NegativeEffects.BURN,
+            NegativeEffects.FROSTBURN,
+            NegativeEffects.BLIND
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
+        .addEffect(x -> StatEffects.REMOVE_EFFECT_FROM_TARGET.get(x))
+        .addEffect(x -> StatEffects.DOUBLE_DAMAGE)
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Attacks have " + Stat.VAL1 + "% chance of spending a " + x.locname + " stack to deal double damage."
+        ))
+        .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.min = 0;
             x.max = 100;
@@ -780,6 +810,23 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<EmptyAccessor> POTION_STRENGTH = DatapackStatBuilder
+        .ofSingle("potion_strength", Elements.All)
+        .worksWithEvent(RestoreResourceEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.potion))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Potion Effectiveness")
+        .setLocDesc(x -> "Increases effectiveness of instant potions that restore mana and health.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.format = Formatting.GREEN.getName();
+            x.group = StatGroup.RESTORATION;
+        })
+        .build();
+
     public static DataPackStatAccessor<EmptyAccessor> HEALING_RECEIVED = DatapackStatBuilder
         .ofSingle("heal_effect_on_self", Elements.All)
         .worksWithEvent(RestoreResourceEvent.ID)
@@ -861,7 +908,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addEffect(StatEffects.INCREASE_SECONDS)
         .setLocName(x -> "Shield Strength")
-        .setLocDesc(x -> "Boosts the shield amount you get from spells and other sources.")
+        .setLocDesc(x -> "Boosts the shield amount from spells and other sources.")
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;

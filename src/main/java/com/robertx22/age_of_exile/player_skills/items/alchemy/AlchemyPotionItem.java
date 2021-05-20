@@ -67,7 +67,7 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
             int restore = (int) (tier.percent_healed / 100F * unitdata.getResources()
                 .getMax(player, this.type.resource));
 
-            RestoreResourceEvent event = EventBuilder.ofRestore(player, player, type.resource, RestoreType.heal, restore)
+            RestoreResourceEvent event = EventBuilder.ofRestore(player, player, type.resource, RestoreType.potion, restore)
                 .build();
             event.Activate();
 

@@ -138,7 +138,7 @@ public enum Words implements IAutoLocName {
     TickRate("Tick Rate"),
 
     TimesToCast("Times to Cast"),
-
+    Technique("Technique"),
     Amount("Amount"),
 
     RightClickToTeleport("Use to teleport back from Adventure Map."),

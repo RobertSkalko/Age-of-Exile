@@ -27,6 +27,7 @@ arrow_cdr
 nature_weapon_damage
 bonus_alchemy_yield
 inc_effect_of_auras_given
+potion_strength
 inc_effect_of_positive_buff_on_you
 cdr
 projectile_damage
@@ -123,7 +124,9 @@ curse_spell_dmg
 more_food_stats
 physical_mana_leech
 chance_of_mana_reg_on_heal_crit
+critical_hit_per_10_dexterity
 dark_resist
+mana_per_10_wisdom
 bonus_mountain_biome_yield
 hp_regen_per_mana
 heal_cdr
@@ -195,6 +198,7 @@ chance_of_burn_on_crit
 water_weapon_damage
 elemental_vuln_crit
 bonus_blacksmithing_yield
+mana_per_10_vitality
 bonus_mining_exp
 water_mana_leech
 intelligence
@@ -290,12 +294,14 @@ heal_over_time_eff_duration
 renamed_or_deleted_stat
 bonus_hot_biome_yield
 elemental_resist
+health_regen_per_10_wisdom
 heal_cleanse
 all_vuln_crit
 dark_focus
 bonus_cold_biome_yield
 inc_leech
 area_cdr
+health_per_10_dexterity
 physical_vuln_crit
 spell_dodge
 nature_penetration
@@ -330,4 +336,5 @@ shield_duration
 aura_spell_dmg
 negative_eff_dur_u_cast
 dmg_taken_to_mana
+chance_to_get_frenzy_on_kill
 chance_of_judgement

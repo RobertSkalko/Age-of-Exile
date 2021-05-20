@@ -1,11 +1,16 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.LeechInfo;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
+import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
@@ -14,6 +19,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -22,6 +28,31 @@ public class GameChangerPerks implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        Perk bear = PerkBuilder.gameChanger("bear", "Bear",
+            new OptScaleExactStat(10, Stats.ELEMENT_LEECH_RESOURCE.get(new LeechInfo(Elements.Nature, ResourceType.health))),
+            new OptScaleExactStat(-10, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee)),
+            new OptScaleExactStat(-20, DatapackStats.MOVE_SPEED),
+            new OptScaleExactStat(-100, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        bear.one_of_a_kind = "animal";
+
+        Perk wolf = PerkBuilder.gameChanger("wolf", "Wolf",
+            new OptScaleExactStat(25, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED)),
+            new OptScaleExactStat(20, Stats.ATTACK_SPEED.get()),
+            new OptScaleExactStat(-50, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-50, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        wolf.one_of_a_kind = "animal";
+
+        Perk owl = PerkBuilder.gameChanger("owl", "Owl",
+            new OptScaleExactStat(25, Stats.HEAL_STRENGTH.get()),
+            new OptScaleExactStat(20, Stats.CAST_SPEED.get()),
+            new OptScaleExactStat(25, new ElementalPenetration(Elements.Nature)),
+            new OptScaleExactStat(-25, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-25, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        owl.one_of_a_kind = "animal";
 
         PerkBuilder.gameChanger("gamechanger_one_with_nature", "One With Nature",
             new OptScaleExactStat(-25, Stats.HEAL_STRENGTH.get()),

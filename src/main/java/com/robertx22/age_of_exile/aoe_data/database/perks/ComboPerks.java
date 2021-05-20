@@ -2,8 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -22,10 +21,20 @@ public class ComboPerks implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        PerkBuilder.stat("all_attributes",
+            new OptScaleExactStat(1, Wisdom.INSTANCE),
+            new OptScaleExactStat(1, Intelligence.INSTANCE),
+            new OptScaleExactStat(1, Vitality.INSTANCE),
+            new OptScaleExactStat(1, Strength.INSTANCE),
+            new OptScaleExactStat(1, Agility.INSTANCE),
+            new OptScaleExactStat(1, Dexterity.INSTANCE)
+        );
+
         PerkBuilder.stat("agi_dex",
             new OptScaleExactStat(1, Agility.INSTANCE),
             new OptScaleExactStat(1, Dexterity.INSTANCE)
         );
+
         PerkBuilder.stat("armor_health",
             new OptScaleExactStat(2, Armor.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
@@ -61,6 +70,11 @@ public class ComboPerks implements ISlashRegistryInit {
         PerkBuilder.stat("spell_dmg_flat_mana",
             new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT),
             new OptScaleExactStat(5, Mana.getInstance(), ModType.FLAT)
+        );
+
+        PerkBuilder.stat("mana_regen_increased_healing",
+            new OptScaleExactStat(2, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(2, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
         );
 
         PerkBuilder.stat("mana_and_health",
@@ -172,6 +186,11 @@ public class ComboPerks implements ISlashRegistryInit {
         );
         PerkBuilder.stat("nature_dark_spell_dmg",
             new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark))
+        );
+
+        PerkBuilder.stat("water_dark_spell_dmg",
+            new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)),
             new OptScaleExactStat(2, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark))
         );
 

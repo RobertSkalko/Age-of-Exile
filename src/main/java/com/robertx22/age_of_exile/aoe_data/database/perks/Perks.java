@@ -62,6 +62,9 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(2, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT));
 
+        PerkBuilder.stat(new OptScaleExactStat(3, Stats.HEAL_CRIT_DAMAGE.get(), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(2, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT));
+
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.SHIELD_DURATION.get(), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.SHIELD_STRENGTH.get(), ModType.FLAT));
 
@@ -86,6 +89,8 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED), ModType.FLAT));
+        PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLIND), ModType.FLAT));
 
         PerkBuilder.stat("decrease_aggro_gain_by_2_percent", new OptScaleExactStat(-2, Stats.THREAT_GENERATED.get(), ModType.FLAT));
 
@@ -94,12 +99,14 @@ public class Perks implements ISlashRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE));
         PerkBuilder.stat(new OptScaleExactStat(3, Mana.getInstance(), ModType.LOCAL_INCREASE));
 
+        PerkBuilder.stat(new OptScaleExactStat(3, Stats.PROJECTILE_SPEED.get()));
+
         PerkBuilder.stat(new OptScaleExactStat(1, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, Stats.STYLE_DAMAGE.get(PlayStyle.ranged), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, Stats.STYLE_DAMAGE.get(PlayStyle.magic), ModType.FLAT));
 
-        PerkBuilder.stat("mana_on_hit", new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack)), ModType.FLAT))
-        ;
+        PerkBuilder.stat("mana_on_hit", new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack)), ModType.FLAT));
+        PerkBuilder.stat("health_on_hit", new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.health, AttackType.attack)), ModType.FLAT));
 
         Stats.ELEMENTAL_SPELL_DAMAGE.getAll()
             .forEach(x -> {

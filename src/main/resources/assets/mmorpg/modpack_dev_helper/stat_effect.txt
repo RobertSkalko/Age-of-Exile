@@ -36,8 +36,10 @@ give_beneficial/2_to_source
 reflect_perc_dmg
 increase_area_num
 give_beneficial/12_to_source
+give_beneficial/25_to_source
 give_negative/2_to_target
 set_data_num_accuracy
 add_stat_data_to_num
 give_negative/7_to_target
 increase_cast_ticks_num
+double_dmg

@@ -63,9 +63,17 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx TAUNT_STANCE = new EffectCtx("taunt_stance", "Taunt Stance", 21, Elements.Physical, EffectType.beneficial);
     public static EffectCtx ETHEREAL_FORM = new EffectCtx("ethereal_form", "Ethereal Form", 23, Elements.Dark, EffectType.beneficial);
     public static EffectCtx UNDYING_WILL = new EffectCtx("undying_will", "Undying Will", 24, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx FRENZY = new EffectCtx("frenzy", "Frenzy", 25, Elements.Physical, EffectType.beneficial);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(FRENZY)
+            .stat(5, Stats.TOTAL_DAMAGE.get())
+            .stat(5, Stats.DAMAGE_RECEIVED.get())
+            .stat(1, Stats.LIFESTEAL.get())
+            .maxStacks(3)
+            .build();
 
         ExileEffectBuilder.of(UNDYING_WILL)
             .stat(-75, Stats.DAMAGE_RECEIVED.get())

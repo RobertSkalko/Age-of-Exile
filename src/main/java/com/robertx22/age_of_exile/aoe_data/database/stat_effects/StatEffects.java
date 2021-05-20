@@ -33,6 +33,11 @@ public class StatEffects implements ISlashRegistryInit {
         ),
         x -> new GiveExileStatusEffect(x.effectId, EffectSides.Source, 10)
     );
+    public static DataHolder<EffectCtx, StatEffect> REMOVE_EFFECT_FROM_TARGET = new DataHolder<>(
+        Arrays.asList(
+        ),
+        x -> new RemoveExileEffectAction(x.effectId, EffectSides.Source)
+    );
 
     public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_IN_AOE = new DataHolder<>(
         Arrays.asList(BeneficialEffects.REGENERATE
@@ -71,6 +76,7 @@ public class StatEffects implements ISlashRegistryInit {
         , x -> new GiveExileStatusEffect(x.effectId, EffectSides.Target, 5));
 
     public static StatEffect SET_IS_CRIT = new SetBooleanEffect(EventData.CRIT);
+    public static StatEffect DOUBLE_DAMAGE = new DoubleDamageAction();
     public static StatEffect SET_PIERCE = new SetBooleanEffect(EventData.PIERCE);
     public static StatEffect INCREASE_VALUE = new IncreaseNumberByPercentEffect(EventData.NUMBER);
     public static StatEffect MULTIPLY_VALUE = new MultiplyNumberByPercentEffect(EventData.NUMBER);
@@ -104,6 +110,8 @@ public class StatEffects implements ISlashRegistryInit {
     public void registerAll() {
 
         GIVE_SELF_EFFECT.addToSerializables();
+        DOUBLE_DAMAGE.addToSerializables();
+        REMOVE_EFFECT_FROM_TARGET.addToSerializables();
         MULTIPLY_VALUE.addToSerializables();
         GIVE_EFFECT_TO_TARGET.addToSerializables();
         SET_IS_CRIT.addToSerializables();
