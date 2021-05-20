@@ -26,6 +26,7 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition IS_SPELL = new IsSpellCondition();
     public static StatCondition ELEMENT_MATCH_STAT = new ElementMatchesStat();
     public static StatCondition IS_DAY = new IsDayCondition();
+    public static StatCondition IS_TARGET_SHIELDED = new IsTargetShieldedCondition();
     public static StatCondition IS_NIGHT = new IsDayCondition().flipCondition();
     public static StatCondition IS_TARGET_UNDEAD = new IsUndeadCondition();
     public static StatCondition IS_TARGET_NOT_UNDEAD = new IsUndeadCondition().flipCondition();
@@ -111,6 +112,7 @@ public class StatConditions implements ISlashRegistryInit {
     public void registerAll() {
 
         ATTACK_TYPE_MATCHES.addToSerializables();
+        IS_TARGET_SHIELDED.addToSerializables();
         IF_CRIT.addToSerializables();
         IF_RANDOM_ROLL.addToSerializables();
         CRIT_ROLL_DIDNT_FAIL.addToSerializables();

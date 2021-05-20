@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack;
@@ -279,6 +280,10 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
         );
 
+        PerkBuilder.bigStat("big_health_and_mana", "Pools of Duality",
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE)
+        );
         PerkBuilder.bigStat("big_health_mana_cost", "Righteous Indignation",
             new OptScaleExactStat(-5, Stats.MANA_COST.get(), ModType.FLAT),
             new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
@@ -429,6 +434,30 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.LIFESTEAL.get(), ModType.FLAT),
             new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(3, Wisdom.INSTANCE, ModType.FLAT)
+        );
+        PerkBuilder.bigStat("bone_grinder", "Bone Grinder",
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.health)),
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.mana)),
+            new OptScaleExactStat(10, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.MARK))
+        );
+
+        PerkBuilder.bigStat("big_self_heal", "Good recipient",
+            new OptScaleExactStat(5, Stats.HEALING_RECEIVED.get()),
+            new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("big_heal_strength", "Powerful Heals",
+            new OptScaleExactStat(10, Stats.HEAL_STRENGTH.get())
+        );
+        PerkBuilder.bigStat("good_argument", "Good Argument",
+            new OptScaleExactStat(10, Stats.THREAT_GENERATED.get()),
+            new OptScaleExactStat(3, Stats.TOTAL_DAMAGE.get())
+        );
+        PerkBuilder.bigStat("big_mana_on_hit", "Astral Thief",
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack)))
+        );
+
+        PerkBuilder.bigStat("big_dot_damage", "Slow Killer",
+            new OptScaleExactStat(10, Stats.DOT_DAMAGE.get())
         );
 
     }

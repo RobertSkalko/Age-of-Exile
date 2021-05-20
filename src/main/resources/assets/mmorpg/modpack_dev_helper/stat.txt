@@ -26,6 +26,7 @@ convert_water_to_phys
 arrow_cdr
 nature_weapon_damage
 bonus_alchemy_yield
+heal_on_shielded_targets
 inc_effect_of_auras_given
 potion_strength
 inc_effect_of_positive_buff_on_you
@@ -299,6 +300,7 @@ elemental_resist
 health_regen_per_10_wisdom
 heal_cleanse
 all_vuln_crit
+totem_shield
 dark_focus
 bonus_cold_biome_yield
 inc_leech
@@ -333,6 +335,8 @@ dexterity
 bonus_exp_for_t5_mob
 convert_nature_to_phys
 bonus_rain_yield
+chance_to_give_blessing_to_self
+totem_resto
 heal_effect_on_self
 mace_damage
 shield_duration

@@ -1,6 +1,7 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 runeleather
+crusade
 dodge_and_hp
 idol
 accuracy
@@ -29,6 +30,7 @@ good_posture
 wand_mastery
 dagger_damage
 tormentor
+avatar_of_hope
 all_elemental_damage
 big_steal_vit
 flat_ms_mana_regen
@@ -54,6 +56,7 @@ gathering_storm
 all_all_damage
 spell_elemental_damage
 ignition
+future_technology
 big_thousand_fists
 big_agi
 spell_elemental_damage_and_dot
@@ -152,8 +155,11 @@ hammer_smash
 pathfinder
 scepter_mastery
 dot_damage
+bone_grinder
 big_breath_of_water
 spear_damage
+spell_damage_day_damage
+big_heal_strength
 spell_damage
 day_night_dmg
 bow_mastery
@@ -198,6 +204,7 @@ big_ligthing_blare
 attack_speed
 seraphim
 magic_dmg
+bulwark
 overflowing_vitality
 big_gambler
 mace_smash
@@ -248,6 +255,7 @@ big_fire_water_spell_crit_dmg
 shield_duration
 ice_tip
 hammer_mastery
+big_self_heal
 far_reaching_aim
 big_flow_of_mana
 call_of_the_other_ones
@@ -329,6 +337,7 @@ big_inner_sense
 big_all_light_damage
 third_arm
 big_spell_crit
+consecrate
 huge_dex
 fire_arrows
 ele_wand_damage
@@ -343,6 +352,7 @@ frostburn
 robust_chainmail
 divinity
 crystal_arrows
+last_resort
 big_ele_protection
 big_ele_unity
 big_hunter
@@ -404,6 +414,7 @@ water_penetration
 tale_of_love
 stubborn
 big_wisdom_of_the_elders
+torchlight
 chance_of_blind
 big_breath_of_nature
 big_eviscerator

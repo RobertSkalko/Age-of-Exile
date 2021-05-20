@@ -125,6 +125,11 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, new ElementalPenetration(Elements.Elemental))
         );
 
+        PerkBuilder.bigStat("mace_damage_and_scepter_damage", "Smashing",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.mace)),
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.scepter))
+        );
+
         PerkBuilder.bigStat("mace_mastery", "Mace Mastery",
             new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.mace)),
             new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),
@@ -825,7 +830,7 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(-10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
         );
 
-        PerkBuilder.bigStat("bone_platings", "Bone Collector",
+        PerkBuilder.bigStat("bone_plating", "Bone Collector",
             new OptScaleExactStat(20, Stats.RESOURCE_ON_KILL.get(ResourceType.health)),
             new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE)
         );
@@ -1006,7 +1011,7 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(-10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
         );
-        PerkBuilder.bigStat("gaseous", "Gaseous",
+        PerkBuilder.bigStat("gaseus", "Gaseous",
             new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON)),
             new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Stats.DOT_DAMAGE.get())
@@ -1030,7 +1035,7 @@ public class NewPerks implements ISlashRegistryInit {
         );
         PerkBuilder.bigStat("heartseeker", "Heartseeker",
             new OptScaleExactStat(10, Stats.DAMAGE_WHEN_TARGET_IS_LOW_HP.get()),
-            new OptScaleExactStat(3, Stats.STYLE_DAMAGE.get(PlayStyle.ranged))
+            new OptScaleExactStat(3, Stats.PROJECTILE_DAMAGE.get())
         );
         PerkBuilder.bigStat("bombardment", "Bombardment",
             new OptScaleExactStat(10, Stats.AREA_DAMAGE.get()),
@@ -1056,6 +1061,40 @@ public class NewPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("corrupted_blade", "Corrupted Blade",
             new OptScaleExactStat(5, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.MARK))
         );
+
+        PerkBuilder.bigStat("last_resort", "Last resort",
+            new OptScaleExactStat(15, Stats.HEAL_STRENGTH_ON_SHIELDED_TARGETS.get())
+        );
+
+        PerkBuilder.bigStat("crusade", "Crusade",
+            new OptScaleExactStat(5, Stats.CHANCE_TO_GIVE_EFFECT_ON_SELF.get(BeneficialEffects.BLESSING)),
+            new OptScaleExactStat(5, DatapackStats.MOVE_SPEED)
+        );
+
+        PerkBuilder.bigStat("bulwark", "Bulwark",
+            new OptScaleExactStat(-5, Stats.TOTAL_DAMAGE.get()),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(2, new ElementalResist(Elements.Elemental))
+        );
+
+        PerkBuilder.bigStat("future_technology", "Future Technology",
+            new OptScaleExactStat(10, Stats.TOTEM_RESTORATION_STRENGTH.get())
+        );
+        PerkBuilder.bigStat("consecrate", "Consecrate",
+            new OptScaleExactStat(10, Stats.TOTEM_SHIELD.get())
+        );
+
+        PerkBuilder.bigStat("avatar_of_hope", "Avatar of Hope",
+            new OptScaleExactStat(20, Stats.COOLDOWN_REDUCTION_PER_SPELL_TAG.get(SpellTag.totem))
+        );
+
+        PerkBuilder.bigStat("torchlight", "Torchlight",
+            new OptScaleExactStat(15, Stats.TOTEM_RESTORATION_STRENGTH.get()),
+            new OptScaleExactStat(5, Stats.THREAT_GENERATED.get())
+        );
+
     }
 
 }

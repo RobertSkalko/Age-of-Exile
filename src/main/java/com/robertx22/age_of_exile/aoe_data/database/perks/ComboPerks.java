@@ -130,6 +130,11 @@ public class ComboPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Mana.getInstance(), ModType.FLAT)
         );
 
+        PerkBuilder.stat("spell_damage_day_damage",
+            new OptScaleExactStat(2, SpellDamage.getInstance(), ModType.FLAT),
+            new OptScaleExactStat(2, Stats.DAY_DAMAGE.get(), ModType.FLAT)
+        );
+
         PerkBuilder.stat("dodge_ele_resistance",
             new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(1, new ElementalResist(Elements.Elemental))

@@ -29,6 +29,7 @@ is_target_low_hp
 spell_has_tag_technique
 threat_gen_type_is_spell
 restore_type_is_potion
+is_target_shielded
 effect_has_tag_heal_over_time
 spell_has_tag_damage
 random_roll

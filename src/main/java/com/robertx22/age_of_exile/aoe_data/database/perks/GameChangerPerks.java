@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.LeechInfo;
@@ -11,6 +12,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
@@ -63,6 +65,16 @@ public class GameChangerPerks implements ISlashRegistryInit {
             new OptScaleExactStat(-25, Stats.MANA_COST.get())
         );
 
+        PerkBuilder.gameChanger("something_is_watching", "Something is Watching",
+            new OptScaleExactStat(-15, Stats.TOTAL_DAMAGE.get()),
+            new OptScaleExactStat(-15, new ElementalResist(Elements.Elemental)),
+            new OptScaleExactStat(1, Stats.EFFECT_ON_SPELL_KILL.get(BeneficialEffects.BLESSING)),
+            new OptScaleExactStat(1, Stats.EFFECT_ON_BASIC_ATTACK_KILL.get(BeneficialEffects.MARK))
+        );
+
+        PerkBuilder.gameChanger("zealot", "Zealot",
+            new OptScaleExactStat(25, Stats.CHANCE_TO_GIVE_EFFECT_WHEN_HEALING_ON_SELF.get(BeneficialEffects.ZEAL))
+        );
         PerkBuilder.gameChanger("sniper", "Sniper",
             new OptScaleExactStat(-50, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
             new OptScaleExactStat(-25, Stats.COOLDOWN_REDUCTION.get()),
