@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.item.Items;
+import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -23,11 +24,11 @@ import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
 public class TrapSpells implements ISlashRegistryInit {
 
-    @Override
-    public void registerAll() {
+    static SpellBuilder trap(String id, String name, DefaultParticleType particle, ValueCalculation dmg, Elements element) {
 
-        SpellBuilder.of("frost_trap", SpellConfiguration.Builder.instant(7, 15)
-                .setSwingArm(), "Frost Trap",
+        return SpellBuilder.of(id, SpellConfiguration.Builder.instant(7, 20)
+                .setChargesAndRegen("trap", 3, 20 * 30)
+                .setSwingArm(), name,
             Arrays.asList(SpellTag.damage, SpellTag.area, SpellTag.trap))
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(PlayStyle.ranged)
@@ -38,18 +39,25 @@ public class TrapSpells implements ISlashRegistryInit {
                 .put(MapField.FIND_NEAREST_SURFACE, true)
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
-            .onTick("trap", PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 5D, 1D)
+            .onTick("trap", PartBuilder.aoeParticles(particle, 5D, 1D)
                 .addCondition(EffectCondition.IS_ENTITY_IN_RADIUS.enemiesInRadius(1D))
                 .addActions(SpellAction.EXPIRE.create())
                 .addActions(SpellAction.SPECIFIC_ACTION.create("expire"))
-                .onTick(2D))
+                .onTick(1D))
 
             .onExpire("trap", PartBuilder.justAction(SpellAction.SPECIFIC_ACTION.create("expire")))
 
-            .addSpecificAction("expire", PartBuilder.damageInAoe(ValueCalculation.base("frost_trap", 10), Elements.Water, 3D))
-            .addSpecificAction("expire", PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 30D, 3D))
+            .addSpecificAction("expire", PartBuilder.damageInAoe(dmg, element, 3D))
+            .addSpecificAction("expire", PartBuilder.aoeParticles(particle, 30D, 3D));
 
-            .build();
+    }
+
+    @Override
+    public void registerAll() {
+
+        trap("frost_trap", "Frost Trap", ParticleTypes.ITEM_SNOWBALL, ValueCalculation.base("frost_trap", 10), Elements.Water).build();
+        trap("poison_trap", "Poison Trap", ParticleTypes.ITEM_SLIME, ValueCalculation.base("poison_trap", 10), Elements.Nature).build();
+        trap("fire_trap", "Fire Trap", ParticleTypes.FLAME, ValueCalculation.base("fire_trap", 10), Elements.Fire).build();
 
     }
 }

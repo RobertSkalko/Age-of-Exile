@@ -64,10 +64,37 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx ETHEREAL_FORM = new EffectCtx("ethereal_form", "Ethereal Form", 23, Elements.Dark, EffectType.beneficial);
     public static EffectCtx UNDYING_WILL = new EffectCtx("undying_will", "Undying Will", 24, Elements.Physical, EffectType.beneficial);
     public static EffectCtx FRENZY = new EffectCtx("frenzy", "Frenzy", 25, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx ZEAL = new EffectCtx("zeal", "Zeal  ", 26, Elements.Light, EffectType.beneficial);
+    public static EffectCtx ZEAL = new EffectCtx("zeal", "Zeal", 26, Elements.Light, EffectType.beneficial);
+    public static EffectCtx ALACRITY = new EffectCtx("alacrity", "Alacrity", 27, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx STEAM_POWER = new EffectCtx("steam_power", "Steam Power", 28, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx CONCENTRATION = new EffectCtx("concentration", "Concentration", 29, Elements.Physical, EffectType.beneficial);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(CONCENTRATION)
+            .stat(10, Stats.ACCURACY.get(), ModType.FLAT)
+            .maxStacks(3)
+            .addTags(EffectTags.offensive)
+            .build();
+
+        ExileEffectBuilder.of(STEAM_POWER)
+            .stat(1, ManaRegen.getInstance(), ModType.FLAT)
+            .maxStacks(3)
+            .addTags(EffectTags.offensive)
+            .build();
+
+        ExileEffectBuilder.of(STEAM_POWER)
+            .stat(1, ManaRegen.getInstance(), ModType.FLAT)
+            .maxStacks(3)
+            .addTags(EffectTags.offensive)
+            .build();
+
+        ExileEffectBuilder.of(ALACRITY)
+            .stat(2, Stats.ATTACK_SPEED.get(), ModType.FLAT)
+            .maxStacks(10)
+            .addTags(EffectTags.offensive)
+            .build();
 
         ExileEffectBuilder.of(ZEAL)
             .stat(3, Stats.ELEMENTAL_DAMAGE.get(Elements.Light))

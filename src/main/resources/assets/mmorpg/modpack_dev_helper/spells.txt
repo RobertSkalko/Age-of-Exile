@@ -14,6 +14,7 @@ gorgons_gaze
 haste_aura
 arrow_storm
 conjure_ender_chest
+poison_trap
 soul_harvest
 jump_field
 fire_breath
@@ -54,6 +55,7 @@ poison_arrow
 frost_breath
 curse_of_agony
 frost_trap
+fire_trap
 frostball
 flame_strike
 meteor

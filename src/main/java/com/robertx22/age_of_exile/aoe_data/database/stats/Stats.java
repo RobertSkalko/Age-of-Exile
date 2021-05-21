@@ -295,6 +295,24 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<Elements> ELEMENTAL_ANY_WEAPON_DAMAGE = DatapackStatBuilder
+        .<Elements>of(x -> x.guidName + "_any_wep_damage", x -> x)
+        .addAllOfType(Elements.values())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> x.dmgName + " Weapon Damage")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.is_perc = true;
+            x.group = StatGroup.WEAPON;
+        })
+        .build();
+
     public static DataPackStatAccessor<ResourceType> RESOURCE_ON_KILL = DatapackStatBuilder
         .<ResourceType>of(x -> x.id + "_on_kill", x -> Elements.All)
         .addAllOfType(Arrays.asList(
@@ -335,6 +353,8 @@ public class Stats implements ISlashRegistryInit {
         .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self", x -> x.element)
         .addAllOfType(Arrays.asList(
             BeneficialEffects.BLOODLUST,
+            BeneficialEffects.CONCENTRATION,
+            BeneficialEffects.STEAM_POWER,
             BeneficialEffects.BLESSING)
         )
         .worksWithEvent(DamageEvent.ID)
@@ -384,6 +404,30 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_EFFECT_ON_SPELL_HIT = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_of_" + x.id + "_on_spell_hit", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.ALACRITY
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_SPELL)
+        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
+        .setLocName(x -> Stat.format(
+            Stat.format(Stat.VAL1 + "% chance to Gain " + x.locname + " on spell hits.")
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
     public static DataPackStatAccessor<EffectCtx> EFFECT_ON_SPELL_KILL = DatapackStatBuilder
         .<EffectCtx>of(x -> x.id + "_on_spell_kill", x -> x.element)
         .addAllOfType(Arrays.asList(
@@ -397,6 +441,29 @@ public class Stats implements ISlashRegistryInit {
         .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
         .setLocName(x -> Stat.format(
             Stat.format("Gain " + x.locname + " when you kill a mob with a spell")
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> EFFECT_WHEN_HIT = DatapackStatBuilder
+        .<EffectCtx>of(x -> x.id + "_when_hit", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.BLESSING
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Target)
+        .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
+        .setLocName(x -> Stat.format(
+            Stat.format("Gain " + x.locname + " when you are hit.")
         ))
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
@@ -498,6 +565,7 @@ public class Stats implements ISlashRegistryInit {
         .<EffectCtx>of(x -> "chance_of_" + x.id, x -> x.element)
         .addAllOfType(Arrays.asList(
             NegativeEffects.BURN,
+            NegativeEffects.POISON,
             NegativeEffects.FROSTBURN,
             NegativeEffects.BLIND
             )

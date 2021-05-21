@@ -131,6 +131,7 @@ public class SpellBuilder {
     }
 
     public SpellBuilder manualDesc(String desc) {
+        this.spell.manual_tip = true;
         this.spell.locDesc = desc;
         return this;
     }

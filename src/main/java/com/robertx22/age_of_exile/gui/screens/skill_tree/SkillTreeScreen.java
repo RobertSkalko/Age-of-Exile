@@ -130,18 +130,18 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     private void addConnections() {
 
+        HashSet<PointData> def = new HashSet();
+
         Set<Set<PointData>> cons = new HashSet<>();
 
         new ArrayList<>(buttons).forEach(b -> {
             if (b instanceof PerkButton) {
                 PerkButton pb = (PerkButton) b;
 
-                Set<PointData> connections = this.school.calcData.connections.getOrDefault(pb.point, new HashSet<>());
+                Set<PointData> connections = this.school.calcData.connections.getOrDefault(pb.point, def);
 
                 int x1 = pb.x + pb.getWidth() / 2;
                 int y1 = pb.y + pb.getHeight() / 2;
-
-                // todo
 
                 int size = 6;
                 float spacing = size + size / 2F;
@@ -159,6 +159,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
                     if (sb == null) {
                         continue;
+
                     }
 
                     int x2 = sb.x + sb.getWidth() / 2;
@@ -252,7 +253,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
         addConnections();
 
-        //       watch.print(" Setting up buttons ");
+        //        watch.print(" Setting up buttons ");
 
     }
 

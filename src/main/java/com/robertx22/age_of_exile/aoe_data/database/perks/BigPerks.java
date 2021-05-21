@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.DamageTakenToMana;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -84,7 +85,7 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Mana.getInstance(), ModType.FLAT)
         );
 
-        PerkBuilder.bigStat("big_balistic", "Ballistics Expert",
+        PerkBuilder.bigStat("ballistic", "Ballistics Expert",
             new OptScaleExactStat(5, Stats.PROJECTILE_DAMAGE.get(), ModType.FLAT),
             new OptScaleExactStat(10, Stats.PROJECTILE_SPEED.get(), ModType.FLAT),
             new OptScaleExactStat(10, Dexterity.INSTANCE, ModType.FLAT)
@@ -459,7 +460,16 @@ public class BigPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("big_dot_damage", "Slow Killer",
             new OptScaleExactStat(10, Stats.DOT_DAMAGE.get())
         );
+        PerkBuilder.bigStat("redemtion", "Redemption",
+            new OptScaleExactStat(10, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.BLESSING))
+        );
+        PerkBuilder.bigStat("big_elemental_penetration", "Element Piercer",
+            new OptScaleExactStat(10, new ElementalPenetration(Elements.Elemental))
+        );
 
+        PerkBuilder.bigStat("big_spell_critical_damage", "Devastator",
+            new OptScaleExactStat(15, Stats.SPELL_CRIT_DAMAGE.get())
+        );
     }
 }
 

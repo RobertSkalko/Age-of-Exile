@@ -120,7 +120,7 @@
       }
     },
     {
-      "weight": 25,
+      "weight": 30,
       "element": {
         "location": "mmorpg:mossy/mossy_room_7",
         "processors": "minecraft:empty",
@@ -138,7 +138,7 @@
       }
     },
     {
-      "weight": 50,
+      "weight": 25,
       "element": {
         "location": "mmorpg:mossy/mossy_room_9",
         "processors": "minecraft:empty",
@@ -147,7 +147,7 @@
       }
     },
     {
-      "weight": 50,
+      "weight": 25,
       "element": {
         "location": "mmorpg:mossy/mossy_room_10",
         "processors": "minecraft:empty",

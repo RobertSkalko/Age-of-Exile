@@ -80,10 +80,10 @@ public class MobStatUtils {
                         .GUID())
                         .applyStats(mobdata);
                 } else {
-                    ExactStatData.noScaling(100, 100, ModType.GLOBAL_INCREASE, Health.getInstance()
+                    ExactStatData.noScaling(200, 200, ModType.GLOBAL_INCREASE, Health.getInstance()
                         .GUID())
                         .applyStats(mobdata);
-                    ExactStatData.noScaling(25, 25, ModType.FLAT, Stats.TOTAL_DAMAGE.get()
+                    ExactStatData.noScaling(100, 100, ModType.FLAT, Stats.TOTAL_DAMAGE.get()
                         .GUID())
                         .applyStats(mobdata);
                 }

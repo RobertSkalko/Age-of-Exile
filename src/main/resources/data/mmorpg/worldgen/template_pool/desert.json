@@ -3,6 +3,15 @@
   "fallback": "minecraft:empty",
   "elements": [
     {
+      "weight": 80,
+      "element": {
+        "location": "mmorpg:desert/blocker",
+        "processors": "minecraft:empty",
+		"projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+    {
       "weight": 75,
       "element": {
         "location": "mmorpg:desert/desert_room_0",
@@ -111,7 +120,7 @@
       }
     },
     {
-      "weight": 75,
+      "weight": 65,
       "element": {
         "location": "mmorpg:desert/desert_room_12",
         "processors": "minecraft:empty",

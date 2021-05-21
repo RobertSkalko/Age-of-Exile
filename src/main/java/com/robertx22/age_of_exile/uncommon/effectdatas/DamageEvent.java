@@ -312,6 +312,8 @@ public class DamageEvent extends EffectEvent {
                 }
             }
 
+            target.timeUntilRegen = 0; // disable iframes hopefully
+
             int time = target.hurtTime;
             target.hurtTime = 0;
 

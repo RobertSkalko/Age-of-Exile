@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalF
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DarknessDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.DualWieldDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -972,6 +973,10 @@ public class NewPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("hoarfrost", "Hoarfrost",
             new OptScaleExactStat(10, Stats.CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG.get(NegativeEffects.FROSTBURN))
         );
+        PerkBuilder.bigStat("withdrawal", "Withdrawal",
+            new OptScaleExactStat(10, Stats.CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG.get(NegativeEffects.POISON))
+        );
+
         PerkBuilder.bigStat("forced_alliance", "Forced Alliance",
             new OptScaleExactStat(5, Stats.CAST_SPEED.get()),
             new OptScaleExactStat(100, Mana.getInstance()),
@@ -1093,6 +1098,108 @@ public class NewPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("torchlight", "Torchlight",
             new OptScaleExactStat(15, Stats.TOTEM_RESTORATION_STRENGTH.get()),
             new OptScaleExactStat(5, Stats.THREAT_GENERATED.get())
+        );
+
+        PerkBuilder.bigStat("mental_stability", "Mental Stability",
+            new OptScaleExactStat(-10, Stats.MANA_COST.get()),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("dual_wield", "Dual Wielder", new OptScaleExactStat(10, DualWieldDamage.getInstance()));
+
+        PerkBuilder.bigStat("lightning_rod", "Lightning Rod",
+            new OptScaleExactStat(25, Stats.CHANCE_OF_EFFECT_ON_SPELL_HIT.get(BeneficialEffects.ALACRITY)),
+            new OptScaleExactStat(5, new ElementalResist(Elements.Elemental))
+        );
+        PerkBuilder.bigStat("wrath", "Wrath",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_ANY_WEAPON_DAMAGE.get(Elements.Fire)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_ANY_WEAPON_DAMAGE.get(Elements.Nature)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_ANY_WEAPON_DAMAGE.get(Elements.Water)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_ANY_WEAPON_DAMAGE.get(Elements.Light)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_ANY_WEAPON_DAMAGE.get(Elements.Dark)),
+            new OptScaleExactStat(10, Stats.COOLDOWN_REDUCTION.get())
+        );
+
+        PerkBuilder.bigStat("rune_tattoos", "Rune Tattoos",
+            new OptScaleExactStat(5, DatapackStats.ARMOR_PER_MANA)
+        );
+        PerkBuilder.bigStat("poacher", "Poacher",
+            new OptScaleExactStat(15, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.trap)),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("engineer", "Engineer",
+            new OptScaleExactStat(15, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.trap)),
+            new OptScaleExactStat(10, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("traps_damage", "Trapper",
+            new OptScaleExactStat(20, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.trap))
+        );
+
+        PerkBuilder.bigStat("trickster", "Trickster",
+            new OptScaleExactStat(5, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.trap)),
+            new OptScaleExactStat(10, Stats.INCREASED_AREA.get()),
+            new OptScaleExactStat(5, Stats.REDUCED_MANA_RESERVED.get()),
+            new OptScaleExactStat(5, Stats.INCREASED_EFFECT_OF_AURAS_RECEIVED.get())
+        );
+
+        PerkBuilder.bigStat("age_of_steam", "Age of Steam",
+            new OptScaleExactStat(25, Stats.CHANCE_TO_GIVE_EFFECT_ON_SELF.get(BeneficialEffects.STEAM_POWER))
+        );
+        PerkBuilder.bigStat("crystal_scope", "Crystal Scope",
+            new OptScaleExactStat(25, Stats.CHANCE_TO_GIVE_EFFECT_ON_SELF.get(BeneficialEffects.CONCENTRATION))
+        );
+
+        PerkBuilder.bigStat("cauterizer", "Cauterizer",
+            new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical))
+        );
+
+        PerkBuilder.bigStat("guild_assassin", "Guild Assassin",
+            new OptScaleExactStat(3, SpellDamage.getInstance()),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical))
+        );
+
+        PerkBuilder.bigStat("dust_cloak", "Dust Cloak",
+            new OptScaleExactStat(-10, Stats.THREAT_GENERATED.get()),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("wish_upon_the_stars", "Wish upon a Star",
+            new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLIND)),
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, SpecialStats.HEAL_CLEANSE),
+            new OptScaleExactStat(5, Stats.SHIELD_DURATION.get())
+        );
+
+        PerkBuilder.bigStat("eye_for_an_eye", "Eye for an Eye",
+            new OptScaleExactStat(10, Stats.EFFECT_WHEN_HIT.get(BeneficialEffects.BLESSING))
+        );
+
+        PerkBuilder.bigStat("big_shield_mana_reg", "Eternal Guardian",
+            new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get()),
+            new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("damage_shield_more_health", "Lasting Guardian",
+            new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get()),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
+        );
+
+        PerkBuilder.bigStat("big_armor_and_mana_regen", "Sturdy Guardian",
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.stat("more_dmg_received",
+            new OptScaleExactStat(5, Stats.DAMAGE_RECEIVED.get())
+        );
+
+        PerkBuilder.bigStat("darkness", "Darkness",
+            new OptScaleExactStat(5, Stats.NIGHT_DAMAGE.get()),
+            new OptScaleExactStat(10, DarknessDamage.getInstance())
         );
 
     }

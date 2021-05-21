@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.AttributeS
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.ConvertFromOneToOtherStat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MoreXPerYOf;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
+import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
@@ -48,11 +49,13 @@ public class DatapackStats implements ISlashRegistryInit {
     public static Stat CRIT_PER_DEX = new MoreXPerYOf(Dexterity.INSTANCE, Stats.CRIT_CHANCE.get(), 10);
     public static Stat HP_REGEN_PER_WISDOM = new MoreXPerYOf(Wisdom.INSTANCE, HealthRegen.getInstance(), 10);
     public static Stat HP_PER_DEX = new MoreXPerYOf(Dexterity.INSTANCE, Health.getInstance(), 10);
+    public static Stat ARMOR_PER_MANA = new MoreXPerYOf(Mana.getInstance(), Armor.getInstance(), 10);
 
     @Override
     public void registerAll() {
 
         HEAL_TO_SPELL_DMG.addToSerializables();
+        ARMOR_PER_MANA.addToSerializables();
         ACCURACY_PER_DEX.addToSerializables();
         HP_PER_DEX.addToSerializables();
         HP_REGEN_PER_WISDOM.addToSerializables();

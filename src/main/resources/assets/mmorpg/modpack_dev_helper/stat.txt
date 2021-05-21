@@ -30,6 +30,7 @@ bonus_alchemy_yield
 heal_on_shielded_targets
 inc_effect_of_auras_given
 potion_strength
+all_any_wep_damage
 inc_effect_of_positive_buff_on_you
 cdr
 projectile_damage
@@ -81,6 +82,7 @@ fire_vuln_crit
 chance_to_give_bloodlust_to_self
 bonus_blacksmithing_exp
 all_nature_damage
+elemental_any_wep_damage
 blood
 move_speed
 inc_effect_of_heal_over_time_buff_given
@@ -106,6 +108,7 @@ light_mana_leech
 non_crit_damage
 health_per_sec
 convert_fire_to_phys
+fire_any_wep_damage
 global_critical_hit_per_25_magic_find
 water_resist
 vitality
@@ -125,6 +128,7 @@ dark_vuln_crit
 max_fire_resist
 curse_spell_dmg
 more_food_stats
+chance_of_alacrity_on_spell_hit
 physical_mana_leech
 chance_of_mana_reg_on_heal_crit
 mark_on_basic_atk_kill
@@ -137,6 +141,7 @@ hp_regen_per_mana
 heal_cdr
 shield_cdr
 light_dot_damage
+chance_to_give_steam_power_to_self
 armor
 ele_wand_damage
 ele_staff_damage
@@ -144,6 +149,7 @@ spell_nature_damage
 dark_dot_damage
 chance_on_basic_atk_to_give_infused_blade_to_self
 heal_over_time_eff_dur_u_cast
+light_any_wep_damage
 agility
 ele_dagger_damage
 movement_spell_dmg
@@ -203,6 +209,7 @@ red_mana_reserved
 chance_of_burn_on_crit
 water_weapon_damage
 elemental_vuln_crit
+chance_to_give_concentration_to_self
 bonus_blacksmithing_yield
 mana_per_10_vitality
 bonus_mining_exp
@@ -216,15 +223,18 @@ spell_damage
 night_dmg
 ranged_crit_dmg_to_undead
 darkness_dmg
+blessing_when_hit
 water_penetration
 technique_cdr
 bonus_inscribing_yield
 dark_mana_leech
+dark_any_wep_damage
 projectile_spell_dmg
 chance_of_blind
 spell_damage_per_perc_of_increase_healing
 positive_eff_dur_u_cast
 bonus_alchemy_exp
+nature_any_wep_damage
 shield_spell_dmg
 increased_quantity
 elemental_dot_damage
@@ -276,6 +286,7 @@ global_critical_hit
 damage_shield
 inc_effect_of_positive_buff_given
 wand_damage
+physical_any_wep_damage
 day_dmg
 convert_light_to_phys
 critical_damage
@@ -329,6 +340,7 @@ bonus_mining_yield
 crit_water_dmg_mana
 negative_eff_duration
 chance_to_get_mark_on_kill
+armor_per_10_mana
 curse_cdr
 arrow_spell_dmg
 chance_of_frostburn
@@ -348,6 +360,7 @@ mace_damage
 shield_duration
 aura_spell_dmg
 negative_eff_dur_u_cast
+water_any_wep_damage
 dmg_taken_to_mana
 chance_to_get_frenzy_on_kill
 chance_of_judgement

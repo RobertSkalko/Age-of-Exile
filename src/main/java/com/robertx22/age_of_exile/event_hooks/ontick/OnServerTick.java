@@ -7,11 +7,9 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.rules.OnTickGiveTpBack;
 import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
-import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
@@ -174,30 +172,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     data.ticksForSecond = 0;
 
                     Load.spells(player)
-                        .getSkillGemData().gems.forEach(x -> {
-
-                        if (x != null && x.getSkillGem() != null) {
-                            if (Database.Spells()
-                                .isRegistered(x.getSkillGem().spell_id)) {
-                                Spell s = Database.Spells()
-                                    .get(x.getSkillGem().spell_id);
-
-                                if (s.config.charges > 0) {
-                                    SpellCastingData sdata = Load.spells(player)
-                                        .getCastingData();
-
-                                    sdata.charge_regen.put(s.config.charge_name, 20 + sdata.charge_regen.getOrDefault(s.config.charge_name, 0));
-
-                                    if (sdata.charge_regen.get(s.config.charge_name) >= s.config.charge_regen) {
-                                        sdata.charge_regen.put(s.config.charge_name, 0);
-                                        sdata.addCharge(s.config.charge_name, s);
-                                    }
-                                }
-
-                            }
-                        }
-
-                    });
+                        .getCastingData().charges.onTicks(player, 20);
 
                 }
 

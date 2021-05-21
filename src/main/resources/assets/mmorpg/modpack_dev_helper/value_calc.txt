@@ -5,6 +5,7 @@ torment
 healing_aura
 iceball
 totem_heal
+poison_trap
 soul_harvest
 lose_aggro
 fire_breath
@@ -41,6 +42,7 @@ poison
 frost_breath
 direct_arrow_hit
 frost_trap
+fire_trap
 flame_strike
 meteor
 frost_nova

@@ -20,6 +20,7 @@ water_dmg
 arrow_storm
 cooldown
 conjure_ender_chest
+poison_trap
 soul_harvest
 jump_field
 fire_dmg
@@ -73,6 +74,7 @@ poison_arrow
 frost_breath
 curse_of_agony
 frost_trap
+fire_trap
 frostball
 flame_strike
 meteor

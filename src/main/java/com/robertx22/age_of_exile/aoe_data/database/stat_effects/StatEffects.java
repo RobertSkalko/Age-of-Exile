@@ -67,6 +67,7 @@ public class StatEffects implements ISlashRegistryInit {
             NegativeEffects.JUDGEMENT,
             NegativeEffects.SLOW,
             NegativeEffects.STUN,
+            BeneficialEffects.BLESSING,
             NegativeEffects.FROSTBURN,
             NegativeEffects.BLEED,
             NegativeEffects.POISON,

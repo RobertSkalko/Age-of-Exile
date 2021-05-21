@@ -187,7 +187,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                 }
 
                 if (spell.config.charges > 0) {
-                    int charges = data.getCastingData().charges.getOrDefault(spell.config.charge_name, 0);
+                    int charges = data.getCastingData().charges.getCharges(spell.config.charge_name);
 
                     Formatting format = Formatting.GREEN;
                     String stext = charges + "";

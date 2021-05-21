@@ -64,6 +64,7 @@ open_the_curtain
 big_spell_critical_hit
 all_nature_damage
 hibernation
+lightning_rod
 nature_light_spell_dmg
 atonement
 light_fire_spell_dmg
@@ -86,6 +87,7 @@ ele_scythe_damage
 big_armor
 purgatory
 axe_mastery
+big_spell_critical_damage
 axe_damage
 hot_headed
 armor_and_ms
@@ -109,6 +111,7 @@ ele_staff_damage
 big_no_rules
 light_shackles
 spiritbond
+big_armor_and_mana_regen
 big_precision
 ele_dagger_damage
 spell_dmg_atk_speed
@@ -133,6 +136,7 @@ farsight
 spell_accuracy
 frenzy
 sword_damage
+rune_tattoos
 rusty_weapons
 chance_of_burn
 big_fury
@@ -142,6 +146,7 @@ sandtomb
 big_wis
 gaseus
 sun_essence
+traps_damage
 lifesteal
 purify
 last_rite
@@ -154,12 +159,14 @@ magic_bubble
 red_mana_reserved
 infernal_weapons
 all_phys_less_atkspeed
+darkness
 prism
 going_dark_side
 hammer_smash
 pathfinder
 scepter_mastery
 dot_damage
+damage_shield_more_health
 bone_grinder
 big_breath_of_water
 spear_damage
@@ -172,8 +179,10 @@ conquerer
 scion
 big_rat
 mage
+redemtion
 spell_dark_damage_and_dot
 big_vit
+dual_wield
 spell_critical_damage
 steady_hand
 cataclysm
@@ -187,6 +196,7 @@ mana_and_regen
 refined_taste
 survivalist
 health
+ballistic
 second_heart
 staff_damage
 ele_spear_damage
@@ -199,6 +209,7 @@ big_warrior_heart
 bombardment
 trinity
 big_dex
+big_elemental_penetration
 anatomical_knowledge
 mantra
 big_effect_of_ele
@@ -283,6 +294,7 @@ brilliance
 big_hunters_path
 execute
 rain_of_sorrow
+dust_cloak
 str
 projectile_damage
 spear_mastery
@@ -297,6 +309,8 @@ all_physical_damage
 dagger_mastery
 anomaly
 warrior
+guild_assassin
+more_dmg_received
 critical_hit
 big_steal_str
 big_breath_of_fire
@@ -308,15 +322,19 @@ all_light_damage
 big_game_hunter
 ele_mace_damage
 flesh_former
+wish_upon_the_stars
 living_thunder
 demonblood
+trickster
 big_aspect_of_thunder
 dodge
 cooldown_reduction
 wolf
 praise_zadall
+mental_stability
 huge_int
 arcane_meditation
+withdrawal
 more_dualwield_dmg
 chance_of_poison
 mana
@@ -354,6 +372,7 @@ transcendence
 spell_nature_damage
 big_agility
 flexible_mind
+poacher
 crit_chance
 huge_vit
 frostburn
@@ -378,7 +397,10 @@ potionmaster
 big_poison_alchemy
 lucidity
 precise_preperation
+cauterizer
+eye_for_an_eye
 light_resist
+engineer
 all_fire_damage
 hp_dot_dmg
 big_mana_on_hit
@@ -401,6 +423,7 @@ ele_bow_damage
 hell
 blood_mage
 photosynthesis
+wrath
 ele_axe_damage
 guild_license
 small_positive_effect_increase
@@ -468,7 +491,9 @@ infusion
 bear
 hunter
 all_dark_nature_damage
+big_shield_mana_reg
 no_common_sense
+age_of_steam
 big_poe
 moon_essence
 health_regen
@@ -506,6 +531,7 @@ big_sadist
 aristocrat
 less_aggro
 health_on_kill
+wish_upon_a_star
 int
 big_balistic
 big_heart_of_nature
@@ -513,3 +539,4 @@ unforgiving_desert
 health_on_hit
 oath
 mace_damage
+crystal_scope

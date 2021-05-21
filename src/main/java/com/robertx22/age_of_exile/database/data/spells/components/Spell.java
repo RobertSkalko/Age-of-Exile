@@ -35,7 +35,6 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
 import com.robertx22.library_of_exile.main.Packets;
-import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -69,6 +68,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public AttachedSpell attached = new AttachedSpell();
     public SpellConfiguration config = new SpellConfiguration();
 
+    public boolean manual_tip = false;
     public List<String> disabled_dims = new ArrayList<>();
     public String effect_tip = "";
 
@@ -314,9 +314,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         if (Screen.hasShiftDown()) {
 
-            String manualDesc = CLOC.translate(this.locDesc());
-
-            if (manualDesc.isEmpty()) {
+            if (!this.manual_tip) {
                 list.addAll(attached
                     .getTooltip(ctx.calcData));
             } else {
