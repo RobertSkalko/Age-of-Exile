@@ -43,12 +43,11 @@ public class TrapSpells implements ISlashRegistryInit {
                 .addCondition(EffectCondition.IS_ENTITY_IN_RADIUS.enemiesInRadius(1D))
                 .addActions(SpellAction.EXPIRE.create())
                 .addActions(SpellAction.SPECIFIC_ACTION.create("expire"))
-                .onTick(1D))
-
-            .onExpire("trap", PartBuilder.justAction(SpellAction.SPECIFIC_ACTION.create("expire")))
+                .onTick(2D))
 
             .addSpecificAction("expire", PartBuilder.damageInAoe(dmg, element, 3D))
-            .addSpecificAction("expire", PartBuilder.aoeParticles(particle, 30D, 3D));
+            .addSpecificAction("expire", PartBuilder.aoeParticles(particle, 30D, 3D))
+            .addSpecificAction("expire", PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D));
 
     }
 

@@ -189,6 +189,7 @@ all_fire_damage
 curse_eff_duration
 sword_damage
 crit_heal_chance
+chance_of_blessing_when_hit
 all_attributes
 water_vuln_crit
 chance_of_burn
@@ -223,7 +224,6 @@ spell_damage
 night_dmg
 ranged_crit_dmg_to_undead
 darkness_dmg
-blessing_when_hit
 water_penetration
 technique_cdr
 bonus_inscribing_yield
@@ -290,11 +290,11 @@ physical_any_wep_damage
 day_dmg
 convert_light_to_phys
 critical_damage
-mark_on_spell_kill
 mana_cost
 inc_effect_of_song_buff_on_you
 dodge_to_nature_damage
 max_light_resist
+chance_of_poison_when_hit
 ele_trident_damage
 physical_weapon_damage
 health_regen

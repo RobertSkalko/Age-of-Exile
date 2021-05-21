@@ -452,8 +452,8 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EffectCtx> EFFECT_WHEN_HIT = DatapackStatBuilder
-        .<EffectCtx>of(x -> x.id + "_when_hit", x -> x.element)
+    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_EFFECT_WHEN_HIT = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_of_" + x.id + "_when_hit", x -> x.element)
         .addAllOfType(Arrays.asList(
             BeneficialEffects.BLESSING
             )
@@ -461,9 +461,10 @@ public class Stats implements ISlashRegistryInit {
         .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Target)
+        .addCondition(x -> StatConditions.IF_RANDOM_ROLL)
         .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
         .setLocName(x -> Stat.format(
-            Stat.format("Gain " + x.locname + " when you are hit.")
+            Stat.format(Stat.VAL1 + "% chance to Gain " + x.locname + " when you are hit.")
         ))
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
@@ -474,7 +475,29 @@ public class Stats implements ISlashRegistryInit {
             x.scaling = StatScaling.NONE;
         })
         .build();
-
+    public static DataPackStatAccessor<EffectCtx> CHANCE_TO_APPLY_EFFECT_WHEN_HIT = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_of_" + x.id + "_when_hit", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            NegativeEffects.POISON
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Target)
+        .addCondition(x -> StatConditions.IF_RANDOM_ROLL)
+        .addEffect(x -> StatEffects.GIVE_EFFECT_TO_SOURCE.get(x))
+        .setLocName(x -> Stat.format(
+            Stat.format(Stat.VAL1 + "% chance to apply " + x.locname + " to enemies that hit you.")
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
     public static DataPackStatAccessor<EffectCtx> EFFECT_ON_BASIC_ATTACK_KILL = DatapackStatBuilder
         .<EffectCtx>of(x -> x.id + "_on_basic_atk_kill", x -> x.element)
         .addAllOfType(Arrays.asList(

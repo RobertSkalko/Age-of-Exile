@@ -6,7 +6,6 @@ healing_aura
 iceball
 totem_heal
 poison_trap
-soul_harvest
 lose_aggro
 fire_breath
 shout_warn

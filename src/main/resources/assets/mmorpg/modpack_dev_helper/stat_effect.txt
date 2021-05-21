@@ -46,5 +46,4 @@ give_negative/2_to_target
 set_data_num_accuracy
 add_stat_data_to_num
 give_negative/7_to_target
-increase_cast_ticks_num
 double_dmg

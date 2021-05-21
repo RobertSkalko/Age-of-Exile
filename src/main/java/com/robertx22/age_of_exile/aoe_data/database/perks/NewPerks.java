@@ -93,7 +93,7 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.melee))
         );
 
-        PerkBuilder.bigStat("big_no_rules", "No Rules",
+        PerkBuilder.bigStat("no_rules", "No Rules",
             new OptScaleExactStat(10, Stats.PROJECTILE_SPEED.get()),
             new OptScaleExactStat(10, Stats.PROJECTILE_DAMAGE.get()),
             new OptScaleExactStat(-10, Stats.AREA_DAMAGE.get()),
@@ -328,7 +328,7 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, SpellDodge.getInstance())
         );
 
-        PerkBuilder.bigStat("guild_license", "Guild Licence",
+        PerkBuilder.bigStat("guild_licence", "Guild Licence",
             new OptScaleExactStat(10, Stats.INCREASED_AREA.get()),
             new OptScaleExactStat(10, Stats.DOT_DAMAGE.get()),
             new OptScaleExactStat(-10, Stats.PROJECTILE_SPEED.get()),
@@ -624,9 +624,18 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE)
         );
 
-        PerkBuilder.bigStat("spiritbond", "Spirit Bond",
+        PerkBuilder.bigStat("astral_walk", "Astral Walk",
+            new OptScaleExactStat(3, DatapackStats.MOVE_SPEED),
+            new OptScaleExactStat(10, Wisdom.INSTANCE)
+        );
+        PerkBuilder.bigStat("spirit_bond", "Spirit Bond",
             new OptScaleExactStat(10, Stats.SHIELD_DURATION.get()),
             new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get())
+        );
+        PerkBuilder.bigStat("guiding_light", "Guiding Light",
+            new OptScaleExactStat(10, Stats.HEAL_CRIT_DAMAGE.get()),
+            new OptScaleExactStat(5, Stats.SHIELD_DURATION.get()),
+            new OptScaleExactStat(5, Stats.SHIELD_STRENGTH.get())
         );
 
         PerkBuilder.bigStat("angelic_judgement", "Angelic Judgement",
@@ -651,6 +660,12 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark)),
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Water))
+        );
+
+        PerkBuilder.bigStat("heaven", "Heaven",
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Light)),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature))
         );
 
         PerkBuilder.bigStat("purgatory", "Purgatory",
@@ -701,7 +716,7 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW)),
             new OptScaleExactStat(5, DatapackStats.MOVE_SPEED)
         );
-        PerkBuilder.bigStat("eternity", "Eternity",
+        PerkBuilder.bigStat("big_eternity", "Eternity",
             new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(10, Wisdom.INSTANCE)
         );
@@ -761,6 +776,11 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.CRIT_CHANCE.get()),
             new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
             new OptScaleExactStat(10, Stats.DAMAGE_TO_UNDEAD.get())
+        );
+        PerkBuilder.bigStat("big_mighty_shield", "Mighty SHield",
+            new OptScaleExactStat(10, Stats.SHIELD_DURATION.get()),
+            new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get()),
+            new OptScaleExactStat(-3, Stats.DAMAGE_RECEIVED.get())
         );
 
         PerkBuilder.bigStat("runeleather", "Rune Leather",
@@ -862,7 +882,7 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, new ElementalResist(Elements.Elemental)),
             new OptScaleExactStat(-20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
         );
-        PerkBuilder.bigStat("transcendence", "Transcendence",
+        PerkBuilder.bigStat("transcendance", "Transcendence",
             new OptScaleExactStat(10, ManaRegen.getInstance()),
             new OptScaleExactStat(5, new ElementalResist(Elements.Elemental)),
             new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
@@ -875,6 +895,9 @@ public class NewPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("second_heart", "Second Heart",
             new OptScaleExactStat(5, Stats.ATTACK_SPEED.get()),
             new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("big_dodge", "Dodge Master",
+            new OptScaleExactStat(15, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.bigStat("big_game_hunter", "Game Hunter",
@@ -994,7 +1017,7 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(1, DatapackStats.CRIT_PER_STR)
         );
 
-        PerkBuilder.bigStat("open_the_curtain", "Open the Curtain",
+        PerkBuilder.bigStat("open_the_curtains", "Open the Curtain",
             new OptScaleExactStat(10, Stats.DAMAGE_WHEN_TARGET_IS_FULL_HP.get()),
             new OptScaleExactStat(10, DarknessDamage.getInstance())
         );
@@ -1176,7 +1199,7 @@ public class NewPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.bigStat("eye_for_an_eye", "Eye for an Eye",
-            new OptScaleExactStat(10, Stats.EFFECT_WHEN_HIT.get(BeneficialEffects.BLESSING))
+            new OptScaleExactStat(10, Stats.CHANCE_OF_EFFECT_WHEN_HIT.get(BeneficialEffects.BLESSING))
         );
 
         PerkBuilder.bigStat("big_shield_mana_reg", "Eternal Guardian",
@@ -1201,7 +1224,29 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.NIGHT_DAMAGE.get()),
             new OptScaleExactStat(10, DarknessDamage.getInstance())
         );
+        PerkBuilder.bigStat("inner_focus", "Inner Focus",
+            new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),
+            new OptScaleExactStat(5, Stats.CAST_SPEED.get()),
+            new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+        );
+        PerkBuilder.bigStat("tinker", "Tinker",
+            new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),
+            new OptScaleExactStat(5, Intelligence.INSTANCE),
+            new OptScaleExactStat(5, Wisdom.INSTANCE)
+        );
 
+        PerkBuilder.bigStat("big_ligthing_bless", "Lightning Bless",
+            new OptScaleExactStat(5, Stats.HEAL_CRIT_DAMAGE.get()),
+            new OptScaleExactStat(5, Stats.HEAL_STRENGTH.get()),
+            new OptScaleExactStat(5, Wisdom.INSTANCE),
+            new OptScaleExactStat(5, SpecialStats.HEAL_CLEANSE)
+        );
+
+        PerkBuilder.bigStat("rune_teeth", "Rune Teeth",
+            new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),
+            new OptScaleExactStat(5, SpellDamage.getInstance()),
+            new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.mana))
+        );
     }
 
 }

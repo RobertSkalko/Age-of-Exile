@@ -254,12 +254,6 @@ public class SpellCastingData {
             return false;
         }
 
-        if (spell.config.charges > 0) {
-            if (!charges.hasCharge(spell.config.charge_name)) {
-                return false;
-            }
-        }
-
         if (spell.config.isTechnique()) {
             if (!Load.spells(player)
                 .getCastingData()
@@ -272,6 +266,16 @@ public class SpellCastingData {
             .getCooldowns()
             .isOnCooldown(spell.GUID())) {
             return false;
+        }
+
+        if (player.isCreative()) {
+            return true;
+        }
+
+        if (spell.config.charges > 0) {
+            if (!charges.hasCharge(spell.config.charge_name)) {
+                return false;
+            }
         }
 
         SpellCastContext ctx = new SpellCastContext(player, 0, spell);

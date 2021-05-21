@@ -179,6 +179,7 @@ public class DatapackStatBuilder<T> {
                         System.out.print("Can't make effect for key: " + key.toString());
                     }
                     stat.effect.effects.add(effect.GUID());
+
                 }
                 if (this.conditionMaker != null) {
                     stat.effect.ifs.add(this.conditionMaker.apply(x.getKey())

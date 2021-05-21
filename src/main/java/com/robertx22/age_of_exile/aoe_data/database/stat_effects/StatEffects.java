@@ -24,10 +24,15 @@ public class StatEffects implements ISlashRegistryInit {
             BeneficialEffects.BLOODLUST,
             BeneficialEffects.TAUNT_STANCE,
             BeneficialEffects.GATHER_STORM,
+            BeneficialEffects.FRENZY,
+            BeneficialEffects.ALACRITY,
+            BeneficialEffects.ZEAL,
             BeneficialEffects.INFUSED_BLADE,
             BeneficialEffects.BLADE_DANCE,
             BeneficialEffects.MARK,
+            BeneficialEffects.CONCENTRATION,
             BeneficialEffects.BLESSING,
+            BeneficialEffects.STEAM_POWER,
             BeneficialEffects.HP_REGEN,
             BeneficialEffects.MANA_REGEN
         ),
@@ -60,6 +65,12 @@ public class StatEffects implements ISlashRegistryInit {
         )
         , x -> new RestoreResourceAction("leech_" + x.id, NumberProvider.ofPercentOfDataNumber(EventData.NUMBER), x, RestoreType.leech)
     );
+
+    public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_TO_SOURCE = new DataHolder<>(
+        Arrays.asList(
+            NegativeEffects.POISON
+        )
+        , x -> new GiveExileStatusEffect(x.effectId, EffectSides.Source, 5));
 
     public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_TO_TARGET = new DataHolder<>(
         Arrays.asList(

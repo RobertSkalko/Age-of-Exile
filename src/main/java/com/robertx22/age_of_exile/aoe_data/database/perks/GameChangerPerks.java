@@ -56,13 +56,22 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
         owl.one_of_a_kind = "animal";
 
-        PerkBuilder.gameChanger("gamechanger_one_with_nature", "One With Nature",
+        /*
+        PerkBuilder.gameChanger("one_with_nature", "One With Nature",
             new OptScaleExactStat(-25, Stats.HEAL_STRENGTH.get()),
             new OptScaleExactStat(-10, Stats.TOTAL_DAMAGE.get()),
             new OptScaleExactStat(-25, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(50, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.heal_over_time)),
+            new OptScaleExactStat(50, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.heal_over_time)), // todo this one doesnt work
             new OptScaleExactStat(20, Stats.COOLDOWN_REDUCTION.get()),
             new OptScaleExactStat(-25, Stats.MANA_COST.get())
+        );
+         */
+
+        PerkBuilder.gameChanger("celestial_vaults", "Celestial Vaults",
+            new OptScaleExactStat(15, new ElementalResist(Elements.Light)),
+            new OptScaleExactStat(-15, new ElementalResist(Elements.Dark)),
+            new OptScaleExactStat(20, Stats.ELEMENTAL_DAMAGE.get(Elements.Light)),
+            new OptScaleExactStat(-20, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark))
         );
 
         PerkBuilder.gameChanger("something_is_watching", "Something is Watching",
