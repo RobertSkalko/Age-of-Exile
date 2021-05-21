@@ -13,6 +13,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,9 +41,28 @@ public class SpellCastingData {
     public HashMap<String, AuraData> auras = new HashMap<>();
 
     @Store
+    public HashMap<String, Integer> charges = new HashMap<>();
+
+    @Store
+    public HashMap<String, Integer> charge_regen = new HashMap<>();
+
+    @Store
     public List<PlayerAction> last_actions = new ArrayList<>();
 
     static String BLOCK_ID = "block_action";
+
+    public boolean hasCharge(String id) {
+        return charges.getOrDefault(id, 0) > 0;
+    }
+
+    public void spendCharge(String id) {
+        charges.put(id, MathHelper.clamp(charges.getOrDefault(id, 0) - 1, 0, 100000));
+    }
+
+    public void addCharge(String id, Spell spell) {
+        int charge = MathHelper.clamp(charges.getOrDefault(id, 0) + 1, 0, spell.config.charges);
+        charges.put(id, charge);
+    }
 
     public void onAction(PlayerEntity player, PlayerAction action) {
 
@@ -251,6 +271,12 @@ public class SpellCastingData {
             return false;
         }
 
+        if (spell.config.charges > 0) {
+            if (!hasCharge(spell.config.charge_name)) {
+                return false;
+            }
+        }
+
         if (spell.config.isTechnique()) {
             if (!Load.spells(player)
                 .getCastingData()
@@ -277,6 +303,10 @@ public class SpellCastingData {
 
         ctx.data.getCooldowns()
             .setOnCooldown(ctx.spell.GUID(), cd);
+
+        if (ctx.spell.config.charges > 0) {
+            this.spendCharge(ctx.spell.config.charge_name);
+        }
 
         if (ctx.caster instanceof PlayerEntity) {
             PlayerEntity p = (PlayerEntity) ctx.caster;

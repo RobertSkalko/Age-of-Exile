@@ -5,6 +5,8 @@ import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.IByteBuf;
+import com.robertx22.age_of_exile.database.data.spells.TestSpell;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.registry.EfficientRegistryPacket;
@@ -206,6 +208,12 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     boolean accessedEarly = false;
 
     public C get(String guid) {
+
+        if (MMORPG.RUN_DEV_TOOLS) {
+            if (type == SlashRegistryType.SPELL && guid.equals(TestSpell.ID)) {
+                return (C) TestSpell.get();
+            }
+        }
 
         if (map.isEmpty() && serializables.isEmpty()) {
             if (!accessedEarly) {

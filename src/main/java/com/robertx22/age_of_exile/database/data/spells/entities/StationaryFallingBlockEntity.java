@@ -78,8 +78,20 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         return new ArrayList<>();
     }
 
+    boolean removeNextTick = false;
+
+    public void scheduleRemoval() {
+        removeNextTick = true;
+    }
+
     @Override
     public void tick() {
+
+        if (this.removeNextTick) {
+            this.remove();
+            return;
+        }
+
         this.age++;
 
         if (dataTracker.get(IS_FALLING)) {

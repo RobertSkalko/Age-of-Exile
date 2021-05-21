@@ -62,6 +62,7 @@ faster_proj
 nature_balm
 black_hole
 rejuv_totem
+test_spell
 fireball
 levitation
 explosive_arrow
@@ -71,6 +72,7 @@ nature_dmg
 poison_arrow
 frost_breath
 curse_of_agony
+frost_trap
 frostball
 flame_strike
 meteor

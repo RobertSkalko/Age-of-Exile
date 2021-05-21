@@ -40,6 +40,7 @@ heart_of_ice
 poison
 frost_breath
 direct_arrow_hit
+frost_trap
 flame_strike
 meteor
 frost_nova

@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -105,9 +106,15 @@ public class EntitySpellCap {
             SkillGemData data = this.skillGems.getSkillGemOf(key);
 
             if (data != null) {
-                return Database.Spells()
-                    .get(data.getSkillGem()
-                        .spell_id);
+                SkillGem gem = data.getSkillGem();
+                if (gem != null) {
+                    if (Database.Spells()
+                        .isRegistered(gem.spell_id)) {
+                        return Database.Spells()
+                            .get(data.getSkillGem()
+                                .spell_id);
+                    }
+                }
             }
 
             return null;

@@ -92,7 +92,11 @@ public class ComponentPart {
 
         for (MapHolder part : acts) {
             SpellAction action = SpellAction.MAP.get(part.type);
-            action.tryActivate(list, ctx, part);
+            if (action == null) {
+                System.out.print(part.type + " action is null");
+            } else {
+                action.tryActivate(list, ctx, part);
+            }
         }
 
         if (per_entity_hit != null) {

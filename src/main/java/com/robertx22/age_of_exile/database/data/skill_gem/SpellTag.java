@@ -10,6 +10,7 @@ public enum SpellTag {
     curse("Curse"),
     shield("Shield"),
     shout("Shout"),
+    trap("Trap"),
     song("Song"),
     area("Area"),
     aura("Aura"),

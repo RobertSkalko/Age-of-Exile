@@ -15,6 +15,7 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
         super(requiredPieces);
     }
 
+    public static EntityInRadiusCondition IS_ENTITY_IN_RADIUS;
     public static OnTickCondition EVERY_X_TICKS;
     public static ChanceCondition CHANCE;
     public static CasterHasEffectCondition CASTER_HAS_POTION;
@@ -36,6 +37,7 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
     }
 
     public static void init() {
+        IS_ENTITY_IN_RADIUS = of(new EntityInRadiusCondition());
         TARGET_HAS_POTION = of(new TargetHasEffectCondition());
         IS_TARGET_ALLY = of(new IsAllyCondition());
         EVERY_X_TICKS = of(new OnTickCondition());

@@ -5,6 +5,7 @@ set_bool_crit
 decrease_cast_ticks_num
 give_beneficial/13_to_source
 restore_mana_per_stat_data
+give_beneficial/26_to_source
 give_negative/11_to_target
 give_negative/5_to_target
 give_beneficial/21_to_source

@@ -409,7 +409,7 @@ public class Stats implements ISlashRegistryInit {
         .build();
 
     public static DataPackStatAccessor<EffectCtx> EFFECT_ON_BASIC_ATTACK_KILL = DatapackStatBuilder
-        .<EffectCtx>of(x -> x.id + "_on_spell_kill", x -> x.element)
+        .<EffectCtx>of(x -> x.id + "_on_basic_atk_kill", x -> x.element)
         .addAllOfType(Arrays.asList(
             BeneficialEffects.MARK
             )
@@ -1142,7 +1142,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(x -> StatConditions.SPELL_HAS_TAG.get(x))
         .addEffect(StatEffects.DECREASE_COOLDOWN)
-        .setLocName(x -> x.locname + " Cooldown Reduction")
+        .setLocName(x -> x.locname + " Spell Cooldown Reduction")
         .setLocDesc(x -> "Reduces spell cooldown of spells with the tag.")
         .modifyAfterDone(x -> {
             x.is_perc = true;

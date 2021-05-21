@@ -191,9 +191,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         ctx.castedThisTick = true;
 
         if (ctx.caster instanceof PlayerEntity) {
-            Load.spells(ctx.caster)
-                .getCastingData()
-                .onAction((PlayerEntity) ctx.caster, PlayerAction.TECHNIQUE);
+            if (!this.config.actions_needed.isEmpty()) {
+                Load.spells(ctx.caster)
+                    .getCastingData()
+                    .onAction((PlayerEntity) ctx.caster, PlayerAction.TECHNIQUE);
+            }
         }
 
         if (this.config.swing_arm) {

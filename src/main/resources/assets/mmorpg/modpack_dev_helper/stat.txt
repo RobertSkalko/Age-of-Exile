@@ -22,6 +22,7 @@ hammer_damage
 ele_glove_damage
 heal_crit_dmg
 inc_effect_of_song_buff_given
+trap_spell_dmg
 convert_water_to_phys
 arrow_cdr
 nature_weapon_damage
@@ -87,6 +88,7 @@ convert_dark_to_phys
 bonus_cooking_yield
 mana
 chance_of_poison
+trap_cdr
 bonus_fishing_yield
 health_on_all_hit
 dark_health_leech
@@ -125,6 +127,7 @@ curse_spell_dmg
 more_food_stats
 physical_mana_leech
 chance_of_mana_reg_on_heal_crit
+mark_on_basic_atk_kill
 critical_hit_per_10_dexterity
 dark_resist
 accuracy_per_10_dexterity
@@ -187,6 +190,7 @@ area_dmg
 defensive_eff_duration
 all_dark_damage
 hp_resto_to_blood
+blessing_on_spell_kill
 fire_health_leech
 lifesteal
 ele_bow_damage
@@ -275,6 +279,7 @@ wand_damage
 day_dmg
 convert_light_to_phys
 critical_damage
+mark_on_spell_kill
 mana_cost
 inc_effect_of_song_buff_on_you
 dodge_to_nature_damage
@@ -285,6 +290,7 @@ health_regen
 inc_effect_of_negative_buff_on_you
 spell_fire_damage
 bonus_exp_for_t1_mob
+chance_to_give_zeal_to_self_on_heal
 ele_hammer_damage
 cd_ticks
 socket_slots

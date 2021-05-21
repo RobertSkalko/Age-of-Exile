@@ -113,6 +113,7 @@ big_precision
 ele_dagger_damage
 spell_dmg_atk_speed
 spell_water_damage
+good_argument
 necronomicon
 mana_health
 deceiver
@@ -124,6 +125,7 @@ elemental_penetration
 big_heart_of_water
 phys_acc
 fire_weapon_damage
+mace_damage_and_scepter_damage
 dot_dmg
 spell_water_damage_and_dot
 spot_weakness
@@ -135,8 +137,10 @@ rusty_weapons
 chance_of_burn
 big_fury
 agi
+bone_plating
 sandtomb
 big_wis
+gaseus
 sun_essence
 lifesteal
 purify
@@ -145,6 +149,7 @@ slaughter
 dodge_mana
 big_int
 vessel
+zealot
 magic_bubble
 red_mana_reserved
 infernal_weapons
@@ -254,6 +259,7 @@ big_mana
 big_fire_water_spell_crit_dmg
 shield_duration
 ice_tip
+big_health_and_mana
 hammer_mastery
 big_self_heal
 far_reaching_aim
@@ -282,8 +288,10 @@ projectile_damage
 spear_mastery
 cast_speed
 gravedigger
+something_is_watching
 spellblade
 spell_fire_damage_and_dot
+big_dot_damage
 swishing_winds
 all_physical_damage
 dagger_mastery
@@ -373,6 +381,7 @@ precise_preperation
 light_resist
 all_fire_damage
 hp_dot_dmg
+big_mana_on_hit
 crit_heal_chance
 parasite
 soulsearch

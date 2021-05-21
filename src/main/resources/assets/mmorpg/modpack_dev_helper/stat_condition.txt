@@ -34,6 +34,7 @@ effect_has_tag_heal_over_time
 spell_has_tag_damage
 random_roll
 effect_has_tag_song
+spell_has_tag_trap
 is_crit_true_is_false
 spell_has_tag_projectile
 is_spell

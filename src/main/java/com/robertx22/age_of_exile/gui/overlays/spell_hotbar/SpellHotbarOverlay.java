@@ -186,10 +186,31 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                     MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, stext, xs + 35, ys + 15, Formatting.YELLOW.getColorValue());
                 }
 
+                if (spell.config.charges > 0) {
+                    int charges = data.getCastingData().charges.getOrDefault(spell.config.charge_name, 0);
+
+                    Formatting format = Formatting.GREEN;
+                    String stext = charges + "";
+
+                    if (charges < 1) {
+                        format = Formatting.RED;
+
+                    }
+
+                    GuiUtils.renderScaledText(matrix,
+                        xs + 8, ys + 23, 1.4F, stext, format);
+
+                    //  MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, stext, xs + 5, ys + 20, format.getColorValue());
+
+                }
+
                 String txt = CLOC.translate(KeybindsRegister.getSpellHotbar(place)
                     .getBoundKeyLocalizedText())
                     .toUpperCase(Locale.ROOT);
 
+                if (txt.length() > 3) {
+                    txt = txt.substring(0, 2);
+                }
                 GuiUtils.renderScaledText(matrix,
                     xs + 23, ys + 23, 1.4F, txt, Formatting.GREEN);
 
