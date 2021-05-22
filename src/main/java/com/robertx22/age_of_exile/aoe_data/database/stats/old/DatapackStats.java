@@ -50,11 +50,13 @@ public class DatapackStats implements ISlashRegistryInit {
     public static Stat HP_REGEN_PER_WISDOM = new MoreXPerYOf(Wisdom.INSTANCE, HealthRegen.getInstance(), 10);
     public static Stat HP_PER_DEX = new MoreXPerYOf(Dexterity.INSTANCE, Health.getInstance(), 10);
     public static Stat ARMOR_PER_MANA = new MoreXPerYOf(Mana.getInstance(), Armor.getInstance(), 10);
+    public static Stat PROJ_DMG_PER_STR = new MoreXPerYOf(Strength.INSTANCE, Stats.PROJECTILE_DAMAGE.get(), 10);
 
     @Override
     public void registerAll() {
 
         HEAL_TO_SPELL_DMG.addToSerializables();
+        PROJ_DMG_PER_STR.addToSerializables();
         ARMOR_PER_MANA.addToSerializables();
         ACCURACY_PER_DEX.addToSerializables();
         HP_PER_DEX.addToSerializables();

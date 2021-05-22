@@ -57,6 +57,7 @@ critical_hit
 light_health_leech
 health_on_attack_hit
 song_eff_duration
+chance_of_alacrity_when_hit
 dmg_when_target_near_full_hp
 inc_effect_of_immobilizing_buff_on_you
 faster_projectiles
@@ -253,6 +254,7 @@ dmg_per_curse_on_target
 bonus_exploration_exp
 fire_resist
 triple_drop_chance
+projectile_damage_per_10_strength
 curse_eff_dur_u_cast
 health
 elemental_health_leech

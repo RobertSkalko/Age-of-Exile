@@ -7,6 +7,7 @@ idol
 accuracy
 warpath
 big_eagle
+big_leviatan
 trident_damage
 big_hp_res
 shattering_projectiles
@@ -31,6 +32,7 @@ good_posture
 wand_mastery
 dagger_damage
 tormentor
+rune_arrows
 avatar_of_hope
 all_elemental_damage
 big_steal_vit
@@ -71,6 +73,7 @@ atonement
 light_fire_spell_dmg
 astralwalk
 divine_light
+big_blood_thirst
 rune_circle
 runetech_theory
 impish_smile
@@ -104,6 +107,7 @@ big_breath_of_light
 nature_dom
 confrontation
 dark_resist
+avenger
 mendacity
 spirit_bond
 huge_str
@@ -168,6 +172,7 @@ red_mana_reserved
 infernal_weapons
 all_phys_less_atkspeed
 darkness
+smokescreen
 prism
 going_dark_side
 hammer_smash
@@ -185,6 +190,7 @@ spell_damage
 day_night_dmg
 bow_mastery
 conquerer
+maniac
 scion
 big_rat
 mage
@@ -219,6 +225,7 @@ big_warrior_heart
 bombardment
 trinity
 big_dex
+last_man_standing
 big_elemental_penetration
 anatomical_knowledge
 mantra
@@ -246,6 +253,7 @@ physical_weapon_damage
 scythe_mastery
 spell_fire_damage
 projectile_crit_damage
+shadowskin
 ritual
 ele_hammer_damage
 crit_damage
@@ -262,12 +270,14 @@ beyond_good_and_evil
 nature_penetration
 devastation
 falling_dragon
+riftwalk
 fire_dom
 big_dodge
 dark_light_spell_damage
 big_heal_wis
 thick_hide
 blossom
+predator
 uppercut
 chance_of_frostburn
 big_will_of_mana
@@ -348,6 +358,7 @@ mental_stability
 huge_int
 arcane_meditation
 withdrawal
+missing_page
 more_dualwield_dmg
 chance_of_poison
 mana
@@ -405,6 +416,7 @@ tale_of_ages
 blood_thirst
 potionmaster
 big_poison_alchemy
+ravenger
 lucidity
 precise_preperation
 guild_licence
@@ -423,6 +435,7 @@ big_fighter
 all_attributes
 open_seal
 all_dark_damage
+eyes_wide_open
 slice_and_dice
 faith_armor
 water_dark_spell_dmg

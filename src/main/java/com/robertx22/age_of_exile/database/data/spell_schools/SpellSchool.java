@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.parser.TalentGrid;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 
 import java.util.HashMap;
@@ -68,23 +69,28 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
     @Override
     public boolean isRegistryEntryValid() {
 
-        for (Map.Entry<PointData, String> x : this.calcData.perks.entrySet()) {
-            if (!Database.Perks()
-                .isRegistered(x.getValue())) {
+        if (MMORPG.RUN_DEV_TOOLS) {
+            for (Map.Entry<PointData, String> x : this.calcData.perks.entrySet()) {
+                if (!Database.Perks()
+                    .isRegistered(x.getValue())) {
 
-                String testwitbig = "big_" + x.getValue();
+                    System.out.print("\n Perk of id: " + x.getValue()
+                        .replaceAll("\r", "[NEWLINE]") + " doesn't exist, used in spell school: " + this.identifier + " at point: " + x.getKey()
+                        .toString());
 
-                if (Database.Perks()
-                    .isRegistered(testwitbig)) {
-                    System.out.print("\n" + testwitbig + " is REGISTERED!!!\n");
                 }
-
-                System.out.print("\n Perk of id: " + x.getValue()
-                    .replaceAll("\r", "[NEWLINE]") + " doesn't exist, used in spell school: " + this.identifier + " at point: " + x.getKey()
-                    .toString());
             }
-        }
 
+            Database.Perks()
+                .getFilterWrapped(x -> x.type == Perk.PerkType.SPECIAL).list.forEach(x -> {
+                if (this.calcData.perks.values()
+                    .stream()
+                    .noneMatch(e -> x.GUID()
+                        .equals(e))) {
+                    System.out.print("\n" + x.GUID() + " is registered but not used in the tree \n");
+                }
+            });
+        }
         return true;
     }
 

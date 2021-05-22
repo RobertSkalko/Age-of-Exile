@@ -455,7 +455,8 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_EFFECT_WHEN_HIT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id + "_when_hit", x -> x.element)
         .addAllOfType(Arrays.asList(
-            BeneficialEffects.BLESSING
+            BeneficialEffects.BLESSING,
+            BeneficialEffects.ALACRITY
             )
         )
         .worksWithEvent(DamageEvent.ID)
@@ -590,6 +591,7 @@ public class Stats implements ISlashRegistryInit {
             NegativeEffects.BURN,
             NegativeEffects.POISON,
             NegativeEffects.FROSTBURN,
+            NegativeEffects.BLEED,
             NegativeEffects.BLIND
             )
         )

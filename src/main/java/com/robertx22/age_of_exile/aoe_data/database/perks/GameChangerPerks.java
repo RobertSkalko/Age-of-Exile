@@ -67,6 +67,12 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
          */
 
+        PerkBuilder.gameChanger("mantra", "Mantra",
+            new OptScaleExactStat(3, DatapackStats.PHYS_DMG_PER_MANA),
+            new OptScaleExactStat(-10, Stats.ATTACK_SPEED.get()),
+            new OptScaleExactStat(-25, Stats.CRIT_CHANCE.get(), ModType.FLAT)
+        );
+
         PerkBuilder.gameChanger("celestial_vaults", "Celestial Vaults",
             new OptScaleExactStat(15, new ElementalResist(Elements.Light)),
             new OptScaleExactStat(-15, new ElementalResist(Elements.Dark)),

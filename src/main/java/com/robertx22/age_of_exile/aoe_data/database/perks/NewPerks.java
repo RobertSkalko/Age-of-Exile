@@ -75,12 +75,6 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Stats.ACCURACY.get(), ModType.FLAT)
         );
 
-        PerkBuilder.bigStat("mantra", "Mantra",
-            new OptScaleExactStat(2, DatapackStats.PHYS_DMG_PER_MANA),
-            new OptScaleExactStat(-5, Stats.ATTACK_SPEED.get()),
-            new OptScaleExactStat(-30, Stats.CRIT_CHANCE.get(), ModType.FLAT)
-        );
-
         PerkBuilder.bigStat("no_common_sense", "No Common Sense",
             new OptScaleExactStat(-10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(-10, Stats.ATTACK_SPEED.get()),
@@ -200,7 +194,7 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(2, Stats.SPELL_CRIT_CHANCE.get()),
             new OptScaleExactStat(5, Stats.SPELL_CRIT_DAMAGE.get())
         );
-        PerkBuilder.bigStat("cristal_hands", "Crystal Hands",
+        PerkBuilder.bigStat("crystal_hands", "Crystal Hands",
             new OptScaleExactStat(-10, Stats.EFFECT_OF_BUFFS_ON_YOU_PER_EFFECT_TAG.get(EffectTags.negative)),
             new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(1, new ElementalResist(Elements.Elemental))
@@ -386,7 +380,7 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW))
         );
 
-        PerkBuilder.bigStat("runed_geode", "Runed Geode",
+        PerkBuilder.bigStat("rune_geode", "Runed Geode",
             new OptScaleExactStat(10, Stats.AREA_DAMAGE.get()),
             new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get())
         );
@@ -612,11 +606,6 @@ public class NewPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("sun_essence", "Sun Essence",
             new OptScaleExactStat(10, Stats.HEAL_STRENGTH.get()),
             new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
-        );
-
-        PerkBuilder.bigStat("astralwalk", "Astral Walk",
-            new OptScaleExactStat(10, Wisdom.INSTANCE),
-            new OptScaleExactStat(3, DatapackStats.MOVE_SPEED)
         );
 
         PerkBuilder.bigStat("moon_essence", "Moon Essence",
@@ -999,7 +988,12 @@ public class NewPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("withdrawal", "Withdrawal",
             new OptScaleExactStat(10, Stats.CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG.get(NegativeEffects.POISON))
         );
-
+        PerkBuilder.bigStat("predator", "Predator",
+            new OptScaleExactStat(10, Stats.CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG.get(NegativeEffects.BLEED))
+        );
+        PerkBuilder.bigStat("maniac", "Maniac",
+            new OptScaleExactStat(10, Stats.CHANCE_OF_EFFECT_WHEN_HIT.get(BeneficialEffects.ALACRITY))
+        );
         PerkBuilder.bigStat("forced_alliance", "Forced Alliance",
             new OptScaleExactStat(5, Stats.CAST_SPEED.get()),
             new OptScaleExactStat(100, Mana.getInstance()),

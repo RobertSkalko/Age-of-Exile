@@ -40,6 +40,11 @@ public class StatEffects implements ISlashRegistryInit {
     );
     public static DataHolder<EffectCtx, StatEffect> REMOVE_EFFECT_FROM_TARGET = new DataHolder<>(
         Arrays.asList(
+            NegativeEffects.BURN,
+            NegativeEffects.POISON,
+            NegativeEffects.FROSTBURN,
+            NegativeEffects.BLEED,
+            NegativeEffects.BLIND
         ),
         x -> new RemoveExileEffectAction(x.effectId, EffectSides.Source)
     );
@@ -79,6 +84,7 @@ public class StatEffects implements ISlashRegistryInit {
             NegativeEffects.SLOW,
             NegativeEffects.STUN,
             BeneficialEffects.BLESSING,
+            BeneficialEffects.ALACRITY,
             NegativeEffects.FROSTBURN,
             NegativeEffects.BLEED,
             NegativeEffects.POISON,
