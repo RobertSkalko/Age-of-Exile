@@ -70,12 +70,20 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
 
             if (entity instanceof PlayerEntity) {
 
+                PortalBlockEntity be = (PortalBlockEntity) world.getBlockEntity(pos);
+
+                if (!be.restrictedToPlayer.isEmpty()) {
+                    if (!be.restrictedToPlayer.equals(entity.getUuidAsString())) {
+                        return; // only allow 1 player in solo maps
+                    }
+                }
+
+                PlayerMapsCap maps = Load.playerMaps((PlayerEntity) entity);
+
                 entity.teleporting = true;
 
                 if (entity instanceof ServerPlayerEntity) {
                     if (!entity.hasVehicle() && !entity.hasPassengers() && entity.canUsePortals()) {
-
-                        PlayerMapsCap maps = Load.playerMaps((PlayerEntity) entity);
 
                         if (maps.ticksinPortal < 40) {
                             maps.ticksinPortal++;
@@ -83,8 +91,6 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
 
                             PlayerTeleStateAccessor acc = (PlayerTeleStateAccessor) entity;
                             acc.setIsInTeleportationState(true);
-
-                            PortalBlockEntity be = (PortalBlockEntity) world.getBlockEntity(pos);
 
                             if (be.dungeonPos == BlockPos.ORIGIN) {
                                 return;

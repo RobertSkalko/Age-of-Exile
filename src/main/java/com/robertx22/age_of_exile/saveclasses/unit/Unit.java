@@ -230,6 +230,8 @@ public class Unit {
     private void calcSets(List<GearData> gears) {
         sets.clear();
 
+        List<String> setUniqueids = new ArrayList<>();
+
         // todo possibly cache it?
         gears.forEach(x -> {
             if (x.gear != null) {
@@ -237,12 +239,14 @@ public class Unit {
                     UniqueGear uniq = x.gear.uniqueStats.getUnique(x.gear);
                     if (uniq != null) {
                         if (uniq.hasSet()) {
-                            GearSet set = uniq.getSet();
-                            String key = set
-                                .GUID();
-                            int current = sets.getOrDefault(key, 0);
-                            sets.put(key, current + 1);
-
+                            if (!setUniqueids.contains(uniq.GUID())) {
+                                setUniqueids.add(uniq.GUID());
+                                GearSet set = uniq.getSet();
+                                String key = set
+                                    .GUID();
+                                int current = sets.getOrDefault(key, 0);
+                                sets.put(key, current + 1);
+                            }
                         }
                     }
                 }

@@ -320,16 +320,6 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.PETRIFY.effectId, 15D, 3D, 20 * 5D))
             .build();
 
-        SpellBuilder.of("fire_bombs", SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Fire Bombs",
-            Arrays.asList(SpellTag.area, SpellTag.damage))
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.COAL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 80D, true)))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 45D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculation.base("fire_bombs", 9), Elements.Fire, 2D))
-            .build();
-
         SpellBuilder.of("levitation", SpellConfiguration.Builder.instant(1, 1)
                 .setScaleManaToPlayer(), "Levitation",
             Arrays.asList(SpellTag.projectile, SpellTag.damage))

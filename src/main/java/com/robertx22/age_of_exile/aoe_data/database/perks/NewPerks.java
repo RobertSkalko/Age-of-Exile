@@ -210,6 +210,16 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(5, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack)))
         );
 
+        PerkBuilder.bigStat("pack_leader", "Pack Leader",
+            new OptScaleExactStat(10, Stats.REDUCED_MANA_RESERVED.get()),
+            new OptScaleExactStat(10, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.positive)),
+            new OptScaleExactStat(5, DatapackStats.MOVE_SPEED)
+        );
+
+        PerkBuilder.bigStat("spellweaver", "Curse Weaver",
+            new OptScaleExactStat(10, Stats.EFFECT_DURATION_YOU_CAST_PER_TAG.get(EffectTags.curse)),
+            new OptScaleExactStat(10, Stats.EFFECT_DURATION_YOU_CAST_PER_TAG.get(EffectTags.negative))
+        );
         PerkBuilder.bigStat("shattering_projectiles", "Shattering Projectiles",
             new OptScaleExactStat(10, Stats.PROJECTILE_DAMAGE.get()),
             new OptScaleExactStat(10, Stats.PROJECTILE_SPEED.get())

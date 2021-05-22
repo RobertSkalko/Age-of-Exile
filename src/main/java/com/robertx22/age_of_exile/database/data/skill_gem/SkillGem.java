@@ -23,6 +23,7 @@ public class SkillGem implements ISerializedRegistryEntry<SkillGem>, IAutoGson<S
     public float mana_multi = 1;
 
     public String spell_id = "";
+    public int weight = 1000;
 
     public SkillGemType type = SkillGemType.SKILL_GEM;
 
@@ -35,6 +36,11 @@ public class SkillGem implements ISerializedRegistryEntry<SkillGem>, IAutoGson<S
     public List<SpellTag> tags = new ArrayList<>();
 
     public transient String locname = "";
+
+    @Override
+    public int Weight() {
+        return weight;
+    }
 
     public List<ExactStatData> getConstantStats(SkillGemData data) {
         int perc = (int) (100 * LevelUtils.getMaxLevelMultiplier(data.lvl));

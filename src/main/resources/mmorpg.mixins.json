@@ -29,6 +29,7 @@
     "ClientRecipeBookMixin",
     "InGameHudMixin",
     "ItemGlintMixin",
+    "ItemRendererMixin",
     "ItemStackMixin",
     "MinecraftClientMixin",
     "MobNameTagMixin",

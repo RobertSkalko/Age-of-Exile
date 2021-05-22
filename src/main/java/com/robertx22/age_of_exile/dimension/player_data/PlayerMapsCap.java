@@ -168,6 +168,9 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
                     be.dungeonPos = tpPos;
                     be.tpbackpos = teleporterPos.up();
+                    if (!isteam) {
+                        be.restrictedToPlayer = player.getUuidAsString();
+                    }
                 }
             }
 

@@ -55,6 +55,7 @@ big_frog
 health_mana
 big_dodge_health
 big_vampire
+spellweaver
 mana_regen_increased_healing
 gathering_storm
 all_all_damage
@@ -133,6 +134,7 @@ staff_mastery
 astral_walk
 elemental_penetration_damage_shield
 dark_weapon_damage
+crystal_hands
 ele_sword_damage
 elemental_penetration
 big_heart_of_water
@@ -152,6 +154,7 @@ rusty_weapons
 tinker
 chance_of_burn
 big_fury
+pack_leader
 agi
 bone_plating
 sandtomb
@@ -536,6 +539,7 @@ water_fire_spell_dmg
 big_primal
 blade_dance
 dark_focus
+rune_geode
 duelist
 battle_mage
 ele_hammer_damage_more_armor

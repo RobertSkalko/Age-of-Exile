@@ -88,6 +88,7 @@ public class GameChangerPerks implements ISlashRegistryInit {
         );
 
         PerkBuilder.gameChanger("zealot", "Zealot",
+            new OptScaleExactStat(-25, Stats.HEAL_STRENGTH.get()),
             new OptScaleExactStat(25, Stats.CHANCE_TO_GIVE_EFFECT_WHEN_HEALING_ON_SELF.get(BeneficialEffects.ZEAL))
         );
         PerkBuilder.gameChanger("sniper", "Sniper",

@@ -42,6 +42,7 @@ public class SkillGemBuilder {
     public static SkillGem spell(Spell spell, String id, String locname, StatAttribute attri, float manaMulti) {
         SkillGem gem = new SkillGem();
 
+        gem.weight = spell.weight;
         gem.identifier = id;
         gem.spell_id = spell.GUID();
         gem.locname = locname;
@@ -49,6 +50,7 @@ public class SkillGemBuilder {
         gem.stats = Arrays.asList();
         gem.type = SkillGemType.SKILL_GEM;
         gem.attribute = attri;
+
         gem.tags = spell.config.tags;
 
         StatRequirement req = new StatRequirement();

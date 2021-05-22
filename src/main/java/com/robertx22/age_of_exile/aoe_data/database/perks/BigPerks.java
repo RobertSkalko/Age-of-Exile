@@ -33,7 +33,7 @@ public class BigPerks implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        PerkBuilder.bigStat("big_int", "Intelligent", new OptScaleExactStat(5, Intelligence.INSTANCE, ModType.FLAT));
+        PerkBuilder.bigStat("big_int", "Smart", new OptScaleExactStat(5, Intelligence.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("big_dex", "Dexterous", new OptScaleExactStat(5, Dexterity.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("big_str", "Strong", new OptScaleExactStat(5, Strength.INSTANCE, ModType.FLAT));
         PerkBuilder.bigStat("big_wis", "Wise", new OptScaleExactStat(5, Wisdom.INSTANCE, ModType.FLAT));

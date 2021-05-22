@@ -19,8 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(HandledScreen.class)
 public class ItemGlintMixin {
 
-    @Inject(method = "drawSlot(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/screen/slot/Slot;)V", at = @At(value = "HEAD"),
-        cancellable = true)
+    @Inject(method = "drawSlot(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/screen/slot/Slot;)V", at = @At(value = "HEAD"))
     private void drawMyGlint(MatrixStack matrices, Slot slot, CallbackInfo ci) {
 
         try {
@@ -28,31 +27,6 @@ public class ItemGlintMixin {
 
             if (ModConfig.get().client.RENDER_ITEM_RARITY_BACKGROUND) {
                 ItemStack stack = slot.getStack();
-
-                /*
-                SkillGemData gem = SkillGemData.fromStack(stack);
-
-                if (gem != null) {
-                    String spellid = gem.getSkillGem().spell_id;
-
-                    if (Database.Spells()
-                        .isRegistered(spellid)) {
-
-                        Spell spell = Database.Spells()
-                            .get(spellid);
-
-                        RenderSystem.enableBlend();
-                        RenderSystem.color4f(1.0F, 1.0F, 1.0F, ModConfig.get().client.ITEM_RARITY_OPACITY); // transparency
-
-                        MinecraftClient.getInstance()
-                            .getTextureManager()
-                            .bindTexture(spell.getIconLoc());
-
-                        screen.drawTexture(matrices, slot.x, slot.y, 0, 0, 16, 16, 16, 16);
-                        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1F);
-                        RenderSystem.disableBlend();
-                    }
-                } */
 
                 if (Gear.has(stack)) {
 
