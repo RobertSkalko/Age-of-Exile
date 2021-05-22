@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
-import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
@@ -318,57 +317,6 @@ public class IntSpells implements ISlashRegistryInit {
             Arrays.asList(SpellTag.area))
             .onCast(PartBuilder.playSound(SOUNDS.STONE_CRACK, 1D, 1D))
             .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.PETRIFY.effectId, 15D, 3D, 20 * 5D))
-            .build();
-
-        SpellBuilder.of("levitation", SpellConfiguration.Builder.instant(1, 1)
-                .setScaleManaToPlayer(), "Levitation",
-            Arrays.asList(SpellTag.projectile, SpellTag.damage))
-            .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_SMOKER_SMOKE, 1D, 1D))
-
-            .onCast(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, 0.3D, ParticleMotion.Upwards))
-                .addTarget(TargetSelector.CASTER.create()))
-
-            .onCast(PartBuilder.particleOnTick(1D, ParticleTypes.SOUL, 5D, 0.5D))
-            .onCast(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 5D, 0.5D))
-            .build();
-
-        SpellBuilder.of("banish", SpellConfiguration.Builder.instant(10, 20 * 45)
-            .setScaleManaToPlayer(), "Banish", Arrays.asList())
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)
-                .put(MapField.ENTITY_NAME, "block")
-                .put(MapField.BLOCK_FALL_SPEED, 0D)
-                .put(MapField.FIND_NEAREST_SURFACE, false)
-                .put(MapField.IS_BLOCK_FALLING, false)))
-
-            .onTick("block", PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, 0.1D, ParticleMotion.Upwards))
-                .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
-
-            .onTick("block", PartBuilder.playSound(SoundEvents.BLOCK_SOUL_SOIL_HIT, 0.5D, 1D)
-                .addCondition(EffectCondition.EVERY_X_TICKS.create(40D)))
-            .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.SOUL_FIRE_FLAME, 15D, 3D, 0.5D)
-                .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
-            .build();
-
-        SpellBuilder.of("jump_field", SpellConfiguration.Builder.instant(10, 20 * 45)
-            .setScaleManaToPlayer(), "Jump Field", Arrays.asList())
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)
-                .put(MapField.ENTITY_NAME, "block")
-                .put(MapField.BLOCK_FALL_SPEED, 0D)
-                .put(MapField.FIND_NEAREST_SURFACE, false)
-                .put(MapField.IS_BLOCK_FALLING, false)))
-
-            .onTick("block", PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, 2D, ParticleMotion.Upwards))
-                .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies))
-            )
-            .onTick("block", PartBuilder.playSound(SoundEvents.BLOCK_SOUL_SOIL_HIT, 0.5D, 1D)
-                .addCondition(EffectCondition.EVERY_X_TICKS.create(40D)))
-            .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 15D, 3D, 0.5D)
-                .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
             .build();
 
     }

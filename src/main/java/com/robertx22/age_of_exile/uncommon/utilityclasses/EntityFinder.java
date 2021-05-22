@@ -3,16 +3,13 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 public class EntityFinder {
 
@@ -22,10 +19,6 @@ public class EntityFinder {
             return tame.isTamed();
         }
         return false;
-    }
-
-    public static boolean isPlayer(Entity en) {
-        return en instanceof PlayerEntity;
     }
 
     public enum SelectionType {
@@ -135,8 +128,6 @@ public class EntityFinder {
         double vertical = 1;
         boolean addTestParticles = false;
 
-        List<Predicate<T>> predicates = new ArrayList();
-
         double distanceToSearch = 10;
 
         public Setup(LivingEntity caster, Class<T> entityType, Vec3d pos) {
@@ -145,10 +136,6 @@ public class EntityFinder {
             this.caster = caster;
             this.world = caster.world;
             this.pos = pos;
-        }
-
-        public boolean isCasterPlayer() {
-            return caster instanceof PlayerEntity;
         }
 
         public List<T> build() {
@@ -161,10 +148,6 @@ public class EntityFinder {
 
             list.removeIf(x -> x == null);
 
-            for (Predicate<T> predicate : predicates) {
-                list.removeIf(y -> !predicate.test(y));
-            }
-
             list = this.entityPredicate.getMatchingEntities(list, this.caster);
 
             if (forceExcludeCaster || !entityPredicate.includesCaster()) {
@@ -175,11 +158,6 @@ public class EntityFinder {
 
             return list;
 
-        }
-
-        public Setup<T> addPredicate(Predicate<T> p) {
-            this.predicates.add(p);
-            return this;
         }
 
         public Setup<T> finder(SelectionType f) {

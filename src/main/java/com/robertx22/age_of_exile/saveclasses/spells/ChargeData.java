@@ -40,6 +40,10 @@ public class ChargeData {
 
     public void onTicks(PlayerEntity player, int ticks) {
 
+        if (player.world.isClient) {
+            return;
+        }
+
         EntitySpellCap.ISpellsCap sdata = Load.spells(player);
 
         List<String> chargesadded = new ArrayList<>(); // no duplicate charge regen
@@ -65,7 +69,11 @@ public class ChargeData {
                             if (charge_regen.get(id) >= s.config.charge_regen) {
                                 charge_regen.put(id, 0);
                                 addCharge(id, s);
+
+                                Load.spells(player)
+                                    .syncToClient(player);
                             }
+
                         }
 
                     }

@@ -586,7 +586,7 @@ public class Stats implements ISlashRegistryInit {
         .build();
 
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_of_" + x.id, x -> x.element)
+        .<EffectCtx>of(x -> "chance_of_spend_" + x.id + "_for_double_dmg", x -> x.element)
         .addAllOfType(Arrays.asList(
             NegativeEffects.BURN,
             NegativeEffects.POISON,

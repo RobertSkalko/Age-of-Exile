@@ -85,11 +85,13 @@ public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen,
 
         this.addButton(new RaceSelectScreen.LeftRightButton(this, x - 30, y + LoadoutButton.ySize / 2, true));
 
+        int num = 1;
+
         for (int i = index; i < index + slots; i++) {
 
             OneLoadoutData data = cap.data.loadouts.get(i);
 
-            this.addButton(new LoadoutButton(data, x, y));
+            this.addButton(new LoadoutButton(data, x, y, num++));
 
             if (data != null) {
 
@@ -97,10 +99,10 @@ public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen,
                 PlayerEntity player = client.interactionManager.createPlayer(client.world, new StatHandler(), new ClientRecipeBook());
                 data.load(player);
 
-                addButton(new PlayerGearButton(player, this, x + LoadoutButton.xSize / 2 - PlayerGearButton.xSize / 2, y + 30));
+                addButton(new PlayerGearButton(player, this, x + LoadoutButton.xSize / 2 - PlayerGearButton.xSize / 2, y + 40));
             }  // create new player so it can be rendered
 
-            this.addButton(new Button(this, i, LoadoutSelectPackets.Action.LOAD, cap.data.loadouts.get(i), x + LoadoutButton.xSize / 2 - Button.xSize / 2, y + LoadoutButton.ySize - 5 - Button.ySize + 35));
+            this.addButton(new CreateOrLoadButton(this, i, LoadoutSelectPackets.Action.LOAD, cap.data.loadouts.get(i), x + LoadoutButton.xSize / 2 - CreateOrLoadButton.xSize / 2, y + LoadoutButton.ySize - 5 - CreateOrLoadButton.ySize + 35));
 
             x += 5 + LoadoutButton.xSize;
 
@@ -129,11 +131,13 @@ public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen,
 
         static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/char_select/background.png");
         boolean noLoadout = false;
+        public int number = 1;
         OneLoadoutData data;
 
-        public LoadoutButton(@Nullable OneLoadoutData data, int xPos, int yPos) {
+        public LoadoutButton(@Nullable OneLoadoutData data, int xPos, int yPos, int number) {
             super(xPos, yPos, xSize, ySize, 0, 0, 0, buttonLoc, (button) -> {
             });
+            this.number = number;
             this.data = data;
 
             if (data == null) {
@@ -147,19 +151,17 @@ public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen,
             super.renderButton(matrix, x, y, ticks);
 
             if (noLoadout) {
-
                 GuiUtils.renderScaledText(matrix, this.x + LoadoutButton.xSize / 2, this.y + 30, 1, "Empty Loadout Slot", Formatting.YELLOW);
 
             } else {
-
-                //GuiUtils.renderScaledText(matrix, this.x + CharButton.xSize / 2, this.y + 20, 1, "Level " + data.lvl, Formatting.YELLOW);
+                GuiUtils.renderScaledText(matrix, this.x + LoadoutButton.xSize / 2, this.y + 30, 1, "Number " + number, Formatting.YELLOW);
 
             }
 
         }
     }
 
-    static class Button extends TexturedButtonWidget {
+    static class CreateOrLoadButton extends TexturedButtonWidget {
 
         public static int xSize = 112;
         public static int ySize = 20;
@@ -170,7 +172,7 @@ public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen,
         int num;
         LoadoutSelectPackets.Action action;
 
-        public Button(Screen screen, int loadoutNum, LoadoutSelectPackets.Action action, @Nullable OneLoadoutData data, int xPos, int yPos) {
+        public CreateOrLoadButton(Screen screen, int loadoutNum, LoadoutSelectPackets.Action action, @Nullable OneLoadoutData data, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, 0, buttonLoc, (button) -> {
                 Packets.sendToServer(new LoadoutSelectPackets(loadoutNum, action));
                 screen.onClose();

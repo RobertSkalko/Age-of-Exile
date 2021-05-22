@@ -318,6 +318,13 @@ public class PartBuilder {
         return c;
     }
 
+    public static ComponentPart giveEffectToAlliesInRadius(StatusEffect effect, Double dura, Double radius) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.POTION.createGive(effect, dura));
+        c.targets.add(BaseTargetSelector.AOE.alliesInRadius(radius));
+        return c;
+    }
+
     public static ComponentPart giveShieldInRadius(Double radius, ValueCalculation calc, double duration) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.GIVE_SHIELD.create(calc, duration));

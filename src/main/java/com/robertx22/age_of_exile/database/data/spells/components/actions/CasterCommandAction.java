@@ -38,6 +38,11 @@ public class CasterCommandAction extends SpellAction {
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
         try {
+
+            if (ctx.world.isClient) {
+                return;
+            }
+
             String command = data.get(COMMAND);
 
             Entity entity = ctx.caster;

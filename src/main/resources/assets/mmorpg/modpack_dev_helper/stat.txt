@@ -127,6 +127,7 @@ inc_effect_of_negative_buff_given
 all_dot_damage
 dark_vuln_crit
 max_fire_resist
+chance_of_spend_bleed_for_double_dmg
 curse_spell_dmg
 more_food_stats
 chance_of_alacrity_on_spell_hit
@@ -218,7 +219,9 @@ bonus_mining_exp
 water_mana_leech
 intelligence
 song_spell_dmg
+chance_of_spend_poison_for_double_dmg
 spear_damage
+chance_of_spend_frostburn_for_double_dmg
 song_eff_dur_u_cast
 day_night_dmg
 spell_damage
@@ -296,6 +299,7 @@ mana_cost
 inc_effect_of_song_buff_on_you
 dodge_to_nature_damage
 max_light_resist
+chance_of_spend_burn_for_double_dmg
 chance_of_poison_when_hit
 ele_trident_damage
 physical_weapon_damage
@@ -345,6 +349,7 @@ chance_to_get_mark_on_kill
 armor_per_10_mana
 curse_cdr
 arrow_spell_dmg
+chance_of_spend_blind_for_double_dmg
 chance_of_frostburn
 max_elemental_resist
 double_drop_chance

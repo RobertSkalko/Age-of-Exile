@@ -10,10 +10,7 @@ import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
 import com.robertx22.library_of_exile.components.EntityInfoComponent;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
@@ -86,8 +83,10 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
                     }
 
                     if (WorldUtils.isDungeonWorld(mobKilled.world)) {
-                        SingleDungeonData dungeon = Load.dungeonData(mobKilled.world).data.get(mobKilled.getBlockPos());
-                        dungeon.quest.increaseProgressBy(player, 1, dungeon);
+                        if (EntityTypeUtils.isMob(mobKilled)) {
+                            SingleDungeonData dungeon = Load.dungeonData(mobKilled.world).data.get(mobKilled.getBlockPos());
+                            dungeon.quest.increaseProgressBy(player, 1, dungeon);
+                        }
                     }
 
                 }

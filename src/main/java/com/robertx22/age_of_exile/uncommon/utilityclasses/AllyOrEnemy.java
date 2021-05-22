@@ -17,7 +17,7 @@ public enum AllyOrEnemy {
 
         @Override
         public boolean is(LivingEntity caster, LivingEntity target) {
-            return !enemies.is(caster, target);
+            return enemies.is(caster, target) == false;
         }
 
         @Override
@@ -37,7 +37,11 @@ public enum AllyOrEnemy {
                     if (target == caster) {
                         return false;
                     }
-                    return !TeamUtils.areOnSameTeam((PlayerEntity) caster, (PlayerEntity) target);
+                    if (TeamUtils.areOnSameTeam((PlayerEntity) caster, (PlayerEntity) target)) {
+                        return false;
+                    } else {
+                        return true;
+                    }
                 }
             } else {
                 if (target instanceof PlayerEntity) {

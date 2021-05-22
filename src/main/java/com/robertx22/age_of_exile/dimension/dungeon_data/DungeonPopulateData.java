@@ -62,10 +62,10 @@ public class DungeonPopulateData {
         if (!toPopulate.isEmpty()) {
             ticks++;
 
-            int neededTicks = 2;
+            int neededTicks = 3;
 
             if (populated.size() < 10) {
-                neededTicks = 0; // populate fast the first parts only
+                neededTicks = 1; // populate fast the first parts only
             }
 
             if (ticks > neededTicks) {
@@ -78,7 +78,7 @@ public class DungeonPopulateData {
 
                     this.donePop = true;
 
-                    int kills = (int) (mobs * 0.6F);
+                    int kills = (int) (mobs * 0.5F);
                     data.quest.target = kills;
 
                     System.out.print("dungeon done populating");

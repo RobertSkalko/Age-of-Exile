@@ -17,6 +17,7 @@ conjure_ender_chest
 poison_trap
 soul_harvest
 jump_field
+night_vision
 fire_breath
 shout_warn
 curse_of_weak
@@ -34,6 +35,7 @@ hp_reg_aura
 lava_sphere
 tidal_strike
 song_of_vigor
+dash
 recoil_shot
 taunt_stance
 thirst_strike
@@ -48,6 +50,7 @@ rejuv_totem
 test_spell
 fireball
 levitation
+water_breath
 explosive_arrow
 charge
 heart_of_ice

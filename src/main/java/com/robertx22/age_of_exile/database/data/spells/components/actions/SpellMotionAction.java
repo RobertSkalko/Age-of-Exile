@@ -46,7 +46,7 @@ public class SpellMotionAction extends SpellAction {
                 }
             }
 
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

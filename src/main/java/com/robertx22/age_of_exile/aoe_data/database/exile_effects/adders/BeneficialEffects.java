@@ -49,9 +49,9 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx ANGER = new EffectCtx("anger", "Anger", 7, Elements.Physical, EffectType.beneficial);
     public static EffectCtx DIVINE_SHIELD = new EffectCtx("divine_shield", "Divine Shield", 8, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx POISON_WEAPONS = new EffectCtx("poison_weapons", "Poison Wep", 9, Elements.Nature, EffectType.beneficial);
-    public static EffectCtx BLESSING = new EffectCtx("blessing", "Blessing", 10, Elements.Elemental, EffectType.beneficial);
+    public static EffectCtx BLESSING = new EffectCtx("blessing", "Azuna's Blessing", 10, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx GATHER_STORM = new EffectCtx("gather_storm", "Gather Storm", 11, Elements.Elemental, EffectType.beneficial);
-    public static EffectCtx MARK = new EffectCtx("mark", "Mark", 12, Elements.Elemental, EffectType.beneficial);
+    public static EffectCtx MARK = new EffectCtx("mark", "Mark of Zadal", 12, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx BLADE_DANCE = new EffectCtx("blade_dance", "Blade Dance", 13, Elements.Physical, EffectType.beneficial);
     public static EffectCtx FROST_ARMOR = new EffectCtx("frost_armor", "Frost Armor", 14, Elements.Water, EffectType.beneficial);
     public static EffectCtx VOID_EYE = new EffectCtx("void_eye", "Void Eye", 15, Elements.Dark, EffectType.beneficial);
@@ -172,11 +172,14 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
             .build();
 
-        ExileEffectBuilder.of(BLESSING) // TODO
+        ExileEffectBuilder.of(BLESSING)
+            .stat(-3, Stats.DAMAGE_RECEIVED.get(), ModType.FLAT)
+            .stat(5, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
             .maxStacks(5)
             .build();
 
-        ExileEffectBuilder.of(MARK)// TODO
+        ExileEffectBuilder.of(MARK)
+            .stat(5, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
             .maxStacks(5)
             .build();
 

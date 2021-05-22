@@ -74,10 +74,15 @@ public class AoeSelector extends BaseTargetSelector implements ICTextTooltip {
             .height(data.getOrDefault(HEIGHT, radius))
             .radius(radius);
 
-        return finder.build()
-            .stream()
-            .filter(x -> RandomUtils.roll(chance))
-            .collect(Collectors.toList());
+        if (chance < 100) {
+            return finder.build()
+                .stream()
+                .filter(x -> RandomUtils.roll(chance))
+                .collect(Collectors.toList());
+        } else {
+            return finder.build();
+        }
+
     }
 
     public MapHolder enemiesInRadius(Double radius) {

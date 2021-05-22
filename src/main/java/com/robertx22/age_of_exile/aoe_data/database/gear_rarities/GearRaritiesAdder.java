@@ -155,7 +155,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         fabled.essence_per_sal = new MinMax(10, 15);
         fabled.setFabledFields();
         fabled.addToSerializables();
-        fabled.special_spawn_chance = 0.1F;
+        fabled.special_spawn_chance = 0.02F;
         fabled.announce_in_chat = true;
         fabled.is_unique_item = true;
 

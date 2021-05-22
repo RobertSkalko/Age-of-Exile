@@ -312,10 +312,12 @@ public class DamageEvent extends EffectEvent {
                 }
             }
 
-            target.timeUntilRegen = 0; // disable iframes hopefully
+            if (target instanceof PlayerEntity == false) {
+                target.timeUntilRegen = 0; // disable iframes hopefully
+                target.hurtTime = 0;
+            }
 
             int time = target.hurtTime;
-            target.hurtTime = 0;
 
             if (this.data.isSpellEffect()) {
                 if (!data.getBoolean(EventData.DISABLE_KNOCKBACK) && dmg > 0 && !data.isDodged()) {
@@ -354,8 +356,9 @@ public class DamageEvent extends EffectEvent {
                 attri.removeModifier(NO_KNOCKBACK);
             }
 
-            target.hurtTime = time;
-
+            if (target instanceof PlayerEntity == false) {
+                target.hurtTime = time;
+            }
         }
 
         if (this.target.isDead()) {
