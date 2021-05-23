@@ -6,15 +6,16 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
+import com.robertx22.age_of_exile.dimension.delve_gen.DelveGrid;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.QuestProgression;
 import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
-import com.robertx22.age_of_exile.dimension.teleporter.MapsData;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
@@ -47,19 +48,17 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     PlayerEntity player;
 
-    public MapsData mapsData = new MapsData();
+    public MapsData data = new MapsData();
 
     public int ticksinPortal = 0;
     public int highestTierDone = 0;
-
-    public MapsPathingData data = new MapsPathingData();
 
     public PlayerMapsCap(PlayerEntity player) {
         this.player = player;
     }
 
     public void onDungeonCompletedAdvanceProgress() {
-        data.floor++;
+
     }
 
     public static Block TELEPORT_TO_PLACEHOLDER_BLOCK = Blocks.PLAYER_HEAD;
@@ -85,7 +84,10 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             Watch first = new Watch();
 
-            ImmutablePair<Integer, DungeonData> pair = getDungeonFromUUID(uuid);
+            ImmutablePair<PointData, DungeonData> pair = getDungeonFromUUID(uuid);
+
+            this.data.started.add(pair.left);
+            this.data.point_pos = pair.left;
 
             this.data.tel_pos = teleporterPos;
 
@@ -196,16 +198,11 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     }
 
-    public ImmutablePair<Integer, DungeonData> getDungeonFromUUID(String uuid) {
+    public ImmutablePair<PointData, DungeonData> getDungeonFromUUID(String uuid) {
 
-        for (Map.Entry<Integer, List<DungeonData>> x : mapsData.dungeonsByFloors.entrySet()) {
-            Optional<DungeonData> opt = x.getValue()
-                .stream()
-                .filter(e -> e.uuid.equals(uuid))
-                .findAny();
-
-            if (opt.isPresent()) {
-                return ImmutablePair.of(x.getKey(), opt.get());
+        for (Map.Entry<PointData, DungeonData> x : data.dungeon_datas.entrySet()) {
+            if (x.getValue().uuid.equals(uuid)) {
+                return ImmutablePair.of(x.getKey(), x.getValue());
             }
         }
         return null;
@@ -213,8 +210,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     @Override
     public CompoundTag toTag(CompoundTag nbt) {
-        LoadSave.Save(mapsData, nbt, LOC);
-        LoadSave.Save(data, nbt, "path");
+        LoadSave.Save(data, nbt, LOC);
         nbt.putInt("t", ticksinPortal);
         nbt.putInt("h", highestTierDone);
         return nbt;
@@ -224,39 +220,15 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     public void fromTag(CompoundTag nbt) {
         this.ticksinPortal = nbt.getInt("t");
         this.highestTierDone = nbt.getInt("h");
-        this.mapsData = LoadSave.Load(MapsData.class, new MapsData(), nbt, LOC);
-        this.data = LoadSave.Load(MapsPathingData.class, new MapsPathingData(), nbt, "path");
-
+        this.data = LoadSave.Load(MapsData.class, new MapsData(), nbt, LOC);
         if (data == null) {
-            data = new MapsPathingData();
-        }
-        if (mapsData == null) {
-            mapsData = new MapsData();
+            data = new MapsData();
         }
     }
 
     public boolean isLockedToPlayer(DungeonData dungeon) {
 
-        Optional<Map.Entry<Integer, List<DungeonData>>> opt = this.mapsData.dungeonsByFloors.entrySet()
-            .stream()
-            .filter(x -> x.getValue()
-                .stream()
-                .anyMatch(e -> e.uuid.equals(dungeon.uuid)))
-            .findFirst();
-
-        if (opt.isPresent()) {
-
-            int floor = opt.get()
-                .getKey();
-
-            if (floor != this.data.floor) {
-                return true;
-            }
-
-            return false;
-
-        }
-        return true;
+        return false; // todo
 
     }
 
@@ -265,14 +237,13 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         return PlayerCaps.MAPS;
     }
 
-    public boolean canStart(DungeonData data) {
+    public boolean canStart(PointData point, DungeonData data) {
 
-        if (isLockedToPlayer(data)) {
+        if (this.data.started.contains(point)) {
             return false;
         }
 
-        if (this.data.entered.stream()
-            .anyMatch(e -> e.uuid.equals(data.uuid))) {
+        if (isLockedToPlayer(data)) {
             return false;
         }
 
@@ -280,55 +251,46 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     }
 
-    public void initRandomMap(DungeonKeyItem key, int tier) {
+    public void initRandomDelveCave(DungeonKeyItem key, int tier) {
 
-        data = new MapsPathingData();
+        this.data = new MapsData();
+        data.isEmpty = false;
+        data.grid.randomize();
 
-        this.mapsData = new MapsData();
+        int dungeonTier = tier;
+        if (dungeonTier > ITiered.getMaxTier()) {
+            dungeonTier = ITiered.getMaxTier();
+        }
 
-        mapsData.isEmpty = false;
+        for (int x = 0; x < data.grid.grid.length; x++) {
+            for (int y = 0; y < data.grid.grid.length; y++) {
+                if (data.grid.grid[x][y].equals(DelveGrid.DUNGEON)) {
 
-        int floors = RandomUtils.RandomRange(5, 5);
+                    DungeonData dun = new DungeonData();
 
-        for (int floor = 0; floor < floors; floor++) {
+                    dun.lv = Load.Unit(player)
+                        .getLevel();
+                    if (dun.lv > key.tier.levelRange.getMaxLevel()) {
+                        dun.lv = key.tier.levelRange.getMaxLevel();
+                    }
 
-            int perFloor = RandomUtils.RandomRange(1, 3);
+                    dun.t = dungeonTier;
+                    dun.mobs = Database.DungeonMobLists()
+                        .random()
+                        .GUID();
+                    dun.uuid = UUID.randomUUID()
+                        .toString();
+                    dun.uniq.randomize(dungeonTier);
+                    dun.af.randomize(dungeonTier);
 
-            for (int d = 0; d < perFloor; d++) {
+                    this.data.dungeon_datas.put(new PointData(x, y), dun);
 
-                boolean isEndOfMap = floor == 4;
+                    this.data.point_pos = new PointData(x, y);
+                    this.data.start_pos = new PointData(x, y);
 
-                List<DungeonData> list = mapsData.dungeonsByFloors.getOrDefault(floor, new ArrayList<>());
-
-                DungeonData dun = new DungeonData();
-
-                int dungeonTier = floor + tier;
-
-                if (dungeonTier > ITiered.getMaxTier()) {
-                    dungeonTier = ITiered.getMaxTier();
                 }
 
-                dun.lv = Load.Unit(player)
-                    .getLevel();
-                if (dun.lv > key.tier.levelRange.getMaxLevel()) {
-                    dun.lv = key.tier.levelRange.getMaxLevel();
-                }
-
-                dun.floor = floor;
-                dun.t = dungeonTier;
-                dun.mobs = Database.DungeonMobLists()
-                    .random()
-                    .GUID();
-                dun.uuid = UUID.randomUUID()
-                    .toString();
-                dun.uniq.randomize(dungeonTier);
-                dun.af.randomize(dungeonTier);
-
-                list.add(dun);
-
-                mapsData.dungeonsByFloors.put(floor, list);
             }
-
         }
 
         this.syncToClient(player);

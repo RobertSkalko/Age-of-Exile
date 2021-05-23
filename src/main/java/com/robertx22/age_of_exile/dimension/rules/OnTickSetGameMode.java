@@ -13,14 +13,14 @@ public class OnTickSetGameMode {
 
         if (WorldUtils.isDungeonWorld(player.world)) {
             if (current == GameMode.SURVIVAL) {
-                Load.playerMaps(player).mapsData.orig_gamemode = current.getName();
+                Load.playerMaps(player).data.orig_gamemode = current.getName();
                 player.setGameMode(GameMode.ADVENTURE);
             }
         } else {
-            if (!Load.playerMaps(player).mapsData.orig_gamemode.isEmpty()) {
-                GameMode mode = GameMode.byName(Load.playerMaps(player).mapsData.orig_gamemode);
+            if (!Load.playerMaps(player).data.orig_gamemode.isEmpty()) {
+                GameMode mode = GameMode.byName(Load.playerMaps(player).data.orig_gamemode);
                 player.setGameMode(mode);
-                Load.playerMaps(player).mapsData.orig_gamemode = "";
+                Load.playerMaps(player).data.orig_gamemode = "";
             }
         }
     }

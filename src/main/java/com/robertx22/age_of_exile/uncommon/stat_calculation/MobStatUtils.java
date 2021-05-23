@@ -57,16 +57,10 @@ public class MobStatUtils {
             .GUID())
             .applyStats(mobdata);
 
-        /*
-        unit.getStats()
-            .getStatInCalculation(Health.getInstance())
-            .multiplyFlat(tier.hp_multi);
-
-         */
         if (WorldUtils.isDungeonWorld(en.world)) {
             DungeonData data = Load.dungeonData(en.world).data.get(en.getBlockPos()).data;
             if (!data.isEmpty()) {
-                data.af.getStats(data.floor, mobdata.getLevel())
+                data.af.getStats(mobdata.getLevel())
                     .forEach(x -> x.applyStats(mobdata));
 
                 if (data.team) {

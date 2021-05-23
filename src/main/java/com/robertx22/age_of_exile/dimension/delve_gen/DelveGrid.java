@@ -3,21 +3,37 @@ package com.robertx22.age_of_exile.dimension.delve_gen;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
 
 import java.util.*;
 
+@Storable
 public class DelveGrid {
 
-    public String[][] grid = new String[50][50];
+    @Store
+    public String[][] grid = new String[40][40];
 
-    static String DUNGEON = "d";
-    static String WALL = "";
+    @Store
+    public int dungeons = 0;
+
+    public static String DUNGEON = "d";
+    public static String COMPLETED_DUNGEON = "c";
+    public static String WALL = "";
+
+    static int MAX_DUNGEONS = 50;
 
     public boolean isDungeon(PointData point) {
         return grid[point.x][point.y].equals(DUNGEON);
     }
 
+    public void removeCompletedDungeonAfterStartingAnotherOne(PointData lastDungeon) {
+        grid[lastDungeon.x][lastDungeon.y] = COMPLETED_DUNGEON;
+    }
+
     public void randomize() {
+        dungeons = 0;
+
         Watch watch = new Watch();
         for (int i = 0; i < grid.length; i++) {
             Arrays.fill(grid[i], WALL);
@@ -26,6 +42,9 @@ public class DelveGrid {
         PointData start = new PointData(grid.length / 2, grid.length / 2);
 
         for (int i = 0; i < 20; i++) {
+            if (dungeons >= MAX_DUNGEONS) {
+                break;
+            }
             makeRandomPath(start);
         }
 
@@ -64,6 +83,7 @@ public class DelveGrid {
                             found = true;
                             current = dir;
                             grid[dir.x][dir.y] = DUNGEON;
+                            dungeons++;
 
                             if (RandomUtils.roll(10)) {
                                 makePath(dir, RandomUtils.RandomRange(1, 5));
@@ -96,6 +116,7 @@ public class DelveGrid {
                             list.add(dir);
                             found = true;
                             current = dir;
+                            dungeons++;
                             grid[dir.x][dir.y] = DUNGEON;
                         }
                     }

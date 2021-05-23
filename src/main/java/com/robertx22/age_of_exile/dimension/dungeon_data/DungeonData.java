@@ -26,8 +26,6 @@ public class DungeonData {
     @Store
     public int t = 1; // tier
     @Store
-    public int floor = 0; // todo delete
-    @Store
     public String uuid = "";
     @Store
     public Boolean team = false;
@@ -44,7 +42,7 @@ public class DungeonData {
 
         TooltipInfo info = new TooltipInfo();
 
-        af.getStats(floor, lv)
+        af.getStats(lv)
             .forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         list.add(TooltipUtils.tier(t));

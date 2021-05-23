@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
-import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.packets.StartDungeonPacket;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
@@ -25,16 +25,13 @@ public class StartDungeonButton extends TexturedButtonWidget {
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
-    DungeonData dungeon;
-
     boolean isteam;
 
-    public StartDungeonButton(Boolean isteam, DelveScreen screen, DungeonData dungeon, int xPos, int yPos) {
+    public StartDungeonButton(Boolean isteam, DungeonInfoScreen screen, PointData point, int xPos, int yPos) {
         super(xPos, yPos, SIZE_X, SIZE_Y, 0, 0, SIZE_Y, ID, (button) -> {
-            Packets.sendToServer(new StartDungeonPacket(isteam, screen.teleporterPos, dungeon));
+            Packets.sendToServer(new StartDungeonPacket(isteam, screen.teleporterPos, point));
         });
         this.isteam = isteam;
-        this.dungeon = dungeon;
     }
 
     @Override

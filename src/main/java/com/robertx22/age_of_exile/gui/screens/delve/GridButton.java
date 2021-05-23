@@ -1,11 +1,14 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
+import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -27,13 +30,17 @@ public class GridButton extends TexturedButtonWidget {
     public int origY;
     MinecraftClient mc = MinecraftClient.getInstance();
     DelveScreen screen;
+    boolean isvisible = true;
 
-    public GridButton(DelveScreen screen, PointData point, int x, int y, boolean isdung) {
+    public GridButton(DelveScreen screen, PointData point, int x, int y, boolean isdung, boolean isvisible) {
         super(x, y, 32, 32, 0, 0, 1, ID, 32, 32, (action) -> {
-            if (isdung) {
-                screen.addSelectedDungeonButtons();
+            if (isdung && isvisible) {
+                DungeonData dun = Load.playerMaps(MinecraftClient.getInstance().player).data.dungeon_datas.get(point);
+                MinecraftClient.getInstance()
+                    .openScreen(new DungeonInfoScreen(screen.teleporterPos, dun, point));
             }
         });
+        this.isvisible = isvisible;
         this.point = point;
         this.isDungeon = isdung;
         this.origX = x;
@@ -50,7 +57,15 @@ public class GridButton extends TexturedButtonWidget {
     public void renderToolTip(MatrixStack matrices, int mouseX, int mouseY) {
         if (this.isInside(mouseX, mouseY)) {
             List<Text> tooltip = new ArrayList<>();
-            //GuiUtils.renderTooltip(matrices, tooltip, mouseX, mouseY);
+
+            if (isvisible) {
+                if (isDungeon) {
+                    tooltip.add(new LiteralText("Dungeon"));
+                    tooltip.add(new LiteralText("Click to show info"));
+                }
+            }
+
+            GuiUtils.renderTooltip(matrices, tooltip, mouseX, mouseY);
         }
     }
 
@@ -79,9 +94,13 @@ public class GridButton extends TexturedButtonWidget {
 
     @Override
     public void renderButton(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        super.renderButton(matrix, x, y, delta);
+        //  super.renderButton(matrix, x, y, delta);
 
-        if (isDungeon) {
+        mc.getTextureManager()
+            .bindTexture(ID);
+        drawTexture(matrix, this.x, this.y, 0, 0, 32, 32, 32, 32);
+
+        if (isvisible && isDungeon) {
             mc.getTextureManager()
                 .bindTexture(DUN);
             drawTexture(matrix, this.x, this.y, 0, 0, 32, 32, 32, 32);

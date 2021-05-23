@@ -13,7 +13,6 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 
 public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
 
@@ -60,9 +59,9 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
 
         PlayerMapsCap maps = Load.playerMaps(ctx.getPlayer());
 
-        ImmutablePair<Integer, DungeonData> dungeon = maps.getDungeonFromUUID(uuid);
+        DungeonData dungeon = maps.data.dungeon_datas.get(new PointData(x, y));
 
-        if (maps.canStart(dungeon.right)) {
+        if (maps.canStart(new PointData(x, y), dungeon)) {
 
             if (isTeam) {
                 if (ModConfig.get().Server.REQUIRE_TEAM_FOR_TEAM_DUNGEONS) {
@@ -78,7 +77,7 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
                 }
             }
 
-            maps.onStartDungeon(isTeam, pos, uuid);
+            maps.onStartDungeon(isTeam, pos, dungeon.uuid);
         }
     }
 
