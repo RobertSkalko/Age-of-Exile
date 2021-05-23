@@ -273,6 +273,11 @@
 	"item.mmorpg.backpack.upgrade.size2": "Empyrean Size Upgrade",
 	"item.mmorpg.backpack.upgrade.size3": "Angelic Size Upgrade",
 	"item.mmorpg.backpack.upgrade.size4": "Divine Size Upgrade",
+	"item.mmorpg.dim_shard.0": "Spiritual Dimensional Shard",
+	"item.mmorpg.dim_shard.1": "Celestial Dimensional Shard",
+	"item.mmorpg.dim_shard.2": "Empyrean Dimensional Shard",
+	"item.mmorpg.dim_shard.3": "Angelic Dimensional Shard",
+	"item.mmorpg.dim_shard.4": "Divine Dimensional Shard",
 	"item.mmorpg.dungeon_key.0": "Dungeon Key",
 	"item.mmorpg.dungeon_key.1": "Dungeon Key",
 	"item.mmorpg.dungeon_key.2": "Dungeon Key",
@@ -2007,7 +2012,7 @@
 	"mmorpg.stat.move_speed": "Move Speed",
 	"mmorpg.stat.movement_cdr": "Movement Spell Cooldown Reduction",
 	"mmorpg.stat.movement_spell_dmg": "Movement Spell Damage",
-	"mmorpg.stat.mummy_curse": "§7Your immobilizing effects have §a[VAL1]§7% chance to apply Curse of the Mummy, increasing §b❁ Magic Damage§7",
+	"mmorpg.stat.mummy_curse": "§7Immobilizing effects have §a[VAL1]§7% chance to apply Curse of the Mummy",
 	"mmorpg.stat.nature_any_wep_damage": "Nature Weapon Damage",
 	"mmorpg.stat.nature_dot_damage": "Nature Damage Over Time",
 	"mmorpg.stat.nature_focus": "Nature Focus",
@@ -2362,6 +2367,31 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.foods.critical": "Critical",
+	"effect.mmorpg.foods.dark": "Night",
+	"effect.mmorpg.foods.def_blue": "Arcana Defense",
+	"effect.mmorpg.foods.def_gray": "Physical Defense",
+	"effect.mmorpg.foods.def_green": "Terra Defense",
+	"effect.mmorpg.foods.def_purple": "Magicka Defense",
+	"effect.mmorpg.foods.def_yellow": "Sky Defense",
+	"effect.mmorpg.foods.elemental_resist": "Elementum",
+	"effect.mmorpg.foods.exp": "Experience",
+	"effect.mmorpg.foods.fire": "Ignis",
+	"effect.mmorpg.foods.healing": "Sancti",
+	"effect.mmorpg.foods.health_regen": "Vitala",
+	"effect.mmorpg.foods.light": "Sky",
+	"effect.mmorpg.foods.mana_regen": "Arcana",
+	"effect.mmorpg.foods.nature": "Terra",
+	"effect.mmorpg.foods.physical": "Physical",
+	"effect.mmorpg.foods.spell_damage": "Enigma",
+	"effect.mmorpg.foods.treasure": "Treasure",
+	"effect.mmorpg.foods.water": "Aqua",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.jewelry.necklace.all_res_necklace_end": "Necklace",
@@ -2494,31 +2524,6 @@
 	"item.mmorpg.weapon.wand.wand4": "Wand",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.foods.critical": "Critical",
-	"effect.mmorpg.foods.dark": "Night",
-	"effect.mmorpg.foods.def_blue": "Arcana Defense",
-	"effect.mmorpg.foods.def_gray": "Physical Defense",
-	"effect.mmorpg.foods.def_green": "Terra Defense",
-	"effect.mmorpg.foods.def_purple": "Magicka Defense",
-	"effect.mmorpg.foods.def_yellow": "Sky Defense",
-	"effect.mmorpg.foods.elemental_resist": "Elementum",
-	"effect.mmorpg.foods.exp": "Experience",
-	"effect.mmorpg.foods.fire": "Ignis",
-	"effect.mmorpg.foods.healing": "Sancti",
-	"effect.mmorpg.foods.health_regen": "Vitala",
-	"effect.mmorpg.foods.light": "Sky",
-	"effect.mmorpg.foods.mana_regen": "Arcana",
-	"effect.mmorpg.foods.nature": "Terra",
-	"effect.mmorpg.foods.physical": "Physical",
-	"effect.mmorpg.foods.spell_damage": "Enigma",
-	"effect.mmorpg.foods.treasure": "Treasure",
-	"effect.mmorpg.foods.water": "Aqua",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: RACES - NAMES",

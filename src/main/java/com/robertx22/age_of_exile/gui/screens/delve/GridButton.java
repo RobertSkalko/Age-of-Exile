@@ -96,6 +96,8 @@ public class GridButton extends TexturedButtonWidget {
     public void renderButton(MatrixStack matrix, int mouseX, int mouseY, float delta) {
         //  super.renderButton(matrix, x, y, delta);
 
+        Identifier COMPLETED = Ref.guiId("dungeon/completed");
+
         mc.getTextureManager()
             .bindTexture(ID);
         drawTexture(matrix, this.x, this.y, 0, 0, 32, 32, 32, 32);
@@ -104,6 +106,14 @@ public class GridButton extends TexturedButtonWidget {
             mc.getTextureManager()
                 .bindTexture(DUN);
             drawTexture(matrix, this.x, this.y, 0, 0, 32, 32, 32, 32);
+
+            if (Load.playerMaps(mc.player).data.completed.contains(point)) {
+                mc.getTextureManager()
+                    .bindTexture(COMPLETED);
+                drawTexture(matrix, this.x + 8, this.y + 8, 0, 0, 16, 16, 16, 16);
+
+            }
+
         }
     }
 }

@@ -60,8 +60,8 @@ public class DungeonInfoScreen extends BaseScreen {
             }
             if (Load.playerMaps(mc.player)
                 .canStart(point, selectedDungeon)) {
-                addButton(new StartDungeonButton(false, this, point, xoff + 132, yoff + 150));
-                addButton(new StartDungeonButton(true, this, point, xoff + 132 + 5 + StartDungeonButton.SIZE_X, yoff + 150));
+                addButton(new StartDungeonButton(false, this, point, xoff + 132, yoff + 185));
+                addButton(new StartDungeonButton(true, this, point, xoff + 132 + 5 + StartDungeonButton.SIZE_X, yoff + 185));
             }
 
             this.addButton(new DifficultyButton(Database.Tiers()
@@ -78,6 +78,9 @@ public class DungeonInfoScreen extends BaseScreen {
                 this.publicAddButton(new ItemSlotButton(stack, x, y));
                 x += ItemSlotButton.xSize + 1;
             }
+
+            this.publicAddButton(new ItemSlotButton(maps.data.getStartCostOf(point), xoff + 170, y + 40));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,6 +95,8 @@ public class DungeonInfoScreen extends BaseScreen {
             GuiUtils.renderScaledText(matrix, guiLeft + X, guiTop + 35, 1D, "Dungeon Info", Formatting.RED);
 
             GuiUtils.renderScaledText(matrix, guiLeft + X, guiTop + LOOT_Y - 5, 1D, "Possible Drops:", Formatting.GREEN);
+
+            GuiUtils.renderScaledText(matrix, guiLeft + X, guiTop + LOOT_Y + 30, 1D, "Cost:", Formatting.GOLD);
         }
     }
 

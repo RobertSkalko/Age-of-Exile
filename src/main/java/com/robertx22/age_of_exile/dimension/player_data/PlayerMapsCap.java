@@ -29,6 +29,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
@@ -58,7 +59,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     }
 
     public void onDungeonCompletedAdvanceProgress() {
-
+        this.data.completed.add(this.data.point_pos);
     }
 
     public static Block TELEPORT_TO_PLACEHOLDER_BLOCK = Blocks.PLAYER_HEAD;
@@ -238,7 +239,11 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     }
 
     public boolean canStart(PointData point, DungeonData data) {
+        ItemStack cost = this.data.getStartCostOf(point);
 
+        if (player.inventory.count(cost.getItem()) < cost.getCount()) {
+            // return false;
+        }
         if (this.data.started.contains(point)) {
             return false;
         }

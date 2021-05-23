@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.DimensionalShardItem;
 import com.robertx22.age_of_exile.player_skills.items.SmeltedEssenceItem;
 import com.robertx22.age_of_exile.player_skills.items.alchemy.CondensedEssenceItem;
 import com.robertx22.age_of_exile.player_skills.items.exploration.LockedChestItem;
@@ -33,6 +34,7 @@ public class TierItemsRegister extends BaseItemRegistrator {
     public HashMap<SkillItemTier, MiningStoneItem> STONE_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, LockedChestItem> LOCKED_CHEST_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, DungeonKeyItem> DUNGEON_KEY_MAP = new HashMap<>();
+    public HashMap<SkillItemTier, DimensionalShardItem> DIMENSIONAL_SHARD_MAP = new HashMap<>();
 
     public HashMap<SkillItemTier, EssenceInkItem> ESSENCE_INK = new HashMap<>();
 
@@ -49,6 +51,7 @@ public class TierItemsRegister extends BaseItemRegistrator {
             INK_TIER_MAP.put(tier, item(new ScribeInkItem(tier)));
 
             SMELTED_ESSENCE.put(tier, item(new SmeltedEssenceItem(tier)));
+            DIMENSIONAL_SHARD_MAP.put(tier, item(new DimensionalShardItem(tier)));
             ESSENCE_INK.put(tier, item(new EssenceInkItem(tier)));
             TOOL_UPGRADE.put(tier, item(new StatInfusionItem(tier)));
             CONDENSED_ESSENCE_MAP.put(tier, item(new CondensedEssenceItem(tier)));

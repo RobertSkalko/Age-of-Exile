@@ -2,9 +2,14 @@ package com.robertx22.age_of_exile.dimension.player_data;
 
 import com.robertx22.age_of_exile.dimension.delve_gen.DelveGrid;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.PointData;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.ArrayList;
@@ -38,6 +43,27 @@ public class MapsData {
 
     @Store
     public String orig_gamemode = "";
+
+    public int distance(PointData one, PointData two) {
+        if (one.equals(two)) {
+            return 0;
+        } else {
+            return one.distanceTo(two); // todo this should use a pathfinding algo for 100% correct distance.
+        }
+    }
+
+    public ItemStack getStartCostOf(PointData point) {
+        int cost = 3;
+
+        SkillItemTier tier = LevelUtils.levelToTier(dungeon_datas.get(point).lv);
+
+        Item item = ModRegistry.TIERED.DIMENSIONAL_SHARD_MAP.get(tier);
+
+        cost += distance(this.point_pos, point);
+
+        return new ItemStack(item, cost);
+
+    }
 
     public boolean playerCanSee(PointData point) {
 

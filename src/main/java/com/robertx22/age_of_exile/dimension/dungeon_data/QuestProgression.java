@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.vanilla_mc.commands.TeamCommand;
@@ -35,8 +36,6 @@ public class QuestProgression {
 
     public void increaseProgressBy(PlayerEntity player, int num, SingleDungeonData single) {
 
-        DungeonData dungeon = single.data;
-
         if (!fini) {
 
             List<PlayerEntity> members = TeamUtils.getOnlineMembers(player);
@@ -49,6 +48,10 @@ public class QuestProgression {
                         player = p;
                     }
                 }
+            }
+
+            if (MMORPG.RUN_DEV_TOOLS) {
+                num += 55;
             }
 
             this.num += num;

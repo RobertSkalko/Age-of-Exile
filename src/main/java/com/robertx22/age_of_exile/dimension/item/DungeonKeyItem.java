@@ -53,8 +53,10 @@ public class DungeonKeyItem extends TieredItem implements IShapelessRecipe {
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
         ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 1);
-        fac.input(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier), 8);
+        fac.input(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier), 6);
         fac.input(Items.ENDER_PEARL);
+        fac.input(Items.DIAMOND);
+        fac.input(Items.GOLD_BLOCK);
         return fac.criterion("player_level", trigger());
     }
 

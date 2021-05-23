@@ -19,7 +19,6 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -92,9 +91,7 @@ public class SpecialStats {
     );
 
     public static SpecialStat MUMMY_CURSE = new SpecialStat("mummy_curse",
-        format("Your immobilizing effects have " + VAL1 + "% " + "chance to apply Curse of the Mummy, increasing "
-            + Stats.STYLE_DAMAGE.get(PlayStyle.magic)
-            .getIconNameFormat()),
+        format("Immobilizing effects have " + VAL1 + "% " + "chance to apply Curse of the Mummy"),
 
         new BasePotionEffect() {
             @Override

@@ -3,11 +3,13 @@ package com.robertx22.age_of_exile.gui.screens.delve;
 import com.robertx22.age_of_exile.dimension.packets.StartDungeonPacket;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -30,6 +32,13 @@ public class StartDungeonButton extends TexturedButtonWidget {
     public StartDungeonButton(Boolean isteam, DungeonInfoScreen screen, PointData point, int xPos, int yPos) {
         super(xPos, yPos, SIZE_X, SIZE_Y, 0, 0, SIZE_Y, ID, (button) -> {
             Packets.sendToServer(new StartDungeonPacket(isteam, screen.teleporterPos, point));
+
+            CompoundTag nbt = new CompoundTag();
+            Load.playerMaps(MinecraftClient.getInstance().player)
+                .toTag(nbt);
+
+            System.out.print(nbt.toString());
+            screen.onClose();
         });
         this.isteam = isteam;
     }

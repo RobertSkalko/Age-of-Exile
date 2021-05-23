@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.dimension.DimensionInit;
-import com.robertx22.age_of_exile.dimension.delve_gen.DelveGrid;
 import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -42,10 +41,6 @@ public class CommonInit implements ModInitializer {
     public void onInitialize() {
 
         Watch watch = new Watch();
-
-        DelveGrid grid = new DelveGrid();
-
-        grid.randomize();
 
         StatEffects.loadClass();
         StatConditions.loadClass();

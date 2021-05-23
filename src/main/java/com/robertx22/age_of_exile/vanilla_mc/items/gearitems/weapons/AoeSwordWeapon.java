@@ -17,7 +17,7 @@ public class AoeSwordWeapon extends SwordItem implements IAutoLocName {
     public AoeSwordWeapon(WeaponTypes type) {
         super(
             new RarityToolMaterial(), 6, type.getVanillaItemAttackSpeedModifier(), (ItemUtils.getDefaultGearProperties()
-                .maxDamageIfAbsent(500)));
+                .maxDamageIfAbsent(1000)));
         this.locname = type.locName();
 
     }

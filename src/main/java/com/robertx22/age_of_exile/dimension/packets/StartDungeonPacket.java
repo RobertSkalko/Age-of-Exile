@@ -9,6 +9,8 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
+import net.minecraft.inventory.Inventories;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
@@ -61,20 +63,35 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
 
         DungeonData dungeon = maps.data.dungeon_datas.get(new PointData(x, y));
 
+        ItemStack cost = maps.data.getStartCostOf(new PointData(x, y));
+
+        if (ctx.getPlayer().inventory.count(cost.getItem()) < cost.getCount()) {
+            ctx.getPlayer()
+                .sendMessage(new LiteralText("You don't have enough ").append(cost.getName())
+                    .append(" to travel here."), false);
+            return;
+        }
+
         if (maps.canStart(new PointData(x, y), dungeon)) {
 
             if (isTeam) {
                 if (ModConfig.get().Server.REQUIRE_TEAM_FOR_TEAM_DUNGEONS) {
                     if (TeamUtils.getOnlineTeamMembersInRange(ctx.getPlayer())
-                        .size() < 2) {
+                        .size() < 3) {
                         ctx.getPlayer()
-                            .sendMessage(new LiteralText("You need at least 2 party members nearby to start a dungeon in Team mode."), false);
+                            .sendMessage(new LiteralText("You need at least 3 party members nearby to start a dungeon in Team mode."), false);
                         ctx.getPlayer()
                             .sendMessage(new LiteralText("Use /age_of_exile teams"), false);
                         return;
 
                     }
                 }
+            }
+            int removed = Inventories.remove(ctx.getPlayer().inventory, x -> x.getItem()
+                .equals(cost.getItem()), cost.getCount(), false);
+
+            if (removed != cost.getCount()) {
+                System.out.print("Didn't remove " + cost.getCount() + " items as needed, but only " + removed);
             }
 
             maps.onStartDungeon(isTeam, pos, dungeon.uuid);
