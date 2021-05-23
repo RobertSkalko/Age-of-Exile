@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.dimension.gui;
+package com.robertx22.age_of_exile.gui.screens.delve;
 
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.mmorpg.Ref;

@@ -156,7 +156,7 @@ public class PopulateDungeonChunks {
             data.mobs++;
 
             dungeonData.getMobList()
-                .spawMob((ServerWorld) world, type, p, dungeonData.tier);
+                .spawMob((ServerWorld) world, type, p, dungeonData.t);
 
             list.remove(p);
         }

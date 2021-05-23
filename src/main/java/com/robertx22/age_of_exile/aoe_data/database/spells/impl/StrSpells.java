@@ -35,6 +35,8 @@ import static com.robertx22.age_of_exile.mmorpg.ModRegistry.PARTICLES;
 public class StrSpells implements ISlashRegistryInit {
 
     public static String FLAME_STRIKE_ID = "flame_strike";
+    public static String CHARGE_ID = "charge";
+    public static String GONG_STRIKE_ID = "gong_strike";
 
     @Override
     public void registerAll() {
@@ -103,7 +105,7 @@ public class StrSpells implements ISlashRegistryInit {
             )
             .build();
 
-        SpellBuilder.of("gong_strike", SpellConfiguration.Builder.instant(8, 20 * 10)
+        SpellBuilder.of(GONG_STRIKE_ID, SpellConfiguration.Builder.instant(8, 20 * 10)
                 .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK, PlayerAction.BLOCK))
                 .setSwingArm(), "Gong Strike",
             Arrays.asList(SpellTag.area, SpellTag.damage))
@@ -148,7 +150,7 @@ public class StrSpells implements ISlashRegistryInit {
             )
             .build();
 
-        SpellBuilder.of("charge", SpellConfiguration.Builder.multiCast(10, 20 * 10, 60, 60)
+        SpellBuilder.of(CHARGE_ID, SpellConfiguration.Builder.multiCast(10, 20 * 10, 60, 60)
                 .setScaleManaToPlayer(), "Charge",
             Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.movement))
             .attackStyle(PlayStyle.melee)

@@ -20,7 +20,7 @@ import java.util.Arrays;
 
 public class DexSpells implements ISlashRegistryInit {
 
-    public static String MULTI_SHOT_ID = "multi_shot";
+    public static String EXPLOSIVE_ARROW_ID = "explosive_arrow";
     public static String MAKE_ARROWS = "make_arrows";
 
     @Override
@@ -57,7 +57,7 @@ public class DexSpells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();
 
-        SpellBuilder.of("explosive_arrow", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Explosive Arrow",
+        SpellBuilder.of(EXPLOSIVE_ARROW_ID, SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Explosive Arrow",
             Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)

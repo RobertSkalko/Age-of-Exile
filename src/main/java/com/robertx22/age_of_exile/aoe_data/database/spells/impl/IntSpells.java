@@ -38,6 +38,7 @@ public class IntSpells implements ISlashRegistryInit {
     public static String HEALING_AURA_ID = "healing_aura";
     public static String HEART_OF_ICE_ID = "heart_of_ice";
     public static String FIRE_NOVA_ID = "fire_nova";
+    public static String FROST_NOVA_AOE = "frost_nova";
 
     @Override
     public void registerAll() {
@@ -189,7 +190,7 @@ public class IntSpells implements ISlashRegistryInit {
 
             .build();
 
-        SpellBuilder.of("frost_nova", SpellConfiguration.Builder.instant(30, 25 * 20), "Frost Nova",
+        SpellBuilder.of(FROST_NOVA_AOE, SpellConfiguration.Builder.instant(30, 25 * 20), "Frost Nova",
             Arrays.asList(SpellTag.area, SpellTag.damage))
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, 1D, 1D))

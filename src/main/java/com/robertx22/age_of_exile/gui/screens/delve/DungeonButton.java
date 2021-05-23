@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.dimension.gui;
+package com.robertx22.age_of_exile.gui.screens.delve;
 
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;
@@ -25,10 +25,10 @@ public class DungeonButton extends TexturedButtonWidget {
 
     DungeonData dungeon;
 
-    public DungeonButton(DungeonData dungeon, MapsScreen screen, int xPos, int yPos) {
+    public DungeonButton(DungeonData dungeon, DelveScreen screen, int xPos, int yPos) {
         super(xPos + 1, yPos + 1, xSize, ySize, 0, 0, ySize + 1, LOC, (button) -> {
-            screen.selectedDungeon = dungeon;
-            screen.init(); // maybe bad idea
+            // screen.selectedDungeon = dungeon;
+            //screen.init(); // maybe bad idea
         });
 
         this.dungeon = dungeon;

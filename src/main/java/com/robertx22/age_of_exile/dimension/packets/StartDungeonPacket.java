@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.library_of_exile.main.MyPacket;
@@ -16,7 +17,8 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 
 public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
 
-    String uuid = "";
+    int x;
+    int y;
     BlockPos pos;
     Boolean isTeam = false;
 
@@ -24,8 +26,10 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
 
     }
 
-    public StartDungeonPacket(Boolean isteam, BlockPos pos, DungeonData dungeon) {
-        this.uuid = dungeon.uuid;
+    public StartDungeonPacket(Boolean isteam, BlockPos pos, PointData point) {
+
+        this.x = point.x;
+        this.y = point.y;
         this.pos = pos;
         this.isTeam = isteam;
     }
@@ -37,17 +41,18 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
 
     @Override
     public void loadFromData(PacketByteBuf tag) {
-        uuid = tag.readString(100);
         pos = tag.readBlockPos();
         isTeam = tag.readBoolean();
+        x = tag.readInt();
+        y = tag.readInt();
     }
 
     @Override
     public void saveToData(PacketByteBuf tag) {
-        tag.writeString(uuid, 100);
         tag.writeBlockPos(pos);
         tag.writeBoolean(isTeam);
-
+        tag.writeInt(x);
+        tag.writeInt(y);
     }
 
     @Override

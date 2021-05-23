@@ -37,10 +37,12 @@ public class VanillaStatData {
 
         this.removeVanillaStats(en);
 
-        if (!en.getAttributeInstance(attri)
-            .hasModifier(mod)) {
-            en.getAttributeInstance(attri)
-                .addTemporaryModifier(mod);
+        if (en.getAttributeInstance(attri) != null) {
+            if (!en.getAttributeInstance(attri)
+                .hasModifier(mod)) {
+                en.getAttributeInstance(attri)
+                    .addTemporaryModifier(mod);
+            }
         }
 
     }
@@ -50,7 +52,6 @@ public class VanillaStatData {
         EntityAttribute attri = getAttribute();
 
         if (en.getAttributeInstance(attri) != null) {
-
             if (en.getAttributeInstance(attri)
                 .hasModifier(mod)) {
                 en.getAttributeInstance(attri)

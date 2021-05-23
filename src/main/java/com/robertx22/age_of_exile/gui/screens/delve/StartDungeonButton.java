@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.dimension.gui;
+package com.robertx22.age_of_exile.gui.screens.delve;
 
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.packets.StartDungeonPacket;
@@ -29,7 +29,7 @@ public class StartDungeonButton extends TexturedButtonWidget {
 
     boolean isteam;
 
-    public StartDungeonButton(Boolean isteam, MapsScreen screen, DungeonData dungeon, int xPos, int yPos) {
+    public StartDungeonButton(Boolean isteam, DelveScreen screen, DungeonData dungeon, int xPos, int yPos) {
         super(xPos, yPos, SIZE_X, SIZE_Y, 0, 0, SIZE_Y, ID, (button) -> {
             Packets.sendToServer(new StartDungeonPacket(isteam, screen.teleporterPos, dungeon));
         });

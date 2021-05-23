@@ -27,7 +27,7 @@ public class ServerContainer {
     public int LEVELS_NEEDED_TO_START_LVL_PENALTY = 5;
 
     public int MAX_RUNEWORD_GEARS_ON_PLAYER = 1;
-    public int MAX_UNIQUE_GEARS_ON_PLAYER = 10;
+    public int MAX_UNIQUE_GEARS_ON_PLAYER = 99;
     public int MAX_LOADOUTS = 3;
 
     public double EXTRA_MOB_STATS_PER_LEVEL = 0.02F;

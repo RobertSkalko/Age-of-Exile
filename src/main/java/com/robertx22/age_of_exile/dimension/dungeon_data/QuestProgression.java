@@ -1,14 +1,11 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
-import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.vanilla_mc.commands.TeamCommand;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 
 import java.util.List;
@@ -20,13 +17,13 @@ public class QuestProgression {
     public String uuid = "";
 
     @Store
-    public int number = 0;
+    public int num = 0;
 
     @Store
     public int target = 0;
 
     @Store
-    public boolean finished = false;
+    public boolean fini = false;
 
     public QuestProgression(String uuid, int target) {
         this.uuid = uuid;
@@ -40,7 +37,7 @@ public class QuestProgression {
 
         DungeonData dungeon = single.data;
 
-        if (!finished) {
+        if (!fini) {
 
             List<PlayerEntity> members = TeamUtils.getOnlineMembers(player);
 
@@ -54,37 +51,25 @@ public class QuestProgression {
                 }
             }
 
-            number += num;
+            this.num += num;
 
             if (!single.pop.donePop) {
                 return; // don't check for completition if dungeon didn't finish generating
             }
 
-            player.sendMessage(new LiteralText("Dungeon Progress: " + number + "/" + target), false);
+            player.sendMessage(new LiteralText("Dungeon Progress: " + this.num + "/" + target), false);
 
-            if (number >= target) {
-                finished = true;
+            if (this.num >= target) {
+                fini = true;
 
                 player.sendMessage(
                     new LiteralText("Quest completed!, You can now progress to the next dungeon.")
                     , false);
 
-                float multi = LootUtils.getLevelDistancePunishmentMulti(dungeon.lvl, Load.Unit(player)
-                    .getLevel());
-
-                if (multi == 0 && Load.Unit(player)
-                    .getLevel() > dungeon.lvl) {
-                    player.sendMessage(new LiteralText("You can't receive quest rewards as you are too high level for this dungeon."), false);
-                } else {
-
-                    if (members.size() > 1) {
-                        members.forEach(x -> {
-                            TeamCommand.sendDpsCharts(x);
-                        });
-                    }
-                    for (ItemStack x : dungeon.quest_rew.stacks) {
-                        PlayerUtils.giveItem(x, player);
-                    }
+                if (members.size() > 1) {
+                    members.forEach(x -> {
+                        TeamCommand.sendDpsCharts(x);
+                    });
                 }
 
                 Load.playerMaps(player)

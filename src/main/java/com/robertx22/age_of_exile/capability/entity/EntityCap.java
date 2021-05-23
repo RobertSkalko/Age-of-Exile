@@ -645,7 +645,7 @@ public class EntityCap {
             if (WorldUtils.isDungeonWorld(entity.world)) {
                 WorldDungeonCap data = Load.dungeonData(entity.world);
 
-                tier = data.data.get(entity.getBlockPos()).data.tier;
+                tier = data.data.get(entity.getBlockPos()).data.t;
             }
 
             return Database.Tiers()
@@ -787,7 +787,7 @@ public class EntityCap {
                     BlockPos pos = entity.getBlockPos();
                     DungeonData data = Load.dungeonData(entity.world).data.get(pos).data;
                     if (!data.isEmpty()) {
-                        this.setLevel(data.lvl);
+                        this.setLevel(data.lv);
                         return;
                     } else {
                         System.out.print("A mob spawned in a dungeon world without a dungeon data nearby!");

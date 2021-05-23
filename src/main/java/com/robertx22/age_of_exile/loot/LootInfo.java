@@ -171,7 +171,7 @@ public class LootInfo {
 
         if (world != null && pos != null) {
             if (WorldUtils.isDungeonWorld(world)) {
-                this.tier = Load.dungeonData(world).data.get(pos).data.tier;
+                this.tier = Load.dungeonData(world).data.get(pos).data.t;
             }
         }
         return this;
@@ -180,7 +180,7 @@ public class LootInfo {
 
     private void setLevel() {
         if (dungeon != null) {
-            this.level = dungeon.lvl;
+            this.level = dungeon.lv;
         } else {
             if (level <= 0) {
                 if (mobData != null) {
@@ -245,7 +245,7 @@ public class LootInfo {
 
         if (isMapWorld) {
             if (dungeon != null) {
-                if (dungeon.is_team) {
+                if (dungeon.team) {
                     modifier *= 3;
                 }
             }

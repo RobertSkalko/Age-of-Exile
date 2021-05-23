@@ -1,7 +1,8 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.dimension.gui.MapsScreen;
+import com.robertx22.age_of_exile.gui.screens.delve.DelveScreen;
 import com.robertx22.age_of_exile.gui.screens.race_select.RaceSelectScreen;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
@@ -49,8 +50,14 @@ public class ClientOnly {
     }
 
     public static void openMapsScreen(BlockPos pos) {
-        MinecraftClient.getInstance()
-            .openScreen(new MapsScreen(pos));
+
+        if (MMORPG.RUN_DEV_TOOLS) {
+            // todo
+            MinecraftClient.getInstance()
+                .openScreen(new DelveScreen(pos));
+            return;
+        }
+
     }
 
     public static void stopUseKey() {

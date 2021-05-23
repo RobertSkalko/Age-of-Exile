@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.dimension.player_data;
 
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
+import com.robertx22.age_of_exile.saveclasses.PointData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
 
 @Storable
 public class MapsPathingData {
@@ -15,15 +15,9 @@ public class MapsPathingData {
     public BlockPos tel_pos = new BlockPos(0, 0, 0);
 
     @Store
-    public int floor = 0;
+    public PointData point_pos = new PointData(25, 25);
 
     @Store
-    public Set<PathData> entered = new HashSet<>();
-
-    public boolean enteredAnotherDungeonOnSameFloor(DungeonData dungeon, int floor) {
-        return entered.stream()
-            .anyMatch(x -> x.floor == floor && !x.uuid.equals(dungeon.uuid));
-
-    }
+    public HashMap<PointData, DungeonData> dungeon_datas = new HashMap<>();
 
 }

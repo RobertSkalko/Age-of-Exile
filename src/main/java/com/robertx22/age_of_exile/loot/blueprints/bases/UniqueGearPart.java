@@ -16,7 +16,7 @@ public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
     protected UniqueGear generateIfNull() {
         UniqueGear uniq;
         if (blueprint.info.isMapWorld) {
-            uniq = RandomUtils.weightedRandom(blueprint.info.dungeon.uniques.getUniques());
+            uniq = RandomUtils.weightedRandom(blueprint.info.dungeon.uniq.getUniques());
         } else {
             FilterListWrap<UniqueGear> gen = Database.UniqueGears()
                 .getWrapped()

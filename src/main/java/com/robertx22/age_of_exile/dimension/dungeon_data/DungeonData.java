@@ -16,23 +16,21 @@ import java.util.List;
 public class DungeonData {
 
     @Store
-    public DungeonQuestRewards quest_rew = new DungeonQuestRewards();
+    public PossibleUniques uniq = new PossibleUniques();
     @Store
-    public PossibleUniques uniques = new PossibleUniques();
+    public DungeonAffixes af = new DungeonAffixes(); // affixes
     @Store
-    public DungeonAffixes affixes = new DungeonAffixes();
+    public String mobs = "";
     @Store
-    public String mob_list = "";
+    public int lv = 1;
     @Store
-    public int lvl = 1;
+    public int t = 1; // tier
     @Store
-    public int tier = 1;
-    @Store
-    public int floor = 0;
+    public int floor = 0; // todo delete
     @Store
     public String uuid = "";
     @Store
-    public Boolean is_team = false;
+    public Boolean team = false;
 
     public boolean isEmpty() {
         return uuid.isEmpty();
@@ -46,28 +44,28 @@ public class DungeonData {
 
         TooltipInfo info = new TooltipInfo();
 
-        affixes.getStats(floor, lvl)
+        af.getStats(floor, lv)
             .forEach(x -> list.addAll(x.GetTooltipString(info)));
 
-        list.add(TooltipUtils.tier(tier));
-        list.add(TooltipUtils.level(lvl));
+        list.add(TooltipUtils.tier(t));
+        list.add(TooltipUtils.level(lv));
 
         return list;
 
     }
 
     public MutableText getAffixedName() {
-        return affixes.prefix.getAffix()
+        return af.prefix.getAffix()
             .locName()
             .append(" ")
             .append("Lair ")
-            .append(affixes.suffix.getAffix()
+            .append(af.suffix.getAffix()
                 .locName());
     }
 
     public DungeonMobList getMobList() {
         return Database.DungeonMobLists()
-            .get(mob_list);
+            .get(mobs);
     }
 
 }

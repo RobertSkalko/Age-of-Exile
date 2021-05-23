@@ -26,11 +26,12 @@ import static com.robertx22.age_of_exile.mmorpg.ModRegistry.BLOCKS;
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
 public class UtilitySpells implements ISlashRegistryInit {
+    public static String DASH_ID = "dash";
 
     @Override
     public void registerAll() {
 
-        SpellBuilder.of("dash", SpellConfiguration.Builder.instant(10, 15)
+        SpellBuilder.of(DASH_ID, SpellConfiguration.Builder.instant(10, 15)
                 .setScaleManaToPlayer()
                 .setChargesAndRegen("dash", 3, 20 * 30)
             , "Dash",

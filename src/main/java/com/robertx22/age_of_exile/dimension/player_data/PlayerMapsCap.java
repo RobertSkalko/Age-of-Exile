@@ -87,8 +87,6 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             ImmutablePair<Integer, DungeonData> pair = getDungeonFromUUID(uuid);
 
-            this.data.entered.add(new PathData(pair.right.uuid, pair.left));
-
             this.data.tel_pos = teleporterPos;
 
             // set the dungeon data for the chunk
@@ -180,12 +178,12 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 .toString());
             if (Database.DungeonMobLists()
                 .isRegistered(moblist)) {
-                single.data.mob_list = moblist;
+                single.data.mobs = moblist;
             }
             data.data.set(player, tpPos, single);
 
             if (isteam) {
-                single.data.is_team = true;
+                single.data.team = true;
             }
 
             single.pop.startPopulating(cp);
@@ -255,10 +253,6 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 return true;
             }
 
-            if (data.enteredAnotherDungeonOnSameFloor(dungeon, floor)) {
-                return true;
-            }
-
             return false;
 
         }
@@ -314,22 +308,21 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     dungeonTier = ITiered.getMaxTier();
                 }
 
-                dun.lvl = Load.Unit(player)
+                dun.lv = Load.Unit(player)
                     .getLevel();
-                if (dun.lvl > key.tier.levelRange.getMaxLevel()) {
-                    dun.lvl = key.tier.levelRange.getMaxLevel();
+                if (dun.lv > key.tier.levelRange.getMaxLevel()) {
+                    dun.lv = key.tier.levelRange.getMaxLevel();
                 }
 
                 dun.floor = floor;
-                dun.tier = dungeonTier;
-                dun.mob_list = Database.DungeonMobLists()
+                dun.t = dungeonTier;
+                dun.mobs = Database.DungeonMobLists()
                     .random()
                     .GUID();
                 dun.uuid = UUID.randomUUID()
                     .toString();
-                dun.uniques.randomize(dungeonTier);
-                dun.affixes.randomize(dungeonTier);
-                dun.quest_rew.randomize(key, dungeonTier, isEndOfMap);
+                dun.uniq.randomize(dungeonTier);
+                dun.af.randomize(dungeonTier);
 
                 list.add(dun);
 

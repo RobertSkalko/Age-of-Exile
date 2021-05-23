@@ -25,6 +25,10 @@ public class TotemSpells implements ISlashRegistryInit {
 
     static Double RADIUS = 3D;
 
+    public static String MANA_TOTEM_ID = "astral_totem";
+    public static String HEAL_TOTEM_ID = "rejuv_totem";
+    public static String GUARD_TOTEM_ID = "guard_totem";
+
     SpellBuilder of(Block block, String id, SpellConfiguration config, String name, List<SpellTag> tags, DefaultParticleType particle) {
 
         return SpellBuilder.of(id, config, name, tags)
@@ -48,20 +52,20 @@ public class TotemSpells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        of(ModRegistry.BLOCKS.GUARD_TOTEM, "guard_totem", SpellConfiguration.Builder.instant(18, 20 * 30), "Guarding Totem",
+        of(ModRegistry.BLOCKS.GUARD_TOTEM, GUARD_TOTEM_ID, SpellConfiguration.Builder.instant(18, 20 * 30), "Guarding Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.EFFECT)
             .onTick("block", PartBuilder.justAction(SpellAction.GIVE_SHIELD.create(ValueCalculation.base("totem_guard", 5), 10D))
                 .addTarget(TargetSelector.AOE.alliesInRadius(3D))
                 .onTick(20D))
             .build();
 
-        of(ModRegistry.BLOCKS.BLUE_TOTEM, "astral_totem", SpellConfiguration.Builder.instant(18, 20 * 30), "Astral Totem",
+        of(ModRegistry.BLOCKS.BLUE_TOTEM, MANA_TOTEM_ID, SpellConfiguration.Builder.instant(18, 20 * 30), "Astral Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.WITCH)
             .onTick("block", PartBuilder.restoreManaInRadius(ValueCalculation.base("totem_mana", 5), RADIUS)
                 .onTick(20D))
             .build();
 
-        of(ModRegistry.BLOCKS.GREEN_TOTEM, "rejuv_totem", SpellConfiguration.Builder.instant(18, 20 * 30), "Rejuvenating Totem",
+        of(ModRegistry.BLOCKS.GREEN_TOTEM, HEAL_TOTEM_ID, SpellConfiguration.Builder.instant(18, 20 * 30), "Rejuvenating Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.HAPPY_VILLAGER)
             .onTick("block", PartBuilder.healInAoe(ValueCalculation.base("totem_heal", 3), RADIUS)
                 .onTick(20D))

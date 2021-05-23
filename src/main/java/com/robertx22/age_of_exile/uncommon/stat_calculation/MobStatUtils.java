@@ -66,10 +66,10 @@ public class MobStatUtils {
         if (WorldUtils.isDungeonWorld(en.world)) {
             DungeonData data = Load.dungeonData(en.world).data.get(en.getBlockPos()).data;
             if (!data.isEmpty()) {
-                data.affixes.getStats(data.floor, mobdata.getLevel())
+                data.af.getStats(data.floor, mobdata.getLevel())
                     .forEach(x -> x.applyStats(mobdata));
 
-                if (data.is_team) {
+                if (data.team) {
                     ExactStatData.noScaling(500, 500, ModType.GLOBAL_INCREASE, Health.getInstance()
                         .GUID())
                         .applyStats(mobdata);

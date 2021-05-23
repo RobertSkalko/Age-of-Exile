@@ -112,7 +112,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         exp *= LootUtils.getLevelDistancePunishmentMulti(mobData.getLevel(), killerData.getLevel());
 
         if (WorldUtils.isDungeonWorld(victim.world)) {
-            if (Load.dungeonData(victim.world).data.get(victim.getBlockPos()).data.is_team) {
+            if (Load.dungeonData(victim.world).data.get(victim.getBlockPos()).data.team) {
                 exp *= 2;
             }
         }
