@@ -12,6 +12,7 @@ import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Storable
 public class DungeonData {
@@ -21,7 +22,7 @@ public class DungeonData {
     @Store
     public DungeonAffixes af = new DungeonAffixes(); // affixes
     @Store
-    public String mobs = "";
+    private String m = ""; // mobs
     @Store
     public int lv = 1;
     @Store
@@ -30,6 +31,22 @@ public class DungeonData {
     public String uuid = "";
     @Store
     public Boolean team = false;
+
+    public void setMobList(String mobs) {
+        this.m = mobs;
+    }
+
+    public void randomize(int lvl, int tier) {
+        lv = lvl;
+        t = tier;
+        m = Database.DungeonMobLists()
+            .random()
+            .GUID();
+        uuid = UUID.randomUUID()
+            .toString();
+        u.randomize(tier);
+        af.randomize(tier);
+    }
 
     public boolean isEmpty() {
         return uuid.isEmpty();
@@ -46,7 +63,7 @@ public class DungeonData {
         af.getStats(lv)
             .forEach(x -> list.addAll(x.GetTooltipString(info)));
 
-        list.add(TooltipUtils.tier(t));
+        // list.add(TooltipUtils.tier(t));
         list.add(TooltipUtils.level(lv));
 
         return list;
@@ -59,7 +76,7 @@ public class DungeonData {
 
     public DungeonMobList getMobList() {
         return Database.DungeonMobLists()
-            .get(mobs);
+            .get(m);
     }
 
 }

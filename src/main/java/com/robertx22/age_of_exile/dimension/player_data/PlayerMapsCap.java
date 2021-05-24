@@ -61,6 +61,12 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         this.player = player;
     }
 
+    public void printDelveMapDebug() {
+        CompoundTag nbt = new CompoundTag();
+        toTag(nbt);
+        System.out.print(nbt.toString());
+    }
+
     public void onDungeonCompletedAdvanceProgress() {
 
         int tier = 0;
@@ -197,7 +203,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 .toString());
             if (Database.DungeonMobLists()
                 .isRegistered(moblist)) {
-                single.data.mobs = moblist;
+                single.data.setMobList(moblist);
             }
             data.data.set(player, tpPos, single);
 
@@ -302,26 +308,19 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
                     DungeonData dun = new DungeonData();
 
-                    dun.lv = Load.Unit(player)
+                    int lvl = Load.Unit(player)
                         .getLevel();
-                    if (dun.lv > maxlvl) {
-                        dun.lv = maxlvl;
+                    if (lvl > maxlvl) {
+                        lvl = maxlvl;
                     }
-
-                    dun.t = dungeonTier;
-                    dun.mobs = Database.DungeonMobLists()
-                        .random()
-                        .GUID();
-                    dun.uuid = UUID.randomUUID()
-                        .toString();
-                    dun.u.randomize(dungeonTier);
-                    dun.af.randomize(dungeonTier);
+                    dun.randomize(lvl, dungeonTier);
 
                     this.data.dungeon_datas.put(new PointData(x, y), dun);
 
                     PointData point = new PointData(x, y);
 
                     if (point.distanceTo(middle) < this.data.point_pos.distanceTo(middle)) {
+                        // find a spot close to middle lol
                         this.data.point_pos = point;
                         this.data.start_pos = point;
                     }

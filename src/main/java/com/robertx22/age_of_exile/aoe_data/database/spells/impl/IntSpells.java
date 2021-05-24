@@ -97,7 +97,7 @@ public class IntSpells implements ISlashRegistryInit {
                 .onTick(1D))
             .onTick(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 1D, 0.2D)
                 .onTick(1D))
-            .onExpire(PartBuilder.damageInAoe(ValueCalculation.base("lava_sphere", 5), Elements.Fire, 2D))
+            .onExpire(PartBuilder.damageInAoe(ValueCalculation.base("lava_sphere", 6), Elements.Fire, 2D))
 
             .onExpire(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 5D, 1D))
             .onExpire(PartBuilder.aoeParticles(ParticleTypes.FLAME, 25D, 2D))
@@ -116,7 +116,7 @@ public class IntSpells implements ISlashRegistryInit {
                 .onTick(1D))
             .onTick(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 1D, 0.2D)
                 .onTick(1D))
-            .onTick(PartBuilder.damageInAoe(ValueCalculation.base("frost_sphere", 2), Elements.Water, 2D)
+            .onTick(PartBuilder.damageInAoe(ValueCalculation.base("frost_sphere", 3), Elements.Water, 2D)
                 .onTick(15D)
                 .addActions(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.SLOW, 3)))
             .build();
@@ -197,7 +197,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.groundParticles(ParticleTypes.ITEM_SNOWBALL, 400D, 3.5D, 0.5D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE_POP, 250D, 3.5D, 0.5D))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_DROWNED_HURT, 0.5D, 1D))
-            .onCast(PartBuilder.damageInAoe(ValueCalculation.base("frost_nova", 5), Elements.Water, 3.5D)
+            .onCast(PartBuilder.damageInAoe(ValueCalculation.base("frost_nova", 7), Elements.Water, 3.5D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)))
             .build();
 
@@ -268,7 +268,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.nova(ParticleTypes.SMOKE, 200D, 1D, 0.05D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 1D, 0D, 0.2D))
 
-            .onCast(PartBuilder.damageInAoe(ValueCalculation.base("frost_breath", 5), Elements.Fire, 3D))
+            .onCast(PartBuilder.damageInAoe(ValueCalculation.base("fire_nova", 7), Elements.Fire, 3D))
             .build();
 
         SpellBuilder.of("awaken_mana", SpellConfiguration.Builder.instant(0, 300 * 20), "Awaken Mana",

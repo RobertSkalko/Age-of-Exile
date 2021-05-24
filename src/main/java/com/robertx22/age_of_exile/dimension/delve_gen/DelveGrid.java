@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.dimension.delve_gen;
 
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonGridType;
 import com.robertx22.age_of_exile.saveclasses.PointData;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -22,10 +21,6 @@ public class DelveGrid {
     public static String WALL = "";
 
     static int MAX_DUNGEONS = 40;
-
-    public boolean isDungeon(PointData point) {
-        return grid[point.x][point.y].equals(DUNGEON);
-    }
 
     public DungeonGridType getGridType(PointData point) {
 
@@ -52,7 +47,8 @@ public class DelveGrid {
     public void randomize() {
         dungeons = 0;
 
-        Watch watch = new Watch();
+        //Watch watch = new Watch();
+
         for (int i = 0; i < grid.length; i++) {
             Arrays.fill(grid[i], WALL);
         }
@@ -66,6 +62,7 @@ public class DelveGrid {
             makeRandomPath(start);
         }
 
+        /*
         watch.print("Creating 2d dungeon grid ");
 
         for (int i = 0; i < grid.length; i++) {
@@ -75,6 +72,8 @@ public class DelveGrid {
             }
             System.out.print(s + "\n");
         }
+
+         */
 
         //System.out.print(Arrays.deepToString(grid));
     }

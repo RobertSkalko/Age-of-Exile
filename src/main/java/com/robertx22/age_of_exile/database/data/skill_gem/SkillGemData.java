@@ -123,9 +123,7 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
 
             if (!cStats.isEmpty()) {
                 list.add(new LiteralText("Supported Skill Gains: "));
-
-                cStats
-                    .forEach(x -> list.addAll(x.GetTooltipString(info)));
+                cStats.forEach(x -> list.addAll(x.GetTooltipString(info)));
             }
             if (!random_stats.isEmpty()) {
                 list.add(new LiteralText(""));

@@ -89,8 +89,8 @@ public class DelveScreen extends BaseScreen {
 
         center = Load.playerMaps(mc.player).data.point_pos;
 
-        for (int x = -20; x < grid.grid.length + 20; x++) { // add some more to make the endings not crop into nothing
-            for (int y = -20; y < grid.grid.length + 20; y++) {
+        for (int x = 0; x < grid.grid.length; x++) { // add some more to make the endings not crop into nothing
+            for (int y = 0; y < grid.grid.length; y++) {
 
                 PointData point = new PointData(x, y);
                 Point pos = getPosForPoint(point);

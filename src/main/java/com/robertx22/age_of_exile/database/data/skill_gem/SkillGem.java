@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +42,7 @@ public class SkillGem implements ISerializedRegistryEntry<SkillGem>, IAutoGson<S
     }
 
     public List<ExactStatData> getConstantStats(SkillGemData data) {
-        int perc = (int) (100 * LevelUtils.getMaxLevelMultiplier(data.lvl));
+        int perc = data.getRarity().stat_percents.max;
         return stats.stream()
             .map(x -> x.ToExactStat(perc, data.lvl))
             .collect(Collectors.toList());

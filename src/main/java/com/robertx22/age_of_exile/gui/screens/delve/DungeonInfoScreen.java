@@ -75,8 +75,8 @@ public class DungeonInfoScreen extends BaseScreen {
                 addButton(new StartDungeonButton(true, this, point, xoff - StartDungeonButton.SIZE_X / 2, yoff + 185 + 20));
             }
 
-            this.addButton(new DifficultyButton(selectedDungeon.t, xoff - DifficultyButton.xSize / 2, yoff + 44));
-            this.addButton(new DungeonButton(selectedDungeon, xoff - DifficultyButton.xSize / 2, yoff + 44 + 44));
+            this.addButton(new DifficultyButton(selectedDungeon.t, xoff - DifficultyButton.xSize / 2, yoff + DungeonButton.ySize + 30));
+            this.addButton(new DungeonButton(selectedDungeon, xoff - DifficultyButton.xSize / 2, yoff + 20));
 
             int x = xoff - 50;
             int y = yoff + LOOT_Y;
@@ -105,7 +105,7 @@ public class DungeonInfoScreen extends BaseScreen {
             int xoff = this.width / 2;
             int yoff = this.height / 2 - 125;
 
-            GuiUtils.renderScaledText(matrix, guiLeft + xoff, yoff + 35, 1D, "Dungeon Info", Formatting.RED);
+            GuiUtils.renderScaledText(matrix, guiLeft + xoff, yoff - 5, 1D, "Dungeon Info", Formatting.RED);
 
             GuiUtils.renderScaledText(matrix, guiLeft + xoff, yoff + LOOT_Y - 10, 1D, "Possible Drops:", Formatting.GREEN);
 
