@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.gui.screens.delve;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.dimension.delve_gen.DelveGrid;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
+import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonGridType;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
@@ -19,6 +20,7 @@ import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -87,13 +89,17 @@ public class DelveScreen extends BaseScreen {
 
         center = Load.playerMaps(mc.player).data.point_pos;
 
-        for (int x = 0; x < grid.grid.length; x++) {
-            for (int y = 0; y < grid.grid.length; y++) {
+        for (int x = -20; x < grid.grid.length + 20; x++) { // add some more to make the endings not crop into nothing
+            for (int y = -20; y < grid.grid.length + 20; y++) {
 
                 PointData point = new PointData(x, y);
                 Point pos = getPosForPoint(point);
-                boolean visible = Load.playerMaps(mc.player).data.playerCanSee(point);
-                newButton(new GridButton(this, point, pos.x, pos.y, grid.isDungeon(point), visible));
+                if (grid.isInRange(point)) {
+                    boolean visible = Load.playerMaps(mc.player).data.playerCanSee(point);
+                    DungeonGridType type = grid.getGridType(point);
+                    newButton(new GridButton(this, point, pos.x, pos.y, type, visible));
+                }
+                // newButton(new GridButton(this, point, pos.x, pos.y, DungeonGridType.BORDER, true));
             }
         }
 
@@ -121,9 +127,10 @@ public class DelveScreen extends BaseScreen {
 
     @Override
     public boolean mouseDragged(double mouseX, double mouseY, int button, double deltaX, double deltaY) {
-        // this.scrollX += deltaX;
-        // this.scrollY += deltaY;
-        //scrollY = MathHelper.clamp(scrollY, -3333, 3333);
+        this.scrollX += deltaX;
+        this.scrollY += deltaY;
+        scrollY = MathHelper.clamp(scrollY, -2000, 2000);
+        scrollX = MathHelper.clamp(scrollX, -2000, 2000);
 
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
     }
@@ -132,6 +139,8 @@ public class DelveScreen extends BaseScreen {
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
         try {
+
+            renderBackgroundIcon(BACKGROUND, this, 0);
 
             this.buttons.forEach(b -> {
 
@@ -147,8 +156,6 @@ public class DelveScreen extends BaseScreen {
                 }
             });
 
-            renderBackgroundDirt(this, 0);
-
             super.render(matrix, x, y, ticks);
 
             this.tick_count++;
@@ -160,21 +167,22 @@ public class DelveScreen extends BaseScreen {
         for (AbstractButtonWidget b : buttons) {
             b.renderToolTip(matrix, x, y);
         }
+
         //watch.print(" rendering ");
     }
 
     static Identifier BACKGROUND = Ref.guiId("dungeon/background");
 
-    public static void renderBackgroundDirt(Screen screen, int vOffset) {
+    public static void renderBackgroundIcon(Identifier texture, Screen screen, int vOffset) {
+
         //copied from Scree
 
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferBuilder = tessellator.getBuffer();
         MinecraftClient.getInstance()
             .getTextureManager()
-            .bindTexture(BACKGROUND);
+            .bindTexture(texture);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        float f = 32.0F;
         bufferBuilder.begin(7, VertexFormats.POSITION_TEXTURE_COLOR);
         bufferBuilder.vertex(0.0D, (double) screen.height, 0.0D)
             .texture(0.0F, (float) screen.height / 32.0F + (float) vOffset)

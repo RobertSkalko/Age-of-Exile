@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.dimension.teleporter;
 
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
@@ -55,24 +54,16 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
 
         if (tile instanceof TeleportedBlockEntity) {
             // TeleportedBlockEntity en = (TeleportedBlockEntity) tile;
-
-            if (stack.getItem() instanceof DungeonKeyItem) {
-                if (!world.isClient) {
-                    int tier = DungeonKeyItem.getTier(stack);
-
-                    Load.playerMaps(player)
-                        .initRandomDelveCave((DungeonKeyItem) stack.getItem(), tier);
-
-                    stack.decrement(1);
-                    return ActionResult.SUCCESS;
-                    // activate map
-                }
-            } else {
-                if (world.isClient) {
+            if (world.isClient) {
+                if (stack.getItem() instanceof DungeonKeyItem) {
+                    ClientOnly.openChooseTierScreen(pos);
+                } else {
                     Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.MAPS));
                     ClientOnly.openMapsScreen(pos);
                 }
+                return ActionResult.SUCCESS;
             }
+
             return ActionResult.SUCCESS;
         }
 

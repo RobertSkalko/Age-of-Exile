@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.QuestProgression;
 import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
-import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -54,12 +53,29 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     public int ticksinPortal = 0;
     public int highestTierDone = 0;
 
+    public int getHighestTierPossibleToStart() {
+        return highestTierDone + 5;
+    }
+
     public PlayerMapsCap(PlayerEntity player) {
         this.player = player;
     }
 
     public void onDungeonCompletedAdvanceProgress() {
+
+        int tier = 0;
+        try {
+            tier = data.dungeon_datas.get(data.point_pos).t;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (tier > highestTierDone) {
+            highestTierDone = tier;
+        }
+
         this.data.completed.add(this.data.point_pos);
+
     }
 
     public static Block TELEPORT_TO_PLACEHOLDER_BLOCK = Blocks.PLAYER_HEAD;
@@ -221,10 +237,16 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     public void fromTag(CompoundTag nbt) {
         this.ticksinPortal = nbt.getInt("t");
         this.highestTierDone = nbt.getInt("h");
-        this.data = LoadSave.Load(MapsData.class, new MapsData(), nbt, LOC);
+
+        try {
+            this.data = LoadSave.Load(MapsData.class, new MapsData(), nbt, LOC);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (data == null) {
             data = new MapsData();
         }
+
     }
 
     public boolean isLockedToPlayer(DungeonData dungeon) {
@@ -244,6 +266,11 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         if (player.inventory.count(cost.getItem()) < cost.getCount()) {
             // return false;
         }
+
+        if (!this.data.completed.contains(this.data.point_pos) && !this.data.start_pos.equals(point)) {
+            return false;
+        }
+
         if (this.data.started.contains(point)) {
             return false;
         }
@@ -256,7 +283,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     }
 
-    public void initRandomDelveCave(DungeonKeyItem key, int tier) {
+    public void initRandomDelveCave(int maxlvl, int tier) {
 
         this.data = new MapsData();
         data.isEmpty = false;
@@ -267,6 +294,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
             dungeonTier = ITiered.getMaxTier();
         }
 
+        PointData middle = new PointData(data.grid.grid.length / 2, data.grid.grid.length / 2);
+
         for (int x = 0; x < data.grid.grid.length; x++) {
             for (int y = 0; y < data.grid.grid.length; y++) {
                 if (data.grid.grid[x][y].equals(DelveGrid.DUNGEON)) {
@@ -275,8 +304,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
                     dun.lv = Load.Unit(player)
                         .getLevel();
-                    if (dun.lv > key.tier.levelRange.getMaxLevel()) {
-                        dun.lv = key.tier.levelRange.getMaxLevel();
+                    if (dun.lv > maxlvl) {
+                        dun.lv = maxlvl;
                     }
 
                     dun.t = dungeonTier;
@@ -285,14 +314,17 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                         .GUID();
                     dun.uuid = UUID.randomUUID()
                         .toString();
-                    dun.uniq.randomize(dungeonTier);
+                    dun.u.randomize(dungeonTier);
                     dun.af.randomize(dungeonTier);
 
                     this.data.dungeon_datas.put(new PointData(x, y), dun);
 
-                    this.data.point_pos = new PointData(x, y);
-                    this.data.start_pos = new PointData(x, y);
+                    PointData point = new PointData(x, y);
 
+                    if (point.distanceTo(middle) < this.data.point_pos.distanceTo(middle)) {
+                        this.data.point_pos = point;
+                        this.data.start_pos = point;
+                    }
                 }
 
             }

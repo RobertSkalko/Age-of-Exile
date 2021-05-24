@@ -20,15 +20,14 @@ public class DungeonButton extends TexturedButtonWidget {
     public static int ySize = 32;
 
     static Identifier LOC = Ref.guiId("dungeon_button");
+    static Identifier ICON = Ref.guiId("dungeon/icons/nether");
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
     DungeonData dungeon;
 
-    public DungeonButton(DungeonData dungeon, DelveScreen screen, int xPos, int yPos) {
+    public DungeonButton(DungeonData dungeon, int xPos, int yPos) {
         super(xPos + 1, yPos + 1, xSize, ySize, 0, 0, ySize + 1, LOC, (button) -> {
-            // screen.selectedDungeon = dungeon;
-            //screen.init(); // maybe bad idea
         });
 
         this.dungeon = dungeon;
@@ -40,15 +39,13 @@ public class DungeonButton extends TexturedButtonWidget {
 
         // icon
         mc.getTextureManager()
-            .bindTexture(dungeon.getMobList()
-                .getIconId());
+            .bindTexture(ICON);
         drawTexture(matrix, this.x, this.y, 0, 0, 32, 32, 32, 32);
 
         if (Load.playerMaps(mc.player)
             .isLockedToPlayer(dungeon)) {
             mc.getTextureManager()
                 .bindTexture(PerkButton.LOCKED_TEX);
-
             drawTexture(matrix, this.x + 7, this.y + 3 + 10, 0, 0, 16, 16, 16, 16);
 
         }

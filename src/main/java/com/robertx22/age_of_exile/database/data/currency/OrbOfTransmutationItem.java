@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
+
     @Override
     public String GUID() {
         return "currency/orb_of_transmutation";

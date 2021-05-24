@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
@@ -16,7 +17,7 @@ import java.util.List;
 public class DungeonData {
 
     @Store
-    public PossibleUniques uniq = new PossibleUniques();
+    public PossibleUniques u = new PossibleUniques(); // uniques
     @Store
     public DungeonAffixes af = new DungeonAffixes(); // affixes
     @Store
@@ -53,12 +54,7 @@ public class DungeonData {
     }
 
     public MutableText getAffixedName() {
-        return af.prefix.getAffix()
-            .locName()
-            .append(" ")
-            .append("Lair ")
-            .append(af.suffix.getAffix()
-                .locName());
+        return new LiteralText("Dungeon");
     }
 
     public DungeonMobList getMobList() {

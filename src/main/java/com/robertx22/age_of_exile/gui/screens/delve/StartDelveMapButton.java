@@ -1,16 +1,12 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
-import com.robertx22.age_of_exile.dimension.packets.StartDungeonPacket;
+import com.robertx22.age_of_exile.dimension.packets.StartDelveMapPacket;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.saveclasses.PointData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -18,43 +14,25 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StartDungeonButton extends TexturedButtonWidget {
+public class StartDelveMapButton extends TexturedButtonWidget {
 
     public static int SIZE_X = 49;
     public static int SIZE_Y = 16;
 
     static Identifier ID = Ref.guiId("dungeon/start_dungeon_button");
-
     MinecraftClient mc = MinecraftClient.getInstance();
 
-    boolean isteam;
-
-    public StartDungeonButton(Boolean isteam, DungeonInfoScreen screen, PointData point, int xPos, int yPos) {
+    public StartDelveMapButton(ChooseTierScreen screen, int xPos, int yPos) {
         super(xPos, yPos, SIZE_X, SIZE_Y, 0, 0, SIZE_Y, ID, (button) -> {
-            Packets.sendToServer(new StartDungeonPacket(isteam, screen.teleporterPos, point));
-
-            CompoundTag nbt = new CompoundTag();
-            Load.playerMaps(MinecraftClient.getInstance().player)
-                .toTag(nbt);
-
-            System.out.print(nbt.toString());
+            Packets.sendToServer(new StartDelveMapPacket(screen.currentTier, screen.teleporterPos));
             screen.onClose();
         });
-        this.isteam = isteam;
     }
 
     @Override
     public void renderToolTip(MatrixStack matrix, int x, int y) {
         if (isInside(x, y)) {
             List<Text> tooltip = new ArrayList<>();
-            tooltip.add(new LiteralText("Choose this dungeon to start."));
-
-            if (isteam) {
-                tooltip.add(new LiteralText("This starts the dungeon in team mode."));
-                tooltip.add(new LiteralText("/age_of_exile teams, is required to play."));
-                tooltip.add(new LiteralText("The enemies are much more powerful but so are the rewards!"));
-                tooltip.add(new LiteralText("A dedicated Tank, Healer and Damage Dealer are recommended."));
-            }
 
             GuiUtils.renderTooltip(matrix, tooltip, x, y);
 
@@ -69,10 +47,7 @@ public class StartDungeonButton extends TexturedButtonWidget {
     public void renderButton(MatrixStack matrix, int x, int y, float f) {
         super.renderButton(matrix, x, y, f);
 
-        String txt = "Solo";
-        if (isteam) {
-            txt = "Team";
-        }
+        String txt = "Start";
 
         int width = mc.textRenderer.getWidth(txt);
 

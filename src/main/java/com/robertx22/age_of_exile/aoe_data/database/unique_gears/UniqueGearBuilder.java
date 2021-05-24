@@ -142,6 +142,7 @@ public class UniqueGearBuilder {
     }
 
     public UniqueGearBuilder setFabled() {
+        this.uniq.weight /= 10;
         this.uniq.uniqueRarity = IRarity.FABLED_ID;
         return this;
     }

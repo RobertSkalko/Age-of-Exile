@@ -30,7 +30,7 @@ public class PossibleUniques {
         u.clear();
 
         List<GearRarity> list = Database.GearRarities()
-            .getFiltered(x -> x.is_unique_item && tier > x.drops_after_tier);
+            .getFiltered(x -> x.is_unique_item && tier >= x.drops_after_tier);
 
         int amount = RandomUtils.RandomRange(3, 5);
 

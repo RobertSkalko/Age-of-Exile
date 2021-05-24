@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
+import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonGridType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -16,25 +17,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GridButton extends TexturedButtonWidget {
+    static Identifier COMPLETED = Ref.guiId("dungeon/completed");
+    static Identifier CURRENT_POS = Ref.guiId("dungeon/current_pos");
 
     public static int SIZE = 32;
 
-    static Identifier ID = Ref.guiId("dungeon/wall");
-    static Identifier DUN = Ref.guiId("dungeon/dungeon");
-
     public PointData point;
-
-    boolean isDungeon = false;
-
     public int origX;
     public int origY;
     MinecraftClient mc = MinecraftClient.getInstance();
     DelveScreen screen;
     boolean isvisible = true;
+    DungeonGridType type;
 
-    public GridButton(DelveScreen screen, PointData point, int x, int y, boolean isdung, boolean isvisible) {
-        super(x, y, 32, 32, 0, 0, 1, ID, 32, 32, (action) -> {
-            if (isdung && isvisible) {
+    public GridButton(DelveScreen screen, PointData point, int x, int y, DungeonGridType type, boolean isvisible) {
+        super(x, y, 32, 32, 0, 0, 1, DungeonGridType.WALL.icon, 32, 32, (action) -> {
+            if (type.isDungeon() && isvisible) {
                 DungeonData dun = Load.playerMaps(MinecraftClient.getInstance().player).data.dungeon_datas.get(point);
                 MinecraftClient.getInstance()
                     .openScreen(new DungeonInfoScreen(screen.teleporterPos, dun, point));
@@ -42,7 +40,7 @@ public class GridButton extends TexturedButtonWidget {
         });
         this.isvisible = isvisible;
         this.point = point;
-        this.isDungeon = isdung;
+        this.type = type;
         this.origX = x;
         this.origY = y;
         this.screen = screen;
@@ -59,7 +57,7 @@ public class GridButton extends TexturedButtonWidget {
             List<Text> tooltip = new ArrayList<>();
 
             if (isvisible) {
-                if (isDungeon) {
+                if (type.isDungeon()) {
                     tooltip.add(new LiteralText("Dungeon"));
                     tooltip.add(new LiteralText("Click to show info"));
                 }
@@ -94,26 +92,31 @@ public class GridButton extends TexturedButtonWidget {
 
     @Override
     public void renderButton(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        //  super.renderButton(matrix, x, y, delta);
 
-        Identifier COMPLETED = Ref.guiId("dungeon/completed");
+        Identifier icon = type.icon;
+
+        if (type.hide) {
+            if (!Load.playerMaps(mc.player).data.playerCanSee(point)) {
+                icon = DungeonGridType.WALL.icon;
+            }
+        }
 
         mc.getTextureManager()
-            .bindTexture(ID);
+            .bindTexture(icon);
         drawTexture(matrix, this.x, this.y, 0, 0, 32, 32, 32, 32);
 
-        if (isvisible && isDungeon) {
+        if (Load.playerMaps(mc.player).data.point_pos.equals(point)) {
             mc.getTextureManager()
-                .bindTexture(DUN);
-            drawTexture(matrix, this.x, this.y, 0, 0, 32, 32, 32, 32);
+                .bindTexture(CURRENT_POS);
+            drawTexture(matrix, this.x + 8, this.y + 8, 0, 0, 16, 16, 16, 16);
+        }
 
+        if (isvisible && type.isDungeon()) {
             if (Load.playerMaps(mc.player).data.completed.contains(point)) {
                 mc.getTextureManager()
                     .bindTexture(COMPLETED);
                 drawTexture(matrix, this.x + 8, this.y + 8, 0, 0, 16, 16, 16, 16);
-
             }
-
         }
     }
 }

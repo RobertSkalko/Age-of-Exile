@@ -929,6 +929,27 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
+	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
+	"item.mmorpg.currency.level_spell": "§cOrb of Elevation",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.roll_socket": "§cOrb of Sockets",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 	"effect.mmorpg.beneficial.0": "Ele Resist",
@@ -978,30 +999,6 @@
 	"effect.mmorpg.negative.9": "Mummy Curse",
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
-
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
-	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
-	"item.mmorpg.currency.fifty_tier": "Large Dungeon Key Upgrade",
-	"item.mmorpg.currency.level_spell": "§cOrb of Elevation",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.one_tier": "Small Dungeon Key Upgrade",
-	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.roll_socket": "§cOrb of Sockets",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-	"item.mmorpg.currency.ten_tier": "Medium Dungeon Key Upgrade",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -2592,10 +2589,8 @@
 	"item.mmorpg.currency.clear_sockets.desc": "Destroys all runes and gems on the item.",
 	"item.mmorpg.currency.crystal_of_purification.desc": "Unseals the item.",
 	"item.mmorpg.currency.crystal_of_truth.desc": "Transform common item into random higher rarity.",
-	"item.mmorpg.currency.fifty_tier.desc": "Increases the tier of the dungeon key by 50 tiers.",
 	"item.mmorpg.currency.level_spell.desc": "Increases level of a spell gem",
 	"item.mmorpg.currency.number_reroll.desc": "Re-rolls explicit numbers on a gear.",
-	"item.mmorpg.currency.one_tier.desc": "Increases the tier of the dungeon key by 1 tiers.",
 	"item.mmorpg.currency.orb_of_infinity.desc": "Adds another affix.",
 	"item.mmorpg.currency.orb_of_transmutation.desc": "Transform common item into higher rarity.",
 	"item.mmorpg.currency.randomize_affixes.desc": "Re-rolls all affixes.",
@@ -2604,7 +2599,6 @@
 	"item.mmorpg.currency.reroll_unique_numbers.desc": "Re-rolls unique stat numbers.",
 	"item.mmorpg.currency.roll_socket.desc": "Re-rolls a random affix into one that adds sockets.",
 	"item.mmorpg.currency.stone_of_hope.desc": "Transform any rarity gear into higher rarity.",
-	"item.mmorpg.currency.ten_tier.desc": "Increases the tier of the dungeon key by 10 tiers.",
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
 

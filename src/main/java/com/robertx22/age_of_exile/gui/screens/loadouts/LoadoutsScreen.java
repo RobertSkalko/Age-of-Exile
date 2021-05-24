@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.BaseSelectionScreen;
 import com.robertx22.age_of_exile.gui.screens.ILeftRight;
 import com.robertx22.age_of_exile.gui.screens.PlayerGearButton;
-import com.robertx22.age_of_exile.gui.screens.race_select.RaceSelectScreen;
+import com.robertx22.age_of_exile.gui.screens.race_select.LeftRightButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -83,7 +83,7 @@ public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen,
 
         x = (this.width - (LoadoutButton.xSize + 5) * slots) / 2;
 
-        this.addButton(new RaceSelectScreen.LeftRightButton(this, x - 30, y + LoadoutButton.ySize / 2, true));
+        this.addButton(new LeftRightButton(this, x - 30, y + LoadoutButton.ySize / 2, true, LeftRightButton.Type.ONE));
 
         int num = 1;
 
@@ -108,7 +108,7 @@ public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen,
 
         }
 
-        this.addButton(new RaceSelectScreen.LeftRightButton(this, x + 25 - RaceSelectScreen.LeftRightButton.xSize, y + LoadoutButton.ySize / 2, false));
+        this.addButton(new LeftRightButton(this, x + 25 - LeftRightButton.xSize, y + LoadoutButton.ySize / 2, false, LeftRightButton.Type.ONE));
 
     }
 

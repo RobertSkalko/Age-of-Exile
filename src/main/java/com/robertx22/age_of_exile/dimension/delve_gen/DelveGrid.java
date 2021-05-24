@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.dimension.delve_gen;
 
+import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonGridType;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -12,23 +13,40 @@ import java.util.*;
 public class DelveGrid {
 
     @Store
-    public String[][] grid = new String[40][40];
+    public String[][] grid = new String[30][30];
 
     @Store
     public int dungeons = 0;
 
     public static String DUNGEON = "d";
-    public static String COMPLETED_DUNGEON = "c";
     public static String WALL = "";
 
-    static int MAX_DUNGEONS = 50;
+    static int MAX_DUNGEONS = 40;
 
     public boolean isDungeon(PointData point) {
         return grid[point.x][point.y].equals(DUNGEON);
     }
 
+    public DungeonGridType getGridType(PointData point) {
+
+        String id = grid[point.x][point.y];
+
+        for (DungeonGridType type : DungeonGridType.values()) {
+            if (type.id.equals(id)) {
+                return type;
+            }
+        }
+
+        return DungeonGridType.WALL;
+
+    }
+
+    public boolean isInRange(PointData point) {
+        return point.x > 0 && point.y > 0 && point.x < grid.length && point.y < grid.length;
+    }
+
     public void removeCompletedDungeonAfterStartingAnotherOne(PointData lastDungeon) {
-        grid[lastDungeon.x][lastDungeon.y] = COMPLETED_DUNGEON;
+
     }
 
     public void randomize() {
@@ -41,7 +59,7 @@ public class DelveGrid {
 
         PointData start = new PointData(grid.length / 2, grid.length / 2);
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 15; i++) {
             if (dungeons >= MAX_DUNGEONS) {
                 break;
             }
@@ -85,7 +103,7 @@ public class DelveGrid {
                             grid[dir.x][dir.y] = DUNGEON;
                             dungeons++;
 
-                            if (RandomUtils.roll(10)) {
+                            if (RandomUtils.roll(20)) {
                                 makePath(dir, RandomUtils.RandomRange(1, 5));
                             }
                         }
@@ -125,7 +143,7 @@ public class DelveGrid {
         }
     }
 
-    boolean isTooNearBounds(PointData point) {
+    private boolean isTooNearBounds(PointData point) {
         return point.x < 3 || point.y < 3 || point.x > grid.length - 3 || point.y > grid.length - 3;
     }
 
