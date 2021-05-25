@@ -63,6 +63,7 @@ threat_gen_type_is_take_dmg
 is_projectile
 is_ranged_weapon
 effect_has_tag_immobilizing
+restore_type_is_food
 is_staff_wep_type
 is_accu_crit_roll_fail_true_is_false
 is_mace_wep_type

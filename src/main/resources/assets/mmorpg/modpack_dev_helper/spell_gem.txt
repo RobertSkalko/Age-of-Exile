@@ -11,11 +11,13 @@ arrow_storm
 cooldown
 poison_trap
 fire_dmg
+heal_crit_dmg
 less_radius
 fire_breath
 shout_warn
 health_leech
 shooting_star
+heal_power
 crit_aura
 overload
 astral_totem
@@ -90,9 +92,9 @@ poison_arrow
 curse_of_agony
 frost_trap
 frostball
+heal_crit_rate
 frost_nova
 make_arrows
-fire_bombs
 frost_sphere
 awaken_mana
 mana_reg_aura

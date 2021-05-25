@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.GearMaterialRegister;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import net.fabricmc.api.EnvType;
@@ -28,17 +29,17 @@ import java.util.List;
 
 public class GearMaterialItem extends Item implements IAutoLocName, IWeighted, IAutoModel, IShapedRecipe {
 
-    public GearMaterialItem(int tier, GearMaterialRegister.TYPE type, String id, String locname, LevelRange levelRange) {
+    public GearMaterialItem(SkillItemTier tier, GearMaterialRegister.TYPE type, String id) {
         super(new Item.Settings().maxCount(64)
             .group(CreativeTabs.MyModTab));
-        this.locname = locname;
+        this.locname = tier.word + " " + type.name;
         this.id = id;
-        this.range = levelRange;
+        this.range = tier.levelRange;
         this.type = type;
         this.tier = tier;
     }
 
-    int tier;
+    SkillItemTier tier;
     GearMaterialRegister.TYPE type;
     String locname;
     String id;

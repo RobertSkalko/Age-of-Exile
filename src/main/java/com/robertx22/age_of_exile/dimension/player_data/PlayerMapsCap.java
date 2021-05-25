@@ -159,6 +159,9 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                                 moblist = SignUtils.removeBraces(SignUtils.getText((SignBlockEntity) e.getValue())
                                     .get(1));
                             }
+                            if (SignUtils.has("[portal]", (SignBlockEntity) e.getValue())) {
+                                dimWorld.setBlockState(e.getKey(), ModRegistry.BLOCKS.PORTAL.getDefaultState());
+                            }
                         } else if (dimWorld.getBlockState(e.getKey())
                             .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK) {
                             tpPos = e.getKey();

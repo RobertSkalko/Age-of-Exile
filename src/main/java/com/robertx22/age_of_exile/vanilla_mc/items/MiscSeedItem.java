@@ -25,9 +25,9 @@ public class MiscSeedItem extends AliasedBlockItem implements IAutoLocName, ISha
 
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 9);
+        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 6);
         fac.input(recipeItem);
-        fac.input(Items.WHEAT_SEEDS, 4);
+        fac.input(Items.WHEAT_SEEDS, 2);
         return fac.criterion("player_level", trigger());
     }
 

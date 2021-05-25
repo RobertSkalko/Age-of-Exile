@@ -408,21 +408,19 @@ public class Unit {
 
                         for (SkillGemData sd : noGemDuplicateList) {
 
-                            if (sd.canPlayerUse((PlayerEntity) entity)) {
-                                sd.getSkillGem()
-                                    .getConstantStats(sd)
-                                    .forEach(s -> {
-                                        copy.getStatInCalculation(s.getStat())
-                                            .add(s, data);
-                                    });
-                                sd.getSkillGem()
-                                    .getRandomStats(sd)
-                                    .forEach(s -> {
-                                        copy.getStatInCalculation(s.getStat())
-                                            .add(s, data);
-                                    });
+                            sd.getSkillGem()
+                                .getConstantStats(sd)
+                                .forEach(s -> {
+                                    copy.getStatInCalculation(s.getStat())
+                                        .add(s, data);
+                                });
+                            sd.getSkillGem()
+                                .getRandomStats(sd)
+                                .forEach(s -> {
+                                    copy.getStatInCalculation(s.getStat())
+                                        .add(s, data);
+                                });
 
-                            }
                         }
 
                     }

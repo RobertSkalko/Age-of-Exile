@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
@@ -46,7 +47,8 @@ public class SongSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.NOTE, 2D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculation.base("power_chord", 7), Elements.Elemental))
+            .onHit(PartBuilder.damage(ValueCalculation.base("power_chord", 6), Elements.Elemental)
+                .addActions(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.CHARM, 6)))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 10D, 1D))
             .build();
     }

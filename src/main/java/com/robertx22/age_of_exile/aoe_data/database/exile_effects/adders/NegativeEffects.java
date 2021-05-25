@@ -9,7 +9,9 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
+import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
@@ -44,9 +46,28 @@ public class NegativeEffects implements ISlashRegistryInit {
     public static EffectCtx AGONY = new EffectCtx("agony", "Curse of Agony", 13, Elements.Dark, EffectType.negative);
     public static EffectCtx WEAKNESS = new EffectCtx("weak", "Curse of Weakness", 14, Elements.Dark, EffectType.negative);
     public static EffectCtx DESPAIR = new EffectCtx("despair", "Curse of Despair", 15, Elements.Dark, EffectType.negative);
+    public static EffectCtx CHARM = new EffectCtx("charm", "Charm", 16, Elements.Elemental, EffectType.negative);
+    public static EffectCtx GROUNDING = new EffectCtx("ground", "Grounding", 17, Elements.Physical, EffectType.negative);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(GROUNDING)
+            .maxStacks(1)
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 1D, ParticleMotion.Downwards))
+                    .addTarget(TargetSelector.CASTER.create()))
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 2D, 0.5D)
+                    .onTick(20D))
+                .buildForEffect())
+            .build();
+
+        ExileEffectBuilder.of(CHARM)
+            .maxStacks(5)
+            .stat(-3, Armor.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(-3, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(-3, new ElementalResist(Elements.Elemental))
+            .build();
 
         ExileEffectBuilder.of(AGONY)
             .maxStacks(1)

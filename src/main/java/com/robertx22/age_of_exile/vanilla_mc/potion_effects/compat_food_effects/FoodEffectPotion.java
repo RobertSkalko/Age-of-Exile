@@ -54,7 +54,7 @@ public abstract class FoodEffectPotion extends StatusEffect {
 
                 float heal = getValueRestoredPerRegen(data, amplifier, instance.getDuration());
 
-                RestoreResourceEvent restore = EventBuilder.ofRestore(en, en, resourceType(), RestoreType.regen, heal)
+                RestoreResourceEvent restore = EventBuilder.ofRestore(en, en, resourceType(), RestoreType.food, heal)
                     .build();
 
                 restore.Activate();

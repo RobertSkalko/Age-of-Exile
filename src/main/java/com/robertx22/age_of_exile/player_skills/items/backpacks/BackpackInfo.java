@@ -22,8 +22,8 @@ public class BackpackInfo {
                 x.upgrade.upgrade(x, this);
             });
 
-        if (extraRows > 4) {
-            extraRows = 4;
+        if (extraRows > 5) {
+            extraRows = 5;
         }
     }
 

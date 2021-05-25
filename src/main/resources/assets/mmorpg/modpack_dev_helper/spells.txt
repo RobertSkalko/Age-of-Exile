@@ -64,7 +64,6 @@ flame_strike
 meteor
 frost_nova
 make_arrows
-fire_bombs
 frost_sphere
 power_chord
 pull

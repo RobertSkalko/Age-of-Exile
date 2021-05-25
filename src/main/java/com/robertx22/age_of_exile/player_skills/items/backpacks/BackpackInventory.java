@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
-import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
@@ -56,7 +55,7 @@ public class BackpackInventory extends SimpleInventory {
     }
 
     public static int getMaxSize() {
-        return getSizeBackpack(SkillItemTier.TIER4.tier);
+        return getSizeBackpack(5);
     }
 
     private void readNBT(CompoundTag compound) {

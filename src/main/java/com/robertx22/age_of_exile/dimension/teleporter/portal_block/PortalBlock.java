@@ -4,7 +4,9 @@ import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.mixin_ducks.PlayerTeleStateAccessor;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.library_of_exile.utils.TeleportUtils;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -19,6 +21,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Random;
 
@@ -70,6 +73,24 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
 
             if (entity instanceof PlayerEntity) {
 
+                PlayerMapsCap maps = Load.playerMaps((PlayerEntity) entity);
+
+                entity.teleporting = true;
+
+                if (!world.isClient) {
+
+                    if (WorldUtils.isDungeonWorld(world)) {
+                        if (maps.ticksinPortal < 40) {
+                            maps.ticksinPortal++;
+                        } else {
+                            BlockPos p = Load.playerMaps((PlayerEntity) entity).data.tel_pos.up();
+                            TeleportUtils.teleport((ServerPlayerEntity) entity, p, DimensionType.OVERWORLD_ID);
+                            SoundUtils.playSound(entity, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);
+                            return;
+                        }
+                    }
+                }
+
                 PortalBlockEntity be = (PortalBlockEntity) world.getBlockEntity(pos);
 
                 if (!be.restrictedToPlayer.isEmpty()) {
@@ -77,10 +98,6 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                         return; // only allow 1 player in solo maps
                     }
                 }
-
-                PlayerMapsCap maps = Load.playerMaps((PlayerEntity) entity);
-
-                entity.teleporting = true;
 
                 if (entity instanceof ServerPlayerEntity) {
                     if (!entity.hasVehicle() && !entity.hasPassengers() && entity.canUsePortals()) {

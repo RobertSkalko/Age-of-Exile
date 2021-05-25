@@ -18,6 +18,7 @@ public class PortalBlockEntity extends BaseModificationStation {
     public String restrictedToPlayer = "";
 
     public PortalBlockEntity() {
+
         super(ModRegistry.BLOCK_ENTITIES.PORTAL, 0);
     }
 

@@ -45,7 +45,6 @@ fire_trap
 flame_strike
 meteor
 frost_nova
-fire_bombs
 frost_sphere
 totem_guard
 power_chord
@@ -53,6 +52,7 @@ pull
 awaken_mana
 soul_harvest_heal
 poison_arrow_aoe
+fire_nova
 shadow_ball
 taunt
 regenerate_tick

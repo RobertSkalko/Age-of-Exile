@@ -7,6 +7,9 @@ import net.minecraft.client.render.RenderLayer;
 public class RenderLayersRegister {
     public static void setup() {
 
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.PORTAL, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.TELEPORTER, RenderLayer.getTranslucent());
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.MANA_PLANT, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.LIFE_PLANT, RenderLayer.getCutout());
 

@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
-import com.robertx22.age_of_exile.dimension.rules.OnTickGiveTpBack;
 import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -51,6 +50,16 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 if (data == null) {
                     data = new PlayerTickData();
+                }
+
+                if (player.isBlocking()) {
+                    if (Load.spells(player)
+                        .getCastingData()
+                        .isCasting()) {
+                        Load.spells(player)
+                            .getCastingData()
+                            .cancelCast(player);
+                    }
                 }
 
                 Load.Unit(player)
@@ -132,7 +141,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 }
                 if (data.ticksToLvlWarning > TicksToLevelWarning) {
-                    OnTickGiveTpBack.give(player);
 
                     if (!WorldUtils.isDungeonWorld(player.world)) {
 

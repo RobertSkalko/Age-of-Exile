@@ -17,6 +17,12 @@ public enum ParticleMotion {
             return new Vec3d(0, 1F, 0);
         }
     },
+    Downwards {
+        @Override
+        public Vec3d getMotion(Vec3d particlePos, SpellCtx ctx) {
+            return new Vec3d(0, -1F, 0);
+        }
+    },
     OutwardMotion {
         @Override
         public Vec3d getMotion(Vec3d particlePos, SpellCtx ctx) {

@@ -3,6 +3,7 @@ This registry is modify-able through datapacks.
 negative/0
 negative/1
 beneficial/20
+negative/17
 negative/6
 negative/7
 negative/8
@@ -33,6 +34,7 @@ beneficial/9
 beneficial/29
 negative/15
 beneficial/24
+negative/16
 beneficial/23
 beneficial/0
 negative/13

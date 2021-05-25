@@ -1,14 +1,16 @@
 package com.robertx22.age_of_exile.dimension.item;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.GiveOrTake;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.library_of_exile.utils.TeleportUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -50,9 +52,7 @@ public class TeleportBackItem extends AutoItem {
         if (!world.isClient) {
             if (WorldUtils.isDungeonWorld(world)) {
                 BlockPos pos = Load.playerMaps((PlayerEntity) player).data.tel_pos.up();
-
                 TeleportUtils.teleport((ServerPlayerEntity) player, pos, DimensionType.OVERWORLD_ID);
-
                 SoundUtils.playSound(player, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);
             }
         }
@@ -63,7 +63,15 @@ public class TeleportBackItem extends AutoItem {
     @Override
     public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity player, Hand handIn) {
         ItemStack itemStack = player.getStackInHand(handIn);
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20 * 5, 5));
+
+        try {
+            ExilePotionEvent event = new ExilePotionEvent(1, Database.ExileEffects()
+                .get(NegativeEffects.GROUNDING.effectId), GiveOrTake.give, player, player, 20 * 5);
+            event.Activate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         player.setCurrentHand(handIn);
         return TypedActionResult.success(itemStack);
     }
