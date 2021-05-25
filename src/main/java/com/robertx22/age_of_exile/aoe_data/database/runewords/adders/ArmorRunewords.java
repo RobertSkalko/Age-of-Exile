@@ -46,7 +46,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
         RuneWord.create(
             "starlight",
             "Starlight",
-            BaseGearType.SlotFamily.Armor,
+                GearSlots.HELMET,
             Arrays.asList(
                 new StatModifier(2, 5, Health.getInstance(), ModType.FLAT),
                 new StatModifier(0.5F, 2, ManaRegen.getInstance(), ModType.FLAT)
@@ -57,7 +57,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
         RuneWord.create(
             "shadow",
             "Shadow",
-            BaseGearType.SlotFamily.Armor,
+                GearSlots.CHEST,
             Arrays.asList(
                 new StatModifier(2, 6, DodgeRating.getInstance(), ModType.FLAT),
                 new StatModifier(20, 60, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
@@ -68,7 +68,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
         RuneWord.create(
             "rock_golem",
             "Rock Golem",
-            BaseGearType.SlotFamily.Armor,
+                GearSlots.CHEST,
             Arrays.asList(
                 new StatModifier(2, 6, Armor.getInstance(), ModType.FLAT),
                 new StatModifier(20, 60, Armor.getInstance(), ModType.LOCAL_INCREASE)
@@ -81,7 +81,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
         RuneWord.create(
             "sympathy",
             "Sympathy",
-            BaseGearType.SlotFamily.Armor,
+                GearSlots.PANTS,
             Arrays.asList(
                     new StatModifier(7, 14, Stats.INCREASED_EFFECT_OF_AURAS_GIVEN.get(), ModType.FLAT),
                     new StatModifier(5, 10, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT),
@@ -93,7 +93,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
         RuneWord.create(
             "rotund",
             "Rotund",
-            BaseGearType.SlotFamily.Armor,
+                GearSlots.CHEST,
             Arrays.asList(
                     new StatModifier(2, 5, Health.getInstance(), ModType.FLAT),
                     new StatModifier(5, 20, Stats.INCREASED_AREA.get(), ModType.FLAT),
