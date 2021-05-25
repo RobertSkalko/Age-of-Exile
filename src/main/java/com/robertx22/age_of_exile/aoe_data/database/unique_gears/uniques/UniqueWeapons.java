@@ -9,6 +9,7 @@ public class UniqueWeapons implements ISlashRegistryInit {
     public void registerAll() {
 
         new UniqueSwords().registerAll();
+        new UniqueBows().registerAll();
 
     }
 }

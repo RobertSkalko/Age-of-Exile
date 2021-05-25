@@ -75,5 +75,31 @@ public class ArmorRunewords implements ISlashRegistryInit {
             ),
             Arrays.asList(XER, CEN, ORU, ITA))
             .addToSerializables();
+
+        // Mahj Attempts
+
+        RuneWord.create(
+            "sympathy",
+            "Sympathy",
+            BaseGearType.SlotFamily.Armor,
+            Arrays.asList(
+                    new StatModifier(7, 14, Stats.INCREASED_EFFECT_OF_AURAS_GIVEN.get(), ModType.FLAT),
+                    new StatModifier(5, 10, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT),
+                    new StatModifier(5, 10, Stats.DAMAGE_RECEIVED.get(), ModType.FLAT)
+            ),
+            Arrays.asList(ENO, ANO, ITA, CEN))
+            .addToSerializables();
+
+        RuneWord.create(
+            "rotund",
+            "Rotund",
+            BaseGearType.SlotFamily.Armor,
+            Arrays.asList(
+                    new StatModifier(2, 5, Health.getInstance(), ModType.FLAT),
+                    new StatModifier(5, 20, Stats.INCREASED_AREA.get(), ModType.FLAT),
+                    new StatModifier(5, 10, Stats.THREAT_GENERATED.get(), ModType.FLAT)
+            ),
+            Arrays.asList(ENO, ANO, ITA, CEN))
+            .addToSerializables();
     }
 }

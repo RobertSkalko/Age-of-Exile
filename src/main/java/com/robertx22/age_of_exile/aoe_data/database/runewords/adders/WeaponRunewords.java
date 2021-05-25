@@ -88,5 +88,20 @@ public class WeaponRunewords implements ISlashRegistryInit {
             Arrays.asList(YUN, MOS, NOS, XER))
             .addToSerializables();
 
+        // Mahj Attempts
+
+        RuneWord.create(
+            "toxophilite",
+            "Toxophilite",
+            BaseGearType.SlotFamily.Weapon,
+            Arrays.asList(
+                    new StatModifier(1, 1.5F, 1.5F, 2.5F, new AttackDamage(Elements.Nature), ModType.FLAT),
+                    new StatModifier(3, 15, Stats.PROJECTILE_DAMAGE.get(), ModType.FLAT),
+                    new StatModifier(3, 8, ArmorPenetration.getInstance(), ModType.FLAT),
+                    new StatModifier(5, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED), ModType.FLAT)
+            ),
+            Arrays.asList(ITA, MOS, NOS, XER))
+            .addToSerializables();
+
     }
 }
