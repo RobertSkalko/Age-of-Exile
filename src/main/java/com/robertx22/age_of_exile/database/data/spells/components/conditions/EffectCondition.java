@@ -15,6 +15,7 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
         super(requiredPieces);
     }
 
+    public static IsNotOnCooldownCondition IS_NOT_ON_COOLDOWN;
     public static EntityInRadiusCondition IS_ENTITY_IN_RADIUS;
     public static OnTickCondition EVERY_X_TICKS;
     public static ChanceCondition CHANCE;
@@ -37,6 +38,7 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
     }
 
     public static void init() {
+        IS_NOT_ON_COOLDOWN = of(new IsNotOnCooldownCondition());
         IS_ENTITY_IN_RADIUS = of(new EntityInRadiusCondition());
         TARGET_HAS_POTION = of(new TargetHasEffectCondition());
         IS_TARGET_ALLY = of(new IsAllyCondition());

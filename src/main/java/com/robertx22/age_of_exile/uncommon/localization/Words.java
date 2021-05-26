@@ -171,57 +171,7 @@ public enum Words implements IAutoLocName {
 
     Cleric("Cleric"),
 
-    HeartOfIce("Heart of Ice"),
-
-    ThornArmor("Thorn Armor"),
-
-    PoisonedWeapons("Poisoned Weapons"),
-
-    BlazingInferno("Blazing Inferno"), SpearOfJudgement("Spear of Judgment"),
-
-    DivineTribulation("Divine Tribulation"), PurifyingFires("Purifying Fires"),
-
-    Fireball("Fireball"), FireBomb("Fire Bombs"),
-
-    PoisonBall("Poison Ball"),
-
-    Frostball("Frostball"),
-
-    ThunderSpear("Thunder Spear"),
-
-    ThunderDash("Thunder Dash"), TripleSlash("Triple Slash"),
-
-    Thunderstorm("Thunderstorm"), Stealth("Stealth"),
-
-    ArrowBarrage("Arrow Barrage"), WideShot("Wide Shot"),
-
-    ArrowStorm("Arrow Storm"),
-
-    RecoilShot("Recoil Shot"), TidalWave("Tidal Wave"),
-
-    ThrowFlames("Throw Flames"),
-
-    LightningTotem("Lightning Totem"), HealingAura("Healing Aura"),
-
-    Volcano("Volcano"),
-
-    Blizzard("Blizzard"),
-
     ClickToOpen("Click to Open"),
-
-    Whirpool("Whirpool"),
-
-    Geyser("Geyser"),
-
-    GorgonsGaze("Gorgon's Gaze"),
-
-    Regenerate("Regenerate"),
-
-    InstantHeal("Instant Heal"),
-
-    RighteousFury("Righteous Fury"),
-
-    DivineShield("Divine Shield"), Imbue("Imbue"),
 
     Spellbar("Spellbar"),
 

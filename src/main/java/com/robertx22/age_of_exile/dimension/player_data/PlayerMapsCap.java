@@ -145,6 +145,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 List<ChunkPos> check = PopulateDungeonChunks.getChunksAround(cp);
 
                 boolean foundSpawn = false;
+                boolean foundportalback = false;
 
                 for (ChunkPos x : check) {
 
@@ -159,8 +160,11 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                                 moblist = SignUtils.removeBraces(SignUtils.getText((SignBlockEntity) e.getValue())
                                     .get(1));
                             }
-                            if (SignUtils.has("[portal]", (SignBlockEntity) e.getValue())) {
-                                dimWorld.setBlockState(e.getKey(), ModRegistry.BLOCKS.PORTAL.getDefaultState());
+                            if (!foundportalback) {
+                                if (SignUtils.has("[portal]", (SignBlockEntity) e.getValue())) {
+                                    dimWorld.setBlockState(e.getKey(), ModRegistry.BLOCKS.PORTAL.getDefaultState());
+                                    foundportalback = true;
+                                }
                             }
                         } else if (dimWorld.getBlockState(e.getKey())
                             .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK) {
@@ -172,7 +176,10 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 }
 
                 if (!foundSpawn) {
-                    player.sendMessage(new LiteralText("Couldnt find spawn position, you might be placed weirdly, and possibly die."), false);
+                    player.sendMessage(new LiteralText("Bug: Couldnt find spawn position, you might be placed weirdly, and possibly die."), false);
+                }
+                if (!foundportalback) {
+                    player.sendMessage(new LiteralText("Bug: Couldnt find portal back position."), false);
                 }
 
                 w.print("finding spawn");

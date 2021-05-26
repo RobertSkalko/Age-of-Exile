@@ -10,7 +10,8 @@ import java.util.List;
 public class SignUtils {
 
     public static boolean has(String id, SignBlockEntity sign) {
-        return getText(sign).contains(id);
+        return getText(sign).stream()
+            .anyMatch(x -> x.contains(id));
     }
 
     public static String removeBraces(String id) {

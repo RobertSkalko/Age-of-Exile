@@ -391,7 +391,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         }
 
         return ModRegistry.GEAR_MATERIALS.MAP.get(type)
-            .get(SkillItemTier.of(getLevelRange()).tier);
+            .get(SkillItemTier.of(getLevelRange()));
 
     }
 

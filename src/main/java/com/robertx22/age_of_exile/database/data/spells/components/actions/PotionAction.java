@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileStatusEffect;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction.GiveOrTake;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
@@ -81,8 +83,16 @@ public class PotionAction extends SpellAction implements ICTextTooltip {
                         List<StatusEffectInstance> opt = t.getStatusEffects()
                             .stream()
                             .filter(x -> {
-                                StatusEffectAccesor acc = (StatusEffectAccesor) x.getEffectType();
-                                return acc.my$getstatusEffectType() == StatusEffectType.HARMFUL;
+                                if (x.getEffectType() instanceof StatusEffectAccesor) {
+                                    StatusEffectAccesor acc = (StatusEffectAccesor) x.getEffectType();
+                                    return acc.my$getstatusEffectType() == StatusEffectType.HARMFUL;
+                                } else {
+                                    if (x.getEffectType() instanceof ExileStatusEffect) {
+                                        ExileStatusEffect es = (ExileStatusEffect) x.getEffectType();
+                                        return es.type == EffectType.negative;
+                                    }
+                                }
+                                return false;
                             })
                             .collect(Collectors.toList());
 

@@ -40,7 +40,7 @@ import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_MOVEMENT_S
 public class BeneficialEffects implements ISlashRegistryInit {
 
     public static EffectCtx ELE_RESIST = new EffectCtx("ele_res", "Ele Resist", 0, Elements.Elemental, EffectType.beneficial);
-    public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 1, Elements.All, EffectType.beneficial);
+    public static EffectCtx ANTIDOTE = new EffectCtx("antidote", "Antidote", 1, Elements.All, EffectType.beneficial);
     public static EffectCtx HP_REGEN = new EffectCtx("hp_reg_bard", "Health Reg", 2, Elements.Physical, EffectType.beneficial);
     public static EffectCtx MANA_REGEN = new EffectCtx("mana_reg_bard", "Mana Reg", 3, Elements.Physical, EffectType.beneficial);
     public static EffectCtx INFUSED_BLADE = new EffectCtx("infused_blade", "Infused Blade", 4, Elements.Physical, EffectType.beneficial);
@@ -68,9 +68,40 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx ALACRITY = new EffectCtx("alacrity", "Alacrity", 27, Elements.Physical, EffectType.beneficial);
     public static EffectCtx STEAM_POWER = new EffectCtx("steam_power", "Steam Power", 28, Elements.Physical, EffectType.beneficial);
     public static EffectCtx CONCENTRATION = new EffectCtx("concentration", "Concentration", 29, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 30, Elements.Light, EffectType.beneficial);
+    public static EffectCtx EAGER = new EffectCtx("eager", "Eager", 31, Elements.Physical, EffectType.beneficial);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(EAGER)
+            .stat(10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
+            .stat(25, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(10, Stats.ATTACK_SPEED.get(), ModType.FLAT)
+            .stat(20, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
+            .maxStacks(1)
+            .addTags(EffectTags.offensive)
+            .build();
+
+        ExileEffectBuilder.of(CLEANSE)
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.justAction(SpellAction.POTION.removeNegative(1D))
+                    .addTarget(TargetSelector.CASTER.create())
+                    .onTick(1D))
+                .buildForEffect())
+            .build();
+
+        ExileEffectBuilder.of(TAUNT_STANCE)
+            .stat(25, Stats.THREAT_GENERATED.get())
+            .stat(50, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
+
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.scaleWithStat("taunt_stance", new ScalingStatCalculation(HealthRegen.getInstance(), 0.05F), 2), AggroAction.Type.AGGRO))
+                    .setTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
+                    .onTick(60D))
+                .buildForEffect())
+            .maxStacks(1)
+            .build();
 
         ExileEffectBuilder.of(CONCENTRATION)
             .stat(10, Stats.ACCURACY.get(), ModType.FLAT)
@@ -222,7 +253,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .addTags(EffectTags.defensive)
             .build();
 
-        ExileEffectBuilder.of(CLEANSE)
+        ExileEffectBuilder.of(ANTIDOTE)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.removeSelfEffect(StatusEffects.POISON)
                     .onTick(10D))

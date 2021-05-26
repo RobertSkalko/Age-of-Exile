@@ -121,7 +121,7 @@ public class IntSpells implements ISlashRegistryInit {
                 .addActions(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.SLOW, 3)))
             .build();
 
-        SpellBuilder.of("black_hole", SpellConfiguration.Builder.instant(30, 20 * 60)
+        SpellBuilder.of("black_hole", SpellConfiguration.Builder.nonInstant(30, 20 * 60, 30)
                 .setSwingArm(), "Black Hole",
             Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.area))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
@@ -170,11 +170,16 @@ public class IntSpells implements ISlashRegistryInit {
             Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1D, 0.6D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.FIREBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
-            .onTick(PartBuilder.particleOnTick(1D, PARTICLES.FLAME, 1D, 0.15D))
+            .onTick(PartBuilder.particleOnTick(1D, PARTICLES.FLAME, 1D, 0.1D))
+
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.FALLING_LAVA, 1D, 0.5D))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 1D, 0.01D))
+
             .onHit(PartBuilder.damage(ValueCalculation.base("fireball", 8), Elements.Fire))
-            .onHit(PartBuilder.aoeParticles(ParticleTypes.LAVA, 5D, 1D))
+            .onHit(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_BURN, 1D, 2D))
+            .onHit(PartBuilder.aoeParticles(ParticleTypes.LAVA, 1D, 0.5D))
             .build();
 
         SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 20)
@@ -282,7 +287,7 @@ public class IntSpells implements ISlashRegistryInit {
 
             .build();
 
-        SpellBuilder.of("meteor", SpellConfiguration.Builder.instant(18, 20 * 30), "Meteor",
+        SpellBuilder.of("meteor", SpellConfiguration.Builder.nonInstant(18, 20 * 30, 30), "Meteor",
             Arrays.asList(SpellTag.area, SpellTag.damage)
         )
             .weaponReq(CastingWeapon.MELEE_WEAPON)
@@ -294,7 +299,7 @@ public class IntSpells implements ISlashRegistryInit {
                 .put(MapField.FIND_NEAREST_SURFACE, false)
                 .put(MapField.IS_BLOCK_FALLING, true)))
             .onTick("block", PartBuilder.particleOnTick(2D, ParticleTypes.LAVA, 2D, 0.5D))
-            .onExpire("block", PartBuilder.damageInAoe(ValueCalculation.base("meteor", 10), Elements.Fire, 3D))
+            .onExpire("block", PartBuilder.damageInAoe(ValueCalculation.base("meteor", 12), Elements.Fire, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.LAVA, 150D, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.ASH, 25D, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 1D))
@@ -308,7 +313,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.giveExileEffectToAlliesInRadius(3D, BeneficialEffects.REGENERATE.effectId, 20 * 15D))
             .build();
 
-        SpellBuilder.of("overload", SpellConfiguration.Builder.instant(10, 60 * 20), "Overload",
+        SpellBuilder.of("overload", SpellConfiguration.Builder.nonInstant(10, 60 * 20, 30), "Overload",
             Arrays.asList())
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.OVERLOAD.effectId, 20 * 15D))

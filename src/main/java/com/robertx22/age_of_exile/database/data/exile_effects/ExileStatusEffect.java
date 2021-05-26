@@ -24,9 +24,12 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
 
     String exileEffectId;
 
+    public EffectType type;
+
     public ExileStatusEffect(EffectType type, int numericId) {
         super(type.type, 0);
         this.exileEffectId = getIdPath(type, numericId);
+        this.type = type;
     }
 
     public static String getIdPath(EffectType type, int num) {

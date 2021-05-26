@@ -204,6 +204,10 @@ public class LootInfo {
         }
         if (isMapWorld) {
             dungeon = Load.dungeonData(world).data.get(pos).data;
+            if (dungeon == null || dungeon.isEmpty()) {
+                this.level = 1; // if there's no dungeon data, dont give anything
+                this.maxItems = 0;
+            }
         }
     }
 

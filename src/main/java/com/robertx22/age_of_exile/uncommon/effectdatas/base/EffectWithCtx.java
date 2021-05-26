@@ -26,7 +26,9 @@ public class EffectWithCtx implements Comparator<EffectWithCtx> {
 
     @Override
     public int compare(EffectWithCtx arg0, EffectWithCtx arg1) {
-        if (arg0.effect.GetPriority() > arg1.effect.GetPriority()) {
+        if (arg0.effect.GetPriority() == arg1.effect.GetPriority()) {
+            return 0;
+        } else if (arg0.effect.GetPriority() > arg1.effect.GetPriority()) {
             return 1;
         } else {
             return -1;

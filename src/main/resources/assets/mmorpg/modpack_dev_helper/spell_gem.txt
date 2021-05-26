@@ -73,6 +73,7 @@ curse_of_weak
 frost_armor
 song_of_perseverance
 heal_ray
+backflip
 crit_rate
 sacrifice
 smoke_bomb
@@ -87,6 +88,7 @@ teleport
 banish
 guard_totem
 nature_balm
+duel
 rejuv_totem
 poison_arrow
 curse_of_agony
@@ -97,6 +99,7 @@ frost_nova
 make_arrows
 frost_sphere
 awaken_mana
+the_hunt
 mana_reg_aura
 threat
 taunt

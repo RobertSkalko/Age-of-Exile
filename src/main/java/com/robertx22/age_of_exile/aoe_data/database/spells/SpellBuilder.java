@@ -32,9 +32,10 @@ public class SpellBuilder {
             Arrays.asList(SpellTag.damage))
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
-                .put(MapField.IS_SILENT, true))
-                .addCondition(EffectCondition.CHANCE.create(20D)))
-            .onHit(PartBuilder.damageInAoe(ValueCalculation.base(id, 2), ele, 1.5D))
+                .put(MapField.IS_SILENT, true)))
+            .onHit(PartBuilder.damageInAoe(ValueCalculation.base(id, 2), ele, 1.5D)
+                .addCondition(EffectCondition.IS_NOT_ON_COOLDOWN.create("breath"))
+                .addActions(SpellAction.SET_ON_COOLDOWN.create("breath", 20D)))
             .onCast(PartBuilder.Particle.builder(particle, 50D, 0.3D)
                 .set(MapField.MOTION, ParticleMotion.CasterLook.name())
                 .set(MapField.HEIGHT, 1D)

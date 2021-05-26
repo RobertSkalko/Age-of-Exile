@@ -1,22 +1,32 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.value_calc.ValueCalcAdder;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
+import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
+import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
+import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
 import java.util.Arrays;
+
+import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
 public class DexSpells implements ISlashRegistryInit {
 
@@ -25,6 +35,47 @@ public class DexSpells implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+
+        SpellBuilder.of("duel", SpellConfiguration.Builder.instant(5, 60 * 20 * 2)
+                .setScaleManaToPlayer(),
+            "Duel",
+            Arrays.asList())
+            .attackStyle(PlayStyle.ranged)
+            .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 20D * 10))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.EAGER, 20D * 10))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
+                .put(MapField.IS_SILENT, true)
+            ))
+            .onHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.GLOWING, 20 * 10D))
+                .addActions(SpellAction.POTION.createGive(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 20 * 10D))
+                .addTarget(TargetSelector.TARGET.create()))
+            .build();
+
+        SpellBuilder.of("the_hunt", SpellConfiguration.Builder.nonInstant(5, 60 * 20 * 2, 20)
+                .setScaleManaToPlayer(),
+            "The Hunt",
+            Arrays.asList())
+            .attackStyle(PlayStyle.ranged)
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WOLF_HOWL, 1D, 1D))
+            .onCast(PartBuilder.giveSelfEffect(StatusEffects.NIGHT_VISION, 20D * 30))
+            .onCast(PartBuilder.giveSelfEffect(StatusEffects.SPEED, 20D * 30))
+            .onCast(PartBuilder.addEffectToEnemiesInAoe(StatusEffects.GLOWING, 20D, 20D * 20))
+
+            .build();
+
+        SpellBuilder.of("backflip", SpellConfiguration.Builder.instant(3, 20 * 25), "Backflip",
+            Arrays.asList(SpellTag.technique))
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+            .attackStyle(PlayStyle.ranged)
+            .onCast(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, -1.5D, ParticleMotion.CasterLook)
+                .put(MapField.IGNORE_Y, true))
+                .addTarget(TargetSelector.CASTER.create()))
+            .onCast(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 0.5D, ParticleMotion.Upwards))
+                .addTarget(TargetSelector.CASTER.create()))
+
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.CLEANSE, 20D * 3))
+
+            .build();
 
         SpellBuilder.of("arrow_storm", SpellConfiguration.Builder.arrowSpell(20, 20 * 25), "Arrow Storm",
             Arrays.asList(SpellTag.projectile, SpellTag.damage))
@@ -76,7 +127,6 @@ public class DexSpells implements ISlashRegistryInit {
         SpellBuilder.of("recoil_shot", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Recoil Shot",
             Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
-
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))

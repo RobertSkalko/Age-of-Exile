@@ -14,6 +14,7 @@ public class ParticleFactoryRegister {
         ParticleFactoryRegistryImpl.INSTANCE.register(ModRegistry.PARTICLES.BUBBLE, WaterBubbleParticle.Factory::new);
         ParticleFactoryRegistryImpl.INSTANCE.register(ModRegistry.PARTICLES.THUNDER, s -> new MyBubbleParticle.Factory(s));
         ParticleFactoryRegistryImpl.INSTANCE.register(ModRegistry.PARTICLES.FLAME, s -> new SimpleParticle.Factory(5, s));
+        ParticleFactoryRegistryImpl.INSTANCE.register(ModRegistry.PARTICLES.POISON, s -> new SimpleParticle.Factory(8, s));
         ParticleFactoryRegistryImpl.INSTANCE.register(ModRegistry.PARTICLES.FROST, s -> new SimpleParticle.Factory(8, s));
 
         MMORPG.devToolsLog("Registered Particles");

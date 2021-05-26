@@ -13,6 +13,7 @@ public class ModParticles {
     public final DefaultParticleType THUNDER = register("thunder", FabricParticleTypes.simple());
     public final DefaultParticleType BUBBLE = register("bubble", FabricParticleTypes.simple());
     public final DefaultParticleType FLAME = register("flame", FabricParticleTypes.simple());
+    public final DefaultParticleType POISON = register("poison", FabricParticleTypes.simple());
     public final DefaultParticleType FROST = register("frost", FabricParticleTypes.simple());
 
     private <T extends ParticleType<?>> T register(String name, T particleType) {

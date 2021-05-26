@@ -23,6 +23,7 @@ shout_warn
 curse_of_weak
 frost_armor
 heal_ray
+backflip
 song_of_perseverance
 sacrifice
 shooting_star
@@ -45,6 +46,7 @@ teleport
 banish
 guard_totem
 nature_balm
+duel
 black_hole
 rejuv_totem
 test_spell
@@ -69,6 +71,7 @@ power_chord
 pull
 test_command
 awaken_mana
+the_hunt
 mana_reg_aura
 fire_nova
 shadow_ball

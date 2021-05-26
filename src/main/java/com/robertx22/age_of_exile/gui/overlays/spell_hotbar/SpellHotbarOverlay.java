@@ -50,6 +50,12 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
         "textures/gui/spells/on_cooldown.png"
     );
 
+    private static final Identifier CHARGE = new Identifier(Ref.MODID,
+        "textures/gui/spells/charge_icon.png"
+    );
+
+    int CHARGE_SIZE = 9;
+
     static int WIDTH = 22;
     static int HEIGHT = 82;
 
@@ -169,39 +175,40 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                     .bindTexture(spell.getIconLoc());
                 this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
 
-                CooldownsData cds = Load.Unit(mc.player)
-                    .getCooldowns();
-
-                float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) cds.getNeededTicks(spell.GUID());
-                if (cds.getCooldownTicks(spell.GUID()) > 1) {
-                    percent = MathHelper.clamp(percent, 0, 1F);
-                    mc.getTextureManager()
-                        .bindTexture(COOLDOWN_TEX);
-                    this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
-                }
-
-                int cdsec = cds.getCooldownTicks(spell.GUID()) / 20;
-                if (cdsec > 1) {
-                    String stext = cdsec + "s";
-                    MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, stext, xs + 35, ys + 15, Formatting.YELLOW.getColorValue());
-                }
-
                 if (spell.config.charges > 0) {
                     int charges = data.getCastingData().charges.getCharges(spell.config.charge_name);
 
-                    Formatting format = Formatting.GREEN;
-                    String stext = charges + "";
+                    RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
 
-                    if (charges < 1) {
-                        format = Formatting.RED;
+                    mc.getTextureManager()
+                        .bindTexture(CHARGE);
+                    int chargex = x + 21;
 
+                    for (int i = 0; i < charges; i++) {
+                        this.drawTexture(matrix, chargex, y + 5, 0, 0, CHARGE_SIZE, CHARGE_SIZE, CHARGE_SIZE, CHARGE_SIZE);
+                        chargex += CHARGE_SIZE + 1;
                     }
 
-                    GuiUtils.renderScaledText(matrix,
-                        xs + 8, ys + 23, 1.4F, stext, format);
+                    RenderSystem.scaled(scale, scale, scale);
 
-                    //  MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, stext, xs + 5, ys + 20, format.getColorValue());
+                } else {
 
+                    CooldownsData cds = Load.Unit(mc.player)
+                        .getCooldowns();
+
+                    float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) cds.getNeededTicks(spell.GUID());
+                    if (cds.getCooldownTicks(spell.GUID()) > 1) {
+                        percent = MathHelper.clamp(percent, 0, 1F);
+                        mc.getTextureManager()
+                            .bindTexture(COOLDOWN_TEX);
+                        this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
+                    }
+
+                    int cdsec = cds.getCooldownTicks(spell.GUID()) / 20;
+                    if (cdsec > 1) {
+                        String stext = cdsec + "s";
+                        MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, stext, xs + 35, ys + 15, Formatting.YELLOW.getColorValue());
+                    }
                 }
 
                 String txt = CLOC.translate(KeybindsRegister.getSpellHotbar(place)

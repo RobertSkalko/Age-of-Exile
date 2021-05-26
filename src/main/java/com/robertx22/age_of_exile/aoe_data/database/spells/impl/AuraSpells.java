@@ -58,7 +58,7 @@ public class AuraSpells implements ISlashRegistryInit {
             )))
             .build();
 
-        SpellBuilder.aura(PlayStyle.ranged, "dodge_aura", "Dodge Aura", new AuraSpellData(0.2F,
+        SpellBuilder.aura(PlayStyle.ranged, "dodge_aura", "Living Shadow", new AuraSpellData(0.2F,
             Arrays.asList(
                 new StatModifier(2, 4, DodgeRating.getInstance(), ModType.FLAT)
             )))
