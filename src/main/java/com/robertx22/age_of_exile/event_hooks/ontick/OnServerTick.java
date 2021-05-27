@@ -79,6 +79,16 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     spell
                         .getAttached()
                         .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(player, player, EntitySavedSpellData.create(ctx.skillGemData.lvl, player, spell)));
+
+// todo send every1 packet to know player is casting x spell
+/*
+                    PlayerStream.watching(player.world, player.getBlockPos())
+                        .forEach((p) -> {
+
+                        });
+
+ */
+
                 }
 
                 data.increment();

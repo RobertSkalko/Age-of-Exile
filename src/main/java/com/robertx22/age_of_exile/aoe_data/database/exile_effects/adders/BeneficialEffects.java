@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -30,6 +31,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 
@@ -69,16 +71,36 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx STEAM_POWER = new EffectCtx("steam_power", "Steam Power", 28, Elements.Physical, EffectType.beneficial);
     public static EffectCtx CONCENTRATION = new EffectCtx("concentration", "Concentration", 29, Elements.Physical, EffectType.beneficial);
     public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 30, Elements.Light, EffectType.beneficial);
-    public static EffectCtx EAGER = new EffectCtx("eager", "Eager", 31, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx MURDER_INSTINCT = new EffectCtx("murder_instinct", "Murder Instinct", 31, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx DEMON_TRANSFORMATION = new EffectCtx("demon", "Demon", 32, Elements.Physical, EffectType.beneficial);
 
     @Override
     public void registerAll() {
 
-        ExileEffectBuilder.of(EAGER)
-            .stat(10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
+        ExileEffectBuilder.of(DEMON_TRANSFORMATION)
+            .vanillaStat(VanillaStatData.create(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1, ModType.FLAT, UUID.fromString("116a0931-d576-4721-b286-8d11de1ee42b")))
+            .stat(25, Stats.COOLDOWN_REDUCTION_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
+            .stat(25, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
+            .stat(25, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
+            .stat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT)
+            .stat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark), ModType.FLAT)
+
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 2D, 0.5D)
+                    .onTick(1D))
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.LARGE_SMOKE, 1D, 0.1D)
+                    .onTick(1D))
+                .buildForEffect())
+
+            .maxStacks(1)
+            .addTags(EffectTags.offensive)
+            .build();
+
+        ExileEffectBuilder.of(MURDER_INSTINCT)
+            .stat(5, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
             .stat(25, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
-            .stat(10, Stats.ATTACK_SPEED.get(), ModType.FLAT)
-            .stat(20, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
+            .stat(5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
+            .stat(10, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
             .maxStacks(1)
             .addTags(EffectTags.offensive)
             .build();

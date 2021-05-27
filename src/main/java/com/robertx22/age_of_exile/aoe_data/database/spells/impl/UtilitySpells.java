@@ -35,7 +35,7 @@ public class UtilitySpells implements ISlashRegistryInit {
                 .setScaleManaToPlayer()
                 .setChargesAndRegen("dash", 3, 20 * 30)
             , "Dash",
-            Arrays.asList(SpellTag.movement))
+            Arrays.asList(SpellTag.movement, SpellTag.technique))
             .manualDesc("Dash in target direction.")
             .weaponReq(CastingWeapon.NON_MAGE_WEAPON)
             .attackStyle(PlayStyle.ranged)

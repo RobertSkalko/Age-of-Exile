@@ -253,8 +253,10 @@ public class SpellCastingData {
         if (spell == null) {
             return false;
         }
-
-        if (spell.config.isTechnique()) {
+        if (player.isCreative()) {
+            return true;
+        }
+        if (spell.config.hasActionRequirements()) {
             if (!Load.spells(player)
                 .getCastingData()
                 .meetActionRequirements(spell)) {
@@ -306,11 +308,6 @@ public class SpellCastingData {
             }
         }
 
-        if (ctx.caster instanceof PlayerEntity) {
-            ctx.spellsCap
-                .getCastingData()
-                .onAction((PlayerEntity) ctx.caster, PlayerAction.NOPE);
-        }
         this.casting = false;
 
         if (ctx.caster instanceof PlayerEntity) {

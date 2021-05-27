@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.value_calc.ValueCalcAdder;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
+import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -36,18 +37,42 @@ public class DexSpells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        SpellBuilder.of("duel", SpellConfiguration.Builder.instant(5, 60 * 20 * 2)
+        SpellBuilder.of("demon", SpellConfiguration.Builder.nonInstant(10, 60 * 20, 30)
+                .setRequireActions(Arrays.asList(PlayerAction.TECHNIQUE, PlayerAction.MELEE_ATTACK)),
+            "Demon Transformation",
+            Arrays.asList())
+            .attackStyle(PlayStyle.ranged)
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_SKELETON_DEATH, 1D, 1D))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.DEMON_TRANSFORMATION, 20D * 20))
+            .build();
+
+        SpellBuilder.of("execute", SpellConfiguration.Builder.instant(10, 20 * 60)
+                .setRequireActions(Arrays.asList(PlayerAction.TECHNIQUE, PlayerAction.MELEE_ATTACK))
+                .setSwingArm(), "Execute",
+            Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.technique))
+            .attackStyle(PlayStyle.ranged)
+            .weaponReq(CastingWeapon.MELEE_WEAPON)
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_DEATH, 1D, 1D))
+            .onCast(PartBuilder.swordSweepParticles())
+            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("execute", 2F, 0), Elements.Physical, 1D, 2D)
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SOUL, 5D, 1D, 0.1D))
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 25D, 1D, 0.1D))
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SMOKE, 45D, 1D, 0.1D)))
+            .build();
+
+        SpellBuilder.of("mark_for_death", SpellConfiguration.Builder.instant(5, 60 * 20 * 2)
                 .setScaleManaToPlayer(),
-            "Duel",
+            "Marked for Death",
             Arrays.asList())
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 20D * 10))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.EAGER, 20D * 10))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.MURDER_INSTINCT, 20D * 10))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
                 .put(MapField.IS_SILENT, true)
             ))
             .onHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.GLOWING, 20 * 10D))
                 .addActions(SpellAction.POTION.createGive(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 20 * 10D))
+                .addActions(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.MARK_OF_DEATH, 10))
                 .addTarget(TargetSelector.TARGET.create()))
             .build();
 

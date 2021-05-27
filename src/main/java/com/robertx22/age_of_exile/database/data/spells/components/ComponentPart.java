@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.CasterHasStatCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
+import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
@@ -30,6 +31,16 @@ public class ComponentPart {
         }
         this.per_entity_hit
             .add(add);
+        return this;
+    }
+
+    public ComponentPart enemiesInRadius(Double radius) {
+        targets.add(TargetSelector.AOE.enemiesInRadius(radius));
+        return this;
+    }
+
+    public ComponentPart alliesInRadius(Double radius) {
+        targets.add(TargetSelector.AOE.alliesInRadius(radius));
         return this;
     }
 

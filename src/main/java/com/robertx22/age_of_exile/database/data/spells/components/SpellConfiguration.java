@@ -26,7 +26,7 @@ public class SpellConfiguration {
     public List<PlayerAction> actions_needed = new ArrayList<>();
     public boolean scale_mana_cost_to_player_lvl = false;
 
-    public boolean isTechnique() {
+    public boolean hasActionRequirements() {
         return !actions_needed.isEmpty();
     }
 

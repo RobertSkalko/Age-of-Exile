@@ -153,12 +153,12 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                 .getCooldownTicks(spell.GUID()) > 1) {
                 mc.getTextureManager()
                     .bindTexture(SPELL_ON_COOLDOWN);
-            } else if (spell.config.isTechnique() && !Load.spells(mc.player)
+            } else if (spell.config.hasActionRequirements() && !Load.spells(mc.player)
                 .getCastingData()
                 .meetActionRequirements(spell)) {
                 mc.getTextureManager()
                     .bindTexture(TECHNIQUE_CANT_ACTIVATE);
-            } else if (spell.config.isTechnique() && Load.spells(mc.player)
+            } else if (spell.config.hasActionRequirements() && Load.spells(mc.player)
                 .getCastingData()
                 .meetActionRequirements(spell)) {
                 mc.getTextureManager()

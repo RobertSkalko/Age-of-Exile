@@ -75,6 +75,11 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
 
                 PlayerMapsCap maps = Load.playerMaps((PlayerEntity) entity);
 
+                if (entity.getVelocity().y > 0) {
+                    maps.ticksinPortal = 0; // jumping bugs it somehow
+                    return;
+                }
+
                 entity.teleporting = true;
 
                 if (!world.isClient) {
@@ -83,6 +88,7 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                         if (maps.ticksinPortal < 40) {
                             maps.ticksinPortal++;
                         } else {
+                            maps.ticksinPortal = 0;
                             BlockPos p = Load.playerMaps((PlayerEntity) entity).data.tel_pos.up();
                             TeleportUtils.teleport((ServerPlayerEntity) entity, p, DimensionType.OVERWORLD_ID);
                             SoundUtils.playSound(entity, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);

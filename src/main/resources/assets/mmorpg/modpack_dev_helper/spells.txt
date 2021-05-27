@@ -14,6 +14,7 @@ gorgons_gaze
 haste_aura
 arrow_storm
 conjure_ender_chest
+shred
 poison_trap
 soul_harvest
 jump_field
@@ -27,6 +28,7 @@ backflip
 song_of_perseverance
 sacrifice
 shooting_star
+execute
 crit_aura
 overload
 astral_totem
@@ -45,10 +47,12 @@ poison_ball
 teleport
 banish
 guard_totem
+mark_for_death
 nature_balm
 duel
 black_hole
 rejuv_totem
+demon
 test_spell
 fireball
 levitation

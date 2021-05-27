@@ -1,11 +1,7 @@
 package com.robertx22.age_of_exile.dimension.item;
 
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.GiveOrTake;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 import com.robertx22.library_of_exile.utils.SoundUtils;
@@ -61,16 +57,13 @@ public class TeleportBackItem extends AutoItem {
     }
 
     @Override
+    public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+        user.addVelocity(0, -5, 0);
+    }
+
+    @Override
     public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity player, Hand handIn) {
         ItemStack itemStack = player.getStackInHand(handIn);
-
-        try {
-            ExilePotionEvent event = new ExilePotionEvent(1, Database.ExileEffects()
-                .get(NegativeEffects.GROUNDING.effectId), GiveOrTake.give, player, player, 20 * 5);
-            event.Activate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         player.setCurrentHand(handIn);
         return TypedActionResult.success(itemStack);

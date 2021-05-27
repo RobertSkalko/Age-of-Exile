@@ -114,6 +114,8 @@ public class PopulateDungeonChunks {
                 SignBlockEntity sign = (SignBlockEntity) be;
                 if (SignUtils.has("[chest]", sign)) {
                     setChest(world, blockPos);
+                } else if (SignUtils.has("[portal]", sign)) {
+                    world.setBlockState(blockPos, ModRegistry.BLOCKS.PORTAL.getDefaultState());
                 }
             }
         }

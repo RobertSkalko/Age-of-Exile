@@ -49,9 +49,25 @@ public class NegativeEffects implements ISlashRegistryInit {
     public static EffectCtx DESPAIR = new EffectCtx("despair", "Curse of Despair", 15, Elements.Dark, EffectType.negative);
     public static EffectCtx CHARM = new EffectCtx("charm", "Charm", 16, Elements.Elemental, EffectType.negative);
     public static EffectCtx GROUNDING = new EffectCtx("ground", "Grounding", 17, Elements.Physical, EffectType.negative);
+    public static EffectCtx MARK_OF_DEATH = new EffectCtx("mark_of_death", "Mark of Death", 18, Elements.Physical, EffectType.negative);
+    public static EffectCtx SHRED = new EffectCtx("shred", "Shred", 19, Elements.Physical, EffectType.negative);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(SHRED)
+            .maxStacks(3)
+            .stat(-25, Armor.getInstance(), ModType.FLAT)
+            .stat(-3, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .stat(-5, Armor.getInstance(), ModType.LOCAL_INCREASE)
+            .build();
+
+        ExileEffectBuilder.of(MARK_OF_DEATH)
+            .maxStacks(1)
+            .stat(-50, Armor.getInstance(), ModType.FLAT)
+            .stat(-25, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(-10, new ElementalResist(Elements.Elemental))
+            .build();
 
         ExileEffectBuilder.of(GROUNDING)
             .maxStacks(1)

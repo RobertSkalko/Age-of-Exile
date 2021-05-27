@@ -41,6 +41,23 @@ public class StrSpells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        SpellBuilder.of("shred", SpellConfiguration.Builder.instant(10, 20 * 1)
+                .setSwingArm()
+                .setChargesAndRegen("shred", 3, 20 * 15), "Shred",
+            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_SKELETON_HURT, 1D, 1D))
+
+            .onCast(PartBuilder.swordSweepParticles())
+            .onCast(PartBuilder.nova(ParticleTypes.CRIT, 200D, 2.8D, 0.05D))
+            .onCast(PartBuilder.nova(ParticleTypes.ENCHANTED_HIT, 100D, 2D, 0.05D))
+            .onCast(PartBuilder.nova(ParticleTypes.CRIT, 100D, 1D, 0.05D))
+            .onCast(PartBuilder.nova(ParticleTypes.ENCHANTED_HIT, 200D, 1D, 0.05D))
+
+            .onCast(PartBuilder.justAction(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.SHRED, 10))
+                .enemiesInRadius(3D))
+            .onCast(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("shred", 0.5F, 5), Elements.Physical, 3D))
+            .build();
+
         SpellBuilder.of("pull", SpellConfiguration.Builder.instant(5, 60 * 20), "Pull",
             Arrays.asList(SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)

@@ -42,7 +42,7 @@ dependencies {
     optionally("com.terraformersmc:modmenu:${mod_menu_version}")
     optionally("top.theillusivec4.curios:curios-fabric:${curios_version}")
     optionally("vazkii.patchouli:Patchouli:${patchouli_version}")
-    depend("de.siphalor:nbtcrafting-${nbtcrafting_version}")
+    //depend("de.siphalor:nbtcrafting-${nbtcrafting_version}")
     depend("net.kyrptonaught:customportalapi:${portal_api_version}")
     optionally("me.shedaniel:RoughlyEnoughItems:${rei_version}")
   

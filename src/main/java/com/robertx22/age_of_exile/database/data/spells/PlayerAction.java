@@ -7,7 +7,7 @@ public enum PlayerAction {
     MELEE_ATTACK(Words.Attack),
     BLOCK(Words.Block),
     TECHNIQUE(Words.Technique),
-    NOPE(Words.None);
+    SPELL(Words.None);
 
     public Words word;
 

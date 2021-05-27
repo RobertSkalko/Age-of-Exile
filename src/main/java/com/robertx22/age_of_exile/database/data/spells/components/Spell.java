@@ -191,10 +191,14 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         ctx.castedThisTick = true;
 
         if (ctx.caster instanceof PlayerEntity) {
-            if (!this.config.actions_needed.isEmpty()) {
-                Load.spells(ctx.caster)
+            if (ctx.spell.config.tags.contains(SpellTag.technique)) {
+                ctx.spellsCap
                     .getCastingData()
                     .onAction((PlayerEntity) ctx.caster, PlayerAction.TECHNIQUE);
+            } else {
+                ctx.spellsCap
+                    .getCastingData()
+                    .onAction((PlayerEntity) ctx.caster, PlayerAction.SPELL);
             }
         }
 
@@ -335,7 +339,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         }
 
         TooltipUtils.addEmpty(list);
-        if (config.isTechnique()) {
+        if (config.hasActionRequirements()) {
 
             MutableText txt = new LiteralText("Cast Requirement: ");
 

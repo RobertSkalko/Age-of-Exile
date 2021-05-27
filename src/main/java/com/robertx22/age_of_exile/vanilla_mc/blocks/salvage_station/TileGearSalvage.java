@@ -267,6 +267,7 @@ public class TileGearSalvage extends BaseSkillStation {
                         return;
                     }
 
+                    this.reduceFuel();
                     cook_ticks++;
                 } else {
                     cook_ticks--;

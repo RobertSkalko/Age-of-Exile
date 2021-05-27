@@ -406,21 +406,25 @@ public class Unit {
 
                         });
 
+                        noGemDuplicateList.removeIf(x -> x == null || x.getSkillGem() == null);
+
                         for (SkillGemData sd : noGemDuplicateList) {
-
-                            sd.getSkillGem()
-                                .getConstantStats(sd)
-                                .forEach(s -> {
-                                    copy.getStatInCalculation(s.getStat())
-                                        .add(s, data);
-                                });
-                            sd.getSkillGem()
-                                .getRandomStats(sd)
-                                .forEach(s -> {
-                                    copy.getStatInCalculation(s.getStat())
-                                        .add(s, data);
-                                });
-
+                            try {
+                                sd.getSkillGem()
+                                    .getConstantStats(sd)
+                                    .forEach(s -> {
+                                        copy.getStatInCalculation(s.getStat())
+                                            .add(s, data);
+                                    });
+                                sd.getSkillGem()
+                                    .getRandomStats(sd)
+                                    .forEach(s -> {
+                                        copy.getStatInCalculation(s.getStat())
+                                            .add(s, data);
+                                    });
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
 
                     }

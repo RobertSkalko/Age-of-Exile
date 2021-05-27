@@ -4,6 +4,7 @@ soul_harvest_dmg
 torment
 healing_aura
 iceball
+shred
 totem_heal
 poison_trap
 lose_aggro
@@ -12,6 +13,7 @@ shout_warn
 sacrifice
 shooting_star
 bleed
+execute
 breath_heal
 gong_strike
 sac_res_mana

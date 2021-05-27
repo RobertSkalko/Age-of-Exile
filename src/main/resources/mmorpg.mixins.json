@@ -26,7 +26,6 @@
     "bow.ProjectileUtilMixin"
   ],
   "client": [
-    "ClientRecipeBookMixin",
     "InGameHudMixin",
     "ItemGlintMixin",
     "ItemRendererMixin",
