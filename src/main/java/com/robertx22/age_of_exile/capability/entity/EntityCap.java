@@ -415,7 +415,7 @@ public class EntityCap {
 
                         if (data.gear != null && !data.gear.isCorrupted()) {
                             if (RandomUtils.roll(chance)) {
-                                data.gear.is_cor = true;
+                                data.gear.c = true;
                                 data.gear.saveToStack(data.stack);
                                 amount++;
                             }

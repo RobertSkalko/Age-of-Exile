@@ -49,7 +49,6 @@ banish
 guard_totem
 mark_for_death
 nature_balm
-duel
 black_hole
 rejuv_totem
 demon

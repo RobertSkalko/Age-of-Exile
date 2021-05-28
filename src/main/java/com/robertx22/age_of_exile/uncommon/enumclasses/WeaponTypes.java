@@ -22,7 +22,6 @@ public enum WeaponTypes {
     glove("glove", 25, PlayStyle.melee, WeaponRange.MELEE, false, 0.8F, 1.8F),
     bow("bow", 0, PlayStyle.ranged, WeaponRange.RANGED, true, 0.8F, 1F),
     crossbow("crossbow", 0, PlayStyle.ranged, WeaponRange.RANGED, true, 0.9F, 1F),
-    wand("wand", 0, PlayStyle.magic, WeaponRange.MELEE, false, 0.9F, 1.2F),
     scepter("scepter", 0, PlayStyle.magic, WeaponRange.MELEE, false, 0.9F, 1.2F);
 
     WeaponTypes(String id, int weapon_offhand_stat_util, PlayStyle style, WeaponRange range, boolean isProjectile, float statMulti, float atkPerSec) {

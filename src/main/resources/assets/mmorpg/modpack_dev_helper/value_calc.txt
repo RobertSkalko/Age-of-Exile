@@ -4,6 +4,7 @@ soul_harvest_dmg
 torment
 healing_aura
 iceball
+piercing_light
 shred
 totem_heal
 poison_trap

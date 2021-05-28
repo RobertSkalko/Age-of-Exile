@@ -45,12 +45,12 @@ public class ItemNewbieGearBag extends Item {
     }
 
     static HashMap<String, NewbieContent> MAP = new HashMap<>();
-    static NewbieContent defaultContent = new NewbieContent(Arrays.asList("wand0"), Arrays.asList(IntSpells.FIREBALL_ID, UtilitySpells.DASH_ID));
+    static NewbieContent defaultContent = new NewbieContent(Arrays.asList("staff0"), Arrays.asList(IntSpells.FIREBALL_ID, UtilitySpells.DASH_ID));
 
     static {
 
-        MAP.put(StartPerks.MAGE, new NewbieContent(Arrays.asList("wand0"), Arrays.asList(IntSpells.FIREBALL_ID, IntSpells.FROST_NOVA_AOE)));
-        MAP.put(StartPerks.BATTLE_MAGE, new NewbieContent(Arrays.asList("wand0"), Arrays.asList(IntSpells.POISONBALL_ID, TotemSpells.MANA_TOTEM_ID)));
+        MAP.put(StartPerks.MAGE, new NewbieContent(Arrays.asList("staff0"), Arrays.asList(IntSpells.FIREBALL_ID, IntSpells.FROST_NOVA_AOE)));
+        MAP.put(StartPerks.BATTLE_MAGE, new NewbieContent(Arrays.asList("staff0"), Arrays.asList(IntSpells.POISONBALL_ID, TotemSpells.MANA_TOTEM_ID)));
         MAP.put(StartPerks.HUNTER, new NewbieContent(Arrays.asList("bow0"), Arrays.asList(DexSpells.EXPLOSIVE_ARROW_ID, DexSpells.MAKE_ARROWS)).addStack(new ItemStack(Items.ARROW, 64)));
         MAP.put(StartPerks.WARRIOR, new NewbieContent(Arrays.asList("sword0"), Arrays.asList(StrSpells.FLAME_STRIKE_ID, StrSpells.GONG_STRIKE_ID)));
         MAP.put(StartPerks.DUELIST, new NewbieContent(Arrays.asList("dagger0"), Arrays.asList(StrSpells.FLAME_STRIKE_ID, UtilitySpells.DASH_ID)));

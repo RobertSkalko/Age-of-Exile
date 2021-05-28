@@ -58,9 +58,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     // i added rename ideas to comments. As tiny as possible while still allowing people to understand kinda what it is
     // apparently people had big issues with many storage mods, So i should try minimize the nbt.
     @Store
-    public boolean is_uniq = false; // isuniq
-
-    @Store
     public String uniq_id = ""; // uniq_id
 
     @Store
@@ -70,9 +67,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public String item_id = ""; // item registry name
 
     @Store
-    public int rare_prefix = -1; // pre_name
+    public int rp = -1; // pre_name rare prefix
     @Store
-    public int rare_suffix = -1; // suf_name
+    public int rs = -1; // suf_name rare suffix
 
     @Store
     public int lvl = 1; // lvl
@@ -87,16 +84,16 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     private float in = 0;
 
     @Store
-    public boolean sealed = false;
+    public boolean s = false; // sealed
 
     @Store
     public boolean can_sal = true;
 
     @Store
-    public boolean is_cor = false;
+    public boolean c = false; // corrupted
 
     public boolean isCorrupted() {
-        return is_cor;
+        return c;
     }
 
     public PlayerSkillEnum getSkillNeeded() {
@@ -205,7 +202,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     // used when upgrading item rarity
     public Item getItem() {
-        if (is_uniq) {
+        if (this.uniqueStats != null && this.uniqueStats.getUnique(this) != null) {
             return Database.UniqueGears()
                 .get(uniq_id)
                 .getUniqueItem();

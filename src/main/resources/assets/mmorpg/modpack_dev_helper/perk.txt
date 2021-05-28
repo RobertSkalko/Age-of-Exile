@@ -386,7 +386,6 @@ big_spell_crit
 consecrate
 huge_dex
 fire_arrows
-ele_wand_damage
 atk_cast_speed
 spell_nature_damage
 big_agility
@@ -509,7 +508,6 @@ big_aspect_of_nature
 mana_on_kill
 mana_battery
 damage_shield
-wand_damage
 emptiness
 infusion
 bear

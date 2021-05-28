@@ -78,8 +78,8 @@ public class BigPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
         );
 
-        PerkBuilder.bigStat("big_wand", "Wand Master",
-            new OptScaleExactStat(10, Stats.WEAPON_DAMAGE.get(WeaponTypes.wand), ModType.FLAT),
+        PerkBuilder.bigStat("big_wand", "Staff Master",
+            new OptScaleExactStat(10, Stats.WEAPON_DAMAGE.get(WeaponTypes.staff), ModType.FLAT),
             new OptScaleExactStat(5, Stats.CRIT_CHANCE.get(), ModType.FLAT)
         );
 

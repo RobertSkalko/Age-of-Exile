@@ -89,7 +89,7 @@ public class GuiGearModify extends ModificationGui<ContainerGearModify, TileGear
                             if (context.effect.getInstability() > 0) {
 
                                 GearItemData gear = (GearItemData) context.data;
-                                if (gear.sealed) {
+                                if (gear.s) {
                                     tooltip.add(new LiteralText("Sealed items can't be modified until they are unsealed.").formatted(Formatting.RED));
                                 }
                             }

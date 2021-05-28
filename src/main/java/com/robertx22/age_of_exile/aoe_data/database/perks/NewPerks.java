@@ -131,8 +131,8 @@ public class NewPerks implements ISlashRegistryInit {
             new OptScaleExactStat(10, Vitality.INSTANCE)
         );
 
-        PerkBuilder.bigStat("wand_mastery", "Wand Mastery",
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.wand)),
+        PerkBuilder.bigStat("wand_mastery", "Staff Mastery",
+            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.staff)),
             new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),
             new OptScaleExactStat(10, Wisdom.INSTANCE)
         );

@@ -145,7 +145,6 @@ shield_cdr
 light_dot_damage
 chance_to_give_steam_power_to_self
 armor
-ele_wand_damage
 ele_staff_damage
 spell_nature_damage
 dark_dot_damage
@@ -290,7 +289,6 @@ song_cdr
 global_critical_hit
 damage_shield
 inc_effect_of_positive_buff_given
-wand_damage
 physical_any_wep_damage
 day_dmg
 convert_light_to_phys

@@ -53,7 +53,6 @@ attack_type_is_dot
 is_glove_wep_type
 spell_has_tag_shout
 effect_has_tag_curse
-is_wand_wep_type
 restore_type_is_heal
 spell_has_tag_shield
 is_trident_wep_type

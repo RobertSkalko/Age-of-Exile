@@ -92,7 +92,6 @@ banish
 guard_totem
 mark_for_death
 nature_balm
-duel
 rejuv_totem
 poison_arrow
 curse_of_agony

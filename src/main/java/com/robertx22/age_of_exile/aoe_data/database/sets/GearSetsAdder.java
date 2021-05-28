@@ -26,8 +26,8 @@ public class GearSetsAdder implements ISlashRegistryInit {
 
         GearSet.Builder.of(SEASONS_SET, "Enduring The Seasons")
             .stat(2,
-                new OptScaleExactStat(10, Vitality.INSTANCE, ModType.FLAT),
-                new OptScaleExactStat(10, Wisdom.INSTANCE, ModType.FLAT))
+                new OptScaleExactStat(2, Vitality.INSTANCE, ModType.FLAT),
+                new OptScaleExactStat(2, Wisdom.INSTANCE, ModType.FLAT))
             .build();
 
         GearSet.Builder.of(BONE_SET, "Bone Spike")

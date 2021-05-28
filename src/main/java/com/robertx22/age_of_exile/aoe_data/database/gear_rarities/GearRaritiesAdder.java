@@ -17,7 +17,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
 
         common.affixes = new GearRarity.Part(0, 0, 0);
         common.base_stat_percents = new MinMax(0, 75);
-        common.weight = 6000;
+        common.weight = 5000;
         common.item_tier_power = 1;
         common.item_tier = 0;
         common.item_value_multi = 1;
@@ -82,7 +82,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         legendary.default_stat_percents = new MinMax(30, 100);
         legendary.affix_stat_percents = new MinMax(30, 100);
         legendary.affixes = new GearRarity.Part(4, 5, 15);
-        legendary.weight = 100;
+        legendary.weight = 125;
         legendary.item_tier = 4;
         legendary.item_tier_power = 2F;
         legendary.essence_per_sal = new MinMax(3, 3);
@@ -99,7 +99,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mythic.default_stat_percents = new MinMax(40, 100);
         mythic.affix_stat_percents = new MinMax(40, 100);
         mythic.affixes = new GearRarity.Part(5, 6, 15);
-        mythic.weight = 20;
+        mythic.weight = 25;
         mythic.item_tier = 5;
         mythic.essence_per_sal = new MinMax(5, 5);
         mythic.item_tier_power = 2.5F;

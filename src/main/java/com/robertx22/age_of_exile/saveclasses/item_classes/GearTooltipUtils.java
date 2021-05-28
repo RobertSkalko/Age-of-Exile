@@ -272,7 +272,7 @@ public class GearTooltipUtils {
                     tip.add(new SText(Formatting.GRAY + "Unbreakable"));
                 }
 
-            if (gear.sealed) {
+            if (gear.s) {
                 tip.add(Words.Sealed.locName()
                     .formatted(Formatting.RED));
             }

@@ -37,7 +37,7 @@ public interface ICurrencyItemEffect {
 
         if (context.isGear()) {
             GearItemData gear = (GearItemData) context.data;
-            if (gear.sealed) {
+            if (gear.s) {
                 return false;
             }
         }
