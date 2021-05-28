@@ -7,10 +7,7 @@ import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.delve_gen.DelveGrid;
-import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
-import com.robertx22.age_of_exile.dimension.dungeon_data.QuestProgression;
-import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
-import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
+import com.robertx22.age_of_exile.dimension.dungeon_data.*;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -96,7 +93,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         return cachedBorder;
     }
 
-    public void onStartDungeon(Boolean isteam, BlockPos teleporterPos, String uuid) {
+    public void onStartDungeon(TeamSize teamSize, BlockPos teleporterPos, String uuid) {
 
         try {
 
@@ -201,9 +198,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
                     be.dungeonPos = tpPos;
                     be.tpbackpos = teleporterPos.up();
-                    if (!isteam) {
-                        be.restrictedToPlayer = player.getUuidAsString();
-                    }
+
                 }
             }
 
@@ -217,9 +212,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
             }
             data.data.set(player, tpPos, single);
 
-            if (isteam) {
-                single.data.team = true;
-            }
+            single.data.team = teamSize;
 
             single.pop.startPopulating(cp);
 

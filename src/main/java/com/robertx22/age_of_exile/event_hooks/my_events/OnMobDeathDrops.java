@@ -116,8 +116,9 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
             .expMulti();
 
         if (WorldUtils.isDungeonWorld(victim.world)) {
-            if (Load.dungeonData(victim.world).data.get(victim.getBlockPos()).data.team) {
-                exp *= 2;
+            SingleDungeonData data = Load.dungeonData(victim.world).data.get(victim.getBlockPos());
+            if (!data.data.isEmpty()) {
+                exp *= data.data.team.lootXpMulti;
             }
         }
 

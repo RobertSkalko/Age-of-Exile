@@ -37,7 +37,6 @@ public class WeaponPrefixes implements ISlashRegistryInit {
             .add(Elements.Fire, "Scorched")
             .add(Elements.Water, "Chilled")
             .add(Elements.Nature, "Poisoned")
-            .add(Elements.Physical, "Tyrannical")
             .add(Elements.Light, "Holy")
             .add(Elements.Dark, "Cursed")
             .tier(1, x -> Arrays.asList(new StatModifier(15, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(x))))

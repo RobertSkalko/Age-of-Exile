@@ -99,12 +99,6 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
 
                 PortalBlockEntity be = (PortalBlockEntity) world.getBlockEntity(pos);
 
-                if (!be.restrictedToPlayer.isEmpty()) {
-                    if (!be.restrictedToPlayer.equals(entity.getUuidAsString())) {
-                        return; // only allow 1 player in solo maps
-                    }
-                }
-
                 if (entity instanceof ServerPlayerEntity) {
                     if (!entity.hasVehicle() && !entity.hasPassengers() && entity.canUsePortals()) {
 

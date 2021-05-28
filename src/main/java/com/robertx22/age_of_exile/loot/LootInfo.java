@@ -248,10 +248,8 @@ public class LootInfo {
         }
 
         if (isMapWorld) {
-            if (dungeon != null) {
-                if (dungeon.team) {
-                    modifier *= 3;
-                }
+            if (dungeon != null && !dungeon.isEmpty()) {
+                modifier *= dungeon.team.lootXpMulti;
             }
         }
 

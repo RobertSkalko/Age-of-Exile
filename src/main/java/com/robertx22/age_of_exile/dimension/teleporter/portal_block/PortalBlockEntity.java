@@ -15,7 +15,6 @@ public class PortalBlockEntity extends BaseModificationStation {
 
     public BlockPos dungeonPos = new BlockPos(0, 0, 0);
     public BlockPos tpbackpos = new BlockPos(0, 80, 0);
-    public String restrictedToPlayer = "";
 
     public PortalBlockEntity() {
 
@@ -43,7 +42,6 @@ public class PortalBlockEntity extends BaseModificationStation {
 
         nbt.putLong("dpos", dungeonPos.asLong());
         nbt.putLong("tbpos", tpbackpos.asLong());
-        nbt.putString("r", restrictedToPlayer);
 
         return nbt;
     }
@@ -55,7 +53,6 @@ public class PortalBlockEntity extends BaseModificationStation {
 
             this.dungeonPos = BlockPos.fromLong(nbt.getLong("dpos"));
             this.tpbackpos = BlockPos.fromLong(nbt.getLong("tbpos"));
-            this.restrictedToPlayer = nbt.getString("r");
 
         } catch (Exception e) {
             e.printStackTrace();
