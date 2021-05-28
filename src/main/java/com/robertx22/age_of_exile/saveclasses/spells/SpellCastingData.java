@@ -253,16 +253,6 @@ public class SpellCastingData {
         if (spell == null) {
             return false;
         }
-        if (player.isCreative()) {
-            return true;
-        }
-        if (spell.config.hasActionRequirements()) {
-            if (!Load.spells(player)
-                .getCastingData()
-                .meetActionRequirements(spell)) {
-                return false;
-            }
-        }
 
         if (Load.Unit(player)
             .getCooldowns()
@@ -272,6 +262,13 @@ public class SpellCastingData {
 
         if (player.isCreative()) {
             return true;
+        }
+        if (spell.config.hasActionRequirements()) {
+            if (!Load.spells(player)
+                .getCastingData()
+                .meetActionRequirements(spell)) {
+                return false;
+            }
         }
 
         if (spell.config.charges > 0) {

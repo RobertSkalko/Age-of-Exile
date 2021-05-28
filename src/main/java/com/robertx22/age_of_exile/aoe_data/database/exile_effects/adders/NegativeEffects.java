@@ -210,10 +210,9 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .onTick(PartBuilder.dotDamageOnTick(BLEED.effectId, ValueCalculation.base("bleed", 2.25F), Elements.Physical)
                     .onTick(20D))
 
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 10D, 1D)
-                    .onTick(20D))
-                .onTick(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_HURT, 0.5D, 1D)
-                    .onTick(20D))
+                .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.BLOOD_DRIP, 2D, 0.5D)
+                    .onTick(5D))
+
                 .buildForEffect())
             .build();
 

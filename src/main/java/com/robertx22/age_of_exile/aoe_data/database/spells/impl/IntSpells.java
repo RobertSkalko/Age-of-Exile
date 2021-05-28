@@ -61,15 +61,18 @@ public class IntSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("soul_harvest", SpellConfiguration.Builder.nonInstant(10, 20 * 60, 40)
             , "Soul Harvest",
-            Arrays.asList(SpellTag.area))
+            Arrays.asList(SpellTag.area, SpellTag.damage))
             .addSpecificAction(HEAL_CASTER_ACTION, PartBuilder.healCaster(ValueCalculation.base("soul_harvest_heal", 1)))
-            .onCast(PartBuilder.playSound(SoundEvents.PARTICLE_SOUL_ESCAPE, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.PARTICLE_SOUL_ESCAPE, 1D, 1D)
+                .enemiesInRadius(3D)
+                .addPerEntityHit(PartBuilder.aoeParticles(PARTICLES.BLOOD_EXPLODE, 10D, 1D))
+                .addPerEntityHit(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 0.2D)))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_DRAGON_FIREBALL_EXPLODE, 1D, 1D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.SOUL, 100D, 3D, 1D))
             .onCast(PartBuilder.damageInAoe(ValueCalculation.base("soul_harvest_dmg", 1), Elements.Dark, 3D))
             .onCast(PartBuilder.damageInAoe(ValueCalculation.base("soul_harvest_dmg", 1), Elements.Water, 3D))
             .onCast(PartBuilder.justAction(SpellAction.DO_ACTION_FOR_EACH_EFFECT_WITH_TAG_ON_TARGET.create(HEAL_CASTER_ACTION, EffectTags.negative))
                 .addTarget(TargetSelector.AOE.enemiesInRadius(3D)))
+
             .build();
 
         SpellBuilder.of("shadow_ball", SpellConfiguration.Builder.instant(7, 15)

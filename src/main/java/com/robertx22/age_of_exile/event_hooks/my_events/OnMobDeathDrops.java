@@ -111,6 +111,10 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
         exp *= LootUtils.getLevelDistancePunishmentMulti(mobData.getLevel(), killerData.getLevel());
 
+        exp += Database.MobRarities()
+            .get(mobData.getRarity())
+            .expMulti();
+
         if (WorldUtils.isDungeonWorld(victim.world)) {
             if (Load.dungeonData(victim.world).data.get(victim.getBlockPos()).data.team) {
                 exp *= 2;
@@ -122,10 +126,6 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         exp += (-1F + multi) * baseexp;
 
         exp += (-1F + ModConfig.get().Server.EXP_GAIN_MULTI) * baseexp;
-
-        exp += (-1F + Database.MobRarities()
-            .get(mobData.getRarity())
-            .expMulti()) * baseexp;
 
         exp += (-1F + Load.favor(killer)
             .getRank().exp_multi) * baseexp;

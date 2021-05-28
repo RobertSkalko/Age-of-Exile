@@ -50,7 +50,7 @@ public class LevelUtils {
     }
 
     public static int getBaseExpMobReward(int level) {
-        return 10 + (int) (Math.pow(3F * GameBalanceConfig.get().NORMAL_STAT_SCALING.getMultiFor(level), 1.2F));
+        return 10 + (int) (Math.pow(3F * GameBalanceConfig.get().NORMAL_STAT_SCALING.getMultiFor(level), 1.1F));
     }
 
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {
