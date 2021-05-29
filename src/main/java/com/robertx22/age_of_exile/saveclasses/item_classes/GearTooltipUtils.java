@@ -143,8 +143,8 @@ public class GearTooltipUtils {
                 tip.add(new SText(""));
             }
 
-            if (gear.implicit != null) {
-                tip.addAll(gear.implicit.GetTooltipString(info, gear));
+            if (gear.imp != null) {
+                tip.addAll(gear.imp.GetTooltipString(info, gear));
             }
 
             // tip.add(new LiteralText(""));

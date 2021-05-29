@@ -291,7 +291,9 @@ public class SpellCastingData {
             .setOnCooldown(ctx.spell.GUID(), cd);
 
         if (ctx.spell.config.charges > 0) {
-            this.charges.spendCharge(ctx.spell.config.charge_name);
+            if (ctx.caster instanceof PlayerEntity) {
+                this.charges.spendCharge((PlayerEntity) ctx.caster, ctx.spell.config.charge_name);
+            }
         }
 
         if (ctx.caster instanceof PlayerEntity) {

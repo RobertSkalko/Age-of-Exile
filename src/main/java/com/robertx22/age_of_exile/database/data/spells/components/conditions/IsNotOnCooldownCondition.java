@@ -16,6 +16,9 @@ public class IsNotOnCooldownCondition extends EffectCondition {
     @Override
     public boolean canActivate(SpellCtx ctx, MapHolder data) {
         try {
+            if (ctx.target == null) {
+                return false;
+            }
             String id = data.get(MapField.COOLDOWN_ID);
             return !Load.Unit(ctx.target)
                 .getCooldowns()

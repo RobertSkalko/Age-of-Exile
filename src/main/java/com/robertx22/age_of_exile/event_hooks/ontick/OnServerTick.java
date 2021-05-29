@@ -16,15 +16,21 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
+import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientEntityIsCastingSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.TeleportUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 public class OnServerTick implements ServerTickEvents.EndTick {
 
@@ -38,6 +44,29 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
+    public static Consumer<EnsureTeleportData> MAKE_SURE_TELEPORT = x -> {
+        if (x.player.getBlockPos()
+            .getSquaredDistance(x.whereShouldTeleport) > 200) {
+
+            x.player.sendMessage(new LiteralText("There was a teleport bug but the auto correction system should have teleported you back correctly"), false);
+
+            TeleportUtils.teleport(x.player, x.whereShouldTeleport);
+        }
+
+    };
+
+    public static void makeSureTeleport(ServerPlayerEntity player, BlockPos teleportPos, Identifier dim, int afterticks) {
+
+        if (!PlayerTickDatas.containsKey(player.getUuid())) {
+            PlayerTickDatas.put(player.getUuid(), new PlayerTickData());
+        }
+
+        PlayerTickDatas.get(player.getUuid()).ensureTeleportData = new EnsureTeleportData(player, MAKE_SURE_TELEPORT, afterticks, teleportPos);
+
+        TeleportUtils.teleport(player, teleportPos, dim);
+
+    }
+
     @Override
     public void onEndTick(MinecraftServer server) {
 
@@ -50,6 +79,11 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 if (data == null) {
                     data = new PlayerTickData();
+                }
+
+                if (data.ensureTeleportData != null && data.ensureTeleportData.ticksLeft < 1) {
+                    data.ensureTeleportData.action.accept(data.ensureTeleportData);
+                    data.ensureTeleportData = null;
                 }
 
                 if (player.isBlocking()) {
@@ -80,14 +114,10 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                         .getAttached()
                         .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(player, player, EntitySavedSpellData.create(ctx.skillGemData.lvl, player, spell)));
 
-// todo send every1 packet to know player is casting x spell
-/*
                     PlayerStream.watching(player.world, player.getBlockPos())
                         .forEach((p) -> {
-
+                            Packets.sendToClient(p, new TellClientEntityIsCastingSpellPacket(player, spell));
                         });
-
- */
 
                 }
 
@@ -223,9 +253,14 @@ public class OnServerTick implements ServerTickEvents.EndTick {
         public int ticksToLvlWarning = 0;
         public int ticksForSecond = 0;
 
+        public EnsureTeleportData ensureTeleportData;
+
         public boolean isInHighLvlZone = false;
 
         public void increment() {
+            if (ensureTeleportData != null) {
+                ensureTeleportData.ticksLeft--;
+            }
             ticksForSecond++;
             regenTicks++;
             playerSyncTick++;

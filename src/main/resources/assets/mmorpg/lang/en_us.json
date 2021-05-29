@@ -198,8 +198,8 @@
 	"mmorpg.skill_gem.gorgons_gaze": "Gorgon's Gaze Gem",
 	"mmorpg.skill_gem.guard_totem": "Guarding Totem Gem",
 	"mmorpg.skill_gem.haste_aura": "Haste Aura Gem",
-	"mmorpg.skill_gem.heal_crit_dmg": "Spell Critical Damage Support",
-	"mmorpg.skill_gem.heal_crit_rate": "Spell Critical Chance Support",
+	"mmorpg.skill_gem.heal_crit_dmg": "Heal Critical Damage Support",
+	"mmorpg.skill_gem.heal_crit_rate": "Heal Critical Chance Support",
 	"mmorpg.skill_gem.heal_power": "Heal Power Support",
 	"mmorpg.skill_gem.heal_ray": "Healing Ray Gem",
 	"mmorpg.skill_gem.healing_aura": "Healing Atmosphere Gem",
@@ -828,25 +828,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
-
-	"mmorpg.runeword.all_knowing": "All Knowing",
-	"mmorpg.runeword.blaze_fury": "Blaze Fury",
-	"mmorpg.runeword.dawn_light": "Dawn Light",
-	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
-	"mmorpg.runeword.ele_fury": "Elemental Fury",
-	"mmorpg.runeword.infinity": "Infinity",
-	"mmorpg.runeword.momentum": "Momentum",
-	"mmorpg.runeword.rock_golem": "Rock Golem",
-	"mmorpg.runeword.scholar": "Scholar",
-	"mmorpg.runeword.sentinel": "Sentinel",
-	"mmorpg.runeword.shadow": "Shadow",
-	"mmorpg.runeword.starlight": "Starlight",
-	"mmorpg.runeword.venom": "Venom",
-
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
-
-
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
 
 	"mmorpg.one_of_a_kind.armor_aura_mod": "Armor Aura Modifier",
@@ -934,6 +915,25 @@
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
 
 
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+	"mmorpg.runeword.all_knowing": "All Knowing",
+	"mmorpg.runeword.blaze_fury": "Blaze Fury",
+	"mmorpg.runeword.dawn_light": "Dawn Light",
+	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
+	"mmorpg.runeword.ele_fury": "Elemental Fury",
+	"mmorpg.runeword.infinity": "Infinity",
+	"mmorpg.runeword.momentum": "Momentum",
+	"mmorpg.runeword.rock_golem": "Rock Golem",
+	"mmorpg.runeword.scholar": "Scholar",
+	"mmorpg.runeword.sentinel": "Sentinel",
+	"mmorpg.runeword.shadow": "Shadow",
+	"mmorpg.runeword.starlight": "Starlight",
+	"mmorpg.runeword.venom": "Venom",
+
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 	"mmorpg.mob_rarity.boss": "Boss",
@@ -954,27 +954,6 @@
 	"mmorpg.skill_gem_rarity.rare": "Rare",
 
 "_comment": " [CATEGORY]: RARITIES - NAMES",
-
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
-	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
-	"item.mmorpg.currency.level_spell": "§cOrb of Elevation",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.roll_socket": "§cOrb of Sockets",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
@@ -1033,6 +1012,27 @@
 	"effect.mmorpg.negative.9": "Mummy Curse",
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
+
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
+	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
+	"item.mmorpg.currency.level_spell": "§cOrb of Elevation",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.roll_socket": "§cOrb of Sockets",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -1848,6 +1848,7 @@
 	"mmorpg.stat.crit_heal_chance": "Heal Crit Chance",
 	"mmorpg.stat.crit_water_dmg_mana": "§7Your critical §b❉ Water§7 Damage restores §a[VAL1]§7 mana to you.",
 	"mmorpg.stat.critical_damage": "Crit Damage",
+	"mmorpg.stat.critical_damage_per_10_attack_speed": "§7Gain §a[VAL1] §c⚔ Crit Damage§7 for each 10 §b❁ Attack Speed§7",
 	"mmorpg.stat.critical_hit": "Crit Chance",
 	"mmorpg.stat.critical_hit_per_10_dexterity": "§7Gain §a[VAL1] §e⚔ Crit Chance§7 for each 10 §a۞ Dexterity§7",
 	"mmorpg.stat.crossbow_damage": "Crossbow Damage",

@@ -59,7 +59,7 @@ public class GearCreationUtils {
         data.baseStats = new BaseStatsData();
         data.baseStats.RerollFully(data);
 
-        data.implicit.RerollFully(data);
+        data.imp.RerollFully(data);
 
         data.affixes.randomize(data);
 

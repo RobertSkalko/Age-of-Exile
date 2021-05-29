@@ -178,6 +178,18 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                 if (spell.config.charges > 0) {
                     int charges = data.getCastingData().charges.getCharges(spell.config.charge_name);
 
+                    if (charges == 0) {
+                        float needed = (float) spell.config.charge_regen;
+                        float currentticks = (float) data.getCastingData().charges.getCurrentTicksChargingOf(spell.config.charge_name);
+
+                        float ticksleft = needed - currentticks;
+
+                        float percent = ticksleft / needed;
+                        percent = MathHelper.clamp(percent, 0, 1F);
+                        drawCooldown(percent, matrix, xs, ys);
+
+                    }
+
                     RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
 
                     mc.getTextureManager()
@@ -199,9 +211,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                     float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) cds.getNeededTicks(spell.GUID());
                     if (cds.getCooldownTicks(spell.GUID()) > 1) {
                         percent = MathHelper.clamp(percent, 0, 1F);
-                        mc.getTextureManager()
-                            .bindTexture(COOLDOWN_TEX);
-                        this.drawTexture(matrix, xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
+                        drawCooldown(percent, matrix, xs, ys);
                     }
 
                     int cdsec = cds.getCooldownTicks(spell.GUID()) / 20;
@@ -228,6 +238,13 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
 
         RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
 
+    }
+
+    private void drawCooldown(float percent, MatrixStack matrix, int x, int y) {
+
+        mc.getTextureManager()
+            .bindTexture(COOLDOWN_TEX);
+        this.drawTexture(matrix, x, y, 0, 0, 32, (int) (32 * percent), 32, 32);
     }
 
     private void renderHotbar(MatrixStack matrix, int x, int y) {

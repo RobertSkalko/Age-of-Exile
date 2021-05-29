@@ -22,9 +22,6 @@ public class FarmingAdder {
                 b.blockExp(x.getValue(), ((x.getKey().tier + 1) * 15));
             });
 
-        b.blockExp(ModRegistry.BLOCKS.MANA_PLANT, 1);
-        b.blockExp(ModRegistry.BLOCKS.LIFE_PLANT, 1);
-
         b.addTieredDrops(0.1F, tier -> {
             return TIERED.LURES.get(ImmutablePair.of(LureType.FISH, tier));
         });

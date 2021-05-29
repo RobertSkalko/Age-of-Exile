@@ -56,6 +56,7 @@ public class DatapackStats implements ISlashRegistryInit {
     public void registerAll() {
 
         HEAL_TO_SPELL_DMG.addToSerializables();
+        CRIT_DMG_PER_10_ATK_SPEED_REG.addToSerializables();
         PROJ_DMG_PER_STR.addToSerializables();
         ARMOR_PER_MANA.addToSerializables();
         ACCURACY_PER_DEX.addToSerializables();

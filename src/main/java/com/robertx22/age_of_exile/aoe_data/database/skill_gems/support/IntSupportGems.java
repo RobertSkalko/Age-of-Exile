@@ -16,13 +16,13 @@ public class IntSupportGems implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        SkillGemBuilder.of("heal_crit_rate", "Spell Critical Chance Support", new StatRequirement().setBaseInt(20)
+        SkillGemBuilder.of("heal_crit_rate", "Heal Critical Chance Support", new StatRequirement().setBaseInt(20)
                 .setInt(0.2F), StatAttribute.INT, 1.2F,
             Arrays.asList(SupportGemTags.heal, SupportGemTags.spell),
             new StatModifier(5, 25, Stats.HEAL_CRIT_CHANCE.get())
         );
 
-        SkillGemBuilder.of("heal_crit_dmg", "Spell Critical Damage Support", new StatRequirement().setBaseInt(20)
+        SkillGemBuilder.of("heal_crit_dmg", "Heal Critical Damage Support", new StatRequirement().setBaseInt(20)
                 .setInt(0.2F), StatAttribute.INT, 1.2F,
             Arrays.asList(SupportGemTags.heal, SupportGemTags.spell),
             new StatModifier(10, 40, Stats.HEAL_CRIT_CHANCE.get())

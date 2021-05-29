@@ -9,6 +9,7 @@ public class OnTickDungeonWorld implements ServerTickEvents.EndWorldTick {
 
     @Override
     public void onEndTick(ServerWorld world) {
+
         if (WorldUtils.isDungeonWorld(world)) {
             Load.dungeonData(world).data.onTick(world);
         }

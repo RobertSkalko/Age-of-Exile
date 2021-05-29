@@ -97,6 +97,7 @@ health_on_all_hit
 dark_health_leech
 bonus_inscribing_exp
 max_nature_resist
+critical_damage_per_10_attack_speed
 inc_effect_of_heal_over_time_buff_on_you
 chance_of_slow
 strength
