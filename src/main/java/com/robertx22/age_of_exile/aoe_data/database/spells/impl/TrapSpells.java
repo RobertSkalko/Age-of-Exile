@@ -34,7 +34,7 @@ public class TrapSpells implements ISlashRegistryInit {
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.IRON_INGOT, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 100D, true)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(ModRegistry.BLOCKS.TRAP, 200D)
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(ModRegistry.BLOCKS.TRAP, 20 * 15D)
                 .put(MapField.ENTITY_NAME, "trap")
                 .put(MapField.FIND_NEAREST_SURFACE, true)
                 .put(MapField.IS_BLOCK_FALLING, false)))

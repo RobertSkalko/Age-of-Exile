@@ -175,7 +175,7 @@ public class IntSpells implements ISlashRegistryInit {
 
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1D, 0.6D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.FIREBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
-            .onTick(PartBuilder.particleOnTick(1D, PARTICLES.FLAME, 1D, 0.1D))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.FLAME, 1D, 0.1D))
 
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.FALLING_LAVA, 1D, 0.5D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 1D, 0.01D))
@@ -243,7 +243,16 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.healInAoe(ValueCalculation.base("healing_aura", 4), 2D))
             .build();
 
-        SpellBuilder.breath("fire_breath", "Fire Breath", Elements.Fire, PARTICLES.FLAME)
+        SpellBuilder.of("wish", SpellConfiguration.Builder.instant(20, 20 * 60), "Wish",
+            Arrays.asList(SpellTag.heal))
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+            .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.healInAoe(ValueCalculation.base("wish", 10), 5D))
+            .build();
+
+        SpellBuilder.breath("fire_breath", "Fire Breath", Elements.Fire, ParticleTypes.FLAME)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CAT_HISS, 1D, 1D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(10D)))
             .build();

@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class MapField<T> implements IGUID {
 
@@ -75,6 +76,8 @@ public class MapField<T> implements IGUID {
     public static MapField<Boolean> IS_SILENT = make("is_silent");
     public static MapField<Boolean> HITS_ALLIES = make("hits_allies");
     public static MapField<Boolean> IGNORE_Y = make("ignore_y");
+
+    public static MapField<List<String>> ENTITY_PREDICATES = make("entity_predicates");
 
     public static MapField<ValueCalculation> VALUE_CALCULATION = make("value_calculation");
 

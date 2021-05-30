@@ -13,6 +13,7 @@ poison_trap
 fire_dmg
 heal_crit_dmg
 less_radius
+charged_bolt
 fire_breath
 shout_warn
 health_leech
@@ -59,6 +60,7 @@ poisoned_weapons
 dodge_aura
 fire_chance
 whirlwind
+wish
 armor_aura
 ele_res_aura
 poison_chance
@@ -91,6 +93,7 @@ teleport
 banish
 guard_totem
 mark_for_death
+mage_circle
 nature_balm
 rejuv_totem
 poison_arrow

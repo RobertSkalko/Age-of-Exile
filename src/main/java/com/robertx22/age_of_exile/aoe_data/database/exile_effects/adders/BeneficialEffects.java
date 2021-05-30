@@ -73,9 +73,17 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 30, Elements.Light, EffectType.beneficial);
     public static EffectCtx MURDER_INSTINCT = new EffectCtx("murder_instinct", "Murder Instinct", 31, Elements.Physical, EffectType.beneficial);
     public static EffectCtx DEMON_TRANSFORMATION = new EffectCtx("demon", "Demon", 32, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx MAGE_CIRCLE = new EffectCtx("mage_circle", "Mage Circle", 33, Elements.Elemental, EffectType.beneficial);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(MAGE_CIRCLE)
+            .stat(25, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
+            .stat(20, SpellDamage.getInstance(), ModType.FLAT)
+            .maxStacks(1)
+            .addTags(EffectTags.offensive)
+            .build();
 
         ExileEffectBuilder.of(DEMON_TRANSFORMATION)
             .vanillaStat(VanillaStatData.create(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1, ModType.FLAT, UUID.fromString("116a0931-d576-4721-b286-8d11de1ee42b")))

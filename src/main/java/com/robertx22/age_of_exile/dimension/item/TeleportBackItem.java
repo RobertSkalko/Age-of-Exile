@@ -48,7 +48,7 @@ public class TeleportBackItem extends AutoItem {
         if (!world.isClient) {
             if (WorldUtils.isDungeonWorld(world)) {
                 BlockPos pos = Load.playerMaps((PlayerEntity) player).data.tel_pos.up();
-                OnServerTick.makeSureTeleport((ServerPlayerEntity) player, pos, DimensionType.OVERWORLD_ID, 10);
+                OnServerTick.makeSureTeleport((ServerPlayerEntity) player, pos, DimensionType.OVERWORLD_ID);
                 SoundUtils.playSound(player, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);
             }
         }

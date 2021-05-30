@@ -90,7 +90,7 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                         maps.ticksinPortal = 0;
                         BlockPos p = Load.playerMaps((PlayerEntity) entity).data.tel_pos.up();
 
-                        OnServerTick.makeSureTeleport((ServerPlayerEntity) entity, p, DimensionType.OVERWORLD_ID, 10);
+                        OnServerTick.makeSureTeleport((ServerPlayerEntity) entity, p, DimensionType.OVERWORLD_ID);
 
                         SoundUtils.playSound(entity, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);
                         return;
@@ -112,7 +112,7 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                                 maps.ticksinPortal = 0;
                                 maps.data.tel_pos = be.tpbackpos;
 
-                                OnServerTick.makeSureTeleport((ServerPlayerEntity) entity, be.dungeonPos, DimensionIds.DUNGEON_DIMENSION, 10);
+                                OnServerTick.makeSureTeleport((ServerPlayerEntity) entity, be.dungeonPos, DimensionIds.DUNGEON_DIMENSION);
                             }
                         }
                     }

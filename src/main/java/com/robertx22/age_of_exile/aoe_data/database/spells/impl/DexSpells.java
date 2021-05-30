@@ -37,6 +37,24 @@ public class DexSpells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        SpellBuilder.of("charged_bolt", SpellConfiguration.Builder.arrowSpell(8, 20 * 15), "Charged Bolt",
+            Arrays.asList(SpellTag.projectile, SpellTag.area, SpellTag.damage))
+            .weaponReq(CastingWeapon.RANGED)
+            .attackStyle(PlayStyle.ranged)
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_DRAGON_FIREBALL_EXPLODE, 1D, 1D))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)
+                .put(MapField.PROJECTILE_SPEED, 1D)
+                .put(MapField.EXPIRE_ON_ENTITY_HIT, false)
+                .put(MapField.GRAVITY, false)))
+
+            .onHit(PartBuilder.aoeParticles(ParticleTypes.CRIT, 100D, 1D))
+            .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
+            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("charged_bolt", 0.2F, 1), Elements.Physical, 2D))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ENCHANTED_HIT, 4D, 0.1D))
+            .build();
+
         SpellBuilder.of("demon", SpellConfiguration.Builder.nonInstant(10, 60 * 20, 30)
                 .setRequireActions(Arrays.asList(PlayerAction.TECHNIQUE, PlayerAction.MELEE_ATTACK)),
             "Demon Transformation",

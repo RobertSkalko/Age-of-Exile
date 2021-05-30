@@ -34,14 +34,14 @@ public class TotemSpells implements ISlashRegistryInit {
         return SpellBuilder.of(id, config, name, tags)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(block, 20D * 15D)
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(block, 20D * 7.5D)
                 .put(MapField.ENTITY_NAME, "block")
                 .put(MapField.BLOCK_FALL_SPEED, 0D)
                 .put(MapField.FIND_NEAREST_SURFACE, false)
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
             .onTick("block", PartBuilder.playSound(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, 0.5D, 1D)
-                .addCondition(EffectCondition.EVERY_X_TICKS.create(40D)))
+                .addCondition(EffectCondition.EVERY_X_TICKS.create(20D)))
 
             .onTick("block", PartBuilder.particleOnTick(2D, particle, 2D, 0.5D))
             .onTick("block", PartBuilder.groundEdgeParticles(particle, 50D, RADIUS, 0.5D)

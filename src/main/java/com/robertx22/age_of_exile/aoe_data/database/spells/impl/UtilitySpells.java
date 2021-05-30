@@ -31,6 +31,23 @@ public class UtilitySpells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        SpellBuilder.of("mage_circle", SpellConfiguration.Builder.instant(10, 20 * 45)
+            .setScaleManaToPlayer(), "Mage Circle", Arrays.asList(SpellTag.movement))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)
+                .put(MapField.ENTITY_NAME, "block")
+                .put(MapField.BLOCK_FALL_SPEED, 0D)
+                .put(MapField.FIND_NEAREST_SURFACE, false)
+                .put(MapField.IS_BLOCK_FALLING, false)))
+
+            .onExpire("block", PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
+                .addTarget(TargetSelector.CASTER.create()))
+
+            .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.WITCH, 3D, 1.2D, 0.5D)
+                .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
+            .build();
+
         SpellBuilder.of(DASH_ID, SpellConfiguration.Builder.instant(10, 15)
                 .setScaleManaToPlayer()
                 .setChargesAndRegen("dash", 3, 20 * 30)
@@ -91,7 +108,7 @@ public class UtilitySpells implements ISlashRegistryInit {
             .setScaleManaToPlayer(), "Banish", Arrays.asList())
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 5)
                 .put(MapField.ENTITY_NAME, "block")
                 .put(MapField.BLOCK_FALL_SPEED, 0D)
                 .put(MapField.FIND_NEAREST_SURFACE, false)
@@ -112,7 +129,7 @@ public class UtilitySpells implements ISlashRegistryInit {
             .setScaleManaToPlayer(), "Jump Field", Arrays.asList(SpellTag.movement))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 5)
                 .put(MapField.ENTITY_NAME, "block")
                 .put(MapField.BLOCK_FALL_SPEED, 0D)
                 .put(MapField.FIND_NEAREST_SURFACE, false)

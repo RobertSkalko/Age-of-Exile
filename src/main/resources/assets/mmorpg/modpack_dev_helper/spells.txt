@@ -6,6 +6,7 @@ song_of_valor
 thorn_armor
 boss_fire_bombs
 ethereal_form
+wish
 whirlwind
 armor_aura
 ele_res_aura
@@ -18,6 +19,7 @@ shred
 poison_trap
 soul_harvest
 jump_field
+charged_bolt
 night_vision
 fire_breath
 shout_warn
@@ -48,6 +50,7 @@ teleport
 banish
 guard_totem
 mark_for_death
+mage_circle
 nature_balm
 black_hole
 rejuv_totem

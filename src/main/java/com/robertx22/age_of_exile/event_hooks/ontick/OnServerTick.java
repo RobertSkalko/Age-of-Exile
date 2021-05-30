@@ -48,6 +48,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
         if (x.player.getBlockPos()
             .getSquaredDistance(x.whereShouldTeleport) > 200) {
 
+            x.resetTicks();
+
             x.player.sendMessage(new LiteralText("There was a teleport bug but the auto correction system should have teleported you back correctly"), false);
 
             TeleportUtils.teleport(x.player, x.whereShouldTeleport);
@@ -55,13 +57,13 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
     };
 
-    public static void makeSureTeleport(ServerPlayerEntity player, BlockPos teleportPos, Identifier dim, int afterticks) {
+    public static void makeSureTeleport(ServerPlayerEntity player, BlockPos teleportPos, Identifier dim) {
 
         if (!PlayerTickDatas.containsKey(player.getUuid())) {
             PlayerTickDatas.put(player.getUuid(), new PlayerTickData());
         }
 
-        PlayerTickDatas.get(player.getUuid()).ensureTeleportData = new EnsureTeleportData(player, MAKE_SURE_TELEPORT, afterticks, teleportPos);
+        PlayerTickDatas.get(player.getUuid()).ensureTeleportData = new EnsureTeleportData(player, MAKE_SURE_TELEPORT, 50, teleportPos);
 
         TeleportUtils.teleport(player, teleportPos, dim);
 
@@ -81,9 +83,11 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     data = new PlayerTickData();
                 }
 
-                if (data.ensureTeleportData != null && data.ensureTeleportData.ticksLeft < 1) {
+                if (data.ensureTeleportData != null && data.ensureTeleportData.ticks > 3) {
                     data.ensureTeleportData.action.accept(data.ensureTeleportData);
-                    data.ensureTeleportData = null;
+                    if (data.ensureTeleportData.ticksLeft < 1) {
+                        data.ensureTeleportData = null;
+                    }
                 }
 
                 if (player.isBlocking()) {
@@ -260,6 +264,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
         public void increment() {
             if (ensureTeleportData != null) {
                 ensureTeleportData.ticksLeft--;
+                ensureTeleportData.ticks++;
             }
             ticksForSecond++;
             regenTicks++;

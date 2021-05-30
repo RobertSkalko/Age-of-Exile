@@ -92,7 +92,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
             return;
         }
 
-        this.age++;
+        //this.age++; this is called somewhere again idk
 
         if (dataTracker.get(IS_FALLING)) {
             if (!this.hasNoGravity()) {
