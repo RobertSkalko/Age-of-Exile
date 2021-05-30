@@ -353,6 +353,7 @@ public class Stats implements ISlashRegistryInit {
         .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self", x -> x.element)
         .addAllOfType(Arrays.asList(
             BeneficialEffects.BLOODLUST,
+            BeneficialEffects.LIVING_INFERNO,
             BeneficialEffects.CONCENTRATION,
             BeneficialEffects.STEAM_POWER,
             BeneficialEffects.BLESSING)
@@ -977,6 +978,27 @@ public class Stats implements ISlashRegistryInit {
             x.base = 0;
             x.format = Formatting.RED.getName();
             x.group = StatGroup.Misc;
+        })
+        .build();
+
+    public static DataPackStatAccessor<ResourceType> OUT_OF_COMBAT_REGEN = DatapackStatBuilder
+        .<ResourceType>of(x -> x.id + "_ooc_regen", x -> Elements.Physical)
+        .addAllOfType(ResourceType.values())
+        .worksWithEvent(RestoreResourceEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.IS_RESOURCE.get(x))
+        .addCondition(x -> StatConditions.IS_NOT_IN_COMBAT)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.regen))
+        .addEffect(StatEffects.ADD_STAT_DATA_TO_NUMBER)
+        .setLocName(x -> "Out of Combat " + x.locname + " Regen")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = false;
+            x.scaling = StatScaling.NORMAL;
+            x.base = 0;
+            x.format = Formatting.YELLOW.getName();
+            x.group = StatGroup.RESTORATION;
         })
         .build();
 

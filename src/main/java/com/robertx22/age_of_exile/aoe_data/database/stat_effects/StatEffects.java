@@ -24,6 +24,7 @@ public class StatEffects implements ISlashRegistryInit {
             BeneficialEffects.BLOODLUST,
             BeneficialEffects.TAUNT_STANCE,
             BeneficialEffects.GATHER_STORM,
+            BeneficialEffects.LIVING_INFERNO,
             BeneficialEffects.FRENZY,
             BeneficialEffects.ALACRITY,
             BeneficialEffects.ZEAL,

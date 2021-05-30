@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
@@ -23,6 +24,10 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public enum FoodExileEffect {
+
+    OUTSIDE_COMBAT_HEALTH_REGEN("Energizing", "ooc_hp_reg", EffectColor.RED, new OptScaleExactStat(3, Stats.OUT_OF_COMBAT_REGEN.get(ResourceType.health))),
+    OUTSIDE_COMBAT_MANA_REGEN("Soothing", "ooc_mana_reg", EffectColor.BLUE, new OptScaleExactStat(3, Stats.OUT_OF_COMBAT_REGEN.get(ResourceType.mana))),
+    OUTSIDE_COMBAT_COMBO_REGEN("Comfort", "ooc_combo_reg", EffectColor.PURPLE, new OptScaleExactStat(1, Stats.OUT_OF_COMBAT_REGEN.get(ResourceType.health)), new OptScaleExactStat(1, Stats.OUT_OF_COMBAT_REGEN.get(ResourceType.mana))),
 
     WATER_DAMAGE("Aqua", "water", EffectColor.BLUE, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Water)), new OptScaleExactStat(20, new ElementalResist(Elements.Water))),
     FIRE_DAMAGE("Ignis", "fire", EffectColor.RED, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)), new OptScaleExactStat(20, new ElementalResist(Elements.Fire))),
@@ -59,6 +64,19 @@ public enum FoodExileEffect {
         this.stats = Arrays.asList(stat);
         this.color = color;
         this.id = id;
+
+        for (OptScaleExactStat s : stat) {
+            s.scale_to_lvl = true;
+        }
+
+    }
+
+    public String getOneOfAKindType() {// rework this when i turn this into a class and not an enum
+        if (this.id.contains("ooc")) {
+            return "ooc_regen";
+        } else {
+            return "food";
+        }
     }
 
     public enum EffectColor {

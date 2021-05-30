@@ -29,6 +29,7 @@ winter_chill
 bone_chest
 pharaoh_pants
 void_sword
+living_inferno
 spring_blossoms
 dark_crystal_helmet
 void_pants

@@ -63,6 +63,11 @@ public class SkillGemItem extends Item implements IAutoLocName, IAutoModel {
         try {
 
             SkillGemData data = SkillGemData.fromStack(stack);
+
+            if (data == null) {
+                return;
+            }
+
             SkillGem gem = data.getSkillGem();
 
             tooltip.clear();

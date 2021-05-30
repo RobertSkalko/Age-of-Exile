@@ -60,7 +60,7 @@ public class PotionRegister {
             ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.negative, i));
             exileEffectsMap.put(key, eff);
         }
-        for (int i = 0; i < 35; i++) {
+        for (int i = 0; i < 40; i++) {
             String key = ExileStatusEffect.getIdPath(EffectType.beneficial, i);
             ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.beneficial, i));
             exileEffectsMap.put(key, eff);

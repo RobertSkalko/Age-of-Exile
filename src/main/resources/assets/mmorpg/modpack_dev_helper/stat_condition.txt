@@ -19,6 +19,7 @@ attack_type_is_spell
 effect_has_tag_offensive
 is_in_combat
 resource_type_is_health
+is_in_combat_is_false
 ele_match_stat
 is_day
 is_spear_wep_type

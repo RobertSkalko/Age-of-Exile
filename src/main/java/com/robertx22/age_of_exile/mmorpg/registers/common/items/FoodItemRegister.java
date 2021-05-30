@@ -34,6 +34,8 @@ public class FoodItemRegister extends BaseItemRegistrator {
 
         regFish(FoodType.FISH, Arrays.asList(DARK_DAMAGE, FIRE_DAMAGE, WATER_DAMAGE, NATURE_DAMAGE, LIGHT_DAMAGE));
 
+        reg(FoodType.REGEN_MEAL, Arrays.asList(OUTSIDE_COMBAT_COMBO_REGEN, OUTSIDE_COMBAT_MANA_REGEN, OUTSIDE_COMBAT_HEALTH_REGEN));
+
     }
 
     void regFish(FoodType type, List<FoodExileEffect> effects) {

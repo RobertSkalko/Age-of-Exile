@@ -42,6 +42,7 @@ melee_dmg_received
 dagger_damage
 all_elemental_damage
 defensive_eff_dur_u_cast
+chance_to_give_living_inferno_to_self
 chance_of_hp_reg_on_spell_crit
 physical_health_leech
 nature_vuln_crit
@@ -120,6 +121,7 @@ bow_damage
 ele_scythe_damage
 dmg_to_living
 inc_effect_of_defensive_buff_given
+block_ooc_regen
 positive_eff_duration
 axe_damage
 immobilizing_eff_duration
@@ -145,6 +147,7 @@ heal_cdr
 shield_cdr
 light_dot_damage
 chance_to_give_steam_power_to_self
+mana_ooc_regen
 armor
 ele_staff_damage
 spell_nature_damage
@@ -183,10 +186,12 @@ bonus_salvaging_exp
 spell_accuracy
 mana_per_sec
 mana_on_all_hit
+health_ooc_regen
 light_resist
 bonus_exploration_yield
 armor_to_water_damage
 light_vuln_crit
+shield_ooc_regen
 all_fire_damage
 curse_eff_duration
 sword_damage
@@ -297,6 +302,7 @@ critical_damage
 mana_cost
 inc_effect_of_song_buff_on_you
 dodge_to_nature_damage
+blood_ooc_regen
 max_light_resist
 chance_of_spend_burn_for_double_dmg
 chance_of_poison_when_hit

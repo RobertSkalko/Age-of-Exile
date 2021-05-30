@@ -182,6 +182,7 @@ mmorpg:uniques/armor/blaze_chest
 minecraft:iron_chestplate.cloth_chest1
 minecraft:diamond_leggings.plate_pants2
 mmorpg:uniques/jewelry/skull_of_spirits
+mmorpg:uniques/weapon/living_inferno
 mmorpg:armor/cloth/boots/cloth_boots1
 mmorpg:armor/cloth/boots/cloth_boots2
 minecraft:leather_helmet.leather_helmet0

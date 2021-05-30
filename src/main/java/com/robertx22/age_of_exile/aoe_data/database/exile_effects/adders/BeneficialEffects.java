@@ -74,9 +74,25 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx MURDER_INSTINCT = new EffectCtx("murder_instinct", "Murder Instinct", 31, Elements.Physical, EffectType.beneficial);
     public static EffectCtx DEMON_TRANSFORMATION = new EffectCtx("demon", "Demon", 32, Elements.Physical, EffectType.beneficial);
     public static EffectCtx MAGE_CIRCLE = new EffectCtx("mage_circle", "Mage Circle", 33, Elements.Elemental, EffectType.beneficial);
+    public static EffectCtx LIVING_INFERNO = new EffectCtx("living_inferno", "Living Inferno", 35, Elements.Fire, EffectType.beneficial);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(LIVING_INFERNO)
+            .stat(2, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT)
+            .stat(1, Stats.CRIT_CHANCE.get(), ModType.FLAT)
+
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.nova(ParticleTypes.FLAME, 2D, 0.5D, 0.2D)
+                    .onTick(1D))
+                .onTick(PartBuilder.nova(ParticleTypes.SMOKE, 2D, 0.5D, 0.2D)
+                    .onTick(1D))
+                .buildForEffect())
+
+            .maxStacks(25)
+            .addTags(EffectTags.offensive)
+            .build();
 
         ExileEffectBuilder.of(MAGE_CIRCLE)
             .stat(25, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
