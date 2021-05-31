@@ -35,7 +35,7 @@ public class UniqueGloves implements ISlashRegistryInit {
                 new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
                 new StatModifier(2, 4, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.health, AttackType.attack))),
                 new StatModifier(2, 4, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack))),
-                new StatModifier(10, 20, Stats.CHANCE_TO_GIVE_EFFECT_ON_SELF.get(BeneficialEffects.LIVING_INFERNO))
+                new StatModifier(20, 30, Stats.CHANCE_TO_GIVE_EFFECT_ON_SELF.get(BeneficialEffects.LIVING_INFERNO))
             ))
             .req(new StatRequirement().setStr(0.4F)
                 .setAgi(0.6F))

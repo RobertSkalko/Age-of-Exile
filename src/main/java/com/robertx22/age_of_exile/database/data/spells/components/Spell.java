@@ -203,6 +203,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         }
 
         if (this.config.swing_arm) {
+            caster.handSwingTicks = -1; // this makes sure hand swings
             caster.swingHand(Hand.MAIN_HAND);
         }
 

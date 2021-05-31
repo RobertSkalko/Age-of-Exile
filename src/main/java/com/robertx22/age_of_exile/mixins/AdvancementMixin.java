@@ -21,7 +21,7 @@ public abstract class AdvancementMixin {
     @Inject(method = "grantCriterion(Lnet/minecraft/advancement/Advancement;Ljava/lang/String;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/advancement/AdvancementRewards;apply(Lnet/minecraft/server/network/ServerPlayerEntity;)V"))
     public void onGiveRewardsMixin(Advancement adv, String criterionName, CallbackInfoReturnable<Boolean> ci) {
         try {
-            PlayerAdvancementTracker tracker = (PlayerAdvancementTracker) (Object) this;
+            //    PlayerAdvancementTracker tracker = (PlayerAdvancementTracker) (Object) this;
             ServerPlayerEntity player = getOwner();
 
             if (adv != null) {
@@ -37,8 +37,8 @@ public abstract class AdvancementMixin {
                         xp = 10;
                     }
 
-                    System.out.print(" giving " + xp + " xp for " + adv.getId()
-                        .toString());
+                    // System.out.print(" giving " + xp + " xp for " + adv.getId()
+                    //   .toString());
 
                     Load.playerSkills(player)
                         .getDataFor(PlayerSkillEnum.EXPLORATION)

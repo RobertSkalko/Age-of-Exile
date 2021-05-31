@@ -18,10 +18,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
 import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.SoundUtils;
@@ -158,8 +155,12 @@ public class DamageEvent extends EffectEvent {
 
                     dmg *= cool;
 
-                    if (cool < 1) { // TODO
+                    if (cool < 0.2F) { // TODO
                         this.cancelDamage();
+                    }
+
+                    if (cool > 0.8F) {
+                        ParticleUtils.spawnDefaultSlashingWeaponParticles(source);
                     }
 
                 }
@@ -200,6 +201,8 @@ public class DamageEvent extends EffectEvent {
     }
 
     public void cancelDamage() {
+        this.data.getNumber(EventData.NUMBER).number = 0;
+
         this.data.setBoolean(EventData.CANCELED, true);
         if (attackInfo != null) {
             attackInfo.setAmount(0);
@@ -317,8 +320,6 @@ public class DamageEvent extends EffectEvent {
                 target.hurtTime = 0;
             }
 
-            int time = target.hurtTime;
-
             if (this.data.isSpellEffect()) {
                 if (!data.getBoolean(EventData.DISABLE_KNOCKBACK) && dmg > 0 && !data.isDodged()) {
                     // if magic shield absorbed the damage, still do knockback
@@ -350,15 +351,19 @@ public class DamageEvent extends EffectEvent {
                 target.damage(dmgsource, vanillaDamage);
             }
 
+            if (target instanceof PlayerEntity == false) {
+                if (getAttackType() == AttackType.dot) {
+                    target.timeUntilRegen = 0; // disable iframes hopefully
+                    target.hurtTime = 0;
+                }
+            }
+
             // allow multiple dmg same tick
 
             if (attri.hasModifier(NO_KNOCKBACK)) {
                 attri.removeModifier(NO_KNOCKBACK);
             }
 
-            if (target instanceof PlayerEntity == false) {
-                target.hurtTime = time;
-            }
         }
 
         if (this.target.isDead()) {
@@ -468,6 +473,7 @@ public class DamageEvent extends EffectEvent {
                     .set(x -> x.setElement(entry.getKey()))
                     .build();
 
+                bonus.data.setBoolean(EventData.IS_BASIC_ATTACK, this.data.getBoolean(EventData.IS_BASIC_ATTACK));
                 bonus.calculateEffects();
 
                 bonus.setElement(entry.getKey());

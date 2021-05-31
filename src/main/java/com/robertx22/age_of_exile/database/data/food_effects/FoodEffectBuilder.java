@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database.data.food_effects;
 import com.mojang.datafixers.util.Pair;
 import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
-import com.robertx22.age_of_exile.player_skills.items.foods.FarmingFoodItem;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
@@ -22,11 +21,6 @@ public class FoodEffectBuilder {
         }
         if (food == Items.ROTTEN_FLESH || food == Items.SPIDER_EYE) {
             return null;
-        }
-
-        if (food instanceof FarmingFoodItem) {
-            FarmingFoodItem cast = (FarmingFoodItem) food;
-            return cast.getFoodEffect();
         }
 
         int durationSeconds = 30;
