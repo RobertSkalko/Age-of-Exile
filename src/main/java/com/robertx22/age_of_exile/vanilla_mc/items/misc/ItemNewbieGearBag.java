@@ -15,6 +15,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
@@ -141,12 +142,16 @@ public class ItemNewbieGearBag extends Item {
                 if (!starts.isEmpty()) {
 
                     ItemNewbieGearBag.giveNewbieItemsFor(playerIn, starts.get(0));
-                    // guide book
-                    ItemStack book = new ItemStack(Registry.ITEM.get(new Identifier("patchouli", "guide_book")));
-                    CompoundTag tag = new CompoundTag();
-                    tag.putString("patchouli:book", "mmorpg:age_of_exile_guide");
-                    book.setTag(tag);
-                    PlayerUtils.giveItem(book, playerIn);
+
+                    if (FabricLoader.getInstance()
+                        .isModLoaded("patchouli")) {
+                        // guide book
+                        ItemStack book = new ItemStack(Registry.ITEM.get(new Identifier("patchouli", "guide_book")));
+                        CompoundTag tag = new CompoundTag();
+                        tag.putString("patchouli:book", "mmorpg:age_of_exile_guide");
+                        book.setTag(tag);
+                        PlayerUtils.giveItem(book, playerIn);
+                    }
 
                     playerIn.getStackInHand(handIn)
                         .decrement(1);

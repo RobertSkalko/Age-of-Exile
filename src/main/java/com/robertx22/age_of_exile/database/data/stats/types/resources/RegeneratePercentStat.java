@@ -52,7 +52,7 @@ public class RegeneratePercentStat extends Stat {
 
             @Override
             public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                effect.data.getNumber(EventData.NUMBER).number += maxGetter.apply(effect.targetData) * data.getMultiplier();
+                effect.data.getNumber(EventData.NUMBER).number += maxGetter.apply(effect.targetData) * data.getAverageValue() / 100F;
                 return effect;
             }
 

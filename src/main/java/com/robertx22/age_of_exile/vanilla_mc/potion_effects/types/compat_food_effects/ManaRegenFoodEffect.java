@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects;
+package com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.compat_food_effects;
 
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;

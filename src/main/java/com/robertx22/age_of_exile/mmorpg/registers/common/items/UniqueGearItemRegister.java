@@ -40,6 +40,6 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item LIVING_INFERNO_GLOVE = item(new BaseUniqueGlove(), "uniques/weapon/living_inferno");
 
     public Item BONECHILL_RING_MI = item(new BaseUniqueRing("Ring"), "uniques/jewelry/bonechill_ring");
-    public Item BONECHILL_AMULET_MI = item(new BaseUniqueRing("Amulet"), "uniques/jewelry/bonechill_amulet");
+    public Item BONECHILL_AMULET_MI = item(new BaseUniqueNecklace("Amulet"), "uniques/jewelry/bonechill_amulet");
 
 }

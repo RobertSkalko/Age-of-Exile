@@ -30,6 +30,13 @@ public class ExileEffectBuilder {
         return b;
     }
 
+    public static ExileEffectBuilder food(EffectCtx ctx) {
+        ExileEffectBuilder b = of(ctx);
+        b.addTags(EffectTags.food);
+        b.maxStacks(1);
+        return b;
+    }
+
     public ExileEffectBuilder addTags(EffectTags... tags) {
         for (EffectTags tag : tags) {
             if (!effect.tags.contains(tag.name())) {

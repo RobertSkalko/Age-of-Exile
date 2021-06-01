@@ -49,7 +49,6 @@
     "world_of_exile": ">=1.2.0",
     "cloth-config2": "*",
     "autoconfig1u": "*",
-    "patchouli": "*",
     "cardinal-components-base": ">=2.8.0",
     "cardinal-components-entity": ">=2.8.0",
     "cardinal-components-chunk": ">=2.8.0",

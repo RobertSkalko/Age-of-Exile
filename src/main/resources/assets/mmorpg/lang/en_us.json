@@ -849,25 +849,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
-
-	"mmorpg.runeword.all_knowing": "All Knowing",
-	"mmorpg.runeword.blaze_fury": "Blaze Fury",
-	"mmorpg.runeword.dawn_light": "Dawn Light",
-	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
-	"mmorpg.runeword.ele_fury": "Elemental Fury",
-	"mmorpg.runeword.infinity": "Infinity",
-	"mmorpg.runeword.momentum": "Momentum",
-	"mmorpg.runeword.rock_golem": "Rock Golem",
-	"mmorpg.runeword.scholar": "Scholar",
-	"mmorpg.runeword.sentinel": "Sentinel",
-	"mmorpg.runeword.shadow": "Shadow",
-	"mmorpg.runeword.starlight": "Starlight",
-	"mmorpg.runeword.venom": "Venom",
-
-"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
-
-
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
 
 	"mmorpg.one_of_a_kind.armor_aura_mod": "Armor Aura Modifier",
@@ -956,6 +937,25 @@
 	"mmorpg.one_of_a_kind.wish_mod": "Wish Modifier",
 
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
+
+
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
+
+	"mmorpg.runeword.all_knowing": "All Knowing",
+	"mmorpg.runeword.blaze_fury": "Blaze Fury",
+	"mmorpg.runeword.dawn_light": "Dawn Light",
+	"mmorpg.runeword.dream_of_ice": "Dream of Ice",
+	"mmorpg.runeword.ele_fury": "Elemental Fury",
+	"mmorpg.runeword.infinity": "Infinity",
+	"mmorpg.runeword.momentum": "Momentum",
+	"mmorpg.runeword.rock_golem": "Rock Golem",
+	"mmorpg.runeword.scholar": "Scholar",
+	"mmorpg.runeword.sentinel": "Sentinel",
+	"mmorpg.runeword.shadow": "Shadow",
+	"mmorpg.runeword.starlight": "Starlight",
+	"mmorpg.runeword.venom": "Venom",
+
+"_comment": " [CATEGORY]: RUNE WORDS - NAMES",
 
 
 "_comment": " [CATEGORY]: RARITIES - NAMES",
@@ -1949,6 +1949,8 @@
 	"mmorpg.stat.fire_resist": "Fire Defense",
 	"mmorpg.stat.fire_vuln_crit": "§7Fire Damage always crits you.",
 	"mmorpg.stat.fire_weapon_damage": "Fire Damage",
+	"mmorpg.stat.food_eff_dur_u_cast": "§7§a[VAL1]§7% to duration of Food effects you cast.",
+	"mmorpg.stat.food_eff_duration": "§7§a[VAL1]§7% to duration of Food effects on you.",
 	"mmorpg.stat.give_regenerate_to_allies_in_aoe": "§7Give Rejuvenate to allies in Radius.",
 	"mmorpg.stat.give_taunt_stance_to_self_on_tick": "§7Give Taunt Stance to self",
 	"mmorpg.stat.global_critical_damage": "All Crit Damage",
@@ -1986,6 +1988,8 @@
 	"mmorpg.stat.inc_effect_of_curse_buff_on_you": "[VAL1]% to effectiveness of Curse buffs on you",
 	"mmorpg.stat.inc_effect_of_defensive_buff_given": "[VAL1]% to effectiveness of Defensive effects you cast.",
 	"mmorpg.stat.inc_effect_of_defensive_buff_on_you": "[VAL1]% to effectiveness of Defensive buffs on you",
+	"mmorpg.stat.inc_effect_of_food_buff_given": "[VAL1]% to effectiveness of Food effects you cast.",
+	"mmorpg.stat.inc_effect_of_food_buff_on_you": "[VAL1]% to effectiveness of Food buffs on you",
 	"mmorpg.stat.inc_effect_of_heal_over_time_buff_given": "[VAL1]% to effectiveness of Heal over Time effects you cast.",
 	"mmorpg.stat.inc_effect_of_heal_over_time_buff_on_you": "[VAL1]% to effectiveness of Heal over Time buffs on you",
 	"mmorpg.stat.inc_effect_of_immobilizing_buff_given": "[VAL1]% to effectiveness of Immobilizing effects you cast.",

@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.database.data.food_effects;
 
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.FoodExileStatusEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.FoodEffectPotion;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.FoodExileStatusEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.compat_food_effects.FoodEffectPotion;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;

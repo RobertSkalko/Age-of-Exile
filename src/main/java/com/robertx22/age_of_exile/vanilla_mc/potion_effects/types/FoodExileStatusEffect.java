@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.potion_effects;
+package com.robertx22.age_of_exile.vanilla_mc.potion_effects.types;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.SimpleStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.IOneOfATypePotion;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;

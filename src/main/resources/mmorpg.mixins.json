@@ -26,6 +26,7 @@
     "bow.ProjectileUtilMixin"
   ],
   "client": [
+    "AccessorClientAdvancementManager",
     "InGameHudMixin",
     "ItemGlintMixin",
     "ItemRendererMixin",

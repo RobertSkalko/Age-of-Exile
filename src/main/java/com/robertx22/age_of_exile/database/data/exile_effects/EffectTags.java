@@ -4,6 +4,7 @@ public enum EffectTags {
     immobilizing("Immobilizing"),
     offensive("Offensive"),
     curse("Curse"),
+    food("Food"),
     defensive("Defensive"),
     positive("Positive"),
     song("Song"),
