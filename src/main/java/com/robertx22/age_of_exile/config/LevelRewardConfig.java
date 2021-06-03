@@ -6,6 +6,7 @@ public class LevelRewardConfig {
 
     public String loot_table_id = "";
     public int for_level = 0;
+    public String exec_command = "";
 
     public LevelRewardConfig(int for_level) {
         this.loot_table_id = Ref.id("level_rewards/" + for_level)

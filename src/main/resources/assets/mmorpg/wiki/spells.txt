@@ -1,0 +1,94 @@
+STR Spells:
+| Icon | Name | Description |
+| ------------- | ------------- | ------------- |
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/undying_will.png) | Undying Will |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/whirlwind.png) | Whirlwind |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/armor_aura.png) | Armor Aura |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/shout_warn.png) | Warning Shout | Let out a warning shout, giving a 20 + 5% ❤ Health Shield to all nearby allies. | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/gong_strike.png) | Gong Strike |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/hp_reg_aura.png) | Health Regeneration Aura |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/tidal_strike.png) | Tidal Strike |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/taunt_stance.png) | Taunt Stance |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/thirst_strike.png) | Thirsting Strike |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/unwavering_stance.png) | Unwavering Stance |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/charge.png) | Charge |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/flame_strike.png) | Flame Strike |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/pull.png) | Pull |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/taunt.png) | Taunt |  | 
+
+DEX Spells:
+| Icon | Name | Description |
+| ------------- | ------------- | ------------- |
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/haste_aura.png) | Haste Aura |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/arrow_storm.png) | Arrow Storm |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/poison_trap.png) | Poison Trap |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/charged_bolt.png) | Charged Bolt |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/backflip.png) | Backflip |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/execute.png) | Execute |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/crit_aura.png) | True Hit Aura |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/smoke_bomb.png) | Smoke Bomb | Throw out a smoke bomb, blinding enemies and reducing threat. | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/dash.png) | Dash | Dash in target direction. | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/recoil_shot.png) | Recoil Shot |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/mark_for_death.png) | Marked for Death |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/demon.png) | Demon Transformation |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/explosive_arrow.png) | Explosive Arrow |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/poison_arrow.png) | Poison Arrow |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/frost_trap.png) | Frost Trap |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/fire_trap.png) | Fire Trap |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/make_arrows.png) | Produce Arrows |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/the_hunt.png) | The Hunt |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/dodge_aura.png) | Living Shadow |  | 
+
+INT Spells:
+| Icon | Name | Description |
+| ------------- | ------------- | ------------- |
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/healing_aura.png) | Healing Atmosphere | Heal allies around you for 4 health | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/song_of_valor.png) | Song of Valor |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/thorn_armor.png) | Thorn Armor |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/ethereal_form.png) | Ethereal Form |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/wish.png) | Wish |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/ele_res_aura.png) | Elemental Resistance Aura |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/curse_of_despair.png) | Curse of Despair |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/gorgons_gaze.png) | Gorgon's Gaze |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/conjure_ender_chest.png) | Conjure Ender Chest | Allows you to access your Ender Chest from any place. | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/shred.png) | Shred |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/soul_harvest.png) | Soul Harvest |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/jump_field.png) | Jump Field | Summon a Jump Field, stepping on it will propel you upwards at high speeds. | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/night_vision.png) | Night Vision |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/fire_breath.png) | Fire Breath |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/curse_of_weak.png) | Curse of Weakness |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/frost_armor.png) | Frost Armor |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/heal_ray.png) | Healing Ray |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/song_of_perseverance.png) | Song of Perseverance |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/sacrifice.png) | Sacrifice |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/shooting_star.png) | Shooting Star |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/overload.png) | Overload |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/astral_totem.png) | Astral Totem |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/lava_sphere.png) | Lava Sphere |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/song_of_vigor.png) | Song of Vigor |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/poison_ball.png) | Poison Ball | Throw out a ball of poison, dealing 8 ✿ Nature Damage | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/teleport.png) | Teleport | Teleport yourself in the direction you're looking at. | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/banish.png) | Banish | Summon a Magic circle that banishes enemies in the area, levitating them for a certain duration. | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/guard_totem.png) | Guarding Totem |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/mage_circle.png) | Mage Circle | Summon a Magic Circle. Standing in it provides you a buff. After a certain duration you will be teleported to its location. | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/nature_balm.png) | Rejuvenate |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/black_hole.png) | Black Hole |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/rejuv_totem.png) | Rejuvenating Totem |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/test_spell.png) | Teleport |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/fireball.png) | Fire Ball | Throw out a ball of fire, dealing 8 ☀ Fire Damage | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/levitation.png) | Levitation |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/water_breath.png) | Water Breath | Give Water Breathing to allies around you. | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/heart_of_ice.png) | mmorpg.spell.heart_of_ice |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/frost_breath.png) | Frost Breath |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/curse_of_agony.png) | Curse of Agony |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/frostball.png) | Ice Ball | Throw out a ball of ice, dealing 8 ☀ Fire Damage | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/meteor.png) | Meteor |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/frost_nova.png) | Frost Nova | Explode with frost around you, dealing 7 ❉ Water Damage to nearby enemies. | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/frost_sphere.png) | Frost Sphere |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/power_chord.png) | Power Chord |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/awaken_mana.png) | Awaken Mana |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/mana_reg_aura.png) | Mana Regeneration Aura |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/fire_nova.png) | Fire Nova |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/shadow_ball.png) | Shadow Bolt |  | 
+| ![](https://raw.githubusercontent.com/RobertSkalko/Age-of-Exile/master/src/main/resources/assets/mmorpg/textures/gui/spells/icons/poisoned_weapons.png) | Poison Weapons |  | 
+

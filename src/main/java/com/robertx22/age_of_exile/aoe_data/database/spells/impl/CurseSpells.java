@@ -18,6 +18,9 @@ public class CurseSpells implements ISlashRegistryInit {
         SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 30, 40)
             , name,
             Arrays.asList(SpellTag.area, SpellTag.curse))
+            .manualDesc(
+                "Curse enemies around you with " + effect.locname)
+
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_SKELETON_HURT, 1D, 1D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.SOUL, 50D, 3D, 1D))
             .onCast(PartBuilder.addExileEffectToEnemiesInAoe(effect.effectId, 3D, 20 * 15D))

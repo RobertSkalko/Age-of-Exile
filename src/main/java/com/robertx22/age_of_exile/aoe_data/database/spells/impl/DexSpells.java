@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Benefic
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.ValueCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.value_calc.ValueCalcAdder;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
@@ -39,6 +40,11 @@ public class DexSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("charged_bolt", SpellConfiguration.Builder.arrowSpell(8, 20 * 15), "Charged Bolt",
             Arrays.asList(SpellTag.projectile, SpellTag.area, SpellTag.damage))
+
+            .manualDesc(
+                "Shoot a charged arrow that goes through enemies and deals "
+                    + ValueCalcs.CHARGED_BOLT.getLocSpellTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius.")
+
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
@@ -50,7 +56,7 @@ public class DexSpells implements ISlashRegistryInit {
 
             .onHit(PartBuilder.aoeParticles(ParticleTypes.CRIT, 100D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("charged_bolt", 0.2F, 1), Elements.Physical, 2D))
+            .onHit(PartBuilder.damageInAoe(ValueCalcs.CHARGED_BOLT, Elements.Physical, 2D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ENCHANTED_HIT, 4D, 0.1D))
             .build();
@@ -59,6 +65,9 @@ public class DexSpells implements ISlashRegistryInit {
                 .setRequireActions(Arrays.asList(PlayerAction.TECHNIQUE, PlayerAction.MELEE_ATTACK)),
             "Demon Transformation",
             Arrays.asList())
+            .manualDesc(
+                "Temporarily transform into a demon, giving you increased offensive power and knockback resistance."
+            )
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_SKELETON_DEATH, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.DEMON_TRANSFORMATION, 20D * 20))
@@ -69,10 +78,13 @@ public class DexSpells implements ISlashRegistryInit {
                 .setSwingArm(), "Execute",
             Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.technique))
             .attackStyle(PlayStyle.ranged)
+            .manualDesc(
+                "Slash enemies in front of you for " + ValueCalcs.EXECUTE.getLocSpellTooltip()
+            )
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_DEATH, 1D, 1D))
             .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("execute", 2F, 0), Elements.Physical, 1D, 2D)
+            .onCast(PartBuilder.damageInFront(ValueCalcs.EXECUTE, Elements.Physical, 1D, 2D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SOUL, 5D, 1D, 0.1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 25D, 1D, 0.1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SMOKE, 45D, 1D, 0.1D)))
@@ -83,6 +95,7 @@ public class DexSpells implements ISlashRegistryInit {
             "Marked for Death",
             Arrays.asList())
             .attackStyle(PlayStyle.ranged)
+            .manualDesc("Mark your target for death, making them more vulnerable to damage.")
             .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 20D * 10))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.MURDER_INSTINCT, 20D * 10))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
@@ -98,6 +111,9 @@ public class DexSpells implements ISlashRegistryInit {
                 .setScaleManaToPlayer(),
             "The Hunt",
             Arrays.asList())
+            .manualDesc(
+                "Gain Night vision and set all enemies around you to glow."
+            )
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WOLF_HOWL, 1D, 1D))
             .onCast(PartBuilder.giveSelfEffect(StatusEffects.NIGHT_VISION, 20D * 30))
@@ -110,6 +126,7 @@ public class DexSpells implements ISlashRegistryInit {
             Arrays.asList(SpellTag.technique))
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(PlayStyle.ranged)
+            .manualDesc("Jump back and gain Cleanse for a short time.")
             .onCast(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, -1.5D, ParticleMotion.CasterLook)
                 .put(MapField.IGNORE_Y, true))
                 .addTarget(TargetSelector.CASTER.create()))
@@ -136,6 +153,7 @@ public class DexSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("poison_arrow", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Poison Arrow",
             Arrays.asList(SpellTag.projectile, SpellTag.damage))
+
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
@@ -184,6 +202,7 @@ public class DexSpells implements ISlashRegistryInit {
         SpellBuilder.of(MAKE_ARROWS, SpellConfiguration.Builder.arrowSpell(10, 20 * 60 * 5)
                 .setScaleManaToPlayer(), "Produce Arrows",
             Arrays.asList())
+            .manualDesc("Produce a stack of arrows.")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))

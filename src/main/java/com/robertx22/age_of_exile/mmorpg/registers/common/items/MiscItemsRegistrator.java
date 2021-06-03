@@ -98,6 +98,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public SingleTalentResetPotion ADD_RESET_PERK_POINTS = item(new SingleTalentResetPotion());
     public ResetStatsPotion RESET_STATS = item(new ResetStatsPotion());
     public RaceResetPotion RESET_RACE = item(new RaceResetPotion());
+    public FunnyDeathPotion DEATH_POTION = item(new FunnyDeathPotion());
 
     public BackpackItem BACKPACK = item(new BackpackItem(), "backpack/normal");
 

@@ -87,6 +87,10 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         return (int) base_scaling_type.scale(base_val, lvl);
     }
 
+    public String getLocSpellTooltip() {
+        return "[calc:" + id + "]";
+    }
+
     private int getCalculatedScalingValue(EntityCap.UnitData data, int lvl) {
 
         float amount = 0;
@@ -124,7 +128,8 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         }
 
         stat_scalings.forEach(x -> {
-            text.append(" " + x.GetTooltipString()); // todo
+            text.append(" + ")
+                .append(x.GetTooltipString()); // todo
         });
 
         return text;

@@ -132,6 +132,11 @@ public class SpellBuilder {
     }
 
     public SpellBuilder manualDesc(String desc) {
+
+        if (!spell.locDesc.isEmpty()) {
+            throw new RuntimeException("Already set manual desc!");
+        }
+
         this.spell.manual_tip = true;
         this.spell.locDesc = desc;
         return this;

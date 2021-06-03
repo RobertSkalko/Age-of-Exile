@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Benefic
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.ValueCalcs;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SetAdd;
@@ -72,9 +73,14 @@ public class StrSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("shout_warn", SpellConfiguration.Builder.instant(10, 60 * 20), "Warning Shout",
             Arrays.asList(SpellTag.area, SpellTag.shout, SpellTag.shield))
+
+            .manualDesc(
+                "Let out a warning shout, giving a "
+                    + ValueCalcs.SHOUT_WARN.getLocSpellTooltip() + " Shield to all nearby allies.")
+
             .attackStyle(PlayStyle.melee)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WOLF_HOWL, 1D, 1D))
-            .onCast(PartBuilder.giveShieldInRadius(10D, ValueCalculation.scaleWithStat("shout_warn", new ScalingStatCalculation(Health.getInstance(), 0.05F), 20), 10D))
+            .onCast(PartBuilder.giveShieldInRadius(10D, ValueCalcs.SHOUT_WARN, 10D))
             .build();
 
         SpellBuilder.of("thorn_armor", SpellConfiguration.Builder.instant(15, 200 * 20), "Thorn Armor",

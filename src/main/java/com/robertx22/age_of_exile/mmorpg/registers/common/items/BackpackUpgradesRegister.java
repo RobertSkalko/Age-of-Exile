@@ -15,6 +15,7 @@ public class BackpackUpgradesRegister extends BaseItemRegistrator {
     public HashMap<SkillItemTier, BackpackUpgradeItem> SIZE = new HashMap<>();
 
     BackpackUpgradeItem GEM = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_GEM_PICKUP, SkillItemTier.TIER1, "gem", "Auto Gem Pickup Upgrade"));
+    BackpackUpgradeItem TRASH = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_TRASH_PICKUP, SkillItemTier.TIER0, "trash", "Auto Trash Pickup Upgrade"));
     BackpackUpgradeItem RUNE = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_RUNE_PICKUP, SkillItemTier.TIER2, "rune", "Auto Rune Pickup Upgrade"));
     BackpackUpgradeItem CURRENCY = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_CURRENCY_PICKUP, SkillItemTier.TIER3, "currency", "Auto Currency Pickup Upgrade"));
     BackpackUpgradeItem ESSENCE = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_ESSENCE_PICKUP, SkillItemTier.TIER0, "essence", "Auto Essence Pickup Upgrade"));

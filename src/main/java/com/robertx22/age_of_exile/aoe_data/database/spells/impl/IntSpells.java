@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Benefic
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.ValueCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
@@ -36,7 +37,6 @@ public class IntSpells implements ISlashRegistryInit {
     public static String FIREBALL_ID = "fireball";
     public static String POISONBALL_ID = "poison_ball";
     public static String HEALING_AURA_ID = "healing_aura";
-    public static String HEART_OF_ICE_ID = "heart_of_ice";
     public static String FIRE_NOVA_ID = "fire_nova";
     public static String FROST_NOVA_AOE = "frost_nova";
 
@@ -159,18 +159,24 @@ public class IntSpells implements ISlashRegistryInit {
         SpellBuilder.of(FROSTBALL_ID, SpellConfiguration.Builder.instant(7, 15)
                 .setSwingArm(), "Ice Ball",
             Arrays.asList(SpellTag.projectile, SpellTag.damage))
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .manualDesc(
+                "Throw out a ball of ice, dealing " + ValueCalcs.ICEBALL.getLocSpellTooltip()
+                    + " " + Elements.Water.getIconNameDmg())
 
+            .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.SNOWBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ITEM_SNOWBALL, 2D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculation.base("iceball", 8), Elements.Water))
+            .onHit(PartBuilder.damage(ValueCalcs.ICEBALL, Elements.Water))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D))
             .build();
 
         SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(7, 20)
                 .setSwingArm(), "Fire Ball",
             Arrays.asList(SpellTag.projectile, SpellTag.damage))
+            .manualDesc(
+                "Throw out a ball of fire, dealing " + ValueCalcs.FIREBALL.getLocSpellTooltip()
+                    + " " + Elements.Fire.getIconNameDmg())
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1D, 0.6D))
@@ -180,7 +186,7 @@ public class IntSpells implements ISlashRegistryInit {
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.FALLING_LAVA, 1D, 0.5D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 1D, 0.01D))
 
-            .onHit(PartBuilder.damage(ValueCalculation.base("fireball", 8), Elements.Fire))
+            .onHit(PartBuilder.damage(ValueCalcs.FIREBALL, Elements.Fire))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_BURN, 1D, 2D))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.LAVA, 1D, 0.5D))
             .build();
@@ -188,30 +194,39 @@ public class IntSpells implements ISlashRegistryInit {
         SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 20)
                 .setSwingArm(), "Poison Ball",
             Arrays.asList(SpellTag.projectile, SpellTag.damage))
+            .manualDesc(
+                "Throw out a ball of poison, dealing " + ValueCalcs.POISON_BALL.getLocSpellTooltip()
+                    + " " + Elements.Nature.getIconNameDmg())
+
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.SLIMEBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ITEM_SLIME, 2D, 0.15D))
-            .onHit(PartBuilder.damage(ValueCalculation.base("poisonball", 8), Elements.Nature))
+            .onHit(PartBuilder.damage(ValueCalcs.POISON_BALL, Elements.Nature))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
 
             .build();
 
         SpellBuilder.of(FROST_NOVA_AOE, SpellConfiguration.Builder.instant(30, 25 * 20), "Frost Nova",
             Arrays.asList(SpellTag.area, SpellTag.damage))
+            .manualDesc(
+                "Explode with frost around you, dealing " + ValueCalcs.FROST_NOVA.getLocSpellTooltip()
+                    + " " + Elements.Water.getIconNameDmg() + " to nearby enemies.")
+
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.ITEM_SNOWBALL, 400D, 3.5D, 0.5D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE_POP, 250D, 3.5D, 0.5D))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_DROWNED_HURT, 0.5D, 1D))
-            .onCast(PartBuilder.damageInAoe(ValueCalculation.base("frost_nova", 7), Elements.Water, 3.5D)
+            .onCast(PartBuilder.damageInAoe(ValueCalcs.FROST_NOVA, Elements.Water, 3.5D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)))
             .build();
 
         SpellBuilder.of("teleport", SpellConfiguration.Builder.instant(20, 20 * 30), "Teleport",
             Arrays.asList(SpellTag.damage, SpellTag.movement)
         )
+            .manualDesc("Teleport yourself in the direction you're looking at.")
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 1D)
@@ -225,29 +240,19 @@ public class IntSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 30D, 2D))
 
-            .onCast(PartBuilder.damageInAoe(ValueCalculation.base("teleport", 8), Elements.Elemental, 2D)
-                .addPerEntityHit(PartBuilder.playSound(SoundEvents.ENTITY_ENDERMAN_HURT, 1D, 1D))
-            )
-
-            .build();
-
-        SpellBuilder.of(HEART_OF_ICE_ID, SpellConfiguration.Builder.instant(15, 60 * 20), "Heart of Ice",
-            Arrays.asList(SpellTag.heal))
-            .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SOUNDS.FREEZE, 1D, 1D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 40D, 1.5D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
-            .onCast(PartBuilder.healCaster(ValueCalculation.base("heart_of_ice", 15)))
-            .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.FROSTBURN.effectId, 5D, 20D * 10D))
             .build();
 
         SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Atmosphere",
             Arrays.asList(SpellTag.heal))
+            .manualDesc(
+                "Heal allies around you for " + ValueCalcs.HEALING_AURA.getLocSpellTooltip() +
+                    " health")
+
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
-            .onCast(PartBuilder.healInAoe(ValueCalculation.base("healing_aura", 4), 2D))
+            .onCast(PartBuilder.healInAoe(ValueCalcs.HEALING_AURA, 2D))
             .build();
 
         SpellBuilder.of("wish", SpellConfiguration.Builder.instant(20, 20 * 60), "Wish",

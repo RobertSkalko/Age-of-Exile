@@ -103,6 +103,7 @@ mmorpg:food/apple/blue/1
 mmorpg:food/apple/blue/2
 mmorpg:food/apple/blue/3
 mmorpg:food/apple/blue/4
+mmorpg:backpack/upgrade/trash0
 mmorpg:food/jam/blue/4
 mmorpg:food/jam/blue/3
 mmorpg:food/fish/red/4

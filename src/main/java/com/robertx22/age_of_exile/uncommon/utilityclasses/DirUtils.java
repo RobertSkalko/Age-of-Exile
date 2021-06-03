@@ -31,6 +31,10 @@ public class DirUtils {
         return modDir() + "/main/resources/assets/mmorpg/lang/";
     }
 
+    public static String genWikiFolderDir() {
+        return modDir() + "/main/resources/assets/mmorpg/wiki/";
+    }
+
     public static String modpackHelperFolderDir() {
         return modDir() + "/main/resources/assets/mmorpg/modpack_dev_helper/";
     }

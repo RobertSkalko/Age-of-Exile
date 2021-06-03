@@ -323,7 +323,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
                 list.addAll(attached
                     .getTooltip(ctx.calcData));
             } else {
-                SpellDesc.getTooltip(this)
+                SpellDesc.getTooltip(this, ctx.calcData.lvl)
                     .forEach(x -> list.add(new LiteralText(x)));
             }
         }

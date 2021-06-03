@@ -77,6 +77,17 @@ public enum BackpackUpgrade {
             addSalvage(list, 2);
         }
     },
+    AUTO_TRASH_PICKUP {
+        @Override
+        public void upgrade(BackpackUpgradeItem item, BackpackInfo info) {
+            info.autoPickups.add(AutoPickupType.TRASH);
+        }
+
+        @Override
+        public Item craftItem() {
+            return Items.ROTTEN_FLESH;
+        }
+    },
     AUTO_GEM_PICKUP {
         @Override
         public void upgrade(BackpackUpgradeItem item, BackpackInfo info) {
