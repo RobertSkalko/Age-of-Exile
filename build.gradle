@@ -18,9 +18,8 @@ repositories {
     maven { url 'https://ladysnake.jfrog.io/artifactory/mods' }
     maven { url 'https://maven.terraformersmc.com/releases' }
     maven { url 'https://maven.blamejared.com' }
-    maven { url "https://maven.siphalor.de" }
     maven { url "https://maven.shedaniel.me" }
-    maven { url "https://dl.bintray.com/kyrptonaught/customportalapi" }
+	maven {url "https://jitpack.io" }
 }
 
 dependencies {
@@ -49,12 +48,12 @@ dependencies {
 
     // .dev .jar doesn't include included deps, so I have to add them for in IDE to work
     implementation files("Library-Of-Exile-1.16.5-1.0.10-dev.jar")
-    implementation files("World-Of-Exile-1.16.5-1.2.1-dev.jar")
+    implementation files("World-Of-Exile-1.16.5-1.2.2-dev.jar")
 }
 
 
 remapJar {
-    include file("World-Of-Exile-1.16.5-1.2.1.jar")
+    include file("World-Of-Exile-1.16.5-1.2.2.jar")
 }
 
 tasks.withType(JavaCompile).configureEach {
@@ -78,14 +77,12 @@ def depend(str) {
         exclude(group: "net.fabricmc")
         exclude(group: "net.fabricmc.fabric-api")
         exclude(group: "io.github.prospector")
-        exclude(group: "io.github.onyxstudios.Cardinal-Components-API")
         exclude(module: "config-2")
     }
     dependencies.include(str) {
         exclude(group: "net.fabricmc")
         exclude(group: "net.fabricmc.fabric-api")
         exclude(group: "io.github.prospector")
-        exclude(group: "io.github.onyxstudios.Cardinal-Components-API")
         exclude(module: "config-2")
     }
 }
@@ -97,7 +94,6 @@ def optionally(str) {
         exclude(group: "net.fabricmc")
         exclude(group: "net.fabricmc.fabric-api")
         exclude(group: "io.github.prospector")
-        exclude(group: "io.github.onyxstudios.Cardinal-Components-API")
         exclude(module: "config-2")
     }
 }
@@ -107,7 +103,6 @@ def runtime(str) {
         exclude(group: "net.fabricmc")
         exclude(group: "net.fabricmc.fabric-api")
         exclude(group: "io.github.prospector")
-        exclude(group: "io.github.onyxstudios.Cardinal-Components-API")
         exclude(module: "config-2")
     }
 }
@@ -131,13 +126,6 @@ sourceSets {
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
-
-/*
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = "sources"
-    from sourceSets.main.allSource
-}
-*/
 
 jar {
     from "LICENSE"

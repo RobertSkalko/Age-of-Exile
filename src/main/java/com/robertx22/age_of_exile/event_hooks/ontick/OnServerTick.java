@@ -46,7 +46,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
     public static Consumer<EnsureTeleportData> MAKE_SURE_TELEPORT = x -> {
         if (x.player.getBlockPos()
-            .getSquaredDistance(x.whereShouldTeleport) > 200) {
+            .getSquaredDistance(x.whereShouldTeleport) > 1000) {
 
             x.resetTicks();
 
