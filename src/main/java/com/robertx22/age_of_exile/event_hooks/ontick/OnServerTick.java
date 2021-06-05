@@ -18,6 +18,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientEntityIsCastingSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.EntityUtils;
 import com.robertx22.library_of_exile.utils.TeleportUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.server.PlayerStream;
@@ -48,11 +49,23 @@ public class OnServerTick implements ServerTickEvents.EndTick {
         if (x.player.getBlockPos()
             .getSquaredDistance(x.whereShouldTeleport) > 1000) {
 
-            x.resetTicks();
+            if (x.tries > 5) {
+                BlockPos spawnpos = x.player.getSpawnPointPosition();
+                if (spawnpos != null) {
+                    EntityUtils.setLoc(x.player, spawnpos);
+                }
+                x.cancel(); // pray that works at least
+                return;
+            } else {
 
-            x.player.sendMessage(new LiteralText("There was a teleport bug but the auto correction system should have teleported you back correctly"), false);
+                x.resetTicks();
 
-            TeleportUtils.teleport(x.player, x.whereShouldTeleport);
+                x.tries++;
+
+                x.player.sendMessage(new LiteralText("There was a teleport bug but the auto correction system should have teleported you back correctly"), false);
+
+                TeleportUtils.teleport(x.player, x.whereShouldTeleport);
+            }
         }
 
     };

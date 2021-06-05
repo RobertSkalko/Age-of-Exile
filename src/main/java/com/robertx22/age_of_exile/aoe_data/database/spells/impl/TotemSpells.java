@@ -2,13 +2,13 @@ package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
-import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.block.Block;
@@ -32,6 +32,7 @@ public class TotemSpells implements ISlashRegistryInit {
     SpellBuilder of(Block block, String id, SpellConfiguration config, String name, List<SpellTag> tags, DefaultParticleType particle) {
 
         return SpellBuilder.of(id, config, name, tags)
+
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(block, 20D * 7.5D)
@@ -54,20 +55,30 @@ public class TotemSpells implements ISlashRegistryInit {
 
         of(ModRegistry.BLOCKS.GUARD_TOTEM, GUARD_TOTEM_ID, SpellConfiguration.Builder.instant(18, 20 * 30), "Guarding Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.EFFECT)
-            .onTick("block", PartBuilder.justAction(SpellAction.GIVE_SHIELD.create(ValueCalculation.base("totem_guard", 5), 10D))
+            .manualDesc(
+                "Summon a totem which gives " + SpellCalcs.TOTEM_GUARD.getLocSpellTooltip() + " shield to allies around it."
+            )
+            .onTick("block", PartBuilder.justAction(SpellAction.GIVE_SHIELD.create(SpellCalcs.TOTEM_GUARD, 10D))
                 .addTarget(TargetSelector.AOE.alliesInRadius(3D))
                 .onTick(20D))
             .build();
 
         of(ModRegistry.BLOCKS.BLUE_TOTEM, MANA_TOTEM_ID, SpellConfiguration.Builder.instant(18, 20 * 30), "Astral Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.WITCH)
-            .onTick("block", PartBuilder.restoreManaInRadius(ValueCalculation.base("totem_mana", 5), RADIUS)
+            .manualDesc(
+                "Summon a totem which restores " + SpellCalcs.TOTEM_MANA.getLocSpellTooltip() + " mana to allies around it."
+            )
+            .onTick("block", PartBuilder.restoreManaInRadius(SpellCalcs.TOTEM_MANA, RADIUS)
                 .onTick(20D))
             .build();
 
         of(ModRegistry.BLOCKS.GREEN_TOTEM, HEAL_TOTEM_ID, SpellConfiguration.Builder.instant(18, 20 * 30), "Rejuvenating Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.HAPPY_VILLAGER)
-            .onTick("block", PartBuilder.healInAoe(ValueCalculation.base("totem_heal", 3), RADIUS)
+
+            .manualDesc(
+                "Summon a totem which restores " + SpellCalcs.TOTEM_HEAL.getLocSpellTooltip() + " health to allies around it."
+            )
+            .onTick("block", PartBuilder.healInAoe(SpellCalcs.TOTEM_HEAL, RADIUS)
                 .onTick(20D))
             .build();
 

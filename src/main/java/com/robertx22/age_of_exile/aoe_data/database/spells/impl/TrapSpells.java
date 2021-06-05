@@ -30,6 +30,10 @@ public class TrapSpells implements ISlashRegistryInit {
                 .setChargesAndRegen("trap", 3, 20 * 30)
                 .setSwingArm(), name,
             Arrays.asList(SpellTag.damage, SpellTag.area, SpellTag.trap))
+            .manualDesc(
+                "Throw out a trap that stays on the ground and activates when an enemy approaches to deal "
+                    + dmg.getLocSpellTooltip() + element.getIconNameDmg() + " damage in area around itself."
+            )
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))

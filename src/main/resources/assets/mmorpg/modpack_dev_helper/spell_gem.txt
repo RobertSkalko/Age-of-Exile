@@ -43,7 +43,6 @@ levitation
 water_breath
 explosive_arrow
 charge
-heart_of_ice
 nature_dmg
 frost_breath
 fire_trap

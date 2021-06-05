@@ -49,10 +49,9 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
         SkillGemData data = spells.getSkillGemData()
             .getSkillGemOf(number);
 
-        if (data == null) {
+        if (data == null || data.getSkillGem() == null) {
             return;
         }
-
         if (player.isBlocking()) {
             return;
         }

@@ -5,7 +5,6 @@ torment
 healing_aura
 wish
 iceball
-piercing_light
 shred
 totem_heal
 poison_trap
@@ -41,7 +40,6 @@ arrow_storm_sec
 burn
 charge
 fire_bomb
-heart_of_ice
 poison
 frost_breath
 direct_arrow_hit

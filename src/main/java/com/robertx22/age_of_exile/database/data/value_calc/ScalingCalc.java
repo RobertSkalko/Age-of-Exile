@@ -11,7 +11,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 
 @Storable
-public class ScalingStatCalculation extends BaseStatCalc {
+public class ScalingCalc extends BaseStatCalc {
 
     @Store
     public String stat;
@@ -25,11 +25,11 @@ public class ScalingStatCalculation extends BaseStatCalc {
     }
 
     @Factory
-    public ScalingStatCalculation() {
+    public ScalingCalc() {
 
     }
 
-    public ScalingStatCalculation(Stat stat, float multi) {
+    public ScalingCalc(Stat stat, float multi) {
         super();
         this.stat = stat.GUID();
         this.multi = multi;

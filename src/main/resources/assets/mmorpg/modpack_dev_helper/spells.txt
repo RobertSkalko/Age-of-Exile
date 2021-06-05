@@ -61,7 +61,6 @@ levitation
 water_breath
 explosive_arrow
 charge
-heart_of_ice
 poison_arrow
 frost_breath
 curse_of_agony

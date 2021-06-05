@@ -23,7 +23,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.value_calc.ScalingStatCalculation;
+import com.robertx22.age_of_exile.database.data.value_calc.ScalingCalc;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -142,7 +142,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(50, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
 
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.scaleWithStat("taunt_stance", new ScalingStatCalculation(HealthRegen.getInstance(), 0.05F), 2), AggroAction.Type.AGGRO))
+                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.withStat("taunt_stance", new ScalingCalc(HealthRegen.getInstance(), 0.05F), 2), AggroAction.Type.AGGRO))
                     .setTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
                     .onTick(60D))
                 .buildForEffect())
@@ -206,7 +206,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(50, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
 
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.scaleWithStat("taunt_stance", new ScalingStatCalculation(HealthRegen.getInstance(), 0.05F), 2), AggroAction.Type.AGGRO))
+                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.withStat("taunt_stance", new ScalingCalc(HealthRegen.getInstance(), 0.05F), 2), AggroAction.Type.AGGRO))
                     .setTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
                     .onTick(60D))
                 .buildForEffect())

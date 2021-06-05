@@ -332,7 +332,13 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         if (!this.isAura()) {
             list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
-            list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
+            if (config.usesCharges()) {
+                list.add(new LiteralText(Formatting.YELLOW + "Max Charges: " + config.charges));
+                list.add(new LiteralText(Formatting.YELLOW + "Charge Regen: " + config.charge_regen / 20 + "s"));
+
+            } else {
+                list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
+            }
             list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getCastTimeTicks(ctx) + "s"));
 
         } else {

@@ -37,6 +37,11 @@ public class SpellConfiguration {
     public SpellConfiguration setRequireActions(List<PlayerAction> list) {
         this.actions_needed = list;
         return this;
+
+    }
+
+    public boolean usesCharges() {
+        return charges > 0;
     }
 
     public SpellConfiguration setChargesAndRegen(String name, int charges, int ticksToRegen) {

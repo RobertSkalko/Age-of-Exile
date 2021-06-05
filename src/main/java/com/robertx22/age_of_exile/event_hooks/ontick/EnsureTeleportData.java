@@ -12,6 +12,7 @@ public class EnsureTeleportData {
     int ticksLeft;
     int ticks = 0;
     BlockPos whereShouldTeleport;
+    int tries = 0;
 
     int origTicksLeft;
 
@@ -22,6 +23,10 @@ public class EnsureTeleportData {
         this.whereShouldTeleport = whereShouldTeleport;
 
         this.origTicksLeft = ticksLeft;
+    }
+
+    public void cancel() {
+        this.ticksLeft = -1;
     }
 
     public void resetTicks() {

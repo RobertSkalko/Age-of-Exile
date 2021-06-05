@@ -19,7 +19,7 @@ repositories {
     maven { url 'https://maven.terraformersmc.com/releases' }
     maven { url 'https://maven.blamejared.com' }
     maven { url "https://maven.shedaniel.me" }
-	maven {url "https://jitpack.io" }
+	maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -69,21 +69,6 @@ tasks.withType(JavaCompile).configureEach {
     def targetVersion = 8
     if (JavaVersion.current().isJava9Compatible()) {
         it.options.release = targetVersion
-    }
-}
-
-def depend(str) {
-    dependencies.modApi(str) {
-        exclude(group: "net.fabricmc")
-        exclude(group: "net.fabricmc.fabric-api")
-        exclude(group: "io.github.prospector")
-        exclude(module: "config-2")
-    }
-    dependencies.include(str) {
-        exclude(group: "net.fabricmc")
-        exclude(group: "net.fabricmc.fabric-api")
-        exclude(group: "io.github.prospector")
-        exclude(module: "config-2")
     }
 }
 

@@ -45,7 +45,7 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         return data;
     }
 
-    public static ValueCalculation scaleWithStat(String id, ScalingStatCalculation stat, float base) {
+    public static ValueCalculation withStat(String id, ScalingCalc stat, float base) {
         ValueCalculation data = new ValueCalculation();
         data.id = id;
         data.stat_scalings.add(stat);
@@ -64,7 +64,7 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
     }
 
     @Store
-    public List<ScalingStatCalculation> stat_scalings = new ArrayList<>();
+    public List<ScalingCalc> stat_scalings = new ArrayList<>();
 
     @Store
     public String id = "";

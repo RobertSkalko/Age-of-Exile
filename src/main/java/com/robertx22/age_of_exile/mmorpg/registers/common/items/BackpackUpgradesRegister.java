@@ -3,12 +3,19 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BackpackUpgrade;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BackpackUpgradeItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class BackpackUpgradesRegister extends BaseItemRegistrator {
+
+    public static List<Item> TRASH_ITEMS = Arrays.asList(
+        Items.ROTTEN_FLESH, Items.STRING, Items.SPIDER_EYE, Items.BOW, Items.BONE
+    );
 
     public List<BackpackUpgradeItem> ALL = new ArrayList<>();
 
