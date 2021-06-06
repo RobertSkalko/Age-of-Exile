@@ -46,6 +46,12 @@ public class OnServerTick implements ServerTickEvents.EndTick {
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
     public static Consumer<EnsureTeleportData> MAKE_SURE_TELEPORT = x -> {
+
+        if (x.player.isDead()) {
+            x.cancel();
+            return;
+        }
+
         if (x.player.getBlockPos()
             .getSquaredDistance(x.whereShouldTeleport) > 1000) {
 
@@ -76,6 +82,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             PlayerTickDatas.put(player.getUuid(), new PlayerTickData());
         }
 
+        player.setInvulnerable(true);
+
         PlayerTickDatas.get(player.getUuid()).ensureTeleportData = new EnsureTeleportData(player, MAKE_SURE_TELEPORT, 50, teleportPos);
 
         TeleportUtils.teleport(player, teleportPos, dim);
@@ -100,6 +108,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     data.ensureTeleportData.action.accept(data.ensureTeleportData);
                     if (data.ensureTeleportData.ticksLeft < 1) {
                         data.ensureTeleportData = null;
+                        player.setInvulnerable(false);
                     }
                 }
 

@@ -279,7 +279,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
         ExileEffectBuilder.of(OVERLOAD)
             .stat(-10, Stats.COOLDOWN_TICKS.get(), ModType.FLAT)
             .stat(-25, DatapackStats.MOVE_SPEED, ModType.FLAT)
-            .maxStacks(10)
+            .maxStacks(1)
             .build();
 
         ExileEffectBuilder.of(BLOODLUST)
