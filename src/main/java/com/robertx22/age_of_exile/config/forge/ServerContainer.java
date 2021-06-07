@@ -12,6 +12,7 @@ public class ServerContainer {
     public boolean ENABLE_LOOT_ANNOUNCEMENTS = true;
     public boolean SAVE_GEAR_TO_CHARACTERS = true;
     public boolean REQUIRE_TEAM_FOR_TEAM_DUNGEONS = true;
+    public boolean DONT_SYNC_DATA_OF_AMBIENT_MOBS = true;
 
     public double REGEN_HUNGER_COST = 10;
     public double EXP_LOSS_ON_DEATH = 0.1F;
@@ -37,6 +38,6 @@ public class ServerContainer {
 
     public double PVP_DMG_MULTI = 1F;
 
-    public List<String> IGNORED_ENTITIES = Arrays.asList("minecraft:bat");
+    public List<String> BLACKLIST_SPELLS_IN_DIMENSIONS = Arrays.asList("modid:testdim");
 
 }

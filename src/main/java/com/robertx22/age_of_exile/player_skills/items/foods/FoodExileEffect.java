@@ -36,7 +36,7 @@ public enum FoodExileEffect {
     NATURE_DAMAGE("Terra", "nature", EffectColor.GREEN, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature)), new OptScaleExactStat(20, new ElementalResist(Elements.Nature))),
     PHYSICAL_DAMAGE("Physical", "physical", EffectColor.RED, new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical)), new OptScaleExactStat(20, Armor.getInstance(), ModType.LOCAL_INCREASE)),
 
-    DEF_PURPLE("Magicka Defense", "def_purple", EffectColor.PURPLE, new OptScaleExactStat(5, SpellDamage.getInstance()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
+    DEF_PURPLE("Magicka Defense", "def_purple", EffectColor.PURPLE, new OptScaleExactStat(10, SpellDamage.getInstance()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
     DEF_BLUE("Arcana Defense", "def_blue", EffectColor.BLUE, new OptScaleExactStat(25, Mana.getInstance(), ModType.LOCAL_INCREASE), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
     DEF_YELLOW("Sky Defense", "def_yellow", EffectColor.YELLOW, new OptScaleExactStat(10, Stats.HEAL_STRENGTH.get()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
     DEF_GREEN("Terra Defense", "def_green", EffectColor.GREEN, new OptScaleExactStat(20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),

@@ -25,7 +25,7 @@ public class IntSupportGems implements ISlashRegistryInit {
         SkillGemBuilder.of("heal_crit_dmg", "Heal Critical Damage Support", new StatRequirement().setBaseInt(20)
                 .setInt(0.2F), StatAttribute.INT, 1.2F,
             Arrays.asList(SupportGemTags.heal, SupportGemTags.spell),
-            new StatModifier(10, 40, Stats.HEAL_CRIT_CHANCE.get())
+            new StatModifier(10, 40, Stats.HEAL_CRIT_DAMAGE.get())
         );
 
         SkillGemBuilder.of("heal_power", "Heal Power Support", new StatRequirement().setBaseInt(20)

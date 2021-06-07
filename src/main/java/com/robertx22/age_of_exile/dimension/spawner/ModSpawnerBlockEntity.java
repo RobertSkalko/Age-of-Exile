@@ -50,7 +50,7 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
 
         ticks++;
 
-        if (ticks % 140 == 0) {
+        if (ticks % 60 == 0) {
             if (!world.isClient) {
                 if (isPlayerInRange()) {
                     if (WorldUtils.isDungeonWorld(world)) {

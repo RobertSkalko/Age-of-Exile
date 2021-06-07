@@ -54,23 +54,28 @@ public class UnequipGear {
         int runewords = 0;
         int uniques = 0;
 
-        List<ItemStack> gems = Load.spells(player)
+        List<SkillGemData> gems = Load.spells(player)
+            .getSkillGemData().gems;
+        List<ItemStack> stacks = Load.spells(player)
             .getSkillGemData().stacks;
 
-        for (int i = 0; i < gems.size(); i++) {
-            ItemStack stack = gems.get(i);
-            SkillGemData gem = SkillGemData.fromStack(stack);
+        if (gems.size() == stacks.size()) {
 
-            if (gem != null) {
-                if (!gem.canPlayerUse(player)) {
-                    PlayerUtils.giveItem(stack.copy(), player);
-                    player.sendMessage(new LiteralText("Skill Gem uneqipped due to unmet requirements"), false);
-                    gems.set(i, ItemStack.EMPTY);
-                    Load.spells(player)
-                        .getSkillGemData().gems.set(i, new SkillGemData());
+            for (int i = 0; i < gems.size(); i++) {
+                SkillGemData gem = gems.get(i);
+                ItemStack stack = stacks.get(i);
+
+                if (gem != null) {
+                    if (!gem.canPlayerUse(player)) {
+                        PlayerUtils.giveItem(stack.copy(), player);
+                        player.sendMessage(new LiteralText("Skill Gem uneqipped due to unmet requirements"), false);
+                        stacks.set(i, ItemStack.EMPTY);
+                        Load.spells(player)
+                            .getSkillGemData().gems.set(i, new SkillGemData());
+                    }
                 }
-            }
 
+            }
         }
 
         for (EquipmentSlot slot : SLOTS) {

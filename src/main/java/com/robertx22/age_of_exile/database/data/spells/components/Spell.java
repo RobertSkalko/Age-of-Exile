@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellDesc;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -250,6 +251,18 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             return true;
         }
 
+        if (!ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.isEmpty()) {
+            Identifier id = ctx.caster.world.getRegistryManager()
+                .getDimensionTypes()
+                .getId(ctx.caster.world.getDimension());
+
+            if (ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.stream()
+                .anyMatch(x -> x.equals(id.toString()))) {
+                return false;
+            }
+
+        }
+
         if (this.isAura()) {
             if (!ctx.spellsCap.getCastingData().auras.getOrDefault(GUID(), new SpellCastingData.AuraData()).active) { // if not active
                 if (ctx.spellsCap.getManaReservedByAuras() + aura_data.mana_reserved > 1) {
@@ -330,6 +343,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         TooltipUtils.addEmpty(list);
 
+        if (this.config.tags.contains(SpellTag.technique)) {
+            list.add(new LiteralText(Formatting.RED + "Technique Skill"));
+        }
+
         if (!this.isAura()) {
             list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
             if (config.usesCharges()) {
@@ -343,6 +360,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         } else {
             list.addAll(this.aura_data.GetTooltipString(this, ctx.skillGemData, new TooltipInfo((PlayerEntity) ctx.caster)));
+        }
+
+        if (isAura()) {
+            list.add(new LiteralText(Formatting.BLUE + "Mana Reserved: " + aura_data.mana_reserved * 100 + "%"));
         }
 
         TooltipUtils.addEmpty(list);

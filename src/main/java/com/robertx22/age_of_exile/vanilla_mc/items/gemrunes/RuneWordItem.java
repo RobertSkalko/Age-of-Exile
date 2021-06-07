@@ -110,6 +110,10 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
 
             RuneWord word = get(stack);
 
+            if (word == null) {
+                return;
+            }
+
             tooltip.add(new LiteralText("To create the runeword: ").formatted(Formatting.BLUE));
 
             tooltip.add(new LiteralText("insert these runes in an item with sockets").formatted(Formatting.BLUE));

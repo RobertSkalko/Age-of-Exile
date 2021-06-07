@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -120,10 +121,14 @@ public class WorldUtils {
         if (MMORPG.server == null) {
             return false;
         }
-        return MMORPG.server.getRegistryManager()
+        Identifier id = MMORPG.server.getRegistryManager()
             .getDimensionTypes()
-            .getId(world.getDimension())
-            .equals(DimensionIds.DUNGEON_DIMENSION);
+            .getId(world.getDimension());
+
+        if (id != null) {
+            return id.equals(DimensionIds.DUNGEON_DIMENSION);
+        }
+        return false;
     }
 
     public static int getTier(World world, BlockPos pos) {

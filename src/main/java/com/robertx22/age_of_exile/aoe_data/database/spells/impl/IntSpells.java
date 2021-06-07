@@ -128,17 +128,21 @@ public class IntSpells implements ISlashRegistryInit {
                 .setSwingArm(), "Black Hole",
             Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.area))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.ENDER_PEARL, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 100D, true)
-                .put(MapField.EXPIRE_ON_ENTITY_HIT, false)
-                .put(MapField.EXPIRE_ON_BLOCK_HIT, false)
-            ))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.PORTAL, 40D, 1.5D))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.WITCH, 8D, 2D))
-            .onTick(PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
+
+            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_END_PORTAL_SPAWN, 1D, 1D))
+
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.BLACK_HOLE, 20D * 5)
+                .put(MapField.ENTITY_NAME, "block")
+                .put(MapField.BLOCK_FALL_SPEED, 0D)
+                .put(MapField.FIND_NEAREST_SURFACE, true)
+                .put(MapField.IS_BLOCK_FALLING, false)))
+
+            .onTick("block", PartBuilder.particleOnTick(1D, ParticleTypes.PORTAL, 40D, 1D))
+            .onTick("block", PartBuilder.particleOnTick(1D, ParticleTypes.WITCH, 8D, 1D))
+            .onTick("block", PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
-            .onTick(PartBuilder.damageInAoe(ValueCalculation.base("black_hole", 3), Elements.Dark, 2D)
-                .onTick(40D))
+            .onExpire("block", PartBuilder.damageInAoe(ValueCalculation.base("black_hole", 5), Elements.Dark, 2D))
             .build();
 
         SpellBuilder.of("shooting_star", SpellConfiguration.Builder.instant(10, 20)

@@ -118,7 +118,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         if (WorldUtils.isDungeonWorld(victim.world)) {
             SingleDungeonData data = Load.dungeonData(victim.world).data.get(victim.getBlockPos());
             if (!data.data.isEmpty()) {
-                exp *= data.data.team.lootXpMulti;
+                exp *= data.data.team.lootMulti;
             }
         }
 
@@ -150,8 +150,8 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
             List<PlayerEntity> list = TeamUtils.getOnlineTeamMembersInRange(killer);
 
             int members = list.size() - 1;
-            if (members > 10) {
-                members = 10;
+            if (members > 5) {
+                members = 5;
             }
 
             float teamMulti = 1 + (0.1F * members);

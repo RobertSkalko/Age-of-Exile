@@ -52,6 +52,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             return;
         }
 
+        x.player.setInvulnerable(true);
+
         if (x.player.getBlockPos()
             .getSquaredDistance(x.whereShouldTeleport) > 1000) {
 
@@ -245,6 +247,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 if (data.ticksForSecond > TicksForSecond) {
                     data.ticksForSecond = 0;
 
+                    UnequipGear.onTick(player);
+
                     Load.spells(player)
                         .getCastingData().charges.onTicks(player, 20);
 
@@ -258,8 +262,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     CapSyncUtil.syncAll(player);
                     Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.world, player.getBlockPos(), player)));
                 }
-
-                UnequipGear.onTick(player);
 
                 PlayerTickDatas.put(player.getUuid(), data);
 

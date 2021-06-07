@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
@@ -49,6 +50,9 @@ public class UtilitySpells implements ISlashRegistryInit {
             .onExpire("block", PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
                 .addTarget(TargetSelector.CASTER.create()))
 
+            .onTick("block", PartBuilder.giveSelfExileEffect(BeneficialEffects.MAGE_CIRCLE, 20D)
+                .addCondition(EffectCondition.IS_ENTITY_IN_RADIUS.alliesInRadius(2D)))
+
             .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.WITCH, 3D, 1.2D, 0.5D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
             .build();
@@ -97,7 +101,7 @@ public class UtilitySpells implements ISlashRegistryInit {
 
         SpellBuilder.of("water_breath", SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 2, 40)
                 .setScaleManaToPlayer(),
-            "Water Breath",
+            "Water Breathing",
             Arrays.asList())
             .manualDesc(
                 "Give Water Breathing to allies around you.")

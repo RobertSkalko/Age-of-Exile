@@ -69,7 +69,7 @@ public class QuestProgression {
                 fini = true;
 
                 for (PlayerEntity x : members) {
-                    player.sendMessage(
+                    x.sendMessage(
                         new LiteralText("Quest completed!, You can now progress to the next dungeon.")
                         , false);
                     PlayerUtils.giveItem(new ItemStack(ModRegistry.MISC_ITEMS.TELEPORT_BACK), x);

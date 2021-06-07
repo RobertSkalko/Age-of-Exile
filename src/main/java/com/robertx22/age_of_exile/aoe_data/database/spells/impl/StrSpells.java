@@ -65,7 +65,7 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("pull", SpellConfiguration.Builder.instant(5, 60 * 20), "Pull",
-            Arrays.asList(SpellTag.area, SpellTag.damage))
+            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .manualDesc(
                 "Pull enemies in area to you, dealing " +
                     SpellCalcs.PULL.getLocSpellTooltip() + " " +
@@ -114,7 +114,7 @@ public class StrSpells implements ISlashRegistryInit {
         SpellBuilder.of(FLAME_STRIKE_ID, SpellConfiguration.Builder.instant(8, 15)
                 .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
                 .setSwingArm(), "Flame Strike",
-            Arrays.asList(SpellTag.area, SpellTag.damage))
+            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
@@ -126,7 +126,7 @@ public class StrSpells implements ISlashRegistryInit {
         SpellBuilder.of("tidal_strike", SpellConfiguration.Builder.instant(8, 12)
                 .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
                 .setSwingArm(), "Tidal Strike",
-            Arrays.asList(SpellTag.area, SpellTag.damage))
+            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1D, 1D))
@@ -141,7 +141,7 @@ public class StrSpells implements ISlashRegistryInit {
         SpellBuilder.of(GONG_STRIKE_ID, SpellConfiguration.Builder.instant(8, 20 * 10)
                 .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK, PlayerAction.BLOCK))
                 .setSwingArm(), "Gong Strike",
-            Arrays.asList(SpellTag.area, SpellTag.damage))
+            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
 
@@ -159,7 +159,7 @@ public class StrSpells implements ISlashRegistryInit {
         SpellBuilder.of("thirst_strike", SpellConfiguration.Builder.instant(5, 15)
                 .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
                 .setSwingArm(), "Thirsting Strike",
-            Arrays.asList(SpellTag.area, SpellTag.damage))
+            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
 
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
@@ -173,7 +173,7 @@ public class StrSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("whirlwind", SpellConfiguration.Builder.multiCast(10, 0, 100, 10)
                 .setSwingArm(), "Whirlwind",
-            Arrays.asList(SpellTag.area, SpellTag.damage))
+            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 100D))
