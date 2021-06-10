@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.uncommon.testing.tests;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -44,7 +44,7 @@ public class CheckWeaponDpsBalanceTest {
                         totaldmg += data.getAverageValue();
                     }
 
-                    StatData atkspeeddata = StatUtils.turnIntoStatData(AttackSpeed.getInstance(), stats);
+                    StatData atkspeeddata = StatUtils.turnIntoStatData(Stats.ATTACK_SPEED.get(), stats);
                     ;
                     float atkpersec = x.getBaseGearType()
                         .getAttacksPerSecondCalculated(atkspeeddata);

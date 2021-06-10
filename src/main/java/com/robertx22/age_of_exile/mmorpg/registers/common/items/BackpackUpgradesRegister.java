@@ -3,18 +3,26 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BackpackUpgrade;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BackpackUpgradeItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class BackpackUpgradesRegister extends BaseItemRegistrator {
+
+    public static List<Item> TRASH_ITEMS = Arrays.asList(
+        Items.ROTTEN_FLESH, Items.STRING, Items.SPIDER_EYE, Items.BOW, Items.BONE
+    );
 
     public List<BackpackUpgradeItem> ALL = new ArrayList<>();
 
     public HashMap<SkillItemTier, BackpackUpgradeItem> SIZE = new HashMap<>();
 
     BackpackUpgradeItem GEM = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_GEM_PICKUP, SkillItemTier.TIER1, "gem", "Auto Gem Pickup Upgrade"));
+    BackpackUpgradeItem TRASH = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_TRASH_PICKUP, SkillItemTier.TIER0, "trash", "Auto Trash Pickup Upgrade"));
     BackpackUpgradeItem RUNE = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_RUNE_PICKUP, SkillItemTier.TIER2, "rune", "Auto Rune Pickup Upgrade"));
     BackpackUpgradeItem CURRENCY = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_CURRENCY_PICKUP, SkillItemTier.TIER3, "currency", "Auto Currency Pickup Upgrade"));
     BackpackUpgradeItem ESSENCE = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_ESSENCE_PICKUP, SkillItemTier.TIER0, "essence", "Auto Essence Pickup Upgrade"));

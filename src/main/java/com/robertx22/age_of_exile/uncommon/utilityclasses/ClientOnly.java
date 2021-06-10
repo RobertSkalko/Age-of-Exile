@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.dimension.gui.MapsScreen;
+import com.robertx22.age_of_exile.gui.screens.delve.ChooseTierScreen;
+import com.robertx22.age_of_exile.gui.screens.delve.DelveScreen;
 import com.robertx22.age_of_exile.gui.screens.race_select.RaceSelectScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
@@ -12,6 +13,8 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 public class ClientOnly {
+
+    public static int ticksSinceChatWasOpened = 0;
 
     public static Entity getEntityByUUID(World world, UUID id) {
 
@@ -48,7 +51,13 @@ public class ClientOnly {
 
     public static void openMapsScreen(BlockPos pos) {
         MinecraftClient.getInstance()
-            .openScreen(new MapsScreen(pos));
+            .openScreen(new DelveScreen(pos));
+
+    }
+
+    public static void openChooseTierScreen(BlockPos pos) {
+        MinecraftClient.getInstance()
+            .openScreen(new ChooseTierScreen(pos));
     }
 
     public static void stopUseKey() {
@@ -60,6 +69,7 @@ public class ClientOnly {
             MinecraftClient.getInstance()
                 .openScreen(new RaceSelectScreen());
         }
+
     }
 
 }

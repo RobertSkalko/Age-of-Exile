@@ -7,7 +7,6 @@ import net.minecraft.server.ServerAdvancementLoader;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
-import vazkii.patchouli.client.base.ClientAdvancements;
 
 import java.util.Objects;
 
@@ -39,7 +38,7 @@ public class AdvancementUtils {
                 .getProgress(adv)
                 .isDone();
         } else {
-            return ClientAdvancements.hasDone(id.toString()); // this is from patchouli, its a required library anyway
+            return ClientAdvUtils.hasDone(id.toString()); // this is from patchouli, its a required library anyway
         }
     }
 

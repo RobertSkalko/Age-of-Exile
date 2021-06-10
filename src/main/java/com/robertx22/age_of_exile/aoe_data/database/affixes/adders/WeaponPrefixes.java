@@ -32,6 +32,30 @@ public class WeaponPrefixes implements ISlashRegistryInit {
             .Prefix()
             .Build();
 
+        ElementalAffixBuilder.start()
+            .guid(x -> x.guidName + "_spell_ele_dmg")
+            .add(Elements.Fire, "Scorched")
+            .add(Elements.Water, "Chilled")
+            .add(Elements.Nature, "Poisoned")
+            .add(Elements.Light, "Holy")
+            .add(Elements.Dark, "Cursed")
+            .tier(1, x -> Arrays.asList(new StatModifier(15, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(x))))
+            .tier(2, x -> Arrays.asList(new StatModifier(10, 15, Stats.ELEMENTAL_SPELL_DAMAGE.get(x))))
+            .tier(3, x -> Arrays.asList(new StatModifier(5, 10, Stats.ELEMENTAL_SPELL_DAMAGE.get(x))))
+            .Weight(500)
+            .includesTags(SlotTag.mage_weapon)
+            .Prefix()
+            .Build();
+
+        AffixBuilder.Normal("desolation")
+            .Named("Desolation")
+            .tier(1, new StatModifier(5, 6, Stats.SPELL_CRIT_CHANCE.get()), new StatModifier(8, 10, Stats.SPELL_CRIT_DAMAGE.get()))
+            .tier(2, new StatModifier(3, 5, Stats.SPELL_CRIT_CHANCE.get()), new StatModifier(6, 8, Stats.SPELL_CRIT_DAMAGE.get()))
+            .includesTags(SlotTag.mage_weapon)
+            .Weight(100)
+            .Prefix()
+            .Build();
+
         AffixBuilder.Normal("cruel")
             .Named("Cruel")
             .tier(1, new StatModifier(16, 20, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE))
@@ -91,6 +115,24 @@ public class WeaponPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(6, 9, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
             .tier(3, new StatModifier(4, 6, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
+            .Prefix()
+            .Build();
+
+        AffixBuilder.Normal("heal_crit_prefix")
+            .Named("Truthful")
+            .tier(1, new StatModifier(9, 12, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(6, 9, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(4, 6, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT))
+            .includesTags(SlotTag.scepter)
+            .Prefix()
+            .Build();
+
+        AffixBuilder.Normal("heal_crit_dmg_prefix")
+            .Named("Inspiring")
+            .tier(1, new StatModifier(15, 20, Stats.HEAL_CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(2, new StatModifier(10, 15, Stats.HEAL_CRIT_DAMAGE.get(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 10, Stats.HEAL_CRIT_DAMAGE.get(), ModType.FLAT))
+            .includesTags(SlotTag.scepter)
             .Prefix()
             .Build();
 

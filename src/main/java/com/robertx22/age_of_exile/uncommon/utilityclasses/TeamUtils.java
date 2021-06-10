@@ -9,11 +9,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TeamUtils {
+    public static List<PlayerEntity> getOnlineTeamMembersInRange(PlayerEntity player, double range) {
+        return getOnlineMembers(player).stream()
+            .filter(x -> player.distanceTo(x) < range)
+            .collect(Collectors.toList());
+
+    }
 
     public static List<PlayerEntity> getOnlineTeamMembersInRange(PlayerEntity player) {
-        return getOnlineMembers(player).stream()
-            .filter(x -> player.distanceTo(x) < ModConfig.get().Server.PARTY_RADIUS)
-            .collect(Collectors.toList());
+
+        return getOnlineTeamMembersInRange(player, ModConfig.get().Server.PARTY_RADIUS);
 
     }
 
@@ -34,6 +39,10 @@ public class TeamUtils {
             e.printStackTrace();
         }
 
+        if (players.isEmpty()) {
+            players.add(player);
+        }
+
         return players;
     }
 
@@ -48,14 +57,6 @@ public class TeamUtils {
         }
 
         return false;
-        /*
-
-        boolean vanilla = p1.getScoreboardTeam() != null && p2.getScoreboardTeam() != null && p1.getScoreboardTeam()
-            .isEqual(p2.getScoreboardTeam());
-
-        return vanilla;
-
-         */
 
     }
 

@@ -38,6 +38,11 @@ public class TeamCap implements ICommonPlayerCap {
     }
 
     public boolean isOnSameTeam(PlayerEntity other) {
+
+        if (team_id.isEmpty() || Load.team(other).team_id.isEmpty()) {
+            return false;
+        }
+
         return team_id.equals(Load.team(other).team_id);
     }
 

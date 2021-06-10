@@ -137,6 +137,7 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
                 }
             }
         }
+
         return list;
 
     }

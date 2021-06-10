@@ -6,8 +6,6 @@ import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ManaCost;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -28,7 +26,7 @@ public class ScrollBuffsAdder implements ISlashRegistryInit {
         );
         ScrollBuff.of("warrior", "Of the Warrior", "Torpent",
             new StatModifier(10, 30, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
-            new StatModifier(8, 25, AttackSpeed.getInstance(), ModType.FLAT)
+            new StatModifier(8, 25, Stats.ATTACK_SPEED.get(), ModType.FLAT)
         );
         ScrollBuff.of("paladin", "Of the Paladin", "Fortissimus",
             new StatModifier(10, 30, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
@@ -42,7 +40,7 @@ public class ScrollBuffsAdder implements ISlashRegistryInit {
 
         ScrollBuff.of("costly_spell_dmg", "Of Sacrificial Magic", "Feodo",
             new StatModifier(20, 40, SpellDamage.getInstance()),
-            new StatModifier(10, 30, ManaCost.getInstance())
+            new StatModifier(10, 30, Stats.MANA_COST.get())
         );
 
         eleDmg("fire_dmg", "Of Firestorms", "Ignis", Elements.Fire);

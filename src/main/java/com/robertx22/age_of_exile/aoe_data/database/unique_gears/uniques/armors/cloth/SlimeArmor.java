@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
@@ -101,7 +100,7 @@ public class SlimeArmor implements ISlashRegistryInit {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(5, 15, AttackSpeed.getInstance(), ModType.FLAT),
+                    new StatModifier(5, 15, Stats.ATTACK_SPEED.get(), ModType.FLAT),
                     new StatModifier(5, 25, Mana.getInstance(), ModType.FLAT),
                     new StatModifier(2, 5, Intelligence.INSTANCE, ModType.FLAT)
                 )

@@ -39,7 +39,18 @@ public class GearData {
         if (slot == EquipmentSlot.OFFHAND) {
             if (gear != null && gear.GetBaseGearType()
                 .isWeaponOrTool()) {
-                percentStatUtilization = gear.GetBaseGearType().weapon_offhand_stat_util;
+                GearItemData mainhand = Gear.Load(data.getEntity()
+                    .getMainHandStack());
+
+                if (mainhand != null) {
+                    if (mainhand.GetBaseGearType().weapon_type == gear.GetBaseGearType().weapon_type) {
+                        percentStatUtilization = gear.GetBaseGearType().weapon_offhand_stat_util;
+                        return;
+                    }
+                }
+
+                percentStatUtilization = 0;
+                return;
             }
         }
     }

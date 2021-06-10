@@ -70,8 +70,8 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
         this.addButton(new CharButton(this, race, x, y));
         this.addButton(new RaceImageButton(race, x + CharButton.xSize / 2 - RaceImageButton.BUTTON_SIZE_X / 2, y + 40));
 
-        this.addButton(new LeftRightButton(this, x - 30, y + CharButton.ySize / 2, true));
-        this.addButton(new LeftRightButton(this, x + 30 - LeftRightButton.xSize + CharButton.xSize, y + CharButton.ySize / 2, false));
+        this.addButton(new LeftRightButton(this, x - 30, y + CharButton.ySize / 2, true, LeftRightButton.Type.ONE));
+        this.addButton(new LeftRightButton(this, x + 30 - LeftRightButton.xSize + CharButton.xSize, y + CharButton.ySize / 2, false, LeftRightButton.Type.ONE));
 
         int n = 0;
         for (OptScaleExactStat stat : race.starting_stats) {
@@ -111,7 +111,7 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
         public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
             super.renderButton(matrix, x, y, ticks);
 
-            String choose = "Choose a Race";
+            String choose = "Choose Your Race";
 
             screen.mc.textRenderer.drawWithShadow(matrix, choose, this.x + xSize / 2 - screen.mc.textRenderer.getWidth(choose) / 2, this.y - 25, Formatting.WHITE.getColorValue());
 
@@ -162,31 +162,6 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
             String text = "Select";
             Formatting format = Formatting.GREEN;
             GuiUtils.renderScaledText(matrix, this.x + xSize / 2, this.y + 10, 1, text, format);
-        }
-
-    }
-
-    public static class LeftRightButton extends TexturedButtonWidget {
-
-        public static int xSize = 22;
-        public static int ySize = 22;
-
-        static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/race_select/leftright.png");
-
-        public LeftRightButton(ILeftRight screen, int xPos, int yPos, boolean isLeft) {
-            super(xPos, yPos, xSize, ySize, isLeft ? 0 : 22, 0, 0, buttonLoc, (button) -> {
-                if (isLeft) {
-                    screen.goLeft();
-                } else {
-                    screen.goRight();
-                }
-            });
-
-        }
-
-        @Override
-        public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
-            super.renderButton(matrix, x, y, ticks);
         }
 
     }

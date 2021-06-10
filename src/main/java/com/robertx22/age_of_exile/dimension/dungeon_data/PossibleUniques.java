@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 public class PossibleUniques {
 
     @Store
-    public List<String> uniques = new ArrayList<>();
+    public List<String> u = new ArrayList<>();
 
     public List<UniqueGear> getUniques() {
-        return uniques.stream()
+        return u.stream()
             .map(x -> Database.UniqueGears()
                 .get(x))
             .collect(Collectors.toList());
@@ -27,10 +27,10 @@ public class PossibleUniques {
 
     public void randomize(int tier) {
 
-        uniques.clear();
+        u.clear();
 
         List<GearRarity> list = Database.GearRarities()
-            .getFiltered(x -> x.is_unique_item && tier > x.drops_after_tier);
+            .getFiltered(x -> x.is_unique_item && tier >= x.drops_after_tier);
 
         int amount = RandomUtils.RandomRange(3, 5);
 
@@ -45,7 +45,7 @@ public class PossibleUniques {
             for (int u = 0; u < amount; u++) {
                 UniqueGear uniq = RandomUtils.weightedRandom(gears);
                 gears.remove(uniq); // no same twice
-                uniques.add(uniq.GUID());
+                this.u.add(uniq.GUID());
             }
         }
 

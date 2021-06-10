@@ -5,17 +5,14 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SyncTime;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
-import com.robertx22.age_of_exile.vanilla_mc.packets.ForceChoosingRace;
 import com.robertx22.age_of_exile.vanilla_mc.packets.OnLoginClientPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
 
 public class OnLogin {
 
@@ -43,22 +40,11 @@ public class OnLogin {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName(), false);
             }
 
-            if (Load.hasUnit(player)) {
+            UnitData data = Load.Unit(player);
 
-                UnitData data = Load.Unit(player);
+            data.onLogin(player);
 
-                data.onLogin(player);
-
-                data.syncToClient(player);
-
-                if (!data.hasRace()) {
-                    Packets.sendToClient(player, new ForceChoosingRace());
-                }
-
-            } else {
-                player.sendMessage(
-                    new LiteralText("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"), false);
-            }
+            data.syncToClient(player);
 
         } catch (
             Exception e) {

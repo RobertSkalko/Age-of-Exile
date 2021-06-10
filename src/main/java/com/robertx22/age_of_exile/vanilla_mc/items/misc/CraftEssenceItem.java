@@ -73,7 +73,7 @@ public class CraftEssenceItem extends Item implements IAutoLocName, IAutoModel, 
 
         Item resultItem = Registry.ITEM.get(new Identifier(Ref.MODID, GUID()));
 
-        ShapedRecipeJsonFactory fac = ShapedRecipeJsonFactory.create(resultItem, 16);
+        ShapedRecipeJsonFactory fac = ShapedRecipeJsonFactory.create(resultItem, 8);
 
         return fac.input('e', Items.COAL)
             .input('s', craftItem.get())

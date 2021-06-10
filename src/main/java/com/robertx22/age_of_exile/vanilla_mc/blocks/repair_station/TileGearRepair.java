@@ -74,6 +74,9 @@ public class TileGearRepair extends BaseModificationStation {
             if (!stack.isDamaged()) {
                 return false;
             }
+            if (!Gear.has(stack)) {
+                return false;
+            }
 
             int dmg = (stack.getDamage() - repair);
 

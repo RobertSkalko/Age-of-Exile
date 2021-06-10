@@ -20,6 +20,5 @@ axe
 sword
 spear
 helmet
-wand
 boots
 hoe

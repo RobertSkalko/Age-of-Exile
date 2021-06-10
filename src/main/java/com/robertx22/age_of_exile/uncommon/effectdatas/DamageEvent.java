@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
+import com.robertx22.age_of_exile.capability.PlayerDamageChart;
+import com.robertx22.age_of_exile.capability.entity.CooldownsData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
@@ -16,10 +18,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
 import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.SoundUtils;
@@ -36,6 +35,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -77,6 +77,12 @@ public class DamageEvent extends EffectEvent {
     }
 
     private void calcBlock() {
+
+        if (targetData.getResources()
+            .getBlock() < 1) {
+            return;
+        }
+
         // blocking check
         if (target.isBlocking() && attackInfo != null) {
             Vec3d vec3d = attackInfo.getSource()
@@ -101,7 +107,7 @@ public class DamageEvent extends EffectEvent {
         }
 
         if (source instanceof PlayerEntity) {
-            if (getAttackType().isAttack()) {
+            if (data.isBasicAttack()) {
                 dmg = modifyByAttackSpeedIfMelee(dmg);
                 dmg = modifyIfArrowDamage(dmg);
             }
@@ -149,8 +155,12 @@ public class DamageEvent extends EffectEvent {
 
                     dmg *= cool;
 
-                    if (cool < 1) { // TODO
+                    if (cool < 0.2F) { // TODO
                         this.cancelDamage();
+                    }
+
+                    if (cool > 0.8F) {
+                        ParticleUtils.spawnDefaultSlashingWeaponParticles(source);
                     }
 
                 }
@@ -191,6 +201,8 @@ public class DamageEvent extends EffectEvent {
     }
 
     public void cancelDamage() {
+        this.data.getNumber(EventData.NUMBER).number = 0;
+
         this.data.setBoolean(EventData.CANCELED, true);
         if (attackInfo != null) {
             attackInfo.setAmount(0);
@@ -303,8 +315,10 @@ public class DamageEvent extends EffectEvent {
                 }
             }
 
-            int time = target.hurtTime;
-            target.hurtTime = 0;
+            if (target instanceof PlayerEntity == false) {
+                target.timeUntilRegen = 0; // disable iframes hopefully
+                target.hurtTime = 0;
+            }
 
             if (this.data.isSpellEffect()) {
                 if (!data.getBoolean(EventData.DISABLE_KNOCKBACK) && dmg > 0 && !data.isDodged()) {
@@ -337,13 +351,18 @@ public class DamageEvent extends EffectEvent {
                 target.damage(dmgsource, vanillaDamage);
             }
 
+            if (target instanceof PlayerEntity == false) {
+                if (getAttackType() == AttackType.dot) {
+                    target.timeUntilRegen = 0; // disable iframes hopefully
+                    target.hurtTime = 0;
+                }
+            }
+
             // allow multiple dmg same tick
 
             if (attri.hasModifier(NO_KNOCKBACK)) {
                 attri.removeModifier(NO_KNOCKBACK);
             }
-
-            target.hurtTime = time;
 
         }
 
@@ -354,11 +373,25 @@ public class DamageEvent extends EffectEvent {
 
         if (dmg > 0) {
             if (source instanceof PlayerEntity) {
+                sourceData.getCooldowns()
+                    .setOnCooldown(CooldownsData.IN_COMBAT, 20 * 10);
+
                 if (target instanceof MobEntity) {
-                    targetData.getThreat()
-                        .addThreat((PlayerEntity) source, (MobEntity) target, (int) dmg);
+                    PlayerDamageChart.onDamage((PlayerEntity) source, dmg);
+
+                    GenerateThreatEvent threatEvent = new GenerateThreatEvent((PlayerEntity) source, (MobEntity) target, ThreatGenType.deal_dmg, dmg);
+                    threatEvent.Activate();
+                }
+            } else if (source instanceof MobEntity) {
+                if (target instanceof PlayerEntity) {
+                    targetData.getCooldowns()
+                        .setOnCooldown(CooldownsData.IN_COMBAT, 20 * 10);
+
+                    GenerateThreatEvent threatEvent = new GenerateThreatEvent((PlayerEntity) target, (MobEntity) source, ThreatGenType.take_dmg, dmg);
+                    threatEvent.Activate();
                 }
             }
+
             sendDamageParticle(info);
 
         }
@@ -379,7 +412,7 @@ public class DamageEvent extends EffectEvent {
                     text = "Resist";
                 }
 
-                DmgNumPacket packet = new DmgNumPacket(target, this.getElement(), text, 0);
+                DmgNumPacket packet = new DmgNumPacket(target, text, false, Formatting.GOLD);
                 Packets.sendToClient(player, packet);
                 return;
             }
@@ -388,10 +421,10 @@ public class DamageEvent extends EffectEvent {
                 if (entry.getValue()
                     .intValue() > 0) {
 
-                    text = NumberUtils.formatDamageNumber(this, entry.getValue()
+                    text = entry.getKey().format + NumberUtils.formatDamageNumber(this, entry.getValue()
                         .intValue());
 
-                    DmgNumPacket packet = new DmgNumPacket(target, entry.getKey(), text, entry.getValue());
+                    DmgNumPacket packet = new DmgNumPacket(target, text, data.isCrit(), entry.getKey().format);
                     Packets.sendToClient(player, packet);
                 }
             }
@@ -440,6 +473,7 @@ public class DamageEvent extends EffectEvent {
                     .set(x -> x.setElement(entry.getKey()))
                     .build();
 
+                bonus.data.setBoolean(EventData.IS_BASIC_ATTACK, this.data.getBoolean(EventData.IS_BASIC_ATTACK));
                 bonus.calculateEffects();
 
                 bonus.setElement(entry.getKey());

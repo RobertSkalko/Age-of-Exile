@@ -52,9 +52,9 @@ public class FavorAdder implements ISlashRegistryInit {
         FavorRank high = new FavorRank("high");
         high.min = 1000;
         high.rank = 3;
-        high.extra_item_favor_cost = 1.1F;
-        high.extra_items_per_boss = 2;
-        high.extra_items_per_chest = 2;
+        high.extra_item_favor_cost = 1.2F;
+        high.extra_items_per_boss = 1;
+        high.extra_items_per_chest = 1;
 
         high.locname = "High";
         high.text_format = Formatting.AQUA.getName();
@@ -64,8 +64,8 @@ public class FavorAdder implements ISlashRegistryInit {
         FavorRank veryhigh = new FavorRank("very_high");
         veryhigh.min = 2000;
         veryhigh.rank = 4;
-        veryhigh.extra_item_favor_cost = 1.25F;
-        veryhigh.extra_items_per_boss = 3;
+        veryhigh.extra_item_favor_cost = 3;
+        veryhigh.extra_items_per_boss = 2;
         veryhigh.extra_items_per_chest = 2;
         veryhigh.exp_multi = 1.1F;
 
@@ -77,8 +77,8 @@ public class FavorAdder implements ISlashRegistryInit {
         FavorRank favored = new FavorRank("favored");
         favored.min = 5000;
         favored.rank = 5;
-        favored.extra_item_favor_cost = 1.75F;
-        favored.extra_items_per_boss = 4;
+        favored.extra_item_favor_cost = 5;
+        favored.extra_items_per_boss = 3;
         favored.extra_items_per_chest = 3;
         favored.exp_multi = 1.25F;
 

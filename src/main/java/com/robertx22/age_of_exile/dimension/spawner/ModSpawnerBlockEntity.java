@@ -10,6 +10,7 @@ import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.particle.ParticleTypes;
@@ -26,9 +27,9 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
 
     public static int DEFAULT_SPAWNS = 10;
 
-    private static int maxNearbyEntities = 6;
+    private static int maxNearbyEntities = 5;
     private static int requiredPlayerRange = 16;
-    private static int spawnRange = 4;
+    private static int spawnRange = 16;
 
     public ModSpawnerBlockEntity() {
         super(ModRegistry.BLOCK_ENTITIES.SPAWNER);
@@ -40,9 +41,16 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
     @Override
     public void tick() {
 
+        if (spawnsLeft < 1) {
+            if (!world.isClient) {
+                this.world.removeBlock(pos, false);
+                return;
+            }
+        }
+
         ticks++;
 
-        if (ticks % 140 == 0) {
+        if (ticks % 60 == 0) {
             if (!world.isClient) {
                 if (isPlayerInRange()) {
                     if (WorldUtils.isDungeonWorld(world)) {
@@ -58,6 +66,7 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
                                 if (spawns > spawnsLeft) {
                                     spawns = spawnsLeft;
                                 }
+                                this.spawnsLeft -= spawns;
 
                                 List<BlockPos> positions = new ArrayList<>();
                                 for (int x = -4; x < 4; x++) {
@@ -84,8 +93,10 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
 
                                         BlockPos blockPos = RandomUtils.randomFromList(positions);
 
-                                        if (SpawnUtil.canPlaceMob(world, blockPos)) {
-                                            list.spawnRandomMob((ServerWorld) world, blockPos, 0);
+                                        EntityType type = list.getRandomMob();
+
+                                        if (SpawnUtil.canPlaceMob(world, type, blockPos)) {
+                                            list.spawMob((ServerWorld) world, type, blockPos, 0);
                                             spawns--;
                                         }
 

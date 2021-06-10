@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
@@ -51,13 +52,13 @@ public class RegeneratePercentStat extends Stat {
 
             @Override
             public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                effect.data.getNumber(EventData.NUMBER).number += maxGetter.apply(effect.targetData);
+                effect.data.getNumber(EventData.NUMBER).number += maxGetter.apply(effect.targetData) * data.getAverageValue() / 100F;
                 return effect;
             }
 
             @Override
             public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                return effect.data.getResourceType() == type;
+                return effect.data.getResourceType() == type && effect.data.getRestoreType() == RestoreType.regen;
             }
         };
 

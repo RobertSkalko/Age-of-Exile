@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -34,7 +34,7 @@ public class BaseGearJewelry implements ISlashRegistryInit {
         MANA_RING = BaseGearBuilder.of(GearSlots.RING, "mana_reg_ring", "Ring", ModRegistry.GEAR_ITEMS.MANA_REG_RINGS)
             .essenceItem(ModRegistry.GEAR_MATERIALS.ARCANA)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
-            .baseStat(new StatModifier(10, 20, Mana.getInstance(), ModType.LOCAL_INCREASE))
+            .baseStat(new StatModifier(10, 20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE))
             .addLvlRange(LevelRanges.START_TO_LOW, "Occult")
             .addLvlRange(LevelRanges.MID_TO_END, "Arcana")
             .build();

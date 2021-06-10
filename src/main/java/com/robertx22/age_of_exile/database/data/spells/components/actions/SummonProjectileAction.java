@@ -5,12 +5,11 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.ProjectileCastHelper;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -30,12 +29,12 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
     }
 
     @Override
-    public List<MutableText> getLines(AttachedSpell spell, MapHolder data, CalculatedSpellData spelldata) {
+    public List<MutableText> getLines(AttachedSpell spell, MapHolder holder, EntitySavedSpellData savedData) {
 
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<MutableText> list = new ArrayList<>();
 
-        int amount = data.get(MapField.PROJECTILE_COUNT)
+        int amount = holder.get(MapField.PROJECTILE_COUNT)
             .intValue();
 
         if (amount > 1) {
@@ -45,7 +44,7 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
             list.add(new LiteralText("Shoot a Projectile"));
         }
 
-        list.addAll(spell.getTooltipForEntity(info, spell, data.get(MapField.ENTITY_NAME), spelldata));
+        list.addAll(spell.getTooltipForEntity(info, spell, holder.get(MapField.ENTITY_NAME), savedData));
 
         return list;
     }
@@ -70,15 +69,17 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
         if (posSource == PositionSource.SOURCE_ENTITY) {
             pos = ctx.sourceEntity.getPos();
         }
+        boolean silent = data.getOrDefault(MapField.IS_SILENT, false);
 
         ProjectileCastHelper builder = new ProjectileCastHelper(pos, data, ctx.caster, projectile.get(), ctx.calculatedSpellData);
         builder.projectilesAmount = data.get(MapField.PROJECTILE_COUNT)
-            .intValue() + ctx.calculatedSpellData.config.extraProjectiles;
+            .intValue() + ctx.calculatedSpellData.extra_proj;
+        builder.silent = silent;
 
         builder.shootSpeed = data.get(MapField.PROJECTILE_SPEED)
             .floatValue();
 
-        builder.shootSpeed *= ctx.calculatedSpellData.config.getMulti(SpellModEnum.PROJECTILE_SPEED);
+        builder.shootSpeed *= ctx.calculatedSpellData.proj_speed_multi;
 
         builder.apart = data.getOrDefault(MapField.PROJECTILES_APART, 75D)
             .floatValue();

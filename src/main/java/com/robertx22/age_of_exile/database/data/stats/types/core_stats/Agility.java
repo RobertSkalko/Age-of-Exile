@@ -19,7 +19,7 @@ public class Agility extends BaseCoreStat {
             new OptScaleExactStat(20, 20, Stats.ACCURACY.get(), ModType.FLAT),
             new OptScaleExactStat(0.5F, 0.5F, Stats.CRIT_CHANCE.get(), ModType.FLAT)
         ));
-        this.format = Formatting.WHITE;
+        this.format = Formatting.WHITE.getName();
     }
 
     @Override

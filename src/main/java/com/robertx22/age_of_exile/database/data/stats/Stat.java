@@ -33,6 +33,21 @@ import java.util.function.Function;
 
 public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDesc, ISerializedRegistryEntry<BaseDatapackStat> {
 
+    public static String VAL1 = "[VAL1]";
+    public static String VAL2 = "[VAL2]";
+    static Formatting FORMAT = Formatting.GRAY;
+    static Formatting NUMBER = Formatting.GREEN;
+
+    public static String format(String str) {
+
+        str = FORMAT + str;
+
+        str = str.replace(VAL1, NUMBER + VAL1 + FORMAT);
+        str = str.replace(VAL2, NUMBER + VAL2 + FORMAT);
+
+        return str;
+    }
+
     public Stat() {
     }
 
@@ -52,19 +67,23 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     public boolean is_long = false;
     public String icon = "\u2741";
     public int order = 100;
-    public Formatting format = Formatting.AQUA;
+    public String format = Formatting.AQUA.getName();
     public StatGroup group = StatGroup.Misc;
+
+    public Formatting getFormat() {
+        return Formatting.byName(format);
+    }
 
     public String getIconNameFormat() {
         return getIconNameFormat(locNameForLangFile());
     }
 
     public String getFormatAndIcon() {
-        return format + icon;
+        return getFormat() + icon;
     }
 
     public String getIconNameFormat(String str) {
-        return this.format + this.icon + " " + str + Formatting.GRAY;
+        return this.getFormat() + this.icon + " " + str + Formatting.GRAY;
     }
 
     @Override

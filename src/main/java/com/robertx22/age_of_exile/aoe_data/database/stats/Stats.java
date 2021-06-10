@@ -5,17 +5,15 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.*;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
+import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.Stat.StatGroup;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DataPackStatAccessor;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.GiveShieldEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.OnMobKilledByDamageEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -28,10 +26,96 @@ import java.util.Arrays;
 
 public class Stats implements ISlashRegistryInit {
 
+    public static void loadClass() {
+
+    }
+
+    public static DataPackStatAccessor<EffectTags> EFFECT_DURATION_ON_YOU_PER_TAG = DatapackStatBuilder
+        .<EffectTags>of(x -> x.name() + "_eff_duration", x -> Elements.Physical)
+        .addAllOfType(EffectTags.values())
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addCondition(x -> StatConditions.EFFECT_HAS_TAG.get(x))
+        .addEffect(e -> StatEffects.INCREASE_EFFECT_DURATION)
+        .setLocName(x -> Stat.format(
+            Stat.VAL1 + "% to duration of " + x.getLocName() + " effects on you."
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_long = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectTags> EFFECT_DURATION_YOU_CAST_PER_TAG = DatapackStatBuilder
+        .<EffectTags>of(x -> x.name() + "_eff_dur_u_cast", x -> Elements.Physical)
+        .addAllOfType(EffectTags.values())
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.EFFECT_HAS_TAG.get(x))
+        .addEffect(e -> StatEffects.INCREASE_EFFECT_DURATION)
+        .setLocName(x -> Stat.format(
+            Stat.VAL1 + "% to duration of " + x.getLocName() + " effects you cast."
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_long = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> GIVE_EFFECT_TO_ALLIES_IN_RADIUS = DatapackStatBuilder
+        .<EffectCtx>of(x -> "give_" + x.id + "_to_allies_in_aoe", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.REGENERATE
+        ))
+        .worksWithEvent(RestoreResourceEvent.ID) // todo should be tick event, BUT LAG
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.regen))
+        .addCondition(StatConditions.IS_IN_COMBAT)
+        .addEffect(e -> StatEffects.GIVE_EFFECT_IN_AOE.get(e))
+        .setLocName(x -> Stat.format(
+            "Give " + x.locname + " to allies in Radius."
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 1;
+            x.is_long = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> GIVE_EFFECT_TO_SELF_ON_TICK = DatapackStatBuilder
+        .<EffectCtx>of(x -> "give_" + x.id + "_to_self_on_tick", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.TAUNT_STANCE
+        ))
+        .worksWithEvent(RestoreResourceEvent.ID) // todo should be tick event, BUT LAG
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.regen))
+        .addEffect(e -> StatEffects.GIVE_SELF_EFFECT.get(e))
+        .setLocName(x -> Stat.format(
+            "Give " + x.locname + " to self"
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 1;
+            x.is_long = true;
+        })
+        .build();
+
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_KILL = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_to_get_" + x.id + "_on_kill", x -> x.element)
         .addAllOfType(Arrays.asList(
-            BeneficialEffects.BLOODLUST
+            BeneficialEffects.BLOODLUST,
+            BeneficialEffects.MARK,
+            BeneficialEffects.FRENZY,
+            BeneficialEffects.BLESSING
         ))
         .worksWithEvent(OnMobKilledByDamageEvent.ID)
         .setPriority(0)
@@ -39,8 +123,8 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.IF_RANDOM_ROLL)
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addEffect(e -> StatEffects.GIVE_SELF_EFFECT.get(e))
-        .setLocName(x -> SpecialStats.format(
-            "Your " + x.element.getIconNameFormat() + " Killing blows have " + SpecialStats.VAL1 + "% chance of giving you " + x.locname
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Killing blows have " + Stat.VAL1 + "% chance of giving you " + x.locname
         ))
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
@@ -62,8 +146,8 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e.resourceType))
         .setLocName(x ->
-            SpecialStats.format(
-                "Leech " + SpecialStats.VAL1 + "% of your " + x.element.getIconNameFormat() + " Damage as " + x.resourceType.locname
+            Stat.format(
+                "Leech " + Stat.VAL1 + "% of your " + x.element.getIconNameFormat() + " Damage as " + x.resourceType.locname
             )
         )
         .setLocDesc(x -> "")
@@ -72,6 +156,22 @@ public class Stats implements ISlashRegistryInit {
             x.min = 0;
             x.is_perc = true;
             x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<Elements> ALWAYS_CRIT_WHEN_HIT_BY_ELEMENT = DatapackStatBuilder
+        .<Elements>of(x -> x.guidName + "_vuln_crit", x -> x)
+        .addAllOfType(Elements.values())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addEffect(StatEffects.SET_IS_CRIT)
+        .setLocName(x -> Stat.format(x.dmgName + " Damage always crits you."))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.is_long = true;
         })
         .build();
 
@@ -108,8 +208,24 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_RECEIVED = DatapackStatBuilder
+        .ofSingle("dmg_received", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage Received")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+            x.group = StatGroup.Misc;
+            x.max = 90;
+        })
+        .build();
+
     public static DataPackStatAccessor<PlayStyle> STYLE_DAMAGE_RECEIVED = DatapackStatBuilder
-        .<PlayStyle>of(x -> x.name() + "_dmg_received\"", x -> Elements.Physical)
+        .<PlayStyle>of(x -> x.name() + "_dmg_received", x -> Elements.Physical)
         .addAllOfType(PlayStyle.values())
         .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
@@ -120,7 +236,9 @@ public class Stats implements ISlashRegistryInit {
         .setLocDesc(x -> "Magic damage are mage spells, like fireball.")
         .modifyAfterDone(x -> {
             x.is_perc = true;
+            x.scaling = StatScaling.NONE;
             x.group = StatGroup.Misc;
+            x.max = 75;
         })
         .build();
 
@@ -177,6 +295,24 @@ public class Stats implements ISlashRegistryInit {
         })
         .build();
 
+    public static DataPackStatAccessor<Elements> ELEMENTAL_ANY_WEAPON_DAMAGE = DatapackStatBuilder
+        .<Elements>of(x -> x.guidName + "_any_wep_damage", x -> x)
+        .addAllOfType(Elements.values())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> x.dmgName + " Weapon Damage")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.is_perc = true;
+            x.group = StatGroup.WEAPON;
+        })
+        .build();
+
     public static DataPackStatAccessor<ResourceType> RESOURCE_ON_KILL = DatapackStatBuilder
         .<ResourceType>of(x -> x.id + "_on_kill", x -> Elements.All)
         .addAllOfType(Arrays.asList(
@@ -202,6 +338,7 @@ public class Stats implements ISlashRegistryInit {
         .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.ATTACK_TYPE_MATCHES.get(x.attackType))
         .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e.resource))
         .setLocName(x -> x.resource.locname + " on " + x.attackType.locname + " Hit")
         .setLocDesc(x -> "")
@@ -214,7 +351,13 @@ public class Stats implements ISlashRegistryInit {
 
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_SELF = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self", x -> x.element)
-        .addAllOfType(Arrays.asList(BeneficialEffects.BLOODLUST))
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.BLOODLUST,
+            BeneficialEffects.LIVING_INFERNO,
+            BeneficialEffects.CONCENTRATION,
+            BeneficialEffects.STEAM_POWER,
+            BeneficialEffects.BLESSING)
+        )
         .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
@@ -222,10 +365,185 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
         .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
-        .setLocName(x -> SpecialStats.format(
-            "Your " + x.element.getIconNameFormat() + " Attacks have " + SpecialStats.VAL1 + "% chance of giving " + x.locname
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Attacks have " + Stat.VAL1 + "% chance of giving " + x.locname
         ))
         .setLocDesc(x -> "Chance to give effect")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_WHEN_HEALING_ON_SELF = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self_on_heal", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.ZEAL
+            )
+        )
+        .worksWithEvent(RestoreResourceEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
+        .setLocName(x -> Stat.format(
+            Stat.format(Stat.VAL1 + "% chance to Gain " + x.locname + " every time you heal")
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_EFFECT_ON_SPELL_HIT = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_of_" + x.id + "_on_spell_hit", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.ALACRITY
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_SPELL)
+        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
+        .setLocName(x -> Stat.format(
+            Stat.format(Stat.VAL1 + "% chance to Gain " + x.locname + " on spell hits.")
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> EFFECT_ON_SPELL_KILL = DatapackStatBuilder
+        .<EffectCtx>of(x -> x.id + "_on_spell_kill", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.BLESSING
+            )
+        )
+        .worksWithEvent(OnMobKilledByDamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_SPELL)
+        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
+        .setLocName(x -> Stat.format(
+            Stat.format("Gain " + x.locname + " when you kill a mob with a spell")
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_EFFECT_WHEN_HIT = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_of_" + x.id + "_when_hit", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.BLESSING,
+            BeneficialEffects.ALACRITY
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Target)
+        .addCondition(x -> StatConditions.IF_RANDOM_ROLL)
+        .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
+        .setLocName(x -> Stat.format(
+            Stat.format(Stat.VAL1 + "% chance to Gain " + x.locname + " when you are hit.")
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+    public static DataPackStatAccessor<EffectCtx> CHANCE_TO_APPLY_EFFECT_WHEN_HIT = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_of_" + x.id + "_when_hit", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            NegativeEffects.POISON
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Target)
+        .addCondition(x -> StatConditions.IF_RANDOM_ROLL)
+        .addEffect(x -> StatEffects.GIVE_EFFECT_TO_SOURCE.get(x))
+        .setLocName(x -> Stat.format(
+            Stat.format(Stat.VAL1 + "% chance to apply " + x.locname + " to enemies that hit you.")
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+    public static DataPackStatAccessor<EffectCtx> EFFECT_ON_BASIC_ATTACK_KILL = DatapackStatBuilder
+        .<EffectCtx>of(x -> x.id + "_on_basic_atk_kill", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            BeneficialEffects.MARK
+            )
+        )
+        .worksWithEvent(OnMobKilledByDamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_BASIC_ATTACK)
+        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
+        .setLocName(x -> Stat.format(
+            Stat.format("Gain " + x.locname + " when you kill a mob with a basic attack")
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> CHANCE_ON_BASIC_ATK_TO_GIVE_EFFECT_ON_SELF = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_on_basic_atk_to_give_" + x.id + "_to_self", x -> x.element)
+        .addAllOfType(
+            Arrays.asList(
+                BeneficialEffects.INFUSED_BLADE,
+                BeneficialEffects.BLADE_DANCE,
+                BeneficialEffects.GATHER_STORM
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
+        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Basic Attacks have " + Stat.VAL1 + "% chance of giving " + x.locname
+        ))
+        .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.min = 0;
             x.max = 100;
@@ -240,10 +558,12 @@ public class Stats implements ISlashRegistryInit {
         .addAllOfType(Arrays.asList(
             NegativeEffects.BURN,
             NegativeEffects.FROSTBURN,
+            NegativeEffects.JUDGEMENT,
             NegativeEffects.BLEED,
             NegativeEffects.TORMENT,
             NegativeEffects.BLIND,
-            NegativeEffects.POISON
+            NegativeEffects.POISON,
+            NegativeEffects.SLOW
             )
         )
         .worksWithEvent(DamageEvent.ID)
@@ -253,8 +573,66 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
         .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
-        .setLocName(x -> SpecialStats.format(
-            "Your " + x.element.getIconNameFormat() + " Attacks have " + SpecialStats.VAL1 + "% chance of applying " + x.locname
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Attacks have " + Stat.VAL1 + "% chance of applying " + x.locname
+        ))
+        .setLocDesc(x -> "Chance to give effect")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_of_spend_" + x.id + "_for_double_dmg", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            NegativeEffects.BURN,
+            NegativeEffects.POISON,
+            NegativeEffects.FROSTBURN,
+            NegativeEffects.BLEED,
+            NegativeEffects.BLIND
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
+        .addEffect(x -> StatEffects.REMOVE_EFFECT_FROM_TARGET.get(x))
+        .addEffect(x -> StatEffects.DOUBLE_DAMAGE)
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Attacks have " + Stat.VAL1 + "% chance of spending a " + x.locname + " stack to deal double damage."
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_APPLYING_EFFECT_ON_CRIT = DatapackStatBuilder
+        .<EffectCtx>of(x -> "chance_of_" + x.id + "_on_crit", x -> x.element)
+        .addAllOfType(Arrays.asList(
+            NegativeEffects.BURN
+            )
+        )
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IF_CRIT)
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
+        .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
+        .setLocName(x -> Stat.format(
+            "Your " + x.element.getIconNameFormat() + " Criticals have " + Stat.VAL1 + "% chance of applying " + x.locname
         ))
         .setLocDesc(x -> "Chance to give effect")
         .modifyAfterDone(x -> {
@@ -283,7 +661,7 @@ public class Stats implements ISlashRegistryInit {
             x.min = 0;
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
-            x.format = Formatting.YELLOW;
+            x.format = Formatting.YELLOW.getName();
         })
         .build();
 
@@ -305,7 +683,7 @@ public class Stats implements ISlashRegistryInit {
             x.min = 0;
             x.group = StatGroup.MAIN;
             x.icon = "\u2739";
-            x.format = Formatting.LIGHT_PURPLE;
+            x.format = Formatting.LIGHT_PURPLE.getName();
         })
         .build();
 
@@ -316,19 +694,19 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
         .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
         .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
         .addEffect(StatEffects.SET_IS_CRIT)
-        .setLocName(x -> "Spell Crit Chance")
-        .setLocDesc(x -> "Chance to multiply attack damage by critical damage")
+        .setLocName(x -> "Heal Crit Chance")
+        .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
             x.min = 0;
             x.max = 100;
             x.group = StatGroup.MAIN;
-
             x.icon = "\u2694";
-            x.format = Formatting.YELLOW;
+            x.format = Formatting.YELLOW.getName();
         })
         .build();
 
@@ -340,7 +718,7 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.IF_CRIT)
         .addCondition(StatConditions.CRIT_ROLL_DIDNT_FAIL)
         .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
-        .addEffect(StatEffects.INCREASE_VALUE)
+        .addEffect(StatEffects.MULTIPLY_VALUE)
         .setLocName(x -> "Crit Damage")
         .setLocDesc(x -> "If Critical, multiply by x")
         .modifyAfterDone(x -> {
@@ -351,7 +729,7 @@ public class Stats implements ISlashRegistryInit {
             x.group = StatGroup.MAIN;
 
             x.icon = "\u2694";
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
 
         })
         .build();
@@ -364,7 +742,7 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.IF_CRIT)
         .addCondition(StatConditions.CRIT_ROLL_DIDNT_FAIL)
         .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.spell))
-        .addEffect(StatEffects.INCREASE_VALUE)
+        .addEffect(StatEffects.MULTIPLY_VALUE)
         .setLocName(x -> "Spell Crit Damage")
         .setLocDesc(x -> "If Critical, multiply by x")
         .modifyAfterDone(x -> {
@@ -374,7 +752,7 @@ public class Stats implements ISlashRegistryInit {
             x.max = 500;
             x.group = StatGroup.MAIN;
             x.icon = "\u2739";
-            x.format = Formatting.DARK_PURPLE;
+            x.format = Formatting.DARK_PURPLE.getName();
 
         })
         .build();
@@ -386,8 +764,9 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_CRIT)
         .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
         .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
-        .addEffect(StatEffects.INCREASE_VALUE)
+        .addEffect(StatEffects.MULTIPLY_VALUE)
         .setLocName(x -> "Crit Heal Damage")
         .setLocDesc(x -> "If Critical, multiply by x")
         .modifyAfterDone(x -> {
@@ -397,7 +776,7 @@ public class Stats implements ISlashRegistryInit {
             x.max = 500;
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
-            x.format = Formatting.GOLD;
+            x.format = Formatting.GOLD.getName();
         })
         .build();
 
@@ -416,7 +795,7 @@ public class Stats implements ISlashRegistryInit {
             x.max = 500;
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
         })
         .build();
 
@@ -467,7 +846,22 @@ public class Stats implements ISlashRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.icon = "\u27B9";
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> PROJECTILE_DAMAGE_RECEIVED = DatapackStatBuilder
+        .ofSingle("proj_dmg_received", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addCondition(StatConditions.IS_ANY_PROJECTILE)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Projectile Damage Receieved")
+        .setLocDesc(x -> "Affects projectile damage, includes projectile spells like fireballs, and ranged basic attacks.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
         })
         .build();
 
@@ -483,7 +877,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.BLUE;
+            x.format = Formatting.BLUE.getName();
         })
         .build();
 
@@ -499,7 +893,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.DARK_PURPLE;
+            x.format = Formatting.DARK_PURPLE.getName();
         })
         .build();
 
@@ -515,7 +909,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.YELLOW;
+            x.format = Formatting.YELLOW.getName();
         })
         .build();
 
@@ -531,7 +925,7 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
         })
         .build();
 
@@ -544,15 +938,33 @@ public class Stats implements ISlashRegistryInit {
         .setLocName(x -> "Total Damage")
         .setLocDesc(x -> "Increases all your damage.")
         .modifyAfterDone(x -> {
+            x.scaling = StatScaling.NONE;
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DMG_PER_CURSE_ON_TARGET = DatapackStatBuilder
+        .ofSingle("dmg_per_curse_on_target", Elements.All)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.INC_VALUE_PER_CURSE_ON_TARGET)
+        .setLocName(x -> "Damage Per curse on target")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.scaling = StatScaling.NONE;
+            x.is_long = true;
+            x.is_perc = true;
+            x.base = 0;
+            x.format = Formatting.RED.getName();
         })
         .build();
 
     public static DataPackStatAccessor<Elements> ELE_DOT_DAMAGE = DatapackStatBuilder
         .<Elements>of(x -> x.guidName + "_dot_damage", x -> x)
-        .addAllOfType(Elements.getAllSingleElementals())
+        .addAllOfType(Elements.values())
         .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
@@ -564,8 +976,29 @@ public class Stats implements ISlashRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
             x.group = StatGroup.Misc;
+        })
+        .build();
+
+    public static DataPackStatAccessor<ResourceType> OUT_OF_COMBAT_REGEN = DatapackStatBuilder
+        .<ResourceType>of(x -> x.id + "_ooc_regen", x -> Elements.Physical)
+        .addAllOfType(ResourceType.values())
+        .worksWithEvent(RestoreResourceEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.IS_RESOURCE.get(x))
+        .addCondition(x -> StatConditions.IS_NOT_IN_COMBAT)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.regen))
+        .addEffect(StatEffects.ADD_STAT_DATA_TO_NUMBER)
+        .setLocName(x -> "Out of Combat " + x.locname + " Regen")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = false;
+            x.scaling = StatScaling.NORMAL;
+            x.base = 0;
+            x.format = Formatting.YELLOW.getName();
+            x.group = StatGroup.RESTORATION;
         })
         .build();
 
@@ -576,13 +1009,91 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IS_SPELL)
         .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
         .addEffect(StatEffects.INCREASE_VALUE)
         .setLocName(x -> "Heal Strength")
         .setLocDesc(x -> "Increases spell related heals.")
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.YELLOW;
+            x.format = Formatting.YELLOW.getName();
+            x.group = StatGroup.RESTORATION;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> TOTEM_RESTORATION_STRENGTH = DatapackStatBuilder
+        .ofSingle("totem_resto", Elements.All)
+        .worksWithEvent(RestoreResourceEvent.ID)
+        .worksWithEvent(GiveShieldEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.totem))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Your Totem restoration effects are " + Stat.VAL1 + "% stronger.")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.is_long = true;
+            x.scaling = StatScaling.NONE;
+            x.base = 0;
+            x.format = Formatting.YELLOW.getName();
+            x.group = StatGroup.RESTORATION;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> TOTEM_SHIELD = DatapackStatBuilder
+        .ofSingle("totem_shield", Elements.All)
+        .worksWithEvent(GiveShieldEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.totem))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Your Totem shield effects are " + Stat.VAL1 + "% stronger.")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.is_long = true;
+            x.scaling = StatScaling.NONE;
+            x.base = 0;
+            x.format = Formatting.YELLOW.getName();
+            x.group = StatGroup.RESTORATION;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> HEAL_STRENGTH_ON_SHIELDED_TARGETS = DatapackStatBuilder
+        .ofSingle("heal_on_shielded_targets", Elements.All)
+        .worksWithEvent(RestoreResourceEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IS_TARGET_SHIELDED)
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> Stat.format("Your heals are " + Stat.VAL1 + "% more effective on shielded targets."))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.is_long = true;
+            x.format = Formatting.YELLOW.getName();
+            x.group = StatGroup.RESTORATION;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> POTION_STRENGTH = DatapackStatBuilder
+        .ofSingle("potion_strength", Elements.All)
+        .worksWithEvent(RestoreResourceEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.potion))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Potion Effectiveness")
+        .setLocDesc(x -> "Increases effectiveness of instant potions that restore mana and health.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.format = Formatting.GREEN.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -594,6 +1105,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Target)
         .addCondition(StatConditions.IS_SPELL)
         .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
         .addEffect(StatEffects.INCREASE_VALUE)
         .setLocName(x -> "Healing Received")
         .setLocDesc(x -> "Increases spell related heals on you.")
@@ -601,7 +1113,7 @@ public class Stats implements ISlashRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.min = -100;
-            x.format = Formatting.YELLOW;
+            x.format = Formatting.YELLOW.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -620,7 +1132,7 @@ public class Stats implements ISlashRegistryInit {
             x.base = 0;
             x.min = 0;
             x.scaling = StatScaling.NONE;
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -639,7 +1151,7 @@ public class Stats implements ISlashRegistryInit {
             x.base = 0;
             x.min = 0;
             x.scaling = StatScaling.NONE;
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -656,7 +1168,7 @@ public class Stats implements ISlashRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.icon = "\u2748";
-            x.format = Formatting.RED;
+            x.format = Formatting.RED.getName();
         })
         .build();
 
@@ -667,12 +1179,405 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addEffect(StatEffects.INCREASE_SECONDS)
         .setLocName(x -> "Shield Strength")
-        .setLocDesc(x -> "Boosts the shield amount you get from spells and other sources.")
+        .setLocDesc(x -> "Boosts the shield amount from spells and other sources.")
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
             x.icon = "\u2748";
-            x.format = Formatting.GREEN;
+            x.format = Formatting.GREEN.getName();
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> MANA_COST = DatapackStatBuilder
+        .ofSingle("mana_cost", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.INCREASE_MANA_COST)
+        .setLocName(x -> "Mana Cost")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> CAST_SPEED = DatapackStatBuilder
+        .ofSingle("cast_speed", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_STYLE.get(PlayStyle.magic))
+        .addEffect(StatEffects.DECREASE_CAST_TIME)
+        .setLocName(x -> "Cast Speed")
+        .setLocDesc(x -> "Affects amount of time needed to cast spells. If the spell is instant, it reduces the cooldown")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = -75;
+            x.max = 75;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> ATTACK_SPEED = DatapackStatBuilder
+        .ofSingle("attack_speed", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_NON_MAGIC_STYLE)
+        .addEffect(StatEffects.DECREASE_CAST_TIME)
+        .setLocName(x -> "Attack Speed")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.max = 75;
+        })
+        .build();
+    public static DataPackStatAccessor<SpellTag> DAMAGE_PER_SPELL_TAG = DatapackStatBuilder
+        .<SpellTag>of(x -> x.name() + "_spell_dmg", x -> Elements.Physical)
+        .addAllOfType(SpellTag.values())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.SPELL_HAS_TAG.get(x))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> x.locname + " Spell Damage")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<SpellTag> COOLDOWN_REDUCTION_PER_SPELL_TAG = DatapackStatBuilder
+        .<SpellTag>of(x -> x.name() + "_cdr", x -> Elements.Physical)
+        .addAllOfType(SpellTag.values())
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.SPELL_HAS_TAG.get(x))
+        .addEffect(StatEffects.DECREASE_COOLDOWN)
+        .setLocName(x -> x.locname + " Spell Cooldown Reduction")
+        .setLocDesc(x -> "Reduces spell cooldown of spells with the tag.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.max = 50;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> COOLDOWN_REDUCTION = DatapackStatBuilder
+        .ofSingle("cdr", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.DECREASE_COOLDOWN)
+        .setLocName(x -> "Cooldown Reduction")
+        .setLocDesc(x -> "Reduces spell cooldown.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.max = 80;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> COOLDOWN_TICKS = DatapackStatBuilder
+        .ofSingle("cd_ticks", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.DECREASE_COOLDOWN_BY_X_TICKS)
+        .setLocName(x -> "Cooldown Ticks")
+        .setLocDesc(x -> "Reduces spell cooldown by x ticks")
+        .modifyAfterDone(x -> {
+            x.is_perc = false;
+            x.min = -15;
+            x.max = 10000;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> PROJECTILE_SPEED = DatapackStatBuilder
+        .ofSingle("faster_projectiles", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.projectile))
+        .addEffect(StatEffects.INCREASE_PROJ_SPEED)
+        .setLocName(x -> "Faster Projectiles")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.icon = "\u27B9";
+            x.format = Formatting.GREEN.getName();
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> INCREASED_AREA = DatapackStatBuilder
+        .ofSingle("inc_aoe", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.area))
+        .addEffect(StatEffects.INCREASE_AREA)
+        .setLocName(x -> "Area of Effect")
+        .setLocDesc(x -> "Spell aoe effects will be larger")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> PIERCING_PROJECTILES = DatapackStatBuilder
+        .ofSingle("piercing_projectiles", Elements.Physical)
+        .worksWithEvent(SpellStatsCalculationEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.projectile))
+        .addEffect(StatEffects.SET_PIERCE)
+        .setLocName(x -> "Piercing Projectiles")
+        .setLocDesc(x -> "Makes spell pierce enemies and keep on")
+        .modifyAfterDone(x -> {
+            x.is_perc = false;
+            x.is_long = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_REFLECTED = DatapackStatBuilder
+        .ofSingle("damage_reflected", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(200)
+        .setSide(EffectSides.Target)
+        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
+        .addEffect(StatEffects.REFLECT_PERCENT_DAMAGE)
+        .setLocName(x -> "Damage Reflected")
+        .setLocDesc(x -> "Deals a % of damage you receive to enemies that attack you.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> THREAT_GENERATED = DatapackStatBuilder
+        .ofSingle("threat_generated", Elements.Physical)
+        .worksWithEvent(GenerateThreatEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Threat Generated")
+        .setLocDesc(x -> "Modifies amount of threat you generate. Mobs attack targets with highest threat.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> INCREASED_EFFECT_OF_AURAS_GIVEN = DatapackStatBuilder
+        .ofSingle("inc_effect_of_auras_given", Elements.Physical)
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.aura))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Aura Strength")
+        .setLocDesc(x -> "Effect of auras you give.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> INCREASED_EFFECT_OF_AURAS_RECEIVED = DatapackStatBuilder
+        .ofSingle("inc_effect_of_auras", Elements.Physical)
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.aura))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Aura Effect on You")
+        .setLocDesc(x -> "Effect of any aura on you, no matter who gave it.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> REDUCED_MANA_RESERVED = DatapackStatBuilder
+        .ofSingle("red_mana_reserved", Elements.Physical)
+        .worksWithEvent(ReserveManaEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addEffect(StatEffects.DECREASE_VALUE)
+        .setLocName(x -> "Reduced Mana Reserved")
+        .setLocDesc(x -> "Reduces the mana % auras reserve.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.max = 75;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectTags> EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG = DatapackStatBuilder
+        .<EffectTags>of(x -> "inc_effect_of_" + x.name() + "_buff_given", x -> Elements.Physical)
+        .addAllOfType(EffectTags.values())
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(x -> StatConditions.EFFECT_HAS_TAG.get(x))
+        .addEffect(e -> StatEffects.INCREASE_VALUE)
+        .setLocName(x -> Stat.VAL1 + "% to effectiveness of " + x.getLocName() + " effects you cast.")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EffectTags> EFFECT_OF_BUFFS_ON_YOU_PER_EFFECT_TAG = DatapackStatBuilder
+        .<EffectTags>of(x -> "inc_effect_of_" + x.name() + "_buff_on_you", x -> Elements.Physical)
+        .addAllOfType(EffectTags.values())
+        .worksWithEvent(ExilePotionEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Target)
+        .addCondition(x -> StatConditions.EFFECT_HAS_TAG.get(x))
+        .addEffect(e -> StatEffects.INCREASE_VALUE)
+        .setLocName(x -> Stat.VAL1 + "% to effectiveness of " + x.getLocName() + " buffs on you")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_long = true;
+            x.is_perc = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> CHANCE_OF_HP_REGEN_ON_SPELL_CRIT = DatapackStatBuilder
+        .ofSingle("chance_of_hp_reg_on_spell_crit", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.spell))
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.IF_CRIT)
+        .addEffect(StatEffects.GIVE_SELF_EFFECT.get(BeneficialEffects.HP_REGEN))
+        .setLocName(x -> Stat.format(
+            "Your Spell Crits have " + Stat.VAL1 + "% chance to give you Health Regen buff."
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.is_long = true;
+            x.min = 0;
+            x.max = 100;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> CHANCE_OF_MANA_REGEN_ON_HEAL_CRIT = DatapackStatBuilder
+        .ofSingle("chance_of_mana_reg_on_heal_crit", Elements.Physical)
+        .worksWithEvent(RestoreResourceEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_SPELL)
+        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
+        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
+        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.IF_CRIT)
+        .addEffect(StatEffects.GIVE_SELF_EFFECT.get(BeneficialEffects.MANA_REGEN))
+        .setLocName(x -> Stat.format(
+            "Your Heal Crits have " + Stat.VAL1 + "% chance to give you Mana Regen buff."
+        ))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.min = 0;
+            x.max = 100;
+            x.is_long = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> MORE_THREAT_WHEN_TAKING_DAMAGE = DatapackStatBuilder
+        .ofSingle("more_threat_on_take_dmg", Elements.Physical)
+        .worksWithEvent(GenerateThreatEvent.ID)
+        .setPriority(0)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_THREAT_GEN_TYPE.get(ThreatGenType.take_dmg))
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> Stat.format("You generate " + Stat.VAL1 + "% more threat when taking damage."))
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.is_long = true;
+            x.scaling = StatScaling.NONE;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_WHEN_LOW_HP = DatapackStatBuilder
+        .ofSingle("dmg_when_low_hp", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_SOURCE_LOW_HP)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage when on Low Health")
+        .setLocDesc(x -> "Low hp is 30% or less.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_WHEN_TARGET_IS_FULL_HP = DatapackStatBuilder
+        .ofSingle("dmg_when_target_near_full_hp", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_TARGET_NEAR_FULL_HP)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage to near Full Health Targets")
+        .setLocDesc(x -> "70% health or above..")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_WHEN_TARGET_IS_LOW_HP = DatapackStatBuilder
+        .ofSingle("dmg_when_target_is_low_hp", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_TARGET_LOW_HP)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage to Low Health Targets")
+        .setLocDesc(x -> "Low hp is 30% or less.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_TO_LIVING = DatapackStatBuilder
+        .ofSingle("dmg_to_living", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_TARGET_NOT_UNDEAD)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage To Living")
+        .setLocDesc(x -> "Living entities are not undead ones.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_TO_UNDEAD = DatapackStatBuilder
+        .ofSingle("dmg_to_undead", Elements.Physical)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_TARGET_UNDEAD)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> "Damage To Undead")
+        .setLocDesc(x -> "")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
         })
         .build();
 

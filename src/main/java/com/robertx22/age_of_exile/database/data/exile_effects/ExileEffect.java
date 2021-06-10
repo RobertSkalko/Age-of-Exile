@@ -4,12 +4,13 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEn
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -28,10 +29,6 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
     public int max_stacks = 1;
 
     public transient String locName = "";
-
-    public enum EffectTags {
-        IMMOBILIZE;
-    }
 
     public List<String> tags = new ArrayList<>();
 
@@ -76,7 +73,7 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
         return this.locName;
     }
 
-    public List<Text> GetTooltipString(TooltipInfo info, CalculatedSpellData spelldata) {
+    public List<Text> GetTooltipString(TooltipInfo info, EntitySavedSpellData data) {
         List<Text> list = new ArrayList<>();
 
         list.add(new LiteralText("Status Effect: ").append(this.locName())
@@ -85,11 +82,15 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
             list.add(Words.Stats.locName()
                 .append(": ")
                 .formatted(Formatting.GREEN));
-            stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
+            stats.forEach(x -> list.addAll(x.GetTooltipString(info, data.lvl)));
         }
         if (spell != null) {
             // list.add(new LiteralText("Effect:"));
-            list.addAll(spell.getEffectTooltip(spelldata));
+            list.addAll(spell.getEffectTooltip(data));
+        }
+
+        if (max_stacks > 1) {
+            list.add(new LiteralText("Maximum Stacks: " + max_stacks));
         }
 
         return list;

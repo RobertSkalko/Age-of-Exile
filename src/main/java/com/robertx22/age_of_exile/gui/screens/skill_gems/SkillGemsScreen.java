@@ -44,8 +44,8 @@ public class SkillGemsScreen extends HandledScreen<SkillGemsContainer> {
 
         List<Text> list = new ArrayList<>();
 
-        list.add(new LiteralText("Did you know?"));
-        list.add(new LiteralText("You can sacrifice a gem to level another, in the modify station."));
+        list.add(new LiteralText("Did You Know?"));
+        list.add(new LiteralText("You can sacrifice a gem to level another in the modify station."));
 
         this.addButton(new HelpButton(list, this.x + this.backgroundWidth - 25, this.y + 5));
 

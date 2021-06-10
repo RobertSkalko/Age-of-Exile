@@ -77,12 +77,16 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext flagIn) {
 
-        BagUpgradesData data = BagUpgradesData.load(stack);
+        try {
+            BagUpgradesData data = BagUpgradesData.load(stack);
 
-        data.getUpgrades()
-            .forEach(x -> {
-                tooltip.add(x.getName(stack));
-            });
+            data.getUpgrades()
+                .forEach(x -> {
+                    tooltip.add(x.getName(stack));
+                });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

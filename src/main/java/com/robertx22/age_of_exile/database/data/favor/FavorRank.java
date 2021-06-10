@@ -43,6 +43,8 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
 
     public String text_format = Formatting.GREEN.getName();
 
+    public List<String> excludedRarities = new ArrayList<>();
+
     public transient String locname = "";
 
     public Formatting textFormatting() {
@@ -133,8 +135,6 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
         return list;
 
     }
-
-    public List<String> excludedRarities = new ArrayList<>();
 
     public FavorRank(String id) {
         this.id = id;

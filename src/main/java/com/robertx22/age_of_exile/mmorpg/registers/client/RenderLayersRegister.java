@@ -7,6 +7,19 @@ import net.minecraft.client.render.RenderLayer;
 public class RenderLayersRegister {
     public static void setup() {
 
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.PORTAL, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.BLACK_HOLE, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.TELEPORTER, RenderLayer.getTranslucent());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.MANA_PLANT, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.LIFE_PLANT, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.BLUE_TOTEM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GUARD_TOTEM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.TRAP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GREEN_TOTEM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GLYPH, RenderLayer.getCutout());
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GEAR_SALVAGE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GEAR_MODIFY, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.GEAR_REPAIR, RenderLayer.getCutout());

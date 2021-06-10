@@ -19,7 +19,7 @@ public class FarmingAdder {
 
         ModRegistry.BLOCKS.FARMING_PLANTS.entrySet()
             .forEach(x -> {
-                b.blockExp(x.getValue(), (int) (x.getKey().statMulti * 10));
+                b.blockExp(x.getValue(), ((x.getKey().tier + 1) * 15));
             });
 
         b.addTieredDrops(0.1F, tier -> {

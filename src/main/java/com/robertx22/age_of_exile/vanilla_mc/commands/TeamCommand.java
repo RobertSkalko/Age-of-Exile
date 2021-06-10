@@ -1,12 +1,14 @@
 package com.robertx22.age_of_exile.vanilla_mc.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.robertx22.age_of_exile.capability.PlayerDamageChart;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 import java.util.List;
 
@@ -14,6 +16,31 @@ import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
 public class TeamCommand {
+
+    public static void listMembers(PlayerEntity player) {
+        List<PlayerEntity> players = TeamUtils.getOnlineMembers(player);
+
+        player.sendMessage(new LiteralText("Team members:"), false);
+
+        players.forEach(e -> {
+            player.sendMessage(e.getDisplayName(), false);
+        });
+    }
+
+    public static void sendDpsCharts(PlayerEntity player) {
+        List<PlayerEntity> members = TeamUtils.getOnlineMembers(player);
+
+        player.sendMessage(new LiteralText("Damage Charts:"), false);
+
+        members.forEach(e -> {
+            Text text = new LiteralText("").append(e.getDisplayName())
+                .append(": " + (int) PlayerDamageChart.getDamage(e));
+
+            player.sendMessage(text, false);
+
+        });
+
+    }
 
     public static void register(CommandDispatcher<ServerCommandSource> commandDispatcher) {
         commandDispatcher.register(
@@ -33,18 +60,19 @@ public class TeamCommand {
                             .leaveTeam();
                         return 0;
                     }))
+                    .then(literal("dps_chart").executes(x -> {
+
+                        PlayerEntity player = x.getSource()
+                            .getPlayer();
+
+                        sendDpsCharts(player);
+                        return 0;
+                    }))
                     .then(literal("list_members").executes(x -> {
 
                         PlayerEntity player = x.getSource()
                             .getPlayer();
-                        List<PlayerEntity> players = TeamUtils.getOnlineMembers(x.getSource()
-                            .getPlayer());
-
-                        player.sendMessage(new LiteralText("Team members:"), false);
-
-                        players.forEach(e -> {
-                            player.sendMessage(e.getDisplayName(), false);
-                        });
+                        listMembers(player);
 
                         return 0;
                     }))
@@ -53,6 +81,12 @@ public class TeamCommand {
                             .executes(x -> {
                                 PlayerEntity player = x.getSource()
                                     .getPlayer();
+
+                                if (!Load.team(player)
+                                    .isOnTeam()) {
+                                    player.sendMessage(new LiteralText("You are not in a team."), false);
+                                    return 0;
+                                }
 
                                 PlayerEntity other = EntityArgumentType.getPlayer(x, "player");
 

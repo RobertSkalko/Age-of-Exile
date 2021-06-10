@@ -28,19 +28,24 @@ public interface DataHelper {
     }
 
     public enum ArmorType {
-        LIGHT(0.75F),
-        MEDIUM(0.8F),
-        HEAVY(1F);
+        LIGHT(0.7F, 0.8F),
+        MEDIUM(0.8F, 0.9F),
+        HEAVY(1F, 1F);
 
         public float armorMulti = 1;
+        public float hpMulti = 1;
 
-        ArmorType(float armorMulti) {
+        ArmorType(float armorMulti, float hpMulti) {
             this.armorMulti = armorMulti;
+            this.hpMulti = hpMulti;
         }
 
         public float getMulti(ArmorStat stat) {
             if (stat == ArmorStat.ARMOR) {
                 return armorMulti;
+            }
+            if (stat == ArmorStat.HEALTH) {
+                return hpMulti;
             }
             return 1;
         }
@@ -60,9 +65,9 @@ public interface DataHelper {
     }
 
     public enum ArmorStat {
-        ARMOR(10, 25, Armor.getInstance()),
-        DODGE(10, 25, DodgeRating.getInstance()),
-        HEALTH(20, 40, Health.getInstance());
+        ARMOR(8, 20, Armor.getInstance()),
+        DODGE(8, 20, DodgeRating.getInstance()),
+        HEALTH(15, 35, Health.getInstance());
 
         public float min;
         public float max;

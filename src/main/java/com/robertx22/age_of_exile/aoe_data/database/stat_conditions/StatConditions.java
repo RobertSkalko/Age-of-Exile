@@ -1,9 +1,11 @@
 package com.robertx22.age_of_exile.aoe_data.database.stat_conditions;
 
 import com.robertx22.age_of_exile.aoe_data.DataHolder;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ThreatGenType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.*;
@@ -11,6 +13,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -23,17 +26,34 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition IS_SPELL = new IsSpellCondition();
     public static StatCondition ELEMENT_MATCH_STAT = new ElementMatchesStat();
     public static StatCondition IS_DAY = new IsDayCondition();
+    public static StatCondition IS_TARGET_SHIELDED = new IsTargetShieldedCondition();
     public static StatCondition IS_NIGHT = new IsDayCondition().flipCondition();
+    public static StatCondition IS_TARGET_UNDEAD = new IsUndeadCondition();
+    public static StatCondition IS_TARGET_NOT_UNDEAD = new IsUndeadCondition().flipCondition();
+    public static StatCondition IS_IN_COMBAT = new IsInCombatCondition();
+    public static StatCondition IS_NOT_IN_COMBAT = new IsInCombatCondition().flipCondition();
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
+    public static StatCondition IS_TARGET_LOW_HP = new IsHealthBellowPercentCondition("is_target_low_hp", 30, EffectSides.Target);
+    public static StatCondition IS_SOURCE_LOW_HP = new IsHealthBellowPercentCondition("is_source_low_hp", 30, EffectSides.Source);
+    public static StatCondition IS_TARGET_NEAR_FULL_HP = new IsHealthAbovePercentCondition("is_target_near_full_hp", 70, EffectSides.Target);
     public static StatCondition IS_ELEMENTAL = new StringMatchesCondition(EventData.ELEMENT, Elements.Physical.name()).flipCondition();
+    public static StatCondition IS_NON_MAGIC_STYLE = new StringMatchesCondition(EventData.STYLE, PlayStyle.magic.name()).flipCondition();
+
+    public static DataHolder<EffectTags, StatCondition> EFFECT_HAS_TAG = new DataHolder<>(
+        EffectTags.values()
+        , x -> new EffectHasTagCondition(x));
 
     public static DataHolder<ResourceType, StatCondition> IS_RESOURCE = new DataHolder<>(
         ResourceType.values()
         , x -> new StringMatchesCondition(EventData.RESOURCE_TYPE, x.name()));
 
+    public static DataHolder<ThreatGenType, StatCondition> IS_THREAT_GEN_TYPE = new DataHolder<>(
+        ThreatGenType.values()
+        , x -> new StringMatchesCondition(EventData.THREAT_GEN_TYPE, x.name()));
+
     public static DataHolder<SpellTag, StatCondition> SPELL_HAS_TAG = new DataHolder<>(
         SpellTag.values()
-        , x -> new StringMatchesCondition(EventData.RESOURCE_TYPE, x.name()));
+        , x -> new SpellHasTagCondition(x));
 
     public static DataHolder<PlayStyle, StatCondition> IS_STYLE = new DataHolder<>(
         PlayStyle.values()
@@ -93,6 +113,8 @@ public class StatConditions implements ISlashRegistryInit {
     public void registerAll() {
 
         ATTACK_TYPE_MATCHES.addToSerializables();
+        IS_NOT_IN_COMBAT.addToSerializables();
+        IS_TARGET_SHIELDED.addToSerializables();
         IF_CRIT.addToSerializables();
         IF_RANDOM_ROLL.addToSerializables();
         CRIT_ROLL_DIDNT_FAIL.addToSerializables();
@@ -110,6 +132,16 @@ public class StatConditions implements ISlashRegistryInit {
         IS_MELEE_WEAPON.addToSerializables();
         SPELL_HAS_TAG.addToSerializables();
         IS_STYLE.addToSerializables();
+        IS_NON_MAGIC_STYLE.addToSerializables();
+        IS_RESOURCE.addToSerializables();
+        IS_IN_COMBAT.addToSerializables();
+        IS_RESTORE_TYPE.addToSerializables();
+        EFFECT_HAS_TAG.addToSerializables();
+        IS_THREAT_GEN_TYPE.addToSerializables();
+        IS_TARGET_LOW_HP.addToSerializables();
+        IS_SOURCE_LOW_HP.addToSerializables();
+        IS_TARGET_UNDEAD.addToSerializables();
+        IS_TARGET_NOT_UNDEAD.addToSerializables();
 
     }
 }

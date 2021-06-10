@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.name_regex;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
@@ -51,8 +50,8 @@ public abstract class StatNameRegex {
         if (stat.is_long) {
             String txt = CLOC.translate(stat.locName());
 
-            txt = txt.replace(SpecialStats.VAL1, v1s);
-            txt = txt.replace(SpecialStats.VAL2, v2s);
+            txt = txt.replace(Stat.VAL1, v1s);
+            txt = txt.replace(Stat.VAL2, v2s);
 
             return txt;
         }

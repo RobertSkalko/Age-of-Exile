@@ -40,31 +40,33 @@ public class SpellCastingData {
     public HashMap<String, AuraData> auras = new HashMap<>();
 
     @Store
-    public List<PlayerAction> last_actions = new ArrayList<>();
+    public ChargeData charges = new ChargeData();
 
     @Store
-    public int ageSinceLastAction = -1;
+    public List<PlayerAction> last_actions = new ArrayList<>();
+
+    static String BLOCK_ID = "block_action";
 
     public void onAction(PlayerEntity player, PlayerAction action) {
 
-        boolean on_cooldown = false;
         if (action == PlayerAction.BLOCK) {
-            if (ageSinceLastAction > 0) {
-                int ticksSinceLast = player.age - ageSinceLastAction;
-                if (ticksSinceLast < 20 * 3) {
-                    on_cooldown = true;
-                } else {
-                    ageSinceLastAction = player.age;
-                }
-            } else {
-                ageSinceLastAction = player.age;
+            if (Load.Unit(player)
+                .getCooldowns()
+                .isOnCooldown(BLOCK_ID)) {
+                return;
             }
         }
-        if (!on_cooldown) {
-            last_actions.add(action);
-            if (last_actions.size() > 10) {
-                last_actions.remove(0);
-            }
+
+        last_actions.add(action);
+        if (last_actions.size() > 10) {
+            last_actions.remove(0);
+        }
+
+        if (action == PlayerAction.BLOCK) {
+            Load.Unit(player)
+                .getCooldowns()
+                .setOnCooldown(BLOCK_ID, 20);
+
         }
 
     }
@@ -252,7 +254,16 @@ public class SpellCastingData {
             return false;
         }
 
-        if (spell.config.isTechnique()) {
+        if (Load.Unit(player)
+            .getCooldowns()
+            .isOnCooldown(spell.GUID())) {
+            return false;
+        }
+
+        if (player.isCreative()) {
+            return true;
+        }
+        if (spell.config.hasActionRequirements()) {
             if (!Load.spells(player)
                 .getCastingData()
                 .meetActionRequirements(spell)) {
@@ -260,10 +271,10 @@ public class SpellCastingData {
             }
         }
 
-        if (Load.Unit(player)
-            .getCooldowns()
-            .isOnCooldown(spell.GUID())) {
-            return false;
+        if (spell.config.charges > 0) {
+            if (!charges.hasCharge(spell.config.charge_name)) {
+                return false;
+            }
         }
 
         SpellCastContext ctx = new SpellCastContext(player, 0, spell);
@@ -279,6 +290,12 @@ public class SpellCastingData {
         ctx.data.getCooldowns()
             .setOnCooldown(ctx.spell.GUID(), cd);
 
+        if (ctx.spell.config.charges > 0) {
+            if (ctx.caster instanceof PlayerEntity) {
+                this.charges.spendCharge((PlayerEntity) ctx.caster, ctx.spell.config.charge_name);
+            }
+        }
+
         if (ctx.caster instanceof PlayerEntity) {
             PlayerEntity p = (PlayerEntity) ctx.caster;
             if (p.isCreative()) {
@@ -290,12 +307,13 @@ public class SpellCastingData {
             }
         }
 
-        if (ctx.caster instanceof PlayerEntity) {
-            ctx.spellsCap
-                .getCastingData()
-                .onAction((PlayerEntity) ctx.caster, PlayerAction.NOPE);
-        }
         this.casting = false;
+
+        if (ctx.caster instanceof PlayerEntity) {
+
+            Load.Unit(ctx.caster)
+                .syncToClient((PlayerEntity) ctx.caster);
+        }
     }
 
 }

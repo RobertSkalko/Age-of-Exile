@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "mmorpg:block/portal" },
+        "facing=south": { "model": "mmorpg:block/portal", "y": 180 },
+        "facing=west":  { "model": "mmorpg:block/portal", "y": 270 },
+        "facing=east":  { "model": "mmorpg:block/portal", "y": 90 }
+    }
+}

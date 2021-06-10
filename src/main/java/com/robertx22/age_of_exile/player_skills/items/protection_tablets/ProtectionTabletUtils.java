@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.items.protection_tablets;
 
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.IsSkillItemUsableUtil;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -52,7 +53,20 @@ public class ProtectionTabletUtils {
                 continue;
             }
 
+            if (Load.Unit(player)
+                .getCooldowns()
+                .isOnCooldown(x.tablet.type.id)) {
+                continue;
+            }
+
             if (x.tablet.type.shouldActivate(player, source)) {
+
+                if (x.tablet.type.cooldownTicks() > 0) {
+                    Load.Unit(player)
+                        .getCooldowns()
+                        .setOnCooldown(x.tablet.type.id, x.tablet.type.cooldownTicks());
+                }
+
                 typesUsed.add(x.tablet.type);
                 x.stack.decrement(1);
                 x.tablet.type.onActivate(player);

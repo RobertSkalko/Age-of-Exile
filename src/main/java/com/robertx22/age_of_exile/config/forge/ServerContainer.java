@@ -11,11 +11,14 @@ public class ServerContainer {
     public boolean ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = false;
     public boolean ENABLE_LOOT_ANNOUNCEMENTS = true;
     public boolean SAVE_GEAR_TO_CHARACTERS = true;
+    public boolean REQUIRE_TEAM_FOR_TEAM_DUNGEONS = true;
+    public boolean DONT_SYNC_DATA_OF_AMBIENT_MOBS = true;
 
     public double REGEN_HUNGER_COST = 10;
     public double EXP_LOSS_ON_DEATH = 0.1F;
     public double EXP_GAIN_MULTI = 1F;
     public double PARTY_RADIUS = 200;
+    public double RANDOM_SKILL_GEM_SALVAGE_CHANCE = 30;
 
     public double CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL = 20;
     public double START_CORRUPT_AT_LVL = 30;
@@ -24,17 +27,17 @@ public class ServerContainer {
     public double LEVEL_DISTANCE_PENALTY_MIN_MULTI = 0.01F;
     public int LEVELS_NEEDED_TO_START_LVL_PENALTY = 5;
 
-    public int MAX_RUNEWORD_GEARS_ON_PLAYER = 1;
-    public int MAX_UNIQUE_GEARS_ON_PLAYER = 10;
-    public int MAX_CHARACTERS = 3;
+    public int MAX_RUNEWORD_GEARS_WORN = 1;
+    public int MAX_UNIQUE_GEARS_WORN = 99;
+    public int MAX_LOADOUTS = 3;
 
     public double EXTRA_MOB_STATS_PER_LEVEL = 0.02F;
 
-    public double VANILLA_MOB_DMG_AS_EXILE_DMG = 0.75F;
+    public double VANILLA_MOB_DMG_AS_EXILE_DMG = 1F;
     public double VANILLA_MOB_DMG_AS_EXILE_DMG_AT_MAX_LVL = 1F;
 
     public double PVP_DMG_MULTI = 1F;
 
-    public List<String> IGNORED_ENTITIES = Arrays.asList("minecraft:bat");
+    public List<String> BLACKLIST_SPELLS_IN_DIMENSIONS = Arrays.asList("modid:testdim");
 
 }

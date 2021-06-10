@@ -14,8 +14,10 @@ import net.minecraft.util.math.BlockPos;
 public class PortalBlockEntity extends BaseModificationStation {
 
     public BlockPos dungeonPos = new BlockPos(0, 0, 0);
+    public BlockPos tpbackpos = new BlockPos(0, 80, 0);
 
     public PortalBlockEntity() {
+
         super(ModRegistry.BLOCK_ENTITIES.PORTAL, 0);
     }
 
@@ -39,6 +41,7 @@ public class PortalBlockEntity extends BaseModificationStation {
         super.toTag(nbt);
 
         nbt.putLong("dpos", dungeonPos.asLong());
+        nbt.putLong("tbpos", tpbackpos.asLong());
 
         return nbt;
     }
@@ -49,6 +52,7 @@ public class PortalBlockEntity extends BaseModificationStation {
             super.fromTag(state, nbt);
 
             this.dungeonPos = BlockPos.fromLong(nbt.getLong("dpos"));
+            this.tpbackpos = BlockPos.fromLong(nbt.getLong("tbpos"));
 
         } catch (Exception e) {
             e.printStackTrace();

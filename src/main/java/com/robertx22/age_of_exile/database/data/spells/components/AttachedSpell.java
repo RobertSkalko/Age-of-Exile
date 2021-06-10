@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -28,11 +28,11 @@ public class AttachedSpell {
         return entity_components.get(en);
     }
 
-    public List<MutableText> getTooltipForEntity(TooltipInfo info, AttachedSpell spell, String en, CalculatedSpellData spelldata) {
+    public List<MutableText> getTooltipForEntity(TooltipInfo info, AttachedSpell spell, String en, EntitySavedSpellData data) {
         List<MutableText> list = new ArrayList<>();
 
         for (ComponentPart part : spell.getDataForEntity(en)) {
-            List<MutableText> tip = part.GetTooltipString(info, spell, spelldata)
+            List<MutableText> tip = part.GetTooltipString(info, spell, data)
                 .stream()
                 .map(x -> new LiteralText(Formatting.RED + " * ").append(x))
                 .collect(Collectors.toList());
@@ -43,18 +43,18 @@ public class AttachedSpell {
         return list;
     }
 
-    public List<Text> getTooltip(CalculatedSpellData spelldata) {
+    public List<Text> getTooltip(EntitySavedSpellData data) {
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<Text> list = new ArrayList<>();
-        on_cast.forEach(x -> list.addAll(x.GetTooltipString(info, this, spelldata)));
+        on_cast.forEach(x -> list.addAll(x.GetTooltipString(info, this, data)));
         return list;
     }
 
-    public List<Text> getEffectTooltip(CalculatedSpellData spelldata) {
+    public List<Text> getEffectTooltip(EntitySavedSpellData data) {
         TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
         List<Text> list = new ArrayList<>();
         entity_components.values()
-            .forEach(x -> x.forEach(e -> list.addAll(e.GetTooltipString(info, this, spelldata))));
+            .forEach(x -> x.forEach(e -> list.addAll(e.GetTooltipString(info, this, data))));
         return list;
     }
 

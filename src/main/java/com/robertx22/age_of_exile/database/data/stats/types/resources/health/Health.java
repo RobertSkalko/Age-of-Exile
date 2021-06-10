@@ -15,7 +15,7 @@ public class Health extends Stat {
 
         this.order = 0;
         this.icon = "\u2764";
-        this.format = Formatting.RED;
+        this.format = Formatting.RED.getName();
 
     }
 

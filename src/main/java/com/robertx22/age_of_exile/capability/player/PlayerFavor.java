@@ -40,7 +40,8 @@ public class PlayerFavor implements ICommonPlayerCap {
                 .get();
         } catch (Exception e) {
             e.printStackTrace();
-            return FavorRank.SERIALIZER;
+            return Database.FavorRanks()
+                .get("normal");
         }
     }
 

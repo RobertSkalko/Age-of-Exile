@@ -12,6 +12,7 @@ public class ProjectileCastHelper {
 
     LivingEntity caster;
 
+    public boolean silent = false;
     public float apart = 3;
     public float shootSpeed = 1;
     public int projectilesAmount = 1;
@@ -83,6 +84,7 @@ public class ProjectileCastHelper {
             if (fallDown) {
                 en.setVelocity(0, -1, 0);
             }
+            en.setSilent(silent);
 
             caster.world.spawnEntity(en);
         }

@@ -1,12 +1,16 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -23,7 +27,7 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
     }
 
     @Override
-    public MutableText getText(TooltipInfo info, MapHolder data, CalculatedSpellData spelldata) {
+    public MutableText getText(TooltipInfo info, MapHolder data, EntitySavedSpellData savedData) {
         MutableText text = new LiteralText("");
 
         ExileEffect potion = data.getExileEffect();
@@ -69,18 +73,30 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
                 .intValue();
 
             targets.forEach(t -> {
-                if (action == GiveOrTake.GIVE_STACKS) {
-                    for (int i = 0; i < count; i++) {
-                        ExileEffectsManager.apply(ctx.calculatedSpellData.lvl, potion, ctx.caster, t, duration);
-                    }
-                } else {
-                    ExileEffectsManager.reduceStacks(potion, ctx.target, count);
-                }
+
+                ExilePotionEvent potionEvent = EventBuilder.ofEffect(ctx.caster, t, Load.Unit(ctx.caster)
+                    .getLevel(), potion, com.robertx22.age_of_exile.uncommon.effectdatas.GiveOrTake.give, duration)
+                    .setSpell(ctx.calculatedSpellData.getSpell())
+                    .set(x -> x.data.getNumber(EventData.STACKS).number = count)
+                    .build();
+
+                potionEvent.Activate();
+
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public MapHolder giveSeconds(EffectCtx ctx, int seconds) {
+        MapHolder dmg = new MapHolder();
+        dmg.type = GUID();
+        dmg.put(COUNT, 1D);
+        dmg.put(POTION_DURATION, seconds * 20D);
+        dmg.put(POTION_ACTION, GiveOrTake.GIVE_STACKS.name());
+        dmg.put(EXILE_POTION_ID, ctx.effectId);
+        return dmg;
     }
 
     public MapHolder create(String id, GiveOrTake action, Double duration) {

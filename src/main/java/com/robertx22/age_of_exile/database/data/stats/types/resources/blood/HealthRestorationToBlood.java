@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources.blood;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.game_changers.HealthRestorationToBloodEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.util.Formatting;
 
@@ -46,7 +45,7 @@ public class HealthRestorationToBlood extends Stat {
     @Override
     public String locNameForLangFile() {
         return Formatting.GRAY + "You refill your " + Blood.getInstance()
-            .getIconNameFormat() + " by " + Formatting.GREEN + SpecialStats.VAL1 + Formatting.GRAY + "% of your non-spell health restoration effects.";
+            .getIconNameFormat() + " by " + Formatting.GREEN + Stat.VAL1 + Formatting.GRAY + "% of your non-spell health restoration effects.";
     }
 
     private static class SingletonHolder {

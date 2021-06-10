@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.enumclasses;
 
-import com.ibm.icu.impl.Assert;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ErrorUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +14,9 @@ public enum AttackType {
 
     },
     dot("dot", "DOT") {
+
+    },
+    reflect("reflect", "Reflect") {
 
     },
     all("all", "Any") {
@@ -30,7 +33,7 @@ public enum AttackType {
         this.id = id;
         this.locname = locname;
 
-        Assert.assrt(id.equals(this.name()));
+        ErrorUtils.ifFalse(id.equals(this.name()));
     }
 
     public boolean isAttack() {

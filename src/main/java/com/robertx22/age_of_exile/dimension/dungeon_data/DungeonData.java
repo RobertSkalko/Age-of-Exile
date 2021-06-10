@@ -6,33 +6,47 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Storable
 public class DungeonData {
 
     @Store
-    public DungeonQuestRewards quest_rew = new DungeonQuestRewards();
+    public PossibleUniques u = new PossibleUniques(); // uniques
     @Store
-    public PossibleUniques uniques = new PossibleUniques();
+    public DungeonAffixes af = new DungeonAffixes(); // affixes
     @Store
-    public DungeonAffixes affixes = new DungeonAffixes();
+    private String m = ""; // mobs
     @Store
-    public String mob_list = "";
+    public int lv = 1;
     @Store
-    public int lvl = 1;
-    @Store
-    public int tier = 1;
-    @Store
-    public int floor = 0;
+    public int t = 1; // tier
     @Store
     public String uuid = "";
     @Store
-    public Boolean is_team = false;
+    public TeamSize team = TeamSize.SOLO;
+
+    public void setMobList(String mobs) {
+        this.m = mobs;
+    }
+
+    public void randomize(int lvl, int tier) {
+        lv = lvl;
+        t = tier;
+        m = Database.DungeonMobLists()
+            .random()
+            .GUID();
+        uuid = UUID.randomUUID()
+            .toString();
+        u.randomize(tier);
+        af.randomize(tier);
+    }
 
     public boolean isEmpty() {
         return uuid.isEmpty();
@@ -46,28 +60,23 @@ public class DungeonData {
 
         TooltipInfo info = new TooltipInfo();
 
-        affixes.getStats(floor, lvl)
+        af.getStats(lv)
             .forEach(x -> list.addAll(x.GetTooltipString(info)));
 
-        list.add(TooltipUtils.tier(tier));
-        list.add(TooltipUtils.level(lvl));
+        // list.add(TooltipUtils.tier(t));
+        list.add(TooltipUtils.level(lv));
 
         return list;
 
     }
 
     public MutableText getAffixedName() {
-        return affixes.prefix.getAffix()
-            .locName()
-            .append(" ")
-            .append("Lair ")
-            .append(affixes.suffix.getAffix()
-                .locName());
+        return new LiteralText("Dungeon");
     }
 
     public DungeonMobList getMobList() {
         return Database.DungeonMobLists()
-            .get(mob_list);
+            .get(m);
     }
 
 }

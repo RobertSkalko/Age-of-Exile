@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.player_skills.items.fishing;
 
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -95,7 +94,8 @@ public class FishingLureItem extends TieredItem {
     @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        int percent = NumberUtils.multiToPercent(getChanceMulti());
+        float multi = getChanceMulti() - 1F;
+        int percent = (int) (multi * 100);
 
         tooltip.add(new LiteralText("Increases chance of " + lureType.name + " by " + percent + "%"));
         tooltip.add(new LiteralText("Click to apply to fishing rod"));

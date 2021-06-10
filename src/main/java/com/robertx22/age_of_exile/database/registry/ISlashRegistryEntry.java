@@ -62,7 +62,7 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
     }
 
     default String getInvalidGuidMessage() {
-        return "Non [a-z0-9_.-] character in Mine and Slash GUID: " + GUID() + " of type " + getSlashRegistryType().name();
+        return "Non [a-z0-9_.-] character in Age of Exile GUID: " + GUID() + " of type " + getSlashRegistryType().name();
     }
 
 }

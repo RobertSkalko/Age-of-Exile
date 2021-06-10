@@ -79,7 +79,7 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
 
     @Override
     public String locDescForLangFile() {
-        return "Transform Common Item into random higher rarity.";
+        return "Transform common item into random higher rarity.";
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.dimension;
 
-import com.ibm.icu.impl.Assert;
 import com.mojang.serialization.Codec;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ErrorUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.biome.Biome;
@@ -28,7 +28,7 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
 
         ChunkPos spawn = new ChunkPos(x, z);
 
-        Assert.assrt(spawn.x % DISTANCE == 0 && spawn.z % DISTANCE == 0);
+        ErrorUtils.ifFalse(spawn.x % DISTANCE == 0 && spawn.z % DISTANCE == 0);
 
         return spawn;
 

@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
+
     @Override
     public String GUID() {
         return "currency/orb_of_transmutation";
@@ -83,7 +84,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
 
     @Override
     public String locDescForLangFile() {
-        return "Transform Common Item into higher rarity";
+        return "Transform common item into higher rarity.";
     }
 
     @Override

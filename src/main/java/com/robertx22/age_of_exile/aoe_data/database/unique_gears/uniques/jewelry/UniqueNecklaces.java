@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelr
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
-import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
@@ -13,7 +13,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -40,7 +39,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
             )
             .stats(Arrays.asList(
                 new StatModifier(25, 25, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.BLOODLUST), ModType.FLAT),
-                new StatModifier(5, 15, AttackSpeed.getInstance(), ModType.FLAT),
+                new StatModifier(5, 15, Stats.ATTACK_SPEED.get(), ModType.FLAT),
                 new StatModifier(3, 5, Stats.LIFESTEAL.get(), ModType.FLAT),
                 new StatModifier(5, 15, Health.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(2, 6, Vitality.INSTANCE, ModType.FLAT)
@@ -63,7 +62,7 @@ public class UniqueNecklaces implements ISlashRegistryInit {
                     new StatModifier(15, 25, new ElementalResist(Elements.Fire)))
             )
             .stats(Arrays.asList(
-                new StatModifier(25, 25, DatapackStatAdder.MANA_PER_10_INT, ModType.FLAT),
+                new StatModifier(25, 25, DatapackStats.MANA_PER_10_INT, ModType.FLAT),
                 new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(3, 5, SpellDamage.getInstance(), ModType.FLAT),
                 new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT),

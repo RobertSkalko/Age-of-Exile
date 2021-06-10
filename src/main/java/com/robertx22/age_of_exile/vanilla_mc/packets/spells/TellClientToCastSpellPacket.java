@@ -25,7 +25,7 @@ public class TellClientToCastSpellPacket extends MyPacket<TellClientToCastSpellP
 
     @Override
     public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "castspell");
+        return new Identifier(Ref.MODID, "tellclienttocastspell");
     }
 
     @Override

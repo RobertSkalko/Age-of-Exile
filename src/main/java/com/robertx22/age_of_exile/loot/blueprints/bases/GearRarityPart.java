@@ -53,10 +53,12 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
                 }
 
                 if (info.playerData != null) {
-                    if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
-                        chance *= info.playerData.getUnit()
-                            .getCalculatedStat(TreasureQuality.getInstance())
-                            .getMultiplier();
+                    if (info.lootOrigin != LootInfo.LootOrigin.LOOT_CRATE) {
+                        if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
+                            chance *= info.playerData.getUnit()
+                                .getCalculatedStat(TreasureQuality.getInstance())
+                                .getMultiplier();
+                        }
                     }
                 }
 

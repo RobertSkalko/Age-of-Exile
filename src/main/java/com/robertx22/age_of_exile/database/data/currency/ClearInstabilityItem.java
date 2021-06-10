@@ -75,7 +75,7 @@ public class ClearInstabilityItem extends CurrencyItem implements ICurrencyItemE
 
     @Override
     public String locDescForLangFile() {
-        return "Clears 500 instability from an item";
+        return "Clears 500 instability from an item.";
     }
 
     @Override

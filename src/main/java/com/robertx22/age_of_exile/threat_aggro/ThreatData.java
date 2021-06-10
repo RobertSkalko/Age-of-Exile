@@ -16,10 +16,6 @@ public class ThreatData {
 
     public void addThreat(PlayerEntity player, MobEntity mob, int threat) {
 
-        if (player.distanceTo(mob) > 10) {
-            threat *= 0.75F; // ranged do less threat
-        }
-
         String key = player.getUuid()
             .toString();
         int cur = map.getOrDefault(key, 0);

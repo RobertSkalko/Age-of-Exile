@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.base;
 
-import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.alchemy.PotionType;
@@ -17,7 +16,7 @@ public class CreativeTabs {
     public static ItemGroup MyModTab = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "main_group")
         ,
-        () -> new ItemStack(ModRegistry.GEAR_ITEMS.WANDS.get(LevelRanges.ENDGAME)));
+        () -> new ItemStack(ModRegistry.UNIQUE_GEARS.WINTER));
 
     public static ItemGroup Gems = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "gem_group")

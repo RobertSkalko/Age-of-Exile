@@ -10,15 +10,12 @@ import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.loot.generators.BaseLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class LootInfo {
@@ -28,7 +25,7 @@ public class LootInfo {
     }
 
     public enum LootOrigin {
-        CHEST, MOB, PLAYER, OTHER;
+        CHEST, MOB, PLAYER, OTHER, LOOT_CRATE;
     }
 
     public int amount = 0;
@@ -75,7 +72,6 @@ public class LootInfo {
             info.mobKilled = mob;
             info.player = player;
             info.pos = mob.getBlockPos();
-            info.level = info.mobData.getLevel();
 
             info.setupAllFields();
 
@@ -85,10 +81,6 @@ public class LootInfo {
                 if (info.favorRank != null) {
                     info.extraFavorItems = info.favorRank.extra_items_per_boss;
                 }
-            }
-
-            if (info.isMapWorld) {
-                info.dungeon = Load.dungeonData(mob.world).data.get(info.pos).data;
             }
 
         } catch (Exception e) {
@@ -102,7 +94,6 @@ public class LootInfo {
         LootInfo info = new LootInfo(LootOrigin.PLAYER);
         info.world = player.world;
         info.pos = player.getBlockPos();
-        info.level = LevelUtils.determineLevel(player.world, player.getBlockPos(), player);
         info.setupAllFields();
         return info;
     }
@@ -112,7 +103,6 @@ public class LootInfo {
         info.player = player;
         info.world = player.world;
         info.pos = pos;
-        info.level = LevelUtils.determineLevel(player.world, pos, player);
         info.multi = 1.5F;
         info.maxItems = 7;
         info.setupAllFields();
@@ -120,14 +110,12 @@ public class LootInfo {
         if (info.favorRank != null) {
             info.extraFavorItems = info.favorRank.extra_items_per_chest;
         }
-        if (info.isMapWorld) {
-            info.dungeon = Load.dungeonData(info.world).data.get(info.pos).data;
-        }
+
         return info;
     }
 
     public static LootInfo ofLockedChestItem(PlayerEntity player, int level) {
-        LootInfo info = new LootInfo(LootOrigin.CHEST);
+        LootInfo info = new LootInfo(LootOrigin.LOOT_CRATE);
         info.player = player;
         info.world = player.world;
         info.pos = player.getBlockPos();
@@ -136,6 +124,10 @@ public class LootInfo {
         info.minItems = 3;
         info.maxItems = 6;
         info.setupAllFields();
+
+        info.isMapWorld = false;
+        info.tier = 0;
+        info.dungeon = null;
         return info;
     }
 
@@ -144,7 +136,6 @@ public class LootInfo {
         info.world = world;
         info.pos = pos;
         info.player = player;
-        info.level = LevelUtils.determineLevel(world, pos, PlayerUtils.nearestPlayer((ServerWorld) world, new Vec3d(pos.getX(), pos.getY(), pos.getZ())));
         info.setupAllFields();
         info.maxItems = 3;
         return info;
@@ -184,7 +175,7 @@ public class LootInfo {
 
         if (world != null && pos != null) {
             if (WorldUtils.isDungeonWorld(world)) {
-                this.tier = Load.dungeonData(world).data.get(pos).data.tier;
+                this.tier = Load.dungeonData(world).data.get(pos).data.t;
             }
         }
         return this;
@@ -192,11 +183,15 @@ public class LootInfo {
     }
 
     private void setLevel() {
-        if (level <= 0) {
-            if (mobData != null) {
-                level = mobData.getLevel();
-            } else {
-                level = LevelUtils.determineLevel(world, pos, player);
+        if (dungeon != null) {
+            this.level = dungeon.lv;
+        } else {
+            if (level <= 0) {
+                if (mobData != null) {
+                    level = mobData.getLevel();
+                } else {
+                    level = LevelUtils.determineLevel(world, pos, player);
+                }
             }
         }
     }
@@ -210,6 +205,13 @@ public class LootInfo {
     private void setWorld() {
         if (world != null) {
             this.isMapWorld = WorldUtils.isDungeonWorld(world) && !Load.dungeonData(world).data.get(this.pos).data.isEmpty();
+        }
+        if (isMapWorld) {
+            dungeon = Load.dungeonData(world).data.get(pos).data;
+            if (dungeon == null || dungeon.isEmpty()) {
+                this.level = 1; // if there's no dungeon data, dont give anything
+                this.maxItems = 0;
+            }
         }
     }
 
@@ -238,10 +240,12 @@ public class LootInfo {
         }
 
         if (this.playerData != null) {
-            if (this.lootOrigin == LootOrigin.CHEST) {
-                modifier += playerData.getUnit()
-                    .getCalculatedStat(TreasureQuantity.getInstance())
-                    .getMultiplier() - 1F;
+            if (lootOrigin != LootOrigin.LOOT_CRATE) {
+                if (this.lootOrigin == LootOrigin.CHEST) {
+                    modifier += playerData.getUnit()
+                        .getCalculatedStat(TreasureQuantity.getInstance())
+                        .getMultiplier() - 1F;
+                }
             }
         }
 
@@ -250,10 +254,8 @@ public class LootInfo {
         }
 
         if (isMapWorld) {
-            if (dungeon != null) {
-                if (dungeon.is_team) {
-                    modifier *= 3;
-                }
+            if (dungeon != null && !dungeon.isEmpty()) {
+                modifier *= dungeon.team.lootMulti;
             }
         }
 

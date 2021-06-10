@@ -70,7 +70,7 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
 
     @Override
     public String locDescForLangFile() {
-        return "Re-rolls implicit stat numbers";
+        return "Re-rolls implicit stat numbers.";
     }
 
     @Override

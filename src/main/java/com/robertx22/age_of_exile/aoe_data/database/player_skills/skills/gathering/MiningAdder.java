@@ -29,13 +29,13 @@ public class MiningAdder {
 
         b.blockExp(Blocks.DIAMOND_ORE, 50);
         b.blockExp(Blocks.EMERALD_ORE, 50);
-        b.blockExp(Blocks.LAPIS_ORE, 5);
+        b.blockExp(Blocks.LAPIS_ORE, 10);
         b.blockExp(Blocks.REDSTONE_ORE, 2);
-        b.blockExp(Blocks.COAL_ORE, 1);
-        b.blockExp(Blocks.NETHER_GOLD_ORE, 1);
-        b.blockExp(Blocks.NETHER_QUARTZ_ORE, 1);
+        b.blockExp(Blocks.COAL_ORE, 2);
+        b.blockExp(Blocks.NETHER_GOLD_ORE, 3);
+        b.blockExp(Blocks.NETHER_QUARTZ_ORE, 3);
 
-        b.addTieredDrops(0.5F, x -> TIERED.STONE_TIER_MAP.get(x));
+        b.addTieredDrops(1F, x -> TIERED.STONE_TIER_MAP.get(x));
 
         b.addTieredDrops(0.1F, tier -> {
             return TIERED.LURES.get(ImmutablePair.of(LureType.INK, tier));

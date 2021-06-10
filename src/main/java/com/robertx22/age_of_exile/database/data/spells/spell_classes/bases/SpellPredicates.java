@@ -42,6 +42,9 @@ public class SpellPredicates {
             return false;
         }
     };
+    private static Predicate<LivingEntity> NON_MAGE_PRED = x -> {
+        return !MAGE_PRED.test(x);
+    };
     private static Predicate<LivingEntity> ANY = x -> {
         return true;
     };
@@ -50,6 +53,7 @@ public class SpellPredicates {
     public static SpellPredicate REQUIRE_MAGE_WEAPON = new SpellPredicate(MAGE_PRED, new SText(Formatting.GREEN + "Requires Mage Weapon to use."));
     public static SpellPredicate REQUIRE_MELEE = new SpellPredicate(MELEE_PRED, new SText(Formatting.GOLD + "Requires Melee weapon to use."));
     public static SpellPredicate ANY_ITEM = new SpellPredicate(ANY, new SText(Formatting.GOLD + "Any weapon can use."));
+    public static SpellPredicate NON_MAGE_WEAPON = new SpellPredicate(NON_MAGE_PRED, new SText(Formatting.GOLD + "Non Mage weapons can use."));
 
 }
 

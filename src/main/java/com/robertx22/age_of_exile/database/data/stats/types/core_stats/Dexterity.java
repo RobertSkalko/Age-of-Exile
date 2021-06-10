@@ -21,7 +21,7 @@ public class Dexterity extends BaseCoreStat {
             new OptScaleExactStat(0.25F, 0.25F, Stats.STYLE_DAMAGE.get(PlayStyle.ranged), ModType.FLAT),
             new OptScaleExactStat(2, 2, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
         ));
-        this.format = Formatting.GREEN;
+        this.format = Formatting.GREEN.getName();
     }
 
     @Override

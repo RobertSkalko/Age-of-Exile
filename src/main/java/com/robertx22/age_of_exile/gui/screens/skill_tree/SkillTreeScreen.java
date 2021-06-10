@@ -42,9 +42,6 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     public SchoolType schoolType;
 
-    Identifier BACKGROUND_TEXTURE = new Identifier(
-        Ref.MODID, "textures/gui/skill_tree/water.png");
-
     public SkillTreeScreen(SchoolType type) {
         super(MinecraftClient.getInstance()
             .getWindow()
@@ -55,48 +52,15 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     }
 
-    public void removeRemovableButtons() {
-        boolean did = false;
-        if (this.buttons.removeIf(b -> b instanceof IRemoveOnClickedOutside)) {
-            did = true;
-        }
-        if (this.children.removeIf(b -> b instanceof IRemoveOnClickedOutside)) {
-            did = true;
-        }
-        if (did) {
-            this.refreshButtons();
-        }
-    }
-
+    public PointData pointClicked = new PointData(0, 0);
     public int mouseRecentlyClickedTicks = 0;
 
     @Override
     public boolean mouseReleased(double x, double y, int ticks) {
 
-        boolean didClickInside = false;
-        for (AbstractButtonWidget b : buttons) {
-            if (GuiUtils.isInRectPoints(new Point(b.x, b.y), new Point(b.getWidth(), b.getWidth()),
-                new Point((int) x, (int) y)
-            )) {
-                if (b instanceof IRemoveOnClickedOutside) {
-                    didClickInside = true;
-                }
-            }
-        }
-
-        if (!didClickInside) {
-            removeRemovableButtons();
-        }
-
         mouseRecentlyClickedTicks = 25;
 
         return super.mouseReleased(x, y, ticks);
-
-    }
-
-    public void removePerkButtons() {
-        this.buttons.removeIf(x -> x instanceof PerkButton || x instanceof ConnectionButton);
-        this.children.removeIf(x -> x instanceof PerkButton || x instanceof ConnectionButton);
 
     }
 
@@ -166,18 +130,18 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     private void addConnections() {
 
+        HashSet<PointData> def = new HashSet();
+
         Set<Set<PointData>> cons = new HashSet<>();
 
         new ArrayList<>(buttons).forEach(b -> {
             if (b instanceof PerkButton) {
                 PerkButton pb = (PerkButton) b;
 
-                Set<PointData> connections = this.school.calcData.connections.getOrDefault(pb.point, new HashSet<>());
+                Set<PointData> connections = this.school.calcData.connections.getOrDefault(pb.point, def);
 
                 int x1 = pb.x + pb.getWidth() / 2;
                 int y1 = pb.y + pb.getHeight() / 2;
-
-                // todo
 
                 int size = 6;
                 float spacing = size + size / 2F;
@@ -195,6 +159,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
                     if (sb == null) {
                         continue;
+
                     }
 
                     int x2 = sb.x + sb.getWidth() / 2;
@@ -288,7 +253,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
         addConnections();
 
-        //       watch.print(" Setting up buttons ");
+        //        watch.print(" Setting up buttons ");
 
     }
 
@@ -326,7 +291,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         }
     }
 
-    public float zoom = 1;
+    public float zoom = 0.3F;
 
     public static boolean RETURN_ZOOM = false;
 
@@ -379,6 +344,25 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
     }
 
+    private void renderButton(AbstractButtonWidget b) {
+        if (originalButtonLocMap.containsKey(b)) {
+            b.x = (this.originalButtonLocMap.get(b).
+                x);
+            b.y = (this.originalButtonLocMap.get(b)
+                .y);
+
+            float addx = (1F / zoom - 1) * this.width / 2F;
+            float addy = (1F / zoom - 1) * this.height / 2F;
+
+            b.x += addx;
+            b.y += addy;
+
+            b.x += scrollX;
+            b.y += scrollY;
+
+        }
+    }
+
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
@@ -410,6 +394,15 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             });
 
             renderBackgroundDirt(this, 0);
+
+            mc.getTextureManager()
+                .bindTexture(ConnectionButton.ID);
+            buttons.forEach(b -> {
+                if (b instanceof ConnectionButton) {
+                    ConnectionButton c = (ConnectionButton) b;
+                    ((ConnectionButton) b).renderButtonForReal(matrix, x, y, ticks);
+                }
+            });
 
             super.render(matrix, x, y, ticks);
 
@@ -488,6 +481,8 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     }
 
+    static Identifier BACKGROUND = Ref.guiId("skill_tree/background");
+
     public static void renderBackgroundDirt(Screen screen, int vOffset) {
         //copied from Scree
 
@@ -495,7 +490,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         BufferBuilder bufferBuilder = tessellator.getBuffer();
         MinecraftClient.getInstance()
             .getTextureManager()
-            .bindTexture(Screen.OPTIONS_BACKGROUND_TEXTURE);
+            .bindTexture(BACKGROUND);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         float f = 32.0F;
         bufferBuilder.begin(7, VertexFormats.POSITION_TEXTURE_COLOR);

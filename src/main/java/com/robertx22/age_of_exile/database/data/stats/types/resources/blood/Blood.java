@@ -14,7 +14,7 @@ public class Blood extends Stat {
         this.group = StatGroup.MAIN;
 
         this.icon = "\u2764";
-        this.format = Formatting.DARK_RED;
+        this.format = Formatting.DARK_RED.getName();
     }
 
     public static Blood getInstance() {

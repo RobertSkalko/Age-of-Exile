@@ -40,6 +40,12 @@ public class SkillGemsContainer extends BaseTileContainer {
     }
 
     @Override
+    public void close(PlayerEntity player) {
+        tile.onClose(player);
+        super.close(player);
+    }
+
+    @Override
     public ItemStack transferSlot(PlayerEntity playerIn, int index) {
         return ItemStack.EMPTY; // no shift click needed here
     }

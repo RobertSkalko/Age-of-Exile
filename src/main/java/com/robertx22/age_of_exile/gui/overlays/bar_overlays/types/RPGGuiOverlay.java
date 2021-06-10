@@ -128,7 +128,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
                 areaLvlTicks = 200;
             }
 
-            ModConfig.get().client.OVERLAY_GUI.parts.forEach(c -> {
+            ModConfig.get().client.OVERLAY_BARS.parts.forEach(c -> {
 
                 if (c.type.shouldRender(data, mc.player)) {
                     renderBar(c, c.type,
@@ -139,7 +139,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
                 }
             });
 
-            ModConfig.get().client.OVERLAY_GUI.parts.forEach(c -> {
+            ModConfig.get().client.OVERLAY_BARS.parts.forEach(c -> {
                 if (c.type.shouldRender(data, mc.player)) {
                     renderBar(c, c.type,
                         matrix,

@@ -66,11 +66,11 @@ public class VoidChunkGenerator extends ChunkGenerator {
     @Override
     public void populateNoise(WorldAccess world, StructureAccessor accessor, Chunk chunk) {
 
-        BlockState blockState = Blocks.OBSIDIAN.getDefaultState();
+        BlockState blockState = Blocks.STONE.getDefaultState();
         BlockPos.Mutable mutable = new BlockPos.Mutable();
 
-        for (int i = 0; i < 150; ++i) {
-            if (blockState != null) {
+        if (blockState != null) {
+            for (int i = 0; i < 220; ++i) {
                 for (int j = 0; j < 16; ++j) {
                     for (int k = 0; k < 16; ++k) {
                         chunk.setBlockState(mutable.set(j, i, k), blockState, false);

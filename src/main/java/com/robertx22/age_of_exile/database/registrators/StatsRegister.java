@@ -9,14 +9,13 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DarknessDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.DualWieldDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.IncreasedEffectOfAuras;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.aura.ReducedManaReserved;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
@@ -24,9 +23,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.AttackSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.speed.CastSpeed;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.*;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
@@ -51,11 +47,7 @@ public class StatsRegister implements ISlashRegistryInit {
 
                     add(RegeneratePercentStat.HEALTH);
                     add(RegeneratePercentStat.MANA);
-
-                    add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());
-                    add(ReducedManaReserved.getInstance());
-                    add(IncreasedEffectOfAuras.getInstance());
 
                     add(DarknessDamage.getInstance());
 
@@ -70,16 +62,6 @@ public class StatsRegister implements ISlashRegistryInit {
                     add(new ElementalFocus(Elements.Physical));
                     add(new PhysConvertToEle(Elements.Physical));
                     add(new MaxElementalResist(Elements.Nature));
-
-                    // generated
-
-                    add(PiercingProjectile.getInstance());
-                    add(ProjectileAmountStat.getInstance());
-                    add(ProjectileSpeed.getInstance());
-                    add(CooldownReduction.getInstance());
-                    add(ManaCost.getInstance());
-                    add(IncreasedAreaOfEffect.getInstance());
-                    add(CastSpeed.getInstance());
 
                     add(AllAttributes.getInstance());
                     add(SpellDamage.getInstance());
@@ -108,6 +90,7 @@ public class StatsRegister implements ISlashRegistryInit {
                     add(Health.getInstance());
                     add(HealthRegen.getInstance());
 
+                    add(DualWieldDamage.getInstance());
                     add(Mana.getInstance());
                     add(ManaRegen.getInstance());
                     // Resources

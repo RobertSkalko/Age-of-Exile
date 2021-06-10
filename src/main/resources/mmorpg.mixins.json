@@ -22,12 +22,14 @@
     "ServerResourceManagerMixin",
     "SpawnSettingsMixin",
     "StatusEffectAccessor",
+    "StopFireInDungeonMixin",
     "bow.ProjectileUtilMixin"
   ],
   "client": [
-    "ClientRecipeBookMixin",
+    "AccessorClientAdvancementManager",
     "InGameHudMixin",
     "ItemGlintMixin",
+    "ItemRendererMixin",
     "ItemStackMixin",
     "MinecraftClientMixin",
     "MobNameTagMixin",

@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
 import net.minecraft.util.Formatting;
@@ -32,7 +31,7 @@ public class ConvertFromOneToOtherStat extends BaseDatapackStat implements IAffe
         this.is_long = true;
 
         this.locname = Formatting.GRAY + "Transfer " + Formatting.GREEN +
-            SpecialStats.VAL1 + "%" + Formatting.GRAY + " of your "
+            Stat.VAL1 + "%" + Formatting.GRAY + " of your "
             + adder_stat.getIconNameFormat()
             + Formatting.GRAY + " towards your "
             + stat_to_add_to.getIconNameFormat();
