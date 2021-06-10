@@ -21,7 +21,7 @@ public class SimpleGearLocReq extends BaseLocRequirement {
         x -> x.sockets.getEmptySockets() > 0, Words.HasEmptySockets.locName());
 
     public static final SimpleGearLocReq IS_SEALED = new SimpleGearLocReq(
-        x -> x.sealed, Words.IsSealed.locName());
+        x -> x.s, Words.IsSealed.locName());
 
     public static final SimpleGearLocReq CAN_GET_MORE_AFFIXES = new SimpleGearLocReq(
         x -> x.affixes.canGetMore(Affix.Type.prefix, x) || x.affixes.canGetMore(Affix.Type.suffix, x), Words.CantGetMoreAffixes.locName());

@@ -15,7 +15,7 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         normal.stat_multi = 1;
         normal.min_lvl = 0;
         normal.dmg_multi = 1;
-        normal.extra_hp_multi = 0.75f;
+        normal.extra_hp_multi = 1F;
         normal.exp_multi = 1;
         normal.loot_multi = 1;
         normal.weight = 1000;
@@ -31,9 +31,9 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         elite.min_lvl = 5;
         elite.dmg_multi = 2;
         elite.extra_hp_multi = 3;
-        elite.exp_multi = 2;
+        elite.exp_multi = 2.5F;
         elite.loot_multi = 2;
-        elite.weight = 200;
+        elite.weight = 100;
         elite.higher_rar = IRarity.RARE_ID;
         elite.setMagicalFields();
         elite.addToSerializables();
@@ -47,9 +47,9 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         champ.extra_hp_multi = 5f;
         champ.exp_multi = 4F;
         champ.loot_multi = 4F;
-        champ.weight = 100;
+        champ.weight = 50;
         champ.higher_rar = IRarity.BOSS_ID;
-        champ.loot_lvl_modifier = 2;
+        champ.loot_lvl_modifier = 1;
         champ.setRareFields();
         champ.text_format = Formatting.GOLD.name();
         champ.addToSerializables();
@@ -61,10 +61,10 @@ public class MobRaritiesAdder implements ISlashRegistryInit {
         boss.min_lvl = 20;
         boss.dmg_multi = 2.4F;
         boss.extra_hp_multi = 10f;
-        boss.exp_multi = 6F;
+        boss.exp_multi = 10F;
         boss.loot_multi = 6F;
-        boss.weight = 5;
-        boss.loot_lvl_modifier = 3;
+        boss.weight = 2;
+        boss.loot_lvl_modifier = 1;
         boss.setBossFields();
         boss.addToSerializables();
 

@@ -5,7 +5,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
+import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.Arrays;
@@ -23,24 +26,46 @@ public class SpellMotionAction extends SpellAction {
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
         try {
-            float str = data.get(PUSH_STRENGTH)
-                .floatValue();
+            if (!ctx.world.isClient) {
+                float str = data.get(PUSH_STRENGTH)
+                    .floatValue();
 
-            Vec3d motion = ParticleMotion.valueOf(data.get(MapField.MOTION))
-                .getMotion(ctx.vecPos, ctx)
-                .multiply(str);
+                ParticleMotion pm = ParticleMotion.valueOf(data.get(MapField.MOTION));
 
-            SetAdd setAdd = data.getSetAdd();
+                Vec3d motion = pm
+                    .getMotion(ctx.vecPos, ctx)
+                    .multiply(str);
 
-            targets.forEach(x -> {
-                if (setAdd == SetAdd.SET) {
-                    x.setVelocity(motion);
-                } else {
-                    x.addVelocity(motion.x, motion.y, motion.z);
+                SetAdd setAdd = data.getSetAdd();
+
+                if (data.getOrDefault(MapField.IGNORE_Y, false)) {
+                    if (setAdd == SetAdd.ADD) {
+                        motion = new Vec3d(motion.x, 0, motion.z);
+                    }
                 }
-            });
 
-        } catch (IllegalArgumentException e) {
+                for (LivingEntity x : targets) {
+                    if (setAdd == SetAdd.SET) {
+                        if (data.getOrDefault(MapField.IGNORE_Y, false)) {
+                            x.setVelocity(new Vec3d(motion.x, x.getVelocity().y, motion.z));
+                        } else {
+                            x.setVelocity(new Vec3d(motion.x, motion.y, motion.z));
+                        }
+                    } else {
+                        x.addVelocity(motion.x, motion.y, motion.z);
+                    }
+
+                    PlayerStream.watching(x.world, x.getBlockPos())
+                        .forEach((p) -> {
+
+                            ((ServerPlayerEntity) p).networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(x));
+                            x.velocityModified = false;
+                        });
+
+                }
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

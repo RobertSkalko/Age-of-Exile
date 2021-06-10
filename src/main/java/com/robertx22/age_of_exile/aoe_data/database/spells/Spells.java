@@ -8,10 +8,18 @@ public class Spells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        new TrapSpells().registerAll();
+        new UtilitySpells().registerAll();
+        new TankSpells().registerAll();
+        new TestSpells().registerAll();
+        new LoseAggroSpells().registerAll();
+        new CurseSpells().registerAll();
+        new SongSpells().registerAll();
         new DexSpells().registerAll();
         new IntSpells().registerAll();
         new StrSpells().registerAll();
         new AuraSpells().registerAll();
         new BossSpells().registerAll();
+        new TotemSpells().registerAll();
     }
 }

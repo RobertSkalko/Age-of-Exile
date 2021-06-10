@@ -19,7 +19,7 @@ public class Vitality extends BaseCoreStat {
             new OptScaleExactStat(10, 10, Health.getInstance(), ModType.FLAT),
             new OptScaleExactStat(0.5F, 0.5F, HealthRegen.getInstance(), ModType.FLAT)
         ));
-        this.format = Formatting.RED;
+        this.format = Formatting.RED.getName();
     }
 
     @Override

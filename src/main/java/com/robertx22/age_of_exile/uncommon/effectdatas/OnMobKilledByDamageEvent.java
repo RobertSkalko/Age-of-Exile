@@ -14,6 +14,8 @@ public class OnMobKilledByDamageEvent extends EffectEvent {
     public OnMobKilledByDamageEvent(DamageEvent damageEvent) {
         super(damageEvent.source, damageEvent.target);
         this.damageEvent = damageEvent;
+
+        this.data = damageEvent.data;
     }
 
     @Override

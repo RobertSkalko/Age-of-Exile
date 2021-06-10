@@ -22,6 +22,12 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
 
     public static HashMap<String, SpellAction> MAP = new HashMap<>();
 
+    public static SetOnCooldownAction SET_ON_COOLDOWN = of(new SetOnCooldownAction());
+    public static ExpireAction EXPIRE = of(new ExpireAction());
+    public static DoActionForEachEffectOnTarget DO_ACTION_FOR_EACH_EFFECT_WITH_TAG_ON_TARGET = of(new DoActionForEachEffectOnTarget());
+    public static DoSpecificAction SPECIFIC_ACTION = of(new DoSpecificAction());
+    public static RideAction RIDE = of(new RideAction());
+    public static OpenEnderChestAction OPEN_ENDER_CHEST = of(new OpenEnderChestAction());
     public static SummonProjectileAction SUMMON_PROJECTILE = of(new SummonProjectileAction());
     public static DamageAction DEAL_DAMAGE = of(new DamageAction());
     public static ParticleInRadiusAction PARTICLES_IN_RADIUS = of(new ParticleInRadiusAction());
@@ -38,11 +44,12 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static RestoreManaAction RESTORE_MANA = of(new RestoreManaAction());
     public static CancelCastAction CANCEL_CAST = of(new CancelCastAction());
     public static SpellMotionAction SET_ADD_MOTION = of(new SpellMotionAction());
-    public static GiveDamageAbsorbAction GIVE_DAMAGE_ABSORB = of(new GiveDamageAbsorbAction());
+    public static GiveShieldAction GIVE_SHIELD = of(new GiveShieldAction());
     public static CasterCommandAction CASTER_USE_COMMAND = of(new CasterCommandAction());
     public static ExileEffectAction EXILE_EFFECT = of(new ExileEffectAction());
     public static AggroAction AGGRO = of(new AggroAction());
     public static SummonAtTargetFeet SUMMON_AT_FEET = of(new SummonAtTargetFeet());
+    public static TeleportTargetToSourceAction TP_TARGET_TO_SELF = of(new TeleportTargetToSourceAction());
 
     private static <T extends SpellAction> T of(T s) {
         MAP.put(s.GUID(), s);

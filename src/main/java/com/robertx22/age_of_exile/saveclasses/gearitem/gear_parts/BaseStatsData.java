@@ -33,9 +33,9 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
         for (int i = 0; i < 8; i++) {
             perc.add(getMinMax(gear).random());
 
-            gear.rare_prefix = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.prefixAny
+            gear.rp = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.prefixAny
                 .keySet()));
-            gear.rare_suffix = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.getSuffixMap(gear.GetBaseGearType())
+            gear.rs = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.getSuffixMap(gear.GetBaseGearType())
                 .keySet()));
         }
 

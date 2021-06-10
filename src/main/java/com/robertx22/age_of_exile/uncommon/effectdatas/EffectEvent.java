@@ -3,12 +3,10 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.IGUID;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DatapackStat;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.base.EffectWithCtx;
@@ -16,7 +14,6 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +71,7 @@ public abstract class EffectEvent implements IGUID {
             //watch.min = 500;
 
             calculateEffects();
+            data.freeze();
 
             if (!data.isCanceled()) {
                 activate();
@@ -82,6 +80,7 @@ public abstract class EffectEvent implements IGUID {
 
             // watch.print("stat events " + GUID() + " ");
         }
+
     }
 
     public void calculateEffects() {
@@ -136,7 +135,7 @@ public abstract class EffectEvent implements IGUID {
         }
     }
 
-    private Unit.StatContainerType getStatType(LivingEntity en, UnitData data) {
+    private Unit.StatContainerType getStatType(LivingEntity en) {
 
         if (en instanceof PlayerEntity) {
             try {
@@ -146,38 +145,8 @@ public abstract class EffectEvent implements IGUID {
 
                     EntitySpellCap.ISpellsCap spells = Load.spells(en);
 
-                    int place = -1;
-
-                    for (int i = 0; i < spells.getSkillGemData().stacks.size(); i++) {
-
-                        ItemStack stack = spells.getSkillGemData().stacks.get(i);
-
-                        SkillGemData sd = SkillGemData.fromStack(stack);
-                        if (sd != null && sd.getSkillGem() != null && sd.getSkillGem().spell_id.equals(spell.GUID())) {
-                            for (SkillGemsData.Places p : SkillGemsData.Places.values()) {
-                                if (p.index == i) {
-                                    place = p.place;
-                                }
-                            }
-                        }
-
-                    }
-
-                    if (place > -1) {
-
-                        if (place == 0) {
-                            return Unit.StatContainerType.SPELL1;
-                        }
-                        if (place == 1) {
-                            return Unit.StatContainerType.SPELL2;
-                        }
-                        if (place == 2) {
-                            return Unit.StatContainerType.SPELL3;
-                        }
-                        if (place == 3) {
-                            return Unit.StatContainerType.SPELL4;
-                        }
-                    }
+                    return spells.getSkillGemData()
+                        .getStatContainerFor(spell);
 
                 }
             } catch (Exception e) {
@@ -191,7 +160,7 @@ public abstract class EffectEvent implements IGUID {
 
     private List<EffectWithCtx> AddEffects(List<EffectWithCtx> effects, UnitData unit, LivingEntity en, EffectSides side) {
 
-        Unit.StatContainerType type = getStatType(en, unit);
+        Unit.StatContainerType type = getStatType(en);
 
         if (unit != null) {
             unit.getUnit()

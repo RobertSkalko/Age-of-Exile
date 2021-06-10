@@ -31,24 +31,28 @@ public class SlashDatapackGenerator<T extends IGUID & ISerializable<T>> extends 
 
     protected void generateAll(DataCache cache) {
 
-        Path path = gameDirPath();
+        try {
+            Path path = gameDirPath();
 
-        for (T entry : list) {
+            for (T entry : list) {
 
-            if (!entry.shouldGenerateJson()) {
-                continue;
+                if (!entry.shouldGenerateJson()) {
+                    continue;
+                }
+
+                Path target = movePath(resolve(path, entry));
+
+                target = Paths.get(target.toString()
+                    .replace("\\.\\", "\\"));
+
+                try {
+                    DataProvider.writeToPath(GSON, cache, entry.toJson(), target);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
-
-            Path target = movePath(resolve(path, entry));
-
-            target = Paths.get(target.toString()
-                .replace("\\.\\", "\\"));
-
-            try {
-                DataProvider.writeToPath(GSON, cache, entry.toJson(), target);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
         }
 
     }

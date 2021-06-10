@@ -37,6 +37,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public ProjectileItem FIREBALL = item(new ProjectileItem("fireball"));
     public ProjectileItem SNOWBALL = item(new ProjectileItem("snowball"));
+    public ProjectileItem SHADOWBALL = item(new ProjectileItem("shadowball"));
     public ProjectileItem SLIMEBALL = item(new ProjectileItem("slimeball"));
 
     public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
@@ -97,6 +98,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public SingleTalentResetPotion ADD_RESET_PERK_POINTS = item(new SingleTalentResetPotion());
     public ResetStatsPotion RESET_STATS = item(new ResetStatsPotion());
     public RaceResetPotion RESET_RACE = item(new RaceResetPotion());
+    public FunnyDeathPotion DEATH_POTION = item(new FunnyDeathPotion());
 
     public BackpackItem BACKPACK = item(new BackpackItem(), "backpack/normal");
 
@@ -111,8 +113,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item SMITHING_STATION = blockItem(ModRegistry.BLOCKS.SMITHING_STATION);
     public Item TELEPORTER_BLOCK = blockItem(ModRegistry.BLOCKS.TELEPORTER);
 
-    public Item MANA_PLANT = item(new ProduceItem("Mana Fruit"), "plant/mana");
-    public Item LIFE_PLANT = item(new ProduceItem("Life Fruit"), "plant/life");
+    public Item MANA_PLANT = item(new ProduceItem("Astral Fruit"), "plant/mana");
+    public Item LIFE_PLANT = item(new ProduceItem("Life Berry"), "plant/life");
 
     static Item.Settings stationProp = new Item.Settings().group(CreativeTabs.MyModTab);
 

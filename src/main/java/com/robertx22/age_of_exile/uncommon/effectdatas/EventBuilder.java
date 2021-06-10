@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.builders.DamageBuilder;
@@ -14,11 +15,19 @@ public class EventBuilder<T extends EffectEvent> {
 
     protected T event;
 
+    public static EventBuilder<ExilePotionEvent> ofEffect(LivingEntity caster, LivingEntity target, int lvl, ExileEffect effect, GiveOrTake giveOrTake, int ticks) {
+        ExilePotionEvent event = new ExilePotionEvent(lvl, effect, giveOrTake, caster, target, ticks);
+        EventBuilder<ExilePotionEvent> b = new EventBuilder();
+        b.event = event;
+        return b;
+    }
+
     public static DamageBuilder ofSpellDamage(LivingEntity source, LivingEntity target, int dmg, Spell spell) {
         DamageEvent event = new DamageEvent(null, source, target, dmg);
         DamageBuilder b = new DamageBuilder();
         b.event = event;
         b.setupDamage(spell.config.style.getAttackType(), spell.getWeapon(source), spell.getConfig().style);
+        b.setSpell(spell);
         return b;
     }
 

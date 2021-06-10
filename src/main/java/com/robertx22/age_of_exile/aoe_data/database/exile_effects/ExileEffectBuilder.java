@@ -2,8 +2,9 @@ package com.robertx22.age_of_exile.aoe_data.database.exile_effects;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -19,12 +20,28 @@ public class ExileEffectBuilder {
         b.effect.type = ctx.type;
         b.effect.id = ctx.effectId;
         b.effect.locName = ctx.locname;
+
+        if (ctx.type == EffectType.beneficial) {
+            b.addTags(EffectTags.positive);
+        }
+        if (ctx.type == EffectType.negative) {
+            b.addTags(EffectTags.negative);
+        }
+        return b;
+    }
+
+    public static ExileEffectBuilder food(EffectCtx ctx) {
+        ExileEffectBuilder b = of(ctx);
+        b.addTags(EffectTags.food);
+        b.maxStacks(1);
         return b;
     }
 
     public ExileEffectBuilder addTags(EffectTags... tags) {
         for (EffectTags tag : tags) {
-            this.effect.tags.add(tag.name());
+            if (!effect.tags.contains(tag.name())) {
+                this.effect.tags.add(tag.name());
+            }
         }
         return this;
     }
@@ -59,6 +76,10 @@ public class ExileEffectBuilder {
         data.scale_to_lvl = stat.getScaling() != StatScaling.NONE;
         this.effect.stats.add(data);
         return this;
+    }
+
+    public ExileEffectBuilder stat(float first, Stat stat) {
+        return stat(first, stat, ModType.FLAT);
     }
 
     public ExileEffect build() {

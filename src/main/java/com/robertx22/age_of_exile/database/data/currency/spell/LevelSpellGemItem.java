@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.uncommon.datasaving.ItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
@@ -34,6 +35,7 @@ public class LevelSpellGemItem extends CurrencyItem implements ICurrencyItemEffe
 
     public LevelSpellGemItem() {
         super(ID);
+        this.itemTypesUsableOn = ItemType.SPELL_GEM;
     }
 
     @Override

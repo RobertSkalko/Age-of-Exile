@@ -6,13 +6,13 @@ package com.robertx22.age_of_exile.aoe_data.database.stats.base;
 // then either. .generateGenericWith(Elemenets.values)   or .addSpecific(Elements.fire)
 // T can be a wrapper class with multiple enums!
 
-import com.ibm.icu.impl.Assert;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DataPackStatAccessor;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DatapackStat;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.StatEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.StatCondition;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ErrorUtils;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -143,9 +143,9 @@ public class DatapackStatBuilder<T> {
         Objects.requireNonNull(locNameMaker);
         Objects.requireNonNull(locDescMaker);
 
-        Assert.assrt(!stats.isEmpty());
-        Assert.assrt(priority > -1);
-        Assert.assrt(!events.isEmpty());
+        ErrorUtils.ifFalse(!stats.isEmpty());
+        ErrorUtils.ifFalse(priority > -1);
+        ErrorUtils.ifFalse(!events.isEmpty());
 
         stats.entrySet()
             .forEach(x -> {
@@ -172,8 +172,14 @@ public class DatapackStatBuilder<T> {
                     stat.effect.effects.add(c.GUID());
                 });
                 if (this.effectMaker != null) {
-                    stat.effect.effects.add(this.effectMaker.apply(x.getKey())
-                        .GUID());
+                    T key = x.getKey();
+
+                    StatEffect effect = effectMaker.apply(key);
+                    if (effect == null) {
+                        System.out.print("Can't make effect for key: " + key.toString());
+                    }
+                    stat.effect.effects.add(effect.GUID());
+
                 }
                 if (this.conditionMaker != null) {
                     stat.effect.ifs.add(this.conditionMaker.apply(x.getKey())

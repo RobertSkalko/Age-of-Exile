@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.player_skills.items.DimensionalShardItem;
 import com.robertx22.age_of_exile.player_skills.items.SmeltedEssenceItem;
 import com.robertx22.age_of_exile.player_skills.items.alchemy.CondensedEssenceItem;
 import com.robertx22.age_of_exile.player_skills.items.exploration.LockedChestItem;
@@ -13,7 +14,6 @@ import com.robertx22.age_of_exile.player_skills.items.inscribing.EssenceInkItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.StatInfusionItem;
 import com.robertx22.age_of_exile.player_skills.items.mining.MiningStoneItem;
 import com.robertx22.age_of_exile.player_skills.items.tinkering.ChestKeyItem;
-import com.robertx22.age_of_exile.player_skills.items.tinkering.MysteriousLeatherItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.PlantProduceItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.PlantSeedItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.SalvagedDustItem;
@@ -32,9 +32,9 @@ public class TierItemsRegister extends BaseItemRegistrator {
     public HashMap<SkillItemTier, PlantProduceItem> FARMING_PRODUCE = new HashMap<>();
     public HashMap<SkillItemTier, ChestKeyItem> KEY_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, MiningStoneItem> STONE_TIER_MAP = new HashMap<>();
-    public HashMap<SkillItemTier, MysteriousLeatherItem> LEATHER_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, LockedChestItem> LOCKED_CHEST_TIER_MAP = new HashMap<>();
     public HashMap<SkillItemTier, DungeonKeyItem> DUNGEON_KEY_MAP = new HashMap<>();
+    public HashMap<SkillItemTier, DimensionalShardItem> DIMENSIONAL_SHARD_MAP = new HashMap<>();
 
     public HashMap<SkillItemTier, EssenceInkItem> ESSENCE_INK = new HashMap<>();
 
@@ -51,6 +51,7 @@ public class TierItemsRegister extends BaseItemRegistrator {
             INK_TIER_MAP.put(tier, item(new ScribeInkItem(tier)));
 
             SMELTED_ESSENCE.put(tier, item(new SmeltedEssenceItem(tier)));
+            DIMENSIONAL_SHARD_MAP.put(tier, item(new DimensionalShardItem(tier)));
             ESSENCE_INK.put(tier, item(new EssenceInkItem(tier)));
             TOOL_UPGRADE.put(tier, item(new StatInfusionItem(tier)));
             CONDENSED_ESSENCE_MAP.put(tier, item(new CondensedEssenceItem(tier)));
@@ -61,7 +62,6 @@ public class TierItemsRegister extends BaseItemRegistrator {
             KEY_TIER_MAP.put(tier, item(new ChestKeyItem(tier)));
             STONE_TIER_MAP.put(tier, item(new MiningStoneItem(tier)));
             LOCKED_CHEST_TIER_MAP.put(tier, item(new LockedChestItem(tier)));
-            LEATHER_TIER_MAP.put(tier, item(new MysteriousLeatherItem(tier)));
             DUNGEON_KEY_MAP.put(tier, item(new DungeonKeyItem(tier)));
 
         }

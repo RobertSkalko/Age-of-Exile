@@ -11,6 +11,7 @@ public class MyShapelessCategory extends DefaultCraftingCategory {
     Item item;
 
     public MyShapelessCategory(Identifier id, Item item) {
+
         this.id = id;
         this.item = item;
     }

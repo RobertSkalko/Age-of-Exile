@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
@@ -26,10 +25,6 @@ public class DungeonMobList implements ISerializedRegistryEntry<DungeonMobList>,
 
     public List<WeightedMobEntry> mobs = new ArrayList<>();
     public List<WeightedMobEntry> bosses = new ArrayList<>();
-
-    public Identifier getIconId() {
-        return Ref.guiId("dungeon/icons/" + id);
-    }
 
     @Override
     public Class<DungeonMobList> getClassForSerialization() {
@@ -61,17 +56,33 @@ public class DungeonMobList implements ISerializedRegistryEntry<DungeonMobList>,
         return en;
     }
 
-    public LivingEntity spawnRandomMob(ServerWorld world, BlockPos pos, int tier) {
+    public EntityType getRandomMob() {
+        EntityType type = null;
+        try {
+            WeightedMobEntry random = RandomUtils.weightedRandom(mobs);
+            type = Registry.ENTITY_TYPE.get(new Identifier(random.id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return EntityType.ZOMBIE;
+        }
 
-        WeightedMobEntry random = RandomUtils.weightedRandom(mobs);
+        return type;
+    }
 
-        EntityType type = Registry.ENTITY_TYPE.get(new Identifier(random.id));
+    public LivingEntity spawMob(ServerWorld world, EntityType type, BlockPos pos, int tier) {
 
-        LivingEntity en = (LivingEntity) type.create(world);
+        try {
 
-        setup(en, pos, world);
+            LivingEntity en = (LivingEntity) type.create(world);
 
-        return en;
+            setup(en, pos, world);
+
+            return en;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     private void setup(LivingEntity en, BlockPos pos, ServerWorld world) {

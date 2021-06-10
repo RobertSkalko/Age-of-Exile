@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.player_skills.recipe_types;
 
-import blue.endless.jankson.annotation.Nullable;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -171,13 +170,11 @@ public class StationShapelessFactory {
         }
 
         @Override
-        @Nullable
         public JsonObject toAdvancementJson() {
             return this.builder.toJson();
         }
 
         @Override
-        @Nullable
         public Identifier getAdvancementId() {
             return this.advancementId;
         }

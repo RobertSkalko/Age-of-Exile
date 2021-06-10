@@ -33,7 +33,7 @@ public class RestoreResourceAction extends StatEffect {
 
         float val = num_provider.getValue(event, event.getSide(statSource), data);
 
-        EventBuilder<RestoreResourceEvent> restore = EventBuilder.ofRestore(event.source, event.target, type, restore_type, val);
+        EventBuilder<RestoreResourceEvent> restore = EventBuilder.ofRestore(event.source, event.getSide(side), type, restore_type, val);
         if (event.data.isSpellEffect()) {
             restore.setSpell(event.getSpell());
         }

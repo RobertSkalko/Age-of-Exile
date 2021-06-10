@@ -78,9 +78,21 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         return new ArrayList<>();
     }
 
+    boolean removeNextTick = false;
+
+    public void scheduleRemoval() {
+        removeNextTick = true;
+    }
+
     @Override
     public void tick() {
-        this.age++;
+
+        if (this.removeNextTick) {
+            this.remove();
+            return;
+        }
+
+        //this.age++; this is called somewhere again idk
 
         if (dataTracker.get(IS_FALLING)) {
             if (!this.hasNoGravity()) {
@@ -118,13 +130,15 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
     public void remove() {
 
         try {
-            LivingEntity caster = getSpellData().getCaster(world);
+            if (getSpellData() != null) {
+                LivingEntity caster = getSpellData().getCaster(world);
 
-            if (caster != null) {
-                this.getSpellData()
-                    .getSpell()
-                    .getAttached()
-                    .tryActivate(getEntityName(), SpellCtx.onExpire(caster, this, getSpellData()));
+                if (caster != null) {
+                    this.getSpellData()
+                        .getSpell()
+                        .getAttached()
+                        .tryActivate(getEntityName(), SpellCtx.onExpire(caster, this, getSpellData()));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -13,15 +13,47 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.number_provider.NumberProvider;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 
 import java.util.Arrays;
 
 public class StatEffects implements ISlashRegistryInit {
 
     public static DataHolder<EffectCtx, StatEffect> GIVE_SELF_EFFECT = new DataHolder<>(
-        Arrays.asList(BeneficialEffects.BLOODLUST
+        Arrays.asList(
+            BeneficialEffects.BLOODLUST,
+            BeneficialEffects.TAUNT_STANCE,
+            BeneficialEffects.GATHER_STORM,
+            BeneficialEffects.LIVING_INFERNO,
+            BeneficialEffects.FRENZY,
+            BeneficialEffects.ALACRITY,
+            BeneficialEffects.ZEAL,
+            BeneficialEffects.INFUSED_BLADE,
+            BeneficialEffects.BLADE_DANCE,
+            BeneficialEffects.MARK,
+            BeneficialEffects.CONCENTRATION,
+            BeneficialEffects.BLESSING,
+            BeneficialEffects.STEAM_POWER,
+            BeneficialEffects.HP_REGEN,
+            BeneficialEffects.MANA_REGEN
         ),
         x -> new GiveExileStatusEffect(x.effectId, EffectSides.Source, 10)
+    );
+    public static DataHolder<EffectCtx, StatEffect> REMOVE_EFFECT_FROM_TARGET = new DataHolder<>(
+        Arrays.asList(
+            NegativeEffects.BURN,
+            NegativeEffects.POISON,
+            NegativeEffects.FROSTBURN,
+            NegativeEffects.BLEED,
+            NegativeEffects.BLIND
+        ),
+        x -> new RemoveExileEffectAction(x.effectId, EffectSides.Source)
+    );
+
+    public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_IN_AOE = new DataHolder<>(
+        Arrays.asList(BeneficialEffects.REGENERATE
+        ),
+        x -> new GiveExileStatusInRadius("give_" + x.id + "_to_allies_in_radius", AllyOrEnemy.allies, 10, x.effectId)
     );
 
     public static DataHolder<ResourceType, StatEffect> LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA = new DataHolder<>(
@@ -40,9 +72,20 @@ public class StatEffects implements ISlashRegistryInit {
         , x -> new RestoreResourceAction("leech_" + x.id, NumberProvider.ofPercentOfDataNumber(EventData.NUMBER), x, RestoreType.leech)
     );
 
+    public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_TO_SOURCE = new DataHolder<>(
+        Arrays.asList(
+            NegativeEffects.POISON
+        )
+        , x -> new GiveExileStatusEffect(x.effectId, EffectSides.Source, 5));
+
     public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_TO_TARGET = new DataHolder<>(
         Arrays.asList(
             NegativeEffects.BURN,
+            NegativeEffects.JUDGEMENT,
+            NegativeEffects.SLOW,
+            NegativeEffects.STUN,
+            BeneficialEffects.BLESSING,
+            BeneficialEffects.ALACRITY,
             NegativeEffects.FROSTBURN,
             NegativeEffects.BLEED,
             NegativeEffects.POISON,
@@ -52,10 +95,24 @@ public class StatEffects implements ISlashRegistryInit {
         , x -> new GiveExileStatusEffect(x.effectId, EffectSides.Target, 5));
 
     public static StatEffect SET_IS_CRIT = new SetBooleanEffect(EventData.CRIT);
+    public static StatEffect INC_VALUE_PER_CURSE_ON_TARGET = new IncreaseNumberPerCurseOnTarget();
+    public static StatEffect DOUBLE_DAMAGE = new DoubleDamageAction();
+    public static StatEffect SET_PIERCE = new SetBooleanEffect(EventData.PIERCE);
     public static StatEffect INCREASE_VALUE = new IncreaseNumberByPercentEffect(EventData.NUMBER);
+    public static StatEffect MULTIPLY_VALUE = new MultiplyNumberByPercentEffect(EventData.NUMBER);
+    public static StatEffect DECREASE_VALUE = new DecreaseNumberByPercentEffect(EventData.NUMBER);
+    public static StatEffect INCREASE_EFFECT_DURATION = new IncreaseNumberByPercentEffect(EventData.EFFECT_DURATION_TICKS);
     public static StatEffect INCREASE_SECONDS = new IncreaseNumberByPercentEffect(EventData.SECONDS);
     public static StatEffect SET_ACCURACY = new SetDataNumberAction(EventData.ACCURACY);
     public static StatEffect ADD_STAT_DATA_TO_NUMBER = new AddToNumberEffect("add_stat_data_to_num", EventData.NUMBER, NumberProvider.ofStatData());
+
+    public static StatEffect DECREASE_COOLDOWN = new DecreaseNumberByPercentEffect(EventData.COOLDOWN_TICKS);
+    public static StatEffect DECREASE_COOLDOWN_BY_X_TICKS = new AddToNumberEffect("reduce_cd_by_ticks", EventData.COOLDOWN_TICKS, NumberProvider.ofStatData());
+    public static StatEffect INCREASE_MANA_COST = new IncreaseNumberByPercentEffect(EventData.MANA_COST);
+    public static StatEffect INCREASE_PROJ_SPEED = new IncreaseNumberByPercentEffect(EventData.PROJECTILE_SPEED_MULTI);
+    public static StatEffect DECREASE_CAST_TIME = new DecreaseNumberByPercentEffect(EventData.CAST_TICKS);
+    public static StatEffect INCREASE_AREA = new IncreaseNumberByPercentEffect(EventData.AREA_MULTI);
+    public static StatEffect REFLECT_PERCENT_DAMAGE = new ReflectDamageAction("reflect_perc_dmg", NumberProvider.ofPercentOfDataNumber(EventData.NUMBER));
 
     public static DataHolder<String, StatEffect> ADD_PERC_OF_STAT_TO_NUMBER = new DataHolder<>(
         Arrays.asList(
@@ -73,6 +130,9 @@ public class StatEffects implements ISlashRegistryInit {
     public void registerAll() {
 
         GIVE_SELF_EFFECT.addToSerializables();
+        DOUBLE_DAMAGE.addToSerializables();
+        REMOVE_EFFECT_FROM_TARGET.addToSerializables();
+        MULTIPLY_VALUE.addToSerializables();
         GIVE_EFFECT_TO_TARGET.addToSerializables();
         SET_IS_CRIT.addToSerializables();
         INCREASE_VALUE.addToSerializables();
@@ -81,6 +141,18 @@ public class StatEffects implements ISlashRegistryInit {
         ADD_PERC_OF_STAT_TO_NUMBER.addToSerializables();
         ADD_STAT_DATA_TO_NUMBER.addToSerializables();
         INCREASE_SECONDS.addToSerializables();
+        DECREASE_COOLDOWN.addToSerializables();
+        INCREASE_MANA_COST.addToSerializables();
+        SET_PIERCE.addToSerializables();
+        INCREASE_AREA.addToSerializables();
+        INCREASE_PROJ_SPEED.addToSerializables();
+        DECREASE_CAST_TIME.addToSerializables();
+        LEECH_PERCENT_OF_DAMAGE_AS_RESOURCE.addToSerializables();
+        GIVE_EFFECT_IN_AOE.addToSerializables();
+        REFLECT_PERCENT_DAMAGE.addToSerializables();
+        DECREASE_COOLDOWN_BY_X_TICKS.addToSerializables();
+        DECREASE_VALUE.addToSerializables();
+        INCREASE_EFFECT_DURATION.addToSerializables();
 
     }
 }

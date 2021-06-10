@@ -5,6 +5,8 @@ import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.IByteBuf;
+import com.robertx22.age_of_exile.database.data.spells.TestSpell;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.ListStringData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.registry.EfficientRegistryPacket;
@@ -100,7 +102,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     public static void logRegistryError(String text) {
 
         try {
-            throw new Exception("[Mine and Slash Registry Error]: " + text);
+            throw new Exception("[Age of Exile Registry Error]: " + text);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -203,10 +205,21 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return this.serializables.get(key.GUID());
     }
 
+    boolean accessedEarly = false;
+
     public C get(String guid) {
 
+        if (MMORPG.RUN_DEV_TOOLS) {
+            if (type == SlashRegistryType.SPELL && guid.equals(TestSpell.USE_THIS_EXACT_ID)) {
+                return (C) TestSpell.get();
+            }
+        }
+
         if (map.isEmpty() && serializables.isEmpty()) {
-            System.out.print("\n Accessed slash registry earlier than datapacks are loaded, returning empty: " + guid);
+            if (!accessedEarly) {
+                System.out.print("\n Accessed slash registry earlier than datapacks are loaded, returning empty: " + guid);
+            }
+            accessedEarly = true;
             return this.emptyDefault;
         }
 
@@ -278,7 +291,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private void tryLogAddition(C c) {
         if (logAdditionsToRegistry && ModConfig.get().Server.LOG_REGISTRY_ENTRIES) {
             System.out.println(
-                "[Mine and Slash Registry Addition]: " + c.GUID() + " to " + type.toString() + " registry");
+                "[Age of Exile Registry Addition]: " + c.GUID() + " to " + type.toString() + " registry");
         }
 
     }

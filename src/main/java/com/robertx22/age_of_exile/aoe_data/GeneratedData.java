@@ -35,7 +35,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditio
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.AutoDatapackStats;
-import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStatAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.SpellDependentDatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearReg;
 import com.robertx22.age_of_exile.aoe_data.database.value_calc.ValueCalcAdder;
@@ -54,7 +54,7 @@ public class GeneratedData {
         new Stats().registerAll();
 
         new ValueCalcAdder().registerAll();
-        new DatapackStatAdder().registerAll();
+        new DatapackStats().registerAll();
 
         new SkillGemRarityAdder().registerAll();
         new GearRaritiesAdder().registerAll();

@@ -23,6 +23,7 @@ public class RawFishItem extends TieredItem {
         return "Raw " + tier.word + " " + exileEffect.word + " Fish";
     }
 
+    @Override
     public void generateModel(ItemModelManager manager) {
         // so i dont have to copy icons for each of the 5 tiers
         ModelHelper helper = new ModelHelper(this, ModelHelper.Type.GENERATED);

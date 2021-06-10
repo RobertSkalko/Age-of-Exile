@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mobs.ai;
 
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
@@ -19,14 +20,13 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
     private boolean backward;
     private int combatTicks = -1;
 
-    List<CalculatedSpellData> spells = new ArrayList<>();
+    List<EntitySavedSpellData> spells = new ArrayList<>();
 
     public SpellAttackGoal addOtherSpell(String spell) {
 
-        CalculatedSpellData data = new CalculatedSpellData();
-        data.level = Load.Unit(actor)
-            .getLevel();
-        data.spell_id = spell;
+        EntitySavedSpellData data = EntitySavedSpellData.create(Load.Unit(actor)
+            .getLevel(), actor, Database.Spells()
+            .get(spell));
 
         spells.add(data);
 
@@ -128,11 +128,12 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
         }
     }
 
-    public void tryCast(CalculatedSpellData data) {
+    public void tryCast(EntitySavedSpellData data) {
 
         if (Load.Unit(actor)
             .getCooldowns()
-            .isOnCooldown(data.spell_id)) {
+            .isOnCooldown(data.getSpell()
+                .GUID())) {
             return;
         }
 

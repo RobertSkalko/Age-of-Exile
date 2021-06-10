@@ -2,16 +2,20 @@ package com.robertx22.age_of_exile.dimension;
 
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonPopulateData;
-import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
 import com.robertx22.age_of_exile.dimension.spawner.ModSpawnerBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.world_of_exile.main.ModLoottables;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.SignBlockEntity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -24,33 +28,38 @@ import java.util.Set;
 
 public class PopulateDungeonChunks {
 
-    public static void populateAll(World world, ChunkPos cpos, SingleDungeonData data) {
-
-        Watch watch = new Watch();
-
-        List<ChunkPos> toPopulate = new ArrayList<>();
-        List<ChunkPos> populated = new ArrayList<>();
-
-        toPopulate.addAll(getChunksAround(cpos));
-
-        int tries = 0;
-
-        while (!toPopulate.isEmpty()) {
-
-            tries++;
-            if (tries > 100) {
-                break;
-            }
-
-            ChunkPos cp = toPopulate.get(0);
-            if (!populated.contains(cp)) {
-                populate(toPopulate, populated, world, world.getChunk(cp.x, cp.z), data.data, data.pop);
-            } else {
-                toPopulate.removeIf(x -> x.equals(cp));
-            }
+    public static void tryPopulateChunksAroundPlayer(World world, PlayerEntity player) {
+        if (true) {
+            return;
         }
+        if (WorldUtils.isDungeonWorld(world)) {
 
-        watch.print("populating the whole dungeon ");
+            // Watch watch = new Watch();
+
+            int populated = 0;
+            List<ChunkPos> list = getChunksAround(new ChunkPos(player.getBlockPos()));
+
+            for (ChunkPos cp : list) {
+                Chunk chunk = world.getChunk(cp.x, cp.z);
+
+                if (!Load.chunkPopulated(chunk).populated) {
+                    DungeonData data = Load.dungeonData(world).data.get(chunk.getPos()
+                        .getStartPos()).data;
+
+                    if (!data.isEmpty()) {
+                        PopulateDungeonChunks.populateChunk(world, chunk, data, new DungeonPopulateData());
+                        Load.chunkPopulated(chunk).populated = true;
+                        populated++;
+                        if (populated > 5) {
+                            //watch.print("Populating chunk around player ");
+                            break;
+                        }
+
+                    }
+                }
+            }
+
+        }
 
     }
 
@@ -74,7 +83,20 @@ public class PopulateDungeonChunks {
 
     }
 
-    public static void populate(List<ChunkPos> toPopulate, List<ChunkPos> populated, World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
+    public static void populate(Set<DungeonPopulateData.CP> toPopulate, Set<DungeonPopulateData.CP> populated, World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
+
+        boolean has = populateChunk(world, chunk, dungeon, data);
+
+        if (has) {
+            populated.add(new DungeonPopulateData.CP(chunk.getPos()));
+
+            getChunksAround(chunk.getPos()).forEach(x -> toPopulate.add(new DungeonPopulateData.CP(x)));
+        }
+        toPopulate.removeIf(x -> x.getChunkPos()
+            .equals(chunk.getPos()));
+    }
+
+    public static boolean populateChunk(World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
 
         Set<BlockPos> list = chunk.getBlockEntityPositions();
 
@@ -83,16 +105,23 @@ public class PopulateDungeonChunks {
         for (BlockPos blockPos : list) {
             BlockEntity be = world.getBlockEntity(blockPos);
             if (be instanceof BeaconBlockEntity) {
-                populate(world, blockPos, dungeon, data);
+                try {
+                    populate(world, blockPos, dungeon, data);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (be instanceof SignBlockEntity) {
+                SignBlockEntity sign = (SignBlockEntity) be;
+                if (SignUtils.has("[chest]", sign)) {
+                    setChest(world, blockPos);
+                } else if (SignUtils.has("[portal]", sign)) {
+                    world.setBlockState(blockPos, ModRegistry.BLOCKS.PORTAL.getDefaultState());
+                }
             }
         }
 
-        if (has) {
-            populated.add(chunk.getPos());
-            toPopulate.addAll(getChunksAround(chunk.getPos()));
-        }
+        return has;
 
-        toPopulate.removeIf(x -> x.equals(chunk.getPos()));
     }
 
     static void populate(World world, BlockPos pos, DungeonData dungeonData, DungeonPopulateData data) {
@@ -110,13 +139,6 @@ public class PopulateDungeonChunks {
         int chests = RandomUtils.roll(20) ? 1 : 0;
         int spawners = RandomUtils.roll(20) ? 1 : 0;
 
-        boolean isboss = false;
-        if (RandomUtils.roll(5)) {
-            isboss = true;
-            mobs = 1;
-            spawners = 0;
-        }
-
         int tries = 0;
         for (int i = 0; i < mobs; i++) {
             BlockPos p = RandomUtils.randomFromList(list);
@@ -126,19 +148,17 @@ public class PopulateDungeonChunks {
                 break;
             }
 
-            if (!SpawnUtil.canPlaceMob(world, p)) {
+            EntityType type = dungeonData.getMobList()
+                .getRandomMob();
+
+            if (!SpawnUtil.canPlaceMob(world, type, p)) {
                 i--;
                 continue;
             }
             data.mobs++;
 
-            if (isboss) {
-                dungeonData.getMobList()
-                    .spawnBoss((ServerWorld) world, p, dungeonData.tier);
-            } else {
-                dungeonData.getMobList()
-                    .spawnRandomMob((ServerWorld) world, p, dungeonData.tier);
-            }
+            dungeonData.getMobList()
+                .spawMob((ServerWorld) world, type, p, dungeonData.t);
 
             list.remove(p);
         }
@@ -158,11 +178,7 @@ public class PopulateDungeonChunks {
             }
             data.chests++;
 
-            world.setBlockState(p, Blocks.CHEST.getDefaultState(), 2);
-
-            ChestBlockEntity chest = (ChestBlockEntity) world.getBlockEntity(p);
-
-            chest.setLootTable(ModLoottables.DUNGEON_DEFAULT, world.random.nextLong());
+            setChest(world, p);
 
             list.remove(p);
         }
@@ -190,4 +206,10 @@ public class PopulateDungeonChunks {
 
     }
 
+    public static void setChest(World world, BlockPos p) {
+        world.setBlockState(p, Blocks.CHEST.getDefaultState(), 2);
+        ChestBlockEntity chest = (ChestBlockEntity) world.getBlockEntity(p);
+        chest.setLootTable(ModLoottables.DUNGEON_DEFAULT, world.random.nextLong());
+
+    }
 }

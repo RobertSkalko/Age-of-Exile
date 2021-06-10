@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
@@ -15,7 +14,7 @@ import net.minecraft.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OptScaleExactStat implements ITooltipList, IByteBuf<OptScaleExactStat> {
+public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
     public static OptScaleExactStat SERIALIZER = new OptScaleExactStat();
 
     public float v1 = 0;
@@ -65,7 +64,12 @@ public class OptScaleExactStat implements ITooltipList, IByteBuf<OptScaleExactSt
         this.type = type.name();
     }
 
-    @Override
+    public List<Text> GetTooltipString(TooltipInfo info, int lvl) {
+        Stat stat = getStat();
+        TooltipStatInfo statInfo = new TooltipStatInfo(this.toExactStat(this.scale_to_lvl ? lvl : 1), -99, info);
+        return new ArrayList<>(stat.getTooltipList(new TooltipStatWithContext(statInfo, null, null)));
+    }
+
     public List<Text> GetTooltipString(TooltipInfo info) {
         Stat stat = getStat();
         TooltipStatInfo statInfo = new TooltipStatInfo(this.toExactStat(this.scale_to_lvl ? info.unitdata.getLevel() : 1), -99, info);
@@ -91,6 +95,14 @@ public class OptScaleExactStat implements ITooltipList, IByteBuf<OptScaleExactSt
             .get(this.stat);
 
         return ExactStatData.of(v1, v2, stat, getModType(), scale_to_lvl ? lvl : 1);
+
+    }
+
+    public ExactStatData ToExactScaleToLevel(int lvl) {
+        Stat stat = Database.Stats()
+            .get(this.stat);
+
+        return ExactStatData.of(v1, v2, stat, getModType(), lvl);
 
     }
 

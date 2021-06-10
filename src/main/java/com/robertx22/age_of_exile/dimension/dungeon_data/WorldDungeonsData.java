@@ -6,6 +6,7 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 
@@ -20,6 +21,11 @@ public class WorldDungeonsData {
         String key = cp.x + "_" + cp.z;
         return key;
 
+    }
+
+    public void onTick(World world) {
+        map.values()
+            .forEach(x -> x.pop.onTick(world, x));
     }
 
     public SingleDungeonData get(BlockPos pos) {

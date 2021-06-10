@@ -1,28 +1,30 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.CasterHasStatCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
+import com.robertx22.age_of_exile.database.data.spells.components.entity_predicates.SpellEntityPredicate;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
+import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ComponentPart {
 
     public List<MapHolder> targets = new ArrayList<>();
     public List<MapHolder> acts = new ArrayList<>();
     public List<MapHolder> ifs = new ArrayList<>();
+    public List<MapHolder> en_preds = new ArrayList<>();
 
     List<ComponentPart> per_entity_hit = null;
 
@@ -32,6 +34,16 @@ public class ComponentPart {
         }
         this.per_entity_hit
             .add(add);
+        return this;
+    }
+
+    public ComponentPart enemiesInRadius(Double radius) {
+        targets.add(TargetSelector.AOE.enemiesInRadius(radius));
+        return this;
+    }
+
+    public ComponentPart alliesInRadius(Double radius) {
+        targets.add(TargetSelector.AOE.alliesInRadius(radius));
         return this;
     }
 
@@ -89,12 +101,27 @@ public class ComponentPart {
 
         for (MapHolder part : targets) {
             BaseTargetSelector selector = BaseTargetSelector.MAP.get(part.type);
-            list.addAll(selector.get(ctx, ctx.caster, ctx.target, ctx.pos, part));
+            List<LivingEntity> selected = selector.get(ctx, ctx.caster, ctx.target, ctx.pos, part);
+
+            for (MapHolder entityPredicate : en_preds) {
+                SpellEntityPredicate pred = SpellEntityPredicate.MAP.get(part.type);
+
+                if (pred != null) {
+                    selected = selected.stream()
+                        .filter(x -> pred.is(ctx, x, entityPredicate))
+                        .collect(Collectors.toList());
+                }
+            }
+            list.addAll(selected);
         }
 
         for (MapHolder part : acts) {
             SpellAction action = SpellAction.MAP.get(part.type);
-            action.tryActivate(list, ctx, part);
+            if (action == null) {
+                System.out.print(part.type + " action is null");
+            } else {
+                action.tryActivate(list, ctx, part);
+            }
         }
 
         if (per_entity_hit != null) {
@@ -134,28 +161,28 @@ public class ComponentPart {
         return this;
     }
 
-    public ComponentPart requiresSpellMod(DataGenKey<MarkerStat> mod) {
-        return addCondition(EffectCondition.CASTER_HAS_STAT.create(mod));
-    }
-
     public ComponentPart addCondition(MapHolder map) {
         this.ifs.add(map);
         return this;
     }
 
-    public List<MutableText> GetTooltipString(TooltipInfo info, AttachedSpell spell, CalculatedSpellData spelldata) {
+    public ComponentPart addEntityPredicate(MapHolder map) {
+        this.en_preds.add(map);
+        return this;
+    }
+
+    public List<MutableText> GetTooltipString(TooltipInfo info, AttachedSpell spell, EntitySavedSpellData data) {
         List<MutableText> list = new ArrayList<>();
 
         MutableText text = new LiteralText("");
 
-        String firstLetter = "*";
         boolean isSpellModifier = false;
 
         for (MapHolder part : acts) {
             SpellAction handler = SpellAction.MAP.get(part.type);
             if (handler instanceof ICMainTooltip) {
                 ICMainTooltip line = (ICMainTooltip) handler;
-                list.addAll(line.getLines(spell, part, spelldata));
+                list.addAll(line.getLines(spell, part, data));
             }
         }
 
@@ -166,7 +193,7 @@ public class ComponentPart {
             }
             if (handler instanceof ICMainTooltip) {
                 ICMainTooltip line = (ICMainTooltip) handler;
-                list.addAll(line.getLines(spell, part, spelldata));
+                list.addAll(line.getLines(spell, part, data));
 
             }
         }
@@ -178,7 +205,7 @@ public class ComponentPart {
 
             if (handler instanceof ICTextTooltip) {
                 ICTextTooltip ictext = (ICTextTooltip) handler;
-                text.append(ictext.getText(info, part, spelldata));
+                text.append(ictext.getText(info, part, data));
             }
         }
 
@@ -187,7 +214,7 @@ public class ComponentPart {
 
             if (handler instanceof ICTextTooltip) {
                 ICTextTooltip ictext = (ICTextTooltip) handler;
-                text.append(ictext.getText(info, part, spelldata));
+                text.append(ictext.getText(info, part, data));
                 hasAction = true;
             }
         }
@@ -197,7 +224,7 @@ public class ComponentPart {
 
             if (handler instanceof ICTextTooltip) {
                 ICTextTooltip ictext = (ICTextTooltip) handler;
-                text.append(ictext.getText(info, part, spelldata));
+                text.append(ictext.getText(info, part, data));
             }
         }
 
@@ -217,7 +244,7 @@ public class ComponentPart {
 
             List<MutableText> pertxt = new ArrayList<>();
             pertxt.add(new LiteralText("Per entity hit:"));
-            per_entity_hit.forEach(x -> pertxt.addAll(x.GetTooltipString(info, spell, spelldata)));
+            per_entity_hit.forEach(x -> pertxt.addAll(x.GetTooltipString(info, spell, data)));
 
             if (pertxt.size() > 1) {
 

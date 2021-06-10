@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
@@ -38,7 +39,7 @@ public abstract class BaseRegenClass extends Stat {
 
             @Override
             public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                return effect.data.getResourceType() == getResourceType();
+                return effect.data.getResourceType() == getResourceType() && effect.data.getRestoreType() == RestoreType.regen;
             }
         };
     }

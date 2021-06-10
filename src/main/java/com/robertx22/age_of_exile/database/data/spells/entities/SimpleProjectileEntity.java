@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.renders.IMyRende
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import com.robertx22.library_of_exile.packets.defaults.EntityPacket;
@@ -56,9 +57,11 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
 
     private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
     private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.STRING);
-    private static final TrackedData<Boolean> EXPIRE_ON_HIT = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> EXPIRE_ON_ENTITY_HIT = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> HIT_ALLIES = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> PIERCE = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Integer> DEATH_TIME = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Boolean> EXPIRE_ON_BLOCK_HIT = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public Entity ignoreEntity;
 
@@ -228,13 +231,21 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     @Override
     protected EntityHitResult getEntityCollision(Vec3d pos, Vec3d posPlusMotion) {
 
-        return ProjectileUtil.getEntityCollision(
+        EntityHitResult res = ProjectileUtil.getEntityCollision(
             this.world, this, pos, posPlusMotion, this.getBoundingBox()
                 .stretch(this.getVelocity())
                 .expand(1D), (e) -> {
                 return !e.isSpectator() && e.collides() && e instanceof Entity && e != this.getCaster() && e != this.ignoreEntity;
             });
 
+        if (!this.dataTracker.get(HIT_ALLIES)) {
+            if (res != null && getCaster() != null && res.getEntity() instanceof LivingEntity) {
+                if (AllyOrEnemy.allies.is(getCaster(), (LivingEntity) res.getEntity())) {
+                    return null; // don't hit allies with spells, let them pass
+                }
+            }
+        }
+        return res;
     }
 
     @Override
@@ -264,8 +275,8 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             this.onImpact(blockraytraceresult);
 
             blockstate.onProjectileHit(this.world, blockstate, blockraytraceresult, this);
-
         }
+
     }
 
     protected void onImpact(HitResult result) {
@@ -313,11 +324,16 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             }
         }
 
-        if (entityHit == null && this.dataTracker.get(EXPIRE_ON_HIT)) {
-            this.scheduleRemoval();
+        if (entityHit != null) {
+            if (!dataTracker.get(EXPIRE_ON_ENTITY_HIT)) {
+                return;
+            } else {
+                scheduleRemoval();
+            }
         }
-        if (entityHit != null && !dataTracker.get(PIERCE)) {
-            this.scheduleRemoval();
+
+        if (result instanceof BlockHitResult && dataTracker.get(EXPIRE_ON_BLOCK_HIT)) {
+            scheduleRemoval();
         }
 
     }
@@ -391,7 +407,9 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     protected void initDataTracker() {
         this.dataTracker.startTracking(SPELL_DATA, new CompoundTag());
         this.dataTracker.startTracking(ENTITY_NAME, "");
-        this.dataTracker.startTracking(EXPIRE_ON_HIT, true);
+        this.dataTracker.startTracking(EXPIRE_ON_ENTITY_HIT, true);
+        this.dataTracker.startTracking(EXPIRE_ON_BLOCK_HIT, true);
+        this.dataTracker.startTracking(HIT_ALLIES, false);
         this.dataTracker.startTracking(PIERCE, false);
         this.dataTracker.startTracking(DEATH_TIME, 100);
         super.initDataTracker();
@@ -456,10 +474,14 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         this.setDeathTime(holder.get(MapField.LIFESPAN_TICKS)
             .intValue());
 
-        this.dataTracker.set(EXPIRE_ON_HIT, holder.getOrDefault(MapField.EXPIRE_ON_HIT, true));
+        this.dataTracker.set(EXPIRE_ON_ENTITY_HIT, holder.getOrDefault(MapField.EXPIRE_ON_ENTITY_HIT, true));
+        this.dataTracker.set(EXPIRE_ON_BLOCK_HIT, holder.getOrDefault(MapField.EXPIRE_ON_BLOCK_HIT, true));
+        this.dataTracker.set(HIT_ALLIES, holder.getOrDefault(MapField.HITS_ALLIES, false));
 
-        if (data.config.piercing) {
-            this.dataTracker.set(PIERCE, true);
+        this.checkBlockCollision();
+
+        if (data.pierce) {
+            this.dataTracker.set(EXPIRE_ON_ENTITY_HIT, false);
         }
 
         data.item_id = holder.get(MapField.ITEM);

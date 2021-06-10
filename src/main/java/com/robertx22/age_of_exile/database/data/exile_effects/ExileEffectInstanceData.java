@@ -13,4 +13,7 @@ public class ExileEffectInstanceData {
     @Store
     public int stacks = 1;
 
+    @Store
+    public float str_multi = 1;
+
 }

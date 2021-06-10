@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
+import com.robertx22.age_of_exile.dimension.packets.StartDelveMapPacket;
 import com.robertx22.age_of_exile.dimension.packets.StartDungeonPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.*;
 import com.robertx22.age_of_exile.vanilla_mc.packets.perks.PerkChangePacket;
@@ -13,9 +14,10 @@ public class C2SPacketRegister {
 
     public static void register() {
 
+        Packets.registerClientToServerPacket(new StartDelveMapPacket());
         Packets.registerClientToServerPacket(new StartDungeonPacket());
         Packets.registerClientToServerPacket(new ModifyItemPacket());
-        Packets.registerClientToServerPacket(new CharSelectPackets());
+        Packets.registerClientToServerPacket(new LoadoutSelectPackets());
         Packets.registerClientToServerPacket(new ChooseRacePacket());
         Packets.registerClientToServerPacket(new RequestSyncCapToClient());
         Packets.registerClientToServerPacket(new TellServerToCastSpellPacket());

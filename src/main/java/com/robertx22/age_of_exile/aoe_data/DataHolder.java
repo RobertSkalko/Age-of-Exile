@@ -15,8 +15,11 @@ public class DataHolder<Key, Item extends ISerializedRegistryEntry> {
         this(Arrays.asList(keys), fun);
     }
 
+    Function<Key, Item> fun;
+
     public DataHolder(List<Key> keys, Function<Key, Item> fun) {
         this.keys = keys;
+        this.fun = fun;
 
         keys.forEach(x -> {
             Item item = fun.apply(x);
@@ -32,6 +35,16 @@ public class DataHolder<Key, Item extends ISerializedRegistryEntry> {
     private HashMap<Key, Item> map = new HashMap<>();
 
     public Item get(Key key) {
+
+        if (!map.containsKey(key)) {
+
+            try {
+                throw new RuntimeException("Key missing: " + key.toString());
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+
         return map.get(key);
     }
 

@@ -15,6 +15,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -52,7 +53,7 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
     public StationShapelessFactory getStationRecipe() {
         return StationShapelessFactory.create(ModRegistry.RECIPE_SER.SMITHING, this, 1)
             .input(ModRegistry.TIERED.STONE_TIER_MAP.get(tier), 1)
-            .input(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier), 1)
+            .input(Items.GOLD_INGOT)
             .input(upgrade.craftItem(), 1)
             .criterion("player_level", trigger());
     }

@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.a_libraries.dmg_number_particle;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector3f;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import org.lwjgl.opengl.GL11;
@@ -28,6 +28,10 @@ public class DamageParticleRenderer {
 
     private static void renderParticle(MatrixStack matrix, DamageParticle particle, Camera camera) {
         float scaleToGui = 0.025f;
+
+        if (particle.packet.iscrit) {
+            scaleToGui *= 2;
+        }
 
         MinecraftClient client = MinecraftClient.getInstance();
         float tickDelta = client.getTickDelta();
@@ -55,7 +59,7 @@ public class DamageParticleRenderer {
             GL11.GL_ZERO);
         RenderSystem.shadeModel(7425);
 
-        drawDamageNumber(matrix, particle.element, particle.str, 0, 0, 10);
+        drawDamageNumber(matrix, particle.renderString, 0, 0, 10);
 
         RenderSystem.shadeModel(7424);
         RenderSystem.disableBlend();
@@ -64,11 +68,11 @@ public class DamageParticleRenderer {
         matrix.pop();
     }
 
-    public static void drawDamageNumber(MatrixStack matrix, Elements ele, String s, double x, double y,
+    public static void drawDamageNumber(MatrixStack matrix, String s, double x, double y,
                                         float width) {
 
         MinecraftClient minecraft = MinecraftClient.getInstance();
         int sw = minecraft.textRenderer.getWidth(s);
-        minecraft.textRenderer.drawWithShadow(matrix, s, (int) (x + (width / 2) - sw), (int) y + 5, ele.format.getColorValue());
+        minecraft.textRenderer.drawWithShadow(matrix, s, (int) (x + (width / 2) - sw), (int) y + 5, Formatting.RED.getColorValue());
     }
 }

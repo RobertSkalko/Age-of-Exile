@@ -17,7 +17,7 @@ public class ClientConfigs {
     public DmgParticleConfig dmgParticleConfig = new DmgParticleConfig();
 
     @ConfigEntry.Gui.CollapsibleObject
-    public OverlayGuiConfig OVERLAY_GUI = new OverlayGuiConfig();
+    public OverlayGuiConfig OVERLAY_BARS = new OverlayGuiConfig();
 
     @ConfigEntry.Gui.CollapsibleObject
     public GuiPartConfig AREA_LVL_OVERLAY = new GuiPartConfig();
@@ -44,17 +44,19 @@ public class ClientConfigs {
 
     public ClientConfigs() {
 
-        if (OVERLAY_GUI.parts.isEmpty()) {
+        if (OVERLAY_BARS.parts.isEmpty()) {
 
-            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.HEALTH, new PointData(-91, -39), IconRenderer.LEFT));
-            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.MANA, new PointData(-91, -49), IconRenderer.LEFT));
-            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.SHIELD, new PointData(-91, -59), IconRenderer.LEFT));
+            OVERLAY_BARS.parts.add(new GuiPartConfig(BarGuiType.HEALTH, new PointData(-91, -39), IconRenderer.LEFT));
+            OVERLAY_BARS.parts.add(new GuiPartConfig(BarGuiType.MANA, new PointData(-91, -49), IconRenderer.LEFT));
+            OVERLAY_BARS.parts.add(new GuiPartConfig(BarGuiType.SHIELD, new PointData(-91, -59), IconRenderer.LEFT));
 
-            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.EXP,
+            OVERLAY_BARS.parts.add(new GuiPartConfig(BarGuiType.BLOCK, new PointData(-91, -79), IconRenderer.LEFT));
+
+            OVERLAY_BARS.parts.add(new GuiPartConfig(BarGuiType.EXP,
                 new PointData(91 - GuiConstants.BAR_WIDTH, -39), IconRenderer.RIGHT));
-            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.HUNGER,
+            OVERLAY_BARS.parts.add(new GuiPartConfig(BarGuiType.HUNGER,
                 new PointData(91 - GuiConstants.BAR_WIDTH, -49), IconRenderer.RIGHT));
-            OVERLAY_GUI.parts.add(new GuiPartConfig(BarGuiType.AIR,
+            OVERLAY_BARS.parts.add(new GuiPartConfig(BarGuiType.AIR,
                 new PointData(91 - GuiConstants.BAR_WIDTH, -59), IconRenderer.RIGHT));
 
             AREA_LVL_OVERLAY = new GuiPartConfig(BarGuiType.NONE, new PointData(160, -25), IconRenderer.NONE);

@@ -10,10 +10,7 @@ import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
 import com.robertx22.library_of_exile.components.EntityInfoComponent;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
@@ -41,57 +38,57 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
             }
 
             if (!(mobKilled instanceof PlayerEntity)) {
-                if (Load.hasUnit(mobKilled)) {
 
-                    UnitData mobKilledData = Load.Unit(mobKilled);
+                UnitData mobKilledData = Load.Unit(mobKilled);
 
-                    LivingEntity killerEntity = EntityInfoComponent.get(mobKilled)
+                LivingEntity killerEntity = EntityInfoComponent.get(mobKilled)
+                    .getDamageStats()
+                    .getHighestDamager((ServerWorld) mobKilled.world);
+
+                if (killerEntity == null) {
+                    try {
+                        if (mobKilled.getRecentDamageSource()
+                            .getAttacker() instanceof PlayerEntity) {
+                            killerEntity = (LivingEntity) mobKilled.getRecentDamageSource()
+                                .getAttacker();
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+
+                if (killerEntity == null) {
+                    if (EntityInfoComponent.get(mobKilled)
                         .getDamageStats()
-                        .getHighestDamager((ServerWorld) mobKilled.world);
+                        .getEnviroOrMobDmg() < mobKilled.getMaxHealth() / 2F) {
+                        killerEntity = onMobDeath.killer;
+                    }
+                }
 
-                    if (killerEntity == null) {
-                        try {
-                            if (mobKilled.getRecentDamageSource()
-                                .getAttacker() instanceof PlayerEntity) {
-                                killerEntity = (LivingEntity) mobKilled.getRecentDamageSource()
-                                    .getAttacker();
-                            }
-                        } catch (Exception e) {
-                        }
+                if (killerEntity instanceof ServerPlayerEntity) {
+
+                    ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
+                    UnitData playerData = Load.Unit(player);
+
+                    EntityConfig config = Database.getEntityConfig(mobKilled, mobKilledData);
+
+                    float loot_multi = (float) config.loot_multi;
+                    float exp_multi = (float) config.exp_multi;
+
+                    if (loot_multi > 0) {
+                        MasterLootGen.genAndDrop(mobKilled, player);
+
+                    }
+                    if (exp_multi > 0) {
+                        GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);
                     }
 
-                    if (killerEntity == null) {
-                        if (EntityInfoComponent.get(mobKilled)
-                            .getDamageStats()
-                            .getEnviroOrMobDmg() < mobKilled.getMaxHealth() / 2F) {
-                            killerEntity = onMobDeath.killer;
-                        }
-                    }
-
-                    if (killerEntity instanceof ServerPlayerEntity) {
-
-                        ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
-                        UnitData playerData = Load.Unit(player);
-
-                        EntityConfig config = Database.getEntityConfig(mobKilled, mobKilledData);
-
-                        float loot_multi = (float) config.loot_multi;
-                        float exp_multi = (float) config.exp_multi;
-
-                        if (loot_multi > 0) {
-                            MasterLootGen.genAndDrop(mobKilled, player);
-
-                        }
-                        if (exp_multi > 0) {
-                            GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);
-                        }
-
-                        if (WorldUtils.isDungeonWorld(mobKilled.world)) {
+                    if (WorldUtils.isDungeonWorld(mobKilled.world)) {
+                        if (EntityTypeUtils.isMob(mobKilled)) {
                             SingleDungeonData dungeon = Load.dungeonData(mobKilled.world).data.get(mobKilled.getBlockPos());
-                            dungeon.quest.increaseProgressBy(player, 1, dungeon.data);
+                            dungeon.quest.increaseProgressBy(player, 1, dungeon);
                         }
-
                     }
+
                 }
 
             }
@@ -114,15 +111,22 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
         exp *= LootUtils.getLevelDistancePunishmentMulti(mobData.getLevel(), killerData.getLevel());
 
+        exp *= Database.MobRarities()
+            .get(mobData.getRarity())
+            .expMulti();
+
+        if (WorldUtils.isDungeonWorld(victim.world)) {
+            SingleDungeonData data = Load.dungeonData(victim.world).data.get(victim.getBlockPos());
+            if (!data.data.isEmpty()) {
+                exp *= data.data.team.lootMulti;
+            }
+        }
+
         float baseexp = exp;
 
         exp += (-1F + multi) * baseexp;
 
         exp += (-1F + ModConfig.get().Server.EXP_GAIN_MULTI) * baseexp;
-
-        exp += (-1F + Database.MobRarities()
-            .get(mobData.getRarity())
-            .expMulti()) * baseexp;
 
         exp += (-1F + Load.favor(killer)
             .getRank().exp_multi) * baseexp;
@@ -144,6 +148,15 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         if ((int) exp > 0) {
 
             List<PlayerEntity> list = TeamUtils.getOnlineTeamMembersInRange(killer);
+
+            int members = list.size() - 1;
+            if (members > 5) {
+                members = 5;
+            }
+
+            float teamMulti = 1 + (0.1F * members);
+
+            exp *= teamMulti;
 
             exp /= list.size();
 

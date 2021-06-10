@@ -3,8 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.special;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectsManager;
+import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
@@ -15,14 +14,11 @@ import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
-import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
-import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
-import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -31,26 +27,13 @@ import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 
+import static com.robertx22.age_of_exile.database.data.stats.Stat.VAL1;
+import static com.robertx22.age_of_exile.database.data.stats.Stat.format;
+
 public class SpecialStats {
 
     public static void init() {
 
-    }
-
-    public static String VAL1 = "[VAL1]";
-    public static String VAL2 = "[VAL2]";
-
-    static Formatting FORMAT = Formatting.GRAY;
-    static Formatting NUMBER = Formatting.GREEN;
-
-    public static String format(String str) {
-
-        str = FORMAT + str;
-
-        str = str.replace(VAL1, NUMBER + VAL1 + FORMAT);
-        str = str.replace(VAL2, NUMBER + VAL2 + FORMAT);
-
-        return str;
     }
 
     static int VOID_EYE_COOLDOWN_MINUTES = 5;
@@ -73,8 +56,11 @@ public class SpecialStats {
 
                 int duration = (int) (60 * 20 * 1);
 
-                ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
-                    .get(BeneficialEffects.VOID_EYE.effectId), effect.source, effect.source, duration);
+                ExilePotionEvent potionEvent = EventBuilder.ofEffect(effect.source, effect.source, Load.Unit(effect.source)
+                    .getLevel(), Database.ExileEffects()
+                    .get(BeneficialEffects.VOID_EYE.effectId), GiveOrTake.give, duration)
+                    .build();
+                potionEvent.Activate();
 
                 effect.sourceData.getCooldowns()
                     .setOnCooldown("void_eye", VOID_EYE_COOLDOWN_MINUTES * 60 * 20);
@@ -105,21 +91,25 @@ public class SpecialStats {
     );
 
     public static SpecialStat MUMMY_CURSE = new SpecialStat("mummy_curse",
-        format("Your immobilizing effects have " + VAL1 + "% " + "chance to apply Curse of the Mummy, increasing "
-            + Stats.STYLE_DAMAGE.get(PlayStyle.magic)
-            .getIconNameFormat()),
+        format("Immobilizing effects have " + VAL1 + "% " + "chance to apply Curse of the Mummy"),
 
         new BasePotionEffect() {
             @Override
             public ExilePotionEvent activate(ExilePotionEvent effect, StatData data, Stat stat) {
-                ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
-                    .get(NegativeEffects.MUMMY_CURSE.effectId), effect.source, effect.target, 20 * 10);
+
+                ExilePotionEvent potionEvent = EventBuilder.ofEffect(effect.source, effect.target, Load.Unit(effect.source)
+                    .getLevel(), Database.ExileEffects()
+                    .get(NegativeEffects.MUMMY_CURSE.effectId), GiveOrTake.give, 20 * 10 * 20)
+                    .build();
+                potionEvent.Activate();
+
                 return effect;
             }
 
             @Override
             public boolean canActivate(ExilePotionEvent effect, StatData data, Stat stat) {
-                return effect.effect.tags.contains(ExileEffect.EffectTags.IMMOBILIZE.name()) && RandomUtils.roll(data.getAverageValue());
+                return Database.ExileEffects()
+                    .get(effect.data.getString(EventData.EXILE_EFFECT)).tags.contains(EffectTags.immobilizing.name()) && RandomUtils.roll(data.getAverageValue());
             }
 
             @Override
@@ -158,30 +148,6 @@ public class SpecialStats {
             @Override
             public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
                 return effect.source.isTouchingWater();
-            }
-        }
-    );
-
-    public static SpecialStat CRIT_BURN = new SpecialStat("crit_burn",
-        format("Your " + Elements.Fire.getIconNameFormat() + " Critical Hits have " + VAL1 + "% " + "chance to cause enemies to burn."),
-
-        new BaseSpecialStatDamageEffect() {
-            @Override
-            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-                ExileEffectsManager.apply(effect.sourceData.getLevel(), Database.ExileEffects()
-                    .get(NegativeEffects.BURN.effectId), effect.source, effect.target, 20 * 10);
-                return effect;
-            }
-
-            @Override
-            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
-                return effect.getElement()
-                    .isFire() && effect.data.getBoolean(EventData.CRIT) && RandomUtils.roll(data.getAverageValue());
-            }
-
-            @Override
-            public EffectSides Side() {
-                return EffectSides.Source;
             }
         }
     );
@@ -264,7 +230,8 @@ public class SpecialStats {
     );
 
     public static SpecialStat HEAL_CLEANSE = new SpecialStat("heal_cleanse",
-        format("Your " + Stats.HEAL_STRENGTH.get().format + Stats.HEAL_STRENGTH.get().icon + " Heal Spells " + Formatting.GRAY + "have a " + VAL1 + "%" + " chance to cleanse you of a negative effect."),
+        format("Your " + Stats.HEAL_STRENGTH.get()
+            .getFormat() + Stats.HEAL_STRENGTH.get().icon + " Heal Spells " + Formatting.GRAY + "have a " + VAL1 + "%" + " chance to cleanse a negative effect."),
 
         new BaseHealEffect() {
             @Override

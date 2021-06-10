@@ -34,10 +34,10 @@ public class ArmorPrefixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("reinforced")
             .Named("Reinforced")
-            .tier(1, new StatModifier(25F, 50F, Armor.getInstance(), ModType.LOCAL_INCREASE))
-            .tier(2, new StatModifier(20F, 25F, Armor.getInstance(), ModType.LOCAL_INCREASE))
-            .tier(3, new StatModifier(10, 20F, Armor.getInstance(), ModType.LOCAL_INCREASE))
-            .tier(4, new StatModifier(5, 10, Armor.getInstance(), ModType.LOCAL_INCREASE))
+            .tier(1, new StatModifier(20, 25, Armor.getInstance(), ModType.LOCAL_INCREASE))
+            .tier(2, new StatModifier(18, 20, Armor.getInstance(), ModType.LOCAL_INCREASE))
+            .tier(3, new StatModifier(15, 18, Armor.getInstance(), ModType.LOCAL_INCREASE))
+            .tier(4, new StatModifier(10, 15, Armor.getInstance(), ModType.LOCAL_INCREASE))
             .includesTags(SlotTag.armor_stat)
             .Prefix()
             .Build();

@@ -51,15 +51,23 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
 
         stack.decrement(1);
         if (player instanceof PlayerEntity) {
+            PlayerEntity p = (PlayerEntity) player;
+
+            for (AlchemyPotionItem x : ModRegistry.ALCHEMY.POTIONS_MAP.values()) {
+                p.getItemCooldownManager()
+                    .set(x, 20 * 15);
+            }
+
             PlayerUtils.giveItem(new ItemStack(Items.GLASS_BOTTLE), (PlayerEntity) player);
         }
         if (!world.isClient) {
+
             EntityCap.UnitData unitdata = Load.Unit(player);
 
             int restore = (int) (tier.percent_healed / 100F * unitdata.getResources()
                 .getMax(player, this.type.resource));
 
-            RestoreResourceEvent event = EventBuilder.ofRestore(player, player, type.resource, RestoreType.heal, restore)
+            RestoreResourceEvent event = EventBuilder.ofRestore(player, player, type.resource, RestoreType.potion, restore)
                 .build();
             event.Activate();
 
@@ -117,7 +125,7 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
                 return null;
             }
 
-            eff.effects_given.add(new StatusEffectData(effect, 6, (int) (this.tier.statMulti * 10)));
+            eff.effects_given.add(new StatusEffectData(effect, 6, (int) (this.tier.statMulti * 20)));
         } catch (Exception e) {
             e.printStackTrace();
         }

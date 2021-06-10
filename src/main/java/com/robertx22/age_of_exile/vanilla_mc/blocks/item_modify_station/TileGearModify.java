@@ -51,7 +51,7 @@ public class TileGearModify extends BaseModificationStation {
 
                         gear.setInstability(gear.getInstability() + insta);
                         if (RandomUtils.roll(chance)) {
-                            gear.sealed = true;
+                            gear.s = true;
                         }
                         Gear.Save(copy, gear);
                     }

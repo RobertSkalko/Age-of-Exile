@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "mmorpg:block/life/stage0"
+    },
+    "age=1": {
+      "model": "mmorpg:block/life/stage1"
+    },
+    "age=2": {
+      "model": "mmorpg:block/life/stage2"
+    },
+    "age=3": {
+      "model": "mmorpg:block/life/stage3"
+    }
+  }
+}

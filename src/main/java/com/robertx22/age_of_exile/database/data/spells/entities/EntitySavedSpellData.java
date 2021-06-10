@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database.data.spells.entities;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpellStatsCalculationEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -17,17 +16,23 @@ import java.util.UUID;
 public class EntitySavedSpellData {
 
     @Store
-    String caster_uuid;
+    String caster_uuid = "";
     @Store
-    String spell_id;
+    String spell_id = "";
     @Store
-    String exile_effect_id;
+    String exile_effect_id = "";
     @Store
-    public String item_id;
+    public String item_id = "";
     @Store
     public int lvl = 1;
-
-    public SpellStatsCalculationEvent.CalculatedSpellConfiguration config = new SpellStatsCalculationEvent.CalculatedSpellConfiguration();
+    @Store
+    public float area_multi = 1;
+    @Store
+    public float proj_speed_multi = 1;
+    @Store
+    public int extra_proj = 0;
+    @Store
+    public boolean pierce = false;
 
     // this is buggy in dev because the player's UUID changes (random name each time game is started)
     // so after restart of game, the caster is null
@@ -49,12 +54,11 @@ public class EntitySavedSpellData {
         return data;
     }
 
-    public static EntitySavedSpellData create(int lvl, LivingEntity caster, Spell spell, SpellStatsCalculationEvent.CalculatedSpellConfiguration config) {
+    public static EntitySavedSpellData create(int lvl, LivingEntity caster, Spell spell) {
         Objects.requireNonNull(caster);
 
         EntitySavedSpellData data = new EntitySavedSpellData();
         data.spell_id = spell.GUID();
-        data.config = config;
         data.lvl = lvl;
         data.caster_uuid = caster.getUuid()
             .toString();

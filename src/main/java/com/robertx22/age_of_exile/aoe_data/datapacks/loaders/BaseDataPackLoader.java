@@ -90,7 +90,7 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
 
             if (reg
                 .isEmpty()) {
-                throw new RuntimeException("Mine and Slash Registry of type " + registryType.id + " is EMPTY after datapack loading!");
+                throw new RuntimeException("Age of Exile Registry of type " + registryType.id + " is EMPTY after datapack loading!");
             } else {
                 // System.out.println(registryType.name() + " Registry succeeded loading: " + reg.getSize() + " datapack entries.");
             }

@@ -22,7 +22,7 @@ public class Mana extends Stat {
         this.scaling = StatScaling.NORMAL;
         this.group = StatGroup.MAIN;
 
-        this.format = Formatting.BLUE;
+        this.format = Formatting.BLUE.getName();
         this.icon = "\u262F";
     }
 

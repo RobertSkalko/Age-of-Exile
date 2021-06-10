@@ -1,34 +1,37 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.google.gson.Gson;
+import com.robertx22.age_of_exile.aoe_data.database.spells.SpellDesc;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
+import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
-import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
-import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellModEnum;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
@@ -46,13 +49,14 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistryEntry<Spell>, IAutoLocName {
+public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistryEntry<Spell>, IAutoLocName, IAutoLocDesc {
     public static Spell SERIALIZER = new Spell();
 
     public static String DEFAULT_EN_NAME = "default_entity_name";
@@ -64,6 +68,23 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     public String identifier = "";
     public AttachedSpell attached = new AttachedSpell();
     public SpellConfiguration config = new SpellConfiguration();
+
+    public boolean manual_tip = false;
+    public List<String> disabled_dims = new ArrayList<>();
+    public String effect_tip = "";
+
+    public transient String locDesc = "";
+    public transient List<StatModifier> statsForSkillGem = new ArrayList<>();
+
+    public boolean isAllowedInDimension(World world) {
+        if (disabled_dims.isEmpty()) {
+            return true;
+        }
+        return disabled_dims.stream()
+            .map(x -> new Identifier(x))
+            .noneMatch(x -> x.equals(MapManager.getResourceLocation(world)));
+
+    }
 
     public AttachedSpell getAttached() {
         return attached;
@@ -119,8 +140,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
     public final void onCastingTick(SpellCastContext ctx) {
 
-        int timesToCast = (int) ctx.calcData.getSpell()
-            .getConfig().times_to_cast;
+        int timesToCast = (int) ctx.spell.getConfig().times_to_cast;
 
         if (timesToCast > 1) {
 
@@ -169,11 +189,22 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         LivingEntity caster = ctx.caster;
 
-        EntitySavedSpellData data = EntitySavedSpellData.create(ctx.calcData.level, caster, this, ctx.spellConfig);
-
         ctx.castedThisTick = true;
 
+        if (ctx.caster instanceof PlayerEntity) {
+            if (ctx.spell.config.tags.contains(SpellTag.technique)) {
+                ctx.spellsCap
+                    .getCastingData()
+                    .onAction((PlayerEntity) ctx.caster, PlayerAction.TECHNIQUE);
+            } else {
+                ctx.spellsCap
+                    .getCastingData()
+                    .onAction((PlayerEntity) ctx.caster, PlayerAction.SPELL);
+            }
+        }
+
         if (this.config.swing_arm) {
+            caster.handSwingTicks = -1; // this makes sure hand swings
             caster.swingHand(Hand.MAIN_HAND);
         }
 
@@ -181,30 +212,15 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             ctx.spellsCap.triggerAura(this);
         }
 
-        attached.onCast(SpellCtx.onCast(caster, data));
+        attached.onCast(SpellCtx.onCast(caster, ctx.calcData));
     }
 
     public final int getCooldownTicks(SpellCastContext ctx) {
-
-        float multi = ctx.spellConfig.getMulti(SpellModEnum.COOLDOWN);
-
-        float ticks = config.cooldown_ticks * multi;
-
-        if (config.getCastTimeTicks() == 0) {
-            float castspeed = ctx.spellConfig.getMulti(SpellModEnum.CAST_SPEED);
-            ticks *= castspeed;
-        }
-
-        if (ticks < 1) {
-            return 1; // cant go lower than 1 tick!!!
-        }
-
-        return (int) ticks;
+        return (int) ctx.event.data.getNumber(EventData.COOLDOWN_TICKS).number;
     }
 
     public final int getCastTimeTicks(SpellCastContext ctx) {
-        float multi = ctx.spellConfig.getMulti(SpellModEnum.CAST_SPEED);
-        return (int) (config.getCastTimeTicks() * multi);
+        return (int) ctx.event.data.getNumber(EventData.CAST_TICKS).number;
     }
 
     @Override
@@ -235,6 +251,18 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             return true;
         }
 
+        if (!ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.isEmpty()) {
+            Identifier id = ctx.caster.world.getRegistryManager()
+                .getDimensionTypes()
+                .getId(ctx.caster.world.getDimension());
+
+            if (ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.stream()
+                .anyMatch(x -> x.equals(id.toString()))) {
+                return false;
+            }
+
+        }
+
         if (this.isAura()) {
             if (!ctx.spellsCap.getCastingData().auras.getOrDefault(GUID(), new SpellCastingData.AuraData()).active) { // if not active
                 if (ctx.spellsCap.getManaReservedByAuras() + aura_data.mana_reserved > 1) {
@@ -248,6 +276,13 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
             EntityCap.UnitData data = Load.Unit(caster);
 
             if (data != null) {
+
+                if (!isAllowedInDimension(caster.world)) {
+                    if (caster instanceof PlayerEntity) {
+                        ((PlayerEntity) caster).sendMessage(new LiteralText("You feel an entity watching you. [Spell can not be casted in this dimension]"), false);
+                    }
+                    return false;
+                }
 
                 SpendResourceEvent rctx = getManaCostCtx(ctx);
 
@@ -284,45 +319,55 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
     }
 
     public final int getCalculatedManaCost(SpellCastContext ctx) {
-        float manaCostMulti = ctx.spellConfig.getMulti(SpellModEnum.MANA_COST);
-
-        int lvl = ctx.calcData.level;
-
-        if (config.scale_mana_cost_to_player_lvl) {
-            lvl = ctx.data.getLevel();
-        }
-
-        float scaling = GameBalanceConfig.get().MANA_COST_SCALING.getMultiFor(lvl);
-
-        return (int) (getConfig().mana_cost * manaCostMulti * scaling);
+        return (int) ctx.event.data.getNumber(EventData.MANA_COST).number;
     }
 
-    public final List<Text> GetTooltipString(SkillGemData gem, TooltipInfo info, CalculatedSpellData data) {
+    public final List<Text> GetTooltipString(SkillGemData gem, Spell spell, TooltipInfo info) {
 
-        SpellCastContext ctx = new SpellCastContext(gem, info.player, 0, data);
+        SpellCastContext ctx = new SpellCastContext(gem, info.player, 0, spell);
 
         List<Text> list = new ArrayList<>();
 
         TooltipUtils.addEmpty(list);
 
         if (Screen.hasShiftDown()) {
-            list.addAll(attached
-                .getTooltip(data));
+
+            if (!this.manual_tip) {
+                list.addAll(attached
+                    .getTooltip(ctx.calcData));
+            } else {
+                SpellDesc.getTooltip(this, ctx.calcData.lvl)
+                    .forEach(x -> list.add(new LiteralText(x)));
+            }
         }
 
         TooltipUtils.addEmpty(list);
 
+        if (this.config.tags.contains(SpellTag.technique)) {
+            list.add(new LiteralText(Formatting.RED + "Technique Skill"));
+        }
+
         if (!this.isAura()) {
             list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
-            list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
+            if (config.usesCharges()) {
+                list.add(new LiteralText(Formatting.YELLOW + "Max Charges: " + config.charges));
+                list.add(new LiteralText(Formatting.YELLOW + "Charge Regen: " + config.charge_regen / 20 + "s"));
+
+            } else {
+                list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
+            }
             list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getCastTimeTicks(ctx) + "s"));
 
         } else {
             list.addAll(this.aura_data.GetTooltipString(this, ctx.skillGemData, new TooltipInfo((PlayerEntity) ctx.caster)));
         }
 
+        if (isAura()) {
+            list.add(new LiteralText(Formatting.BLUE + "Mana Reserved: " + aura_data.mana_reserved * 100 + "%"));
+        }
+
         TooltipUtils.addEmpty(list);
-        if (config.isTechnique()) {
+        if (config.hasActionRequirements()) {
 
             MutableText txt = new LiteralText("Cast Requirement: ");
 
@@ -350,6 +395,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
             Set<ExileEffect> effect = new HashSet<>();
 
+            if (Database.ExileEffects()
+                .isRegistered(effect_tip)) {
+                effect.add(Database.ExileEffects()
+                    .get(effect_tip));
+            }
+
             try {
                 this.getAttached()
                     .getAllComponents()
@@ -364,7 +415,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
                 e.printStackTrace();
             }
             try {
-                effect.forEach(x -> list.addAll(x.GetTooltipString(info, data)));
+                effect.forEach(x -> list.addAll(x.GetTooltipString(info, ctx.calcData)));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -407,4 +458,18 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         return locName;
     }
 
+    @Override
+    public AutoLocGroup locDescGroup() {
+        return AutoLocGroup.Spells;
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return "spell.desc." + GUID();
+    }
+
+    @Override
+    public String locDescForLangFile() {
+        return locDesc;
+    }
 }

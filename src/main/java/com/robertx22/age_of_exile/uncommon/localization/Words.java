@@ -6,10 +6,13 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import java.util.Locale;
 
 public enum Words implements IAutoLocName {
+    Solo("Solo"),
+    Duo("Duo"),
+    Team("Team"),
     DungeonKey("Dungeon Key"),
     SavesNamedOrEnchanted("Doesn't auto salvage named or enchanted items."),
     BagUpgradeDesc("Backpack Upgrade Item."),
-    DidYouKnow("Did you know?"),
+    DidYouKnow("Did You Know?"),
     BlacksmithDesc("Blacksmithing turns stones and minerals into useful tools."),
     AlchemyDesc("Alchemy is about making potions in the alchemy station."),
     CookingDesc("Cooking is about creating foods that give helpful buffs to help you in your journey! Farming provides wheat, and Fishing provides fish."),
@@ -110,7 +113,7 @@ public enum Words implements IAutoLocName {
     CooldownSeconds("Cooldown Seconds"), NatureBalm("Nature's Balm"),
 
     CooldownTicks("Cooldown Ticks"),
-    CastSpeed("Cast speed"),
+    CastSpeed("Cast Speed"),
     ManaCost("Mana Cost"),
     ProjectileSpeed("Projectile Speed"),
     Cooldown("Cooldown"),
@@ -128,8 +131,8 @@ public enum Words implements IAutoLocName {
 
     Chance("Chance"),
 
-    IsNotMaxRarity("Is not max rarity"),
-    IsNotMaxTier("Is not max tier"),
+    IsNotMaxRarity("Is not max rarity."),
+    IsNotMaxTier("Is not max tier."),
 
     CooldownReductionEfficiency("Cooldown Reduction Efficiency"),
 
@@ -138,7 +141,7 @@ public enum Words implements IAutoLocName {
     TickRate("Tick Rate"),
 
     TimesToCast("Times to Cast"),
-
+    Technique("Technique"),
     Amount("Amount"),
 
     RightClickToTeleport("Use to teleport back from Adventure Map."),
@@ -171,57 +174,7 @@ public enum Words implements IAutoLocName {
 
     Cleric("Cleric"),
 
-    HeartOfIce("Heart of Ice"),
-
-    ThornArmor("Thorn Armor"),
-
-    PoisonedWeapons("Poisoned Weapons"),
-
-    BlazingInferno("Blazing Inferno"), SpearOfJudgement("Spear of Judgement"),
-
-    DivineTribulation("Divine Tribulation"), PurifyingFires("Purifying Fires"),
-
-    Fireball("Fireball"), FireBomb("Fire Bombs"),
-
-    PoisonBall("Poison Ball"),
-
-    Frostball("Frostball"),
-
-    ThunderSpear("Thunder Spear"),
-
-    ThunderDash("Thunder Dash"), TripleSlash("Triple Slash"),
-
-    Thunderstorm("Thunderstorm"), Stealth("Stealth"),
-
-    ArrowBarrage("Arrow Barrage"), WideShot("Wide Shot"),
-
-    ArrowStorm("Arrow Storm"),
-
-    RecoilShot("Recoil Shot"), TidalWave("Tidal Wave"),
-
-    ThrowFlames("Throw Flames"),
-
-    LightningTotem("Lightning Totem"), HealingAura("Healing Aura"),
-
-    Volcano("Volcano"),
-
-    Blizzard("Blizzard"),
-
     ClickToOpen("Click to Open"),
-
-    Whirpool("Whirpool"),
-
-    Geyser("Geyser"),
-
-    GorgonsGaze("Gorgon's Gaze"),
-
-    Regenerate("Regenerate"),
-
-    InstantHeal("Instant Heal"),
-
-    RighteousFury("Righteous Fury"),
-
-    DivineShield("Divine Shield"), Imbue("Imbue"),
 
     Spellbar("Spellbar"),
 
@@ -244,11 +197,11 @@ public enum Words implements IAutoLocName {
     StatPoints("Stat Points"),
 
     MapInfo("Map Info"),
-    CharacterSelect("Hero Select"),
+    Loadouts("Loadouts"),
 
     Compendium("Compendium"),
 
-    KillMobsCollectRarityPoints("Kill mobs, collect rarity points"),
+    KillMobsCollectRarityPoints("Kill mobs, collect rarity points!"),
 
     KillMobs("Kill Mobs"),
 
@@ -325,7 +278,7 @@ public enum Words implements IAutoLocName {
 
     IsCommon("Is Common Rarity"),
 
-    LvlLessThanMax("Lvl Less than max lvl"),
+    LvlLessThanMax("Lvl less than max lvl"),
 
     NoSuffix("Doesn't have suffix"),
     HasHigherRarity("Has higher rarity"),

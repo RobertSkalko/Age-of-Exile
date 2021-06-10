@@ -30,12 +30,14 @@ public class ItemSlotButton extends TexturedButtonWidget {
     public boolean renderFancyBorder = false;
 
     public ItemSlotButton(ItemStack stack, int xPos, int yPos) {
-        super(xPos + 1, yPos + 1, xSize, ySize, 0, 0, ySize + 1, buttonLoc, (button) -> {
-
+        this(stack, xPos, yPos, (button) -> {
         });
-
         this.stack = stack;
+    }
 
+    public ItemSlotButton(ItemStack stack, int xPos, int yPos, PressAction onclick) {
+        super(xPos + 1, yPos + 1, xSize, ySize, 0, 0, ySize + 1, buttonLoc, onclick);
+        this.stack = stack;
     }
 
     @Override

@@ -14,8 +14,8 @@ public enum PlayerCaps {
         }
 
         @Override
-        public boolean shouldSaveToPlayerCharacter() {
-            return true;
+        public boolean shouldSaveToLoadout() {
+            return false;
         }
     },
     STAT_POINTS {
@@ -25,7 +25,7 @@ public enum PlayerCaps {
         }
 
         @Override
-        public boolean shouldSaveToPlayerCharacter() {
+        public boolean shouldSaveToLoadout() {
             return true;
         }
     },
@@ -36,7 +36,7 @@ public enum PlayerCaps {
         }
 
         @Override
-        public boolean shouldSaveToPlayerCharacter() {
+        public boolean shouldSaveToLoadout() {
             return false;
         }
     },
@@ -47,7 +47,7 @@ public enum PlayerCaps {
         }
 
         @Override
-        public boolean shouldSaveToPlayerCharacter() {
+        public boolean shouldSaveToLoadout() {
             return false;
         }
     },
@@ -58,7 +58,7 @@ public enum PlayerCaps {
         }
 
         @Override
-        public boolean shouldSaveToPlayerCharacter() {
+        public boolean shouldSaveToLoadout() {
             return false;
         }
     },
@@ -69,7 +69,7 @@ public enum PlayerCaps {
         }
 
         @Override
-        public boolean shouldSaveToPlayerCharacter() {
+        public boolean shouldSaveToLoadout() {
             return false;
         }
     },
@@ -80,18 +80,18 @@ public enum PlayerCaps {
         }
 
         @Override
-        public boolean shouldSaveToPlayerCharacter() {
+        public boolean shouldSaveToLoadout() {
             return false;
         }
     },
-    CHARACTERS {
+    LOADOUTS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.characters(player);
+            return Load.loadouts(player);
         }
 
         @Override
-        public boolean shouldSaveToPlayerCharacter() {
+        public boolean shouldSaveToLoadout() {
             return false;
         }
     },
@@ -102,7 +102,7 @@ public enum PlayerCaps {
         }
 
         @Override
-        public boolean shouldSaveToPlayerCharacter() {
+        public boolean shouldSaveToLoadout() {
             return true;
         }
     },
@@ -113,7 +113,7 @@ public enum PlayerCaps {
         }
 
         @Override
-        public boolean shouldSaveToPlayerCharacter() {
+        public boolean shouldSaveToLoadout() {
             return true;
         }
     };
@@ -124,6 +124,6 @@ public enum PlayerCaps {
 
     public abstract ICommonPlayerCap getCap(PlayerEntity player);
 
-    public abstract boolean shouldSaveToPlayerCharacter();
+    public abstract boolean shouldSaveToLoadout();
 
 }

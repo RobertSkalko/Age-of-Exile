@@ -4,11 +4,8 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEn
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.tooltips.StatTooltipType;
-import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -35,7 +32,6 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
 
     public PerkType type;
     public String identifier;
-    public String spell = "";
     public String lock_under_adv = "";
     public String icon = "";
     public String one_of_a_kind = null;
@@ -53,7 +49,6 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
 
         data.type = PerkType.valueOf(buf.readString(50));
         data.identifier = buf.readString(100);
-        data.spell = buf.readString(80);
         data.lock_under_adv = buf.readString(100);
         data.icon = buf.readString(150);
         data.one_of_a_kind = buf.readString(80);
@@ -77,7 +72,6 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     public void toBuf(PacketByteBuf buf) {
         buf.writeString(type.name(), 100);
         buf.writeString(identifier, 100);
-        buf.writeString(spell, 80);
         buf.writeString(lock_under_adv, 100);
         buf.writeString(icon, 150);
 
@@ -108,17 +102,11 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
         List<Text> list = new ArrayList<>();
-        Spell spell = getSpell();
 
         try {
 
             if (this.type != PerkType.STAT) {
                 list.add(locName().formatted(type.format));
-            }
-
-            if (spell != null && !spell.GUID()
-                .isEmpty()) {
-                list.addAll(new SpellCastContext(info.player, 0, getSpell()).calcData.GetTooltipString(info));
             }
 
             info.statTooltipType = StatTooltipType.BASE_LOCAL_STATS;
@@ -181,7 +169,7 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
         STAT(2, 24, 24, 39, Formatting.WHITE),
         SPECIAL(3, 28, 28, 77, Formatting.LIGHT_PURPLE),
         MAJOR(1, 33, 33, 1, Formatting.RED),
-        START(4, 23, 23, 115, Formatting.YELLOW),
+        START(4, 35, 35, 115, Formatting.YELLOW),
         SPELL_MOD(5, 26, 26, 153, Formatting.BLACK);
 
         int order;
@@ -211,11 +199,6 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
 
     public PerkType getType() {
         return type;
-    }
-
-    public Spell getSpell() {
-        return Database.Spells()
-            .get(spell);
     }
 
     public boolean isLockedToPlayer(PlayerEntity player) {

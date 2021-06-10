@@ -23,6 +23,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.GearStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.ExtraMobRarityAttributes;
@@ -35,12 +36,11 @@ import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -70,7 +70,11 @@ public class Unit {
         SPELL1(0),
         SPELL2(1),
         SPELL3(2),
-        SPELL4(3);
+        SPELL4(3),
+        SPELL5(4),
+        SPELL6(5),
+        SPELL7(6),
+        SPELL8(7);
 
         StatContainerType(int place) {
             this.place = place;
@@ -224,6 +228,8 @@ public class Unit {
     private void calcSets(List<GearData> gears) {
         sets.clear();
 
+        List<String> setUniqueids = new ArrayList<>();
+
         // todo possibly cache it?
         gears.forEach(x -> {
             if (x.gear != null) {
@@ -231,12 +237,14 @@ public class Unit {
                     UniqueGear uniq = x.gear.uniqueStats.getUnique(x.gear);
                     if (uniq != null) {
                         if (uniq.hasSet()) {
-                            GearSet set = uniq.getSet();
-                            String key = set
-                                .GUID();
-                            int current = sets.getOrDefault(key, 0);
-                            sets.put(key, current + 1);
-
+                            if (!setUniqueids.contains(uniq.GUID())) {
+                                setUniqueids.add(uniq.GUID());
+                                GearSet set = uniq.getSet();
+                                String key = set
+                                    .GUID();
+                                int current = sets.getOrDefault(key, 0);
+                                sets.put(key, current + 1);
+                            }
                         }
                     }
                 }
@@ -289,8 +297,6 @@ public class Unit {
 
                 Load.statPoints((PlayerEntity) entity).data.addStats(data);
                 statContexts.addAll(PlayerStatUtils.AddPlayerBaseStats(entity));
-                statContexts.addAll(Load.characters((PlayerEntity) entity)
-                    .getStats());
                 statContexts.addAll(Load.perks(entity)
                     .getStatAndContext(entity));
                 statContexts.addAll(Load.playerSkills((PlayerEntity) entity)
@@ -377,15 +383,20 @@ public class Unit {
                         StatContainer copy = getStats().cloneForSpellStats();
                         stats.put(type, copy);
 
-                        List<SkillGemData> supportGems = Load.spells(entity)
+                        List<SkillGemData> gems = Load.spells(entity)
                             .getSkillGemData()
                             .getSupportGemsOf(type.place);
+                        gems.add(Load.spells(entity)
+                            .getSkillGemData()
+                            .getSkillGemOf(type.place));
+
+                        gems.removeIf(x -> x == null);
 
                         List<SkillGemData> noGemDuplicateList = new ArrayList<>();
 
                         Set<String> gemIdSet = new HashSet<>();
 
-                        supportGems.forEach(x -> {
+                        gems.forEach(x -> {
                             if (!gemIdSet.contains(x.id)) {// dont allow duplicate gems
                                 noGemDuplicateList.add(x);
                                 gemIdSet.add(x.id);
@@ -393,9 +404,10 @@ public class Unit {
 
                         });
 
-                        for (SkillGemData sd : noGemDuplicateList) {
+                        noGemDuplicateList.removeIf(x -> x == null || x.getSkillGem() == null);
 
-                            if (true || sd.canPlayerUse((PlayerEntity) entity)) {
+                        for (SkillGemData sd : noGemDuplicateList) {
+                            try {
                                 sd.getSkillGem()
                                     .getConstantStats(sd)
                                     .forEach(s -> {
@@ -408,7 +420,8 @@ public class Unit {
                                         copy.getStatInCalculation(s.getStat())
                                             .add(s, data);
                                     });
-
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
                         }
 
@@ -425,6 +438,13 @@ public class Unit {
             }
 
             DirtyCheck aftercalc = getDirtyCheck();
+
+            Cached.VANILLA_STAT_UIDS_TO_CLEAR_EVERY_STAT_CALC.forEach(x -> {
+                EntityAttributeInstance in = entity.getAttributeInstance(x.left);
+                if (in.getModifier(x.right) != null) {
+                    in.removeModifier(x.right);
+                }
+            });
 
             this.getStats().stats.values()
                 .forEach(x -> {
@@ -483,26 +503,13 @@ public class Unit {
 
     }
 
-    private static HashMap<EntityType, Boolean> IGNORED_ENTITIES = null;
-
-    public static HashMap<EntityType, Boolean> getIgnoredEntities() {
-
-        if (IGNORED_ENTITIES == null) {
-            IGNORED_ENTITIES = new HashMap<>();
-            ModConfig.get().Server.IGNORED_ENTITIES
-                .stream()
-                .filter(x -> Registry.ENTITY_TYPE.getOrEmpty(new Identifier(x))
-                    .isPresent())
-                .map(x -> Registry.ENTITY_TYPE.get(new Identifier(x)))
-                .forEach(x -> IGNORED_ENTITIES.put(x, true));
-        }
-
-        return IGNORED_ENTITIES;
-
-    }
-
     public static boolean shouldSendUpdatePackets(LivingEntity en) {
-        return !getIgnoredEntities().containsKey(en.getType());
+        if (ModConfig.get().Server.DONT_SYNC_DATA_OF_AMBIENT_MOBS) {
+            return en.getType()
+                .getSpawnGroup() != SpawnGroup.AMBIENT && en.getType()
+                .getSpawnGroup() != SpawnGroup.WATER_AMBIENT;
+        }
+        return true;
     }
 
     public static MyPacket getUpdatePacketFor(LivingEntity en, UnitData data) {

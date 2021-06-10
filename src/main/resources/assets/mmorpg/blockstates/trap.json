@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "mmorpg:block/trap" },
+        "facing=south": { "model": "mmorpg:block/trap", "y": 180 },
+        "facing=west":  { "model": "mmorpg:block/trap", "y": 270 },
+        "facing=east":  { "model": "mmorpg:block/trap", "y": 90 }
+    }
+}

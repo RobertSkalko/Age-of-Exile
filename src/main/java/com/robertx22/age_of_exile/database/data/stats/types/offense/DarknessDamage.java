@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.database.data.stats.types.offense;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageIncreaseEffect;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -45,7 +44,7 @@ public class DarknessDamage extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return SpecialStats.format("You deal up to " + SpecialStats.VAL1 + "% more damage when surrounded by darkness.");
+        return Stat.format("You deal up to " + Stat.VAL1 + "% more damage when surrounded by darkness.");
     }
 
     private static class Effect extends BaseDamageIncreaseEffect {

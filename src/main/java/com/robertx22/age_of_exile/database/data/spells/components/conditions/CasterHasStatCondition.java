@@ -4,12 +4,12 @@ import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
+import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.saveclasses.item_classes.CalculatedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -26,12 +26,12 @@ public class CasterHasStatCondition extends EffectCondition implements ICMainToo
     }
 
     @Override
-    public List<MutableText> getLines(AttachedSpell spell, MapHolder data, CalculatedSpellData spelldata) {
+    public List<MutableText> getLines(AttachedSpell spell, MapHolder holder, EntitySavedSpellData savedData) {
         List<MutableText> list = new ArrayList<>();
         MutableText text = new LiteralText("");
 
         Stat mod = Database.Stats()
-            .get(data.get(MapField.SPELL_MODIFIER));
+            .get(holder.get(MapField.SPELL_MODIFIER));
 
         text.append("Spell Modifier: ")
             .append(mod.locName())

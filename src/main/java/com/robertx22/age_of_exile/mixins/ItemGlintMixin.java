@@ -19,17 +19,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(HandledScreen.class)
 public class ItemGlintMixin {
 
-    @Inject(method = "drawSlot(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/screen/slot/Slot;)V", at = @At(value = "HEAD"),
-        cancellable = true)
+    @Inject(method = "drawSlot(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/screen/slot/Slot;)V", at = @At(value = "HEAD"))
     private void drawMyGlint(MatrixStack matrices, Slot slot, CallbackInfo ci) {
 
         try {
+            HandledScreen screen = (HandledScreen) (Object) this;
+
             if (ModConfig.get().client.RENDER_ITEM_RARITY_BACKGROUND) {
                 ItemStack stack = slot.getStack();
 
                 if (Gear.has(stack)) {
-
-                    HandledScreen screen = (HandledScreen) (Object) this;
 
                     GearItemData gear = Gear.Load(stack);
 
@@ -58,6 +57,7 @@ public class ItemGlintMixin {
                     RenderSystem.disableBlend();
                 }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

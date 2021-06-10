@@ -29,6 +29,8 @@ public class ResourcesData {
     private float mana = 0;
     @Store
     private float blood = 0;
+    @Store
+    public float block = 0;
 
     @Store
     public AllShieldsData shields = new AllShieldsData();
@@ -39,6 +41,24 @@ public class ResourcesData {
 
     public float getBlood() {
         return blood;
+    }
+
+    public float getBlock() {
+        return block;
+    }
+
+    public void onTickBlock(PlayerEntity player) {
+        if (player.isBlocking()) {
+            Load.Unit(player)
+                .getResources()
+                .block--;
+        } else {
+            Load.Unit(player)
+                .getResources()
+                .block++;
+        }
+
+        this.cap(player, ResourceType.block);
     }
 
     public float getShield() {
@@ -62,6 +82,8 @@ public class ResourcesData {
             return getShield();
         } else if (type == ResourceType.blood) {
             return blood;
+        } else if (type == ResourceType.block) {
+            return block;
         } else if (type == ResourceType.health) {
             return HealthUtils.getCurrentHealth(en);
         }
@@ -72,6 +94,9 @@ public class ResourcesData {
     public float getMax(LivingEntity en, ResourceType type) {
         UnitData data = Load.Unit(en);
 
+        if (type == ResourceType.block) {
+            return 100F;
+        }
         if (type == ResourceType.shield) {
             return data.getUnit()
                 .healthData()
@@ -107,6 +132,9 @@ public class ResourcesData {
         }
         if (type == ResourceType.mana) {
             mana = getModifiedValue(en, type, use, amount);
+        }
+        if (type == ResourceType.block) {
+            block = getModifiedValue(en, type, use, amount);
         } else if (type == ResourceType.blood) {
             blood = getModifiedValue(en, type, use, amount);
         } else if (type == ResourceType.health) {
@@ -125,6 +153,9 @@ public class ResourcesData {
         } else if (type == ResourceType.blood) {
             blood = MathHelper.clamp(blood, 0, Load.Unit(en)
                 .getMaximumResource(type));
+        }
+        if (type == ResourceType.block) {
+            block = MathHelper.clamp(block, -100, 100);
         }
     }
 

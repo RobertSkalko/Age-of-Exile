@@ -21,6 +21,21 @@ public class PointData {
         this.y = y;
     }
 
+    public int distanceTo(PointData other) {
+        return Math.abs(x - other.x) + Math.abs(y - other.y);
+    }
+
+    public boolean isInDungeonRangeOf(PointData other) {
+        if (x == other.x && Math.abs(y - other.y) < 2) {
+            return true;
+        }
+        if (y == other.y && Math.abs(x - other.x) < 2) {
+            return true;
+        }
+        return false;
+
+    }
+
     @Override
     public String toString() {
         return x + "_" + y;

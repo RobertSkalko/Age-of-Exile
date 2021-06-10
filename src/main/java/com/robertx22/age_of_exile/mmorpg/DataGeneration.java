@@ -11,14 +11,18 @@ public class DataGeneration {
 
     public static void generateAll() {
 
-        new RecipeGenerator().run();
-        new LootTableGenerator().run();
+        try {
+            new RecipeGenerator().run();
+            new LootTableGenerator().run();
 
-        ModpackerHelperLists.generate();
+            ModpackerHelperLists.generate();
 
-        CreateLangFile.create();
-        GenerateCurioDataJsons.generate();
-        ItemModelManager.INSTANCE.generateModels();
+            CreateLangFile.create();
+            GenerateCurioDataJsons.generate();
+            ItemModelManager.INSTANCE.generateModels();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

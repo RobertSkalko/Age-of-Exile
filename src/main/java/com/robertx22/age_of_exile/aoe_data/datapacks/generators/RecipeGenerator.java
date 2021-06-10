@@ -259,13 +259,6 @@ public class RecipeGenerator {
                 "SS "
             };
         }
-        if (tags.contains(SlotTag.wand)) {
-            return new String[]{
-                "  M",
-                " M ",
-                "S  "
-            };
-        }
         if (tags.contains(SlotTag.scythe)) {
             return new String[]{
                 "  M",

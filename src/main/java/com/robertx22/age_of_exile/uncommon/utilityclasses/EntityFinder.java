@@ -3,108 +3,22 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class EntityFinder {
 
-    static boolean isTamed(LivingEntity x) {
+    public static boolean isTamed(LivingEntity x) {
         if (x instanceof TameableEntity) {
             TameableEntity tame = (TameableEntity) x;
             return tame.isTamed();
         }
         return false;
-    }
-
-    private static boolean isPlayer(Entity en) {
-        return en instanceof PlayerEntity;
-    }
-
-    public enum EntityPredicate {
-        ALLIES() {
-            @Override
-            public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup) {
-                return list.stream()
-                    .filter(x -> {
-                        if (setup.isCasterPlayer()) {
-                            if (isPlayer(x)) {
-                                if (x.world.isClient) {
-                                    return true;
-                                } else {
-                                    if (setup.caster.isPartOf(x)) {
-                                        return true;
-                                    }
-
-                                    return TeamUtils.areOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
-                                }
-                            } else {
-                                return isTamed(x);
-                            }
-
-                        } else {
-                            return x instanceof PlayerEntity == false && !isTamed(x);
-                        }
-                    })
-                    .collect(Collectors.toList());
-            }
-
-            @Override
-            public boolean includesCaster() {
-                return true;
-            }
-        },
-        ENEMIES {
-            @Override
-            public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup) {
-                return list.stream()
-                    .filter(x -> {
-                            if (setup.isCasterPlayer()) {
-                                if (isPlayer(x)) {
-                                    if (x.world.isClient) {
-                                        return false;
-                                    } else {
-                                        return !TeamUtils.areOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
-                                    }
-                                } else {
-                                    return !isTamed(x);
-                                }
-                            } else
-                                return isPlayer(x);
-                        }
-                    )
-                    .collect(Collectors.toList());
-            }
-
-            @Override
-            public boolean includesCaster() {
-                return false;
-            }
-        },
-        ALL {
-            @Override
-            public <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup) {
-                return list;
-            }
-
-            @Override
-            public boolean includesCaster() {
-                return true;
-            }
-        };
-
-        public abstract <T extends LivingEntity> List<T> getMatchingEntities(List<T> list, Setup setup);
-
-        public abstract boolean includesCaster();
     }
 
     public enum SelectionType {
@@ -204,7 +118,7 @@ public class EntityFinder {
 
         Class<T> entityType;
         SelectionType selectionType = SelectionType.RADIUS;
-        EntityPredicate entityPredicate = EntityPredicate.ENEMIES;
+        AllyOrEnemy entityPredicate = AllyOrEnemy.enemies;
         LivingEntity caster;
         boolean forceExcludeCaster = false;
         World world;
@@ -214,8 +128,6 @@ public class EntityFinder {
         double vertical = 1;
         boolean addTestParticles = false;
 
-        List<Predicate<T>> predicates = new ArrayList();
-
         double distanceToSearch = 10;
 
         public Setup(LivingEntity caster, Class<T> entityType, Vec3d pos) {
@@ -224,10 +136,6 @@ public class EntityFinder {
             this.caster = caster;
             this.world = caster.world;
             this.pos = pos;
-        }
-
-        public boolean isCasterPlayer() {
-            return caster instanceof PlayerEntity;
         }
 
         public List<T> build() {
@@ -240,11 +148,7 @@ public class EntityFinder {
 
             list.removeIf(x -> x == null);
 
-            for (Predicate<T> predicate : predicates) {
-                list.removeIf(y -> !predicate.test(y));
-            }
-
-            list = this.entityPredicate.getMatchingEntities(list, this);
+            list = this.entityPredicate.getMatchingEntities(list, this.caster);
 
             if (forceExcludeCaster || !entityPredicate.includesCaster()) {
                 list.removeIf(x -> x == caster);
@@ -256,17 +160,12 @@ public class EntityFinder {
 
         }
 
-        public Setup<T> addPredicate(Predicate<T> p) {
-            this.predicates.add(p);
-            return this;
-        }
-
         public Setup<T> finder(SelectionType f) {
             this.selectionType = f;
             return this;
         }
 
-        public Setup<T> searchFor(EntityPredicate f) {
+        public Setup<T> searchFor(AllyOrEnemy f) {
             this.entityPredicate = f;
             return this;
         }

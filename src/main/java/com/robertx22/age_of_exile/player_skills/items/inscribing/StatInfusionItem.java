@@ -126,24 +126,25 @@ public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, 
                 if (Gear.has(stack)) {
                     gear = Gear.Load(stack);
 
-                    if (RandomUtils.roll(upgradeChance())) {
-
-                        List<Affix.Type> types = Arrays.asList(Affix.Type.prefix, Affix.Type.suffix);
-                        Affix.Type type = RandomUtils.randomFromList(types);
-
-                        if (gear.affixes.pre.size() > gear.affixes.suf.size()) {
-                            type = Affix.Type.suffix;
-                        } else if (gear.affixes.suf.size() > gear.affixes.pre.size()) {
-                            type = Affix.Type.prefix;
-                        }
-
-                        AffixData affix = new AffixData(type);
-                        affix.RerollFully(gear);
-                        gear.affixes.add(affix);
-
-                    }
                 } else {
                     gear = b.createData();
+                }
+
+                if (RandomUtils.roll(upgradeChance())) {
+
+                    List<Affix.Type> types = Arrays.asList(Affix.Type.prefix, Affix.Type.suffix);
+                    Affix.Type type = RandomUtils.randomFromList(types);
+
+                    if (gear.affixes.pre.size() > gear.affixes.suf.size()) {
+                        type = Affix.Type.suffix;
+                    } else if (gear.affixes.suf.size() > gear.affixes.pre.size()) {
+                        type = Affix.Type.prefix;
+                    }
+
+                    AffixData affix = new AffixData(type);
+                    affix.RerollFully(gear);
+                    gear.affixes.add(affix);
+
                 }
 
                 gear.saveToStack(stack);

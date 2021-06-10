@@ -9,7 +9,7 @@ public class TreasureQuantity extends Stat {
     private TreasureQuantity() {
         this.group = StatGroup.Misc;
         this.icon = "\u2663";
-        this.format = Formatting.YELLOW;
+        this.format = Formatting.YELLOW.getName();
     }
 
     public static TreasureQuantity getInstance() {

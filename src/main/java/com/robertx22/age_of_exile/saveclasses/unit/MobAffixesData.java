@@ -40,6 +40,7 @@ public class MobAffixesData {
         this.affixes.clear();
 
         if (amount > 0) {
+
             this.affixes.add(Database.MobAffixes()
                 .random()
                 .GUID());

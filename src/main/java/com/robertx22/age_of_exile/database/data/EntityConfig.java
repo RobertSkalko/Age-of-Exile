@@ -3,13 +3,13 @@ package com.robertx22.age_of_exile.database.data;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
-import com.robertx22.age_of_exile.database.data.stats.types.spell_calc.ProjectileSpeed;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
@@ -41,8 +41,6 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
         this.loot_multi = loot;
         this.exp_multi = loot;
     }
-
-    public static EntityConfig EMPTY = new EntityConfig();
 
     public String identifier = "";
 
@@ -145,18 +143,22 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
 
     public static SpecialMobStats LESS_DROPS = new SpecialMobStats(new OptScaleExactStat(-15, ExtraMobDropsStat.getInstance()));
 
-    public static SpecialMobStats SLOWER_PROJ = new SpecialMobStats(new OptScaleExactStat(-30, ProjectileSpeed.getInstance()));
+    public static SpecialMobStats SLOWER_PROJ() {
+        return new SpecialMobStats(new OptScaleExactStat(-30, Stats.PROJECTILE_SPEED.get()));
+    }
+
+    ;
 
     public static SpecialMobStats fire() {
-        return new SpecialMobStats(FIRE, FIRE_RES, LESS_WATER_RES, SLOWER_PROJ);
+        return new SpecialMobStats(FIRE, FIRE_RES, LESS_WATER_RES, SLOWER_PROJ());
     }
 
     public static SpecialMobStats water() {
-        return new SpecialMobStats(WATER, WATER_RES, LESS_FIRE_RES, SLOWER_PROJ);
+        return new SpecialMobStats(WATER, WATER_RES, LESS_FIRE_RES, SLOWER_PROJ());
     }
 
     public static SpecialMobStats nature() {
-        return new SpecialMobStats(NATURE, NATURE_RES, SLOWER_PROJ);
+        return new SpecialMobStats(NATURE, NATURE_RES, SLOWER_PROJ());
     }
 
 }

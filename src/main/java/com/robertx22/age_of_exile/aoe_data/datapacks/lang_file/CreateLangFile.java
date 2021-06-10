@@ -199,6 +199,8 @@ public class CreateLangFile {
 
         list.addAll(Database.UniqueGears()
             .getSerializable());
+        list.addAll(Database.Spells()
+            .getSerializable());
         list.addAll(Database.Races()
             .getSerializable());
         list.addAll(Database.ScrollBuffs()

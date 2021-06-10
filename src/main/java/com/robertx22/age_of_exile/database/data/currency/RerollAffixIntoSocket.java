@@ -43,7 +43,7 @@ public class RerollAffixIntoSocket extends CurrencyItem implements ICurrencyItem
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
-        gear.is_cor = false;
+        gear.c = false;
 
         Optional<AffixData> pre = gear.affixes.pre.stream()
             .filter(x -> x.getAffix()
@@ -113,7 +113,7 @@ public class RerollAffixIntoSocket extends CurrencyItem implements ICurrencyItem
 
     @Override
     public String locDescForLangFile() {
-        return "Rerolls a random affix into one that adds sockets";
+        return "Re-rolls a random affix into one that adds sockets.";
     }
 
     @Override

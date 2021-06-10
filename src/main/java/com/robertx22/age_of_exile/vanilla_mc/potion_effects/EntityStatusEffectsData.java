@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.vanilla_mc.potion_effects;
 
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectInstanceData;
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileStatusEffect;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class EntityStatusEffectsData {
 
     @Store
-    HashMap<String, ExileEffectInstanceData> exileMap = new HashMap<>();
+    public HashMap<String, ExileEffectInstanceData> exileMap = new HashMap<>();
 
     @Store
     public ScrollBuffData sb = null;

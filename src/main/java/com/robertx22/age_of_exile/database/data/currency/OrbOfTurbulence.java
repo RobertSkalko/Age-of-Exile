@@ -78,7 +78,7 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public String locDescForLangFile() {
-        return "Re-rolls all affix numbers";
+        return "Re-rolls all affix numbers.";
     }
 
     @Override

@@ -50,6 +50,10 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
     public Text getName(ItemStack stack) {
         MutableText txt = new TranslatableText(this.getTranslationKey());
         try {
+            if (get(stack) == null) {
+                return txt;
+            }
+
             txt.append(": ")
                 .append(get(stack).locName())
                 .formatted(Formatting.GOLD);
@@ -66,6 +70,10 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
             return Database.Runewords()
                 .getSerializable()
                 .get(0);
+        }
+
+        if (stack.getTag() == null) {
+            return null;
         }
 
         RuneWord word = Database.Runewords()
@@ -101,6 +109,10 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
             }
 
             RuneWord word = get(stack);
+
+            if (word == null) {
+                return;
+            }
 
             tooltip.add(new LiteralText("To create the runeword: ").formatted(Formatting.BLUE));
 

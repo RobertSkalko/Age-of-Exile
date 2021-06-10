@@ -25,14 +25,16 @@ public class FoodItemRegister extends BaseItemRegistrator {
             EXTRACT_MAP.put(color, item(new FoodExtractItem(color)));
         }
 
-        reg(FoodType.APPLE, Arrays.asList(MANA_REGEN, HEALTH_REGEN, MAGIC_SHIELD_REGEN));
-        reg(FoodType.COOKIE, Arrays.asList(TREASURE_QUALITY, HEALTH_REGEN, MAGIC_SHIELD_REGEN));
+        reg(FoodType.APPLE, Arrays.asList(MANA_REGEN, HEALTH_REGEN));
+        reg(FoodType.COOKIE, Arrays.asList(TREASURE_QUALITY, HEALTH_REGEN));
         reg(FoodType.BREW, Arrays.asList(CRITICAL, HEALING, PHYSICAL_DAMAGE, ELEMENTAL_RESISTANCE));
         reg(FoodType.JAM, Arrays.asList(DEF_PURPLE, DEF_BLUE, DEF_YELLOW, DEF_GREEN, DEF_GRAY));
 
         reg(FoodType.DRINK, Arrays.asList(EXPERIENCE));
 
         regFish(FoodType.FISH, Arrays.asList(DARK_DAMAGE, FIRE_DAMAGE, WATER_DAMAGE, NATURE_DAMAGE, LIGHT_DAMAGE));
+
+        reg(FoodType.REGEN_MEAL, Arrays.asList(OUTSIDE_COMBAT_COMBO_REGEN, OUTSIDE_COMBAT_MANA_REGEN, OUTSIDE_COMBAT_HEALTH_REGEN));
 
     }
 

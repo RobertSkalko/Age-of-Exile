@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.event_hooks.my_events.OnEntityTick;
 import com.robertx22.age_of_exile.event_hooks.my_events.OnMobDeathDrops;
 import com.robertx22.age_of_exile.event_hooks.my_events.OnPlayerDeath;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
+import com.robertx22.age_of_exile.event_hooks.ontick.OnTickDungeonWorld;
 import com.robertx22.age_of_exile.event_hooks.player.OnDamagePlayerActivateTablets;
 import com.robertx22.age_of_exile.event_hooks.player.StopCastingIfInteract;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -33,6 +34,7 @@ public class CommonEvents {
         TrackingStartCallback.EVENT.register(new OnTrackEntity());
         ServerEntityEvents.ENTITY_LOAD.register(new OnMobSpawn());
         ServerTickEvents.END_SERVER_TICK.register(new OnServerTick());
+        ServerTickEvents.END_WORLD_TICK.register(new OnTickDungeonWorld());
 
         ExileEvents.LIVING_ENTITY_TICK.register(new OnEntityTick());
         ExileEvents.MOB_DEATH.register(new OnMobDeathDrops());

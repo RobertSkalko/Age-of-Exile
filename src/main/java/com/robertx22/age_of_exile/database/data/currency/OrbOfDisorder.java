@@ -76,7 +76,7 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
 
     @Override
     public String locDescForLangFile() {
-        return "Re-rolls All affixes";
+        return "Re-rolls all affixes.";
     }
 
     @Override

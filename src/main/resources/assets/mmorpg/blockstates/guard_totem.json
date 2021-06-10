@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "mmorpg:block/guard_totem" },
+        "facing=south": { "model": "mmorpg:block/guard_totem", "y": 180 },
+        "facing=west":  { "model": "mmorpg:block/guard_totem", "y": 270 },
+        "facing=east":  { "model": "mmorpg:block/guard_totem", "y": 90 }
+    }
+}

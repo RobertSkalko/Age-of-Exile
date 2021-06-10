@@ -60,7 +60,9 @@ public class PerkButton extends TexturedButtonWidget {
 
     public boolean isInside(int x, int y) {
 
-        return GuiUtils.isInRect(this.x, this.y, width, height, x, y);
+        float scale = 2 - screen.zoom;
+
+        return GuiUtils.isInRect((int) (this.x), (int) (this.y), (int) (width * scale), (int) (height * scale), x, y);
     }
 
     @Override
@@ -79,6 +81,9 @@ public class PerkButton extends TexturedButtonWidget {
     // copied from abstractbutton
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
+
+        screen.mouseRecentlyClickedTicks = 25;
+        screen.pointClicked = this.point;
 
         mouseX = 1F / screen.zoom * mouseX;
         mouseY = 1F / screen.zoom * mouseY;
@@ -107,8 +112,27 @@ public class PerkButton extends TexturedButtonWidget {
         }
     }
 
+    int xPos(int offset, float multi) {
+        return (int) ((this.x) * multi) + offset;
+    }
+
+    int yPos(int offset, float multi) {
+        return (int) ((this.y) * multi) + offset;
+    }
+
     @Override
+
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+
+        float scale = 2 - screen.zoom;
+
+        float posMulti = 1F / scale;
+
+        if (posMulti > 1.5F) {
+            posMulti = 1.5F;
+        }
+
+        matrices.scale(scale, scale, scale);
 
         PerkStatus status = enperks.getStatus(MinecraftClient.getInstance().player, school, point);
 
@@ -119,7 +143,7 @@ public class PerkButton extends TexturedButtonWidget {
 
         // background
         RenderSystem.enableDepthTest();
-        drawTexture(matrices, this.x, this.y, perk.getType()
+        drawTexture(matrices, xPos(0, posMulti), yPos(0, posMulti), perk.getType()
             .getXOffset(), status
             .getYOffset(), this.width, this.height);
 
@@ -127,44 +151,40 @@ public class PerkButton extends TexturedButtonWidget {
             // icon
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
-            drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);
+            drawTexture(matrices, xPos(offset, posMulti), yPos(offset, posMulti), 0, 0, 16, 16, 16, 16);
         } else if (this.perk.getType() == Perk.PerkType.MAJOR) {
             // icon
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
-            offset = 8;
-            RenderUtils.render16Icon(matrices, perk.getIcon(), this.x + offset, this.y + offset);
-        } else if (this.perk.getType() == Perk.PerkType.SPELL_MOD) {
-            // icon
-            mc.getTextureManager()
-                .bindTexture(this.perk.getIcon());
-            offset = 5;
-            drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);
-
+            offset = 9;
+            RenderUtils.render16Icon(matrices, perk.getIcon(), xPos(offset, posMulti), yPos(offset, posMulti));
         } else if (perk.getType() == Perk.PerkType.START) {
-            offset = 3;
+            offset = 9;
             if (perk.icon == null || perk.icon.isEmpty()) {
-                RenderUtils.render16Icon(matrices, new Identifier(school.icon), this.x + offset, this.y + offset);
+                RenderUtils.render16Icon(matrices, new Identifier(school.icon), xPos(offset, posMulti), yPos(offset, posMulti));
             } else {
-                RenderUtils.render16Icon(matrices, perk.getIcon(), this.x + offset, this.y + offset);
+                RenderUtils.render16Icon(matrices, perk.getIcon(), xPos(offset, posMulti), yPos(offset, posMulti));
             }
         } else if (perk.getType() == Perk.PerkType.SPECIAL) {
+
             // icon
             offset = 6;
             mc.getTextureManager()
                 .bindTexture(this.perk.getIcon());
-            drawTexture(matrices, this.x + offset, this.y + offset, 0, 0, 16, 16, 16, 16);
+            drawTexture(matrices, xPos(offset, posMulti), yPos(offset, posMulti), 0, 0, 16, 16, 16, 16);
         }
 
         if (this.perk.isLockedToPlayer(mc.player)) {
 
             if (!this.isHovered()) {
-                mc.getTextureManager()
-                    .bindTexture(LOCKED_TEX);
+                //    mc.getTextureManager()
+                //       .bindTexture(LOCKED_TEX);
 
-                drawTexture(matrices, this.x + offset, this.y + offset + 10, 0, 0, 16, 16, 16, 16);
+                // drawTexture(matrices, xPos(offset, posMulti), (int) (yPos(offset, posMulti) * 10 * posMulti), 0, 0, 16, 16, 16, 16);
             }
         }
+
+        matrices.scale(1F / scale, 1F / scale, 1F / scale);
 
     }
 

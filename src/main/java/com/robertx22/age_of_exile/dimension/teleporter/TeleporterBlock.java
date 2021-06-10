@@ -13,6 +13,7 @@ import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -20,11 +21,22 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider {
 
     public TeleporterBlock() {
         super(Settings.of(Material.STONE)
             .strength(5F, 2));
+    }
+
+    @Override
+    @Deprecated
+    public List<ItemStack> getDroppedStacks(BlockState blockstate, LootContext.Builder context) {
+        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+        items.add(new ItemStack(this));
+        return items;
     }
 
     @Override
@@ -42,22 +54,20 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
         BlockEntity tile = world.getBlockEntity(pos);
 
         if (tile instanceof TeleportedBlockEntity) {
-            // TeleportedBlockEntity en = (TeleportedBlockEntity) tile;
 
-            if (stack.getItem() instanceof DungeonKeyItem) {
-                int tier = DungeonKeyItem.getTier(stack);
-
-                Load.playerMaps(player)
-                    .initRandomMap((DungeonKeyItem) stack.getItem(), tier);
-
-                stack.decrement(1);
+            if (world.isClient) {
+                if (stack.getItem() instanceof DungeonKeyItem) {
+                    ClientOnly.openChooseTierScreen(pos);
+                } else {
+                    Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.MAPS));
+                    ClientOnly.openMapsScreen(pos);
+                }
                 return ActionResult.SUCCESS;
-                // activate map
-
             } else {
-                Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.MAPS));
-                ClientOnly.openMapsScreen(pos);
+                Load.playerMaps(player)
+                    .syncToClient(player);
             }
+
             return ActionResult.SUCCESS;
         }
 
