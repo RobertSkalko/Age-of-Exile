@@ -6,45 +6,42 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
-import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
 import java.util.Arrays;
 
+import static com.robertx22.age_of_exile.mmorpg.ModRegistry.BLOCKS;
+
 public class TestSpell {
 
-    public static String ID = "test_spell";
+    public static String USE_THIS_EXACT_ID = "test_spell"; // USE THE EXACT "ID" HERE OR THE TEST SPELL GEM WONT WORK
 
     public static Spell get() {
-        return SpellBuilder.of(ID, SpellConfiguration.Builder.instant(10, 15)
-                .setScaleManaToPlayer()
-                .setChargesAndRegen("dash", 3, 20 * 30)
-                .setSwingArm(), "Dash",
-            Arrays.asList(SpellTag.damage, SpellTag.area, SpellTag.trap))
-            .weaponReq(CastingWeapon.NON_MAGE_WEAPON)
-            .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1D, 1.6D)
-                .addActions(SpellAction.CASTER_USE_COMMAND.create("effect give @p minecraft:slow_falling 1 1 true")))
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1.6D)
-                .addActions(SpellAction.PARTICLES_IN_RADIUS.create(ParticleTypes.POOF, 20D, 1D)
-                    .put(MapField.Y_RANDOM, 0.5D)
-                    .put(MapField.MOTION, ParticleMotion.CasterLook.name())
-                    .put(MapField.SET_ADD, SetAdd.ADD.name()))
-                .addActions(SpellAction.PARTICLES_IN_RADIUS.create(ParticleTypes.WHITE_ASH, 20D, 1D)
-                    .put(MapField.Y_RANDOM, 0.5D)
-                    .put(MapField.MOTION, ParticleMotion.CasterLook.name())
-                    .put(MapField.SET_ADD, SetAdd.ADD.name())))
+        return
 
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1D, 1.6D)
-                .addActions(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 1D, ParticleMotion.CasterLook))
-                .addTarget(TargetSelector.CASTER.create()))
+            SpellBuilder.of(USE_THIS_EXACT_ID, SpellConfiguration.Builder.nonInstant(30, 20 * 60, 30)
+                    .setSwingArm(), "Black Hole",
+                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.area))
+                .weaponReq(CastingWeapon.MAGE_WEAPON)
 
-            .buildForEffect();
+                .onCast(PartBuilder.playSound(SoundEvents.BLOCK_END_PORTAL_SPAWN, 1D, 1D))
+
+                .onCast(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.BLACK_HOLE, 20D * 5)))
+
+                .onTick("block", PartBuilder.particleOnTick(1D, ParticleTypes.PORTAL, 40D, 1D))
+                .onTick("block", PartBuilder.particleOnTick(1D, ParticleTypes.WITCH, 8D, 1D))
+                .onTick("block", PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
+                    .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
+                .onExpire("block", PartBuilder.damageInAoe(ValueCalculation.base("black_hole", 5), Elements.Dark, 2D))
+
+                .buildForEffect();
 
     }
 }

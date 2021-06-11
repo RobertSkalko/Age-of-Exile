@@ -34,7 +34,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -210,7 +209,6 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         axe(SlotFamily.Weapon),
         scythe(SlotFamily.Weapon),
         bow(SlotFamily.Weapon),
-        wand(SlotFamily.Weapon),
         crossbow(SlotFamily.Weapon),
 
         boots(SlotFamily.Armor),
@@ -347,35 +345,6 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
 
     }
 
-    public static List<SlotTag> SLOT_TYPE_TAGS = Arrays.asList(
-        SlotTag.sword, SlotTag.axe, SlotTag.wand,
-        SlotTag.boots, SlotTag.chest, SlotTag.pants, SlotTag.helmet,
-        SlotTag.bow, SlotTag.crossbow,
-        SlotTag.ring, SlotTag.necklace
-    );
-
-    public SlotTag getSlotType() {
-
-        List<SlotTag> list = new ArrayList<>();
-
-        SLOT_TYPE_TAGS.stream()
-            .forEach(x -> {
-                if (getTags().contains(x)) {
-                    list.add(x);
-                }
-            });
-
-        if (list.isEmpty()) {
-            System.out.println("Item has no slot type tag?!!");
-        }
-        if (list.size() > 1) {
-            System.out.println("Item has more than 1 slot type tag?!");
-        }
-
-        return list.get(0);
-
-    }
-
     public Item getMaterial() {
 
         TagList tags = getTags();
@@ -391,7 +360,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         }
 
         return ModRegistry.GEAR_MATERIALS.MAP.get(type)
-            .get(SkillItemTier.of(getLevelRange()).tier);
+            .get(SkillItemTier.of(getLevelRange()));
 
     }
 

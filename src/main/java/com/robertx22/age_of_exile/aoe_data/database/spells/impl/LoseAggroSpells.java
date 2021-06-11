@@ -43,6 +43,7 @@ public class LoseAggroSpells implements ISlashRegistryInit {
 
         SpellBuilder.of("ethereal_form", SpellConfiguration.Builder.instant(7, 20 * 60), "Ethereal Form",
             Arrays.asList(SpellTag.movement))
+            .manualDesc("Turn ethereal, increasing your speed and defenses but reducing your damage.")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CAT_HISS, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(CALC, AggroAction.Type.DE_AGGRO))

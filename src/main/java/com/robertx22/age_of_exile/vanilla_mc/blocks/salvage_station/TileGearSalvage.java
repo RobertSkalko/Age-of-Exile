@@ -246,20 +246,9 @@ public class TileGearSalvage extends BaseSkillStation {
     @Override
     public void onSmeltTick() {
 
-        reduceFuel();
-
         PlayerEntity player = getOwner();
 
         if (player != null) {
-
-            if (!hasFuel()) {
-                burnFuelIfNeeded();
-                cook_ticks--;
-                if (cook_ticks < 0) {
-                    cook_ticks = 0;
-                }
-                return;
-            }
 
             if (getCookProgress() < 1) {
                 List<ItemStack> stacks = new ArrayList<>();
@@ -268,6 +257,17 @@ public class TileGearSalvage extends BaseSkillStation {
                 }
                 if (stacks.stream()
                     .anyMatch(x -> !x.isEmpty())) {
+
+                    if (!hasFuel()) {
+                        burnFuelIfNeeded();
+                        cook_ticks--;
+                        if (cook_ticks < 0) {
+                            cook_ticks = 0;
+                        }
+                        return;
+                    }
+
+                    this.reduceFuel();
                     cook_ticks++;
                 } else {
                     cook_ticks--;

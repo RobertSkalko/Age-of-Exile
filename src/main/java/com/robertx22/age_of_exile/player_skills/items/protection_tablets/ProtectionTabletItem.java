@@ -65,6 +65,9 @@ public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoMod
             tooltip.add(new LiteralText("Keep in Inventory or Ender chest."));
             tooltip.add(new LiteralText("Activates automatically to save you."));
 
+            if (type.cooldownTicks() > 0) {
+                tooltip.add(new LiteralText("Cooldown: " + type.cooldownTicks() / 20 + "s"));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

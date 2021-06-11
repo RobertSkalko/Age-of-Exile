@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class MapField<T> implements IGUID {
 
@@ -28,11 +29,13 @@ public class MapField<T> implements IGUID {
     public static MapField<Double> SELECTION_CHANCE = make("selection_chance");
     public static MapField<Double> PUSH_STRENGTH = make("push_str");
     public static MapField<Double> POTION_DURATION = make("potion_dur");
+    public static MapField<Double> COOLDOWN_TICKS = make("cooldown_ticks");
     public static MapField<Double> POTION_STRENGTH = make("potion_str");
     public static MapField<Double> BLOCK_FALL_SPEED = make("block_fall_speed");
 
     public static MapField<String> MOTION = make("motion");
     public static MapField<String> SET_ADD = make("set_add");
+    public static MapField<String> COOLDOWN_ID = make("cooldown_id");
 
     public static MapField<Double> VOLUME = make("volume");
     public static MapField<Double> PITCH = make("pitch");
@@ -73,6 +76,8 @@ public class MapField<T> implements IGUID {
     public static MapField<Boolean> IS_SILENT = make("is_silent");
     public static MapField<Boolean> HITS_ALLIES = make("hits_allies");
     public static MapField<Boolean> IGNORE_Y = make("ignore_y");
+
+    public static MapField<List<String>> ENTITY_PREDICATES = make("entity_predicates");
 
     public static MapField<ValueCalculation> VALUE_CALCULATION = make("value_calculation");
 

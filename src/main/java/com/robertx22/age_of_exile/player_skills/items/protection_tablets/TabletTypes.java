@@ -70,12 +70,18 @@ public enum TabletTypes {
     },
     ANTI_DEATH("Anti Death", "anti_death") {
         @Override
+        public int cooldownTicks() {
+            return 20 * 60 * 10;
+        }
+
+        @Override
         public List<Item> getRecipeItems() {
             return Arrays.asList(Items.ENCHANTED_GOLDEN_APPLE, ModRegistry.INSCRIBING.RARE_BLANK_TABLET);
         }
 
         @Override
         public boolean shouldActivate(PlayerEntity en, DamageSource source) {
+
             return HealthUtils.getCombinedHealthMulti(en) < 0.15F;
         }
 
@@ -169,6 +175,10 @@ public enum TabletTypes {
     static int DUR = 20 * 60;
 
     public abstract List<Item> getRecipeItems();
+
+    public int cooldownTicks() {
+        return 0;
+    }
 
     boolean healthIsBellowTresh(PlayerEntity en) {
         return HealthUtils.getCombinedHealthMulti(en) < 0.5F;

@@ -36,6 +36,10 @@ public enum Elements {
 
     public Formatting format;
 
+    public String getIconNameDmg() {
+        return getIconNameFormat(dmgName) + " Damage";
+    }
+
     public String getIconNameFormat() {
         return getIconNameFormat(dmgName);
     }

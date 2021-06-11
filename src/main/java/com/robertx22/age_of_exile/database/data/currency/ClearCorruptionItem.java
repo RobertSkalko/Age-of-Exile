@@ -38,7 +38,7 @@ public class ClearCorruptionItem extends CurrencyItem implements ICurrencyItemEf
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
-        gear.is_cor = false;
+        gear.c = false;
         Gear.Save(stack, gear);
         return stack;
     }

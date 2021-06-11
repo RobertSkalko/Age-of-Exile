@@ -1,14 +1,12 @@
 package com.robertx22.age_of_exile.dimension.item;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 import com.robertx22.library_of_exile.utils.SoundUtils;
-import com.robertx22.library_of_exile.utils.TeleportUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -50,9 +48,7 @@ public class TeleportBackItem extends AutoItem {
         if (!world.isClient) {
             if (WorldUtils.isDungeonWorld(world)) {
                 BlockPos pos = Load.playerMaps((PlayerEntity) player).data.tel_pos.up();
-
-                TeleportUtils.teleport((ServerPlayerEntity) player, pos, DimensionType.OVERWORLD_ID);
-
+                OnServerTick.makeSureTeleport((ServerPlayerEntity) player, pos, DimensionType.OVERWORLD_ID);
                 SoundUtils.playSound(player, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);
             }
         }
@@ -61,9 +57,13 @@ public class TeleportBackItem extends AutoItem {
     }
 
     @Override
+    public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+    }
+
+    @Override
     public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity player, Hand handIn) {
         ItemStack itemStack = player.getStackInHand(handIn);
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20 * 5, 5));
+
         player.setCurrentHand(handIn);
         return TypedActionResult.success(itemStack);
     }

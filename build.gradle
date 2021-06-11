@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.7-SNAPSHOT'
+    id 'fabric-loom' version '0.8-SNAPSHOT'
     id 'maven-publish'
     id 'com.matthewprenger.cursegradle' version '1.4.0'
 }
@@ -12,15 +12,14 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-    maven { url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master' }
+    maven { url 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master' }
     maven { url "https://maven.theillusivec4.top" }
     maven { url 'https://dl.bintray.com/ladysnake/libs' }
     maven { url 'https://ladysnake.jfrog.io/artifactory/mods' }
     maven { url 'https://maven.terraformersmc.com/releases' }
     maven { url 'https://maven.blamejared.com' }
-    maven { url "https://maven.siphalor.de" }
     maven { url "https://maven.shedaniel.me" }
-    maven { url "https://dl.bintray.com/kyrptonaught/customportalapi" }
+	maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -37,36 +36,42 @@ dependencies {
     optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${cardinal_version}")
     optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}")
     optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-world:${cardinal_version}")
-    optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-chunk:${cardinal_version}")  
+    optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-chunk:${cardinal_version}")
     optionally("me.sargunvohra.mcmods:autoconfig1u:${auto_config_version}")
     optionally("com.terraformersmc:modmenu:${mod_menu_version}")
     optionally("top.theillusivec4.curios:curios-fabric:${curios_version}")
-    optionally("vazkii.patchouli:Patchouli:${patchouli_version}")
-    depend("de.siphalor:nbtcrafting-${nbtcrafting_version}")
-    depend("net.kyrptonaught:customportalapi:${portal_api_version}")
     optionally("me.shedaniel:RoughlyEnoughItems:${rei_version}")
-  
+
+    // add back whenever i need to test the patchouli guide book
+    //optionally("vazkii.patchouli:Patchouli:${patchouli_version}")
+
 
     // .dev .jar doesn't include included deps, so I have to add them for in IDE to work
-    compile files("Library-Of-Exile-1.16.5-1.0.9-dev.jar")
-    compile files("World-Of-Exile-1.16.5-1.2.1-dev.jar")
+    implementation files("Library-Of-Exile-1.16.5-1.0.10-dev.jar")
+    implementation files("World-Of-Exile-1.16.5-1.2.2-dev.jar")
 }
 
 
-def depend(str) {
-    dependencies.modApi(str) {
-        exclude(group: "net.fabricmc")
-        exclude(group: "net.fabricmc.fabric-api")
-        exclude(group: "io.github.prospector")
-        exclude(module: "config-2")
-    }
-    dependencies.include(str) {
-        exclude(group: "net.fabricmc")
-        exclude(group: "net.fabricmc.fabric-api")
-        exclude(group: "io.github.prospector")
-        exclude(module: "config-2")
+remapJar {
+    include file("World-Of-Exile-1.16.5-1.2.2.jar")
+}
+
+tasks.withType(JavaCompile).configureEach {
+    // ensure that the encoding is set to UTF-8, no matter what the system default is
+    // this fixes some edge cases with special characters not displaying correctly
+    // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
+    // If Javadoc is generated, this must be specified in that task too.
+    it.options.encoding = "UTF-8"
+
+    // The Minecraft launcher currently installs Java 8 for users, so your mod probably wants to target Java 8 too
+    // JDK 9 introduced a new way of specifying this that will make sure no newer classes or methods are used.
+    // We'll use that if it's available, but otherwise we'll use the older option.
+    def targetVersion = 8
+    if (JavaVersion.current().isJava9Compatible()) {
+        it.options.release = targetVersion
     }
 }
+
 
 def optionally(str) {
     runtime(str)
@@ -90,13 +95,8 @@ def runtime(str) {
 processResources {
     inputs.property "version", project.version
 
-    from(sourceSets.main.resources.srcDirs) {
-        include "fabric.mod.json"
+    filesMatching("fabric.mod.json") {
         expand "version": project.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude "fabric.mod.json"
     }
 }
 
@@ -112,14 +112,10 @@ tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = "sources"
-    from sourceSets.main.allSource
-}
-
 jar {
     from "LICENSE"
 }
+
 
 // CURSEFORGE STUFF
 
@@ -142,9 +138,7 @@ curseforge {
         relations {
             requiredDependency 'fabric-api'
             requiredDependency 'library-of-exile'
-            requiredDependency 'dungeons-of-exile'
             requiredDependency 'curios-fabric'
-            requiredDependency 'patchouli-fabric'
         }
         mainArtifact(remapJar)
 

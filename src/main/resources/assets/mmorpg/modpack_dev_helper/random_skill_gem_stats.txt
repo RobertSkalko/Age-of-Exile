@@ -1,4 +1,16 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+heal_crit_dmg
+nature_dmg
 fast_proj
 proj_dmg
+spell_crit_dmg
+crit_dmg
+cdr
+light_dmg
+water_dmg
+heal_crit_chance
+spell_crit_chance
+crit_chance
+fire_dmg
+dark_dmg

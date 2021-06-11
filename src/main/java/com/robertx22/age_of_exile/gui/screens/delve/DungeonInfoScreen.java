@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.gui.screens.delve;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonGridType;
+import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.screens.ItemSlotButton;
@@ -71,12 +72,17 @@ public class DungeonInfoScreen extends BaseScreen {
             }
             if (Load.playerMaps(mc.player)
                 .canStart(point, selectedDungeon)) {
-                addButton(new StartDungeonButton(false, this, point, xoff - StartDungeonButton.SIZE_X / 2, yoff + 185));
-                addButton(new StartDungeonButton(true, this, point, xoff - StartDungeonButton.SIZE_X / 2, yoff + 185 + 20));
+                int teamsY = yoff + 185;
+
+                for (TeamSize size : TeamSize.values()) {
+                    addButton(new StartDungeonButton(size, this, point, xoff - StartDungeonButton.SIZE_X / 2, teamsY));
+                    teamsY += 16;
+
+                }
             }
 
-            this.addButton(new DifficultyButton(selectedDungeon.t, xoff - DifficultyButton.xSize / 2, yoff + DungeonButton.ySize + 30));
-            this.addButton(new DungeonButton(selectedDungeon, xoff - DifficultyButton.xSize / 2, yoff + 20));
+            this.addButton(new DifficultyButton(selectedDungeon.t, xoff - DifficultyButton.xSize / 2 + 20, yoff + 20));
+            this.addButton(new DungeonButton(selectedDungeon, xoff - DifficultyButton.xSize / 2 - 20, yoff + 20));
 
             int x = xoff - 50;
             int y = yoff + LOOT_Y;

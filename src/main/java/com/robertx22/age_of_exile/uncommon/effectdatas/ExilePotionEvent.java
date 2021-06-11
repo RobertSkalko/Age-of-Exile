@@ -2,12 +2,13 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectInstanceData;
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileStatusEffect;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
 import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.network.packet.s2c.play.EntityStatusEffectS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -50,6 +51,12 @@ public class ExilePotionEvent extends EffectEvent {
         GiveOrTake action = data.getGiveOrTake();
         ExileEffect effect = data.getExileEffect();
         int duration = (int) data.getNumber(EventData.EFFECT_DURATION_TICKS).number;
+
+        if (effect.id.contains("35")) {
+            byte effectId = (byte) (StatusEffect.getRawId(effect.getStatusEffect()) & 255);
+
+            System.out.print(effectId);
+        }
 
         ExileStatusEffect status = effect.getStatusEffect();
 
@@ -107,8 +114,6 @@ public class ExilePotionEvent extends EffectEvent {
             } else {
                 target.addStatusEffect(newInstance);
             }
-
-            target.addStatusEffect(newInstance);
 
             // sync packets to client
             EntityStatusEffectS2CPacket packet = new EntityStatusEffectS2CPacket(target.getEntityId(), newInstance);

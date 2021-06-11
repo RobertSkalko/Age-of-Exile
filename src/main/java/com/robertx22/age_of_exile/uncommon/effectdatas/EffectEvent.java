@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.IGUID;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DatapackStat;
@@ -146,26 +145,8 @@ public abstract class EffectEvent implements IGUID {
 
                     EntitySpellCap.ISpellsCap spells = Load.spells(en);
 
-                    int place = -1;
-
-                    int n = 0;
-                    for (SkillGemData x : spells.getSkillGemData().gems) {
-                        if (x != null) {
-                            if (x.getSkillGem().spell_id.equals(spell.GUID())) {
-                                place = n;
-                                break;
-                            }
-                        }
-                        n++;
-                    }
-
-                    if (place > -1) {
-                        for (Unit.StatContainerType type : Unit.StatContainerType.values()) {
-                            if (type.place == place) {
-                                return type;
-                            }
-                        }
-                    }
+                    return spells.getSkillGemData()
+                        .getStatContainerFor(spell);
 
                 }
             } catch (Exception e) {

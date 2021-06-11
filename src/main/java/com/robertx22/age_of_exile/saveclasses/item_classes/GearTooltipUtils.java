@@ -143,8 +143,8 @@ public class GearTooltipUtils {
                 tip.add(new SText(""));
             }
 
-            if (gear.implicit != null) {
-                tip.addAll(gear.implicit.GetTooltipString(info, gear));
+            if (gear.imp != null) {
+                tip.addAll(gear.imp.GetTooltipString(info, gear));
             }
 
             // tip.add(new LiteralText(""));
@@ -272,7 +272,7 @@ public class GearTooltipUtils {
                     tip.add(new SText(Formatting.GRAY + "Unbreakable"));
                 }
 
-            if (gear.sealed) {
+            if (gear.s) {
                 tip.add(Words.Sealed.locName()
                     .formatted(Formatting.RED));
             }

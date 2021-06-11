@@ -254,14 +254,6 @@ public class SpellCastingData {
             return false;
         }
 
-        if (spell.config.isTechnique()) {
-            if (!Load.spells(player)
-                .getCastingData()
-                .meetActionRequirements(spell)) {
-                return false;
-            }
-        }
-
         if (Load.Unit(player)
             .getCooldowns()
             .isOnCooldown(spell.GUID())) {
@@ -270,6 +262,13 @@ public class SpellCastingData {
 
         if (player.isCreative()) {
             return true;
+        }
+        if (spell.config.hasActionRequirements()) {
+            if (!Load.spells(player)
+                .getCastingData()
+                .meetActionRequirements(spell)) {
+                return false;
+            }
         }
 
         if (spell.config.charges > 0) {
@@ -292,7 +291,9 @@ public class SpellCastingData {
             .setOnCooldown(ctx.spell.GUID(), cd);
 
         if (ctx.spell.config.charges > 0) {
-            this.charges.spendCharge(ctx.spell.config.charge_name);
+            if (ctx.caster instanceof PlayerEntity) {
+                this.charges.spendCharge((PlayerEntity) ctx.caster, ctx.spell.config.charge_name);
+            }
         }
 
         if (ctx.caster instanceof PlayerEntity) {
@@ -306,11 +307,6 @@ public class SpellCastingData {
             }
         }
 
-        if (ctx.caster instanceof PlayerEntity) {
-            ctx.spellsCap
-                .getCastingData()
-                .onAction((PlayerEntity) ctx.caster, PlayerAction.NOPE);
-        }
         this.casting = false;
 
         if (ctx.caster instanceof PlayerEntity) {

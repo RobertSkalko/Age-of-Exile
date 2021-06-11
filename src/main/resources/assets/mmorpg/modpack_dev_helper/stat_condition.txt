@@ -19,6 +19,7 @@ attack_type_is_spell
 effect_has_tag_offensive
 is_in_combat
 resource_type_is_health
+is_in_combat_is_false
 ele_match_stat
 is_day
 is_spear_wep_type
@@ -53,7 +54,6 @@ attack_type_is_dot
 is_glove_wep_type
 spell_has_tag_shout
 effect_has_tag_curse
-is_wand_wep_type
 restore_type_is_heal
 spell_has_tag_shield
 is_trident_wep_type
@@ -63,7 +63,9 @@ threat_gen_type_is_take_dmg
 is_projectile
 is_ranged_weapon
 effect_has_tag_immobilizing
+restore_type_is_food
 is_staff_wep_type
+effect_has_tag_food
 is_accu_crit_roll_fail_true_is_false
 is_mace_wep_type
 spell_has_tag_aura

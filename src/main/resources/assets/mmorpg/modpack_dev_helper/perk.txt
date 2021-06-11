@@ -72,7 +72,6 @@ lightning_rod
 nature_light_spell_dmg
 atonement
 light_fire_spell_dmg
-astralwalk
 divine_light
 big_blood_thirst
 rune_circle
@@ -286,7 +285,6 @@ chance_of_frostburn
 big_will_of_mana
 fire_penetration
 manasensor
-runed_geode
 health_dodge_int
 big_mana
 big_fire_water_spell_crit_dmg
@@ -338,7 +336,6 @@ critical_hit
 big_steal_str
 fury_bolt
 big_breath_of_fire
-big_leviathan
 faster_projectiles
 health_dodge
 keeper_of_the_grove
@@ -373,7 +370,6 @@ forced_alliance
 huge_wis
 violent_strike
 street_musician
-cristal_hands
 big_lord_of_arcane
 hp_mana_cost
 dodge_health
@@ -390,7 +386,6 @@ big_spell_crit
 consecrate
 huge_dex
 fire_arrows
-ele_wand_damage
 atk_cast_speed
 spell_nature_damage
 big_agility
@@ -416,7 +411,6 @@ demonic_seduction
 moonshine
 dodge_ele_resistance
 tale_of_ages
-blood_thirst
 potionmaster
 big_poison_alchemy
 ravenger
@@ -514,7 +508,6 @@ big_aspect_of_nature
 mana_on_kill
 mana_battery
 damage_shield
-wand_damage
 emptiness
 infusion
 bear

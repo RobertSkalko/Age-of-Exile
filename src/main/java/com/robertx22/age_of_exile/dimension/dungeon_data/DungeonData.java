@@ -30,7 +30,7 @@ public class DungeonData {
     @Store
     public String uuid = "";
     @Store
-    public Boolean team = false;
+    public TeamSize team = TeamSize.SOLO;
 
     public void setMobList(String mobs) {
         this.m = mobs;

@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "mmorpg:block/black_hole" },
+        "facing=south": { "model": "mmorpg:block/black_hole", "y": 180 },
+        "facing=west":  { "model": "mmorpg:block/black_hole", "y": 270 },
+        "facing=east":  { "model": "mmorpg:block/black_hole", "y": 90 }
+    }
+}

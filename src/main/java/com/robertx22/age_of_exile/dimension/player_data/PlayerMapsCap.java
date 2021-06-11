@@ -7,10 +7,7 @@ import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.delve_gen.DelveGrid;
-import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
-import com.robertx22.age_of_exile.dimension.dungeon_data.QuestProgression;
-import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
-import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
+import com.robertx22.age_of_exile.dimension.dungeon_data.*;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -96,7 +93,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         return cachedBorder;
     }
 
-    public void onStartDungeon(Boolean isteam, BlockPos teleporterPos, String uuid) {
+    public void onStartDungeon(TeamSize teamSize, BlockPos teleporterPos, String uuid) {
 
         try {
 
@@ -145,6 +142,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 List<ChunkPos> check = PopulateDungeonChunks.getChunksAround(cp);
 
                 boolean foundSpawn = false;
+                boolean foundportalback = false;
 
                 for (ChunkPos x : check) {
 
@@ -159,6 +157,12 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                                 moblist = SignUtils.removeBraces(SignUtils.getText((SignBlockEntity) e.getValue())
                                     .get(1));
                             }
+                            if (!foundportalback) {
+                                if (SignUtils.has("[portal]", (SignBlockEntity) e.getValue())) {
+                                    dimWorld.setBlockState(e.getKey(), ModRegistry.BLOCKS.PORTAL.getDefaultState());
+                                    foundportalback = true;
+                                }
+                            }
                         } else if (dimWorld.getBlockState(e.getKey())
                             .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK) {
                             tpPos = e.getKey();
@@ -169,7 +173,10 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 }
 
                 if (!foundSpawn) {
-                    player.sendMessage(new LiteralText("Couldnt find spawn position, you might be placed weirdly, and possibly die."), false);
+                    player.sendMessage(new LiteralText("Bug: Couldnt find spawn position, you might be placed weirdly, and possibly die."), false);
+                }
+                if (!foundportalback) {
+                    player.sendMessage(new LiteralText("Bug: Couldnt find portal back position."), false);
                 }
 
                 w.print("finding spawn");
@@ -191,9 +198,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
                     be.dungeonPos = tpPos;
                     be.tpbackpos = teleporterPos.up();
-                    if (!isteam) {
-                        be.restrictedToPlayer = player.getUuidAsString();
-                    }
+
                 }
             }
 
@@ -207,9 +212,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
             }
             data.data.set(player, tpPos, single);
 
-            if (isteam) {
-                single.data.team = true;
-            }
+            single.data.team = teamSize;
 
             single.pop.startPopulating(cp);
 

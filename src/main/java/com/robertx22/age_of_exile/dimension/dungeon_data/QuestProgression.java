@@ -1,12 +1,15 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.vanilla_mc.commands.TeamCommand;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 
 import java.util.List;
@@ -65,14 +68,12 @@ public class QuestProgression {
             if (this.num >= target) {
                 fini = true;
 
-                player.sendMessage(
-                    new LiteralText("Quest completed!, You can now progress to the next dungeon.")
-                    , false);
-
-                if (members.size() > 1) {
-                    members.forEach(x -> {
-                        TeamCommand.sendDpsCharts(x);
-                    });
+                for (PlayerEntity x : members) {
+                    x.sendMessage(
+                        new LiteralText("Quest completed!, You can now progress to the next dungeon.")
+                        , false);
+                    PlayerUtils.giveItem(new ItemStack(ModRegistry.MISC_ITEMS.TELEPORT_BACK), x);
+                    TeamCommand.sendDpsCharts(x);
                 }
 
                 Load.playerMaps(player)

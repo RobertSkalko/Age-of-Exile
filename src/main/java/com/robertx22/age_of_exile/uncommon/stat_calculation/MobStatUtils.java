@@ -63,24 +63,8 @@ public class MobStatUtils {
                 data.af.getStats(mobdata.getLevel())
                     .forEach(x -> x.applyStats(mobdata));
 
-                if (data.team) {
-                    ExactStatData.noScaling(500, 500, ModType.GLOBAL_INCREASE, Health.getInstance()
-                        .GUID())
-                        .applyStats(mobdata);
-                    ExactStatData.noScaling(300, 300, ModType.FLAT, Stats.TOTAL_DAMAGE.get()
-                        .GUID())
-                        .applyStats(mobdata);
-                    ExactStatData.noScaling(100, 100, ModType.LOCAL_INCREASE, HealthRegen.getInstance()
-                        .GUID())
-                        .applyStats(mobdata);
-                } else {
-                    ExactStatData.noScaling(200, 200, ModType.GLOBAL_INCREASE, Health.getInstance()
-                        .GUID())
-                        .applyStats(mobdata);
-                    ExactStatData.noScaling(100, 100, ModType.FLAT, Stats.TOTAL_DAMAGE.get()
-                        .GUID())
-                        .applyStats(mobdata);
-                }
+                data.team.teamSizeMobStrength.addStats(mobdata);
+
             }
 
         }

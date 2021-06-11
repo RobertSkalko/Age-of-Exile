@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 public abstract class ModWeapon extends SingleTargetWeapon {
 
     public ModWeapon(WeaponTypes type) {
-        super(type.id);
+        super(type.locName());
 
         this.attackSpeed = type.getVanillaItemAttackSpeedModifier();
     }

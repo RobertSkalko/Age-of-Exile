@@ -17,7 +17,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
 
         common.affixes = new GearRarity.Part(0, 0, 0);
         common.base_stat_percents = new MinMax(0, 75);
-        common.weight = 6000;
+        common.weight = 5000;
         common.item_tier_power = 1;
         common.item_tier = 0;
         common.item_value_multi = 1;
@@ -82,7 +82,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         legendary.default_stat_percents = new MinMax(30, 100);
         legendary.affix_stat_percents = new MinMax(30, 100);
         legendary.affixes = new GearRarity.Part(4, 5, 15);
-        legendary.weight = 100;
+        legendary.weight = 125;
         legendary.item_tier = 4;
         legendary.item_tier_power = 2F;
         legendary.essence_per_sal = new MinMax(3, 3);
@@ -99,7 +99,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mythic.default_stat_percents = new MinMax(40, 100);
         mythic.affix_stat_percents = new MinMax(40, 100);
         mythic.affixes = new GearRarity.Part(5, 6, 15);
-        mythic.weight = 20;
+        mythic.weight = 25;
         mythic.item_tier = 5;
         mythic.essence_per_sal = new MinMax(5, 5);
         mythic.item_tier_power = 2.5F;
@@ -111,7 +111,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         GearRarity mi = new GearRarity();
         mi.unidentified_chance = 100;
         mi.stat_req_multi = 1F;
-        mi.default_stat_percents = new MinMax(20, 100);
+        mi.default_stat_percents = new MinMax(40, 100);
         mi.affix_stat_percents = new MinMax(80, 100);
         mi.spawn_durability_hit = new MinMax(60, 80);
         mi.weight = 0;
@@ -120,7 +120,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         mi.item_tier = 5;
         mi.essence_per_sal = new MinMax(2, 3);
         mi.item_value_multi = 1.5F;
-        mi.special_spawn_chance = 3;
+        mi.special_spawn_chance = 2;
         mi.is_unique_item = true;
         mi.setMIFields();
         mi.addToSerializables();
@@ -137,8 +137,8 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         unique.essence_per_sal = new MinMax(5, 5);
         unique.setUniqueFields();
         unique.addToSerializables();
-        unique.special_spawn_chest_bonus_chance = 1;
-        unique.special_spawn_chance = 0.5F;
+        unique.special_spawn_chest_bonus_chance = 0.5F;
+        unique.special_spawn_chance = 0.4F;
         unique.announce_in_chat = true;
         unique.is_unique_item = true;
 
@@ -155,6 +155,7 @@ public class GearRaritiesAdder implements ISlashRegistryInit {
         fabled.essence_per_sal = new MinMax(10, 15);
         fabled.setFabledFields();
         fabled.addToSerializables();
+        fabled.special_spawn_chest_bonus_chance = 0.005F;
         fabled.special_spawn_chance = 0.02F;
         fabled.announce_in_chat = true;
         fabled.is_unique_item = true;

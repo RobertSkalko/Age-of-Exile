@@ -14,6 +14,7 @@ public enum FoodType {
     PIE("Pie", "pie", null, Items.PUMPKIN_PIE, Items.PUMPKIN_PIE),
     COOKIE("Cookie", "cookie", null, Items.COOKIE, Items.COOKED_CHICKEN),
     FISH("Fish", "fish", null, Items.COOKED_COD, Items.COOKED_COD),
+    REGEN_MEAL("Meal", "meal", null, Items.BREAD, Items.BREAD),
     BREW("Brew", "brew", null, Items.MUSHROOM_STEW, Items.COOKED_SALMON);
 
     public String word;

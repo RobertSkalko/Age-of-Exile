@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellDesc;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -191,14 +192,19 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         ctx.castedThisTick = true;
 
         if (ctx.caster instanceof PlayerEntity) {
-            if (!this.config.actions_needed.isEmpty()) {
-                Load.spells(ctx.caster)
+            if (ctx.spell.config.tags.contains(SpellTag.technique)) {
+                ctx.spellsCap
                     .getCastingData()
                     .onAction((PlayerEntity) ctx.caster, PlayerAction.TECHNIQUE);
+            } else {
+                ctx.spellsCap
+                    .getCastingData()
+                    .onAction((PlayerEntity) ctx.caster, PlayerAction.SPELL);
             }
         }
 
         if (this.config.swing_arm) {
+            caster.handSwingTicks = -1; // this makes sure hand swings
             caster.swingHand(Hand.MAIN_HAND);
         }
 
@@ -243,6 +249,18 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
 
         if (((PlayerEntity) caster).isCreative()) {
             return true;
+        }
+
+        if (!ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.isEmpty()) {
+            Identifier id = ctx.caster.world.getRegistryManager()
+                .getDimensionTypes()
+                .getId(ctx.caster.world.getDimension());
+
+            if (ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.stream()
+                .anyMatch(x -> x.equals(id.toString()))) {
+                return false;
+            }
+
         }
 
         if (this.isAura()) {
@@ -318,24 +336,38 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
                 list.addAll(attached
                     .getTooltip(ctx.calcData));
             } else {
-                SpellDesc.getTooltip(this)
+                SpellDesc.getTooltip(this, ctx.calcData.lvl)
                     .forEach(x -> list.add(new LiteralText(x)));
             }
         }
 
         TooltipUtils.addEmpty(list);
 
+        if (this.config.tags.contains(SpellTag.technique)) {
+            list.add(new LiteralText(Formatting.RED + "Technique Skill"));
+        }
+
         if (!this.isAura()) {
             list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
-            list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
+            if (config.usesCharges()) {
+                list.add(new LiteralText(Formatting.YELLOW + "Max Charges: " + config.charges));
+                list.add(new LiteralText(Formatting.YELLOW + "Charge Regen: " + config.charge_regen / 20 + "s"));
+
+            } else {
+                list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
+            }
             list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getCastTimeTicks(ctx) + "s"));
 
         } else {
             list.addAll(this.aura_data.GetTooltipString(this, ctx.skillGemData, new TooltipInfo((PlayerEntity) ctx.caster)));
         }
 
+        if (isAura()) {
+            list.add(new LiteralText(Formatting.BLUE + "Mana Reserved: " + aura_data.mana_reserved * 100 + "%"));
+        }
+
         TooltipUtils.addEmpty(list);
-        if (config.isTechnique()) {
+        if (config.hasActionRequirements()) {
 
             MutableText txt = new LiteralText("Cast Requirement: ");
 

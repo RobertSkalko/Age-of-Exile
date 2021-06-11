@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.CasterCommandAction;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
@@ -415,7 +416,7 @@ public class EntityCap {
 
                         if (data.gear != null && !data.gear.isCorrupted()) {
                             if (RandomUtils.roll(chance)) {
-                                data.gear.is_cor = true;
+                                data.gear.c = true;
                                 data.gear.saveToStack(data.stack);
                                 amount++;
                             }
@@ -900,6 +901,16 @@ public class EntityCap {
 
                 if (opt.isPresent()) {
                     PlayerUtils.giveItem(LootTableItem.of(new Identifier(opt.get().loot_table_id)), player);
+
+                    try {
+                        if (!opt.get().exec_command.isEmpty()) {
+                            player.getServer()
+                                .getCommandManager()
+                                .execute(CasterCommandAction.getCommandSource(player), opt.get().exec_command);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 OnScreenMessageUtils.sendLevelUpMessage(player, new LiteralText("Player"), level - 1, level);

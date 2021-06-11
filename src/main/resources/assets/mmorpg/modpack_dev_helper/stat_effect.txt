@@ -43,6 +43,7 @@ give_negative/10_to_target
 give_beneficial/29_to_source
 give_beneficial/16_to_source
 increase_mana_cost_num
+give_beneficial/35_to_source
 increase_number_num
 give_beneficial/2_to_source
 increase_area_num

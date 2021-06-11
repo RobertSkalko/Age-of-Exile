@@ -210,7 +210,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     public C get(String guid) {
 
         if (MMORPG.RUN_DEV_TOOLS) {
-            if (type == SlashRegistryType.SPELL && guid.equals(TestSpell.ID)) {
+            if (type == SlashRegistryType.SPELL && guid.equals(TestSpell.USE_THIS_EXACT_ID)) {
                 return (C) TestSpell.get();
             }
         }

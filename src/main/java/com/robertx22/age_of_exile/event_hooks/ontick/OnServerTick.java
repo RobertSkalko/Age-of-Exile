@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
-import com.robertx22.age_of_exile.dimension.rules.OnTickGiveTpBack;
 import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -17,15 +16,22 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
+import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientEntityIsCastingSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.EntityUtils;
+import com.robertx22.library_of_exile.utils.TeleportUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 public class OnServerTick implements ServerTickEvents.EndTick {
 
@@ -39,6 +45,53 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
+    public static Consumer<EnsureTeleportData> MAKE_SURE_TELEPORT = x -> {
+
+        if (x.player.isDead()) {
+            x.cancel();
+            return;
+        }
+
+        x.player.setInvulnerable(true);
+
+        if (x.player.getBlockPos()
+            .getSquaredDistance(x.whereShouldTeleport) > 1000) {
+
+            if (x.tries > 5) {
+                BlockPos spawnpos = x.player.getSpawnPointPosition();
+                if (spawnpos != null) {
+                    EntityUtils.setLoc(x.player, spawnpos);
+                }
+                x.cancel(); // pray that works at least
+                return;
+            } else {
+
+                x.resetTicks();
+
+                x.tries++;
+
+                x.player.sendMessage(new LiteralText("There was a teleport bug but the auto correction system should have teleported you back correctly"), false);
+
+                TeleportUtils.teleport(x.player, x.whereShouldTeleport);
+            }
+        }
+
+    };
+
+    public static void makeSureTeleport(ServerPlayerEntity player, BlockPos teleportPos, Identifier dim) {
+
+        if (!PlayerTickDatas.containsKey(player.getUuid())) {
+            PlayerTickDatas.put(player.getUuid(), new PlayerTickData());
+        }
+
+        player.setInvulnerable(true);
+
+        PlayerTickDatas.get(player.getUuid()).ensureTeleportData = new EnsureTeleportData(player, MAKE_SURE_TELEPORT, 50, teleportPos);
+
+        TeleportUtils.teleport(player, teleportPos, dim);
+
+    }
+
     @Override
     public void onEndTick(MinecraftServer server) {
 
@@ -51,6 +104,24 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 if (data == null) {
                     data = new PlayerTickData();
+                }
+
+                if (data.ensureTeleportData != null && data.ensureTeleportData.ticks > 3) {
+                    data.ensureTeleportData.action.accept(data.ensureTeleportData);
+                    if (data.ensureTeleportData.ticksLeft < 1) {
+                        data.ensureTeleportData = null;
+                        player.setInvulnerable(false);
+                    }
+                }
+
+                if (player.isBlocking()) {
+                    if (Load.spells(player)
+                        .getCastingData()
+                        .isCasting()) {
+                        Load.spells(player)
+                            .getCastingData()
+                            .cancelCast(player);
+                    }
                 }
 
                 Load.Unit(player)
@@ -70,6 +141,12 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     spell
                         .getAttached()
                         .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(player, player, EntitySavedSpellData.create(ctx.skillGemData.lvl, player, spell)));
+
+                    PlayerStream.watching(player.world, player.getBlockPos())
+                        .forEach((p) -> {
+                            Packets.sendToClient(p, new TellClientEntityIsCastingSpellPacket(player, spell));
+                        });
+
                 }
 
                 data.increment();
@@ -132,7 +209,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 }
                 if (data.ticksToLvlWarning > TicksToLevelWarning) {
-                    OnTickGiveTpBack.give(player);
 
                     if (!WorldUtils.isDungeonWorld(player.world)) {
 
@@ -171,6 +247,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 if (data.ticksForSecond > TicksForSecond) {
                     data.ticksForSecond = 0;
 
+                    UnequipGear.onTick(player);
+
                     Load.spells(player)
                         .getCastingData().charges.onTicks(player, 20);
 
@@ -184,8 +262,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     CapSyncUtil.syncAll(player);
                     Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.world, player.getBlockPos(), player)));
                 }
-
-                UnequipGear.onTick(player);
 
                 PlayerTickDatas.put(player.getUuid(), data);
 
@@ -205,9 +281,15 @@ public class OnServerTick implements ServerTickEvents.EndTick {
         public int ticksToLvlWarning = 0;
         public int ticksForSecond = 0;
 
+        public EnsureTeleportData ensureTeleportData;
+
         public boolean isInHighLvlZone = false;
 
         public void increment() {
+            if (ensureTeleportData != null) {
+                ensureTeleportData.ticksLeft--;
+                ensureTeleportData.ticks++;
+            }
             ticksForSecond++;
             regenTicks++;
             playerSyncTick++;

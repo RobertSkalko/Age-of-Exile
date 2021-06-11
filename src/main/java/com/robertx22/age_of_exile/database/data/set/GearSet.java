@@ -116,6 +116,9 @@ public class GearSet implements ISerializedRegistryEntry<GearSet>, IAutoGson<Gea
         }
 
         public Builder stat(Integer piecesNeeded, OptScaleExactStat... stats) {
+            for (OptScaleExactStat stat : stats) {
+                stat.scale_to_lvl = true;
+            }
             set.stats.put(piecesNeeded, Arrays.asList(stats));
             return this;
 

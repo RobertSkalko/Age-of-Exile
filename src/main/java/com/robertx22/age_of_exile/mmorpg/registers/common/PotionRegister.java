@@ -2,14 +2,14 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
-import com.robertx22.age_of_exile.database.data.exile_effects.ExileStatusEffect;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.effects.AntiPotionEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.FoodExileStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ModStatusEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.HealthRegenFoodEffect;
-import com.robertx22.age_of_exile.vanilla_mc.potion_effects.compat_food_effects.ManaRegenFoodEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.FoodExileStatusEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.compat_food_effects.HealthRegenFoodEffect;
+import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.compat_food_effects.ManaRegenFoodEffect;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
@@ -51,16 +51,11 @@ public class PotionRegister {
         }
 
         for (int i = 0; i < 20; i++) {
-            String key = ExileStatusEffect.getIdPath(EffectType.neutral, i);
-            ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.neutral, i));
-            exileEffectsMap.put(key, eff);
-        }
-        for (int i = 0; i < 20; i++) {
             String key = ExileStatusEffect.getIdPath(EffectType.negative, i);
             ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.negative, i));
             exileEffectsMap.put(key, eff);
         }
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 40; i++) {
             String key = ExileStatusEffect.getIdPath(EffectType.beneficial, i);
             ExileStatusEffect eff = Registry.register(Registry.STATUS_EFFECT, new Identifier(Ref.MODID, key), new ExileStatusEffect(EffectType.beneficial, i));
             exileEffectsMap.put(key, eff);

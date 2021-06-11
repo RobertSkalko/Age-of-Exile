@@ -83,12 +83,7 @@ bow2
 hoe4
 bow3
 bow0
-wand2
 bow1
-wand3
-wand0
-wand1
-wand4
 staff4
 staff1
 mana_reg_ring_end

@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.utils.LoadSave;
@@ -24,6 +25,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -137,6 +139,10 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
             list.add(new LiteralText(""));
             list.add(TooltipUtils.rarity(getRarity())
                 .formatted(getRarity().textFormatting()));
+
+            list.add(new LiteralText(""));
+            list.add(Words.Press_Shift_For_More_Info.locName()
+                .formatted(Formatting.BLUE));
 
             TooltipUtils.removeDoubleBlankLines(list);
         } catch (Exception e) {

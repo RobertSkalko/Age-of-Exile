@@ -74,7 +74,7 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
                 if (gear.getInstability() >= ModConfig.get().ItemSealing.MAX_INSTABILITY) {
                     return false;
                 }
-                if (gear.sealed) {
+                if (gear.s) {
                     return false;
                 }
             }

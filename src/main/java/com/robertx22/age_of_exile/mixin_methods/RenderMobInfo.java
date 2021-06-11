@@ -50,6 +50,9 @@ public class RenderMobInfo {
                 if (entity instanceof ArmorStandEntity) {
                     return;
                 }
+                if (entity.hasPassenger(MinecraftClient.getInstance().player)) {
+                    return; // dont display horse's bar if the player is riding it
+                }
 
                 float yOffset = entity.getHeight() + 0.5F;
 

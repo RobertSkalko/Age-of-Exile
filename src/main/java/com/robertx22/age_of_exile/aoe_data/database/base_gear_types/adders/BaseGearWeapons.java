@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.Sl
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -23,7 +22,6 @@ public class BaseGearWeapons implements ISlashRegistryInit {
 
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> SWORD;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> AXE;
-    public static HashMap<LevelRange, DataGenKey<BaseGearType>> WAND;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> SCEPTER;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> BOW;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> CROSSBOW;
@@ -68,13 +66,6 @@ public class BaseGearWeapons implements ISlashRegistryInit {
             .req(new StatRequirement().setStr(0.3F)
                 .setDex(0.1F))
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.sword, SlotTag.melee_weapon, SlotTag.weapon_family, SlotTag.strength, SlotTag.dexterity))
-            .addWarriorLevelRanges()
-            .build();
-
-        WAND = BaseGearBuilder.weapon(GearSlots.WAND, WeaponTypes.wand, ModRegistry.GEAR_ITEMS.WANDS)
-            .req(new StatRequirement().setInt(0.5F))
-            .tags(new TagList(SlotTag.mage_weapon, SlotTag.wand, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
-            .implicitStat(new StatModifier(3, 10, SpellDamage.getInstance(), ModType.FLAT))
             .addWarriorLevelRanges()
             .build();
 

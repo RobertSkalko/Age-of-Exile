@@ -10,8 +10,8 @@ public class RareItemAffixNames {
 
     public static Words getPrefix(GearItemData gear) {
 
-        if (prefixAny.containsKey(gear.rare_prefix)) {
-            return prefixAny.get(gear.rare_prefix);
+        if (prefixAny.containsKey(gear.rp)) {
+            return prefixAny.get(gear.rp);
         }
 
         return null;
@@ -20,8 +20,8 @@ public class RareItemAffixNames {
     public static Words getSuffix(GearItemData gear) {
 
         if (getSuffixMap(gear.GetBaseGearType())
-            .containsKey(gear.rare_suffix)) {
-            return getSuffixMap(gear.GetBaseGearType()).get(gear.rare_suffix);
+            .containsKey(gear.rs)) {
+            return getSuffixMap(gear.GetBaseGearType()).get(gear.rs);
         }
 
         return null;

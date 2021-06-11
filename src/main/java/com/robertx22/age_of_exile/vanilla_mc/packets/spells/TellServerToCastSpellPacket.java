@@ -27,7 +27,7 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
 
     @Override
     public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "castspell");
+        return new Identifier(Ref.MODID, "tell_server_castspell");
     }
 
     @Override
@@ -49,10 +49,9 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
         SkillGemData data = spells.getSkillGemData()
             .getSkillGemOf(number);
 
-        if (data == null) {
+        if (data == null || data.getSkillGem() == null) {
             return;
         }
-
         if (player.isBlocking()) {
             return;
         }

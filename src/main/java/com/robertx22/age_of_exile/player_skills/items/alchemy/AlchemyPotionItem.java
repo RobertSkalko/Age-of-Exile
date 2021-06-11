@@ -55,7 +55,7 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
 
             for (AlchemyPotionItem x : ModRegistry.ALCHEMY.POTIONS_MAP.values()) {
                 p.getItemCooldownManager()
-                    .set(x, 20 * 30);
+                    .set(x, 20 * 15);
             }
 
             PlayerUtils.giveItem(new ItemStack(Items.GLASS_BOTTLE), (PlayerEntity) player);
@@ -125,7 +125,7 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
                 return null;
             }
 
-            eff.effects_given.add(new StatusEffectData(effect, 6, (int) (this.tier.statMulti * 10)));
+            eff.effects_given.add(new StatusEffectData(effect, 6, (int) (this.tier.statMulti * 20)));
         } catch (Exception e) {
             e.printStackTrace();
         }

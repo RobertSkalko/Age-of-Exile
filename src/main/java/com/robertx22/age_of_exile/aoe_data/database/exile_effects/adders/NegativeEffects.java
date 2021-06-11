@@ -9,13 +9,16 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
+import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -44,9 +47,44 @@ public class NegativeEffects implements ISlashRegistryInit {
     public static EffectCtx AGONY = new EffectCtx("agony", "Curse of Agony", 13, Elements.Dark, EffectType.negative);
     public static EffectCtx WEAKNESS = new EffectCtx("weak", "Curse of Weakness", 14, Elements.Dark, EffectType.negative);
     public static EffectCtx DESPAIR = new EffectCtx("despair", "Curse of Despair", 15, Elements.Dark, EffectType.negative);
+    public static EffectCtx CHARM = new EffectCtx("charm", "Charm", 16, Elements.Elemental, EffectType.negative);
+    public static EffectCtx GROUNDING = new EffectCtx("ground", "Grounding", 17, Elements.Physical, EffectType.negative);
+    public static EffectCtx MARK_OF_DEATH = new EffectCtx("mark_of_death", "Mark of Death", 18, Elements.Physical, EffectType.negative);
+    public static EffectCtx SHRED = new EffectCtx("shred", "Shred", 19, Elements.Physical, EffectType.negative);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(SHRED)
+            .maxStacks(3)
+            .stat(-25, Armor.getInstance(), ModType.FLAT)
+            .stat(-3, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .stat(-5, Armor.getInstance(), ModType.LOCAL_INCREASE)
+            .build();
+
+        ExileEffectBuilder.of(MARK_OF_DEATH)
+            .maxStacks(1)
+            .stat(-50, Armor.getInstance(), ModType.FLAT)
+            .stat(-25, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(-10, new ElementalResist(Elements.Elemental))
+            .build();
+
+        ExileEffectBuilder.of(GROUNDING)
+            .maxStacks(1)
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 1D, ParticleMotion.Downwards))
+                    .addTarget(TargetSelector.CASTER.create()))
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 2D, 0.5D)
+                    .onTick(20D))
+                .buildForEffect())
+            .build();
+
+        ExileEffectBuilder.of(CHARM)
+            .maxStacks(5)
+            .stat(-3, Armor.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(-3, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(-3, new ElementalResist(Elements.Elemental))
+            .build();
 
         ExileEffectBuilder.of(AGONY)
             .maxStacks(1)
@@ -146,10 +184,8 @@ public class NegativeEffects implements ISlashRegistryInit {
 
                 .onTick(PartBuilder.dotDamageOnTick(POISON.effectId, ValueCalculation.base("poison", 2), Elements.Nature)
                     .onTick(20D))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 15D, 1D)
-                    .onTick(20D))
-                .onTick(PartBuilder.playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 0.5D, 0.5D)
-                    .onTick(20D))
+                .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.POISON, 1D, 1D)
+                    .onTick(2D))
                 .buildForEffect())
             .build();
 
@@ -174,10 +210,9 @@ public class NegativeEffects implements ISlashRegistryInit {
                 .onTick(PartBuilder.dotDamageOnTick(BLEED.effectId, ValueCalculation.base("bleed", 2.25F), Elements.Physical)
                     .onTick(20D))
 
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 10D, 1D)
-                    .onTick(20D))
-                .onTick(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_HURT, 0.5D, 1D)
-                    .onTick(20D))
+                .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.BLOOD_DRIP, 2D, 0.5D)
+                    .onTick(5D))
+
                 .buildForEffect())
             .build();
 

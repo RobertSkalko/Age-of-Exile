@@ -45,7 +45,7 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         return data;
     }
 
-    public static ValueCalculation scaleWithStat(String id, ScalingStatCalculation stat, float base) {
+    public static ValueCalculation withStat(String id, ScalingCalc stat, float base) {
         ValueCalculation data = new ValueCalculation();
         data.id = id;
         data.stat_scalings.add(stat);
@@ -64,7 +64,7 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
     }
 
     @Store
-    public List<ScalingStatCalculation> stat_scalings = new ArrayList<>();
+    public List<ScalingCalc> stat_scalings = new ArrayList<>();
 
     @Store
     public String id = "";
@@ -85,6 +85,10 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         }
 
         return (int) base_scaling_type.scale(base_val, lvl);
+    }
+
+    public String getLocSpellTooltip() {
+        return "[calc:" + id + "]";
     }
 
     private int getCalculatedScalingValue(EntityCap.UnitData data, int lvl) {
@@ -124,7 +128,8 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
         }
 
         stat_scalings.forEach(x -> {
-            text.append(" " + x.GetTooltipString()); // todo
+            text.append(" + ")
+                .append(x.GetTooltipString()); // todo
         });
 
         return text;

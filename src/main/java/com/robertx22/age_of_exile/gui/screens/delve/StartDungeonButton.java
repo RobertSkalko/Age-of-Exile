@@ -1,9 +1,11 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
+import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
 import com.robertx22.age_of_exile.dimension.packets.StartDungeonPacket;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
@@ -25,15 +27,15 @@ public class StartDungeonButton extends TexturedButtonWidget {
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
-    boolean isteam;
+    TeamSize teamSize;
 
-    public StartDungeonButton(Boolean isteam, DungeonInfoScreen screen, PointData point, int xPos, int yPos) {
+    public StartDungeonButton(TeamSize teamSize, DungeonInfoScreen screen, PointData point, int xPos, int yPos) {
         super(xPos, yPos, SIZE_X, SIZE_Y, 0, 0, SIZE_Y, ID, (button) -> {
-            Packets.sendToServer(new StartDungeonPacket(isteam, screen.teleporterPos, point));
+            Packets.sendToServer(new StartDungeonPacket(teamSize, screen.teleporterPos, point));
 
             screen.onClose();
         });
-        this.isteam = isteam;
+        this.teamSize = teamSize;
     }
 
     @Override
@@ -42,11 +44,14 @@ public class StartDungeonButton extends TexturedButtonWidget {
             List<Text> tooltip = new ArrayList<>();
             tooltip.add(new LiteralText("Choose this dungeon to start."));
 
-            if (isteam) {
+            if (teamSize.requiredMemberAmount > 1) {
                 tooltip.add(new LiteralText("This starts the dungeon in team mode."));
                 tooltip.add(new LiteralText("/age_of_exile teams, is required to play."));
                 tooltip.add(new LiteralText("The enemies are much more powerful but so are the rewards!"));
-                tooltip.add(new LiteralText("A dedicated Tank, Healer and Damage Dealer are recommended."));
+
+                if (teamSize.requiredMemberAmount > 2) {
+                    tooltip.add(new LiteralText("A dedicated Tank, Healer and Damage Dealer are recommended."));
+                }
             }
 
             GuiUtils.renderTooltip(matrix, tooltip, x, y);
@@ -62,10 +67,7 @@ public class StartDungeonButton extends TexturedButtonWidget {
     public void renderButton(MatrixStack matrix, int x, int y, float f) {
         super.renderButton(matrix, x, y, f);
 
-        String txt = "Solo";
-        if (isteam) {
-            txt = "Team";
-        }
+        String txt = CLOC.translate(teamSize.word.locName());
 
         int width = mc.textRenderer.getWidth(txt);
 

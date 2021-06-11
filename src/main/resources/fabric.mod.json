@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "mmorpg",
-  "version": "1.8.0",
+  "version": "2.0.6",
   "name": "Age of Exile",
   "description": "Diablo in Minecraft!",
   "authors": [
@@ -15,9 +15,9 @@
   "icon": "assets/mmorpg/icon.png",
   "environment": "*",
   "entrypoints": {
-	"preLaunch": [
-	 "com.robertx22.age_of_exile.mmorpg.init.PreInit"
-	],
+    "preLaunch": [
+      "com.robertx22.age_of_exile.mmorpg.init.PreInit"
+    ],
     "main": [
       "com.robertx22.age_of_exile.mmorpg.init.CommonInit"
     ],
@@ -30,30 +30,29 @@
     "modmenu": [
       "com.robertx22.age_of_exile.mmorpg.mod_menu.ModMenuIntegration"
     ],
-	"rei_plugins": [
+    "rei_plugins": [
       "com.robertx22.age_of_exile.mmorpg.registers.client.ReiPlugin"
-	],
-	"rei_containers": [
+    ],
+    "rei_containers": [
       "com.robertx22.age_of_exile.mmorpg.registers.ReiContainers"
-    ]	
+    ]
   },
   "mixins": [
     "mmorpg.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.0",
+    "fabricloader": ">=0.11.3",
     "fabric": ">=0.34.0",
     "minecraft": ">=1.16.2",
     "curios": ">=0.0.10-1.16.3",
-    "library_of_exile": ">=1.0.6",
+    "library_of_exile": ">=1.0.7",
     "world_of_exile": ">=1.2.0",
     "cloth-config2": "*",
     "autoconfig1u": "*",
-    "patchouli": "*",
-    "cardinal-components-base": ">=2.5.0",
-    "cardinal-components-entity": ">=2.5.0",
-    "cardinal-components-chunk": ">=2.5.0",
-    "cardinal-components-world": ">=2.5.0"
+    "cardinal-components-base": ">=2.8.0",
+    "cardinal-components-entity": ">=2.8.0",
+    "cardinal-components-chunk": ">=2.8.0",
+    "cardinal-components-world": ">=2.8.0"
   },
   "suggests": {
     "balance_of_exile": "*"

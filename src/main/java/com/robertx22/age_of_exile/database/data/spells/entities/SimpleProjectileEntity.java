@@ -324,8 +324,8 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             }
         }
 
-        if (entityHit != null && dataTracker.get(EXPIRE_ON_ENTITY_HIT)) {
-            if (dataTracker.get(PIERCE)) {
+        if (entityHit != null) {
+            if (!dataTracker.get(EXPIRE_ON_ENTITY_HIT)) {
                 return;
             } else {
                 scheduleRemoval();
@@ -481,7 +481,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         this.checkBlockCollision();
 
         if (data.pierce) {
-            this.dataTracker.set(PIERCE, true);
+            this.dataTracker.set(EXPIRE_ON_ENTITY_HIT, false);
         }
 
         data.item_id = holder.get(MapField.ITEM);

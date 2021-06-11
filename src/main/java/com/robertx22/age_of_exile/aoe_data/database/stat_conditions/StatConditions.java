@@ -31,6 +31,7 @@ public class StatConditions implements ISlashRegistryInit {
     public static StatCondition IS_TARGET_UNDEAD = new IsUndeadCondition();
     public static StatCondition IS_TARGET_NOT_UNDEAD = new IsUndeadCondition().flipCondition();
     public static StatCondition IS_IN_COMBAT = new IsInCombatCondition();
+    public static StatCondition IS_NOT_IN_COMBAT = new IsInCombatCondition().flipCondition();
     public static StatCondition IS_BASIC_ATTACK = new IsBooleanTrueCondition(EventData.IS_BASIC_ATTACK);
     public static StatCondition IS_TARGET_LOW_HP = new IsHealthBellowPercentCondition("is_target_low_hp", 30, EffectSides.Target);
     public static StatCondition IS_SOURCE_LOW_HP = new IsHealthBellowPercentCondition("is_source_low_hp", 30, EffectSides.Source);
@@ -112,6 +113,7 @@ public class StatConditions implements ISlashRegistryInit {
     public void registerAll() {
 
         ATTACK_TYPE_MATCHES.addToSerializables();
+        IS_NOT_IN_COMBAT.addToSerializables();
         IS_TARGET_SHIELDED.addToSerializables();
         IF_CRIT.addToSerializables();
         IF_RANDOM_ROLL.addToSerializables();

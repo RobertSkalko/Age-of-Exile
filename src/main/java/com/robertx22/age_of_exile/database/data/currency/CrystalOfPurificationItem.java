@@ -37,7 +37,7 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
-        gear.sealed = false;
+        gear.s = false;
         Gear.Save(stack, gear);
         return stack;
     }

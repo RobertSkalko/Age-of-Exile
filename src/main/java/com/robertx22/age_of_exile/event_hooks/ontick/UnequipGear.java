@@ -54,23 +54,28 @@ public class UnequipGear {
         int runewords = 0;
         int uniques = 0;
 
-        List<ItemStack> gems = Load.spells(player)
+        List<SkillGemData> gems = Load.spells(player)
+            .getSkillGemData().gems;
+        List<ItemStack> stacks = Load.spells(player)
             .getSkillGemData().stacks;
 
-        for (int i = 0; i < gems.size(); i++) {
-            ItemStack stack = gems.get(i);
-            SkillGemData gem = SkillGemData.fromStack(stack);
+        if (gems.size() == stacks.size()) {
 
-            if (gem != null) {
-                if (!gem.canPlayerUse(player)) {
-                    PlayerUtils.giveItem(stack.copy(), player);
-                    player.sendMessage(new LiteralText("Skill Gem uneqipped due to unmet requirements"), false);
-                    gems.set(i, ItemStack.EMPTY);
-                    Load.spells(player)
-                        .getSkillGemData().gems.set(i, new SkillGemData());
+            for (int i = 0; i < gems.size(); i++) {
+                SkillGemData gem = gems.get(i);
+                ItemStack stack = stacks.get(i);
+
+                if (gem != null) {
+                    if (!gem.canPlayerUse(player)) {
+                        PlayerUtils.giveItem(stack.copy(), player);
+                        player.sendMessage(new LiteralText("Skill Gem uneqipped due to unmet requirements"), false);
+                        stacks.set(i, ItemStack.EMPTY);
+                        Load.spells(player)
+                            .getSkillGemData().gems.set(i, new SkillGemData());
+                    }
                 }
-            }
 
+            }
         }
 
         for (EquipmentSlot slot : SLOTS) {
@@ -84,12 +89,12 @@ public class UnequipGear {
                     drop(player, slot, stack, new LiteralText("You do not meet the requirements of that item.").formatted(Formatting.RED));
                 } else if (gear.isUnique()) {
                     uniques++;
-                    if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_ON_PLAYER) {
+                    if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_WORN) {
                         drop(player, slot, stack, new LiteralText("You cannot equip that many unique items.").formatted(Formatting.RED));
                     }
                 } else if (gear.hasRuneWord()) {
                     runewords++;
-                    if (runewords > ModConfig.get().Server.MAX_RUNEWORD_GEARS_ON_PLAYER) {
+                    if (runewords > ModConfig.get().Server.MAX_RUNEWORD_GEARS_WORN) {
                         drop(player, slot, stack, new LiteralText("You cannot equip that many runed items.").formatted(Formatting.RED));
                     }
                 }
@@ -113,12 +118,12 @@ public class UnequipGear {
                             drop(player, handler, i, stack, new LiteralText("You do not meet the requirements of that item.").formatted(Formatting.RED));
                         } else if (gear.isUnique()) {
                             uniques++;
-                            if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_ON_PLAYER) {
+                            if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_WORN) {
                                 drop(player, handler, i, stack, new LiteralText("You cannot equip that many unique items.").formatted(Formatting.RED));
                             }
                         } else if (gear.hasRuneWord()) {
                             runewords++;
-                            if (runewords > ModConfig.get().Server.MAX_RUNEWORD_GEARS_ON_PLAYER) {
+                            if (runewords > ModConfig.get().Server.MAX_RUNEWORD_GEARS_WORN) {
                                 drop(player, handler, i, stack, new LiteralText("You cannot equip that many runed items.").formatted(Formatting.RED));
                             }
                         }

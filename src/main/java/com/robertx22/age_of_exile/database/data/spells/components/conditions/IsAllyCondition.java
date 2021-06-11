@@ -6,8 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
-import net.minecraft.server.network.ServerPlayerEntity;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 
@@ -28,9 +27,10 @@ public class IsAllyCondition extends EffectCondition implements ICTextTooltip {
 
     @Override
     public boolean canActivate(SpellCtx ctx, MapHolder data) {
-        return ctx.target instanceof ServerPlayerEntity
-            && ctx.caster instanceof ServerPlayerEntity
-            && TeamUtils.areOnSameTeam((ServerPlayerEntity) ctx.target, (ServerPlayerEntity) ctx.caster);
+        if (ctx.target == null || ctx.caster == null) {
+            return false;
+        }
+        return AllyOrEnemy.allies.is(ctx.target, ctx.caster);
     }
 
     public MapHolder create(Double chance) {

@@ -26,7 +26,7 @@ public class SpellConfiguration {
     public List<PlayerAction> actions_needed = new ArrayList<>();
     public boolean scale_mana_cost_to_player_lvl = false;
 
-    public boolean isTechnique() {
+    public boolean hasActionRequirements() {
         return !actions_needed.isEmpty();
     }
 
@@ -37,6 +37,11 @@ public class SpellConfiguration {
     public SpellConfiguration setRequireActions(List<PlayerAction> list) {
         this.actions_needed = list;
         return this;
+
+    }
+
+    public boolean usesCharges() {
+        return charges > 0;
     }
 
     public SpellConfiguration setChargesAndRegen(String name, int charges, int ticksToRegen) {

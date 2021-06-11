@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.spells;
 
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
+import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -21,12 +22,21 @@ public class ChargeData {
     @Store
     private HashMap<String, Integer> charge_regen = new HashMap<>();
 
+    public int getCurrentTicksChargingOf(String id) {
+        return charge_regen.getOrDefault(id, 0);
+    }
+
     public boolean hasCharge(String id) {
         return charges.getOrDefault(id, 0) > 0;
     }
 
-    public void spendCharge(String id) {
+    public void spendCharge(PlayerEntity player, String id) {
         charges.put(id, MathHelper.clamp(charges.getOrDefault(id, 0) - 1, 0, 100000));
+
+        if (!player.world.isClient) {
+            Load.spells(player)
+                .syncToClient(player);
+        }
     }
 
     public int getCharges(String id) {
@@ -48,8 +58,7 @@ public class ChargeData {
 
         List<String> chargesadded = new ArrayList<>(); // no duplicate charge regen
 
-        sdata.getSkillGemData().gems.forEach(x -> {
-
+        for (SkillGemData x : sdata.getSkillGemData().gems) {
             if (x != null && x.getSkillGem() != null) {
                 if (Database.Spells()
                     .isRegistered(x.getSkillGem().spell_id)) {
@@ -57,6 +66,10 @@ public class ChargeData {
                         .get(x.getSkillGem().spell_id);
 
                     String id = s.config.charge_name;
+
+                    if (getCharges(id) >= s.config.charges) {
+                        continue;
+                    }
 
                     if (!chargesadded.contains(id)) {
 
@@ -80,6 +93,6 @@ public class ChargeData {
                 }
             }
 
-        });
+        }
     }
 }

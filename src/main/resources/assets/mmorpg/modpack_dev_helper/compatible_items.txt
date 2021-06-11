@@ -76,7 +76,6 @@ mmorpg:weapon/glove/glove0
 mmorpg:weapon/glove/glove1
 mmorpg:uniques/armor/blaze_boots
 mmorpg:uniques/armor/oak_helmet
-mmorpg:weapon/wand/wand4
 mmorpg:uniques/armor/oak_pants
 mmorpg:weapon/scepter/scepter0
 mmorpg:weapon/scepter/scepter1
@@ -84,11 +83,7 @@ mmorpg:weapon/scepter/scepter4
 mmorpg:weapon/scepter/scepter2
 minecraft:iron_boots.leather_boots1
 mmorpg:weapon/scepter/scepter3
-mmorpg:weapon/wand/wand2
-mmorpg:weapon/wand/wand3
 minecraft:diamond_boots.cloth_boots2
-mmorpg:weapon/wand/wand0
-mmorpg:weapon/wand/wand1
 mmorpg:weapon/axe/axe0
 mmorpg:weapon/axe/axe1
 mmorpg:weapon/scythe/scythe1
@@ -187,6 +182,7 @@ mmorpg:uniques/armor/blaze_chest
 minecraft:iron_chestplate.cloth_chest1
 minecraft:diamond_leggings.plate_pants2
 mmorpg:uniques/jewelry/skull_of_spirits
+mmorpg:uniques/weapon/living_inferno
 mmorpg:armor/cloth/boots/cloth_boots1
 mmorpg:armor/cloth/boots/cloth_boots2
 minecraft:leather_helmet.leather_helmet0

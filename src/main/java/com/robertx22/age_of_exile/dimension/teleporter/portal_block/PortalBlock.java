@@ -2,10 +2,11 @@ package com.robertx22.age_of_exile.dimension.teleporter.portal_block;
 
 import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
-import com.robertx22.age_of_exile.mixin_ducks.PlayerTeleStateAccessor;
+import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
-import com.robertx22.library_of_exile.utils.TeleportUtils;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -19,6 +20,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Random;
 
@@ -68,19 +70,34 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         try {
 
+            if (world.isClient) {
+                return;
+            }
+
             if (entity instanceof PlayerEntity) {
-
-                PortalBlockEntity be = (PortalBlockEntity) world.getBlockEntity(pos);
-
-                if (!be.restrictedToPlayer.isEmpty()) {
-                    if (!be.restrictedToPlayer.equals(entity.getUuidAsString())) {
-                        return; // only allow 1 player in solo maps
-                    }
-                }
 
                 PlayerMapsCap maps = Load.playerMaps((PlayerEntity) entity);
 
-                entity.teleporting = true;
+                if (entity.getVelocity().y > 0) {
+                    maps.ticksinPortal = 0; // jumping bugs it somehow
+                    return;
+                }
+
+                if (WorldUtils.isDungeonWorld(world)) {
+                    if (maps.ticksinPortal < 40) {
+                        maps.ticksinPortal++;
+                    } else {
+                        maps.ticksinPortal = 0;
+                        BlockPos p = Load.playerMaps((PlayerEntity) entity).data.tel_pos.up();
+
+                        OnServerTick.makeSureTeleport((ServerPlayerEntity) entity, p, DimensionType.OVERWORLD_ID);
+
+                        SoundUtils.playSound(entity, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);
+                        return;
+                    }
+                }
+
+                PortalBlockEntity be = (PortalBlockEntity) world.getBlockEntity(pos);
 
                 if (entity instanceof ServerPlayerEntity) {
                     if (!entity.hasVehicle() && !entity.hasPassengers() && entity.canUsePortals()) {
@@ -89,16 +106,13 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                             maps.ticksinPortal++;
                         } else {
 
-                            PlayerTeleStateAccessor acc = (PlayerTeleStateAccessor) entity;
-                            acc.setIsInTeleportationState(true);
-
                             if (be.dungeonPos == BlockPos.ORIGIN) {
                                 return;
                             } else {
                                 maps.ticksinPortal = 0;
                                 maps.data.tel_pos = be.tpbackpos;
 
-                                TeleportUtils.teleport((ServerPlayerEntity) entity, be.dungeonPos, DimensionIds.DUNGEON_DIMENSION);
+                                OnServerTick.makeSureTeleport((ServerPlayerEntity) entity, be.dungeonPos, DimensionIds.DUNGEON_DIMENSION);
                             }
                         }
                     }

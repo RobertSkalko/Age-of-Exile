@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
@@ -24,6 +25,10 @@ import java.util.function.Supplier;
 
 public enum FoodExileEffect {
 
+    OUTSIDE_COMBAT_HEALTH_REGEN("Energizing", "ooc_hp_reg", EffectColor.RED, new OptScaleExactStat(3, Stats.OUT_OF_COMBAT_REGEN.get(ResourceType.health))),
+    OUTSIDE_COMBAT_MANA_REGEN("Soothing", "ooc_mana_reg", EffectColor.BLUE, new OptScaleExactStat(3, Stats.OUT_OF_COMBAT_REGEN.get(ResourceType.mana))),
+    OUTSIDE_COMBAT_COMBO_REGEN("Comfort", "ooc_combo_reg", EffectColor.PURPLE, new OptScaleExactStat(1, Stats.OUT_OF_COMBAT_REGEN.get(ResourceType.health)), new OptScaleExactStat(1, Stats.OUT_OF_COMBAT_REGEN.get(ResourceType.mana))),
+
     WATER_DAMAGE("Aqua", "water", EffectColor.BLUE, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Water)), new OptScaleExactStat(20, new ElementalResist(Elements.Water))),
     FIRE_DAMAGE("Ignis", "fire", EffectColor.RED, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)), new OptScaleExactStat(20, new ElementalResist(Elements.Fire))),
     LIGHT_DAMAGE("Sky", "light", EffectColor.YELLOW, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Light)), new OptScaleExactStat(20, new ElementalResist(Elements.Light))),
@@ -31,7 +36,7 @@ public enum FoodExileEffect {
     NATURE_DAMAGE("Terra", "nature", EffectColor.GREEN, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature)), new OptScaleExactStat(20, new ElementalResist(Elements.Nature))),
     PHYSICAL_DAMAGE("Physical", "physical", EffectColor.RED, new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical)), new OptScaleExactStat(20, Armor.getInstance(), ModType.LOCAL_INCREASE)),
 
-    DEF_PURPLE("Magicka Defense", "def_purple", EffectColor.PURPLE, new OptScaleExactStat(5, SpellDamage.getInstance()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
+    DEF_PURPLE("Magicka Defense", "def_purple", EffectColor.PURPLE, new OptScaleExactStat(10, SpellDamage.getInstance()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
     DEF_BLUE("Arcana Defense", "def_blue", EffectColor.BLUE, new OptScaleExactStat(25, Mana.getInstance(), ModType.LOCAL_INCREASE), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
     DEF_YELLOW("Sky Defense", "def_yellow", EffectColor.YELLOW, new OptScaleExactStat(10, Stats.HEAL_STRENGTH.get()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
     DEF_GREEN("Terra Defense", "def_green", EffectColor.GREEN, new OptScaleExactStat(20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),
@@ -59,6 +64,19 @@ public enum FoodExileEffect {
         this.stats = Arrays.asList(stat);
         this.color = color;
         this.id = id;
+
+        for (OptScaleExactStat s : stat) {
+            s.scale_to_lvl = true;
+        }
+
+    }
+
+    public String getOneOfAKindType() {// rework this when i turn this into a class and not an enum
+        if (this.id.contains("ooc")) {
+            return "ooc_regen";
+        } else {
+            return "food";
+        }
     }
 
     public enum EffectColor {

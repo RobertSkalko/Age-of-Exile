@@ -291,7 +291,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         }
     }
 
-    public float zoom = 1;
+    public float zoom = 0.3F;
 
     public static boolean RETURN_ZOOM = false;
 

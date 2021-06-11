@@ -25,7 +25,7 @@ public class LootInfo {
     }
 
     public enum LootOrigin {
-        CHEST, MOB, PLAYER, OTHER;
+        CHEST, MOB, PLAYER, OTHER, LOOT_CRATE;
     }
 
     public int amount = 0;
@@ -115,7 +115,7 @@ public class LootInfo {
     }
 
     public static LootInfo ofLockedChestItem(PlayerEntity player, int level) {
-        LootInfo info = new LootInfo(LootOrigin.CHEST);
+        LootInfo info = new LootInfo(LootOrigin.LOOT_CRATE);
         info.player = player;
         info.world = player.world;
         info.pos = player.getBlockPos();
@@ -124,6 +124,10 @@ public class LootInfo {
         info.minItems = 3;
         info.maxItems = 6;
         info.setupAllFields();
+
+        info.isMapWorld = false;
+        info.tier = 0;
+        info.dungeon = null;
         return info;
     }
 
@@ -204,6 +208,10 @@ public class LootInfo {
         }
         if (isMapWorld) {
             dungeon = Load.dungeonData(world).data.get(pos).data;
+            if (dungeon == null || dungeon.isEmpty()) {
+                this.level = 1; // if there's no dungeon data, dont give anything
+                this.maxItems = 0;
+            }
         }
     }
 
@@ -232,10 +240,12 @@ public class LootInfo {
         }
 
         if (this.playerData != null) {
-            if (this.lootOrigin == LootOrigin.CHEST) {
-                modifier += playerData.getUnit()
-                    .getCalculatedStat(TreasureQuantity.getInstance())
-                    .getMultiplier() - 1F;
+            if (lootOrigin != LootOrigin.LOOT_CRATE) {
+                if (this.lootOrigin == LootOrigin.CHEST) {
+                    modifier += playerData.getUnit()
+                        .getCalculatedStat(TreasureQuantity.getInstance())
+                        .getMultiplier() - 1F;
+                }
             }
         }
 
@@ -244,10 +254,8 @@ public class LootInfo {
         }
 
         if (isMapWorld) {
-            if (dungeon != null) {
-                if (dungeon.team) {
-                    modifier *= 3;
-                }
+            if (dungeon != null && !dungeon.isEmpty()) {
+                modifier *= dungeon.team.lootMulti;
             }
         }
 

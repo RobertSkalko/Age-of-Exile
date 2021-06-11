@@ -3,10 +3,10 @@ package com.robertx22.age_of_exile.saveclasses.spells.skill_gems;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
@@ -31,47 +31,83 @@ public class SkillGemsData implements Inventory {
 
     public enum Places {
 
-        B1(0, 0, EquipmentSlot.HEAD, SkillGemType.SUPPORT_GEM, 57, 9),
-        B2(1, 0, EquipmentSlot.HEAD, SkillGemType.SKILL_GEM, 79, 9),
-        B3(2, 0, EquipmentSlot.HEAD, SkillGemType.SUPPORT_GEM, 101, 9),
+        B1(0, 0, SkillGemType.SUPPORT_GEM, 57, 9),
+        B2(1, 0, SkillGemType.SKILL_GEM, 79, 9),
+        B3(2, 0, SkillGemType.SUPPORT_GEM, 101, 9),
 
-        B4(3, 1, EquipmentSlot.CHEST, SkillGemType.SUPPORT_GEM, 39, 32),
-        B5(4, 1, EquipmentSlot.CHEST, SkillGemType.SUPPORT_GEM, 57, 32),
-        B6(5, 1, EquipmentSlot.CHEST, SkillGemType.SKILL_GEM, 79, 32),
-        B7(6, 1, EquipmentSlot.CHEST, SkillGemType.SUPPORT_GEM, 101, 32),
-        B8(7, 1, EquipmentSlot.CHEST, SkillGemType.SUPPORT_GEM, 119, 32),
+        B4(3, 1, SkillGemType.SUPPORT_GEM, 39, 32),
+        B5(4, 1, SkillGemType.SUPPORT_GEM, 57, 32),
+        B6(5, 1, SkillGemType.SKILL_GEM, 79, 32),
+        B7(6, 1, SkillGemType.SUPPORT_GEM, 101, 32),
+        B8(7, 1, SkillGemType.SUPPORT_GEM, 119, 32),
 
-        B9(8, 2, EquipmentSlot.LEGS, SkillGemType.SUPPORT_GEM, 39, 55),
-        B10(9, 2, EquipmentSlot.LEGS, SkillGemType.SUPPORT_GEM, 57, 55),
-        B11(10, 2, EquipmentSlot.LEGS, SkillGemType.SKILL_GEM, 79, 55),
-        B12(11, 2, EquipmentSlot.LEGS, SkillGemType.SUPPORT_GEM, 101, 55),
-        B13(12, 2, EquipmentSlot.LEGS, SkillGemType.SUPPORT_GEM, 119, 55),
+        B9(8, 2, SkillGemType.SUPPORT_GEM, 39, 55),
+        B10(9, 2, SkillGemType.SUPPORT_GEM, 57, 55),
+        B11(10, 2, SkillGemType.SKILL_GEM, 79, 55),
+        B12(11, 2, SkillGemType.SUPPORT_GEM, 101, 55),
+        B13(12, 2, SkillGemType.SUPPORT_GEM, 119, 55),
 
-        B14(13, 3, EquipmentSlot.FEET, SkillGemType.SUPPORT_GEM, 57, 78),
-        B15(14, 3, EquipmentSlot.FEET, SkillGemType.SKILL_GEM, 79, 78),
-        B16(15, 3, EquipmentSlot.FEET, SkillGemType.SUPPORT_GEM, 101, 78),
+        B14(13, 3, SkillGemType.SUPPORT_GEM, 57, 78),
+        B15(14, 3, SkillGemType.SKILL_GEM, 79, 78),
+        B16(15, 3, SkillGemType.SUPPORT_GEM, 101, 78),
 
-        B17(16, 4, null, SkillGemType.SKILL_GEM, 43, 101),
-        B18(17, 5, null, SkillGemType.SKILL_GEM, 67, 101),
-        B19(18, 6, null, SkillGemType.SKILL_GEM, 91, 101),
-        B20(19, 7, null, SkillGemType.SKILL_GEM, 115, 101);
+        B17(16, 4, SkillGemType.SKILL_GEM, 43, 101),
+        B18(17, 5, SkillGemType.SKILL_GEM, 67, 101),
+        B19(18, 6, SkillGemType.SKILL_GEM, 91, 101),
+        B20(19, 7, SkillGemType.SKILL_GEM, 115, 101);
 
         public int index;
         public int place;
-        public EquipmentSlot equipSlot;
         public SkillGemType slotType;
 
         public int x;
         public int y;
 
-        Places(int index, int place, EquipmentSlot equipSlot, SkillGemType slotType, int x, int y) {
+        Places(int index, int place, SkillGemType slotType, int x, int y) {
             this.index = index;
             this.place = place;
-            this.equipSlot = equipSlot;
             this.slotType = slotType;
             this.x = x;
             this.y = y;
         }
+    }
+
+    public Unit.StatContainerType getStatContainerFor(Spell spell) {
+        int index = getIndexOfSpell(spell);
+
+        int place = -1;
+        for (SkillGemsData.Places p : SkillGemsData.Places.values()) {
+            if (p.index == index) {
+                place = p.place;
+                break;
+            }
+        }
+        if (place > -1) {
+            for (Unit.StatContainerType type : Unit.StatContainerType.values()) {
+                if (type.place == place) {
+                    return type;
+                }
+            }
+        }
+
+        System.out.print("This shouldn't happen");
+        return Unit.StatContainerType.NORMAL;
+
+    }
+
+    public int getIndexOfSpell(Spell spell) {
+
+        int n = 0;
+        for (SkillGemData x : gems) {
+            if (x != null) {
+                if (x.getSkillGem().spell_id.equals(spell.GUID())) {
+                    return n;
+                }
+            }
+            n++;
+        }
+
+        return -1;
     }
 
     @Override
@@ -105,19 +141,21 @@ public class SkillGemsData implements Inventory {
         for (Places en : Places.values()) {
             if (en.slotType == SkillGemType.SUPPORT_GEM) {
                 if (en.place == place) {
-
                     list.add(gems.get(en.index));
                 }
             }
         }
-        List<SkillGemData> gems = new ArrayList<>();
-
         list.removeIf(x -> x == null);
 
-        return gems;
+        return list;
     }
 
     public SkillGemData getSkillGemOf(int place) {
+
+        if (gems.size() != stacks.size()) {
+            return null;
+        }
+
         for (Places en : Places.values()) {
             if (en.place == place) {
                 if (en.slotType == SkillGemType.SKILL_GEM) {

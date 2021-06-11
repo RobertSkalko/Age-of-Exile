@@ -36,13 +36,11 @@ import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -406,9 +404,10 @@ public class Unit {
 
                         });
 
-                        for (SkillGemData sd : noGemDuplicateList) {
+                        noGemDuplicateList.removeIf(x -> x == null || x.getSkillGem() == null);
 
-                            if (sd.canPlayerUse((PlayerEntity) entity)) {
+                        for (SkillGemData sd : noGemDuplicateList) {
+                            try {
                                 sd.getSkillGem()
                                     .getConstantStats(sd)
                                     .forEach(s -> {
@@ -421,7 +420,8 @@ public class Unit {
                                         copy.getStatInCalculation(s.getStat())
                                             .add(s, data);
                                     });
-
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
                         }
 
@@ -503,26 +503,13 @@ public class Unit {
 
     }
 
-    private static HashMap<EntityType, Boolean> IGNORED_ENTITIES = null;
-
-    public static HashMap<EntityType, Boolean> getIgnoredEntities() {
-
-        if (IGNORED_ENTITIES == null) {
-            IGNORED_ENTITIES = new HashMap<>();
-            ModConfig.get().Server.IGNORED_ENTITIES
-                .stream()
-                .filter(x -> Registry.ENTITY_TYPE.getOrEmpty(new Identifier(x))
-                    .isPresent())
-                .map(x -> Registry.ENTITY_TYPE.get(new Identifier(x)))
-                .forEach(x -> IGNORED_ENTITIES.put(x, true));
-        }
-
-        return IGNORED_ENTITIES;
-
-    }
-
     public static boolean shouldSendUpdatePackets(LivingEntity en) {
-        return !getIgnoredEntities().containsKey(en.getType());
+        if (ModConfig.get().Server.DONT_SYNC_DATA_OF_AMBIENT_MOBS) {
+            return en.getType()
+                .getSpawnGroup() != SpawnGroup.AMBIENT && en.getType()
+                .getSpawnGroup() != SpawnGroup.WATER_AMBIENT;
+        }
+        return true;
     }
 
     public static MyPacket getUpdatePacketFor(LivingEntity en, UnitData data) {

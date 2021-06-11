@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
@@ -31,12 +32,40 @@ public class UtilitySpells implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
+        SpellBuilder.of("mage_circle", SpellConfiguration.Builder.instant(10, 20 * 45)
+            .setScaleManaToPlayer(), "Mage Circle", Arrays.asList(SpellTag.movement))
+
+            .manualDesc(
+                "Summon a Magic Circle. Standing in it provides you a buff." +
+                    " After a certain duration you will be teleported to its location.")
+
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)
+                .put(MapField.ENTITY_NAME, "block")
+                .put(MapField.BLOCK_FALL_SPEED, 0D)
+                .put(MapField.FIND_NEAREST_SURFACE, false)
+                .put(MapField.IS_BLOCK_FALLING, false)))
+
+            .onExpire("block", PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
+                .addTarget(TargetSelector.CASTER.create()))
+
+            .onTick("block", PartBuilder.giveSelfExileEffect(BeneficialEffects.MAGE_CIRCLE, 20D)
+                .addCondition(EffectCondition.IS_ENTITY_IN_RADIUS.alliesInRadius(2D)))
+
+            .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.WITCH, 3D, 1.2D, 0.5D)
+                .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
+            .build();
+
         SpellBuilder.of(DASH_ID, SpellConfiguration.Builder.instant(10, 15)
                 .setScaleManaToPlayer()
                 .setChargesAndRegen("dash", 3, 20 * 30)
             , "Dash",
-            Arrays.asList(SpellTag.movement))
-            .manualDesc("Dash in target direction.")
+            Arrays.asList(SpellTag.movement, SpellTag.technique))
+
+            .manualDesc(
+                "Dash in your direction and gain slowfall.")
+
             .weaponReq(CastingWeapon.NON_MAGE_WEAPON)
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1D, 1.6D)
@@ -60,6 +89,9 @@ public class UtilitySpells implements ISlashRegistryInit {
                 .setScaleManaToPlayer(),
             "Conjure Ender Chest",
             Arrays.asList())
+            .manualDesc(
+                "Allows you to access your Ender Chest from any place.")
+
             .attackStyle(PlayStyle.magic)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_ENDER_CHEST_OPEN, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.PORTAL, 100D, 1D))
@@ -69,8 +101,11 @@ public class UtilitySpells implements ISlashRegistryInit {
 
         SpellBuilder.of("water_breath", SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 2, 40)
                 .setScaleManaToPlayer(),
-            "Water Breath",
+            "Water Breathing",
             Arrays.asList())
+            .manualDesc(
+                "Give Water Breathing to allies around you.")
+
             .attackStyle(PlayStyle.magic)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_SPLASH, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.FALLING_WATER, 100D, 3D))
@@ -81,6 +116,9 @@ public class UtilitySpells implements ISlashRegistryInit {
                 .setScaleManaToPlayer(),
             "Night Vision",
             Arrays.asList())
+            .manualDesc(
+                "Give Night Vision to allies around you.")
+
             .attackStyle(PlayStyle.magic)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_LINGERING_POTION_THROW, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 100D, 3D))
@@ -89,9 +127,12 @@ public class UtilitySpells implements ISlashRegistryInit {
 
         SpellBuilder.of("banish", SpellConfiguration.Builder.instant(10, 20 * 45)
             .setScaleManaToPlayer(), "Banish", Arrays.asList())
+            .manualDesc(
+                "Summon a Magic circle that banishes enemies in the area, levitating them for a certain duration.")
+
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 5)
                 .put(MapField.ENTITY_NAME, "block")
                 .put(MapField.BLOCK_FALL_SPEED, 0D)
                 .put(MapField.FIND_NEAREST_SURFACE, false)
@@ -110,9 +151,12 @@ public class UtilitySpells implements ISlashRegistryInit {
 
         SpellBuilder.of("jump_field", SpellConfiguration.Builder.instant(10, 20 * 45)
             .setScaleManaToPlayer(), "Jump Field", Arrays.asList(SpellTag.movement))
+            .manualDesc(
+                "Summon a Jump Field, stepping on it will propel you upwards at high speeds.")
+
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 5)
                 .put(MapField.ENTITY_NAME, "block")
                 .put(MapField.BLOCK_FALL_SPEED, 0D)
                 .put(MapField.FIND_NEAREST_SURFACE, false)
@@ -131,6 +175,10 @@ public class UtilitySpells implements ISlashRegistryInit {
         SpellBuilder.of("levitation", SpellConfiguration.Builder.instant(1, 1)
                 .setScaleManaToPlayer(), "Levitation",
             Arrays.asList(SpellTag.movement))
+
+            .manualDesc(
+                "Levitate in the air, but you can't move around besides upwards.")
+
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_SMOKER_SMOKE, 1D, 1D))
 

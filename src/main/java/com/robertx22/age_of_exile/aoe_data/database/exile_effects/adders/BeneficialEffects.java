@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -22,7 +23,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.value_calc.ScalingStatCalculation;
+import com.robertx22.age_of_exile.database.data.value_calc.ScalingCalc;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -30,6 +31,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 
@@ -40,7 +42,7 @@ import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_MOVEMENT_S
 public class BeneficialEffects implements ISlashRegistryInit {
 
     public static EffectCtx ELE_RESIST = new EffectCtx("ele_res", "Ele Resist", 0, Elements.Elemental, EffectType.beneficial);
-    public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 1, Elements.All, EffectType.beneficial);
+    public static EffectCtx ANTIDOTE = new EffectCtx("antidote", "Antidote", 1, Elements.All, EffectType.beneficial);
     public static EffectCtx HP_REGEN = new EffectCtx("hp_reg_bard", "Health Reg", 2, Elements.Physical, EffectType.beneficial);
     public static EffectCtx MANA_REGEN = new EffectCtx("mana_reg_bard", "Mana Reg", 3, Elements.Physical, EffectType.beneficial);
     public static EffectCtx INFUSED_BLADE = new EffectCtx("infused_blade", "Infused Blade", 4, Elements.Physical, EffectType.beneficial);
@@ -68,9 +70,84 @@ public class BeneficialEffects implements ISlashRegistryInit {
     public static EffectCtx ALACRITY = new EffectCtx("alacrity", "Alacrity", 27, Elements.Physical, EffectType.beneficial);
     public static EffectCtx STEAM_POWER = new EffectCtx("steam_power", "Steam Power", 28, Elements.Physical, EffectType.beneficial);
     public static EffectCtx CONCENTRATION = new EffectCtx("concentration", "Concentration", 29, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 30, Elements.Light, EffectType.beneficial);
+    public static EffectCtx MURDER_INSTINCT = new EffectCtx("murder_instinct", "Murder Instinct", 31, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx DEMON_TRANSFORMATION = new EffectCtx("demon", "Demon", 32, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx MAGE_CIRCLE = new EffectCtx("mage_circle", "Mage Circle", 33, Elements.Elemental, EffectType.beneficial);
+    public static EffectCtx LIVING_INFERNO = new EffectCtx("living_inferno", "Living Inferno", 35, Elements.Fire, EffectType.beneficial);
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(LIVING_INFERNO)
+            .stat(2, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT)
+            .stat(1, Stats.CRIT_CHANCE.get(), ModType.FLAT)
+
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.nova(ParticleTypes.FLAME, 2D, 0.5D, 0.2D)
+                    .onTick(1D))
+                .onTick(PartBuilder.nova(ParticleTypes.SMOKE, 2D, 0.5D, 0.2D)
+                    .onTick(1D))
+                .buildForEffect())
+
+            .maxStacks(25)
+            .addTags(EffectTags.offensive)
+            .build();
+
+        ExileEffectBuilder.of(MAGE_CIRCLE)
+            .stat(25, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
+            .stat(20, SpellDamage.getInstance(), ModType.FLAT)
+            .maxStacks(1)
+            .addTags(EffectTags.offensive)
+            .build();
+
+        ExileEffectBuilder.of(DEMON_TRANSFORMATION)
+            .vanillaStat(VanillaStatData.create(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1, ModType.FLAT, UUID.fromString("116a0931-d576-4721-b286-8d11de1ee42b")))
+            .stat(25, Stats.COOLDOWN_REDUCTION_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
+            .stat(25, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
+            .stat(25, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
+            .stat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT)
+            .stat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark), ModType.FLAT)
+
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 2D, 0.5D)
+                    .onTick(1D))
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.LARGE_SMOKE, 1D, 0.1D)
+                    .onTick(1D))
+                .buildForEffect())
+
+            .maxStacks(1)
+            .addTags(EffectTags.offensive)
+            .build();
+
+        ExileEffectBuilder.of(MURDER_INSTINCT)
+            .stat(5, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
+            .stat(25, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
+            .stat(10, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
+            .maxStacks(1)
+            .addTags(EffectTags.offensive)
+            .build();
+
+        ExileEffectBuilder.of(CLEANSE)
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.justAction(SpellAction.POTION.removeNegative(1D))
+                    .addTarget(TargetSelector.CASTER.create())
+                    .onTick(1D))
+                .buildForEffect())
+            .build();
+
+        ExileEffectBuilder.of(TAUNT_STANCE)
+            .stat(25, Stats.THREAT_GENERATED.get())
+            .stat(50, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
+
+            .spell(SpellBuilder.forEffect()
+                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.withStat("taunt_stance", new ScalingCalc(HealthRegen.getInstance(), 0.05F), 2), AggroAction.Type.AGGRO))
+                    .setTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
+                    .onTick(60D))
+                .buildForEffect())
+            .maxStacks(1)
+            .build();
 
         ExileEffectBuilder.of(CONCENTRATION)
             .stat(10, Stats.ACCURACY.get(), ModType.FLAT)
@@ -129,7 +206,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .stat(50, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
 
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.scaleWithStat("taunt_stance", new ScalingStatCalculation(HealthRegen.getInstance(), 0.05F), 2), AggroAction.Type.AGGRO))
+                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.withStat("taunt_stance", new ScalingCalc(HealthRegen.getInstance(), 0.05F), 2), AggroAction.Type.AGGRO))
                     .setTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
                     .onTick(60D))
                 .buildForEffect())
@@ -202,7 +279,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
         ExileEffectBuilder.of(OVERLOAD)
             .stat(-10, Stats.COOLDOWN_TICKS.get(), ModType.FLAT)
             .stat(-25, DatapackStats.MOVE_SPEED, ModType.FLAT)
-            .maxStacks(10)
+            .maxStacks(1)
             .build();
 
         ExileEffectBuilder.of(BLOODLUST)
@@ -222,7 +299,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
             .addTags(EffectTags.defensive)
             .build();
 
-        ExileEffectBuilder.of(CLEANSE)
+        ExileEffectBuilder.of(ANTIDOTE)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.removeSelfEffect(StatusEffects.POISON)
                     .onTick(10D))
