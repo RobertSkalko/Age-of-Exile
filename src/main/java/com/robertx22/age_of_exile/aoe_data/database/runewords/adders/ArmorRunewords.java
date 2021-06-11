@@ -75,6 +75,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
             ),
             Arrays.asList(XER, CEN, ORU, ITA))
             .addToSerializables();
+<<<<<<< HEAD
 
         // Mahj Attempts
 
@@ -101,5 +102,7 @@ public class ArmorRunewords implements ISlashRegistryInit {
             ),
             Arrays.asList(ENO, ANO, ITA, CEN))
             .addToSerializables();
+=======
+>>>>>>> parent of 8adb86da (adding runewords and uniques)
     }
 }

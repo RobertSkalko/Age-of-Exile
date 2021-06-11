@@ -40,30 +40,5 @@ public class JewelryRunewords implements ISlashRegistryInit {
             Arrays.asList(XER, WIR, ORU))
             .addToSerializables();
 
-        // Mahj Attempts
-
-        RuneWord.create(
-            "kahuna",
-            "Kahuna",
-            GearSlots.NECKLACE,
-            Arrays.asList(
-                    new StatModifier(5, 25, Stats.DOT_DAMAGE.get(), ModType.FLAT),
-                    new StatModifier(3, 15, Stats.TOTEM_RESTORATION_STRENGTH.get(), ModType.FLAT)
-            ),
-            Arrays.asList(XER, WIR, ORU))
-            .addToSerializables();
-
-        RuneWord.create(
-                "expedition",
-                "Expedition",
-                GearSlots.NECKLACE,
-                Arrays.asList(
-                        new StatModifier(3, 10, Stats.CAST_SPEED.get(), ModType.FLAT),
-                        new StatModifier(3, 10, Stats.ATTACK_SPEED.get(), ModType.FLAT),
-                        new StatModifier(3, 10, Stats.PROJECTILE_SPEED.get(), ModType.FLAT)
-                ),
-                Arrays.asList(XER, WIR, ORU))
-                .addToSerializables();
-
     }
 }
