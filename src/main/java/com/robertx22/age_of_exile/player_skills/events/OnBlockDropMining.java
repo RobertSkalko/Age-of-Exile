@@ -66,15 +66,19 @@ public class OnBlockDropMining {
 
             int exp = skill.getExpForBlockBroken(block);
 
-            skills.addExp(skill.type_enum, exp);
+            if (exp > 0) {
 
-            List<ItemStack> list = skill.getExtraDropsFor(player, exp, LevelUtils.levelToTier(skills.getLevel(skill.type_enum)));
+                skills.addExp(skill.type_enum, exp);
 
-            SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.MINING, list);
-            effect.Activate();
+                List<ItemStack> list = skill.getExtraDropsFor(player, exp, LevelUtils.levelToTier(skills.getLevel(skill.type_enum)));
 
-            ci.getReturnValue()
-                .addAll(effect.extraDrops);
+                SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.MINING, list);
+                effect.Activate();
+
+                ci.getReturnValue()
+                    .addAll(effect.extraDrops);
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -32,6 +32,14 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
 
     public List<String> tags = new ArrayList<>();
 
+    public boolean hasTag(EffectTags tag) {
+        return tags.contains(tag.name());
+    }
+
+    public boolean hasTag(String tag) {
+        return tags.contains(tag);
+    }
+
     public List<VanillaStatData> mc_stats = new ArrayList<>();
 
     public List<OptScaleExactStat> stats = new ArrayList<>();

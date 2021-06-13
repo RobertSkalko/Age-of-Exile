@@ -25,8 +25,8 @@ public class SongSpells implements ISlashRegistryInit {
     static void song(String id, String name, EffectCtx effect) {
 
         SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 10, 30)
-            , name,
-            Arrays.asList(SpellTag.area, SpellTag.song))
+                , name,
+                Arrays.asList(SpellTag.area, SpellTag.song))
             .manualDesc(
                 "Give a stack of " + effect.locname + " to all allies around you."
             )
@@ -44,8 +44,9 @@ public class SongSpells implements ISlashRegistryInit {
         song("song_of_vigor", "Song of Vigor", BeneficialEffects.VIGOR);
 
         SpellBuilder.of("power_chord", SpellConfiguration.Builder.instant(7, 15)
-                .setSwingArm(), "Power Chord",
-            Arrays.asList(SpellTag.projectile, SpellTag.damage))
+                    .setSwingArm()
+                    .applyCastSpeedToCooldown(), "Power Chord",
+                Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))

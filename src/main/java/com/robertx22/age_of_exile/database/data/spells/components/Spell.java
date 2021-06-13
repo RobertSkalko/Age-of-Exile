@@ -3,8 +3,6 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellDesc;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -21,10 +19,8 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
@@ -32,17 +28,12 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
-import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -237,85 +228,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, ISerializedRegistry
         SpendResourceEvent event = new SpendResourceEvent(ctx.caster, ResourceType.mana, cost);
         event.calculateEffects();
         return event;
-    }
-
-    public boolean canCast(SpellCastContext ctx) {
-
-        LivingEntity caster = ctx.caster;
-
-        if (caster instanceof PlayerEntity == false) {
-            return true;
-        }
-
-        if (((PlayerEntity) caster).isCreative()) {
-            return true;
-        }
-
-        if (!ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.isEmpty()) {
-            Identifier id = ctx.caster.world.getRegistryManager()
-                .getDimensionTypes()
-                .getId(ctx.caster.world.getDimension());
-
-            if (ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.stream()
-                .anyMatch(x -> x.equals(id.toString()))) {
-                return false;
-            }
-
-        }
-
-        if (this.isAura()) {
-            if (!ctx.spellsCap.getCastingData().auras.getOrDefault(GUID(), new SpellCastingData.AuraData()).active) { // if not active
-                if (ctx.spellsCap.getManaReservedByAuras() + aura_data.mana_reserved > 1) {
-                    return false; // todo make affected by mana reserve reduction
-                }
-            }
-        }
-
-        if (!caster.world.isClient) {
-
-            EntityCap.UnitData data = Load.Unit(caster);
-
-            if (data != null) {
-
-                if (!isAllowedInDimension(caster.world)) {
-                    if (caster instanceof PlayerEntity) {
-                        ((PlayerEntity) caster).sendMessage(new LiteralText("You feel an entity watching you. [Spell can not be casted in this dimension]"), false);
-                    }
-                    return false;
-                }
-
-                SpendResourceEvent rctx = getManaCostCtx(ctx);
-
-                if (data.getResources()
-                    .hasEnough(rctx)) {
-
-                    if (!getConfig().castingWeapon.predicate.predicate.test(caster)) {
-                        return false;
-                    }
-
-                    GearItemData wep = Gear.Load(ctx.caster.getMainHandStack());
-
-                    if (wep == null) {
-                        return false;
-                    }
-
-                    if (!wep.canPlayerWear(ctx.data)) {
-                        if (ctx.caster instanceof PlayerEntity) {
-                            OnScreenMessageUtils.sendMessage((ServerPlayerEntity) ctx.caster, new LiteralText("Weapon requirements not met"), TitleS2CPacket.Action.ACTIONBAR);
-                        }
-                        return false;
-                    }
-
-                    return true;
-                } else {
-                    if (caster instanceof ServerPlayerEntity) {
-                        Packets.sendToClient((PlayerEntity) caster, new NoManaPacket());
-                    }
-                }
-            }
-        }
-        return false;
-
     }
 
     public final int getCalculatedManaCost(SpellCastContext ctx) {

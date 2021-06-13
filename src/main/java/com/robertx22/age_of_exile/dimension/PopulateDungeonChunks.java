@@ -14,9 +14,7 @@ import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -135,11 +133,13 @@ public class PopulateDungeonChunks {
             }
         }
 
-        int mobs = RandomUtils.RandomRange(2, 5);
         int chests = RandomUtils.roll(20) ? 1 : 0;
         int spawners = RandomUtils.roll(20) ? 1 : 0;
+        int instantSpawners = RandomUtils.roll(10) ? 2 : 1;
 
         int tries = 0;
+
+        /*
         for (int i = 0; i < mobs; i++) {
             BlockPos p = RandomUtils.randomFromList(list);
 
@@ -162,6 +162,8 @@ public class PopulateDungeonChunks {
 
             list.remove(p);
         }
+
+         */
 
         tries = 0;
 
@@ -199,6 +201,35 @@ public class PopulateDungeonChunks {
 
             world.setBlockState(p, ModRegistry.BLOCKS.SPAWNER.getDefaultState(), 2);
 
+            list.remove(p);
+        }
+
+        tries = 0;
+
+        for (int i = 0; i < instantSpawners; i++) {
+            BlockPos p = RandomUtils.randomFromList(list);
+            tries++;
+            if (tries > 50) {
+                break;
+            }
+            if (!SpawnUtil.canPlaceBlock(world, p)) {
+                i--;
+                continue;
+            }
+            int mobs = RandomUtils.RandomRange(2, 5);
+
+            data.mobs += mobs;
+
+            world.setBlockState(p, ModRegistry.BLOCKS.SPAWNER.getDefaultState(), 2);
+
+            BlockEntity be = world.getBlockEntity(p);
+
+            if (be instanceof ModSpawnerBlockEntity) {
+                ModSpawnerBlockEntity ms = (ModSpawnerBlockEntity) be;
+                ms.spawnAllAtOnce = true;
+                ms.spawnsLeft = mobs;
+                ms.requiredPlayerRange = 25;
+            }
             list.remove(p);
         }
 

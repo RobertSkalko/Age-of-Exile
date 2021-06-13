@@ -3,7 +3,7 @@
   "coordinate_scale": 1,
   "natural": false,
   "shrunk": false,
-  "ambient_light": 0.3,
+  "ambient_light": 0.2,
   "has_skylight": false,
   "has_ceiling": false,
   "infiniburn": "minecraft:infiniburn_overworld",

@@ -41,10 +41,10 @@ public class StrSpells implements ISlashRegistryInit {
     public void registerAll() {
 
         SpellBuilder.of("shred", SpellConfiguration.Builder.instant(10, 20 * 1)
-                .setSwingArm()
-                .setChargesAndRegen("shred", 3, 20 * 15), "Shred",
-            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
-
+                    .setSwingArm()
+                    .setChargesAndRegen("shred", 3, 20 * 15), "Shred",
+                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+            .attackStyle(PlayStyle.melee)
             .manualDesc(
                 "Slash all nearby enemies, dealing "
                     + SpellCalcs.SHRED.getLocSpellTooltip() + " " + Elements.Physical.getIconNameDmg()
@@ -54,18 +54,20 @@ public class StrSpells implements ISlashRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_SKELETON_HURT, 1D, 1D))
 
             .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.nova(ParticleTypes.CRIT, 200D, 2.8D, 0.05D))
-            .onCast(PartBuilder.nova(ParticleTypes.ENCHANTED_HIT, 100D, 2D, 0.05D))
-            .onCast(PartBuilder.nova(ParticleTypes.CRIT, 100D, 1D, 0.05D))
-            .onCast(PartBuilder.nova(ParticleTypes.ENCHANTED_HIT, 200D, 1D, 0.05D))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 50D, 2.8D, 0.5D))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.ENCHANTED_HIT, 25D, 2D, 0.5D))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 25D, 1D, 0.5D))
+            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.ENCHANTED_HIT, 50D, 1D, 0.5D))
 
             .onCast(PartBuilder.justAction(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.SHRED, 10))
                 .enemiesInRadius(3D))
-            .onCast(PartBuilder.damageInAoe(SpellCalcs.SHRED, Elements.Physical, 3D))
+            .onCast(PartBuilder.damageInAoe(SpellCalcs.SHRED, Elements.Physical, 3D)
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ModRegistry.PARTICLES.BLOOD_EXPLODE, 15D, 0.5D, 1D)))
+
             .build();
 
         SpellBuilder.of("pull", SpellConfiguration.Builder.instant(5, 60 * 20), "Pull",
-            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .manualDesc(
                 "Pull enemies in area to you, dealing " +
                     SpellCalcs.PULL.getLocSpellTooltip() + " " +
@@ -82,7 +84,7 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("shout_warn", SpellConfiguration.Builder.instant(10, 60 * 20), "Warning Shout",
-            Arrays.asList(SpellTag.area, SpellTag.shout, SpellTag.shield))
+                Arrays.asList(SpellTag.area, SpellTag.shout, SpellTag.shield))
 
             .manualDesc(
                 "Let out a warning shout, giving a "
@@ -94,27 +96,27 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("thorn_armor", SpellConfiguration.Builder.instant(15, 200 * 20), "Thorn Armor",
-            Arrays.asList(SpellTag.damage))
+                Arrays.asList(SpellTag.damage))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.THORN_ARMOR.effectId, 20 * 45D))
             .build();
 
         SpellBuilder.of("frost_armor", SpellConfiguration.Builder.instant(15, 120 * 20), "Frost Armor",
-            Arrays.asList())
+                Arrays.asList())
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.FROST_ARMOR, 20 * 120D))
             .build();
 
         SpellBuilder.of("poisoned_weapons", SpellConfiguration.Builder.instant(15, 160 * 20), "Poison Weapons",
-            Arrays.asList(SpellTag.damage))
+                Arrays.asList(SpellTag.damage))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.POISON_WEAPONS, 20 * 30D))
             .build();
 
         SpellBuilder.of(FLAME_STRIKE_ID, SpellConfiguration.Builder.instant(8, 15)
-                .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
-                .setSwingArm(), "Flame Strike",
-            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+                    .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
+                    .setSwingArm(), "Flame Strike",
+                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
@@ -124,9 +126,9 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("tidal_strike", SpellConfiguration.Builder.instant(8, 12)
-                .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
-                .setSwingArm(), "Tidal Strike",
-            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+                    .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
+                    .setSwingArm(), "Tidal Strike",
+                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1D, 1D))
@@ -139,9 +141,9 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of(GONG_STRIKE_ID, SpellConfiguration.Builder.instant(8, 20 * 10)
-                .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK, PlayerAction.BLOCK))
-                .setSwingArm(), "Gong Strike",
-            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+                    .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK, PlayerAction.BLOCK))
+                    .setSwingArm(), "Gong Strike",
+                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
 
@@ -157,9 +159,9 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("thirst_strike", SpellConfiguration.Builder.instant(5, 15)
-                .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
-                .setSwingArm(), "Thirsting Strike",
-            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+                    .setRequireActions(Arrays.asList(PlayerAction.MELEE_ATTACK, PlayerAction.MELEE_ATTACK))
+                    .setSwingArm(), "Thirsting Strike",
+                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
 
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
@@ -172,8 +174,8 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("whirlwind", SpellConfiguration.Builder.multiCast(10, 0, 100, 10)
-                .setSwingArm(), "Whirlwind",
-            Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+                    .setSwingArm(), "Whirlwind",
+                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 100D))
@@ -185,8 +187,8 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of(CHARGE_ID, SpellConfiguration.Builder.multiCast(10, 20 * 10, 60, 60)
-                .setScaleManaToPlayer(), "Charge",
-            Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.movement))
+                    .setScaleManaToPlayer(), "Charge",
+                Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.movement))
             .manualDesc(
                 "Charge in a direction, stopping upon first enemy hit to deal "
                     + SpellCalcs.CHARGE.getLocSpellTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius."
@@ -196,7 +198,7 @@ public class StrSpells implements ISlashRegistryInit {
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_ANCIENT_DEBRIS_STEP, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 0.2D, ParticleMotion.CasterLook)
-                .put(MapField.IGNORE_Y, true))
+                    .put(MapField.IGNORE_Y, true))
                 .addTarget(TargetSelector.CASTER.create()))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 20D, 1D, 0.5D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 1D, 1D, 0.5D))
@@ -209,8 +211,8 @@ public class StrSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("taunt", SpellConfiguration.Builder.instant(0, 20 * 30)
-                .setSwingArm(), "Taunt",
-            Arrays.asList(SpellTag.area))
+                    .setSwingArm(), "Taunt",
+                Arrays.asList(SpellTag.area))
             .manualDesc(
                 "Shout, making enemies nearby want to attack you. " +
                     "Generates " + SpellCalcs.TAUNT.getLocSpellTooltip() + " threat."

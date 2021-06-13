@@ -2,6 +2,7 @@ These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 decrease_number_num
 give_beneficial/26_to_source
+apply_cd_as_cast_time
 increase_proj_speed_num
 reduce_cd_by_ticks
 set_bool_pierce

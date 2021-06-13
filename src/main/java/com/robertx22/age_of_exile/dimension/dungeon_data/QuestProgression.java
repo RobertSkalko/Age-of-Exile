@@ -41,7 +41,7 @@ public class QuestProgression {
 
         if (!fini) {
 
-            List<PlayerEntity> members = TeamUtils.getOnlineMembers(player);
+            List<PlayerEntity> members = TeamUtils.getOnlineTeamMembersInRange(player, 1000);
 
             if (members
                 .size() > 1) {

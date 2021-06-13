@@ -12,29 +12,29 @@ public class GenerateWikiCommand {
 
     public static void register(CommandDispatcher<ServerCommandSource> commandDispatcher) {
         commandDispatcher.register(
-
             literal(CommandRefs.ID)
-                .then(literal("generate_wiki_files").executes(x -> {
+                .then(literal("generate_wiki_files").requires(e -> e.hasPermissionLevel(2))
+                    .executes(x -> {
 
-                    if (!MMORPG.RUN_DEV_TOOLS) {
+                        if (!MMORPG.RUN_DEV_TOOLS) {
+                            return 0;
+                        }
+
+                        String content = "";
+
+                        for (PlayStyle style : PlayStyle.values()) {
+                            content += style.attribute.name() + " Spells:\n";
+
+                            content += ClientOnlyGenWiki.createSpellList(Database.Spells()
+                                .getFiltered(s -> s.config.style == style && s.weight > 0));
+
+                            content += "\n\n";
+                        }
+
+                        ClientOnlyGenWiki.generateWikiFile(content, "spells");
+
                         return 0;
-                    }
-
-                    String content = "";
-
-                    for (PlayStyle style : PlayStyle.values()) {
-                        content += style.attribute.name() + " Spells:\n";
-
-                        content += ClientOnlyGenWiki.createSpellList(Database.Spells()
-                            .getFiltered(s -> s.config.style == style && s.weight > 0));
-
-                        content += "\n\n";
-                    }
-
-                    ClientOnlyGenWiki.generateWikiFile(content, "spells");
-
-                    return 0;
-                }))
+                    }))
         );
     }
 

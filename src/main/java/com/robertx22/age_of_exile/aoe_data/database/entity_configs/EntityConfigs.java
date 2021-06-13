@@ -52,6 +52,10 @@ public class EntityConfigs implements ISlashRegistryInit {
 
         EntityConfig wither = mob(EntityType.WITHER, new SpecialMobStats());
         wither.min_lvl = 30;
+
+        EntityConfig dragon = mob(EntityType.ENDER_DRAGON, new SpecialMobStats());
+        dragon.min_lvl = 40;
+
     }
 
     void setupWholeMods() {

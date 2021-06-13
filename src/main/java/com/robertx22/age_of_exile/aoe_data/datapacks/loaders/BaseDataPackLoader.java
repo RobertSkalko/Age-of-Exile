@@ -81,8 +81,8 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
                         object.registerToSlashRegistry();
                     }
                 } catch (Exception exception) {
-                    LOGGER.error("Couldn't parse " + id + " {}", key
-                        .toString(), exception);
+                    System.out.println(id + " is a broken datapack entry.");
+                    exception.printStackTrace();
                 }
             });
 

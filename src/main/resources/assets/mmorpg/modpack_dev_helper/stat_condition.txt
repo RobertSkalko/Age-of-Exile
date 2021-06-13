@@ -74,6 +74,7 @@ is_dagger_wep_type
 threat_gen_type_is_heal
 restore_type_is_regen
 is_none_wep_type
+req_charged_atk
 is_scythe_wep_type
 spell_has_tag_heal
 spell_has_tag_curse

@@ -19,6 +19,7 @@ execute
 breath_heal
 gong_strike
 sac_res_mana
+curse
 lava_sphere
 tidal_strike
 totem_mana
@@ -30,7 +31,6 @@ judgement
 petrify
 taunt_stance
 thirst_strike
-teleport
 whirlwind_dmg
 explosive_arrow_eoe
 black_hole
@@ -42,6 +42,7 @@ charge
 fire_bomb
 poison
 frost_breath
+storm_call
 direct_arrow_hit
 frost_trap
 fire_trap

@@ -69,14 +69,18 @@ public class OnBlockDropFarming {
             PlayerSkills skills = Load.playerSkills(player);
 
             int exp = skill.getExpForBlockBroken(block);
-            skills.addExp(skill.type_enum, exp);
-            List<ItemStack> list = skill.getExtraDropsFor(player, exp, SkillItemTier.TIER0); // todo tier
 
-            SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.FARMING, list);
-            effect.Activate();
+            if (exp > 0) {
 
-            ci.getReturnValue()
-                .addAll(effect.extraDrops);
+                skills.addExp(skill.type_enum, exp);
+                List<ItemStack> list = skill.getExtraDropsFor(player, exp, SkillItemTier.TIER0); // todo tier
+
+                SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.FARMING, list);
+                effect.Activate();
+
+                ci.getReturnValue()
+                    .addAll(effect.extraDrops);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

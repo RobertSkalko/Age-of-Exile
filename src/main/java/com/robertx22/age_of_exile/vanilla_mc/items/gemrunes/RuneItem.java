@@ -294,7 +294,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         ORU(500, "oru", "Oru", 0.6F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(4, 12, TreasureQuantity.getInstance()));
+                return Arrays.asList(new StatModifier(3, 10, TreasureQuantity.getInstance()));
             }
 
             @Override

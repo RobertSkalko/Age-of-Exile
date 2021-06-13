@@ -278,6 +278,7 @@ public class BeneficialEffects implements ISlashRegistryInit {
 
         ExileEffectBuilder.of(OVERLOAD)
             .stat(-10, Stats.COOLDOWN_TICKS.get(), ModType.FLAT)
+            .stat(20, Stats.MANA_COST.get(), ModType.FLAT)
             .stat(-25, DatapackStats.MOVE_SPEED, ModType.FLAT)
             .maxStacks(1)
             .build();

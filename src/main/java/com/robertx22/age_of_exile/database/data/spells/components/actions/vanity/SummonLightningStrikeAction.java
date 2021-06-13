@@ -19,6 +19,7 @@ public class SummonLightningStrikeAction extends SpellAction {
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
         if (!ctx.world.isClient) {
             targets.forEach(t -> {
+
                 SpellUtils.summonLightningStrike(t);
             });
         }

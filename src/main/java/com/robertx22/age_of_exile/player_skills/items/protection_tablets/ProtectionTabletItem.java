@@ -26,7 +26,8 @@ public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoMod
     public SkillItemTier tier;
 
     public ProtectionTabletItem(SkillItemTier tier, TabletTypes type) {
-        super(new Settings().group(CreativeTabs.Professions));
+        super(new Settings().group(CreativeTabs.Professions)
+            .maxCount(8));
         this.tier = tier;
         this.type = type;
     }

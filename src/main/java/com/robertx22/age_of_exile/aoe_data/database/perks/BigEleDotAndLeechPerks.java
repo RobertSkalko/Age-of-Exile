@@ -14,7 +14,7 @@ public class BigEleDotAndLeechPerks implements ISlashRegistryInit {
     static void breath(String name, Elements ele) {
 
         PerkBuilder.bigStat("big_breath_of_" + ele.guidName, "Breath of " + name,
-            new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(ele), ModType.FLAT),
+            new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(ele), ModType.FLAT),
             new OptScaleExactStat(15, Stats.ELE_DOT_DAMAGE.get(ele), ModType.FLAT)
         );
     }

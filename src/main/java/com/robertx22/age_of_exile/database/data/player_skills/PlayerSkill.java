@@ -23,10 +23,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAutoGson<PlayerSkill>, ITooltipList {
@@ -110,6 +107,9 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
     }
 
     public List<ItemStack> getExtraDropsFor(PlayerEntity player, int expForAction, SkillItemTier tierContext) {
+        if (expForAction == 0) {
+            return Arrays.asList();
+        }
 
         List<ItemStack> list = new ArrayList<>();
 

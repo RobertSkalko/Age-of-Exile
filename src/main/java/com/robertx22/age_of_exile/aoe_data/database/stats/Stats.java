@@ -24,6 +24,9 @@ import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
 
+import static com.robertx22.age_of_exile.database.data.stats.Stat.VAL1;
+import static com.robertx22.age_of_exile.database.data.stats.Stat.format;
+
 public class Stats implements ISlashRegistryInit {
 
     public static void loadClass() {
@@ -339,6 +342,7 @@ public class Stats implements ISlashRegistryInit {
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addCondition(x -> StatConditions.ATTACK_TYPE_MATCHES.get(x.attackType))
+        .addCondition(StatConditions.REQUIRE_CHARGED_ATTACK)
         .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e.resource))
         .setLocName(x -> x.resource.locname + " on " + x.attackType.locname + " Hit")
         .setLocDesc(x -> "")
@@ -364,6 +368,7 @@ public class Stats implements ISlashRegistryInit {
         .addCondition(StatConditions.IF_RANDOM_ROLL)
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
+        .addCondition(StatConditions.REQUIRE_CHARGED_ATTACK)
         .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
         .setLocName(x -> Stat.format(
             "Your " + x.element.getIconNameFormat() + " Attacks have " + Stat.VAL1 + "% chance of giving " + x.locname
@@ -381,7 +386,7 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_WHEN_HEALING_ON_SELF = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self_on_heal", x -> x.element)
         .addAllOfType(Arrays.asList(
-            BeneficialEffects.ZEAL
+                BeneficialEffects.ZEAL
             )
         )
         .worksWithEvent(RestoreResourceEvent.ID)
@@ -408,7 +413,7 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_EFFECT_ON_SPELL_HIT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id + "_on_spell_hit", x -> x.element)
         .addAllOfType(Arrays.asList(
-            BeneficialEffects.ALACRITY
+                BeneficialEffects.ALACRITY
             )
         )
         .worksWithEvent(DamageEvent.ID)
@@ -432,7 +437,7 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> EFFECT_ON_SPELL_KILL = DatapackStatBuilder
         .<EffectCtx>of(x -> x.id + "_on_spell_kill", x -> x.element)
         .addAllOfType(Arrays.asList(
-            BeneficialEffects.BLESSING
+                BeneficialEffects.BLESSING
             )
         )
         .worksWithEvent(OnMobKilledByDamageEvent.ID)
@@ -456,8 +461,8 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_EFFECT_WHEN_HIT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id + "_when_hit", x -> x.element)
         .addAllOfType(Arrays.asList(
-            BeneficialEffects.BLESSING,
-            BeneficialEffects.ALACRITY
+                BeneficialEffects.BLESSING,
+                BeneficialEffects.ALACRITY
             )
         )
         .worksWithEvent(DamageEvent.ID)
@@ -480,7 +485,7 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_APPLY_EFFECT_WHEN_HIT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id + "_when_hit", x -> x.element)
         .addAllOfType(Arrays.asList(
-            NegativeEffects.POISON
+                NegativeEffects.POISON
             )
         )
         .worksWithEvent(DamageEvent.ID)
@@ -503,7 +508,7 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> EFFECT_ON_BASIC_ATTACK_KILL = DatapackStatBuilder
         .<EffectCtx>of(x -> x.id + "_on_basic_atk_kill", x -> x.element)
         .addAllOfType(Arrays.asList(
-            BeneficialEffects.MARK
+                BeneficialEffects.MARK
             )
         )
         .worksWithEvent(OnMobKilledByDamageEvent.ID)
@@ -538,6 +543,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addCondition(StatConditions.REQUIRE_CHARGED_ATTACK)
         .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
         .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
         .setLocName(x -> Stat.format(
@@ -556,14 +562,14 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_APPLYING_EFFECT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id, x -> x.element)
         .addAllOfType(Arrays.asList(
-            NegativeEffects.BURN,
-            NegativeEffects.FROSTBURN,
-            NegativeEffects.JUDGEMENT,
-            NegativeEffects.BLEED,
-            NegativeEffects.TORMENT,
-            NegativeEffects.BLIND,
-            NegativeEffects.POISON,
-            NegativeEffects.SLOW
+                NegativeEffects.BURN,
+                NegativeEffects.FROSTBURN,
+                NegativeEffects.JUDGEMENT,
+                NegativeEffects.BLEED,
+                NegativeEffects.TORMENT,
+                NegativeEffects.BLIND,
+                NegativeEffects.POISON,
+                NegativeEffects.SLOW
             )
         )
         .worksWithEvent(DamageEvent.ID)
@@ -589,11 +595,11 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_spend_" + x.id + "_for_double_dmg", x -> x.element)
         .addAllOfType(Arrays.asList(
-            NegativeEffects.BURN,
-            NegativeEffects.POISON,
-            NegativeEffects.FROSTBURN,
-            NegativeEffects.BLEED,
-            NegativeEffects.BLIND
+                NegativeEffects.BURN,
+                NegativeEffects.POISON,
+                NegativeEffects.FROSTBURN,
+                NegativeEffects.BLEED,
+                NegativeEffects.BLIND
             )
         )
         .worksWithEvent(DamageEvent.ID)
@@ -620,7 +626,7 @@ public class Stats implements ISlashRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_APPLYING_EFFECT_ON_CRIT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id + "_on_crit", x -> x.element)
         .addAllOfType(Arrays.asList(
-            NegativeEffects.BURN
+                NegativeEffects.BURN
             )
         )
         .worksWithEvent(DamageEvent.ID)
@@ -1209,6 +1215,7 @@ public class Stats implements ISlashRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IS_STYLE.get(PlayStyle.magic))
         .addEffect(StatEffects.DECREASE_CAST_TIME)
+        .addEffect(StatEffects.APPLY_CAST_SPEED_TO_CD)
         .setLocName(x -> "Cast Speed")
         .setLocDesc(x -> "Affects amount of time needed to cast spells. If the spell is instant, it reduces the cooldown")
         .modifyAfterDone(x -> {
@@ -1536,6 +1543,24 @@ public class Stats implements ISlashRegistryInit {
         .setLocDesc(x -> "70% health or above..")
         .modifyAfterDone(x -> {
             x.is_perc = true;
+        })
+        .build();
+
+    public static DataPackStatAccessor<Elements> ELE_DAMAGE_WHEN_TARGET_IS_LOW_HP = DatapackStatBuilder
+        .<Elements>of(x -> x.guidName + "_dmg_when_target_low_hp", x -> x)
+        .addAllOfType(Elements.getAllSingleElementals())
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.IS_TARGET_LOW_HP)
+        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
+        .addEffect(StatEffects.INCREASE_VALUE)
+        .setLocName(x -> format("Execute targets bellow 30% health, dealing "
+            + VAL1 + "% increased  " + x.getIconNameFormat()))
+        .setLocDesc(x -> "Low hp is 30% or less.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.is_long = true;
         })
         .build();
 

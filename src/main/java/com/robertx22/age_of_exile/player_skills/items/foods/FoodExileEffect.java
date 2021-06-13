@@ -45,14 +45,13 @@ public enum FoodExileEffect {
     ELEMENTAL_RESISTANCE("Elementum", "elemental_resist", EffectColor.PURPLE, new OptScaleExactStat(10, new ElementalResist(Elements.Elemental))),
     EXPERIENCE("Experience", "exp", EffectColor.YELLOW, new OptScaleExactStat(10, BonusExp.getInstance())),
 
-    // MAGIC_SHIELD_REGEN("Magicka", "magic_shield_regen", EffectColor.PURPLE, new OptScaleExactStat(1, RegeneratePercentStat.MANA), new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)),
     MANA_REGEN("Arcana", "mana_regen", EffectColor.BLUE, new OptScaleExactStat(1, RegeneratePercentStat.MANA), new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)),
     HEALTH_REGEN("Vitala", "health_regen", EffectColor.RED, new OptScaleExactStat(1, RegeneratePercentStat.HEALTH), new OptScaleExactStat(15, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)),
 
     HEALING("Sancti", "healing", EffectColor.YELLOW, new OptScaleExactStat(20, Stats.HEAL_STRENGTH.get())),
     SPELL_DAMAGE("Enigma", "spell_damage", EffectColor.PURPLE, new OptScaleExactStat(10, SpellDamage.getInstance())),
     CRITICAL("Critical", "critical", EffectColor.GREEN, new OptScaleExactStat(5, Stats.CRIT_CHANCE.get()), new OptScaleExactStat(10, Stats.CRIT_DAMAGE.get())),
-    TREASURE_QUALITY("Treasure", "treasure", EffectColor.YELLOW, new OptScaleExactStat(10, TreasureQuality.getInstance()));
+    TREASURE_QUALITY("Treasure", "treasure", EffectColor.YELLOW, new OptScaleExactStat(5, TreasureQuality.getInstance()));
 
     public String word;
     public List<OptScaleExactStat> stats;

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.loot.blueprints.bases;
 
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
@@ -19,7 +20,8 @@ public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
     @Override
     protected UniqueGear generateIfNull() {
         UniqueGear uniq;
-        if (blueprint.info.isMapWorld) {
+
+        if (blueprint.info.isMapWorld && !RandomUtils.roll(ModConfig.get().Server.DUNGEON_RANDOM_ITEM_CHANCE)) {
 
             GearRarity rar = RandomUtils.weightedRandom(blueprint.info.dungeon.u.getUniques()
                 .stream()
@@ -36,7 +38,7 @@ public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
         } else {
             FilterListWrap<UniqueGear> gen = Database.UniqueGears()
                 .getWrapped()
-                .of(x -> x.getUniqueRarity().drops_after_tier < 0)
+                .of(x -> blueprint.info.tier >= x.getUniqueRarity().drops_after_tier)
                 .of(x -> !x.filters.cantDrop(blueprint.info))
                 .of(x -> x.getPossibleGearTypes()
                     .contains(blueprint.gearItemSlot.get()));

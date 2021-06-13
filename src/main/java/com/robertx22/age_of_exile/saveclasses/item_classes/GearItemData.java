@@ -484,6 +484,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     @Override
     public boolean isSalvagable(SalvageContext context) {
+        if (this.GetBaseGearType() != null && GetBaseGearType().isTool()) {
+            return false;
+        }
 
         return this.can_sal;
     }

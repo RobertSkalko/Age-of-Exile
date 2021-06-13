@@ -1,9 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
-import com.robertx22.age_of_exile.database.data.unique_items.bases.BaseUniqueGlove;
-import com.robertx22.age_of_exile.database.data.unique_items.bases.BaseUniqueNecklace;
-import com.robertx22.age_of_exile.database.data.unique_items.bases.BaseUniqueRing;
-import com.robertx22.age_of_exile.database.data.unique_items.bases.BaseUniqueSword;
+import com.robertx22.age_of_exile.database.data.unique_items.bases.*;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.BaseArmorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ArmorTier;
@@ -37,6 +34,9 @@ public class UniqueGearItemRegister extends BaseItemRegistrator {
     public Item UNSEEING_EYE = item(new BaseArmorItem(ArmorTier.FOUR, ArmorType.LEATHER, "Helmet", EquipmentSlot.HEAD, true), "uniques/armor/unseeing_eye");
 
     public Item VOID_SWORD = item(new BaseUniqueSword(), "uniques/weapon/void_sword");
+    public Item BURNING_BRILLIANCE_STAFF = item(new BaseUniqueStaff(), "uniques/weapon/burning_brilliance");
+    public Item ROSE_HAMMER = item(new BaseUniqueHammer(), "uniques/weapon/rose_dragon");
+    public Item DEATH_CHILL_DAGGER = item(new BaseUniqueDagger(), "uniques/weapon/death_chill");
     public Item LIVING_INFERNO_GLOVE = item(new BaseUniqueGlove(), "uniques/weapon/living_inferno");
 
     public Item BONECHILL_RING_MI = item(new BaseUniqueRing("Ring"), "uniques/jewelry/bonechill_ring");

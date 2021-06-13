@@ -8,6 +8,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.registry.Registry;
@@ -17,7 +19,7 @@ public class AoeSwordWeapon extends SwordItem implements IAutoLocName {
     public AoeSwordWeapon(WeaponTypes type) {
         super(
             new RarityToolMaterial(), 6, type.getVanillaItemAttackSpeedModifier(), (ItemUtils.getDefaultGearProperties()
-                .maxDamageIfAbsent(1250)));
+                .maxDamage(ArmorMaterials.NETHERITE.getDurability(EquipmentSlot.MAINHAND))));
         this.locname = type.locName();
 
     }
