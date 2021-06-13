@@ -1,0 +1,16 @@
+{
+  "name": "Poción de reseteo de atributos",
+  "category": "items",
+  "icon": "mmorpg:potions/reset_stats_potion",
+  "sortnum": 0,
+  "pages": [
+	{  
+		"type": "text",   		
+		"text": "Si alguna vez deseas utilizar una composición distinta, puedes restablecer tus puntos de atributos con esta poción."
+	},  
+    {
+		"type": "crafting",
+		"recipe": "mmorpg:potions/reset_stats_potion"   
+    }
+  ]
+}

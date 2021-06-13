@@ -1,0 +1,16 @@
+{
+  "name": "Tomo de identificación",
+  "category": "items",
+  "icon": "mmorpg:identify_tome",
+  "sortnum": 0,
+  "pages": [
+	{  
+		"type": "text",   		
+		"text": "Se utiliza para identificar objetos no identificados y que puedan ser utilizables."
+	},  
+    {
+		"type": "crafting",
+		"recipe": "mmorpg:identify_tome"   
+    }
+  ]
+}
