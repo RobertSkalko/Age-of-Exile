@@ -10,7 +10,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.item.ArmorMaterials;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
 import net.minecraft.util.registry.Registry;
@@ -21,7 +20,7 @@ public abstract class SingleTargetWeapon extends ToolItem implements IAutoLocNam
 
         super(
             new RarityToolMaterial(), ItemUtils.getDefaultGearProperties()
-                .maxDamage(ArmorMaterials.NETHERITE.getDurability(EquipmentSlot.MAINHAND)));
+                .maxDamage(1500));
         this.locname = locname;
     }
 

@@ -57,7 +57,6 @@ public class DamageEvent extends EffectEvent {
         super(dmg, source, target);
         this.attackInfo = attackInfo;
         calcBlock();
-        calcAttackCooldown();
     }
 
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
@@ -135,8 +134,10 @@ public class DamageEvent extends EffectEvent {
 
     private void calcAttackCooldown() {
         float cool = 1;
-        if (this.data.getWeaponType()
-            .isMelee()) {
+
+        WeaponTypes weaponType = data.getWeaponType();
+
+        if (weaponType.isMelee()) {
 
             if (this.source instanceof PlayerEntity) {
 
@@ -254,6 +255,11 @@ public class DamageEvent extends EffectEvent {
         100,
         EntityAttributeModifier.Operation.ADDITION
     );
+
+    @Override
+    public void initBeforeActivating() {
+        calcAttackCooldown();
+    }
 
     @Override
     protected void activate() {

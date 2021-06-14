@@ -61,15 +61,21 @@ public abstract class EffectEvent implements IGUID {
             .get(data.getString(EventData.SPELL));
     }
 
+    public void initBeforeActivating() {
+
+    }
+
     public void increaseByPercent(float perc) {
         data.getNumber(EventData.NUMBER).number += data.getOriginalNumber(EventData.NUMBER).number * perc / 100F;
     }
 
     public void Activate() {
         if (!activated) {
+
             //Watch watch = new Watch();
             //watch.min = 500;
 
+            initBeforeActivating();
             calculateEffects();
             data.freeze();
 

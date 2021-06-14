@@ -23,11 +23,11 @@ public class CurseSpells implements ISlashRegistryInit {
 
     static void curse(String id, String name, EffectCtx effect) {
         SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 30, 20)
-                .setSwingArm()
-            , name,
-            Arrays.asList(SpellTag.area, SpellTag.curse))
+                    .setSwingArm()
+                , name,
+                Arrays.asList(SpellTag.area, SpellTag.curse))
             .manualDesc(
-                "Curse enemies around you with " + effect.locname +
+                "Curse enemies with " + effect.locname +
                     " and deal " + SpellCalcs.CURSE.getLocSpellTooltip() + " " + Elements.Dark.getIconNameDmg())
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))

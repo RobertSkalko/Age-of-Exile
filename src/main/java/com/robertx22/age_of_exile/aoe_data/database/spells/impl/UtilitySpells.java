@@ -191,7 +191,7 @@ public class UtilitySpells implements ISlashRegistryInit {
             .onCast(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 5D, 0.5D))
             .build();
 
-        SpellBuilder.of("refresh", SpellConfiguration.Builder.nonInstant(25, 20 * 60 * 3, 20)
+        SpellBuilder.of("refresh", SpellConfiguration.Builder.nonInstant(40, 20 * 60 * 3, 20)
                     .setScaleManaToPlayer(), "Refresh",
                 Arrays.asList())
 

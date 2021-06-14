@@ -38,32 +38,35 @@ public class FishingAdder {
 
                     BonusRequirement req = BonusRequirement.NONE;
 
-                    /*
-                    if (color == FoodExileEffect.EffectColor.BLUE) {
-                        req = BonusRequirement.COLD_BIOME;
-                    }
-                    if (color == FoodExileEffect.EffectColor.RED) {
-                        req = BonusRequirement.HOT_BIOME;
-                    }
-                    if (color == FoodExileEffect.EffectColor.GREEN) {
-                        req = BonusRequirement.SWAMP_BIOME;
-                    }
-                    if (color == FoodExileEffect.EffectColor.YELLOW) {
-                        req = BonusRequirement.DAY;
-                    }
-                    if (color == FoodExileEffect.EffectColor.PURPLE) {
-                        req = BonusRequirement.NIGHT;
-                    }
-                     */
+                    for (int i = 0; i < 2; i++) {
+                        float chance = 0.1F;
 
-                    float chance = 0.2F;
+                        if (i == 0) {
+                            chance = 0.3F;
+                            if (color == FoodExileEffect.EffectColor.BLUE) {
+                                req = BonusRequirement.COLD_BIOME;
+                            }
+                            if (color == FoodExileEffect.EffectColor.RED) {
+                                req = BonusRequirement.HOT_BIOME;
+                            }
+                            if (color == FoodExileEffect.EffectColor.GREEN) {
+                                req = BonusRequirement.SWAMP_BIOME;
+                            }
+                            if (color == FoodExileEffect.EffectColor.YELLOW) {
+                                req = BonusRequirement.DAY;
+                            }
+                            if (color == FoodExileEffect.EffectColor.PURPLE) {
+                                req = BonusRequirement.NIGHT;
+                            }
+                        }
 
-                    DropRewardsBuilder skillDrops = DropRewardsBuilder.of(chance, tier, req);
-                    skillDrops.dropReward(new SkillDropReward(100, rawfish, new MinMax(1, 3)));
+                        DropRewardsBuilder skillDrops = DropRewardsBuilder.of(chance, tier, req);
+                        skillDrops.dropReward(new SkillDropReward(100, rawfish, new MinMax(1, 3)));
+                        SkillDropTable rewards = skillDrops.build();
+                        rewards.tag = SkillDropTable.FISH_TAG;
+                        b.skill.dropTables.add(rewards);
+                    }
 
-                    SkillDropTable rewards = skillDrops.build();
-                    rewards.tag = SkillDropTable.FISH_TAG;
-                    b.skill.dropTables.add(rewards);
                 }
             }
         }

@@ -98,7 +98,7 @@ public class DungeonInfoScreen extends BaseScreen {
                 x += ItemSlotButton.xSize + 1;
             }
             ItemStack randomitem = new ItemStack(Items.CHEST);
-            randomitem.setCustomName(new LiteralText(Formatting.DARK_PURPLE + "Random Item"));
+            randomitem.setCustomName(new LiteralText(Formatting.DARK_PURPLE + "Random Unique"));
             this.publicAddButton(new ItemSlotButton(randomitem, x, y));
 
             this.publicAddButton(new ItemSlotButton(maps.data.getStartCostOf(point), xoff - 8, y + 40));

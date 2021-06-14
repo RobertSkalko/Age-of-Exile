@@ -43,7 +43,7 @@ public class DexSpells implements ISlashRegistryInit {
 
             .manualDesc(
                 "Shoot a charged arrow that goes through enemies and deals "
-                    + SpellCalcs.CHARGED_BOLT.getLocSpellTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius.")
+                    + SpellCalcs.CHARGED_BOLT.getLocSpellTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius and slows.")
 
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)
@@ -56,7 +56,8 @@ public class DexSpells implements ISlashRegistryInit {
 
             .onHit(PartBuilder.aoeParticles(ParticleTypes.CRIT, 100D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(SpellCalcs.CHARGED_BOLT, Elements.Physical, 2D))
+            .onHit(PartBuilder.damageInAoe(SpellCalcs.CHARGED_BOLT, Elements.Physical, 2D)
+                .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.SLOWNESS, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ENCHANTED_HIT, 4D, 0.1D))
             .build();
@@ -80,6 +81,7 @@ public class DexSpells implements ISlashRegistryInit {
             .attackStyle(PlayStyle.ranged)
             .manualDesc(
                 "Slash enemies in front of you for " + SpellCalcs.EXECUTE.getLocSpellTooltip()
+                    + " " + Elements.Physical.getIconNameDmg()
             )
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_DEATH, 1D, 1D))
@@ -165,7 +167,8 @@ public class DexSpells implements ISlashRegistryInit {
 
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("poison_arrow_aoe", 0.2F, 1), Elements.Nature, 2D))
+            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("poison_arrow_aoe", 0.2F, 1), Elements.Nature, 2D)
+                .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.SLOWNESS, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();
 
@@ -181,7 +184,8 @@ public class DexSpells implements ISlashRegistryInit {
 
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("explosive_arrow_eoe", 0.25F, 3), Elements.Physical, 2D))
+            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("explosive_arrow_eoe", 0.25F, 3), Elements.Physical, 2D)
+                .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.SLOWNESS, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();
 

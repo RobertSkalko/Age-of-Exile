@@ -18,6 +18,7 @@ import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAutoGson<ExileEffect>, IAutoLocName {
 
@@ -100,6 +101,18 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
         if (max_stacks > 1) {
             list.add(new LiteralText("Maximum Stacks: " + max_stacks));
         }
+
+        List<EffectTags> tags = this.tags.stream()
+            .map(x -> EffectTags.valueOf(x))
+            .collect(Collectors.toList());
+
+        String string = "Tags: ";
+
+        for (EffectTags x : tags) {
+            string += x.name + " ";
+        }
+
+        list.add(new LiteralText(Formatting.YELLOW + string));
 
         return list;
 

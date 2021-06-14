@@ -234,7 +234,8 @@ public class IntSpells implements ISlashRegistryInit {
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)))
             .build();
 
-        SpellBuilder.of("teleport", SpellConfiguration.Builder.instant(20, 20 * 30), "Teleport",
+        SpellBuilder.of("teleport", SpellConfiguration.Builder.instant(20, 20 * 30)
+                    .setScaleManaToPlayer(), "Teleport",
                 Arrays.asList(SpellTag.damage, SpellTag.movement)
             )
             .manualDesc("Teleport yourself in the direction you're looking at.")

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "mmorpg",
-  "version": "2.0.7",
+  "version": "2.0.9",
   "name": "Age of Exile",
   "description": "Diablo in Minecraft!",
   "authors": [
@@ -53,8 +53,5 @@
     "cardinal-components-entity": ">=2.8.0",
     "cardinal-components-chunk": ">=2.8.0",
     "cardinal-components-world": ">=2.8.0"
-  },
-  "suggests": {
-    "balance_of_exile": "*"
   }
 }

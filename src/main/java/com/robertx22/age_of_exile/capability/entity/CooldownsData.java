@@ -33,16 +33,29 @@ public class CooldownsData {
         }
     }
 
+    public void tickSpellCooldowns(int ticks) {
+        getAllSpellsOnCooldown().forEach(x -> tickDownCooldown(x, ticks));
+    }
+
+    public void tickDownCooldown(String id, int ticks) {
+
+        if (map.containsKey(id)) {
+            Data data = map.get(id);
+            data.ticks -= ticks;
+
+            if (data.ticks < 1) {
+                map.remove(id);
+            }
+        }
+    }
+
     public void onTicksPass(int ticks) {
         if (map.isEmpty()) {
             return;
         }
         new HashMap<>(map).entrySet()
             .forEach(x -> {
-                x.getValue().ticks -= ticks;
-                if (x.getValue().ticks < 1) {
-                    map.remove(x.getKey());
-                }
+                tickDownCooldown(x.getKey(), ticks);
             });
     }
 

@@ -24,7 +24,7 @@ public class RefreshCooldownsAction extends SpellAction {
         targets.forEach(x -> {
             Load.Unit(x)
                 .getCooldowns()
-                .onTicksPass(ticks);
+                .tickSpellCooldowns(ticks);
 
         });
 
