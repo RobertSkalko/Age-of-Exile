@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.player_skills.items.backpacks;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BagUpgradesData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
@@ -46,6 +47,11 @@ public class BackpackInfo {
         GearItemData gear = Gear.Load(stack);
 
         if (gear != null) {
+
+            if (!gear.isSalvagable(ISalvagable.SalvageContext.SALVAGE_STATION)) {
+                return false;
+            }
+
             if (gear.getRarity()
                 .hasTier()) {
                 if (tiersToAutoSalvage.contains(gear.getRarity().item_tier)) {

@@ -28,6 +28,7 @@ import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GearTooltipUtils {
 
@@ -96,7 +97,7 @@ public class GearTooltipUtils {
                     tip.add(new SText(""));
 
                     tip.add(new LiteralText(Formatting.RED + "").append(
-                        Words.Corrupted.locName())
+                            Words.Corrupted.locName())
                         .formatted(Formatting.RED));
 
                     tip.add(new SText(""));
@@ -176,13 +177,12 @@ public class GearTooltipUtils {
                     .forEach(x -> stats.addAll(x.GetAllStats(gear)));
                 stats.addAll(gear.sockets.GetAllStats(gear));
 
-                MergedStats merged = new MergedStats(stats, info, gear);
+                List<ExactStatData> longstats = stats.stream()
+                    .filter(x -> x.getStat().is_long)
+                    .collect(Collectors.toList());
+                specialStats.addAll(longstats);
 
-                stats.forEach(x -> {
-                    if (x.getStat().is_long) {
-                        specialStats.add(x);
-                    }
-                });
+                MergedStats merged = new MergedStats(stats, info, gear);
 
                 list.add(merged);
             }
@@ -279,7 +279,7 @@ public class GearTooltipUtils {
 
             if (Screen.hasShiftDown() == false) {
                 tooltip.add(new LiteralText(Formatting.BLUE + "").append(new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
-                )
+                    )
                     .formatted(Formatting.BLUE));
             } else {
                 tip.add(Words.Instability.locName()
@@ -318,7 +318,7 @@ public class GearTooltipUtils {
                     }
 
                     MutableText txt = new LiteralText("").append(x.getAffix()
-                        .locName())
+                            .locName())
                         .formatted(Formatting.GOLD);
 
                     //  txt.append(" ");

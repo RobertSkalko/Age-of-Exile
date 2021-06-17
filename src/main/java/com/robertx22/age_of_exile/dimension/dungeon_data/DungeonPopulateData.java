@@ -59,6 +59,7 @@ public class DungeonPopulateData {
     }
 
     public void onTick(World world, SingleDungeonData data) {
+
         if (!toPopulate.isEmpty()) {
             ticks++;
 

@@ -1,15 +1,13 @@
 WARNING. This is update is in BETA!
 
-## v2.0.9
+## v2.0.10
 
+fix auto salvage bag being able to salvage tools and unsalvagable items
 
-chance to double dmg on spending effect talents now work additively like other damage increases, instead of multiplying.
+nerfed pots a bit
 
-effects now show tags
+tweak core stat values
 
-fix bows not doing aoe damage at all
-
-some arrow spells now apply a small slow to target
-
+populate chunks around player too. This means if you had beacons appearing before, now you might see them again but they should disappear and populate the dungeon correctly, even though a bit late.
 
 Update preview: https://github.com/RobertSkalko/Age-of-Exile/wiki/Age-of-Exile-V2.0.0-Update-Preview

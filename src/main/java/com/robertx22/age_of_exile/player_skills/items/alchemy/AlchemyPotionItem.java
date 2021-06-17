@@ -55,7 +55,7 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
 
             for (AlchemyPotionItem x : ModRegistry.ALCHEMY.POTIONS_MAP.values()) {
                 p.getItemCooldownManager()
-                    .set(x, 20 * 15);
+                    .set(x, 20 * 20);
             }
 
             PlayerUtils.giveItem(new ItemStack(Items.GLASS_BOTTLE), (PlayerEntity) player);

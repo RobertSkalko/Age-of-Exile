@@ -150,13 +150,4 @@ public enum SlashRegistryType {
         return ser;
     }
 
-    public static SlashRegistryType getFromString(String str) {
-        for (SlashRegistryType type : values()) {
-            if (str.equals(type.id)) {
-                return type;
-            }
-        }
-        return null;
-    }
-
 }

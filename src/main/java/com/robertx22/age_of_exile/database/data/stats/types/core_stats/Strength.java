@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
@@ -17,7 +16,7 @@ public class Strength extends BaseCoreStat {
 
     private Strength() {
         super(Arrays.asList(
-            new OptScaleExactStat(0.25F, 0.25F, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
+            new OptScaleExactStat(0.25F, 0.25F, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
             new OptScaleExactStat(2, 2, Armor.getInstance(), ModType.LOCAL_INCREASE)
         ));
         this.format = Formatting.YELLOW.getName();

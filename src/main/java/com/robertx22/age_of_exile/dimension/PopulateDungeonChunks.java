@@ -27,9 +27,7 @@ import java.util.Set;
 public class PopulateDungeonChunks {
 
     public static void tryPopulateChunksAroundPlayer(World world, PlayerEntity player) {
-        if (true) {
-            return;
-        }
+
         if (WorldUtils.isDungeonWorld(world)) {
 
             // Watch watch = new Watch();
