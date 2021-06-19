@@ -288,8 +288,7 @@ public class NewPerks implements ISlashRegistryInit {
         PerkBuilder.bigStat("rigor", "Rigor",
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Elemental)),
             new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-5, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.bigStat("uppercut", "Uppercut",
             new OptScaleExactStat(15, Stats.DAMAGE_WHEN_LOW_HP.get())

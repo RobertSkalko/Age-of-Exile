@@ -152,7 +152,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
             GuiPartConfig c = ModConfig.get().client.AREA_LVL_OVERLAY;
 
             if (c.enabled) {
-                if (areaLvlTicks > 0) {
+                if (ModConfig.get().client.ALWAYS_RENDER_LEVEL_OVERLAY || areaLvlTicks > 0) {
                     areaLvlTicks--;
                     AreaLevelIndicator.draw(
                         matrix,

@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.client;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.option.KeyBinding;
 import org.lwjgl.glfw.GLFW;
 
 public class KeybindsRegister {

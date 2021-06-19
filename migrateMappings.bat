@@ -1,1 +1,1 @@
-cmd /k gradlew.bat migrateMappings --mappings "1.16.2+build.12"
+cmd /k gradlew.bat migrateMappings --mappings "1.16.5+build.10"

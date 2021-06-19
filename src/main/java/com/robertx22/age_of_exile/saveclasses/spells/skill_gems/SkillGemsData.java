@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -122,7 +123,7 @@ public class SkillGemsData implements Inventory {
                     if (x.isEmpty()) {
                         gems.add(null); // i know this is weird but when you press Q to drop item it becomes empty while keeping nbt
                     } else {
-                        SkillGemData gem = SkillGemData.fromStack(x);
+                        SkillGemData gem = StackSaving.SKILL_GEMS.loadFrom(x);
                         gems.add(gem);
                     }
                 });

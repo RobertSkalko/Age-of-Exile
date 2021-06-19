@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.slots;
 
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ public class AnyItemNotACurrencyEffectSlot extends Slot {
 
     @Override
     public boolean canInsert(ItemStack stack) {
-        return SkillGemData.fromStack(stack) != null || !ItemFilterGroup.ANY_CURRENCY_EFFECT.anyMatchesFilter(stack);
+        return StackSaving.SKILL_GEMS.loadFrom(stack) != null || !ItemFilterGroup.ANY_CURRENCY_EFFECT.anyMatchesFilter(stack);
     }
 }
 

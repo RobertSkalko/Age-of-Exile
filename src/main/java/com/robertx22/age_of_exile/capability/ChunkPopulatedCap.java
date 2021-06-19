@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.capability;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import dev.onyxstudios.cca.api.v3.component.CopyableComponent;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 
 public class ChunkPopulatedCap implements CopyableComponent<ChunkPopulatedCap> {
@@ -12,7 +13,7 @@ public class ChunkPopulatedCap implements CopyableComponent<ChunkPopulatedCap> {
     public boolean populated = false;
 
     @Override
-    public void readFromNbt(CompoundTag tag) {
+    public void readFromNbt(NbtCompound tag) {
         this.populated = tag.getBoolean(LOC);
     }
 

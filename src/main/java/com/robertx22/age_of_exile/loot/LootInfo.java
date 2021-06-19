@@ -114,6 +114,13 @@ public class LootInfo {
         return info;
     }
 
+    public static LootInfo ofDummyForClient(int level) {
+        LootInfo info = new LootInfo(LootOrigin.OTHER);
+        info.level = level;
+        info.setupAllFields();
+        return info;
+    }
+
     public static LootInfo ofLockedChestItem(PlayerEntity player, int level) {
         LootInfo info = new LootInfo(LootOrigin.LOOT_CRATE);
         info.player = player;

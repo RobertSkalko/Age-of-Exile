@@ -36,3 +36,5 @@ run
 ignore/
 src/generated/
 src/generated
+remappedSrc
+remappedSrc/

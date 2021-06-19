@@ -47,13 +47,13 @@ dependencies {
 
 
     // .dev .jar doesn't include included deps, so I have to add them for in IDE to work
-    implementation files("Library-Of-Exile-1.16.5-1.0.10-dev.jar")
+    implementation files("Library-Of-Exile-1.16.5-1.0.13-dev.jar")
     implementation files("World-Of-Exile-1.16.5-1.2.3-dev.jar")
 }
 
 
 remapJar {
-    include file("World-Of-Exile-1.16.5-1.2.2.jar")
+    include file("World-Of-Exile-1.16.5-1.2.3.jar")
 }
 
 tasks.withType(JavaCompile).configureEach {

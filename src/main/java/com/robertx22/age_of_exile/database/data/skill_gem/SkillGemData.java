@@ -12,12 +12,12 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.DataItemType;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.library_of_exile.utils.LoadSave;
+import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -107,20 +107,6 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
             .get(rar);
     }
 
-    public static SkillGemData fromStack(ItemStack stack) {
-        try {
-            SkillGemData gem = LoadSave.Load(SkillGemData.class, new SkillGemData(), stack.getTag(), "gem");
-            return gem;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public void saveToStack(ItemStack stack) {
-        LoadSave.Save(this, stack.getOrCreateTag(), "gem");
-    }
-
     @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
 
@@ -186,14 +172,18 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
     }
 
     @Override
-    public DataItemType getDataType() {
-        return DataItemType.SPELL;
-
+    public boolean isSalvagable(SalvageContext context) {
+        return sal;
     }
 
     @Override
-    public boolean isSalvagable(SalvageContext context) {
-        return sal;
+    public ItemstackDataSaver<SkillGemData> getStackSaver() {
+        return StackSaving.SKILL_GEMS;
+    }
+
+    @Override
+    public void saveToStack(ItemStack stack) {
+        getStackSaver().saveTo(stack, this);
     }
 
     @Override

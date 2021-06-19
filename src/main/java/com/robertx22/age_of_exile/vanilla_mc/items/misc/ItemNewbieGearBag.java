@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.age_of_exile.loot.generators.util.GearCreationUtils;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import net.fabricmc.loader.api.FabricLoader;
@@ -23,13 +24,10 @@ import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -115,7 +113,7 @@ public class ItemNewbieGearBag extends Item {
 
                 ItemStack stack = blueprint.createStack();
 
-                SkillGemData data = SkillGemData.fromStack(stack);
+                SkillGemData data = StackSaving.SKILL_GEMS.loadFrom(stack);
                 data.sal = false;
                 data.saveToStack(stack);
 
@@ -145,12 +143,16 @@ public class ItemNewbieGearBag extends Item {
 
                     if (FabricLoader.getInstance()
                         .isModLoaded("patchouli")) {
+                        /*
+                        // dont give till i update it
                         // guide book
                         ItemStack book = new ItemStack(Registry.ITEM.get(new Identifier("patchouli", "guide_book")));
                         CompoundTag tag = new CompoundTag();
                         tag.putString("patchouli:book", "mmorpg:age_of_exile_guide");
                         book.setTag(tag);
                         PlayerUtils.giveItem(book, playerIn);
+
+                         */
                     }
 
                     playerIn.getStackInHand(handIn)

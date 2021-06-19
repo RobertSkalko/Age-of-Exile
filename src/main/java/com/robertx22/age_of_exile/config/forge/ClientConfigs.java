@@ -26,6 +26,7 @@ public class ClientConfigs {
     public boolean ONLY_RENDER_MOB_LOOKED_AT = true;
 
     public boolean SHOW_LOW_ENERGY_MANA_WARNING = true;
+    public boolean ALWAYS_RENDER_LEVEL_OVERLAY = false;
     public boolean RENDER_SIMPLE_MOB_BAR = true;
     public boolean RENDER_DEATH_STATISTICS = true;
     public boolean RENDER_ITEM_RARITY_BACKGROUND = true;

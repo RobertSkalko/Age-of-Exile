@@ -12,15 +12,15 @@ import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.*;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
-import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.DataItemType;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
+import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.fabricmc.api.EnvType;
@@ -332,7 +332,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             .textFormatting();
 
         MutableText txt = new LiteralText("").append(this.sockets.getRuneWord()
-            .locName())
+                .locName())
             .formatted(format);
         txt.append(new LiteralText(format + " ").append(GetBaseGearType().locName()
             .formatted(format)));
@@ -478,11 +478,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     @Override
-    public DataItemType getDataType() {
-        return DataItemType.GEAR;
-    }
-
-    @Override
     public boolean isSalvagable(SalvageContext context) {
         if (this.GetBaseGearType() != null && GetBaseGearType().isTool()) {
             return false;
@@ -492,8 +487,13 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     @Override
+    public ItemstackDataSaver<GearItemData> getStackSaver() {
+        return StackSaving.GEARS;
+    }
+
+    @Override
     public void saveToStack(ItemStack stack) {
-        Gear.Save(stack, this);
+        getStackSaver().saveTo(stack, this);
     }
 
     @Override

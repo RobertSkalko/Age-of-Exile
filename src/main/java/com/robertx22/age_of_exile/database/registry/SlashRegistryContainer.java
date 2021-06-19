@@ -100,7 +100,6 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public static void logRegistryError(String text) {
-
         try {
             throw new Exception("[Age of Exile Registry Error]: " + text);
         } catch (Exception e) {

@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
@@ -13,7 +14,7 @@ public class RenderSpellIcon {
     public static void drawMyGlintEnd(MatrixStack matrices, int x, int y, ItemStack stack) {
 
         try {
-            SkillGemData gem = SkillGemData.fromStack(stack);
+            SkillGemData gem = StackSaving.SKILL_GEMS.loadFrom(stack);
 
             if (gem != null) {
 

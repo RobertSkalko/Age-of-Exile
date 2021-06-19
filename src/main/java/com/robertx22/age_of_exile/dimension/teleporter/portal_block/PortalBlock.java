@@ -2,11 +2,11 @@ package com.robertx22.age_of_exile.dimension.teleporter.portal_block;
 
 import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
-import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
 import com.robertx22.library_of_exile.utils.SoundUtils;
+import com.robertx22.library_of_exile.utils.TeleportUtils;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -90,7 +90,7 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                         maps.ticksinPortal = 0;
                         BlockPos p = Load.playerMaps((PlayerEntity) entity).data.tel_pos.up();
 
-                        OnServerTick.makeSureTeleport((ServerPlayerEntity) entity, p, DimensionType.OVERWORLD_ID);
+                        TeleportUtils.teleport((ServerPlayerEntity) entity, p, DimensionType.OVERWORLD_ID);
 
                         SoundUtils.playSound(entity, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);
                         return;
@@ -112,7 +112,7 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                                 maps.ticksinPortal = 0;
                                 maps.data.tel_pos = be.tpbackpos;
 
-                                OnServerTick.makeSureTeleport((ServerPlayerEntity) entity, be.dungeonPos, DimensionIds.DUNGEON_DIMENSION);
+                                TeleportUtils.teleport((ServerPlayerEntity) entity, be.dungeonPos, DimensionIds.DUNGEON_DIMENSION);
                             }
                         }
                     }

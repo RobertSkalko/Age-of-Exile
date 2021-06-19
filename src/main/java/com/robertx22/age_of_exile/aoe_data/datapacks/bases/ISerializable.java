@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 
 public interface ISerializable<T> {
     JsonObject toJson();
@@ -14,7 +13,6 @@ public interface ISerializable<T> {
     static String ID = "id";
     static String WEIGHT = "weight";
     static String RARITY = "rarity";
-    static String TIER = "tier";
 
     default String datapackFolder() {
         return "";
@@ -23,11 +21,6 @@ public interface ISerializable<T> {
     default String getGUIDFromJson(JsonObject json) {
         return json.get(ID)
             .getAsString();
-    }
-
-    default int getTierFromJson(JsonObject json) {
-        return json.get(TIER)
-            .getAsInt();
     }
 
     default int getWeightFromJson(JsonObject json) {
@@ -56,11 +49,6 @@ public interface ISerializable<T> {
         if (this instanceof IRarity) {
             IRarity claz = (IRarity) this;
             json.addProperty(RARITY, claz.getRarityRank());
-        }
-
-        if (this instanceof ITiered) {
-            ITiered claz = (ITiered) this;
-            json.addProperty(TIER, claz.getTier());
         }
 
         return json;

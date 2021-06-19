@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.item_filters.bases;
 
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.item_filters.*;
 import net.minecraft.item.ItemStack;
 
@@ -27,7 +27,7 @@ public class ItemFilterGroup {
     public static final ItemFilterGroup ANY_SPELL_GEM = new ItemFilterGroup(new ItemFilter() {
         @Override
         public boolean IsValidItem(ItemStack stack) {
-            return SkillGemData.fromStack(stack) != null;
+            return StackSaving.SKILL_GEMS.loadFrom(stack) != null;
         }
     });
     public static final ItemFilterGroup ANY_GEAR_EXCEPT_UNIQUE = new ItemFilterGroup(new GearExceptUniqueFilter());

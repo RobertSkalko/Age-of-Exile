@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.util.math.Vector3d;
 import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
@@ -47,7 +48,7 @@ public class DamageParticleRenderer {
 
         matrix.push();
         matrix.translate(x - camX, y - camY, z - camZ);
-        matrix.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(-camera.getYaw()));
+        matrix.multiply(Vector3d.POSITIVE_Y.getDegreesQuaternion(-camera.getYaw()));
         matrix.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(camera.getPitch()));
         matrix.scale(-scaleToGui, -scaleToGui, scaleToGui);
 

@@ -54,13 +54,13 @@ public class AuraSpells implements ISlashRegistryInit {
 
         SpellBuilder.aura(PlayStyle.melee, "armor_aura", "Armor Aura", new AuraSpellData(0.2F,
                 Arrays.asList(
-                    new StatModifier(2, 4, Armor.getInstance(), ModType.FLAT)
+                    new StatModifier(15, 30, Armor.getInstance(), ModType.FLAT)
                 )))
             .build();
 
         SpellBuilder.aura(PlayStyle.ranged, "dodge_aura", "Living Shadow", new AuraSpellData(0.2F,
                 Arrays.asList(
-                    new StatModifier(5, 10, DodgeRating.getInstance(), ModType.FLAT)
+                    new StatModifier(15, 30, DodgeRating.getInstance(), ModType.FLAT)
                 )))
             .build();
 

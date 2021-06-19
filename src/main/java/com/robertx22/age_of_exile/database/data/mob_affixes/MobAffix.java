@@ -73,6 +73,8 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
             affix.stats = JsonUtils.getStats(json, "stats");
             affix.icon = json.get("icon")
                 .getAsString();
+            affix.weight = json.get("weight")
+                .getAsInt();
         } catch (Exception e) {
             e.printStackTrace();
         }

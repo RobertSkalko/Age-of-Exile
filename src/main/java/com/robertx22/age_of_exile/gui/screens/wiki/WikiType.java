@@ -25,6 +25,18 @@ public enum WikiType {
                 .collect(Collectors.toList());
         }
     },
+
+    SPELLS("spell") {
+        @Override
+        public List<WikiEntry> getAllEntries() {
+            return Database.Spells()
+                .getList()
+                .stream()
+                .filter(x -> x.Weight() > 0)
+                .map(x -> new SpellEntry(x))
+                .collect(Collectors.toList());
+        }
+    },
     EFFECTS("effect") {
         @Override
         public List<WikiEntry> getAllEntries() {
@@ -113,12 +125,12 @@ public enum WikiType {
 
             Database.PlayerSkills()
                 .get(PlayerSkillEnum.MINING.id).block_break_exp.forEach(x -> {
-                list.add(new MiningBlockExpEntry(x.getBlock(), (int) x.exp));
-            });
+                    list.add(new MiningBlockExpEntry(x.getBlock(), (int) x.exp));
+                });
             Database.PlayerSkills()
                 .get(PlayerSkillEnum.MINING.id).item_smelt_exp.forEach(x -> {
-                list.add(new MiningSmeltEntry(x.getItem(), x.exp));
-            });
+                    list.add(new MiningSmeltEntry(x.getItem(), x.exp));
+                });
             return list;
         }
     }, FARMING_EXP("farming_exp") {
@@ -132,8 +144,8 @@ public enum WikiType {
             List<WikiEntry> list = new ArrayList<>();
             Database.PlayerSkills()
                 .get(PlayerSkillEnum.FARMING.id).block_break_exp.forEach(x -> {
-                list.add(new MiningBlockExpEntry(x.getBlock(), (int) x.exp));
-            });
+                    list.add(new MiningBlockExpEntry(x.getBlock(), (int) x.exp));
+                });
             return list;
         }
     },
@@ -158,8 +170,8 @@ public enum WikiType {
         List<WikiEntry> list = new ArrayList<>();
         Database.PlayerSkills()
             .get(skill.id).item_craft_exp.forEach(x -> {
-            list.add(new CraftingExpEntry(x.getItem(), x.exp));
-        });
+                list.add(new CraftingExpEntry(x.getItem(), x.exp));
+            });
         return list;
     }
 

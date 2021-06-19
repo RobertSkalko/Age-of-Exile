@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import net.fabricmc.api.EnvType;
@@ -62,7 +63,7 @@ public class SkillGemItem extends Item implements IAutoLocName, IAutoModel {
     public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext flagIn) {
         try {
 
-            SkillGemData data = SkillGemData.fromStack(stack);
+            SkillGemData data = StackSaving.SKILL_GEMS.loadFrom(stack);
 
             if (data == null) {
                 return;

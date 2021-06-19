@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.AuraStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ReserveManaEvent;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
@@ -174,7 +175,7 @@ public class EntitySpellCap {
 
             for (int i = 0; i < skillGems.stacks.size(); i++) {
                 ItemStack x = skillGems.stacks.get(i);
-                SkillGemData data = SkillGemData.fromStack(x);
+                SkillGemData data = StackSaving.SKILL_GEMS.loadFrom(x);
                 if (data != null && data.getSkillGem().spell_id.equals(spell.GUID())) {
                     current.place = i;
                     break;
@@ -220,7 +221,7 @@ public class EntitySpellCap {
                 .stream()
                 .filter(x -> {
                     if (x.getValue().active) {
-                        SkillGemData data = SkillGemData.fromStack(skillGems.stacks.get(x.getValue().place));
+                        SkillGemData data = StackSaving.SKILL_GEMS.loadFrom(skillGems.stacks.get(x.getValue().place));
                         return data != null && data.getSkillGem() != null && data.getSkillGem().spell_id.equals(x.getKey());
                     }
                     return false;
@@ -238,7 +239,7 @@ public class EntitySpellCap {
             auras.forEach(x -> {
                 skillGems.stacks.stream()
                     .forEach(s -> {
-                        SkillGemData data = SkillGemData.fromStack(s);
+                        SkillGemData data = StackSaving.SKILL_GEMS.loadFrom(s);
                         if (data != null && data.getSkillGem() != null && data.getSkillGem().spell_id.equals(x)) {
                             Spell spell = Database.Spells()
                                 .get(data.getSkillGem().spell_id);

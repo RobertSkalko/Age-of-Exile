@@ -36,7 +36,6 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
     public List<StatModifier> uniqueStats = new ArrayList<>();
     public List<StatModifier> base_stats = new ArrayList<>();
     public StatRequirement stat_req = new StatRequirement();
-    public int tier;
     public int weight = 1000;
     public String guid;
     public String gearType;
@@ -99,7 +98,6 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
         UniqueGear uniq = new UniqueGear();
 
         uniq.guid = getGUIDFromJson(json);
-        uniq.tier = getTierFromJson(json);
         uniq.weight = getWeightFromJson(json);
 
         uniq.itemID = new Identifier(json.get("item_id")
@@ -182,7 +180,7 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
 
     @Override
     public int getTier() {
-        return tier;
+        return 0;
     }
 
     public List<StatModifier> uniqueStats() {

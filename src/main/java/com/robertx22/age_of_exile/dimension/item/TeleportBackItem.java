@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.dimension.item;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 import com.robertx22.library_of_exile.utils.SoundUtils;
+import com.robertx22.library_of_exile.utils.TeleportUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -48,7 +48,7 @@ public class TeleportBackItem extends AutoItem {
         if (!world.isClient) {
             if (WorldUtils.isDungeonWorld(world)) {
                 BlockPos pos = Load.playerMaps((PlayerEntity) player).data.tel_pos.up();
-                OnServerTick.makeSureTeleport((ServerPlayerEntity) player, pos, DimensionType.OVERWORLD_ID);
+                TeleportUtils.teleport((ServerPlayerEntity) player, pos, DimensionType.OVERWORLD_ID);
                 SoundUtils.playSound(player, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);
             }
         }

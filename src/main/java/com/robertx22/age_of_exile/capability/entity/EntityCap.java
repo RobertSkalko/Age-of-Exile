@@ -27,10 +27,7 @@ import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.*;
 import com.robertx22.age_of_exile.threat_aggro.ThreatData;
-import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
-import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.datasaving.UnitNbt;
+import com.robertx22.age_of_exile.uncommon.datasaving.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
@@ -878,22 +875,22 @@ public class EntityCap {
 
                 Load.spells(player)
                     .getSkillGemData().stacks.forEach(x -> {
-                    // lvl up spell gems, not support gems
-                    SkillGemData data = SkillGemData.fromStack(x);
-                    if (data != null) {
-                        if (data.getSkillGem().type == SkillGemType.SKILL_GEM) {
+                        // lvl up spell gems, not support gems
+                        SkillGemData data = StackSaving.SKILL_GEMS.loadFrom(x);
+                        if (data != null) {
+                            if (data.getSkillGem().type == SkillGemType.SKILL_GEM) {
 
-                            SkillGemData test = SkillGemData.fromStack(x);
-                            test.lvl++;
+                                SkillGemData test = StackSaving.SKILL_GEMS.loadFrom(x);
+                                test.lvl++;
 
-                            if (test.canPlayerUse(player)) {
-                                // only lvl gems if player can use them after they are lvled
-                                data.tryLevel();
-                                data.saveToStack(x);
+                                if (test.canPlayerUse(player)) {
+                                    // only lvl gems if player can use them after they are lvled
+                                    data.tryLevel();
+                                    data.saveToStack(x);
+                                }
                             }
                         }
-                    }
-                });
+                    });
 
                 Optional<LevelRewardConfig> opt = ModConfig.get().LevelRewards.levelRewards.stream()
                     .filter(x -> x.for_level == this.level)
