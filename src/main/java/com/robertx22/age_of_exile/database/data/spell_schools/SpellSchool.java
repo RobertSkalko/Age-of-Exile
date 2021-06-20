@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.database.data.spell_schools;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.parser.TalentGrid;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 
@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAutoGson<SpellSchool> {
+public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<SpellSchool> {
 
     public static SpellSchool SERIALIZER = new SpellSchool();
 
@@ -48,8 +48,8 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.SPELL_SCHOOL;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.SPELL_SCHOOL;
     }
 
     @Override

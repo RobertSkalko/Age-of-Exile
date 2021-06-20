@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.database.data.races;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerRace implements ISerializedRegistryEntry<PlayerRace>, IAutoGson<PlayerRace>, IAutoLocName, IAutoLocDesc {
+public class PlayerRace implements JsonExileRegistry<PlayerRace>, IAutoGson<PlayerRace>, IAutoLocName, IAutoLocDesc {
     public static PlayerRace SERIALIZER = new PlayerRace();
 
     public transient String locname = "";
@@ -122,8 +122,8 @@ public class PlayerRace implements ISerializedRegistryEntry<PlayerRace>, IAutoGs
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.RACES;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.RACES;
     }
 
     @Override

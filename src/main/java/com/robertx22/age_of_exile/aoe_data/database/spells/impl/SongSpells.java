@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.SpellConfigura
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
@@ -20,7 +20,7 @@ import java.util.Arrays;
 
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
-public class SongSpells implements ISlashRegistryInit {
+public class SongSpells implements ExileRegistryInit {
 
     static void song(String id, String name, EffectCtx effect) {
 

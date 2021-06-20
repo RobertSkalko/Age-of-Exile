@@ -1,15 +1,15 @@
 package com.robertx22.age_of_exile.database.data.gems;
 
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.BaseRuneGem;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import net.minecraft.item.Item;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class Gem extends BaseRuneGem implements IAutoGson<Gem>, ISerializedRegistryEntry<Gem> {
+public class Gem extends BaseRuneGem implements IAutoGson<Gem>, JsonExileRegistry<Gem> {
 
     public static Gem SERIALIZER = new Gem();
 
@@ -52,8 +52,8 @@ public class Gem extends BaseRuneGem implements IAutoGson<Gem>, ISerializedRegis
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.GEM;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.GEM;
     }
 
 }

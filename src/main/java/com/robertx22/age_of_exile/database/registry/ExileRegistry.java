@@ -3,25 +3,25 @@ package com.robertx22.age_of_exile.database.registry;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.library_of_exile.registry.IGUID;
 
-public interface ISlashRegistryEntry<C> extends IGUID, IWeighted {
+public interface ExileRegistry<C> extends IGUID, IWeighted {
 
-    SlashRegistryType getSlashRegistryType();
+    ExileRegistryTypes getExileRegistryType();
 
-    default void registerToSlashRegistry() {
-        Database.getRegistry(getSlashRegistryType())
+    default void registerToExileRegistry() {
+        Database.getRegistry(getExileRegistryType())
             .register(this);
     }
 
-    default void unregisterFromSlashRegistry() {
-        Database.getRegistry(getSlashRegistryType())
+    default void unregisterFromExileRegistry() {
+        Database.getRegistry(getExileRegistryType())
             .unRegister(this);
     }
 
     default void unregisterDueToInvalidity() {
-        Database.getRegistry(getSlashRegistryType())
+        Database.getRegistry(getExileRegistryType())
             .unRegister(this);
         try {
-            throw new Exception("Registry Entry: " + GUID() + " of type: " + this.getSlashRegistryType()
+            throw new Exception("Registry Entry: " + GUID() + " of type: " + this.getExileRegistryType()
                 .name() + " is invalid! Unregistering");
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,7 +38,7 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted {
     }
 
     default String getInvalidGuidMessage() {
-        return "Non [a-z0-9_.-] character in Age of Exile GUID: " + GUID() + " of type " + getSlashRegistryType().name();
+        return "Non [a-z0-9_.-] character in Age of Exile GUID: " + GUID() + " of type " + getExileRegistryType().name();
     }
 
 }

@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -16,7 +16,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 
 import java.util.Arrays;
 
-public class UniqueDaggers implements ISlashRegistryInit {
+public class UniqueDaggers implements ExileRegistryInit {
 
     @Override
     public void registerAll() {

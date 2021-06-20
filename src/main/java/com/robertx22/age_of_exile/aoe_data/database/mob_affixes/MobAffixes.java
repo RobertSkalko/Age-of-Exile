@@ -8,14 +8,14 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDama
 import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.util.Formatting;
 
 import static com.robertx22.age_of_exile.uncommon.enumclasses.Elements.*;
 
-public class MobAffixes implements ISlashRegistryInit {
+public class MobAffixes implements ExileRegistryInit {
 
     static void eleAffix(String name, Elements element) {
         new MobAffix(element.guidName + "_mob_affix", new AttackDamage(element).getFormatAndIcon(), element.format)

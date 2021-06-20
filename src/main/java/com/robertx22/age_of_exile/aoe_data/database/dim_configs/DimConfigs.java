@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.aoe_data.database.dim_configs;
 
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.dimension.DimensionIds;
 
-public class DimConfigs implements ISlashRegistryInit {
+public class DimConfigs implements ExileRegistryInit {
 
     @Override
     public void registerAll() {

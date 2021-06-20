@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.registry.empty_entries;
+package com.robertx22.age_of_exile.database.empty_entries;
 
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 

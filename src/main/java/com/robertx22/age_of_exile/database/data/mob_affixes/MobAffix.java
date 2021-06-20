@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.database.data.mob_affixes;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializable<MobAffix>, IAutoLocName, IApplyableStats {
+public class MobAffix implements JsonExileRegistry<MobAffix>, ISerializable<MobAffix>, IAutoLocName, IApplyableStats {
 
     List<StatModifier> stats = new ArrayList<>();
     String id = "";
@@ -88,8 +88,8 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.MOB_AFFIX;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.MOB_AFFIX;
     }
 
     @Override

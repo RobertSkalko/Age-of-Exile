@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.database.data.skill_gem;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SkillGem implements ISerializedRegistryEntry<SkillGem>, IAutoGson<SkillGem>, IAutoLocName {
+public class SkillGem implements JsonExileRegistry<SkillGem>, IAutoGson<SkillGem>, IAutoLocName {
     public static SkillGem SERIALIZER = new SkillGem();
 
     public String identifier = "";
@@ -72,8 +72,8 @@ public class SkillGem implements ISerializedRegistryEntry<SkillGem>, IAutoGson<S
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.SKILL_GEM;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.SKILL_GEM;
     }
 
     @Override

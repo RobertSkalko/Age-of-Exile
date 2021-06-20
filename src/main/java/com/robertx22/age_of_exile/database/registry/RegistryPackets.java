@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.registry;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.uncommon.auto_comp.ItemAutoPowerLevels;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
@@ -13,9 +13,9 @@ import java.util.List;
 
 public class RegistryPackets {
 
-    private static HashMap<SlashRegistryType, List<JsonObject>> map = new HashMap<>();
+    private static HashMap<ExileRegistryTypes, List<JsonObject>> map = new HashMap<>();
 
-    public static List<JsonObject> get(SlashRegistryType type) {
+    public static List<JsonObject> get(ExileRegistryTypes type) {
 
         if (!map.containsKey(type)) {
             map.put(type, new ArrayList<>());
@@ -28,12 +28,12 @@ public class RegistryPackets {
         Watch watch = new Watch();
         watch.min = 50000;
 
-        SlashRegistryType.getInRegisterOrder(sync)
+        ExileRegistryTypes.getInRegisterOrder(sync)
             .forEach(type -> {
 
                 if (type.getLoader() != null && type.ser instanceof IByteBuf == false) {
 
-                    SlashRegistryContainer reg = Database.getRegistry(type);
+                    ExileRegistryContainer reg = Database.getRegistry(type);
 
                     reg.unregisterAllEntriesFromDatapacks();
 
@@ -46,9 +46,9 @@ public class RegistryPackets {
                     list.forEach(x -> {
 
                         try {
-                            ISerializedRegistryEntry entry = (ISerializedRegistryEntry) type.getSerializer()
+                            JsonExileRegistry entry = (JsonExileRegistry) type.getSerializer()
                                 .fromJson(x);
-                            entry.registerToSlashRegistry();
+                            entry.registerToExileRegistry();
 
                         } catch (JsonSyntaxException e) {
                             System.out.println("Failed to parse Age of Exile registry Json!!!");

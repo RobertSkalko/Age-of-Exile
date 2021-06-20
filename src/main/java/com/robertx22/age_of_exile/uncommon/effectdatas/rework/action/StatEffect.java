@@ -1,17 +1,17 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework.action;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.HashMap;
 
-public abstract class StatEffect implements ISerializedRegistryEntry<StatEffect>, IAutoGson<StatEffect> {
+public abstract class StatEffect implements JsonExileRegistry<StatEffect>, IAutoGson<StatEffect> {
 
     public static StatEffect SERIALIZER = new SetBooleanEffect();
     public static HashMap<String, StatEffect> SERIALIZERS = new HashMap<>();
@@ -48,8 +48,8 @@ public abstract class StatEffect implements ISerializedRegistryEntry<StatEffect>
     public abstract void activate(EffectEvent event, EffectSides statSource, StatData data, Stat stat);
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.STAT_EFFECT;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.STAT_EFFECT;
     }
 
     @Override

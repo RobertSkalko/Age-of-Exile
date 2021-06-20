@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.aoe_data;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
 
-public class DataHolder<Key, Item extends ISerializedRegistryEntry> {
+public class DataHolder<Key, Item extends JsonExileRegistry> {
 
     List<Key> keys;
 

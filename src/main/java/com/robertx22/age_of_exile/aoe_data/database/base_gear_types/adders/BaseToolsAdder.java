@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -16,7 +16,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 
 import java.util.HashMap;
 
-public class BaseToolsAdder implements ISlashRegistryInit {
+public class BaseToolsAdder implements ExileRegistryInit {
 
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> PICKAXE;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> FISHING_ROD;

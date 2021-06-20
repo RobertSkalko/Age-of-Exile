@@ -3,14 +3,14 @@ package com.robertx22.age_of_exile.database.data.unique_items;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFiltersGroupData;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
@@ -28,7 +28,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
-    ISerializedRegistryEntry<UniqueGear>, ISerializable<UniqueGear> {
+    JsonExileRegistry<UniqueGear>, ISerializable<UniqueGear> {
 
     public static UniqueGear SERIALIZER = new UniqueGear();
 
@@ -160,8 +160,8 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.UNIQUE_GEAR;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.UNIQUE_GEAR;
     }
 
     public Identifier getResourceLocForItem() {

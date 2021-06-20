@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.database.data.salvage_recipes;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class SalvageRecipe implements ISerializedRegistryEntry<SalvageRecipe>, IAutoGson<SalvageRecipe>, IAutoLocName {
+public class SalvageRecipe implements JsonExileRegistry<SalvageRecipe>, IAutoGson<SalvageRecipe>, IAutoLocName {
 
     public static SalvageRecipe SERIALIZER = new SalvageRecipe();
     public String id;
@@ -67,8 +67,8 @@ public class SalvageRecipe implements ISerializedRegistryEntry<SalvageRecipe>, I
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.SALVAGE_RECIPE;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.SALVAGE_RECIPE;
     }
 
     @Override

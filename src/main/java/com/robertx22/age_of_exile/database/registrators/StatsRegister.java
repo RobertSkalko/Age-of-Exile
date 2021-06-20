@@ -23,7 +23,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -32,7 +32,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StatsRegister implements ISlashRegistryInit {
+public class StatsRegister implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
@@ -120,7 +120,7 @@ public class StatsRegister implements ISlashRegistryInit {
                 All.add(stat);
             }
         }
-        All.forEach(x -> x.registerToSlashRegistry());
+        All.forEach(x -> x.registerToExileRegistry());
 
     }
 

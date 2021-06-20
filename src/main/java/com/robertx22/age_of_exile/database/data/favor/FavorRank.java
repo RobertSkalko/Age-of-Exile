@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.database.data.favor;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -15,7 +15,7 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson<FavorRank>, IAutoLocName {
+public class FavorRank implements JsonExileRegistry<FavorRank>, IAutoGson<FavorRank>, IAutoLocName {
 
     public static FavorRank SERIALIZER = new FavorRank("");
 
@@ -146,8 +146,8 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.FAVOR_RANK;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.FAVOR_RANK;
     }
 
     @Override

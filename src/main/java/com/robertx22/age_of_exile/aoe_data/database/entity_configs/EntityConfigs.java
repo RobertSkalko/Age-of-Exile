@@ -3,8 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.entity_configs;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
-import com.robertx22.age_of_exile.database.data.EntityConfig.*;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityType;
 
@@ -13,7 +12,7 @@ import java.util.Locale;
 import static com.robertx22.age_of_exile.database.data.EntityConfig.*;
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
-public class EntityConfigs implements ISlashRegistryInit {
+public class EntityConfigs implements ExileRegistryInit {
 
     void setupBroadClasses() {
 

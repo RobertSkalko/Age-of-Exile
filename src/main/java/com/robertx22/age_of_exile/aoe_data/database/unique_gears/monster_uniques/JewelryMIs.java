@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFilterData;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.MobTagFilter;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -17,7 +17,7 @@ import net.minecraft.tag.EntityTypeTags;
 
 import java.util.Arrays;
 
-public class JewelryMIs implements ISlashRegistryInit {
+public class JewelryMIs implements ExileRegistryInit {
 
     @Override
     public void registerAll() {

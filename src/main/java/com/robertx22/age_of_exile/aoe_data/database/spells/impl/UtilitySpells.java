@@ -12,7 +12,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -27,7 +27,7 @@ import java.util.Arrays;
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.BLOCKS;
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
-public class UtilitySpells implements ISlashRegistryInit {
+public class UtilitySpells implements ExileRegistryInit {
     public static String DASH_ID = "dash";
 
     @Override

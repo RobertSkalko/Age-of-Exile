@@ -3,10 +3,10 @@ package com.robertx22.age_of_exile.database.data.gear_slots;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 
-public class GearSlot implements ISerializedRegistryEntry<GearSlot>, ISerializable<GearSlot> {
+public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<GearSlot> {
 
     public static GearSlot SERIALIZER = new GearSlot("", 0);
 
@@ -24,8 +24,8 @@ public class GearSlot implements ISerializedRegistryEntry<GearSlot>, ISerializab
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.GEAR_SLOT;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.GEAR_SLOT;
     }
 
     @Override

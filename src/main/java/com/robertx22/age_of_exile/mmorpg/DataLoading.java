@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.AttributeStat;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.uncommon.error_checks.base.ErrorChecks;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import net.minecraft.resource.JsonDataLoader;
@@ -32,7 +32,7 @@ public class DataLoading {
     }
 
     public static void registerLoaders(ReloadableResourceManager manager) {
-        SlashRegistryType.getAllInRegisterOrder()
+        ExileRegistryTypes.getAllInRegisterOrder()
             .forEach(x -> {
                 if (x.getLoader() != null) {
                     manager.registerReloader(x.getLoader());

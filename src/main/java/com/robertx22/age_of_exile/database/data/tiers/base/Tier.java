@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.database.data.tiers.base;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -11,7 +11,7 @@ import net.minecraft.util.Formatting;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tier implements ISerializedRegistryEntry<Tier>, IAutoGson<Tier> {
+public class Tier implements JsonExileRegistry<Tier>, IAutoGson<Tier> {
 
     public static ISerializable<Tier> SERIALIZER = new Tier(1);
 
@@ -71,8 +71,8 @@ public class Tier implements ISerializedRegistryEntry<Tier>, IAutoGson<Tier> {
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.TIER;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.TIER;
     }
 
     @Override

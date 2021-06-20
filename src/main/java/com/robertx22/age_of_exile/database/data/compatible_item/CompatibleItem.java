@@ -2,13 +2,13 @@ package com.robertx22.age_of_exile.database.data.compatible_item;
 
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -22,7 +22,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
 
-public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<CompatibleItem>, ISerializedRegistryEntry<CompatibleItem> {
+public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<CompatibleItem>, JsonExileRegistry<CompatibleItem> {
 
     public static CompatibleItem EMPTY = new CompatibleItem();
 
@@ -171,8 +171,8 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.COMPATIBLE_ITEM;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.COMPATIBLE_ITEM;
     }
 
     @Override

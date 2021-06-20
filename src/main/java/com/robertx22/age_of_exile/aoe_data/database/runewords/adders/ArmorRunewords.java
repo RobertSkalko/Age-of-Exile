@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElemental
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 import static com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem.RuneType.*;
 
-public class ArmorRunewords implements ISlashRegistryInit {
+public class ArmorRunewords implements ExileRegistryInit {
 
     @Override
     public void registerAll() {

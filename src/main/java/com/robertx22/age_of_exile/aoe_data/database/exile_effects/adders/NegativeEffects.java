@@ -17,7 +17,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -29,7 +29,7 @@ import java.util.UUID;
 
 import static net.minecraft.entity.attribute.EntityAttributes.*;
 
-public class NegativeEffects implements ISlashRegistryInit {
+public class NegativeEffects implements ExileRegistryInit {
 
     public static EffectCtx ELE_WEAKNESS = new EffectCtx("ele_weakness", "Ele Weakness", 0, Elements.Elemental, EffectType.negative);
     public static EffectCtx PETRIFY = new EffectCtx("petrify", "Petrify", 1, Elements.Nature, EffectType.negative);

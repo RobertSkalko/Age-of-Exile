@@ -4,13 +4,13 @@ import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class GearRarityGroupAdder implements ISlashRegistryInit {
+public class GearRarityGroupAdder implements ExileRegistryInit {
 
     static DataGenKey<GearRarityGroup> NON_UNIQUE_KEY = new DataGenKey<>(GearRarityGroups.NON_UNIQUE_ID);
     static DataGenKey<GearRarityGroup> UP_TO_MAGICAL = new DataGenKey<>(GearRarityGroups.UP_TO_MAGICAL);

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.runewords;
 
 import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -22,7 +22,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISerializedRegistryEntry<RuneWord>, IAutoLocName {
+public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, JsonExileRegistry<RuneWord>, IAutoLocName {
     public static RuneWord SERIALIZER = new RuneWord();
 
     public String identifier = "";
@@ -188,8 +188,8 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.RUNEWORD;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.RUNEWORD;
     }
 
     @Override

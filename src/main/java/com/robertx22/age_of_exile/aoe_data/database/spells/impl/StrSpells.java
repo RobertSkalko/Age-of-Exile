@@ -17,7 +17,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -31,7 +31,7 @@ import java.util.Arrays;
 
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.PARTICLES;
 
-public class StrSpells implements ISlashRegistryInit {
+public class StrSpells implements ExileRegistryInit {
 
     public static String FLAME_STRIKE_ID = "flame_strike";
     public static String CHARGE_ID = "charge";

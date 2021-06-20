@@ -5,10 +5,10 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
-public class StartPerks implements ISlashRegistryInit {
+public class StartPerks implements ExileRegistryInit {
 
     public static String MAGE = "mage";
     public static String WARRIOR = "warrior";

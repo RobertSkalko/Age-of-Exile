@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.block.Blocks;
 import net.minecraft.particle.ParticleTypes;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
-public class CurseSpells implements ISlashRegistryInit {
+public class CurseSpells implements ExileRegistryInit {
 
     static void curse(String id, String name, EffectCtx effect) {
         SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 30, 20)

@@ -2,10 +2,10 @@ package com.robertx22.age_of_exile.database.data;
 
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 
-public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig>, ISerializable<DimensionConfig> {
+public class DimensionConfig implements JsonExileRegistry<DimensionConfig>, ISerializable<DimensionConfig> {
 
     public DimensionConfig() {
     }
@@ -85,8 +85,8 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
     public boolean scale_to_nearest_player = false;
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.DIMENSION_CONFIGS;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.DIMENSION_CONFIGS;
     }
 
     @Override

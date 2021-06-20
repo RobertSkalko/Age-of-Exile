@@ -16,7 +16,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -30,7 +30,7 @@ import java.util.Arrays;
 
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
-public class DexSpells implements ISlashRegistryInit {
+public class DexSpells implements ExileRegistryInit {
 
     public static String EXPLOSIVE_ARROW_ID = "explosive_arrow";
     public static String MAKE_ARROWS = "make_arrows";

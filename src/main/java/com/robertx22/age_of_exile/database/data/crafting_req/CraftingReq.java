@@ -1,15 +1,15 @@
 package com.robertx22.age_of_exile.database.data.crafting_req;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
-public class CraftingReq implements ISerializedRegistryEntry<CraftingReq>, IAutoGson<CraftingReq> {
+public class CraftingReq implements JsonExileRegistry<CraftingReq>, IAutoGson<CraftingReq> {
 
     public static CraftingReq SERIALIZER = new CraftingReq();
 
@@ -45,8 +45,8 @@ public class CraftingReq implements ISerializedRegistryEntry<CraftingReq>, IAuto
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.CRAFTING_REQ;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.CRAFTING_REQ;
     }
 
     @Override

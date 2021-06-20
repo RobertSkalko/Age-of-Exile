@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.database.data.value_calc;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.spells.calc.BaseStatCalc;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculation>, IAutoGson<ValueCalculation> {
+public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IAutoGson<ValueCalculation> {
 
     public static ValueCalculation SERIALIZER = new ValueCalculation();
 
@@ -142,8 +142,8 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.VALUE_CALC;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.VALUE_CALC;
     }
 
     @Override

@@ -12,14 +12,14 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.HashMap;
 
-public class BaseGearOffHands implements ISlashRegistryInit {
+public class BaseGearOffHands implements ExileRegistryInit {
 
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> ARMOR_SHIELD;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> MS_SHIELD;

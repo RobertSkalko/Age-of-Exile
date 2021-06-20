@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.database.data.set;
 
 import com.google.common.base.Preconditions;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class GearSet implements ISerializedRegistryEntry<GearSet>, IAutoGson<GearSet>, ITooltipList, IAutoLocName {
+public class GearSet implements JsonExileRegistry<GearSet>, IAutoGson<GearSet>, ITooltipList, IAutoLocName {
 
     public static GearSet SERIALIZER = new GearSet();
 
@@ -139,8 +139,8 @@ public class GearSet implements ISerializedRegistryEntry<GearSet>, IAutoGson<Gea
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.GEAR_SET;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.GEAR_SET;
     }
 
     @Override

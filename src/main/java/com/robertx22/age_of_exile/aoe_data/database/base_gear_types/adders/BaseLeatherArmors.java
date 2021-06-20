@@ -7,15 +7,13 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 
 import java.util.HashMap;
 
-import static com.robertx22.age_of_exile.aoe_data.database.DataHelper.*;
-
-public class BaseLeatherArmors implements ISlashRegistryInit {
+public class BaseLeatherArmors implements ExileRegistryInit {
 
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> BOOTS;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> PANTS;

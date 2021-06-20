@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.database.data.game_balance_config;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 
-public class GameBalanceConfig implements ISerializedRegistryEntry<GameBalanceConfig>, IAutoGson<GameBalanceConfig> {
+public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, IAutoGson<GameBalanceConfig> {
 
     public static GameBalanceConfig SERIALIZER = new GameBalanceConfig();
 
@@ -13,7 +13,7 @@ public class GameBalanceConfig implements ISerializedRegistryEntry<GameBalanceCo
     public static String ID = "game_balance";
 
     public static GameBalanceConfig get() {
-        return (GameBalanceConfig) Database.getRegistry(SlashRegistryType.GAME_BALANCE)
+        return (GameBalanceConfig) Database.getRegistry(ExileRegistryTypes.GAME_BALANCE)
             .get(ID);
     }
 
@@ -31,8 +31,8 @@ public class GameBalanceConfig implements ISerializedRegistryEntry<GameBalanceCo
     public double STARTING_TALENT_POINTS = 1;
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.GAME_BALANCE;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.GAME_BALANCE;
     }
 
     @Override

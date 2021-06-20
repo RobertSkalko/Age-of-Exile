@@ -2,9 +2,9 @@ package com.robertx22.age_of_exile.aoe_data.database.skill_gem_rarity;
 
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 
-public class SkillGemRarityAdder implements ISlashRegistryInit {
+public class SkillGemRarityAdder implements ExileRegistryInit {
 
     @Override
     public void registerAll() {

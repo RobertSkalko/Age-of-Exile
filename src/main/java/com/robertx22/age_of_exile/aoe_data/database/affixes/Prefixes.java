@@ -8,11 +8,11 @@ import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.jewelry.Jewel
 import com.robertx22.age_of_exile.database.base.IRandomDefault;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 
 import java.util.List;
 
-public class Prefixes implements IRandomDefault<Affix>, ISlashRegistryInit {
+public class Prefixes implements IRandomDefault<Affix>, ExileRegistryInit {
 
     @Override
     public void registerAll() {

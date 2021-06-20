@@ -5,7 +5,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.DatabaseSuggestions;
@@ -28,10 +28,10 @@ public class GiveSkillGem {
                         .requires(e -> e.hasPermissionLevel(2))
                         .then(argument("target", EntityArgumentType.player())
                             .then(argument("id", StringArgumentType.word())
-                                .suggests(new DatabaseSuggestions(SlashRegistryType.SKILL_GEM))
+                                .suggests(new DatabaseSuggestions(ExileRegistryTypes.SKILL_GEM))
                                 .then(argument("level", IntegerArgumentType.integer())
                                     .then(argument("rarity", StringArgumentType.word())
-                                        .suggests(new DatabaseSuggestions(SlashRegistryType.SKILL_GEM_RARITY))
+                                        .suggests(new DatabaseSuggestions(ExileRegistryTypes.SKILL_GEM_RARITY))
                                         .then(argument("amount", IntegerArgumentType
                                             .integer(1, 5000))
                                             .executes(e -> execute(e.getSource(), EntityArgumentType

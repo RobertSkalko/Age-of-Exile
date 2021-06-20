@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.registry;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.database.compat_items.CompatibleItems;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.generators.SlashDatapackGenerator;
+import com.robertx22.age_of_exile.aoe_data.datapacks.generators.ExileDatapackGenerator;
 import com.robertx22.age_of_exile.aoe_data.datapacks.loaders.BaseDataPackLoader;
 import com.robertx22.age_of_exile.database.Serializers;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
@@ -38,7 +38,7 @@ import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapac
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.database.registry.empty_entries.EmptyAffix;
+import com.robertx22.age_of_exile.database.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.StatEffect;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.StatCondition;
@@ -49,7 +49,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum SlashRegistryType {
+public enum ExileRegistryTypes {
 
     GEAR_RARITY("gear_rarity", 0, GearRarity.SERIALIZER, SyncTime.ON_LOGIN),
     MOB_RARITY("mob_rarity", 0, MobRarity.SERIALIZER, SyncTime.ON_LOGIN),
@@ -104,15 +104,15 @@ public enum SlashRegistryType {
     int order;
     public SyncTime syncTime;
 
-    SlashRegistryType(String id, int order, ISerializable ser, SyncTime synctime) {
+    ExileRegistryTypes(String id, int order, ISerializable ser, SyncTime synctime) {
         this.id = id;
         this.order = order;
         this.ser = ser;
         this.syncTime = synctime;
     }
 
-    public static List<SlashRegistryType> getInRegisterOrder(SyncTime sync) {
-        List<SlashRegistryType> list = Arrays.stream(SlashRegistryType.values())
+    public static List<ExileRegistryTypes> getInRegisterOrder(SyncTime sync) {
+        List<ExileRegistryTypes> list = Arrays.stream(ExileRegistryTypes.values())
             .filter(x -> x.syncTime == sync)
             .collect(Collectors.toList());
         list.sort(Comparator.comparingInt(x -> x.order));
@@ -120,8 +120,8 @@ public enum SlashRegistryType {
 
     }
 
-    public static List<SlashRegistryType> getAllInRegisterOrder() {
-        List<SlashRegistryType> list = Arrays.stream(SlashRegistryType.values())
+    public static List<ExileRegistryTypes> getAllInRegisterOrder() {
+        List<ExileRegistryTypes> list = Arrays.stream(ExileRegistryTypes.values())
             .collect(Collectors.toList());
         list.sort(Comparator.comparingInt(x -> x.order));
         return list;
@@ -135,8 +135,8 @@ public enum SlashRegistryType {
     public BaseDataPackLoader getLoader() {
         return new BaseDataPackLoader(this, this.id, x -> this.ser.fromJson((JsonObject) x)) {
             @Override
-            public SlashDatapackGenerator getDataPackGenerator() {
-                return new SlashDatapackGenerator<>(getAllForSerialization(), this.id);
+            public ExileDatapackGenerator getDataPackGenerator() {
+                return new ExileDatapackGenerator<>(getAllForSerialization(), this.id);
             }
         };
     }

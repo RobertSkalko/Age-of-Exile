@@ -11,9 +11,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class SlashDatapackGenerator<T extends IGUID & ISerializable<T>> extends BaseDatapackGenerator<T> {
+public class ExileDatapackGenerator<T extends IGUID & ISerializable<T>> extends BaseDatapackGenerator<T> {
 
-    public SlashDatapackGenerator(List<T> list, String category) {
+    public ExileDatapackGenerator(List<T> list, String category) {
         super(list, category);
     }
 

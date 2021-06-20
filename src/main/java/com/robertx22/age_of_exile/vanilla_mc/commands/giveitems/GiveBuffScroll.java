@@ -5,7 +5,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffData;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffItem;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
@@ -31,7 +31,7 @@ public class GiveBuffScroll {
                         .requires(e -> e.hasPermissionLevel(2))
                         .then(argument("target", EntityArgumentType.player())
                             .then(argument("id", StringArgumentType.word())
-                                .suggests(new DatabaseSuggestions(SlashRegistryType.SCROLL_BUFFS))
+                                .suggests(new DatabaseSuggestions(ExileRegistryTypes.SCROLL_BUFFS))
                                 .then(argument("level", IntegerArgumentType.integer())
                                     .then(argument("rarity", StringArgumentType.word())
                                         .suggests(new GearRaritySuggestions())

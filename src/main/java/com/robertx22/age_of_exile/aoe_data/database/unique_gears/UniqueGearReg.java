@@ -5,9 +5,9 @@ import com.robertx22.age_of_exile.aoe_data.database.unique_gears.monster_uniques
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.UniqueArmors;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.UniqueJewelry;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.UniqueWeapons;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 
-public class UniqueGearReg implements ISlashRegistryInit {
+public class UniqueGearReg implements ExileRegistryInit {
     @Override
     public void registerAll() {
 

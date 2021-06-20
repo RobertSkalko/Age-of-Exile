@@ -12,7 +12,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -21,7 +21,7 @@ import net.minecraft.sound.SoundEvents;
 
 import java.util.Arrays;
 
-public class LoseAggroSpells implements ISlashRegistryInit {
+public class LoseAggroSpells implements ExileRegistryInit {
 
     static ValueCalculation CALC = ValueCalculation.base("lose_aggro", 20);
 

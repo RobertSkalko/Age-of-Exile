@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.Stat.StatGroup;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DataPackStatAccessor;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
@@ -27,7 +27,7 @@ import java.util.Arrays;
 import static com.robertx22.age_of_exile.database.data.stats.Stat.VAL1;
 import static com.robertx22.age_of_exile.database.data.stats.Stat.format;
 
-public class Stats implements ISlashRegistryInit {
+public class Stats implements ExileRegistryInit {
 
     public static void loadClass() {
 

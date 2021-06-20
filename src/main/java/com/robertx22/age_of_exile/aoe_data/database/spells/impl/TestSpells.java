@@ -7,11 +7,11 @@ import com.robertx22.age_of_exile.database.data.spells.TestSpell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
-public class TestSpells implements ISlashRegistryInit {
+public class TestSpells implements ExileRegistryInit {
 
     @Override
     public void registerAll() {

@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
+public class ExileRegistryContainer<C extends ExileRegistry> {
 
     private List<String> registersErrorsAlertedFor = new ArrayList<>();
     private List<String> accessorErrosAletedFor = new ArrayList<>();
@@ -33,7 +33,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     boolean isDatapack = false;
 
-    public SlashRegistryContainer<C> setIsDatapack() {
+    public ExileRegistryContainer<C> setIsDatapack() {
         this.dataPacksAreRegistered = false;
         this.isDatapack = true;
         return this;
@@ -94,7 +94,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return fromDatapacks;
     }
 
-    public SlashRegistryType getType() {
+    public ExileRegistryTypes getType() {
         return type;
     }
 
@@ -107,7 +107,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     }
 
-    private SlashRegistryType type;
+    private ExileRegistryTypes type;
     private C emptyDefault;
 
     public C getDefault() {
@@ -119,21 +119,21 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     private boolean logAdditionsToRegistry = false;
     private boolean logMissingEntryOnAccess = true;
 
-    public SlashRegistryContainer logAdditions() {
+    public ExileRegistryContainer logAdditions() {
         this.logAdditionsToRegistry = true;
         return this;
     }
 
-    public void unRegister(ISlashRegistryEntry entry) {
+    public void unRegister(ExileRegistry entry) {
         map.remove(entry.GUID());
     }
 
-    public SlashRegistryContainer dontErrorMissingEntriesOnAccess() {
+    public ExileRegistryContainer dontErrorMissingEntriesOnAccess() {
         this.logMissingEntryOnAccess = false;
         return this;
     }
 
-    public SlashRegistryContainer dontErrorIfEmpty() {
+    public ExileRegistryContainer dontErrorIfEmpty() {
         this.errorIfEmpty = false;
         return this;
     }
@@ -146,7 +146,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
         return getSize() > 0;
     }
 
-    public SlashRegistryContainer(SlashRegistryType type, C emptyDefault) {
+    public ExileRegistryContainer(ExileRegistryTypes type, C emptyDefault) {
         this.type = type;
         this.emptyDefault = emptyDefault;
     }
@@ -163,7 +163,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
                         emptyRegistries.add(this.type.id);
                         logRegistryError(
-                            "Slash Registry of type: " + this.type.toString() + " is empty, this is really bad!");
+                            "Exile Registry of type: " + this.type.toString() + " is empty, this is really bad!");
                     }
                 }
             }
@@ -208,7 +208,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     public C get(String guid) {
 
         if (MMORPG.RUN_DEV_TOOLS) {
-            if (type == SlashRegistryType.SPELL && guid.equals(TestSpell.USE_THIS_EXACT_ID)) {
+            if (type == ExileRegistryTypes.SPELL && guid.equals(TestSpell.USE_THIS_EXACT_ID)) {
                 return (C) TestSpell.get();
             }
         }
@@ -274,7 +274,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
         if (isRegistered(c)) {
             if (registersErrorsAlertedFor.contains(c.GUID()) == false) {
-                logRegistryError("Key: " + c.GUID() + " has already been registered to: " + c.getSlashRegistryType()
+                logRegistryError("Key: " + c.GUID() + " has already been registered to: " + c.getExileRegistryType()
                     .toString() + " registry.");
                 registersErrorsAlertedFor.add(c.GUID());
             }
@@ -296,7 +296,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     public void addSerializable(C entry) {
         if (serializables.containsKey(entry.GUID())) {
-            System.out.println("Entry of type: " + entry.getSlashRegistryType()
+            System.out.println("Entry of type: " + entry.getExileRegistryType()
                 .name() + " already exists as seriazable: " + entry.GUID());
         }
         this.serializables.put(entry.GUID(), entry);

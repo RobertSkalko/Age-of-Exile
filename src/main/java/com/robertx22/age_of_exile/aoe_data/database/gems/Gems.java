@@ -2,11 +2,11 @@ package com.robertx22.age_of_exile.aoe_data.database.gems;
 
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.util.registry.Registry;
 
-public class Gems implements ISlashRegistryInit {
+public class Gems implements ExileRegistryInit {
 
     @Override
     public void registerAll() {

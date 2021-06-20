@@ -20,7 +20,7 @@ public class SpecialStat extends Stat {
         this.scaling = StatScaling.NONE;
 
         this.is_perc = true;
-        this.registerToSlashRegistry();
+        this.registerToExileRegistry();
     }
 
     public SpecialStat(String id, String longName, IStatCtxModifier ctxmod) {

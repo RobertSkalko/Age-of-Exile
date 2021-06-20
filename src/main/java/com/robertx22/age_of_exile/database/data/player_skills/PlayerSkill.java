@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.player_skills;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.fishing.FishingLureItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -26,7 +26,7 @@ import net.minecraft.util.Identifier;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAutoGson<PlayerSkill>, ITooltipList {
+public class PlayerSkill implements JsonExileRegistry<PlayerSkill>, IAutoGson<PlayerSkill>, ITooltipList {
     public static PlayerSkill SERIALIZER = new PlayerSkill();
 
     public PlayerSkillEnum type_enum = PlayerSkillEnum.MINING;
@@ -143,8 +143,8 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.PLAYER_SKILLS;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.PLAYER_SKILLS;
     }
 
     @Override

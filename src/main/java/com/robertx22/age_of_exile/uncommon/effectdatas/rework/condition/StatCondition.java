@@ -1,17 +1,17 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 
 import java.util.HashMap;
 
-public abstract class StatCondition implements ISerializedRegistryEntry<StatCondition>, IAutoGson<StatCondition> {
+public abstract class StatCondition implements JsonExileRegistry<StatCondition>, IAutoGson<StatCondition> {
 
     public static StatCondition SERIALIZER = new RandomRollCondition();
     public static HashMap<String, StatCondition> SERIALIZERS = new HashMap<>();
@@ -81,8 +81,8 @@ public abstract class StatCondition implements ISerializedRegistryEntry<StatCond
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.STAT_CONDITION;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.STAT_CONDITION;
     }
 
     @Override

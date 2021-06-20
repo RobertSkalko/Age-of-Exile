@@ -1,16 +1,16 @@
 package com.robertx22.age_of_exile.database.data.groups;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GearRarityGroup implements ISerializedRegistryEntry<GearRarityGroup>, IAutoGson<GearRarityGroup> {
+public class GearRarityGroup implements JsonExileRegistry<GearRarityGroup>, IAutoGson<GearRarityGroup> {
     public static GearRarityGroup SERIALIZER = new GearRarityGroup();
 
     List<String> rarities = new ArrayList<>();
@@ -37,8 +37,8 @@ public class GearRarityGroup implements ISerializedRegistryEntry<GearRarityGroup
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.GEAR_RARITY_GROUP;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.GEAR_RARITY_GROUP;
     }
 
     @Override

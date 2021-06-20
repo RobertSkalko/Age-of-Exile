@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.particle.DefaultParticleType;
@@ -21,7 +21,7 @@ import java.util.List;
 
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
-public class TotemSpells implements ISlashRegistryInit {
+public class TotemSpells implements ExileRegistryInit {
 
     static Double RADIUS = 3D;
 

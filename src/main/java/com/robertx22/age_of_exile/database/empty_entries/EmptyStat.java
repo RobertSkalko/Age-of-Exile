@@ -1,7 +1,7 @@
-package com.robertx22.age_of_exile.database.registry.empty_entries;
+package com.robertx22.age_of_exile.database.empty_entries;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class EmptyStat extends Stat {
@@ -34,8 +34,8 @@ public class EmptyStat extends Stat {
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.STAT;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.STAT;
     }
 
     @Override

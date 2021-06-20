@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.database.base_gear_types;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.*;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 
-public class BaseGearsRegister implements ISlashRegistryInit {
+public class BaseGearsRegister implements ExileRegistryInit {
 
     @Override
     public void registerAll() {

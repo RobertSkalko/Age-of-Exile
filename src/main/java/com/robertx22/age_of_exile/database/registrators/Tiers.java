@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.database.registrators;
 
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 
-public class Tiers implements ISlashRegistryInit {
+public class Tiers implements ExileRegistryInit {
 
     @Override
     public void registerAll() {

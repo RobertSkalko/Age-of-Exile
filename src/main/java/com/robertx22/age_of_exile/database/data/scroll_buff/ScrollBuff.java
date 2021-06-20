@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.database.data.scroll_buff;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ScrollBuff implements ISerializedRegistryEntry<ScrollBuff>, IAutoGson<ScrollBuff>, IAutoLocName, IWeighted, IAutoLocDesc {
+public class ScrollBuff implements JsonExileRegistry<ScrollBuff>, IAutoGson<ScrollBuff>, IAutoLocName, IWeighted, IAutoLocDesc {
     public static ScrollBuff SERIALIZER = new ScrollBuff();
 
     public String id = "";
@@ -42,8 +42,8 @@ public class ScrollBuff implements ISerializedRegistryEntry<ScrollBuff>, IAutoGs
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.SCROLL_BUFFS;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.SCROLL_BUFFS;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ScrollBuff implements ISerializedRegistryEntry<ScrollBuff>, IAutoGs
 
     @Override
     public String locNameLangFileGUID() {
-        return getSlashRegistryType().id + "." + id;
+        return getExileRegistryType().id + "." + id;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class ScrollBuff implements ISerializedRegistryEntry<ScrollBuff>, IAutoGs
 
     @Override
     public String locDescLangFileGUID() {
-        return getSlashRegistryType().id + ".desc." + id;
+        return getExileRegistryType().id + ".desc." + id;
     }
 
     @Override

@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.database.data.salvage_outputs;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SalvageOutput implements ISerializedRegistryEntry<SalvageOutput>, IAutoGson<SalvageOutput> {
+public class SalvageOutput implements JsonExileRegistry<SalvageOutput>, IAutoGson<SalvageOutput> {
     public static SalvageOutput SERIALIZER = new SalvageOutput();
 
     LevelRange levelRange;
@@ -56,8 +56,8 @@ public class SalvageOutput implements ISerializedRegistryEntry<SalvageOutput>, I
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.SALVAGE_OUTPUT;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.SALVAGE_OUTPUT;
     }
 
     @Override

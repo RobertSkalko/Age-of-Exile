@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.bases;
 
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryEntry;
+import com.robertx22.age_of_exile.database.registry.ExileRegistry;
 
-public interface ISerializedRegistryEntry<T> extends ISlashRegistryEntry<T> {
+public interface JsonExileRegistry<T> extends ExileRegistry<T> {
 
     default void addToSerializables() {
-        Database.getRegistry(getSlashRegistryType())
+        Database.getRegistry(getExileRegistryType())
             .addSerializable(this);
     }
 

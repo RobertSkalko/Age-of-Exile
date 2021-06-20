@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.gui.screens.wiki;
 
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.gui.screens.wiki.entries.*;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
@@ -155,7 +155,7 @@ public enum WikiType {
 
             List<DimensionConfig> configs = Database.DimensionConfigs()
                 .getList();
-            configs.add((DimensionConfig) Database.getRegistry(SlashRegistryType.DIMENSION_CONFIGS)
+            configs.add((DimensionConfig) Database.getRegistry(ExileRegistryTypes.DIMENSION_CONFIGS)
                 .getDefault());
 
             configs.sort(Comparator.comparingInt(x -> x.min_lvl));

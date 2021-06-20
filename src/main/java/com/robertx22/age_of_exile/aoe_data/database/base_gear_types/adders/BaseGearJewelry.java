@@ -13,14 +13,14 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.HashMap;
 
-public class BaseGearJewelry implements ISlashRegistryInit {
+public class BaseGearJewelry implements ExileRegistryInit {
 
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> MANA_RING;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> HP_RING;

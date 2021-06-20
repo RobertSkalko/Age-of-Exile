@@ -1,15 +1,15 @@
 package com.robertx22.age_of_exile.database.data.random_skill_gem_stats;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
+import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.skill_gem.SupportGemTags;
-import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomSkillGemStats implements ISerializedRegistryEntry<RandomSkillGemStats>, IAutoGson<RandomSkillGemStats> {
+public class RandomSkillGemStats implements JsonExileRegistry<RandomSkillGemStats>, IAutoGson<RandomSkillGemStats> {
 
     public static RandomSkillGemStats SERIALIZER = new RandomSkillGemStats();
 
@@ -31,8 +31,8 @@ public class RandomSkillGemStats implements ISerializedRegistryEntry<RandomSkill
     }
 
     @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.RANDOM_SKILL_GEM_STATS;
+    public ExileRegistryTypes getExileRegistryType() {
+        return ExileRegistryTypes.RANDOM_SKILL_GEM_STATS;
     }
 
     @Override

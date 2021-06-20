@@ -4,13 +4,13 @@ import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilde
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.Arrays;
 
-public class NonWeaponSuffixes implements ISlashRegistryInit {
+public class NonWeaponSuffixes implements ExileRegistryInit {
     @Override
     public void registerAll() {
 

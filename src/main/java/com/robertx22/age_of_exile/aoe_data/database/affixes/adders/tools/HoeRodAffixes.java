@@ -5,11 +5,11 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusRequirement;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusYield;
-import com.robertx22.age_of_exile.database.registry.ISlashRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
-public class HoeRodAffixes implements ISlashRegistryInit {
+public class HoeRodAffixes implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
