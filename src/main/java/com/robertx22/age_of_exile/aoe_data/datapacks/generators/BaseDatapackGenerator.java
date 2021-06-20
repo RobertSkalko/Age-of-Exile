@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
+import com.robertx22.library_of_exile.registry.IGUID;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.data.DataCache;
 

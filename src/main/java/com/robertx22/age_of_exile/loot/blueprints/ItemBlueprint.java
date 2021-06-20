@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.bases.LevelPart;
-import com.robertx22.age_of_exile.loot.blueprints.bases.TierPart;
 import com.robertx22.age_of_exile.loot.generators.stack_changers.IStackAction;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import net.minecraft.item.ItemStack;
@@ -26,7 +25,6 @@ public abstract class ItemBlueprint {
 
     public ItemBlueprint(LootInfo info) {
         this.level.number = info.level;
-        this.tier.number = info.tier;
 
         if (info.mobData != null) {
             extraLevelModifier = Database.MobRarities()
@@ -37,7 +35,6 @@ public abstract class ItemBlueprint {
     }
 
     public ItemBlueprint(int lvl, int tier) {
-        this.tier.number = tier;
         this.level.number = lvl;
         this.onConstruct();
     }
@@ -50,7 +47,6 @@ public abstract class ItemBlueprint {
 
     }
 
-    public TierPart tier = new TierPart(this);
     public LevelPart level = new LevelPart(this);
 
     abstract ItemStack generate();

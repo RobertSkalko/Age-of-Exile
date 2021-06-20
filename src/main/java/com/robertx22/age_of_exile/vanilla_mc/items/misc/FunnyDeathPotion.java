@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.FunnyDeathPotion.MySource;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;

@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 
 import java.util.Map;
@@ -40,7 +40,7 @@ public class PlayerStatPointsCap implements ICommonPlayerCap {
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag nbt) {
+    public NbtCompound toTag(NbtCompound nbt) {
         LoadSave.Save(data, nbt, LOC);
         return nbt;
     }
@@ -51,7 +51,7 @@ public class PlayerStatPointsCap implements ICommonPlayerCap {
     }
 
     @Override
-    public void fromTag(CompoundTag nbt) {
+    public void fromTag(NbtCompound nbt) {
         this.data = LoadSave.Load(StatPointsData.class, new StatPointsData(), nbt, LOC);
         if (data == null) {
             data = new StatPointsData();

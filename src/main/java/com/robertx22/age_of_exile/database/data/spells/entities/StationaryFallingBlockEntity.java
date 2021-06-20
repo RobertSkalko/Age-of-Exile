@@ -16,7 +16,7 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -38,7 +38,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         acc.setBlockState(block);
         acc.setDestroyedOnLanding(false);
         this.inanimate = true;
-        this.updatePosition(pos.getX() + 0.5D, pos.getY() + (double) ((1.0F - this.getHeight()) / 2.0F), pos.getZ() + 0.5D);
+        this.setPosition(pos.getX() + 0.5D, pos.getY() + (double) ((1.0F - this.getHeight()) / 2.0F), pos.getZ() + 0.5D);
         this.setVelocity(Vec3d.ZERO);
         this.prevX = pos.getX();
         this.prevY = pos.getY();
@@ -67,7 +67,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
 
     EntitySavedSpellData spellData;
 
-    private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
+    private static final TrackedData<NbtCompound> SPELL_DATA = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
     private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.STRING);
     private static final TrackedData<String> BLOCK = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.STRING);
     public static final TrackedData<Boolean> IS_FALLING = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -152,7 +152,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
     public EntitySavedSpellData getSpellData() {
         if (world.isClient) {
             if (spellData == null) {
-                CompoundTag nbt = dataTracker.get(SPELL_DATA);
+                NbtCompound nbt = dataTracker.get(SPELL_DATA);
                 if (nbt != null) {
                     this.spellData = GSON.fromJson(nbt.getString("spell"), EntitySavedSpellData.class);
                 }
@@ -163,7 +163,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
 
     @Override
     protected void initDataTracker() {
-        this.dataTracker.startTracking(SPELL_DATA, new CompoundTag());
+        this.dataTracker.startTracking(SPELL_DATA, new NbtCompound());
         this.dataTracker.startTracking(ENTITY_NAME, "");
         this.dataTracker.startTracking(BLOCK, "");
         this.dataTracker.startTracking(IS_FALLING, false);
@@ -183,7 +183,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
             .intValue();
 
         data.item_id = holder.get(MapField.ITEM);
-        CompoundTag nbt = new CompoundTag();
+        NbtCompound nbt = new NbtCompound();
         nbt.putString("spell", GSON.toJson(spellData));
         dataTracker.set(SPELL_DATA, nbt);
         dataTracker.set(ENTITY_NAME, holder.get(MapField.ENTITY_NAME));

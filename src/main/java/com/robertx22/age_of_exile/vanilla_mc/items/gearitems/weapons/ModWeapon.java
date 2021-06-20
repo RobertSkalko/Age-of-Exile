@@ -17,7 +17,7 @@ public abstract class ModWeapon extends SingleTargetWeapon {
     }
 
     @Override
-    public boolean isEffectiveOn(BlockState blockIn) {
+    public boolean isSuitableFor(BlockState blockIn) {
         return blockIn.getBlock() == Blocks.COBWEB;
     }
 
@@ -29,7 +29,7 @@ public abstract class ModWeapon extends SingleTargetWeapon {
             return 15.0F;
         } else {
             Material material = state.getMaterial();
-            return material != Material.PLANT && material != Material.UNUSED_PLANT && material != Material.LEAVES && material != Material.GOURD ? 1.0F : 1.5F;
+            return material != Material.PLANT && material != Material.MOSS_BLOCK && material != Material.LEAVES && material != Material.GOURD ? 1.0F : 1.5F;
         }
     }
 

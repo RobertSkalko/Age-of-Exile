@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 
 public class VanillaRewardsLootGen extends BaseLootGen<GearBlueprint> {
 
@@ -49,7 +49,7 @@ public class VanillaRewardsLootGen extends BaseLootGen<GearBlueprint> {
         } else {
             exp = 250;
         }
-        stack.setTag(new CompoundTag());
+        stack.setTag(new NbtCompound());
         stack.getTag()
             .putInt("exp", exp);
 

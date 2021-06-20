@@ -5,7 +5,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -68,7 +68,7 @@ public class BagUpgradesData {
 
     public static BagUpgradesData load(ItemStack stack) {
         if (!stack.hasTag()) {
-            stack.setTag(new CompoundTag());
+            stack.setTag(new NbtCompound());
         }
         BagUpgradesData data = LoadSave.Load(BagUpgradesData.class, new BagUpgradesData(), stack.getTag(), "upgrades");
 
@@ -83,7 +83,7 @@ public class BagUpgradesData {
     public void saveToStack(ItemStack stack) {
 
         if (!stack.hasTag()) {
-            stack.setTag(new CompoundTag());
+            stack.setTag(new NbtCompound());
         }
 
         LoadSave.Save(this, stack.getTag(), "upgrades");

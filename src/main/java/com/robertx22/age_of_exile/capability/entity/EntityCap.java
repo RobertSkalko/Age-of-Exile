@@ -46,7 +46,7 @@ import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -120,6 +120,8 @@ public class EntityCap {
         String getRarity();
 
         String getUUID();
+
+        MobRarity getMobRarity();
 
         void setUUID(UUID id);
 
@@ -229,7 +231,7 @@ public class EntityCap {
         }
 
         @Override
-        public void addClientNBT(CompoundTag nbt) {
+        public void addClientNBT(NbtCompound nbt) {
 
             nbt.putInt(LEVEL, level);
             nbt.putString(RARITY, rarity);
@@ -246,7 +248,7 @@ public class EntityCap {
         }
 
         @Override
-        public void loadFromClientNBT(CompoundTag nbt) {
+        public void loadFromClientNBT(NbtCompound nbt) {
 
             this.rarity = nbt.getString(RARITY);
             this.race = nbt.getString(RACE);
@@ -277,7 +279,7 @@ public class EntityCap {
         }
 
         @Override
-        public CompoundTag toTag(CompoundTag nbt) {
+        public NbtCompound toTag(NbtCompound nbt) {
 
             addClientNBT(nbt);
 
@@ -311,7 +313,7 @@ public class EntityCap {
         }
 
         @Override
-        public void fromTag(CompoundTag nbt) {
+        public void fromTag(NbtCompound nbt) {
 
             loadFromClientNBT(nbt);
 
@@ -487,6 +489,17 @@ public class EntityCap {
         @Override
         public String getUUID() {
             return uuid;
+        }
+
+        @Override
+        public MobRarity getMobRarity() {
+            String rar = rarity;
+            if (!Database.MobRarities()
+                .isRegistered(rar)) {
+                rar = IRarity.COMMON_ID;
+            }
+            return Database.MobRarities()
+                .get(rar);
         }
 
         @Override

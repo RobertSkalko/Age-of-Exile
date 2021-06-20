@@ -27,6 +27,7 @@ import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.FavorButton;
 import com.robertx22.age_of_exile.gui.screens.MainHubButton;
 import com.robertx22.age_of_exile.gui.screens.PlayerGearButton;
+import com.robertx22.age_of_exile.gui.screens.character_screen.CharacterScreen.StatPageButton;
 import com.robertx22.age_of_exile.gui.screens.loadouts.LoadoutsScreen;
 import com.robertx22.age_of_exile.gui.screens.player_skills.PlayerSkillsScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_gems.SkillGemsOpener;

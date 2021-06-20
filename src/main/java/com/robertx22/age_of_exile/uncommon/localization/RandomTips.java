@@ -26,7 +26,7 @@ public enum RandomTips implements IAutoLocName {
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".tips." + formattedGUID();
+        return Ref.MODID + ".tips." + GUID();
     }
 
     @Override

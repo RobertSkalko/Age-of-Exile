@@ -49,11 +49,6 @@ public class ClearCorruptionItem extends CurrencyItem implements ICurrencyItemEf
     }
 
     @Override
-    public int getTier() {
-        return 0;
-    }
-
-    @Override
     public float getInstability() {
         return 0;
     }

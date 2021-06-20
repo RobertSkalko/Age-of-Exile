@@ -53,11 +53,6 @@ public class LevelSpellGemItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
-    public int getTier() {
-        return 0;
-    }
-
-    @Override
     public float getInstability() {
         return 0;
     }

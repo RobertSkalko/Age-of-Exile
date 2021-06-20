@@ -7,14 +7,14 @@ import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 
 public class EfficientMobUnitPacket extends MyPacket<EfficientMobUnitPacket> {
 
     public int id;
-    public CompoundTag nbt;
+    public NbtCompound nbt;
 
     public EfficientMobUnitPacket() {
 
@@ -22,7 +22,7 @@ public class EfficientMobUnitPacket extends MyPacket<EfficientMobUnitPacket> {
 
     public EfficientMobUnitPacket(Entity entity, EntityCap.UnitData data) {
         this.id = entity.getEntityId();
-        CompoundTag nbt = new CompoundTag();
+        NbtCompound nbt = new NbtCompound();
         data.addClientNBT(nbt);
         this.nbt = nbt;
 
@@ -36,13 +36,13 @@ public class EfficientMobUnitPacket extends MyPacket<EfficientMobUnitPacket> {
     @Override
     public void loadFromData(PacketByteBuf tag) {
         id = tag.readInt();
-        nbt = tag.readCompoundTag();
+        nbt = tag.readNbt();
     }
 
     @Override
     public void saveToData(PacketByteBuf tag) {
         tag.writeInt(id);
-        tag.writeCompoundTag(nbt);
+        tag.writeNbt(nbt);
     }
 
     @Override

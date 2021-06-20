@@ -19,8 +19,7 @@ import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-
+import net.minecraft.nbt.NbtCompound;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,7 +63,7 @@ public class EntitySpellCap {
         }
 
         @Override
-        public CompoundTag toTag(CompoundTag nbt) {
+        public NbtCompound toTag(NbtCompound nbt) {
 
             try {
                 LoadSave.Save(spellCastingData, nbt, PLAYER_SPELL_DATA);
@@ -83,7 +82,7 @@ public class EntitySpellCap {
         }
 
         @Override
-        public void fromTag(CompoundTag nbt) {
+        public void fromTag(NbtCompound nbt) {
 
             try {
                 this.spellCastingData = LoadSave.Load(SpellCastingData.class, new SpellCastingData(), nbt, PLAYER_SPELL_DATA);

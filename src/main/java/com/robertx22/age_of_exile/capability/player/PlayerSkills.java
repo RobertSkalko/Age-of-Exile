@@ -18,7 +18,7 @@ import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
@@ -104,13 +104,13 @@ public class PlayerSkills implements ICommonPlayerCap, IApplyableStats {
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag nbt) {
+    public NbtCompound toTag(NbtCompound nbt) {
         LoadSave.Save(data, nbt, LOC);
         return nbt;
     }
 
     @Override
-    public void fromTag(CompoundTag nbt) {
+    public void fromTag(NbtCompound nbt) {
         this.data = LoadSave.Load(PlayerSkillsData.class, new PlayerSkillsData(), nbt, LOC);
     }
 

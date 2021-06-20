@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
-import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
+import com.robertx22.library_of_exile.registry.IGUID;
 
 import java.util.List;
 

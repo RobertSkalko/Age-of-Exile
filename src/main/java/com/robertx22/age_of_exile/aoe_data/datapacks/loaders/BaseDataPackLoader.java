@@ -15,15 +15,12 @@ import net.minecraft.resource.JsonDataLoader;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.profiler.Profiler;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 
 public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends JsonDataLoader {
-    private static final Logger LOGGER = LogManager.getLogger();
     private static final Gson GSON = new GsonBuilder().create();
 
     public String id;
@@ -48,14 +45,12 @@ public abstract class BaseDataPackLoader<T extends ISlashRegistryEntry> extends 
             /* // use this to test if shit breaks
             if (registryType == SlashRegistryType.UNIQUE_GEAR) {
                 return super.prepare(resourceManager, profiler);
-            }
-             */
-
+            }             */
             this.getDataPackGenerator()
                 .run(); // first generate, then load. so no errors in dev enviroment
         }
-        return super.prepare(resourceManager, profiler);
 
+        return super.prepare(resourceManager, profiler);
     }
 
     static String ENABLED = "enabled";

@@ -13,7 +13,7 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.Arrays;
@@ -30,24 +30,24 @@ public class OneLoadoutData {
 
     // saved gear stacks
     @Store
-    public CompoundTag wep = null;
+    public NbtCompound wep = null;
     @Store
-    public CompoundTag f = null;
+    public NbtCompound f = null;
     @Store
-    public CompoundTag p = null;
+    public NbtCompound p = null;
     @Store
-    public CompoundTag c = null;
+    public NbtCompound c = null;
     @Store
-    public CompoundTag h = null;
+    public NbtCompound h = null;
     @Store
-    public CompoundTag o = null;
+    public NbtCompound o = null;
 
     @Store
-    public CompoundTag r1 = null;
+    public NbtCompound r1 = null;
     @Store
-    public CompoundTag r2 = null;
+    public NbtCompound r2 = null;
     @Store
-    public CompoundTag n = null;
+    public NbtCompound n = null;
     // saved gear stacks
 
     public boolean gearIsEmpty() {
@@ -56,7 +56,7 @@ public class OneLoadoutData {
     }
 
     @Store
-    public HashMap<PlayerCaps, CompoundTag> map = new HashMap<>();
+    public HashMap<PlayerCaps, NbtCompound> map = new HashMap<>();
 
     private void saveGear(PlayerEntity p) {
 
@@ -98,14 +98,14 @@ public class OneLoadoutData {
 
     }
 
-    private CompoundTag getNullOrTagAndDeleteCurios(String slot, int index, PlayerEntity p) {
+    private NbtCompound getNullOrTagAndDeleteCurios(String slot, int index, PlayerEntity p) {
         try {
             ItemStack stack = MyCurioUtils.getAllSlots(Arrays.asList(slot), p)
                 .get(index);
 
             if (Gear.has(stack)) {
-                CompoundTag tag = new CompoundTag();
-                stack.toTag(tag);
+                NbtCompound tag = new NbtCompound();
+                stack.writeNbt(tag);
 
                 MyCurioUtils.getHandlers(Arrays.asList(slot), p)
                     .forEach(x -> {
@@ -121,13 +121,13 @@ public class OneLoadoutData {
         return null;
     }
 
-    private CompoundTag getNullOrTagAndDelete(EquipmentSlot slot, PlayerEntity p) {
+    private NbtCompound getNullOrTagAndDelete(EquipmentSlot slot, PlayerEntity p) {
         try {
             ItemStack stack = p.getEquippedStack(slot);
 
             if (Gear.has(stack)) {
-                CompoundTag tag = new CompoundTag();
-                stack.toTag(tag);
+                NbtCompound tag = new NbtCompound();
+                stack.writeNbt(tag);
                 p.equipStack(slot, ItemStack.EMPTY);
                 return tag;
             }
@@ -137,7 +137,7 @@ public class OneLoadoutData {
         return null;
     }
 
-    private void equipOrGiveCurios(String slot, int index, CompoundTag itemnbt, PlayerEntity p) {
+    private void equipOrGiveCurios(String slot, int index, NbtCompound itemnbt, PlayerEntity p) {
 
         if (p.world.isClient) {
             return;
@@ -145,7 +145,7 @@ public class OneLoadoutData {
 
         try {
             if (itemnbt != null) {
-                ItemStack stack = ItemStack.fromTag(itemnbt);
+                ItemStack stack = ItemStack.fromNbt(itemnbt);
 
                 if (MyCurioUtils.getAllSlots(Arrays.asList(slot), p)
                     .get(index)
@@ -166,11 +166,11 @@ public class OneLoadoutData {
         }
     }
 
-    private void equipOrGive(EquipmentSlot slot, CompoundTag itemnbt, PlayerEntity p) {
+    private void equipOrGive(EquipmentSlot slot, NbtCompound itemnbt, PlayerEntity p) {
 
         try {
             if (itemnbt != null) {
-                ItemStack stack = ItemStack.fromTag(itemnbt);
+                ItemStack stack = ItemStack.fromNbt(itemnbt);
 
                 if (p.getEquippedStack(slot)
                     .isEmpty()) {
@@ -191,7 +191,7 @@ public class OneLoadoutData {
 
         for (PlayerCaps cap : PlayerCaps.values()) {
             if (cap.shouldSaveToLoadout()) {
-                CompoundTag nbt = new CompoundTag();
+                NbtCompound nbt = new NbtCompound();
                 cap.getCap(player)
                     .toTag(nbt);
                 map.put(cap, nbt);
@@ -208,7 +208,7 @@ public class OneLoadoutData {
         for (PlayerCaps cap : PlayerCaps.values()) {
             if (cap.shouldSaveToLoadout()) {
 
-                CompoundTag nbt = map.getOrDefault(cap, new CompoundTag());
+                NbtCompound nbt = map.getOrDefault(cap, new NbtCompound());
                 ICommonPlayerCap pcap = cap.getCap(player);
                 pcap.fromTag(nbt);
 

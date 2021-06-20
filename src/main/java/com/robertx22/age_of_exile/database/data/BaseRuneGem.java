@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotFamily;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
+import com.robertx22.library_of_exile.registry.IGUID;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;

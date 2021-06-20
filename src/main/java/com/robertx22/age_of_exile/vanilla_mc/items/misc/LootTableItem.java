@@ -19,7 +19,7 @@ import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
@@ -42,7 +42,7 @@ public class LootTableItem extends Item implements IAutoModel {
     public static ItemStack of(Identifier loottable) {
 
         ItemStack stack = new ItemStack(ModRegistry.MISC_ITEMS.LOOT_TABLE_ITEM);
-        stack.setTag(new CompoundTag());
+        stack.setTag(new NbtCompound());
         stack.getTag()
             .putString("loot_table", loottable.toString());
         return stack;

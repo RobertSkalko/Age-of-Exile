@@ -64,10 +64,7 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
         return 50;
     }
 
-    @Override
-    public int getTier() {
-        return 0;
-    }
+    
 
     @Override
     public String getRarityRank() {

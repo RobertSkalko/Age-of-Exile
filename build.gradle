@@ -19,7 +19,7 @@ repositories {
     maven { url 'https://maven.terraformersmc.com/releases' }
     maven { url 'https://maven.blamejared.com' }
     maven { url "https://maven.shedaniel.me" }
-	maven { url "https://jitpack.io" }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -47,13 +47,13 @@ dependencies {
 
 
     // .dev .jar doesn't include included deps, so I have to add them for in IDE to work
-    implementation files("Library-Of-Exile-1.16.5-1.0.13-dev.jar")
-    implementation files("World-Of-Exile-1.16.5-1.2.3-dev.jar")
+    implementation files("D:/MinecraftModding/library_of_exile/build/libs/lib.jar")
+    implementation files("World-Of-Exile-1.16.5-1.2.4-dev.jar")
 }
 
 
 remapJar {
-    include file("World-Of-Exile-1.16.5-1.2.3.jar")
+    include file("World-Of-Exile-1.16.5-1.2.4.jar")
 }
 
 tasks.withType(JavaCompile).configureEach {

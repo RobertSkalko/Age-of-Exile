@@ -35,11 +35,11 @@ public class DataLoading {
         SlashRegistryType.getAllInRegisterOrder()
             .forEach(x -> {
                 if (x.getLoader() != null) {
-                    manager.registerListener(x.getLoader());
+                    manager.registerReloader(x.getLoader());
                 }
             });
 
-        manager.registerListener(new JsonDataLoader(new Gson(), "nothing") {
+        manager.registerReloader(new JsonDataLoader(new Gson(), "nothing") {
             @Override
             protected void apply(Map<Identifier, JsonElement> loader, ResourceManager manager, Profiler profiler) {
 

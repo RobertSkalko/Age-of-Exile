@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import dev.onyxstudios.cca.api.v3.component.Component;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 
 public class PlayerDeathData implements Component, ICommonPlayerCap {
@@ -16,7 +16,7 @@ public class PlayerDeathData implements Component, ICommonPlayerCap {
     public PlayerDeathStatistics deathStats = new PlayerDeathStatistics();
 
     @Override
-    public void readFromNbt(CompoundTag nbt) {
+    public void readFromNbt(NbtCompound nbt) {
         this.deathPos = BlockPos.fromLong(nbt.getLong("death_pos"));
         this.deathDim = nbt.getString("dim");
         try {
@@ -30,7 +30,7 @@ public class PlayerDeathData implements Component, ICommonPlayerCap {
     }
 
     @Override
-    public void writeToNbt(CompoundTag nbt) {
+    public void writeToNbt(NbtCompound nbt) {
         if (deathPos != null) {
             nbt.putLong("death_pos", deathPos.asLong());
         }

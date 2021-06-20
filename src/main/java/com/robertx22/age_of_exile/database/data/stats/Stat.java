@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEntry;
-import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
@@ -19,6 +18,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientTextureUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.library_of_exile.registry.IGUID;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.text.LiteralText;
@@ -187,12 +187,12 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".stat." + formattedGUID();
+        return Ref.MODID + ".stat." + GUID();
     }
 
     @Override
     public String locDescLangFileGUID() {
-        return Ref.MODID + ".stat_desc." + formattedGUID();
+        return Ref.MODID + ".stat_desc." + GUID();
     }
 
     @Override

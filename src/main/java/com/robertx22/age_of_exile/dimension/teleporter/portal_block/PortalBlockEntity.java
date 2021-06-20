@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStatio
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -37,8 +37,8 @@ public class PortalBlockEntity extends BaseModificationStation {
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag nbt) {
-        super.toTag(nbt);
+    public NbtCompound writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
 
         nbt.putLong("dpos", dungeonPos.asLong());
         nbt.putLong("tbpos", tpbackpos.asLong());
@@ -47,7 +47,7 @@ public class PortalBlockEntity extends BaseModificationStation {
     }
 
     @Override
-    public void fromTag(BlockState state, CompoundTag nbt) {
+    public void fromTag(BlockState state, NbtCompound nbt) {
         try {
             super.fromTag(state, nbt);
 

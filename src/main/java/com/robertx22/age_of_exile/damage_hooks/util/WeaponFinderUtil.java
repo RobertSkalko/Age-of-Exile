@@ -8,9 +8,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import java.lang.reflect.Field;
 
 public class WeaponFinderUtil {
@@ -92,15 +91,15 @@ public class WeaponFinderUtil {
         }
 
         try {
-            CompoundTag nbt = new CompoundTag();
-            en.toTag(nbt);
+            NbtCompound nbt = new NbtCompound();
+            en.writeNbt(nbt);
 
             ItemStack stack = ItemStack.EMPTY;
 
             for (String key : nbt.getKeys()) {
                 if (stack == null || stack.isEmpty()) {
                     try {
-                        if (nbt.get(key) instanceof CompoundTag) {
+                        if (nbt.get(key) instanceof NbtCompound) {
                             ItemStack s = tryGetStackFromNbt(nbt.get(key));
 
                             if (!s.isEmpty() && Gear.has(s)) {
@@ -109,10 +108,10 @@ public class WeaponFinderUtil {
 
                         } else {
 
-                            CompoundTag nbt2 = (CompoundTag) nbt.get(key);
+                            NbtCompound nbt2 = (NbtCompound) nbt.get(key);
 
                             for (String key2 : nbt2.getKeys()) {
-                                if (nbt.get(key) instanceof CompoundTag) {
+                                if (nbt.get(key) instanceof NbtCompound) {
                                     ItemStack s2 = tryGetStackFromNbt(nbt2.get(key2));
                                     if (!s2.isEmpty() && Gear.has(s2)) {
                                         return s2;
@@ -128,7 +127,7 @@ public class WeaponFinderUtil {
 
             }
 
-            ItemStack tryWholeNbt = ItemStack.fromTag(nbt);
+            ItemStack tryWholeNbt = ItemStack.fromNbt(nbt);
 
             if (tryWholeNbt != null) {
                 GearItemData gear = Gear.Load(tryWholeNbt);
@@ -149,9 +148,9 @@ public class WeaponFinderUtil {
         return ItemStack.EMPTY;
     }
 
-    private static ItemStack tryGetStackFromNbt(Tag nbt) {
-        if (nbt instanceof CompoundTag) {
-            ItemStack s = ItemStack.fromTag((CompoundTag) nbt);
+    private static ItemStack tryGetStackFromNbt(NbtElement nbt) {
+        if (nbt instanceof NbtCompound) {
+            ItemStack s = ItemStack.fromNbt((NbtCompound) nbt);
             if (s != null && !s.isEmpty()) {
                 return s;
 

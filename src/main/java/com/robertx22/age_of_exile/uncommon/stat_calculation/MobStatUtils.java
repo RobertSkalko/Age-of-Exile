@@ -45,7 +45,7 @@ public class MobStatUtils {
 
             int num = (int) ((tier.stat_multi - 1F) * 100F);
             ExactStatData.noScaling(num, num, ModType.LOCAL_INCREASE, data.GetStat()
-                .GUID())
+                    .GUID())
                 .applyStats(mobdata);
 
             //data.multiplyFlat(tier.stat_multi);
@@ -54,7 +54,7 @@ public class MobStatUtils {
         int hp = (int) ((tier.hp_multi - 1F) * 100F);
 
         ExactStatData.noScaling(hp, hp, ModType.LOCAL_INCREASE, Health.getInstance()
-            .GUID())
+                .GUID())
             .applyStats(mobdata);
 
         if (WorldUtils.isDungeonWorld(en.world)) {
@@ -133,8 +133,8 @@ public class MobStatUtils {
         List<StatContext> list = new ArrayList<>();
         List<ExactStatData> stats = new ArrayList<>();
 
-        MobRarity rar = Database.MobRarities()
-            .get(unitdata.getRarity());
+        MobRarity rar = unitdata.getMobRarity();
+
         int lvl = unitdata.getLevel();
 
         float hpToAdd = EntityUtils.getVanillaMaxHealth(en) * rar.ExtraHealthMulti();

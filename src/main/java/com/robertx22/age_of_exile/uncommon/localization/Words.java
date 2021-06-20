@@ -532,7 +532,7 @@ public enum Words implements IAutoLocName {
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".word." + formattedGUID();
+        return Ref.MODID + ".word." + GUID();
     }
 
     @Override

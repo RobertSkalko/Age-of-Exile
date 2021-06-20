@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.bases;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.library_of_exile.registry.IGUID;
 
 public interface ISerializable<T> {
     JsonObject toJson();

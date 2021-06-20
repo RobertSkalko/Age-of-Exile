@@ -41,7 +41,6 @@ public class CurrencyLootGen extends BaseLootGen<ItemBlueprint> {
 
         return new ItemStack(Database.CurrencyItems()
             .getWrapped()
-            .ofTierOrLess(info.tier)
             .random());
 
     }

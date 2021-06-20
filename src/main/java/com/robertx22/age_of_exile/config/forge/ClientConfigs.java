@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.config.forge;
 
 import com.robertx22.age_of_exile.config.GuiPartConfig;
+import com.robertx22.age_of_exile.config.GuiPartConfig.IconRenderer;
 import com.robertx22.age_of_exile.config.OverlayGuiConfig;
 import com.robertx22.age_of_exile.config.forge.parts.DmgParticleConfig;
 import com.robertx22.age_of_exile.gui.overlays.BarGuiType;

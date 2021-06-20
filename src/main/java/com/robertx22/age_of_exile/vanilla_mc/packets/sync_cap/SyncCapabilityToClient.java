@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 
@@ -14,12 +14,12 @@ public class SyncCapabilityToClient extends MyPacket<SyncCapabilityToClient> {
 
     }
 
-    private CompoundTag nbt;
+    private NbtCompound nbt;
     private PlayerCaps type;
 
     public SyncCapabilityToClient(PlayerEntity p, PlayerCaps type) {
         this.nbt = type.getCap(p)
-            .toTag(new CompoundTag());
+            .toTag(new NbtCompound());
         this.type = type;
     }
 
@@ -30,7 +30,7 @@ public class SyncCapabilityToClient extends MyPacket<SyncCapabilityToClient> {
 
     @Override
     public void loadFromData(PacketByteBuf tag) {
-        nbt = tag.readCompoundTag();
+        nbt = tag.readNbt();
         type = tag.readEnumConstant(PlayerCaps.class);
 
     }
@@ -38,7 +38,7 @@ public class SyncCapabilityToClient extends MyPacket<SyncCapabilityToClient> {
     @Override
     public void saveToData(PacketByteBuf tag) {
         try {
-            tag.writeCompoundTag(nbt);
+            tag.writeNbt(nbt);
             tag.writeEnumConstant(type);
         } catch (Exception e) {
             e.printStackTrace();

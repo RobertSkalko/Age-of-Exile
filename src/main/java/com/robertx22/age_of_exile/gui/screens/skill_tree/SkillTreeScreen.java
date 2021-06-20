@@ -23,7 +23,7 @@ import com.robertx22.library_of_exile.utils.GuiUtils;
 import com.robertx22.library_of_exile.utils.GuiUtils.PointF;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.AbstractButtonWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
@@ -78,7 +78,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     int scrollX = 0;
     int scrollY = 0;
 
-    HashMap<AbstractButtonWidget, PointData> originalButtonLocMap = new HashMap<>();
+    HashMap<ClickableWidget, PointData> originalButtonLocMap = new HashMap<>();
     HashMap<PointData, PerkButton> pointPerkButtonMap = new HashMap<>();
 
     public List<SpellSchool> schoolsInOrder;
@@ -124,7 +124,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     }
 
-    public void addButtonPublic(AbstractButtonWidget b) {
+    public void addButtonPublic(ClickableWidget b) {
         this.addButton(b);
     }
 
@@ -283,7 +283,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         this.scrollY = 0;
     }
 
-    private void newButton(AbstractButtonWidget b) {
+    private void newButton(ClickableWidget b) {
         this.addButton(b);
         originalButtonLocMap.put(b, new PointData(b.x, b.y));
         if (b instanceof PerkButton) {
@@ -344,7 +344,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY);
     }
 
-    private void renderButton(AbstractButtonWidget b) {
+    private void renderButton(ClickableWidget b) {
         if (originalButtonLocMap.containsKey(b)) {
             b.x = (this.originalButtonLocMap.get(b).
                 x);
@@ -406,7 +406,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
             super.render(matrix, x, y, ticks);
 
-            for (AbstractButtonWidget abstractButtonWidget : buttons) {
+            for (ClickableWidget abstractButtonWidget : buttons) {
                 if (abstractButtonWidget instanceof PerkButton) {
                     abstractButtonWidget.render(matrix, x, y, ticks);
                 }
@@ -415,7 +415,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             // we order them here so school buttons are on top, and perks are on top of connection buttons..
             // probably a better way to do it exists?
 
-            for (AbstractButtonWidget button : buttons) {
+            for (ClickableWidget button : buttons) {
                 if (button instanceof IMarkOnTop) {
                     button.render(matrix, x, y, ticks);
                 }
@@ -431,7 +431,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         matrix.scale(1F / zoom, 1F / zoom, 1F / zoom);
 
         renderPanels(matrix);
-        for (AbstractButtonWidget b : buttons) {
+        for (ClickableWidget b : buttons) {
             b.renderToolTip(matrix, x, y);
         }
         //watch.print(" rendering ");

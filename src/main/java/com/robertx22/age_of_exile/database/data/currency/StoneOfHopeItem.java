@@ -80,11 +80,6 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public int getTier() {
-        return 2;
-    }
-
-    @Override
     public String locNameForLangFile() {
         return nameColor + "Stone Of Hope";
     }

@@ -392,7 +392,7 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".gear_type." + formattedGUID();
+        return Ref.MODID + ".gear_type." + GUID();
     }
 
     public final boolean isMageWeapon() {

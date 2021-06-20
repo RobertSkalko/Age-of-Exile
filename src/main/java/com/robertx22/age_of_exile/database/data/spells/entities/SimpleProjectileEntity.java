@@ -28,7 +28,7 @@ import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
@@ -55,7 +55,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
 
     private int ticksInGround = 0;
 
-    private static final TrackedData<CompoundTag> SPELL_DATA = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
+    private static final TrackedData<NbtCompound> SPELL_DATA = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
     private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.STRING);
     private static final TrackedData<Boolean> EXPIRE_ON_ENTITY_HIT = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> HIT_ALLIES = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -347,7 +347,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     static Gson GSON = new Gson();
 
     @Override
-    public void writeCustomDataToTag(CompoundTag nbt) {
+    public void writeCustomDataToNbt(NbtCompound nbt) {
 
         try {
 
@@ -369,7 +369,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     @Override
-    public void readCustomDataFromTag(CompoundTag nbt) {
+    public void readCustomDataFromNbt(NbtCompound nbt) {
 
         try {
 
@@ -405,7 +405,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
 
     @Override
     protected void initDataTracker() {
-        this.dataTracker.startTracking(SPELL_DATA, new CompoundTag());
+        this.dataTracker.startTracking(SPELL_DATA, new NbtCompound());
         this.dataTracker.startTracking(ENTITY_NAME, "");
         this.dataTracker.startTracking(EXPIRE_ON_ENTITY_HIT, true);
         this.dataTracker.startTracking(EXPIRE_ON_BLOCK_HIT, true);
@@ -421,7 +421,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     @Override
-    public boolean canFly() {
+    public boolean isPushedByFluids() {
         return false;
     }
 
@@ -429,7 +429,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         try {
             if (world.isClient) {
                 if (spellData == null) {
-                    CompoundTag nbt = dataTracker.get(SPELL_DATA);
+                    NbtCompound nbt = dataTracker.get(SPELL_DATA);
                     if (nbt != null) {
                         this.spellData = GSON.fromJson(nbt.getString("spell"), EntitySavedSpellData.class);
                     }
@@ -485,7 +485,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         }
 
         data.item_id = holder.get(MapField.ITEM);
-        CompoundTag nbt = new CompoundTag();
+        NbtCompound nbt = new NbtCompound();
         nbt.putString("spell", GSON.toJson(spellData));
         dataTracker.set(SPELL_DATA, nbt);
         this.setOwner(caster);

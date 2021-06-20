@@ -17,42 +17,20 @@ public class OnLoginClientPacket extends MyPacket<OnLoginClientPacket> {
 
     @Override
     public void loadFromData(PacketByteBuf tag) {
-        when = When.valueOf(tag.readString(10));
-        sync = SyncTime.valueOf(tag.readString(30));
     }
 
     @Override
     public void saveToData(PacketByteBuf tag) {
-        tag.writeString(when.name(), 10);
-        tag.writeString(sync.name(), 30);
     }
 
     @Override
     public void onReceived(PacketContext ctx) {
-
-        if (when == When.BEFORE) {
-        }
-        if (when == When.AFTER) {
-            RegistryPackets.registerAll(sync);
-        }
-
+        RegistryPackets.registerAll(SyncTime.ON_LOGIN);
     }
 
     @Override
     public MyPacket<OnLoginClientPacket> newInstance() {
         return new OnLoginClientPacket();
-    }
-
-    public enum When {
-        BEFORE, AFTER
-    }
-
-    public When when;
-    SyncTime sync;
-
-    public OnLoginClientPacket(SyncTime sync, When when) {
-        this.when = when;
-        this.sync = sync;
     }
 
     public OnLoginClientPacket() {

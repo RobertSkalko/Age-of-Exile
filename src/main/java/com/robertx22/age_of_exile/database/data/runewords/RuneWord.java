@@ -199,7 +199,7 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".runeword." + formattedGUID();
+        return Ref.MODID + ".runeword." + GUID();
     }
 
     @Override

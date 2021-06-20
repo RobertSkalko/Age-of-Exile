@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.dimension;
 
+import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsaw.Pool;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.config_utils.BlackOrWhiteList;
 import com.robertx22.world_of_exile.config.FeatureConfig;

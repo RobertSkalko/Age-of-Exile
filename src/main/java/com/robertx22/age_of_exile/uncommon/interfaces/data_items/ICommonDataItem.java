@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
 import net.minecraft.item.ItemStack;
 
-public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable, ITooltip, IRarity {
+public interface ICommonDataItem<R extends Rarity> extends ISalvagable, ITooltip, IRarity {
 
     @Override
     default boolean isSalvagable(SalvageContext context) {

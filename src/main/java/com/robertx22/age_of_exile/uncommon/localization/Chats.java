@@ -43,7 +43,7 @@ public enum Chats implements IAutoLocName {
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".chat." + formattedGUID();
+        return Ref.MODID + ".chat." + GUID();
     }
 
     @Override

@@ -43,12 +43,12 @@ public abstract class StationShapeless implements Recipe<Inventory> {
         return this.output;
     }
 
-    public DefaultedList<Ingredient> getPreviewInputs() {
+    public DefaultedList<Ingredient> getIngredients() {
         return this.input;
     }
 
     public boolean matches(Inventory craftingInventory, World world) {
-        RecipeFinder recipeFinder = new RecipeFinder();
+        RecipeMatcher recipeFinder = new RecipeMatcher();
         int i = 0;
 
         for (int j = 0; j < craftingInventory.size(); ++j) {
@@ -59,7 +59,7 @@ public abstract class StationShapeless implements Recipe<Inventory> {
             }
         }
 
-        return i == this.input.size() && recipeFinder.findRecipe(this, (IntList) null);
+        return i == this.input.size() && recipeFinder.match(this, (IntList) null);
     }
 
     public ItemStack craft(Inventory craftingInventory) {

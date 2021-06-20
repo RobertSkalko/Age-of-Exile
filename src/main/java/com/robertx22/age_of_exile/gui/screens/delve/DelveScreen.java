@@ -13,7 +13,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToCl
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.AbstractButtonWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
@@ -56,7 +56,7 @@ public class DelveScreen extends BaseScreen {
     int scrollX = 0;
     int scrollY = 0;
 
-    HashMap<AbstractButtonWidget, PointData> originalButtonLocMap = new HashMap<>();
+    HashMap<ClickableWidget, PointData> originalButtonLocMap = new HashMap<>();
 
     public MinecraftClient mc = MinecraftClient.getInstance();
 
@@ -79,7 +79,7 @@ public class DelveScreen extends BaseScreen {
 
     }
 
-    public void addButtonPublic(AbstractButtonWidget b) {
+    public void addButtonPublic(ClickableWidget b) {
         this.addButton(b);
     }
 
@@ -114,7 +114,7 @@ public class DelveScreen extends BaseScreen {
         this.scrollY = -getPosForPoint(center).y + height / 2;
     }
 
-    private void newButton(AbstractButtonWidget b) {
+    private void newButton(ClickableWidget b) {
         this.addButton(b);
         originalButtonLocMap.put(b, new PointData(b.x, b.y));
 
@@ -164,7 +164,7 @@ public class DelveScreen extends BaseScreen {
             e.printStackTrace();
         }
 
-        for (AbstractButtonWidget b : buttons) {
+        for (ClickableWidget b : buttons) {
             b.renderToolTip(matrix, x, y);
         }
 

@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 
 public class PlayerLoadoutsCap implements ICommonPlayerCap {
@@ -23,7 +23,7 @@ public class PlayerLoadoutsCap implements ICommonPlayerCap {
     public PlayerLoadoutsData data = new PlayerLoadoutsData();
 
     @Override
-    public CompoundTag toTag(CompoundTag nbt) {
+    public NbtCompound toTag(NbtCompound nbt) {
         LoadSave.Save(data, nbt, LOC);
         return nbt;
     }
@@ -34,7 +34,7 @@ public class PlayerLoadoutsCap implements ICommonPlayerCap {
     }
 
     @Override
-    public void fromTag(CompoundTag nbt) {
+    public void fromTag(NbtCompound nbt) {
         this.data = LoadSave.Load(PlayerLoadoutsData.class, new PlayerLoadoutsData(), nbt, LOC);
     }
 

@@ -9,7 +9,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -40,7 +40,7 @@ public class VanillaExperienceChestItem extends AutoItem {
         if (this.isIn(group)) {
             for (int num : LIST) {
                 ItemStack stack = new ItemStack(this);
-                stack.setTag(new CompoundTag());
+                stack.setTag(new NbtCompound());
                 stack.getTag()
                     .putInt("exp", num);
                 stacks.add(stack);

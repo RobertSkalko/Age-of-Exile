@@ -76,9 +76,6 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
             }
         }
 
-        this.chanceForHigherRarity = Database.Tiers()
-            .get(this.blueprint.tier.get() + "").higher_rar_chance;
-
         if (info.playerData != null) {
             if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
                 chanceForHigherRarity += info.playerData.getUnit()

@@ -14,7 +14,7 @@ import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.fabricmc.fabric.api.network.PacketContext;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 
@@ -51,7 +51,7 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
             if (MMORPG.RUN_DEV_TOOLS) {
                 //System.out.print("\n Gson packet " + type.name() + " is " + tag.readableBytes() + " bytes big\n");
             }
-            CompoundTag nbt = tag.readCompoundTag();
+            NbtCompound nbt = tag.readNbt();
 
             data = LoadSave.Load(ListStringData.class, new ListStringData(), nbt, "data");
 
@@ -68,11 +68,11 @@ public class RegistryPacket extends MyPacket<RegistryPacket> {
         try {
             Watch watch = new Watch().min(8000);
             tag.writeString(type.name(), 30);
-            CompoundTag nbt = new CompoundTag();
+            NbtCompound nbt = new NbtCompound();
 
             LoadSave.Save(data, nbt, "data");
 
-            tag.writeCompoundTag(nbt);
+            tag.writeNbt(nbt);
             watch.print("Writing gson packet for " + this.type.name() + " ");
         } catch (Exception e) {
             System.out.println("Failed saving " + type.name() + " Age of Exile packet to bufferer.");

@@ -18,7 +18,7 @@ public class ReiShapelessDisplay implements DefaultCraftingDisplay {
 
     public ReiShapelessDisplay(StationShapeless recipe) {
         this.display = recipe;
-        this.input = EntryStack.ofIngredients(recipe.getPreviewInputs());
+        this.input = EntryStack.ofIngredients(recipe.getIngredients());
         this.output = Collections.singletonList(EntryStack.create(recipe.getOutput()));
     }
 
@@ -48,12 +48,12 @@ public class ReiShapelessDisplay implements DefaultCraftingDisplay {
     }
 
     public int getWidth() {
-        return this.display.getPreviewInputs()
+        return this.display.getIngredients()
             .size() > 4 ? 3 : 2;
     }
 
     public int getHeight() {
-        return this.display.getPreviewInputs()
+        return this.display.getIngredients()
             .size() > 4 ? 3 : 2;
     }
 }

@@ -46,7 +46,7 @@ public class SpellUtils {
         // pos = pos.add(caster.getRotationVector()
         //   .multiply(0.25F));
 
-        ((Entity) projectile).updatePosition(pos.x, caster.getEyeY() - 0.1F, pos.z);
+        ((Entity) projectile).setPosition(pos.x, caster.getEyeY() - 0.1F, pos.z);
 
         projectile.setProperties(caster, pitch, yaw, 0, speed, 1F);
 

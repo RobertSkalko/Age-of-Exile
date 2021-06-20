@@ -4,7 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.collection.DefaultedList;
 
 public class BackpackInventory extends SimpleInventory {
@@ -58,22 +58,22 @@ public class BackpackInventory extends SimpleInventory {
         return getSizeBackpack(5);
     }
 
-    private void readNBT(CompoundTag compound) {
+    private void readNBT(NbtCompound compound) {
         final DefaultedList<ItemStack> list = DefaultedList.ofSize(getMaxSize(), ItemStack.EMPTY);
 
-        Inventories.fromTag(compound, list);
+        Inventories.readNbt(compound, list);
         for (int i = 0; i < list.size(); i++) {
             setStack(i, list.get(i));
         }
     }
 
-    private void writeNBT(CompoundTag compound) {
+    private void writeNBT(NbtCompound compound) {
         final DefaultedList<ItemStack> list = DefaultedList.ofSize(getMaxSize(), ItemStack.EMPTY);
         for (int i = 0; i < list.size(); i++) {
             list.set(i, getStack(i));
         }
 
-        Inventories.toTag(compound, list, false);
+        Inventories.writeNbt(compound, list, false);
     }
 
 }

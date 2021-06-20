@@ -100,15 +100,6 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
     }
 
     @Override
-    public int getTier() {
-        return this.mob_tier;
-    }
-
-    public boolean isMapWorld() {
-        return mob_tier > 0;
-    }
-
-    @Override
     public JsonObject toJson() {
         JsonObject json = new JsonObject();
 

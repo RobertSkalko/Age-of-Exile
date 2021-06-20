@@ -54,11 +54,6 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public int getTier() {
-        return 3;
-    }
-
-    @Override
     public String getRarityRank() {
         return EPIC_ID;
     }

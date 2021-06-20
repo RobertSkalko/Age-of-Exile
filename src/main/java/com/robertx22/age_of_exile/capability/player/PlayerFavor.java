@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.events.OnChestFavorGainedExploration;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -102,7 +102,7 @@ public class PlayerFavor implements ICommonPlayerCap {
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag nbt) {
+    public NbtCompound toTag(NbtCompound nbt) {
         nbt.putFloat(LOC, favor);
         return nbt;
     }
@@ -113,7 +113,7 @@ public class PlayerFavor implements ICommonPlayerCap {
     }
 
     @Override
-    public void fromTag(CompoundTag nbt) {
+    public void fromTag(NbtCompound nbt) {
         this.favor = nbt.getFloat(LOC);
     }
 

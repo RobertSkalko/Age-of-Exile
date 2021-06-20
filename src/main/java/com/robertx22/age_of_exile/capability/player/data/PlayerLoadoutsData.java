@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.LiteralText;
 
 import java.util.HashMap;
@@ -52,7 +52,7 @@ public class PlayerLoadoutsData {
             for (PlayerCaps cap : PlayerCaps.values()) {
                 if (cap.shouldSaveToLoadout()) {
                     cap.getCap(p)
-                        .fromTag(new CompoundTag());
+                        .fromTag(new NbtCompound());
                 }
             }
 

@@ -52,7 +52,7 @@ public class SummonAtTargetFeet extends SpellAction implements ICMainTooltip {
             Entity en = projectile.get()
                 .create(ctx.world);
             SpellUtils.initSpellEntity(en, ctx.caster, ctx.calculatedSpellData, data);
-            en.updatePosition(pos.x, pos.y + height, pos.z);
+            en.setPosition(pos.x, pos.y + height, pos.z);
             ctx.caster.world.spawnEntity(en);
         });
 

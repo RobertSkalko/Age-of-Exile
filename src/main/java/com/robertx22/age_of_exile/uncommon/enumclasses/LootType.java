@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.enumclasses;
 
-import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.library_of_exile.registry.IGUID;
 
 public enum LootType implements IGUID {
 

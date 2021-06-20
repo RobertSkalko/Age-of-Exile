@@ -89,7 +89,7 @@ public class DamageEvent extends EffectEvent {
                 .getPosition();
             if (vec3d != null) {
                 Vec3d vec3d2 = target.getRotationVec(1.0F);
-                Vec3d vec3d3 = vec3d.reverseSubtract(target.getPos())
+                Vec3d vec3d3 = vec3d.relativize(target.getPos())
                     .normalize();
                 vec3d3 = new Vec3d(vec3d3.x, 0.0D, vec3d3.z);
                 if (vec3d3.dotProduct(vec3d2) < 0.0D) {

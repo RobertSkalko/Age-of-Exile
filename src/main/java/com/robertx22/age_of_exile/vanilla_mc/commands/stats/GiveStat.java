@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
+import com.robertx22.age_of_exile.vanilla_mc.commands.stats.GiveStat.ModOrExact;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.CommandSuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.StatSuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.StatTypeSuggestions;

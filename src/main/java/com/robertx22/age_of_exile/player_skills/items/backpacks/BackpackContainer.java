@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.slot.Slot;
 
@@ -33,7 +33,7 @@ public class BackpackContainer extends BaseTileContainer {
             this.player = invPlayer.player;
 
             if (!stack.hasTag()) {
-                stack.setTag(new CompoundTag());
+                stack.setTag(new NbtCompound());
             }
             if (!stack.getTag()
                 .contains("id")) {

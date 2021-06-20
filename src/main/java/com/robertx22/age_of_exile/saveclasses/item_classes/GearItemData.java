@@ -496,21 +496,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         getStackSaver().saveTo(stack, this);
     }
 
-    @Override
-    public int getTier() {
-
-        if (this.isUnique()) {
-            try {
-                return this.uniqueStats.getUnique(this)
-                    .getTier();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        return 0;
-    }
-
     public boolean isWeapon() {
         try {
             if (GetBaseGearType()

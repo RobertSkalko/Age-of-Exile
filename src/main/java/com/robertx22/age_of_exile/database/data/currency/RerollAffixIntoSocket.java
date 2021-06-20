@@ -92,11 +92,6 @@ public class RerollAffixIntoSocket extends CurrencyItem implements ICurrencyItem
     }
 
     @Override
-    public int getTier() {
-        return 0;
-    }
-
-    @Override
     public float getInstability() {
         return 100;
     }

@@ -191,8 +191,4 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
 
     }
 
-    @Override
-    public int getTier() {
-        return 0;
-    }
 }

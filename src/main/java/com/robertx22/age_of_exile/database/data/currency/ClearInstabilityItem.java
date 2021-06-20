@@ -49,11 +49,6 @@ public class ClearInstabilityItem extends CurrencyItem implements ICurrencyItemE
     }
 
     @Override
-    public int getTier() {
-        return 0;
-    }
-
-    @Override
     public float getInstability() {
         return 0;
     }

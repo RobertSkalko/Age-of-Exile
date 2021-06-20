@@ -55,7 +55,7 @@ public class AoeSwordWeapon extends SwordItem implements IAutoLocName {
     /**
      * Check whether this Item can harvest the given Block
      */
-    public boolean isEffectiveOn(BlockState blockIn) {
+    public boolean isSuitableFor(BlockState blockIn) {
         return blockIn.getBlock() == Blocks.COBWEB;
     }
 
@@ -66,7 +66,7 @@ public class AoeSwordWeapon extends SwordItem implements IAutoLocName {
             return 15.0F;
         } else {
             Material material = state.getMaterial();
-            return material != Material.PLANT && material != Material.UNUSED_PLANT && material != Material.LEAVES && material != Material.GOURD ? 1.0F : 1.5F;
+            return material != Material.PLANT && material != Material.MOSS_BLOCK && material != Material.LEAVES && material != Material.GOURD ? 1.0F : 1.5F;
         }
     }
 

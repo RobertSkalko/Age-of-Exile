@@ -8,6 +8,8 @@ import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.BaseSelectionScreen;
 import com.robertx22.age_of_exile.gui.screens.ILeftRight;
 import com.robertx22.age_of_exile.gui.screens.PlayerGearButton;
+import com.robertx22.age_of_exile.gui.screens.loadouts.LoadoutsScreen.CreateOrLoadButton;
+import com.robertx22.age_of_exile.gui.screens.loadouts.LoadoutsScreen.LoadoutButton;
 import com.robertx22.age_of_exile.gui.screens.race_select.LeftRightButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;

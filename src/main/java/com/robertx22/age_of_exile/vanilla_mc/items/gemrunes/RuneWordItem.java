@@ -18,7 +18,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -39,7 +39,7 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
     }
 
     public static ItemStack createStack(RuneWord word) {
-        CompoundTag tag = new CompoundTag();
+        NbtCompound tag = new NbtCompound();
         tag.putString("runeword", word.GUID());
         ItemStack stack = new ItemStack(ModRegistry.MISC_ITEMS.RUNEWORD);
         stack.setTag(tag);

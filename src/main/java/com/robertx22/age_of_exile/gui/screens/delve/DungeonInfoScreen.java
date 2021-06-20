@@ -13,7 +13,7 @@ import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.AbstractButtonWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -151,7 +151,7 @@ public class DungeonInfoScreen extends BaseScreen {
             e.printStackTrace();
         }
 
-        for (AbstractButtonWidget b : buttons) {
+        for (ClickableWidget b : buttons) {
             b.renderToolTip(matrix, x, y);
         }
     }

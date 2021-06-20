@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
@@ -111,7 +111,7 @@ public class FishingLureItem extends TieredItem {
             if (rod.getItem() instanceof FishingRodItem) {
                 stack.decrement(1);
                 if (!rod.hasTag()) {
-                    rod.setTag(new CompoundTag());
+                    rod.setTag(new NbtCompound());
                 }
                 rod.getTag()
                     .putString("lure_id", Registry.ITEM.getId(stack.getItem())

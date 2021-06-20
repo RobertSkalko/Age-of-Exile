@@ -23,7 +23,7 @@ public class SkillGemRarity extends BaseRarity implements Rarity, IAutoGson<Skil
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".skill_gem_rarity." + formattedGUID();
+        return Ref.MODID + ".skill_gem_rarity." + GUID();
     }
 
     @Override

@@ -65,10 +65,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
         return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_HIGHER_RARITY, SimpleGearLocReq.IS_COMMON);
     }
 
-    @Override
-    public int getTier() {
-        return 0;
-    }
+    
 
     @Override
     public String getRarityRank() {

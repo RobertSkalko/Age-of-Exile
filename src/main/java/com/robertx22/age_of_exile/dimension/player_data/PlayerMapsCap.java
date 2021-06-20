@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.dimension.player_data;
 
 import com.robertx22.age_of_exile.capability.PlayerDamageChart;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
@@ -13,7 +14,6 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.testing.Watch;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
@@ -26,7 +26,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -59,7 +59,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     }
 
     public void printDelveMapDebug() {
-        CompoundTag nbt = new CompoundTag();
+        NbtCompound nbt = new NbtCompound();
         toTag(nbt);
         System.out.print(nbt.toString());
     }
@@ -113,7 +113,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             // set the dungeon data for the chunk
             World dimWorld = player.world.getServer()
-                .getWorld(RegistryKey.of(Registry.DIMENSION, DimensionIds.DUNGEON_DIMENSION));
+                .getWorld(RegistryKey.of(Registry.WORLD_KEY, DimensionIds.DUNGEON_DIMENSION));
 
             int border = getBorder(dimWorld);
 
@@ -235,7 +235,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag nbt) {
+    public NbtCompound toTag(NbtCompound nbt) {
         LoadSave.Save(data, nbt, LOC);
         nbt.putInt("t", ticksinPortal);
         nbt.putInt("h", highestTierDone);
@@ -243,7 +243,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     }
 
     @Override
-    public void fromTag(CompoundTag nbt) {
+    public void fromTag(NbtCompound nbt) {
         this.ticksinPortal = nbt.getInt("t");
         this.highestTierDone = nbt.getInt("h");
 
@@ -299,8 +299,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         data.grid.randomize();
 
         int dungeonTier = tier;
-        if (dungeonTier > ITiered.getMaxTier()) {
-            dungeonTier = ITiered.getMaxTier();
+        if (dungeonTier > GameBalanceConfig.get().MAX_DUNGEON_TIER) {
+            dungeonTier = GameBalanceConfig.get().MAX_DUNGEON_TIER;
         }
 
         PointData middle = new PointData(data.grid.grid.length / 2, data.grid.grid.length / 2);

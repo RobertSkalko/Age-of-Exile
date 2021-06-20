@@ -59,11 +59,6 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
     }
 
     @Override
-    public int getTier() {
-        return 4;
-    }
-
-    @Override
     public String getRarityRank() {
         return EPIC_ID;
     }

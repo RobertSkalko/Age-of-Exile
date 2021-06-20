@@ -18,6 +18,7 @@ public class GameBalanceConfig implements ISerializedRegistryEntry<GameBalanceCo
     }
 
     public int MAX_LEVEL = 50;
+    public int MAX_DUNGEON_TIER = 100;
 
     public LevelScalingConfig NORMAL_STAT_SCALING = new LevelScalingConfig(1, 0.5F, true);
     public LevelScalingConfig SLOW_STAT_SCALING = new LevelScalingConfig(1, 0.01F, true);

@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.BaseRuneGem;
-import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
@@ -36,6 +35,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.registry.IGUID;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -97,7 +97,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
             return null;
         }
         return ShapelessRecipeJsonFactory.create(ModRegistry.GEMS.MAP.get(gemType)
-            .get(gemRank))
+                .get(gemRank))
             .input(ModRegistry.GEMS.MAP.get(gemType)
                 .get(gemRank.lower()), 3)
             .criterion("player_level", trigger());

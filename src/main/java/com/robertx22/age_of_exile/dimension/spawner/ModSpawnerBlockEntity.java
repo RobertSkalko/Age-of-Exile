@@ -12,7 +12,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Tickable;
@@ -125,8 +125,8 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag nbt) {
-        super.toTag(nbt);
+    public NbtCompound writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
         nbt.putInt("ticks", ticks);
         nbt.putInt("spawnsLeft", spawnsLeft);
         nbt.putInt("range", requiredPlayerRange);
@@ -135,7 +135,7 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
     }
 
     @Override
-    public void fromTag(BlockState state, CompoundTag nbt) {
+    public void fromTag(BlockState state, NbtCompound nbt) {
         try {
             super.fromTag(state, nbt);
             ticks = nbt.getInt("ticks");

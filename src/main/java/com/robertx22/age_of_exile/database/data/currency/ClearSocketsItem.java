@@ -48,10 +48,7 @@ public class ClearSocketsItem extends CurrencyItem implements ICurrencyItemEffec
         return Arrays.asList(GearReq.INSTANCE);
     }
 
-    @Override
-    public int getTier() {
-        return 0;
-    }
+    
 
     @Override
     public float getInstability() {

@@ -17,8 +17,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundTag;
-
+import net.minecraft.nbt.NbtCompound;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -105,7 +104,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
     }
 
     @Override
-    public void fromTag(CompoundTag tag) {
+    public void fromTag(NbtCompound tag) {
         try {
             this.data = LoadSave.Load(PlayerPerksData.class, new PlayerPerksData(), tag, "data");
 
@@ -118,7 +117,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag tag) {
+    public NbtCompound toTag(NbtCompound tag) {
         try {
             LoadSave.Save(data, tag, "data");
         } catch (Exception e) {

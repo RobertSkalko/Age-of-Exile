@@ -64,7 +64,7 @@ public final class MobRarity extends BaseRarity implements Rarity, IAutoGson<Mob
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".mob_rarity." + formattedGUID();
+        return Ref.MODID + ".mob_rarity." + GUID();
     }
 
     @Override

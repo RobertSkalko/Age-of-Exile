@@ -17,7 +17,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IBaseGearType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -28,7 +27,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLocDesc,
+public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
     ISerializedRegistryEntry<UniqueGear>, ISerializable<UniqueGear> {
 
     public static UniqueGear SERIALIZER = new UniqueGear();
@@ -176,11 +175,6 @@ public class UniqueGear implements IBaseGearType, ITiered, IAutoLocName, IAutoLo
     public GearRarity getUniqueRarity() {
         return Database.GearRarities()
             .get(uniqueRarity);
-    }
-
-    @Override
-    public int getTier() {
-        return 0;
     }
 
     public List<StatModifier> uniqueStats() {

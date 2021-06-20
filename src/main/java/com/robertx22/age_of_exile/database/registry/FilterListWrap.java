@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequested
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.ItemType;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
@@ -42,13 +41,6 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
 
     public List<C> list = new ArrayList<C>();
 
-    public FilterListWrap<C> ofTierOrLess(int tier) {
-        this.list = list.stream()
-            .filter(x -> ((ITiered) x).getTier() <= tier)
-            .collect(Collectors.toList());
-        return this;
-    }
-
     public FilterListWrap<C> of(Predicate<C> pred) {
         this.list = list.stream()
             .filter(pred)
@@ -60,21 +52,6 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
         this.list = list.stream()
             .filter(x -> ((CurrencyItem) x).itemTypesUsableOn == type)
             .collect(Collectors.toList());
-        return this;
-    }
-
-    public FilterListWrap<C> ofTierRange(int min, int max) {
-        this.list = list.stream()
-            .filter(x -> x.getTier() >= min && x.getTier() <= max)
-            .collect(Collectors.toList());
-        return this;
-    }
-
-    public FilterListWrap<C> ofExactTier(int tier) {
-        this.list = list.stream()
-            .filter(x -> ((ITiered) x).getTier() == tier)
-            .collect(Collectors.toList());
-
         return this;
     }
 

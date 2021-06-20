@@ -47,10 +47,7 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
         return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_SEALED);
     }
 
-    @Override
-    public int getTier() {
-        return 0;
-    }
+    
 
     @Override
     public float getInstability() {

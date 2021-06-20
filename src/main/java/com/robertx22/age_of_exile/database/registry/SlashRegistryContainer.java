@@ -27,7 +27,6 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     private List<String> registersErrorsAlertedFor = new ArrayList<>();
     private List<String> accessorErrosAletedFor = new ArrayList<>();
-    private List<String> wrongRegistryNames = new ArrayList<>();
     private List<String> emptyRegistries = new ArrayList<>();
 
     private boolean dataPacksAreRegistered = true;

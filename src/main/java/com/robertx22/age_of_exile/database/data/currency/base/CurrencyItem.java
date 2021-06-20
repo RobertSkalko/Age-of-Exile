@@ -15,7 +15,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.ItemDefault;
@@ -31,7 +30,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<CurrencyItem>, ICurrencyItemEffect, IWeighted, ITiered, IAutoLocDesc, IAutoLocName, IAutoModel {
+public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<CurrencyItem>, ICurrencyItemEffect, IWeighted, IAutoLocDesc, IAutoLocName, IAutoModel {
 
     public ItemType itemTypesUsableOn = ItemType.GEAR;
 

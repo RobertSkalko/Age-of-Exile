@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
-import com.robertx22.age_of_exile.database.data.IGUID;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.library_of_exile.registry.IGUID;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;

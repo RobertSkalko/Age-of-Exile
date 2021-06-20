@@ -25,9 +25,8 @@ public class OnLogin {
 
         try {
 
-            Packets.sendToClient(player, new OnLoginClientPacket(SyncTime.ON_LOGIN, OnLoginClientPacket.When.BEFORE));
             Database.sendPacketsToClient(player, SyncTime.ON_LOGIN);
-            Packets.sendToClient(player, new OnLoginClientPacket(SyncTime.ON_LOGIN, OnLoginClientPacket.When.AFTER));
+            Packets.sendToClient(player, new OnLoginClientPacket());
             Database.restoreFromBackupifEmpty();
 
             Load.perks(player)

@@ -59,10 +59,7 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
         return 15;
     }
 
-    @Override
-    public int getTier() {
-        return 0;
-    }
+    
 
     @Override
     public String getRarityRank() {

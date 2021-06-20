@@ -1,14 +1,14 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.screens.ILeftRight;
 import com.robertx22.age_of_exile.gui.screens.race_select.LeftRightButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.AbstractButtonWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -102,7 +102,7 @@ public class ChooseTierScreen extends BaseScreen implements ILeftRight {
             e.printStackTrace();
         }
 
-        for (AbstractButtonWidget b : buttons) {
+        for (ClickableWidget b : buttons) {
             b.renderToolTip(matrix, x, y);
         }
     }
@@ -121,8 +121,8 @@ public class ChooseTierScreen extends BaseScreen implements ILeftRight {
     public void goRight() {
         currentTier++;
 
-        if (currentTier > ITiered.getMaxTier()) {
-            currentTier = ITiered.getMaxTier();
+        if (currentTier > GameBalanceConfig.get().MAX_DUNGEON_TIER) {
+            currentTier = GameBalanceConfig.get().MAX_DUNGEON_TIER;
         }
 
         int max = Load.playerMaps(mc.player)

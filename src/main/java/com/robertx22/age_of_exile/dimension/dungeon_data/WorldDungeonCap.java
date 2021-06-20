@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.dimension.dungeon_data;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import dev.onyxstudios.cca.api.v3.component.CopyableComponent;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -21,13 +21,13 @@ public class WorldDungeonCap implements CopyableComponent<WorldDungeonCap> {
 
     @Override
     public void copyFrom(WorldDungeonCap other) {
-        CompoundTag nbt = new CompoundTag();
+        NbtCompound nbt = new NbtCompound();
         other.writeToNbt(nbt);
         this.readFromNbt(nbt);
     }
 
     @Override
-    public void readFromNbt(CompoundTag nbt) {
+    public void readFromNbt(NbtCompound nbt) {
         this.data = LoadSave.Load(WorldDungeonsData.class, new WorldDungeonsData(), nbt, LOC);
 
         if (data == null) {
@@ -36,7 +36,7 @@ public class WorldDungeonCap implements CopyableComponent<WorldDungeonCap> {
     }
 
     @Override
-    public void writeToNbt(CompoundTag nbt) {
+    public void writeToNbt(NbtCompound nbt) {
         LoadSave.Save(data, nbt, LOC);
     }
 }
