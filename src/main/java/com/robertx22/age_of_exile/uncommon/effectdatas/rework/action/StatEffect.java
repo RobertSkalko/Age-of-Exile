@@ -53,6 +53,11 @@ public abstract class StatEffect implements ISerializedRegistryEntry<StatEffect>
     }
 
     @Override
+    public int Weight() {
+        return 1000;
+    }
+
+    @Override
     public String GUID() {
         return id;
     }

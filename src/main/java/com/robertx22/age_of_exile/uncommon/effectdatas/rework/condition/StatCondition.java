@@ -76,6 +76,11 @@ public abstract class StatCondition implements ISerializedRegistryEntry<StatCond
     }
 
     @Override
+    public int Weight() {
+        return 1000;
+    }
+
+    @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.STAT_CONDITION;
     }

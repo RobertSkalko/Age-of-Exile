@@ -1,11 +1,9 @@
 package com.robertx22.age_of_exile.database.registry;
 
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.library_of_exile.registry.IGUID;
 
-public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, IRarity {
+public interface ISlashRegistryEntry<C> extends IGUID, IWeighted {
 
     SlashRegistryType getSlashRegistryType();
 
@@ -34,26 +32,9 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, IRarity {
         return false;
     }
 
-    @Override
-    default int Weight() {
-        return getRarity().Weight();
-    }
-
     default boolean isRegistryEntryValid() {
         // override with an implementation of a validity test
         return true;
-    }
-
-    @Override
-    default String getRarityRank() {
-        return IRarity.COMMON_ID;
-    }
-
-    // TODO REMOVE THIS
-    @Override
-    default Rarity getRarity() {
-        return Database.GearRarities()
-            .get(getRarityRank());
     }
 
     default String getInvalidGuidMessage() {

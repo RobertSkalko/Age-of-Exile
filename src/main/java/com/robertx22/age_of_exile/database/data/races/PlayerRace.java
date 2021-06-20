@@ -160,4 +160,9 @@ public class PlayerRace implements ISerializedRegistryEntry<PlayerRace>, IAutoGs
     public String locNameForLangFile() {
         return locname;
     }
+
+    @Override
+    public int Weight() {
+        return 1000;
+    }
 }

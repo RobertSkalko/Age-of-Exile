@@ -32,8 +32,9 @@ public class GearSet implements ISerializedRegistryEntry<GearSet>, IAutoGson<Gea
 
     transient String locname = "";
 
-    public boolean hasSetBonus(Integer num, EntityCap.UnitData data) {
-        return data.getUnit().sets.getOrDefault(id, 0) >= num;
+    @Override
+    public int Weight() {
+        return 1000;
     }
 
     public StatContext getStats(EntityCap.UnitData data) {

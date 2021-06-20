@@ -53,6 +53,11 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
     }
 
     @Override
+    public int Weight() {
+        return 1000;
+    }
+
+    @Override
     public String GUID() {
         return identifier;
     }
@@ -83,13 +88,13 @@ public class SpellSchool implements ISerializedRegistryEntry<SpellSchool>, IAuto
 
             Database.Perks()
                 .getFilterWrapped(x -> x.type == Perk.PerkType.SPECIAL).list.forEach(x -> {
-                if (this.calcData.perks.values()
-                    .stream()
-                    .noneMatch(e -> x.GUID()
-                        .equals(e))) {
-                    System.out.print("\n" + x.GUID() + " is registered but not used in the tree \n");
-                }
-            });
+                    if (this.calcData.perks.values()
+                        .stream()
+                        .noneMatch(e -> x.GUID()
+                            .equals(e))) {
+                        System.out.print("\n" + x.GUID() + " is registered but not used in the tree \n");
+                    }
+                });
         }
         return true;
     }

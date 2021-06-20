@@ -45,4 +45,9 @@ public class GearRarityGroup implements ISerializedRegistryEntry<GearRarityGroup
     public String GUID() {
         return id;
     }
+
+    @Override
+    public int Weight() {
+        return 1000;
+    }
 }

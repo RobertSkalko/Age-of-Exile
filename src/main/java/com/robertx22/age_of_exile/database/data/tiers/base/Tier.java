@@ -80,4 +80,8 @@ public class Tier implements ISerializedRegistryEntry<Tier>, IAutoGson<Tier> {
         return id_rank + "";
     }
 
+    @Override
+    public int Weight() {
+        return 1000;
+    }
 }

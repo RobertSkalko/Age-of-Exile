@@ -23,7 +23,7 @@ public class GearRarityGroupAdder implements ISlashRegistryInit {
         GearRarityGroup normal = new GearRarityGroup(Database.GearRarities()
             .getSerializable()
             .stream()
-            .filter(x -> !x.isUnique())
+            .filter(x -> !x.is_unique_item)
             .map(x -> x.GUID())
             .collect(Collectors.toList()), NON_UNIQUE_KEY.GUID());
         normal.addToSerializables();

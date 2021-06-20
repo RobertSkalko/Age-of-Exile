@@ -31,8 +31,8 @@ public class GiveExileStatusEffect extends StatEffect {
     public void activate(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
 
         ExilePotionEvent potionEvent = EventBuilder.ofEffect(event.getSide(statSource), event.getSide(give_to), Load.Unit(event.getSide(statSource))
-            .getLevel(), Database.ExileEffects()
-            .get(effect), GiveOrTake.give, seconds * 20)
+                .getLevel(), Database.ExileEffects()
+                .get(effect), GiveOrTake.give, seconds * 20)
             .build();
         potionEvent.Activate();
 
@@ -42,4 +42,5 @@ public class GiveExileStatusEffect extends StatEffect {
     public Class<? extends StatEffect> getSerClass() {
         return GiveExileStatusEffect.class;
     }
+
 }

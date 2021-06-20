@@ -14,7 +14,7 @@ public class GearRaritySuggestions extends CommandSuggestions {
         Database.GearRarities()
             .getList()
             .forEach(x -> {
-                if (!x.isUnique()) {
+                if (!x.is_unique_item) {
                     list.add(x.GUID());
                 }
             });

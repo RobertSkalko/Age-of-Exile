@@ -169,4 +169,9 @@ public class FavorRank implements ISerializedRegistryEntry<FavorRank>, IAutoGson
     public String locNameForLangFile() {
         return locname;
     }
+
+    @Override
+    public int Weight() {
+        return 1000;
+    }
 }

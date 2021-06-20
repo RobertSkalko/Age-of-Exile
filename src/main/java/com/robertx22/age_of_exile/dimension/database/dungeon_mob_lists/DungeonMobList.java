@@ -105,4 +105,9 @@ public class DungeonMobList implements ISerializedRegistryEntry<DungeonMobList>,
         world.spawnEntityAndPassengers(en);
 
     }
+
+    @Override
+    public int Weight() {
+        return 1000;
+    }
 }

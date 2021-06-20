@@ -30,7 +30,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<CurrencyItem>, ICurrencyItemEffect, IWeighted, IAutoLocDesc, IAutoLocName, IAutoModel {
+public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<CurrencyItem>, IRarity, ICurrencyItemEffect, IWeighted, IAutoLocDesc, IAutoLocName, IAutoModel {
 
     public ItemType itemTypesUsableOn = ItemType.GEAR;
 

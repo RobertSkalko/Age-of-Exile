@@ -44,4 +44,9 @@ public class GameBalanceConfig implements ISerializedRegistryEntry<GameBalanceCo
     public Class<GameBalanceConfig> getClassForSerialization() {
         return GameBalanceConfig.class;
     }
+
+    @Override
+    public int Weight() {
+        return 1000;
+    }
 }

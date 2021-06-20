@@ -100,6 +100,11 @@ public class Perk implements ISerializedRegistryEntry<Perk>, IAutoGson<Perk>, IT
     }
 
     @Override
+    public int Weight() {
+        return 1000;
+    }
+
+    @Override
     public List<Text> GetTooltipString(TooltipInfo info) {
         List<Text> list = new ArrayList<>();
 

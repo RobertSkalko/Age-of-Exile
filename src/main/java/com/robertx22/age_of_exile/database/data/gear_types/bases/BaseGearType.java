@@ -20,13 +20,11 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.GearMaterialRegister;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
@@ -362,17 +360,6 @@ public final class BaseGearType implements IAutoLocName, ISerializedRegistryEntr
         return ModRegistry.GEAR_MATERIALS.MAP.get(type)
             .get(SkillItemTier.of(getLevelRange()));
 
-    }
-
-    @Override
-    public String getRarityRank() {
-        return IRarity.COMMON_ID;
-    }
-
-    @Override
-    public Rarity getRarity() {
-        return Database.GearRarities()
-            .get(getRarityRank());
     }
 
     public GearRarityGroup getRarityGroup() {

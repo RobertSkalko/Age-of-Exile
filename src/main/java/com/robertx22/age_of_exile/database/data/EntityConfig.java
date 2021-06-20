@@ -10,9 +10,7 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
-import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.EntityType;
@@ -102,12 +100,6 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
     @Override
     public int Weight() {
         return 100;
-    }
-
-    @Override
-    public Rarity getRarity() {
-        return Database.MobRarities()
-            .get(getRarityRank());
     }
 
     public static class SpecialMobStats {

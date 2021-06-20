@@ -100,6 +100,11 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, ISeria
         return false;
     }
 
+    @Override
+    public int Weight() {
+        return 1000;
+    }
+
     public boolean canItemHave(GearItemData gear) {
 
         try {

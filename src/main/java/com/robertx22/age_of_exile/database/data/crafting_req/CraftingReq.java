@@ -35,6 +35,11 @@ public class CraftingReq implements ISerializedRegistryEntry<CraftingReq>, IAuto
     }
 
     @Override
+    public int Weight() {
+        return 1000;
+    }
+
+    @Override
     public Class<CraftingReq> getClassForSerialization() {
         return CraftingReq.class;
     }

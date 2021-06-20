@@ -150,4 +150,9 @@ public class ValueCalculation implements ISerializedRegistryEntry<ValueCalculati
     public String GUID() {
         return id;
     }
+
+    @Override
+    public int Weight() {
+        return 1000;
+    }
 }

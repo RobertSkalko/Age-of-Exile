@@ -224,4 +224,9 @@ public class PlayerSkill implements ISerializedRegistryEntry<PlayerSkill>, IAuto
         return list;
 
     }
+
+    @Override
+    public int Weight() {
+        return 1000;
+    }
 }

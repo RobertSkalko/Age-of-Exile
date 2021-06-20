@@ -117,4 +117,9 @@ public class ExileEffect implements ISerializedRegistryEntry<ExileEffect>, IAuto
         return list;
 
     }
+
+    @Override
+    public int Weight() {
+        return 1000;
+    }
 }

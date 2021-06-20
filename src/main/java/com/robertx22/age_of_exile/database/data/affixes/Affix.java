@@ -9,14 +9,13 @@ import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.library_of_exile.registry.IGUID;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, IRarity,
+public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements,
     ISerializedRegistryEntry<Affix>, IAutoGson<Affix> {
 
     public enum Type {
@@ -116,11 +115,6 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
     @Override
     public String locNameForLangFile() {
         return this.loc_name;
-    }
-
-    @Override
-    public String getRarityRank() {
-        return IRarity.MAGICAL_ID;
     }
 
     @Override

@@ -44,4 +44,9 @@ public class RandomSkillGemStats implements ISerializedRegistryEntry<RandomSkill
     public String GUID() {
         return id;
     }
+
+    @Override
+    public int Weight() {
+        return weight;
+    }
 }

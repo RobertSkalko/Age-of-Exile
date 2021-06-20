@@ -41,6 +41,11 @@ public class BaseStatsConfig implements ISerializedRegistryEntry<BaseStatsConfig
     }
 
     @Override
+    public int Weight() {
+        return 1000;
+    }
+
+    @Override
     public Class<BaseStatsConfig> getClassForSerialization() {
         return BaseStatsConfig.class;
     }

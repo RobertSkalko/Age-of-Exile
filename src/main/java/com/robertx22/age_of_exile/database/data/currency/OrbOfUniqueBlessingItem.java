@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -60,7 +61,7 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
 
     @Override
     public String getRarityRank() {
-        return EPIC_ID;
+        return IRarity.EPIC_ID;
     }
 
     @Override

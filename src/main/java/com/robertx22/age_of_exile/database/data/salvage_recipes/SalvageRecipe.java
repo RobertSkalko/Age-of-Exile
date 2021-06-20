@@ -56,6 +56,11 @@ public class SalvageRecipe implements ISerializedRegistryEntry<SalvageRecipe>, I
         return r;
     }
 
+    @Override
+    public int Weight() {
+        return 1000;
+    }
+
     public SalvageRecipe rolls(int rolls) {
         this.loot_table_rolls = rolls;
         return this;

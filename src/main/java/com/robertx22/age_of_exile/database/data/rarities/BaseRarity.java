@@ -40,11 +40,6 @@ public abstract class BaseRarity implements Rarity {
     }
 
     @Override
-    public String getRarityRank() {
-        return this.guid;
-    }
-
-    @Override
     public int Weight() {
         return weight;
     }
