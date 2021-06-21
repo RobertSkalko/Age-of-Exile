@@ -63,16 +63,20 @@ public class UnequipGear {
 
             for (int i = 0; i < gems.size(); i++) {
                 SkillGemData gem = gems.get(i);
+
+                if (gem == null) {
+                    continue;
+                }
+                if (gem.getSkillGem() == null) {
+                    continue;
+                }
                 ItemStack stack = stacks.get(i);
 
-                if (gem != null) {
-                    if (!gem.canPlayerUse(player)) {
-                        PlayerUtils.giveItem(stack.copy(), player);
-                        player.sendMessage(new LiteralText("Skill Gem uneqipped due to unmet requirements"), false);
-                        stacks.set(i, ItemStack.EMPTY);
-                        Load.spells(player)
-                            .getSkillGemData().gems.set(i, new SkillGemData());
-                    }
+                if (!gem.canPlayerUse(player)) {
+                    PlayerUtils.giveItem(stack.copy(), player);
+                    player.sendMessage(new LiteralText("Skill Gem uneqipped due to unmet requirements"), false);
+                    stacks.set(i, ItemStack.EMPTY);
+                    gems.set(i, null);
                 }
 
             }

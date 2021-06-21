@@ -17,7 +17,7 @@ public abstract class StatEffect implements ISerializedRegistryEntry<StatEffect>
     public static HashMap<String, StatEffect> SERIALIZERS = new HashMap<>();
 
     static {
-
+        addSer(new ApplyCooldownAsCastTimeEffect());
         addSer(new IncreaseNumberPerCurseOnTarget());
         addSer(new DoubleDamageAction());
         addSer(new RemoveExileEffectAction());

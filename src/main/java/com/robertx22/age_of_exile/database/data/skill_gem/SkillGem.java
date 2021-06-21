@@ -4,6 +4,8 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializedRegistryEn
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.database.registry.SlashRegistryType;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -35,6 +37,16 @@ public class SkillGem implements ISerializedRegistryEntry<SkillGem>, IAutoGson<S
     public List<SupportGemTags> tags = new ArrayList<>();
 
     public transient String locname = "";
+
+    public boolean isSpell() {
+        return Database.Spells()
+            .isRegistered(spell_id);
+    }
+
+    public Spell getSpell() {
+        return Database.Spells()
+            .get(spell_id);
+    }
 
     @Override
     public int Weight() {

@@ -132,11 +132,13 @@ public class DamageEvent extends EffectEvent {
         return dmg;
     }
 
-    private float modifyByAttackSpeedIfMelee(float dmg) {
+    private void calcAttackCooldown() {
+        float cool = 1;
 
-        if (this.data.getWeaponType()
-            .isMelee()) {
-            float cool = 1;
+        WeaponTypes weaponType = data.getWeaponType();
+
+        if (weaponType.isMelee()) {
+
             if (this.source instanceof PlayerEntity) {
 
                 GearItemData gear = Gear.Load(source.getMainHandStack());
@@ -153,18 +155,24 @@ public class DamageEvent extends EffectEvent {
 
                     cool = MathHelper.clamp(cool, 0F, 1F);
 
-                    dmg *= cool;
-
-                    if (cool < 0.2F) { // TODO
-                        this.cancelDamage();
-                    }
-
-                    if (cool > 0.8F) {
-                        ParticleUtils.spawnDefaultSlashingWeaponParticles(source);
-                    }
-
                 }
             }
+        }
+        data.setupNumber(EventData.ATTACK_COOLDOWN, cool);
+    }
+
+    private float modifyByAttackSpeedIfMelee(float dmg) {
+
+        float cool = data.getNumber(EventData.ATTACK_COOLDOWN).number;
+
+        dmg *= cool;
+
+        if (cool < 0.2F) { // TODO
+            this.cancelDamage();
+        }
+
+        if (cool > 0.8F) {
+            ParticleUtils.spawnDefaultSlashingWeaponParticles(source);
         }
 
         return dmg;
@@ -247,6 +255,11 @@ public class DamageEvent extends EffectEvent {
         100,
         EntityAttributeModifier.Operation.ADDITION
     );
+
+    @Override
+    public void initBeforeActivating() {
+        calcAttackCooldown();
+    }
 
     @Override
     protected void activate() {

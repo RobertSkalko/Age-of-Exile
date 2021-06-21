@@ -12,6 +12,7 @@ import java.util.List;
 public class SpellConfiguration {
 
     public boolean swing_arm = false;
+    public boolean apply_cast_speed_to_cd = false;
     public CastingWeapon castingWeapon = CastingWeapon.ANY_WEAPON;
     public int mana_cost;
     public int times_to_cast = 1;
@@ -32,6 +33,11 @@ public class SpellConfiguration {
 
     public int getCastTimeTicks() {
         return cast_time_ticks;
+    }
+
+    public SpellConfiguration applyCastSpeedToCooldown() {
+        this.apply_cast_speed_to_cd = true;
+        return this;
     }
 
     public SpellConfiguration setRequireActions(List<PlayerAction> list) {

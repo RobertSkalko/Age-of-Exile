@@ -14,7 +14,7 @@ public class DoubleDamageAction extends StatEffect {
 
     @Override
     public void activate(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
-        event.data.getNumber(EventData.NUMBER).number *= 2;
+        event.data.getNumber(EventData.NUMBER).number += event.data.getOriginalNumber(EventData.NUMBER).number * 100F / 100F;
     }
 
     @Override

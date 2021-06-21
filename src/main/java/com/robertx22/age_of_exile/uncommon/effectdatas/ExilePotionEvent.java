@@ -102,7 +102,7 @@ public class ExilePotionEvent extends EffectEvent {
 
             extraData.str_multi = data.getNumber();
 
-            StatusEffectInstance newInstance = new StatusEffectInstance(status, duration, 1, false, false, true);
+            StatusEffectInstance newInstance = new StatusEffectInstance(status, duration, extraData.stacks, false, false, true);
 
             Load.Unit(target)
                 .getStatusEffectsData()
@@ -125,6 +125,8 @@ public class ExilePotionEvent extends EffectEvent {
 
             Load.Unit(target)
                 .setEquipsChanged(true);
+            Load.Unit(target)
+                .tryRecalculateStats();
             Load.Unit(target)
                 .trySync();
         }

@@ -32,10 +32,10 @@ public class PharaohArmor implements ISlashRegistryInit {
         // mage/priest cloth light/nature/fire
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.PHARAOH_SET,
-            ArmorSet.SlotEnum.HELMET,
-            "Pharaoh",
-            BaseClothArmors.HELMETS.values())
+                ModRegistry.UNIQUE_GEARS.PHARAOH_SET,
+                ArmorSet.SlotEnum.HELMET,
+                "Pharaoh",
+                BaseClothArmors.HELMETS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.HELMET),
@@ -48,10 +48,9 @@ public class PharaohArmor implements ISlashRegistryInit {
                 Arrays.asList(
                     new StatModifier(10, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light)),
                     new StatModifier(5, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
-                    new StatModifier(5, 15, TreasureQuantity.getInstance(), ModType.FLAT),
+                    new StatModifier(3, 10, TreasureQuantity.getInstance(), ModType.FLAT),
                     new StatModifier(-10, -20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(1, 10, Intelligence.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 2, Wisdom.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 10, Intelligence.INSTANCE, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()
@@ -61,10 +60,10 @@ public class PharaohArmor implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.PHARAOH_SET,
-            ArmorSet.SlotEnum.CHEST,
-            "Pharaoh",
-            BaseClothArmors.CHESTS.values())
+                ModRegistry.UNIQUE_GEARS.PHARAOH_SET,
+                ArmorSet.SlotEnum.CHEST,
+                "Pharaoh",
+                BaseClothArmors.CHESTS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.CHEST),
@@ -89,10 +88,10 @@ public class PharaohArmor implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.PHARAOH_SET,
-            ArmorSet.SlotEnum.PANTS,
-            "Pharaoh",
-            BaseClothArmors.PANTS.values())
+                ModRegistry.UNIQUE_GEARS.PHARAOH_SET,
+                ArmorSet.SlotEnum.PANTS,
+                "Pharaoh",
+                BaseClothArmors.PANTS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.PANTS),
@@ -105,10 +104,9 @@ public class PharaohArmor implements ISlashRegistryInit {
                 Arrays.asList(
                     new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)),
                     new StatModifier(20, 40, Mana.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(5, 10, TreasureQuantity.getInstance(), ModType.FLAT),
+                    new StatModifier(2, 6, TreasureQuantity.getInstance(), ModType.FLAT),
                     new StatModifier(-10, -20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
+                    new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()
@@ -119,10 +117,10 @@ public class PharaohArmor implements ISlashRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.PHARAOH_SET,
-            ArmorSet.SlotEnum.BOOTS,
-            "Pharaoh",
-            BaseClothArmors.BOOTS.values())
+                ModRegistry.UNIQUE_GEARS.PHARAOH_SET,
+                ArmorSet.SlotEnum.BOOTS,
+                "Pharaoh",
+                BaseClothArmors.BOOTS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.BOOTS),

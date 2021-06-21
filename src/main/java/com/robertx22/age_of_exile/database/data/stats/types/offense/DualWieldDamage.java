@@ -17,7 +17,6 @@ public class DualWieldDamage extends Stat {
         this.min = 0;
         this.scaling = StatScaling.NONE;
         this.statEffect = new DualWieldDamage.Effect();
-        this.is_long = true;
     }
 
     public static DualWieldDamage getInstance() {

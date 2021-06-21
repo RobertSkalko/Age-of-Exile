@@ -22,7 +22,8 @@ public class EffectHasTagCondition extends StatCondition {
     @Override
     public boolean can(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
         if (event.data.hasExileEffect()) {
-            return event.data.getExileEffect().tags.contains(tag);
+            return event.data.getExileEffect()
+                .hasTag(tag);
         }
         return false;
     }

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.loot;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.loot.generators.*;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.LivingEntity;
@@ -16,9 +17,8 @@ import java.util.stream.Collectors;
 public class MasterLootGen {
 
     public static List<ItemStack> generateLoot(LootInfo info) {
-        List<ItemStack> items = null;
+        List<ItemStack> items = new ArrayList<>();
         try {
-            items = new ArrayList<ItemStack>();
 
             if (info == null) {
                 return items;
@@ -71,6 +71,10 @@ public class MasterLootGen {
                 items.addAll(extraFavorItems);
 
             }
+
+            items.forEach(x -> {
+                ItemUtils.tryAnnounceItem(x, info.player);
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }

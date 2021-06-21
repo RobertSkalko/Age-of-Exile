@@ -1,6 +1,7 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 ghostly_shores
+rose_hammer
 pharaoh_chest
 bone_helmet
 void_chest
@@ -15,6 +16,7 @@ dark_crystal_pants
 bone_boots
 blaze_boots
 slime_pants
+death_chill
 summer_heat
 pharaoh_boots
 oak_pants
@@ -29,6 +31,7 @@ winter_chill
 bone_chest
 pharaoh_pants
 void_sword
+burning_brilliance
 living_inferno
 spring_blossoms
 dark_crystal_helmet

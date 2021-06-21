@@ -39,11 +39,11 @@ public class DexSpells implements ISlashRegistryInit {
     public void registerAll() {
 
         SpellBuilder.of("charged_bolt", SpellConfiguration.Builder.arrowSpell(8, 20 * 15), "Charged Bolt",
-            Arrays.asList(SpellTag.projectile, SpellTag.area, SpellTag.damage))
+                Arrays.asList(SpellTag.projectile, SpellTag.area, SpellTag.damage))
 
             .manualDesc(
                 "Shoot a charged arrow that goes through enemies and deals "
-                    + SpellCalcs.CHARGED_BOLT.getLocSpellTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius.")
+                    + SpellCalcs.CHARGED_BOLT.getLocSpellTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius and slows.")
 
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)
@@ -56,15 +56,16 @@ public class DexSpells implements ISlashRegistryInit {
 
             .onHit(PartBuilder.aoeParticles(ParticleTypes.CRIT, 100D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(SpellCalcs.CHARGED_BOLT, Elements.Physical, 2D))
+            .onHit(PartBuilder.damageInAoe(SpellCalcs.CHARGED_BOLT, Elements.Physical, 2D)
+                .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.SLOWNESS, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ENCHANTED_HIT, 4D, 0.1D))
             .build();
 
         SpellBuilder.of("demon", SpellConfiguration.Builder.nonInstant(10, 60 * 20, 30)
-                .setRequireActions(Arrays.asList(PlayerAction.TECHNIQUE, PlayerAction.MELEE_ATTACK)),
-            "Demon Transformation",
-            Arrays.asList())
+                    .setRequireActions(Arrays.asList(PlayerAction.TECHNIQUE, PlayerAction.MELEE_ATTACK)),
+                "Demon Transformation",
+                Arrays.asList())
             .manualDesc(
                 "Temporarily transform into a demon, giving you increased offensive power and knockback resistance."
             )
@@ -74,12 +75,13 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("execute", SpellConfiguration.Builder.instant(10, 20 * 60)
-                .setRequireActions(Arrays.asList(PlayerAction.TECHNIQUE, PlayerAction.MELEE_ATTACK))
-                .setSwingArm(), "Execute",
-            Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.technique))
+                    .setRequireActions(Arrays.asList(PlayerAction.TECHNIQUE, PlayerAction.MELEE_ATTACK))
+                    .setSwingArm(), "Execute",
+                Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.technique))
             .attackStyle(PlayStyle.ranged)
             .manualDesc(
                 "Slash enemies in front of you for " + SpellCalcs.EXECUTE.getLocSpellTooltip()
+                    + " " + Elements.Physical.getIconNameDmg()
             )
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_DEATH, 1D, 1D))
@@ -91,9 +93,9 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("mark_for_death", SpellConfiguration.Builder.instant(5, 60 * 20 * 2)
-                .setScaleManaToPlayer(),
-            "Marked for Death",
-            Arrays.asList())
+                    .setScaleManaToPlayer(),
+                "Marked for Death",
+                Arrays.asList())
             .attackStyle(PlayStyle.ranged)
             .manualDesc("Mark your target for death, making them more vulnerable to damage.")
             .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 20D * 10))
@@ -108,9 +110,9 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("the_hunt", SpellConfiguration.Builder.nonInstant(5, 60 * 20 * 2, 20)
-                .setScaleManaToPlayer(),
-            "The Hunt",
-            Arrays.asList())
+                    .setScaleManaToPlayer(),
+                "The Hunt",
+                Arrays.asList())
             .manualDesc(
                 "Gain Night vision and set all enemies around you to glow."
             )
@@ -123,12 +125,12 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("backflip", SpellConfiguration.Builder.instant(3, 20 * 25), "Backflip",
-            Arrays.asList(SpellTag.technique))
+                Arrays.asList(SpellTag.technique))
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(PlayStyle.ranged)
             .manualDesc("Jump back and gain Cleanse for a short time.")
             .onCast(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, -1.5D, ParticleMotion.CasterLook)
-                .put(MapField.IGNORE_Y, true))
+                    .put(MapField.IGNORE_Y, true))
                 .addTarget(TargetSelector.CASTER.create()))
             .onCast(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 0.5D, ParticleMotion.Upwards))
                 .addTarget(TargetSelector.CASTER.create()))
@@ -138,7 +140,7 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("arrow_storm", SpellConfiguration.Builder.arrowSpell(20, 20 * 25), "Arrow Storm",
-            Arrays.asList(SpellTag.projectile, SpellTag.damage))
+                Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
 
             .attackStyle(PlayStyle.ranged)
@@ -152,7 +154,7 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of("poison_arrow", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Poison Arrow",
-            Arrays.asList(SpellTag.projectile, SpellTag.damage))
+                Arrays.asList(SpellTag.projectile, SpellTag.damage))
 
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)
@@ -165,12 +167,13 @@ public class DexSpells implements ISlashRegistryInit {
 
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("poison_arrow_aoe", 0.2F, 1), Elements.Nature, 2D))
+            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("poison_arrow_aoe", 0.2F, 1), Elements.Nature, 2D)
+                .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.SLOWNESS, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();
 
         SpellBuilder.of(EXPLOSIVE_ARROW_ID, SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Explosive Arrow",
-            Arrays.asList(SpellTag.projectile, SpellTag.damage))
+                Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
@@ -181,12 +184,13 @@ public class DexSpells implements ISlashRegistryInit {
 
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("explosive_arrow_eoe", 0.25F, 3), Elements.Physical, 2D))
+            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("explosive_arrow_eoe", 0.25F, 3), Elements.Physical, 2D)
+                .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.SLOWNESS, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();
 
         SpellBuilder.of("recoil_shot", SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Recoil Shot",
-            Arrays.asList(SpellTag.projectile, SpellTag.damage))
+                Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
@@ -200,8 +204,8 @@ public class DexSpells implements ISlashRegistryInit {
             .build();
 
         SpellBuilder.of(MAKE_ARROWS, SpellConfiguration.Builder.nonInstant(10, 20 * 60 * 5, 80)
-                .setScaleManaToPlayer(), "Produce Arrows",
-            Arrays.asList())
+                    .setScaleManaToPlayer(), "Produce Arrows",
+                Arrays.asList())
             .manualDesc("Produce a stack of arrows.")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(PlayStyle.ranged)

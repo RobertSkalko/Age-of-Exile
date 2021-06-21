@@ -26,6 +26,8 @@ public class EventData {
     public static String SPELL = "spell";
     public static String WEAPON_TYPE = "weapon_type";
     public static String IS_BASIC_ATTACK = "is_basic_atk";
+    public static String IS_ATTACK_FULLY_CHARGED = "is_charged_atk";
+    public static String ATTACK_COOLDOWN = "attack_cooldown";
     public static String STYLE = "style";
     public static String THREAT_GEN_TYPE = "threat_gen_type";
     public static String EXILE_EFFECT = "exile_effect";

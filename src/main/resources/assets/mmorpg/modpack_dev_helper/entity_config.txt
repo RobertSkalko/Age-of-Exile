@@ -9,6 +9,7 @@ mmorpg:healer_mage
 mmorpg:fire_mage
 minecraft:zombified_piglin
 minecraft:iron_golem
+minecraft:ender_dragon
 minecraft:enderman
 minecraft:zombie
 minecraft:drowned

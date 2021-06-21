@@ -3,7 +3,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"8": "mmorpg:items/weapon/hammer/hammer0",
-		"particle": "mmorpg/hammer0"
+		"particle": "dagger/blade"
 	},
 	"elements": [
 		{
@@ -44,13 +44,11 @@
 		},
 		"firstperson_righthand": {
 			"rotation": [-149.5, -103.25, -168.75],
-			"translation": [-8, -11.25, -8.75],
-			"scale": [1.95117, 1.95117, 1.95117]
+			"translation": [-8.5, -0.75, 1]
 		},
 		"firstperson_lefthand": {
 			"rotation": [173.25, 441.75, -163.5],
-			"translation": [7.75, -2.25, -2],
-			"scale": [1.1543, 1.1543, 1.1543]
+			"translation": [7, 0.25, -2]
 		},
 		"ground": {
 			"rotation": [157.5, 0, -173.75],
@@ -60,7 +58,7 @@
 		"gui": {
 			"rotation": [0, 177.75, 39.5],
 			"translation": [-0.75, -0.5, 0],
-			"scale": [0.63867, 0.63867, 0.63867]
+			"scale": [0.95313, 0.95313, 0.95313]
 		},
 		"head": {
 			"rotation": [0, -94.25, 0],

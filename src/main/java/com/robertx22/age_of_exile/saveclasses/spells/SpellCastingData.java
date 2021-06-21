@@ -1,18 +1,29 @@
 package com.robertx22.age_of_exile.saveclasses.spells;
 
+import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
+import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.LiteralText;
+import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -246,6 +257,10 @@ public class SpellCastingData {
 
     public boolean canCast(Spell spell, PlayerEntity player) {
 
+        if (player.world.isClient) {
+            return false;
+        }
+
         if (isCasting()) {
             return false;
         }
@@ -279,7 +294,77 @@ public class SpellCastingData {
 
         SpellCastContext ctx = new SpellCastContext(player, 0, spell);
 
-        return spell.canCast(ctx);
+        LivingEntity caster = ctx.caster;
+
+        if (caster instanceof PlayerEntity == false) {
+            return true;
+        }
+
+        if (((PlayerEntity) caster).isCreative()) {
+            return true;
+        }
+
+        if (!ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.isEmpty()) {
+            Identifier id = ctx.caster.world.getRegistryManager()
+                .getDimensionTypes()
+                .getId(ctx.caster.world.getDimension());
+
+            if (ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.stream()
+                .anyMatch(x -> x.equals(id.toString()))) {
+                return false;
+            }
+        }
+
+        if (spell.isAura()) {
+            if (!ctx.spellsCap.getCastingData().auras.getOrDefault(spell.GUID(), new SpellCastingData.AuraData()).active) { // if not active
+                if (ctx.spellsCap.getManaReservedByAuras() + spell.aura_data.mana_reserved > 1) {
+                    return false; // todo make affected by mana reserve reduction
+                }
+            }
+        }
+
+        EntityCap.UnitData data = Load.Unit(caster);
+
+        if (data != null) {
+
+            if (!spell.isAllowedInDimension(caster.world)) {
+                if (caster instanceof PlayerEntity) {
+                    ((PlayerEntity) caster).sendMessage(new LiteralText("You feel an entity watching you. [Spell can not be casted in this dimension]"), false);
+                }
+                return false;
+            }
+
+            SpendResourceEvent rctx = spell.getManaCostCtx(ctx);
+
+            if (data.getResources()
+                .hasEnough(rctx)) {
+
+                if (!spell.getConfig().castingWeapon.predicate.predicate.test(caster)) {
+                    return false;
+                }
+
+                GearItemData wep = Gear.Load(ctx.caster.getMainHandStack());
+
+                if (wep == null) {
+                    return false;
+                }
+
+                if (!wep.canPlayerWear(ctx.data)) {
+                    if (ctx.caster instanceof PlayerEntity) {
+                        OnScreenMessageUtils.sendMessage((ServerPlayerEntity) ctx.caster, new LiteralText("Weapon requirements not met"), TitleS2CPacket.Action.ACTIONBAR);
+                    }
+                    return false;
+                }
+
+                return true;
+            } else {
+                if (caster instanceof ServerPlayerEntity) {
+                    Packets.sendToClient((PlayerEntity) caster, new NoManaPacket());
+                }
+            }
+        }
+
+        return false;
 
     }
 

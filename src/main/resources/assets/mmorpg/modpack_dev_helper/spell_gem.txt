@@ -34,6 +34,7 @@ thirst_strike
 piercing_proj
 spell_crit_rate
 crit_dmg
+entangling_seed
 faster_proj
 black_hole
 demon
@@ -46,8 +47,10 @@ charge
 nature_dmg
 frost_breath
 fire_trap
+storm_call
 flame_strike
 meteor
+refresh
 bleed_chance
 spell_crit_dmg
 power_chord
@@ -64,7 +67,6 @@ armor_aura
 ele_res_aura
 poison_chance
 curse_of_despair
-gorgons_gaze
 haste_aura
 frostburn_chance
 water_dmg

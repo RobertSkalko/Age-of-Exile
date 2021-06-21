@@ -16,6 +16,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -95,6 +97,9 @@ public class DungeonInfoScreen extends BaseScreen {
                 this.publicAddButton(new ItemSlotButton(stack, x, y));
                 x += ItemSlotButton.xSize + 1;
             }
+            ItemStack randomitem = new ItemStack(Items.CHEST);
+            randomitem.setCustomName(new LiteralText(Formatting.DARK_PURPLE + "Random Unique"));
+            this.publicAddButton(new ItemSlotButton(randomitem, x, y));
 
             this.publicAddButton(new ItemSlotButton(maps.data.getStartCostOf(point), xoff - 8, y + 40));
 

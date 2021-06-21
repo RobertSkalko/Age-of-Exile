@@ -16,7 +16,7 @@ public class ExileEffectUtils {
             .getStatusEffectsData().exileMap.keySet()) {
             ExileEffect eff = Database.ExileEffects()
                 .get(k);
-            if (eff.tags.contains(tag.name())) {
+            if (eff.hasTag(tag)) {
                 amount++;
             }
         }

@@ -50,7 +50,7 @@ public class DoActionForEachEffectOnTarget extends SpellAction implements ICMain
                     .getStatusEffectsData().exileMap.keySet()) {
                     ExileEffect eff = Database.ExileEffects()
                         .get(k);
-                    if (eff.tags.contains(tag)) {
+                    if (eff.hasTag(tag)) {
                         amount++;
                     }
                 }

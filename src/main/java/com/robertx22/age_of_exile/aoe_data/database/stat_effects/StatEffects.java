@@ -113,6 +113,7 @@ public class StatEffects implements ISlashRegistryInit {
     public static StatEffect DECREASE_CAST_TIME = new DecreaseNumberByPercentEffect(EventData.CAST_TICKS);
     public static StatEffect INCREASE_AREA = new IncreaseNumberByPercentEffect(EventData.AREA_MULTI);
     public static StatEffect REFLECT_PERCENT_DAMAGE = new ReflectDamageAction("reflect_perc_dmg", NumberProvider.ofPercentOfDataNumber(EventData.NUMBER));
+    public static StatEffect APPLY_CAST_SPEED_TO_CD = new ApplyCooldownAsCastTimeEffect();
 
     public static DataHolder<String, StatEffect> ADD_PERC_OF_STAT_TO_NUMBER = new DataHolder<>(
         Arrays.asList(
@@ -130,6 +131,7 @@ public class StatEffects implements ISlashRegistryInit {
     public void registerAll() {
 
         GIVE_SELF_EFFECT.addToSerializables();
+        APPLY_CAST_SPEED_TO_CD.addToSerializables();
         DOUBLE_DAMAGE.addToSerializables();
         REMOVE_EFFECT_FROM_TARGET.addToSerializables();
         MULTIPLY_VALUE.addToSerializables();

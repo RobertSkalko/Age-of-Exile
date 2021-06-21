@@ -110,6 +110,21 @@ public class SummonProjectileAction extends SpellAction implements ICMainTooltip
         return c;
     }
 
+    public MapHolder create(Item item, Double speed, EntityType type, Double lifespan) {
+        MapHolder c = new MapHolder();
+        c.put(MapField.PROJECTILE_COUNT, 1D);
+        c.put(MapField.ENTITY_NAME, Spell.DEFAULT_EN_NAME);
+        c.put(MapField.PROJECTILE_SPEED, speed);
+        c.put(MapField.LIFESPAN_TICKS, lifespan);
+        c.put(MapField.ITEM, Registry.ITEM.getId(item)
+            .toString());
+        c.put(MapField.GRAVITY, true);
+        c.put(MapField.PROJECTILE_ENTITY, EntityType.getId(type)
+            .toString());
+        c.type = GUID();
+        return c;
+    }
+
     public MapHolder createArrow(Double projCount) {
         MapHolder c = createBase(projCount, 3D, 80D, true);
         c.put(MapField.PROJECTILE_ENTITY, EntityType.getId(ModRegistry.ENTITIES.SIMPLE_ARROW)

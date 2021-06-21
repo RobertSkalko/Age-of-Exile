@@ -57,6 +57,7 @@ totem_spell_dmg
 elemental_mana_leech
 critical_hit
 light_health_leech
+light_dmg_when_target_low_hp
 health_on_attack_hit
 song_eff_duration
 chance_of_alacrity_when_hit
@@ -103,6 +104,7 @@ critical_damage_per_10_attack_speed
 inc_effect_of_heal_over_time_buff_on_you
 chance_of_slow
 strength
+nature_dmg_when_target_low_hp
 ele_scepter_damage
 inc_effect_of_offensive_buff_on_you
 physical_weapon_damage_per_perc_of_mana
@@ -163,6 +165,7 @@ water_focus
 spell_water_damage
 aura_cdr
 proj_dmg_received
+fire_dmg_when_target_low_hp
 dark_weapon_damage
 elemental_penetration
 ele_sword_damage
@@ -244,6 +247,7 @@ positive_eff_dur_u_cast
 bonus_alchemy_exp
 nature_any_wep_damage
 shield_spell_dmg
+water_dmg_when_target_low_hp
 increased_quantity
 elemental_dot_damage
 spell_critical_damage
@@ -288,6 +292,7 @@ attack_speed
 ranged_dmg
 mana_on_kill
 shout_spell_dmg
+perc_self_hp_dmg_when_immo
 magic_dmg
 song_cdr
 global_critical_hit
@@ -308,6 +313,7 @@ chance_of_poison_when_hit
 ele_trident_damage
 physical_weapon_damage
 health_regen
+dark_dmg_when_target_low_hp
 inc_effect_of_negative_buff_on_you
 spell_fire_damage
 bonus_exp_for_t1_mob

@@ -24,63 +24,63 @@ public class AuraSpells implements ISlashRegistryInit {
     public void registerAll() {
 
         SpellBuilder.aura(PlayStyle.melee, "unwavering_stance", "Unwavering Stance", new AuraSpellData(0.2F,
-            Arrays.asList(
-                new StatModifier(-10, -25, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee)),
-                new StatModifier(-10, -20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged)),
-                new StatModifier(-10, -15, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic)),
-                new StatModifier(-10, -10, DatapackStats.MOVE_SPEED)
-            )))
+                Arrays.asList(
+                    new StatModifier(-10, -25, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee)),
+                    new StatModifier(-10, -20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged)),
+                    new StatModifier(-10, -15, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic)),
+                    new StatModifier(-10, -10, DatapackStats.MOVE_SPEED)
+                )))
             .build();
 
         SpellBuilder.aura(PlayStyle.melee, "taunt_stance", "Taunt Stance", new AuraSpellData(0.2F,
-            Arrays.asList(
-                new StatModifier(1, 1, Stats.GIVE_EFFECT_TO_SELF_ON_TICK.get(BeneficialEffects.TAUNT_STANCE))
-            )))
+                Arrays.asList(
+                    new StatModifier(1, 1, Stats.GIVE_EFFECT_TO_SELF_ON_TICK.get(BeneficialEffects.TAUNT_STANCE))
+                )))
             .addEffectToTooltip(BeneficialEffects.TAUNT_STANCE)
             .build();
 
         SpellBuilder.aura(PlayStyle.melee, "hp_reg_aura", "Health Regeneration Aura", new AuraSpellData(0.1F,
-            Arrays.asList(
-                new StatModifier(1, 4, HealthRegen.getInstance())
-            )))
+                Arrays.asList(
+                    new StatModifier(1, 4, HealthRegen.getInstance())
+                )))
             .build();
 
         SpellBuilder.aura(PlayStyle.ranged, "haste_aura", "Haste Aura", new AuraSpellData(0.25F,
-            Arrays.asList(
-                new StatModifier(5, 20, Stats.CAST_SPEED.get()),
-                new StatModifier(4, 15, Stats.ATTACK_SPEED.get())
-            )))
+                Arrays.asList(
+                    new StatModifier(5, 20, Stats.CAST_SPEED.get()),
+                    new StatModifier(4, 15, Stats.ATTACK_SPEED.get())
+                )))
             .build();
 
         SpellBuilder.aura(PlayStyle.melee, "armor_aura", "Armor Aura", new AuraSpellData(0.2F,
-            Arrays.asList(
-                new StatModifier(2, 4, Armor.getInstance(), ModType.FLAT)
-            )))
+                Arrays.asList(
+                    new StatModifier(2, 4, Armor.getInstance(), ModType.FLAT)
+                )))
             .build();
 
         SpellBuilder.aura(PlayStyle.ranged, "dodge_aura", "Living Shadow", new AuraSpellData(0.2F,
-            Arrays.asList(
-                new StatModifier(2, 4, DodgeRating.getInstance(), ModType.FLAT)
-            )))
+                Arrays.asList(
+                    new StatModifier(5, 10, DodgeRating.getInstance(), ModType.FLAT)
+                )))
             .build();
 
         SpellBuilder.aura(PlayStyle.magic, "mana_reg_aura", "Mana Regeneration Aura", new AuraSpellData(0.1F,
-            Arrays.asList(
-                new StatModifier(1, 4, ManaRegen.getInstance())
-            )))
+                Arrays.asList(
+                    new StatModifier(1, 4, ManaRegen.getInstance())
+                )))
             .build();
 
         SpellBuilder.aura(PlayStyle.magic, "ele_res_aura", "Elemental Resistance Aura", new AuraSpellData(0.3F,
-            Arrays.asList(
-                new StatModifier(10, 20, new ElementalResist(Elements.Elemental))
-            )))
+                Arrays.asList(
+                    new StatModifier(10, 20, new ElementalResist(Elements.Elemental))
+                )))
             .build();
 
         SpellBuilder.aura(PlayStyle.ranged, "crit_aura", "True Hit Aura", new AuraSpellData(0.25F,
-            Arrays.asList(
-                new StatModifier(15, 25, Stats.ACCURACY.get()),
-                new StatModifier(5, 10, Stats.CRIT_CHANCE.get())
-            )))
+                Arrays.asList(
+                    new StatModifier(15, 25, Stats.ACCURACY.get()),
+                    new StatModifier(5, 10, Stats.CRIT_CHANCE.get())
+                )))
             .build();
 
     }

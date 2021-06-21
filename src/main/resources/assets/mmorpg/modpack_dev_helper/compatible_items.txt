@@ -2,6 +2,7 @@ These are all default registry entries of this type.
 This registry can't be modified or added to.
 minecraft:netherite_helmet.leather_helmet2
 minecraft:shield.spirit_shield0
+mmorpg:uniques/weapon/rose_dragon
 mmorpg:uniques/armor/oak_boots
 minecraft:leather_chestplate.leather_chest0
 minecraft:leather_chestplate.cloth_chest0
@@ -12,6 +13,7 @@ minecraft:wooden_sword.sword0
 mmorpg:uniques/armor/dark_crystal_chest
 mmorpg:jewelry/necklace/life_necklace_low
 minecraft:diamond_helmet.leather_helmet2
+mmorpg:uniques/weapon/death_chill
 mmorpg:uniques/armor/slime_boots
 mmorpg:uniques/armor/pharaoh_pants
 mmorpg:uniques/armor/dark_crystal_pants
@@ -208,6 +210,7 @@ mmorpg:armor/plate/helmet/plate_helmet0
 mmorpg:armor/plate/chest/plate_chest0
 mmorpg:jewelry/necklace/life_necklace_end
 minecraft:leather_leggings.cloth_pants0
+mmorpg:uniques/weapon/burning_brilliance
 minecraft:netherite_sword.sword2
 mmorpg:weapon/sword/sword4
 mmorpg:armor/plate/chest/plate_chest3

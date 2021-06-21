@@ -20,7 +20,7 @@ public abstract class SingleTargetWeapon extends ToolItem implements IAutoLocNam
 
         super(
             new RarityToolMaterial(), ItemUtils.getDefaultGearProperties()
-                .maxDamage(1250));
+                .maxDamage(1500));
         this.locname = locname;
     }
 

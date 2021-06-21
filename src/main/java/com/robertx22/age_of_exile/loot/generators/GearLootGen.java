@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.item.ItemStack;
 
 public class GearLootGen extends BaseLootGen<GearBlueprint> {
@@ -42,8 +41,6 @@ public class GearLootGen extends BaseLootGen<GearBlueprint> {
             gear.can_sal = info.favorRank.can_salvage_loot;
 
             Gear.Save(stack, gear);
-
-            ItemUtils.tryAnnounceItem(stack, info.player);
 
         }
         return stack;

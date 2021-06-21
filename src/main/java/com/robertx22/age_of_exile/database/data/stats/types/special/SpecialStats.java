@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Benefic
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
+import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
@@ -18,7 +19,10 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -57,8 +61,8 @@ public class SpecialStats {
                 int duration = (int) (60 * 20 * 1);
 
                 ExilePotionEvent potionEvent = EventBuilder.ofEffect(effect.source, effect.source, Load.Unit(effect.source)
-                    .getLevel(), Database.ExileEffects()
-                    .get(BeneficialEffects.VOID_EYE.effectId), GiveOrTake.give, duration)
+                        .getLevel(), Database.ExileEffects()
+                        .get(BeneficialEffects.VOID_EYE.effectId), GiveOrTake.give, duration)
                     .build();
                 potionEvent.Activate();
 
@@ -98,8 +102,8 @@ public class SpecialStats {
             public ExilePotionEvent activate(ExilePotionEvent effect, StatData data, Stat stat) {
 
                 ExilePotionEvent potionEvent = EventBuilder.ofEffect(effect.source, effect.target, Load.Unit(effect.source)
-                    .getLevel(), Database.ExileEffects()
-                    .get(NegativeEffects.MUMMY_CURSE.effectId), GiveOrTake.give, 20 * 10 * 20)
+                        .getLevel(), Database.ExileEffects()
+                        .get(NegativeEffects.MUMMY_CURSE.effectId), GiveOrTake.give, 20 * 10 * 20)
                     .build();
                 potionEvent.Activate();
 
@@ -109,7 +113,8 @@ public class SpecialStats {
             @Override
             public boolean canActivate(ExilePotionEvent effect, StatData data, Stat stat) {
                 return Database.ExileEffects()
-                    .get(effect.data.getString(EventData.EXILE_EFFECT)).tags.contains(EffectTags.immobilizing.name()) && RandomUtils.roll(data.getAverageValue());
+                    .get(effect.data.getString(EventData.EXILE_EFFECT))
+                    .hasTag(EffectTags.immobilizing) && RandomUtils.roll(data.getAverageValue());
             }
 
             @Override
@@ -148,6 +153,42 @@ public class SpecialStats {
             @Override
             public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
                 return effect.source.isTouchingWater();
+            }
+        }
+    );
+    public static SpecialStat PERC_SELF_HP_DMG_WHEN_IMMOBILZING = new SpecialStat("perc_self_hp_dmg_when_immo",
+        format("Deal " + VAL1 + "% of your health as " + Elements.Nature.getIconNameDmg() + " when you cast immobilizing effects"),
+        new BasePotionEffect() {
+            @Override
+            public ExilePotionEvent activate(ExilePotionEvent effect, StatData data, Stat stat) {
+
+                float val = effect.sourceData.getUnit()
+                    .healthData()
+                    .getAverageValue() / data.getAverageValue() / 100F;
+                DamageEvent dmg = EventBuilder.ofDamage(effect.source, effect.target, val)
+                    .setupDamage(AttackType.attack, WeaponTypes.none, PlayStyle.melee)
+                    .set(x -> x.setElement(Elements.Nature))
+                    .build();
+
+                dmg.Activate();
+
+                return effect;
+            }
+
+            @Override
+            public boolean canActivate(ExilePotionEvent effect, StatData data, Stat stat) {
+                ExileEffect ex = effect.data.getExileEffect();
+                return ex != null && ex.tags.contains(EffectTags.immobilizing.name());
+            }
+
+            @Override
+            public EffectSides Side() {
+                return EffectSides.Source;
+            }
+
+            @Override
+            public int GetPriority() {
+                return 0;
             }
         }
     );

@@ -27,8 +27,7 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
 
     public static int DEFAULT_SPAWNS = 10;
 
-    private static int maxNearbyEntities = 5;
-    private static int requiredPlayerRange = 16;
+    private static int MAX_NEARBY_ENTITIES = 5;
     private static int spawnRange = 16;
 
     public ModSpawnerBlockEntity() {
@@ -36,7 +35,9 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
     }
 
     int ticks = 0;
-    int spawnsLeft = DEFAULT_SPAWNS;
+    public int spawnsLeft = DEFAULT_SPAWNS;
+    public boolean spawnAllAtOnce = false;
+    public int requiredPlayerRange = 16;
 
     @Override
     public void tick() {
@@ -56,65 +57,69 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
                     if (WorldUtils.isDungeonWorld(world)) {
                         int entities = world.getNonSpectatingEntities(LivingEntity.class, (new Box(pos.getX(), pos.getY(), pos.getZ(), (pos.getX() + 1), (pos.getY() + 1), (pos.getZ() + 1))).expand(this.spawnRange))
                             .size();
-                        if (entities < this.maxNearbyEntities) {
+                        if (!spawnAllAtOnce && entities > MAX_NEARBY_ENTITIES) {
+                            return;
+                        }
 
-                            DungeonMobList list = Load.dungeonData(world).data.get(pos).data.getMobList();
+                        DungeonMobList list = Load.dungeonData(world).data.get(pos).data.getMobList();
 
-                            if (list != null) {
-                                int spawns = RandomUtils.RandomRange(1, 4);
+                        if (list != null) {
+                            int spawns = RandomUtils.RandomRange(1, 4);
 
-                                if (spawns > spawnsLeft) {
-                                    spawns = spawnsLeft;
-                                }
-                                this.spawnsLeft -= spawns;
-
-                                List<BlockPos> positions = new ArrayList<>();
-                                for (int x = -4; x < 4; x++) {
-                                    for (int z = -4; z < 4; z++) {
-                                        positions.add(pos.add(x, 0, z));
-                                        positions.add(pos.add(x, 1, z));
-                                    }
-                                }
-                                ParticleEnum.sendToClients(pos, world,
-                                    new ParticlePacketData(pos, ParticleEnum.AOE).radius(0.5F)
-                                        .type(ParticleTypes.FLAME)
-                                        .motion(new Vec3d(0, 0, 0))
-                                        .amount(10));
-
-                                ParticleEnum.sendToClients(pos, world,
-                                    new ParticlePacketData(pos, ParticleEnum.AOE).radius(0.5F)
-                                        .type(ParticleTypes.SMOKE)
-                                        .motion(new Vec3d(0, 0, 0))
-                                        .amount(10));
-
-                                for (int i = 0; i < spawns; i++) {
-
-                                    while (spawns > 0 && !positions.isEmpty()) {
-
-                                        BlockPos blockPos = RandomUtils.randomFromList(positions);
-
-                                        EntityType type = list.getRandomMob();
-
-                                        if (SpawnUtil.canPlaceMob(world, type, blockPos)) {
-                                            list.spawMob((ServerWorld) world, type, blockPos, 0);
-                                            spawns--;
-                                        }
-
-                                        positions.remove(blockPos);
-                                    }
-
-                                }
+                            if (spawns > spawnsLeft || spawnAllAtOnce) {
+                                spawns = spawnsLeft;
                             }
 
+                            this.spawnsLeft -= spawns;
+
+                            List<BlockPos> positions = new ArrayList<>();
+                            for (int x = -4; x < 4; x++) {
+                                for (int z = -4; z < 4; z++) {
+                                    positions.add(pos.add(x, 0, z));
+                                    positions.add(pos.add(x, 1, z));
+                                }
+                            }
+                            ParticleEnum.sendToClients(pos, world,
+                                new ParticlePacketData(pos, ParticleEnum.AOE).radius(0.5F)
+                                    .type(ParticleTypes.FLAME)
+                                    .motion(new Vec3d(0, 0, 0))
+                                    .amount(10));
+
+                            ParticleEnum.sendToClients(pos, world,
+                                new ParticlePacketData(pos, ParticleEnum.AOE).radius(0.5F)
+                                    .type(ParticleTypes.SMOKE)
+                                    .motion(new Vec3d(0, 0, 0))
+                                    .amount(10));
+
+                            for (int i = 0; i < spawns; i++) {
+
+                                while (spawns > 0 && !positions.isEmpty()) {
+
+                                    BlockPos blockPos = RandomUtils.randomFromList(positions);
+
+                                    EntityType type = list.getRandomMob();
+
+                                    if (SpawnUtil.canPlaceMob(world, type, blockPos)) {
+                                        list.spawMob((ServerWorld) world, type, blockPos, 0);
+                                        spawns--;
+                                    }
+
+                                    positions.remove(blockPos);
+                                }
+
+                            }
                         }
+
                     }
                 }
             }
         }
+
     }
 
     private boolean isPlayerInRange() {
         BlockPos blockPos = this.getPos();
+
         return this.getWorld()
             .isPlayerInRange((double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, (double) this.requiredPlayerRange);
     }
@@ -124,6 +129,8 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
         super.toTag(nbt);
         nbt.putInt("ticks", ticks);
         nbt.putInt("spawnsLeft", spawnsLeft);
+        nbt.putInt("range", requiredPlayerRange);
+        nbt.putBoolean("at_once", spawnAllAtOnce);
         return nbt;
     }
 
@@ -133,6 +140,8 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
             super.fromTag(state, nbt);
             ticks = nbt.getInt("ticks");
             spawnsLeft = nbt.getInt("spawnsLeft");
+            requiredPlayerRange = nbt.getInt("range");
+            spawnAllAtOnce = nbt.getBoolean("at_once");
         } catch (Exception e) {
             e.printStackTrace();
         }

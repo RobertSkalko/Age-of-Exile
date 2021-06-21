@@ -106,11 +106,16 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     data = new PlayerTickData();
                 }
 
+                if (data.ensureTeleportData == null) {
+                    if (data.removeInvlunTicks > 0) {
+                        player.setInvulnerable(false);
+                    }
+                }
                 if (data.ensureTeleportData != null && data.ensureTeleportData.ticks > 3) {
+                    data.removeInvlunTicks = 100;
                     data.ensureTeleportData.action.accept(data.ensureTeleportData);
                     if (data.ensureTeleportData.ticksLeft < 1) {
                         data.ensureTeleportData = null;
-                        player.setInvulnerable(false);
                     }
                 }
 
@@ -280,6 +285,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
         public int ticksToCompItems = 0;
         public int ticksToLvlWarning = 0;
         public int ticksForSecond = 0;
+        public int removeInvlunTicks = 0;
 
         public EnsureTeleportData ensureTeleportData;
 
@@ -290,6 +296,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 ensureTeleportData.ticksLeft--;
                 ensureTeleportData.ticks++;
             }
+            removeInvlunTicks--;
             ticksForSecond++;
             regenTicks++;
             playerSyncTick++;

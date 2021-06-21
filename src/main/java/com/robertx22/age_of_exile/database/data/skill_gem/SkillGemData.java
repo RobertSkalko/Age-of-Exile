@@ -67,11 +67,29 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
             return false;
         }
 
-        if (!getSkillGem().req.meetsReq(lvl, Load.Unit(player))) {
+        if (!getSkillGem().req.meetsReq(getLevelForRequirement(player), Load.Unit(player))) {
             return false;
         }
 
         return true;
+    }
+
+    public int getLevelForRequirement(PlayerEntity player) {
+
+        int level = lvl;
+
+        if (getSkillGem().isSpell()) {
+            if (getSkillGem().getSpell().config.scale_mana_cost_to_player_lvl) {
+
+                int playerlvl = Load.Unit(player)
+                    .getLevel();
+
+                if (playerlvl > lvl) {
+                    level = playerlvl;
+                }
+            }
+        }
+        return level;
     }
 
     public SkillGem getSkillGem() {
@@ -110,7 +128,7 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
         try {
             list.add(new LiteralText(""));
 
-            TooltipUtils.addRequirements(list, this.lvl, getSkillGem().req, info.unitdata);
+            TooltipUtils.addRequirements(list, getLevelForRequirement(info.player), getSkillGem().req, info.unitdata);
 
             List<ExactStatData> cStats = getSkillGem().getConstantStats(this);
 
