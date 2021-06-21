@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequire
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.ids.GearSlotIds;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -20,7 +20,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -117,7 +117,7 @@ public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, 
 
             if (!slot.isEmpty()) {
                 final String slotid = slot;
-                b.gearItemSlot.set(Database.GearTypes()
+                b.gearItemSlot.set(ExileDB.GearTypes()
                     .getFilterWrapped(x -> x.gear_slot.equals(slotid))
                     .random());
 

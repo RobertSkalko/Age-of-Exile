@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
@@ -60,12 +60,12 @@ public class GiveSkillGem {
             blueprint.level.set(lvl);
 
             if (!rar.equals("random")) {
-                blueprint.rarity.set(Database.SkillGemRarities()
+                blueprint.rarity.set(ExileDB.SkillGemRarities()
                     .get(rar));
             }
 
             if (!id.equals("random")) {
-                blueprint.type.set(Database.SkillGems()
+                blueprint.type.set(ExileDB.SkillGems()
                     .get(id));
             }
 

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.player_skills;
 
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
@@ -26,7 +26,7 @@ public class PlayerSkillsData implements IApplyableStats {
 
         PlayerSkillEnum skill = PlayerSkillEnum.NONE;
 
-        for (PlayerSkill x : Database.PlayerSkills()
+        for (PlayerSkill x : ExileDB.PlayerSkills()
             .getList()) {
             if (x.id.equals(id)) {
                 skill = x.type_enum;
@@ -55,9 +55,9 @@ public class PlayerSkillsData implements IApplyableStats {
         try {
             map.entrySet()
                 .forEach(x -> {
-                    if (Database.PlayerSkills()
+                    if (ExileDB.PlayerSkills()
                         .isRegistered(x.getKey())) {
-                        PlayerSkill skill = Database.PlayerSkills()
+                        PlayerSkill skill = ExileDB.PlayerSkills()
                             .get(x.getKey());
 
                         if (skill != null) {

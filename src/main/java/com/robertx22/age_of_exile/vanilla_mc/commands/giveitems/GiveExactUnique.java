@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
@@ -60,20 +60,20 @@ public class GiveExactUnique {
 
             if (!id.equals("random")) {
 
-                blueprint.rarity.set(Database.GearRarities()
-                    .get(Database.UniqueGears()
+                blueprint.rarity.set(ExileDB.GearRarities()
+                    .get(ExileDB.UniqueGears()
                         .random().uniqueRarity));
 
-                blueprint.uniquePart.set(Database.UniqueGears()
+                blueprint.uniquePart.set(ExileDB.UniqueGears()
                     .get(id));
                 blueprint.gearItemSlot.set(blueprint.uniquePart.get()
                     .getBaseGearType());
             } else {
 
-                blueprint.rarity.set(Database.GearRarities()
+                blueprint.rarity.set(ExileDB.GearRarities()
                     .getFilterWrapped(x -> x.is_unique_item)
                     .random());
-                blueprint.uniquePart.set(Database.UniqueGears()
+                blueprint.uniquePart.set(ExileDB.UniqueGears()
                     .getFilterWrapped(x -> x.uniqueRarity.equals(blueprint.rarity.get()
                         .GUID()))
                     .random());

@@ -1,11 +1,8 @@
 package com.robertx22.age_of_exile.database.data.gear_types.bases;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
@@ -14,7 +11,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.Wea
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -26,6 +23,10 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
+import com.robertx22.library_of_exile.registry.DataGenKey;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
@@ -95,7 +96,7 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
     }
 
     public GearSlot getGearSlot() {
-        return Database.GearSlots()
+        return ExileDB.GearSlots()
             .get(gear_slot);
     }
 
@@ -363,12 +364,12 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
     }
 
     public GearRarityGroup getRarityGroup() {
-        return Database.GearRarityGroups()
+        return ExileDB.GearRarityGroups()
             .get(rar_group);
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.GEAR_TYPE;
     }
 

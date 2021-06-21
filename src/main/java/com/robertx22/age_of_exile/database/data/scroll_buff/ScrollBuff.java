@@ -1,12 +1,13 @@
 package com.robertx22.age_of_exile.database.data.scroll_buff;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.IWeighted;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,7 +43,7 @@ public class ScrollBuff implements JsonExileRegistry<ScrollBuff>, IAutoGson<Scro
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.SCROLL_BUFFS;
     }
 

@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
@@ -57,7 +57,7 @@ public class LevelUtils {
 
         ServerWorld sw = (ServerWorld) world;
 
-        DimensionConfig dimConfig = Database.getDimensionConfig(world);
+        DimensionConfig dimConfig = ExileDB.getDimensionConfig(world);
 
         int lvl = 0;
 
@@ -122,7 +122,7 @@ public class LevelUtils {
     }
 
     public static double getBlocksForEachLevelDistance(ServerWorld world) {
-        DimensionConfig config = Database.getDimensionConfig(world);
+        DimensionConfig config = ExileDB.getDimensionConfig(world);
 
         double scale = MathHelper.clamp(world.getDimension()
             .getCoordinateScale() / 3F, 1, Integer.MAX_VALUE);

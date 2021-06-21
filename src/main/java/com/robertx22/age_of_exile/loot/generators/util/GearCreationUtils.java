@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.loot.generators.util;
 import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.BaseStatsData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
@@ -40,7 +40,7 @@ public class GearCreationUtils {
 
             Preconditions.checkNotNull(unique);
 
-            data.rarity = Database.GearRarities()
+            data.rarity = ExileDB.GearRarities()
                 .get(unique.uniqueRarity)
                 .GUID();
 

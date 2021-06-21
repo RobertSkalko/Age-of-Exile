@@ -1,22 +1,22 @@
 package com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders;
 
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
-import com.robertx22.age_of_exile.aoe_data.database.DataHelper;
+import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
+import com.robertx22.library_of_exile.registry.DataGenKey;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.HashMap;
 
-public class BaseToolsAdder implements ExileRegistryInit {
+public class BaseToolsAdder implements ExileRegistryInit, GearDataHelper {
 
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> PICKAXE;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> FISHING_ROD;
@@ -29,7 +29,7 @@ public class BaseToolsAdder implements ExileRegistryInit {
             .weaponType(WeaponTypes.sword)
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.pickaxe, BaseGearType.SlotTag.tool_family))
-            .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
+            .baseStat(getAttackDamageStat(WeaponTypes.sword, GearDataHelper.Number.HALF, Elements.Physical))
             .attackStyle(PlayStyle.melee)
             .addToolLevelRanges()
             .build();
@@ -38,7 +38,7 @@ public class BaseToolsAdder implements ExileRegistryInit {
             .weaponType(WeaponTypes.sword)
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.fishing_rod, BaseGearType.SlotTag.tool_family))
-            .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
+            .baseStat(getAttackDamageStat(WeaponTypes.sword, GearDataHelper.Number.HALF, Elements.Physical))
             .attackStyle(PlayStyle.melee)
             .addToolLevelRanges()
             .build();
@@ -47,7 +47,7 @@ public class BaseToolsAdder implements ExileRegistryInit {
             .weaponType(WeaponTypes.sword)
             .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.hoe, BaseGearType.SlotTag.tool_family))
-            .baseStat(getAttackDamageStat(WeaponTypes.sword, DataHelper.Number.HALF, Elements.Physical))
+            .baseStat(getAttackDamageStat(WeaponTypes.sword, GearDataHelper.Number.HALF, Elements.Physical))
             .attackStyle(PlayStyle.melee)
             .addToolLevelRanges()
             .build();

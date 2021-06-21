@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusFavor;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -30,17 +30,17 @@ public class PlayerFavor implements ICommonPlayerCap {
     public FavorRank getRank() {
         try {
             if (!ModConfig.get().Favor.ENABLE_FAVOR_SYSTEM) {
-                return Database.FavorRanks()
+                return ExileDB.FavorRanks()
                     .get("normal"); // simplest way of disabling everything around the system
             }
-            return Database.FavorRanks()
+            return ExileDB.FavorRanks()
                 .getFiltered(x -> this.getFavor() >= x.min)
                 .stream()
                 .max(Comparator.comparingInt(x -> x.rank))
                 .get();
         } catch (Exception e) {
             e.printStackTrace();
-            return Database.FavorRanks()
+            return ExileDB.FavorRanks()
                 .get("normal");
         }
     }

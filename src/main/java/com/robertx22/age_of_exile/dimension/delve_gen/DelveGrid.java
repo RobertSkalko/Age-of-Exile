@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.dimension.delve_gen;
 
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonGridType;
 import com.robertx22.age_of_exile.saveclasses.PointData;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 

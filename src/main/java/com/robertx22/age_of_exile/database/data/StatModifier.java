@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.database.data;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.serialization.IByteBuf;
+import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -119,7 +119,7 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
     }
 
     public Stat GetStat() {
-        return Database.Stats()
+        return ExileDB.Stats()
             .get(stat);
     }
 
@@ -169,7 +169,7 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
         json.addProperty("min1", min1);
         json.addProperty("max1", max1);
 
-        if (Database.Stats()
+        if (ExileDB.Stats()
             .isRegistered(stat) && GetStat().UsesSecondValue() && getModType().isFlat()) {
             json.addProperty("min2", min2);
             json.addProperty("max2", max2);

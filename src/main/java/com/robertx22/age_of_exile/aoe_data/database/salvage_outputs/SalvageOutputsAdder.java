@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.salvage_outputs;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.WeightedItem;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 
 import java.util.Arrays;

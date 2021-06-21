@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.exile_effects;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
@@ -11,6 +10,8 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -52,7 +53,7 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.EXILE_EFFECT;
     }
 

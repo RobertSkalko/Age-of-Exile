@@ -5,7 +5,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearRaritySuggestions;
@@ -61,7 +61,7 @@ public class TestBuild {
             blueprint.actionsAfterGeneration.clear();
             blueprint.unidentifiedPart.set(false);
             blueprint.level.set(lvl);
-            blueprint.rarity.set(Database.GearRarities()
+            blueprint.rarity.set(ExileDB.GearRarities()
                 .get(rarity));
             blueprint.gearItemSlot.set(entry.getValue());
 

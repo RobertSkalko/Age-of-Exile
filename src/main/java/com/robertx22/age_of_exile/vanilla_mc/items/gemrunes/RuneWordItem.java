@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -65,9 +65,9 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
 
     public static RuneWord get(ItemStack stack) {
 
-        if (Database.Runewords()
+        if (ExileDB.Runewords()
             .isEmpty()) {
-            return Database.Runewords()
+            return ExileDB.Runewords()
                 .getSerializable()
                 .get(0);
         }
@@ -76,12 +76,12 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
             return null;
         }
 
-        RuneWord word = Database.Runewords()
+        RuneWord word = ExileDB.Runewords()
             .get(stack.getTag()
                 .getString("runeword"));
 
         if (word == null) {
-            word = Database.Runewords()
+            word = ExileDB.Runewords()
                 .getList()
                 .get(0);
         }
@@ -91,7 +91,7 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
     @Override
     public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
         if (this.isIn(group)) {
-            Database.Runewords()
+            ExileDB.Runewords()
                 .getList()
                 .forEach(x -> stacks.add(createStack(x)));
         }
@@ -103,7 +103,7 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
 
         try {
 
-            if (Database.Runewords()
+            if (ExileDB.Runewords()
                 .isEmpty()) {
                 return;
             }
@@ -140,7 +140,7 @@ public class RuneWordItem extends Item implements IAutoModel, IAutoLocName {
             tooltip.add(new LiteralText(""));
 
             tooltip.add(TooltipUtils.level(word.runes_needed.stream()
-                .map(x -> Database.Runes()
+                .map(x -> ExileDB.Runes()
                     .get(x))
                 .max(Comparator.comparingInt(y -> y.getReqLevel()))
                 .get()

@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.mixin_methods;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
@@ -124,7 +124,7 @@ public class RenderMobInfo {
                         0, -1, true, matrix4f,
                         vertex, false, bgColor, i);
 
-                    MobRarity rar = Database.MobRarities()
+                    MobRarity rar = ExileDB.MobRarities()
                         .get(data.getRarity());
 
                     String icon = rar.name_add;

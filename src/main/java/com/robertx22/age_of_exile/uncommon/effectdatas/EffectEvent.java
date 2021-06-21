@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DatapackStat;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.base.EffectWithCtx;
@@ -57,7 +57,7 @@ public abstract class EffectEvent implements IGUID {
     }
 
     public Spell getSpell() {
-        return Database.Spells()
+        return ExileDB.Spells()
             .get(data.getString(EventData.SPELL));
     }
 

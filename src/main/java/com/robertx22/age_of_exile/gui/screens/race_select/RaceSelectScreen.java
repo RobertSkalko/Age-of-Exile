@@ -2,12 +2,10 @@ package com.robertx22.age_of_exile.gui.screens.race_select;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.races.PlayerRace;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.screens.BaseSelectionScreen;
 import com.robertx22.age_of_exile.gui.screens.ILeftRight;
 import com.robertx22.age_of_exile.gui.screens.character_screen.CharacterScreen;
-import com.robertx22.age_of_exile.gui.screens.race_select.RaceSelectScreen.CharButton;
-import com.robertx22.age_of_exile.gui.screens.race_select.RaceSelectScreen.ChooseRaceButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ChooseRacePacket;
 import com.robertx22.library_of_exile.main.Packets;
@@ -25,7 +23,7 @@ public class RaceSelectScreen extends BaseSelectionScreen implements ILeftRight 
 
     int currentRace = 0;
 
-    List<PlayerRace> races = Database.Races()
+    List<PlayerRace> races = ExileDB.Races()
         .getList();
 
     public RaceSelectScreen() {

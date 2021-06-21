@@ -1,9 +1,10 @@
 package com.robertx22.age_of_exile.database.data;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 
 public class DimensionConfig implements JsonExileRegistry<DimensionConfig>, ISerializable<DimensionConfig> {
 
@@ -85,7 +86,7 @@ public class DimensionConfig implements JsonExileRegistry<DimensionConfig>, ISer
     public boolean scale_to_nearest_player = false;
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.DIMENSION_CONFIGS;
     }
 

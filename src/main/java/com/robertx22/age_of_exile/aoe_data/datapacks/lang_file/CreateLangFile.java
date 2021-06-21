@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.lang_file;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
@@ -113,57 +113,57 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocName>> getMap() {
         List<IAutoLocName> list = CreateLangFileUtils.getFromRegistries(IAutoLocName.class);
 
-        list.addAll(Database.MobAffixes()
+        list.addAll(ExileDB.MobAffixes()
             .getSerializable());
-        list.addAll(Database.Races()
+        list.addAll(ExileDB.Races()
             .getSerializable());
-        list.addAll(Database.Sets()
+        list.addAll(ExileDB.Sets()
             .getSerializable());
-        list.addAll(Database.SkillGemRarities()
+        list.addAll(ExileDB.SkillGemRarities()
             .getSerializable());
-        list.addAll(Database.SkillGems()
+        list.addAll(ExileDB.SkillGems()
             .getSerializable());
-        list.addAll(Database.Perks()
+        list.addAll(ExileDB.Perks()
             .getSerializable());
-        list.addAll(Database.Spells()
+        list.addAll(ExileDB.Spells()
             .getSerializable());
-        list.addAll(Database.UniqueGears()
+        list.addAll(ExileDB.UniqueGears()
             .getSerializable());
-        list.addAll(Database.Affixes()
+        list.addAll(ExileDB.Affixes()
             .getSerializable());
-        list.addAll(Database.FavorRanks()
+        list.addAll(ExileDB.FavorRanks()
             .getSerializable());
-        list.addAll(Database.Runewords()
+        list.addAll(ExileDB.Runewords()
             .getSerializable());
 
-        List<Stat> stats = Database.Stats()
+        List<Stat> stats = ExileDB.Stats()
             .getList()
             .stream()
             .filter(x -> !x.isFromDatapack())
             .collect(Collectors.toList());
-        list.addAll(Database.Stats()
+        list.addAll(ExileDB.Stats()
             .getSerializable());
         list.addAll(stats);
-        list.addAll(Database.ScrollBuffs()
+        list.addAll(ExileDB.ScrollBuffs()
             .getSerializable());
 
-        list.addAll(Database.GearTypes()
+        list.addAll(ExileDB.GearTypes()
             .getSerializable());
-        list.addAll(Database.ExileEffects()
+        list.addAll(ExileDB.ExileEffects()
             .getSerializable());
         list.addAll(Arrays.asList(Words.values()));
-        list.addAll(Database.GearRarities()
+        list.addAll(ExileDB.GearRarities()
             .getSerializable());
-        list.addAll(Database.MobRarities()
+        list.addAll(ExileDB.MobRarities()
             .getSerializable());
         list.addAll(Arrays.asList(Chats.values()));
         list.addAll(Arrays.asList(RandomTips.values()));
 
-        Database.UniqueGears()
+        ExileDB.UniqueGears()
             .getSerializable()
             .forEach(x -> list.add(new UniqueName(x)));
 
-        Database.Spells()
+        ExileDB.Spells()
             .getSerializable()
             .forEach(x -> list.add(new OneOfAKindName(x)));
 
@@ -197,21 +197,21 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocDesc>> getDescMap() {
         List<IAutoLocDesc> list = CreateLangFileUtils.getFromRegistries(IAutoLocDesc.class);
 
-        list.addAll(Database.UniqueGears()
+        list.addAll(ExileDB.UniqueGears()
             .getSerializable());
-        list.addAll(Database.Spells()
+        list.addAll(ExileDB.Spells()
             .getSerializable());
-        list.addAll(Database.Races()
+        list.addAll(ExileDB.Races()
             .getSerializable());
-        list.addAll(Database.ScrollBuffs()
+        list.addAll(ExileDB.ScrollBuffs()
             .getSerializable());
 
-        List<Stat> stats = Database.Stats()
+        List<Stat> stats = ExileDB.Stats()
             .getList()
             .stream()
             .filter(x -> !x.isFromDatapack())
             .collect(Collectors.toList());
-        list.addAll(Database.Stats()
+        list.addAll(ExileDB.Stats()
             .getSerializable());
         list.addAll(stats);
 

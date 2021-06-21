@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors.plate;
 
+import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BasePlateArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
@@ -10,16 +11,16 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
-public class DarkCrystalArmor implements ExileRegistryInit {
+public class DarkCrystalArmor implements ExileRegistryInit, GearDataHelper {
 
     @Override
     public void registerAll() {
@@ -27,10 +28,10 @@ public class DarkCrystalArmor implements ExileRegistryInit {
         // dark/light heal heavy armor night/day effect
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.DARK_CRYSTAL_SET,
-            ArmorSet.SlotEnum.HELMET,
-            "Dark Crystal",
-            BasePlateArmors.HELMETS.values())
+                ModRegistry.UNIQUE_GEARS.DARK_CRYSTAL_SET,
+                ArmorSet.SlotEnum.HELMET,
+                "Dark Crystal",
+                BasePlateArmors.HELMETS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.HELMET),
@@ -55,10 +56,10 @@ public class DarkCrystalArmor implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.DARK_CRYSTAL_SET,
-            ArmorSet.SlotEnum.CHEST,
-            "Dark Crystal",
-            BasePlateArmors.CHESTS.values())
+                ModRegistry.UNIQUE_GEARS.DARK_CRYSTAL_SET,
+                ArmorSet.SlotEnum.CHEST,
+                "Dark Crystal",
+                BasePlateArmors.CHESTS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.CHEST),
@@ -85,10 +86,10 @@ public class DarkCrystalArmor implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.DARK_CRYSTAL_SET,
-            ArmorSet.SlotEnum.PANTS,
-            "Dark Crystal",
-            BasePlateArmors.PANTS.values())
+                ModRegistry.UNIQUE_GEARS.DARK_CRYSTAL_SET,
+                ArmorSet.SlotEnum.PANTS,
+                "Dark Crystal",
+                BasePlateArmors.PANTS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.PANTS),
@@ -114,10 +115,10 @@ public class DarkCrystalArmor implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.DARK_CRYSTAL_SET,
-            ArmorSet.SlotEnum.BOOTS,
-            "Dark Crystal",
-            BasePlateArmors.BOOTS.values())
+                ModRegistry.UNIQUE_GEARS.DARK_CRYSTAL_SET,
+                ArmorSet.SlotEnum.BOOTS,
+                "Dark Crystal",
+                BasePlateArmors.BOOTS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.BOOTS),

@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.base_stats;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -11,6 +10,8 @@ import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.SimpleStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.entity.LivingEntity;
 
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class BaseStatsConfig implements JsonExileRegistry<BaseStatsConfig>, IAut
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.BASE_STATS;
     }
 

@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.database.data.gear_types.bases;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
+import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 
 import java.util.*;
 import java.util.stream.Collectors;

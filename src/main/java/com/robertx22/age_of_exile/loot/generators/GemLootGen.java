@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.loot.generators;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
@@ -34,14 +34,14 @@ public class GemLootGen extends BaseLootGen<GearBlueprint> {
             }
         }
 
-        return !Database.Gems()
+        return !ExileDB.Gems()
             .getFilterWrapped(x -> this.info.level >= x.getReqLevel()).list.isEmpty();
     }
 
     @Override
     public ItemStack generateOne() {
 
-        Gem gem = Database.Gems()
+        Gem gem = ExileDB.Gems()
             .getFilterWrapped(x -> this.info.level >= x.getReqLevel())
             .random();
 

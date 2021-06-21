@@ -3,11 +3,11 @@ package com.robertx22.age_of_exile.loot.blueprints.bases;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
 
     GearRarity specialRar = null;
 
-    public List<GearRarity> possible = Database.GearRarityGroups()
+    public List<GearRarity> possible = ExileDB.GearRarityGroups()
         .get(GearRarityGroups.NON_UNIQUE_ID)
         .getRarities();
 
@@ -36,7 +36,7 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
                 .getRarities();
         }
 
-        List<GearRarity> specialRarities = Database.GearRarities()
+        List<GearRarity> specialRarities = ExileDB.GearRarities()
             .getFiltered(x -> x.special_spawn_chance > 0);
 
         if (info.isMapWorld) { // TODO
@@ -49,7 +49,7 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
                     chance += rar.special_spawn_chest_bonus_chance;
                 }
                 if (info.world != null) {
-                    chance *= Database.getDimensionConfig(info.world).unique_gear_drop_multi;
+                    chance *= ExileDB.getDimensionConfig(info.world).unique_gear_drop_multi;
                 }
 
                 if (info.playerData != null) {

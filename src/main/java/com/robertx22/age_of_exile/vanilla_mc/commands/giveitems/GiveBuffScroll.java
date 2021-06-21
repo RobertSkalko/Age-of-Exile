@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffData;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffItem;
@@ -66,12 +66,12 @@ public class GiveBuffScroll {
             data.id = id;
 
             if (id.equals("random")) {
-                data.id = Database.ScrollBuffs()
+                data.id = ExileDB.ScrollBuffs()
                     .random().id;
             }
 
             if (rar.equals("random")) {
-                data.rar = Database.GearRarities()
+                data.rar = ExileDB.GearRarities()
                     .random()
                     .GUID();
             }

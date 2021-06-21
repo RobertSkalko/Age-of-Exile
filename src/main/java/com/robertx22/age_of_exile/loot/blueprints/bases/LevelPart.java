@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.loot.blueprints.bases;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.util.math.MathHelper;
 
 public class LevelPart extends BlueprintPart<Integer, ItemBlueprint> {

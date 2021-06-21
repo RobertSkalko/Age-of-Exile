@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.capability.player.EntityPerks;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool.SchoolType;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.ConnectionButton;
@@ -107,7 +107,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         try {
             Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.ENTITY_PERKS));
 
-            schoolsInOrder = Database.SpellSchools()
+            schoolsInOrder = ExileDB.SpellSchools()
                 .getFiltered(x -> {
                     return x.getSchool_type() == this.schoolType;
                 });
@@ -196,7 +196,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         this.scrollY = 0;
 
         for (Map.Entry<PointData, String> e : school.calcData.perks.entrySet()) {
-            Perk perk = Database.Perks()
+            Perk perk = ExileDB.Perks()
                 .get(e.getValue());
 
             if (perk == null) {

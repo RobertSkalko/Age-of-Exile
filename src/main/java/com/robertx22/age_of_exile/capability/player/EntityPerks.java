@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
@@ -48,10 +48,10 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         for (SpellSchool.SchoolType type : SpellSchool.SchoolType.values()) {
             for (Map.Entry<String, SchoolData> x : data.getPerks(type)
                 .entrySet()) {
-                if (Database.SpellSchools()
+                if (ExileDB.SpellSchools()
                     .isRegistered(x.getKey())) {
 
-                    SpellSchool school = Database.SpellSchools()
+                    SpellSchool school = ExileDB.SpellSchools()
                         .get(x.getKey());
                     if (school != null) {
                         for (PointData p : x.getValue()

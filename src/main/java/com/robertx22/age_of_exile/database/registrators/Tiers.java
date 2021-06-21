@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.registrators;
 
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class Tiers implements ExileRegistryInit {
 

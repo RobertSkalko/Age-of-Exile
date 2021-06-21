@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors.cloth;
 
+import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseClothArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
@@ -15,16 +16,16 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantit
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
-public class PharaohArmor implements ExileRegistryInit {
+public class PharaohArmor implements ExileRegistryInit, GearDataHelper {
 
     @Override
     public void registerAll() {

@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.*;
@@ -17,7 +17,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
@@ -130,7 +130,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public boolean isValidItem() {
 
-        return Database.GearTypes()
+        return ExileDB.GearTypes()
             .isRegistered(gear_type);
     }
 
@@ -147,9 +147,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public StatRequirement getRequirement() {
         StatRequirement req = new StatRequirement(GetBaseGearType().getStatRequirements());
 
-        if (Database.UniqueGears()
+        if (ExileDB.UniqueGears()
             .isRegistered(this.uniq_id)) {
-            UniqueGear uniq = Database.UniqueGears()
+            UniqueGear uniq = ExileDB.UniqueGears()
                 .get(uniq_id);
             return new StatRequirement(uniq.stat_req);
         }
@@ -192,7 +192,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     @Override
     public GearRarity getRarity() {
-        return Database.GearRarities()
+        return ExileDB.GearRarities()
             .get(this.rarity);
     }
 
@@ -203,14 +203,14 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     // used when upgrading item rarity
     public Item getItem() {
         if (this.uniqueStats != null && this.uniqueStats.getUnique(this) != null) {
-            return Database.UniqueGears()
+            return ExileDB.UniqueGears()
                 .get(uniq_id)
                 .getUniqueItem();
         } else {
             if (gear_type.isEmpty()) {
                 return Items.AIR;
             } else {
-                return Database.GearTypes()
+                return ExileDB.GearTypes()
                     .get(gear_type)
                     .getItem();
             }
@@ -225,7 +225,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     public BaseGearType GetBaseGearType() {
-        return Database.GearTypes()
+        return ExileDB.GearTypes()
             .get(gear_type);
     }
 
@@ -463,7 +463,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public List<ItemStack> getSalvageResult(float salvageBonus) {
         if (this.can_sal) {
             try {
-                SalvageOutput sal = RandomUtils.weightedRandom(Database.SalvageOutputs()
+                SalvageOutput sal = RandomUtils.weightedRandom(ExileDB.SalvageOutputs()
                     .getFiltered(x -> x.isForItem(this.lvl))
                 );
                 if (sal != null) {

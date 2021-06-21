@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.runes;
 
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.util.registry.Registry;
 

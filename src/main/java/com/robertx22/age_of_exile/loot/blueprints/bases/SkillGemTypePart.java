@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.loot.blueprints.bases;
 
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 
 public class SkillGemTypePart extends BlueprintPart<SkillGem, SkillGemBlueprint> {
@@ -17,7 +17,7 @@ public class SkillGemTypePart extends BlueprintPart<SkillGem, SkillGemBlueprint>
 
             if (blueprint.info != null) {
                 if (blueprint.info.playerData == null && blueprint.info.level < 20) {
-                    return Database.SkillGems()
+                    return ExileDB.SkillGems()
                         .getFilterWrapped(x -> x.req.meetsReq(blueprint.info.level, blueprint.info.playerData))
                         .random();
                 }
@@ -27,7 +27,7 @@ public class SkillGemTypePart extends BlueprintPart<SkillGem, SkillGemBlueprint>
             e.printStackTrace();
         }
 
-        return Database.SkillGems()
+        return ExileDB.SkillGems()
             .random();
     }
 }

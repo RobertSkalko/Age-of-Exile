@@ -1,10 +1,9 @@
 package com.robertx22.age_of_exile.database.data.races;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -12,6 +11,8 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -56,7 +57,7 @@ public class PlayerRace implements JsonExileRegistry<PlayerRace>, IAutoGson<Play
 
         extra_stats.forEach(x -> {
             list.add(new LiteralText("For each 1 ").formatted(Formatting.GREEN)
-                .append(Database.Stats()
+                .append(ExileDB.Stats()
                     .get(x.for_stat)
                     .locName())
                 .append(":"));
@@ -122,7 +123,7 @@ public class PlayerRace implements JsonExileRegistry<PlayerRace>, IAutoGson<Play
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.RACES;
     }
 

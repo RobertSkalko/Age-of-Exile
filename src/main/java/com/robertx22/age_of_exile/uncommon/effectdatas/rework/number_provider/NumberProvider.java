@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework.number_provider;
 
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
@@ -45,7 +45,7 @@ public class NumberProvider {
         if (type == Type.stat_data) {
             return data.getAverageValue();
         } else if (type == Type.val_calc) {
-            return Database.ValueCalculations()
+            return ExileDB.ValueCalculations()
                 .get(calc)
                 .getCalculatedValue(source, Load.Unit(source)
                     .getLevel());

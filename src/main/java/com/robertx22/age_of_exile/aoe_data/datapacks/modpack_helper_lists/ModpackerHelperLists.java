@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.modpack_helper_lists;
 
-import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DirUtils;
+import com.robertx22.library_of_exile.registry.Database;
 import com.robertx22.library_of_exile.registry.IGUID;
 
 import java.io.File;

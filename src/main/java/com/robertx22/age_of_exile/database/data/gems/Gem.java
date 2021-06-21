@@ -1,9 +1,10 @@
 package com.robertx22.age_of_exile.database.data.gems;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.BaseRuneGem;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -52,7 +53,7 @@ public class Gem extends BaseRuneGem implements IAutoGson<Gem>, JsonExileRegistr
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.GEM;
     }
 

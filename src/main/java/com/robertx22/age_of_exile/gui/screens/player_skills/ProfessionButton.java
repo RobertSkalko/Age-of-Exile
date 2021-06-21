@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.gui.screens.player_skills;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.TextUtils;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
@@ -57,7 +57,7 @@ public class ProfessionButton extends TexturedButtonWidget {
 
             TooltipInfo info = new TooltipInfo(mc.player);
 
-            tooltip.addAll(Database.PlayerSkills()
+            tooltip.addAll(ExileDB.PlayerSkills()
                 .get(skill.id)
                 .GetTooltipString(info));
 
@@ -84,7 +84,7 @@ public class ProfessionButton extends TexturedButtonWidget {
         drawTexture(matrix, x, y, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X);
 
         mc.getTextureManager()
-            .bindTexture(Database.PlayerSkills()
+            .bindTexture(ExileDB.PlayerSkills()
                 .get(skill.id)
                 .getIcon());
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);

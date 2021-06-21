@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import info.loenwind.autosave.annotations.Factory;
@@ -79,7 +79,7 @@ public class InCalcStatData {
     }
 
     public Stat GetStat() {
-        return Database.Stats()
+        return ExileDB.Stats()
             .get(id);
     }
 

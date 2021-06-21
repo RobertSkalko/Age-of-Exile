@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.craft_req;
 
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 

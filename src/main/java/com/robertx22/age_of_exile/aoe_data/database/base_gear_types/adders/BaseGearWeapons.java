@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders;
 
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
@@ -10,11 +9,12 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.Sl
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
+import com.robertx22.library_of_exile.registry.DataGenKey;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.HashMap;
 

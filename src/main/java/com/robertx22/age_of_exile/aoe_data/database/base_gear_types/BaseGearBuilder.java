@@ -1,8 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.base_gear_types;
 
 import com.google.common.base.Preconditions;
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
-import com.robertx22.age_of_exile.aoe_data.database.DataHelper;
+import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
@@ -14,6 +13,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
+import com.robertx22.library_of_exile.registry.DataGenKey;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class BaseGearBuilder implements DataHelper {
+public class BaseGearBuilder implements GearDataHelper {
 
     private PlayStyle style = PlayStyle.melee;
     private String locnamesuffix;
@@ -60,7 +60,7 @@ public class BaseGearBuilder implements DataHelper {
         b.weaponType(type);
         b.attackStyle(type.style);
         b.weapon_offhand_stat_util = type.weapon_offhand_stat_util;
-        b.baseStat(b.getAttackDamageStat(type, DataHelper.Number.FULL, Elements.Physical));
+        b.baseStat(b.getAttackDamageStat(type, GearDataHelper.Number.FULL, Elements.Physical));
 
         return b;
     }

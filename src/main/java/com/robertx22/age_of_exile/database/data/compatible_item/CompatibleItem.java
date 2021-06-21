@@ -1,19 +1,20 @@
 package com.robertx22.age_of_exile.database.data.compatible_item;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
-import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+import com.robertx22.library_of_exile.registry.serialization.IByteBuf;
+import com.robertx22.library_of_exile.registry.serialization.ISerializable;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -171,7 +172,7 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.COMPATIBLE_ITEM;
     }
 
@@ -207,17 +208,17 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
 
         blueprint.level.set(MathHelper.clamp(RandomUtils.RandomRange(min, max), min, cap));
 
-        blueprint.rarity.possible = Database.GearRarityGroups()
+        blueprint.rarity.possible = ExileDB.GearRarityGroups()
             .get(this.rarities)
             .getRarities();
 
-        if (Database.UniqueGears()
+        if (ExileDB.UniqueGears()
             .isRegistered(unique_id)) {
 
-            UniqueGear uniq = Database.UniqueGears()
+            UniqueGear uniq = ExileDB.UniqueGears()
                 .get(unique_id);
             blueprint.uniquePart.set(uniq);
-            blueprint.rarity.set(Database.GearRarities()
+            blueprint.rarity.set(ExileDB.GearRarities()
                 .get(uniq.uniqueRarity));
         }
 
@@ -240,19 +241,19 @@ public class CompatibleItem implements IByteBuf<CompatibleItem>, ISerializable<C
 
         boolean valid = true;
 
-        if (!Database.GearTypes()
+        if (!ExileDB.GearTypes()
             .isRegistered(this.item_type)) {
             System.out.println("\n Invalid gear slot: " + item_type);
             valid = false;
         }
         if (!unique_id.isEmpty()) {
-            if (!Database.UniqueGears()
+            if (!ExileDB.UniqueGears()
                 .isRegistered(unique_id)) {
                 System.out.println("\n Invalid unique gear id: " + unique_id);
                 valid = false;
             }
         }
-        if (!Database.GearRarityGroups()
+        if (!ExileDB.GearRarityGroups()
             .isRegistered(rarities)) {
             System.out.print("\n" + rarities + " isn't a valid gear rarity group datapack identifier.");
             valid = false;

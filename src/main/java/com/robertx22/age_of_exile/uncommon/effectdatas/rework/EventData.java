@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework;
 
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.GiveOrTake;
@@ -139,12 +139,12 @@ public class EventData {
     }
 
     public ExileEffect getExileEffect() {
-        return Database.ExileEffects()
+        return ExileDB.ExileEffects()
             .get(getString(EXILE_EFFECT));
     }
 
     public boolean hasExileEffect() {
-        return Database.ExileEffects()
+        return ExileDB.ExileEffects()
             .isRegistered(getString(EXILE_EFFECT));
     }
 
@@ -161,7 +161,7 @@ public class EventData {
     }
 
     public boolean isSpellEffect() {
-        return Database.Spells()
+        return ExileDB.Spells()
             .isRegistered(getString(SPELL));
     }
 

@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.datapacks.test;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EmptyAccessor;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ public class DataPackStatAccessor<T> {
     public Stat get(T key) {
         Stat stat;
 
-        if (!Database.Stats()
+        if (!ExileDB.Stats()
             .isRegistered(getId(key))) {
             stat = map2.get(key);
             if (stat == null) {
@@ -27,7 +27,7 @@ public class DataPackStatAccessor<T> {
             return stat;
         }
 
-        stat = Database.Stats()
+        stat = ExileDB.Stats()
             .get(map.get(key));
         Objects.requireNonNull(stat, "Null for " + key.toString());
         return stat;
@@ -48,7 +48,7 @@ public class DataPackStatAccessor<T> {
 
     public List<Stat> getAll() {
 
-        if (Database.Stats()
+        if (ExileDB.Stats()
             .isRegistered(map2.values()
                 .stream()
                 .findFirst()
@@ -56,7 +56,7 @@ public class DataPackStatAccessor<T> {
 
             return map.values()
                 .stream()
-                .map(x -> Database.Stats()
+                .map(x -> ExileDB.Stats()
                     .get(x))
                 .collect(Collectors.toList());
         }

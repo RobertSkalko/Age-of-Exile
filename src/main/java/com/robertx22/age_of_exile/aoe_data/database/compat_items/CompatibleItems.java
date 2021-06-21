@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -40,7 +40,7 @@ public class CompatibleItems {
         List<CompatibleItem> all = new ArrayList<>();
 
         List<BaseGearType> list = new ArrayList<>();
-        for (BaseGearType type : Database.GearTypes()
+        for (BaseGearType type : ExileDB.GearTypes()
             .getSerializable()) {
             if (type.getLevelRange()
                 .getMiddleLevel() == tier.range.getMiddleLevel()) {
@@ -109,7 +109,7 @@ public class CompatibleItems {
             items.addAll(get(Items.BOW, VanillaTier.WOOD));
             items.addAll(get(Items.SHIELD, VanillaTier.WOOD));
 
-            for (BaseGearType slot : Database.GearTypes()
+            for (BaseGearType slot : ExileDB.GearTypes()
                 .getSerializable()) {
                 Item item = slot.getItem();
 
@@ -138,7 +138,7 @@ public class CompatibleItems {
                     items.add(c);
                 }
             }
-            for (UniqueGear uniq : Database.UniqueGears()
+            for (UniqueGear uniq : ExileDB.UniqueGears()
                 .getSerializable()) {
                 Item item = uniq.getUniqueItem();
 

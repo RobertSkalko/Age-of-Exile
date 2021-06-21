@@ -1,16 +1,17 @@
 package com.robertx22.age_of_exile.database.data.skill_gem;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,12 +40,12 @@ public class SkillGem implements JsonExileRegistry<SkillGem>, IAutoGson<SkillGem
     public transient String locname = "";
 
     public boolean isSpell() {
-        return Database.Spells()
+        return ExileDB.Spells()
             .isRegistered(spell_id);
     }
 
     public Spell getSpell() {
-        return Database.Spells()
+        return ExileDB.Spells()
             .get(spell_id);
     }
 
@@ -72,7 +73,7 @@ public class SkillGem implements JsonExileRegistry<SkillGem>, IAutoGson<SkillGem
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.SKILL_GEM;
     }
 

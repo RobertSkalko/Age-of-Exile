@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
+import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 
 public interface IAutoGson<T extends IAutoGson<T>> extends ISerializable<T> {
 

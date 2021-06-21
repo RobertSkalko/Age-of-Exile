@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.gui.screens.player_skills;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.wiki.ExtraInfoButton;
@@ -69,7 +69,7 @@ public class PlayerSkillsScreen extends BaseScreen implements INamedScreen {
         int x = guiLeft + 10;
         int y = guiTop + 8;
 
-        List<PlayerSkill> all = Database.PlayerSkills()
+        List<PlayerSkill> all = ExileDB.PlayerSkills()
             .getList();
         all.sort(Comparator.comparingInt(s -> s.order));
 

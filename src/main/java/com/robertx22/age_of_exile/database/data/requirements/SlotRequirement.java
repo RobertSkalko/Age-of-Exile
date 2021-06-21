@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.requirements.bases.BaseRequirement;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.Database;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import net.minecraft.text.MutableText;
@@ -49,30 +49,30 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
     }
 
     public static SlotRequirement everythingBesides(BaseGearType.SlotFamily type) {
-        return new SlotRequirement(Database.GearTypes()
+        return new SlotRequirement(ExileDB.GearTypes()
             .getFiltered(x -> x.family() != type));
 
     }
 
     public static SlotRequirement of(BaseGearType.SlotFamily type) {
-        return new SlotRequirement(Database.GearTypes()
+        return new SlotRequirement(ExileDB.GearTypes()
             .getFiltered(x -> x.family() == type));
 
     }
 
     public SlotRequirement plus(Predicate<BaseGearType> pred) {
-        this.slots.addAll(Database.GearTypes()
+        this.slots.addAll(ExileDB.GearTypes()
             .getFilterWrapped(pred).list);
         return this;
     }
 
     public static SlotRequirement of(Predicate<BaseGearType> pred) {
-        return new SlotRequirement(Database.GearTypes()
+        return new SlotRequirement(ExileDB.GearTypes()
             .getFilterWrapped(pred).list);
     }
 
     public static SlotRequirement hasBaseStat(Stat stat) {
-        return new SlotRequirement(Database.GearTypes()
+        return new SlotRequirement(ExileDB.GearTypes()
             .getFiltered(x -> x.baseStats()
                 .stream()
                 .anyMatch(s -> s.stat.equals(stat.GUID()))));
@@ -80,7 +80,7 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
     }
 
     public static SlotRequirement of(BaseGearType.SlotTag tag) {
-        return new SlotRequirement(Database.GearTypes()
+        return new SlotRequirement(ExileDB.GearTypes()
             .getFiltered(x -> x.getTags()
                 .contains(tag)));
 
@@ -113,7 +113,7 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
             newobj.slots = JsonUtils.jsonArrayToStringList(array)
                 .stream()
-                .map(x -> Database.GearTypes()
+                .map(x -> ExileDB.GearTypes()
                     .get(x))
                 .collect(Collectors.toList());
 
@@ -135,7 +135,7 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
         MutableText comp = new SText(Formatting.RED + "");
 
-        List<BaseGearType> armors = Database.GearTypes()
+        List<BaseGearType> armors = ExileDB.GearTypes()
             .getFiltered(x -> x.family()
                 .equals(BaseGearType.SlotFamily.Armor));
         if (copy.containsAll(armors)) {
@@ -145,7 +145,7 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
                 .append(new SText("All Armors"));
         }
 
-        List<BaseGearType> weapons = Database.GearTypes()
+        List<BaseGearType> weapons = ExileDB.GearTypes()
             .getFiltered(x -> x.family()
                 .equals(BaseGearType.SlotFamily.Weapon));
         if (copy.containsAll(weapons)) {
@@ -155,7 +155,7 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
                 .append(new SText("All Weapons"));
         }
 
-        List<BaseGearType> jewerly = Database.GearTypes()
+        List<BaseGearType> jewerly = ExileDB.GearTypes()
             .getFiltered(x -> x.family()
                 .equals(BaseGearType.SlotFamily.Jewelry));
         if (copy.containsAll(jewerly)) {

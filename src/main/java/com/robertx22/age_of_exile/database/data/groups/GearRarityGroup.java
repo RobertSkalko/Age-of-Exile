@@ -1,10 +1,11 @@
 package com.robertx22.age_of_exile.database.data.groups;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class GearRarityGroup implements JsonExileRegistry<GearRarityGroup>, IAut
 
     public List<GearRarity> getRarities() {
         return rarities.stream()
-            .map(x -> Database.GearRarities()
+            .map(x -> ExileDB.GearRarities()
                 .get(x))
             .collect(Collectors.toList());
     }
@@ -37,7 +38,7 @@ public class GearRarityGroup implements JsonExileRegistry<GearRarityGroup>, IAut
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.GEAR_RARITY_GROUP;
     }
 

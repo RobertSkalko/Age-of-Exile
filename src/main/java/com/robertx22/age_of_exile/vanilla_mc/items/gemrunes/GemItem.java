@@ -24,7 +24,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -34,7 +34,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -330,7 +330,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         String id = Registry.ITEM.getId(this)
             .toString();
 
-        Gem gem = Database.Gems()
+        Gem gem = ExileDB.Gems()
             .getList()
             .stream()
             .filter(x -> id.equals(x.item_id))

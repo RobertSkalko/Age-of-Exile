@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
@@ -145,7 +145,7 @@ public class RecipeGenerator {
                 }
             });
 
-        Database.GearTypes()
+        ExileDB.GearTypes()
             .getSerializable()
             .forEach(x -> {
 

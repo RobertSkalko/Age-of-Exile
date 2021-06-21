@@ -1,12 +1,13 @@
 package com.robertx22.age_of_exile.database;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.serialization.IByteBuf;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.text.Text;
@@ -82,7 +83,7 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
     }
 
     public Stat getStat() {
-        return Database.Stats()
+        return ExileDB.Stats()
             .get(stat);
     }
 
@@ -91,7 +92,7 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
     }
 
     public ExactStatData toExactStat(int lvl) {
-        Stat stat = Database.Stats()
+        Stat stat = ExileDB.Stats()
             .get(this.stat);
 
         return ExactStatData.of(v1, v2, stat, getModType(), scale_to_lvl ? lvl : 1);
@@ -99,7 +100,7 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
     }
 
     public ExactStatData ToExactScaleToLevel(int lvl) {
-        Stat stat = Database.Stats()
+        Stat stat = ExileDB.Stats()
             .get(this.stat);
 
         return ExactStatData.of(v1, v2, stat, getModType(), lvl);

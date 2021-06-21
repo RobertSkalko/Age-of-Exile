@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.player_skills;
 
 import com.robertx22.age_of_exile.database.data.MinMax;
-import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
+import com.robertx22.library_of_exile.registry.IWeighted;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;

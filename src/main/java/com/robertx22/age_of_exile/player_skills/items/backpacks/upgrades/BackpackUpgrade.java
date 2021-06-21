@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades;
 
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.AutoPickupType;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackInfo;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -165,7 +165,7 @@ public enum BackpackUpgrade {
 
     public void addSalvage(List<Text> list, int tier) {
         LiteralText txt = new LiteralText("Salvages: ");
-        Database.GearRarities()
+        ExileDB.GearRarities()
             .getFiltered(x -> x.item_tier == tier)
             .forEach(x -> {
                 txt.append(x.locName()

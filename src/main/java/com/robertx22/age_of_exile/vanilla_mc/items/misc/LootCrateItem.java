@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.MinMax;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.loot.generators.GemLootGen;
@@ -76,7 +76,7 @@ public class LootCrateItem extends Item implements IAutoModel {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
-                blueprint.rarity.set(Database.GearRarities()
+                blueprint.rarity.set(ExileDB.GearRarities()
                     .get(IRarity.COMMON_ID));
                 return blueprint.createStack();
             }
@@ -87,7 +87,7 @@ public class LootCrateItem extends Item implements IAutoModel {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
-                blueprint.rarity.set(Database.GearRarities()
+                blueprint.rarity.set(ExileDB.GearRarities()
                     .get(IRarity.MAGICAL_ID));
                 return blueprint.createStack();
             }
@@ -98,7 +98,7 @@ public class LootCrateItem extends Item implements IAutoModel {
                 int lvl = Load.Unit(en)
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
-                blueprint.rarity.set(Database.GearRarities()
+                blueprint.rarity.set(ExileDB.GearRarities()
                     .get(IRarity.RARE_ID));
                 return blueprint.createStack();
             }
@@ -110,15 +110,15 @@ public class LootCrateItem extends Item implements IAutoModel {
                     .getLevel();
                 GearBlueprint blueprint = new GearBlueprint(lvl);
                 // use only gear types that have uniques
-                blueprint.gearItemSlot.set(Database.GearTypes()
-                    .getFilterWrapped(x -> Database.UniqueGears()
+                blueprint.gearItemSlot.set(ExileDB.GearTypes()
+                    .getFilterWrapped(x -> ExileDB.UniqueGears()
                         .getList()
                         .stream()
                         .anyMatch(e -> e.getBaseGearType()
                             .GUID()
                             .equals(x.GUID())))
                     .random());
-                blueprint.rarity.set(Database.GearRarities()
+                blueprint.rarity.set(ExileDB.GearRarities()
                     .get(IRarity.UNIQUE_ID));
                 return blueprint.createStack();
             }

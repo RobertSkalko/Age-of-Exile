@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonGridType;
 import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
@@ -91,7 +91,7 @@ public class DungeonInfoScreen extends BaseScreen {
 
             for (int i = 0; i < selectedDungeon.u.u.size(); i++) {
 
-                ItemStack stack = new UniqueGearEntry(Database.UniqueGears()
+                ItemStack stack = new UniqueGearEntry(ExileDB.UniqueGears()
                     .get(selectedDungeon.u.u.get(i))).createMainStack();
 
                 this.publicAddButton(new ItemSlotButton(stack, x, y));

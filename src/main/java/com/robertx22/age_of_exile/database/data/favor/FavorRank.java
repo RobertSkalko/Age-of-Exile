@@ -1,12 +1,13 @@
 package com.robertx22.age_of_exile.database.data.favor;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
@@ -106,7 +107,7 @@ public class FavorRank implements JsonExileRegistry<FavorRank>, IAutoGson<FavorR
         if (!excludedRarities.isEmpty()) {
             hasBad = true;
             excludedRarities.forEach(x -> {
-                list.add(Database.GearRarities()
+                list.add(ExileDB.GearRarities()
                     .get(x)
                     .locName()
                     .append(" rarity can't drop.")
@@ -146,7 +147,7 @@ public class FavorRank implements JsonExileRegistry<FavorRank>, IAutoGson<FavorR
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.FAVOR_RANK;
     }
 

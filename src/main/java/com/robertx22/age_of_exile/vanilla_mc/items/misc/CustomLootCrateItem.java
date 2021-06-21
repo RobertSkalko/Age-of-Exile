@@ -4,14 +4,13 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.CustomLootCrateItem.CrateInfo;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -100,9 +99,9 @@ public class CustomLootCrateItem extends Item implements IAutoModel {
                 }
             }
             if (rar != null) {
-                if (Database.GearRarities()
+                if (ExileDB.GearRarities()
                     .isRegistered(rar)) {
-                    this.gearRarity = Database.GearRarities()
+                    this.gearRarity = ExileDB.GearRarities()
                         .get(rar);
                 }
             }

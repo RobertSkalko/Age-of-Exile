@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.mixin_methods;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
@@ -20,10 +20,10 @@ public class RenderSpellIcon {
 
                 String spellid = gem.getSkillGem().spell_id;
 
-                if (Database.Spells()
+                if (ExileDB.Spells()
                     .isRegistered(spellid)) {
 
-                    Spell spell = Database.Spells()
+                    Spell spell = ExileDB.Spells()
                         .get(spellid);
 
                     // RenderSystem.enableBlend();

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;

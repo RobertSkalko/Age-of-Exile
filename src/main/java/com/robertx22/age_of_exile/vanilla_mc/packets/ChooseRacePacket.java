@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
 import com.robertx22.age_of_exile.database.data.races.PlayerRace;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
@@ -43,7 +43,7 @@ public class ChooseRacePacket extends MyPacket<ChooseRacePacket> {
 
         if (!Load.Unit(p)
             .hasRace()) {
-            if (Database.Races()
+            if (ExileDB.Races()
                 .isRegistered(race)) {
                 Load.Unit(p)
                     .setRace(race);

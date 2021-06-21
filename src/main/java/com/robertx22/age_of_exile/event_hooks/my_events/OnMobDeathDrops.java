@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusXpToMobsOfTier;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.SingleDungeonData;
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
@@ -69,7 +69,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
                     ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
                     UnitData playerData = Load.Unit(player);
 
-                    EntityConfig config = Database.getEntityConfig(mobKilled, mobKilledData);
+                    EntityConfig config = ExileDB.getEntityConfig(mobKilled, mobKilledData);
 
                     float loot_multi = (float) config.loot_multi;
                     float exp_multi = (float) config.exp_multi;
@@ -111,7 +111,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
         exp *= LootUtils.getLevelDistancePunishmentMulti(mobData.getLevel(), killerData.getLevel());
 
-        exp *= Database.MobRarities()
+        exp *= ExileDB.MobRarities()
             .get(mobData.getRarity())
             .expMulti();
 
@@ -131,7 +131,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         exp += (-1F + Load.favor(killer)
             .getRank().exp_multi) * baseexp;
 
-        exp += (-1F + Database.getDimensionConfig(victim.world).exp_multi) * baseexp;
+        exp += (-1F + ExileDB.getDimensionConfig(victim.world).exp_multi) * baseexp;
 
         exp += (-1F + LootUtils.getMobHealthBasedLootMulti(mobData, killer)) * baseexp;
 

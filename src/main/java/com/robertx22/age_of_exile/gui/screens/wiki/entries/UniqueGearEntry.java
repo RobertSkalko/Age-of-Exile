@@ -2,10 +2,10 @@ package com.robertx22.age_of_exile.gui.screens.wiki.entries;
 
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFilters;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiEntry;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
@@ -33,7 +33,7 @@ public class UniqueGearEntry extends WikiEntry {
         blueprint.actionsAfterGeneration.clear();
         blueprint.unidentifiedPart.set(false);
 
-        blueprint.rarity.set(Database.GearRarities()
+        blueprint.rarity.set(ExileDB.GearRarities()
             .get(uniq.uniqueRarity));
         blueprint.uniquePart.set(uniq);
         blueprint.gearItemSlot.set(blueprint.uniquePart.get()

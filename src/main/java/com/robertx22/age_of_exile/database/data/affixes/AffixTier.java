@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.affixes;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
+import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.library_of_exile.registry.IWeighted;
+import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 
 import java.util.List;
 

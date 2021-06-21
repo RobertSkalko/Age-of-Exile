@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.database.base;
 
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
-import com.robertx22.age_of_exile.uncommon.interfaces.IWeighted;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.registry.IWeighted;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;

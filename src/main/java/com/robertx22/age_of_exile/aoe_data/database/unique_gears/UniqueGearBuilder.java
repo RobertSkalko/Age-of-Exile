@@ -1,18 +1,18 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears;
 
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFilterData;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.MobTagFilter;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.SpecificMobFilter;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ErrorUtils;
+import com.robertx22.library_of_exile.registry.DataGenKey;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.tag.Tag;
@@ -35,7 +35,7 @@ public class UniqueGearBuilder {
         b.uniq.guid = set.IDS.get(slot.slot);
 
         for (DataGenKey<BaseGearType> type : gearType) {
-            b.uniq.serBaseGearType = Database.GearTypes()
+            b.uniq.serBaseGearType = ExileDB.GearTypes()
                 .getFromSerializables(type);
             b.uniq.gearType = type.GUID();
             b.uniq.gear_types.add(type.GUID());
@@ -55,7 +55,7 @@ public class UniqueGearBuilder {
         b.uniq.guid = id;
 
         for (DataGenKey<BaseGearType> type : gearType) {
-            b.uniq.serBaseGearType = Database.GearTypes()
+            b.uniq.serBaseGearType = ExileDB.GearTypes()
                 .getFromSerializables(type);
             b.uniq.gearType = type.GUID();
             b.uniq.gear_types.add(type.GUID());

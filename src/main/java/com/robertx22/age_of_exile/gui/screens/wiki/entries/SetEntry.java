@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.wiki.entries;
 
 import com.robertx22.age_of_exile.database.data.set.GearSet;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiEntry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.library_of_exile.utils.CLOC;
@@ -33,7 +33,7 @@ public class SetEntry extends WikiEntry {
         List<Text> list = new ArrayList<>();
 
         list.add(new LiteralText("Set Pieces: ").formatted(Formatting.GREEN));
-        Database.UniqueGears()
+        ExileDB.UniqueGears()
             .getList()
             .forEach(x -> {
                 if (x.getSet()

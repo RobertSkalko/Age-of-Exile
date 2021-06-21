@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.GuiPartConfig;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.TextUtils;
 import com.robertx22.age_of_exile.gui.overlays.AreaLevelIndicator;
 import com.robertx22.age_of_exile.gui.overlays.BarGuiType;
@@ -66,7 +66,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
         drawTexture(matrix, x, y, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X);
 
         mc.getTextureManager()
-            .bindTexture(Database.PlayerSkills()
+            .bindTexture(ExileDB.PlayerSkills()
                 .get(skill.id)
                 .getIcon());
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);

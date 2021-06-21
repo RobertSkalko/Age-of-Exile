@@ -1,10 +1,11 @@
 package com.robertx22.age_of_exile.database.data.gear_slots;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
+import com.robertx22.library_of_exile.registry.DataGenKey;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 
 public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<GearSlot> {
 
@@ -24,7 +25,7 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<Gear
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.GEAR_SLOT;
     }
 

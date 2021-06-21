@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.commands.suggestions;
 
-import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
+import com.robertx22.library_of_exile.registry.Database;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IGUID;
 
 import java.util.ArrayList;
@@ -9,9 +9,9 @@ import java.util.List;
 
 public class DatabaseSuggestions extends CommandSuggestions {
 
-    ExileRegistryTypes type;
+    ExileRegistryType type;
 
-    public DatabaseSuggestions(ExileRegistryTypes type) {
+    public DatabaseSuggestions(ExileRegistryType type) {
         this.type = type;
     }
 

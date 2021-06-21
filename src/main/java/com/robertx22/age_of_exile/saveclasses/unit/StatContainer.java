@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import info.loenwind.autosave.Registry;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -57,7 +57,7 @@ public class StatContainer implements IHandler<StatContainer> {
         InCalcStatData data = statsInCalc.get(guid);
 
         if (data == null) {
-            Stat stat = Database.Stats()
+            Stat stat = ExileDB.Stats()
                 .get(guid);
             if (stat != null) {
                 statsInCalc.put(stat.GUID(), new InCalcStatData(stat.GUID()));

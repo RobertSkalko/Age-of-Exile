@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.bases;
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.IAutomatable;
@@ -138,9 +138,9 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
                 String key = Registry.ITEM.getId(output.getItem())
                     .toString();
 
-                if (Database.ItemCraftReq()
+                if (ExileDB.ItemCraftReq()
                     .isRegistered(key)) {
-                    req = Database.ItemCraftReq()
+                    req = ExileDB.ItemCraftReq()
                         .get(key);
                 }
 
@@ -181,7 +181,7 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
                                 itemStacks[e].decrement(1);
                             });
 
-                        PlayerSkill skill = Database.PlayerSkills()
+                        PlayerSkill skill = ExileDB.PlayerSkills()
                             .get(this.skill.id);
 
                         PlayerSkills skills = Load.playerSkills(player);

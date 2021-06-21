@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
@@ -47,7 +47,7 @@ public class TellClientEntityIsCastingSpellPacket extends MyPacket<TellClientEnt
 
         LivingEntity en = (LivingEntity) ctx.getPlayer().world.getEntityById(enid);
 
-        Spell spell = Database.Spells()
+        Spell spell = ExileDB.Spells()
             .get(spellid);
         SpellCastContext c = new SpellCastContext(en, 0, spell);
 

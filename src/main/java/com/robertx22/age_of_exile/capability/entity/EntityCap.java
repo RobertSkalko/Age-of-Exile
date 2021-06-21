@@ -17,7 +17,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.Caster
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
 import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
@@ -44,6 +44,7 @@ import com.robertx22.age_of_exile.vanilla_mc.potion_effects.EntityStatusEffectsD
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.LoadSave;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -494,11 +495,11 @@ public class EntityCap {
         @Override
         public MobRarity getMobRarity() {
             String rar = rarity;
-            if (!Database.MobRarities()
+            if (!ExileDB.MobRarities()
                 .isRegistered(rar)) {
                 rar = IRarity.COMMON_ID;
             }
-            return Database.MobRarities()
+            return ExileDB.MobRarities()
                 .get(rar);
         }
 
@@ -516,7 +517,7 @@ public class EntityCap {
 
             } else {
 
-                MobRarity rarity = Database.MobRarities()
+                MobRarity rarity = ExileDB.MobRarities()
                     .get(getRarity());
 
                 Formatting rarformat = rarity.textFormatting();
@@ -628,7 +629,7 @@ public class EntityCap {
         @Override
         public boolean increaseRarity() {
 
-            MobRarity rar = Database.MobRarities()
+            MobRarity rar = ExileDB.MobRarities()
                 .get(rarity);
 
             if (rar.hasHigherRarity()) {
@@ -659,7 +660,7 @@ public class EntityCap {
                 tier = data.data.get(entity.getBlockPos()).data.t;
             }
 
-            return Database.Tiers()
+            return ExileDB.Tiers()
                 .get(tier + "");
         }
 
@@ -702,7 +703,7 @@ public class EntityCap {
 
         @Override
         public void mobBasicAttack(AttackInformation data) {
-            MobRarity rar = Database.MobRarities()
+            MobRarity rar = ExileDB.MobRarities()
                 .get(data.getAttackerEntityData()
                     .getRarity());
 
@@ -712,7 +713,7 @@ public class EntityCap {
 
             float num = vanilla * rar.DamageMultiplier() * getMapTier().dmg_multi;
 
-            num *= Database.getEntityConfig(entity, this).dmg_multi;
+            num *= ExileDB.getEntityConfig(entity, this).dmg_multi;
 
             num = new AttackDamage(Elements.Physical).scale(num, getLevel());
 
@@ -764,13 +765,13 @@ public class EntityCap {
 
         @Override
         public PlayerRace getRace() {
-            return Database.Races()
+            return ExileDB.Races()
                 .get("empty");
         }
 
         @Override
         public boolean hasRace() {
-            return Database.Races()
+            return ExileDB.Races()
                 .isRegistered(race);
         }
 
@@ -814,7 +815,7 @@ public class EntityCap {
         }
 
         private void setMobLvlNormally(LivingEntity entity, PlayerEntity nearestPlayer) {
-            EntityConfig entityConfig = Database.getEntityConfig(entity, this);
+            EntityConfig entityConfig = ExileDB.getEntityConfig(entity, this);
 
             int lvl = LevelUtils.determineLevel(entity.world, entity.getBlockPos(),
                 nearestPlayer

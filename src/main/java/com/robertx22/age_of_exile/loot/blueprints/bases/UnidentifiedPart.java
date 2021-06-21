@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.loot.blueprints.bases;
 
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 
 public class UnidentifiedPart extends BlueprintPart<Boolean, GearBlueprint> {
 

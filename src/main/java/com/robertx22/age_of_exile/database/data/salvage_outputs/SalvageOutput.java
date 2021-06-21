@@ -1,11 +1,12 @@
 package com.robertx22.age_of_exile.database.data.salvage_outputs;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class SalvageOutput implements JsonExileRegistry<SalvageOutput>, IAutoGso
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.SALVAGE_OUTPUT;
     }
 

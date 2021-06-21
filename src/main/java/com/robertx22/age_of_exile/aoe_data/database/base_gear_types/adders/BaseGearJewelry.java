@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders;
 
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
+import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -13,14 +13,15 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.DataGenKey;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.HashMap;
 
-public class BaseGearJewelry implements ExileRegistryInit {
+public class BaseGearJewelry implements ExileRegistryInit, GearDataHelper {
 
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> MANA_RING;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> HP_RING;

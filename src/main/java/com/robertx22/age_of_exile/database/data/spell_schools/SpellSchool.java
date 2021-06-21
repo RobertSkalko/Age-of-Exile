@@ -1,13 +1,14 @@
 package com.robertx22.age_of_exile.database.data.spell_schools;
 
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.spell_schools.parser.TalentGrid;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.PointData;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -48,7 +49,7 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.SPELL_SCHOOL;
     }
 
@@ -76,7 +77,7 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
 
         if (MMORPG.RUN_DEV_TOOLS) {
             for (Map.Entry<PointData, String> x : this.calcData.perks.entrySet()) {
-                if (!Database.Perks()
+                if (!ExileDB.Perks()
                     .isRegistered(x.getValue())) {
 
                     System.out.print("\n Perk of id: " + x.getValue()
@@ -86,7 +87,7 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
                 }
             }
 
-            Database.Perks()
+            ExileDB.Perks()
                 .getFilterWrapped(x -> x.type == Perk.PerkType.SPECIAL).list.forEach(x -> {
                     if (this.calcData.perks.values()
                         .stream()
@@ -112,7 +113,7 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
         public transient HashMap<PointData, String> perks = new HashMap<>();
 
         public Perk getPerk(PointData point) {
-            return Database.Perks()
+            return ExileDB.Perks()
                 .get(perks.get(point));
         }
 

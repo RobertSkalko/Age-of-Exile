@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -24,7 +24,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.util.Formatting;
@@ -61,7 +61,7 @@ public class SpecialStats {
                 int duration = (int) (60 * 20 * 1);
 
                 ExilePotionEvent potionEvent = EventBuilder.ofEffect(effect.source, effect.source, Load.Unit(effect.source)
-                        .getLevel(), Database.ExileEffects()
+                        .getLevel(), ExileDB.ExileEffects()
                         .get(BeneficialEffects.VOID_EYE.effectId), GiveOrTake.give, duration)
                     .build();
                 potionEvent.Activate();
@@ -102,7 +102,7 @@ public class SpecialStats {
             public ExilePotionEvent activate(ExilePotionEvent effect, StatData data, Stat stat) {
 
                 ExilePotionEvent potionEvent = EventBuilder.ofEffect(effect.source, effect.target, Load.Unit(effect.source)
-                        .getLevel(), Database.ExileEffects()
+                        .getLevel(), ExileDB.ExileEffects()
                         .get(NegativeEffects.MUMMY_CURSE.effectId), GiveOrTake.give, 20 * 10 * 20)
                     .build();
                 potionEvent.Activate();
@@ -112,7 +112,7 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(ExilePotionEvent effect, StatData data, Stat stat) {
-                return Database.ExileEffects()
+                return ExileDB.ExileEffects()
                     .get(effect.data.getString(EventData.EXILE_EFFECT))
                     .hasTag(EffectTags.immobilizing) && RandomUtils.roll(data.getAverageValue());
             }

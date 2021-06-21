@@ -6,8 +6,9 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
+import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.MoreSocketsStat;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -71,13 +72,13 @@ public class RerollAffixIntoSocket extends CurrencyItem implements ICurrencyItem
         if (data != null) {
             Affix.Type type = data.type;
 
-            Affix affix = Database.Affixes()
+            Affix affix = ExileDB.Affixes()
                 .getFilterWrapped(x -> x.type == type)
                 .of(x -> x
                     .getTierStats(1)
                     .stream()
                     .anyMatch(e -> e.GetStat() instanceof MoreSocketsStat))
-                .allThatMeetRequirement(gear)
+                .of(x -> x.meetsRequirements(new GearRequestedFor(gear)))
                 .random();
             data.create(gear, affix);
 

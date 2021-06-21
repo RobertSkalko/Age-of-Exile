@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.database.gear_slots;
 
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.ids.GearSlotIds;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
+import com.robertx22.library_of_exile.registry.DataGenKey;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class GearSlots implements ExileRegistryInit {
 

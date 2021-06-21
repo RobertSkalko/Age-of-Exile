@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.test;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.StatEffect;
@@ -41,7 +41,7 @@ public class DataPackStatEffect implements IStatEffect {
 
             if (ifs.stream()
                 .allMatch(x -> {
-                    StatCondition cond = Database.StatConditions()
+                    StatCondition cond = ExileDB.StatConditions()
                         .get(x);
                     if (cond == null) {
                         return false;
@@ -51,7 +51,7 @@ public class DataPackStatEffect implements IStatEffect {
                 })) {
 
                 effects.forEach(x -> {
-                    StatEffect e = Database.StatEffects()
+                    StatEffect e = ExileDB.StatEffects()
                         .get(x);
                     if (e == null) {
                         return;

@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.stats;
 
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.AutoDatapackStats;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
+import com.robertx22.library_of_exile.registry.DataGenKey;
 
 // does nothing, just used by other things, like the "hasStat" spell condition
 public class MarkerStat extends BaseDatapackStat {

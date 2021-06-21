@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas.rework.action;
 
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
@@ -37,7 +37,7 @@ public class GiveExileStatusInRadius extends StatEffect {
 
         LivingEntity en = event.getSide(statSource);
 
-        ExileEffect eff = Database.ExileEffects()
+        ExileEffect eff = ExileDB.ExileEffects()
             .get(effect);
 
         EntityFinder.start(en, LivingEntity.class, en.getBlockPos())

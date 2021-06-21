@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.loot.blueprints.bases;
 
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 
 public class GearItemSlotPart extends BlueprintPart<BaseGearType, GearBlueprint> {
@@ -14,10 +14,10 @@ public class GearItemSlotPart extends BlueprintPart<BaseGearType, GearBlueprint>
     @Override
     protected BaseGearType generateIfNull() {
 
-        GearSlot slot = Database.GearSlots()
+        GearSlot slot = ExileDB.GearSlots()
             .random();
 
-        return Database.GearTypes()
+        return ExileDB.GearTypes()
             .getFilterWrapped(x -> x.getGearSlot()
                 .GUID()
                 .equals(slot.GUID()) && x.getLevelRange()
@@ -26,7 +26,7 @@ public class GearItemSlotPart extends BlueprintPart<BaseGearType, GearBlueprint>
     }
 
     public void set(String id) {
-        super.set(Database.GearTypes()
+        super.set(ExileDB.GearTypes()
             .get(id));
     }
 

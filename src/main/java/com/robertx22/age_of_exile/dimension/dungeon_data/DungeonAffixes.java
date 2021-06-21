@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -35,11 +35,11 @@ public class DungeonAffixes {
     public List<Affix> getAffixes() {
         List<Affix> list = new ArrayList<>();
         s.forEach(x -> {
-            list.add(Database.Affixes()
+            list.add(ExileDB.Affixes()
                 .get(x));
         });
         p.forEach(x -> {
-            list.add(Database.Affixes()
+            list.add(ExileDB.Affixes()
                 .get(x));
         });
         return list;

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors.cloth;
 
+import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseClothArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
@@ -9,16 +10,16 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
-public class BlazeArmor implements ExileRegistryInit {
+public class BlazeArmor implements ExileRegistryInit, GearDataHelper {
 
     @Override
     public void registerAll() {
@@ -26,10 +27,10 @@ public class BlazeArmor implements ExileRegistryInit {
         // DARK/FIRE cloth set
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.BLAZE_SET,
-            ArmorSet.SlotEnum.HELMET,
-            "Blaze",
-            BaseClothArmors.HELMETS.values())
+                ModRegistry.UNIQUE_GEARS.BLAZE_SET,
+                ArmorSet.SlotEnum.HELMET,
+                "Blaze",
+                BaseClothArmors.HELMETS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.HELMET),
@@ -55,10 +56,10 @@ public class BlazeArmor implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.BLAZE_SET,
-            ArmorSet.SlotEnum.CHEST,
-            "Blaze",
-            BaseClothArmors.CHESTS.values())
+                ModRegistry.UNIQUE_GEARS.BLAZE_SET,
+                ArmorSet.SlotEnum.CHEST,
+                "Blaze",
+                BaseClothArmors.CHESTS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.CHEST),
@@ -82,10 +83,10 @@ public class BlazeArmor implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.BLAZE_SET,
-            ArmorSet.SlotEnum.PANTS,
-            "Blaze",
-            BaseClothArmors.PANTS.values())
+                ModRegistry.UNIQUE_GEARS.BLAZE_SET,
+                ArmorSet.SlotEnum.PANTS,
+                "Blaze",
+                BaseClothArmors.PANTS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.PANTS),
@@ -111,10 +112,10 @@ public class BlazeArmor implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.BLAZE_SET,
-            ArmorSet.SlotEnum.BOOTS,
-            "Blaze",
-            BaseClothArmors.BOOTS.values())
+                ModRegistry.UNIQUE_GEARS.BLAZE_SET,
+                ArmorSet.SlotEnum.BOOTS,
+                "Blaze",
+                BaseClothArmors.BOOTS.values())
             .baseStats(
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.LIGHT, ArmorSlot.BOOTS),

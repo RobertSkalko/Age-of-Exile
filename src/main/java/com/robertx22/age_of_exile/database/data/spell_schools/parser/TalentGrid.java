@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.spell_schools.parser;
 
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
+import com.robertx22.library_of_exile.utils.Watch;
 
 import java.util.*;
 

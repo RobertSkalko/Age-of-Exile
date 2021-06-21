@@ -30,7 +30,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -39,7 +39,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -115,7 +115,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
 
         gear.sockets.sockets.add(socket);
 
-        Database.Runewords()
+        ExileDB.Runewords()
             .getList()
             .forEach(x -> {
                 if (x.HasRuneWord(gear)) {
@@ -409,7 +409,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
     }
 
     public Rune getRune() {
-        return Database.Runes()
+        return ExileDB.Runes()
             .get(type.id);
     }
 

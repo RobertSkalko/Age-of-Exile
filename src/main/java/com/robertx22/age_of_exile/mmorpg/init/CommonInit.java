@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDBInit;
 import com.robertx22.age_of_exile.dimension.DimensionInit;
 import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
@@ -18,22 +18,14 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModItemTags;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
+import com.robertx22.library_of_exile.events.base.EventConsumer;
+import com.robertx22.library_of_exile.events.base.ExileEvents;
+import com.robertx22.library_of_exile.utils.Watch;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Pair;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeInfo;
-import top.theillusivec4.curios.api.event.DropRulesCallback;
-import top.theillusivec4.curios.api.type.component.ICurio;
-import top.theillusivec4.curios.api.type.component.ICuriosItemHandler;
-
-import java.util.List;
-import java.util.function.Predicate;
 
 public class CommonInit implements ModInitializer {
 
@@ -42,10 +34,17 @@ public class CommonInit implements ModInitializer {
 
         Watch watch = new Watch();
 
+        ExileEvents.CHECK_IF_DEV_TOOLS_SHOULD_RUN.register(new EventConsumer<ExileEvents.OnCheckIsDevToolsRunning>() {
+            @Override
+            public void accept(ExileEvents.OnCheckIsDevToolsRunning event) {
+                event.run = MMORPG.RUN_DEV_TOOLS;
+            }
+        });
+
         StatEffects.loadClass();
         StatConditions.loadClass();
         Stats.loadClass();
-        Database.initRegistries();
+        ExileDBInit.initRegistries();
         SpecialStats.init();
 
         MapField.init();
@@ -56,11 +55,12 @@ public class CommonInit implements ModInitializer {
         ModItemTags.init();
         MobAttributes.register();
 
-        Database.registerAllItems(); // after config registerAll
+        ExileDBInit.registerAllItems(); // after config registerAll
 
         if (MMORPG.RUN_DEV_TOOLS) {
             GeneratedData.addAllObjectsToGenerate();
         }
+
         CommonEvents.register();
 
         C2SPacketRegister.register();
@@ -75,17 +75,6 @@ public class CommonInit implements ModInitializer {
         ModCriteria.init();
 
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
-
-        // dont drop curios on death
-        DropRulesCallback.EVENT.register(new DropRulesCallback() {
-            @Override
-            public void dropRules(LivingEntity livingEntity, ICuriosItemHandler iCuriosItemHandler, DamageSource damageSource, int i, boolean b, List<Pair<Predicate<ItemStack>, ICurio.DropRule>> list) {
-
-                //if (ModConfig.get().Server.KEEP_INVENTORY_ON_DEATH) {
-                // list.add(new Pair<Predicate<ItemStack>, ICurio.DropRule>(x -> true, ICurio.DropRule.ALWAYS_KEEP));
-                // }
-            }
-        });
 
         DimensionInit.init();
 

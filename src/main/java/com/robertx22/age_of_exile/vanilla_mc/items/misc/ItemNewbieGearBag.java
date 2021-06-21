@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.age_of_exile.loot.generators.util.GearCreationUtils;
@@ -16,7 +16,6 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.ItemNewbieGearBag.NewbieContent;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.enchantment.Enchantments;
@@ -91,7 +90,7 @@ public class ItemNewbieGearBag extends Item {
         public void give(PlayerEntity player) {
 
             gears.forEach(x -> {
-                BaseGearType gear = Database.GearTypes()
+                BaseGearType gear = ExileDB.GearTypes()
                     .get(x);
                 GearItemData data = getBlueprint(gear).createData();
                 data.lvl = 1;
@@ -105,7 +104,7 @@ public class ItemNewbieGearBag extends Item {
             });
 
             skillgems.forEach(x -> {
-                SkillGem gem = Database.SkillGems()
+                SkillGem gem = ExileDB.SkillGems()
                     .get(x);
                 SkillGemBlueprint blueprint = new SkillGemBlueprint(1);
 
@@ -175,7 +174,7 @@ public class ItemNewbieGearBag extends Item {
     private static GearBlueprint getBlueprint(BaseGearType type) {
         GearBlueprint print = new GearBlueprint(1);
         print.gearItemSlot.set(type);
-        print.rarity.set(Database.GearRarities()
+        print.rarity.set(ExileDB.GearRarities()
             .get(IRarity.COMMON_ID));
         return print;
     }

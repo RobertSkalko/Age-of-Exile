@@ -1,15 +1,11 @@
 package com.robertx22.age_of_exile.event_hooks.player;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.SyncTime;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
-import com.robertx22.age_of_exile.uncommon.testing.Watch;
-import com.robertx22.age_of_exile.vanilla_mc.packets.OnLoginClientPacket;
-import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.Watch;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -24,10 +20,6 @@ public class OnLogin {
         }
 
         try {
-
-            Database.sendPacketsToClient(player, SyncTime.ON_LOGIN);
-            Packets.sendToClient(player, new OnLoginClientPacket());
-            Database.restoreFromBackupifEmpty();
 
             Load.perks(player)
                 .syncToClient(player);
@@ -49,8 +41,6 @@ public class OnLogin {
             Exception e) {
             e.printStackTrace();
         }
-
-        Database.restoreFromBackupifEmpty();
 
         if (MMORPG.RUN_DEV_TOOLS) {
             total.print("Total on login actions took ");

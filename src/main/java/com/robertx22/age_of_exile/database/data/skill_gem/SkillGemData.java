@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -15,7 +15,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
 import info.loenwind.autosave.annotations.Storable;
@@ -93,7 +93,7 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
     }
 
     public SkillGem getSkillGem() {
-        return Database.SkillGems()
+        return ExileDB.SkillGems()
             .get(id);
     }
 
@@ -103,7 +103,7 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
     }
 
     public SkillGemRarity getRarity() {
-        return Database.SkillGemRarities()
+        return ExileDB.SkillGemRarities()
             .get(rar);
     }
 
@@ -119,7 +119,7 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
             List<ExactStatData> cStats = getSkillGem().getConstantStats(this);
 
             if (this.getSkillGem().type == SkillGemType.SKILL_GEM) {
-                Spell spell = Database.Spells()
+                Spell spell = ExileDB.Spells()
                     .get(getSkillGem().spell_id);
                 //SpellCastContext ctx = new SpellCastContext(info.player, 0, spell);
                 list.addAll(spell.GetTooltipString(this, spell, info));

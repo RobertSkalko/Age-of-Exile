@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.capability.entity;
 
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -62,7 +62,7 @@ public class CooldownsData {
     public List<String> getAllSpellsOnCooldown() {
         return map.keySet()
             .stream()
-            .filter(x -> Database.Spells()
+            .filter(x -> ExileDB.Spells()
                 .isRegistered(x))
             .collect(Collectors.toList());
     }

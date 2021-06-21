@@ -2,14 +2,12 @@ package com.robertx22.age_of_exile.database.data.unique_items;
 
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.ISerializable;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFiltersGroupData;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -17,6 +15,9 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IBaseGearType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -52,12 +53,12 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
     public transient BaseGearType serBaseGearType;
 
     public boolean hasSet() {
-        return Database.Sets()
+        return ExileDB.Sets()
             .isRegistered(set);
     }
 
     public GearSet getSet() {
-        return Database.Sets()
+        return ExileDB.Sets()
             .get(set);
     }
 
@@ -160,7 +161,7 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.UNIQUE_GEAR;
     }
 
@@ -173,7 +174,7 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
     }
 
     public GearRarity getUniqueRarity() {
-        return Database.GearRarities()
+        return ExileDB.GearRarities()
             .get(uniqueRarity);
     }
 
@@ -209,19 +210,19 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
     public List<BaseGearType> getPossibleGearTypes() {
 
         return gear_types.stream()
-            .map(x -> Database.GearTypes()
+            .map(x -> ExileDB.GearTypes()
                 .get(x))
             .collect(Collectors.toList());
     }
 
     @Override
     public BaseGearType getBaseGearType() {
-        if (!Database.GearTypes()
+        if (!ExileDB.GearTypes()
             .isRegistered(this.gearType)) {
             assert this.serBaseGearType != null;
             return serBaseGearType;
         }
-        return Database.GearTypes()
+        return ExileDB.GearTypes()
             .get(gearType);
     }
 

@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.player_skills.events;
 
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.player_skills.items.fishing.FishingLureItem;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -45,7 +45,7 @@ public class OnFishing {
                 return;
             }
 
-            PlayerSkill skill = Database.PlayerSkills()
+            PlayerSkill skill = ExileDB.PlayerSkills()
                 .get(PlayerSkillEnum.FISHING.id);
 
             PlayerSkills skills = Load.playerSkills(player);

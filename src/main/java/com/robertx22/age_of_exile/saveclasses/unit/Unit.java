@@ -16,7 +16,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Bloo
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.GearStatCtx;
@@ -29,7 +29,7 @@ import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.ExtraMobRarityAttributes;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.PlayerStatUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EfficientMobUnitPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityUnitPacket;
 import com.robertx22.library_of_exile.main.MyPacket;
@@ -174,14 +174,14 @@ public class Unit {
 
     public String randomRarity(LivingEntity entity, UnitData data) {
 
-        List<MobRarity> rarities = Database.MobRarities()
+        List<MobRarity> rarities = ExileDB.MobRarities()
             .getList()
             .stream()
             .filter(x -> data.getLevel() >= x.minMobLevelForRandomSpawns() || data.getLevel() >= GameBalanceConfig.get().MAX_LEVEL)
             .collect(Collectors.toList());
 
         if (rarities.isEmpty()) {
-            rarities.add(Database.MobRarities()
+            rarities.add(ExileDB.MobRarities()
                 .get(IRarity.COMMON_ID));
         }
 
@@ -290,7 +290,7 @@ public class Unit {
 
                 sets.entrySet()
                     .forEach(x -> {
-                        GearSet set = Database.Sets()
+                        GearSet set = ExileDB.Sets()
                             .get(x.getKey());
                         statContexts.add(set.getStats(data));
                     });

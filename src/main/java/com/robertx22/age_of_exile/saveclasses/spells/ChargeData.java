@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.spells;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -60,9 +60,9 @@ public class ChargeData {
 
         for (SkillGemData x : sdata.getSkillGemData().gems) {
             if (x != null && x.getSkillGem() != null) {
-                if (Database.Spells()
+                if (ExileDB.Spells()
                     .isRegistered(x.getSkillGem().spell_id)) {
-                    Spell s = Database.Spells()
+                    Spell s = ExileDB.Spells()
                         .get(x.getSkillGem().spell_id);
 
                     String id = s.config.charge_name;

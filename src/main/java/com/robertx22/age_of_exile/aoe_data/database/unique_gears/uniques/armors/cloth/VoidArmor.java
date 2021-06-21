@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.armors.cloth;
 
+import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseClothArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
@@ -12,17 +13,17 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalP
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
-public class VoidArmor implements ExileRegistryInit {
+public class VoidArmor implements ExileRegistryInit, GearDataHelper {
 
     @Override
     public void registerAll() {
@@ -30,10 +31,10 @@ public class VoidArmor implements ExileRegistryInit {
         // cloth mage focused dark armor, but also for assasins
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.VOID_SET,
-            ArmorSet.SlotEnum.HELMET,
-            "Eyes of the Void",
-            BaseClothArmors.HELMETS.values())
+                ModRegistry.UNIQUE_GEARS.VOID_SET,
+                ArmorSet.SlotEnum.HELMET,
+                "Eyes of the Void",
+                BaseClothArmors.HELMETS.values())
             .setReplacesName()
             .baseStats(
                 Arrays.asList(
@@ -58,10 +59,10 @@ public class VoidArmor implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.VOID_SET,
-            ArmorSet.SlotEnum.CHEST,
-            "Void Seeker",
-            BaseClothArmors.CHESTS.values())
+                ModRegistry.UNIQUE_GEARS.VOID_SET,
+                ArmorSet.SlotEnum.CHEST,
+                "Void Seeker",
+                BaseClothArmors.CHESTS.values())
             .setReplacesName()
             .baseStats(
                 Arrays.asList(
@@ -88,10 +89,10 @@ public class VoidArmor implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.VOID_SET,
-            ArmorSet.SlotEnum.PANTS,
-            "Carrier of the Void",
-            BaseClothArmors.PANTS.values())
+                ModRegistry.UNIQUE_GEARS.VOID_SET,
+                ArmorSet.SlotEnum.PANTS,
+                "Carrier of the Void",
+                BaseClothArmors.PANTS.values())
             .setReplacesName()
             .baseStats(
                 Arrays.asList(
@@ -117,10 +118,10 @@ public class VoidArmor implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.ofSet(
-            ModRegistry.UNIQUE_GEARS.VOID_SET,
-            ArmorSet.SlotEnum.BOOTS,
-            "Void Walker",
-            BaseClothArmors.BOOTS.values())
+                ModRegistry.UNIQUE_GEARS.VOID_SET,
+                ArmorSet.SlotEnum.BOOTS,
+                "Void Walker",
+                BaseClothArmors.BOOTS.values())
             .setReplacesName()
             .baseStats(
                 Arrays.asList(

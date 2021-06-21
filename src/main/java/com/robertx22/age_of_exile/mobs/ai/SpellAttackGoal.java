@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.mobs.ai;
 
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
@@ -25,7 +25,7 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
     public SpellAttackGoal addOtherSpell(String spell) {
 
         EntitySavedSpellData data = EntitySavedSpellData.create(Load.Unit(actor)
-            .getLevel(), actor, Database.Spells()
+            .getLevel(), actor, ExileDB.Spells()
             .get(spell));
 
         spells.add(data);

@@ -1,29 +1,30 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.weapons;
 
+import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearWeapons;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
-public class UniqueSwords implements ExileRegistryInit {
+public class UniqueSwords implements ExileRegistryInit, GearDataHelper {
 
     @Override
     public void registerAll() {
 
         UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.VOID_SWORD,
-            "void_sword",
-            "Grasp of the Void",
-            BaseGearWeapons.SWORD.values())
+                ModRegistry.UNIQUE_GEARS.VOID_SWORD,
+                "void_sword",
+                "Grasp of the Void",
+                BaseGearWeapons.SWORD.values())
             .setReplacesName()
             .baseStats(Arrays.asList(
                 getAttackDamageStat(WeaponTypes.sword, Number.HALF, Elements.Physical),

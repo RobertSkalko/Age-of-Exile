@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -20,10 +20,10 @@ public class MobAffixesData {
     public List<MobAffix> getAffixes() {
         try {
             return affixes.stream()
-                .filter(x -> Database.MobAffixes()
+                .filter(x -> ExileDB.MobAffixes()
                     .isRegistered(x))
                 .map(x -> {
-                    return Database.MobAffixes()
+                    return ExileDB.MobAffixes()
                         .get(x);
                 })
                 .collect(Collectors.toList());
@@ -41,7 +41,7 @@ public class MobAffixesData {
 
         if (amount > 0) {
 
-            this.affixes.add(Database.MobAffixes()
+            this.affixes.add(ExileDB.MobAffixes()
                 .random()
                 .GUID());
         }

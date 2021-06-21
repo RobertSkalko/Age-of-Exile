@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
@@ -26,7 +26,7 @@ public class EitherIsTrueCondition extends StatCondition {
     @Override
     public boolean can(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
         return ifs.stream()
-            .anyMatch(x -> Database.StatConditions()
+            .anyMatch(x -> ExileDB.StatConditions()
                 .get(x)
                 .can(event, statSource, data, stat));
     }

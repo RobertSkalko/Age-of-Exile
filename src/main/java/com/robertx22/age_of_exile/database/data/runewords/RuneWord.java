@@ -1,20 +1,21 @@
 package com.robertx22.age_of_exile.database.data.runewords;
 
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
-import com.robertx22.age_of_exile.database.IByteBuf;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
+import com.robertx22.library_of_exile.registry.DataGenKey;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+import com.robertx22.library_of_exile.registry.serialization.IByteBuf;
 import net.minecraft.network.PacketByteBuf;
 
 import java.util.ArrayList;
@@ -109,7 +110,7 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, JsonEx
 
         try {
             int minlvl = runes_needed.stream()
-                .map(x -> Database.Runes()
+                .map(x -> ExileDB.Runes()
                     .get(x))
                 .min(Comparator.comparingInt(x -> x.getReqLevel()))
                 .get()
@@ -188,7 +189,7 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, JsonEx
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.RUNEWORD;
     }
 

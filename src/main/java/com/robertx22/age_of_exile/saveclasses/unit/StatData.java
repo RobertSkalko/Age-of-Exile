@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.math.MathHelper;
@@ -31,7 +31,7 @@ public class StatData {
     }
 
     public Stat GetStat() {
-        return Database.Stats()
+        return ExileDB.Stats()
             .get(id);
     }
 

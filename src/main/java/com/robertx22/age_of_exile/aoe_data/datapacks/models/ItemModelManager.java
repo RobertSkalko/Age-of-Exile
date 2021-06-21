@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.models;
 
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
@@ -18,7 +18,7 @@ public class ItemModelManager {
             }
         });
 
-        Database.UniqueGears()
+        ExileDB.UniqueGears()
             .getSerializable()
             .forEach(x -> {
                 if (!x.getBaseGearType()
@@ -34,7 +34,7 @@ public class ItemModelManager {
                 }
             });
 
-        Database.GearTypes()
+        ExileDB.GearTypes()
             .getSerializable()
             .forEach(x -> {
                 if (!x.getTags()

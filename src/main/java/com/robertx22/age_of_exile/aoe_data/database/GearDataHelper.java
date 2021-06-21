@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 
-public interface DataHelper {
+public interface GearDataHelper {
 
     public enum Number {
         FULL(1F),

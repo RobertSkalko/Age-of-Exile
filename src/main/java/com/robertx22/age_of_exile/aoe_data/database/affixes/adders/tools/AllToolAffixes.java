@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.Sl
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusSkillExp;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.DoubleDropChance;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.TripleDropChance;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 
 public class AllToolAffixes implements ExileRegistryInit {

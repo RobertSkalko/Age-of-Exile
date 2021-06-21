@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import net.minecraft.block.LeavesBlock;
@@ -133,7 +133,7 @@ public class WorldUtils {
 
     public static int getTier(World world, BlockPos pos) {
 
-        return Database.getDimensionConfig(world).mob_tier;
+        return ExileDB.getDimensionConfig(world).mob_tier;
 
     }
 

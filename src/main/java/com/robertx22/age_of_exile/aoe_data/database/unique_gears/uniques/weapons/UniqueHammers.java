@@ -1,21 +1,21 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.weapons;
 
-import com.robertx22.age_of_exile.aoe_data.database.DataHelper;
+import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearWeapons;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
-public class UniqueHammers implements ExileRegistryInit {
+public class UniqueHammers implements ExileRegistryInit, GearDataHelper {
 
     @Override
     public void registerAll() {
@@ -27,8 +27,8 @@ public class UniqueHammers implements ExileRegistryInit {
                 BaseGearWeapons.HAMMER.values())
             .setReplacesName()
             .baseStats(Arrays.asList(
-                getAttackDamageStat(WeaponTypes.hammer, DataHelper.Number.HALF, Elements.Physical),
-                getAttackDamageStat(WeaponTypes.hammer, DataHelper.Number.HALF, Elements.Nature)
+                getAttackDamageStat(WeaponTypes.hammer, GearDataHelper.Number.HALF, Elements.Physical),
+                getAttackDamageStat(WeaponTypes.hammer, GearDataHelper.Number.HALF, Elements.Nature)
             ))
             .stats(Arrays.asList(
                 new StatModifier(25, 25, Stats.DOT_DAMAGE.get(), ModType.FLAT),

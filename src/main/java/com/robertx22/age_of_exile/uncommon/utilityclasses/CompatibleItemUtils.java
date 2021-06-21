@@ -5,12 +5,14 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.auto_comp.ItemAutoPowerLevels;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
+import com.robertx22.library_of_exile.registry.Database;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -51,7 +53,7 @@ public class CompatibleItemUtils {
             String reg = Registry.ITEM.getId(item)
                 .toString();
 
-            all.addAll(Database.CompatibleItems()
+            all.addAll(ExileDB.CompatibleItems()
                 .getFilterWrapped(x -> x.item_id.equals(reg)).list);
 
             if (ModConfig.get().autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS) {
@@ -60,7 +62,7 @@ public class CompatibleItemUtils {
 
                         Set<GearSlot> slots = new HashSet<>();
 
-                        Database.GearTypes()
+                        ExileDB.GearTypes()
                             .getList()
                             .forEach(x -> {
                                 if (BaseGearType.isGearOfThisType(x, item)) {
@@ -80,7 +82,7 @@ public class CompatibleItemUtils {
             if (!all.isEmpty()) {
 
                 all.forEach(x -> {
-                    BaseGearType t = Database.GearTypes()
+                    BaseGearType t = ExileDB.GearTypes()
                         .get(x.item_type);
 
                     if (t.getLevelRange()

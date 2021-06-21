@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.wiki.entries;
 
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiEntry;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
@@ -23,9 +23,9 @@ public class SpellEntry extends WikiEntry {
     @Override
     public ItemStack createMainStack() {
         SkillGemBlueprint b = new SkillGemBlueprint(LootInfo.ofDummyForClient(1));
-        if (Database.SkillGems()
+        if (ExileDB.SkillGems()
             .isRegistered(spell.GUID())) {
-            b.type.set(Database.SkillGems()
+            b.type.set(ExileDB.SkillGems()
                 .get(spell.GUID()));
 
             b.level.set(1);

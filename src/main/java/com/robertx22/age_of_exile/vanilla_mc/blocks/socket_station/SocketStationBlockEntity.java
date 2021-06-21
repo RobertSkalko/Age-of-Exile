@@ -3,12 +3,11 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station.SocketStationBlockEntity.ResultItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneWordItem;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
@@ -106,7 +105,7 @@ public class SocketStationBlockEntity extends BaseModificationStation {
 
                 if (gear != null) {
 
-                    Database.Runewords()
+                    ExileDB.Runewords()
                         .getList()
                         .forEach(x -> {
                             if (x.canItemHave(gear)) {
@@ -118,7 +117,7 @@ public class SocketStationBlockEntity extends BaseModificationStation {
             } else if (!CraftItemSlot().isEmpty()) {
                 if (CraftItemSlot().getItem() instanceof RuneItem) {
                     RuneItem rune = (RuneItem) CraftItemSlot().getItem();
-                    Database.Runewords()
+                    ExileDB.Runewords()
                         .getList()
                         .forEach(x -> {
                             if (x.containsRune(rune.getRune())) {

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.fabled;
 
+import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseLeatherArmors;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
@@ -9,26 +10,26 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
-public class FabledArmor implements ExileRegistryInit {
+public class FabledArmor implements ExileRegistryInit, GearDataHelper {
 
     @Override
     public void registerAll() {
 
         UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.UNSEEING_EYE,
-            "unseeing_eye",
-            "Eternal Void, Unseeing Eye",
-            "",
-            BaseLeatherArmors.HELMETS.values())
+                ModRegistry.UNIQUE_GEARS.UNSEEING_EYE,
+                "unseeing_eye",
+                "Eternal Void, Unseeing Eye",
+                "",
+                BaseLeatherArmors.HELMETS.values())
             .setFabled()
             .setReplacesName()
             .baseStats(

@@ -3,8 +3,8 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station;
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
-import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.FilterListWrap;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
+import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -156,7 +156,7 @@ public class TileGearSalvage extends BaseSkillStation {
             stacks.add(itemStacks[inputSlot]);
         }
 
-        FilterListWrap<SalvageRecipe> matching = Database.SalvageRecipes()
+        FilterListWrap<SalvageRecipe> matching = ExileDB.SalvageRecipes()
             .getFilterWrapped(x -> x.matches(stacks));
 
         if (matching.list.isEmpty()) {
@@ -286,7 +286,7 @@ public class TileGearSalvage extends BaseSkillStation {
 
                 sal = true;
 
-                PlayerSkill skill = Database.PlayerSkills()
+                PlayerSkill skill = ExileDB.PlayerSkills()
                     .get(PlayerSkillEnum.SALVAGING.id);
 
                 PlayerSkills skills = Load.playerSkills(player);

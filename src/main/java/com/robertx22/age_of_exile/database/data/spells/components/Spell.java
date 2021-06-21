@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellDesc;
-import com.robertx22.age_of_exile.aoe_data.datapacks.bases.JsonExileRegistry;
 import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
@@ -13,7 +12,7 @@ import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -28,7 +27,9 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IGUID;
+import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -307,9 +308,9 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
             Set<ExileEffect> effect = new HashSet<>();
 
-            if (Database.ExileEffects()
+            if (ExileDB.ExileEffects()
                 .isRegistered(effect_tip)) {
-                effect.add(Database.ExileEffects()
+                effect.add(ExileDB.ExileEffects()
                     .get(effect_tip));
             }
 
@@ -344,7 +345,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
     }
 
     @Override
-    public ExileRegistryTypes getExileRegistryType() {
+    public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.SPELL;
     }
 

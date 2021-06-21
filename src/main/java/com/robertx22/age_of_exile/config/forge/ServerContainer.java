@@ -6,7 +6,6 @@ import java.util.List;
 public class ServerContainer {
 
     public boolean ALL_PLAYERS_ARE_TEAMED_PVE_MODE = false;
-    public boolean LOG_REGISTRY_ENTRIES = false;
     public boolean GET_STARTER_ITEMS = true;
     public boolean ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = false;
     public boolean ENABLE_LOOT_ANNOUNCEMENTS = true;

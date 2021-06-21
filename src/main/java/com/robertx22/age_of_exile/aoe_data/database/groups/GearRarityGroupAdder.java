@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.aoe_data.database.groups;
 
-import com.robertx22.age_of_exile.aoe_data.base.DataGenKey;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
-import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.database.registry.ExileRegistryInit;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.library_of_exile.registry.DataGenKey;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -20,7 +20,7 @@ public class GearRarityGroupAdder implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        GearRarityGroup normal = new GearRarityGroup(Database.GearRarities()
+        GearRarityGroup normal = new GearRarityGroup(ExileDB.GearRarities()
             .getSerializable()
             .stream()
             .filter(x -> !x.is_unique_item)

@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
@@ -108,9 +108,9 @@ public class EntitySpellCap {
             if (data != null) {
                 SkillGem gem = data.getSkillGem();
                 if (gem != null) {
-                    if (Database.Spells()
+                    if (ExileDB.Spells()
                         .isRegistered(gem.spell_id)) {
-                        return Database.Spells()
+                        return ExileDB.Spells()
                             .get(data.getSkillGem()
                                 .spell_id);
                     }
@@ -240,7 +240,7 @@ public class EntitySpellCap {
                     .forEach(s -> {
                         SkillGemData data = StackSaving.SKILL_GEMS.loadFrom(s);
                         if (data != null && data.getSkillGem() != null && data.getSkillGem().spell_id.equals(x)) {
-                            Spell spell = Database.Spells()
+                            Spell spell = ExileDB.Spells()
                                 .get(data.getSkillGem().spell_id);
 
                             List<ExactStatData> list = spell.aura_data.getStats(data, en, data.lvl);

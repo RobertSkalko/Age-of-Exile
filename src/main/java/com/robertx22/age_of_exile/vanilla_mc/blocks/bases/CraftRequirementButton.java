@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.bases;
 
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.library_of_exile.utils.GuiUtils;
@@ -65,10 +65,10 @@ public class CraftRequirementButton extends TexturedButtonWidget {
         String key = Registry.ITEM.getId(stack.getItem())
             .toString();
 
-        if (Database.ItemCraftReq()
+        if (ExileDB.ItemCraftReq()
             .isRegistered(key)) {
 
-            return Database.ItemCraftReq()
+            return ExileDB.ItemCraftReq()
                 .get(key);
         }
         return new CraftingReq();
@@ -88,7 +88,7 @@ public class CraftRequirementButton extends TexturedButtonWidget {
 
                 tooltip.add(new LiteralText("").append(Words.Level.locName())
                     .append(" " + req.lvl + " ")
-                    .append(Database.PlayerSkills()
+                    .append(ExileDB.PlayerSkills()
                         .get(req.skill).type_enum.word.locName())
                     .append(" Recipe"));
             } else {
@@ -96,7 +96,7 @@ public class CraftRequirementButton extends TexturedButtonWidget {
 
                 tooltip.add(new LiteralText("Needs ").append(Words.Level.locName())
                     .append(" " + req.lvl + " ")
-                    .append(Database.PlayerSkills()
+                    .append(ExileDB.PlayerSkills()
                         .get(req.skill).type_enum.word.locName()));
 
             }

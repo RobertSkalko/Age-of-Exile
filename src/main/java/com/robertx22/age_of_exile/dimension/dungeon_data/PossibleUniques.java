@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.dimension.dungeon_data;
 
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.database.registry.Database;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -19,7 +19,7 @@ public class PossibleUniques {
 
     public List<UniqueGear> getUniques() {
         return u.stream()
-            .map(x -> Database.UniqueGears()
+            .map(x -> ExileDB.UniqueGears()
                 .get(x))
             .collect(Collectors.toList());
 
@@ -29,14 +29,14 @@ public class PossibleUniques {
 
         u.clear();
 
-        List<GearRarity> list = Database.GearRarities()
+        List<GearRarity> list = ExileDB.GearRarities()
             .getFiltered(x -> x.is_unique_item && tier >= x.drops_after_tier);
 
         int amount = RandomUtils.RandomRange(3, 5);
 
-        List<UniqueGear> gears = Database.UniqueGears()
+        List<UniqueGear> gears = ExileDB.UniqueGears()
             .getFiltered(x -> {
-                GearRarity rar = Database.GearRarities()
+                GearRarity rar = ExileDB.GearRarities()
                     .get(x.uniqueRarity);
                 return list.contains(rar);
             });

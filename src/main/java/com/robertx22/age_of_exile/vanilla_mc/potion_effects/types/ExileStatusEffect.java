@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectInstanceData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.SimpleStatCtx;
@@ -50,12 +50,12 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
     }
 
     public boolean hasExileRegistry() {
-        return Database.ExileEffects()
+        return ExileDB.ExileEffects()
             .isRegistered(exileEffectId);
     }
 
     public ExileEffect getExileEffect() {
-        return Database.ExileEffects()
+        return ExileDB.ExileEffects()
             .get(exileEffectId);
     }
 

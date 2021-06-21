@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
@@ -39,7 +39,7 @@ public class DungeonData {
     public void randomize(int lvl, int tier) {
         lv = lvl;
         t = tier;
-        m = Database.DungeonMobLists()
+        m = ExileDB.DungeonMobLists()
             .random()
             .GUID();
         uuid = UUID.randomUUID()
@@ -75,7 +75,7 @@ public class DungeonData {
     }
 
     public DungeonMobList getMobList() {
-        return Database.DungeonMobLists()
+        return ExileDB.DungeonMobLists()
             .get(m);
     }
 

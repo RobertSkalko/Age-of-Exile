@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -153,7 +153,7 @@ public class SpellCastingData {
     }
 
     public boolean isCasting() {
-        return spellBeingCast != null && casting && Database.Spells()
+        return spellBeingCast != null && casting && ExileDB.Spells()
             .isRegistered(spellBeingCast);
     }
 
@@ -164,12 +164,12 @@ public class SpellCastingData {
         try {
 
             if (isCasting()) {
-                Spell spell = Database.Spells()
+                Spell spell = ExileDB.Spells()
                     .get(spellBeingCast);
 
                 SpellCastContext ctx = new SpellCastContext(entity, castingTicksDone, spell);
 
-                if (spell != null && spells != null && Database.Spells()
+                if (spell != null && spells != null && ExileDB.Spells()
                     .isRegistered(spell)) {
                     spell.onCastingTick(ctx);
                 }
@@ -246,12 +246,12 @@ public class SpellCastingData {
 
     public Spell getSpellBeingCast() {
 
-        if (!Database.Spells()
+        if (!ExileDB.Spells()
             .isRegistered(spellBeingCast)) {
             return null;
         }
 
-        return Database.Spells()
+        return ExileDB.Spells()
             .get(spellBeingCast);
     }
 

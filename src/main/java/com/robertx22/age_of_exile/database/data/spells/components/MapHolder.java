@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.Summon
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleInRadiusAction;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
@@ -47,14 +47,14 @@ public class MapHolder {
 
     public <T> T get(MapField<T> field) {
         if (field == MapField.VALUE_CALCULATION) {
-            return (T) Database.ValueCalculations()
+            return (T) ExileDB.ValueCalculations()
                 .get((String) map.get(field.GUID()));
         }
         return (T) map.get(field.GUID());
     }
 
     public ExileEffect getExileEffect() {
-        return Database.ExileEffects()
+        return ExileDB.ExileEffects()
             .get(get(EXILE_POTION_ID));
     }
 

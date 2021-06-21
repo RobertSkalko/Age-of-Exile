@@ -1,11 +1,12 @@
 package com.robertx22.age_of_exile.gui.screens.wiki;
 
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.gui.screens.wiki.entries.*;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
+import com.robertx22.library_of_exile.registry.Database;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public enum WikiType {
     UNIQUE_GEARS("unique_gear") {
         @Override
         public List<WikiEntry> getAllEntries() {
-            return Database.UniqueGears()
+            return ExileDB.UniqueGears()
                 .getList()
                 .stream()
                 .map(x -> new UniqueGearEntry(x))
@@ -29,7 +30,7 @@ public enum WikiType {
     SPELLS("spell") {
         @Override
         public List<WikiEntry> getAllEntries() {
-            return Database.Spells()
+            return ExileDB.Spells()
                 .getList()
                 .stream()
                 .filter(x -> x.Weight() > 0)
@@ -40,7 +41,7 @@ public enum WikiType {
     EFFECTS("effect") {
         @Override
         public List<WikiEntry> getAllEntries() {
-            return Database.ExileEffects()
+            return ExileDB.ExileEffects()
                 .getList()
                 .stream()
                 .map(x -> new EffectEntry(x))
@@ -50,7 +51,7 @@ public enum WikiType {
     SETS("set") {
         @Override
         public List<WikiEntry> getAllEntries() {
-            return Database.Sets()
+            return ExileDB.Sets()
                 .getList()
                 .stream()
                 .map(x -> new SetEntry(x))
@@ -105,7 +106,7 @@ public enum WikiType {
     RUNEWORDS("runeword") {
         @Override
         public List<WikiEntry> getAllEntries() {
-            return Database.Runewords()
+            return ExileDB.Runewords()
                 .getList()
                 .stream()
                 .map(x -> new RuneWordEntry(x))
@@ -123,11 +124,11 @@ public enum WikiType {
         public List<WikiEntry> getAllEntries() {
             List<WikiEntry> list = new ArrayList<>();
 
-            Database.PlayerSkills()
+            ExileDB.PlayerSkills()
                 .get(PlayerSkillEnum.MINING.id).block_break_exp.forEach(x -> {
                     list.add(new MiningBlockExpEntry(x.getBlock(), (int) x.exp));
                 });
-            Database.PlayerSkills()
+            ExileDB.PlayerSkills()
                 .get(PlayerSkillEnum.MINING.id).item_smelt_exp.forEach(x -> {
                     list.add(new MiningSmeltEntry(x.getItem(), x.exp));
                 });
@@ -142,7 +143,7 @@ public enum WikiType {
         @Override
         public List<WikiEntry> getAllEntries() {
             List<WikiEntry> list = new ArrayList<>();
-            Database.PlayerSkills()
+            ExileDB.PlayerSkills()
                 .get(PlayerSkillEnum.FARMING.id).block_break_exp.forEach(x -> {
                     list.add(new MiningBlockExpEntry(x.getBlock(), (int) x.exp));
                 });
@@ -153,7 +154,7 @@ public enum WikiType {
         @Override
         public List<WikiEntry> getAllEntries() {
 
-            List<DimensionConfig> configs = Database.DimensionConfigs()
+            List<DimensionConfig> configs = ExileDB.DimensionConfigs()
                 .getList();
             configs.add((DimensionConfig) Database.getRegistry(ExileRegistryTypes.DIMENSION_CONFIGS)
                 .getDefault());
@@ -168,7 +169,7 @@ public enum WikiType {
 
     List<WikiEntry> craftExp(PlayerSkillEnum skill) {
         List<WikiEntry> list = new ArrayList<>();
-        Database.PlayerSkills()
+        ExileDB.PlayerSkills()
             .get(skill.id).item_craft_exp.forEach(x -> {
                 list.add(new CraftingExpEntry(x.getItem(), x.exp));
             });

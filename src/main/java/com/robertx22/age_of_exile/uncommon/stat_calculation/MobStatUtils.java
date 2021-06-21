@@ -13,7 +13,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
@@ -87,7 +87,7 @@ public class MobStatUtils {
 
         List<ExactStatData> stats = new ArrayList<>();
 
-        float val = (1F - Database.getDimensionConfig(en.world).mob_strength_multi) * 100F;
+        float val = (1F - ExileDB.getDimensionConfig(en.world).mob_strength_multi) * 100F;
 
         stats.add(ExactStatData.noScaling(val, val, ModType.GLOBAL_INCREASE, Health.getInstance()
             .GUID()));
@@ -104,7 +104,7 @@ public class MobStatUtils {
         List<StatContext> list = new ArrayList<>();
         List<ExactStatData> stats = new ArrayList<>();
 
-        EntityConfig config = Database.getEntityConfig(entity, unitdata);
+        EntityConfig config = ExileDB.getEntityConfig(entity, unitdata);
 
         config.stats.stats.forEach(x -> stats.add(x.toExactStat(unitdata.getLevel())));
 

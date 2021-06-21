@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.entities;
 
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.Utilities;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -67,7 +67,7 @@ public class EntitySavedSpellData {
     }
 
     public Spell getSpell() {
-        return Database.Spells()
+        return ExileDB.Spells()
             .get(spell_id);
     }
 

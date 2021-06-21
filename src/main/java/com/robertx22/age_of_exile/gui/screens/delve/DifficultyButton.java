@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
-import com.robertx22.age_of_exile.database.registry.Database;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
@@ -37,13 +37,13 @@ public class DifficultyButton extends TexturedButtonWidget {
 
             List<Text> tooltip = new ArrayList<>();
 
-            tooltip.addAll(Database.Tiers()
+            tooltip.addAll(ExileDB.Tiers()
                 .get(tier + "")
                 .getTooltip());
 
             tooltip.add(new LiteralText(""));
 
-            for (GearRarity r : Database.GearRarities()
+            for (GearRarity r : ExileDB.GearRarities()
                 .getList()) {
                 if (r.drops_after_tier > -1) {
                     if (tier >= r.drops_after_tier) {
