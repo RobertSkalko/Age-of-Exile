@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.database.data.favor;
 
-import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;

@@ -38,6 +38,7 @@ public class TestSpell {
                 .onHit(PartBuilder.damage(SpellCalcs.POISON_BALL, Elements.Nature))
                 .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
 
+                .weight(0)
                 .buildForEffect();
 
     }

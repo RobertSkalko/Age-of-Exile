@@ -12,15 +12,13 @@ import java.util.*;
 public class DelveGrid {
 
     @Store
-    public String[][] grid = new String[30][30];
+    public String[][] grid = new String[10][10];
 
     @Store
     public int dungeons = 0;
 
     public static String DUNGEON = "d";
     public static String WALL = "";
-
-    static int MAX_DUNGEONS = 40;
 
     public DungeonGridType getGridType(PointData point) {
 
@@ -40,13 +38,8 @@ public class DelveGrid {
         return point.x > 0 && point.y > 0 && point.x < grid.length && point.y < grid.length;
     }
 
-    public void removeCompletedDungeonAfterStartingAnotherOne(PointData lastDungeon) {
-
-    }
-
-    public void randomize() {
+    public void randomize(int maxDungeons) {
         dungeons = 0;
-
         //Watch watch = new Watch();
 
         for (int i = 0; i < grid.length; i++) {
@@ -56,10 +49,10 @@ public class DelveGrid {
         PointData start = new PointData(grid.length / 2, grid.length / 2);
 
         for (int i = 0; i < 15; i++) {
-            if (dungeons >= MAX_DUNGEONS) {
+            if (dungeons >= maxDungeons) {
                 break;
             }
-            makeRandomPath(start);
+            makeRandomPath(start, maxDungeons);
         }
 
         /*
@@ -78,7 +71,7 @@ public class DelveGrid {
         //System.out.print(Arrays.deepToString(grid));
     }
 
-    private void makeRandomPath(PointData point) {
+    private void makeRandomPath(PointData point, int maxDungeons) {
 
         Set<PointData> list = new HashSet<>();
 
@@ -102,6 +95,9 @@ public class DelveGrid {
                             grid[dir.x][dir.y] = DUNGEON;
                             dungeons++;
 
+                            if (dungeons >= maxDungeons) {
+                                return;
+                            }
                             if (RandomUtils.roll(20)) {
                                 makePath(dir, RandomUtils.RandomRange(1, 5));
                             }

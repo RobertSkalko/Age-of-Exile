@@ -32,7 +32,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
+import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
@@ -180,7 +180,7 @@ public class ExileDB {
         return (RarityRegistryContainer<MobRarity>) Database.getRegistry(ExileRegistryTypes.MOB_RARITY);
     }
 
-    public static ExileRegistryContainer<Tier> Tiers() {
+    public static ExileRegistryContainer<Difficulty> Difficulties() {
         return Database.getRegistry(ExileRegistryTypes.TIER);
     }
 

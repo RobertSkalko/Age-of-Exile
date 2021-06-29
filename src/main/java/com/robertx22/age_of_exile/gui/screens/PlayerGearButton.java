@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.library_of_exile.gui.ItemSlotButton;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;

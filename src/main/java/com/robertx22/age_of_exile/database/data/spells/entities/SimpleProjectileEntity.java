@@ -160,11 +160,13 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
 
     public void onTick() {
 
-        this.getSpellData()
-            .getSpell()
-            .getAttached()
-            .tryActivate(getEntityName(), SpellCtx.onTick(getCaster(), this, getSpellData()));
+        if (getCaster() != null) {
+            this.getSpellData()
+                .getSpell()
+                .getAttached()
+                .tryActivate(getEntityName(), SpellCtx.onTick(getCaster(), this, getSpellData()));
 
+        }
     }
 
     @Override

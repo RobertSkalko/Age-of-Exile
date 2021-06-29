@@ -13,10 +13,9 @@ import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.CasterCommandAction;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
-import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
+import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
@@ -43,11 +42,13 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToCl
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.EntityStatusEffectsData;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
+import com.robertx22.library_of_exile.utils.CommandUtils;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -56,10 +57,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 public class EntityCap {
 
@@ -144,7 +142,7 @@ public class EntityCap {
 
         int getSyncedMaxHealth();
 
-        Tier getMapTier();
+        Difficulty getMapDifficulty();
 
         CustomExactStatsData getCustomExactStats();
 
@@ -650,18 +648,19 @@ public class EntityCap {
         }
 
         @Override
-        public Tier getMapTier() {
-
-            int tier = 0;
+        public Difficulty getMapDifficulty() {
 
             if (WorldUtils.isDungeonWorld(entity.world)) {
                 WorldDungeonCap data = Load.dungeonData(entity.world);
-
-                tier = data.data.get(entity.getBlockPos()).data.t;
+                return data.data.get(entity.getBlockPos()).data.getDifficulty();
             }
 
-            return ExileDB.Tiers()
-                .get(tier + "");
+            return ExileDB.Difficulties()
+                .getList()
+                .stream()
+                .min(Comparator.comparingInt(x -> x.rank))
+                .get();
+
         }
 
         @Override
@@ -711,7 +710,7 @@ public class EntityCap {
 
             float vanilla = data.getAmount() * multi;
 
-            float num = vanilla * rar.DamageMultiplier() * getMapTier().dmg_multi;
+            float num = vanilla * rar.DamageMultiplier() * getMapDifficulty().dmg_multi;
 
             num *= ExileDB.getEntityConfig(entity, this).dmg_multi;
 
@@ -827,6 +826,9 @@ public class EntityCap {
         @Override
         public int GiveExp(PlayerEntity player, int i) {
 
+            MutableText txt = new LiteralText("+" + (int) i + " Experience").formatted(Formatting.GREEN);
+            OnScreenMessageUtils.sendMessage((ServerPlayerEntity) player, txt, TitleS2CPacket.Action.ACTIONBAR);
+
             setExp(exp + i);
 
             if (exp > this.getExpRequiredForLevelUp()) {
@@ -915,9 +917,7 @@ public class EntityCap {
 
                     try {
                         if (!opt.get().exec_command.isEmpty()) {
-                            player.getServer()
-                                .getCommandManager()
-                                .execute(CasterCommandAction.getCommandSource(player), opt.get().exec_command);
+                            CommandUtils.execute(player, opt.get().exec_command);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

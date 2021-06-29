@@ -265,12 +265,13 @@ public class GearTooltipUtils {
                 .append(gear.GetBaseGearType()
                     .locName()));
 
-            if (ModConfig.get().client.SHOW_DURABILITY)
+            if (ModConfig.get().client.SHOW_DURABILITY) {
                 if (stack.isDamageable()) {
                     tip.add(new SText(Formatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
                 } else {
                     tip.add(new SText(Formatting.GRAY + "Unbreakable"));
                 }
+            }
 
             if (gear.s) {
                 tip.add(Words.Sealed.locName()

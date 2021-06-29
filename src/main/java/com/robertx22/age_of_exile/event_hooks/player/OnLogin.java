@@ -9,6 +9,8 @@ import com.robertx22.library_of_exile.utils.Watch;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.LiteralText;
+import net.minecraft.util.Formatting;
 
 public class OnLogin {
 
@@ -20,6 +22,12 @@ public class OnLogin {
         }
 
         try {
+
+            if (!player.getServer()
+                .areCommandBlocksEnabled()) {
+                player.sendMessage(new LiteralText("Command blocks are disabled, this will stop you from playing Age of Exile Dungeons!").formatted(Formatting.RED), false);
+                player.sendMessage(new LiteralText("To enable go to your server.properties file and put enable-command-block as true.").formatted(Formatting.GREEN), false);
+            }
 
             Load.perks(player)
                 .syncToClient(player);

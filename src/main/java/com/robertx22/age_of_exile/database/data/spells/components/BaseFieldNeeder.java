@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
+import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.library_of_exile.registry.IGUID;
 
@@ -15,8 +16,8 @@ public abstract class BaseFieldNeeder implements IGUID {
 
     public void validate(MapHolder holder) {
         if (holder.type.equals(GUID())) {
-            assert requiredPieces.stream()
-                .allMatch(x -> holder.get(x) != null);
+            Preconditions.checkArgument(requiredPieces.stream()
+                .allMatch(x -> holder.get(x) != null));
         }
     }
 

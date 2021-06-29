@@ -67,7 +67,7 @@ public interface GearDataHelper {
     public enum ArmorStat {
         ARMOR(8, 20, Armor.getInstance()),
         DODGE(8, 20, DodgeRating.getInstance()),
-        HEALTH(15, 35, Health.getInstance());
+        HEALTH(10, 25, Health.getInstance());
 
         public float min;
         public float max;

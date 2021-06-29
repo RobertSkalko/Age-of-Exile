@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.perks;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.tooltips.StatTooltipType;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
@@ -14,6 +13,7 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AdvancementUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientTextureUtils;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.registry.serialization.IByteBuf;
 import net.minecraft.advancement.Advancement;

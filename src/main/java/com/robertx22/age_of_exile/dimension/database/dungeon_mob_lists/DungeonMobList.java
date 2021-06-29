@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists;
 
-import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.EntityType;

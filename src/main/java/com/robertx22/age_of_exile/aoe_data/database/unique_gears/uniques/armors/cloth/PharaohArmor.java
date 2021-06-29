@@ -51,7 +51,7 @@ public class PharaohArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(5, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
                     new StatModifier(3, 10, TreasureQuantity.getInstance(), ModType.FLAT),
                     new StatModifier(-10, -20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(1, 10, Intelligence.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, Intelligence.INSTANCE, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()
@@ -78,8 +78,8 @@ public class PharaohArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(5, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
                     new StatModifier(5, 15, TreasureQuality.getInstance(), ModType.FLAT),
-                    new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT),
-                    new StatModifier(1, 10, Wisdom.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT),
+                    new StatModifier(1, 3, Wisdom.INSTANCE, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()
@@ -107,7 +107,7 @@ public class PharaohArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(20, 40, Mana.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(2, 6, TreasureQuantity.getInstance(), ModType.FLAT),
                     new StatModifier(-10, -20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, Dexterity.INSTANCE, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()
@@ -136,7 +136,7 @@ public class PharaohArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
                     new StatModifier(5, 10, TreasureQuality.getInstance(), ModType.FLAT),
                     new StatModifier(10, 20, Stats.DAY_DAMAGE.get(), ModType.FLAT),
-                    new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, Wisdom.INSTANCE, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()

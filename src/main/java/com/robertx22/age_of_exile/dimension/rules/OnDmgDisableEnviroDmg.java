@@ -9,7 +9,9 @@ public class OnDmgDisableEnviroDmg {
     public static void accept(ExileEvents.OnDamageEntity event) {
         if (event.mob instanceof PlayerEntity == false) {
             if (WorldUtils.isDungeonWorld(event.mob.world)) {
-                event.damage = 0;
+                if (!event.source.isOutOfWorld()) {
+                    event.damage = 0;
+                }
             }
         }
     }

@@ -14,7 +14,7 @@ import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
+import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.empty_entries.EmptyStat;
@@ -52,7 +52,7 @@ public class ExileDBInit {
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.GEAR_RARITY_GROUP, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.GEAR_TYPE, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.EXILE_EFFECT, null).setIsDatapack());
-        Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.TIER, new Tier(0)).setIsDatapack());
+        Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.TIER, new Difficulty()).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.AFFIX, EmptyAffix.getInstance()).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.MOB_AFFIX, new MobAffix("empty", "empty", Formatting.AQUA)).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.UNIQUE_GEAR, null).setIsDatapack());

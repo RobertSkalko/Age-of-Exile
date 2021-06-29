@@ -162,11 +162,13 @@ public class SpecialStats {
             @Override
             public ExilePotionEvent activate(ExilePotionEvent effect, StatData data, Stat stat) {
 
-                float val = effect.sourceData.getUnit()
+                float maxhp = effect.sourceData.getUnit()
                     .healthData()
-                    .getAverageValue() / data.getAverageValue() / 100F;
+                    .getAverageValue();
+
+                float val = maxhp * data.getAverageValue() / 100F;
                 DamageEvent dmg = EventBuilder.ofDamage(effect.source, effect.target, val)
-                    .setupDamage(AttackType.attack, WeaponTypes.none, PlayStyle.melee)
+                    .setupDamage(AttackType.spell, WeaponTypes.none, PlayStyle.magic)
                     .set(x -> x.setElement(Elements.Nature))
                     .build();
 

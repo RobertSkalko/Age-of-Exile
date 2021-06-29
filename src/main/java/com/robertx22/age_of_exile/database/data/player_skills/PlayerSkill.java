@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.player_skills;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -14,6 +13,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.block.Block;

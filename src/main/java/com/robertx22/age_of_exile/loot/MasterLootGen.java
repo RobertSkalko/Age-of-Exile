@@ -57,7 +57,7 @@ public class MasterLootGen {
 
                     extraTries++;
                     if (extraTries > 20) {
-                        System.out.println("Tried to generate loot many times but failed! " + info.toString());
+                        System.out.println("Tried to generate loot many times but failed! ");
                         break;
                     }
                     List<ItemStack> extra = populateOnce(info);
@@ -96,6 +96,7 @@ public class MasterLootGen {
             items.addAll(new RuneLootGen(info).tryGenerate());
             items.addAll(new VanillaRewardsLootGen(info).tryGenerate());
             items.addAll(new SkillGemLootGen(info).tryGenerate());
+            items.addAll(new DungeonKeyLootGen(info).tryGenerate());
         } catch (Exception e) {
             e.printStackTrace();
         }

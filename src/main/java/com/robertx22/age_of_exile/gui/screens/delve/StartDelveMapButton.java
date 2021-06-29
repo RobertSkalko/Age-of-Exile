@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.packets.StartDelveMapPacket;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.Packets;
@@ -24,7 +25,12 @@ public class StartDelveMapButton extends TexturedButtonWidget {
 
     public StartDelveMapButton(ChooseTierScreen screen, int xPos, int yPos) {
         super(xPos, yPos, SIZE_X, SIZE_Y, 0, 0, SIZE_Y, ID, (button) -> {
-            Packets.sendToServer(new StartDelveMapPacket(screen.currentTier, screen.teleporterPos));
+            Packets.sendToServer(new StartDelveMapPacket(ExileDB.Difficulties()
+                .getList()
+                .stream()
+                .filter(x -> x.rank == screen.currentTier)
+                .findAny()
+                .get(), screen.teleporterPos));
             screen.onClose();
         });
     }

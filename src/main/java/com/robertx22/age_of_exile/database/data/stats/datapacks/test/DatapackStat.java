@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.test;
 
-import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 
 public class DatapackStat extends Stat implements IAutoGson<DatapackStat> {
 

@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.skill_gem;
 
-import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -11,6 +10,7 @@ import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 
 import java.util.ArrayList;

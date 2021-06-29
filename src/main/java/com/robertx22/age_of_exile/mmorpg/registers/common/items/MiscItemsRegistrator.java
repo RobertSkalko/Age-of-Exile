@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.dimension.item.TeleportBackItem;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
@@ -26,11 +27,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
 
+import java.util.HashMap;
+
 public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public MiscItemsRegistrator() {
-
+        for (DungeonKeyItem.KeyRarity rar : DungeonKeyItem.KeyRarity.values()) {
+            DUNGEON_KEY_MAP.put(rar, item(new DungeonKeyItem(rar)));
+        }
     }
+
+    public HashMap<DungeonKeyItem.KeyRarity, DungeonKeyItem> DUNGEON_KEY_MAP = new HashMap<>();
 
     public MiscSeedItem MANA_FLOWER_SEED = item(new MiscSeedItem("Mana Flower Seed", Items.LAPIS_LAZULI, ModRegistry.BLOCKS.MANA_PLANT), "seed/mana");
     public MiscSeedItem HP_FLOWER_SEED = item(new MiscSeedItem("Life Flower Seed", Items.APPLE, ModRegistry.BLOCKS.LIFE_PLANT), "seed/life");

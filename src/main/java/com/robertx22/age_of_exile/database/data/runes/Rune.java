@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.database.data.runes;
 
 import com.robertx22.age_of_exile.database.data.BaseRuneGem;
-import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;

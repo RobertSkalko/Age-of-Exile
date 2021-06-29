@@ -115,6 +115,8 @@ public class CreateLangFile {
 
         list.addAll(ExileDB.MobAffixes()
             .getSerializable());
+        list.addAll(ExileDB.Difficulties()
+            .getSerializable());
         list.addAll(ExileDB.Races()
             .getSerializable());
         list.addAll(ExileDB.Sets()

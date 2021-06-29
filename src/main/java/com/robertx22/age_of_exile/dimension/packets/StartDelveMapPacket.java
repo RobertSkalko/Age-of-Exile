@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.dimension.packets;
 
+import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -13,15 +15,15 @@ import net.minecraft.util.math.BlockPos;
 
 public class StartDelveMapPacket extends MyPacket<StartDelveMapPacket> {
 
-    int tier;
+    String diff;
     BlockPos pos;
 
     public StartDelveMapPacket() {
 
     }
 
-    public StartDelveMapPacket(int tier, BlockPos pos) {
-        this.tier = tier;
+    public StartDelveMapPacket(Difficulty diff, BlockPos pos) {
+        this.diff = diff.GUID();
         this.pos = pos;
     }
 
@@ -33,13 +35,13 @@ public class StartDelveMapPacket extends MyPacket<StartDelveMapPacket> {
     @Override
     public void loadFromData(PacketByteBuf tag) {
         pos = tag.readBlockPos();
-        tier = tag.readInt();
+        diff = tag.readString();
     }
 
     @Override
     public void saveToData(PacketByteBuf tag) {
         tag.writeBlockPos(pos);
-        tag.writeInt(tier);
+        tag.writeString(diff);
 
     }
 
@@ -52,9 +54,9 @@ public class StartDelveMapPacket extends MyPacket<StartDelveMapPacket> {
             .getMainHandStack();
 
         if (stack.getItem() instanceof DungeonKeyItem && stack.getCount() > 0) {
-            int maxlvl = ((DungeonKeyItem) stack.getItem()).tier.levelRange.getMaxLevel();
 
-            maps.initRandomDelveCave(maxlvl, tier);
+            maps.initRandomDelveCave((DungeonKeyItem) stack.getItem(), ExileDB.Difficulties()
+                .get(diff));
 
             stack.decrement(1);
 

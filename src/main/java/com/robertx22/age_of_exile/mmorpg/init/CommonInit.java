@@ -18,6 +18,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModItemTags;
+import com.robertx22.divine_missions_addon.DMRegInit;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.utils.Watch;
@@ -56,6 +57,7 @@ public class CommonInit implements ModInitializer {
         MobAttributes.register();
 
         ExileDBInit.registerAllItems(); // after config registerAll
+        DMRegInit.init();
 
         if (MMORPG.RUN_DEV_TOOLS) {
             GeneratedData.addAllObjectsToGenerate();

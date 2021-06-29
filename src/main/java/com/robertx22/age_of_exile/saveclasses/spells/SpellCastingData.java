@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -282,6 +283,13 @@ public class SpellCastingData {
             if (!Load.spells(player)
                 .getCastingData()
                 .meetActionRequirements(spell)) {
+                return false;
+            }
+        }
+
+        if (spell.GUID()
+            .contains("test")) {
+            if (!MMORPG.RUN_DEV_TOOLS) {
                 return false;
             }
         }

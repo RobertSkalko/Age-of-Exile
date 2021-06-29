@@ -2,11 +2,10 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
+import com.robertx22.library_of_exile.utils.CommandUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.server.command.CommandOutput;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.world.ServerWorld;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,21 +16,6 @@ public class CasterCommandAction extends SpellAction {
 
     public CasterCommandAction() {
         super(Arrays.asList(COMMAND));
-    }
-
-    public static ServerCommandSource getCommandSource(Entity entity) {
-        return new ServerCommandSource(
-            // this doesnt send messages to spam server
-            CommandOutput.DUMMY,
-            entity.getPos(),
-            entity.getRotationClient(),
-            entity.world instanceof ServerWorld ? (ServerWorld) entity.world : null,
-            4,
-            entity.getName()
-                .getString(),
-            entity.getDisplayName(),
-            entity.world.getServer(),
-            entity);
     }
 
     @Override
@@ -47,7 +31,7 @@ public class CasterCommandAction extends SpellAction {
 
             Entity entity = ctx.caster;
 
-            ServerCommandSource source = getCommandSource(entity);
+            ServerCommandSource source = CommandUtils.getCommandSource(entity);
 
             ctx.caster
                 .getServer()

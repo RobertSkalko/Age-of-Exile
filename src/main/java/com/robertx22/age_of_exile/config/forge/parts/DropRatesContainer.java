@@ -8,5 +8,6 @@ public class DropRatesContainer {
     public double SKILL_GEM_DROPRATE = 1;
     public double CURRENCY_DROPRATE = 0.2D;
     public double LVLING_REWARD_DROPRATE = 0.05D;
+    public double DUNGEON_KEY_DROPRATE = 0.01D;
 
 }

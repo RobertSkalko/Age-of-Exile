@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.aoe_data.database.favor;
 
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
@@ -13,7 +13,7 @@ public class FavorAdder implements ExileRegistryInit {
     public void registerAll() {
 
         FavorRank none = new FavorRank("none");
-        none.min = 0;
+        none.min = -Integer.MAX_VALUE;
         none.rank = 0;
 
         none.can_salvage_loot = false;

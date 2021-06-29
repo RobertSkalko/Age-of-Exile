@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
+import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import info.loenwind.autosave.annotations.Storable;
@@ -23,7 +24,7 @@ public class DungeonAffixes {
 
         getAffixes().forEach(x -> {
             list.addAll(x.getTierStats((Integer) x.tier_map.keySet()
-                .toArray()[0])
+                    .toArray()[0])
                 .stream()
                 .map(s -> s.ToExactStat(100, lvl))
                 .collect(Collectors.toList()));
@@ -46,7 +47,7 @@ public class DungeonAffixes {
 
     }
 
-    public void randomize(int tier) {
+    public void randomize(Difficulty diff) {
 
     }
 

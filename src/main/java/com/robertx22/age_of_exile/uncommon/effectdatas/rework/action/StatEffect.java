@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework.action;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EffectEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 
 import java.util.HashMap;

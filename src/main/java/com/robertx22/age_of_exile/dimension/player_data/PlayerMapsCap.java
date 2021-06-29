@@ -2,13 +2,14 @@ package com.robertx22.age_of_exile.dimension.player_data;
 
 import com.robertx22.age_of_exile.capability.PlayerDamageChart;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
-import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
+import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.delve_gen.DelveGrid;
 import com.robertx22.age_of_exile.dimension.dungeon_data.*;
+import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -17,6 +18,8 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
+import com.robertx22.divine_missions.mission_gen.MissionUtil;
+import com.robertx22.divine_missions_addon.types.CompleteDungeonTask;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.utils.Watch;
@@ -51,7 +54,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     public int highestTierDone = 0;
 
     public int getHighestTierPossibleToStart() {
-        return highestTierDone + 5;
+        return highestTierDone + 1;
     }
 
     public PlayerMapsCap(PlayerEntity player) {
@@ -65,6 +68,13 @@ public class PlayerMapsCap implements ICommonPlayerCap {
     }
 
     public void onDungeonCompletedAdvanceProgress() {
+
+        MissionUtil.tryDoMissions(player, x -> {
+            if (x.getTaskEntry().task_type.equals(CompleteDungeonTask.ID)) {
+                x.increaseProgress();
+                return;
+            }
+        });
 
         int tier = 0;
         try {
@@ -292,16 +302,12 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     }
 
-    public void initRandomDelveCave(int maxlvl, int tier) {
+    public void initRandomDelveCave(DungeonKeyItem key, Difficulty diff) {
 
         this.data = new MapsData();
         data.isEmpty = false;
-        data.grid.randomize();
 
-        int dungeonTier = tier;
-        if (dungeonTier > GameBalanceConfig.get().MAX_DUNGEON_TIER) {
-            dungeonTier = GameBalanceConfig.get().MAX_DUNGEON_TIER;
-        }
+        data.grid.randomize(key.keyRarity.maxDungeons);
 
         PointData middle = new PointData(data.grid.grid.length / 2, data.grid.grid.length / 2);
 
@@ -310,13 +316,13 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                 if (data.grid.grid[x][y].equals(DelveGrid.DUNGEON)) {
 
                     DungeonData dun = new DungeonData();
+                    dun.key_item = Registry.ITEM.getId(key)
+                        .toString();
 
                     int lvl = Load.Unit(player)
                         .getLevel();
-                    if (lvl > maxlvl) {
-                        lvl = maxlvl;
-                    }
-                    dun.randomize(lvl, dungeonTier);
+
+                    dun.randomize(lvl, diff);
 
                     this.data.dungeon_datas.put(new PointData(x, y), dun);
 

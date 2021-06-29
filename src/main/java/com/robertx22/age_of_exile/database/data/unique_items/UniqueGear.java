@@ -219,7 +219,6 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
     public BaseGearType getBaseGearType() {
         if (!ExileDB.GearTypes()
             .isRegistered(this.gearType)) {
-            assert this.serBaseGearType != null;
             return serBaseGearType;
         }
         return ExileDB.GearTypes()

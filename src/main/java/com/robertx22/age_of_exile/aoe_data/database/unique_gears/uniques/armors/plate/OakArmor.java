@@ -36,7 +36,7 @@ public class OakArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.HELMET),
                     getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.HELMET),
-                    new StatModifier(20, 40, new ElementalResist(Elements.Nature)),
+                    new StatModifier(20, 30, new ElementalResist(Elements.Nature)),
                     new StatModifier(-20, -20, new ElementalResist(Elements.Fire))
                 )
             )
@@ -44,7 +44,7 @@ public class OakArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(10, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
                     new StatModifier(1, 10, Wisdom.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT)
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)
@@ -63,15 +63,15 @@ public class OakArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.CHEST),
                     getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.CHEST),
-                    new StatModifier(15, 25, new ElementalResist(Elements.Nature)),
-                    new StatModifier(15, 25, new ElementalResist(Elements.Light))
+                    new StatModifier(10, 20, new ElementalResist(Elements.Nature)),
+                    new StatModifier(10, 20, new ElementalResist(Elements.Light))
                 )
             )
             .stats(
                 Arrays.asList(
                     new StatModifier(5, 10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, Wisdom.INSTANCE, ModType.FLAT),
+                    new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT)
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)
@@ -99,7 +99,7 @@ public class OakArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Light), ModType.FLAT),
                     new StatModifier(5, 15, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(5, 10, Stats.CRIT_CHANCE.get(), ModType.FLAT),
-                    new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT)
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)
@@ -118,16 +118,16 @@ public class OakArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.BOOTS),
                     getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.BOOTS),
-                    new StatModifier(20, 40, new ElementalResist(Elements.Light)),
+                    new StatModifier(20, 30, new ElementalResist(Elements.Light)),
                     new StatModifier(-20, -20, new ElementalResist(Elements.Dark))
                 )
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(10, 25, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature), ModType.FLAT),
+                    new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature), ModType.FLAT),
                     new StatModifier(5, 15, Stats.ATTACK_SPEED.get(), ModType.FLAT),
                     new StatModifier(5, 10, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT),
-                    new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
+                    new StatModifier(2, 4, Agility.INSTANCE, ModType.FLAT)
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)

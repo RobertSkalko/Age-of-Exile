@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.uncommon.interfaces;
 
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.text.MutableText;
+import net.minecraft.text.TranslatableText;
 
 public interface IAutoLocName extends IBaseAutoLoc {
 
@@ -28,6 +29,10 @@ public interface IAutoLocName extends IBaseAutoLoc {
     }
 
     public String locNameForLangFile();
+
+    public default MutableText locName(Object[] args) {
+        return new TranslatableText(locNameLangFileGUID(), args);
+    }
 
     public default MutableText locName() {
         return CLOC.blank(getFormatedForLangFile(locNameLangFileGUID()));

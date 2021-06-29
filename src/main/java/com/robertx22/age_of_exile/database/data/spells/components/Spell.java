@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellDesc;
-import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
@@ -28,6 +27,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.client.gui.screen.Screen;

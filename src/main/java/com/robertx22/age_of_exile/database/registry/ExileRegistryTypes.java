@@ -31,7 +31,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
 import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
-import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
+import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.empty_entries.EmptyAffix;
@@ -54,26 +54,27 @@ public class ExileRegistryTypes {
     public static ExileRegistryType GEAR_SLOT = ExileRegistryType.register(Ref.MODID, "gear_slot", 3, GearSlot.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType EXILE_EFFECT = ExileRegistryType.register(Ref.MODID, "exile_effect", 3, ExileEffect.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType GEAR_TYPE = ExileRegistryType.register(Ref.MODID, "base_gear_types", 4, BaseGearType.SERIALIZER, SyncTime.ON_LOGIN);
-    public static ExileRegistryType TIER = ExileRegistryType.register(Ref.MODID, "tier", 5, Tier.SERIALIZER, SyncTime.ON_LOGIN);
+    public static ExileRegistryType TIER = ExileRegistryType.register(Ref.MODID, "tier", 5, Difficulty.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType GEM = ExileRegistryType.register(Ref.MODID, "gems", 6, Gem.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType RUNE = ExileRegistryType.register(Ref.MODID, "runes", 7, Rune.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType MOB_AFFIX = ExileRegistryType.register(Ref.MODID, "mob_affix", 8, new MobAffix("empty", "empty", Formatting.AQUA), SyncTime.ON_LOGIN);
     public static ExileRegistryType RUNEWORD = ExileRegistryType.register(Ref.MODID, "runewords", 9, RuneWord.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType AFFIX = ExileRegistryType.register(Ref.MODID, "affixes", 10, EmptyAffix.getInstance(), SyncTime.ON_LOGIN);
     public static ExileRegistryType UNIQUE_GEAR = ExileRegistryType.register(Ref.MODID, "unique_gears", 11, UniqueGear.SERIALIZER, SyncTime.ON_LOGIN);
-    public static ExileRegistryType CURRENCY_ITEMS = new ExileRegistryType(Ref.MODID, "currency_item", 12, null, SyncTime.NEVER) {
+    public static ExileRegistryType CURRENCY_ITEMS = ExileRegistryType.register(new ExileRegistryType(Ref.MODID, "currency_item", 12, null, SyncTime.NEVER) {
         @Override
         public BaseDataPackLoader getLoader() {
             return null;
         }
-    };
+    });
     public static ExileRegistryType DIMENSION_CONFIGS = ExileRegistryType.register(Ref.MODID, "dimension_config", 13, DimensionConfig.EMPTY, SyncTime.ON_LOGIN);
     public static ExileRegistryType ENTITY_CONFIGS = ExileRegistryType.register(Ref.MODID, "entity_config", 14, Serializers.ENTITY_CONFIG_SER, SyncTime.NEVER);
-    public static ExileRegistryType COMPATIBLE_ITEM = new ExileRegistryType(Ref.MODID, "compatible_items", 15, CompatibleItem.EMPTY, SyncTime.ON_LOGIN) {
+    public static ExileRegistryType COMPATIBLE_ITEM = ExileRegistryType.register(new ExileRegistryType(Ref.MODID, "compatible_items", 15, CompatibleItem.EMPTY, SyncTime.ON_LOGIN) {
+        @Override
         public List getAllForSerialization() {
             return CompatibleItems.getAllForSerialization();
         }
-    };
+    });
     public static ExileRegistryType SPELL = ExileRegistryType.register(Ref.MODID, "spells", 17, Spell.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType PERK = ExileRegistryType.register(Ref.MODID, "perk", 18, Perk.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType SPELL_SCHOOL = ExileRegistryType.register(Ref.MODID, "spell_school", 19, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN);

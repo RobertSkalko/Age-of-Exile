@@ -2,8 +2,8 @@ package com.robertx22.age_of_exile.aoe_data.database.gear_rarities;
 
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class GearRaritiesAdder implements ExileRegistryInit {
 
@@ -143,7 +143,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         unique.is_unique_item = true;
 
         GearRarity fabled = new GearRarity();
-        fabled.drops_after_tier = 50;
+        fabled.drops_after_tier = 2;
         fabled.unidentified_chance = 100;
         fabled.stat_req_multi = 1;
         fabled.spawn_durability_hit = new MinMax(20, 50);

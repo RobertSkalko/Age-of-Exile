@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantit
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
+import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.loot.generators.BaseLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -15,6 +16,7 @@ import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -263,6 +265,17 @@ public class LootInfo {
         if (isMapWorld) {
             if (dungeon != null && !dungeon.isEmpty()) {
                 modifier *= dungeon.team.lootMulti;
+
+                Item item = dungeon.getKeyItem();
+
+                if (item instanceof DungeonKeyItem) {
+                    DungeonKeyItem key = (DungeonKeyItem) item;
+                    float lootmulti = key.keyRarity.lootmulti;
+                    modifier *= lootmulti;
+                }
+
+                modifier *= dungeon.team.lootMulti;
+
             }
         }
 

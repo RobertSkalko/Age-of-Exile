@@ -6,14 +6,19 @@ import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.utils.EntityUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 
 public class LootUtils {
+
+    public static boolean isMaxLevelDistancePenalty(int level, int playerLevel) {
+        return ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_MIN_MULTI >= getLevelDistancePunishmentMulti(level, playerLevel);
+
+    }
 
     // prevents lvl 50 players farming lvl 1 mobs
     public static float getLevelDistancePunishmentMulti(int level, int playerLevel) {

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.wiki;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
+import com.robertx22.library_of_exile.utils.RenderUtils;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;

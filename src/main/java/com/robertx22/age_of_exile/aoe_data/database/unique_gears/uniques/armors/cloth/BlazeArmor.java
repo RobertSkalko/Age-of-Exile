@@ -43,7 +43,7 @@ public class BlazeArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(10, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)),
                     new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(1, 10, Intelligence.INSTANCE, ModType.FLAT),
+                    new StatModifier(1, 3, Intelligence.INSTANCE, ModType.FLAT),
                     new StatModifier(2, 2, Agility.INSTANCE, ModType.FLAT)
                 )
             )
@@ -72,8 +72,8 @@ public class BlazeArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(5, 10, Stats.ACCURACY.get(), ModType.FLAT),
                     new StatModifier(2, 5, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
-                    new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT),
-                    new StatModifier(1, 10, Wisdom.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT),
+                    new StatModifier(1, 3, Wisdom.INSTANCE, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()
@@ -99,8 +99,8 @@ public class BlazeArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
                     new StatModifier(10, 20, Mana.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, Dexterity.INSTANCE, ModType.FLAT),
+                    new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()
@@ -128,8 +128,8 @@ public class BlazeArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(10, 20, Stats.ELE_DOT_DAMAGE.get(Elements.Fire)),
                     new StatModifier(5, 10, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark)),
-                    new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
-                    new StatModifier(1, 10, Agility.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, Wisdom.INSTANCE, ModType.FLAT),
+                    new StatModifier(1, 3, Agility.INSTANCE, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()

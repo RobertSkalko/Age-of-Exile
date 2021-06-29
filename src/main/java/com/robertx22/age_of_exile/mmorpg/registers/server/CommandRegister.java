@@ -2,10 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.server;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.age_of_exile.vanilla_mc.commands.*;
-import com.robertx22.age_of_exile.vanilla_mc.commands.entity.GiveExp;
-import com.robertx22.age_of_exile.vanilla_mc.commands.entity.SetEntityRarity;
-import com.robertx22.age_of_exile.vanilla_mc.commands.entity.SetLevel;
-import com.robertx22.age_of_exile.vanilla_mc.commands.entity.SetSkillLevel;
+import com.robertx22.age_of_exile.vanilla_mc.commands.entity.*;
 import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveBuffScroll;
 import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveExactUnique;
 import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveGear;
@@ -35,6 +32,7 @@ public class CommandRegister {
         SetEntityRarity.register(dispatcher);
         SetLevel.register(dispatcher);
         GiveExp.register(dispatcher);
+        GiveFavor.register(dispatcher);
         SetSkillLevel.register(dispatcher);
 
         TestBuild.register(dispatcher);

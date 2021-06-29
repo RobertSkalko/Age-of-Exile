@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -146,12 +146,12 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
             .getCalculatedStat(stat)
             .getAverageValue() >= req) {
             return new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + CHECK_YES_ICON + " ").append(stat.locName()
-                .formatted(Formatting.GRAY))
+                    .formatted(Formatting.GRAY))
                 .append(" " + Formatting.GRAY + "Min: " + req + " ");
         } else {
 
             return new LiteralText(Formatting.RED + "" + Formatting.BOLD + NO_ICON + " ").append(stat.locName()
-                .formatted(Formatting.GRAY))
+                    .formatted(Formatting.GRAY))
                 .append(" " + Formatting.GRAY + "Min: " + req + " ");
 
         }

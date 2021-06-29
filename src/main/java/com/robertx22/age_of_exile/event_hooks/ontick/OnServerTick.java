@@ -38,6 +38,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
     static {
 
         TICK_ACTIONS.add(new PlayerTickAction("update_caps", 18, (player, data) -> {
+
             OnTickSetGameMode.onTick(player);
             CapSyncUtil.syncAll(player);
             Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.world, player.getBlockPos(), player)));

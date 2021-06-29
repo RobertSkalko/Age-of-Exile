@@ -17,11 +17,11 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
@@ -352,7 +352,7 @@ public class IntSpells implements ExileRegistryInit {
         SpellBuilder.of("overload", SpellConfiguration.Builder.nonInstant(10, 60 * 20, 30), "Overload",
                 Arrays.asList())
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.OVERLOAD.effectId, 20 * 15D))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.OVERLOAD.effectId, 20 * 10D))
             .build();
 
         SpellBuilder.of("entangling_seed", SpellConfiguration.Builder.instant(15, 60 * 20)

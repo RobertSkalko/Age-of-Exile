@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.gui.screens.ItemSlotButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BackpackUpgradeItem;
+import com.robertx22.library_of_exile.gui.ItemSlotButton;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.util.math.MatrixStack;

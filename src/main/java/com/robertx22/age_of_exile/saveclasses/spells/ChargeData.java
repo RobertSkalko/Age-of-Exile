@@ -31,12 +31,16 @@ public class ChargeData {
     }
 
     public void spendCharge(PlayerEntity player, String id) {
+
+        if (player.world.isClient) {
+            return;
+        }
+
         charges.put(id, MathHelper.clamp(charges.getOrDefault(id, 0) - 1, 0, 100000));
 
-        if (!player.world.isClient) {
-            Load.spells(player)
-                .syncToClient(player);
-        }
+        Load.spells(player)
+            .syncToClient(player);
+
     }
 
     public int getCharges(String id) {
@@ -53,6 +57,8 @@ public class ChargeData {
         if (player.world.isClient) {
             return;
         }
+
+        boolean sync = false;
 
         EntitySpellCap.ISpellsCap sdata = Load.spells(player);
 
@@ -83,8 +89,8 @@ public class ChargeData {
                                 charge_regen.put(id, 0);
                                 addCharge(id, s);
 
-                                Load.spells(player)
-                                    .syncToClient(player);
+                                sync = true;
+
                             }
 
                         }
@@ -93,6 +99,11 @@ public class ChargeData {
                 }
             }
 
+        }
+
+        if (sync) {
+            Load.spells(player)
+                .syncToClient(player);
         }
     }
 }

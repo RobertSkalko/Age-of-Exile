@@ -37,8 +37,12 @@ public class DifficultyButton extends TexturedButtonWidget {
 
             List<Text> tooltip = new ArrayList<>();
 
-            tooltip.addAll(ExileDB.Tiers()
-                .get(tier + "")
+            tooltip.addAll(ExileDB.Difficulties()
+                .getList()
+                .stream()
+                .filter(d -> d.rank == tier)
+                .findAny()
+                .get()
                 .getTooltip());
 
             tooltip.add(new LiteralText(""));

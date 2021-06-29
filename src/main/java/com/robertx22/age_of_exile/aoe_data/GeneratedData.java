@@ -37,10 +37,10 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.AutoDatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.SpellDependentDatapackStatAdder;
+import com.robertx22.age_of_exile.aoe_data.database.tiers.DifficultyAdders;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearReg;
 import com.robertx22.age_of_exile.aoe_data.database.value_calc.ValueCalcAdder;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
-import com.robertx22.age_of_exile.database.registrators.Tiers;
 
 public class GeneratedData {
 
@@ -69,7 +69,7 @@ public class GeneratedData {
 
         new DungeonMobListAdder().registerAll();
 
-        new Tiers().registerAll();
+        new DifficultyAdders().registerAll();
 
         new Spells().registerAll();
 

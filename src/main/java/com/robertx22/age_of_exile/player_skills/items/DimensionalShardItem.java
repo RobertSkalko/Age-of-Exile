@@ -26,7 +26,7 @@ public class DimensionalShardItem extends TieredItem implements IShapelessRecipe
 
     @Override
     public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 16);
+        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 8);
         fac.input(Items.GOLD_INGOT);
         fac.input(Items.LEATHER);
         fac.input(ModRegistry.TIERED.SMELTED_ESSENCE.get(tier), 3);

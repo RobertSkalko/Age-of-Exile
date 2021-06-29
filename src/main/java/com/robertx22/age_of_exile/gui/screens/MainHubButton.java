@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.gui.bases.IAlertScreen;
 import com.robertx22.age_of_exile.gui.bases.IContainerNamedScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.RenderUtils;
+import com.robertx22.library_of_exile.utils.RenderUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;

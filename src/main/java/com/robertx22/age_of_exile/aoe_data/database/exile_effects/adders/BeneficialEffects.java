@@ -25,12 +25,12 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.value_calc.ScalingCalc;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
@@ -278,7 +278,7 @@ public class BeneficialEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(OVERLOAD)
             .stat(-10, Stats.COOLDOWN_TICKS.get(), ModType.FLAT)
-            .stat(20, Stats.MANA_COST.get(), ModType.FLAT)
+            .stat(25, Stats.MANA_COST.get(), ModType.FLAT)
             .stat(-25, DatapackStats.MOVE_SPEED, ModType.FLAT)
             .maxStacks(1)
             .build();

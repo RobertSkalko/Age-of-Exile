@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.random_skill_gem_stats;
 
-import com.robertx22.age_of_exile.database.data.IAutoGson;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.skill_gem.SupportGemTags;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 
 import java.util.ArrayList;

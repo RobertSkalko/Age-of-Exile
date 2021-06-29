@@ -17,6 +17,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 public class PlayerFavor implements ICommonPlayerCap {
 
@@ -25,19 +26,25 @@ public class PlayerFavor implements ICommonPlayerCap {
 
     PlayerEntity player;
 
-    float favor = 0;
+    int favor = 0;
+
+    private FavorRank getDefault() {
+        return ExileDB.FavorRanks()
+            .get("normal");
+    }
 
     public FavorRank getRank() {
         try {
             if (!ModConfig.get().Favor.ENABLE_FAVOR_SYSTEM) {
-                return ExileDB.FavorRanks()
-                    .get("normal"); // simplest way of disabling everything around the system
+                return getDefault(); // simplest way of disabling everything around the system
             }
-            return ExileDB.FavorRanks()
+            Optional<FavorRank> opt = ExileDB.FavorRanks()
                 .getFiltered(x -> this.getFavor() >= x.min)
                 .stream()
-                .max(Comparator.comparingInt(x -> x.rank))
-                .get();
+                .max(Comparator.comparingInt(x -> x.rank));
+
+            return opt.orElseGet(this::getDefault);
+
         } catch (Exception e) {
             e.printStackTrace();
             return ExileDB.FavorRanks()
@@ -45,7 +52,7 @@ public class PlayerFavor implements ICommonPlayerCap {
         }
     }
 
-    public void setFavor(float favor) {
+    public void setFavor(int favor) {
         this.favor = favor;
     }
 
@@ -53,8 +60,12 @@ public class PlayerFavor implements ICommonPlayerCap {
         this.player = player;
     }
 
-    public float getFavor() {
+    public int getFavor() {
         return favor;
+    }
+
+    public void addFavor(int favor) {
+        this.favor += favor;
     }
 
     public void onOpenNewLootChest(LootInfo info) {
@@ -103,7 +114,8 @@ public class PlayerFavor implements ICommonPlayerCap {
 
     @Override
     public NbtCompound toTag(NbtCompound nbt) {
-        nbt.putFloat(LOC, favor);
+        nbt.putInt(LOC, favor);
+
         return nbt;
     }
 
@@ -114,7 +126,7 @@ public class PlayerFavor implements ICommonPlayerCap {
 
     @Override
     public void fromTag(NbtCompound nbt) {
-        this.favor = nbt.getFloat(LOC);
+        this.favor = nbt.getInt(LOC);
     }
 
 }

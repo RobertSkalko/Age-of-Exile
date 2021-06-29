@@ -12,7 +12,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.tiers.base.Tier;
+import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -34,7 +34,7 @@ public class MobStatUtils {
 
     public static void addMapStats(LivingEntity en, UnitData mobdata, Unit unit) {
 
-        Tier tier = mobdata.getMapTier();
+        Difficulty tier = mobdata.getMapDifficulty();
 
         for (InCalcStatData data : unit.getStats().statsInCalc
             .values()

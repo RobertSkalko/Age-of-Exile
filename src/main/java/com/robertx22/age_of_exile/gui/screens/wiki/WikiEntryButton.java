@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.wiki;
 
-import com.robertx22.age_of_exile.gui.screens.ItemSlotButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.library_of_exile.gui.ItemSlotButton;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;

@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
-import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
@@ -18,7 +17,7 @@ import java.util.List;
 public class TeleportTargetToSourceAction extends SpellAction implements ICMainTooltip {
 
     public TeleportTargetToSourceAction() {
-        super(Arrays.asList(MapField.DISTANCE));
+        super(Arrays.asList());
     }
 
     @Override
