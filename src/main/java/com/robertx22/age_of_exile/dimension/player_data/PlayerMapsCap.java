@@ -78,7 +78,8 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
         int tier = 0;
         try {
-            tier = data.dungeon_datas.get(data.point_pos).t;
+            tier = data.dungeon_datas.get(data.point_pos)
+                .getDifficulty().rank;
         } catch (Exception e) {
             e.printStackTrace();
         }

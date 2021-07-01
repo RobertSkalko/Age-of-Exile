@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
+import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.screens.ILeftRight;
@@ -45,8 +46,10 @@ public class ChooseTierScreen extends BaseScreen implements ILeftRight {
             int xoff = this.width / 2;
             int yoff = this.height / 2 - BGY / 2;
 
+            Difficulty diff = Difficulty.fromRank(currentTier);
+
             this.difficultyButton = this.addButton(
-                new DifficultyButton(currentTier,
+                new DifficultyButton(diff,
                     xoff - DifficultyButton.xSize / 2,
                     yoff - DifficultyButton.ySize / 2 + BGY / 2));
 
@@ -115,7 +118,7 @@ public class ChooseTierScreen extends BaseScreen implements ILeftRight {
         if (currentTier < 0) {
             currentTier = 0;
         }
-        this.difficultyButton.tier = currentTier;
+        this.difficultyButton.tier = Difficulty.fromRank(currentTier);
     }
 
     @Override
@@ -132,7 +135,7 @@ public class ChooseTierScreen extends BaseScreen implements ILeftRight {
             currentTier = max;
         }
 
-        this.difficultyButton.tier = currentTier;
+        this.difficultyButton.tier = Difficulty.fromRank(currentTier);
 
     }
 }

@@ -83,7 +83,7 @@ public class DungeonInfoScreen extends BaseScreen {
                 }
             }
 
-            this.addButton(new DifficultyButton(selectedDungeon.t, xoff - DifficultyButton.xSize / 2 + 20, yoff + 20));
+            this.addButton(new DifficultyButton(selectedDungeon.getDifficulty(), xoff - DifficultyButton.xSize / 2 + 20, yoff + 20));
             this.addButton(new DungeonButton(selectedDungeon, xoff - DifficultyButton.xSize / 2 - 20, yoff + 20));
 
             int x = xoff - 50;

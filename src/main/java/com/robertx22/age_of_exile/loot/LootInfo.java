@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.capability.player.PlayerFavor;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
+import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
@@ -31,7 +32,7 @@ public class LootInfo {
     }
 
     public int amount = 0;
-    public int tier = 0;
+    public Difficulty diff;
     public int level = 0;
 
     public LootOrigin lootOrigin;
@@ -135,7 +136,7 @@ public class LootInfo {
         info.setupAllFields();
 
         info.isMapWorld = false;
-        info.tier = 0;
+        info.diff = null;
         info.dungeon = null;
         return info;
     }
@@ -184,7 +185,7 @@ public class LootInfo {
 
         if (world != null && pos != null) {
             if (WorldUtils.isDungeonWorld(world)) {
-                this.tier = Load.dungeonData(world).data.get(pos).data.t;
+                this.diff = Load.dungeonData(world).data.get(pos).data.getDifficulty();
             }
         }
         return this;
@@ -274,7 +275,7 @@ public class LootInfo {
                     modifier *= lootmulti;
                 }
 
-                modifier *= dungeon.team.lootMulti;
+                modifier *= dungeon.getDifficulty().loot_multi;
 
             }
         }

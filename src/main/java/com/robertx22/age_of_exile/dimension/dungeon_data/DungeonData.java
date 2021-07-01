@@ -33,8 +33,6 @@ public class DungeonData {
     @Store
     public int lv = 1;
     @Store
-    public int t = 1; // tier
-    @Store
     public int deaths = 0;
     @Store
     public String uuid = "";

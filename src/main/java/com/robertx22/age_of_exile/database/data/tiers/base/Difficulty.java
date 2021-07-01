@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.tiers.base;
 
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -33,6 +34,16 @@ public class Difficulty implements JsonExileRegistry<Difficulty>, IAutoGson<Diff
 
     public int rank = 0;
     public transient String locname = "";
+
+    public static Difficulty fromRank(int therank) {
+        return ExileDB.Difficulties()
+            .getList()
+            .stream()
+            .filter(x -> x.rank == therank)
+            .findAny()
+            .get();
+
+    }
 
     @Override
     public Class<Difficulty> getClassForSerialization() {

@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
+import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 
 import java.util.List;
@@ -38,7 +38,7 @@ public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
         } else {
             FilterListWrap<UniqueGear> gen = ExileDB.UniqueGears()
                 .getWrapped()
-                .of(x -> blueprint.info.tier >= x.getUniqueRarity().drops_after_tier)
+                .of(x -> blueprint.info.diff != null && blueprint.info.diff.rank >= x.getUniqueRarity().drops_after_tier)
                 .of(x -> !x.filters.cantDrop(blueprint.info))
                 .of(x -> x.getPossibleGearTypes()
                     .contains(blueprint.gearItemSlot.get()));
