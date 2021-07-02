@@ -8,6 +8,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Storable
@@ -49,6 +50,11 @@ public class DungeonPopulateData {
 
         public ChunkPos getChunkPos() {
             return new ChunkPos(x, z);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(x, z);
         }
     }
 

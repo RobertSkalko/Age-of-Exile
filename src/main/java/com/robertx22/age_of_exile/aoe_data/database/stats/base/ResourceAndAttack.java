@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ResourceAndAttack extends AutoHashClass {
 
@@ -14,6 +15,11 @@ public class ResourceAndAttack extends AutoHashClass {
     public ResourceAndAttack(ResourceType resource, AttackType attackType) {
         this.resource = resource;
         this.attackType = attackType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(resource, attackType);
     }
 
     public static List<ResourceAndAttack> allCombos() {
