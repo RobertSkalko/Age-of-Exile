@@ -1,8 +1,8 @@
 WARNING. This is update is in BETA!
 
-## v2.0.11
+## v2.0.12
 
-Try fix server crash
+Fix another server crash
 
 
 

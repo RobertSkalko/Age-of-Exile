@@ -35,7 +35,7 @@ public class DmgNumPacket extends MyPacket<DmgNumPacket> {
 
     @Override
     public void loadFromData(PacketByteBuf tag) {
-        string = tag.readString();
+        string = tag.readString(500);
         id = tag.readInt();
         this.iscrit = tag.readBoolean();
         this.format = Formatting.byName(tag.readString(100));

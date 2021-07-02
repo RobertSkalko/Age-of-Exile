@@ -35,7 +35,7 @@ public class StartDelveMapPacket extends MyPacket<StartDelveMapPacket> {
     @Override
     public void loadFromData(PacketByteBuf tag) {
         pos = tag.readBlockPos();
-        diff = tag.readString();
+        diff = tag.readString(500);
     }
 
     @Override

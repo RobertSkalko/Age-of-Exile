@@ -28,7 +28,7 @@ public class SkillLevelUpToClient extends MyPacket<SkillLevelUpToClient> {
 
     @Override
     public void loadFromData(PacketByteBuf tag) {
-        skill = tag.readString();
+        skill = tag.readString(500);
     }
 
     @Override
