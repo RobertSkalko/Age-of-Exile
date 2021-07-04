@@ -12,6 +12,7 @@ public class MaxElementalResist extends ElementalStat {
         super(element);
         this.scaling = StatScaling.NONE;
         this.group = StatGroup.ELEMENTAL;
+        this.is_perc = true;
     }
 
     @Override
@@ -37,11 +38,6 @@ public class MaxElementalResist extends ElementalStat {
     @Override
     public Stat newGeneratedInstance(Elements element) {
         return new MaxElementalResist(element);
-    }
-
-    @Override
-    public boolean IsPercent() {
-        return false;
     }
 
     @Override

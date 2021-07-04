@@ -31,10 +31,6 @@ public class ChooseTierScreen extends BaseScreen implements ILeftRight {
         this.teleporterPos = pos;
     }
 
-    static int START_X = 130;
-    static int START_Y = 30;
-    static int LOOT_Y = 120;
-
     DifficultyButton difficultyButton;
 
     @Override

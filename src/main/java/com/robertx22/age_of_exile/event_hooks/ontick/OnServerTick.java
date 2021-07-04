@@ -8,7 +8,11 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
+import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonType;
 import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
+import com.robertx22.age_of_exile.dimension.teleporter.TeleportedBlockEntity;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
@@ -24,6 +28,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,13 +50,36 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.world, player.getBlockPos(), player)));
         }));
 
-        TICK_ACTIONS.add(new PlayerTickAction("second_pass", 20, (player, data) -> {
+        TICK_ACTIONS.add(new
+
+            PlayerTickAction("second_pass", 20, (player, data) ->
+
+        {
             UnequipGear.onTick(player);
             Load.spells(player)
                 .getCastingData().charges.onTicks(player, 20);
         }));
 
-        TICK_ACTIONS.add(new PlayerTickAction("regen", 60, (player, data) -> {
+        TICK_ACTIONS.add(new
+
+            PlayerTickAction("regen", 60, (player, data) ->
+
+        {
+
+            if (false && MMORPG.RUN_DEV_TOOLS) {
+                BlockPos pos = player.getBlockPos();
+                World world = player.getServerWorld();
+
+                if (world.isAir(pos)) {
+
+                    world.setBlockState(pos, ModRegistry.BLOCKS.TELEPORTER.getDefaultState());
+                    TeleportedBlockEntity be = (TeleportedBlockEntity) world.getBlockEntity(pos);
+                    be.data.dungeon_type = DungeonType.RIFT;
+                    be.data.rift_data.dun_type = DungeonType.RIFT;
+
+                }// TODO
+            }
+
             if (player.isAlive()) {
 
                 PopulateDungeonChunks.tryPopulateChunksAroundPlayer(player.world, player);
@@ -96,11 +125,19 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             }
         }));
 
-        TICK_ACTIONS.add(new PlayerTickAction("compat_items", 40, (player, data) -> {
+        TICK_ACTIONS.add(new
+
+            PlayerTickAction("compat_items", 40, (player, data) ->
+
+        {
             CompatibleItemUtils.checkAndGenerate(player);
         }));
 
-        TICK_ACTIONS.add(new PlayerTickAction("every_tick", 1, (player, data) -> {
+        TICK_ACTIONS.add(new
+
+            PlayerTickAction("every_tick", 1, (player, data) ->
+
+        {
             if (player.isBlocking()) {
                 if (Load.spells(player)
                     .getCastingData()
@@ -141,7 +178,11 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             }
         }));
 
-        TICK_ACTIONS.add(new PlayerTickAction("level_warning", 200, (player, data) -> {
+        TICK_ACTIONS.add(new
+
+            PlayerTickAction("level_warning", 200, (player, data) ->
+
+        {
 
             if (!WorldUtils.isDungeonWorld(player.world)) {
 

@@ -14,13 +14,14 @@ public class DMRewardsAdder {
 
     public static Reward COMMON_DUNGEON_KEY = RewardBuilder.item(500)
         .worthType(WorthTypeIds.AGE_OF_EXILE)
+        .weight(500)
         .build(ModRegistry.MISC_ITEMS.DUNGEON_KEY_MAP.get(DungeonKeyItem.KeyRarity.Common), 1, 1);
     public static Reward RARE_DUNGEON_KEY = RewardBuilder.item(600)
-        .weight(300)
+        .weight(200)
         .worthType(WorthTypeIds.AGE_OF_EXILE)
         .build(ModRegistry.MISC_ITEMS.DUNGEON_KEY_MAP.get(DungeonKeyItem.KeyRarity.Rare), 1, 1);
     public static Reward EPIC_DUNGEON_KEY = RewardBuilder.item(700)
-        .weight(100)
+        .weight(75)
         .worthType(WorthTypeIds.AGE_OF_EXILE)
         .build(ModRegistry.MISC_ITEMS.DUNGEON_KEY_MAP.get(DungeonKeyItem.KeyRarity.Epic), 1, 1);
 

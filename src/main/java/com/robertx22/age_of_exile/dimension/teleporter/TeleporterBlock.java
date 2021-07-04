@@ -2,10 +2,8 @@ package com.robertx22.age_of_exile.dimension.teleporter;
 
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
+import com.robertx22.age_of_exile.vanilla_mc.packets.SendActionToClient;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -55,17 +53,24 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
 
         if (tile instanceof TeleportedBlockEntity) {
 
-            if (world.isClient) {
-                if (stack.getItem() instanceof DungeonKeyItem) {
-                    ClientOnly.openChooseTierScreen(pos);
-                } else {
-                    Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.MAPS));
-                    ClientOnly.openMapsScreen(pos);
-                }
-                return ActionResult.SUCCESS;
-            } else {
+            TeleportedBlockEntity be = (TeleportedBlockEntity) tile;
+
+            // todo the data isnt on client so probably move to server side
+
+            if (!world.isClient) {
+
                 Load.playerMaps(player)
                     .syncToClient(player);
+
+                if (be.data.dungeon_type.isRift() && !be.data.activated_rift) {
+                    Packets.sendToClient(player, new SendActionToClient(pos, SendActionToClient.Action.OPEN_CHOOSE_DIFFICULTY_GUI));
+                } else if (stack.getItem() instanceof DungeonKeyItem) {
+                    Packets.sendToClient(player, new SendActionToClient(pos, SendActionToClient.Action.OPEN_CHOOSE_DIFFICULTY_GUI));
+                } else {
+                    Packets.sendToClient(player, new SendActionToClient(pos, SendActionToClient.Action.OPEN_MAPS_GUI));
+                }
+
+                return ActionResult.SUCCESS;
             }
 
             return ActionResult.SUCCESS;

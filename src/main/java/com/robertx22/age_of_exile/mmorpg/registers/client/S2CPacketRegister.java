@@ -10,6 +10,7 @@ public class S2CPacketRegister {
 
     public static void register() {
 
+        Packets.registerServerToClient(new SendActionToClient());
         Packets.registerServerToClient(new DmgNumPacket());
         Packets.registerServerToClient(new ForceChoosingRace());
         Packets.registerServerToClient(new EfficientMobUnitPacket());

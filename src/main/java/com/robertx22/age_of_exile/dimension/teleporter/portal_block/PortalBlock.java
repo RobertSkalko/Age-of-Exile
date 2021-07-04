@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.dimension.teleporter.portal_block;
 
-import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
@@ -15,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -83,7 +83,7 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                     return;
                 }
 
-                if (WorldUtils.isDungeonWorld(world)) {
+                if (WorldUtils.isDungeonWorld(world) || WorldUtils.isRiftWorld((ServerWorld) world)) {
                     if (maps.ticksinPortal < 40) {
                         maps.ticksinPortal++;
                     } else {
@@ -106,13 +106,13 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                             maps.ticksinPortal++;
                         } else {
 
-                            if (be.dungeonPos == BlockPos.ORIGIN) {
+                            if (be.data.dungeonPos == BlockPos.ORIGIN) {
                                 return;
                             } else {
                                 maps.ticksinPortal = 0;
-                                maps.data.tel_pos = be.tpbackpos;
+                                maps.data.tel_pos = be.data.tpbackpos;
 
-                                TeleportUtils.teleport((ServerPlayerEntity) entity, be.dungeonPos, DimensionIds.DUNGEON_DIMENSION);
+                                TeleportUtils.teleport((ServerPlayerEntity) entity, be.data.dungeonPos, be.data.dungeonType.DIMENSION_ID);
                             }
                         }
                     }

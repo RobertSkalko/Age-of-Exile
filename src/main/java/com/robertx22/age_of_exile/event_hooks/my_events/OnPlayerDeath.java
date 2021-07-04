@@ -10,8 +10,6 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToCl
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.main.Packets;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Formatting;
 
 public class OnPlayerDeath extends EventConsumer<ExileEvents.OnPlayerDeath> {
 
@@ -35,16 +33,7 @@ public class OnPlayerDeath extends EventConsumer<ExileEvents.OnPlayerDeath> {
                 SingleDungeonData dungeon = Load.dungeonData(event.player.world).data.get(event.player.getBlockPos());
 
                 if (!dungeon.data.isEmpty()) {
-
-                    int favorloss = dungeon.data.getDifficulty().death_favor_penalty;
-
-                    Load.favor(event.player)
-                        .addFavor(favorloss);
-
-                    event.player.sendMessage(new LiteralText("You lost " + Math.abs(favorloss) + " favor.").formatted(Formatting.RED), false);
-
-                    dungeon.data.onDeath(event.player);
-
+                    dungeon.data.dun_type.onDeath(dungeon.data, event.player);
                 }
 
             }

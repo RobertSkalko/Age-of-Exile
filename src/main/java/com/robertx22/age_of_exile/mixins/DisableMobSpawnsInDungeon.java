@@ -19,7 +19,7 @@ public class DisableMobSpawnsInDungeon {
 
     @Inject(method = "canSpawn(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/ServerWorldAccess;Lnet/minecraft/entity/SpawnReason;Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)Z", at = @At(value = "HEAD"), cancellable = true)
     private static <T extends Entity> void disableCanSpawn(EntityType<T> type, ServerWorldAccess serverWorldAccess, SpawnReason spawnReason, BlockPos pos, Random random, CallbackInfoReturnable<Boolean> ci) {
-        if (WorldUtils.isDungeonWorld(serverWorldAccess)) {
+        if (WorldUtils.isDungeonWorld(serverWorldAccess) || WorldUtils.isRiftWorld(serverWorldAccess.toServerWorld())) {
             if (spawnReason == SpawnReason.NATURAL) {
                 ci.setReturnValue(false);
             }

@@ -4,10 +4,13 @@ import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
+import com.robertx22.age_of_exile.dimension.teleporter.TeleportedBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
@@ -48,20 +51,34 @@ public class StartDelveMapPacket extends MyPacket<StartDelveMapPacket> {
     @Override
     public void onReceived(PacketContext ctx) {
 
-        PlayerMapsCap maps = Load.playerMaps(ctx.getPlayer());
+        PlayerEntity player = ctx.getPlayer();
 
-        ItemStack stack = ctx.getPlayer()
+        PlayerMapsCap maps = Load.playerMaps(player);
+
+        ItemStack stack = player
             .getMainHandStack();
 
-        if (stack.getItem() instanceof DungeonKeyItem && stack.getCount() > 0) {
+        Difficulty difficulty = ExileDB.Difficulties()
+            .get(diff);
 
-            maps.initRandomDelveCave((DungeonKeyItem) stack.getItem(), ExileDB.Difficulties()
-                .get(diff));
+        BlockEntity tile = player.world.getBlockEntity(pos);
 
-            stack.decrement(1);
+        if (tile instanceof TeleportedBlockEntity) {
 
+            TeleportedBlockEntity be = (TeleportedBlockEntity) tile;
+
+            if (be.data.dungeon_type.isDungeon()) {
+                if (stack.getItem() instanceof DungeonKeyItem && stack.getCount() > 0) {
+
+                    maps.initRandomDelveCave((DungeonKeyItem) stack.getItem(), difficulty);
+
+                    stack.decrement(1);
+                }
+            } else if (be.data.dungeon_type.isRift()) {
+                be.data.activated_rift = true;
+                maps.initRift(be.data, difficulty);
+            }
         }
-
     }
 
     @Override

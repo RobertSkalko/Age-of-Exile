@@ -95,6 +95,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
     public void onHudRender(MatrixStack matrix, float v) {
 
         try {
+
             if (mc.player == null) {
                 return;
             }

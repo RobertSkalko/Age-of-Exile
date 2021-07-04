@@ -4,12 +4,12 @@ import com.robertx22.age_of_exile.capability.PlayerDamageChart;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.delve_gen.DelveGrid;
 import com.robertx22.age_of_exile.dimension.dungeon_data.*;
 import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
+import com.robertx22.age_of_exile.dimension.teleporter.TeleporterData;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -124,7 +124,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             // set the dungeon data for the chunk
             World dimWorld = player.world.getServer()
-                .getWorld(RegistryKey.of(Registry.WORLD_KEY, DimensionIds.DUNGEON_DIMENSION));
+                .getWorld(RegistryKey.of(Registry.WORLD_KEY, pair.right.dun_type.DIMENSION_ID));
 
             int border = getBorder(dimWorld);
 
@@ -168,11 +168,12 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                                 moblist = SignUtils.removeBraces(SignUtils.getText((SignBlockEntity) e.getValue())
                                     .get(1));
                             }
-                            if (!foundportalback) {
-                                if (SignUtils.has("[portal]", (SignBlockEntity) e.getValue())) {
-                                    dimWorld.setBlockState(e.getKey(), ModRegistry.BLOCKS.PORTAL.getDefaultState());
-                                    foundportalback = true;
-                                }
+                            if (SignUtils.has("[rift]", (SignBlockEntity) e.getValue())) {
+                                dimWorld.setBlockState(e.getKey(), ModRegistry.BLOCKS.RIFT_MANAGER.getDefaultState());
+                            }
+                            if (SignUtils.has("[portal]", (SignBlockEntity) e.getValue())) {
+                                dimWorld.setBlockState(e.getKey(), ModRegistry.BLOCKS.PORTAL.getDefaultState());
+                                foundportalback = true;
                             }
                         } else if (dimWorld.getBlockState(e.getKey())
                             .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK) {
@@ -207,8 +208,9 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     player.world.breakBlock(x, false);
                     player.world.setBlockState(x, ModRegistry.BLOCKS.PORTAL.getDefaultState());
                     PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
-                    be.dungeonPos = tpPos;
-                    be.tpbackpos = teleporterPos.up();
+                    be.data.dungeonPos = tpPos;
+                    be.data.tpbackpos = teleporterPos.up();
+                    be.data.dungeonType = pair.right.dun_type;
 
                 }
             }
@@ -300,6 +302,26 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         }
 
         return true;
+
+    }
+
+    public void initRift(TeleporterData riftdata, Difficulty diff) {
+
+        this.data = new MapsData();
+        data.isEmpty = false;
+
+        PointData middle = new PointData(data.grid.grid.length / 2, data.grid.grid.length / 2);
+
+        data.dungeon_datas.put(middle, riftdata.rift_data);
+
+        riftdata.rift_data.diff = diff.GUID();
+
+        data.grid.grid[middle.x][middle.y] = DelveGrid.DUNGEON;
+
+        this.data.point_pos = middle;
+        this.data.start_pos = middle;
+
+        this.syncToClient(player);
 
     }
 

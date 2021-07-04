@@ -4,10 +4,10 @@ import com.robertx22.age_of_exile.dimension.SpawnUtil;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.EntityType;
@@ -100,7 +100,7 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
                                     EntityType type = list.getRandomMob();
 
                                     if (SpawnUtil.canPlaceMob(world, type, blockPos)) {
-                                        list.spawMob((ServerWorld) world, type, blockPos, 0);
+                                        list.spawnMob((ServerWorld) world, type, blockPos);
                                         spawns--;
                                     }
 

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
+import com.robertx22.age_of_exile.dimension.rift.RiftManagerBlockEntity;
 import com.robertx22.age_of_exile.dimension.spawner.ModSpawnerBlockEntity;
 import com.robertx22.age_of_exile.dimension.teleporter.TeleportedBlockEntity;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
@@ -34,6 +35,7 @@ public class ModBlockEntities {
     public BlockEntityType<TeleportedBlockEntity> TELEPORTER = of(ModRegistry.BLOCKS.TELEPORTER, TeleportedBlockEntity::new);
     public BlockEntityType<PortalBlockEntity> PORTAL = of(ModRegistry.BLOCKS.PORTAL, PortalBlockEntity::new);
     public BlockEntityType<ModSpawnerBlockEntity> SPAWNER = of(ModRegistry.BLOCKS.SPAWNER, ModSpawnerBlockEntity::new);
+    public BlockEntityType<RiftManagerBlockEntity> RIFT_MANAGER = of(ModRegistry.BLOCKS.RIFT_MANAGER, RiftManagerBlockEntity::new);
 
     private <T extends BlockEntity> BlockEntityType<T> of(Block block, Supplier<T> en) {
         BlockEntityType<T> type = BlockEntityType.Builder.create(en, block)

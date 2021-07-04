@@ -1,7 +1,9 @@
 package com.robertx22.age_of_exile.dimension.teleporter.portal_block;
 
+import com.robertx22.age_of_exile.dimension.teleporter.PortalBlocKData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
+import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -9,15 +11,12 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
 
 public class PortalBlockEntity extends BaseModificationStation {
 
-    public BlockPos dungeonPos = new BlockPos(0, 0, 0);
-    public BlockPos tpbackpos = new BlockPos(0, 80, 0);
+    public PortalBlocKData data = new PortalBlocKData();
 
     public PortalBlockEntity() {
-
         super(ModRegistry.BLOCK_ENTITIES.PORTAL, 0);
     }
 
@@ -39,10 +38,9 @@ public class PortalBlockEntity extends BaseModificationStation {
     @Override
     public NbtCompound writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
-
-        nbt.putLong("dpos", dungeonPos.asLong());
-        nbt.putLong("tbpos", tpbackpos.asLong());
-
+        if (data != null) {
+            LoadSave.Save(data, nbt, "teldata");
+        }
         return nbt;
     }
 
@@ -50,9 +48,7 @@ public class PortalBlockEntity extends BaseModificationStation {
     public void fromTag(BlockState state, NbtCompound nbt) {
         try {
             super.fromTag(state, nbt);
-
-            this.dungeonPos = BlockPos.fromLong(nbt.getLong("dpos"));
-            this.tpbackpos = BlockPos.fromLong(nbt.getLong("tbpos"));
+            this.data = LoadSave.Load(PortalBlocKData.class, new PortalBlocKData(), nbt, "teldata");
 
         } catch (Exception e) {
             e.printStackTrace();

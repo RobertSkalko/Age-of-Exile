@@ -39,7 +39,15 @@ public class ElementalResistEffect extends BaseDamageEffect {
 
         max += maxdata.getAverageValue();
 
-        float resistPercent = MathHelper.clamp(data.getAverageValue() - pene, stat.min, max);
+        int resist = (int) data.getAverageValue();
+
+        if (resist >= stat.max) {
+            resist += maxdata.getAverageValue();
+        }
+
+        resist -= pene;
+
+        float resistPercent = MathHelper.clamp(resist, stat.min, max);
 
         effect.data.getNumber(EventData.NUMBER).number = MathUtils.applyResistMultiplier(effect.data.getNumber(), resistPercent);
 

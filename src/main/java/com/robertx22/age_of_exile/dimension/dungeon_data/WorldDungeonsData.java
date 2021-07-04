@@ -20,7 +20,6 @@ public class WorldDungeonsData {
         ChunkPos cp = DungeonDimensionJigsawFeature.getSpawnChunkOf(pos);
         String key = cp.x + "_" + cp.z;
         return key;
-
     }
 
     public void onTick(World world) {
@@ -41,8 +40,20 @@ public class WorldDungeonsData {
             .toString();
 
         if (!map.containsKey(key)) {
+
+            //allow world to save 10 dungeon datas for each player.
+            // Means there will never be too much data to slow down servers when loading
+            // and there's enough so players can't just spam dungeons to clear the data if someone
+            // pvp kills them in rifts
+
             map.entrySet()
-                .removeIf(x -> x.getValue().ownerUUID.equals(playerUUID)); // we dont want an infinitely expanding world data
+                .forEach(x -> {
+                    if (x.getValue().ownerUUID.equals(playerUUID)) {
+                        x.getValue().data_lives--;
+                    }
+                });
+            map.entrySet()
+                .removeIf(x -> x.getValue().data_lives < 1 && x.getValue().ownerUUID.equals(playerUUID)); // we dont want an infinitely expanding world data
 
             map.put(key, data);
         }

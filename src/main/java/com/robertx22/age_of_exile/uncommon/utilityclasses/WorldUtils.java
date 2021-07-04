@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -107,6 +108,17 @@ public class WorldUtils {
         }
 
         return pos.up();
+
+    }
+
+    public static boolean isRiftWorld(ServerWorld world) {
+        if (world == null) {
+            return false;
+        }
+        return world.getRegistryManager()
+            .getDimensionTypes()
+            .getId(world.getDimension())
+            .equals(DimensionIds.RIFT_DIMENSION);
 
     }
 

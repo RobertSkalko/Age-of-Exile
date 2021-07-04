@@ -13,6 +13,8 @@ public class SingleDungeonData {
     public QuestProgression quest = new QuestProgression();
     @Store
     public String ownerUUID = "";
+    @Store
+    public int data_lives = 10;
 
     @Store
     public DungeonPopulateData pop = new DungeonPopulateData();

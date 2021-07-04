@@ -42,7 +42,7 @@ public class DungeonMobList implements JsonExileRegistry<DungeonMobList>, IAutoG
         return id;
     }
 
-    public LivingEntity spawnBoss(ServerWorld world, BlockPos pos, int tier) {
+    public LivingEntity spawnBoss(ServerWorld world, BlockPos pos) {
         WeightedMobEntry random = RandomUtils.weightedRandom(bosses);
 
         EntityType type = Registry.ENTITY_TYPE.get(new Identifier(random.id));
@@ -70,7 +70,7 @@ public class DungeonMobList implements JsonExileRegistry<DungeonMobList>, IAutoG
         return type;
     }
 
-    public LivingEntity spawMob(ServerWorld world, EntityType type, BlockPos pos, int tier) {
+    public LivingEntity spawnMob(ServerWorld world, EntityType type, BlockPos pos) {
 
         try {
 
@@ -111,4 +111,5 @@ public class DungeonMobList implements JsonExileRegistry<DungeonMobList>, IAutoG
     public int Weight() {
         return 1000;
     }
+
 }

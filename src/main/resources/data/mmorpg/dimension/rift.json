@@ -1,0 +1,10 @@
+{
+  "type": "mmorpg:rift",
+  "generator": {
+	"type": "mmorpg:dungeon_flat",
+	
+	 "settings": {
+          "disable_mob_generation": true    		
+	}
+}
+}

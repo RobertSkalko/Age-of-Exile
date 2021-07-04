@@ -12,12 +12,12 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
@@ -99,6 +99,7 @@ public class UtilitySpells implements ExileRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.PORTAL, 100D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.OPEN_ENDER_CHEST.create()))
             .disableInDimension(DimensionIds.DUNGEON_DIMENSION)
+            .disableInDimension(DimensionIds.RIFT_DIMENSION)
             .build();
 
         SpellBuilder.of("water_breath", SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 5, 40)
