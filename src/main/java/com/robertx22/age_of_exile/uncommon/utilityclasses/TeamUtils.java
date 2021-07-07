@@ -3,12 +3,28 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class TeamUtils {
+
+    public static void forEachMember(World world, BlockPos pos, Consumer<PlayerEntity> action) {
+
+        PlayerEntity player = PlayerUtils.nearestPlayer((ServerWorld) world, pos);
+
+        if (player != null) {
+            TeamUtils.getOnlineMembers(player)
+                .forEach(x -> action.accept(x));
+        }
+
+    }
+
     public static List<PlayerEntity> getOnlineTeamMembersInRange(PlayerEntity player, double range) {
         return getOnlineMembers(player).stream()
             .filter(x -> player.distanceTo(x) < range)

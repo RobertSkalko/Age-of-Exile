@@ -1,15 +1,20 @@
 package com.robertx22.age_of_exile.dimension.rift;
 
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.LiteralText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
 
@@ -51,50 +56,98 @@ public class RiftManagerBlockEntity extends BlockEntity implements Tickable {
                 return;
             }
 
-            if (true) {
-                return;
-            }
+            data.ticks_till_next_wave--;
 
             ticks++;
 
-            if (ticks % 100 == 0) {
+            if (data.wave_num == 0) {
+                int secTillWave = data.ticks_till_next_wave / 20;
 
-                DungeonData data = Load.dungeonData(world).data.get(pos).data;
+                TeamUtils.forEachMember(world, pos, x -> {
+                    OnScreenMessageUtils.sendMessage(
+                        (ServerPlayerEntity) x,
+                        new LiteralText("Starting in " + secTillWave + "s").formatted(Formatting.YELLOW),
+                        TitleS2CPacket.Action.ACTIONBAR);
+                });
+            }
 
-                if (MMORPG.RUN_DEV_TOOLS) {
-                    data.uuid = "sddss";
+            if (data.ticks_till_next_wave < 1) {
+
+                data.ticks_till_next_wave = 20 * 60;
+                data.wave_num++;
+
+                DungeonData dungeonData = Load.dungeonData(world).data.get(pos).data;
+
+                if (dungeonData.fail) {
+                    world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                    return;
                 }
 
-                if (!data.failedOrEmpty()) {
+                if (data.wave_num >= data.max_waves) {
+                    // todo spawn rewards here at last wave
 
-                    for (int i = 0; i < 50; i++) {
-                        int ymin = -30;
-                        int ymax = 30;
+                    TeamUtils.forEachMember(world, pos, x -> {
+                        OnScreenMessageUtils.sendMessage(
+                            (ServerPlayerEntity) x,
+                            new LiteralText("Rift Cleared.").formatted(Formatting.GREEN),
+                            TitleS2CPacket.Action.TITLE);
+                    });
 
-                        int distanceMin = -16 * 4;
-                        int distanceMax = 16 * 4;
+                    world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                    return;
+                } else {
+                    TeamUtils.forEachMember(world, pos, x -> {
+                        OnScreenMessageUtils.sendMessage(
+                            (ServerPlayerEntity) x,
+                            new LiteralText("Wave " + (data.wave_num)).formatted(Formatting.DARK_PURPLE),
+                            TitleS2CPacket.Action.TITLE);
+                    });
 
-                        int x = RandomUtils.RandomRange(distanceMin, distanceMax);
-                        int y = RandomUtils.RandomRange(ymin, ymax);
-                        int z = RandomUtils.RandomRange(distanceMin, distanceMax);
-
-                        BlockPos randomPos = new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z);
-
-                        if (world.isAir(randomPos)) {
-                            data.getMobList()
-                                .spawnMob((ServerWorld) world, data.getMobList()
-                                    .getRandomMob(), randomPos);
-
-                            break;
+                    if (!dungeonData.failedOrEmpty()) {
+                        for (int i = 0; i < 10; i++) {
+                            createMobSummonPortal();
                         }
-
                     }
-
                 }
+
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+    }
+
+    void createMobSummonPortal() {
+
+        for (int i = 0; i < 500; i++) {
+            int ymin = -30;
+            int ymax = 30;
+
+            int distanceMin = -16 * 4;
+            int distanceMax = 16 * 4;
+
+            int x = RandomUtils.RandomRange(distanceMin, distanceMax);
+            int y = RandomUtils.RandomRange(ymin, ymax);
+            int z = RandomUtils.RandomRange(distanceMin, distanceMax);
+
+            BlockPos randomPos = new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z);
+
+            if (world.isAir(randomPos)) {
+
+                for (int s = 0; s < 5; s++) {
+                    BlockPos check = new BlockPos(randomPos.getX(), randomPos.getY() - s, randomPos.getZ());
+                    if (world.isAir(check)) {
+                        randomPos = check;
+                    } else {
+                        break;
+                    }
+                }
+
+                world.setBlockState(randomPos, ModRegistry.BLOCKS.SUMMON_PORTAL.getDefaultState());
+                break;
+            }
+
         }
 
     }

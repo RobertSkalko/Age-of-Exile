@@ -24,7 +24,7 @@ public class OnTickRegenerate {
         if (en.getMaxHealth() == en.getHealth()) {
             return;
         }
-        if (WorldUtils.isDungeonWorld(en.world) == false) {
+        if (WorldUtils.isMapWorldClass(en.world) == false) {
             return;
         }
 

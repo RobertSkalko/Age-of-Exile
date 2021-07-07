@@ -5,9 +5,9 @@ import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonPopulateData;
 import com.robertx22.age_of_exile.dimension.spawner.ModSpawnerBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.world_of_exile.main.ModLoottables;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BeaconBlockEntity;
@@ -28,7 +28,7 @@ public class PopulateDungeonChunks {
 
     public static void tryPopulateChunksAroundPlayer(World world, PlayerEntity player) {
 
-        if (WorldUtils.isDungeonWorld(world)) {
+        if (WorldUtils.isMapWorldClass(world)) {
 
             // Watch watch = new Watch();
 

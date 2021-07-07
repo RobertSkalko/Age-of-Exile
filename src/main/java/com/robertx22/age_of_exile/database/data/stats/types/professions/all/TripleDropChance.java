@@ -8,6 +8,8 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 
+import java.util.ArrayList;
+
 public class TripleDropChance extends Stat {
 
     public static String GUID = "triple_drop_chance";
@@ -59,7 +61,7 @@ public class TripleDropChance extends Stat {
         @Override
         public SkillDropEvent activate(SkillDropEvent effect, StatData data, Stat stat) {
 
-            effect.originalDrops.forEach(x -> {
+            new ArrayList<>(effect.originalDrops).forEach(x -> {
                 effect.extraDrops.add(x.copy());
                 effect.extraDrops.add(x.copy());
             });

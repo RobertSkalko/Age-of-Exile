@@ -20,7 +20,7 @@ public class StopFireInDungeonMixin {
     @Inject(method = "scheduledTick(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)V", cancellable = true, at = @At(value = "HEAD"))
     public void hookDisableFire(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
         try {
-            if (WorldUtils.isDungeonWorld(world)) {
+            if (WorldUtils.isMapWorldClass(world)) {
                 ci.cancel();
             }
         } catch (Exception e) {

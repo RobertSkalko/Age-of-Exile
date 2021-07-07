@@ -184,7 +184,7 @@ public class LootInfo {
     private LootInfo setTier() {
 
         if (world != null && pos != null) {
-            if (WorldUtils.isDungeonWorld(world)) {
+            if (WorldUtils.isMapWorldClass(world)) {
                 this.diff = Load.dungeonData(world).data.get(pos).data.getDifficulty();
             }
         }
@@ -214,7 +214,7 @@ public class LootInfo {
 
     private void setWorld() {
         if (world != null) {
-            this.isMapWorld = WorldUtils.isDungeonWorld(world) && !Load.dungeonData(world).data.get(this.pos).data.isEmpty();
+            this.isMapWorld = WorldUtils.isMapWorldClass(world) && !Load.dungeonData(world).data.get(this.pos).data.isEmpty();
         }
         if (isMapWorld) {
             dungeon = Load.dungeonData(world).data.get(pos).data;

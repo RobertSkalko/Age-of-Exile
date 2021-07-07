@@ -8,28 +8,24 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
-import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonType;
 import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
-import com.robertx22.age_of_exile.dimension.teleporter.TeleportedBlockEntity;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
+import com.robertx22.age_of_exile.vanilla_mc.commands.SummonRiftCommand;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientEntityIsCastingSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,6 +38,15 @@ public class OnServerTick implements ServerTickEvents.EndTick {
     static List<PlayerTickAction> TICK_ACTIONS = new ArrayList<>();
 
     static {
+
+        TICK_ACTIONS.add(new PlayerTickAction("summon_rifts", 20 * 10, (player, data) -> {
+            if (RandomUtils.roll(0.1F)) {
+                if (Load.Unit(player)
+                    .getLevel() >= 25) {
+                    SummonRiftCommand.summonRift(player);
+                }
+            }
+        }));
 
         TICK_ACTIONS.add(new PlayerTickAction("update_caps", 18, (player, data) -> {
 
@@ -65,20 +70,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             PlayerTickAction("regen", 60, (player, data) ->
 
         {
-
-            if (false && MMORPG.RUN_DEV_TOOLS) {
-                BlockPos pos = player.getBlockPos();
-                World world = player.getServerWorld();
-
-                if (world.isAir(pos)) {
-
-                    world.setBlockState(pos, ModRegistry.BLOCKS.TELEPORTER.getDefaultState());
-                    TeleportedBlockEntity be = (TeleportedBlockEntity) world.getBlockEntity(pos);
-                    be.data.dungeon_type = DungeonType.RIFT;
-                    be.data.rift_data.dun_type = DungeonType.RIFT;
-
-                }// TODO
-            }
 
             if (player.isAlive()) {
 
@@ -184,7 +175,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
         {
 
-            if (!WorldUtils.isDungeonWorld(player.world)) {
+            if (!WorldUtils.isMapWorldClass(player.world)) {
 
                 boolean wasnt = false;
                 if (!data.isInHighLvlZone) {

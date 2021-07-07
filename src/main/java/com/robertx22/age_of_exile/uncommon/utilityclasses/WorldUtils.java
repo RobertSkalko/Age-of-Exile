@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import net.minecraft.block.LeavesBlock;
@@ -123,13 +122,16 @@ public class WorldUtils {
     }
 
     public static boolean isDungeonWorld(WorldView world) {
-        if (world == null) {
-            return false;
-        }
-        return isMapWorldClass(world);
+        return isId(world, DimensionIds.DUNGEON_DIMENSION);
     }
 
     public static boolean isMapWorldClass(WorldView world) {
+        return isId(world, DimensionIds.DUNGEON_DIMENSION) || isId(world, DimensionIds.RIFT_DIMENSION);
+
+    }
+
+    static boolean isId(WorldView world, Identifier dimid) {
+
         if (MMORPG.server == null) {
             return false;
         }
@@ -138,15 +140,10 @@ public class WorldUtils {
             .getId(world.getDimension());
 
         if (id != null) {
-            return id.equals(DimensionIds.DUNGEON_DIMENSION);
+            return id.equals(dimid);
         }
+
         return false;
-    }
-
-    public static int getTier(World world, BlockPos pos) {
-
-        return ExileDB.getDimensionConfig(world).mob_tier;
-
     }
 
 }

@@ -10,6 +10,7 @@ public class RenderLayersRegister {
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.PORTAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.BLACK_HOLE, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.TELEPORTER, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.SUMMON_PORTAL, RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.MANA_PLANT, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModRegistry.BLOCKS.LIFE_PLANT, RenderLayer.getCutout());

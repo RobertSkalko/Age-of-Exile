@@ -15,7 +15,6 @@ public class SpawnTeleportItem extends BaseTpItem {
 
     @Override
     public ItemStack onDoneUsing(ItemStack stack, World world, ServerPlayerEntity user) {
-
         try {
             BlockPos spawn = user.getSpawnPointPosition();
 

@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 
 public enum TeamSize {
     SOLO(Words.Solo, 1, 1, 0.75F, 0.5F, new TeamSizeMobStrength(200, 100, 50), 1F),
-    DUO(Words.Duo, 2, 2, 1.5F, 0.75f, new TeamSizeMobStrength(400, 200, 100), 1.25F),
-    TEAM(Words.Team, 3, 10, 3F, 1F, new TeamSizeMobStrength(500, 300, 200), 1.5F);
+    DUO(Words.Duo, 2, 2, 1.5F, 1F, new TeamSizeMobStrength(400, 200, 150), 1.25F),
+    TEAM(Words.Team, 3, 10, 3F, 1.5F, new TeamSizeMobStrength(500, 300, 200), 1.5F);
 
     public Words word;
 

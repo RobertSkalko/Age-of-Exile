@@ -14,7 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -83,7 +82,7 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                     return;
                 }
 
-                if (WorldUtils.isDungeonWorld(world) || WorldUtils.isRiftWorld((ServerWorld) world)) {
+                if (WorldUtils.isMapWorldClass(world)) {
                     if (maps.ticksinPortal < 40) {
                         maps.ticksinPortal++;
                     } else {

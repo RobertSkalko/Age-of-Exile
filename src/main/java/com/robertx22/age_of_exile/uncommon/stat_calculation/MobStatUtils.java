@@ -57,7 +57,7 @@ public class MobStatUtils {
                 .GUID())
             .applyStats(mobdata);
 
-        if (WorldUtils.isDungeonWorld(en.world)) {
+        if (WorldUtils.isMapWorldClass(en.world)) {
             DungeonData data = Load.dungeonData(en.world).data.get(en.getBlockPos()).data;
             if (!data.isEmpty()) {
                 data.af.getStats(mobdata.getLevel())

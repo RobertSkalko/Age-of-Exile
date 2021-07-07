@@ -4,13 +4,8 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
 @Storable
-public class RiftData {
+public class SummonPortalData {
 
     @Store
-    public int wave_num = 0;
-    @Store
-    public int max_waves = 5;
-    @Store
-    public int ticks_till_next_wave = 20 * 30;
-
+    public int summons_left = 3;
 }

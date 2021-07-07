@@ -54,7 +54,7 @@ public class ModSpawnerBlockEntity extends BlockEntity implements Tickable {
         if (ticks % 60 == 0) {
             if (!world.isClient) {
                 if (isPlayerInRange()) {
-                    if (WorldUtils.isDungeonWorld(world)) {
+                    if (WorldUtils.isMapWorldClass(world)) {
                         int entities = world.getNonSpectatingEntities(LivingEntity.class, (new Box(pos.getX(), pos.getY(), pos.getZ(), (pos.getX() + 1), (pos.getY() + 1), (pos.getZ() + 1))).expand(this.spawnRange))
                             .size();
                         if (!spawnAllAtOnce && entities > MAX_NEARBY_ENTITIES) {

@@ -26,7 +26,7 @@ public class PlayerLoadoutsData {
             .getCooldowns()
             .getCooldownTicks(SWITCH_COOLDOWN_ID);
 
-        if (WorldUtils.isDungeonWorld(p.world)) {
+        if (WorldUtils.isMapWorldClass(p.world)) {
             p.sendMessage(new LiteralText("You can't switch loadouts inside dungeons."), false);
             return;
         }

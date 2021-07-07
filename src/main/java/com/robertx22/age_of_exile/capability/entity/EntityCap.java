@@ -650,7 +650,7 @@ public class EntityCap {
         @Override
         public Difficulty getMapDifficulty() {
 
-            if (WorldUtils.isDungeonWorld(entity.world)) {
+            if (WorldUtils.isMapWorldClass(entity.world)) {
                 WorldDungeonCap data = Load.dungeonData(entity.world);
                 return data.data.get(entity.getBlockPos()).data.getDifficulty();
             }
@@ -793,7 +793,7 @@ public class EntityCap {
         public void SetMobLevelAtSpawn(PlayerEntity nearestPlayer) {
             this.setMobStats = true;
 
-            if (WorldUtils.isDungeonWorld(entity.world)) {
+            if (WorldUtils.isMapWorldClass(entity.world)) {
                 try {
                     BlockPos pos = entity.getBlockPos();
                     DungeonData data = Load.dungeonData(entity.world).data.get(pos).data;
