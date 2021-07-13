@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public enum SkillItemTier {
 
@@ -38,9 +39,13 @@ public enum SkillItemTier {
 
     public static SkillItemTier of(LevelRange lvl) {
         return Arrays.stream(SkillItemTier.values())
-            .filter(x -> x.levelRange == lvl)
-            .findAny()
-            .orElse(SkillItemTier.TIER0);
+            .min(Comparator.comparingInt(x -> {
+                int avg = (x.levelRange.getMaxLevel() + x.levelRange.getMaxLevel()) / 2;
+                int avg2 = (lvl.getMaxLevel() + lvl.getMaxLevel()) / 2;
+                int diff = Math.abs(avg - avg2);
+                return diff;
+            }))
+            .get();
     }
 
     public SkillItemTier lowerTier() {
