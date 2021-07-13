@@ -119,10 +119,6 @@ public class SpellAttackGoal<T extends HostileEntity> extends Goal {
                     .lookAt(livingEntity, 30.0F, 30.0F);
             }
 
-            Load.Unit(actor)
-                .getCooldowns()
-                .onTicksPass(1);
-
             spells.forEach(x -> tryCast(x));
 
         }

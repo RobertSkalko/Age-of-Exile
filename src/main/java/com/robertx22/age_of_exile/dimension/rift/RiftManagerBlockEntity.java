@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.dimension.rift;
 
+import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -93,6 +94,12 @@ public class RiftManagerBlockEntity extends BlockEntity implements Tickable {
                             TitleS2CPacket.Action.TITLE);
                     });
 
+                    int chests = RandomUtils.RandomRange(1, 2);
+
+                    for (int i = 0; i < chests; i++) {
+                        summonEndRewardChests();
+                    }
+
                     world.setBlockState(pos, Blocks.AIR.getDefaultState());
                     return;
                 } else {
@@ -114,6 +121,39 @@ public class RiftManagerBlockEntity extends BlockEntity implements Tickable {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+    }
+
+    void summonEndRewardChests() {
+
+        for (int i = 0; i < 500; i++) {
+            int ymin = -25;
+            int ymax = 25;
+
+            int distanceMin = -5;
+            int distanceMax = 5;
+
+            int x = RandomUtils.RandomRange(distanceMin, distanceMax);
+            int y = RandomUtils.RandomRange(ymin, ymax);
+            int z = RandomUtils.RandomRange(distanceMin, distanceMax);
+
+            BlockPos randomPos = new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z);
+
+            if (world.isAir(randomPos)) {
+
+                for (int s = 0; s < 10; s++) {
+                    BlockPos check = new BlockPos(randomPos.getX(), randomPos.getY() - s, randomPos.getZ());
+                    if (world.isAir(check)) {
+                        randomPos = check;
+                    } else {
+                        break;
+                    }
+                }
+                PopulateDungeonChunks.setChest(world, randomPos);
+                break;
+            }
+
         }
 
     }

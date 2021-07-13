@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.library_of_exile.utils.TeleportUtils;
+import com.robertx22.library_of_exile.utils.VanillaReg;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -16,10 +17,10 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Random;
 
@@ -89,7 +90,7 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                         maps.ticksinPortal = 0;
                         BlockPos p = Load.playerMaps((PlayerEntity) entity).data.tel_pos.up();
 
-                        TeleportUtils.teleport((ServerPlayerEntity) entity, p, DimensionType.OVERWORLD_ID);
+                        TeleportUtils.teleport((ServerPlayerEntity) entity, p, new Identifier(maps.data.tp_b_dim));
 
                         SoundUtils.playSound(entity, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);
                         return;
@@ -110,6 +111,8 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                             } else {
                                 maps.ticksinPortal = 0;
                                 maps.data.tel_pos = be.data.tpbackpos;
+                                maps.data.tp_b_dim = VanillaReg.getId(entity.world)
+                                    .toString();
 
                                 TeleportUtils.teleport((ServerPlayerEntity) entity, be.data.dungeonPos, be.data.dungeonType.DIMENSION_ID);
                             }

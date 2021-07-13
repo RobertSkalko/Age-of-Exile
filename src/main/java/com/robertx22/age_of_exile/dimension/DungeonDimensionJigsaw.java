@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.dimension;
 
-import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsaw.Pool;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.config_utils.BlackOrWhiteList;
 import com.robertx22.world_of_exile.config.FeatureConfig;
@@ -48,7 +47,6 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
     @Override
     public StructurePool createPoolAndInitPools() {
         AbstractPool startBuilder = new Pool(Ref.id("dungeon/starts"));
-        startBuilder.add(Ref.id("stone/start"), 1);
         startBuilder.add(Ref.id("mossy/mossy_start"));
         startBuilder.add(Ref.id("desert/desert_start"));
 

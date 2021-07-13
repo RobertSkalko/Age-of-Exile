@@ -36,9 +36,7 @@ public class SummonRiftCommand {
     }
 
     private static int run(PlayerEntity player) {
-
         summonRift(player);
-
         return 1;
     }
 
@@ -48,6 +46,7 @@ public class SummonRiftCommand {
         randomMessages.add("Horrors call for you.");
         randomMessages.add("A rift has appeared.");
         randomMessages.add("Something stirs beyond the boundary.");
+        randomMessages.add("Hell calls to you.");
 
     }
 
@@ -55,11 +54,15 @@ public class SummonRiftCommand {
         World world = player.getServer()
             .getWorld(RegistryKey.of(Registry.WORLD_KEY, new Identifier("world_of_exile:hell1")));
 
-        ChunkPos cp = new ChunkPos(player.getBlockPos());
+        BlockPos pos = player.getBlockPos();
+
+        pos = new BlockPos(pos.getX() + RandomUtils.RandomRange(-100, 100), pos.getY(), pos.getZ() + RandomUtils.RandomRange(-100, 100));
+
+        ChunkPos cp = new ChunkPos(pos);
 
         world.getChunk(cp.x, cp.z);
 
-        BlockPos pos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE, player.getBlockPos()); // todo
+        pos = world.getTopPosition(Heightmap.Type.WORLD_SURFACE, pos);
 
         if (world.isAir(pos)) {
 

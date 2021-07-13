@@ -11,10 +11,10 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
@@ -25,6 +25,7 @@ public class AuraSpells implements ExileRegistryInit {
 
         SpellBuilder.aura(PlayStyle.melee, "unwavering_stance", "Unwavering Stance", new AuraSpellData(0.2F,
                 Arrays.asList(
+                    new StatModifier(-25, -25, Stats.TOTAL_DAMAGE.get()),
                     new StatModifier(-10, -25, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee)),
                     new StatModifier(-10, -20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged)),
                     new StatModifier(-10, -15, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic)),

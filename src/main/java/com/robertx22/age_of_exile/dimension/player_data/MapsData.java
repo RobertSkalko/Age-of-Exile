@@ -24,6 +24,8 @@ public class MapsData {
 
     @Store
     public BlockPos tel_pos = new BlockPos(0, 0, 0);
+    @Store
+    public String tp_b_dim = "";
 
     @Store
     public PointData point_pos = new PointData(20, 20);

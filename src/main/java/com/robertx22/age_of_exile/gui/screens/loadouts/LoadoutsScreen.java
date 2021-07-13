@@ -8,8 +8,6 @@ import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.BaseSelectionScreen;
 import com.robertx22.age_of_exile.gui.screens.ILeftRight;
 import com.robertx22.age_of_exile.gui.screens.PlayerGearButton;
-import com.robertx22.age_of_exile.gui.screens.loadouts.LoadoutsScreen.CreateOrLoadButton;
-import com.robertx22.age_of_exile.gui.screens.loadouts.LoadoutsScreen.LoadoutButton;
 import com.robertx22.age_of_exile.gui.screens.race_select.LeftRightButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -79,14 +77,18 @@ public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen,
             slots = 3;
         }
 
-        if (slots > ModConfig.get().Server.MAX_LOADOUTS) {
+        boolean addArrowButtons = true;
+
+        if (slots >= ModConfig.get().Server.MAX_LOADOUTS) {
             slots = ModConfig.get().Server.MAX_LOADOUTS;
+            addArrowButtons = false;
         }
 
         x = (this.width - (LoadoutButton.xSize + 5) * slots) / 2;
 
-        this.addButton(new LeftRightButton(this, x - 30, y + LoadoutButton.ySize / 2, true, LeftRightButton.Type.ONE));
-
+        if (addArrowButtons) {
+            this.addButton(new LeftRightButton(this, x - 30, y + LoadoutButton.ySize / 2, true, LeftRightButton.Type.ONE));
+        }
         int num = 1;
 
         for (int i = index; i < index + slots; i++) {
@@ -109,9 +111,9 @@ public class LoadoutsScreen extends BaseSelectionScreen implements INamedScreen,
             x += 5 + LoadoutButton.xSize;
 
         }
-
-        this.addButton(new LeftRightButton(this, x + 25 - LeftRightButton.xSize, y + LoadoutButton.ySize / 2, false, LeftRightButton.Type.ONE));
-
+        if (addArrowButtons) {
+            this.addButton(new LeftRightButton(this, x + 25 - LeftRightButton.xSize, y + LoadoutButton.ySize / 2, false, LeftRightButton.Type.ONE));
+        }
     }
 
     EntityCap.UnitData data;

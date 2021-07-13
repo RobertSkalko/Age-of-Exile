@@ -25,6 +25,10 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
             return;
         }
 
+        Load.Unit(entity)
+            .getCooldowns()
+            .onTicksPass(1);
+
         OnMobTick.tick(entity);
 
         if (entity instanceof MobEntity) {

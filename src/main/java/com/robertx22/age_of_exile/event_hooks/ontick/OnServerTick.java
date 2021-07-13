@@ -39,8 +39,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
     static {
 
-        TICK_ACTIONS.add(new PlayerTickAction("summon_rifts", 20 * 10, (player, data) -> {
-            if (RandomUtils.roll(0.1F)) {
+        TICK_ACTIONS.add(new PlayerTickAction("summon_rifts", 20 * 60, (player, data) -> {
+            if (RandomUtils.roll(1)) {
                 if (Load.Unit(player)
                     .getLevel() >= 25) {
                     SummonRiftCommand.summonRift(player);
@@ -146,10 +146,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             Load.Unit(player)
                 .getResources()
                 .onTickBlock(player);
-
-            Load.Unit(player)
-                .getCooldowns()
-                .onTicksPass(1);
 
             Spell spell = Load.spells(player)
                 .getCastingData()
