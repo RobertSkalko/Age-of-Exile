@@ -1,0 +1,24 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "mmorpg:dungeon_key/common",
+          "weight": 1000
+        },
+        {
+          "type": "item",
+          "name": "mmorpg:dungeon_key/rare",
+          "weight": 250
+        },
+        {
+          "type": "item",
+          "name": "mmorpg:dungeon_key/epic",
+          "weight": 50
+        }
+      ]
+    }
+  ]
+}

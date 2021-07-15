@@ -15,7 +15,7 @@ public class Intelligence extends BaseCoreStat {
         super(Arrays.asList(
             new OptScaleExactStat(0.25F, 0.25F, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
             new OptScaleExactStat(0.25F, 0.25F, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT),
-            new OptScaleExactStat(2, 2, Mana.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(1, 1, Mana.getInstance(), ModType.LOCAL_INCREASE)
         ));
         this.format = Formatting.BLUE.getName();
     }

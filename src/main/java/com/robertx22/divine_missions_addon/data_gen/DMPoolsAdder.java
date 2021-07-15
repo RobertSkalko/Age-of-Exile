@@ -16,17 +16,16 @@ public class DMPoolsAdder implements ExileRegistryInit {
 
         PoolBuilder.of("aoe_tasks", 250, Pool.PoolType.TASKS, Pool.PickType.PICK_ONE,
                 Arrays.asList(
-                    DMTasksAdder.COMPLETE_DUNGEON
+                    DMTasksAdder.COMPLETE_DUNGEON,
+                    DMTasksAdder.COMPLETE_RIFT
                 )
             )
             .addCondition(IsModLoaded.of(Ref.MODID))
             .buildForGods();
 
-        PoolBuilder.of("dungeon_keys", 100, Pool.PoolType.REWARDS, Pool.PickType.PICK_ONE,
+        PoolBuilder.of("dungeon_keys", 200, Pool.PoolType.REWARDS, Pool.PickType.PICK_ONE,
                 Arrays.asList(
-                    DMRewardsAdder.COMMON_DUNGEON_KEY,
-                    DMRewardsAdder.EPIC_DUNGEON_KEY,
-                    DMRewardsAdder.RARE_DUNGEON_KEY
+                    DMRewardsAdder.DUNGEON_KEYS_LOOT_TABLE
                 )
             )
             .addCondition(AoeLevelCondition.of(20, Integer.MAX_VALUE))
@@ -35,12 +34,7 @@ public class DMPoolsAdder implements ExileRegistryInit {
 
         PoolBuilder.of("favor", 1000, Pool.PoolType.REWARDS, Pool.PickType.ALWAYS_INCLUDE,
                 Arrays.asList(
-
-                    DMRewardsAdder.FAVOR,
-                    DMRewardsAdder.COMMON_DUNGEON_KEY,
-                    DMRewardsAdder.EPIC_DUNGEON_KEY,
-                    DMRewardsAdder.RARE_DUNGEON_KEY
-
+                    DMRewardsAdder.FAVOR
                 )
             )
             .addCondition(IsModLoaded.of(Ref.MODID))

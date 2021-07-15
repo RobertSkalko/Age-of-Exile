@@ -42,6 +42,8 @@ public class DungeonData {
     @Store
     public boolean fail = false;
     @Store
+    public int fail_counter = 0;
+    @Store
     public DungeonType dun_type = DungeonType.DUNGEON;
 
     public boolean failedOrEmpty() {

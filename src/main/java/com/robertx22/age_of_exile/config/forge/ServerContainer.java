@@ -25,8 +25,11 @@ public class ServerContainer {
     public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.15F;
     public double LEVEL_DISTANCE_PENALTY_MIN_MULTI = 0.01F;
     public double DUNGEON_RANDOM_ITEM_CHANCE = 10F;
+    public double CHANCE_TO_SPAWN_RIFT_PER_MIN = 1F;
     public int LEVELS_NEEDED_TO_START_LVL_PENALTY = 5;
     public int SWITCHING_LOADOUT_COOLDOWN_TICKS = 6000;
+    public int RIFT_LIVES = 10;
+    public int MIN_PLAYER_LVL_FOR_RIFTS_TO_SPAWN = 25;
 
     public int MAX_RUNEWORD_GEARS_WORN = 1;
     public int MAX_UNIQUE_GEARS_WORN = 99;

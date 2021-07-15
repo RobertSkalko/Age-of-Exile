@@ -51,7 +51,9 @@ public class MobStatUtils {
             //data.multiplyFlat(tier.stat_multi);
         }
 
-        int hp = (int) ((tier.hp_multi - 1F) * 100F);
+        float multi = tier.hp_multi - 1F;
+
+        int hp = (int) ((multi) * 100F);
 
         ExactStatData.noScaling(hp, hp, ModType.LOCAL_INCREASE, Health.getInstance()
                 .GUID())
@@ -63,7 +65,8 @@ public class MobStatUtils {
                 data.af.getStats(mobdata.getLevel())
                     .forEach(x -> x.applyStats(mobdata));
 
-                data.team.teamSizeMobStrength.addStats(mobdata);
+                data.team.getMobStr(data.dun_type)
+                    .addStats(mobdata);
 
             }
 

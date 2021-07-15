@@ -1,7 +1,6 @@
 package com.robertx22.divine_missions_addon.data_gen;
 
-import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.divine_missions.data_gen.builders.RewardBuilder;
 import com.robertx22.divine_missions.database.RewardTypeIds;
 import com.robertx22.divine_missions.database.WorthTypeIds;
@@ -12,18 +11,9 @@ public class DMRewardsAdder {
     public static Reward FAVOR = favor();
     public static Reward AOE_EXP = aoeExp();
 
-    public static Reward COMMON_DUNGEON_KEY = RewardBuilder.item(500)
+    public static Reward DUNGEON_KEYS_LOOT_TABLE = RewardBuilder.lootTable(500, 1000, Ref.id("dungeon_keys"))
         .worthType(WorthTypeIds.AGE_OF_EXILE)
-        .weight(500)
-        .build(ModRegistry.MISC_ITEMS.DUNGEON_KEY_MAP.get(DungeonKeyItem.KeyRarity.Common), 1, 1);
-    public static Reward RARE_DUNGEON_KEY = RewardBuilder.item(600)
-        .weight(200)
-        .worthType(WorthTypeIds.AGE_OF_EXILE)
-        .build(ModRegistry.MISC_ITEMS.DUNGEON_KEY_MAP.get(DungeonKeyItem.KeyRarity.Rare), 1, 1);
-    public static Reward EPIC_DUNGEON_KEY = RewardBuilder.item(700)
-        .weight(75)
-        .worthType(WorthTypeIds.AGE_OF_EXILE)
-        .build(ModRegistry.MISC_ITEMS.DUNGEON_KEY_MAP.get(DungeonKeyItem.KeyRarity.Epic), 1, 1);
+        .build();
 
     public static void init() {
 

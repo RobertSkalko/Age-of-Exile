@@ -6,6 +6,8 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
+import com.robertx22.divine_missions.mission_gen.MissionUtil;
+import com.robertx22.divine_missions_addon.types.CompleteRiftTask;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.block.BlockState;
@@ -88,6 +90,14 @@ public class RiftManagerBlockEntity extends BlockEntity implements Tickable {
                     // todo spawn rewards here at last wave
 
                     TeamUtils.forEachMember(world, pos, x -> {
+
+                        MissionUtil.tryDoMissions(x, e -> {
+                            if (e.getTaskEntry().task_type.equals(CompleteRiftTask.ID)) {
+                                e.increaseProgress();
+                                return;
+                            }
+                        });
+
                         OnScreenMessageUtils.sendMessage(
                             (ServerPlayerEntity) x,
                             new LiteralText("Rift Cleared.").formatted(Formatting.GREEN),

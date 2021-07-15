@@ -69,12 +69,15 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     public void onDungeonCompletedAdvanceProgress() {
 
-        MissionUtil.tryDoMissions(player, x -> {
-            if (x.getTaskEntry().task_type.equals(CompleteDungeonTask.ID)) {
-                x.increaseProgress();
-                return;
-            }
-        });
+        TeamUtils.getOnlineMembers(player)
+            .forEach(e -> {
+                MissionUtil.tryDoMissions(e, x -> {
+                    if (x.getTaskEntry().task_type.equals(CompleteDungeonTask.ID)) {
+                        x.increaseProgress();
+                        return;
+                    }
+                });
+            });
 
         int tier = 0;
         try {

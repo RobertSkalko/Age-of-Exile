@@ -5,10 +5,7 @@ import com.robertx22.divine_missions.db_init.RegistryInit;
 import com.robertx22.divine_missions_addon.data_gen.DMPoolsAdder;
 import com.robertx22.divine_missions_addon.data_gen.DMRewardsAdder;
 import com.robertx22.divine_missions_addon.data_gen.DMTasksAdder;
-import com.robertx22.divine_missions_addon.types.AoeLevelCondition;
-import com.robertx22.divine_missions_addon.types.CompleteDungeonTask;
-import com.robertx22.divine_missions_addon.types.GiveAoeExpReward;
-import com.robertx22.divine_missions_addon.types.GiveFavorReward;
+import com.robertx22.divine_missions_addon.types.*;
 
 public class DMRegInit {
 
@@ -18,6 +15,7 @@ public class DMRegInit {
 
         new CompleteDungeonTask().registerToExileRegistry();
         new AoeLevelCondition().registerToExileRegistry();
+        new CompleteRiftTask().registerToExileRegistry();
 
         new GiveFavorReward().registerToExileRegistry();
         new GiveAoeExpReward().registerToExileRegistry();

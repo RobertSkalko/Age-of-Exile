@@ -5,7 +5,7 @@ import net.minecraft.server.MinecraftServer;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = true;
+    public static boolean RUN_DEV_TOOLS = false;
 
     public static void devToolsLog(String string) {
         if (RUN_DEV_TOOLS) {

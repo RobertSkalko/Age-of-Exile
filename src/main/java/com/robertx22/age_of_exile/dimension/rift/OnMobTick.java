@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.dimension.rift;
 
+import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
@@ -43,17 +45,31 @@ public class OnMobTick {
                 if (!Load.dungeonData(en.world).data.get(en.getBlockPos()).data.fail) {
                     en.kill();
 
-                    Load.dungeonData(en.world).data.get(en.getBlockPos()).data.fail = true;
+                    DungeonData data = Load.dungeonData(en.world).data.get(en.getBlockPos()).data;
 
-                    TeamUtils.forEachMember(en.world, en.getBlockPos(), x -> {
+                    data.fail_counter++;
 
-                        x.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 20 * 10));
-                        x.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20 * 10));
+                    int lives = ModConfig.get().Server.RIFT_LIVES;
 
-                        x.sendMessage(new LiteralText("Rift failed. The creatures were allowed to live for too long..")
-                            .formatted(Formatting.RED), false);
-                    });
+                    int left = lives - data.fail_counter;
 
+                    if (left < 1) {
+
+                        data.fail = true;
+
+                        TeamUtils.forEachMember(en.world, en.getBlockPos(), x -> {
+
+                            x.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 20 * 10));
+                            x.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20 * 10));
+
+                            x.sendMessage(new LiteralText("Rift failed. The creatures were allowed to live for too long..")
+                                .formatted(Formatting.RED), false);
+                        });
+                    } else {
+                        TeamUtils.forEachMember(en.world, en.getBlockPos(), x -> {
+                            x.sendMessage(new LiteralText(left + " lives left").formatted(Formatting.RED), false);
+                        });
+                    }
                 }
 
             }
