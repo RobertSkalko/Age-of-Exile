@@ -92,7 +92,7 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
 
                         TeleportUtils.teleport((ServerPlayerEntity) entity, p, new Identifier(maps.data.tp_b_dim));
 
-                        SoundUtils.playSound(entity, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);
+                        SoundUtils.playSound(entity, SoundEvents.BLOCK_PORTAL_TRAVEL, world.random.nextFloat() * 0.4F + 0.8F, 0.25F);
                         return;
                     }
                 }
