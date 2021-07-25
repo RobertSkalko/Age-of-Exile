@@ -10,7 +10,7 @@ public class MultiplyNumberByPercentEffect extends StatEffect {
     String num_id = "";
 
     public MultiplyNumberByPercentEffect(String num) {
-        super("increase_" + num + "_num", "multiply_num");
+        super("multiply_" + num + "_num", "multiply_num");
         this.num_id = num;
     }
 

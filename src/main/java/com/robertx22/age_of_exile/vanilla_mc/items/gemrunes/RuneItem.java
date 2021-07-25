@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gemrunes;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
@@ -16,9 +17,6 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.Gea
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
@@ -39,8 +37,8 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -328,7 +326,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         ENO(1000, "eno", "Eno", 0.5F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(0.1F, 0.2F, Dexterity.INSTANCE));
+                return Arrays.asList(new StatModifier(0.1F, 0.2F, DatapackStats.DEX));
             }
 
             @Override
@@ -348,7 +346,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         HAR(1000, "har", "Har", 0.5F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(0.1F, 0.2F, Strength.INSTANCE));
+                return Arrays.asList(new StatModifier(0.1F, 0.2F, DatapackStats.STR));
             }
 
             @Override
@@ -367,7 +365,7 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
         XER(1000, "xer", "Xer", 0.5F, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(0.1F, 0.2F, Intelligence.INSTANCE));
+                return Arrays.asList(new StatModifier(0.1F, 0.2F, DatapackStats.INT));
             }
 
             @Override

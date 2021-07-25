@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.registrators;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
@@ -23,11 +23,11 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,13 +65,6 @@ public class StatsRegister implements ExileRegistryInit {
 
                     add(AllAttributes.getInstance());
                     add(SpellDamage.getInstance());
-
-                    add(Strength.INSTANCE);
-                    add(Dexterity.INSTANCE);
-                    add(Intelligence.INSTANCE);
-                    add(Wisdom.INSTANCE);
-                    add(Vitality.INSTANCE);
-                    add(Agility.INSTANCE);
 
                     add(MoreSocketsStat.getInstance());
                     add(ExtraMobDropsStat.getInstance());

@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.affixes.AffixTier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.requirements.Requirements;
 import com.robertx22.age_of_exile.database.data.requirements.TagRequirement;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
+import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 import java.util.*;
@@ -75,7 +75,7 @@ public class AffixBuilder {
         return this;
     }
 
-    public AffixBuilder coreStat(BaseCoreStat stat) {
+    public AffixBuilder coreStat(Stat stat) {
         return
             this.tier(1, new StatModifier(4, 6, stat, ModType.FLAT))
                 .tier(2, new StatModifier(2, 4, stat, ModType.FLAT))

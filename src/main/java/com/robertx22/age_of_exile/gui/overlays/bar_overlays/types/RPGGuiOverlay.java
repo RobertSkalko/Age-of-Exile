@@ -204,7 +204,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
 
         if (drawText) {
 
-            double scale = 0.7;
+            double scale = 0.75;
 
             int width = mc.textRenderer.getWidth(text);
             int textX = (int) (point.x - width / 2F + GuiConstants.BAR_WIDTH / 2F);

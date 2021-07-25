@@ -4,11 +4,9 @@ import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BasePlateArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -43,8 +41,8 @@ public class OakArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(10, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
-                    new StatModifier(1, 10, Wisdom.INSTANCE, ModType.FLAT),
-                    new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 10, DatapackStats.WIS, ModType.FLAT),
+                    new StatModifier(1, 3, DatapackStats.VIT, ModType.FLAT)
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)
@@ -70,8 +68,8 @@ public class OakArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(5, 10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(1, 3, Wisdom.INSTANCE, ModType.FLAT),
-                    new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, DatapackStats.WIS, ModType.FLAT),
+                    new StatModifier(1, 3, DatapackStats.VIT, ModType.FLAT)
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)
@@ -99,7 +97,7 @@ public class OakArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Light), ModType.FLAT),
                     new StatModifier(5, 15, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(5, 10, Stats.CRIT_CHANCE.get(), ModType.FLAT),
-                    new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, DatapackStats.VIT, ModType.FLAT)
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)
@@ -127,7 +125,7 @@ public class OakArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature), ModType.FLAT),
                     new StatModifier(5, 15, Stats.ATTACK_SPEED.get(), ModType.FLAT),
                     new StatModifier(5, 10, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT),
-                    new StatModifier(2, 4, Agility.INSTANCE, ModType.FLAT)
+                    new StatModifier(2, 4, DatapackStats.AGI, ModType.FLAT)
                 )
             )
             .gearSet(GearSetsAdder.OAK_SET)

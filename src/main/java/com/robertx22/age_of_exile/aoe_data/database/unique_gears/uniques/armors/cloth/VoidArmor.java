@@ -4,9 +4,9 @@ import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseClothArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
@@ -47,8 +47,8 @@ public class VoidArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(5, 25, Mana.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(5, 15, new ElementalPenetration(Elements.Dark), ModType.FLAT),
-                    new StatModifier(1, 10, Intelligence.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 2, Wisdom.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 10, DatapackStats.INT, ModType.FLAT),
+                    new StatModifier(2, 2, DatapackStats.WIS, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()
@@ -75,8 +75,8 @@ public class VoidArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(5, 15, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
                     new StatModifier(5, 10, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE),
-                    new StatModifier(1, 10, Dexterity.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 5, Strength.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 10, DatapackStats.DEX, ModType.FLAT),
+                    new StatModifier(2, 5, DatapackStats.STR, ModType.FLAT)
 
                 )
             )
@@ -106,7 +106,7 @@ public class VoidArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(10, 20, ArmorPenetration.getInstance()),
                     new StatModifier(10, 20, Health.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(5, 10, Armor.getInstance(), ModType.FLAT),
-                    new StatModifier(2, 5, Vitality.INSTANCE, ModType.FLAT)
+                    new StatModifier(2, 5, DatapackStats.VIT, ModType.FLAT)
                 )
             )
 
@@ -134,8 +134,8 @@ public class VoidArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(5, 10, Stats.SPELL_CRIT_CHANCE.get()),
                     new StatModifier(5, 15, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
-                    new StatModifier(2, 5, Wisdom.INSTANCE, ModType.FLAT),
-                    new StatModifier(1, 10, Agility.INSTANCE, ModType.FLAT)
+                    new StatModifier(2, 5, DatapackStats.WIS, ModType.FLAT),
+                    new StatModifier(1, 10, DatapackStats.AGI, ModType.FLAT)
                 )
             )
 

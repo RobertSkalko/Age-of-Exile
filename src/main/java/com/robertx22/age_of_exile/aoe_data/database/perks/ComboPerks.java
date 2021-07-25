@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -12,11 +12,11 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class ComboPerks implements ExileRegistryInit {
 
@@ -24,26 +24,26 @@ public class ComboPerks implements ExileRegistryInit {
     public void registerAll() {
 
         PerkBuilder.stat("all_attributes",
-            new OptScaleExactStat(1, Wisdom.INSTANCE),
-            new OptScaleExactStat(1, Intelligence.INSTANCE),
-            new OptScaleExactStat(1, Vitality.INSTANCE),
-            new OptScaleExactStat(1, Strength.INSTANCE),
-            new OptScaleExactStat(1, Agility.INSTANCE),
-            new OptScaleExactStat(1, Dexterity.INSTANCE)
+            new OptScaleExactStat(1, DatapackStats.WIS),
+            new OptScaleExactStat(1, DatapackStats.INT),
+            new OptScaleExactStat(1, DatapackStats.VIT),
+            new OptScaleExactStat(1, DatapackStats.STR),
+            new OptScaleExactStat(1, DatapackStats.AGI),
+            new OptScaleExactStat(1, DatapackStats.DEX)
         );
 
         PerkBuilder.stat("big_all_attributes",
-            new OptScaleExactStat(3, Wisdom.INSTANCE),
-            new OptScaleExactStat(3, Intelligence.INSTANCE),
-            new OptScaleExactStat(3, Vitality.INSTANCE),
-            new OptScaleExactStat(3, Strength.INSTANCE),
-            new OptScaleExactStat(3, Agility.INSTANCE),
-            new OptScaleExactStat(3, Dexterity.INSTANCE)
+            new OptScaleExactStat(3, DatapackStats.WIS),
+            new OptScaleExactStat(3, DatapackStats.INT),
+            new OptScaleExactStat(3, DatapackStats.VIT),
+            new OptScaleExactStat(3, DatapackStats.STR),
+            new OptScaleExactStat(3, DatapackStats.AGI),
+            new OptScaleExactStat(3, DatapackStats.DEX)
         );
 
         PerkBuilder.stat("agi_dex",
-            new OptScaleExactStat(1, Agility.INSTANCE),
-            new OptScaleExactStat(1, Dexterity.INSTANCE)
+            new OptScaleExactStat(1, DatapackStats.AGI),
+            new OptScaleExactStat(1, DatapackStats.DEX)
         );
         PerkBuilder.stat("accuracy_melee_dmg",
             new OptScaleExactStat(50, Stats.ACCURACY.get()),
@@ -64,7 +64,7 @@ public class ComboPerks implements ExileRegistryInit {
             new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
         );
         PerkBuilder.stat("health_dodge_int",
-            new OptScaleExactStat(1, Intelligence.INSTANCE),
+            new OptScaleExactStat(1, DatapackStats.INT),
             new OptScaleExactStat(1, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(1, Health.getInstance(), ModType.LOCAL_INCREASE)
         );

@@ -2,13 +2,12 @@ package com.robertx22.age_of_exile.aoe_data.database.sets;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class GearSetsAdder implements ExileRegistryInit {
 
@@ -26,8 +25,8 @@ public class GearSetsAdder implements ExileRegistryInit {
 
         GearSet.Builder.of(SEASONS_SET, "Enduring The Seasons")
             .stat(2,
-                new OptScaleExactStat(2, Vitality.INSTANCE, ModType.FLAT),
-                new OptScaleExactStat(2, Wisdom.INSTANCE, ModType.FLAT))
+                new OptScaleExactStat(2, DatapackStats.VIT, ModType.FLAT),
+                new OptScaleExactStat(2, DatapackStats.WIS, ModType.FLAT))
             .build();
 
         GearSet.Builder.of(BONE_SET, "Bone Spike")

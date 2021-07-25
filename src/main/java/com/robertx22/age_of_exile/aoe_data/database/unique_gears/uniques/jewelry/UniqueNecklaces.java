@@ -6,19 +6,17 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
@@ -28,10 +26,10 @@ public class UniqueNecklaces implements ExileRegistryInit {
     public void registerAll() {
 
         UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.BLOOD_STONE_NECKLACE,
-            "blood_stone",
-            "Primordial Blood",
-            BaseGearJewelry.HP_NECKLACE.values())
+                ModRegistry.UNIQUE_GEARS.BLOOD_STONE_NECKLACE,
+                "blood_stone",
+                "Primordial Blood",
+                BaseGearJewelry.HP_NECKLACE.values())
             .baseStats(
                 Arrays.asList(
                     new StatModifier(10, 15, Health.getInstance()),
@@ -42,7 +40,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
                 new StatModifier(5, 15, Stats.ATTACK_SPEED.get(), ModType.FLAT),
                 new StatModifier(3, 5, Stats.LIFESTEAL.get(), ModType.FLAT),
                 new StatModifier(5, 15, Health.getInstance(), ModType.LOCAL_INCREASE),
-                new StatModifier(2, 6, Vitality.INSTANCE, ModType.FLAT)
+                new StatModifier(2, 6, DatapackStats.VIT, ModType.FLAT)
             ))
             .setReplacesName()
             .req(new StatRequirement()
@@ -51,11 +49,11 @@ public class UniqueNecklaces implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.GHAST_TEAR_NECKLACE,
-            "ghast_necklace",
-            "Ghast Tear",
-            "",
-            BaseGearJewelry.HP_NECKLACE.values())
+                ModRegistry.UNIQUE_GEARS.GHAST_TEAR_NECKLACE,
+                "ghast_necklace",
+                "Ghast Tear",
+                "",
+                BaseGearJewelry.HP_NECKLACE.values())
             .baseStats(
                 Arrays.asList(
                     new StatModifier(15, 25, new ElementalResist(Elements.Water)),
@@ -65,8 +63,8 @@ public class UniqueNecklaces implements ExileRegistryInit {
                 new StatModifier(25, 25, DatapackStats.MANA_PER_10_INT, ModType.FLAT),
                 new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
                 new StatModifier(3, 5, SpellDamage.getInstance(), ModType.FLAT),
-                new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT),
-                new StatModifier(2, 6, Agility.INSTANCE, ModType.FLAT)
+                new StatModifier(1, 3, DatapackStats.VIT, ModType.FLAT),
+                new StatModifier(2, 6, DatapackStats.AGI, ModType.FLAT)
 
             ))
             .req(new StatRequirement()
@@ -75,11 +73,11 @@ public class UniqueNecklaces implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
-            ModRegistry.UNIQUE_GEARS.SKULL_OF_SPIRITS_NECKLACE,
-            "skull_of_spirits",
-            "Skull of Spirits",
-            "The mysterious skull contains knowledge of the contained spirits, but also their madness.",
-            BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.MID_TO_END))
+                ModRegistry.UNIQUE_GEARS.SKULL_OF_SPIRITS_NECKLACE,
+                "skull_of_spirits",
+                "Skull of Spirits",
+                "The mysterious skull contains knowledge of the contained spirits, but also their madness.",
+                BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(1, 2, AllAttributes.getInstance(), ModType.FLAT),
                 new StatModifier(10, 20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),

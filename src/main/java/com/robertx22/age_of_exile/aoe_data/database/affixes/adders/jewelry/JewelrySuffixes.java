@@ -3,16 +3,17 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes.adders.jewelry;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
@@ -39,7 +40,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_the_philosopher")
             .Named("Of the Philosopher")
-            .coreStat(Intelligence.INSTANCE)
+            .coreStat(DatapackStats.INT)
             .includesTags(SlotTag.jewelry_family, SlotTag.cloth)
             .excludesTags(SlotTag.weapon_family)
             .Suffix()
@@ -47,7 +48,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_the_titan")
             .Named("Of the Titan")
-            .coreStat(Strength.INSTANCE)
+            .coreStat(DatapackStats.STR)
             .includesTags(SlotTag.jewelry_family, SlotTag.plate)
             .excludesTags(SlotTag.weapon_family)
             .Suffix()
@@ -55,7 +56,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_the_wind")
             .Named("Of the Wind")
-            .coreStat(Dexterity.INSTANCE)
+            .coreStat(DatapackStats.DEX)
             .includesTags(SlotTag.jewelry_family, SlotTag.leather)
             .excludesTags(SlotTag.weapon_family)
             .Suffix()
@@ -63,7 +64,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_the_wise")
             .Named("Of the Wise")
-            .coreStat(Wisdom.INSTANCE)
+            .coreStat(DatapackStats.WIS)
             .includesTags(SlotTag.jewelry_family)
             .excludesTags(SlotTag.weapon_family)
             .Suffix()
@@ -71,7 +72,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_the_agile")
             .Named("Of the Agile")
-            .coreStat(Agility.INSTANCE)
+            .coreStat(DatapackStats.AGI)
             .includesTags(SlotTag.jewelry_family)
             .excludesTags(SlotTag.weapon_family)
             .Suffix()
@@ -79,7 +80,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_the_virile")
             .Named("Of the Virile")
-            .coreStat(Vitality.INSTANCE)
+            .coreStat(DatapackStats.VIT)
             .includesTags(SlotTag.jewelry_family)
             .excludesTags(SlotTag.weapon_family)
             .Suffix()

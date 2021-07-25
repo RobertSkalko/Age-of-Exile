@@ -4,10 +4,9 @@ import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseLeatherArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
@@ -47,8 +46,8 @@ public class BoneArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(5, 10, ArmorPenetration.getInstance(), ModType.FLAT),
                     new StatModifier(2, 5, Stats.CRIT_CHANCE.get(), ModType.FLAT),
                     new StatModifier(5, 8, Stats.WEAPON_DAMAGE.get(WeaponTypes.bow), ModType.FLAT),
-                    new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
+                    new StatModifier(2, 5, DatapackStats.DEX, ModType.FLAT),
+                    new StatModifier(2, 5, DatapackStats.AGI, ModType.FLAT)
 
                 )
             )
@@ -75,8 +74,8 @@ public class BoneArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)),
-                    new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
+                    new StatModifier(2, 5, DatapackStats.DEX, ModType.FLAT),
+                    new StatModifier(2, 5, DatapackStats.AGI, ModType.FLAT)
                 )
             )
             .mobTagFilter(EntityTypeTags.SKELETONS)
@@ -105,8 +104,8 @@ public class BoneArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
                     new StatModifier(10, 20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
+                    new StatModifier(2, 5, DatapackStats.DEX, ModType.FLAT),
+                    new StatModifier(2, 5, DatapackStats.AGI, ModType.FLAT)
                 )
             )
             .mobTagFilter(EntityTypeTags.SKELETONS)
@@ -134,8 +133,8 @@ public class BoneArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(15, 25, Stats.CRIT_DAMAGE.get()),
                     new StatModifier(15, 25, Stats.SPELL_CRIT_DAMAGE.get()),
-                    new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
-                    new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT)
+                    new StatModifier(2, 5, DatapackStats.DEX, ModType.FLAT),
+                    new StatModifier(2, 5, DatapackStats.AGI, ModType.FLAT)
                 )
             )
             .mobTagFilter(EntityTypeTags.SKELETONS)

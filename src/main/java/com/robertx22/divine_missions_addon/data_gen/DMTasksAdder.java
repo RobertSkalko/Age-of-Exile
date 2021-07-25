@@ -26,6 +26,7 @@ public class DMTasksAdder {
         en.max = 1;
         en.task_type = CompleteRiftTask.ID;
         en.addToSerializables();
+
         return en;
     }
 

@@ -3,10 +3,9 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears.fabled;
 import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseLeatherArmors;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Agility;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
@@ -43,8 +42,8 @@ public class FabledArmor implements ExileRegistryInit, GearDataHelper {
                 new StatModifier(5, 15, ArmorPenetration.getInstance(), ModType.FLAT),
                 new StatModifier(10, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
                 new StatModifier(3, 6, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
-                new StatModifier(2, 5, Dexterity.INSTANCE, ModType.FLAT),
-                new StatModifier(2, 5, Agility.INSTANCE, ModType.FLAT),
+                new StatModifier(2, 5, DatapackStats.DEX, ModType.FLAT),
+                new StatModifier(2, 5, DatapackStats.AGI, ModType.FLAT),
                 new StatModifier(10, 10, SpecialStats.VOID_EYE, ModType.FLAT)
             ))
             .req(new StatRequirement()

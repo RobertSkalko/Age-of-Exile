@@ -33,8 +33,6 @@ public class WorldDungeonCap implements CopyableComponent<WorldDungeonCap> {
         if (data == null) {
             data = new WorldDungeonsData();
         }
-
-        System.out.println(nbt.toString());
     }
 
     @Override

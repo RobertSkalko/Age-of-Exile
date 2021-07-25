@@ -103,8 +103,8 @@ max_nature_resist
 critical_damage_per_10_attack_speed
 inc_effect_of_heal_over_time_buff_on_you
 chance_of_slow
-strength
 nature_dmg_when_target_low_hp
+strength
 ele_scepter_damage
 inc_effect_of_offensive_buff_on_you
 physical_weapon_damage_per_perc_of_mana
@@ -117,8 +117,8 @@ convert_fire_to_phys
 fire_any_wep_damage
 global_critical_hit_per_25_magic_find
 water_resist
-vitality
 bonus_exp_for_t3_mob
+vitality
 armor_penetration
 bow_damage
 ele_scythe_damage
@@ -366,8 +366,8 @@ double_drop_chance
 health_on_kill
 bonus_fishing_exp
 fire_penetration
-dexterity
 bonus_exp_for_t5_mob
+dexterity
 convert_nature_to_phys
 bonus_rain_yield
 chance_to_give_blessing_to_self

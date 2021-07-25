@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -51,7 +51,7 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
 
     public boolean meetsReq(int lvl, EntityCap.UnitData data) {
 
-        for (BaseCoreStat x : AllAttributes.getInstance()
+        for (Stat x : AllAttributes.getInstance()
             .coreStatsThatBenefit()) {
 
             int num = getReq(x, lvl);
@@ -73,55 +73,55 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
     }
 
     public StatRequirement setVit(float req) {
-        this.scaling_req.put(Vitality.INSTANCE.GUID(), req);
+        this.scaling_req.put(DatapackStats.VIT.GUID(), req);
         return this;
     }
 
     public StatRequirement setWis(float req) {
 
-        this.scaling_req.put(Wisdom.INSTANCE.GUID(), req);
+        this.scaling_req.put(DatapackStats.WIS.GUID(), req);
         return this;
     }
 
     public StatRequirement setAgi(float req) {
-        this.scaling_req.put(Agility.INSTANCE.GUID(), req);
+        this.scaling_req.put(DatapackStats.AGI.GUID(), req);
         return this;
     }
 
     public StatRequirement setDex(float req) {
-        this.scaling_req.put(Dexterity.INSTANCE.GUID(), req);
+        this.scaling_req.put(DatapackStats.DEX.GUID(), req);
         return this;
     }
 
     public StatRequirement setInt(float req) {
-        this.scaling_req.put(Intelligence.INSTANCE.GUID(), req);
+        this.scaling_req.put(DatapackStats.INT.GUID(), req);
         return this;
     }
 
     public StatRequirement setStr(float req) {
-        this.scaling_req.put(Strength.INSTANCE.GUID(), req);
+        this.scaling_req.put(DatapackStats.STR.GUID(), req);
         return this;
     }
 
     public StatRequirement setBaseDex(int req) {
-        this.base_req.put(Dexterity.INSTANCE.GUID(), (float) req);
+        this.base_req.put(DatapackStats.DEX.GUID(), (float) req);
         return this;
     }
 
     public StatRequirement setBaseInt(int req) {
-        this.base_req.put(Intelligence.INSTANCE.GUID(), (float) req);
+        this.base_req.put(DatapackStats.INT.GUID(), (float) req);
         return this;
     }
 
     public StatRequirement setBaseStr(int req) {
-        this.base_req.put(Strength.INSTANCE.GUID(), (float) req);
+        this.base_req.put(DatapackStats.STR.GUID(), (float) req);
         return this;
     }
 
     public List<Text> GetTooltipString(int lvl, EntityCap.UnitData data) {
         List<Text> list = new ArrayList<>();
 
-        for (BaseCoreStat x : AllAttributes.getInstance()
+        for (Stat x : AllAttributes.getInstance()
             .coreStatsThatBenefit()) {
 
             int num = getReq(x, lvl);

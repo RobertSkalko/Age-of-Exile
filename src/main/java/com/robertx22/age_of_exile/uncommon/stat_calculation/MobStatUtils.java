@@ -90,7 +90,7 @@ public class MobStatUtils {
 
         List<ExactStatData> stats = new ArrayList<>();
 
-        float val = (1F - ExileDB.getDimensionConfig(en.world).mob_strength_multi) * 100F;
+        float val = (-1F + ExileDB.getDimensionConfig(en.world).mob_strength_multi) * 100F;
 
         stats.add(ExactStatData.noScaling(val, val, ModType.GLOBAL_INCREASE, Health.getInstance()
             .GUID()));

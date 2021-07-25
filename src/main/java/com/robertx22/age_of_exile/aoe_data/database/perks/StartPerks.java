@@ -1,12 +1,10 @@
 package com.robertx22.age_of_exile.aoe_data.database.perks;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Strength;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class StartPerks implements ExileRegistryInit {
 
@@ -22,43 +20,43 @@ public class StartPerks implements ExileRegistryInit {
     public void registerAll() {
 
         of(MAGE, "Mage",
-            new OptScaleExactStat(30, Intelligence.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(15, Strength.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(15, Dexterity.INSTANCE, ModType.FLAT)
+            new OptScaleExactStat(30, DatapackStats.INT, ModType.FLAT),
+            new OptScaleExactStat(15, DatapackStats.STR, ModType.FLAT),
+            new OptScaleExactStat(15, DatapackStats.DEX, ModType.FLAT)
         );
         of(WARRIOR, "Warrior",
-            new OptScaleExactStat(15, Intelligence.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(30, Strength.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(15, Dexterity.INSTANCE, ModType.FLAT)
+            new OptScaleExactStat(15, DatapackStats.INT, ModType.FLAT),
+            new OptScaleExactStat(30, DatapackStats.STR, ModType.FLAT),
+            new OptScaleExactStat(15, DatapackStats.DEX, ModType.FLAT)
         );
         of(HUNTER, "Hunter",
-            new OptScaleExactStat(15, Intelligence.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(15, Strength.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(30, Dexterity.INSTANCE, ModType.FLAT)
+            new OptScaleExactStat(15, DatapackStats.INT, ModType.FLAT),
+            new OptScaleExactStat(15, DatapackStats.STR, ModType.FLAT),
+            new OptScaleExactStat(30, DatapackStats.DEX, ModType.FLAT)
         );
 
         of(TEMPLAR, "Templar",
-            new OptScaleExactStat(23, Intelligence.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(23, Strength.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(14, Dexterity.INSTANCE, ModType.FLAT)
+            new OptScaleExactStat(23, DatapackStats.INT, ModType.FLAT),
+            new OptScaleExactStat(23, DatapackStats.STR, ModType.FLAT),
+            new OptScaleExactStat(14, DatapackStats.DEX, ModType.FLAT)
         );
 
         of(DUELIST, "Duelist",
-            new OptScaleExactStat(14, Intelligence.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(23, Strength.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(23, Dexterity.INSTANCE, ModType.FLAT)
+            new OptScaleExactStat(14, DatapackStats.INT, ModType.FLAT),
+            new OptScaleExactStat(23, DatapackStats.STR, ModType.FLAT),
+            new OptScaleExactStat(23, DatapackStats.DEX, ModType.FLAT)
         );
 
         of(BATTLE_MAGE, "Battle Mage",
-            new OptScaleExactStat(23, Intelligence.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(14, Strength.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(23, Dexterity.INSTANCE, ModType.FLAT)
+            new OptScaleExactStat(23, DatapackStats.INT, ModType.FLAT),
+            new OptScaleExactStat(14, DatapackStats.STR, ModType.FLAT),
+            new OptScaleExactStat(23, DatapackStats.DEX, ModType.FLAT)
         );
 
         of(SCION, "Scion",
-            new OptScaleExactStat(20, Intelligence.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(20, Strength.INSTANCE, ModType.FLAT),
-            new OptScaleExactStat(20, Dexterity.INSTANCE, ModType.FLAT)
+            new OptScaleExactStat(20, DatapackStats.INT, ModType.FLAT),
+            new OptScaleExactStat(20, DatapackStats.STR, ModType.FLAT),
+            new OptScaleExactStat(20, DatapackStats.DEX, ModType.FLAT)
         );
     }
 

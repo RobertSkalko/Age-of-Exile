@@ -5,9 +5,9 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.CoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.*;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
+import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.MaxElementalResist;
@@ -22,6 +22,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.FavorButton;
@@ -179,20 +180,21 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
                 int YSEP = 20;
 
-                addButton(new AllocateStatButton(Vitality.INSTANCE, xpos, ypos));
+                // TODO MAKE STATIC IDS
+                addButton(new AllocateStatButton(AllAttributes.VIT_ID, xpos, ypos));
                 ypos += YSEP;
-                addButton(new AllocateStatButton(Wisdom.INSTANCE, xpos, ypos));
+                addButton(new AllocateStatButton(AllAttributes.WIS_ID, xpos, ypos));
                 ypos += YSEP;
-                addButton(new AllocateStatButton(Agility.INSTANCE, xpos, ypos));
+                addButton(new AllocateStatButton(AllAttributes.AGI_ID, xpos, ypos));
 
                 xpos = guiLeft + 159;
                 ypos = guiTop + 105;
 
-                addButton(new AllocateStatButton(Strength.INSTANCE, xpos, ypos));
+                addButton(new AllocateStatButton(AllAttributes.STR_ID, xpos, ypos));
                 ypos += YSEP;
-                addButton(new AllocateStatButton(Intelligence.INSTANCE, xpos, ypos));
+                addButton(new AllocateStatButton(AllAttributes.INT_ID, xpos, ypos));
                 ypos += YSEP;
-                addButton(new AllocateStatButton(Dexterity.INSTANCE, xpos, ypos));
+                addButton(new AllocateStatButton(AllAttributes.DEX_ID, xpos, ypos));
 
             }
         }
@@ -303,11 +305,13 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
         Stat stat;
 
-        public AllocateStatButton(Stat stat, int xPos, int yPos) {
+        public AllocateStatButton(String stat, int xPos, int yPos) {
             super(xPos, yPos, SIZEX, SIZEY, 0, 0, SIZEY, BUTTON_TEX, (button) -> {
-                Packets.sendToServer(new AllocateStatPacket(stat));
+                Packets.sendToServer(new AllocateStatPacket(ExileDB.Stats()
+                    .get(stat)));
             });
-            this.stat = stat;
+            this.stat = ExileDB.Stats()
+                .get(stat);
         }
 
         @Override
@@ -324,7 +328,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
                 tooltip.add(new SText(""));
 
-                tooltip.addAll(((BaseCoreStat) stat).getCoreStatTooltip(Load.Unit(mc.player), Load.Unit(mc.player)
+                tooltip.addAll(((CoreStat) stat).getCoreStatTooltip(Load.Unit(mc.player), Load.Unit(mc.player)
                     .getUnit()
                     .getCalculatedStat(stat)));
 

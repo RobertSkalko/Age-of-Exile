@@ -4,12 +4,9 @@ import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseClothArmors;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Dexterity;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Intelligence;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Vitality;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.Wisdom;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
@@ -51,7 +48,7 @@ public class PharaohArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(5, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
                     new StatModifier(3, 10, TreasureQuantity.getInstance(), ModType.FLAT),
                     new StatModifier(-10, -20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(1, 3, Intelligence.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, DatapackStats.INT, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()
@@ -78,8 +75,8 @@ public class PharaohArmor implements ExileRegistryInit, GearDataHelper {
                 Arrays.asList(
                     new StatModifier(5, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
                     new StatModifier(5, 15, TreasureQuality.getInstance(), ModType.FLAT),
-                    new StatModifier(1, 3, Vitality.INSTANCE, ModType.FLAT),
-                    new StatModifier(1, 3, Wisdom.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, DatapackStats.VIT, ModType.FLAT),
+                    new StatModifier(1, 3, DatapackStats.WIS, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()
@@ -107,7 +104,7 @@ public class PharaohArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(20, 40, Mana.getInstance(), ModType.LOCAL_INCREASE),
                     new StatModifier(2, 6, TreasureQuantity.getInstance(), ModType.FLAT),
                     new StatModifier(-10, -20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-                    new StatModifier(1, 3, Dexterity.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, DatapackStats.DEX, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()
@@ -136,7 +133,7 @@ public class PharaohArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
                     new StatModifier(5, 10, TreasureQuality.getInstance(), ModType.FLAT),
                     new StatModifier(10, 20, Stats.DAY_DAMAGE.get(), ModType.FLAT),
-                    new StatModifier(1, 3, Wisdom.INSTANCE, ModType.FLAT)
+                    new StatModifier(1, 3, DatapackStats.WIS, ModType.FLAT)
                 )
             )
             .req(new StatRequirement()

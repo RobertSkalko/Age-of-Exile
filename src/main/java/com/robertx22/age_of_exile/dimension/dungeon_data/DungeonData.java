@@ -103,9 +103,6 @@ public class DungeonData {
 
     public DungeonKeyItem getKeyItem() {
         try {
-            if (!Registry.ITEM.containsId(new Identifier(key_item))) {
-                return null;
-            }
             return (DungeonKeyItem) Registry.ITEM.get(new Identifier(key_item));
         } catch (Exception e) {
             return null;

@@ -15,7 +15,6 @@ public enum ModType {
         this.operation = op;
     }
 
-
     public EntityAttributeModifier.Operation operation;
     public String id;
 
@@ -35,12 +34,21 @@ public enum ModType {
 
         for (ModType type : ModType.values()) {
             if (type.id.toLowerCase(Locale.ROOT)
-                    .equals(str.toLowerCase(Locale.ROOT))) {
+                .equals(str.toLowerCase(Locale.ROOT))) {
                 return type;
             }
         }
 
-        return valueOf(str);
+        try {
+            ModType TYPE = valueOf(str);
+
+            if (TYPE != null) {
+                return TYPE;
+            }
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        return FLAT;
 
     }
 

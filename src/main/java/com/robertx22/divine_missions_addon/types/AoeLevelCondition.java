@@ -29,7 +29,7 @@ public class AoeLevelCondition extends ConditionType {
         int max = Integer.parseInt(data.map.get("max"));
 
         int lvl = Load.Unit(player)
-            .getExp();
+            .getLevel();
 
         if (lvl >= min) {
             if (max >= lvl) {

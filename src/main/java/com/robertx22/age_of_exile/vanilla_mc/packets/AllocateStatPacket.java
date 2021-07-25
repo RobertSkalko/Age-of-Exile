@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 
 import com.robertx22.age_of_exile.capability.player.PlayerStatPointsCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.BaseCoreStat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.CoreStat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -63,7 +63,7 @@ public class AllocateStatPacket extends MyPacket<AllocateStatPacket> {
 
         if (cap.getFreePoints() > 0) {
             if (ExileDB.Stats()
-                .get(stat) instanceof BaseCoreStat) {
+                .get(stat) instanceof CoreStat) {
                 cap.data.map.put(stat, 1 + cap.data.map.getOrDefault(stat, 0));
                 Packets.sendToClient(ctx.getPlayer(), new SyncCapabilityToClient(ctx.getPlayer(), PlayerCaps.STAT_POINTS));
             }
