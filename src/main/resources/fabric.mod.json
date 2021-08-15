@@ -9,7 +9,8 @@
   ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/age-of-exile",
-    "sources": "https://github.com/RobertSkalko/Age-of-Exile"
+    "sources": "https://github.com/RobertSkalko/Age-of-Exile",
+    "issues": "https://github.com/RobertSkalko/Age-of-Exile/issues"
   },
   "license": "All rights reserved",
   "icon": "assets/mmorpg/icon.png",
