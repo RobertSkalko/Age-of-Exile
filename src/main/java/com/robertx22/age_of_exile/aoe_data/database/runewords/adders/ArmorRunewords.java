@@ -46,7 +46,7 @@ public class ArmorRunewords implements ExileRegistryInit {
         RuneWord.create(
             "starlight",
             "Starlight",
-            BaseGearType.SlotFamily.Armor,
+                GearSlots.HELMET,
             Arrays.asList(
                 new StatModifier(2, 5, Health.getInstance(), ModType.FLAT),
                 new StatModifier(0.5F, 2, ManaRegen.getInstance(), ModType.FLAT)
@@ -57,7 +57,7 @@ public class ArmorRunewords implements ExileRegistryInit {
         RuneWord.create(
             "shadow",
             "Shadow",
-            BaseGearType.SlotFamily.Armor,
+                GearSlots.CHEST,
             Arrays.asList(
                 new StatModifier(2, 6, DodgeRating.getInstance(), ModType.FLAT),
                 new StatModifier(20, 60, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
@@ -68,12 +68,41 @@ public class ArmorRunewords implements ExileRegistryInit {
         RuneWord.create(
             "rock_golem",
             "Rock Golem",
-            BaseGearType.SlotFamily.Armor,
+                GearSlots.CHEST,
             Arrays.asList(
                 new StatModifier(2, 6, Armor.getInstance(), ModType.FLAT),
                 new StatModifier(20, 60, Armor.getInstance(), ModType.LOCAL_INCREASE)
             ),
             Arrays.asList(XER, CEN, ORU, ITA))
             .addToSerializables();
+<<<<<<< HEAD
+
+        // Mahj Attempts
+
+        RuneWord.create(
+            "sympathy",
+            "Sympathy",
+                GearSlots.PANTS,
+            Arrays.asList(
+                    new StatModifier(7, 14, Stats.INCREASED_EFFECT_OF_AURAS_GIVEN.get(), ModType.FLAT),
+                    new StatModifier(5, 10, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT),
+                    new StatModifier(5, 10, Stats.DAMAGE_RECEIVED.get(), ModType.FLAT)
+            ),
+            Arrays.asList(ENO, ANO, ITA, CEN))
+            .addToSerializables();
+
+        RuneWord.create(
+            "rotund",
+            "Rotund",
+                GearSlots.CHEST,
+            Arrays.asList(
+                    new StatModifier(2, 5, Health.getInstance(), ModType.FLAT),
+                    new StatModifier(5, 20, Stats.INCREASED_AREA.get(), ModType.FLAT),
+                    new StatModifier(5, 10, Stats.THREAT_GENERATED.get(), ModType.FLAT)
+            ),
+            Arrays.asList(ENO, ANO, ITA, CEN))
+            .addToSerializables();
+=======
+>>>>>>> parent of 8adb86da (adding runewords and uniques)
     }
 }
