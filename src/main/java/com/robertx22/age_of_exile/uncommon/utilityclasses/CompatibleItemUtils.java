@@ -1,15 +1,16 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulData;
+import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
 import com.robertx22.age_of_exile.uncommon.auto_comp.ItemAutoPowerLevels;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import com.robertx22.library_of_exile.registry.Database;
 import com.robertx22.library_of_exile.utils.RandomUtils;
@@ -65,7 +66,7 @@ public class CompatibleItemUtils {
                         ExileDB.GearTypes()
                             .getList()
                             .forEach(x -> {
-                                if (BaseGearType.isGearOfThisType(x, item)) {
+                                if (BaseGearType.isGearOfThisType(x.getGearSlot(), item)) {
                                     slots.add(x.getGearSlot());
                                 }
                             });
@@ -142,6 +143,11 @@ public class CompatibleItemUtils {
     }
 
     public static void tryCreateCompatibleItemStats(ItemStack stack, int level, PlayerEntity player) {
+
+        if (true) {
+            return;
+        }
+
         // fast check for every item
         if (!Gear.has(stack)) {
 
@@ -184,9 +190,20 @@ public class CompatibleItemUtils {
                 if (stack.isEmpty()) {
                     continue;
                 }
-                EntityCap.UnitData data = Load.Unit(player);
 
-                tryCreateCompatibleItemStats(stack, data.getLevel(), player);
+                if (StackSaving.STAT_SOULS.has(stack)) {
+
+                    StatSoulData soul = StackSaving.STAT_SOULS.loadFrom(stack);
+
+                    if (soul != null && soul.itemMatches(stack.getItem())) {
+                        GearItemData gear = soul.createGearData();
+                        stack.removeSubTag(StatSoulItem.TAG);
+                        gear.saveToStack(stack);
+                    }
+
+                }
+
+                //    //   TryCreateCompatibleItemStats(stack, data.getLevel(), player);
 
             }
 

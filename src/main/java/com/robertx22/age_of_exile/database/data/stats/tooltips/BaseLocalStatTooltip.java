@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatW
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +18,24 @@ public class BaseLocalStatTooltip implements IStatTooltipType {
         TooltipStatInfo info = ctx.statinfo;
 
         List<Text> list = new ArrayList<Text>();
+        if (true) {
 
-        String icon = info.stat.getFormat() + info.stat.icon + " ";
+            list.add(info.stat.locName()
+                .append(": ")
+                .formatted(Formatting.GRAY)
+                .append(new LiteralText((int) info.firstValue + "")
+                    .formatted(info.stat.getFormat())));
+
+            return list;
+
+        }
+        String icon = Formatting.RED + info.stat.icon + " ";
 
         if (ctx.statinfo.stat.is_long) {
             icon = "";
         }
 
-        MutableText txt = new LiteralText(icon + StatNameRegex.BASIC_LOCAL
+        MutableText txt = new LiteralText(StatNameRegex.BASIC_LOCAL
             .translate(ctx, info.type, info.firstValue, info.secondValue, info.stat));
 
         if (ctx.statinfo.stat.is_long) {

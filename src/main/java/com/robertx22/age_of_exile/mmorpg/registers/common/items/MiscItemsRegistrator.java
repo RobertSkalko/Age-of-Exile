@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.player_skills.items.farming.ProduceItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffItem;
+import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.MiscSeedItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
@@ -36,6 +37,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
             DUNGEON_KEY_MAP.put(rar, item(new DungeonKeyItem(rar)));
         }
     }
+
+    public StatSoulItem STAT_SOUL = item(new StatSoulItem());
 
     public HashMap<DungeonKeyItem.KeyRarity, DungeonKeyItem> DUNGEON_KEY_MAP = new HashMap<>();
 

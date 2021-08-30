@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -246,16 +247,26 @@ public class TooltipUtils {
     }
 
     public static MutableText tier(int tier) {
-        return
-            Words.Tier.locName()
-                .append(": " + tier);
+        return Words.Tier.locName()
+            .append(": " + LevelUtils.tierToRomanNumeral(tier));
 
     }
 
-    public static void abilityLevel(List<MutableText> list, int current, int max) {
-        list.add(
-            new SText(Formatting.YELLOW + "").append("Ability ")
-                .append(Words.Level.locName())
-                .append(": " + current + "/" + max));
+    public static MutableText gearTier(int tier) {
+        return new LiteralText("Item Tier: ").formatted(Formatting.WHITE)
+            .append(new LiteralText("I").formatted(Formatting.AQUA));
+    }
+
+    public static MutableText gearRarity(GearRarity rarity) {
+        return new LiteralText("Rarity: ").formatted(Formatting.WHITE)
+            .append(rarity.locName()
+                .formatted(rarity.textFormatting()));
+    }
+
+    public static MutableText gearLevel(int lvl) {
+        return new LiteralText("Level: ")
+            .formatted(Formatting.WHITE)
+            .append(new LiteralText(lvl + "")
+                .formatted(Formatting.YELLOW));
     }
 }

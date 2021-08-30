@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.gear_types.bases;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
@@ -23,7 +24,6 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
-import com.robertx22.library_of_exile.registry.DataGenKey;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.registry.serialization.ISerializable;
@@ -59,11 +59,11 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
     public transient CraftEssenceItem essenceItem = null;
     protected transient String locname;
 
-    public BaseGearType(DataGenKey<GearSlot> slot, String guid, LevelRange levelRange, String locname) {
+    public BaseGearType(String slot, String guid, LevelRange levelRange, String locname) {
         this.guid = guid;
         this.level_range = levelRange;
         this.locname = locname;
-        this.gear_slot = slot.GUID();
+        this.gear_slot = slot;
     }
 
     private BaseGearType() {
@@ -286,14 +286,13 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
     private static HashMap<String, HashMap<Item, Boolean>> CACHED_GEAR_SLOTS = new HashMap<>();
 
     // has to use ugly stuff like this cus datapacks.
-    public static boolean isGearOfThisType(BaseGearType slot, Item item) {
+    public static boolean isGearOfThisType(GearSlot slot, Item item) {
 
         if (item == Items.AIR) {
             return false;
         }
 
-        String id = slot.getGearSlot()
-            .GUID();
+        String id = slot.GUID();
 
         if (!CACHED_GEAR_SLOTS.containsKey(id)) {
             CACHED_GEAR_SLOTS.put(id, new HashMap<>());
@@ -308,26 +307,26 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
 
         try {
             if (item instanceof ArmorItem) {
-                if (slot.getVanillaSlotType() != null) {
-                    if (slot.getVanillaSlotType()
-                        .equals(((ArmorItem) item).getSlotType())) {
-                        bool = true;
-                    }
+                EquipmentSlot eqslot = ((ArmorItem) item).getSlotType();
+                if (eqslot == EquipmentSlot.CHEST && id.equals(GearSlots.CHEST)) {
+                    bool = true;
+                } else if (eqslot == EquipmentSlot.LEGS && id.equals(GearSlots.PANTS)) {
+                    bool = true;
+                } else if (eqslot == EquipmentSlot.HEAD && id.equals(GearSlots.HELMET)) {
+                    bool = true;
+                } else if (eqslot == EquipmentSlot.FEET && id.equals(GearSlots.BOOTS)) {
+                    bool = true;
                 }
-            } else if (slot.getTags()
-                .contains(SlotTag.sword)) {
+
+            } else if (id.equals(GearSlots.SWORD)) {
                 bool = item instanceof SwordItem;
-            } else if (slot.getTags()
-                .contains(SlotTag.bow)) {
+            } else if (id.equals(GearSlots.BOW)) {
                 bool = item instanceof BowItem;
-            } else if (slot.getTags()
-                .contains(SlotTag.axe)) {
+            } else if (id.equals(GearSlots.AXE)) {
                 bool = item instanceof AxeItem;
-            } else if (slot.getTags()
-                .contains(SlotTag.shield)) {
+            } else if (id.equals(GearSlots.SHIELD)) {
                 bool = item instanceof ShieldItem;
-            } else if (slot.getTags()
-                .contains(SlotTag.crossbow)) {
+            } else if (id.equals(GearSlots.CROSBOW)) {
                 bool = item instanceof CrossbowItem;
             }
 

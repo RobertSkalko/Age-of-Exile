@@ -17,10 +17,10 @@ import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.fabricmc.api.EnvType;
@@ -33,6 +33,7 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -94,6 +95,11 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public boolean isCorrupted() {
         return c;
+    }
+
+    public int getTier() {
+// TODO
+        return MathHelper.clamp(lvl / 10, 1, Integer.MAX_VALUE);
     }
 
     public PlayerSkillEnum getSkillNeeded() {

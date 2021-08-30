@@ -44,7 +44,8 @@ public class OnBlockDropMining {
                 .getBlock();
 
             if (ci.getReturnValue()
-                .contains(block.asItem())) {
+                .stream()
+                .anyMatch(x -> x.getItem() == block.asItem())) {
                 return; // if a diamond ore is broken and drops diamond ore, don't give exp and loot
             }
 

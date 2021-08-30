@@ -171,9 +171,9 @@ public class RuneWord implements IByteBuf<RuneWord>, IAutoGson<RuneWord>, JsonEx
         return word;
     }
 
-    public static RuneWord create(String id, String locname, DataGenKey<GearSlot> slot, List<StatModifier> stats, List<RuneItem.RuneType> runes_needed) {
+    public static RuneWord create(String id, String locname, String slot, List<StatModifier> stats, List<RuneItem.RuneType> runes_needed) {
         RuneWord word = create(id, locname, BaseGearType.SlotFamily.NONE, stats, runes_needed);
-        word.gear_slots.add(slot.GUID());
+        word.gear_slots.add(slot);
         return word;
     }
 

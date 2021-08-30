@@ -26,7 +26,6 @@ public class ModRegistry {
     public static PotionRegister POTIONS;
     public static UniqueGearItemRegister UNIQUE_GEARS;
     public static ModRecipeSerializers RECIPE_SER;
-    public static RepairKitsRegister REPAIR_KITS;
     public static InscribingItemRegister INSCRIBING;
     public static AlchemyItemRegister ALCHEMY;
     public static TierItemsRegister TIERED;
@@ -35,7 +34,6 @@ public class ModRegistry {
 
         RECIPE_TYPES = new ModRecipeTypes();
         RECIPE_SER = new ModRecipeSerializers();
-        REPAIR_KITS = new RepairKitsRegister();
         UNIQUE_GEARS = new UniqueGearItemRegister();
         POTIONS = new PotionRegister();
         BLOCKS = new ModBlocks(); // blocks first, cus items are made from blocks

@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
@@ -53,7 +54,7 @@ public class GearTooltipUtils {
                     tip.add(x);
                 });
 
-            if (gear.GetBaseGearType()
+            if (false && gear.GetBaseGearType()
                 .family() == BaseGearType.SlotFamily.Weapon) {
 
                 String speed = "Normal";
@@ -138,12 +139,6 @@ public class GearTooltipUtils {
                 }
             }
 
-            if (!info.shouldShowDescriptions()) {
-                // save some space when the big stat descriptions show
-                TooltipUtils.addRequirements(tip, gear.lvl, gear.getRequirement(), data);
-                tip.add(new SText(""));
-            }
-
             if (gear.imp != null) {
                 tip.addAll(gear.imp.GetTooltipString(info, gear));
             }
@@ -185,6 +180,24 @@ public class GearTooltipUtils {
                 MergedStats merged = new MergedStats(stats, info, gear);
 
                 list.add(merged);
+            }
+
+            if (true || MMORPG.RUN_DEV_TOOLS) {
+                list.clear();
+
+                if (false) {
+                    tip.add(new LiteralText(Formatting.RED + "+5% Critical Chance"));
+                    tip.add(new LiteralText(Formatting.RED + "+12% Critical Damage"));
+                    tip.add(new LiteralText(Formatting.GOLD + "+2% Lifesteal"));
+                }
+
+                tip.add(new LiteralText(Formatting.BLUE + "+6% Armor"));
+                tip.add(new LiteralText(Formatting.GREEN + "+3% Health"));
+                tip.add(new LiteralText(Formatting.AQUA + "+20% Water Resist"));
+                tip.add(new LiteralText(Formatting.RED + "+12% Critical Damage"));
+                tip.add(new LiteralText(Formatting.LIGHT_PURPLE + "+7% Spell Damage"));
+                tip.add(new LiteralText(Formatting.YELLOW + "+12% Magic Find"));
+
             }
 
             int n = 0;
@@ -260,16 +273,27 @@ public class GearTooltipUtils {
 
             tip.add(new LiteralText(""));
 
-            tip.add(TooltipUtils.rarity(rarity)
-                .append(" ")
-                .append(gear.GetBaseGearType()
-                    .locName()));
+            // TODO
 
-            if (ModConfig.get().client.SHOW_DURABILITY) {
+            tip.add(TooltipUtils.gearTier(gear.getTier()));
+            tip.add(TooltipUtils.gearLevel(gear.lvl));
+            tip.add(TooltipUtils.gearRarity(gear.getRarity()));
+            if (false) {
+                tip.add(TooltipUtils.rarity(rarity)
+                    .append(" ")
+                    .append(gear.GetBaseGearType()
+                        .locName()));
+
+            }
+
+            tip.add(new LiteralText(""));
+            ItemStack.appendEnchantments(tip, stack.getEnchantments());
+
+            if (true || ModConfig.get().client.SHOW_DURABILITY) {
                 if (stack.isDamageable()) {
-                    tip.add(new SText(Formatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
+                    tip.add(new SText(Formatting.WHITE + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
                 } else {
-                    tip.add(new SText(Formatting.GRAY + "Unbreakable"));
+                    tip.add(new SText(Formatting.WHITE + "Unbreakable"));
                 }
             }
 

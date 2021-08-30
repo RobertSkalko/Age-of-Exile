@@ -42,7 +42,7 @@ public class NumberUtils {
     }
 
     public static String formatForTooltip(float num) {
-        if (Math.abs(num) < 10) {
+        if (Math.abs(num) < 3) {
             return format.format(num);
         } else {
             return (int) num + "";

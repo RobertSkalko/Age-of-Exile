@@ -14,6 +14,10 @@ import net.minecraft.world.World;
 
 public class LevelUtils {
 
+    public static String tierToRomanNumeral(int tier) {
+        return RomanNumber.toRoman(tier);
+    }
+
     public static SkillItemTier levelToTier(int lvl) {
         for (SkillItemTier tier : SkillItemTier.values()) {
             if (tier.levelRange.isLevelInRange(lvl)) {

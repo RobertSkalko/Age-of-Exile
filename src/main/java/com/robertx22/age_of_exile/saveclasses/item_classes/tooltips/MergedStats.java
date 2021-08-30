@@ -20,9 +20,6 @@ public class MergedStats implements IGearPartTooltip {
 
         list.removeIf(x -> x.getStat() instanceof MoreSocketsStat || x.getStat().is_long);
 
-        list.removeIf(x -> x.getStat().isLocalTo.apply(gear.GetBaseGearType()) && x.getType()
-            .isFlat());
-
         List<TooltipStatInfo> infolist = new ArrayList<>();
 
         list.forEach(x -> infolist.add(new TooltipStatInfo(x, -99, info)));

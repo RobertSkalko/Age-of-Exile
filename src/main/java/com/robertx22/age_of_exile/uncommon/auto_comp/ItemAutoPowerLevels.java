@@ -75,7 +75,7 @@ public class ItemAutoPowerLevels {
         List<BaseGearType> slots = ExileDB.GearTypes()
             .getList()
             .stream()
-            .filter(x -> BaseGearType.isGearOfThisType(x, item))
+            .filter(x -> BaseGearType.isGearOfThisType(x.getGearSlot(), item))
             .collect(Collectors.toList());
 
         float val = 0;
@@ -212,7 +212,7 @@ public class ItemAutoPowerLevels {
                 try {
 
                     for (BaseGearType slot : types) {
-                        if (BaseGearType.isGearOfThisType(slot, item)) {
+                        if (BaseGearType.isGearOfThisType(slot.getGearSlot(), item)) {
 
                             ItemAutoPowerLevels current = new ItemAutoPowerLevels(item, slot);
 

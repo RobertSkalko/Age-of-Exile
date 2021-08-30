@@ -44,7 +44,7 @@ public class CompatibleItems {
             .getSerializable()) {
             if (type.getLevelRange()
                 .getMiddleLevel() == tier.range.getMiddleLevel()) {
-                if (BaseGearType.isGearOfThisType(type, item)) {
+                if (BaseGearType.isGearOfThisType(type.getGearSlot(), item)) {
                     list.add(type);
                 }
             }

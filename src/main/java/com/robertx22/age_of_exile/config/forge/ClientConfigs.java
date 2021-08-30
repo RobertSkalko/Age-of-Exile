@@ -10,8 +10,6 @@ import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 
-import static com.robertx22.age_of_exile.config.GuiPartConfig.IconRenderer;
-
 public class ClientConfigs {
 
     @ConfigEntry.Gui.CollapsibleObject
@@ -31,7 +29,7 @@ public class ClientConfigs {
     public boolean RENDER_SIMPLE_MOB_BAR = true;
     public boolean RENDER_DEATH_STATISTICS = true;
     public boolean RENDER_ITEM_RARITY_BACKGROUND = true;
-    public boolean SHOW_DURABILITY = false;
+    public boolean SHOW_DURABILITY = true;
     public GlintType ITEM_RARITY_BACKGROUND_TYPE = GlintType.FULL;
 
     public enum GlintType {

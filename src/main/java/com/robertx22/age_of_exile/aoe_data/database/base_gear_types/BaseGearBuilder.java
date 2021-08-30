@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.aoe_data.database.base_gear_types;
 import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
@@ -27,7 +26,7 @@ public class BaseGearBuilder implements GearDataHelper {
     private PlayStyle style = PlayStyle.melee;
     private String locnamesuffix;
     private String idprefix;
-    private DataGenKey<GearSlot> slot;
+    private String slot;
     private TagList tags;
     private List<LevelRange> lvls = new ArrayList<>();
     private List<StatModifier> basestats = new ArrayList<>();
@@ -41,7 +40,7 @@ public class BaseGearBuilder implements GearDataHelper {
     private HashMap<LevelRange, Item> itemMap;
     private CraftEssenceItem essenceItem;
 
-    public static BaseGearBuilder of(DataGenKey<GearSlot> slot, String idprefix, String locnamesuffix, HashMap<LevelRange, Item> itemMap) {
+    public static BaseGearBuilder of(String slot, String idprefix, String locnamesuffix, HashMap<LevelRange, Item> itemMap) {
         BaseGearBuilder b = new BaseGearBuilder();
         b.locnamesuffix = locnamesuffix;
         b.idprefix = idprefix;
@@ -50,7 +49,7 @@ public class BaseGearBuilder implements GearDataHelper {
         return b;
     }
 
-    public static BaseGearBuilder weapon(DataGenKey<GearSlot> slot, WeaponTypes type, HashMap<LevelRange, Item> itemMap) {
+    public static BaseGearBuilder weapon(String slot, WeaponTypes type, HashMap<LevelRange, Item> itemMap) {
         BaseGearBuilder b = new BaseGearBuilder();
         b.locnamesuffix = type.locName();
         b.idprefix = type.id;
