@@ -4,13 +4,16 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
+import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -19,7 +22,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class StatSoulItem extends AutoItem {
+public class StatSoulItem extends Item implements IGUID {
 
     public static String TAG = "stat_soul";
 
@@ -44,7 +47,7 @@ public class StatSoulItem extends AutoItem {
                     .append(" ")
                     .append(slot.locName())
                     .append(" ")
-                    .append(txt)
+                    .append(Words.Soul.locName())
                     .formatted(rar.textFormatting());
             }
         } catch (Exception e) {
@@ -79,20 +82,16 @@ public class StatSoulItem extends AutoItem {
 
         if (data != null) {
             tooltip.add(TooltipUtils.gearTier(data.tier));
-            tooltip.add(ExileDB.GearSlots()
-                .get(data.slot)
-                .locName()
-                .formatted(Formatting.BLUE));
+            tooltip.add(new LiteralText("Item Type: ").formatted(Formatting.WHITE)
+                .append(ExileDB.GearSlots()
+                    .get(data.slot)
+                    .locName()
+                    .formatted(Formatting.BLUE)));
             tooltip.add(TooltipUtils.gearRarity(ExileDB.GearRarities()
                 .get(data.rar)));
 
         }
 
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Soul";
     }
 
     @Override

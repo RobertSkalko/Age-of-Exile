@@ -45,6 +45,10 @@ public class GearLootGen extends BaseLootGen<GearBlueprint> {
 
         ItemStack stack = new ItemStack(ModRegistry.MISC_ITEMS.STAT_SOUL);
 
+        stack.getOrCreateTag()
+            .putInt("CustomModelData", gear.GetBaseGearType()
+                .getGearSlot().custom_model_data_num);
+
         StackSaving.STAT_SOULS.saveTo(stack, soul);
 
         return stack;

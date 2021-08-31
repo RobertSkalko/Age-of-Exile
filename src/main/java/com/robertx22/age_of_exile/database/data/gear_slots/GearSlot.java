@@ -9,15 +9,17 @@ import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 
 public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<GearSlot>, IAutoLocName {
 
-    public static GearSlot SERIALIZER = new GearSlot("", "", 0);
+    public static GearSlot SERIALIZER = new GearSlot("", "", -1, 0);
 
     public String guid;
     public int weight;
+    public int custom_model_data_num = -1;
     public transient String locname = "";
 
-    public GearSlot(String guid, String name, int weight) {
+    public GearSlot(String guid, String name, int modelnnum, int weight) {
         this.guid = guid;
         this.locname = name;
+        this.custom_model_data_num = modelnnum;
         this.weight = weight;
     }
 
@@ -41,6 +43,7 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<Gear
         JsonObject json = new JsonObject();
         json.addProperty("id", guid);
         json.addProperty("weight", weight);
+        json.addProperty("model_num", custom_model_data_num);
 
         return json;
     }
@@ -49,6 +52,7 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<Gear
     public GearSlot fromJson(JsonObject json) {
         return new GearSlot(json.get("id")
             .getAsString(), "", json.get("weight")
+            .getAsInt(), json.get("model_num")
             .getAsInt());
     }
 

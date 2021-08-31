@@ -33,7 +33,7 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
 
     public Part affixes;
 
-    public int max_worn_at_once = -1;
+    public int item_model_data_num = -1;
 
     public int drops_after_tier = -1;
 

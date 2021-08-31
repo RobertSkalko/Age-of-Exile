@@ -1,0 +1,21 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "mmorpg:items/stat_soul/stat_soul"
+	},
+	"overrides": [
+		{ "predicate": {  "custom_model_data": 1 }, "model": "mmorpg:item/stat_soul/sword"},
+		{ "predicate": {  "custom_model_data": 2 }, "model": "mmorpg:item/stat_soul/scepter"},
+		{ "predicate": {  "custom_model_data": 3 }, "model": "mmorpg:item/stat_soul/staff"},
+		{ "predicate": {  "custom_model_data": 4 }, "model": "mmorpg:item/stat_soul/axe"},
+		{ "predicate": {  "custom_model_data": 5 }, "model": "mmorpg:item/stat_soul/bow"},
+		{ "predicate": {  "custom_model_data": 6 }, "model": "mmorpg:item/stat_soul/crossbow"},
+		{ "predicate": {  "custom_model_data": 7 }, "model": "mmorpg:item/stat_soul/boots"},
+		{ "predicate": {  "custom_model_data": 8 }, "model": "mmorpg:item/stat_soul/pants"},
+		{ "predicate": {  "custom_model_data": 9 }, "model": "mmorpg:item/stat_soul/chest"},
+		{ "predicate": {  "custom_model_data": 10 }, "model": "mmorpg:item/stat_soul/helmet"},
+		{ "predicate": {  "custom_model_data": 11 }, "model": "mmorpg:item/stat_soul/shield"},
+		{ "predicate": {  "custom_model_data": 12 }, "model": "mmorpg:item/stat_soul/ring"},
+		{ "predicate": {  "custom_model_data": 13 }, "model": "mmorpg:item/stat_soul/necklace"}
+	]
+}

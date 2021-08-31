@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.aoe_data.database.mob_rarities;
 
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.util.Formatting;
 
 public class MobRaritiesAdder implements ExileRegistryInit {
@@ -35,7 +35,7 @@ public class MobRaritiesAdder implements ExileRegistryInit {
         elite.loot_multi = 2;
         elite.weight = 100;
         elite.higher_rar = IRarity.RARE_ID;
-        elite.setMagicalFields();
+        elite.setUncommonFields();
         elite.addToSerializables();
 
         MobRarity champ = new MobRarity();
