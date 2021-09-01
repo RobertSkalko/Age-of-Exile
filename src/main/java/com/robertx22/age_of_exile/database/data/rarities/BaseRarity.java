@@ -48,7 +48,7 @@ public abstract class BaseRarity implements Rarity {
     public Formatting textFormatting() {
         try {
             return Formatting.valueOf(text_format);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return Formatting.GRAY;

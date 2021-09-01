@@ -79,7 +79,8 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
 
                     pairs.add(new Pair(all.get(i)
                         .getStat()
-                        , info.statTooltipType.impl.getTooltipList(new TooltipStatWithContext(ctx, stats.size() > i ? stats.get(i) : null, gear.lvl))));
+                        , info.statTooltipType.impl.getTooltipList(gear.getRarity()
+                        .textFormatting(), new TooltipStatWithContext(ctx, stats.size() > i ? stats.get(i) : null, gear.lvl))));
                 }
             }
         }

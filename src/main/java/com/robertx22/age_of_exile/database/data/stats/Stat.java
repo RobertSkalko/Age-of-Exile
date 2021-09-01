@@ -187,7 +187,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
 
     @Environment(EnvType.CLIENT)
     public List<Text> getTooltipList(TooltipStatWithContext info) {
-        return info.statinfo.tooltipInfo.statTooltipType.impl.getTooltipList(info);
+        return info.statinfo.tooltipInfo.statTooltipType.impl.getTooltipList(null, info);
     }
 
     public enum StatGroup {

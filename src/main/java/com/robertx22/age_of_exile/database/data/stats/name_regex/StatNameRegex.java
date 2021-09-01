@@ -11,7 +11,6 @@ public abstract class StatNameRegex {
 
     public static StatNameRegex BASIC = new BasicStatRegex();
     public static StatNameRegex BASIC_LOCAL = new BasicLocalStatRegex().setAddPlus(false);
-    public static StatNameRegex VALUE_PLUS_NAME = new ValuePlusName();
     public static StatNameRegex JUST_NAME = new JustNameRegex();
 
     public static String VALUE = "VALUE";
@@ -32,7 +31,12 @@ public abstract class StatNameRegex {
         return Formatting.GRAY;
     }
 
-    public Formatting numberColor(Stat stat, float val) {
+    public Formatting numberColor(Formatting format, Stat stat, float val) {
+
+        if (format != null) {
+            return format;
+        }
+
         if (val > 0) {
             return Formatting.GREEN;
         } else {
@@ -40,9 +44,9 @@ public abstract class StatNameRegex {
         }
     }
 
-    public abstract String getStatNameRegex(ModType type, Stat stat, float v1);
+    public abstract String getStatNameRegex(Formatting format, ModType type, Stat stat, float v1);
 
-    public String translate(TooltipStatWithContext ctx, ModType type, float v1, Stat stat) {
+    public String translate(Formatting format, TooltipStatWithContext ctx, ModType type, float v1, Stat stat) {
 
         String v1s = NumberUtils.formatForTooltip(v1);
 
@@ -62,9 +66,9 @@ public abstract class StatNameRegex {
             percent = "%";
         }
 
-        String str = statColor(stat) + getStatNameRegex(type, stat, v1);
+        String str = statColor(stat) + getStatNameRegex(format, type, stat, v1);
 
-        str = str.replace(VALUE, numberColor(stat, v1) + "" + plusminus + v1s + percent + Formatting.RESET + statColor(stat));
+        str = str.replace(VALUE, numberColor(format, stat, v1) + "" + plusminus + v1s + percent + Formatting.RESET + statColor(stat));
 
         str = str.replace(NAME, CLOC.translate(stat.locName()));
 

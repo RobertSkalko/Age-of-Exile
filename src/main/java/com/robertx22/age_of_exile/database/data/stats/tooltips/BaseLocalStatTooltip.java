@@ -14,17 +14,18 @@ import java.util.List;
 public class BaseLocalStatTooltip implements IStatTooltipType {
 
     @Override
-    public List<Text> getTooltipList(TooltipStatWithContext ctx) {
+    public List<Text> getTooltipList(Formatting format, TooltipStatWithContext ctx) {
         TooltipStatInfo info = ctx.statinfo;
 
         List<Text> list = new ArrayList<Text>();
         if (true) {
-
-            list.add(info.stat.locName()
+            String icon = "\u25CF";
+            list.add(new LiteralText(icon + " ")
+                .append(info.stat.locName())
                 .append(": ")
-                .formatted(Formatting.GRAY)
+                .formatted(format != null ? format : Formatting.WHITE)
                 .append(new LiteralText((int) info.firstValue + "")
-                    .formatted(info.stat.getFormat())));
+                    .formatted(Formatting.GRAY)));
 
             return list;
 
@@ -36,7 +37,7 @@ public class BaseLocalStatTooltip implements IStatTooltipType {
         }
 
         MutableText txt = new LiteralText(StatNameRegex.BASIC_LOCAL
-            .translate(ctx, info.type, info.firstValue, info.stat));
+            .translate(format, ctx, info.type, info.firstValue, info.stat));
 
         if (ctx.statinfo.stat.is_long) {
             return longStat(ctx, txt);

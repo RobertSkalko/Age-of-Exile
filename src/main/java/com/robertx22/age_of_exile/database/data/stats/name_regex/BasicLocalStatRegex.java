@@ -8,18 +8,18 @@ public class BasicLocalStatRegex extends StatNameRegex {
 
     @Override
     public Formatting statColor(Stat stat) {
+        return Formatting.WHITE;
+    }
+
+    @Override
+    public Formatting numberColor(Formatting format, Stat stat, float val) {
         return stat.getFormat();
     }
 
     @Override
-    public Formatting numberColor(Stat stat, float val) {
-        return stat.getFormat();
-    }
+    public String getStatNameRegex(Formatting format, ModType type, Stat stat, float v1) {
 
-    @Override
-    public String getStatNameRegex(ModType type, Stat stat, float v1) {
-
-        return NAME + ": " + numberColor(stat, v1) + VALUE;
+        return NAME + ": " + numberColor(format, stat, v1) + VALUE;
 
     }
 }

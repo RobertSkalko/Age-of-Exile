@@ -160,21 +160,21 @@ public class GearTooltipUtils {
         }
 
         if (true || MMORPG.RUN_DEV_TOOLS) {
+            /*
             list.clear();
 
-            if (false) {
-                tip.add(new LiteralText(Formatting.RED + "+5% Critical Chance"));
-                tip.add(new LiteralText(Formatting.RED + "+12% Critical Damage"));
-                tip.add(new LiteralText(Formatting.GOLD + "+2% Lifesteal"));
-            }
 
-            tip.add(new LiteralText(Formatting.BLUE + "+6% Armor"));
-            tip.add(new LiteralText(Formatting.GREEN + "+3% Health"));
-            tip.add(new LiteralText(Formatting.AQUA + "+20% Water Resist"));
-            tip.add(new LiteralText(Formatting.RED + "+12% Critical Damage"));
-            tip.add(new LiteralText(Formatting.LIGHT_PURPLE + "+7% Spell Damage"));
-            tip.add(new LiteralText(Formatting.YELLOW + "+12% Magic Find"));
+            Formatting format = gear.getRarity()
+                .textFormatting();
+            tip.add(new LiteralText(format + "+6% Armor"));
+            tip.add(new LiteralText(format + "+3% Health"));
+            tip.add(new LiteralText(format + "+20% Water Resist"));
+            tip.add(new LiteralText(format + "+12% Critical Damage"));
+            tip.add(new LiteralText(format + "+7% Spell Damage"));
+            tip.add(new LiteralText(format + "+12% Magic Find"));
 
+
+             */
         }
 
         int n = 0;

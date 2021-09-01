@@ -13,14 +13,14 @@ import java.util.List;
 public class NormalStatTooltip implements IStatTooltipType {
 
     @Override
-    public List<Text> getTooltipList(TooltipStatWithContext ctx) {
+    public List<Text> getTooltipList(Formatting format, TooltipStatWithContext ctx) {
 
         TooltipStatInfo info = ctx.statinfo;
 
         List<Text> list = new ArrayList<>();
 
         MutableText txt = new LiteralText(Formatting.BLUE + info.stat.getStatNameRegex()
-            .translate(ctx, info.type, info.firstValue, info.stat));
+            .translate(format, ctx, info.type, info.firstValue, info.stat));
 
         if (ctx.statinfo.stat.is_long) {
             return longStat(ctx, txt);

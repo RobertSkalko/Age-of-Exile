@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IStatTooltipType {
-    List<Text> getTooltipList(TooltipStatWithContext info);
+    List<Text> getTooltipList(Formatting format, TooltipStatWithContext info);
 
     default List<Text> longStat(TooltipStatWithContext ctx, MutableText txt) {
         List<Text> list = new ArrayList<>();

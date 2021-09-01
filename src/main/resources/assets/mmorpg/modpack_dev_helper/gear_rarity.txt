@@ -1,11 +1,9 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-magical
+uncommon
 common
-monster_unique
 mythic
 legendary
-fabled
 rare
 unique
 epic
