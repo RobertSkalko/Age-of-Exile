@@ -1,0 +1,48 @@
+package com.robertx22.age_of_exile.uncommon.utilityclasses;
+
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulData;
+import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+
+public class GearSoulOnInvTick {
+
+    public static void checkAndGenerate(PlayerEntity player) {
+
+        try {
+
+            if (player.world.isClient) {
+                return;
+            }
+
+            for (ItemStack stack : player.inventory.main) {
+
+                if (stack.isEmpty()) {
+                    continue;
+                }
+
+                if (StackSaving.STAT_SOULS.has(stack)) {
+
+                    StatSoulData soul = StackSaving.STAT_SOULS.loadFrom(stack);
+
+                    if (soul != null && soul.itemMatches(stack.getItem())) {
+                        GearItemData gear = soul.createGearData();
+                        stack.removeSubTag(StatSoulItem.TAG);
+                        gear.saveToStack(stack);
+                    }
+
+                }
+
+                //    //   TryCreateCompatibleItemStats(stack, data.getLevel(), player);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}

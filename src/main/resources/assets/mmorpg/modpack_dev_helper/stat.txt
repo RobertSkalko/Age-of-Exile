@@ -18,8 +18,6 @@ bonus_exp
 bonus_favor
 chance_to_get_blessing_on_kill
 all_water_damage
-hammer_damage
-ele_glove_damage
 heal_crit_dmg
 inc_effect_of_song_buff_given
 trap_spell_dmg
@@ -40,10 +38,8 @@ cast_speed
 inc_effect_of_defensive_buff_on_you
 mana_on_attack_hit
 melee_dmg_received
-dagger_damage
 all_elemental_damage
 defensive_eff_dur_u_cast
-chance_to_give_living_inferno_to_self
 chance_of_hp_reg_on_spell_crit
 physical_health_leech
 nature_vuln_crit
@@ -71,7 +67,6 @@ water_dot_damage
 all_light_damage
 ranged_dmg_received
 physical_dot_damage
-ele_mace_damage
 threat_generated
 mana_per_10_intelligence
 all_all_damage
@@ -121,7 +116,6 @@ bonus_exp_for_t3_mob
 vitality
 armor_penetration
 bow_damage
-ele_scythe_damage
 dmg_to_living
 inc_effect_of_defensive_buff_given
 block_ooc_regen
@@ -158,7 +152,6 @@ chance_on_basic_atk_to_give_infused_blade_to_self
 heal_over_time_eff_dur_u_cast
 light_any_wep_damage
 agility
-ele_dagger_damage
 movement_spell_dmg
 nature_health_leech
 water_focus
@@ -176,7 +169,6 @@ bonus_farming_exp
 absorb_ele_dmg_to_hp
 projectile_cdr
 nature_mana_leech
-scythe_damage
 area_spell_dmg
 fire_weapon_damage
 more_threat_on_take_dmg
@@ -227,7 +219,6 @@ water_mana_leech
 intelligence
 song_spell_dmg
 chance_of_spend_poison_for_double_dmg
-spear_damage
 chance_of_spend_frostburn_for_double_dmg
 song_eff_dur_u_cast
 day_night_dmg
@@ -274,7 +265,6 @@ transfer_health_to_physical_weapon_damage
 damage_reflected
 staff_damage
 bonus_day_yield
-ele_spear_damage
 spell_critical_hit
 blood_user
 fire_dot_damage
@@ -318,7 +308,6 @@ inc_effect_of_negative_buff_on_you
 spell_fire_damage
 bonus_exp_for_t1_mob
 chance_to_give_zeal_to_self_on_heal
-ele_hammer_damage
 cd_ticks
 socket_slots
 chance_of_bleed
@@ -351,7 +340,6 @@ nature_focus
 inc_aoe
 water_health_leech
 ele_crossbow_damage
-glove_damage
 bonus_mining_yield
 crit_water_dmg_mana
 negative_eff_duration
@@ -373,7 +361,6 @@ bonus_rain_yield
 chance_to_give_blessing_to_self
 totem_resto
 heal_effect_on_self
-mace_damage
 shield_duration
 aura_spell_dmg
 negative_eff_dur_u_cast

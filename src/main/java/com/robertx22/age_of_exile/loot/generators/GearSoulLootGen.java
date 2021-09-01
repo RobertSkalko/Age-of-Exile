@@ -10,9 +10,9 @@ import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
 
-public class GearLootGen extends BaseLootGen<GearBlueprint> {
+public class GearSoulLootGen extends BaseLootGen<GearBlueprint> {
 
-    public GearLootGen(LootInfo info) {
+    public GearSoulLootGen(LootInfo info) {
         super(info);
 
     }

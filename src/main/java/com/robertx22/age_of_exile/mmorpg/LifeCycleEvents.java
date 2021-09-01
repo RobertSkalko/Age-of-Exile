@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg;
 
 import com.robertx22.age_of_exile.mmorpg.registers.server.CommandRegister;
-import com.robertx22.age_of_exile.uncommon.auto_comp.ItemAutoPowerLevels;
 import com.robertx22.age_of_exile.uncommon.testing.TestManager;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.world.GameRules;
@@ -21,7 +20,6 @@ public class LifeCycleEvents {
         });
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
-            ItemAutoPowerLevels.setupHashMaps();
 
             CommandRegister.Register(server);
 

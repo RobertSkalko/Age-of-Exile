@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
-import com.robertx22.age_of_exile.loot.generators.util.GearCreationUtils;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
@@ -95,7 +94,7 @@ public class ItemNewbieGearBag extends Item {
                 GearItemData data = getBlueprint(gear).createData();
                 data.lvl = 1;
                 data.can_sal = false;
-                ItemStack stack = GearCreationUtils.CreateStack(data);
+                ItemStack stack = ItemStack.EMPTY;// GearCreationUtils.CreateStack(data);
 
                 EnchantedBookItem.addEnchantment(stack, new EnchantmentLevelEntry(Enchantments.UNBREAKING, 1));
 
@@ -172,7 +171,7 @@ public class ItemNewbieGearBag extends Item {
     }
 
     private static GearBlueprint getBlueprint(BaseGearType type) {
-        GearBlueprint print = new GearBlueprint(1);
+        GearBlueprint print = new GearBlueprint(Items.AIR, 1);        //TODO
         print.gearItemSlot.set(type);
         print.rarity.set(ExileDB.GearRarities()
             .get(IRarity.COMMON_ID));

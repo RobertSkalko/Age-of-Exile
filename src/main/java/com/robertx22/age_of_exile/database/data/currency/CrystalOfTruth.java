@@ -41,7 +41,7 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
 
         GearItemData gear = Gear.Load(stack);
 
-        GearBlueprint gearPrint = new GearBlueprint(gear.lvl);
+        GearBlueprint gearPrint = new GearBlueprint(stack.getItem(), gear.lvl);
         gearPrint.gearItemSlot.set(gear.gear_type);
         gearPrint.rarity.possible.removeIf(x -> x.equals(gear.getRarity()));
         gearPrint.level.set(gear.lvl);
@@ -61,8 +61,6 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
     public List<BaseLocRequirement> requirements() {
         return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_HIGHER_RARITY, SimpleGearLocReq.IS_COMMON);
     }
-
-    
 
     @Override
     public String getRarityRank() {

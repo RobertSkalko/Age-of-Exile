@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.base_stats.BaseStatsConfig;
-import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
@@ -106,10 +105,6 @@ public class ExileDB {
 
     public static ExileRegistryContainer<DimensionConfig> DimensionConfigs() {
         return Database.getRegistry(ExileRegistryTypes.DIMENSION_CONFIGS);
-    }
-
-    public static ExileRegistryContainer<CompatibleItem> CompatibleItems() {
-        return Database.getRegistry(ExileRegistryTypes.COMPATIBLE_ITEM);
     }
 
     public static ExileRegistryContainer<SalvageOutput> SalvageOutputs() {

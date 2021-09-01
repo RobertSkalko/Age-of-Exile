@@ -6,8 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
@@ -25,31 +23,28 @@ public class BaseToolsAdder implements ExileRegistryInit, GearDataHelper {
     @Override
     public void registerAll() {
 
-        PICKAXE = BaseGearBuilder.of(GearSlots.PICKAXE, "pickaxe", "Pickaxe", ModRegistry.GEAR_ITEMS.PICKAXE)
+        PICKAXE = BaseGearBuilder.of(GearSlots.PICKAXE, "pickaxe", "Pickaxe")
             .weaponType(WeaponTypes.sword)
-            .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.pickaxe, BaseGearType.SlotTag.tool_family))
             .baseStat(getAttackDamageStat(WeaponTypes.sword, GearDataHelper.Number.HALF, Elements.Physical))
             .attackStyle(PlayStyle.melee)
-            .addToolLevelRanges()
+            .addFullLevelRange()
             .build();
 
-        FISHING_ROD = BaseGearBuilder.of(GearSlots.FISHING_ROD, "fishing_rod", "Fishing Rod", ModRegistry.GEAR_ITEMS.FISHING_RODS)
+        FISHING_ROD = BaseGearBuilder.of(GearSlots.FISHING_ROD, "fishing_rod", "Fishing Rod")
             .weaponType(WeaponTypes.sword)
-            .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.fishing_rod, BaseGearType.SlotTag.tool_family))
             .baseStat(getAttackDamageStat(WeaponTypes.sword, GearDataHelper.Number.HALF, Elements.Physical))
             .attackStyle(PlayStyle.melee)
-            .addToolLevelRanges()
+            .addFullLevelRange()
             .build();
 
-        HOE = BaseGearBuilder.of(GearSlots.HOE, "hoe", "Hoe", ModRegistry.GEAR_ITEMS.HOES)
+        HOE = BaseGearBuilder.of(GearSlots.HOE, "hoe", "Hoe")
             .weaponType(WeaponTypes.sword)
-            .req(new StatRequirement())
             .tags(new TagList(BaseGearType.SlotTag.hoe, BaseGearType.SlotTag.tool_family))
             .baseStat(getAttackDamageStat(WeaponTypes.sword, GearDataHelper.Number.HALF, Elements.Physical))
             .attackStyle(PlayStyle.melee)
-            .addToolLevelRanges()
+            .addFullLevelRange()
             .build();
 
     }

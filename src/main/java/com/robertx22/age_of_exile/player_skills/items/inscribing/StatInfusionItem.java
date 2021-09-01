@@ -102,7 +102,7 @@ public class StatInfusionItem extends Item implements IAutoLocName, IAutoModel, 
 
             int lvl = 1;
 
-            GearBlueprint b = new GearBlueprint(lvl);
+            GearBlueprint b = new GearBlueprint(stack.getItem(), lvl);
             b.level.set(lvl);
 
             String slot = "";

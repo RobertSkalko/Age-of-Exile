@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.config.forge;
 
 import com.robertx22.age_of_exile.config.AllLevelRewardsConfig;
-import com.robertx22.age_of_exile.config.forge.parts.AutoCompatibleItemConfig;
 import com.robertx22.age_of_exile.config.forge.parts.DropRatesContainer;
 import com.robertx22.age_of_exile.config.forge.parts.FoodEffectsConfig;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
@@ -29,9 +28,6 @@ public class ModConfig implements ConfigData {
 
     @ConfigEntry.Gui.CollapsibleObject
     public DropRatesContainer DropRates = new DropRatesContainer();
-
-    @ConfigEntry.Gui.CollapsibleObject
-    public AutoCompatibleItemConfig autoCompatibleItems = new AutoCompatibleItemConfig();
 
     @ConfigEntry.Gui.CollapsibleObject
     public FoodEffectsConfig foodEffects = new FoodEffectsConfig();

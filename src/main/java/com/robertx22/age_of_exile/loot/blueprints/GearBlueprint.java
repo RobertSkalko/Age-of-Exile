@@ -11,12 +11,17 @@ import com.robertx22.age_of_exile.loot.blueprints.bases.UniqueGearPart;
 import com.robertx22.age_of_exile.loot.generators.stack_changers.DamagedGear;
 import com.robertx22.age_of_exile.loot.generators.util.GearCreationUtils;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 public class GearBlueprint extends ItemBlueprint {
 
-    public GearBlueprint(int lvl) {
+    Item item = Items.AIR;
+
+    public GearBlueprint(Item item, int lvl) {
         super(lvl);
+        this.item = item;
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
     }
 
@@ -49,7 +54,7 @@ public class GearBlueprint extends ItemBlueprint {
 
     @Override
     ItemStack generate() {
-        return GearCreationUtils.CreateStack(createData());
+        return GearCreationUtils.CreateStack(createData(), item);
     }
 
 }

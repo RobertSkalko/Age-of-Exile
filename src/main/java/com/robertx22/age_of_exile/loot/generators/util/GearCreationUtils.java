@@ -10,13 +10,14 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsDat
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class GearCreationUtils {
 
-    public static ItemStack CreateStack(GearItemData data) {
+    public static ItemStack CreateStack(GearItemData data, Item item) {
 
-        ItemStack stack = new ItemStack(data.getItem());
+        ItemStack stack = new ItemStack(item);
 
         Gear.Save(stack, data);
 

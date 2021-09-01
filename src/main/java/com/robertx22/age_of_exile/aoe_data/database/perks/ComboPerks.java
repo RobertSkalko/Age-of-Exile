@@ -15,7 +15,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaR
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
-import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class ComboPerks implements ExileRegistryInit {
@@ -86,21 +85,6 @@ public class ComboPerks implements ExileRegistryInit {
         PerkBuilder.stat("flat_dodge_ranged_damage",
             new OptScaleExactStat(2, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
             new OptScaleExactStat(50, DodgeRating.getInstance())
-        );
-
-        PerkBuilder.stat("dagger_and_gauntlet_damage",
-            new OptScaleExactStat(2, Stats.ELEMENTAL_WEAPON_DAMAGE.get(WeaponTypes.dagger)),
-            new OptScaleExactStat(2, Stats.ELEMENTAL_WEAPON_DAMAGE.get(WeaponTypes.glove))
-        );
-
-        PerkBuilder.stat("ele_mace_damage_more_mana",
-            new OptScaleExactStat(3, Stats.ELEMENTAL_WEAPON_DAMAGE.get(WeaponTypes.mace)),
-            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE)
-        );
-
-        PerkBuilder.stat("ele_hammer_damage_more_armor",
-            new OptScaleExactStat(3, Stats.ELEMENTAL_WEAPON_DAMAGE.get(WeaponTypes.hammer)),
-            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE)
         );
 
         PerkBuilder.stat("hp_mana_cost",

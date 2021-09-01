@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.Stat.StatGroup;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DataPackStatAccessor;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
@@ -20,6 +19,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.util.Formatting;
 
 import java.util.Arrays;
@@ -357,7 +357,6 @@ public class Stats implements ExileRegistryInit {
         .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self", x -> x.element)
         .addAllOfType(Arrays.asList(
             BeneficialEffects.BLOODLUST,
-            BeneficialEffects.LIVING_INFERNO,
             BeneficialEffects.CONCENTRATION,
             BeneficialEffects.STEAM_POWER,
             BeneficialEffects.BLESSING)

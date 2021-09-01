@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.CompatibleItemUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.Database;
 import net.minecraft.client.MinecraftClient;
@@ -107,15 +106,6 @@ public class TooltipMethod {
 
                 if (data != null) {
                     data.BuildTooltip(ctx);
-                } else {
-
-                    CompatibleItemUtils.Data cdata = CompatibleItemUtils.getData(player.world, stack.getItem());
-
-                    if (cdata.isCompatible) {
-                        int mini = cdata.minLevel;
-                        int maxi = cdata.maxLevel;
-                        tooltip.add(new LiteralText("Level: " + mini + " - " + maxi));
-                    }
                 }
 
                 MutableText broken = TooltipUtils.itemBrokenText(stack, data);

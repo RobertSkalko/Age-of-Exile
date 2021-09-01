@@ -4,9 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.DatabaseSuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearRaritySuggestions;
@@ -90,6 +88,7 @@ public class GiveGear {
         }
         for (int i = 0; i < amount; i++) {
 
+            /* TODO
             GearBlueprint blueprint = new GearBlueprint(lvl);
             blueprint.unidentifiedPart.set(false);
             blueprint.level.set(lvl);
@@ -105,6 +104,8 @@ public class GiveGear {
 
             player.giveItemStack(blueprint.createStack());
 
+
+             */
         }
 
         return 0;

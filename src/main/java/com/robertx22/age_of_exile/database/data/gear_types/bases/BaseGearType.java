@@ -29,8 +29,6 @@ import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -103,12 +101,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
     @Override
     public final String locNameForLangFile() {
         return locname;
-    }
-
-    public String item_id = "";
-
-    public Item getItem() {
-        return Registry.ITEM.get(new Identifier(item_id));
     }
 
     public LevelRange getLevelRange() {
@@ -396,8 +388,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         json.add("level_range", getLevelRange().toJson());
         json.add("tag_list", getTags().toJson());
         json.add("stat_req", getStatRequirements().toJson());
-        json.addProperty("item_id", Registry.ITEM.getId(getItem())
-            .toString());
         json.addProperty("gear_slot", this.gear_slot);
         json.addProperty("weapon_offhand_stat_util", this.weapon_offhand_stat_util);
         json.addProperty("rar_group", this.rar_group);
@@ -440,9 +430,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        o.item_id = json.get("item_id")
-            .getAsString();
 
         try {
             o.weapon_type = WeaponTypes.valueOf(json.get("weapon_type")

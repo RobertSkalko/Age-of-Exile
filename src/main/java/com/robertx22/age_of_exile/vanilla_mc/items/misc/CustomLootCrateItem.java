@@ -19,6 +19,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -145,7 +146,7 @@ public class CustomLootCrateItem extends Item implements IAutoModel {
                 for (int i = 0; i < info.amount; i++) {
 
                     if (info.lootType == LootType.Gear) {
-                        GearBlueprint blueprint = new GearBlueprint(info.level);
+                        GearBlueprint blueprint = new GearBlueprint(Items.AIR, info.level); // TODO
                         blueprint.rarity.set(info.gearRarity);
                         drops.add(blueprint.createStack());
                     }

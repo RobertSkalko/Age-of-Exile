@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.aoe_data.database.base_gear_types;
 
-import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
@@ -13,8 +12,6 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
 import com.robertx22.library_of_exile.registry.DataGenKey;
-import net.minecraft.item.Item;
-import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,24 +34,21 @@ public class BaseGearBuilder implements GearDataHelper {
     private HashMap<LevelRange, String> namePrefixes = new HashMap<>();
     private float atkspeed = 1F;
     private int weight = 1000;
-    private HashMap<LevelRange, Item> itemMap;
     private CraftEssenceItem essenceItem;
 
-    public static BaseGearBuilder of(String slot, String idprefix, String locnamesuffix, HashMap<LevelRange, Item> itemMap) {
+    public static BaseGearBuilder of(String slot, String idprefix, String locnamesuffix) {
         BaseGearBuilder b = new BaseGearBuilder();
         b.locnamesuffix = locnamesuffix;
         b.idprefix = idprefix;
         b.slot = slot;
-        b.itemMap = itemMap;
         return b;
     }
 
-    public static BaseGearBuilder weapon(String slot, WeaponTypes type, HashMap<LevelRange, Item> itemMap) {
+    public static BaseGearBuilder weapon(String slot, WeaponTypes type) {
         BaseGearBuilder b = new BaseGearBuilder();
         b.locnamesuffix = type.locName();
         b.idprefix = type.id;
         b.slot = slot;
-        b.itemMap = itemMap;
         b.atkspeed = type.atkPerSec;
         b.weaponType(type);
         b.attackStyle(type.style);
@@ -75,57 +69,8 @@ public class BaseGearBuilder implements GearDataHelper {
         return this;
     }
 
-    public BaseGearBuilder addWarriorLevelRanges() {
-        this.addLvlRange(LevelRanges.STARTER, "Trainee");
-        this.addLvlRange(LevelRanges.LOW, "Durable");
-        this.addLvlRange(LevelRanges.MIDDLE, "Brutal");
-        this.addLvlRange(LevelRanges.HIGH, "Soldier");
-        this.addLvlRange(LevelRanges.ENDGAME, "Royal");
-        return this;
-    }
-
-    public BaseGearBuilder addToolLevelRanges() {
-        this.addLvlRange(LevelRanges.STARTER, "Old");
-        this.addLvlRange(LevelRanges.LOW, "Durable");
-        this.addLvlRange(LevelRanges.MIDDLE, "Sturdy");
-        this.addLvlRange(LevelRanges.HIGH, "Gilded");
-        this.addLvlRange(LevelRanges.ENDGAME, "Masterwork");
-        return this;
-    }
-
-    public BaseGearBuilder addHunterLevelRanges() {
-        this.addLvlRange(LevelRanges.STARTER, "Old");
-        this.addLvlRange(LevelRanges.LOW, "Durable");
-        this.addLvlRange(LevelRanges.MIDDLE, "Sturdy");
-        this.addLvlRange(LevelRanges.HIGH, "Full");
-        this.addLvlRange(LevelRanges.ENDGAME, "Hunter");
-        return this;
-    }
-
-    public BaseGearBuilder addHunterWeaponLevelRanges() {
-        this.addLvlRange(LevelRanges.STARTER, "Old");
-        this.addLvlRange(LevelRanges.LOW, "Durable");
-        this.addLvlRange(LevelRanges.MIDDLE, "Sturdy");
-        this.addLvlRange(LevelRanges.HIGH, "Knight's");
-        this.addLvlRange(LevelRanges.ENDGAME, "King's");
-        return this;
-    }
-
-    public BaseGearBuilder addMageLevelRanges() {
-        this.addLvlRange(LevelRanges.STARTER, "Novice");
-        this.addLvlRange(LevelRanges.LOW, "Apprentice");
-        this.addLvlRange(LevelRanges.MIDDLE, "Adept's");
-        this.addLvlRange(LevelRanges.HIGH, "Wizard's");
-        this.addLvlRange(LevelRanges.ENDGAME, "Archmage");
-        return this;
-    }
-
-    public BaseGearBuilder addMageWeaponLevelRanges() {
-        this.addLvlRange(LevelRanges.STARTER, "Old");
-        this.addLvlRange(LevelRanges.LOW, "Ancient");
-        this.addLvlRange(LevelRanges.MIDDLE, "Sage");
-        this.addLvlRange(LevelRanges.HIGH, "Crystal");
-        this.addLvlRange(LevelRanges.ENDGAME, "Ancestral");
+    public BaseGearBuilder addFullLevelRange() {
+        this.addLvlRange(LevelRanges.START_TO_END, "");
         return this;
     }
 
@@ -164,17 +109,10 @@ public class BaseGearBuilder implements GearDataHelper {
         return this;
     }
 
-    public BaseGearBuilder req(StatRequirement req) {
-        this.req = req;
-        return this;
-    }
-
     public HashMap<LevelRange, DataGenKey<BaseGearType>> build() {
         HashMap<LevelRange, DataGenKey<BaseGearType>> map = new HashMap<>();
 
         lvls.forEach(x -> {
-            Preconditions.checkArgument(itemMap.containsKey(x));
-
             String name = /*namePrefixes.get(x) + " " + */locnamesuffix;
             String id = idprefix + x.id_suffix;
             BaseGearType type = new BaseGearType(slot, id, x, name);
@@ -188,8 +126,6 @@ public class BaseGearBuilder implements GearDataHelper {
             type.style = style;
             type.weapon_offhand_stat_util = weapon_offhand_stat_util;
             type.essenceItem = essenceItem;
-            type.item_id = Registry.ITEM.getId(itemMap.get(x))
-                .toString();
             map.put(x, new DataGenKey<>(type.GUID()));
             type.addToSerializables();
         });

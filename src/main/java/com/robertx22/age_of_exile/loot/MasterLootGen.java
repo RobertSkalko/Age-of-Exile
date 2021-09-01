@@ -91,7 +91,7 @@ public class MasterLootGen {
 
         try {
             items.addAll(new CurrencyLootGen(info).tryGenerate());
-            items.addAll(new GearLootGen(info).tryGenerate());
+            items.addAll(new GearSoulLootGen(info).tryGenerate());
             items.addAll(new GemLootGen(info).tryGenerate());
             items.addAll(new RuneLootGen(info).tryGenerate());
             items.addAll(new VanillaRewardsLootGen(info).tryGenerate());

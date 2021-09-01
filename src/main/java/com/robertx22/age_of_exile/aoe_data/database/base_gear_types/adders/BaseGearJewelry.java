@@ -32,7 +32,7 @@ public class BaseGearJewelry implements ExileRegistryInit, GearDataHelper {
     @Override
     public void registerAll() {
 
-        MANA_RING = BaseGearBuilder.of(GearSlots.RING, "mana_reg_ring", "Ring", ModRegistry.GEAR_ITEMS.MANA_REG_RINGS)
+        MANA_RING = BaseGearBuilder.of(GearSlots.RING, "mana_reg_ring", "Ring")
             .essenceItem(ModRegistry.GEAR_MATERIALS.ARCANA)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
             .baseStat(new StatModifier(10, 20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE))
@@ -40,7 +40,7 @@ public class BaseGearJewelry implements ExileRegistryInit, GearDataHelper {
             .addLvlRange(LevelRanges.MID_TO_END, "Arcana")
             .build();
 
-        HP_RING = BaseGearBuilder.of(GearSlots.RING, "hp_ring", "Ring", ModRegistry.GEAR_ITEMS.HP_RINGS)
+        HP_RING = BaseGearBuilder.of(GearSlots.RING, "hp_ring", "Ring")
             .essenceItem(ModRegistry.GEAR_MATERIALS.ARCANA)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
             .baseStat(new StatModifier(10, 20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE))
@@ -48,7 +48,7 @@ public class BaseGearJewelry implements ExileRegistryInit, GearDataHelper {
             .addLvlRange(LevelRanges.MID_TO_END, "Primordial")
             .build();
 
-        ALL_RES_NECKLACE = BaseGearBuilder.of(GearSlots.NECKLACE, "all_res_necklace", "Necklace", ModRegistry.GEAR_ITEMS.ALL_RES_NECKLACES)
+        ALL_RES_NECKLACE = BaseGearBuilder.of(GearSlots.NECKLACE, "all_res_necklace", "Necklace")
             .essenceItem(ModRegistry.GEAR_MATERIALS.ELEMENTAL)
             .tags(new TagList(SlotTag.necklace, SlotTag.jewelry_family))
             .baseStat(new StatModifier(4, 8, new ElementalResist(Elements.Elemental), ModType.FLAT))
@@ -56,7 +56,7 @@ public class BaseGearJewelry implements ExileRegistryInit, GearDataHelper {
             .addLvlRange(LevelRanges.MID_TO_END, "Primordial")
             .build();
 
-        HP_NECKLACE = BaseGearBuilder.of(GearSlots.NECKLACE, "life_necklace", "Necklace", ModRegistry.GEAR_ITEMS.HP_NECKLACES)
+        HP_NECKLACE = BaseGearBuilder.of(GearSlots.NECKLACE, "life_necklace", "Necklace")
             .essenceItem(ModRegistry.GEAR_MATERIALS.LIFE)
             .tags(new TagList(SlotTag.necklace, SlotTag.jewelry_family))
             .baseStat(new StatModifier(2, 6, Health.getInstance(), ModType.FLAT))

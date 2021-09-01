@@ -119,17 +119,6 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(5, new ElementalPenetration(Elements.Elemental))
         );
 
-        PerkBuilder.bigStat("mace_damage_and_scepter_damage", "Smashing",
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.mace)),
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.scepter))
-        );
-
-        PerkBuilder.bigStat("mace_mastery", "Mace Mastery",
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.mace)),
-            new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),
-            new OptScaleExactStat(10, DatapackStats.VIT)
-        );
-
         PerkBuilder.bigStat("wand_mastery", "Staff Mastery",
             new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.staff)),
             new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),
@@ -140,32 +129,12 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.magic)),
             new OptScaleExactStat(10, DatapackStats.INT)
         );
-        PerkBuilder.bigStat("scythe_mastery", "Scythe Mastery",
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.scythe)),
-            new OptScaleExactStat(10, Stats.SPELL_CRIT_DAMAGE.get()),
-            new OptScaleExactStat(10, DatapackStats.INT)
-        );
 
         PerkBuilder.bigStat("scepter_mastery", "Scepter Mastery",
             new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.scepter)),
             new OptScaleExactStat(5, Stats.HEAL_STRENGTH.get()),
             new OptScaleExactStat(10, DatapackStats.WIS),
             new OptScaleExactStat(5, Stats.CAST_SPEED.get())
-        );
-        PerkBuilder.bigStat("dagger_mastery", "Dagger Mastery",
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.dagger)),
-            new OptScaleExactStat(5, Stats.ATTACK_SPEED.get()),
-            new OptScaleExactStat(3, Stats.CRIT_CHANCE.get())
-        );
-        PerkBuilder.bigStat("spear_mastery", "Spear Mastery",
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.spear)),
-            new OptScaleExactStat(50, Stats.ACCURACY.get()),
-            new OptScaleExactStat(5, DatapackStats.DEX)
-        );
-        PerkBuilder.bigStat("glove_mastery", "Glove Mastery",
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.glove)),
-            new OptScaleExactStat(10, Stats.ATTACK_SPEED.get()),
-            new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.health, AttackType.attack)))
         );
 
         PerkBuilder.bigStat("sword_mastery", "Sword Mastery",
@@ -272,18 +241,6 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(1, new MaxElementalResist(Elements.Elemental))
         );
 
-        PerkBuilder.bigStat("hammer_smash", "Hammer Smash",
-            new OptScaleExactStat(5, Stats.ELEMENTAL_WEAPON_DAMAGE.get(WeaponTypes.hammer)),
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.hammer)),
-            new OptScaleExactStat(15, Health.getInstance())
-        );
-
-        PerkBuilder.bigStat("mace_smash", "Mace Smash",
-            new OptScaleExactStat(5, Stats.ELEMENTAL_WEAPON_DAMAGE.get(WeaponTypes.mace)),
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.mace)),
-            new OptScaleExactStat(25, Mana.getInstance())
-        );
-
         PerkBuilder.bigStat("rigor", "Rigor",
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Elemental)),
             new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
@@ -321,11 +278,6 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(2, DatapackStats.STR)
         );
 
-        PerkBuilder.bigStat("hammer_mastery", "Hammer Mastery",
-            new OptScaleExactStat(10, ArmorPenetration.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, Stats.WEAPON_DAMAGE.get(WeaponTypes.hammer)),
-            new OptScaleExactStat(10, DatapackStats.STR)
-        );
         PerkBuilder.bigStat("magic_bubble", "Magic Bubble",
             new OptScaleExactStat(10, SpellDodge.getInstance())
         );
@@ -367,12 +319,6 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(1, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLIND)),
             new OptScaleExactStat(1, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED)),
             new OptScaleExactStat(1, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.TORMENT))
-        );
-
-        PerkBuilder.bigStat("ancient_rune", "Ancient Rune",
-            new OptScaleExactStat(10, Stats.SPELL_ACCURACY.get(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.spear)),
-            new OptScaleExactStat(3, Stats.SPELL_CRIT_CHANCE.get())
         );
 
         PerkBuilder.bigStat("infusion", "Infusion",
@@ -427,11 +373,6 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(5, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
         );
 
-        PerkBuilder.bigStat("rain_of_sorrow", "Rain of Sorrow",
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.dagger)),
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.bow)),
-            new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON))
-        );
         PerkBuilder.bigStat("slaughter", "Slaughter",
             new OptScaleExactStat(20, ArmorPenetration.getInstance(), ModType.LOCAL_INCREASE),
             new OptScaleExactStat(5, DatapackStats.STR),
@@ -594,12 +535,6 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Water)),
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature))
-        );
-
-        PerkBuilder.bigStat("warpath", "Warpath",
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.axe)),
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.spear)),
-            new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.mace))
         );
 
         PerkBuilder.bigStat("lucidity", "Lucidity",

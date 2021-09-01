@@ -11,15 +11,9 @@ public enum WeaponTypes {
 
     none("none", 0, PlayStyle.melee, WeaponRange.MELEE, false, 0F, 0),
     axe("axe", 15, PlayStyle.melee, WeaponRange.MELEE, false, 1.25F, 1.5F),
-    hammer("hammer", 0, PlayStyle.melee, WeaponRange.MELEE, false, 1.5F, 1F),
-    mace("mace", 15, PlayStyle.melee, WeaponRange.MELEE, false, 1.2F, 1F),
     staff("staff", 0, PlayStyle.magic, WeaponRange.MELEE, false, 1F, 1.2F),
-    dagger("dagger", 25, PlayStyle.melee, WeaponRange.MELEE, false, 0.7F, 1.8F),
-    scythe("scythe", 0, PlayStyle.magic, WeaponRange.MELEE, false, 1F, 1F),
-    spear("spear", 0, PlayStyle.melee, WeaponRange.MELEE, false, 1.25F, 1F),
     trident("trident", 0, PlayStyle.melee, WeaponRange.OPTIONALLY_RANGED, false, 1.2F, 1F),
     sword("sword", 15, PlayStyle.melee, WeaponRange.MELEE, false, 0.9F, 1.6F),
-    glove("glove", 25, PlayStyle.melee, WeaponRange.MELEE, false, 0.8F, 1.8F),
     bow("bow", 0, PlayStyle.ranged, WeaponRange.RANGED, true, 0.8F, 1F),
     crossbow("crossbow", 0, PlayStyle.ranged, WeaponRange.RANGED, true, 0.9F, 1F),
     scepter("scepter", 0, PlayStyle.magic, WeaponRange.MELEE, false, 0.9F, 1.2F);

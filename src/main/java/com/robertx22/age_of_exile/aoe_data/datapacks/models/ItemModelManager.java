@@ -34,21 +34,6 @@ public class ItemModelManager {
                 }
             });
 
-        ExileDB.GearTypes()
-            .getSerializable()
-            .forEach(x -> {
-                if (!x.getTags()
-                    .contains(BaseGearType.SlotTag.bow) && !x.getTags()
-                    .contains(BaseGearType.SlotTag.crossbow) && !x.isShield()) {
-                    if (x.family()
-                        .equals(BaseGearType.SlotFamily.Weapon)) {
-                        //   handheld(x.getItem());
-                    } else {
-                        generated(x.getItem());
-                    }
-                }
-            });
-
     }
 
     public void generated(Item item) {

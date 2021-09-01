@@ -1,10 +1,8 @@
 package com.robertx22.age_of_exile.database.registry;
 
-import com.robertx22.age_of_exile.aoe_data.database.compat_items.CompatibleItems;
 import com.robertx22.age_of_exile.database.Serializers;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.base_stats.BaseStatsConfig;
-import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
@@ -44,8 +42,6 @@ import com.robertx22.library_of_exile.registry.SyncTime;
 import com.robertx22.library_of_exile.registry.loaders.BaseDataPackLoader;
 import net.minecraft.util.Formatting;
 
-import java.util.List;
-
 public class ExileRegistryTypes {
 
     public static ExileRegistryType GEAR_RARITY = ExileRegistryType.register(Ref.MODID, "gear_rarity", 0, GearRarity.SERIALIZER, SyncTime.ON_LOGIN);
@@ -69,12 +65,6 @@ public class ExileRegistryTypes {
     });
     public static ExileRegistryType DIMENSION_CONFIGS = ExileRegistryType.register(Ref.MODID, "dimension_config", 13, DimensionConfig.EMPTY, SyncTime.ON_LOGIN);
     public static ExileRegistryType ENTITY_CONFIGS = ExileRegistryType.register(Ref.MODID, "entity_config", 14, Serializers.ENTITY_CONFIG_SER, SyncTime.NEVER);
-    public static ExileRegistryType COMPATIBLE_ITEM = ExileRegistryType.register(new ExileRegistryType(Ref.MODID, "compatible_items", 15, CompatibleItem.EMPTY, SyncTime.ON_LOGIN) {
-        @Override
-        public List getAllForSerialization() {
-            return CompatibleItems.getAllForSerialization();
-        }
-    });
     public static ExileRegistryType SPELL = ExileRegistryType.register(Ref.MODID, "spells", 17, Spell.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType PERK = ExileRegistryType.register(Ref.MODID, "perk", 18, Perk.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType SPELL_SCHOOL = ExileRegistryType.register(Ref.MODID, "spell_school", 19, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN);

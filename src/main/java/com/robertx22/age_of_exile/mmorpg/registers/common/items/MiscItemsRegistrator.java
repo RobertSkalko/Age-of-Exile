@@ -86,13 +86,6 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     CustomLootCrateItem CUSTOM_CRATE = item(new CustomLootCrateItem(), "custom_crate");
 
-    LootCrateItem COMMON_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.COMMON), "loot_crate/common");
-    LootCrateItem MAGIC_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.MAGIC), "loot_crate/magic");
-    LootCrateItem RARE_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.RARE), "loot_crate/rare");
-    LootCrateItem UNIQUE_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.UNIQUE), "loot_crate/unique");
-    LootCrateItem RUNE_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.RUNE), "loot_crate/rune");
-    LootCrateItem GEM_CRATE = item(new LootCrateItem(LootCrateItem.LootCrateType.GEM), "loot_crate/gem");
-
     public VanillaExperienceChestItem VANILLA_EXP_CHEST = item(new VanillaExperienceChestItem(), "loot_crate/ench_exp_bag");
 
     public Item NEWBIE_GEAR_BAG = item(new ItemNewbieGearBag(), "newbie_gear_bag");

@@ -116,12 +116,9 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             }
         }));
 
-        TICK_ACTIONS.add(new
-
-            PlayerTickAction("compat_items", 40, (player, data) ->
-
+        TICK_ACTIONS.add(new PlayerTickAction("gear_soul_gen_in_inventory", 40, (player, data) ->
         {
-            CompatibleItemUtils.checkAndGenerate(player);
+            GearSoulOnInvTick.checkAndGenerate(player);
         }));
 
         TICK_ACTIONS.add(new

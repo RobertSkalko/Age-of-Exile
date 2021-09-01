@@ -22,7 +22,6 @@ resource_type_is_health
 is_in_combat_is_false
 ele_match_stat
 is_day
-is_spear_wep_type
 spell_has_tag_movement
 is_crossbow_wep_type
 is_undead_is_false
@@ -51,7 +50,6 @@ attack_type_is_attack
 is_axe_wep_type
 restore_type_is_leech
 attack_type_is_dot
-is_glove_wep_type
 spell_has_tag_shout
 effect_has_tag_curse
 restore_type_is_heal
@@ -67,18 +65,14 @@ restore_type_is_food
 is_staff_wep_type
 effect_has_tag_food
 is_accu_crit_roll_fail_true_is_false
-is_mace_wep_type
 spell_has_tag_aura
 is_is_basic_atk_true
-is_dagger_wep_type
 threat_gen_type_is_heal
 restore_type_is_regen
 is_none_wep_type
 req_charged_atk
-is_scythe_wep_type
 spell_has_tag_heal
 spell_has_tag_curse
 resource_type_is_mana
 resource_type_is_block
 effect_has_tag_negative
-is_hammer_wep_type

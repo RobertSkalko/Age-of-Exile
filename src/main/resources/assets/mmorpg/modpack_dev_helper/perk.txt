@@ -5,7 +5,6 @@ crusade
 dodge_and_hp
 idol
 accuracy
-warpath
 big_eagle
 big_leviatan
 trident_damage
@@ -15,13 +14,10 @@ increase_healing
 spell_dark_damage
 fire_dark_spell_dmg
 dex
-hammer_damage
-ele_glove_damage
 mindful_heart
 heal_crit_dmg
 vit
 spore_aura
-glove_mastery
 nature_weapon_damage
 soothing_touch
 armor_and_dodge
@@ -30,7 +26,6 @@ big_mana_and_health
 transcendance
 good_posture
 wand_mastery
-dagger_damage
 tormentor
 rune_arrows
 avatar_of_hope
@@ -87,7 +82,6 @@ flat_health_mana
 big_breath_of_dark
 true_hit
 fast_barbarian
-ele_scythe_damage
 big_armor
 purgatory
 axe_mastery
@@ -120,7 +114,6 @@ big_ligthing_bless
 light_shackles
 big_armor_and_mana_regen
 big_precision
-ele_dagger_damage
 spell_dmg_atk_speed
 spell_water_damage
 good_argument
@@ -140,7 +133,6 @@ big_heart_of_water
 phys_acc
 celestial_vaults
 fire_weapon_damage
-mace_damage_and_scepter_damage
 dot_dmg
 spell_water_damage_and_dot
 spot_weakness
@@ -177,7 +169,6 @@ darkness
 smokescreen
 prism
 going_dark_side
-hammer_smash
 pathfinder
 scepter_mastery
 dot_damage
@@ -185,7 +176,6 @@ damage_shield_more_health
 bone_grinder
 heaven
 big_breath_of_water
-spear_damage
 spell_damage_day_damage
 big_heal_strength
 spell_damage
@@ -217,10 +207,8 @@ health
 ballistic
 second_heart
 staff_damage
-ele_spear_damage
 burning_eyes
 no_doubt
-ele_mace_damage_more_mana
 big_heart_of_light
 flat_mana_reg_melee_dmg
 big_warrior_heart
@@ -242,7 +230,6 @@ magic_dmg
 bulwark
 overflowing_vitality
 big_gambler
-mace_smash
 all_light_nature_damage
 critical_damage
 water_light_spell_dmg
@@ -252,12 +239,10 @@ barefoot
 ele_trident_damage
 big_warrior_path
 physical_weapon_damage
-scythe_mastery
 spell_fire_damage
 projectile_crit_damage
 shadowskin
 ritual
-ele_hammer_damage
 crit_damage
 mana_vortex
 big_health_mana_cost
@@ -292,7 +277,6 @@ shield_duration
 ice_tip
 big_health_and_mana
 rune_teeth
-hammer_mastery
 big_self_heal
 far_reaching_aim
 big_flow_of_mana
@@ -314,11 +298,9 @@ mana_on_hit
 brilliance
 big_hunters_path
 execute
-rain_of_sorrow
 dust_cloak
 str
 projectile_damage
-spear_mastery
 cast_speed
 gravedigger
 something_is_watching
@@ -327,7 +309,6 @@ spell_fire_damage_and_dot
 big_dot_damage
 swishing_winds
 all_physical_damage
-dagger_mastery
 anomaly
 warrior
 guild_assassin
@@ -343,7 +324,6 @@ big_gladiator
 all_light_damage
 big_game_hunter
 effervescence
-ele_mace_damage
 flesh_former
 wish_upon_the_stars
 living_thunder
@@ -405,7 +385,6 @@ condemn
 armor_and_health
 big_arena
 soft_breeze
-scythe_damage
 bright_presence
 demonic_seduction
 moonshine
@@ -457,7 +436,6 @@ open_the_curtains
 hp_res
 big_force_of_will
 soundless
-dagger_and_gauntlet_damage
 nature_dark_spell_dmg
 dark_dom
 area_dmg_mana
@@ -472,12 +450,10 @@ torchlight
 chance_of_blind
 big_breath_of_nature
 big_eviscerator
-ancient_rune
 hold_breath
 big_str
 crit_proj_dmg
 light_weapon_damage
-mace_mastery
 nightcrawler
 mana_cost_mana_regen
 nimble_hands
@@ -535,7 +511,6 @@ dark_focus
 rune_geode
 duelist
 battle_mage
-ele_hammer_damage_more_armor
 health_armor
 angelic_judgement
 crossbow_damage
@@ -544,7 +519,6 @@ guarding_runes
 flat_health_phys_dmg
 ele_crossbow_damage
 no_rules
-glove_damage
 broad_knowledge
 firstblood
 wis
@@ -558,5 +532,4 @@ big_heart_of_nature
 unforgiving_desert
 health_on_hit
 oath
-mace_damage
 crystal_scope

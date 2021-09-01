@@ -26,9 +26,7 @@ import info.loenwind.autosave.annotations.Store;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -204,24 +202,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public Text name(ItemStack stack) {
         return stack.getName();
-    }
-
-    // used when upgrading item rarity
-    public Item getItem() {
-        if (this.uniqueStats != null && this.uniqueStats.getUnique(this) != null) {
-            return ExileDB.UniqueGears()
-                .get(uniq_id)
-                .getUniqueItem();
-        } else {
-            if (gear_type.isEmpty()) {
-                return Items.AIR;
-            } else {
-                return ExileDB.GearTypes()
-                    .get(gear_type)
-                    .getItem();
-            }
-        }
-
     }
 
     public void WriteOverDataThatShouldStay(GearItemData newdata) {

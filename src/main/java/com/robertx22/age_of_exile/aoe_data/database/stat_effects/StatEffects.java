@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
@@ -14,6 +13,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.action.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.number_provider.NumberProvider;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
@@ -24,7 +24,6 @@ public class StatEffects implements ExileRegistryInit {
             BeneficialEffects.BLOODLUST,
             BeneficialEffects.TAUNT_STANCE,
             BeneficialEffects.GATHER_STORM,
-            BeneficialEffects.LIVING_INFERNO,
             BeneficialEffects.FRENZY,
             BeneficialEffects.ALACRITY,
             BeneficialEffects.ZEAL,

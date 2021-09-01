@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 
 @Storable
 public class StatSoulData {
@@ -22,7 +23,7 @@ public class StatSoulData {
 
     public GearItemData createGearData() {
 
-        GearBlueprint b = new GearBlueprint(tier * 10);
+        GearBlueprint b = new GearBlueprint(Items.AIR, tier * 10);
         b.rarity.set(ExileDB.GearRarities()
             .get(rar));
         b.gearItemSlot.set(ExileDB.GearTypes()

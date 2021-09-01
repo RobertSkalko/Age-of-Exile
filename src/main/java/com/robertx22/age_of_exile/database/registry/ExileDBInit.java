@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.database.registry;
 
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
-import com.robertx22.age_of_exile.database.data.compatible_item.CompatibleItem;
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
 import com.robertx22.age_of_exile.database.data.currency.OrbOfTransmutationItem;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
@@ -79,10 +78,6 @@ public class ExileDBInit {
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.STAT_EFFECT, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.STAT_CONDITION, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.GEAR_SET, new GearSet()).setIsDatapack());
-        Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.COMPATIBLE_ITEM,
-            CompatibleItem.EMPTY).dontErrorIfEmpty()
-            .setIsDatapack()
-            .logAdditions());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()
             ).logAdditions()
                 .setIsDatapack()
