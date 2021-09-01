@@ -61,7 +61,7 @@ public class DamageTakenToMana extends Stat {
         @Override
         public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
 
-            float restore = effect.data.getNumber() * data.getAverageValue() / 100F; // todo dmg number
+            float restore = effect.data.getNumber() * data.getValue() / 100F; // todo dmg number
 
             if (restore > 0) {
                 RestoreResourceEvent mana = EventBuilder.ofRestore(effect.source, effect.target, ResourceType.mana, RestoreType.heal, restore)

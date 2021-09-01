@@ -81,7 +81,7 @@ public class SpecialStats {
                 if (effect.source.world.getLightLevel(effect.source.getBlockPos()) > 7) {
                     return false;
                 }
-                if (!RandomUtils.roll(data.getAverageValue())) {
+                if (!RandomUtils.roll(data.getValue())) {
                     return false;
                 }
                 if (effect.sourceData.getCooldowns()
@@ -114,7 +114,7 @@ public class SpecialStats {
             public boolean canActivate(ExilePotionEvent effect, StatData data, Stat stat) {
                 return ExileDB.ExileEffects()
                     .get(effect.data.getString(EventData.EXILE_EFFECT))
-                    .hasTag(EffectTags.immobilizing) && RandomUtils.roll(data.getAverageValue());
+                    .hasTag(EffectTags.immobilizing) && RandomUtils.roll(data.getValue());
             }
 
             @Override
@@ -146,7 +146,7 @@ public class SpecialStats {
 
             @Override
             public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                effect.increaseByPercent(data.getAverageValue());
+                effect.increaseByPercent(data.getValue());
                 return effect;
             }
 
@@ -164,9 +164,9 @@ public class SpecialStats {
 
                 float maxhp = effect.sourceData.getUnit()
                     .healthData()
-                    .getAverageValue();
+                    .getValue();
 
-                float val = maxhp * data.getAverageValue() / 100F;
+                float val = maxhp * data.getValue() / 100F;
                 DamageEvent dmg = EventBuilder.ofDamage(effect.source, effect.target, val)
                     .setupDamage(AttackType.spell, WeaponTypes.none, PlayStyle.magic)
                     .set(x -> x.setElement(Elements.Nature))
@@ -201,7 +201,7 @@ public class SpecialStats {
         new BaseSpecialStatDamageEffect() {
             @Override
             public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-                effect.increaseByPercent(data.getAverageValue());
+                effect.increaseByPercent(data.getValue());
                 return effect;
             }
 
@@ -228,7 +228,7 @@ public class SpecialStats {
             @Override
             public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
                 return effect.getElement()
-                    .isDark() && RandomUtils.roll(data.getAverageValue());
+                    .isDark() && RandomUtils.roll(data.getValue());
             }
 
             @Override
@@ -249,7 +249,7 @@ public class SpecialStats {
         new BaseSpecialStatDamageEffect() {
             @Override
             public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-                effect.increaseByPercent(data.getAverageValue());
+                effect.increaseByPercent(data.getValue());
                 return effect;
             }
 
@@ -290,7 +290,7 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                return effect.isSpell() && RandomUtils.roll(data.getAverageValue());
+                return effect.isSpell() && RandomUtils.roll(data.getValue());
             }
 
             @Override
@@ -325,7 +325,7 @@ public class SpecialStats {
             @Override
             public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
                 return effect.getElement()
-                    .isElemental() && RandomUtils.roll(data.getAverageValue());
+                    .isElemental() && RandomUtils.roll(data.getValue());
             }
 
             @Override
@@ -359,7 +359,7 @@ public class SpecialStats {
             @Override
             public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
 
-                float val = data.getAverageValue();
+                float val = data.getValue();
 
                 RestoreResourceEvent restore = EventBuilder.ofRestore(effect.source, effect.target, ResourceType.mana, RestoreType.heal, val)
                     .build();

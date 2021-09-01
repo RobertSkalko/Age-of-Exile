@@ -38,7 +38,7 @@ public class GearData {
     private void calcStatUtilization(EntityCap.UnitData data) {
         if (slot == EquipmentSlot.OFFHAND) {
             if (gear != null && gear.GetBaseGearType()
-                .isWeaponOrTool()) {
+                .isWeapon()) {
                 GearItemData mainhand = Gear.Load(data.getEntity()
                     .getMainHandStack());
 
@@ -80,7 +80,7 @@ public class GearData {
 
         BaseGearType type = gear.GetBaseGearType();
 
-        if (type.isWeaponOrTool()) {
+        if (type.isWeapon()) {
 
             if (type.isMeleeWeapon()) {
                 if (slot == EquipmentSlot.OFFHAND) {

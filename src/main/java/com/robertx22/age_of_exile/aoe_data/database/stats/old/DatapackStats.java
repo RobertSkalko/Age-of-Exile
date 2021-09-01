@@ -29,30 +29,30 @@ import java.util.UUID;
 public class DatapackStats implements ExileRegistryInit {
 
     public static Stat INT = new CoreStat("intelligence", "Intelligence", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(0.25F, 0.25F, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
-        new OptScaleExactStat(0.25F, 0.25F, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT),
-        new OptScaleExactStat(1, 1, Mana.getInstance(), ModType.LOCAL_INCREASE)
+        new OptScaleExactStat(0.25F, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
+        new OptScaleExactStat(0.25F, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT),
+        new OptScaleExactStat(1, Mana.getInstance(), ModType.PERCENT)
     )));
 
     public static Stat STR = new CoreStat("strength", "Strength", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(0.25F, 0.25F, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
-        new OptScaleExactStat(2, 2, Armor.getInstance(), ModType.LOCAL_INCREASE)
+        new OptScaleExactStat(0.25F, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
+        new OptScaleExactStat(2, Armor.getInstance(), ModType.PERCENT)
     )));
     public static Stat DEX = new CoreStat("dexterity", "Dexterity", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(0.25F, 0.25F, Stats.CRIT_CHANCE.get(), ModType.FLAT),
-        new OptScaleExactStat(2, 2, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+        new OptScaleExactStat(0.25F, Stats.CRIT_CHANCE.get(), ModType.FLAT),
+        new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.PERCENT)
     )));
     public static Stat VIT = new CoreStat("vitality", "Vitality", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(10, 10, Health.getInstance(), ModType.FLAT),
-        new OptScaleExactStat(0.5F, 0.5F, HealthRegen.getInstance(), ModType.FLAT)
+        new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT),
+        new OptScaleExactStat(0.5F, HealthRegen.getInstance(), ModType.FLAT)
     )));
     public static Stat WIS = new CoreStat("wisdom", "Wisdom", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(10, 10, Mana.getInstance(), ModType.FLAT),
-        new OptScaleExactStat(0.5F, 0.5F, ManaRegen.getInstance(), ModType.FLAT)
+        new OptScaleExactStat(10, Mana.getInstance(), ModType.FLAT),
+        new OptScaleExactStat(0.5F, ManaRegen.getInstance(), ModType.FLAT)
     )));
     public static Stat AGI = new CoreStat("agility", "Agility", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(20, 20, Stats.ACCURACY.get(), ModType.FLAT),
-        new OptScaleExactStat(0.5F, 0.5F, Stats.CRIT_CHANCE.get(), ModType.FLAT)
+        new OptScaleExactStat(20, Stats.ACCURACY.get(), ModType.FLAT),
+        new OptScaleExactStat(0.5F, Stats.CRIT_CHANCE.get(), ModType.FLAT)
     )));
 
     public static Stat HEAL_TO_SPELL_DMG = new AddPerPercentOfOther(Stats.HEAL_STRENGTH.get(), SpellDamage.getInstance());

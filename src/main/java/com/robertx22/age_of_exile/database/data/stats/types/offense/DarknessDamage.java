@@ -51,7 +51,7 @@ public class DarknessDamage extends Stat {
         @Override
         public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
 
-            float extra = data.getAverageValue() - 100;
+            float extra = data.getValue() - 100;
 
             int lightlevel = effect.source.world.getLightLevel(effect.source.getBlockPos());
 

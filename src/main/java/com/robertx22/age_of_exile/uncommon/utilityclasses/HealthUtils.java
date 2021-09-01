@@ -37,7 +37,7 @@ public class HealthUtils {
 
         return data.getUnit()
             .healthData()
-            .getAverageValue();
+            .getValue();
 
     }
 

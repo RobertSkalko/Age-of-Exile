@@ -39,7 +39,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
                 new StatModifier(25, 25, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.BLOODLUST), ModType.FLAT),
                 new StatModifier(5, 15, Stats.ATTACK_SPEED.get(), ModType.FLAT),
                 new StatModifier(3, 5, Stats.LIFESTEAL.get(), ModType.FLAT),
-                new StatModifier(5, 15, Health.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(5, 15, Health.getInstance(), ModType.PERCENT),
                 new StatModifier(2, 6, DatapackStats.VIT, ModType.FLAT)
             ))
             .setReplacesName()
@@ -61,7 +61,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
             )
             .stats(Arrays.asList(
                 new StatModifier(25, 25, DatapackStats.MANA_PER_10_INT, ModType.FLAT),
-                new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(5, 15, ManaRegen.getInstance(), ModType.PERCENT),
                 new StatModifier(3, 5, SpellDamage.getInstance(), ModType.FLAT),
                 new StatModifier(1, 3, DatapackStats.VIT, ModType.FLAT),
                 new StatModifier(2, 6, DatapackStats.AGI, ModType.FLAT)
@@ -80,7 +80,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
                 BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.MID_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(1, 2, AllAttributes.getInstance(), ModType.FLAT),
-                new StatModifier(10, 20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(10, 20, ManaRegen.getInstance(), ModType.PERCENT),
                 new StatModifier(-5, -15, new ElementalResist(Elements.Water), ModType.FLAT),
                 new StatModifier(-5, -15, new ElementalResist(Elements.Fire), ModType.FLAT)
             ))

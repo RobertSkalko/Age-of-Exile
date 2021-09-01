@@ -34,8 +34,8 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -161,7 +161,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
         @Override
         public List<StatModifier> onWeapons() {
-            return Arrays.asList(new StatModifier(MIN_WEP_DMG, MAX_WEP_DMG, MIN_WEP_DMG * 2, MAX_WEP_DMG * 2, new AttackDamage(ele), ModType.FLAT));
+            return Arrays.asList(new StatModifier(MIN_WEP_DMG, MAX_WEP_DMG, new AttackDamage(ele), ModType.FLAT));
         }
     }
 

@@ -20,10 +20,10 @@ public class RegeneratePercentStat extends Stat {
 
     public static RegeneratePercentStat HEALTH = new RegeneratePercentStat(Health.getInstance(), ResourceType.health, x -> x.getUnit()
         .healthData()
-        .getAverageValue());
+        .getValue());
     public static RegeneratePercentStat MANA = new RegeneratePercentStat(Mana.getInstance(), ResourceType.mana, x -> x.getUnit()
         .manaData()
-        .getAverageValue());
+        .getValue());
 
     Stat statRestored;
     ResourceType type;
@@ -52,7 +52,7 @@ public class RegeneratePercentStat extends Stat {
 
             @Override
             public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                effect.data.getNumber(EventData.NUMBER).number += maxGetter.apply(effect.targetData) * data.getAverageValue() / 100F;
+                effect.data.getNumber(EventData.NUMBER).number += maxGetter.apply(effect.targetData) * data.getValue() / 100F;
                 return effect;
             }
 

@@ -49,7 +49,7 @@ public class CollectGearEvent {
             if (data.slot == EquipmentSlot.MAINHAND) {
                 if (data.gear != null) {
                     if (data.gear.GetBaseGearType()
-                        .isWeaponOrTool()) {
+                        .isWeapon()) {
                         hasWeapon = true;
                     }
                 }

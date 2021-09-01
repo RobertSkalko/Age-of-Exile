@@ -29,11 +29,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
             .add(Elements.Nature, "Of Venom")
             .add(Elements.Light, "Of Sun Rays")
             .add(Elements.Dark, "Of Shadows")
-            .tier(1, x -> Arrays.asList(new StatModifier(15, 20, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
-            .tier(2, x -> Arrays.asList(new StatModifier(11, 15, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
-            .tier(3, x -> Arrays.asList(new StatModifier(7, 11, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
-            .tier(4, x -> Arrays.asList(new StatModifier(5, 7, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
-            .tier(5, x -> Arrays.asList(new StatModifier(2, 5, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
+            .stats(x -> Arrays.asList(new StatModifier(2, 15, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();
@@ -88,9 +84,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_the_sky")
             .Named("Of the Sky")
-            .tier(1, new StatModifier(0.3F, 0.4F, AllAttributes.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(0.2F, 0.3F, AllAttributes.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(0.1F, 0.2F, AllAttributes.getInstance(), ModType.FLAT))
+            .stats(new StatModifier(0.1F, 0.4F, AllAttributes.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family)
             .Weight(50)
             .Suffix()
@@ -98,9 +92,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_the_troll")
             .Named("Of The Troll")
-            .tier(1, new StatModifier(1, 2, HealthRegen.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(0.5F, 1, HealthRegen.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(0.3F, 0.5F, HealthRegen.getInstance(), ModType.FLAT))
+            .stats(new StatModifier(0.5F, 2, HealthRegen.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family, SlotTag.plate)
             .Weight(200)
             .Suffix()
@@ -108,9 +100,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_spirit_markings")
             .Named("Of Spirit Markings")
-            .tier(1, new StatModifier(1, 2, ManaRegen.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(0.5F, 1, ManaRegen.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(0.3F, 0.5F, ManaRegen.getInstance(), ModType.FLAT))
+            .stats(new StatModifier(0.3F, 2, ManaRegen.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family, SlotTag.cloth)
             .Weight(200)
             .Suffix()
@@ -118,28 +108,21 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_treasure")
             .Named("Of Treasure")
-            .tier(1, new StatModifier(10, 15F, TreasureQuality.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(7, 10, TreasureQuality.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(5, 7, TreasureQuality.getInstance(), ModType.FLAT))
+            .stats(new StatModifier(5, 15F, TreasureQuality.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();
 
         AffixBuilder.Normal("of_affluence")
             .Named("Of Affluence")
-            .tier(1, new StatModifier(7, 10, TreasureQuantity.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(5, 7, TreasureQuantity.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(3, 5, TreasureQuantity.getInstance(), ModType.FLAT))
+            .stats(new StatModifier(3, 10, TreasureQuantity.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();
 
         AffixBuilder.Normal("jewel_accuracy_suffix")
             .Named("Of Accuracy")
-            .tier(1, new StatModifier(15, 20, Stats.ACCURACY.get()))
-            .tier(2, new StatModifier(12, 15, Stats.ACCURACY.get()))
-            .tier(3, new StatModifier(10, 12, Stats.ACCURACY.get()))
-            .tier(4, new StatModifier(6, 10, Stats.ACCURACY.get()))
+            .stats(new StatModifier(5, 20, Stats.ACCURACY.get()))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();

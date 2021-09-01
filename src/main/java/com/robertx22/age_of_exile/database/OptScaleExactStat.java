@@ -19,7 +19,6 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
     public static OptScaleExactStat SERIALIZER = new OptScaleExactStat();
 
     public float v1 = 0;
-    public float v2 = 0;
     public String stat;
     public String type;
     public boolean scale_to_lvl = false;
@@ -31,7 +30,6 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
     public OptScaleExactStat getFromBuf(PacketByteBuf buf) {
         OptScaleExactStat data = new OptScaleExactStat();
         data.v1 = buf.readFloat();
-        data.v2 = buf.readFloat();
         data.stat = buf.readString(100);
         data.type = buf.readString(50);
         data.scale_to_lvl = buf.readBoolean();
@@ -41,7 +39,6 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
     @Override
     public void toBuf(PacketByteBuf buf) {
         buf.writeFloat(v1);
-        buf.writeFloat(v2);
         buf.writeString(stat, 100);
         buf.writeString(type, 50);
         buf.writeBoolean(scale_to_lvl);
@@ -56,13 +53,6 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
         this.stat = stat.GUID();
         this.type = type.name();
 
-    }
-
-    public OptScaleExactStat(float first, float second, Stat stat, ModType type) {
-        this.v1 = first;
-        this.v2 = second;
-        this.stat = stat.GUID();
-        this.type = type.name();
     }
 
     public List<Text> GetTooltipString(TooltipInfo info, int lvl) {
@@ -95,7 +85,7 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
         Stat stat = ExileDB.Stats()
             .get(this.stat);
 
-        return ExactStatData.of(v1, v2, stat, getModType(), scale_to_lvl ? lvl : 1);
+        return ExactStatData.of(v1, stat, getModType(), scale_to_lvl ? lvl : 1);
 
     }
 
@@ -103,7 +93,7 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
         Stat stat = ExileDB.Stats()
             .get(this.stat);
 
-        return ExactStatData.of(v1, v2, stat, getModType(), lvl);
+        return ExactStatData.of(v1, stat, getModType(), lvl);
 
     }
 
@@ -128,7 +118,7 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
 
                 if (i == 0) {
                     toRemove.add(stat);
-                    current = new OptScaleExactStat(stat.v1, stat.v2, stat.getStat(), stat.getModType());
+                    current = new OptScaleExactStat(stat.v1, stat.getStat(), stat.getModType());
                     i++;
                     continue;
                 }
@@ -137,7 +127,6 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
                     if (current.type.equals(stat.type)) {
                         if (current.scale_to_lvl == stat.scale_to_lvl) {
                             current.v1 += stat.v1;
-                            current.v2 += stat.v2;
                             toRemove.add(stat);
                         }
                     }

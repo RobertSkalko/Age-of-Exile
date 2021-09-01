@@ -71,7 +71,7 @@ public class SlimeArmor implements ExileRegistryInit, GearDataHelper {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(10, 25, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(10, 25, HealthRegen.getInstance(), ModType.PERCENT),
                     new StatModifier(1, 10, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
                     new StatModifier(2, 5, DatapackStats.VIT, ModType.FLAT)
                 )

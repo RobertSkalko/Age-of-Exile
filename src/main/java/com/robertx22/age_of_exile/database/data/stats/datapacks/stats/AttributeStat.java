@@ -45,7 +45,7 @@ public class AttributeStat extends BaseDatapackStat {
 
     public void addToEntity(LivingEntity en, StatData data) {
 
-        float val = data.getAverageValue();
+        float val = data.getValue();
 
         EntityAttributeModifier.Operation operation = EntityAttributeModifier.Operation.ADDITION;
 

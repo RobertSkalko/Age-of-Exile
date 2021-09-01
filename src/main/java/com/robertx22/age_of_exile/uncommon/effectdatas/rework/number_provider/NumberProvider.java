@@ -43,7 +43,7 @@ public class NumberProvider {
 
     public float getValue(EffectEvent event, LivingEntity source, StatData data) {
         if (type == Type.stat_data) {
-            return data.getAverageValue();
+            return data.getValue();
         } else if (type == Type.val_calc) {
             return ExileDB.ValueCalculations()
                 .get(calc)
@@ -53,10 +53,10 @@ public class NumberProvider {
             float val = Load.Unit(source)
                 .getUnit()
                 .getCalculatedStat(calc)
-                .getAverageValue() * data.getAverageValue() / 100F;
+                .getValue() * data.getValue() / 100F;
             return val;
         } else if (type == Type.perc_of_num) {
-            float val = event.data.getNumber(calc).number * data.getAverageValue() / 100F;
+            float val = event.data.getNumber(calc).number * data.getValue() / 100F;
             return val;
         }
 

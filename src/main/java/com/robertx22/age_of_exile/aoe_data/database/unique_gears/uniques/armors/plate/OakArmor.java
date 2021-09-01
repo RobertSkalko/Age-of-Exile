@@ -67,7 +67,7 @@ public class OakArmor implements ExileRegistryInit, GearDataHelper {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(5, 10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(5, 10, HealthRegen.getInstance(), ModType.PERCENT),
                     new StatModifier(1, 3, DatapackStats.WIS, ModType.FLAT),
                     new StatModifier(1, 3, DatapackStats.VIT, ModType.FLAT)
                 )
@@ -95,7 +95,7 @@ public class OakArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Light), ModType.FLAT),
-                    new StatModifier(5, 15, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(5, 15, HealthRegen.getInstance(), ModType.PERCENT),
                     new StatModifier(5, 10, Stats.CRIT_CHANCE.get(), ModType.FLAT),
                     new StatModifier(1, 3, DatapackStats.VIT, ModType.FLAT)
                 )

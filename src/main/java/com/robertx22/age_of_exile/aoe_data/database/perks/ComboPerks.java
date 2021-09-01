@@ -50,22 +50,22 @@ public class ComboPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.stat("armor_health",
-            new OptScaleExactStat(2, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(2, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.stat("health_armor",
-            new OptScaleExactStat(2, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(2, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.stat("mana_health",
-            new OptScaleExactStat(2, Mana.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(2, Mana.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.stat("health_dodge_int",
             new OptScaleExactStat(1, DatapackStats.INT),
-            new OptScaleExactStat(1, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(1, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(1, DodgeRating.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(1, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.stat("all_phys_less_atkspeed",
@@ -75,12 +75,12 @@ public class ComboPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.stat("dodge_mana",
-            new OptScaleExactStat(2, Mana.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(2, Mana.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.stat("big_dodge_health",
-            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.stat("flat_dodge_ranged_damage",
             new OptScaleExactStat(2, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
@@ -89,7 +89,7 @@ public class ComboPerks implements ExileRegistryInit {
 
         PerkBuilder.stat("hp_mana_cost",
             new OptScaleExactStat(-2, Stats.MANA_COST.get(), ModType.FLAT),
-            new OptScaleExactStat(4, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(4, Health.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.stat("atk_cast_speed",
             new OptScaleExactStat(2, Stats.ATTACK_SPEED.get(), ModType.FLAT),
@@ -102,12 +102,12 @@ public class ComboPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.stat("hp_res",
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(2, new ElementalResist(Elements.Elemental), ModType.FLAT)
         );
         PerkBuilder.stat("mana_cost_mana_regen",
             new OptScaleExactStat(-1, Stats.MANA_COST.get(), ModType.FLAT),
-            new OptScaleExactStat(2, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(2, ManaRegen.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.stat("spell_dmg_flat_mana",
             new OptScaleExactStat(3, SpellDamage.getInstance(), ModType.FLAT),
@@ -120,32 +120,32 @@ public class ComboPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.stat("dodge_ele_resistance",
-            new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(1, new ElementalResist(Elements.Elemental))
         );
 
         PerkBuilder.stat("health_regen_and_mana_regen",
-            new OptScaleExactStat(2, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(2, ManaRegen.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(2, HealthRegen.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.stat("mana_regen_increased_healing",
-            new OptScaleExactStat(2, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(2, ManaRegen.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(2, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
         );
 
         PerkBuilder.stat("mana_and_health",
-            new OptScaleExactStat(3, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(3, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.stat("mana_and_regen",
-            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(3, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(3, ManaRegen.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.stat("flat_ms_mana_regen",
             new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.stat("flat_health_mana",
@@ -155,11 +155,11 @@ public class ComboPerks implements ExileRegistryInit {
 
         PerkBuilder.stat("flat_health_phys_dmg",
             new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT),
-            new OptScaleExactStat(1, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(1, new AttackDamage(Elements.Physical), ModType.PERCENT)
         );
         PerkBuilder.stat("phys_acc",
-            new OptScaleExactStat(3, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(3, Stats.ACCURACY.get(), ModType.PERCENT),
+            new OptScaleExactStat(2, new AttackDamage(Elements.Physical), ModType.PERCENT)
         );
         PerkBuilder.stat("flat_mana_reg_melee_dmg",
             new OptScaleExactStat(1, ManaRegen.getInstance(), ModType.FLAT),
@@ -167,40 +167,40 @@ public class ComboPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.stat("armor_and_ms",
-            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.stat("armor_and_dodge",
-            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.stat("armor_and_health",
-            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(4, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(4, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.stat("dodge_and_ms",
-            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.stat("health_mana",
-            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.stat("health_dodge",
-            new OptScaleExactStat(4, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(4, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(4, DodgeRating.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(4, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.stat("dodge_health",
-            new OptScaleExactStat(4, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(4, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(4, DodgeRating.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(4, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.stat("dodge_and_hp",
-            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(3, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(3, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.stat("crit_proj_dmg",
@@ -209,7 +209,7 @@ public class ComboPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.stat("hp_dot_dmg",
-            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(3, Stats.DOT_DAMAGE.get(), ModType.FLAT)
         );
 
@@ -224,7 +224,7 @@ public class ComboPerks implements ExileRegistryInit {
 
         PerkBuilder.stat("area_dmg_mana",
             new OptScaleExactStat(4, Stats.AREA_DAMAGE.get(), ModType.FLAT),
-            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.stat("spell_dmg_atk_speed",

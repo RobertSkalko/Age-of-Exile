@@ -47,7 +47,7 @@ public class PharaohArmor implements ExileRegistryInit, GearDataHelper {
                     new StatModifier(10, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light)),
                     new StatModifier(5, 25, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
                     new StatModifier(3, 10, TreasureQuantity.getInstance(), ModType.FLAT),
-                    new StatModifier(-10, -20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(-10, -20, HealthRegen.getInstance(), ModType.PERCENT),
                     new StatModifier(1, 3, DatapackStats.INT, ModType.FLAT)
                 )
             )
@@ -101,9 +101,9 @@ public class PharaohArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)),
-                    new StatModifier(20, 40, Mana.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(20, 40, Mana.getInstance(), ModType.PERCENT),
                     new StatModifier(2, 6, TreasureQuantity.getInstance(), ModType.FLAT),
-                    new StatModifier(-10, -20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(-10, -20, ManaRegen.getInstance(), ModType.PERCENT),
                     new StatModifier(1, 3, DatapackStats.DEX, ModType.FLAT)
                 )
             )

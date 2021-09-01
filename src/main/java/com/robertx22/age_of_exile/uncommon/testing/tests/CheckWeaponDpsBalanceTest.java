@@ -23,7 +23,7 @@ public class CheckWeaponDpsBalanceTest {
             .forEach(x -> {
 
                 if (x.getBaseGearType()
-                    .isWeaponOrTool()) {
+                    .isWeapon()) {
 
                     List<StatModifier> mods = new ArrayList<>();
 
@@ -41,7 +41,7 @@ public class CheckWeaponDpsBalanceTest {
 
                     for (Stat stat : new AttackDamage(Elements.Physical).generateAllPossibleStatVariations()) {
                         StatData data = StatUtils.turnIntoStatData(stat, stats);
-                        totaldmg += data.getAverageValue();
+                        totaldmg += data.getValue();
                     }
 
                     StatData atkspeeddata = StatUtils.turnIntoStatData(Stats.ATTACK_SPEED.get(), stats);

@@ -5,7 +5,6 @@ currency/number_reroll
 currency/reroll_affix_numbers
 currency/orb_of_transmutation
 currency/orb_of_infinity
-currency/roll_socket
 currency/stone_of_hope
 currency/reroll_unique_numbers
 currency/crystal_of_purification

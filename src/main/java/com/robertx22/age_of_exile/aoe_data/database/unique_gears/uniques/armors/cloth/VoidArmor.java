@@ -45,7 +45,7 @@ public class VoidArmor implements ExileRegistryInit, GearDataHelper {
             )
             .stats(
                 Arrays.asList(
-                    new StatModifier(5, 25, Mana.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(5, 25, Mana.getInstance(), ModType.PERCENT),
                     new StatModifier(5, 15, new ElementalPenetration(Elements.Dark), ModType.FLAT),
                     new StatModifier(1, 10, DatapackStats.INT, ModType.FLAT),
                     new StatModifier(2, 2, DatapackStats.WIS, ModType.FLAT)
@@ -74,7 +74,7 @@ public class VoidArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(5, 15, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
-                    new StatModifier(5, 10, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE),
+                    new StatModifier(5, 10, Stats.ACCURACY.get(), ModType.PERCENT),
                     new StatModifier(1, 10, DatapackStats.DEX, ModType.FLAT),
                     new StatModifier(2, 5, DatapackStats.STR, ModType.FLAT)
 
@@ -104,7 +104,7 @@ public class VoidArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(10, 20, ArmorPenetration.getInstance()),
-                    new StatModifier(10, 20, Health.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(10, 20, Health.getInstance(), ModType.PERCENT),
                     new StatModifier(5, 10, Armor.getInstance(), ModType.FLAT),
                     new StatModifier(2, 5, DatapackStats.VIT, ModType.FLAT)
                 )

@@ -21,14 +21,14 @@ public class TeamSizeMobStrength {
 
     public void addStats(EntityCap.UnitData data) {
 
-        ExactStatData.noScaling(hp, hp, ModType.GLOBAL_INCREASE, Health.getInstance()
-            .GUID())
+        ExactStatData.noScaling(hp, ModType.GLOBAL_INCREASE, Health.getInstance()
+                .GUID())
             .applyStats(data);
-        ExactStatData.noScaling(dmg, dmg, ModType.FLAT, Stats.TOTAL_DAMAGE.get()
-            .GUID())
+        ExactStatData.noScaling(dmg, ModType.FLAT, Stats.TOTAL_DAMAGE.get()
+                .GUID())
             .applyStats(data);
-        ExactStatData.noScaling(regen, regen, ModType.LOCAL_INCREASE, HealthRegen.getInstance()
-            .GUID())
+        ExactStatData.noScaling(regen, ModType.PERCENT, HealthRegen.getInstance()
+                .GUID())
             .applyStats(data);
 
     }

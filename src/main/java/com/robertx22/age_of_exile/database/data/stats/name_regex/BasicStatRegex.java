@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 public class BasicStatRegex extends StatNameRegex {
 
     @Override
-    public String getStatNameRegex(ModType type, Stat stat, float v1, float v2) {
+    public String getStatNameRegex(ModType type, Stat stat, float v1) {
 
         if (stat.is_long) {
             return NAME;
@@ -18,13 +18,10 @@ public class BasicStatRegex extends StatNameRegex {
 
             String to = " ";
 
-            if (stat.UsesSecondValue()) {
-                return adds + MIN_VALUE + "-" + MAX_VALUE + " " + NAME;
-            } else {
-                return adds + VALUE + to + NAME;
-            }
+            return adds + VALUE + to + NAME;
+
         }
-        if (type == ModType.LOCAL_INCREASE) {
+        if (type == ModType.PERCENT) {
             String s = v1 > 0 && stat.IsPercent() ? " Extra " : " ";
             return VALUE + s + NAME;
         }

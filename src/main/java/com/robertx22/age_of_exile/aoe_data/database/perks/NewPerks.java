@@ -44,15 +44,15 @@ public class NewPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.bigStat("tale_of_dreams", "Tale of Dreams",
-            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(10, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.positive))
         );
 
         PerkBuilder.bigStat("robust_chainmail", "Robust Chainmail",
             new OptScaleExactStat(-20, Stats.PROJECTILE_DAMAGE_RECEIVED.get(), ModType.FLAT),
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, Stats.SHIELD_STRENGTH.get())
         );
 
@@ -63,7 +63,7 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(5, DatapackStats.HEAL_TO_SPELL_DMG)
         );
         PerkBuilder.bigStat("holy_envoy", "Holy Envoy",
-            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(1, new ElementalResist(Elements.Elemental)),
             new OptScaleExactStat(20, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
         );
@@ -75,7 +75,7 @@ public class NewPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.bigStat("no_common_sense", "No Common Sense",
-            new OptScaleExactStat(-10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-10, ManaRegen.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(-10, Stats.ATTACK_SPEED.get()),
             new OptScaleExactStat(5, DatapackStats.CRIT_DMG_PER_10_ATK_SPEED_REG, ModType.FLAT)
         );
@@ -108,14 +108,14 @@ public class NewPerks implements ExileRegistryInit {
         PerkBuilder.bigStat("anomaly", "Anomaly",
             new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)),
             new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
-            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(10, Stats.DOT_DAMAGE.get())
         );
 
         PerkBuilder.bigStat("prism", "Prism",
             new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)),
             new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light)),
-            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, new ElementalPenetration(Elements.Elemental))
         );
 
@@ -140,13 +140,13 @@ public class NewPerks implements ExileRegistryInit {
         PerkBuilder.bigStat("sword_mastery", "Sword Mastery",
             new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.sword)),
             new OptScaleExactStat(5, Stats.CRIT_CHANCE.get()),
-            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("axe_mastery", "Axe Mastery",
             new OptScaleExactStat(5, Stats.WEAPON_DAMAGE.get(WeaponTypes.axe)),
             new OptScaleExactStat(10, Stats.CRIT_DAMAGE.get()),
-            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("bow_mastery", "Bow Mastery",
@@ -164,17 +164,17 @@ public class NewPerks implements ExileRegistryInit {
         );
         PerkBuilder.bigStat("crystal_hands", "Crystal Hands",
             new OptScaleExactStat(-10, Stats.EFFECT_OF_BUFFS_ON_YOU_PER_EFFECT_TAG.get(EffectTags.negative)),
-            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(1, new ElementalResist(Elements.Elemental))
         );
         PerkBuilder.bigStat("faithless", "Faithless",
             new OptScaleExactStat(5, new ElementalFocus(Elements.Dark)),
-            new OptScaleExactStat(5, Stats.SPELL_ACCURACY.get(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Stats.SPELL_ACCURACY.get(), ModType.PERCENT),
             new OptScaleExactStat(-5, new ElementalResist(Elements.Light))
         );
         PerkBuilder.bigStat("manasensor", "Mana Sensor",
             new OptScaleExactStat(10, Stats.REDUCED_MANA_RESERVED.get()),
-            new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack)))
         );
 
@@ -207,8 +207,8 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Water)),
             new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark)),
             new OptScaleExactStat(-5, new ElementalResist(Elements.Fire)),
-            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-20, HealthRegen.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("fundamentalism", "Fundamentalism",
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical)),
@@ -216,7 +216,7 @@ public class NewPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.bigStat("pitchfork", "Pitchfork",
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(-5, DatapackStats.INT),
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical)),
             new OptScaleExactStat(-5, Stats.STYLE_DAMAGE.get(PlayStyle.magic))
@@ -226,8 +226,8 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Light)),
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
             new OptScaleExactStat(-5, new ElementalResist(Elements.Dark)),
-            new OptScaleExactStat(-20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(-20, ManaRegen.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("mindful_heart", "Mindful Heart",
@@ -236,15 +236,15 @@ public class NewPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.bigStat("steel_caps", "Steel Caps",
-            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(10, Stats.SHIELD_DURATION.get()),
             new OptScaleExactStat(1, new MaxElementalResist(Elements.Elemental))
         );
 
         PerkBuilder.bigStat("rigor", "Rigor",
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Elemental)),
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("uppercut", "Uppercut",
             new OptScaleExactStat(15, Stats.DAMAGE_WHEN_LOW_HP.get())
@@ -253,7 +253,7 @@ public class NewPerks implements ExileRegistryInit {
         PerkBuilder.bigStat("unleashed", "Unleashed",
             new OptScaleExactStat(5, Stats.CHANCE_TO_GIVE_EFFECT_ON_SELF.get(BeneficialEffects.BLOODLUST)),
             new OptScaleExactStat(5, Stats.ATTACK_SPEED.get()),
-            new OptScaleExactStat(-10, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(-10, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("fury", "Fury",
@@ -309,7 +309,7 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Water)),
             new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)),
             new OptScaleExactStat(3, Stats.SPELL_CRIT_CHANCE.get()),
-            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("broad_knowledge", "Broad Knowledge",
@@ -322,11 +322,11 @@ public class NewPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.bigStat("infusion", "Infusion",
-            new OptScaleExactStat(5, new AttackDamage(Elements.Fire), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, new AttackDamage(Elements.Water), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, new AttackDamage(Elements.Nature), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, new AttackDamage(Elements.Light), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, new AttackDamage(Elements.Dark), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Fire), ModType.PERCENT),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Water), ModType.PERCENT),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Nature), ModType.PERCENT),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Light), ModType.PERCENT),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Dark), ModType.PERCENT),
             new OptScaleExactStat(10, new ElementalPenetration(Elements.Elemental))
         );
 
@@ -342,7 +342,7 @@ public class NewPerks implements ExileRegistryInit {
         PerkBuilder.bigStat("unforgiving_desert", "Unforgiving Desert",
             new OptScaleExactStat(5, DatapackStats.VIT),
             new OptScaleExactStat(3, new ElementalResist(Elements.Fire)),
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("spellblade", "Spellblade",
@@ -370,23 +370,23 @@ public class NewPerks implements ExileRegistryInit {
         PerkBuilder.bigStat("stubborn", "Stubborn",
             new OptScaleExactStat(2, RegeneratePercentStat.HEALTH),
             new OptScaleExactStat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee)),
-            new OptScaleExactStat(5, new AttackDamage(Elements.Physical), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, new AttackDamage(Elements.Physical), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("slaughter", "Slaughter",
-            new OptScaleExactStat(20, ArmorPenetration.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(20, ArmorPenetration.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, DatapackStats.STR),
             new OptScaleExactStat(-5, Stats.ATTACK_SPEED.get())
         );
 
         PerkBuilder.bigStat("slice_and_dice", "Slice and Dice",
             new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED)),
-            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, Stats.ATTACK_SPEED.get())
         );
 
         PerkBuilder.bigStat("confrontation", "Confrontation",
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, Stats.DAY_DAMAGE.get()),
             new OptScaleExactStat(10, Stats.ATTACK_SPEED.get())
         );
@@ -398,7 +398,7 @@ public class NewPerks implements ExileRegistryInit {
 
         PerkBuilder.bigStat("anatomical_knowledge", "Anatomical Knowledge",
             new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.SLOW)),
-            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("execute", "Executioner",
@@ -406,15 +406,15 @@ public class NewPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.bigStat("swiftness", "Swiftness",
-            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, SpellDodge.getInstance()),
             new OptScaleExactStat(-2, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged)),
             new OptScaleExactStat(5, DatapackStats.AGI)
         );
 
         PerkBuilder.bigStat("good_posture", "Good Posture",
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, Stats.REDUCED_MANA_RESERVED.get())
         );
 
@@ -424,15 +424,15 @@ public class NewPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.bigStat("drunken_boxing", "Drunken Boxing",
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-5, DodgeRating.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(20, Stats.CRIT_DAMAGE.get()),
             new OptScaleExactStat(-5, DatapackStats.WIS),
             new OptScaleExactStat(-5, DatapackStats.INT)
         );
         PerkBuilder.bigStat("mana_vortex", "Mana Vortex",
-            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, Stats.REDUCED_MANA_RESERVED.get())
         );
 
@@ -502,13 +502,13 @@ public class NewPerks implements ExileRegistryInit {
         );
         PerkBuilder.bigStat("last_rite", "Last Rite",
             new OptScaleExactStat(5, SpellDamage.getInstance()),
-            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-5, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-5, Health.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("sandtomb", "Sand Tomb",
             new OptScaleExactStat(5, DatapackStats.VIT),
-            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("drums", "Drums",
@@ -542,18 +542,18 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(5, DatapackStats.WIS)
         );
         PerkBuilder.bigStat("stone_armor", "Stone Armor",
-            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("sun_essence", "Sun Essence",
             new OptScaleExactStat(10, Stats.HEAL_STRENGTH.get()),
-            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("moon_essence", "Moon Essence",
             new OptScaleExactStat(10, Stats.HEAL_CRIT_DAMAGE.get()),
-            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("astral_walk", "Astral Walk",
@@ -624,15 +624,15 @@ public class NewPerks implements ExileRegistryInit {
         PerkBuilder.bigStat("spot_weakness", "Spot Weakness",
             new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
             new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
-            new OptScaleExactStat(10, ArmorPenetration.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, ArmorPenetration.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, Stats.CRIT_CHANCE.get())
         );
 
         PerkBuilder.bigStat("outlaw", "Outlaw",
             new OptScaleExactStat(10, Stats.DAMAGE_TO_LIVING.get()),
             new OptScaleExactStat(5, Stats.CRIT_CHANCE.get()),
-            new OptScaleExactStat(-5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-5, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(-5, DodgeRating.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-5, Health.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("necronomicon", "Necronomicon",
             new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.health)),
@@ -649,16 +649,16 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(5, DatapackStats.MOVE_SPEED)
         );
         PerkBuilder.bigStat("big_eternity", "Eternity",
-            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(10, DatapackStats.WIS)
         );
         PerkBuilder.bigStat("sunshine", "Sunshine",
             new OptScaleExactStat(10, Stats.EFFECT_DURATION_ON_YOU_PER_TAG.get(EffectTags.positive)),
-            new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("moonshine", "Moonshine",
             new OptScaleExactStat(10, Stats.EFFECT_DURATION_YOU_CAST_PER_TAG.get(EffectTags.negative)),
-            new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("demonic_seduction", "Demonic Seduction",
@@ -669,14 +669,14 @@ public class NewPerks implements ExileRegistryInit {
         PerkBuilder.bigStat("burning_eyes", "Burning Eyes",
             new OptScaleExactStat(5, Stats.PROJECTILE_DAMAGE.get()),
             new OptScaleExactStat(10, DatapackStats.DEX),
-            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("backlash", "Backlash",
             new OptScaleExactStat(5, Stats.PROJECTILE_SPEED.get()),
             new OptScaleExactStat(10, Stats.ATTACK_SPEED.get()),
             new OptScaleExactStat(50, Stats.ACCURACY.get()),
-            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("juggler", "Juggler",
@@ -692,16 +692,16 @@ public class NewPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.bigStat("survivalist", "Survivalist",
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("mendacity", "Mendacity",
             new OptScaleExactStat(5, Stats.CRIT_CHANCE.get()),
-            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("for_the_living", "For the Living",
@@ -717,8 +717,8 @@ public class NewPerks implements ExileRegistryInit {
 
         PerkBuilder.bigStat("runeleather", "Rune Leather",
             new OptScaleExactStat(5, Stats.SHIELD_DURATION.get()),
-            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("angelfeather", "Angel Feather",
@@ -752,8 +752,8 @@ public class NewPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.bigStat("vessel", "Vessel",
-            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(-2, DatapackStats.INT),
             new OptScaleExactStat(-2, DatapackStats.WIS)
         );
@@ -765,7 +765,7 @@ public class NewPerks implements ExileRegistryInit {
         );
         PerkBuilder.bigStat("decay", "Decay",
             new OptScaleExactStat(10, SpecialStats.HEAL_CLEANSE),
-            new OptScaleExactStat(-10, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(-10, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("frenzy", "Frenzy",
@@ -779,22 +779,22 @@ public class NewPerks implements ExileRegistryInit {
 
         PerkBuilder.bigStat("flesh_former", "Flesh Former",
             new OptScaleExactStat(5, Stats.SHIELD_DURATION.get()),
-            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-10, DodgeRating.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("bone_plating", "Bone Collector",
             new OptScaleExactStat(20, Stats.RESOURCE_ON_KILL.get(ResourceType.health)),
-            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("soulsearch", "Soul Search",
-            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get()),
             new OptScaleExactStat(5, DatapackStats.WIS)
         );
         PerkBuilder.bigStat("guarding_runes", "Guarding Runes",
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(10, Stats.INCREASED_EFFECT_OF_AURAS_RECEIVED.get()),
             new OptScaleExactStat(5, DatapackStats.VIT)
         );
@@ -812,12 +812,12 @@ public class NewPerks implements ExileRegistryInit {
         PerkBuilder.bigStat("no_doubt", "No Doubt",
             new OptScaleExactStat(10, Stats.TOTAL_DAMAGE.get()),
             new OptScaleExactStat(5, new ElementalResist(Elements.Elemental)),
-            new OptScaleExactStat(-20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(-20, DodgeRating.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("transcendance", "Transcendence",
             new OptScaleExactStat(10, ManaRegen.getInstance()),
             new OptScaleExactStat(5, new ElementalResist(Elements.Elemental)),
-            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("falling_dragon", "Falling Dragon",
             new OptScaleExactStat(5, Stats.MANA_COST.get()),
@@ -826,18 +826,18 @@ public class NewPerks implements ExileRegistryInit {
 
         PerkBuilder.bigStat("second_heart", "Second Heart",
             new OptScaleExactStat(5, Stats.ATTACK_SPEED.get()),
-            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, HealthRegen.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("big_dodge", "Dodge Master",
-            new OptScaleExactStat(15, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(15, DodgeRating.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("big_game_hunter", "Game Hunter",
             new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
             new OptScaleExactStat(5, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
             new OptScaleExactStat(2, Stats.CRIT_CHANCE.get()),
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.PERCENT)
 
         );
         PerkBuilder.bigStat("firstblood", "First Blood",
@@ -850,7 +850,7 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED))
         );
         PerkBuilder.bigStat("spore_aura", "Spore Aura",
-            new OptScaleExactStat(5, new AttackDamage(Elements.Nature), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, new AttackDamage(Elements.Nature), ModType.PERCENT),
             new OptScaleExactStat(5, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Nature)),
             new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON))
         );
@@ -874,7 +874,7 @@ public class NewPerks implements ExileRegistryInit {
         PerkBuilder.bigStat("photosynthesis", "Photosynthesis",
             new OptScaleExactStat(2, Stats.ELEMENT_LEECH_RESOURCE.get(new LeechInfo(Elements.Nature, ResourceType.health))),
             new OptScaleExactStat(10, Stats.HEALING_RECEIVED.get()),
-            new OptScaleExactStat(3, new AttackDamage(Elements.Nature), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(3, new AttackDamage(Elements.Nature), ModType.PERCENT),
             new OptScaleExactStat(3, DatapackStats.WIS)
         );
         PerkBuilder.bigStat("purify", "Purify",
@@ -889,7 +889,7 @@ public class NewPerks implements ExileRegistryInit {
 
         PerkBuilder.bigStat("impish_smile", "Impish Smile",
             new OptScaleExactStat(3, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(10, Stats.RESOURCE_ON_KILL.get(ResourceType.mana))
         );
 
@@ -899,7 +899,7 @@ public class NewPerks implements ExileRegistryInit {
             new OptScaleExactStat(3, Stats.PROJECTILE_DAMAGE.get())
         );
         PerkBuilder.bigStat("barefoot", "Barefoot",
-            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(3, DatapackStats.MOVE_SPEED)
         );
         PerkBuilder.bigStat("antidote", "Antidote",
@@ -907,11 +907,11 @@ public class NewPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.bigStat("barefoot", "Barefoot",
-            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(3, DatapackStats.MOVE_SPEED)
         );
         PerkBuilder.bigStat("aristocrat", "Aristocrat",
-            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(100, SpellDodge.getInstance()),
             new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED))
         );
@@ -973,12 +973,12 @@ public class NewPerks implements ExileRegistryInit {
         );
         PerkBuilder.bigStat("hemophelia", "Hemophelia",
             new OptScaleExactStat(5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED)),
-            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-10, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-10, HealthRegen.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("gaseus", "Gaseous",
             new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON)),
-            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(10, Stats.DOT_DAMAGE.get())
         );
 
@@ -1014,14 +1014,14 @@ public class NewPerks implements ExileRegistryInit {
         PerkBuilder.bigStat("exoskeleton", "Exoskeleton",
             new OptScaleExactStat(3, DatapackStats.MOVE_SPEED),
             new OptScaleExactStat(2, new ElementalResist(Elements.Elemental)),
-            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-5, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-5, DodgeRating.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-5, Stats.ACCURACY.get(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("soundless", "Soundless",
             new OptScaleExactStat(10, DatapackStats.DEX),
             new OptScaleExactStat(-10, Stats.THREAT_GENERATED.get()),
-            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, DodgeRating.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("corrupted_blade", "Corrupted Blade",
             new OptScaleExactStat(5, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.MARK))
@@ -1038,9 +1038,9 @@ public class NewPerks implements ExileRegistryInit {
 
         PerkBuilder.bigStat("bulwark", "Bulwark",
             new OptScaleExactStat(-5, Stats.TOTAL_DAMAGE.get()),
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, Armor.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, Armor.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(2, new ElementalResist(Elements.Elemental))
         );
 
@@ -1062,8 +1062,8 @@ public class NewPerks implements ExileRegistryInit {
 
         PerkBuilder.bigStat("mental_stability", "Mental Stability",
             new OptScaleExactStat(-10, Stats.MANA_COST.get()),
-            new OptScaleExactStat(5, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(5, Mana.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(5, Mana.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("dual_wield", "Dual Wielder", new OptScaleExactStat(10, DualWieldDamage.getInstance()));
@@ -1086,12 +1086,12 @@ public class NewPerks implements ExileRegistryInit {
         );
         PerkBuilder.bigStat("poacher", "Poacher",
             new OptScaleExactStat(15, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.trap)),
-            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-10, DodgeRating.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("engineer", "Engineer",
             new OptScaleExactStat(15, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.trap)),
-            new OptScaleExactStat(10, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Stats.ACCURACY.get(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("traps_damage", "Trapper",
             new OptScaleExactStat(20, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.trap))
@@ -1118,19 +1118,19 @@ public class NewPerks implements ExileRegistryInit {
 
         PerkBuilder.bigStat("guild_assassin", "Guild Assassin",
             new OptScaleExactStat(3, SpellDamage.getInstance()),
-            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical))
         );
 
         PerkBuilder.bigStat("dust_cloak", "Dust Cloak",
             new OptScaleExactStat(-10, Stats.THREAT_GENERATED.get()),
-            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, ManaRegen.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(10, DodgeRating.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("wish_upon_the_stars", "Wish upon a Star",
             new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLIND)),
-            new OptScaleExactStat(10, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(10, Mana.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(5, SpecialStats.HEAL_CLEANSE),
             new OptScaleExactStat(5, Stats.SHIELD_DURATION.get())
         );
@@ -1141,17 +1141,17 @@ public class NewPerks implements ExileRegistryInit {
 
         PerkBuilder.bigStat("big_shield_mana_reg", "Eternal Guardian",
             new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get()),
-            new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("damage_shield_more_health", "Lasting Guardian",
             new OptScaleExactStat(10, Stats.SHIELD_STRENGTH.get()),
-            new OptScaleExactStat(10, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Health.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.bigStat("big_armor_and_mana_regen", "Sturdy Guardian",
-            new OptScaleExactStat(10, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(10, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(15, ManaRegen.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.stat("more_dmg_received",
             new OptScaleExactStat(5, Stats.DAMAGE_RECEIVED.get())
@@ -1164,7 +1164,7 @@ public class NewPerks implements ExileRegistryInit {
         PerkBuilder.bigStat("inner_focus", "Inner Focus",
             new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),
             new OptScaleExactStat(5, Stats.CAST_SPEED.get()),
-            new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.PERCENT)
         );
         PerkBuilder.bigStat("tinker", "Tinker",
             new OptScaleExactStat(5, Stats.COOLDOWN_REDUCTION.get()),

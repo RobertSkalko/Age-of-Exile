@@ -92,10 +92,8 @@ public interface GearDataHelper {
 
         float v1min = 1 * num.multi * weapon.statMulti;
         float v1max = 3 * num.multi * weapon.statMulti;
-        float v2min = 3 * num.multi * weapon.statMulti;
-        float v2max = 6 * num.multi * weapon.statMulti;
-
-        return new StatModifier(v1min, v1max, v2min, v2max, new AttackDamage(element), ModType.FLAT);
+     
+        return new StatModifier(v1min, v1max, new AttackDamage(element), ModType.FLAT);
     }
 
 }

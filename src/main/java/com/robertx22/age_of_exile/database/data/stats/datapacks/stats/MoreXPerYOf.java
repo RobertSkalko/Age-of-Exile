@@ -56,7 +56,7 @@ public class MoreXPerYOf extends BaseDatapackStat implements IAffectsStats {
         InCalcStatData adder = data.getUnit()
             .getStatInCalculation(adder_stat);
 
-        float val = (int) (adder.getFlatAverage() / perEach) * statData.getFlatAverage();
+        float val = (int) (adder.getValue() / perEach) * statData.getValue();
 
         add_to.addAlreadyScaledFlat(val);
     }

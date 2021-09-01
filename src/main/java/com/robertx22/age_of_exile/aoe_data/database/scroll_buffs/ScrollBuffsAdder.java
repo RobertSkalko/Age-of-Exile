@@ -6,10 +6,10 @@ import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class ScrollBuffsAdder implements ExileRegistryInit {
 
@@ -18,11 +18,11 @@ public class ScrollBuffsAdder implements ExileRegistryInit {
 
         ScrollBuff.of("mage", "Of the Mage", "Veneficus",
             new StatModifier(10, 30, SpellDamage.getInstance()),
-            new StatModifier(10, 30, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new StatModifier(10, 30, ManaRegen.getInstance(), ModType.PERCENT)
         );
         ScrollBuff.of("hunter", "Of the Hunter", "Venator",
             new StatModifier(10, 30, Stats.STYLE_DAMAGE.get(PlayStyle.ranged)),
-            new StatModifier(10, 30, Stats.CRIT_DAMAGE.get(), ModType.LOCAL_INCREASE)
+            new StatModifier(10, 30, Stats.CRIT_DAMAGE.get(), ModType.PERCENT)
         );
         ScrollBuff.of("warrior", "Of the Warrior", "Torpent",
             new StatModifier(10, 30, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
@@ -30,7 +30,7 @@ public class ScrollBuffsAdder implements ExileRegistryInit {
         );
         ScrollBuff.of("paladin", "Of the Paladin", "Fortissimus",
             new StatModifier(10, 30, Stats.STYLE_DAMAGE.get(PlayStyle.melee)),
-            new StatModifier(10, 30, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new StatModifier(10, 30, HealthRegen.getInstance(), ModType.PERCENT)
         );
 
         ScrollBuff.of("crit", "Of Criticals", "Verum",

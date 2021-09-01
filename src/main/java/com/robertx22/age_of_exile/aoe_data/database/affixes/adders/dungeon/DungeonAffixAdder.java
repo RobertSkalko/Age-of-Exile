@@ -7,9 +7,9 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
@@ -26,7 +26,7 @@ public class DungeonAffixAdder implements ExileRegistryInit {
             .add(Elements.Physical, "Tyrannical")
             .add(Elements.Light, "Holy")
             .add(Elements.Dark, "Cursed")
-            .tier(1, x -> Arrays.asList(new StatModifier(1, 2, 2, 3, new AttackDamage(x), ModType.FLAT)))
+            .stats(x -> Arrays.asList(new StatModifier(1, 2, new AttackDamage(x), ModType.FLAT)))
             .DungeonPrefix()
             .Build();
 
@@ -37,8 +37,8 @@ public class DungeonAffixAdder implements ExileRegistryInit {
             .add(Elements.Nature, "Of Diseases")
             .add(Elements.Light, "Of Light")
             .add(Elements.Dark, "Of Curses")
-            .tier(1, x -> Arrays.asList(
-                new StatModifier(1, 2, 2, 3, new AttackDamage(x), ModType.FLAT),
+            .stats(x -> Arrays.asList(
+                new StatModifier(1, 2, new AttackDamage(x), ModType.FLAT),
                 new StatModifier(20, 30, new ElementalResist(x), ModType.FLAT)
             ))
             .DungeonSuffix()
@@ -46,19 +46,19 @@ public class DungeonAffixAdder implements ExileRegistryInit {
 
         AffixBuilder.Normal("armored_mobs")
             .Named("Armored")
-            .tier(1, new StatModifier(20, 50, Armor.getInstance(), ModType.LOCAL_INCREASE))
+            .stats(new StatModifier(20, 50, Armor.getInstance(), ModType.PERCENT))
             .DungeonPrefix()
             .Build();
 
         AffixBuilder.Normal("accurate_mobs")
             .Named("Accurate")
-            .tier(1, new StatModifier(20, 50, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE))
+            .stats(new StatModifier(20, 50, Stats.ACCURACY.get(), ModType.PERCENT))
             .DungeonPrefix()
             .Build();
 
         AffixBuilder.Normal("life_on_hit_dun")
             .Named("Of Vampires")
-            .tier(1, new StatModifier(3, 5, Stats.LIFESTEAL.get(), ModType.FLAT))
+            .stats(new StatModifier(3, 5, Stats.LIFESTEAL.get(), ModType.FLAT))
             .DungeonSuffix()
             .Build();
 

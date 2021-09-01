@@ -80,7 +80,7 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
             if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
                 chanceForHigherRarity += info.playerData.getUnit()
                     .getCalculatedStat(TreasureQuality.getInstance())
-                    .getAverageValue();
+                    .getValue();
             }
         }
 

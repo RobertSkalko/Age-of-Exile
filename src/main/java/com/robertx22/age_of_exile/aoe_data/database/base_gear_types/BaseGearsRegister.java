@@ -16,7 +16,5 @@ public class BaseGearsRegister implements ExileRegistryInit {
         new BaseGearWeapons().registerAll();
         new BaseGearJewelry().registerAll();
 
-        new BaseToolsAdder().registerAll();
-
     }
 }

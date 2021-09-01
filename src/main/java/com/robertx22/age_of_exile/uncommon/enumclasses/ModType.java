@@ -7,7 +7,7 @@ import java.util.Locale;
 public enum ModType {
 
     FLAT("flat", EntityAttributeModifier.Operation.ADDITION),
-    LOCAL_INCREASE("local_increase", EntityAttributeModifier.Operation.MULTIPLY_BASE),
+    PERCENT("percent", EntityAttributeModifier.Operation.MULTIPLY_BASE),
     GLOBAL_INCREASE("global_increase", EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 
     ModType(String id, EntityAttributeModifier.Operation op) {
@@ -23,7 +23,7 @@ public enum ModType {
     }
 
     public boolean isLocalIncrease() {
-        return this == LOCAL_INCREASE;
+        return this == PERCENT;
     }
 
     public boolean isGlobalIncrease() {

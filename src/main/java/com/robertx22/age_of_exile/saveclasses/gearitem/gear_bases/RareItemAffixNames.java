@@ -93,7 +93,7 @@ public class RareItemAffixNames {
 
     public static HashMap<Integer, Words> getSuffixMap(BaseGearType slot) {
 
-        if (slot.isWeaponOrTool()) {
+        if (slot.isWeapon()) {
             return weapons;
         }
         if (slot.getTags()

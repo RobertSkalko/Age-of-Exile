@@ -44,7 +44,7 @@ public class MobStatUtils {
             .collect(Collectors.toList())) {
 
             int num = (int) ((tier.stat_multi - 1F) * 100F);
-            ExactStatData.noScaling(num, num, ModType.LOCAL_INCREASE, data.GetStat()
+            ExactStatData.noScaling(num, ModType.PERCENT, data.GetStat()
                     .GUID())
                 .applyStats(mobdata);
 
@@ -55,7 +55,7 @@ public class MobStatUtils {
 
         int hp = (int) ((multi) * 100F);
 
-        ExactStatData.noScaling(hp, hp, ModType.LOCAL_INCREASE, Health.getInstance()
+        ExactStatData.noScaling(hp, ModType.PERCENT, Health.getInstance()
                 .GUID())
             .applyStats(mobdata);
 
@@ -92,9 +92,9 @@ public class MobStatUtils {
 
         float val = (-1F + ExileDB.getDimensionConfig(en.world).mob_strength_multi) * 100F;
 
-        stats.add(ExactStatData.noScaling(val, val, ModType.GLOBAL_INCREASE, Health.getInstance()
+        stats.add(ExactStatData.noScaling(val, ModType.GLOBAL_INCREASE, Health.getInstance()
             .GUID()));
-        stats.add(ExactStatData.noScaling(val, val, ModType.GLOBAL_INCREASE, Stats.TOTAL_DAMAGE.get()
+        stats.add(ExactStatData.noScaling(val, ModType.GLOBAL_INCREASE, Stats.TOTAL_DAMAGE.get()
             .GUID()));
 
         list.add(new MiscStatCtx(stats));
@@ -115,16 +115,16 @@ public class MobStatUtils {
         float dmg = (float) ((1F - config.dmg_multi) * 100F);
         float stat = (float) ((1F - config.stat_multi) * 100F);
 
-        stats.add(ExactStatData.noScaling(hp, hp, ModType.GLOBAL_INCREASE, Health.getInstance()
+        stats.add(ExactStatData.noScaling(hp, ModType.GLOBAL_INCREASE, Health.getInstance()
             .GUID()));
-        stats.add(ExactStatData.noScaling(dmg, dmg, ModType.FLAT, Stats.TOTAL_DAMAGE.get()
+        stats.add(ExactStatData.noScaling(dmg, ModType.FLAT, Stats.TOTAL_DAMAGE.get()
             .GUID()));
 
-        stats.add(ExactStatData.noScaling(stat, stat, ModType.GLOBAL_INCREASE, DodgeRating.getInstance()
+        stats.add(ExactStatData.noScaling(stat, ModType.GLOBAL_INCREASE, DodgeRating.getInstance()
             .GUID()));
-        stats.add(ExactStatData.noScaling(stat, stat, ModType.GLOBAL_INCREASE, Armor.getInstance()
+        stats.add(ExactStatData.noScaling(stat, ModType.GLOBAL_INCREASE, Armor.getInstance()
             .GUID()));
-        stats.add(ExactStatData.noScaling(stat, stat, ModType.GLOBAL_INCREASE, Health.getInstance()
+        stats.add(ExactStatData.noScaling(stat, ModType.GLOBAL_INCREASE, Health.getInstance()
             .GUID()));
 
         list.add(new MiscStatCtx(stats));

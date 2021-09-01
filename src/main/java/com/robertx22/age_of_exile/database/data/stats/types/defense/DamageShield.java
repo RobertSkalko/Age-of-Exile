@@ -59,7 +59,7 @@ public class DamageShield extends Stat {
 
         @Override
         public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-            effect.data.getNumber(EventData.NUMBER).number -= data.getAverageValue();
+            effect.data.getNumber(EventData.NUMBER).number -= data.getValue();
 
             return effect;
         }

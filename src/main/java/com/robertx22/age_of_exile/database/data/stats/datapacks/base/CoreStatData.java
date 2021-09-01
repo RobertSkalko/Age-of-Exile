@@ -19,7 +19,7 @@ public class CoreStatData {
     public static CoreStatData of(List<OptScaleExactStat> stats) {
         CoreStatData data = new CoreStatData();
         data.stats = stats.stream()
-            .map(x -> new Data(x.v1, x.v2, x.stat, x.type))
+            .map(x -> new Data(x.v1, x.stat, x.type))
             .collect(Collectors.toList());
         return data;
 
@@ -30,21 +30,18 @@ public class CoreStatData {
         @Store
         public float v1 = 0;
         @Store
-        public float v2 = 0;
-        @Store
         public String stat;
         @Store
         public String type;
 
-        public Data(float v1, float v2, String stat, String type) {
+        public Data(float v1, String stat, String type) {
             this.v1 = v1;
-            this.v2 = v2;
             this.stat = stat;
             this.type = type;
         }
 
         public OptScaleExactStat getStat() {
-            return new OptScaleExactStat(v1, v2, ExileDB.Stats()
+            return new OptScaleExactStat(v1, ExileDB.Stats()
                 .get(stat), ModType.fromString(type));
         }
     }

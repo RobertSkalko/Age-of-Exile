@@ -68,7 +68,7 @@ public class SpellDamage extends Stat {
 
         @Override
         public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-            effect.increaseByPercent(data.getAverageValue());
+            effect.increaseByPercent(data.getValue());
             return effect;
         }
 

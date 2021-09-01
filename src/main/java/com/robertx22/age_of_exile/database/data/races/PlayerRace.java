@@ -100,9 +100,9 @@ public class PlayerRace implements JsonExileRegistry<PlayerRace>, IAutoGson<Play
                 .getUnit()
                 .getStatInCalculation(x.for_stat)
                 .getCalculated()
-                .getAverageValue();
+                .getValue();
 
-            OptScaleExactStat stat = new OptScaleExactStat(x.stat_given.v1 * toadd, x.stat_given.v2 * toadd, x.stat_given.getStat(), x.stat_given.getModType());
+            OptScaleExactStat stat = new OptScaleExactStat(x.stat_given.v1 * toadd, x.stat_given.getStat(), x.stat_given.getModType());
 
             stat.toExactStat(1)
                 .applyStats(data);

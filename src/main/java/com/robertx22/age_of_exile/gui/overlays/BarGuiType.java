@@ -64,18 +64,18 @@ public enum BarGuiType {
                 .isBloodMage()) {
                 return data.getUnit()
                     .bloodData()
-                    .getAverageValue();
+                    .getValue();
             }
             return data.getUnit()
                 .manaData()
-                .getAverageValue();
+                .getValue();
         }
 
         @Override
         public Identifier getTexture(EntityCap.UnitData data, PlayerEntity en) {
             if (data.getUnit()
                 .getCalculatedStat(BloodUser.getInstance())
-                .getAverageValue() > 0) {
+                .getValue() > 0) {
                 return Ref.id("textures/gui/overlay/blood.png");
             } else {
                 return Ref.id("textures/gui/overlay/mana.png");

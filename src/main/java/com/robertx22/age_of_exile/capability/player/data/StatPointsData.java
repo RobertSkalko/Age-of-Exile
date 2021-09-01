@@ -23,7 +23,7 @@ public class StatPointsData {
         map.entrySet()
             .forEach(x -> {
                 float val = x.getValue();
-                ExactStatData stat = ExactStatData.of(val, val, ExileDB.Stats()
+                ExactStatData stat = ExactStatData.of(val, ExileDB.Stats()
                     .get(x.getKey()), ModType.FLAT, 1);
                 stat.applyStats(data);
             });

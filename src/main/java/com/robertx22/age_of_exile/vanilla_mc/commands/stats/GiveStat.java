@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
-import com.robertx22.age_of_exile.vanilla_mc.commands.stats.GiveStat.ModOrExact;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.CommandSuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.StatSuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.StatTypeSuggestions;
@@ -46,24 +45,22 @@ public class GiveStat {
                                         .suggests(new StatTypeSuggestions())
                                         .then(argument("GUID", StringArgumentType
                                             .string())
-                                            .then(argument("value_min", FloatArgumentType
+                                            .then(argument("value", FloatArgumentType
                                                 .floatArg())
-                                                .then(argument("value_max", FloatArgumentType
-                                                    .floatArg())
-                                                    .executes(ctx -> {
-                                                        return run(EntityArgumentType
-                                                            .getPlayer(ctx, "target"), StringArgumentType
-                                                            .getString(ctx, "scaling"), StringArgumentType
-                                                            .getString(ctx, "statGUID"), StringArgumentType
-                                                            .getString(ctx, "statType"), StringArgumentType
-                                                            .getString(ctx, "GUID"), FloatArgumentType
-                                                            .getFloat(ctx, "value_min"), FloatArgumentType
-                                                            .getFloat(ctx, "value_max"));
-                                                    })))))))))));
+
+                                                .executes(ctx -> {
+                                                    return run(EntityArgumentType
+                                                        .getPlayer(ctx, "target"), StringArgumentType
+                                                        .getString(ctx, "scaling"), StringArgumentType
+                                                        .getString(ctx, "statGUID"), StringArgumentType
+                                                        .getString(ctx, "statType"), StringArgumentType
+                                                        .getString(ctx, "GUID"), FloatArgumentType
+                                                        .getFloat(ctx, "value"));
+                                                }))))))))));
     }
 
     private static int run(Entity en, String scaling, String statGUID, String statType,
-                           String GUID, float v1, float v2) {
+                           String GUID, float v1) {
 
         try {
 
@@ -72,10 +69,7 @@ public class GiveStat {
 
                 if (scaling.equals("exact")) {
                     data.getCustomExactStats()
-                        .addExactStat(GUID, statGUID, v1, v2, ModType.valueOf(statType));
-                } else {
-                    data.getCustomExactStats()
-                        .addMod(GUID, statGUID, v1, v2, ModType.valueOf(statType));
+                        .addExactStat(GUID, statGUID, v1, ModType.valueOf(statType));
                 }
             }
 

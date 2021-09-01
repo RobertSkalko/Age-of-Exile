@@ -99,7 +99,7 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
             for (Stat stat : new AttackDamage(Elements.Nature).generateAllPossibleStatVariations()) {
                 amount += data.getUnit()
                     .getCalculatedStat(stat.GUID())
-                    .getAverageValue() * this.atk_scaling_type.scale(attack_scaling, lvl);
+                    .getValue() * this.atk_scaling_type.scale(attack_scaling, lvl);
             }
         }
         amount += getAllScalingValues().stream()

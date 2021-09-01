@@ -106,7 +106,7 @@ public class BeneficialEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(MURDER_INSTINCT)
             .stat(5, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
-            .stat(25, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(25, DodgeRating.getInstance(), ModType.PERCENT)
             .stat(5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
             .stat(10, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
             .maxStacks(1)
@@ -251,12 +251,12 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(HP_REGEN)
-            .stat(20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(20, HealthRegen.getInstance(), ModType.PERCENT)
             .maxStacks(1)
             .build();
 
         ExileEffectBuilder.of(MANA_REGEN)
-            .stat(20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(20, ManaRegen.getInstance(), ModType.PERCENT)
             .maxStacks(1)
             .build();
 

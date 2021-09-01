@@ -22,7 +22,7 @@ public abstract class BaseDamageIncreaseEffect extends BaseDamageEffect {
 
     @Override
     public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-        effect.increaseByPercent(data.getAverageValue());
+        effect.increaseByPercent(data.getValue());
         return effect;
     }
 

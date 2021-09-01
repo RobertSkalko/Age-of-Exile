@@ -37,12 +37,12 @@ public class ElementalResistEffect extends BaseDamageEffect {
         StatData maxdata = effect.targetData.getUnit()
             .getCalculatedStat(new MaxElementalResist(effect.getElement()));
 
-        max += maxdata.getAverageValue();
+        max += maxdata.getValue();
 
-        int resist = (int) data.getAverageValue();
+        int resist = (int) data.getValue();
 
         if (resist >= stat.max) {
-            resist += maxdata.getAverageValue();
+            resist += maxdata.getValue();
         }
 
         resist -= pene;

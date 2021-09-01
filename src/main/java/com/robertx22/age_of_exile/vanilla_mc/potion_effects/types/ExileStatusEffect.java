@@ -173,7 +173,7 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
             if (data.spellData != null) {
                 int casterlvl = data.spellData.lvl;
                 getExileEffect().stats.stream()
-                    .map(x -> new OptScaleExactStat(x.v1 * stacks * data.str_multi, x.v2 * stacks * data.str_multi, x.getStat(), x.getModType()))
+                    .map(x -> new OptScaleExactStat(x.v1 * stacks * data.str_multi, x.getStat(), x.getModType()))
                     .forEach(x -> stats.add(x.ToExactScaleToLevel(casterlvl)));
             }
         }

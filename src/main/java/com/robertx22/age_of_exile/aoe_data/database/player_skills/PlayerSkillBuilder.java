@@ -58,8 +58,8 @@ public class PlayerSkillBuilder {
 
     public PlayerSkillBuilder hpMsMana(int lvl, float num) {
         stat(new SkillStatReward(lvl,
-            new OptScaleExactStat(num, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(num, Mana.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(num, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(num, Mana.getInstance(), ModType.PERCENT)
 
         ));
         return this;
@@ -67,8 +67,8 @@ public class PlayerSkillBuilder {
 
     public PlayerSkillBuilder regens(int lvl, float num) {
         stat(new SkillStatReward(lvl,
-            new OptScaleExactStat(num, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(num, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(num, HealthRegen.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(num, ManaRegen.getInstance(), ModType.PERCENT)
         ));
         return this;
     }

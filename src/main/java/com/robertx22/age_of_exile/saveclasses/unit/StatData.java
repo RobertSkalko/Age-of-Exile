@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.math.MathHelper;
@@ -16,10 +15,9 @@ public class StatData {
         return empty;
     }
 
-    public StatData(String id, float v1, float v2) {
+    public StatData(String id, float v1) {
         this.id = id;
         this.v1 = v1;
-        this.v2 = v2;
     }
 
     public StatData() {
@@ -39,61 +37,37 @@ public class StatData {
     private String id = "";
     @Store
     private float v1 = 0;
-    @Store
-    private float v2 = 0;
 
     public String toSerializationString() {
-        return id + ":" + v1 + ":" + v2;
+        return id + ":" + v1;
     }
 
     public static StatData fromSerializationString(String str) {
         String[] parts = str.split(":");
-
         String id = parts[0];
         float v1 = Float.parseFloat(parts[1]);
-        float v2 = Float.parseFloat(parts[2]);
-
-        return new StatData(id, v1, v2);
+        return new StatData(id, v1);
     }
 
     public String getId() {
         return id;
     }
 
-    public float getFirstValue() {
-        return v1;
-    }
-
-    public float getSecondValue() {
-        return v2;
-    }
-
-    public float getAverageValue() {
-
-        if (!GetStat().UsesSecondValue()) {
-            return getFirstValue();
-        }
-
-        float val = (getFirstValue() + getSecondValue()) / 2F;
-
+    public float getValue() {
         Stat stat = GetStat();
-        return MathHelper.clamp(val, stat.min, stat.max);
+        return MathHelper.clamp(v1, stat.min, stat.max);
     }
 
     public boolean isNotZero() {
         return v1 != 0;
     }
 
-    public float getRandomRangeValue() {
-        return RandomUtils.RandomRange(getFirstValue(), getSecondValue());
-    }
-
     public float getMultiplier() {
-        return 1F + getAverageValue() / 100F;
+        return 1F + getValue() / 100F;
     }
 
     public float getReverseMultiplier() {
-        return 1 - getAverageValue() / 100;
+        return 1 - getValue() / 100;
     }
 
 }

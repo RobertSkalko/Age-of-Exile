@@ -77,9 +77,9 @@ public class ElementalFocus extends SingleElementalStat {
 
             if (effect.getElement()
                 .equals(stat.getElement())) {
-                effect.increaseByPercent(data.getAverageValue());
+                effect.increaseByPercent(data.getValue());
             } else {
-                effect.increaseByPercent(-data.getAverageValue());
+                effect.increaseByPercent(-data.getValue());
             }
 
             return effect;

@@ -26,7 +26,6 @@ public class AttackDamage extends ElementalStat {
 
     public AttackDamage(Elements element) {
         super(element);
-        this.use_sec_val = true;
         this.scaling = StatScaling.NORMAL;
         this.group = StatGroup.ELEMENTAL;
         this.statEffect = new Effect();
@@ -84,7 +83,7 @@ public class AttackDamage extends ElementalStat {
 
         @Override
         public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-            effect.addBonusEleDmg(stat.getElement(), data.getRandomRangeValue());
+            effect.addBonusEleDmg(stat.getElement(), data.getValue());
             return effect;
         }
 

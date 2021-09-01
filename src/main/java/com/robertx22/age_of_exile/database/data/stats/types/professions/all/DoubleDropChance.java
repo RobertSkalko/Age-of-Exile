@@ -67,7 +67,7 @@ public class DoubleDropChance extends Stat {
 
         @Override
         public boolean canActivate(SkillDropEvent effect, StatData data, Stat stat) {
-            return RandomUtils.roll(data.getAverageValue());
+            return RandomUtils.roll(data.getValue());
         }
 
         @Override

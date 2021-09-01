@@ -10,11 +10,8 @@ import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.MergedStats;
-import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
@@ -22,7 +19,6 @@ import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -44,48 +40,67 @@ public class GearTooltipUtils {
         TooltipInfo info = new TooltipInfo(data, gear.getRarity()
             .StatPercents());
 
-        if (!gear.GetBaseGearType()
-            .isTool()) {
+        tip.clear();
 
-            tip.clear();
+        gear.GetDisplayName(stack)
+            .forEach(x -> {
+                tip.add(x);
+            });
 
-            gear.GetDisplayName(stack)
-                .forEach(x -> {
-                    tip.add(x);
-                });
+        if (false && gear.GetBaseGearType()
+            .family() == BaseGearType.SlotFamily.Weapon) {
 
-            if (false && gear.GetBaseGearType()
-                .family() == BaseGearType.SlotFamily.Weapon) {
+            String speed = "Normal";
 
-                String speed = "Normal";
+            float atks = gear.GetBaseGearType().attacksPerSecond;
 
-                float atks = gear.GetBaseGearType().attacksPerSecond;
+            if (atks < 1) {
+                speed = "Slow";
+            }
+            if (atks > 1) {
+                speed = "Fast";
+            }
+            String txt = speed + " Attack Speed";
 
-                if (atks < 1) {
-                    speed = "Slow";
-                }
-                if (atks > 1) {
-                    speed = "Fast";
-                }
-                String txt = speed + " Attack Speed";
-
-                if (Screen.hasShiftDown()) {
-                    txt += " (" + atks + "/s)";
-                }
-
-                tip.add(new LiteralText(txt).formatted(Formatting.GRAY));
-
+            if (Screen.hasShiftDown()) {
+                txt += " (" + atks + "/s)";
             }
 
-            if (!gear.isIdentified()) {
+            tip.add(new LiteralText(txt).formatted(Formatting.GRAY));
+
+        }
+
+        if (!gear.isIdentified()) {
+
+            tip.add(new SText(""));
+
+            tip.add(
+                Words.ItemIsUnidentified.locName()
+                    .formatted(Formatting.GRAY));
+            tip.add(
+                Words.UseAnIdentifyScroll.locName()
+                    .formatted(Formatting.GRAY));
+
+            tip.add(new SText(""));
+
+            return;
+        }
+
+        if (gear.isCorrupted()) {
+            if (!Screen.hasShiftDown()) {
+                tip.add(new SText(""));
+
+                tip.add(new LiteralText(Formatting.RED + "").append(
+                        Words.Corrupted.locName())
+                    .formatted(Formatting.RED));
 
                 tip.add(new SText(""));
 
                 tip.add(
-                    Words.ItemIsUnidentified.locName()
+                    Words.CorruptedExplanation1.locName()
                         .formatted(Formatting.GRAY));
                 tip.add(
-                    Words.UseAnIdentifyScroll.locName()
+                    Words.CorruptedExplanation2.locName()
                         .formatted(Formatting.GRAY));
 
                 tip.add(new SText(""));
@@ -93,273 +108,193 @@ public class GearTooltipUtils {
                 return;
             }
 
-            if (gear.isCorrupted()) {
-                if (!Screen.hasShiftDown()) {
-                    tip.add(new SText(""));
+        }
 
-                    tip.add(new LiteralText(Formatting.RED + "").append(
-                            Words.Corrupted.locName())
-                        .formatted(Formatting.RED));
+        if (gear.baseStats != null) {
+            tip.addAll(gear.baseStats.GetTooltipString(info, gear));
+        }
 
-                    tip.add(new SText(""));
+        tip.add(new SText(""));
 
-                    tip.add(
-                        Words.CorruptedExplanation1.locName()
-                            .formatted(Formatting.GRAY));
-                    tip.add(
-                        Words.CorruptedExplanation2.locName()
-                            .formatted(Formatting.GRAY));
+        if (gear.imp != null) {
+            tip.addAll(gear.imp.GetTooltipString(info, gear));
+        }
 
-                    tip.add(new SText(""));
+        // tip.add(new LiteralText(""));
 
-                    return;
-                }
+        List<IGearPartTooltip> list = new ArrayList<IGearPartTooltip>();
 
-            }
+        List<ExactStatData> specialStats = new ArrayList<>();
 
-            if (gear.baseStats != null) {
-                tip.addAll(gear.baseStats.GetTooltipString(info, gear));
-            }
+        if (gear.uniqueStats != null) {
+            tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
 
-            tip.add(new SText(""));
-
-            PlayerSkillEnum skill = gear.getSkillNeeded();
-
-            if (skill != null) {
-                int skillvll = Load.playerSkills(info.player)
-                    .getLevel(skill);
-                if (skillvll >= gear.lvl) {
-                    tip.add(new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + StatRequirement.CHECK_YES_ICON + Formatting.GRAY)
-                        .append(Formatting.GRAY + " " + skill.word.translate() + " Level Min: " + gear.lvl + " "));
-
-                } else {
-                    tip.add(new LiteralText(Formatting.RED + "" + Formatting.BOLD + StatRequirement.NO_ICON + Formatting.GRAY)
-                        .append(Formatting.GRAY + " " + skill.word.translate() + " Level Min: " + gear.lvl + " ")
-                    );
-                }
-            }
-
-            if (gear.imp != null) {
-                tip.addAll(gear.imp.GetTooltipString(info, gear));
-            }
-
-            // tip.add(new LiteralText(""));
-
-            List<IGearPartTooltip> list = new ArrayList<IGearPartTooltip>();
-
-            List<ExactStatData> specialStats = new ArrayList<>();
-
-            if (gear.uniqueStats != null) {
-                tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
-
-                gear.uniqueStats.GetAllStats(gear)
-                    .forEach(x -> {
-                        if (x.getStat().is_long) {
-                            specialStats.add(x);
-                        }
-                    });
-
-            }
-
-            //tip.add(new LiteralText(""));
-
-            if (info.useInDepthStats()) {
-                tip.addAll(gear.affixes.GetTooltipString(info, gear));
-                tip.addAll(gear.sockets.GetTooltipString(info, gear));
-            } else {
-                List<ExactStatData> stats = new ArrayList<>();
-                gear.affixes.getAllAffixesAndSockets()
-                    .forEach(x -> stats.addAll(x.GetAllStats(gear)));
-                stats.addAll(gear.sockets.GetAllStats(gear));
-
-                List<ExactStatData> longstats = stats.stream()
-                    .filter(x -> x.getStat().is_long)
-                    .collect(Collectors.toList());
-                specialStats.addAll(longstats);
-
-                MergedStats merged = new MergedStats(stats, info, gear);
-
-                list.add(merged);
-            }
-
-            if (true || MMORPG.RUN_DEV_TOOLS) {
-                list.clear();
-
-                if (false) {
-                    tip.add(new LiteralText(Formatting.RED + "+5% Critical Chance"));
-                    tip.add(new LiteralText(Formatting.RED + "+12% Critical Damage"));
-                    tip.add(new LiteralText(Formatting.GOLD + "+2% Lifesteal"));
-                }
-
-                tip.add(new LiteralText(Formatting.BLUE + "+6% Armor"));
-                tip.add(new LiteralText(Formatting.GREEN + "+3% Health"));
-                tip.add(new LiteralText(Formatting.AQUA + "+20% Water Resist"));
-                tip.add(new LiteralText(Formatting.RED + "+12% Critical Damage"));
-                tip.add(new LiteralText(Formatting.LIGHT_PURPLE + "+7% Spell Damage"));
-                tip.add(new LiteralText(Formatting.YELLOW + "+12% Magic Find"));
-
-            }
-
-            int n = 0;
-            for (IGearPartTooltip part : list) {
-                if (part != null) {
-                    tip.addAll(part.GetTooltipString(info, gear));
-
-                    if (n == list.size() - 1) {
-                        for (int i = 0; i < gear.sockets.getEmptySockets(); i++) {
-                            tip.add(new SText(Formatting.YELLOW + "[Socket]"));
-                        }
-                    }
-
-                    tip.add(new LiteralText(""));
-                }
-                n++;
-            }
-
-            specialStats.forEach(x -> {
-                x.GetTooltipString(info)
-                    .forEach(e -> {
-                        tip.add(e);
-
-                    });
-            });
-            tip.add(new LiteralText(""));
-
-            if (gear.uniqueStats != null) {
-                UniqueGear uniq = gear.uniqueStats.getUnique(gear);
-
-                if (uniq != null && uniq.hasSet()) {
-                    tooltip.addAll(uniq.getSet()
-                        .GetTooltipString(info));
-                }
-            }
-
-            if (Screen.hasShiftDown()) {
-                if (!gear.can_sal) {
-                    tip.add(
-                        Words.Unsalvagable.locName()
-                            .formatted(Formatting.RED));
-                }
-            }
-
-            if (gear.getRarity()
-                .GUID()
-                .equals(IRarity.UNIQUE_ID)) {
-                if (false && !info.shouldShowDescriptions()) {
-                    UniqueGear unique = gear.uniqueStats.getUnique(gear);
-                    TooltipUtils.addUniqueDesc(tip, unique, gear);
-                }
-            }
-
-            tip.add(new SText(""));
-
-            RuneWord word = gear.sockets.getRuneWord();
-
-            if (word != null) {
-
-                tip.add(new LiteralText(Formatting.GOLD + "'Runeword: ").append(word.locName())
-                    .append("'")
-                    .formatted(Formatting.GOLD));
-            }
-            tip.add(new LiteralText(""));
-
-            IGearRarity rarity = gear.getRarity();
-
-            int socketed = gear.sockets.sockets.size();
-
-            if (socketed > 0) {
-                TooltipUtils.addSocketNamesLine(tip, gear);
-            }
-
-            tip.add(new LiteralText(""));
-
-            // TODO
-
-            tip.add(TooltipUtils.gearTier(gear.getTier()));
-            tip.add(TooltipUtils.gearLevel(gear.lvl));
-            tip.add(TooltipUtils.gearRarity(gear.getRarity()));
-            if (false) {
-                tip.add(TooltipUtils.rarity(rarity)
-                    .append(" ")
-                    .append(gear.GetBaseGearType()
-                        .locName()));
-
-            }
-
-            tip.add(new LiteralText(""));
-            ItemStack.appendEnchantments(tip, stack.getEnchantments());
-
-            if (true || ModConfig.get().client.SHOW_DURABILITY) {
-                if (stack.isDamageable()) {
-                    tip.add(new SText(Formatting.WHITE + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
-                } else {
-                    tip.add(new SText(Formatting.WHITE + "Unbreakable"));
-                }
-            }
-
-            if (gear.s) {
-                tip.add(Words.Sealed.locName()
-                    .formatted(Formatting.RED));
-            }
-
-            if (Screen.hasShiftDown() == false) {
-                tooltip.add(new LiteralText(Formatting.BLUE + "").append(new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
-                    )
-                    .formatted(Formatting.BLUE));
-            } else {
-                tip.add(Words.Instability.locName()
-                    .formatted(Formatting.RED)
-                    .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().ItemSealing.MAX_INSTABILITY)
-                );
-            }
-
-            List<Text> tool = TooltipUtils.removeDoubleBlankLines(tip,
-                ModConfig.get().client.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES);
-
-            tip.clear();
-            tip.addAll(tool);
-        } else {
-            // if tool
-
-            tooltip.add(new LiteralText(""));
-            tooltip.add(new LiteralText("Upgrades:").formatted(Formatting.RED)
-                .formatted(Formatting.BOLD));
-
-            gear.affixes.getAllAffixesAndSockets()
+            gear.uniqueStats.GetAllStats(gear)
                 .forEach(x -> {
-
-                    int tiers = x.getAffix().tier_map.size();
-                    int tier = x.tier;
-
-                    int stars = 1 + tiers - tier;
-
-                    Formatting format = Formatting.GREEN;
-
-                    if (stars == 2) {
-                        format = Formatting.BLUE;
+                    if (x.getStat().is_long) {
+                        specialStats.add(x);
                     }
-                    if (stars == 3) {
-                        format = Formatting.LIGHT_PURPLE;
+                });
+
+        }
+
+        //tip.add(new LiteralText(""));
+
+        if (info.useInDepthStats()) {
+            tip.addAll(gear.affixes.GetTooltipString(info, gear));
+            tip.addAll(gear.sockets.GetTooltipString(info, gear));
+        } else {
+            List<ExactStatData> stats = new ArrayList<>();
+            gear.affixes.getAllAffixesAndSockets()
+                .forEach(x -> stats.addAll(x.GetAllStats(gear)));
+            stats.addAll(gear.sockets.GetAllStats(gear));
+
+            List<ExactStatData> longstats = stats.stream()
+                .filter(x -> x.getStat().is_long)
+                .collect(Collectors.toList());
+            specialStats.addAll(longstats);
+
+            MergedStats merged = new MergedStats(stats, info, gear);
+
+            list.add(merged);
+        }
+
+        if (true || MMORPG.RUN_DEV_TOOLS) {
+            list.clear();
+
+            if (false) {
+                tip.add(new LiteralText(Formatting.RED + "+5% Critical Chance"));
+                tip.add(new LiteralText(Formatting.RED + "+12% Critical Damage"));
+                tip.add(new LiteralText(Formatting.GOLD + "+2% Lifesteal"));
+            }
+
+            tip.add(new LiteralText(Formatting.BLUE + "+6% Armor"));
+            tip.add(new LiteralText(Formatting.GREEN + "+3% Health"));
+            tip.add(new LiteralText(Formatting.AQUA + "+20% Water Resist"));
+            tip.add(new LiteralText(Formatting.RED + "+12% Critical Damage"));
+            tip.add(new LiteralText(Formatting.LIGHT_PURPLE + "+7% Spell Damage"));
+            tip.add(new LiteralText(Formatting.YELLOW + "+12% Magic Find"));
+
+        }
+
+        int n = 0;
+        for (IGearPartTooltip part : list) {
+            if (part != null) {
+                tip.addAll(part.GetTooltipString(info, gear));
+
+                if (n == list.size() - 1) {
+                    for (int i = 0; i < gear.sockets.getEmptySockets(); i++) {
+                        tip.add(new SText(Formatting.YELLOW + "[Socket]"));
                     }
+                }
 
-                    MutableText txt = new LiteralText("").append(x.getAffix()
-                            .locName())
-                        .formatted(Formatting.GOLD);
+                tip.add(new LiteralText(""));
+            }
+            n++;
+        }
 
-                    //  txt.append(" ");
-
-                    for (int i = 0; i < stars; i++) {
-                        txt.append(new LiteralText(" " + "\u2605").formatted(format));
-                    }
-
-                    tooltip.add(txt);
-
-                    if (Screen.hasShiftDown()) {
-                        tooltip.addAll(x.GetTooltipString(info, gear));
-                    }
+        specialStats.forEach(x -> {
+            x.GetTooltipString(info)
+                .forEach(e -> {
+                    tip.add(e);
 
                 });
+        });
+        tip.add(new LiteralText(""));
+
+        if (gear.uniqueStats != null) {
+            UniqueGear uniq = gear.uniqueStats.getUnique(gear);
+
+            if (uniq != null && uniq.hasSet()) {
+                tooltip.addAll(uniq.getSet()
+                    .GetTooltipString(info));
+            }
         }
+
+        if (Screen.hasShiftDown()) {
+            if (!gear.can_sal) {
+                tip.add(
+                    Words.Unsalvagable.locName()
+                        .formatted(Formatting.RED));
+            }
+        }
+
+        if (gear.getRarity()
+            .GUID()
+            .equals(IRarity.UNIQUE_ID)) {
+            if (false && !info.shouldShowDescriptions()) {
+                UniqueGear unique = gear.uniqueStats.getUnique(gear);
+                TooltipUtils.addUniqueDesc(tip, unique, gear);
+            }
+        }
+
+        tip.add(new SText(""));
+
+        RuneWord word = gear.sockets.getRuneWord();
+
+        if (word != null) {
+
+            tip.add(new LiteralText(Formatting.GOLD + "'Runeword: ").append(word.locName())
+                .append("'")
+                .formatted(Formatting.GOLD));
+        }
+        tip.add(new LiteralText(""));
+
+        IGearRarity rarity = gear.getRarity();
+
+        int socketed = gear.sockets.sockets.size();
+
+        if (socketed > 0) {
+            TooltipUtils.addSocketNamesLine(tip, gear);
+        }
+
+        tip.add(new LiteralText(""));
+
+        // TODO
+
+        tip.add(TooltipUtils.gearTier(gear.getTier()));
+        tip.add(TooltipUtils.gearLevel(gear.lvl));
+        tip.add(TooltipUtils.gearRarity(gear.getRarity()));
+        if (false) {
+            tip.add(TooltipUtils.rarity(rarity)
+                .append(" ")
+                .append(gear.GetBaseGearType()
+                    .locName()));
+
+        }
+
+        tip.add(new LiteralText(""));
+        ItemStack.appendEnchantments(tip, stack.getEnchantments());
+
+        if (true || ModConfig.get().client.SHOW_DURABILITY) {
+            if (stack.isDamageable()) {
+                tip.add(new SText(Formatting.WHITE + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
+            } else {
+                tip.add(new SText(Formatting.WHITE + "Unbreakable"));
+            }
+        }
+
+        if (gear.s) {
+            tip.add(Words.Sealed.locName()
+                .formatted(Formatting.RED));
+        }
+
+        if (Screen.hasShiftDown() == false) {
+            tooltip.add(new LiteralText(Formatting.BLUE + "").append(new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
+                )
+                .formatted(Formatting.BLUE));
+        } else {
+            tip.add(Words.Instability.locName()
+                .formatted(Formatting.RED)
+                .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().ItemSealing.MAX_INSTABILITY)
+            );
+        }
+
+        List<Text> tool = TooltipUtils.removeDoubleBlankLines(tip,
+            ModConfig.get().client.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES);
+
+        tip.clear();
+        tip.addAll(tool);
 
     }
 

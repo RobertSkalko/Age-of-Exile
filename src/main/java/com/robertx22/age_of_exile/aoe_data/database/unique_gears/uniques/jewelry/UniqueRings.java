@@ -37,7 +37,7 @@ public class UniqueRings implements ExileRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(25, 50, SpecialStats.BETTER_FOOD_BUFFS, ModType.FLAT),
                 new StatModifier(10, 15, SpellDamage.getInstance(), ModType.FLAT),
-                new StatModifier(5, 10, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+                new StatModifier(5, 10, ManaRegen.getInstance(), ModType.PERCENT)
 
             ))
             .req(new StatRequirement()
@@ -60,7 +60,7 @@ public class UniqueRings implements ExileRegistryInit {
             )
             .stats(Arrays.asList(
                 new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),
-                new StatModifier(6, 10, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+                new StatModifier(6, 10, DodgeRating.getInstance(), ModType.PERCENT),
                 new StatModifier(6, 15, Stats.RESOURCE_ON_KILL.get(ResourceType.mana), ModType.FLAT),
                 new StatModifier(10, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
                 new StatModifier(5, 10, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT),

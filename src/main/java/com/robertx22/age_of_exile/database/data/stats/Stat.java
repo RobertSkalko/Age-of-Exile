@@ -32,7 +32,6 @@ import java.util.function.Function;
 public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDesc, JsonExileRegistry<BaseDatapackStat> {
 
     public static String VAL1 = "[VAL1]";
-    public static String VAL2 = "[VAL2]";
     static Formatting FORMAT = Formatting.GRAY;
     static Formatting NUMBER = Formatting.GREEN;
 
@@ -41,7 +40,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
         str = FORMAT + str;
 
         str = str.replace(VAL1, NUMBER + VAL1 + FORMAT);
-        str = str.replace(VAL2, NUMBER + VAL2 + FORMAT);
 
         return str;
     }
@@ -60,7 +58,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     public float max = Integer.MAX_VALUE;
     public float base = 0;
     public boolean is_perc = false;
-    public boolean use_sec_val = false;
     public StatScaling scaling = StatScaling.SLOW;
     public boolean is_long = false;
     public String icon = "\u2741";
@@ -96,10 +93,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
 
     public StatNameRegex getStatNameRegex() {
         return StatNameRegex.BASIC;
-    }
-
-    public final boolean UsesSecondValue() {
-        return use_sec_val;
     }
 
     public final StatScaling getScaling() {

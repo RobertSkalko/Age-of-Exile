@@ -103,7 +103,7 @@ public class BoneArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
-                    new StatModifier(10, 20, DodgeRating.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(10, 20, DodgeRating.getInstance(), ModType.PERCENT),
                     new StatModifier(2, 5, DatapackStats.DEX, ModType.FLAT),
                     new StatModifier(2, 5, DatapackStats.AGI, ModType.FLAT)
                 )

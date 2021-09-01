@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements,
@@ -49,11 +48,11 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements,
     public List<String> tags = new ArrayList<>();
     public Type type;
 
-    public HashMap<Integer, AffixTier> tier_map = new HashMap<>();
+    public List<StatModifier> stats = new ArrayList<>();
 
     @Override
     public boolean isRegistryEntryValid() {
-        if (guid == null || loc_name == null || tier_map.isEmpty() || requirements == null || type == null || weight < 0) {
+        if (guid == null || loc_name == null || stats.isEmpty() || requirements == null || type == null || weight < 0) {
             return false;
         }
 
@@ -94,19 +93,8 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements,
         return weight;
     }
 
-    public List<StatModifier> getTierStats(int tier) {
-
-        if (tier_map.containsKey(tier)) {
-            return tier_map.get(tier).mods;
-        }
-
-        System.out.println("Tier number not found, returning default. Affix: " + GUID() + " Tier: " + tier);
-
-        return tier_map.values()
-            .stream()
-            .findFirst()
-            .get().mods;
-
+    public List<StatModifier> getStats() {
+        return stats;
     }
 
     @Override

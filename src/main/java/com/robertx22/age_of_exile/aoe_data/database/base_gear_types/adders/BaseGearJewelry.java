@@ -35,7 +35,7 @@ public class BaseGearJewelry implements ExileRegistryInit, GearDataHelper {
         MANA_RING = BaseGearBuilder.of(GearSlots.RING, "mana_reg_ring", "Ring")
             .essenceItem(ModRegistry.GEAR_MATERIALS.ARCANA)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
-            .baseStat(new StatModifier(10, 20, ManaRegen.getInstance(), ModType.LOCAL_INCREASE))
+            .baseStat(new StatModifier(10, 20, ManaRegen.getInstance(), ModType.PERCENT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Occult")
             .addLvlRange(LevelRanges.MID_TO_END, "Arcana")
             .build();
@@ -43,7 +43,7 @@ public class BaseGearJewelry implements ExileRegistryInit, GearDataHelper {
         HP_RING = BaseGearBuilder.of(GearSlots.RING, "hp_ring", "Ring")
             .essenceItem(ModRegistry.GEAR_MATERIALS.ARCANA)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
-            .baseStat(new StatModifier(10, 20, HealthRegen.getInstance(), ModType.LOCAL_INCREASE))
+            .baseStat(new StatModifier(10, 20, HealthRegen.getInstance(), ModType.PERCENT))
             .addLvlRange(LevelRanges.START_TO_LOW, "Primitive")
             .addLvlRange(LevelRanges.MID_TO_END, "Primordial")
             .build();

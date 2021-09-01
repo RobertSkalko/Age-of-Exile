@@ -352,7 +352,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             String txt = ((int) Load.Unit(mc.player)
                 .getUnit()
                 .getCalculatedStat(stat)
-                .getAverageValue()) + "";
+                .getValue()) + "";
 
             RenderUtils.render16Icon(matrix, stat.getIconForRendering(), this.x - 20, this.y + 1);
 
@@ -428,18 +428,11 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         Stat stat = data.GetStat();
 
         String v1 = NumberUtils.formatForTooltip(data
-            .getFirstValue());
-        String v2 = NumberUtils.formatForTooltip(data
-            .getSecondValue());
+            .getValue());
 
         String str = "";
 
-        if (stat.UsesSecondValue()) {
-            str = v1 + "-" + v2;
-
-        } else {
-            str = v1;
-        }
+        str = v1;
 
         if (stat.IsPercent()) {
             str += '%';
@@ -450,7 +443,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
             String value = NumberUtils.format(
                 usable.getUsableValue((int) data
-                    .getAverageValue(), unitdata.getLevel()) * 100);
+                    .getValue(), unitdata.getLevel()) * 100);
 
             str = "" + value + "%";
 

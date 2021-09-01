@@ -3,20 +3,21 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.affixes.AffixTag;
-import com.robertx22.age_of_exile.database.data.affixes.AffixTier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.requirements.Requirements;
 import com.robertx22.age_of_exile.database.data.requirements.TagRequirement;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class AffixBuilder {
 
     String guid;
-    HashMap<Integer, List<StatModifier>> modsPerTier = new HashMap<>();
+    List<StatModifier> stats = new ArrayList<>();
     String langName;
     boolean allowDupli = false;
     int weight = 1000;
@@ -76,24 +77,12 @@ public class AffixBuilder {
     }
 
     public AffixBuilder coreStat(Stat stat) {
-        return
-            this.tier(1, new StatModifier(4, 6, stat, ModType.FLAT))
-                .tier(2, new StatModifier(2, 4, stat, ModType.FLAT))
-                .tier(3, new StatModifier(1, 2, stat, ModType.FLAT));
+        return this.stats(new StatModifier(1, 6, stat, ModType.FLAT));
 
     }
 
-    public AffixBuilder tier(int tier, StatModifier... stats) {
-
-        if (modsPerTier.containsKey(tier)) {
-            try {
-                throw new Exception(this.guid + " already has tier " + tier);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        this.modsPerTier.put(tier, Arrays.asList(stats));
+    public AffixBuilder stats(StatModifier... stats) {
+        this.stats.addAll(Arrays.asList(stats));
         return this;
     }
 
@@ -124,13 +113,7 @@ public class AffixBuilder {
 
         affix.requirements = new Requirements(this.tagRequirement);
 
-        for (Map.Entry<Integer, List<StatModifier>> entry : this.modsPerTier.entrySet()) {
-
-            int tier = entry.getKey();
-            int tierweight = (tier + 1) * 100; // simple for now
-            AffixTier affixTier = new AffixTier(modsPerTier.get(tier), tierweight, tier);
-            affix.tier_map.put(tier, affixTier);
-        }
+        affix.stats = stats;
 
         affix.only_one_per_item = !allowDupli;
         affix.type = type;

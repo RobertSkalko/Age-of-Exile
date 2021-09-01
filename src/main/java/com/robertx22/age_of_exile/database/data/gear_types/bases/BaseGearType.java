@@ -124,7 +124,7 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         if (tags.contains(SlotTag.helmet)) {
             return EquipmentSlot.HEAD;
         }
-        if (isWeaponOrTool()) {
+        if (isWeapon()) {
             return EquipmentSlot.MAINHAND;
         }
 
@@ -154,15 +154,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         return f;
     }
 
-    public final boolean isWeaponOrTool() {
-        return this.family()
-            .equals(SlotFamily.Weapon) || family() == SlotFamily.Tool;
-    }
-
-    public final boolean isTool() {
-        return family() == SlotFamily.Tool;
-    }
-
     public final boolean isArmor() {
         return family() == SlotFamily.Armor;
     }
@@ -185,9 +176,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
     }
 
     public enum SlotTag {
-        fishing_rod(SlotFamily.Tool),
-        pickaxe(SlotFamily.Tool),
-        hoe(SlotFamily.Tool),
 
         sword(SlotFamily.Weapon),
         scepter(SlotFamily.Weapon),
@@ -228,7 +216,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         armor_family(SlotFamily.NONE),
         jewelry_family(SlotFamily.NONE),
         offhand_family(SlotFamily.NONE),
-        tool_family(SlotFamily.NONE),
 
         intelligence(SlotFamily.NONE),
         dexterity(SlotFamily.NONE),
@@ -246,7 +233,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         Armor,
         Jewelry,
         OffHand,
-        Tool,
         NONE;
 
         public boolean isJewelry() {

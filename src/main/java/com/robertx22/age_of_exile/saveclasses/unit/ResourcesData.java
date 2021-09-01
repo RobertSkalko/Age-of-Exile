@@ -100,17 +100,17 @@ public class ResourcesData {
         if (type == ResourceType.shield) {
             return data.getUnit()
                 .healthData()
-                .getAverageValue();
+                .getValue();
         }
         if (type == ResourceType.mana) {
             return data.getUnit()
                 .manaData()
-                .getAverageValue();
+                .getValue();
 
         } else if (type == ResourceType.blood) {
             return data.getUnit()
                 .bloodData()
-                .getAverageValue();
+                .getValue();
         } else if (type == ResourceType.health) {
             return HealthUtils.getMaxHealth(en);
         }

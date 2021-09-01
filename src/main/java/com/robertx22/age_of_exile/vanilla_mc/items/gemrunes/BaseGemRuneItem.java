@@ -36,16 +36,10 @@ public abstract class BaseGemRuneItem extends Item {
 
         this.getStatModsForSerialization(family)
             .forEach(x -> {
-                if (x.GetStat()
-                    .UsesSecondValue()) {
-                    list.add(new StatModifier(
-                        x.min1 * multi, x.max1 * multi, x.min2 * multi, x.max2 * multi,
-                        x.GetStat(), x.getModType()));
-                } else {
-                    list.add(new StatModifier(
-                        x.min1 * multi, x.max1 * multi,
-                        x.GetStat(), x.getModType()));
-                }
+
+                list.add(new StatModifier(
+                    x.min * multi, x.max * multi,
+                    x.GetStat(), x.getModType()));
 
             });
 

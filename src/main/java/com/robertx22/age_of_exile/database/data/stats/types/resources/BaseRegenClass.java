@@ -33,7 +33,7 @@ public abstract class BaseRegenClass extends Stat {
 
             @Override
             public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                effect.data.getNumber(EventData.NUMBER).number += data.getAverageValue();
+                effect.data.getNumber(EventData.NUMBER).number += data.getValue();
                 return effect;
             }
 

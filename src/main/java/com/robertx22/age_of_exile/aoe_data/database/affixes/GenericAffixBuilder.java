@@ -3,12 +3,14 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.affixes.AffixTag;
-import com.robertx22.age_of_exile.database.data.affixes.AffixTier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.requirements.Requirements;
 import com.robertx22.age_of_exile.database.data.requirements.TagRequirement;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -20,12 +22,10 @@ public class GenericAffixBuilder<T> {
     List<String> tags = new ArrayList<>();
     Affix.Type type;
 
-    Requirements requirements = new Requirements();
-
     TagRequirement tagRequirement = new TagRequirement();
 
     Function<T, String> guid;
-    HashMap<Integer, Function<T, List<StatModifier>>> modsPerTier = new HashMap<>();
+    Function<T, List<StatModifier>> stats;
 
     HashMap<T, String> nameMap = new HashMap<>();
 
@@ -40,8 +40,8 @@ public class GenericAffixBuilder<T> {
         return this;
     }
 
-    public GenericAffixBuilder<T> tier(int tier, Function<T, List<StatModifier>> mods) {
-        this.modsPerTier.put(tier, mods);
+    public GenericAffixBuilder<T> stats(Function<T, List<StatModifier>> mods) {
+        this.stats = mods;
         return this;
     }
 
@@ -105,14 +105,7 @@ public class GenericAffixBuilder<T> {
             affix.guid = guid.apply(element);
             affix.requirements = new Requirements(this.tagRequirement);
 
-            for (Map.Entry<Integer, Function<T, List<StatModifier>>> entry : this.modsPerTier.entrySet()) {
-
-                int tier = entry.getKey();
-                int tierweight = (tier + 1) * 100; // simple for now
-                AffixTier affixTier = new AffixTier(modsPerTier.get(tier)
-                    .apply(element), tierweight, tier);
-                affix.tier_map.put(tier, affixTier);
-            }
+            affix.stats = stats.apply(element);
 
             affix.type = type;
             affix.weight = weight;

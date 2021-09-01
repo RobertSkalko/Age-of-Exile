@@ -20,7 +20,7 @@ public class MultiplyNumberByPercentEffect extends StatEffect {
 
     @Override
     public void activate(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
-        event.data.getNumber(num_id).number += event.data.getNumber(num_id).number * data.getAverageValue() / 100F;
+        event.data.getNumber(num_id).number += event.data.getNumber(num_id).number * data.getValue() / 100F;
     }
 
     @Override

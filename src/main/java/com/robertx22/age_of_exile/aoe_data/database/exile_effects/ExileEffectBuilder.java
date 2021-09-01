@@ -72,7 +72,7 @@ public class ExileEffectBuilder {
     }
 
     public ExileEffectBuilder stat(float first, Stat stat, ModType type) {
-        OptScaleExactStat data = new OptScaleExactStat(first, first, stat, type);
+        OptScaleExactStat data = new OptScaleExactStat(first, stat, type);
         data.scale_to_lvl = stat.getScaling() != StatScaling.NONE;
         this.effect.stats.add(data);
         return this;

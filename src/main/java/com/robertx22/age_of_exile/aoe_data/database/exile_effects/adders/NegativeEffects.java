@@ -17,11 +17,11 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -59,13 +59,13 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(3)
             .stat(-25, Armor.getInstance(), ModType.FLAT)
             .stat(-3, new ElementalResist(Elements.Elemental), ModType.FLAT)
-            .stat(-5, Armor.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(-5, Armor.getInstance(), ModType.PERCENT)
             .build();
 
         ExileEffectBuilder.of(MARK_OF_DEATH)
             .maxStacks(1)
             .stat(-50, Armor.getInstance(), ModType.FLAT)
-            .stat(-25, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(-25, DodgeRating.getInstance(), ModType.PERCENT)
             .stat(-10, new ElementalResist(Elements.Elemental))
             .build();
 
@@ -81,8 +81,8 @@ public class NegativeEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(CHARM)
             .maxStacks(5)
-            .stat(-3, Armor.getInstance(), ModType.LOCAL_INCREASE)
-            .stat(-3, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            .stat(-3, Armor.getInstance(), ModType.PERCENT)
+            .stat(-3, DodgeRating.getInstance(), ModType.PERCENT)
             .stat(-3, new ElementalResist(Elements.Elemental))
             .build();
 

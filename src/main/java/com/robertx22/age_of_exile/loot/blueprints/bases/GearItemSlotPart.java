@@ -5,6 +5,9 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class GearItemSlotPart extends BlueprintPart<BaseGearType, GearBlueprint> {
 
     public GearItemSlotPart(GearBlueprint blueprint) {
@@ -16,6 +19,15 @@ public class GearItemSlotPart extends BlueprintPart<BaseGearType, GearBlueprint>
 
         GearSlot slot = ExileDB.GearSlots()
             .random();
+
+        List<BaseGearType> all = ExileDB.GearTypes()
+            .getList();
+
+        List<BaseGearType> filt = all.stream()
+            .filter(x -> x.getGearSlot()
+                .GUID()
+                .equals(slot.guid))
+            .collect(Collectors.toList());
 
         return ExileDB.GearTypes()
             .getFilterWrapped(x -> x.getGearSlot()

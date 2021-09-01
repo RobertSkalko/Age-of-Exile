@@ -29,11 +29,11 @@ import com.robertx22.age_of_exile.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.ExtraMobRarityAttributes;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.age_of_exile.uncommon.stat_calculation.PlayerStatUtils;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EfficientMobUnitPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityUnitPacket;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
@@ -85,7 +85,7 @@ public class Unit {
 
     public boolean isBloodMage() {
         return getCalculatedStat(BloodUser.getInstance())
-            .getAverageValue() > 0;
+            .getValue() > 0;
     }
 
     public StatContainer getStats() {
@@ -217,7 +217,7 @@ public class Unit {
 
         DirtyCheck check = new DirtyCheck();
 
-        check.hp = (int) getCalculatedStat(Health.GUID).getAverageValue();
+        check.hp = (int) getCalculatedStat(Health.GUID).getValue();
 
         return check;
     }

@@ -51,7 +51,7 @@ public class DualWieldDamage extends Stat {
     private static class Effect extends BaseDamageIncreaseEffect {
         @Override
         public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-            effect.increaseByPercent(data.getAverageValue());
+            effect.increaseByPercent(data.getValue());
             return effect;
         }
 

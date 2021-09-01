@@ -16,9 +16,6 @@ public class BlacksmithingAdder {
         ModRegistry.TIERED.KEY_TIER_MAP.values()
             .forEach(x -> b.itemCraftExp(x, 25 + x.tier.tier * 20));
 
-        ModRegistry.TIERED.TOOL_UPGRADE.values()
-            .forEach(x -> b.itemCraftExp(x, 20 + x.tier.tier * 10));
-
         ModRegistry.BACKPACK_UPGRADES.ALL
             .forEach(x -> b.itemCraftExp(x, 100 + x.tier.tier * 100));
 

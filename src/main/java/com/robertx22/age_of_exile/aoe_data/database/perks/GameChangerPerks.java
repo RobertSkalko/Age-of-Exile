@@ -35,15 +35,15 @@ public class GameChangerPerks implements ExileRegistryInit {
             new OptScaleExactStat(10, Stats.ELEMENT_LEECH_RESOURCE.get(new LeechInfo(Elements.Nature, ResourceType.health))),
             new OptScaleExactStat(-10, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee)),
             new OptScaleExactStat(-20, DatapackStats.MOVE_SPEED),
-            new OptScaleExactStat(-100, DodgeRating.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(-100, DodgeRating.getInstance(), ModType.PERCENT)
         );
         bear.one_of_a_kind = "animal";
 
         Perk wolf = PerkBuilder.gameChanger("wolf", "Wolf",
             new OptScaleExactStat(25, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BLEED)),
             new OptScaleExactStat(20, Stats.ATTACK_SPEED.get()),
-            new OptScaleExactStat(-50, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-50, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(-50, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-50, ManaRegen.getInstance(), ModType.PERCENT)
         );
         wolf.one_of_a_kind = "animal";
 
@@ -51,8 +51,8 @@ public class GameChangerPerks implements ExileRegistryInit {
             new OptScaleExactStat(25, Stats.HEAL_STRENGTH.get()),
             new OptScaleExactStat(20, Stats.CAST_SPEED.get()),
             new OptScaleExactStat(25, new ElementalPenetration(Elements.Nature)),
-            new OptScaleExactStat(-25, Armor.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-25, Health.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(-25, Armor.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-25, Health.getInstance(), ModType.PERCENT)
         );
         owl.one_of_a_kind = "animal";
 
@@ -104,7 +104,7 @@ public class GameChangerPerks implements ExileRegistryInit {
 
         PerkBuilder.gameChanger("spell_slinger", "Spellslinger",
             new OptScaleExactStat(-50, Stats.TOTAL_DAMAGE.get()),
-            new OptScaleExactStat(-50, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(-50, ManaRegen.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(30, Stats.COOLDOWN_REDUCTION.get()),
             new OptScaleExactStat(30, Stats.PROJECTILE_SPEED.get()),
             new OptScaleExactStat(30, Stats.PROJECTILE_DAMAGE.get())
@@ -130,8 +130,8 @@ public class GameChangerPerks implements ExileRegistryInit {
 
         PerkBuilder.gameChanger("refined_taste", "Refined Taste",
             new OptScaleExactStat(50, Stats.INCREASED_LEECH.get(), ModType.FLAT),
-            new OptScaleExactStat(-75, HealthRegen.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(-75, ManaRegen.getInstance(), ModType.LOCAL_INCREASE)
+            new OptScaleExactStat(-75, HealthRegen.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(-75, ManaRegen.getInstance(), ModType.PERCENT)
         );
 
         PerkBuilder.gameChanger("overflowing_vitality", "Overflowing Vitality",
@@ -151,8 +151,8 @@ public class GameChangerPerks implements ExileRegistryInit {
         );
 
         PerkBuilder.gameChanger("harmony", "Harmony",
-            new OptScaleExactStat(20, Health.getInstance(), ModType.LOCAL_INCREASE),
-            new OptScaleExactStat(20, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new OptScaleExactStat(20, Health.getInstance(), ModType.PERCENT),
+            new OptScaleExactStat(20, Mana.getInstance(), ModType.PERCENT),
             new OptScaleExactStat(-10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
         );
 

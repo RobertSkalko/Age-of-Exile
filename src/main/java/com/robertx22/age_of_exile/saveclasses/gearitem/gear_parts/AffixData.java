@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.library_of_exile.registry.FilterListWrap;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -29,9 +28,6 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
 
     @Store
     public String affix;
-
-    @Store
-    public Integer tier = 10;
 
     @Store
     public Affix.Type type;
@@ -84,7 +80,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
         List<TooltipStatWithContext> list = new ArrayList<>();
         this.BaseAffix()
-            .getTierStats(tier)
+            .getStats()
             .forEach(x -> {
                 ExactStatData exact = x.ToExactStat(perc, gear.lvl);
                 list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, gear.lvl));
@@ -112,7 +108,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
         }
 
         return this.BaseAffix()
-            .getTierStats(tier)
+            .getStats()
             .stream()
             .map(x -> x.ToExactStat(perc, gear.lvl))
             .collect(Collectors.toList());
@@ -121,7 +117,6 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
 
     public void create(GearItemData gear, Affix suffix) {
         affix = suffix.GUID();
-        this.tier = RandomUtils.weightedRandom(suffix.tier_map.values()).tier;
         RerollNumbers(gear);
     }
 

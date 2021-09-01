@@ -17,7 +17,6 @@ public interface IStatSerializer<T extends BaseDatapackStat> {
         json.addProperty("max", obj.max);
         json.addProperty("base", obj.base);
         json.addProperty("perc", obj.is_perc);
-        json.addProperty("sec_val", obj.use_sec_val);
         json.addProperty("ele", obj.element != null ? obj.element.name() : Elements.Physical.name());
         json.addProperty("scale", obj.scaling.name());
     }
@@ -33,8 +32,6 @@ public interface IStatSerializer<T extends BaseDatapackStat> {
         obj.base = json.get("base")
             .getAsFloat();
         obj.is_perc = json.get("perc")
-            .getAsBoolean();
-        obj.use_sec_val = json.get("sec_val")
             .getAsBoolean();
         obj.element = Elements.valueOf(json.get("ele")
             .getAsString());

@@ -58,8 +58,8 @@ public class Perks implements ExileRegistryInit {
 
         PerkBuilder.stat(new OptScaleExactStat(4, Stats.REDUCED_MANA_RESERVED.get(), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(5, Stats.SPELL_ACCURACY.get(), ModType.LOCAL_INCREASE));
-        PerkBuilder.stat(new OptScaleExactStat(5, Stats.ACCURACY.get(), ModType.LOCAL_INCREASE));
+        PerkBuilder.stat(new OptScaleExactStat(5, Stats.SPELL_ACCURACY.get(), ModType.PERCENT));
+        PerkBuilder.stat(new OptScaleExactStat(5, Stats.ACCURACY.get(), ModType.PERCENT));
 
         PerkBuilder.stat(new OptScaleExactStat(2, Stats.LIFESTEAL.get(), ModType.FLAT));
 
@@ -81,7 +81,7 @@ public class Perks implements ExileRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.DOT_DAMAGE.get(), ModType.FLAT));
         PerkBuilder.stat("dot_damage", new OptScaleExactStat(3, Stats.DOT_DAMAGE.get(), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.LOCAL_INCREASE));
+        PerkBuilder.stat(new OptScaleExactStat(5, ManaRegen.getInstance(), ModType.PERCENT));
         PerkBuilder.stat("small_positive_effect_increase",
             new OptScaleExactStat(3, Stats.EFFECT_OF_BUFFS_ON_YOU_PER_EFFECT_TAG.get(EffectTags.positive))
         );
@@ -89,7 +89,7 @@ public class Perks implements ExileRegistryInit {
         PerkBuilder.stat("cooldown_reduction", new OptScaleExactStat(3, Stats.COOLDOWN_REDUCTION.get()));
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.COOLDOWN_REDUCTION.get()));
 
-        PerkBuilder.stat(new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.LOCAL_INCREASE));
+        PerkBuilder.stat(new OptScaleExactStat(5, HealthRegen.getInstance(), ModType.PERCENT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT));
@@ -99,10 +99,10 @@ public class Perks implements ExileRegistryInit {
 
         PerkBuilder.stat("less_aggro", new OptScaleExactStat(-2, Stats.THREAT_GENERATED.get(), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(3, DodgeRating.getInstance(), ModType.LOCAL_INCREASE));
-        PerkBuilder.stat(new OptScaleExactStat(3, Armor.getInstance(), ModType.LOCAL_INCREASE));
-        PerkBuilder.stat(new OptScaleExactStat(2, Health.getInstance(), ModType.LOCAL_INCREASE));
-        PerkBuilder.stat(new OptScaleExactStat(3, Mana.getInstance(), ModType.LOCAL_INCREASE));
+        PerkBuilder.stat(new OptScaleExactStat(3, DodgeRating.getInstance(), ModType.PERCENT));
+        PerkBuilder.stat(new OptScaleExactStat(3, Armor.getInstance(), ModType.PERCENT));
+        PerkBuilder.stat(new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT));
+        PerkBuilder.stat(new OptScaleExactStat(3, Mana.getInstance(), ModType.PERCENT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.PROJECTILE_SPEED.get()));
 
@@ -159,7 +159,7 @@ public class Perks implements ExileRegistryInit {
 
         new AttackDamage(Elements.Nature).generateAllPossibleStatVariations()
             .forEach(x -> {
-                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.LOCAL_INCREASE));
+                PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.PERCENT));
 
             });
 

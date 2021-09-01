@@ -42,7 +42,7 @@ public class BlazeArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(10, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Fire)),
-                    new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(5, 15, ManaRegen.getInstance(), ModType.PERCENT),
                     new StatModifier(1, 3, DatapackStats.INT, ModType.FLAT),
                     new StatModifier(2, 2, DatapackStats.AGI, ModType.FLAT)
                 )
@@ -98,7 +98,7 @@ public class BlazeArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(15, 25, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
-                    new StatModifier(10, 20, Mana.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(10, 20, Mana.getInstance(), ModType.PERCENT),
                     new StatModifier(1, 3, DatapackStats.DEX, ModType.FLAT),
                     new StatModifier(1, 3, DatapackStats.VIT, ModType.FLAT)
                 )

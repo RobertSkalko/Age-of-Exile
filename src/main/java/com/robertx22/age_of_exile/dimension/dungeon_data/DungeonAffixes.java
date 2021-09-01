@@ -23,8 +23,7 @@ public class DungeonAffixes {
         List<ExactStatData> list = new ArrayList<>();
 
         getAffixes().forEach(x -> {
-            list.addAll(x.getTierStats((Integer) x.tier_map.keySet()
-                    .toArray()[0])
+            list.addAll(x.getStats()
                 .stream()
                 .map(s -> s.ToExactStat(100, lvl))
                 .collect(Collectors.toList()));

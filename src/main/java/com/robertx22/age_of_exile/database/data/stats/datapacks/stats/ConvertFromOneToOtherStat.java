@@ -59,8 +59,8 @@ public class ConvertFromOneToOtherStat extends BaseDatapackStat implements IAffe
         InCalcStatData thisstat = data.getUnit()
             .getStatInCalculation(this.GUID());
 
-        float multi = thisstat.getFlatAverage() / 100F;
-        float val = adder.getFlatAverage() * multi;
+        float multi = thisstat.getValue() / 100F;
+        float val = adder.getValue() * multi;
 
         add_to.addAlreadyScaledFlat(val);
 

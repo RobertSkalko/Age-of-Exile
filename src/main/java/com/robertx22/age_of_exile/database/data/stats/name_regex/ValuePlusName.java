@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 public class ValuePlusName extends StatNameRegex {
 
     @Override
-    public String getStatNameRegex(ModType type, Stat stat, float v1, float v2) {
+    public String getStatNameRegex(ModType type, Stat stat, float v1) {
         return VALUE + " " + NAME;
     }
 }

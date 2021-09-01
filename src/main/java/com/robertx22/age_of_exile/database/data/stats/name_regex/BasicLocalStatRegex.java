@@ -17,13 +17,9 @@ public class BasicLocalStatRegex extends StatNameRegex {
     }
 
     @Override
-    public String getStatNameRegex(ModType type, Stat stat, float v1, float v2) {
+    public String getStatNameRegex(ModType type, Stat stat, float v1) {
 
-        if (type.isFlat() && stat.UsesSecondValue()) {
-            return NAME + ": " + numberColor(stat, v1) + MIN_VALUE + numberColor(stat, v2) + "-" + MAX_VALUE;
-        } else {
-            return NAME + ": " + numberColor(stat, v1) + VALUE;
-        }
+        return NAME + ": " + numberColor(stat, v1) + VALUE;
 
     }
 }

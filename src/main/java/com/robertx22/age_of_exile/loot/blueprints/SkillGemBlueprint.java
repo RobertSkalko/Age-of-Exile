@@ -6,13 +6,13 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.bases.SkillGemRarityPart;
 import com.robertx22.age_of_exile.loot.blueprints.bases.SkillGemTypePart;
 import com.robertx22.age_of_exile.loot.generators.stack_changers.DamagedGear;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -59,7 +59,7 @@ public class SkillGemBlueprint extends ItemBlueprint {
                         .anyMatch(t -> data.getSkillGem().tags.contains(t)));
 
                 if (!opt.list.isEmpty()) {
-                    opt.random().stats.forEach(x -> data.random_stats.add(new StatModifier(x.min1, x.max1, x.GetStat(), x.getModType())));
+                    opt.random().stats.forEach(x -> data.random_stats.add(new StatModifier(x.min, x.max, x.GetStat(), x.getModType())));
                 }
             }
         }

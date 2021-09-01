@@ -42,7 +42,7 @@ public class DarkCrystalArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(10, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Dark)),
-                    new StatModifier(5, 15, ManaRegen.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(5, 15, ManaRegen.getInstance(), ModType.PERCENT),
                     new StatModifier(5, 15, TreasureQuality.getInstance(), ModType.FLAT),
                     new StatModifier(1, 10, DatapackStats.INT, ModType.FLAT),
                     new StatModifier(2, 2, DatapackStats.AGI, ModType.FLAT)
@@ -101,7 +101,7 @@ public class DarkCrystalArmor implements ExileRegistryInit, GearDataHelper {
             .stats(
                 Arrays.asList(
                     new StatModifier(10, 20, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Light)),
-                    new StatModifier(10, 20, Mana.getInstance(), ModType.LOCAL_INCREASE),
+                    new StatModifier(10, 20, Mana.getInstance(), ModType.PERCENT),
                     new StatModifier(2, 5, DatapackStats.WIS, ModType.FLAT),
                     new StatModifier(2, 5, DatapackStats.VIT, ModType.FLAT)
                 )

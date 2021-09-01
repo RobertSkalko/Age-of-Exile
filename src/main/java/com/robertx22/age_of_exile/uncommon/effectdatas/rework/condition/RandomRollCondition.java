@@ -14,7 +14,7 @@ public class RandomRollCondition extends StatCondition {
 
     @Override
     public boolean can(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
-        return RandomUtils.roll(data.getAverageValue());
+        return RandomUtils.roll(data.getValue());
     }
 
     @Override

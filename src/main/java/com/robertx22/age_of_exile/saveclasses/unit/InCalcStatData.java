@@ -17,7 +17,6 @@ public class InCalcStatData {
     public String id = "";
 
     private float Flat = 0;
-    private float Flat2 = 0;
     private float Percent = 0;
     private float Multi = 0;
 
@@ -30,7 +29,6 @@ public class InCalcStatData {
         InCalcStatData clone = new InCalcStatData();
         clone.id = id;
         clone.Flat = Flat;
-        clone.Flat2 = Flat2;
         clone.Percent = Percent;
         clone.Multi = Multi;
 
@@ -43,7 +41,6 @@ public class InCalcStatData {
 
     public void clear() {
         this.Flat = 0;
-        this.Flat2 = 0;
         this.Percent = 0;
         this.Multi = 0;
     }
@@ -68,8 +65,6 @@ public class InCalcStatData {
 
         float finalValue = stat.base;
 
-        finalValue += Flat2;
-
         finalValue *= 1 + Percent / 100;
 
         finalValue *= 1 + Multi / 100;
@@ -93,25 +88,17 @@ public class InCalcStatData {
 
     public void addAlreadyScaledFlat(float val1) {
         this.Flat += val1;
-        this.Flat2 += val1;
     }
 
     public void addFullyTo(InCalcStatData other) {
         other.Flat += Flat;
-        other.Flat2 += Flat2;
         other.Percent += Percent;
         other.Multi += Multi;
 
     }
 
-    public void addAlreadyScaledFlat(float val1, float val2) {
-        this.Flat += val1;
-        this.Flat2 += val2;
-    }
-
     public void addFlat(float val1, int lvl) {
         this.Flat += GetStat().scale(val1, lvl);
-        this.Flat2 += GetStat().scale(val1, lvl);
     }
 
     public boolean isMoreThanZero() {
@@ -124,26 +111,22 @@ public class InCalcStatData {
 
     public void multiplyFlat(float multi) {
         this.Flat *= multi;
-        this.Flat2 *= multi;
     }
 
     public void multiplyFlat(double multi) {
         this.Flat *= multi;
-        this.Flat2 *= multi;
     }
 
     public void add(ExactStatData modData, EntityCap.UnitData data) {
         ModType type = modData.getType();
 
         float v1 = modData.getFirstValue();
-        float v2 = modData.getSecondValue();
 
-        float v = (v1 + v2) / 2F;
+        float v = v1;
 
         if (type == ModType.FLAT) {
             Flat += v1;
-            Flat2 += v2;
-        } else if (type == ModType.LOCAL_INCREASE) {
+        } else if (type == ModType.PERCENT) {
             Percent += v;
         } else if (type == ModType.GLOBAL_INCREASE) {
             Multi += v;
@@ -151,15 +134,11 @@ public class InCalcStatData {
 
     }
 
-    public float getFlatAverage() {
-        if (GetStat().UsesSecondValue()) {
-
-            return (Flat + Flat2) / 2;
-        }
+    public float getValue() {
         return Flat;
     }
 
     public StatData getCalculated() {
-        return new StatData(this.id, calcFirstValue(), calcSecondValue());
+        return new StatData(this.id, getValue());
     }
 }

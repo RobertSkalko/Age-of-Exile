@@ -37,10 +37,6 @@ public class ItemGlintMixin {
 
                     GearItemData gear = Gear.Load(stack);
 
-                    if (gear.GetBaseGearType()
-                        .isTool()) {
-                        return;
-                    }
                     rar = gear.getRarity();
                 }
 

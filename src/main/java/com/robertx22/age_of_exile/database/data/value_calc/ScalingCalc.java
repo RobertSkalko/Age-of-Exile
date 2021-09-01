@@ -48,7 +48,7 @@ public class ScalingCalc extends BaseStatCalc {
     public int getCalculatedValue(EntityCap.UnitData data) {
         return (int) (data.getUnit()
             .getCalculatedStat(stat)
-            .getAverageValue() * multi);
+            .getValue() * multi);
     }
 
     public Text GetTooltipString() {

@@ -73,7 +73,7 @@ public class PhysConvertToEle extends ElementalStat {
 
         @Override
         public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-            float dmg = effect.data.getNumber() * data.getAverageValue() / 100F;
+            float dmg = effect.data.getNumber() * data.getValue() / 100F;
             effect.addBonusEleDmg(stat.getElement(), dmg);
             effect.data.getNumber(EventData.NUMBER).number -= dmg;
 

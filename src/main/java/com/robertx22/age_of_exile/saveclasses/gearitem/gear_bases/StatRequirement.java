@@ -58,7 +58,7 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
 
             if (num > data.getUnit()
                 .getCalculatedStat(x)
-                .getAverageValue()) {
+                .getValue()) {
                 return false;
             }
 
@@ -144,7 +144,7 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
 
         if (data.getUnit()
             .getCalculatedStat(stat)
-            .getAverageValue() >= req) {
+            .getValue() >= req) {
             return new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + CHECK_YES_ICON + " ").append(stat.locName()
                     .formatted(Formatting.GRAY))
                 .append(" " + Formatting.GRAY + "Min: " + req + " ");

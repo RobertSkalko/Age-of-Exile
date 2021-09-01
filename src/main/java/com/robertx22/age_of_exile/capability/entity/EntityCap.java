@@ -237,7 +237,7 @@ public class EntityCap {
             nbt.putString(RACE, race);
             nbt.putInt(SCROLL_BUFF_SEED, buffSeed);
             nbt.putInt(HP, (int) getUnit().getCalculatedStat(Health.getInstance())
-                .getAverageValue());
+                .getValue());
             nbt.putString(ENTITY_TYPE, this.type.toString());
 
             if (affixes != null) {
@@ -378,11 +378,11 @@ public class EntityCap {
 
             if (type == ResourceType.blood) {
                 return getUnit().bloodData()
-                    .getAverageValue() * multi;
+                    .getValue() * multi;
             }
             if (type == ResourceType.mana) {
                 return getUnit().manaData()
-                    .getAverageValue() * multi;
+                    .getValue() * multi;
             }
             if (type == ResourceType.health) {
                 return entity.getMaxHealth();

@@ -58,7 +58,7 @@ public class CoreStat extends BaseDatapackStat implements ICoreStat {
     }
 
     public float getPercent(StatData data) {
-        return (data.getAverageValue() - 1) * 100;
+        return (data.getValue() - 1) * 100;
     }
 
     public List<Text> getCoreStatTooltip(EntityCap.UnitData unitdata, StatData data) {

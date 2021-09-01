@@ -28,9 +28,9 @@ public class CustomExactStatsData implements IApplyableStats {
     @Store
     public HashMap<String, StatModifier> mods = new HashMap<>();
 
-    public void addExactStat(String hashmapGUID, String statGUID, float v1, float v2, ModType type) {
+    public void addExactStat(String hashmapGUID, String statGUID, float v1, ModType type) {
         try {
-            stats.put(hashmapGUID, ExactStatData.noScaling(v1, v2, type, statGUID));
+            stats.put(hashmapGUID, ExactStatData.noScaling(v1, type, statGUID));
         } catch (Exception e) {
             e.printStackTrace();
         }

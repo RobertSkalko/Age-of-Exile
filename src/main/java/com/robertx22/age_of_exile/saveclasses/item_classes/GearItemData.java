@@ -11,8 +11,6 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.*;
-import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -25,7 +23,6 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -100,32 +97,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return MathHelper.clamp(lvl / 10, 1, Integer.MAX_VALUE);
     }
 
-    public PlayerSkillEnum getSkillNeeded() {
-        BaseGearType type = GetBaseGearType();
-
-        if (type.tags.contains(BaseGearType.SlotTag.hoe)) {
-            return PlayerSkillEnum.FARMING;
-        } else if (type.tags.contains(BaseGearType.SlotTag.fishing_rod)) {
-            return PlayerSkillEnum.FISHING;
-        } else if (type.tags.contains(BaseGearType.SlotTag.pickaxe)) {
-            return PlayerSkillEnum.MINING;
-        }
-        return null;
-    }
-
     public boolean canPlayerWear(EntityCap.UnitData data) {
 
         if (lvl > data.getLevel()) {
             return false;
-        }
-
-        PlayerSkillEnum skill = getSkillNeeded();
-        if (skill != null && data.getEntity() instanceof PlayerEntity) {
-            int skillvll = Load.playerSkills((PlayerEntity) data.getEntity())
-                .getLevel(skill);
-            if (lvl > skillvll) {
-                return false;
-            }
         }
 
         return getRequirement().meetsReq(lvl, data);
@@ -465,9 +440,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     @Override
     public boolean isSalvagable(SalvageContext context) {
-        if (this.GetBaseGearType() != null && GetBaseGearType().isTool()) {
-            return false;
-        }
 
         return this.can_sal;
     }

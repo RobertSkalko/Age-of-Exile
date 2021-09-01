@@ -68,7 +68,7 @@ public class BonusYield extends Stat implements IGenerated<Stat> {
         @Override
         public SkillDropEvent activate(SkillDropEvent effect, StatData data, Stat stat) {
             effect.originalDrops.forEach(x -> {
-                if (RandomUtils.roll(data.getAverageValue())) {
+                if (RandomUtils.roll(data.getValue())) {
                     effect.extraDrops.add(x.copy());
                 }
             });

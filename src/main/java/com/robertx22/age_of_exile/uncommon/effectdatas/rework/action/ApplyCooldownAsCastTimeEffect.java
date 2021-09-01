@@ -15,7 +15,7 @@ public class ApplyCooldownAsCastTimeEffect extends StatEffect {
     @Override
     public void activate(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
         if (event.isSpell() && event.getSpell().config.apply_cast_speed_to_cd) {
-            event.data.getNumber(EventData.COOLDOWN_TICKS).number -= event.data.getOriginalNumber(EventData.COOLDOWN_TICKS).number * data.getAverageValue() / 100F;
+            event.data.getNumber(EventData.COOLDOWN_TICKS).number -= event.data.getOriginalNumber(EventData.COOLDOWN_TICKS).number * data.getValue() / 100F;
         }
     }
 

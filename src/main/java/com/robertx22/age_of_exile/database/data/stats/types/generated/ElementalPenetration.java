@@ -78,7 +78,7 @@ public class ElementalPenetration extends ElementalStat {
 
         @Override
         public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-            effect.data.getNumber(EventData.PENETRATION).number += data.getAverageValue();
+            effect.data.getNumber(EventData.PENETRATION).number += data.getValue();
             return effect;
         }
 

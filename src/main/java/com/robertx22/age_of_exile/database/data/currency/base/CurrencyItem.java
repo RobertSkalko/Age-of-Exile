@@ -64,11 +64,6 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
 
             GearItemData gear = (GearItemData) context.data;
 
-            if (gear.GetBaseGearType()
-                .isTool()) {
-                return false;
-            }
-
             if (this.getInstability() > 0) {
 
                 if (gear.getInstability() >= ModConfig.get().ItemSealing.MAX_INSTABILITY) {

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.aoe_data;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.Prefixes;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.Suffixes;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.dungeon.DungeonAffixAdder;
-import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.tools.ToolAffixes;
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearsRegister;
 import com.robertx22.age_of_exile.aoe_data.database.base_stats.BaseStatsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.craft_req.CraftReqAdder;
@@ -78,7 +77,6 @@ public class GeneratedData {
         new DungeonAffixAdder().registerAll();
         new Prefixes().registerAll();
         new Suffixes().registerAll();
-        new ToolAffixes().registerAll();
 
         new MobAffixes().registerAll();
         new DimConfigs().registerAll();

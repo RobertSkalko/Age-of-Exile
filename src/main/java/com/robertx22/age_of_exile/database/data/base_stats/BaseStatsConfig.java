@@ -25,12 +25,12 @@ public class BaseStatsConfig implements JsonExileRegistry<BaseStatsConfig>, IAut
     List<OptScaleExactStat> base_stats = new ArrayList<>();
 
     public void scaled(Stat stat, float val) {
-        base_stats.add(new OptScaleExactStat(val, val, stat, ModType.FLAT).scale());
+        base_stats.add(new OptScaleExactStat(val, stat, ModType.FLAT).scale());
 
     }
 
     public void nonScaled(Stat stat, float val) {
-        base_stats.add(new OptScaleExactStat(val, val, stat, ModType.FLAT));
+        base_stats.add(new OptScaleExactStat(val, stat, ModType.FLAT));
     }
 
     @Override
