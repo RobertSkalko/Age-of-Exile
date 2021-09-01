@@ -36,7 +36,7 @@ public class BaseLocalStatTooltip implements IStatTooltipType {
         }
 
         MutableText txt = new LiteralText(StatNameRegex.BASIC_LOCAL
-            .translate(ctx, info.type, info.firstValue, info.secondValue, info.stat));
+            .translate(ctx, info.type, info.firstValue, info.stat));
 
         if (ctx.statinfo.stat.is_long) {
             return longStat(ctx, txt);

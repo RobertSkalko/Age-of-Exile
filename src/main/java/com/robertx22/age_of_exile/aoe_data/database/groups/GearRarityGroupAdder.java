@@ -28,13 +28,13 @@ public class GearRarityGroupAdder implements ExileRegistryInit {
             .collect(Collectors.toList()), NON_UNIQUE_KEY.GUID());
         normal.addToSerializables();
 
-        GearRarityGroup low = new GearRarityGroup(Arrays.asList(IRarity.COMMON_ID, IRarity.MAGICAL_ID), UP_TO_MAGICAL.GUID());
+        GearRarityGroup low = new GearRarityGroup(Arrays.asList(IRarity.COMMON_ID, IRarity.UNCOMMON), UP_TO_MAGICAL.GUID());
         low.addToSerializables();
 
-        GearRarityGroup rare = new GearRarityGroup(Arrays.asList(IRarity.COMMON_ID, IRarity.MAGICAL_ID, IRarity.RARE_ID), UP_TO_RARE.GUID());
+        GearRarityGroup rare = new GearRarityGroup(Arrays.asList(IRarity.COMMON_ID, IRarity.UNCOMMON, IRarity.RARE_ID), UP_TO_RARE.GUID());
         rare.addToSerializables();
 
-        GearRarityGroup epic = new GearRarityGroup(Arrays.asList(IRarity.COMMON_ID, IRarity.MAGICAL_ID, IRarity.RARE_ID, IRarity.EPIC_ID), UP_TO_EPIC.GUID());
+        GearRarityGroup epic = new GearRarityGroup(Arrays.asList(IRarity.COMMON_ID, IRarity.UNCOMMON, IRarity.RARE_ID, IRarity.EPIC_ID), UP_TO_EPIC.GUID());
         epic.addToSerializables();
 
     }

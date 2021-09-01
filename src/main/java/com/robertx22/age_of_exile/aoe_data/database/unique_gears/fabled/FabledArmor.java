@@ -29,7 +29,6 @@ public class FabledArmor implements ExileRegistryInit, GearDataHelper {
                 "Eternal Void, Unseeing Eye",
                 "",
                 BaseLeatherArmors.HELMETS.values())
-            .setFabled()
             .setReplacesName()
             .baseStats(
                 getStat(ArmorStat.HEALTH, ArmorType.MEDIUM, ArmorSlot.HELMET),

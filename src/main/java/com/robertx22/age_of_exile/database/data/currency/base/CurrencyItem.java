@@ -153,7 +153,7 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
 
     @Override
     public String getRarityRank() {
-        return IRarity.MAGICAL_ID;
+        return IRarity.UNCOMMON;
     }
 
     @Override

@@ -1,8 +1,5 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-mmorpg:stat_infusion/2
-mmorpg:stat_infusion/1
-mmorpg:stat_infusion/0
 mmorpg:food/meal/red/2
 mmorpg:food/meal/red/1
 mmorpg:food/meal/red/4
@@ -12,8 +9,6 @@ mmorpg:food/cookie/yellow/2
 mmorpg:food/meal/red/0
 mmorpg:food/cookie/yellow/3
 mmorpg:food/cookie/yellow/4
-mmorpg:stat_infusion/4
-mmorpg:stat_infusion/3
 mmorpg:food/fish/green/1
 mmorpg:food/fish/green/0
 mmorpg:food/cookie/yellow/0

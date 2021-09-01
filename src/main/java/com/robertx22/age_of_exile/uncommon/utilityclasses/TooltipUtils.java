@@ -254,7 +254,7 @@ public class TooltipUtils {
 
     public static MutableText gearTier(int tier) {
         return new LiteralText("Item Tier: ").formatted(Formatting.WHITE)
-            .append(new LiteralText("I").formatted(Formatting.AQUA));
+            .append(new LiteralText(LevelUtils.tierToRomanNumeral(tier)).formatted(Formatting.AQUA));
     }
 
     public static MutableText gearRarity(GearRarity rarity) {

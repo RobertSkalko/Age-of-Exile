@@ -66,16 +66,8 @@ public abstract class BaseRarity implements Rarity {
         onSetFields();
     }
 
-    public void setMIFields() {
-        this.guid = IRarity.MONSTER_UNIQUE_ID;
-        this.loc_name = "Monster Infrequent";
-        this.text_format = Formatting.RED.name();
-
-        onSetFields();
-    }
-
     public void setUncommonFields() {
-        this.guid = IRarity.MAGICAL_ID;
+        this.guid = IRarity.UNCOMMON;
         this.loc_name = "Uncommon";
         this.text_format = Formatting.GREEN.name();
 
@@ -126,14 +118,6 @@ public abstract class BaseRarity implements Rarity {
         this.guid = IRarity.UNIQUE_ID;
         this.loc_name = "Unique";
         this.text_format = Formatting.RED.name();
-
-        onSetFields();
-    }
-
-    public void setFabledFields() {
-        this.guid = IRarity.FABLED_ID;
-        this.loc_name = "Fabled";
-        this.text_format = Formatting.DARK_RED.name();
 
         onSetFields();
     }

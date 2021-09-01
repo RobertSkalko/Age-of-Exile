@@ -25,7 +25,6 @@ public class FabledJewelry implements ExileRegistryInit {
                 "Azuna's Eternal Decree",
                 "",
                 BaseGearJewelry.MANA_RING.values())
-            .setFabled()
             .setReplacesName()
             .baseStats(
                 new StatModifier(10, 15, new ElementalResist(Elements.Fire), ModType.FLAT),

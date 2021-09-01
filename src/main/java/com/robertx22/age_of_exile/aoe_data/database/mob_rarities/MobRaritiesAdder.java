@@ -19,7 +19,7 @@ public class MobRaritiesAdder implements ExileRegistryInit {
         normal.exp_multi = 1;
         normal.loot_multi = 1;
         normal.weight = 1000;
-        normal.higher_rar = IRarity.MAGICAL_ID;
+        normal.higher_rar = IRarity.UNCOMMON;
         normal.setCommonFields();
         normal.loc_name = "";
         normal.addToSerializables();

@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
@@ -17,6 +18,11 @@ public class CreativeTabs {
         new Identifier(Ref.MODID, "main_group")
         ,
         () -> new ItemStack(ModRegistry.UNIQUE_GEARS.WINTER));
+
+    public static ItemGroup GearSouls = FabricItemGroupBuilder.build(
+        new Identifier(Ref.MODID, "gear_soul_group")
+        ,
+        () -> new ItemStack(Items.SOUL_LANTERN));
 
     public static ItemGroup Gems = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "gem_group")

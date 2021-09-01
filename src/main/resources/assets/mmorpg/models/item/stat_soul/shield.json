@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "mmorpg:items/stat_soul/shield",
+        "layer1": "mmorpg:items/stat_soul/question"
+    }
+}

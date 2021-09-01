@@ -1,8 +1,6 @@
 package com.robertx22.age_of_exile.database.data.races;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusSkillExp;
-import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,11 +19,4 @@ public class RaceLevelingPerk {
         return d;
     }
 
-    public static List<RaceLevelingPerk> profession(PlayerSkillEnum skill) {
-        List<RaceLevelingPerk> list = new ArrayList<>();
-        list.add(RaceLevelingPerk.of(25, new OptScaleExactStat(10, new BonusSkillExp(skill))));
-        list.add(RaceLevelingPerk.of(40, new OptScaleExactStat(15, new BonusSkillExp(skill))));
-        list.add(RaceLevelingPerk.of(50, new OptScaleExactStat(25, new BonusSkillExp(skill))));
-        return list;
-    }
 }

@@ -23,7 +23,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         common.item_value_multi = 1;
         common.item_model_data_num = 1;
         common.essence_per_sal = new MinMax(1, 1);
-        common.higher_rar = IRarity.MAGICAL_ID;
+        common.higher_rar = IRarity.UNCOMMON;
         common.setCommonFields();
         common.addToSerializables();
 
@@ -114,23 +114,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         mythic.setMythicFields();
         mythic.addToSerializables();
 
-        GearRarity mi = new GearRarity();
-        mi.unidentified_chance = 100;
-        mi.stat_req_multi = 1F;
-        mi.default_stat_percents = new MinMax(40, 100);
-        mi.affix_stat_percents = new MinMax(80, 100);
-        mi.spawn_durability_hit = new MinMax(60, 80);
-        mi.weight = 0;
-        mi.affixes = new GearRarity.Part(1, 2, 50);
-        mi.item_tier_power = 1.5F;
-        mi.item_tier = 5;
-        mi.essence_per_sal = new MinMax(2, 3);
-        mi.item_value_multi = 1.5F;
-        mi.special_spawn_chance = 2;
-        mi.is_unique_item = true;
-        mi.setMIFields();
-        mi.addToSerializables();
-
         GearRarity unique = new GearRarity();
         unique.unidentified_chance = 100;
         unique.stat_req_multi = 1;
@@ -147,24 +130,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         unique.special_spawn_chance = 0.1F;
         unique.announce_in_chat = true;
         unique.is_unique_item = true;
-
-        GearRarity fabled = new GearRarity();
-        fabled.drops_after_tier = 2;
-        fabled.unidentified_chance = 100;
-        fabled.stat_req_multi = 1;
-        fabled.spawn_durability_hit = new MinMax(20, 50);
-        fabled.affixes = new GearRarity.Part(0, 0, 0);
-        fabled.weight = 0;
-        fabled.item_tier_power = 2;
-        fabled.item_value_multi = 3;
-        fabled.item_tier = 6;
-        fabled.essence_per_sal = new MinMax(10, 15);
-        fabled.setFabledFields();
-        fabled.addToSerializables();
-        fabled.special_spawn_chest_bonus_chance = 0.005F;
-        fabled.special_spawn_chance = 0.02F;
-        fabled.announce_in_chat = true;
-        fabled.is_unique_item = true;
 
     }
 }

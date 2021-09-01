@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ErrorUtils;
 import com.robertx22.library_of_exile.registry.DataGenKey;
 import net.minecraft.entity.EntityType;
@@ -133,17 +132,6 @@ public class UniqueGearBuilder {
 
     public UniqueGearBuilder devComment(String comment) {
         // OMAE WA MOU SHINDEIRU
-        return this;
-    }
-
-    public UniqueGearBuilder setMI() {
-        this.uniq.uniqueRarity = IRarity.MONSTER_UNIQUE_ID;
-        return this;
-    }
-
-    public UniqueGearBuilder setFabled() {
-        this.uniq.weight /= 10;
-        this.uniq.uniqueRarity = IRarity.FABLED_ID;
         return this;
     }
 

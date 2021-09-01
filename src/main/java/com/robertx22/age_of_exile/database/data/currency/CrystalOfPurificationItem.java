@@ -47,8 +47,6 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
         return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_SEALED);
     }
 
-    
-
     @Override
     public float getInstability() {
         return 0;
@@ -56,7 +54,7 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
 
     @Override
     public String getRarityRank() {
-        return IRarity.MAGICAL_ID;
+        return IRarity.UNCOMMON;
     }
 
     @Override

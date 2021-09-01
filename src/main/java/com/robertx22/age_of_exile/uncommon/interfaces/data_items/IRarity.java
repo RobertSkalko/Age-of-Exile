@@ -14,7 +14,7 @@ public interface IRarity<R extends Rarity> {
     }
 
     String COMMON_ID = "common";
-    String MAGICAL_ID = "magical";
+    String UNCOMMON = "uncommon";
     String RARE_ID = "rare";
     String EPIC_ID = "epic";
     String LEGENDARY_ID = "legendary";
@@ -23,8 +23,5 @@ public interface IRarity<R extends Rarity> {
     String BOSS_ID = "boss";
 
     String UNIQUE_ID = "unique";
-    String FABLED_ID = "fabled";
-
-    String MONSTER_UNIQUE_ID = "monster_unique";
 
 }

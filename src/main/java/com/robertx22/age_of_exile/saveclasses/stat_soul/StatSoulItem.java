@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.stat_soul;
 
+import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -12,12 +13,14 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -25,6 +28,34 @@ import java.util.List;
 public class StatSoulItem extends Item implements IGUID {
 
     public static String TAG = "stat_soul";
+
+    public StatSoulItem() {
+        super(new Settings().group(CreativeTabs.GearSouls));
+    }
+
+    @Override
+    public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+        if (this.isIn(group)) {
+
+            for (GearRarity rarity : ExileDB.GearRarities()
+                .getList()) {
+                for (GearSlot slot : ExileDB.GearSlots()
+                    .getList()) {
+                    for (int i = 1; i < 6; i++) {
+                        StatSoulData data = new StatSoulData();
+                        data.tier = i;
+                        data.rar = rarity.GUID();
+                        data.slot = slot.GUID();
+
+                        ItemStack stack = data.toStack();
+                        stacks.add(stack);
+                    }
+
+                }
+            }
+
+        }
+    }
 
     @Override
     public Text getName(ItemStack stack) {
@@ -68,10 +99,6 @@ public class StatSoulItem extends Item implements IGUID {
     public static StatSoulData getSoul(ItemStack stack) {
         StatSoulData data = LoadSave.Load(StatSoulData.class, new StatSoulData(), stack.getOrCreateTag(), TAG);
         return data;
-    }
-
-    public StatSoulItem() {
-        super(new Settings());
     }
 
     @Override
