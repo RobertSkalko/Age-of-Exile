@@ -64,7 +64,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
     @Override
     public StationType forStation() {
-        return StationType.SOCKET;
+        return StationType.MODIFY;
     }
 
     @Override

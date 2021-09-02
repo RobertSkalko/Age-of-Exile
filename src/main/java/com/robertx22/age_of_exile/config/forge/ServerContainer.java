@@ -31,7 +31,6 @@ public class ServerContainer {
     public int RIFT_LIVES = 10;
     public int MIN_PLAYER_LVL_FOR_RIFTS_TO_SPAWN = 25;
 
-    public int MAX_RUNEWORD_GEARS_WORN = 1;
     public int MAX_UNIQUE_GEARS_WORN = 99;
     public int MAX_LOADOUTS = 3;
 

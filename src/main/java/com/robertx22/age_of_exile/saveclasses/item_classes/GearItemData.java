@@ -212,8 +212,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             } else {
                 if (isUnique()) {
                     return getUniqueName();
-                } else if (hasRuneWord()) {
-                    return getRuneWordName();
                 } else {
                     return getTooManyAffixesName();
                 }
@@ -287,22 +285,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return list;
     }
 
-    private List<MutableText> getRuneWordName() {
-        List<MutableText> list = new ArrayList<>();
-        Formatting format = this.getRarity()
-            .textFormatting();
-
-        MutableText txt = new LiteralText("").append(this.sockets.getRuneWord()
-                .locName())
-            .formatted(format);
-        txt.append(new LiteralText(format + " ").append(GetBaseGearType().locName()
-            .formatted(format)));
-
-        list.addAll(TooltipUtils.cutIfTooLong(txt, format));
-
-        return list;
-    }
-
     private List<MutableText> getTooManyAffixesName() {
         List<MutableText> list = new ArrayList<>();
         Formatting format = this.getRarity()
@@ -334,16 +316,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     }
 
-    public boolean hasRuneWord() {
-        return sockets.getRuneWord() != null;
-    }
-
     private boolean useFullAffixedName() {
 
         if (isUnique() && affixes.getNumberOfAffixes() == 0) {
-            return false;
-        }
-        if (hasRuneWord()) {
             return false;
         }
         if (affixes.getNumberOfPrefixes() > 1) {

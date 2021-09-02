@@ -5,24 +5,11 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.BaseRuneGem;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
-import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
-import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
-import com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems.NoDuplicateRunes;
-import com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems.SocketLvlNotHigherThanItemLvl;
-import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
-import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.IGUID;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -36,11 +23,7 @@ import net.minecraft.world.World;
 import java.util.Arrays;
 import java.util.List;
 
-public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAutoLocName, ICurrencyItemEffect {
-    @Override
-    public StationType forStation() {
-        return StationType.SOCKET;
-    }
+public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAutoLocName {
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -81,44 +64,6 @@ public class RuneItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAut
     @Override
     public String GUID() {
         return "runes/" + type.id;
-    }
-
-    @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack currency) {
-
-        RuneItem ritem = (RuneItem) currency.getItem();
-        Rune rune = ritem.getRune();
-        GearItemData gear = Gear.Load(stack);
-
-        SocketData socket = new SocketData();
-        socket.rune = rune.identifier;
-        socket.lvl = gear.lvl;
-        socket.perc = RandomUtils.RandomRange(0, 100);
-
-        gear.sockets.sockets.add(socket);
-
-        ExileDB.Runewords()
-            .getList()
-            .forEach(x -> {
-                if (x.HasRuneWord(gear)) {
-                    gear.sockets.word = x.GUID();
-                    gear.sockets.word_perc = RandomUtils.RandomRange(0, 100);
-                }
-            });
-
-        Gear.Save(stack, gear);
-
-        return stack;
-    }
-
-    @Override
-    public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_EMPTY_SOCKETS, new NoDuplicateRunes(), new SocketLvlNotHigherThanItemLvl());
-    }
-
-    public static StatModifier dmg(Elements ele) {
-        return new
-            StatModifier(0.5F, 1F, new AttackDamage(ele), ModType.FLAT);
     }
 
     public enum RuneType {

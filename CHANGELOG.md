@@ -7,3 +7,6 @@
 - removed MI and fabled rarities
 - removed 2nd stat value. It's now +10 damage, not +5-10 damage
 - removed old compat system in favor of the new one
+- all items can be now socketed, once.
+- runes don't give stats anymore, now they are used to craft runewords. 
+- runewords are now a variation of unique rarity, only attainable through rune crafting

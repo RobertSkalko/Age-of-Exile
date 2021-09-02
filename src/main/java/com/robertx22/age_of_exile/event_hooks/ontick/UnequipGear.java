@@ -96,11 +96,6 @@ public class UnequipGear {
                     if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_WORN) {
                         drop(player, slot, stack, new LiteralText("You cannot equip that many unique items.").formatted(Formatting.RED));
                     }
-                } else if (gear.hasRuneWord()) {
-                    runewords++;
-                    if (runewords > ModConfig.get().Server.MAX_RUNEWORD_GEARS_WORN) {
-                        drop(player, slot, stack, new LiteralText("You cannot equip that many runed items.").formatted(Formatting.RED));
-                    }
                 }
             }
         }
@@ -124,11 +119,6 @@ public class UnequipGear {
                             uniques++;
                             if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_WORN) {
                                 drop(player, handler, i, stack, new LiteralText("You cannot equip that many unique items.").formatted(Formatting.RED));
-                            }
-                        } else if (gear.hasRuneWord()) {
-                            runewords++;
-                            if (runewords > ModConfig.get().Server.MAX_RUNEWORD_GEARS_WORN) {
-                                drop(player, handler, i, stack, new LiteralText("You cannot equip that many runed items.").formatted(Formatting.RED));
                             }
                         }
                     }

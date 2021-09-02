@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
-import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPart;
@@ -32,9 +31,6 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
     @Store
     public String gem = "";
 
-    @Store
-    public String rune = "";
-
     @Factory
     public SocketData() {
     }
@@ -52,13 +48,6 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
                     ExactStatData exact = x.ToExactStat(this.perc, this.lvl);
                     list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, this.lvl));
                 });
-        } else if (isRune()) {
-            getRune()
-                .getFor(fam)
-                .forEach(x -> {
-                    ExactStatData exact = x.ToExactStat(this.perc, this.lvl);
-                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, this.lvl));
-                });
         }
 
         return list;
@@ -66,10 +55,6 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
 
     public boolean isEmpty() {
         return perc < 1;
-    }
-
-    public boolean isRune() {
-        return getRune() != null;
     }
 
     public boolean isGem() {
@@ -98,15 +83,6 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
         return null;
     }
 
-    public Rune getRune() {
-        if (ExileDB.Runes()
-            .isRegistered(rune)) {
-            return ExileDB.Runes()
-                .get(rune);
-        }
-        return null;
-    }
-
     @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
         BaseGearType.SlotFamily fam = gear.GetBaseGearType()
@@ -116,12 +92,6 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
         try {
             if (isGem()) {
                 getGem()
-                    .getFor(fam)
-                    .forEach(x -> {
-                        stats.add(x.ToExactStat(this.perc, this.lvl));
-                    });
-            } else if (isRune()) {
-                getRune()
                     .getFor(fam)
                     .forEach(x -> {
                         stats.add(x.ToExactStat(this.perc, this.lvl));

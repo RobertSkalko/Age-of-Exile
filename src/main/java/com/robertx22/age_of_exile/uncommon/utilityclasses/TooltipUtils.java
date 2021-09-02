@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -19,7 +18,6 @@ import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class TooltipUtils {
@@ -47,26 +45,9 @@ public class TooltipUtils {
     }
 
     public static void addSocketNamesLine(List<Text> tip, GearItemData gear) {
-        Formatting BR = Formatting.GRAY;
-        String runes = "";
-        for (SocketData x : gear.sockets.sockets) {
-            if (!runes.isEmpty()) {
-                runes += " ";
-            }
-
-            if (x.isRune()) {
-                runes += BR + "[" + Formatting.GOLD + x.rune.toUpperCase(Locale.ROOT) + BR + "]";
-
-            }
-            if (x.isGem()) {
-                runes += BR + "[" + x.getGem()
-                    .getFormat() + x.getGem()
-                    .getIcon() + BR + "]";
-            }
-
+        if (gear.sockets.sockets.size() > 0) {
+            tip.add(new LiteralText("Gemmed").formatted(Formatting.LIGHT_PURPLE));
         }
-
-        tip.add(new LiteralText(Formatting.GOLD + runes).formatted(Formatting.GOLD));
     }
 
     public static void addUniqueDesc(List<Text> tip, UniqueGear uniq, GearItemData gear) {

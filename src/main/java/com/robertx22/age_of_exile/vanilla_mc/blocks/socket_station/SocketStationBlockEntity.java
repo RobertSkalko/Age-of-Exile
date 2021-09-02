@@ -2,14 +2,8 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station;
 
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
-import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
-import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneWordItem;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
 import com.robertx22.library_of_exile.utils.CLOC;
@@ -22,9 +16,6 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.math.Vec3d;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SocketStationBlockEntity extends BaseModificationStation {
 
@@ -83,59 +74,11 @@ public class SocketStationBlockEntity extends BaseModificationStation {
         super(ModRegistry.BLOCK_ENTITIES.SOCKET_STATION, SocketStationContainer.TOTAL_SLOTS);
     }
 
-    private void clearRunewordShow() {
-        for (int i = 2; i < SocketStationContainer.RUNEWORD_SLOTS + 2; i++) {
-            this.itemStacks[i] = ItemStack.EMPTY;
-        }
-    }
-
     @Override
     public void tick() {
 
         try {
-            if (GearSlot().isEmpty() && CraftItemSlot().isEmpty()) {
-                clearRunewordShow();
-                return;
-            }
 
-            List<RuneWord> possible = new ArrayList<>();
-
-            if (!GearSlot().isEmpty()) {
-                GearItemData gear = Gear.Load(GearSlot());
-
-                if (gear != null) {
-
-                    ExileDB.Runewords()
-                        .getList()
-                        .forEach(x -> {
-                            if (x.canItemHave(gear)) {
-                                possible.add(x);
-                            }
-                        });
-                }
-
-            } else if (!CraftItemSlot().isEmpty()) {
-                if (CraftItemSlot().getItem() instanceof RuneItem) {
-                    RuneItem rune = (RuneItem) CraftItemSlot().getItem();
-                    ExileDB.Runewords()
-                        .getList()
-                        .forEach(x -> {
-                            if (x.containsRune(rune.getRune())) {
-                                possible.add(x);
-                            }
-                        });
-                }
-
-            }
-
-            clearRunewordShow();
-
-            for (int i = 2; i < SocketStationContainer.RUNEWORD_SLOTS + 2; i++) {
-                int index = i - 2;
-                if (possible.size() > index) {
-                    this.itemStacks[i] = RuneWordItem.createStack(possible.get(index));
-                }
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

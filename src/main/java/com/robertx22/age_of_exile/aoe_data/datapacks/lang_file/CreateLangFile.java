@@ -137,8 +137,6 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(ExileDB.FavorRanks()
             .getSerializable());
-        list.addAll(ExileDB.Runewords()
-            .getSerializable());
 
         List<Stat> stats = ExileDB.Stats()
             .getList()

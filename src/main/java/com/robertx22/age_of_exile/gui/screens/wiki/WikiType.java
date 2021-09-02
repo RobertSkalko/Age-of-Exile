@@ -103,17 +103,6 @@ public enum WikiType {
             return false; // only by linking from professions page
         }
     },
-    RUNEWORDS("runeword") {
-        @Override
-        public List<WikiEntry> getAllEntries() {
-            return ExileDB.Runewords()
-                .getList()
-                .stream()
-                .map(x -> new RuneWordEntry(x))
-                .collect(Collectors.toList());
-        }
-    },
-
     MINING_BLOCK_EXP("mining_exp") {
         @Override
         public boolean showsInWiki() {

@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
-import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -230,14 +229,6 @@ public class GearTooltipUtils {
 
         tip.add(new SText(""));
 
-        RuneWord word = gear.sockets.getRuneWord();
-
-        if (word != null) {
-
-            tip.add(new LiteralText(Formatting.GOLD + "'Runeword: ").append(word.locName())
-                .append("'")
-                .formatted(Formatting.GOLD));
-        }
         tip.add(new LiteralText(""));
 
         IGearRarity rarity = gear.getRarity();

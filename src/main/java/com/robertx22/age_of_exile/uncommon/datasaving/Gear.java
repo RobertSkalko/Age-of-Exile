@@ -56,7 +56,6 @@ public class Gear {
             stack.setTag(new NbtCompound());
         }
         if (gear != null) {
-            gear.sockets.setSocketsCount(gear);
 
             LoadSave.Save(gear, stack.getTag(), LOC);
         }

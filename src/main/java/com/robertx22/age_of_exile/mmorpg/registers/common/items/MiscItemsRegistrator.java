@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.vanilla_mc.items.MiscSeedItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneWordItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.RaceResetPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.ResetStatsPotion;
@@ -90,7 +89,6 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public Item NEWBIE_GEAR_BAG = item(new ItemNewbieGearBag(), "newbie_gear_bag");
     public Item INCRESE_MOB_RARITY = item(new ItemIncreaseRarityNearestEntity(), "increase_rarity_nearest_entity");
-    public Item RUNEWORD = item(new RuneWordItem(), "runeword");
 
     public Item INFUSED_IRON = item(new SimpleMatItem(), "mat/infused_iron");
     public Item CRYSTALLIZED_ESSENCE = item(new SimpleMatItem(), "mat/crystallized_essence");
