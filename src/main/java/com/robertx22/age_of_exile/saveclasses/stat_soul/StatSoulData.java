@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.stat_soul;
 
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -24,6 +25,9 @@ public class StatSoulData {
     @Store
     public String rar = "";
 
+    @Store
+    public String uniq = "";
+
     public ItemStack toStack() {
 
         ItemStack stack = new ItemStack(ModRegistry.MISC_ITEMS.STAT_SOUL);
@@ -41,8 +45,18 @@ public class StatSoulData {
     public GearItemData createGearData() {
 
         GearBlueprint b = new GearBlueprint(Items.AIR, tier * 10);
+
         b.rarity.set(ExileDB.GearRarities()
             .get(rar));
+
+        UniqueGear uniq = ExileDB.UniqueGears()
+            .get(this.uniq);
+
+        if (uniq != null) {
+            b.uniquePart.set(uniq);
+            b.rarity.set(uniq.getUniqueRarity());
+        }
+
         b.gearItemSlot.set(ExileDB.GearTypes()
             .getFilterWrapped(x -> x.gear_slot.equals(slot))
             .random());

@@ -24,7 +24,7 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
     public List<SocketData> sockets = new ArrayList<>();
 
     @Store
-    public int slots = 0;
+    public int slots = 1;
 
     @Store
     public String word = "";

@@ -32,7 +32,6 @@ public class GearSoulLootGen extends BaseLootGen<GearBlueprint> {
 
         GearBlueprint blueprint = new GearBlueprint(info);
 
-        //todo
         GearItemData gear = blueprint.createData();
 
         StatSoulData soul = new StatSoulData();
@@ -40,6 +39,10 @@ public class GearSoulLootGen extends BaseLootGen<GearBlueprint> {
         soul.rar = gear.rarity;
         soul.slot = gear.GetBaseGearType().gear_slot;
         soul.tier = gear.getTier();
+
+        if (gear.isUnique()) {
+            soul.uniq = gear.uniq_id;
+        }
 
         ItemStack stack = soul.toStack();
 

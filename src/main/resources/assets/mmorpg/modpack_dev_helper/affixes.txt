@@ -11,7 +11,6 @@ light_wep_dmg_dun
 seraphim
 of_consumption
 light_ele_dmg_jewelry
-socket_suff
 nature_spell_ele_dmg
 heal_crit_dmg_prefix
 water_ele_dmg_jewelry
@@ -45,7 +44,6 @@ of_the_titan
 shades
 glimmering
 fire_spell_ele_dmg
-jeweled
 nature_ele_dmg_jewelry
 yetis
 water_wep_dmg_dun
