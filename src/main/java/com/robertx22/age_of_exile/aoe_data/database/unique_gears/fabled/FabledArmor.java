@@ -1,56 +1,12 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.fabled;
 
 import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
-import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseLeatherArmors;
-import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
-import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
-import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
-import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.ArmorPenetration;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-
-import java.util.Arrays;
 
 public class FabledArmor implements ExileRegistryInit, GearDataHelper {
 
     @Override
     public void registerAll() {
-
-        UniqueGearBuilder.of(
-                ModRegistry.UNIQUE_GEARS.UNSEEING_EYE,
-                "unseeing_eye",
-                "Eternal Void, Unseeing Eye",
-                "",
-                BaseLeatherArmors.HELMETS.values())
-            .setReplacesName()
-            .baseStats(
-                getStat(ArmorStat.HEALTH, ArmorType.MEDIUM, ArmorSlot.HELMET),
-                getStat(ArmorStat.DODGE, ArmorType.MEDIUM, ArmorSlot.HELMET),
-                new StatModifier(10, 25, new ElementalResist(Elements.Dark), ModType.FLAT),
-                new StatModifier(10, 25, new ElementalResist(Elements.Light), ModType.FLAT)
-            )
-            .stats(Arrays.asList(
-                new StatModifier(5, 10, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical), ModType.FLAT),
-                new StatModifier(5, 15, ArmorPenetration.getInstance(), ModType.FLAT),
-                new StatModifier(10, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
-                new StatModifier(3, 6, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
-                new StatModifier(2, 5, DatapackStats.DEX, ModType.FLAT),
-                new StatModifier(2, 5, DatapackStats.AGI, ModType.FLAT),
-                new StatModifier(10, 10, SpecialStats.VOID_EYE, ModType.FLAT)
-            ))
-            .req(new StatRequirement()
-                .setDex(0.5F)
-                .setStr(0.5F)
-                .setAgi(0.75F))
-            .devComment("Domain of heaven and earth: eternal void. Item meant for assasins. Edgy and shit")
-            .build();
 
     }
 }

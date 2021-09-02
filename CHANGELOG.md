@@ -10,3 +10,4 @@
 - all items can be now socketed, once.
 - runes don't give stats anymore, now they are used to craft runewords. 
 - runewords are now a variation of unique rarity, only attainable through rune crafting
+- gear stat requirements removed

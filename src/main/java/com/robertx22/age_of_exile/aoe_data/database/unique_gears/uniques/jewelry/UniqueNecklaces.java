@@ -13,9 +13,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
@@ -26,15 +26,11 @@ public class UniqueNecklaces implements ExileRegistryInit {
     public void registerAll() {
 
         UniqueGearBuilder.of(
-                ModRegistry.UNIQUE_GEARS.BLOOD_STONE_NECKLACE,
+                ModRegistry.GEAR_ITEMS.NECKLACES.get(VanillaMaterial.DIAMOND),
                 "blood_stone",
                 "Primordial Blood",
                 BaseGearJewelry.HP_NECKLACE.values())
-            .baseStats(
-                Arrays.asList(
-                    new StatModifier(10, 15, Health.getInstance()),
-                    new StatModifier(15, 35, new ElementalResist(Elements.Dark)))
-            )
+
             .stats(Arrays.asList(
                 new StatModifier(25, 25, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.BLOODLUST), ModType.FLAT),
                 new StatModifier(5, 15, Stats.ATTACK_SPEED.get(), ModType.FLAT),
@@ -43,23 +39,17 @@ public class UniqueNecklaces implements ExileRegistryInit {
                 new StatModifier(2, 6, DatapackStats.VIT, ModType.FLAT)
             ))
             .setReplacesName()
-            .req(new StatRequirement()
-                .setVit(0.8F)
-                .setStr(0.5F))
             .build();
 
         UniqueGearBuilder.of(
-                ModRegistry.UNIQUE_GEARS.GHAST_TEAR_NECKLACE,
+                ModRegistry.GEAR_ITEMS.NECKLACES.get(VanillaMaterial.DIAMOND),
                 "ghast_necklace",
                 "Ghast Tear",
                 "",
                 BaseGearJewelry.HP_NECKLACE.values())
-            .baseStats(
-                Arrays.asList(
-                    new StatModifier(15, 25, new ElementalResist(Elements.Water)),
-                    new StatModifier(15, 25, new ElementalResist(Elements.Fire)))
-            )
-            .stats(Arrays.asList(
+
+            .stats(Arrays.asList(new StatModifier(15, 25, new ElementalResist(Elements.Water)),
+                new StatModifier(15, 25, new ElementalResist(Elements.Fire)),
                 new StatModifier(25, 25, DatapackStats.MANA_PER_10_INT, ModType.FLAT),
                 new StatModifier(5, 15, ManaRegen.getInstance(), ModType.PERCENT),
                 new StatModifier(3, 5, SpellDamage.getInstance(), ModType.FLAT),
@@ -67,13 +57,11 @@ public class UniqueNecklaces implements ExileRegistryInit {
                 new StatModifier(2, 6, DatapackStats.AGI, ModType.FLAT)
 
             ))
-            .req(new StatRequirement()
-                .setVit(0.5F)
-                .setWis(0.75F))
+
             .build();
 
         UniqueGearBuilder.of(
-                ModRegistry.UNIQUE_GEARS.SKULL_OF_SPIRITS_NECKLACE,
+                ModRegistry.GEAR_ITEMS.NECKLACES.get(VanillaMaterial.DIAMOND),
                 "skull_of_spirits",
                 "Skull of Spirits",
                 "The mysterious skull contains knowledge of the contained spirits, but also their madness.",
@@ -84,8 +72,6 @@ public class UniqueNecklaces implements ExileRegistryInit {
                 new StatModifier(-5, -15, new ElementalResist(Elements.Water), ModType.FLAT),
                 new StatModifier(-5, -15, new ElementalResist(Elements.Fire), ModType.FLAT)
             ))
-            .req(new StatRequirement().setInt(0.5F)
-                .setWis(0.75F))
             .build();
 
     }

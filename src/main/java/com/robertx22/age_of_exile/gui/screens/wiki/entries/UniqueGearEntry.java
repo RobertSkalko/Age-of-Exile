@@ -5,8 +5,8 @@ import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFi
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiEntry;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -31,7 +31,6 @@ public class UniqueGearEntry extends WikiEntry {
             .getLevelRange()
             .randomFromRange(), 0);
         blueprint.actionsAfterGeneration.clear();
-        blueprint.unidentifiedPart.set(false);
 
         blueprint.rarity.set(ExileDB.GearRarities()
             .get(uniq.uniqueRarity));

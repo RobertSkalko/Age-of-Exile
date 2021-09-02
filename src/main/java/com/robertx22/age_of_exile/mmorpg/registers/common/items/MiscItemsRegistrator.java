@@ -49,7 +49,6 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public ProjectileItem SHADOWBALL = item(new ProjectileItem("shadowball"));
     public ProjectileItem SLIMEBALL = item(new ProjectileItem("slimeball"));
 
-    public IdentifyTomeItem IDENTIFY_TOME = item(new IdentifyTomeItem(), "identify_tome");
     public ScrollBuffItem SCROLL_BUFF = item(new ScrollBuffItem(), "scroll/buff");
     public EssencePaperItem ESSENCE_PAPER = item(new EssencePaperItem(), "scroll/paper");
 

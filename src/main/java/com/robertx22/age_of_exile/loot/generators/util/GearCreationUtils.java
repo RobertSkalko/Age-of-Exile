@@ -64,10 +64,6 @@ public class GearCreationUtils {
 
         data.affixes.randomize(data);
 
-        if (blueprint.unidentifiedPart.get()) {
-            data.setIdentified(false);
-        }
-
         return data;
     }
 }

@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.stats.types.special;
 
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
@@ -41,58 +40,6 @@ public class SpecialStats {
     }
 
     static int VOID_EYE_COOLDOWN_MINUTES = 5;
-
-    public static SpecialStat VOID_EYE = new SpecialStat("void_eye",
-        format("Dealing " + Elements.Dark.getIconNameFormat() + " Damage inside darkness has " + VAL1 + "% chance to give you Eye of the Void buff. " + VOID_EYE_COOLDOWN_MINUTES + " min Cooldown"),
-        new BaseDamageEffect() {
-            @Override
-            public EffectSides Side() {
-                return EffectSides.Source;
-            }
-
-            @Override
-            public int GetPriority() {
-                return 0;
-            }
-
-            @Override
-            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-
-                int duration = (int) (60 * 20 * 1);
-
-                ExilePotionEvent potionEvent = EventBuilder.ofEffect(effect.source, effect.source, Load.Unit(effect.source)
-                        .getLevel(), ExileDB.ExileEffects()
-                        .get(BeneficialEffects.VOID_EYE.effectId), GiveOrTake.give, duration)
-                    .build();
-                potionEvent.Activate();
-
-                effect.sourceData.getCooldowns()
-                    .setOnCooldown("void_eye", VOID_EYE_COOLDOWN_MINUTES * 60 * 20);
-                return effect;
-            }
-
-            @Override
-            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
-
-                if (!effect.getElement()
-                    .isDark()) {
-                    return false;
-                }
-                if (effect.source.world.getLightLevel(effect.source.getBlockPos()) > 7) {
-                    return false;
-                }
-                if (!RandomUtils.roll(data.getValue())) {
-                    return false;
-                }
-                if (effect.sourceData.getCooldowns()
-                    .isOnCooldown("void_eye")) {
-                    return false;
-                }
-
-                return true;
-            }
-        }
-    );
 
     public static SpecialStat MUMMY_CURSE = new SpecialStat("mummy_curse",
         format("Immobilizing effects have " + VAL1 + "% " + "chance to apply Curse of the Mummy"),

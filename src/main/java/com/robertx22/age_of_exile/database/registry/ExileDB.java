@@ -22,6 +22,7 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
+import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
@@ -156,6 +157,10 @@ public class ExileDB {
 
     public static ExileRegistryContainer<Rune> Runes() {
         return Database.getRegistry(ExileRegistryTypes.RUNE);
+    }
+
+    public static ExileRegistryContainer<RuneWord> RuneWords() {
+        return Database.getRegistry(ExileRegistryTypes.RUNEWORDS);
     }
 
     public static ExileRegistryContainer<RandomSkillGemStats> RandomSkilLGemStats() {

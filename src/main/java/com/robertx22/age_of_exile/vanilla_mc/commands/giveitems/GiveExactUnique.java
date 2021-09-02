@@ -55,7 +55,6 @@ public class GiveExactUnique {
 
         for (int i = 0; i < amount; i++) {
             GearBlueprint blueprint = new GearBlueprint(lvl, 0);
-            blueprint.unidentifiedPart.set(false);
             blueprint.level.set(lvl);
 
             if (!id.equals("random")) {

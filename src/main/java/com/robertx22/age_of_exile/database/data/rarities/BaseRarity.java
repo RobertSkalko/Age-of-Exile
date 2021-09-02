@@ -122,6 +122,13 @@ public abstract class BaseRarity implements Rarity {
         onSetFields();
     }
 
+    public void setRunewordFields() {
+        this.guid = IRarity.RUNEWORD_ID;
+        this.loc_name = "Rune Word";
+        this.text_format = Formatting.YELLOW.name();
+        onSetFields();
+    }
+
     private void onSetFields() {
 
     }

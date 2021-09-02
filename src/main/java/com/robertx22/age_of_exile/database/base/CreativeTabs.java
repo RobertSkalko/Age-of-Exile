@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.alchemy.PotionType;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
@@ -17,7 +18,7 @@ public class CreativeTabs {
     public static ItemGroup MyModTab = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "main_group")
         ,
-        () -> new ItemStack(ModRegistry.UNIQUE_GEARS.WINTER));
+        () -> new ItemStack(ModRegistry.GEAR_ITEMS.NECKLACES.get(VanillaMaterial.DIAMOND)));
 
     public static ItemGroup GearSouls = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "gear_soul_group")

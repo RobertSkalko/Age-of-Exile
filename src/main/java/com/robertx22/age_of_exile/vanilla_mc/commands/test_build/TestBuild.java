@@ -59,7 +59,6 @@ public class TestBuild {
 
             GearBlueprint blueprint = new GearBlueprint(lvl, 0);
             blueprint.actionsAfterGeneration.clear();
-            blueprint.unidentifiedPart.set(false);
             blueprint.level.set(lvl);
             blueprint.rarity.set(ExileDB.GearRarities()
                 .get(rarity));

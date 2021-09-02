@@ -270,7 +270,6 @@ blood_user
 fire_dot_damage
 light_penetration
 bonus_salvaging_yield
-void_eye
 chance_to_get_bloodlust_on_kill
 dmg_received
 melee_dmg

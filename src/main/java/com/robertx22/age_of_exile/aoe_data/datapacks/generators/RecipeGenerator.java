@@ -2,15 +2,17 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
+import joptsimple.internal.Strings;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.advancement.criterion.EnchantedItemCriterion;
 import net.minecraft.advancement.criterion.InventoryChangedCriterion;
@@ -22,6 +24,7 @@ import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.Items;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
@@ -31,6 +34,7 @@ import net.minecraft.util.registry.Registry;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.function.Consumer;
 
 public class RecipeGenerator {
@@ -142,96 +146,66 @@ public class RecipeGenerator {
                 }
             });
 
-        /*
-        ExileDB.GearTypes()
-            .getSerializable()
-            .forEach(x -> {
-
-                if (Registry.ITEM.getId(x.getItem())
-                    .getNamespace()
-                    .equals(Ref.MODID)) {
-
-                    ShapedRecipeJsonFactory fac = ShapedRecipeJsonFactory.create(x.getItem(), 1);
-
-                    String[] pattern = getRecipePattern(x);
-
-                    if (x.getEssenceItem() != null) {
-                        // if item is special and uses essence to craft
-                        for (int i = 0; i < pattern.length; i++) {
-                            pattern[i] = pattern[i].replaceAll(" ", "E");
-                        }
-                    }
-
-                    String all = Strings.join(pattern, "");
-
-                    if (x.getEssenceItem() != null) {
-                        fac.input('E', x.getEssenceItem());
-                    }
-                    if (all.contains("M")) {
-                        fac.input('M', x.getMaterial());
-                    }
-                    if (all.contains("S")) {
-                        fac.input('S', Items.STICK);
-                    }
-                    if (all.contains("B")) {
-                        fac.input('B', Items.STRING);
-                    }
-
-                    for (String pat : pattern) {
-                        try {
-                            fac.pattern(pat);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    fac.criterion("player_level", EnchantedItemCriterion.Conditions.any());
-
-                    fac.offerTo(consumer);
-                }
-            });
-        */
+        gearRecipe(consumer, ModRegistry.GEAR_ITEMS.NECKLACES, GearSlots.NECKLACE);
+        gearRecipe(consumer, ModRegistry.GEAR_ITEMS.RINGS, GearSlots.RING);
+        gearRecipe(consumer, ModRegistry.GEAR_ITEMS.SCEPTERS, GearSlots.SCEPTER);
+        gearRecipe(consumer, ModRegistry.GEAR_ITEMS.STAFFS, GearSlots.STAFF);
 
     }
 
-    public static String[] getRecipePattern(BaseGearType type) {
+    public static void gearRecipe(Consumer<RecipeJsonProvider> cons, HashMap<VanillaMaterial, Item> map, String slot) {
 
-        TagList tags = type.getTags();
+        map.entrySet()
+            .forEach(x -> {
 
-        if (tags.contains(SlotTag.sword)) {
+                ShapedRecipeJsonFactory fac = ShapedRecipeJsonFactory.create(x.getValue(), 1);
+
+                String[] pattern = getRecipePattern(ExileDB.GearSlots()
+                    .get(slot));
+
+                String all = Strings.join(pattern, "");
+
+                if (all.contains("M")) {
+                    if (x.getKey().mat.tag != null) {
+                        fac.input('M', x.getKey().mat.tag);
+                    } else {
+                        fac.input('M', x.getKey().mat.item);
+                    }
+                }
+                if (all.contains("S")) {
+                    fac.input('S', Items.STICK);
+                }
+                if (all.contains("B")) {
+                    fac.input('B', Items.STRING);
+                }
+
+                for (String pat : pattern) {
+                    try {
+                        fac.pattern(pat);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                fac.criterion("player_level", EnchantedItemCriterion.Conditions.any());
+
+                fac.offerTo(cons);
+            });
+    }
+
+    public static String[] getRecipePattern(GearSlot type) {
+
+        String id = type.guid;
+
+        if (id.equals(GearSlots.SWORD)) {
             return new String[]{
                 " M ",
                 " M ",
                 " S "
             };
         }
-        if (tags.contains(SlotTag.glove)) {
-            return new String[]{
-                "MSM"
-            };
-        }
-        if (tags.contains(SlotTag.hammer)) {
-            return new String[]{
-                "MMM",
-                " S ",
-                " S "
-            };
-        }
-        if (tags.contains(SlotTag.mace)) {
-            return new String[]{
-                " M ",
-                "MSM",
-                " S "
-            };
-        }
-        if (tags.contains(SlotTag.spear)) {
-            return new String[]{
-                "  M",
-                " M ",
-                "S  "
-            };
-        }
-        if (tags.contains(SlotTag.axe)) {
+
+        if (id.equals(GearSlots.AXE)) {
             return new String[]{
                 "MM ",
                 " S ",
@@ -239,40 +213,30 @@ public class RecipeGenerator {
             };
         }
 
-        if (tags.contains(SlotTag.scepter)) {
+        if (id.equals(GearSlots.SCEPTER)) {
             return new String[]{
                 "M  ",
                 "MS ",
                 "SS "
             };
         }
-        if (tags.contains(SlotTag.dagger)) {
-            return new String[]{
-                "SMM"
-            };
-        }
-        if (tags.contains(SlotTag.staff)) {
+
+        if (id.equals(GearSlots.STAFF)) {
             return new String[]{
                 "  M",
                 "SM ",
                 "SS "
             };
         }
-        if (tags.contains(SlotTag.scythe)) {
-            return new String[]{
-                "  M",
-                " SM",
-                "S M"
-            };
-        }
-        if (tags.contains(SlotTag.bow)) {
+
+        if (id.equals(GearSlots.BOW)) {
             return new String[]{
                 " MB",
                 "M B",
                 " MB"
             };
         }
-        if (tags.contains(SlotTag.crossbow)) {
+        if (id.equals(GearSlots.CROSBOW)) {
             return new String[]{
                 "MSM",
                 "S S",
@@ -280,41 +244,41 @@ public class RecipeGenerator {
             };
         }
 
-        if (tags.contains(SlotTag.chest)) {
+        if (id.equals(GearSlots.CHEST)) {
             return new String[]{
                 "M M",
                 "MMM",
                 "MMM"
             };
         }
-        if (tags.contains(SlotTag.boots)) {
+        if (id.equals(GearSlots.BOW)) {
             return new String[]{
                 "M M",
                 "M M"
             };
         }
-        if (tags.contains(SlotTag.pants)) {
+        if (id.equals(GearSlots.PANTS)) {
             return new String[]{
                 "MMM",
                 "M M",
                 "M M"
             };
         }
-        if (tags.contains(SlotTag.helmet)) {
+        if (id.equals(GearSlots.HELMET)) {
             return new String[]{
                 "MMM",
                 "M M"
             };
         }
 
-        if (tags.contains(SlotTag.necklace)) {
+        if (id.equals(GearSlots.NECKLACE)) {
             return new String[]{
                 "MMM",
                 "M M",
-                " M "
+                "MMM"
             };
         }
-        if (tags.contains(SlotTag.ring)) {
+        if (id.equals(GearSlots.RING)) {
             return new String[]{
                 " M ",
                 "M M",

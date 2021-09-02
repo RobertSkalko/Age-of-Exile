@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFi
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IBaseGearType;
@@ -35,7 +34,6 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
 
     public List<StatModifier> uniqueStats = new ArrayList<>();
     public List<StatModifier> base_stats = new ArrayList<>();
-    public StatRequirement stat_req = new StatRequirement();
     public int weight = 1000;
     public String guid;
     public String gearType;
@@ -87,7 +85,6 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
 
         json.add("gear_types", JsonUtils.stringListToJsonArray(gear_types));
 
-        json.add("stat_req", stat_req.toJson());
         json.add("filters", filters.toJson());
         return json;
     }
@@ -122,13 +119,6 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
                 .getAsBoolean();
         }
         uniq.filters = DropFiltersGroupData.fromJson(json.get("filters"));
-
-        try {
-            uniq.stat_req = StatRequirement.EMPTY.fromJson(json.get("stat_req")
-                .getAsJsonObject());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return uniq;
     }

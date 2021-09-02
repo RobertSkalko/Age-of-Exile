@@ -11,7 +11,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
     public void registerAll() {
 
         GearRarity common = new GearRarity();
-        common.unidentified_chance = 0;
         common.stat_req_multi = 0.25F;
         common.spawn_durability_hit = new MinMax(60, 80);
 
@@ -28,7 +27,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         common.addToSerializables();
 
         GearRarity uncommon = new GearRarity();
-        uncommon.unidentified_chance = 0;
         uncommon.base_stat_percents = new MinMax(5, 80);
         uncommon.stat_req_multi = 0.4F;
         uncommon.default_stat_percents = new MinMax(0, 100);
@@ -46,7 +44,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         uncommon.addToSerializables();
 
         GearRarity rare = new GearRarity();
-        rare.unidentified_chance = 10;
         rare.base_stat_percents = new MinMax(20, 85);
         rare.stat_req_multi = 0.5F;
         rare.default_stat_percents = new MinMax(5, 100);
@@ -63,7 +60,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         rare.addToSerializables();
 
         GearRarity epic = new GearRarity();
-        epic.unidentified_chance = 15;
         epic.stat_req_multi = 0.6F;
         epic.base_stat_percents = new MinMax(30, 90);
         epic.default_stat_percents = new MinMax(20, 100);
@@ -80,7 +76,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         epic.addToSerializables();
 
         GearRarity legendary = new GearRarity();
-        legendary.unidentified_chance = 25;
         legendary.base_stat_percents = new MinMax(40, 100);
         legendary.stat_req_multi = 0.8F;
         legendary.default_stat_percents = new MinMax(30, 100);
@@ -98,7 +93,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         legendary.addToSerializables();
 
         GearRarity mythic = new GearRarity();
-        mythic.unidentified_chance = 50;
         mythic.stat_req_multi = 1F;
         mythic.base_stat_percents = new MinMax(50, 100);
         mythic.default_stat_percents = new MinMax(40, 100);
@@ -115,7 +109,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         mythic.addToSerializables();
 
         GearRarity unique = new GearRarity();
-        unique.unidentified_chance = 100;
         unique.stat_req_multi = 1;
         unique.spawn_durability_hit = new MinMax(60, 80);
         unique.affixes = new GearRarity.Part(0, 0, 0);
@@ -130,6 +123,21 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         unique.special_spawn_chance = 0.1F;
         unique.announce_in_chat = true;
         unique.is_unique_item = true;
+
+        GearRarity runeword = new GearRarity();
+        runeword.spawn_durability_hit = new MinMax(60, 80);
+        runeword.affixes = new GearRarity.Part(0, 0, 0);
+        runeword.weight = 0;
+        runeword.item_tier_power = 2;
+        runeword.item_value_multi = 2;
+        runeword.item_tier = 5;
+        runeword.essence_per_sal = new MinMax(5, 5);
+        runeword.setRunewordFields();
+        runeword.addToSerializables();
+        runeword.special_spawn_chest_bonus_chance = 0F;
+        runeword.special_spawn_chance = 0F;
+        runeword.announce_in_chat = true;
+        runeword.is_unique_item = true;
 
     }
 }

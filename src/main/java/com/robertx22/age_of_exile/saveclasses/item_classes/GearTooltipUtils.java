@@ -69,22 +69,6 @@ public class GearTooltipUtils {
 
         }
 
-        if (!gear.isIdentified()) {
-
-            tip.add(new SText(""));
-
-            tip.add(
-                Words.ItemIsUnidentified.locName()
-                    .formatted(Formatting.GRAY));
-            tip.add(
-                Words.UseAnIdentifyScroll.locName()
-                    .formatted(Formatting.GRAY));
-
-            tip.add(new SText(""));
-
-            return;
-        }
-
         if (gear.isCorrupted()) {
             if (!Screen.hasShiftDown()) {
                 tip.add(new SText(""));

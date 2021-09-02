@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.registry.RarityRegistryContainer;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.bases.GearItemSlotPart;
 import com.robertx22.age_of_exile.loot.blueprints.bases.GearRarityPart;
-import com.robertx22.age_of_exile.loot.blueprints.bases.UnidentifiedPart;
 import com.robertx22.age_of_exile.loot.blueprints.bases.UniqueGearPart;
 import com.robertx22.age_of_exile.loot.generators.stack_changers.DamagedGear;
 import com.robertx22.age_of_exile.loot.generators.util.GearCreationUtils;
@@ -40,7 +39,6 @@ public class GearBlueprint extends ItemBlueprint {
 
     public GearItemSlotPart gearItemSlot = new GearItemSlotPart(this);
     public GearRarityPart rarity = new GearRarityPart(this);
-    public UnidentifiedPart unidentifiedPart = new UnidentifiedPart(this);
     public UniqueGearPart uniquePart = new UniqueGearPart(this);
 
     @Override

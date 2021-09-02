@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears;
 
+import com.robertx22.age_of_exile.aoe_data.database.runewords.RunewordBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
@@ -8,9 +9,10 @@ import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.MobTag
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.SpecificMobFilter;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ArmorSet;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ErrorUtils;
+import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.library_of_exile.registry.DataGenKey;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -102,13 +104,15 @@ public class UniqueGearBuilder {
         return this;
     }
 
-    public UniqueGearBuilder baseStats(StatModifier... stat) {
-        this.uniq.base_stats.addAll(Arrays.asList(stat));
+    public UniqueGearBuilder setReplacesName() {
+        this.uniq.replaces_name = true;
         return this;
     }
 
-    public UniqueGearBuilder setReplacesName() {
-        this.uniq.replaces_name = true;
+    public UniqueGearBuilder makeRuneWordOnly(List<RuneItem.RuneType> runes) {
+        RunewordBuilder.of(uniq.guid, uniq.guid, runes, uniq.getBaseGearType().gear_slot);
+        this.uniq.uniqueRarity = IRarity.RUNEWORD_ID;
+        this.uniq.weight = 0;
         return this;
     }
 
@@ -122,14 +126,6 @@ public class UniqueGearBuilder {
         return this;
     }
 
-    public UniqueGearBuilder req(StatRequirement req) {
-        if (!uniq.stat_req.base_req.isEmpty() || !uniq.stat_req.scaling_req.isEmpty()) {
-            throw new RuntimeException("Overrided unique stat requirements");
-        }
-        this.uniq.stat_req = req;
-        return this;
-    }
-
     public UniqueGearBuilder devComment(String comment) {
         // OMAE WA MOU SHINDEIRU
         return this;
@@ -137,7 +133,6 @@ public class UniqueGearBuilder {
 
     public UniqueGear build() {
         ErrorUtils.ifFalse(!uniq.uniqueStats.isEmpty());
-        ErrorUtils.ifFalse(!uniq.stat_req.isEmpty());
         ErrorUtils.ifFalse((uniq.base_stats.size() + uniq.uniqueStats.size()) < UniqueStatsData.MAX_STATS);
 
         uniq.addToSerializables();

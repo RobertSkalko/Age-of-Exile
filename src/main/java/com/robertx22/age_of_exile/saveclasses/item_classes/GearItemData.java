@@ -16,7 +16,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -74,9 +73,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public String gear_type = "";
 
     @Store
-    private boolean ided = true;
-
-    @Store
     private float in = 0;
 
     @Store
@@ -126,12 +122,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public StatRequirement getRequirement() {
         StatRequirement req = new StatRequirement(GetBaseGearType().getStatRequirements());
 
-        if (ExileDB.UniqueGears()
-            .isRegistered(this.uniq_id)) {
-            UniqueGear uniq = ExileDB.UniqueGears()
-                .get(uniq_id);
-            return new StatRequirement(uniq.stat_req);
-        }
         return req;
     }
 
@@ -145,14 +135,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         if (in < 0) {
             in = 0;
         }
-    }
-
-    public boolean isIdentified() {
-        return ided;
-    }
-
-    public void setIdentified(boolean bool) {
-        this.ided = bool;
     }
 
     public GearItemEnum getGearEnum() {
@@ -195,17 +177,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         try {
             Formatting format = this.getRarity()
                 .textFormatting();
-
-            if (!isIdentified()) {
-                MutableText text = new SText("")
-                    .append(Words.Unidentified.locName())
-                    .append(" ")
-                    .append(getRarity().locName())
-                    .append(" ")
-                    .append(GetBaseGearType().locName());
-
-                return Arrays.asList(text.formatted(format));
-            }
 
             if (useFullAffixedName()) {
                 return getFullAffixedName();

@@ -20,6 +20,7 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
+import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
@@ -55,6 +56,7 @@ public class ExileRegistryTypes {
     public static ExileRegistryType MOB_AFFIX = ExileRegistryType.register(Ref.MODID, "mob_affix", 8, new MobAffix("empty", "empty", Formatting.AQUA), SyncTime.ON_LOGIN);
     public static ExileRegistryType AFFIX = ExileRegistryType.register(Ref.MODID, "affixes", 10, EmptyAffix.getInstance(), SyncTime.ON_LOGIN);
     public static ExileRegistryType UNIQUE_GEAR = ExileRegistryType.register(Ref.MODID, "unique_gears", 11, UniqueGear.SERIALIZER, SyncTime.ON_LOGIN);
+    public static ExileRegistryType RUNEWORDS = ExileRegistryType.register(Ref.MODID, "runeword", 12, RuneWord.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType CURRENCY_ITEMS = ExileRegistryType.register(new ExileRegistryType(Ref.MODID, "currency_item", 12, null, SyncTime.NEVER) {
         @Override
         public BaseDataPackLoader getLoader() {

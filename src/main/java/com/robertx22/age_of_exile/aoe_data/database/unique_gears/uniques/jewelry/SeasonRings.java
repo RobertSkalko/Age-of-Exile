@@ -13,12 +13,11 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
@@ -29,24 +28,18 @@ public class SeasonRings implements ExileRegistryInit {
     public void registerAll() {
 
         UniqueGearBuilder.of(
-                ModRegistry.UNIQUE_GEARS.SPRING,
+                ModRegistry.GEAR_ITEMS.RINGS.get(VanillaMaterial.DIAMOND),
                 "spring_blossoms",
                 "Spring Blossoms",
                 BaseGearJewelry.MANA_RING.values())
             .setReplacesName()
-            .baseStats(
-                new StatModifier(15, 25, new ElementalResist(Elements.Nature), ModType.FLAT),
-                new StatModifier(15, 25, new ElementalResist(Elements.Light), ModType.FLAT)
-            )
             .stats(Arrays.asList(
                 new StatModifier(10, 10, SpecialStats.HEAL_CLEANSE, ModType.FLAT),
-                new StatModifier(5, 10, ManaRegen.getInstance(), ModType.PERCENT),
                 new StatModifier(5, 10, HealthRegen.getInstance(), ModType.PERCENT),
-                new StatModifier(10, 15, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
+                new StatModifier(10, 15, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
+                new StatModifier(15, 25, new ElementalResist(Elements.Nature), ModType.FLAT),
+                new StatModifier(15, 25, new ElementalResist(Elements.Light), ModType.FLAT)
             ))
-            .req(new StatRequirement()
-                .setWis(0.7F)
-                .setVit(0.5F))
 
             .gearSet(GearSetsAdder.SEASONS_SET)
 
@@ -54,25 +47,21 @@ public class SeasonRings implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
-                ModRegistry.UNIQUE_GEARS.AUTUMN,
+                ModRegistry.GEAR_ITEMS.RINGS.get(VanillaMaterial.DIAMOND),
                 "autumn_harvest",
                 "Autumn Harvest",
                 BaseGearJewelry.MANA_RING.values())
             .setReplacesName()
-            .baseStats(
+
+            .stats(Arrays.asList(
                 new StatModifier(10, 20, new ElementalResist(Elements.Nature), ModType.FLAT),
                 new StatModifier(10, 20, new ElementalResist(Elements.Fire), ModType.FLAT),
-                new StatModifier(10, 20, new ElementalResist(Elements.Water), ModType.FLAT)
-            )
-            .stats(Arrays.asList(
+                new StatModifier(10, 20, new ElementalResist(Elements.Water), ModType.FLAT),
                 new StatModifier(25, 25, SpecialStats.BETTER_FOOD_BUFFS, ModType.FLAT),
                 new StatModifier(5, 10, Armor.getInstance(), ModType.PERCENT),
                 new StatModifier(5, 10, DodgeRating.getInstance(), ModType.PERCENT),
                 new StatModifier(2, 3, AllAttributes.getInstance(), ModType.FLAT)
             ))
-            .req(new StatRequirement()
-                .setVit(0.6F)
-                .setWis(0.3F))
 
             .gearSet(GearSetsAdder.SEASONS_SET)
 
@@ -80,47 +69,36 @@ public class SeasonRings implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
-                ModRegistry.UNIQUE_GEARS.WINTER,
+                ModRegistry.GEAR_ITEMS.RINGS.get(VanillaMaterial.DIAMOND),
                 "winter_chill",
                 "Winter Chill",
                 BaseGearJewelry.MANA_RING.values())
             .setReplacesName()
-            .baseStats(
-                new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
-                new StatModifier(20, 40, new ElementalResist(Elements.Water), ModType.FLAT)
-            )
-            .stats(Arrays.asList(
+            .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
+                new StatModifier(20, 40, new ElementalResist(Elements.Water), ModType.FLAT),
                 new StatModifier(10, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT),
                 new StatModifier(10, 20, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.PERCENT),
                 new StatModifier(5, 15, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT)
             ))
-            .req(new StatRequirement()
-                .setInt(0.6F)
-                .setWis(0.3F))
             .gearSet(GearSetsAdder.SEASONS_SET)
             .devComment("")
             .build();
 
         UniqueGearBuilder.of(
-                ModRegistry.UNIQUE_GEARS.SUMMER,
+                ModRegistry.GEAR_ITEMS.RINGS.get(VanillaMaterial.DIAMOND),
                 "summer_heat",
                 "Summer Heat",
                 BaseGearJewelry.MANA_RING.values())
             .setReplacesName()
-            .baseStats(
-                new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
-                new StatModifier(20, 40, new ElementalResist(Elements.Fire), ModType.FLAT)
-            )
-            .stats(Arrays.asList(
+
+            .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
+                new StatModifier(20, 40, new ElementalResist(Elements.Fire), ModType.FLAT),
                 new StatModifier(10, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT),
                 new StatModifier(10, 20, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.PERCENT),
                 new StatModifier(5, 15, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
             ))
-            .req(new StatRequirement()
-                .setInt(0.6F)
-                .setWis(0.3F))
             .gearSet(GearSetsAdder.SEASONS_SET)
             .devComment("")
             .build();

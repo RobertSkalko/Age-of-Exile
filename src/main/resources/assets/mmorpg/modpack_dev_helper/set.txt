@@ -1,10 +1,3 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-pharaoh_set
-oak_set
 seasons_set
-slime_set
-blaze_set
-dark_crystal_set
-void_set
-bone_set

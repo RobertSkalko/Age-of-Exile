@@ -52,7 +52,6 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public float item_tier_power;
     public float item_value_multi;
     public float stat_req_multi;
-    public int unidentified_chance;
     public MinMax spawn_durability_hit = new MinMax(60, 80);
     public boolean announce_in_chat = false;
 
@@ -144,11 +143,6 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     @Override
     public float itemTierPower() {
         return item_tier_power;
-    }
-
-    @Override
-    public float unidentifiedChance() {
-        return unidentified_chance;
     }
 
     @Override

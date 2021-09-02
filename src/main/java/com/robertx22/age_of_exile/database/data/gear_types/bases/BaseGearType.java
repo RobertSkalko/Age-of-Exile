@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.gear_types.bases;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
@@ -31,6 +32,7 @@ import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -267,7 +269,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
 
     // has to use ugly stuff like this cus datapacks.
     public static boolean isGearOfThisType(GearSlot slot, Item item) {
-
         if (item == Items.AIR) {
             return false;
         }
@@ -312,6 +313,14 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
                 bool = item instanceof StaffWeapon;
             } else if (id.equals(GearSlots.SCEPTER)) {
                 bool = item instanceof ScepterWeapon;
+            } else if (id.equals(GearSlots.NECKLACE)) {
+                bool = CuriosApi.getCuriosHelper()
+                    .getCurioTags(item)
+                    .contains(RefCurio.NECKLACE);
+            } else if (id.equals(GearSlots.RING)) {
+                bool = CuriosApi.getCuriosHelper()
+                    .getCurioTags(item)
+                    .contains(RefCurio.RING);
             }
 
             CACHED_GEAR_SLOTS.get(id)

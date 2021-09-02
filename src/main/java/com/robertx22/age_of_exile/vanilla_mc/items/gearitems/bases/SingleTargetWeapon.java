@@ -3,8 +3,6 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.ItemUtils;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.RarityToolMaterial;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -12,15 +10,14 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.util.registry.Registry;
 
 public abstract class SingleTargetWeapon extends ToolItem implements IAutoLocName {
 
-    public SingleTargetWeapon(String locname) {
+    public SingleTargetWeapon(ToolMaterial mat, Settings settings, String locname) {
 
-        super(
-            new RarityToolMaterial(), ItemUtils.getDefaultGearProperties()
-                .maxDamage(1500));
+        super(mat, settings);
         this.locname = locname;
     }
 

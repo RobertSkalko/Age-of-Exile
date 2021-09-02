@@ -1,7 +1,5 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.models;
 
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.registry.ExileDB;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
@@ -17,22 +15,6 @@ public class ItemModelManager {
                 auto.generateModel(this);
             }
         });
-
-        ExileDB.UniqueGears()
-            .getSerializable()
-            .forEach(x -> {
-                if (!x.getBaseGearType()
-                    .getTags()
-                    .contains(BaseGearType.SlotTag.ranged_weapon)) {
-                    if (x.getBaseGearType()
-                        .family()
-                        .equals(BaseGearType.SlotFamily.Weapon)) {
-                        //handheld(x.getUniqueItem());
-                    } else {
-                        generated(x.getUniqueItem());
-                    }
-                }
-            });
 
     }
 
