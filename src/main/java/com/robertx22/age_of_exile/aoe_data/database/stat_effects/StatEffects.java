@@ -26,7 +26,6 @@ public class StatEffects implements ExileRegistryInit {
             BeneficialEffects.GATHER_STORM,
             BeneficialEffects.FRENZY,
             BeneficialEffects.ALACRITY,
-            BeneficialEffects.ZEAL,
             BeneficialEffects.INFUSED_BLADE,
             BeneficialEffects.BLADE_DANCE,
             BeneficialEffects.MARK,

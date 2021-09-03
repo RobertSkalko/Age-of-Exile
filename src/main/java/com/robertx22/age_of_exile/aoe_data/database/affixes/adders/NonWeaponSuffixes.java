@@ -18,9 +18,8 @@ public class NonWeaponSuffixes implements ExileRegistryInit {
             .guid(x -> x.guidName + "_res")
             .add(Elements.Fire, "Of the Drake")
             .add(Elements.Water, "Of the Yeti")
-            .add(Elements.Nature, "Of the Snake")
-            .add(Elements.Light, "Of the Gryphon")
-            .add(Elements.Dark, "Of the Leech")
+            .add(Elements.Earth, "Of the Snake")
+            .add(Elements.Air, "Of the Gryphon")
 
             .stats(x -> Arrays.asList(new StatModifier(10, 30, new ElementalResist(x), ModType.FLAT)))
             .includesTags(SlotTag.jewelry_family, SlotTag.armor_family, SlotTag.offhand_family)

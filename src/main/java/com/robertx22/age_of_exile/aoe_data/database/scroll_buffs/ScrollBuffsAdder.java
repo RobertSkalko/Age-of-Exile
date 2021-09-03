@@ -45,9 +45,9 @@ public class ScrollBuffsAdder implements ExileRegistryInit {
 
         eleDmg("fire_dmg", "Of Firestorms", "Ignis", Elements.Fire);
         eleDmg("cold_dmg", "Of Snowstorms", "Frigus", Elements.Water);
-        eleDmg("poison_dmg", "Of Calamity", "Venemun", Elements.Nature);
-        eleDmg("light_dmg", "Of Sunshine", "Lux", Elements.Nature);
-        eleDmg("dark_dmg", "Of Curses", "Maledictum", Elements.Nature);
+        eleDmg("poison_dmg", "Of Calamity", "Venemun", Elements.Earth);
+        eleDmg("light_dmg", "Of Sunshine", "Lux", Elements.Earth);
+        eleDmg("dark_dmg", "Of Curses", "Maledictum", Elements.Earth);
 
     }
 

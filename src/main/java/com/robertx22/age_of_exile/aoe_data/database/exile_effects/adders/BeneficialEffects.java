@@ -17,10 +17,8 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.value_calc.ScalingCalc;
@@ -46,31 +44,28 @@ public class BeneficialEffects implements ExileRegistryInit {
     public static EffectCtx HP_REGEN = new EffectCtx("hp_reg_bard", "Health Reg", 2, Elements.Physical, EffectType.beneficial);
     public static EffectCtx MANA_REGEN = new EffectCtx("mana_reg_bard", "Mana Reg", 3, Elements.Physical, EffectType.beneficial);
     public static EffectCtx INFUSED_BLADE = new EffectCtx("infused_blade", "Infused Blade", 4, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx REGENERATE = new EffectCtx("regenerate", "Rejuvenate", 5, Elements.Nature, EffectType.beneficial);
-    public static EffectCtx THORN_ARMOR = new EffectCtx("thorn_armor", "Thorn Armor", 6, Elements.Nature, EffectType.beneficial);
+    public static EffectCtx REGENERATE = new EffectCtx("regenerate", "Rejuvenate", 5, Elements.Earth, EffectType.beneficial);
+    public static EffectCtx THORN_ARMOR = new EffectCtx("thorn_armor", "Thorn Armor", 6, Elements.Earth, EffectType.beneficial);
     public static EffectCtx ANGER = new EffectCtx("anger", "Anger", 7, Elements.Physical, EffectType.beneficial);
     public static EffectCtx DIVINE_SHIELD = new EffectCtx("divine_shield", "Divine Shield", 8, Elements.Elemental, EffectType.beneficial);
-    public static EffectCtx POISON_WEAPONS = new EffectCtx("poison_weapons", "Poison Wep", 9, Elements.Nature, EffectType.beneficial);
+    public static EffectCtx POISON_WEAPONS = new EffectCtx("poison_weapons", "Poison Wep", 9, Elements.Earth, EffectType.beneficial);
     public static EffectCtx BLESSING = new EffectCtx("blessing", "Azuna's Blessing", 10, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx GATHER_STORM = new EffectCtx("gather_storm", "Gather Storm", 11, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx MARK = new EffectCtx("mark", "Mark of Zadal", 12, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx BLADE_DANCE = new EffectCtx("blade_dance", "Blade Dance", 13, Elements.Physical, EffectType.beneficial);
     public static EffectCtx FROST_ARMOR = new EffectCtx("frost_armor", "Frost Armor", 14, Elements.Water, EffectType.beneficial);
-    public static EffectCtx VOID_EYE = new EffectCtx("void_eye", "Void Eye", 15, Elements.Dark, EffectType.beneficial);
     public static EffectCtx BLOODLUST = new EffectCtx("bloodlust", "Bloodlust", 16, Elements.Physical, EffectType.beneficial);
     public static EffectCtx OVERLOAD = new EffectCtx("overload", "Overload", 17, Elements.Physical, EffectType.beneficial);
     public static EffectCtx VALOR = new EffectCtx("valor", "Valor", 18, Elements.Physical, EffectType.beneficial);
     public static EffectCtx PERSEVERANCE = new EffectCtx("perseverance", "Perseverance", 19, Elements.Physical, EffectType.beneficial);
     public static EffectCtx VIGOR = new EffectCtx("vigor", "Vigor", 20, Elements.Physical, EffectType.beneficial);
     public static EffectCtx TAUNT_STANCE = new EffectCtx("taunt_stance", "Taunt Stance", 21, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx ETHEREAL_FORM = new EffectCtx("ethereal_form", "Ethereal Form", 23, Elements.Dark, EffectType.beneficial);
     public static EffectCtx UNDYING_WILL = new EffectCtx("undying_will", "Undying Will", 24, Elements.Physical, EffectType.beneficial);
     public static EffectCtx FRENZY = new EffectCtx("frenzy", "Frenzy", 25, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx ZEAL = new EffectCtx("zeal", "Zeal", 26, Elements.Light, EffectType.beneficial);
     public static EffectCtx ALACRITY = new EffectCtx("alacrity", "Alacrity", 27, Elements.Physical, EffectType.beneficial);
     public static EffectCtx STEAM_POWER = new EffectCtx("steam_power", "Steam Power", 28, Elements.Physical, EffectType.beneficial);
     public static EffectCtx CONCENTRATION = new EffectCtx("concentration", "Concentration", 29, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 30, Elements.Light, EffectType.beneficial);
+    public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 30, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx MURDER_INSTINCT = new EffectCtx("murder_instinct", "Murder Instinct", 31, Elements.Physical, EffectType.beneficial);
     public static EffectCtx DEMON_TRANSFORMATION = new EffectCtx("demon", "Demon", 32, Elements.Physical, EffectType.beneficial);
     public static EffectCtx MAGE_CIRCLE = new EffectCtx("mage_circle", "Mage Circle", 33, Elements.Elemental, EffectType.beneficial);
@@ -90,8 +85,6 @@ public class BeneficialEffects implements ExileRegistryInit {
             .stat(25, Stats.COOLDOWN_REDUCTION_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
             .stat(25, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
             .stat(25, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
-            .stat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT)
-            .stat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark), ModType.FLAT)
 
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 2D, 0.5D)
@@ -157,13 +150,6 @@ public class BeneficialEffects implements ExileRegistryInit {
             .addTags(EffectTags.offensive)
             .build();
 
-        ExileEffectBuilder.of(ZEAL)
-            .stat(3, Stats.ELEMENTAL_DAMAGE.get(Elements.Light))
-            .stat(5, Stats.SPELL_CRIT_CHANCE.get())
-            .stat(3, DatapackStats.MOVE_SPEED)
-            .maxStacks(5)
-            .build();
-
         ExileEffectBuilder.of(FRENZY)
             .stat(5, Stats.TOTAL_DAMAGE.get())
             .stat(5, Stats.DAMAGE_RECEIVED.get())
@@ -174,14 +160,6 @@ public class BeneficialEffects implements ExileRegistryInit {
         ExileEffectBuilder.of(UNDYING_WILL)
             .stat(-75, Stats.DAMAGE_RECEIVED.get())
             .stat(2, HealthRegen.getInstance())
-            .maxStacks(1)
-            .build();
-
-        ExileEffectBuilder.of(ETHEREAL_FORM)
-            .stat(-100, Stats.THREAT_GENERATED.get())
-            .stat(-75, Stats.TOTAL_DAMAGE.get())
-            .stat(-75, Stats.DAMAGE_RECEIVED.get())
-            .stat(25, DatapackStats.MOVE_SPEED)
             .maxStacks(1)
             .build();
 
@@ -273,12 +251,6 @@ public class BeneficialEffects implements ExileRegistryInit {
             .maxStacks(10)
             .build();
 
-        ExileEffectBuilder.of(VOID_EYE)
-            .stat(10, new ElementalPenetration(Elements.Elemental), ModType.FLAT)
-            .stat(25, GlobalCriticalHit.getInstance(), ModType.FLAT)
-            .addTags(EffectTags.offensive)
-            .build();
-
         ExileEffectBuilder.of(ELE_RESIST)
             .stat(10, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .addTags(EffectTags.defensive)
@@ -304,7 +276,7 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(THORN_ARMOR)
-            .stat(25, new ElementalResist(Elements.Nature), ModType.FLAT)
+            .stat(25, new ElementalResist(Elements.Earth), ModType.FLAT)
             .stat(3, Armor.getInstance(), ModType.FLAT)
             .stat(3, DodgeRating.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
@@ -344,7 +316,7 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(POISON_WEAPONS)
-            .stat(3, new AttackDamage(Elements.Nature), ModType.FLAT)
+            .stat(3, new AttackDamage(Elements.Earth), ModType.FLAT)
             .stat(20, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT)
             .addTags(EffectTags.offensive)
             .build();

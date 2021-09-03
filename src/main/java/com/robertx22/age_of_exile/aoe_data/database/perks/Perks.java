@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DamageShield;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalFocus;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DualWieldDamage;
@@ -19,7 +18,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -110,14 +108,10 @@ public class Perks implements ExileRegistryInit {
         PerkBuilder.stat(new OptScaleExactStat(1, Stats.STYLE_DAMAGE.get(PlayStyle.ranged), ModType.FLAT));
         PerkBuilder.stat(new OptScaleExactStat(1, Stats.STYLE_DAMAGE.get(PlayStyle.magic), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(2, new ElementalFocus(Elements.Dark)));
-        PerkBuilder.stat(new OptScaleExactStat(2, new ElementalFocus(Elements.Light)));
-
         PerkBuilder.stat("mana_on_hit", new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.mana, AttackType.attack)), ModType.FLAT));
         PerkBuilder.stat("health_on_hit", new OptScaleExactStat(3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.health, AttackType.attack)), ModType.FLAT));
 
         PerkBuilder.stat("more_dualwield_dmg", new OptScaleExactStat(3, DualWieldDamage.getInstance()));
-        PerkBuilder.stat(new OptScaleExactStat(3, SpecialStats.DAY_NIGHT_DMG));
 
         Stats.ELEMENTAL_SPELL_DAMAGE.getAll()
             .forEach(x -> {
@@ -146,18 +140,18 @@ public class Perks implements ExileRegistryInit {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.FLAT));
             });
 
-        new ElementalResist(Elements.Nature).generateAllPossibleStatVariations()
+        new ElementalResist(Elements.Earth).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(4, x, ModType.FLAT));
 
             });
 
-        new ElementalPenetration(Elements.Nature).generateAllPossibleStatVariations()
+        new ElementalPenetration(Elements.Earth).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(5, x, ModType.FLAT));
             });
 
-        new AttackDamage(Elements.Nature).generateAllPossibleStatVariations()
+        new AttackDamage(Elements.Earth).generateAllPossibleStatVariations()
             .forEach(x -> {
                 PerkBuilder.stat(x.GUID(), new OptScaleExactStat(2, x, ModType.PERCENT));
 

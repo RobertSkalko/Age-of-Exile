@@ -32,21 +32,21 @@ import static net.minecraft.entity.attribute.EntityAttributes.*;
 public class NegativeEffects implements ExileRegistryInit {
 
     public static EffectCtx ELE_WEAKNESS = new EffectCtx("ele_weakness", "Ele Weakness", 0, Elements.Elemental, EffectType.negative);
-    public static EffectCtx PETRIFY = new EffectCtx("petrify", "Petrify", 1, Elements.Nature, EffectType.negative);
+    public static EffectCtx PETRIFY = new EffectCtx("petrify", "Petrify", 1, Elements.Earth, EffectType.negative);
     public static EffectCtx FROSTBURN = new EffectCtx("frostburn", "Frost Burn", 2, Elements.Water, EffectType.negative);
-    public static EffectCtx POISON = new EffectCtx("poison", "Poison", 3, Elements.Nature, EffectType.negative);
+    public static EffectCtx POISON = new EffectCtx("poison", "Poison", 3, Elements.Earth, EffectType.negative);
     public static EffectCtx WOUNDS = new EffectCtx("wounds", "Wounds", 4, Elements.Physical, EffectType.negative);
     public static EffectCtx BURN = new EffectCtx("burn", "Burn", 5, Elements.Fire, EffectType.negative);
-    public static EffectCtx JUDGEMENT = new EffectCtx("judgement", "Judgement", 6, Elements.Light, EffectType.negative);
-    public static EffectCtx TORMENT = new EffectCtx("torment", "Torment", 7, Elements.Dark, EffectType.negative);
+    public static EffectCtx JUDGEMENT = new EffectCtx("judgement", "Judgement", 6, Elements.Air, EffectType.negative);
+    public static EffectCtx TORMENT = new EffectCtx("torment", "Torment", 7, Elements.Elemental, EffectType.negative);
     public static EffectCtx BLEED = new EffectCtx("bleed", "Bleed", 8, Elements.Physical, EffectType.negative);
-    public static EffectCtx MUMMY_CURSE = new EffectCtx("mummy_curse", "Mummy Curse", 9, Elements.Light, EffectType.negative);
-    public static EffectCtx BLIND = new EffectCtx("blind", "Blind", 10, Elements.Light, EffectType.negative);
+    public static EffectCtx MUMMY_CURSE = new EffectCtx("mummy_curse", "Mummy Curse", 9, Elements.Elemental, EffectType.negative);
+    public static EffectCtx BLIND = new EffectCtx("blind", "Blind", 10, Elements.Air, EffectType.negative);
     public static EffectCtx STUN = new EffectCtx("stun", "Stun", 11, Elements.Physical, EffectType.negative);
     public static EffectCtx SLOW = new EffectCtx("slow", "Slow", 12, Elements.Physical, EffectType.negative);
-    public static EffectCtx AGONY = new EffectCtx("agony", "Curse of Agony", 13, Elements.Dark, EffectType.negative);
-    public static EffectCtx WEAKNESS = new EffectCtx("weak", "Curse of Weakness", 14, Elements.Dark, EffectType.negative);
-    public static EffectCtx DESPAIR = new EffectCtx("despair", "Curse of Despair", 15, Elements.Dark, EffectType.negative);
+    public static EffectCtx AGONY = new EffectCtx("agony", "Curse of Agony", 13, Elements.Elemental, EffectType.negative);
+    public static EffectCtx WEAKNESS = new EffectCtx("weak", "Curse of Weakness", 14, Elements.Elemental, EffectType.negative);
+    public static EffectCtx DESPAIR = new EffectCtx("despair", "Curse of Despair", 15, Elements.Elemental, EffectType.negative);
     public static EffectCtx CHARM = new EffectCtx("charm", "Charm", 16, Elements.Elemental, EffectType.negative);
     public static EffectCtx GROUNDING = new EffectCtx("ground", "Grounding", 17, Elements.Physical, EffectType.negative);
     public static EffectCtx MARK_OF_DEATH = new EffectCtx("mark_of_death", "Mark of Death", 18, Elements.Physical, EffectType.negative);
@@ -119,7 +119,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(1)
             .stat(-20, Stats.TOTAL_DAMAGE.get())
             .spell(SpellBuilder.forEffect()
-                .onExpire(PartBuilder.damage(ValueCalculation.base("despair", 3F), Elements.Dark))
+                .onExpire(PartBuilder.damage(ValueCalculation.base("despair", 3F), Elements.Elemental))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
                     .onTick(20D))
                 .buildForEffect())
@@ -153,9 +153,9 @@ public class NegativeEffects implements ExileRegistryInit {
         ExileEffectBuilder.of(TORMENT)
             .maxStacks(1)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
-            .stat(-10, new ElementalResist(Elements.Dark), ModType.FLAT)
+            .stat(-10, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.dotDamageOnTick(TORMENT.effectId, ValueCalculation.base("torment", 2F), Elements.Dark)
+                .onTick(PartBuilder.dotDamageOnTick(TORMENT.effectId, ValueCalculation.base("torment", 2F), Elements.Elemental)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 1D)
                     .onTick(10D))
@@ -182,7 +182,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(POISON.effectId, ValueCalculation.base("poison", 2), Elements.Nature)
+                .onTick(PartBuilder.dotDamageOnTick(POISON.effectId, ValueCalculation.base("poison", 2), Elements.Earth)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.POISON, 1D, 1D)
                     .onTick(2D))
@@ -240,7 +240,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 10D, 1D)
                     .onTick(20D))
-                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculation.base("judgement", 10), Elements.Light))
+                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculation.base("judgement", 10), Elements.Air))
                     .setTarget(TargetSelector.TARGET.create()))
                 .onExpire(PartBuilder.justAction(SpellAction.SUMMON_LIGHTNING_STRIKE.create())
                     .setTarget(TargetSelector.TARGET.create()))
@@ -253,7 +253,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D)
                     .onTick(20D))
-                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculation.base("petrify", 5), Elements.Nature))
+                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculation.base("petrify", 5), Elements.Earth))
                     .setTarget(TargetSelector.TARGET.create()))
                 .onExpire(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 15D, 1D))
                 .onExpire(PartBuilder.justAction(SpellAction.PLAY_SOUND.create(SoundEvents.ENTITY_SHEEP_SHEAR, 1D, 1D)))

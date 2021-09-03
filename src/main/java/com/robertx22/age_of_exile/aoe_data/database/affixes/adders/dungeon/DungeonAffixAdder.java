@@ -22,10 +22,9 @@ public class DungeonAffixAdder implements ExileRegistryInit {
             .guid(x -> x.guidName + "_wep_dmg_dun")
             .add(Elements.Fire, "Burning")
             .add(Elements.Water, "Freezing")
-            .add(Elements.Nature, "Poisonous")
+            .add(Elements.Earth, "Poisonous")
             .add(Elements.Physical, "Tyrannical")
-            .add(Elements.Light, "Holy")
-            .add(Elements.Dark, "Cursed")
+            .add(Elements.Air, "Thunderous")
             .stats(x -> Arrays.asList(new StatModifier(1, 2, new AttackDamage(x), ModType.FLAT)))
             .DungeonPrefix()
             .Build();
@@ -34,9 +33,8 @@ public class DungeonAffixAdder implements ExileRegistryInit {
             .guid(x -> x.guidName + "_ele_mobs")
             .add(Elements.Fire, "Of Embers")
             .add(Elements.Water, "Of Frost")
-            .add(Elements.Nature, "Of Diseases")
-            .add(Elements.Light, "Of Light")
-            .add(Elements.Dark, "Of Curses")
+            .add(Elements.Earth, "Of Diseases")
+            .add(Elements.Air, "Of Thunder")
             .stats(x -> Arrays.asList(
                 new StatModifier(1, 2, new AttackDamage(x), ModType.FLAT),
                 new StatModifier(20, 30, new ElementalResist(x), ModType.FLAT)

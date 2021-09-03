@@ -382,33 +382,6 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_WHEN_HEALING_ON_SELF = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self_on_heal", x -> x.element)
-        .addAllOfType(Arrays.asList(
-                BeneficialEffects.ZEAL
-            )
-        )
-        .worksWithEvent(RestoreResourceEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_SPELL)
-        .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
-        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
-        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
-        .setLocName(x -> Stat.format(
-            Stat.format(Stat.VAL1 + "% chance to Gain " + x.locname + " every time you heal")
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_EFFECT_ON_SPELL_HIT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id + "_on_spell_hit", x -> x.element)
         .addAllOfType(Arrays.asList(

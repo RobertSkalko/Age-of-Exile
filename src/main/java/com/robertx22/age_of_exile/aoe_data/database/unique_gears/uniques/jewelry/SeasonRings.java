@@ -37,8 +37,7 @@ public class SeasonRings implements ExileRegistryInit {
                 new StatModifier(10, 10, SpecialStats.HEAL_CLEANSE, ModType.FLAT),
                 new StatModifier(5, 10, HealthRegen.getInstance(), ModType.PERCENT),
                 new StatModifier(10, 15, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
-                new StatModifier(15, 25, new ElementalResist(Elements.Nature), ModType.FLAT),
-                new StatModifier(15, 25, new ElementalResist(Elements.Light), ModType.FLAT)
+                new StatModifier(15, 25, new ElementalResist(Elements.Earth), ModType.FLAT)
             ))
 
             .gearSet(GearSetsAdder.SEASONS_SET)
@@ -54,7 +53,7 @@ public class SeasonRings implements ExileRegistryInit {
             .setReplacesName()
 
             .stats(Arrays.asList(
-                new StatModifier(10, 20, new ElementalResist(Elements.Nature), ModType.FLAT),
+                new StatModifier(10, 20, new ElementalResist(Elements.Earth), ModType.FLAT),
                 new StatModifier(10, 20, new ElementalResist(Elements.Fire), ModType.FLAT),
                 new StatModifier(10, 20, new ElementalResist(Elements.Water), ModType.FLAT),
                 new StatModifier(25, 25, SpecialStats.BETTER_FOOD_BUFFS, ModType.FLAT),

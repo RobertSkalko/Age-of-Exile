@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.player_skills.items.fishing.RawFishItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.*;
-import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect.EffectColor;
+import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect.*;
 import org.apache.commons.lang3.tuple.Triple;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class FoodItemRegister extends BaseItemRegistrator {
 
         reg(FoodType.DRINK, Arrays.asList(EXPERIENCE));
 
-        regFish(FoodType.FISH, Arrays.asList(DARK_DAMAGE, FIRE_DAMAGE, WATER_DAMAGE, NATURE_DAMAGE, LIGHT_DAMAGE));
+        regFish(FoodType.FISH, Arrays.asList(AIR_DAMAGE, FIRE_DAMAGE, WATER_DAMAGE, NATURE_DAMAGE));
 
         reg(FoodType.REGEN_MEAL, Arrays.asList(OUTSIDE_COMBAT_COMBO_REGEN, OUTSIDE_COMBAT_MANA_REGEN, OUTSIDE_COMBAT_HEALTH_REGEN));
 

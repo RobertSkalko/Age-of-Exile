@@ -5,7 +5,6 @@ healing_aura
 song_of_valor
 thorn_armor
 boss_fire_bombs
-ethereal_form
 mana_leech
 arrow_storm
 cooldown
@@ -57,7 +56,6 @@ power_chord
 pull
 test_command
 fire_nova
-shadow_ball
 poisoned_weapons
 dodge_aura
 fire_chance
@@ -72,7 +70,6 @@ frostburn_chance
 water_dmg
 conjure_ender_chest
 shred
-soul_harvest
 jump_field
 night_vision
 curse_of_weak
@@ -81,7 +78,6 @@ song_of_perseverance
 heal_ray
 backflip
 crit_rate
-sacrifice
 smoke_bomb
 tidal_strike
 more_radius

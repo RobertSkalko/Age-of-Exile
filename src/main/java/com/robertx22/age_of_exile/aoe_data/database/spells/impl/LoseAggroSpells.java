@@ -1,10 +1,8 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
-import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
@@ -12,10 +10,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -29,7 +27,7 @@ public class LoseAggroSpells implements ExileRegistryInit {
     public void registerAll() {
 
         SpellBuilder.of("smoke_bomb", SpellConfiguration.Builder.instant(7, 20 * 60), "Smoke Bomb",
-            Arrays.asList())
+                Arrays.asList())
             .manualDesc("Throw out a smoke bomb, blinding enemies and reducing threat.")
             .attackStyle(PlayStyle.ranged)
             .weaponReq(CastingWeapon.ANY_WEAPON)
@@ -39,17 +37,6 @@ public class LoseAggroSpells implements ExileRegistryInit {
                 .addTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 200D, 3D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 50D, 3D))
-            .build();
-
-        SpellBuilder.of("ethereal_form", SpellConfiguration.Builder.instant(7, 20 * 60), "Ethereal Form",
-            Arrays.asList(SpellTag.movement))
-            .manualDesc("Turn ethereal, increasing your speed and defenses but reducing your damage.")
-            .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CAT_HISS, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(CALC, AggroAction.Type.DE_AGGRO))
-                .addTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ETHEREAL_FORM, 20D * 20))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 1.5D))
             .build();
 
     }

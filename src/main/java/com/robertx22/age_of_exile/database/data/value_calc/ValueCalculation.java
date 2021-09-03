@@ -96,7 +96,7 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
 
         float amount = 0;
         if (attack_scaling > 0) {
-            for (Stat stat : new AttackDamage(Elements.Nature).generateAllPossibleStatVariations()) {
+            for (Stat stat : new AttackDamage(Elements.Earth).generateAllPossibleStatVariations()) {
                 amount += data.getUnit()
                     .getCalculatedStat(stat.GUID())
                     .getValue() * this.atk_scaling_type.scale(attack_scaling, lvl);

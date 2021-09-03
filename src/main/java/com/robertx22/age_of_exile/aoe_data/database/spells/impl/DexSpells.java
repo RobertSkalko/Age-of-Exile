@@ -16,11 +16,11 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
@@ -160,14 +160,14 @@ public class DexSpells implements ExileRegistryInit {
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
-            .onHit(PartBuilder.damage(ValueCalcAdder.DIRECT_ARROW_HIT, Elements.Nature))
+            .onHit(PartBuilder.damage(ValueCalcAdder.DIRECT_ARROW_HIT, Elements.Earth))
 
             .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.POISON.effectId, 2D, 20 * 8D))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 100D, 2D))
 
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("poison_arrow_aoe", 0.2F, 1), Elements.Nature, 2D)
+            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("poison_arrow_aoe", 0.2F, 1), Elements.Earth, 2D)
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.SLOWNESS, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();

@@ -8,13 +8,11 @@ import java.util.List;
 public enum Elements {
 
     Physical(false, "Physical", Formatting.GOLD, "physical", "\u2726"),
+
     Fire(true, "Fire", Formatting.RED, "fire", "\u2600"),
     Water(true, "Water", Formatting.AQUA, "water", "\u2749"),
-    Nature(true, "Nature", Formatting.DARK_GREEN, "nature", "\u273F"), /* Reminder: if i rename this to "earth" satte will get pissed off */
-    //Thunder(true, "Thunder", Formatting.YELLOW, "thunder", "\u272A"),
-
-    Light(true, "Light", Formatting.WHITE, "light", "\u2600"),
-    Dark(true, "Dark", Formatting.DARK_PURPLE, "dark", "\u2743"),
+    Earth(true, "Earth", Formatting.DARK_GREEN, "earth", "\u273F"), /* Reminder: if i rename this to "earth" satte will get pissed off */
+    Air(true, "Air", Formatting.WHITE, "air", "\u272A"),
 
     Elemental(false, "Elemental", Formatting.LIGHT_PURPLE, "elemental", "\u269C"),
     All(false, "All", Formatting.LIGHT_PURPLE, "all", "\u273F");
@@ -65,20 +63,16 @@ public enum Elements {
     }
 
     public boolean isNature() {
-        return this == Nature;
+        return this == Earth;
     }
 
-    public boolean isLight() {
-        return this == Light;
+    public boolean isAir() {
+        return this == Air;
     }
 
-    public boolean isDark() {
-        return this == Dark;
-    }
-
-    private static List<Elements> allIncludingPhys = Arrays.asList(Physical, Fire, Water, Nature, Light, Dark);
-    private static List<Elements> allExcludingPhys = Arrays.asList(Fire, Water, Nature, Light, Dark, Elemental);
-    private static List<Elements> allSingleElementals = Arrays.asList(Fire, Water, Nature, Light, Dark);
+    private static List<Elements> allIncludingPhys = Arrays.asList(Physical, Fire, Water, Earth, Air);
+    private static List<Elements> allExcludingPhys = Arrays.asList(Fire, Water, Earth, Air, Elemental);
+    private static List<Elements> allSingleElementals = Arrays.asList(Fire, Water, Earth, Air);
 
     public static List<Elements> getAllSingleElementals() {
         return allSingleElementals;

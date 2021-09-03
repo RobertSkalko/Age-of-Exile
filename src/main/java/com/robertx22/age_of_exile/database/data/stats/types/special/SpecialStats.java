@@ -5,8 +5,10 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.*;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseHealEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BasePotionEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseRegenEffect;
+import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpecialStatDamageEffect;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -104,7 +106,7 @@ public class SpecialStats {
         }
     );
     public static SpecialStat PERC_SELF_HP_DMG_WHEN_IMMOBILZING = new SpecialStat("perc_self_hp_dmg_when_immo",
-        format("Deal " + VAL1 + "% of your health as " + Elements.Nature.getIconNameDmg() + " when you cast immobilizing effects"),
+        format("Deal " + VAL1 + "% of your health as " + Elements.Earth.getIconNameDmg() + " when you cast immobilizing effects"),
         new BasePotionEffect() {
             @Override
             public ExilePotionEvent activate(ExilePotionEvent effect, StatData data, Stat stat) {
@@ -116,7 +118,7 @@ public class SpecialStats {
                 float val = maxhp * data.getValue() / 100F;
                 DamageEvent dmg = EventBuilder.ofDamage(effect.source, effect.target, val)
                     .setupDamage(AttackType.spell, WeaponTypes.none, PlayStyle.magic)
-                    .set(x -> x.setElement(Elements.Nature))
+                    .set(x -> x.setElement(Elements.Earth))
                     .build();
 
                 dmg.Activate();
@@ -138,83 +140,6 @@ public class SpecialStats {
             @Override
             public int GetPriority() {
                 return 0;
-            }
-        }
-    );
-
-    public static SpecialStat RANGED_CRIT_DMG_AGAINST_LIVING = new SpecialStat("ranged_crit_dmg_to_undead",
-        format("You have " + VAL1 + "% increased ranged " + Stats.CRIT_DAMAGE.get()
-            .getIconNameFormat() + " against Undead enemies."),
-        new BaseSpecialStatDamageEffect() {
-            @Override
-            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-                effect.increaseByPercent(data.getValue());
-                return effect;
-            }
-
-            @Override
-            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
-                return effect.data.getWeaponType().isProjectile && effect.target.isUndead() && effect.data.getBoolean(EventData.CRIT);
-            }
-
-            @Override
-            public EffectSides Side() {
-                return EffectSides.Source;
-            }
-        }
-    );
-    public static SpecialStat DARK_DMG_IGNORE_RES = new SpecialStat("dark_dmg_ignore_res",
-        format("Your " + Elements.Dark.getIconNameFormat() + " Damage has " + VAL1 + "% chance to ignore all resistances."),
-        new BaseDamageEffect() {
-            @Override
-            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-                effect.data.setBoolean(EventData.IGNORE_RESIST, true);
-                return effect;
-            }
-
-            @Override
-            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
-                return effect.getElement()
-                    .isDark() && RandomUtils.roll(data.getValue());
-            }
-
-            @Override
-            public EffectSides Side() {
-                return EffectSides.Source;
-            }
-
-            @Override
-            public int GetPriority() {
-                return Priority.beforeThis(new ElementalResist(Elements.Nature).statEffect.GetPriority());
-            }
-        }
-    );
-
-    public static SpecialStat DAY_NIGHT_DMG = new SpecialStat("day_night_dmg",
-        format("You deal " + VAL1 + "% increased  " + Elements.Light.getIconNameFormat() + " or "
-            + Elements.Dark.getIconNameFormat() + " Damage depending on time of day"),
-        new BaseSpecialStatDamageEffect() {
-            @Override
-            public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
-                effect.increaseByPercent(data.getValue());
-                return effect;
-            }
-
-            @Override
-            public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
-                if (effect.getElement()
-                    .isDark()) {
-                    return effect.source.world.isNight();
-                } else if (effect.getElement()
-                    .isLight()) {
-                    return effect.source.world.isDay();
-                }
-                return false;
-            }
-
-            @Override
-            public EffectSides Side() {
-                return EffectSides.Source;
             }
         }
     );

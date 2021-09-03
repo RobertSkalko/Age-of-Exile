@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier;
 public abstract class ModificationGui<T extends BaseTileContainer, Tile extends BaseModificationStation> extends HandledScreen<T> {
 
     public Tile tile;
-    MinecraftClient mc;
+    public MinecraftClient mc;
 
     public int backgroundCanvasSize = 256;
     public TextRenderer font = MinecraftClient.getInstance().textRenderer;

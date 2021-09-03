@@ -32,9 +32,8 @@ public class MobAffixes implements ExileRegistryInit {
 
         eleAffix("Freezing", Water);
         eleAffix("Flaming", Fire);
-        eleAffix("Poisoned", Nature);
-        eleAffix("Holy", Light);
-        eleAffix("Cursed", Dark);
+        eleAffix("Poisoned", Earth);
+        eleAffix("Lightning", Air);
 
         new MobAffix("reflect", Stats.DAMAGE_REFLECTED.get()
             .getFormatAndIcon(), Physical.format)
@@ -65,14 +64,14 @@ public class MobAffixes implements ExileRegistryInit {
             .setWeight(250)
             .addToSerializables();
 
-        new MobAffix("nature_lord", new AttackDamage(Nature).getFormatAndIcon(), Nature.format)
+        new MobAffix("nature_lord", new AttackDamage(Earth).getFormatAndIcon(), Earth.format)
             .setMods(
                 new StatModifier(15, 15, Health.getInstance()),
                 new StatModifier(5, 5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON)),
-                new StatModifier(75, 75, new PhysConvertToEle(Nature)),
-                new StatModifier(1, 1, new AttackDamage(Nature), ModType.FLAT),
+                new StatModifier(75, 75, new PhysConvertToEle(Earth)),
+                new StatModifier(1, 1, new AttackDamage(Earth), ModType.FLAT),
                 new StatModifier(20, 20, ExtraMobDropsStat.getInstance()))
-            .icon(Nature.format + Nature.icon)
+            .icon(Earth.format + Earth.icon)
             .setWeight(250)
             .addToSerializables();
 

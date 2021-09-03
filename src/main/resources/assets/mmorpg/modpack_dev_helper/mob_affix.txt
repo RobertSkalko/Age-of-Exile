@@ -1,6 +1,5 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-light_mob_affix
 fire_lord
 reflect
 phys_lord
@@ -8,6 +7,6 @@ fire_mob_affix
 vampire
 water_mob_affix
 winter
+air_mob_affix
+earth_mob_affix
 nature_lord
-nature_mob_affix
-dark_mob_affix

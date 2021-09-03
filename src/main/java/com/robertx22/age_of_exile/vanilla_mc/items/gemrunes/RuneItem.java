@@ -54,7 +54,7 @@ public class RuneItem extends Item implements IGUID, IAutoModel, IAutoLocName, I
     public RuneType type;
 
     public RuneItem(RuneType type) {
-        super(new Settings().maxCount(16)
+        super(new Settings().maxCount(64)
             .group(CreativeTabs.Runes));
         this.type = type;
 

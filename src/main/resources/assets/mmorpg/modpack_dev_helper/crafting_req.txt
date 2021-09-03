@@ -73,15 +73,10 @@ mmorpg:food/fish/green/3
 mmorpg:food/fish/green/2
 mmorpg:alchemy/potion/mana/0
 mmorpg:alchemy/potion/mana/1
-mmorpg:food/fish/purple/3
 mmorpg:food/jam/purple/2
-mmorpg:food/fish/purple/4
 mmorpg:food/jam/purple/1
-mmorpg:food/fish/purple/1
 mmorpg:food/jam/purple/4
-mmorpg:food/fish/purple/2
 mmorpg:food/jam/purple/3
-mmorpg:food/fish/purple/0
 mmorpg:food/jam/purple/0
 mmorpg:food/brew/green/4
 mmorpg:backpack/upgrade/gem1

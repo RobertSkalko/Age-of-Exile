@@ -47,7 +47,7 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
         return true;
     }
 
-    public boolean runesCanActivateRuneWord(List<String> craftrunes) {
+    public boolean runesCanActivateRuneWord(List<String> craftrunes, boolean requireExact) {
 
         List<String> copy = new ArrayList<>(craftrunes);
 
@@ -62,6 +62,11 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
         if (nope) {
             return false;
         }
+
+        if (!requireExact) {
+            return true;
+        }
+
         if (copy.isEmpty()) {
             return true;
         }

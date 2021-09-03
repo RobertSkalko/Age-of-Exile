@@ -124,15 +124,15 @@ public class EntityConfig implements JsonExileRegistry<EntityConfig>, ISerializa
 
     public static SpecialMobStats FIRE = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
     public static SpecialMobStats WATER = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats NATURE = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Nature)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats NATURE = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Earth)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
 
     public static SpecialMobStats FIRE_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
     public static SpecialMobStats WATER_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats NATURE_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Nature)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats NATURE_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Earth)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
 
     public static SpecialMobStats LESS_FIRE_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
     public static SpecialMobStats LESS_WATER_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats LESS_NATURE_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Nature)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
+    public static SpecialMobStats LESS_NATURE_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Earth)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
 
     public static SpecialMobStats LESS_DROPS = new SpecialMobStats(new OptScaleExactStat(-15, ExtraMobDropsStat.getInstance()));
 

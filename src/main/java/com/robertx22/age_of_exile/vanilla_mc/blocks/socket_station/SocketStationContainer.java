@@ -9,17 +9,12 @@ import net.minecraft.util.math.BlockPos;
 
 public class SocketStationContainer extends BaseTileContainer {
 
-    public static final int SOCKET_SLOTS_COUNT = 2;
-    public static final int RUNEWORD_SLOTS = 27;
-
-    public static final int TOTAL_SLOTS = RUNEWORD_SLOTS + SOCKET_SLOTS_COUNT;
-
     Inventory tile;
 
     public SocketStationContainer(int i, PlayerInventory invPlayer, Inventory inventory,
                                   BlockPos pos) {
 
-        super(TOTAL_SLOTS, null, i, invPlayer);
+        super(SocketStationBlockEntity.SLOT_COUNT, null, i, invPlayer);
         this.tile = inventory;
         this.pos = pos;
         int count = 0;
@@ -30,6 +25,14 @@ public class SocketStationContainer extends BaseTileContainer {
         }
 
         addSlot(new Slot(inventory, count++, 179, 26));
+
+        for (int x = 0; x < 2; x++) {
+            for (int y = 0; y < 9; y++) {
+                int xpos = PLAYER_INVENTORY_XPOS() + y * 18;
+                int ypos = PLAYER_INVENTORY_YPOS() - 40 + x * 18;
+                addSlot(new Slot(inventory, count++, xpos, ypos));
+            }
+        }
 
     }
 

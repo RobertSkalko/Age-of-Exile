@@ -5,7 +5,6 @@ healing_aura
 song_of_valor
 thorn_armor
 boss_fire_bombs
-ethereal_form
 wish
 whirlwind
 armor_aura
@@ -16,7 +15,6 @@ arrow_storm
 conjure_ender_chest
 shred
 poison_trap
-soul_harvest
 jump_field
 charged_bolt
 night_vision
@@ -27,7 +25,6 @@ frost_armor
 heal_ray
 backflip
 song_of_perseverance
-sacrifice
 shooting_star
 execute
 crit_aura
@@ -81,7 +78,6 @@ awaken_mana
 the_hunt
 mana_reg_aura
 fire_nova
-shadow_ball
 poisoned_weapons
 taunt
 dodge_aura

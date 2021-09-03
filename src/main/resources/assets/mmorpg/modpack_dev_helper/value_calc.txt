@@ -1,6 +1,5 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-soul_harvest_dmg
 torment
 healing_aura
 wish
@@ -12,13 +11,11 @@ lose_aggro
 charged_bolt
 fire_breath
 shout_warn
-sacrifice
 shooting_star
 bleed
 execute
 breath_heal
 gong_strike
-sac_res_mana
 curse
 lava_sphere
 tidal_strike
@@ -54,9 +51,7 @@ totem_guard
 power_chord
 pull
 awaken_mana
-soul_harvest_heal
 poison_arrow_aoe
 fire_nova
-shadow_ball
 taunt
 regenerate_tick

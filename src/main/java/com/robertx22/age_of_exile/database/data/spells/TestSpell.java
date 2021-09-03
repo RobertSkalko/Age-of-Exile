@@ -30,12 +30,12 @@ public class TestSpell {
                     Arrays.asList(SpellTag.projectile, SpellTag.damage))
                 .manualDesc(
                     "Throw out a ball of poison, dealing " + SpellCalcs.POISON_BALL.getLocSpellTooltip()
-                        + " " + Elements.Nature.getIconNameDmg())
+                        + " " + Elements.Earth.getIconNameDmg())
                 .weaponReq(CastingWeapon.MAGE_WEAPON)
                 .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
                 .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 5D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 40D, true)))
                 .onTick(PartBuilder.particleOnTick(1D, PARTICLES.POISON, 1D, 0.15D))
-                .onHit(PartBuilder.damage(SpellCalcs.POISON_BALL, Elements.Nature))
+                .onHit(PartBuilder.damage(SpellCalcs.POISON_BALL, Elements.Earth))
                 .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
 
                 .weight(0)

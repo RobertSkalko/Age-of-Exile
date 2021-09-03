@@ -26,13 +26,15 @@ public class SocketStationBlockEntity extends BaseModificationStation {
 
     public static List<Integer> RUNE_SLOTS = Arrays.asList(0, 1, 2, 3, 4, 5);
     public static List<Integer> ITEM_SLOT = Arrays.asList(6);
+    public static List<Integer> STORAGE_SLOTS = Arrays.asList(7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24);
+    public static Integer SLOT_COUNT = RUNE_SLOTS.size() + ITEM_SLOT.size() + STORAGE_SLOTS.size();
 
     public ItemStack getGearStack() {
         return itemStacks[ITEM_SLOT.get(0)];
     }
 
     public SocketStationBlockEntity() {
-        super(ModRegistry.BLOCK_ENTITIES.SOCKET_STATION, SocketStationContainer.TOTAL_SLOTS);
+        super(ModRegistry.BLOCK_ENTITIES.SOCKET_STATION, SLOT_COUNT);
     }
 
     @Override
@@ -65,7 +67,7 @@ public class SocketStationBlockEntity extends BaseModificationStation {
         RuneWord word = null;
 
         List<RuneWord> list = ExileDB.RuneWords()
-            .getFiltered(x -> x.runesCanActivateRuneWord(runeStrings) && x.canApplyOnItem(stack));
+            .getFiltered(x -> x.runesCanActivateRuneWord(runeStrings, true) && x.canApplyOnItem(stack));
 
         if (!list.isEmpty()) {
             word = list.get(0);

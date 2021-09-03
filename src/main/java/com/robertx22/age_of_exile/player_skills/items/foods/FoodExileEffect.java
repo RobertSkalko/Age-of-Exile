@@ -31,9 +31,8 @@ public enum FoodExileEffect {
 
     WATER_DAMAGE("Aqua", "water", EffectColor.BLUE, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Water)), new OptScaleExactStat(20, new ElementalResist(Elements.Water))),
     FIRE_DAMAGE("Ignis", "fire", EffectColor.RED, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)), new OptScaleExactStat(20, new ElementalResist(Elements.Fire))),
-    LIGHT_DAMAGE("Sky", "light", EffectColor.YELLOW, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Light)), new OptScaleExactStat(20, new ElementalResist(Elements.Light))),
-    DARK_DAMAGE("Night", "dark", EffectColor.PURPLE, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Dark)), new OptScaleExactStat(20, new ElementalResist(Elements.Dark))),
-    NATURE_DAMAGE("Terra", "nature", EffectColor.GREEN, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature)), new OptScaleExactStat(20, new ElementalResist(Elements.Nature))),
+    AIR_DAMAGE("Sky", "light", EffectColor.YELLOW, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Air)), new OptScaleExactStat(20, new ElementalResist(Elements.Air))),
+    NATURE_DAMAGE("Terra", "nature", EffectColor.GREEN, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Earth)), new OptScaleExactStat(20, new ElementalResist(Elements.Earth))),
     PHYSICAL_DAMAGE("Physical", "physical", EffectColor.RED, new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical)), new OptScaleExactStat(20, Armor.getInstance(), ModType.PERCENT)),
 
     DEF_PURPLE("Magicka Defense", "def_purple", EffectColor.PURPLE, new OptScaleExactStat(10, SpellDamage.getInstance()), new OptScaleExactStat(10, Health.getInstance(), ModType.GLOBAL_INCREASE)),

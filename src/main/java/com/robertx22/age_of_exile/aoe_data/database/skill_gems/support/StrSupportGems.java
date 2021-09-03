@@ -6,9 +6,9 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.perks.StatAttribute;
 import com.robertx22.age_of_exile.database.data.skill_gem.SupportGemTags;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
@@ -61,7 +61,7 @@ public class StrSupportGems implements ExileRegistryInit {
         SkillGemBuilder.of("nature_dmg", "Poison Damage Support", new StatRequirement().setBaseStr(20)
                 .setStr(0.2F), StatAttribute.STR, 1.1F,
             Arrays.asList(SupportGemTags.damage),
-            new StatModifier(5, 30, Stats.ELEMENTAL_DAMAGE.get(Elements.Nature))
+            new StatModifier(5, 30, Stats.ELEMENTAL_DAMAGE.get(Elements.Earth))
         );
 
         SkillGemBuilder.of("less_mana_cost", "Mana Cost Reduction Support", new StatRequirement().setBaseStr(20)

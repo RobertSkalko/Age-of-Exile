@@ -61,7 +61,7 @@ public class StatsRegister implements ExileRegistryInit {
                     add(new ElementalPenetration(Elements.Physical));
                     add(new ElementalFocus(Elements.Physical));
                     add(new PhysConvertToEle(Elements.Physical));
-                    add(new MaxElementalResist(Elements.Nature));
+                    add(new MaxElementalResist(Elements.Earth));
 
                     add(AllAttributes.getInstance());
                     add(SpellDamage.getInstance());

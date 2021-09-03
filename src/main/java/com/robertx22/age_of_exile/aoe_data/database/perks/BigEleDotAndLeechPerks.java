@@ -4,10 +4,10 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.LeechInfo;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalPenetration;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class BigEleDotAndLeechPerks implements ExileRegistryInit {
 
@@ -38,24 +38,6 @@ public class BigEleDotAndLeechPerks implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
-
-        breath("Night", Elements.Dark);
-        breath("Light", Elements.Light);
-        breath("Fire", Elements.Fire);
-        breath("Ice", Elements.Water);
-        breath("Poison", Elements.Nature);
-
-        heart("Night", Elements.Dark);
-        heart("Light", Elements.Light);
-        heart("Nature", Elements.Nature);
-        heart("Fire", Elements.Fire);
-        heart("Water", Elements.Water);
-
-        dominator("Night", Elements.Dark);
-        dominator("Light", Elements.Light);
-        dominator("Poison", Elements.Nature);
-        dominator("Fire", Elements.Fire);
-        dominator("Ice", Elements.Water);
 
     }
 }

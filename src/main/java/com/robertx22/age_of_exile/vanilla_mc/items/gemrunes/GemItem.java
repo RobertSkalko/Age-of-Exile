@@ -232,10 +232,10 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
                 return Arrays.asList(new StatModifier(3, 10, Stats.CRIT_DAMAGE.get()));
             }
         }),
-        TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Light)),
-        AMETHYST("amethyst", "Amethyst", Formatting.DARK_PURPLE, new EleGem(Elements.Dark)),
+        TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Air)),
+        // AMETHYST("amethyst", "Amethyst", Formatting.DARK_PURPLE, new EleGem(Elements.Dark)),
         RUBY("ruby", "Ruby", Formatting.RED, new EleGem(Elements.Fire)),
-        EMERALD("emerald", "Emerald", Formatting.GREEN, new EleGem(Elements.Nature)),
+        EMERALD("emerald", "Emerald", Formatting.GREEN, new EleGem(Elements.Earth)),
         SAPPHIRE("sapphire", "Sapphire", Formatting.BLUE, new EleGem(Elements.Water));
 
         public String locName;

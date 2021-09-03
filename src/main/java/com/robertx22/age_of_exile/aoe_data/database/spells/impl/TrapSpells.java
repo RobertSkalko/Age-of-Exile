@@ -9,10 +9,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.item.Items;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
@@ -27,9 +27,9 @@ public class TrapSpells implements ExileRegistryInit {
     static SpellBuilder trap(String id, String name, DefaultParticleType particle, ValueCalculation dmg, Elements element) {
 
         return SpellBuilder.of(id, SpellConfiguration.Builder.instant(7, 20)
-                .setChargesAndRegen("trap", 3, 20 * 30)
-                .setSwingArm(), name,
-            Arrays.asList(SpellTag.damage, SpellTag.area, SpellTag.trap))
+                    .setChargesAndRegen("trap", 3, 20 * 30)
+                    .setSwingArm(), name,
+                Arrays.asList(SpellTag.damage, SpellTag.area, SpellTag.trap))
             .manualDesc(
                 "Throw out a trap that stays on the ground and activates when an enemy approaches to deal "
                     + dmg.getLocSpellTooltip() + element.getIconNameDmg() + " damage in area around itself."
@@ -59,7 +59,7 @@ public class TrapSpells implements ExileRegistryInit {
     public void registerAll() {
 
         trap("frost_trap", "Frost Trap", ParticleTypes.ITEM_SNOWBALL, ValueCalculation.base("frost_trap", 10), Elements.Water).build();
-        trap("poison_trap", "Poison Trap", ParticleTypes.ITEM_SLIME, ValueCalculation.base("poison_trap", 10), Elements.Nature).build();
+        trap("poison_trap", "Poison Trap", ParticleTypes.ITEM_SLIME, ValueCalculation.base("poison_trap", 10), Elements.Earth).build();
         trap("fire_trap", "Fire Trap", ParticleTypes.FLAME, ValueCalculation.base("fire_trap", 10), Elements.Fire).build();
 
     }
