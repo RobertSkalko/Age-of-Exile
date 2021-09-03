@@ -48,7 +48,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         rare.item_tier = 2;
         rare.item_model_data_num = 3;
         rare.affixes = new GearRarity.Part(2, 3, 15);
-        rare.weight = 1000;
+        rare.weight = 300;
         rare.item_tier_power = 1.5F;
         rare.item_value_multi = 1.5F;
         rare.higher_rar = IRarity.EPIC_ID;

@@ -27,11 +27,5 @@ public class SkillGemRarityAdder implements ExileRegistryInit {
         epic.stat_percents = new MinMax(40, 75);
         epic.addToSerializables();
 
-        SkillGemRarity mythic = new SkillGemRarity();
-        mythic.weight = 100;
-        mythic.setMythicFields();
-        mythic.stat_percents = new MinMax(75, 100);
-        mythic.addToSerializables();
-
     }
 }

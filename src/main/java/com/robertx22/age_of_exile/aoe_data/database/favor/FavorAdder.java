@@ -17,7 +17,7 @@ public class FavorAdder implements ExileRegistryInit {
         none.rank = 0;
 
         none.can_salvage_loot = false;
-        none.excludedRarities = Arrays.asList(IRarity.MYTHIC_ID, IRarity.LEGENDARY_ID);
+        none.excludedRarities = Arrays.asList(IRarity.EPIC_ID, IRarity.RARE_ID);
         none.drop_currency = false;
         none.drop_gems = false;
         none.drop_runes = false;

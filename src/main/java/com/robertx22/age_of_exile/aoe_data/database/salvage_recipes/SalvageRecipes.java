@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.generators.LootTableGenerat
 import com.robertx22.age_of_exile.database.data.salvage_recipes.ItemIngredient;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.ItemRequirement;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class SalvageRecipes implements ExileRegistryInit {
 
@@ -13,17 +13,17 @@ public class SalvageRecipes implements ExileRegistryInit {
     public void registerAll() {
 
         SalvageRecipe.of("gem_recipe", "Gem Recipe", LootTableGenerator.GEM_SALVAGE_RECIPE,
-            ItemIngredient.of(ItemRequirement.rarity(IRarity.MYTHIC_ID)),
-            ItemIngredient.of(ItemRequirement.rarity(IRarity.MYTHIC_ID)),
-            ItemIngredient.of(ItemRequirement.rarity(IRarity.MYTHIC_ID))
-        )
+                ItemIngredient.of(ItemRequirement.rarity(IRarity.EPIC_ID)),
+                ItemIngredient.of(ItemRequirement.rarity(IRarity.EPIC_ID)),
+                ItemIngredient.of(ItemRequirement.rarity(IRarity.EPIC_ID))
+            )
             .addToSerializables();
 
         SalvageRecipe.of("currency_recipe", "Currency Recipe", LootTableGenerator.CURRENCIES_SALVAGE_RECIPE,
-            ItemIngredient.of(ItemRequirement.rarity(IRarity.UNIQUE_ID)),
-            ItemIngredient.of(ItemRequirement.rarity(IRarity.UNIQUE_ID)),
-            ItemIngredient.of(ItemRequirement.rarity(IRarity.UNIQUE_ID))
-        )
+                ItemIngredient.of(ItemRequirement.rarity(IRarity.UNIQUE_ID)),
+                ItemIngredient.of(ItemRequirement.rarity(IRarity.UNIQUE_ID)),
+                ItemIngredient.of(ItemRequirement.rarity(IRarity.UNIQUE_ID))
+            )
             .rolls(2)
             .addToSerializables();
 

@@ -76,7 +76,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public String getRarityRank() {
-        return IRarity.MYTHIC_ID;
+        return IRarity.EPIC_ID;
     }
 
     @Override
