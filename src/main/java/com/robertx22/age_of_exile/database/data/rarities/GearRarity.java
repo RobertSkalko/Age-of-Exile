@@ -56,8 +56,6 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public boolean announce_in_chat = false;
 
     public boolean is_unique_item = false;
-    public float special_spawn_chance = 0;
-    public float special_spawn_chest_bonus_chance = 0;
 
     transient Identifier glintFull;
     transient Identifier glintTexBorder;

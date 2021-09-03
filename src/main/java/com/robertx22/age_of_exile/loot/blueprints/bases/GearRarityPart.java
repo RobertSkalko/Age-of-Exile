@@ -18,7 +18,7 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
     GearRarity specialRar = null;
 
     public List<GearRarity> possible = ExileDB.GearRarityGroups()
-        .get(GearRarityGroups.NON_UNIQUE_ID)
+        .get(GearRarityGroups.DROPPABLE_RARITIES_ID)
         .getRarities();
 
     public float chanceForHigherRarity = 0;
@@ -35,46 +35,7 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
                 .getRarityGroup()
                 .getRarities();
         }
-
-        List<GearRarity> specialRarities = ExileDB.GearRarities()
-            .getFiltered(x -> x.special_spawn_chance > 0);
-
-        if (info.isMapWorld) { // TODO
-
-            for (GearRarity rar : specialRarities) {
-
-                float chance = rar.special_spawn_chance;
-
-                if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
-                    chance += rar.special_spawn_chest_bonus_chance;
-                }
-                if (info.world != null) {
-                    chance *= ExileDB.getDimensionConfig(info.world).unique_gear_drop_multi;
-                }
-
-                if (info.playerData != null) {
-                    if (info.lootOrigin != LootInfo.LootOrigin.LOOT_CRATE) {
-                        if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {
-                            chance *= info.playerData.getUnit()
-                                .getCalculatedStat(TreasureQuality.getInstance())
-                                .getMultiplier();
-                        }
-                    }
-                }
-
-                if (info.favorRank != null) {
-                    if (!info.favorRank.drop_unique_gears) {
-                        chance = 0;
-                    }
-                }
-
-                if (RandomUtils.roll(chance)) {
-                    this.specialRar = rar;
-                    return;
-                }
-
-            }
-        }
+        this.possible.removeIf(x -> !info.favorRank.drop_unique_gears && x.is_unique_item);
 
         if (info.playerData != null) {
             if (info.lootOrigin == LootInfo.LootOrigin.CHEST) {

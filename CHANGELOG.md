@@ -11,3 +11,5 @@
 - runes don't give stats anymore, now they are used to craft runewords. 
 - runewords are now a variation of unique rarity, only attainable through rune crafting
 - gear stat requirements removed
+- removed legendary and mythic rarity
+- runeword gear is now crafted in runeword station by combining all the runes needed
