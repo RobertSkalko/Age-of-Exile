@@ -2074,30 +2074,9 @@
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"item.minecraft.iron_helmet": "Insight",
-	"item.mmorpg.jewelry.necklace.diamond": "Skull of Spirits",
-	"item.mmorpg.jewelry.ring.diamond": "Ghostly Shores",
-	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
-	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
-	"mmorpg.unique_gear.blood_stone.name": "Primordial Blood",
-	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
-	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
-	"mmorpg.unique_gear.insight.name": "Insight",
-	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
-	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
-	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
-	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
-	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
-	"mmorpg.gear_type.all_res_necklace_end": "Necklace",
-	"mmorpg.gear_type.all_res_necklace_low": "Necklace",
+	"mmorpg.gear_type.all_res_necklace_full": "Necklace",
 	"mmorpg.gear_type.axe_full": "Axe",
 	"mmorpg.gear_type.bow_full": "Bow",
 	"mmorpg.gear_type.buckler_shield_full": "Buckler Shield",
@@ -2106,16 +2085,13 @@
 	"mmorpg.gear_type.cloth_helmet_full": "Hat",
 	"mmorpg.gear_type.cloth_pants_full": "Leggings",
 	"mmorpg.gear_type.crossbow_full": "Crossbow",
-	"mmorpg.gear_type.hp_ring_end": "Ring",
-	"mmorpg.gear_type.hp_ring_low": "Ring",
+	"mmorpg.gear_type.hp_ring_full": "Ring",
 	"mmorpg.gear_type.leather_boots_full": "Boots",
 	"mmorpg.gear_type.leather_chest_full": "Vest",
 	"mmorpg.gear_type.leather_helmet_full": "Cap",
 	"mmorpg.gear_type.leather_pants_full": "Pants",
-	"mmorpg.gear_type.life_necklace_end": "Necklace",
-	"mmorpg.gear_type.life_necklace_low": "Necklace",
-	"mmorpg.gear_type.mana_reg_ring_end": "Ring",
-	"mmorpg.gear_type.mana_reg_ring_low": "Ring",
+	"mmorpg.gear_type.life_necklace_full": "Necklace",
+	"mmorpg.gear_type.mana_reg_ring_full": "Ring",
 	"mmorpg.gear_type.plate_boots_full": "Footwear",
 	"mmorpg.gear_type.plate_chest_full": "Chestplate",
 	"mmorpg.gear_type.plate_helmet_full": "Helmet",
@@ -2142,10 +2118,29 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
+	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
+	"mmorpg.unique_gear.blood_stone.name": "Primordial Blood",
+	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
+	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
+	"mmorpg.unique_gear.insight.name": "Insight",
+	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
+	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
+	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
+	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
+	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
+	"item.mmorpg.jewelry.necklace.diamond": "Necklace",
 	"item.mmorpg.jewelry.necklace.gold": "Necklace",
 	"item.mmorpg.jewelry.necklace.iron": "Necklace",
+	"item.mmorpg.jewelry.ring.diamond": "Ring",
 	"item.mmorpg.jewelry.ring.gold": "Ring",
 	"item.mmorpg.jewelry.ring.iron": "Ring",
 	"item.mmorpg.weapon.bow.bow0": "Bow",

@@ -119,8 +119,8 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         unique.essence_per_sal = new MinMax(5, 5);
         unique.setUniqueFields();
         unique.addToSerializables();
-        unique.special_spawn_chest_bonus_chance = 0.05F;
-        unique.special_spawn_chance = 0.1F;
+        unique.special_spawn_chest_bonus_chance = 0.03F;
+        unique.special_spawn_chance = 0.05F;
         unique.announce_in_chat = true;
         unique.is_unique_item = true;
 

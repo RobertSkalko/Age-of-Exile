@@ -161,10 +161,6 @@ public class CreateLangFile {
         list.addAll(Arrays.asList(Chats.values()));
         list.addAll(Arrays.asList(RandomTips.values()));
 
-        ExileDB.UniqueGears()
-            .getSerializable()
-            .forEach(x -> list.add(new UniqueName(x)));
-
         ExileDB.Spells()
             .getSerializable()
             .forEach(x -> list.add(new OneOfAKindName(x)));

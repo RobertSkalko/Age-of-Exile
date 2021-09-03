@@ -65,7 +65,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
                 "skull_of_spirits",
                 "Skull of Spirits",
                 "The mysterious skull contains knowledge of the contained spirits, but also their madness.",
-                BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.MID_TO_END))
+                BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.START_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(1, 2, AllAttributes.getInstance(), ModType.FLAT),
                 new StatModifier(10, 20, ManaRegen.getInstance(), ModType.PERCENT),

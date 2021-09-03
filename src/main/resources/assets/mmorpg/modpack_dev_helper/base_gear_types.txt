@@ -5,6 +5,7 @@ spirit_shield_full
 staff_full
 tower_shield_full
 crossbow_full
+life_necklace_full
 leather_boots_full
 cloth_pants_full
 plate_pants_full
@@ -17,12 +18,15 @@ mana_reg_ring_end
 cloth_boots_full
 axe_full
 bow_full
+mana_reg_ring_full
 all_res_necklace_end
 leather_helmet_full
 buckler_shield_full
 cloth_helmet_full
 hp_ring_low
+hp_ring_full
 all_res_necklace_low
+all_res_necklace_full
 life_necklace_low
 cloth_chest_full
 plate_boots_full

@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -36,32 +35,28 @@ public class BaseGearJewelry implements ExileRegistryInit, GearDataHelper {
             .essenceItem(ModRegistry.GEAR_MATERIALS.ARCANA)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
             .baseStat(new StatModifier(10, 20, ManaRegen.getInstance(), ModType.PERCENT))
-            .addLvlRange(LevelRanges.START_TO_LOW, "Occult")
-            .addLvlRange(LevelRanges.MID_TO_END, "Arcana")
+            .addFullLevelRange()
             .build();
 
         HP_RING = BaseGearBuilder.of(GearSlots.RING, "hp_ring", "Ring")
             .essenceItem(ModRegistry.GEAR_MATERIALS.ARCANA)
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
             .baseStat(new StatModifier(10, 20, HealthRegen.getInstance(), ModType.PERCENT))
-            .addLvlRange(LevelRanges.START_TO_LOW, "Primitive")
-            .addLvlRange(LevelRanges.MID_TO_END, "Primordial")
+            .addFullLevelRange()
             .build();
 
         ALL_RES_NECKLACE = BaseGearBuilder.of(GearSlots.NECKLACE, "all_res_necklace", "Necklace")
             .essenceItem(ModRegistry.GEAR_MATERIALS.ELEMENTAL)
             .tags(new TagList(SlotTag.necklace, SlotTag.jewelry_family))
             .baseStat(new StatModifier(4, 8, new ElementalResist(Elements.Elemental), ModType.FLAT))
-            .addLvlRange(LevelRanges.START_TO_LOW, "Primitive")
-            .addLvlRange(LevelRanges.MID_TO_END, "Primordial")
+            .addFullLevelRange()
             .build();
 
         HP_NECKLACE = BaseGearBuilder.of(GearSlots.NECKLACE, "life_necklace", "Necklace")
             .essenceItem(ModRegistry.GEAR_MATERIALS.LIFE)
             .tags(new TagList(SlotTag.necklace, SlotTag.jewelry_family))
             .baseStat(new StatModifier(2, 6, Health.getInstance(), ModType.FLAT))
-            .addLvlRange(LevelRanges.START_TO_LOW, "Life Giving")
-            .addLvlRange(LevelRanges.MID_TO_END, "Life Blood")
+            .addFullLevelRange()
             .build();
 
     }

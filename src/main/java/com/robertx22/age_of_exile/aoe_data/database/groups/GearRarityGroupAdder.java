@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class GearRarityGroupAdder implements ExileRegistryInit {
 
     static DataGenKey<GearRarityGroup> NON_UNIQUE_KEY = new DataGenKey<>(GearRarityGroups.NON_UNIQUE_ID);
+    static DataGenKey<GearRarityGroup> DROPPABLE_RARITIES = new DataGenKey<>(GearRarityGroups.NON_UNIQUE_ID);
     static DataGenKey<GearRarityGroup> UP_TO_MAGICAL = new DataGenKey<>(GearRarityGroups.UP_TO_MAGICAL);
     static DataGenKey<GearRarityGroup> UP_TO_RARE = new DataGenKey<>(GearRarityGroups.UP_TO_RARE);
     static DataGenKey<GearRarityGroup> UP_TO_EPIC = new DataGenKey<>(GearRarityGroups.UP_TO_EPIC);

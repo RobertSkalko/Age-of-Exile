@@ -19,6 +19,7 @@ public abstract class ModificationGui<T extends BaseTileContainer, Tile extends 
     public Tile tile;
     MinecraftClient mc;
 
+    public int backgroundCanvasSize = 256;
     public TextRenderer font = MinecraftClient.getInstance().textRenderer;
     Identifier background;
 
@@ -116,10 +117,11 @@ public abstract class ModificationGui<T extends BaseTileContainer, Tile extends 
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        drawTexture(matrix, this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
+        drawTexture(matrix, this.x, this.y, 0, 0, backgroundWidth, backgroundHeight, backgroundCanvasSize, backgroundCanvasSize);
 
         this.buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
     }
+
 }
 
