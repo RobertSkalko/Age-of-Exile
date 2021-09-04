@@ -43,12 +43,12 @@ public class DatapackStats implements ExileRegistryInit {
         new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.PERCENT)
     )));
     public static Stat VIT = new CoreStat("vitality", "Vitality", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(10, Health.getInstance(), ModType.FLAT),
-        new OptScaleExactStat(0.5F, HealthRegen.getInstance(), ModType.FLAT)
+        new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT),
+        new OptScaleExactStat(1, HealthRegen.getInstance(), ModType.PERCENT)
     )));
     public static Stat WIS = new CoreStat("wisdom", "Wisdom", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(10, Mana.getInstance(), ModType.FLAT),
-        new OptScaleExactStat(0.5F, ManaRegen.getInstance(), ModType.FLAT)
+        new OptScaleExactStat(2, Mana.getInstance(), ModType.PERCENT),
+        new OptScaleExactStat(1, ManaRegen.getInstance(), ModType.PERCENT)
     )));
     public static Stat AGI = new CoreStat("agility", "Agility", CoreStatData.of(Arrays.asList(
         new OptScaleExactStat(20, Stats.ACCURACY.get(), ModType.FLAT),

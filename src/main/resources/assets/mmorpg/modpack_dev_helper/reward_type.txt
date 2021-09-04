@@ -1,8 +1,0 @@
-These are all default registry entries of this type.
-This registry can't be modified or added to.
-give_exp
-give_age_of_exile_exp
-give_loot_table
-give_item
-use_command
-give_age_of_exile_favor

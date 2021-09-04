@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.MergedStats;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
@@ -199,15 +198,6 @@ public class GearTooltipUtils {
                 tip.add(
                     Words.Unsalvagable.locName()
                         .formatted(Formatting.RED));
-            }
-        }
-
-        if (gear.getRarity()
-            .GUID()
-            .equals(IRarity.UNIQUE_ID)) {
-            if (false && !info.shouldShowDescriptions()) {
-                UniqueGear unique = gear.uniqueStats.getUnique(gear);
-                TooltipUtils.addUniqueDesc(tip, unique, gear);
             }
         }
 

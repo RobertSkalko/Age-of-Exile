@@ -10,11 +10,10 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
@@ -25,11 +24,9 @@ public class UniqueRings implements ExileRegistryInit {
     public void registerAll() {
 
         UniqueGearBuilder.of(
-                ModRegistry.GEAR_ITEMS.RINGS.get(VanillaMaterial.DIAMOND),
                 "witch_brew",
                 "Witch's Brew",
-                "",
-                BaseGearJewelry.MANA_RING.values())
+                BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_END))
 
             .stats(Arrays.asList(new StatModifier(15, 25, new ElementalResist(Elements.Earth), ModType.FLAT),
                 new StatModifier(25, 50, SpecialStats.BETTER_FOOD_BUFFS, ModType.FLAT),
@@ -42,10 +39,9 @@ public class UniqueRings implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
-                ModRegistry.GEAR_ITEMS.RINGS.get(VanillaMaterial.DIAMOND),
                 "ghostly_shores",
                 "Ghostly Shores",
-                BaseGearJewelry.MANA_RING.values())
+                BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_END))
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),

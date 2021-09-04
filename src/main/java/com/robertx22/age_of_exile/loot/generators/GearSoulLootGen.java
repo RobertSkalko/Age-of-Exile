@@ -49,7 +49,7 @@ public class GearSoulLootGen extends BaseLootGen<GearBlueprint> {
             UniqueGear uniq = ExileDB.UniqueGears()
                 .get(ExileDB.RuneWords()
                     .random().uniq_id);
-            soul.slot = uniq.getBaseGearType().gear_slot;
+            soul.slot = uniq.getBaseGear().gear_slot;
             soul.uniq = uniq.GUID();
         }
 

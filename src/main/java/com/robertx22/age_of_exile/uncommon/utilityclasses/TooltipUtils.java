@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
-import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -47,34 +46,6 @@ public class TooltipUtils {
     public static void addSocketNamesLine(List<Text> tip, GearItemData gear) {
         if (gear.sockets.sockets.size() > 0) {
             tip.add(new LiteralText("Gemmed").formatted(Formatting.LIGHT_PURPLE));
-        }
-    }
-
-    public static void addUniqueDesc(List<Text> tip, UniqueGear uniq, GearItemData gear) {
-        String uniqdesc = CLOC.translate(uniq.locDesc());
-
-        List<String> lores = TooltipUtils.cutIfTooLong(uniqdesc);
-        tip.add(new LiteralText(""));
-
-        Formatting format = Formatting.GREEN;
-
-        int i = 0;
-        for (String desc : lores) {
-
-            MutableText comp = new LiteralText(format + "");
-
-            if (i == 0) {
-                comp.append("'");
-            }
-            comp.append(desc);
-
-            if (i == lores.size() - 1) {
-                comp.append("'");
-            }
-            i++;
-            comp.formatted(format);
-            tip.add(comp);
-
         }
     }
 

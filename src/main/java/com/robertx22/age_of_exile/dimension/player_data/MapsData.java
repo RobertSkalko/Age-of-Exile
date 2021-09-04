@@ -57,7 +57,7 @@ public class MapsData {
     public ItemStack getStartCostOf(PointData point) {
         int cost = 3;
 
-        SkillItemTier tier = LevelUtils.levelToTier(dungeon_datas.get(point).lv);
+        SkillItemTier tier = LevelUtils.levelToSkillTier(dungeon_datas.get(point).lv);
 
         Item item = ModRegistry.TIERED.DIMENSIONAL_SHARD_MAP.get(tier);
 

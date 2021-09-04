@@ -13,3 +13,4 @@
 - gear stat requirements removed
 - removed legendary and mythic rarity
 - runeword gear is now crafted in runeword station by combining all the runes needed
+- ramoved magus mobs

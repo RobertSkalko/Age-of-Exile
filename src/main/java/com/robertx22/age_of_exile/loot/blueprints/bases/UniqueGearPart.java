@@ -40,13 +40,13 @@ public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
                 .getWrapped()
                 .of(x -> blueprint.info.diff != null && blueprint.info.diff.rank >= x.getUniqueRarity().drops_after_tier)
                 .of(x -> !x.filters.cantDrop(blueprint.info))
-                .of(x -> x.getPossibleGearTypes()
-                    .contains(blueprint.gearItemSlot.get()));
+                .of(x -> x.getBaseGear()
+                    .equals(blueprint.gearItemSlot.get()));
 
             uniq = gen.random();
         }
         if (uniq != null) {
-            blueprint.gearItemSlot.override(uniq.getGearTypeForLevel(blueprint.info.level));
+            blueprint.gearItemSlot.override(uniq.getBaseGear());
         }
         return uniq;
     }

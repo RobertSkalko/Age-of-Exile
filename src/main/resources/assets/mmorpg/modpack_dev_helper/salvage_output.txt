@@ -1,7 +1,0 @@
-These are all default registry entries of this type.
-This registry is modify-able through datapacks.
-t4
-t0
-t1
-t2
-t3

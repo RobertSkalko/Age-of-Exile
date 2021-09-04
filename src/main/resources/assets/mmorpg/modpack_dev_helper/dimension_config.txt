@@ -1,8 +1,0 @@
-These are all default registry entries of this type.
-This registry is modify-able through datapacks.
-minecraft:overworld
-mmorpg:dungeon
-world_of_exile:hell1
-minecraft:the_nether
-minecraft:the_end
-mmorpg:rift

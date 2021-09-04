@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.Item;
@@ -44,8 +45,10 @@ public class StatSoulData {
 
     public GearItemData createGearData() {
 
-        GearBlueprint b = new GearBlueprint(Items.AIR, tier * 10);
+        int lvl = LevelUtils.tierToLevel(tier);
 
+        GearBlueprint b = new GearBlueprint(Items.AIR, lvl);
+        b.level.set(lvl);
         b.rarity.set(ExileDB.GearRarities()
             .get(rar));
 

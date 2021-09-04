@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.unique_items;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
@@ -10,25 +11,16 @@ import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFi
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IBaseGearType;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.registry.serialization.ISerializable;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
 
-public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
-    JsonExileRegistry<UniqueGear>, ISerializable<UniqueGear> {
+public class UniqueGear implements IAutoLocName, JsonExileRegistry<UniqueGear>, ISerializable<UniqueGear> {
 
     public static UniqueGear SERIALIZER = new UniqueGear();
 
@@ -36,19 +28,15 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
     public List<StatModifier> base_stats = new ArrayList<>();
     public int weight = 1000;
     public String guid;
-    public String gearType;
-    public Identifier itemID;
     public String uniqueRarity = IRarity.UNIQUE_ID;
     public String set = "";
     public boolean replaces_name = false;
 
-    public List<String> gear_types = new ArrayList<>();
+    public String base_gear = "";
 
     public DropFiltersGroupData filters = new DropFiltersGroupData();
 
     public transient String langName;
-    public transient String langDesc;
-    public transient BaseGearType serBaseGearType;
 
     public boolean hasSet() {
         return ExileDB.Sets()
@@ -62,9 +50,7 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
 
     @Override
     public String datapackFolder() {
-        return getBaseGearType().family()
-            .name()
-            .toLowerCase(Locale.ROOT) + "/";
+        return base_gear;
     }
 
     @Override
@@ -74,16 +60,11 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
         JsonUtils.addStats(uniqueStats(), json, "unique_stats");
         JsonUtils.addStats(base_stats, json, "base_stats");
 
-        json.addProperty("gear_type", this.getBaseGearType()
-            .GUID());
-        json.addProperty("item_id", this.getResourceLocForItem()
-            .toString());
-
         json.addProperty("rarity", this.uniqueRarity);
         json.addProperty("set", this.set);
         json.addProperty("replaces_name", this.replaces_name);
 
-        json.add("gear_types", JsonUtils.stringListToJsonArray(gear_types));
+        json.addProperty("base_gear", base_gear);
 
         json.add("filters", filters.toJson());
         return json;
@@ -97,16 +78,10 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
         uniq.guid = getGUIDFromJson(json);
         uniq.weight = getWeightFromJson(json);
 
-        uniq.itemID = new Identifier(json.get("item_id")
-            .getAsString());
-
         uniq.uniqueStats = JsonUtils.getStats(json, "unique_stats");
         uniq.base_stats = JsonUtils.getStats(json, "base_stats");
 
-        uniq.gear_types = JsonUtils.jsonArrayToStringList(json.get("gear_types")
-            .getAsJsonArray());
-
-        uniq.gearType = json.get("gear_type")
+        uniq.base_gear = json.get("base_gear")
             .getAsString();
         uniq.uniqueRarity = json.get("rarity")
             .getAsString();
@@ -123,18 +98,6 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
         return uniq;
     }
 
-    public BaseGearType getGearTypeForLevel(int lvl) {
-        BaseGearType type = getPossibleGearTypes()
-            .stream()
-            .filter(x -> x.getLevelRange()
-                .isLevelInRange(lvl))
-            .max(Comparator.comparingInt(x -> x.getLevelRange()
-                .getMaxLevel()))
-            .get();
-
-        return type;
-    }
-
     @Override
     public int Weight() {
         return weight;
@@ -146,21 +109,8 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
     }
 
     @Override
-    public AutoLocGroup locDescGroup() {
-        return AutoLocGroup.Unique_Items;
-    }
-
-    @Override
     public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.UNIQUE_GEAR;
-    }
-
-    public Identifier getResourceLocForItem() {
-        return itemID;
-    }
-
-    public Item getUniqueItem() {
-        return Registry.ITEM.get(itemID);
     }
 
     public GearRarity getUniqueRarity() {
@@ -173,18 +123,8 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
     }
 
     @Override
-    public String locDescForLangFile() {
-        return this.langDesc;
-    }
-
-    @Override
     public String locNameForLangFile() {
         return this.langName;
-    }
-
-    @Override
-    public String locDescLangFileGUID() {
-        return Ref.MODID + ".unique_gear." + this.GUID() + ".desc";
     }
 
     @Override
@@ -197,22 +137,13 @@ public class UniqueGear implements IBaseGearType, IAutoLocName, IAutoLocDesc,
         return guid;
     }
 
-    public List<BaseGearType> getPossibleGearTypes() {
-
-        return gear_types.stream()
-            .map(x -> ExileDB.GearTypes()
-                .get(x))
-            .collect(Collectors.toList());
+    public GearSlot getSlot() {
+        return ExileDB.GearSlots()
+            .get(getBaseGear().gear_slot);
     }
 
-    @Override
-    public BaseGearType getBaseGearType() {
-        if (!ExileDB.GearTypes()
-            .isRegistered(this.gearType)) {
-            return serBaseGearType;
-        }
+    public BaseGearType getBaseGear() {
         return ExileDB.GearTypes()
-            .get(gearType);
+            .get(base_gear);
     }
-
 }

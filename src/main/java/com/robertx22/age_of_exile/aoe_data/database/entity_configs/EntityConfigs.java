@@ -1,16 +1,13 @@
 package com.robertx22.age_of_exile.aoe_data.database.entity_configs;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
-import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.entity.EntityType;
 
 import java.util.Locale;
 
-import static com.robertx22.age_of_exile.database.data.EntityConfig.*;
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
+import static com.robertx22.age_of_exile.database.data.EntityConfig.SpecialMobStats;
 
 public class EntityConfigs implements ExileRegistryInit {
 
@@ -63,13 +60,6 @@ public class EntityConfigs implements ExileRegistryInit {
     }
 
     void setupMyMobs() {
-
-        mob(ENTITIES.FIRE_MAGE, new SpecialMobStats(fire()));
-        mob(ENTITIES.WATER_MAGE, new SpecialMobStats(water()));
-        mob(ENTITIES.NATURE_MAGE, new SpecialMobStats(nature()));
-        mob(ENTITIES.FIRE_MAGE, new SpecialMobStats(fire()));
-
-        mob(ENTITIES.HEALER_MAGE, new SpecialMobStats(new OptScaleExactStat(-100, Stats.HEALING_RECEIVED.get())));
 
     }
 

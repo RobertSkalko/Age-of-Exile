@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.mmorpg;
 
-import com.robertx22.age_of_exile.mixin_methods.AddMobSpawns;
 import com.robertx22.age_of_exile.mmorpg.registers.common.*;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.*;
 
@@ -56,7 +55,6 @@ public class ModRegistry {
         TIERED = new TierItemsRegister();
         BACKPACK_UPGRADES = new BackpackUpgradesRegister();
 
-        AddMobSpawns.SPAWNS = new AddMobSpawns.Spawns();
     }
 
 }

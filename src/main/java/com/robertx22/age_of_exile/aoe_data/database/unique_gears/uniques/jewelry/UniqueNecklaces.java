@@ -12,10 +12,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
@@ -26,10 +24,9 @@ public class UniqueNecklaces implements ExileRegistryInit {
     public void registerAll() {
 
         UniqueGearBuilder.of(
-                ModRegistry.GEAR_ITEMS.NECKLACES.get(VanillaMaterial.DIAMOND),
                 "blood_stone",
                 "Primordial Blood",
-                BaseGearJewelry.HP_NECKLACE.values())
+                BaseGearJewelry.HP_NECKLACE.get(LevelRanges.START_TO_END))
 
             .stats(Arrays.asList(
                 new StatModifier(25, 25, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.BLOODLUST), ModType.FLAT),
@@ -42,11 +39,9 @@ public class UniqueNecklaces implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
-                ModRegistry.GEAR_ITEMS.NECKLACES.get(VanillaMaterial.DIAMOND),
                 "ghast_necklace",
                 "Ghast Tear",
-                "",
-                BaseGearJewelry.HP_NECKLACE.values())
+                BaseGearJewelry.HP_NECKLACE.get(LevelRanges.START_TO_END))
 
             .stats(Arrays.asList(new StatModifier(15, 25, new ElementalResist(Elements.Water)),
                 new StatModifier(15, 25, new ElementalResist(Elements.Fire)),
@@ -61,10 +56,8 @@ public class UniqueNecklaces implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
-                ModRegistry.GEAR_ITEMS.NECKLACES.get(VanillaMaterial.DIAMOND),
                 "skull_of_spirits",
                 "Skull of Spirits",
-                "The mysterious skull contains knowledge of the contained spirits, but also their madness.",
                 BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.START_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(1, 2, AllAttributes.getInstance(), ModType.FLAT),

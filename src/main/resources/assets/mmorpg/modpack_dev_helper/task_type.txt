@@ -1,9 +1,0 @@
-These are all default registry entries of this type.
-This registry can't be modified or added to.
-complete_dungeon
-loot_chest
-specific_mob_kill
-any_mob_kill
-bring_item
-kill_mob_of_tag
-complete_rift

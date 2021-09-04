@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.dun_mob_list;
 
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.entity.EntityType;
 
 public class DungeonMobListAdder implements ExileRegistryInit {
@@ -16,7 +15,7 @@ public class DungeonMobListAdder implements ExileRegistryInit {
             .addMob(EntityType.STRAY, 200)
             .addMob(EntityType.WITCH, 50)
 
-            .addBoss(ModRegistry.ENTITIES.FIRE_MAGE_BOSS)
+            .addBoss(EntityType.WITHER_SKELETON)
             .build();
 
         DungeonMobListBuilder.of("undead")
@@ -24,7 +23,7 @@ public class DungeonMobListAdder implements ExileRegistryInit {
             .addMob(EntityType.ZOMBIE)
             .addMob(EntityType.STRAY, 200)
 
-            .addBoss(ModRegistry.ENTITIES.FIRE_MAGE_BOSS)
+            .addBoss(EntityType.WITHER_SKELETON)
             .build();
 
         DungeonMobListBuilder.of("nether")
@@ -32,7 +31,7 @@ public class DungeonMobListAdder implements ExileRegistryInit {
             .addMob(EntityType.BLAZE, 200)
             .addMob(EntityType.MAGMA_CUBE, 50)
 
-            .addBoss(ModRegistry.ENTITIES.FIRE_MAGE_BOSS)
+            .addBoss(EntityType.WITHER_SKELETON)
             .build();
 
     }

@@ -19,8 +19,6 @@ import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.RaceResetPoti
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.ResetStatsPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.SingleTalentResetPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.TalentResetPotion;
-import com.robertx22.age_of_exile.vanilla_mc.items.repair_hammers.RepairHammer0;
-import com.robertx22.age_of_exile.vanilla_mc.items.repair_hammers.RepairHammer1;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -73,9 +71,6 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public SalvagedDustItem T4_DUST() {
         return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER4);
     }
-
-    public RepairHammer0 REPAIR_HAMMER_0 = item(new RepairHammer0(1250), "repair_hammers/0");
-    public RepairHammer1 REPAIR_HAMMER_1 = item(new RepairHammer1(3750), "repair_hammers/1");
 
     public LootTableItem LOOT_TABLE_ITEM = item(new LootTableItem(), "loot_table_chest");
 

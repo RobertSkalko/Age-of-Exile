@@ -5,11 +5,6 @@ import com.robertx22.age_of_exile.database.data.spells.entities.SimpleProjectile
 import com.robertx22.age_of_exile.database.data.spells.entities.SimpleTridentEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.StationaryFallingBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.mobs.bosses.FireMageBoss;
-import com.robertx22.age_of_exile.mobs.mages.FireMage;
-import com.robertx22.age_of_exile.mobs.mages.HealerMage;
-import com.robertx22.age_of_exile.mobs.mages.NatureMage;
-import com.robertx22.age_of_exile.mobs.mages.WaterMage;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
 import net.minecraft.entity.*;
@@ -36,19 +31,11 @@ public class ModEntities {
 
     }
 
-    static EntityDimensions mageDim = new EntityDimensions(0.5F, 2.2F, true);
-
     public EntityType<SimpleProjectileEntity> SIMPLE_PROJECTILE = projectile(SimpleProjectileEntity::new, "spell_projectile");
     public EntityType<SimpleArrowEntity> SIMPLE_ARROW = projectile(SimpleArrowEntity::new, "spell_arrow");
     public EntityType<SimpleArrowEntity> SIMPLE_BONE_PROJECTILE = projectile(SimpleArrowEntity::new, "spell_bone_projectile");
     public EntityType<StationaryFallingBlockEntity> SIMPLE_BLOCK_ENTITY = projectile(StationaryFallingBlockEntity::new, "spell_block_entity", false);
     public EntityType<SimpleTridentEntity> SIMPLE_TRIDENT = projectile(SimpleTridentEntity::new, "spell_trident", false);
-
-    public EntityType<FireMage> FIRE_MAGE = mob(FireMage::new, "fire_mage", mageDim);
-    public EntityType<WaterMage> WATER_MAGE = mob(WaterMage::new, "water_mage", mageDim);
-    public EntityType<NatureMage> NATURE_MAGE = mob(NatureMage::new, "nature_mage", mageDim);
-    public EntityType<HealerMage> HEALER_MAGE = mob(HealerMage::new, "healer_mage", mageDim);
-    public EntityType<FireMageBoss> FIRE_MAGE_BOSS = mob(FireMageBoss::new, "fire_mage_boss", mageDim);
 
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
                                                         String id) {
@@ -60,7 +47,8 @@ public class ModEntities {
     private <T extends MobEntity> EntityType<T> mob(EntityType.EntityFactory<T> factory,
                                                     String id, EntityDimensions size) {
 
-        EntityType<T> type = FabricEntityTypeBuilder.<T>create(SpawnGroup.MONSTER, factory).dimensions(size)
+        EntityType<T> type = FabricEntityTypeBuilder.<T>create(SpawnGroup.MONSTER, factory)
+            .dimensions(size)
             .build();
         Registry.register(Registry.ENTITY_TYPE, new Identifier(Ref.MODID, id), type);
         ENTITY_TYPES.add(type);
@@ -85,7 +73,8 @@ public class ModEntities {
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
                                                         String id, boolean itemRender) {
 
-        EntityType<T> type = FabricEntityTypeBuilder.<T>create(SpawnGroup.MISC, factory).dimensions(new EntityDimensions(0.5F, 0.5F, true))
+        EntityType<T> type = FabricEntityTypeBuilder.<T>create(SpawnGroup.MISC, factory)
+            .dimensions(new EntityDimensions(0.5F, 0.5F, true))
             .trackedUpdateRate(10)
             .build();
 

@@ -269,11 +269,16 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
 
     // has to use ugly stuff like this cus datapacks.
     public static boolean isGearOfThisType(GearSlot slot, Item item) {
+        CACHED_GEAR_SLOTS.clear();
         if (item == Items.AIR) {
             return false;
         }
 
         String id = slot.GUID();
+
+        if (id.isEmpty()) {
+            return false;
+        }
 
         if (!CACHED_GEAR_SLOTS.containsKey(id)) {
             CACHED_GEAR_SLOTS.put(id, new HashMap<>());

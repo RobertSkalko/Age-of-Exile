@@ -65,9 +65,9 @@ public interface GearDataHelper {
     }
 
     public enum ArmorStat {
-        ARMOR(8, 20, Armor.getInstance()),
-        DODGE(8, 20, DodgeRating.getInstance()),
-        HEALTH(10, 25, Health.getInstance());
+        ARMOR(6, 15, Armor.getInstance()),
+        DODGE(6, 15, DodgeRating.getInstance()),
+        HEALTH(4, 12, Health.getInstance());
 
         public float min;
         public float max;
@@ -92,7 +92,7 @@ public interface GearDataHelper {
 
         float v1min = 1 * num.multi * weapon.statMulti;
         float v1max = 3 * num.multi * weapon.statMulti;
-     
+
         return new StatModifier(v1min, v1max, new AttackDamage(element), ModType.FLAT);
     }
 

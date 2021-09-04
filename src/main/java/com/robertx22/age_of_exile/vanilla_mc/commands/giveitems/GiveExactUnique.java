@@ -66,7 +66,7 @@ public class GiveExactUnique {
                 blueprint.uniquePart.set(ExileDB.UniqueGears()
                     .get(id));
                 blueprint.gearItemSlot.set(blueprint.uniquePart.get()
-                    .getBaseGearType());
+                    .getBaseGear());
             } else {
 
                 blueprint.rarity.set(ExileDB.GearRarities()
@@ -77,7 +77,7 @@ public class GiveExactUnique {
                         .GUID()))
                     .random());
                 blueprint.gearItemSlot.set(blueprint.uniquePart.get()
-                    .getBaseGearType());
+                    .getBaseGear());
             }
 
             player.giveItemStack(blueprint.createStack());

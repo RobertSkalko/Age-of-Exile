@@ -40,7 +40,7 @@ public class SetEntry extends WikiEntry {
                     .equals(set)) {
                     list.add(x.locName()
                         .append(" ")
-                        .append(x.getBaseGearType()
+                        .append(x.getBaseGear()
                             .locName()));
                 }
             });

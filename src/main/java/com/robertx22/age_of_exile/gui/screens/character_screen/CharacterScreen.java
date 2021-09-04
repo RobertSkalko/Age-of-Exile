@@ -31,7 +31,6 @@ import com.robertx22.age_of_exile.gui.screens.PlayerGearButton;
 import com.robertx22.age_of_exile.gui.screens.loadouts.LoadoutsScreen;
 import com.robertx22.age_of_exile.gui.screens.player_skills.PlayerSkillsScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_gems.SkillGemsOpener;
-import com.robertx22.age_of_exile.gui.screens.skill_tree.TalentsScreen;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -232,7 +231,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
             // hub buttons
             List<INamedScreen> screens = new ArrayList<>();
-            screens.add(new TalentsScreen());
+            // TODO screens.add(new TalentsScreen());
             screens.add(new SkillGemsOpener());
             screens.add(new PlayerSkillsScreen());
             screens.add(new LoadoutsScreen());

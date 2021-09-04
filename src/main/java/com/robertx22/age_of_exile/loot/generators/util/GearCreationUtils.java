@@ -45,8 +45,7 @@ public class GearCreationUtils {
                 .get(unique.uniqueRarity)
                 .GUID();
 
-            data.gear_type = unique.getGearTypeForLevel(data.lvl)
-                .GUID();
+            data.gear_type = unique.base_gear;
             data.uniq_id = unique.GUID();
             data.uniqueStats = new UniqueStatsData();
             data.uniqueStats.RerollFully(data);

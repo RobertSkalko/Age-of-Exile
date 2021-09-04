@@ -75,7 +75,7 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
     @Override
     public boolean isRegistryEntryValid() {
 
-        if (MMORPG.RUN_DEV_TOOLS) {
+        if (false && MMORPG.RUN_DEV_TOOLS) {
             for (Map.Entry<PointData, String> x : this.calcData.perks.entrySet()) {
                 if (!ExileDB.Perks()
                     .isRegistered(x.getValue())) {

@@ -195,8 +195,6 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocDesc>> getDescMap() {
         List<IAutoLocDesc> list = CreateLangFileUtils.getFromRegistries(IAutoLocDesc.class);
 
-        list.addAll(ExileDB.UniqueGears()
-            .getSerializable());
         list.addAll(ExileDB.Spells()
             .getSerializable());
         list.addAll(ExileDB.Races()

@@ -1,5 +1,0 @@
-These are all default registry entries of this type.
-This registry can't be modified or added to.
-is_mod_loaded
-has_reputation_level
-aoe_level

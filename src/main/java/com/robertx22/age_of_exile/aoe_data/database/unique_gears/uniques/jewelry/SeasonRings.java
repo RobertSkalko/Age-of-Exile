@@ -14,10 +14,9 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
@@ -28,10 +27,9 @@ public class SeasonRings implements ExileRegistryInit {
     public void registerAll() {
 
         UniqueGearBuilder.of(
-                ModRegistry.GEAR_ITEMS.RINGS.get(VanillaMaterial.DIAMOND),
                 "spring_blossoms",
                 "Spring Blossoms",
-                BaseGearJewelry.MANA_RING.values())
+                BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_END))
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(10, 10, SpecialStats.HEAL_CLEANSE, ModType.FLAT),
@@ -46,10 +44,9 @@ public class SeasonRings implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
-                ModRegistry.GEAR_ITEMS.RINGS.get(VanillaMaterial.DIAMOND),
                 "autumn_harvest",
                 "Autumn Harvest",
-                BaseGearJewelry.MANA_RING.values())
+                BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_END))
             .setReplacesName()
 
             .stats(Arrays.asList(
@@ -68,10 +65,9 @@ public class SeasonRings implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
-                ModRegistry.GEAR_ITEMS.RINGS.get(VanillaMaterial.DIAMOND),
                 "winter_chill",
                 "Winter Chill",
-                BaseGearJewelry.MANA_RING.values())
+                BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_END))
             .setReplacesName()
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
                 new StatModifier(20, 40, new ElementalResist(Elements.Water), ModType.FLAT),
@@ -85,10 +81,9 @@ public class SeasonRings implements ExileRegistryInit {
             .build();
 
         UniqueGearBuilder.of(
-                ModRegistry.GEAR_ITEMS.RINGS.get(VanillaMaterial.DIAMOND),
                 "summer_heat",
                 "Summer Heat",
-                BaseGearJewelry.MANA_RING.values())
+                BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_END))
             .setReplacesName()
 
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
