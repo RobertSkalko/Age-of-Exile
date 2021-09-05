@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ICor
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
@@ -159,6 +160,15 @@ public class Unit {
         try {
             return getCalculatedStat(Blood.GUID);
         } catch (Exception e) {
+        }
+        return StatData.empty();
+    }
+
+    public StatData energyData() {
+        try {
+            return getCalculatedStat(Energy.GUID);
+        } catch (Exception e) {
+
         }
         return StatData.empty();
     }

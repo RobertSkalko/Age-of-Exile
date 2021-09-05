@@ -45,6 +45,26 @@ public enum BarGuiType {
             return "Level " + data.getLevel() + " " + (int) (getMulti(data, en) * 100) + "%";
         }
     },
+    ENERGY {
+        @Override
+        public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {
+
+            return data.getResources()
+                .getEnergy();
+        }
+
+        @Override
+        public float getMax(EntityCap.UnitData data, PlayerEntity en) {
+            return data.getUnit()
+                .energyData()
+                .getValue();
+        }
+
+        @Override
+        public Identifier getTexture(EntityCap.UnitData data, PlayerEntity en) {
+            return Ref.id("textures/gui/overlay/energy.png");
+        }
+    },
 
     MANA {
         @Override

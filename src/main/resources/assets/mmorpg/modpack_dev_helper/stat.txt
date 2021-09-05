@@ -9,6 +9,7 @@ offensive_eff_duration
 bonus_regen_in_water
 accuracy
 dmg_when_low_hp
+energy_regen
 trident_damage
 increase_healing
 scepter_damage
@@ -18,6 +19,7 @@ bonus_favor
 chance_to_get_blessing_on_kill
 all_water_damage
 air_focus
+energy
 heal_crit_dmg
 inc_effect_of_song_buff_given
 trap_spell_dmg
@@ -321,6 +323,7 @@ ele_crossbow_damage
 air_penetration
 bonus_mining_yield
 crit_water_dmg_mana
+energy_ooc_regen
 negative_eff_duration
 chance_to_get_mark_on_kill
 armor_per_10_mana

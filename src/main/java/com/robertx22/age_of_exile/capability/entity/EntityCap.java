@@ -8,12 +8,14 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -29,6 +31,7 @@ import com.robertx22.age_of_exile.threat_aggro.ThreatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.*;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -379,13 +382,14 @@ public class EntityCap {
             if (type == ResourceType.blood) {
                 return getUnit().bloodData()
                     .getValue() * multi;
-            }
-            if (type == ResourceType.mana) {
+            } else if (type == ResourceType.mana) {
                 return getUnit().manaData()
                     .getValue() * multi;
-            }
-            if (type == ResourceType.health) {
+            } else if (type == ResourceType.health) {
                 return entity.getMaxHealth();
+            } else if (type == ResourceType.energy) {
+                return getUnit().energyData()
+                    .getValue();
             }
 
             return 0;
@@ -688,6 +692,20 @@ public class EntityCap {
 
             if (data.weaponData.GetBaseGearType()
                 .getWeaponMechanic() != null) {
+
+                GearSlot slot = data.weaponData.GetBaseGearType()
+                    .getGearSlot();
+
+                float cost = Energy.getInstance()
+                    .scale(slot.energy_cost, getLevel()); // TODO add weapon specific
+                SpendResourceEvent event = new SpendResourceEvent(entity, ResourceType.energy, cost);
+                event.calculateEffects();
+
+                if (event.data.getNumber() > resources.getEnergy()) {
+                    return;
+                }
+
+                event.Activate();
 
                 if (data.weapon != null) {
                     data.weapon.damage(1, new Random(), null);

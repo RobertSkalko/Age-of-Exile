@@ -19,6 +19,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.Regenerate
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.HealthRestorationToBlood;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -86,6 +88,9 @@ public class StatsRegister implements ExileRegistryInit {
                     add(DualWieldDamage.getInstance());
                     add(Mana.getInstance());
                     add(ManaRegen.getInstance());
+
+                    add(EnergyRegen.getInstance());
+                    add(Energy.getInstance());
                     // Resources
 
                     add(Armor.getInstance());

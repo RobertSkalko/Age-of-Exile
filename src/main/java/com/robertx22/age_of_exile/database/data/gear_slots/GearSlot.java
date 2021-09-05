@@ -9,15 +9,17 @@ import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 
 public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<GearSlot>, IAutoLocName {
 
-    public static GearSlot SERIALIZER = new GearSlot("", "", -1, 0);
+    public static GearSlot SERIALIZER = new GearSlot("", "", 1, -1, 0);
 
     public String guid;
     public int weight;
+    public int energy_cost;
     public int custom_model_data_num = -1;
     public transient String locname = "";
 
-    public GearSlot(String guid, String name, int modelnnum, int weight) {
+    public GearSlot(String guid, String name, int energy_cost, int modelnnum, int weight) {
         this.guid = guid;
+        this.energy_cost = energy_cost;
         this.locname = name;
         this.custom_model_data_num = modelnnum;
         this.weight = weight;
@@ -42,6 +44,7 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<Gear
     public JsonObject toJson() {
         JsonObject json = new JsonObject();
         json.addProperty("id", guid);
+        json.addProperty("energy_cost", energy_cost);
         json.addProperty("weight", weight);
         json.addProperty("model_num", custom_model_data_num);
 
@@ -51,7 +54,8 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<Gear
     @Override
     public GearSlot fromJson(JsonObject json) {
         return new GearSlot(json.get("id")
-            .getAsString(), "", json.get("weight")
+            .getAsString(), "", json.get("energy_cost")
+            .getAsInt(), json.get("weight")
             .getAsInt(), json.get("model_num")
             .getAsInt());
     }

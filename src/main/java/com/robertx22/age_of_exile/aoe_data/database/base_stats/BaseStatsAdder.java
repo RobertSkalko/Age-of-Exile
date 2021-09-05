@@ -2,6 +2,8 @@ package com.robertx22.age_of_exile.aoe_data.database.base_stats;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.base_stats.BaseStatsConfig;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -27,8 +29,10 @@ public class BaseStatsAdder implements ExileRegistryInit {
 
         c.scaled(Health.getInstance(), 10);
         c.scaled(Mana.getInstance(), 10);
+        c.scaled(Energy.getInstance(), 10);
         c.scaled(HealthRegen.getInstance(), 1);
         c.scaled(ManaRegen.getInstance(), 1);
+        c.scaled(EnergyRegen.getInstance(), 1);
 
         // why did i add this again? I think its a must
         c.nonScaled(Stats.CRIT_CHANCE.get(), 1);

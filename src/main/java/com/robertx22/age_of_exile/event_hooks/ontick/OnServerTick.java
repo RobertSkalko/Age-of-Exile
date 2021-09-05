@@ -15,13 +15,13 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
-import com.robertx22.age_of_exile.vanilla_mc.commands.SummonRiftCommand;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientEntityIsCastingSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.server.PlayerStream;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
@@ -39,6 +39,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
     static {
 
+        /*
         TICK_ACTIONS.add(new PlayerTickAction("summon_rifts", 20 * 60, (player, data) -> {
             if (RandomUtils.roll(ModConfig.get().Server.CHANCE_TO_SPAWN_RIFT_PER_MIN)) {
                 if (Load.Unit(player)
@@ -48,6 +49,8 @@ public class OnServerTick implements ServerTickEvents.EndTick {
             }
         }));
 
+         */
+
         TICK_ACTIONS.add(new PlayerTickAction("update_caps", 18, (player, data) -> {
 
             OnTickSetGameMode.onTick(player);
@@ -56,10 +59,18 @@ public class OnServerTick implements ServerTickEvents.EndTick {
         }));
 
         TICK_ACTIONS.add(new
-
             PlayerTickAction("second_pass", 20, (player, data) ->
-
         {
+
+            if (Load.Unit(player)
+                .getResources()
+                .getEnergy() < Load.Unit(player)
+                .getUnit()
+                .energyData()
+                .getValue() / 10) {
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20 * 3, 1));
+            }
+
             UnequipGear.onTick(player);
             Load.spells(player)
                 .getCastingData().charges.onTicks(player, 20);
@@ -85,6 +96,10 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 RestoreResourceEvent mana = EventBuilder.ofRestore(player, player, ResourceType.mana, RestoreType.regen, 0)
                     .build();
                 mana.Activate();
+
+                RestoreResourceEvent energy = EventBuilder.ofRestore(player, player, ResourceType.energy, RestoreType.regen, 0)
+                    .build();
+                energy.Activate();
 
                 boolean restored = false;
 

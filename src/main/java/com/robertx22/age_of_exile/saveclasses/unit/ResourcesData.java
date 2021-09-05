@@ -28,6 +28,8 @@ public class ResourcesData {
     @Store
     private float mana = 0;
     @Store
+    private float energy = 0;
+    @Store
     private float blood = 0;
     @Store
     public float block = 0;
@@ -37,6 +39,10 @@ public class ResourcesData {
 
     public float getMana() {
         return mana;
+    }
+
+    public float getEnergy() {
+        return energy;
     }
 
     public float getBlood() {
@@ -82,6 +88,8 @@ public class ResourcesData {
             return getShield();
         } else if (type == ResourceType.blood) {
             return blood;
+        } else if (type == ResourceType.energy) {
+            return energy;
         } else if (type == ResourceType.block) {
             return block;
         } else if (type == ResourceType.health) {
@@ -96,13 +104,11 @@ public class ResourcesData {
 
         if (type == ResourceType.block) {
             return 100F;
-        }
-        if (type == ResourceType.shield) {
+        } else if (type == ResourceType.shield) {
             return data.getUnit()
                 .healthData()
                 .getValue();
-        }
-        if (type == ResourceType.mana) {
+        } else if (type == ResourceType.mana) {
             return data.getUnit()
                 .manaData()
                 .getValue();
@@ -110,6 +116,10 @@ public class ResourcesData {
         } else if (type == ResourceType.blood) {
             return data.getUnit()
                 .bloodData()
+                .getValue();
+        } else if (type == ResourceType.energy) {
+            return data.getUnit()
+                .energyData()
                 .getValue();
         } else if (type == ResourceType.health) {
             return HealthUtils.getMaxHealth(en);
@@ -132,11 +142,12 @@ public class ResourcesData {
         }
         if (type == ResourceType.mana) {
             mana = getModifiedValue(en, type, use, amount);
-        }
-        if (type == ResourceType.block) {
+        } else if (type == ResourceType.block) {
             block = getModifiedValue(en, type, use, amount);
         } else if (type == ResourceType.blood) {
             blood = getModifiedValue(en, type, use, amount);
+        } else if (type == ResourceType.energy) {
+            energy = getModifiedValue(en, type, use, amount);
         } else if (type == ResourceType.health) {
             if (use == Use.RESTORE) {
                 HealthUtils.heal(en, amount);
@@ -149,6 +160,9 @@ public class ResourcesData {
     private void cap(LivingEntity en, ResourceType type) {
         if (type == ResourceType.mana) {
             mana = MathHelper.clamp(mana, 0, Load.Unit(en)
+                .getMaximumResource(type));
+        } else if (type == ResourceType.energy) {
+            energy = MathHelper.clamp(energy, 0, Load.Unit(en)
                 .getMaximumResource(type));
         } else if (type == ResourceType.blood) {
             blood = MathHelper.clamp(blood, 0, Load.Unit(en)

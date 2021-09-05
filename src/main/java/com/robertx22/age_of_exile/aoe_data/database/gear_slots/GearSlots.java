@@ -25,22 +25,22 @@ public class GearSlots implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        new GearSlot(SWORD, "Sword", 1, 1000).addToSerializables();
-        new GearSlot(SCEPTER, "Scepter", 2, 1000).addToSerializables();
-        new GearSlot(STAFF, "Staff", 3, 1500).addToSerializables();
-        new GearSlot(AXE, "Axe", 4, 1000).addToSerializables();
-        new GearSlot(BOW, "Bow", 5, 750).addToSerializables();
-        new GearSlot(CROSBOW, "Crossbow", 6, 750).addToSerializables();
+        new GearSlot(SWORD, "Sword", 4, 1, 1000).addToSerializables();
+        new GearSlot(SCEPTER, "Scepter", 3, 2, 1000).addToSerializables();
+        new GearSlot(STAFF, "Staff", 3, 3, 1500).addToSerializables();
+        new GearSlot(AXE, "Axe", 5, 4, 1000).addToSerializables();
+        new GearSlot(BOW, "Bow", 8, 5, 750).addToSerializables();
+        new GearSlot(CROSBOW, "Crossbow", 7, 6, 750).addToSerializables();
 
-        new GearSlot(BOOTS, "Boots", 7, 1000).addToSerializables();
-        new GearSlot(PANTS, "Pants", 8, 1000).addToSerializables();
-        new GearSlot(CHEST, "Chest", 9, 1000).addToSerializables();
-        new GearSlot(HELMET, "Helmet", 10, 1000).addToSerializables();
+        new GearSlot(BOOTS, "Boots", 0, 7, 1000).addToSerializables();
+        new GearSlot(PANTS, "Pants", 0, 8, 1000).addToSerializables();
+        new GearSlot(CHEST, "Chest", 0, 9, 1000).addToSerializables();
+        new GearSlot(HELMET, "Helmet", 0, 10, 1000).addToSerializables();
 
-        new GearSlot(SHIELD, "Shield", 11, 1000).addToSerializables();
+        new GearSlot(SHIELD, "Shield", 0, 11, 1000).addToSerializables();
 
-        new GearSlot(RING, "Ring", 12, 750).addToSerializables();
-        new GearSlot(NECKLACE, "Necklace", 13, 750).addToSerializables();
+        new GearSlot(RING, "Ring", 0, 12, 750).addToSerializables();
+        new GearSlot(NECKLACE, "Necklace", 0, 13, 750).addToSerializables();
 
     }
 }

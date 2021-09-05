@@ -34,7 +34,6 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
     }
 
     static int BAR_HEIGHT = 9;
-
     public static int INNER_BAR_WIDTH = 78;
     static int INNER_BAR_HEIGHT = 5;
 
@@ -129,26 +128,25 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
                 areaLvlTicks = 200;
             }
 
-            ModConfig.get().client.OVERLAY_BARS.parts.forEach(c -> {
+            OverlayTypes.map.get(ModConfig.get().client.GUI_POSITION)
+                .forEach(c -> {
 
-                if (c.type.shouldRender(data, mc.player)) {
-                    renderBar(c, c.type,
-                        matrix,
-                        c.getPosition(),
-                        c.type.getText(data, mc.player),
-                        false);
-                }
-            });
+                    if (c.type.shouldRender(data, mc.player)) {
+                        MineAndSlashBars.renderMineAndSlashBar(c, c.type,
+                            matrix,
+                            c.getPosition(),
+                            c.type.getText(data, mc.player),
+                            false);
+                    }
 
-            ModConfig.get().client.OVERLAY_BARS.parts.forEach(c -> {
-                if (c.type.shouldRender(data, mc.player)) {
-                    renderBar(c, c.type,
-                        matrix,
-                        c.getPosition(),
-                        c.type.getText(data, mc.player),
-                        true);
-                }
-            });
+                    if (c.type.shouldRender(data, mc.player)) {
+                        MineAndSlashBars.renderMineAndSlashBar(c, c.type,
+                            matrix,
+                            c.getPosition(),
+                            c.type.getText(data, mc.player),
+                            true);
+                    }
+                });
 
             GuiPartConfig c = ModConfig.get().client.AREA_LVL_OVERLAY;
 

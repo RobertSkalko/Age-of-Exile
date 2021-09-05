@@ -14,6 +14,12 @@ public enum GuiPosition {
                 mc().getWindow()
                     .getScaledHeight());
         }
+    },
+    TOP_LEFT {
+        @Override
+        public PointData getPos() {
+            return new PointData(0, 0);
+        }
     };
 
     public abstract PointData getPos();
