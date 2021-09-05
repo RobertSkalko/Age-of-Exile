@@ -13,10 +13,6 @@ public enum PlayerCaps {
             return Load.Unit(player);
         }
 
-        @Override
-        public boolean shouldSaveToLoadout() {
-            return false;
-        }
     },
     STAT_POINTS {
         @Override
@@ -24,10 +20,6 @@ public enum PlayerCaps {
             return Load.statPoints(player);
         }
 
-        @Override
-        public boolean shouldSaveToLoadout() {
-            return true;
-        }
     },
     DEATH_STATS {
         @Override
@@ -35,10 +27,6 @@ public enum PlayerCaps {
             return ModRegistry.COMPONENTS.PLAYER_DEATH_DATA.get(player);
         }
 
-        @Override
-        public boolean shouldSaveToLoadout() {
-            return false;
-        }
     },
     PLAYER_SKILLS {
         @Override
@@ -46,10 +34,6 @@ public enum PlayerCaps {
             return Load.playerSkills(player);
         }
 
-        @Override
-        public boolean shouldSaveToLoadout() {
-            return false;
-        }
     },
     FAVOR {
         @Override
@@ -57,10 +41,6 @@ public enum PlayerCaps {
             return Load.favor(player);
         }
 
-        @Override
-        public boolean shouldSaveToLoadout() {
-            return false;
-        }
     },
     MAPS {
         @Override
@@ -68,10 +48,6 @@ public enum PlayerCaps {
             return Load.playerMaps(player);
         }
 
-        @Override
-        public boolean shouldSaveToLoadout() {
-            return false;
-        }
     },
     TEAM {
         @Override
@@ -79,32 +55,14 @@ public enum PlayerCaps {
             return Load.team(player);
         }
 
-        @Override
-        public boolean shouldSaveToLoadout() {
-            return false;
-        }
     },
-    LOADOUTS {
-        @Override
-        public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.loadouts(player);
-        }
 
-        @Override
-        public boolean shouldSaveToLoadout() {
-            return false;
-        }
-    },
     ENTITY_PERKS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.perks(player);
         }
 
-        @Override
-        public boolean shouldSaveToLoadout() {
-            return true;
-        }
     },
     SPELLS {
         @Override
@@ -112,10 +70,6 @@ public enum PlayerCaps {
             return Load.spells(player);
         }
 
-        @Override
-        public boolean shouldSaveToLoadout() {
-            return true;
-        }
     };
 
     PlayerCaps() {
@@ -123,7 +77,5 @@ public enum PlayerCaps {
     }
 
     public abstract ICommonPlayerCap getCap(PlayerEntity player);
-
-    public abstract boolean shouldSaveToLoadout();
 
 }

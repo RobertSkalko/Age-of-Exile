@@ -63,12 +63,6 @@ public class ComponentRegisters {
                 TeamCap.class)
             .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new TeamCap(x));
 
-    public ComponentType<PlayerLoadoutsCap> PLAYER_LOADOUTS =
-        ComponentRegistry.INSTANCE.registerIfAbsent(
-                PlayerLoadoutsCap.RESOURCE,
-                PlayerLoadoutsCap.class)
-            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerLoadoutsCap(x));
-
     public ComponentType<PlayerSkills> PLAYER_SKILLS =
         ComponentRegistry.INSTANCE.registerIfAbsent(
                 PlayerSkills.RESOURCE,
@@ -100,7 +94,6 @@ public class ComponentRegisters {
         EntityComponents.setRespawnCopyStrategy(SPELLS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PERKS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_FAVOR, RespawnCopyStrategy.ALWAYS_COPY);
-        EntityComponents.setRespawnCopyStrategy(PLAYER_LOADOUTS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_SKILLS, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_DEATH_DATA, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(STAT_POINTS, RespawnCopyStrategy.ALWAYS_COPY);

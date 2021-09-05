@@ -57,7 +57,7 @@ public class AddSpawnerExtraLootMethod {
             BlockPos pos = new BlockPos(p.x, p.y, p.z);
 
             LootInfo info = LootInfo.ofSpawner(player, context.getWorld(), pos);
-            info.multi += 15;
+            info.multi += 10;
             List<ItemStack> list = MasterLootGen.generateLoot(info);
 
             ci.getReturnValue()

@@ -147,7 +147,7 @@ public class LootInfo {
         info.pos = pos;
         info.player = player;
         info.setupAllFields();
-        info.maxItems = 3;
+        info.maxItems = 2;
         return info;
     }
 

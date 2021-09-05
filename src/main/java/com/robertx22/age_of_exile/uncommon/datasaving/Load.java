@@ -58,10 +58,6 @@ public class Load {
         return ModRegistry.COMPONENTS.DUNGEON_DATA.get(world);
     }
 
-    public static PlayerLoadoutsCap loadouts(PlayerEntity provider) {
-        return ModRegistry.COMPONENTS.PLAYER_LOADOUTS.get(provider);
-    }
-
     public static PlayerSkills playerSkills(PlayerEntity provider) {
         return ModRegistry.COMPONENTS.PLAYER_SKILLS.get(provider);
     }

@@ -15,3 +15,4 @@
 - runeword gear is now crafted in runeword station by combining all the runes needed
 - removed magus mobs
 - removed spell action requirements
+- removed loadouts (make less sense with spell school system)
