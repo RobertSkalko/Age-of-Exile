@@ -1349,51 +1349,6 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EmptyAccessor> INCREASED_EFFECT_OF_AURAS_GIVEN = DatapackStatBuilder
-        .ofSingle("inc_effect_of_auras_given", Elements.Physical)
-        .worksWithEvent(ExilePotionEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.aura))
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> "Aura Strength")
-        .setLocDesc(x -> "Effect of auras you give.")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> INCREASED_EFFECT_OF_AURAS_RECEIVED = DatapackStatBuilder
-        .ofSingle("inc_effect_of_auras", Elements.Physical)
-        .worksWithEvent(ExilePotionEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Target)
-        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.aura))
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> "Aura Effect on You")
-        .setLocDesc(x -> "Effect of any aura on you, no matter who gave it.")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> REDUCED_MANA_RESERVED = DatapackStatBuilder
-        .ofSingle("red_mana_reserved", Elements.Physical)
-        .worksWithEvent(ReserveManaEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addEffect(StatEffects.DECREASE_VALUE)
-        .setLocName(x -> "Reduced Mana Reserved")
-        .setLocDesc(x -> "Reduces the mana % auras reserve.")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.max = 75;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
     public static DataPackStatAccessor<EffectTags> EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG = DatapackStatBuilder
         .<EffectTags>of(x -> "inc_effect_of_" + x.name() + "_buff_given", x -> Elements.Physical)
         .addAllOfType(EffectTags.values())

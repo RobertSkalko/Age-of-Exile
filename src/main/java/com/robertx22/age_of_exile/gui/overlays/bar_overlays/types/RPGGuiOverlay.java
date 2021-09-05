@@ -190,12 +190,9 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
             }
 
             if (config.type == BarGuiType.MANA) {
-                float reserved = Load.spells(mc.player)
-                    .getManaReservedByAuras(); // todo cache this
                 mc.getTextureManager()
                     .bindTexture(MANA_RESERVE);
-
-                int width = (int) (INNER_BAR_WIDTH * reserved);
+                int width = (int) (INNER_BAR_WIDTH);
                 drawTexture(matrix, point.x + 2 + (INNER_BAR_WIDTH - width), point.y + 2, width, INNER_BAR_HEIGHT, 0, 0, INNER_BAR_WIDTH, INNER_BAR_HEIGHT, INNER_BAR_WIDTH, INNER_BAR_HEIGHT);
             }
         }

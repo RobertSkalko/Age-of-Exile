@@ -16,3 +16,5 @@
 - removed magus mobs
 - removed spell action requirements
 - removed loadouts (make less sense with spell school system)
+- added back energy
+- removed auras

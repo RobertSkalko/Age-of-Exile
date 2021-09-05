@@ -3,7 +3,10 @@ package com.robertx22.age_of_exile.aoe_data.database.spells;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
-import com.robertx22.age_of_exile.database.data.spells.components.*;
+import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart;
+import com.robertx22.age_of_exile.database.data.spells.components.EntityActivation;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
@@ -29,7 +32,7 @@ public class SpellBuilder {
     public static SpellBuilder breath(String id, String name, Elements ele, DefaultParticleType particle) {
 
         return SpellBuilder.of(id, SpellConfiguration.Builder.instant(2, 1), name,
-            Arrays.asList(SpellTag.damage))
+                Arrays.asList(SpellTag.damage))
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
                 .put(MapField.IS_SILENT, true)))
@@ -51,22 +54,6 @@ public class SpellBuilder {
         builder.spell.locName = name;
 
         builder.spell.getConfig().tags = tags;
-
-        return builder;
-    }
-
-    public static SpellBuilder aura(PlayStyle style, String id, String name, AuraSpellData aura) {
-        SpellBuilder builder = new SpellBuilder();
-
-        builder.spell = new Spell();
-        builder.spell.identifier = id;
-        builder.spell.config = SpellConfiguration.Builder.instant(0, 5);
-        builder.spell.locName = name;
-        builder.spell.config.castingWeapon = CastingWeapon.ANY_WEAPON;
-        builder.spell.config.style = style;
-        builder.spell.aura_data = aura;
-
-        builder.spell.config.tags.add(SpellTag.aura);
 
         return builder;
     }

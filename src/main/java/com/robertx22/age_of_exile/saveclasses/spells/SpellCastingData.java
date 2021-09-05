@@ -260,14 +260,6 @@ public class SpellCastingData {
             }
         }
 
-        if (spell.isAura()) {
-            if (!ctx.spellsCap.getCastingData().auras.getOrDefault(spell.GUID(), new SpellCastingData.AuraData()).active) { // if not active
-                if (ctx.spellsCap.getManaReservedByAuras() + spell.aura_data.mana_reserved > 1) {
-                    return false; // todo make affected by mana reserve reduction
-                }
-            }
-        }
-
         EntityCap.UnitData data = Load.Unit(caster);
 
         if (data != null) {

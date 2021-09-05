@@ -13,7 +13,6 @@ public enum SpellTag {
     trap("Trap"),
     song("Song"),
     area("Area"),
-    aura("Aura"),
     totem("Totem");
 
     public String locname;

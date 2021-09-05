@@ -31,7 +31,6 @@ import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
@@ -78,12 +77,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
     public AttachedSpell getAttached() {
         return attached;
-    }
-
-    public AuraSpellData aura_data = null;
-
-    public boolean isAura() {
-        return aura_data != null;
     }
 
     public boolean is(SpellTag tag) {
@@ -186,10 +179,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
             caster.swingHand(Hand.MAIN_HAND);
         }
 
-        if (this.aura_data != null) {
-            ctx.spellsCap.triggerAura(this);
-        }
-
         attached.onCast(SpellCtx.onCast(caster, ctx.calcData));
     }
 
@@ -242,24 +231,15 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
         TooltipUtils.addEmpty(list);
 
-        if (!this.isAura()) {
-            list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
-            if (config.usesCharges()) {
-                list.add(new LiteralText(Formatting.YELLOW + "Max Charges: " + config.charges));
-                list.add(new LiteralText(Formatting.YELLOW + "Charge Regen: " + config.charge_regen / 20 + "s"));
-
-            } else {
-                list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
-            }
-            list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getCastTimeTicks(ctx) + "s"));
+        list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
+        if (config.usesCharges()) {
+            list.add(new LiteralText(Formatting.YELLOW + "Max Charges: " + config.charges));
+            list.add(new LiteralText(Formatting.YELLOW + "Charge Regen: " + config.charge_regen / 20 + "s"));
 
         } else {
-            list.addAll(this.aura_data.GetTooltipString(this, ctx.skillGemData, new TooltipInfo((PlayerEntity) ctx.caster)));
+            list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
         }
-
-        if (isAura()) {
-            list.add(new LiteralText(Formatting.BLUE + "Mana Reserved: " + aura_data.mana_reserved * 100 + "%"));
-        }
+        list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getCastTimeTicks(ctx) + "s"));
 
         TooltipUtils.addEmpty(list);
 

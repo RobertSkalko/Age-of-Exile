@@ -376,15 +376,12 @@ public class EntityCap {
         @Override
         public float getMaximumResource(ResourceType type) {
 
-            float multi = Load.spells(entity)
-                .getReservedManaMulti();
-
             if (type == ResourceType.blood) {
                 return getUnit().bloodData()
-                    .getValue() * multi;
+                    .getValue();
             } else if (type == ResourceType.mana) {
                 return getUnit().manaData()
-                    .getValue() * multi;
+                    .getValue();
             } else if (type == ResourceType.health) {
                 return entity.getMaxHealth();
             } else if (type == ResourceType.energy) {
