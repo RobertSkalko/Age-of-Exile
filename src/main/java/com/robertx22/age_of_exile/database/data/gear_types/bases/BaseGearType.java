@@ -203,15 +203,9 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         ring(SlotFamily.Jewelry),
         shield(SlotFamily.OffHand),
 
-        cloth(SlotFamily.NONE),
-        plate(SlotFamily.NONE),
-        leather(SlotFamily.NONE),
-
         mage_weapon(SlotFamily.NONE), melee_weapon(SlotFamily.NONE), ranged_weapon(SlotFamily.NONE),
 
-        magic_shield_stat(SlotFamily.NONE),
         armor_stat(SlotFamily.NONE),
-        dodge_stat(SlotFamily.NONE),
 
         warrior_casting_weapon(SlotFamily.Weapon),
         ranger_casting_weapon(SlotFamily.Weapon),
@@ -346,14 +340,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         TagList tags = getTags();
 
         GearMaterialRegister.TYPE type = GearMaterialRegister.TYPE.ORE;
-
-        if (tags.contains(SlotTag.cloth)) {
-            type = GearMaterialRegister.TYPE.CLOTH;
-
-        }
-        if (tags.contains(SlotTag.leather)) {
-            type = GearMaterialRegister.TYPE.LEATHER;
-        }
 
         return ModRegistry.GEAR_MATERIALS.MAP.get(type)
             .get(SkillItemTier.of(getLevelRange()));

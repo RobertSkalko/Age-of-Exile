@@ -7,8 +7,8 @@ winter_chill
 skull_of_spirits
 autumn_harvest
 summer_heat
+witch_brew
 azuna_ring
 blood_stone
-witch_brew
 spring_blossoms
 ghast_necklace

@@ -21,29 +21,37 @@ public class UniqueGearPart extends BlueprintPart<UniqueGear, GearBlueprint> {
     protected UniqueGear generateIfNull() {
         UniqueGear uniq;
 
-        if (blueprint.info.isMapWorld && !RandomUtils.roll(ModConfig.get().Server.DUNGEON_RANDOM_ITEM_CHANCE)) {
+        if (blueprint.info != null) {
+            if (blueprint.info.isMapWorld && !RandomUtils.roll(ModConfig.get().Server.DUNGEON_RANDOM_ITEM_CHANCE)) {
 
-            GearRarity rar = RandomUtils.weightedRandom(blueprint.info.dungeon.u.getUniques()
-                .stream()
-                .map(x -> x.getUniqueRarity())
-                .collect(Collectors.toSet()));
+                GearRarity rar = RandomUtils.weightedRandom(blueprint.info.dungeon.u.getUniques()
+                    .stream()
+                    .map(x -> x.getUniqueRarity())
+                    .collect(Collectors.toSet()));
 
-            List<UniqueGear> possible = blueprint.info.dungeon.u.getUniques()
-                .stream()
-                .filter(x -> x.getUniqueRarity()
-                    .equals(rar))
-                .collect(Collectors.toList());
+                List<UniqueGear> possible = blueprint.info.dungeon.u.getUniques()
+                    .stream()
+                    .filter(x -> x.getUniqueRarity()
+                        .equals(rar))
+                    .collect(Collectors.toList());
 
-            uniq = RandomUtils.weightedRandom(possible);
+                uniq = RandomUtils.weightedRandom(possible);
+            } else {
+                FilterListWrap<UniqueGear> gen = ExileDB.UniqueGears()
+                    .getWrapped()
+                    .of(x -> blueprint.info.diff != null && blueprint.info.diff.rank >= x.getUniqueRarity().drops_after_tier)
+                    .of(x -> !x.filters.cantDrop(blueprint.info))
+                    .of(x -> x.getBaseGear()
+                        .equals(blueprint.gearItemSlot.get()));
+
+                uniq = gen.random();
+            }
         } else {
-            FilterListWrap<UniqueGear> gen = ExileDB.UniqueGears()
+            return ExileDB.UniqueGears()
                 .getWrapped()
-                .of(x -> blueprint.info.diff != null && blueprint.info.diff.rank >= x.getUniqueRarity().drops_after_tier)
-                .of(x -> !x.filters.cantDrop(blueprint.info))
-                .of(x -> x.getBaseGear()
-                    .equals(blueprint.gearItemSlot.get()));
-
-            uniq = gen.random();
+                .of(x -> x.getBaseGear().gear_slot
+                    .equals(blueprint.gearItemSlot.get().gear_slot))
+                .random();
         }
         if (uniq != null) {
             blueprint.gearItemSlot.override(uniq.getBaseGear());

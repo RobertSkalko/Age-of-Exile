@@ -17,11 +17,11 @@ fire_wep_dmg
 of_spell_dmg
 air_wep_dmg_dun
 earth_res
+of_energy
 earth_wep_dmg
 azure
 of_fast_cast
 cruel
-fawns
 air_wep_dmg
 reinforced
 of_the_virile
@@ -31,12 +31,10 @@ of_the_wise
 of_brutality
 of_affluence
 water_res
-agile
 of_focus
 air_ele_mobs
 mana_thief
 of_the_titan
-shades
 glimmering
 fire_spell_ele_dmg
 yetis
@@ -59,6 +57,7 @@ of_the_agile
 fire_ele_mobs
 of_speed
 earth_wep_dmg_dun
+energetic
 accurate_mobs
 of_vampirism
 desolation

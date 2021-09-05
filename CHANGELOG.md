@@ -18,3 +18,4 @@
 - removed loadouts (make less sense with spell school system)
 - added back energy
 - removed auras
+- merged cloth/leather/plate into just armor

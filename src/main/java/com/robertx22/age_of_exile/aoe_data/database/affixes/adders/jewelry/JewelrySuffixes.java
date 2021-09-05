@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.Sl
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -33,10 +34,17 @@ public class JewelrySuffixes implements ExileRegistryInit {
             .Suffix()
             .Build();
 
+        AffixBuilder.Normal("of_energy")
+            .Named("Of Energy")
+            .stats(new StatModifier(5, 15, Energy.getInstance(), ModType.PERCENT))
+            .includesTags(SlotTag.jewelry_family, SlotTag.armor_family)
+            .Suffix()
+            .Build();
+
         AffixBuilder.Normal("of_the_philosopher")
             .Named("Of the Philosopher")
             .coreStat(DatapackStats.INT)
-            .includesTags(SlotTag.jewelry_family, SlotTag.cloth)
+            .includesTags(SlotTag.jewelry_family, SlotTag.armor_family)
             .excludesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();
@@ -44,7 +52,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
         AffixBuilder.Normal("of_the_titan")
             .Named("Of the Titan")
             .coreStat(DatapackStats.STR)
-            .includesTags(SlotTag.jewelry_family, SlotTag.plate)
+            .includesTags(SlotTag.jewelry_family, SlotTag.armor_family)
             .excludesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();
@@ -52,7 +60,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
         AffixBuilder.Normal("of_the_wind")
             .Named("Of the Wind")
             .coreStat(DatapackStats.DEX)
-            .includesTags(SlotTag.jewelry_family, SlotTag.leather)
+            .includesTags(SlotTag.jewelry_family, SlotTag.armor_family)
             .excludesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();
@@ -92,7 +100,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
         AffixBuilder.Normal("of_the_troll")
             .Named("Of The Troll")
             .stats(new StatModifier(0.5F, 2, HealthRegen.getInstance(), ModType.FLAT))
-            .includesTags(SlotTag.jewelry_family, SlotTag.plate)
+            .includesTags(SlotTag.jewelry_family, SlotTag.armor_family)
             .Weight(200)
             .Suffix()
             .Build();
@@ -100,7 +108,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
         AffixBuilder.Normal("of_spirit_markings")
             .Named("Of Spirit Markings")
             .stats(new StatModifier(0.3F, 2, ManaRegen.getInstance(), ModType.FLAT))
-            .includesTags(SlotTag.jewelry_family, SlotTag.cloth)
+            .includesTags(SlotTag.jewelry_family, SlotTag.armor_family)
             .Weight(200)
             .Suffix()
             .Build();

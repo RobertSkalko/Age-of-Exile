@@ -1,8 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.affixes;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.ArmorPrefixes;
-import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.EvasionPrefixes;
-import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.MagicShieldPrefixes;
+import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.ManaArmorAffixes;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.WeaponPrefixes;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.jewelry.JewelryPrefixes;
 import com.robertx22.age_of_exile.database.base.IRandomDefault;
@@ -21,8 +20,7 @@ public class Prefixes implements IRandomDefault<Affix>, ExileRegistryInit {
         new WeaponPrefixes().registerAll();
         new ArmorPrefixes().registerAll();
         new JewelryPrefixes().registerAll();
-        new EvasionPrefixes().registerAll();
-        new MagicShieldPrefixes().registerAll();
+        new ManaArmorAffixes().registerAll();
 
     }
 

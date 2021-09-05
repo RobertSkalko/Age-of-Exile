@@ -23,7 +23,7 @@ public class BasePlateArmors implements ExileRegistryInit, GearDataHelper {
     public void registerAll() {
 
         BOOTS = BaseGearBuilder.of(GearSlots.BOOTS, "plate_boots", "Footwear")
-            .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.boots, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
+            .tags(new TagList(SlotTag.armor_stat, SlotTag.boots, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
                 getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.BOOTS),
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.BOOTS)
@@ -32,7 +32,7 @@ public class BasePlateArmors implements ExileRegistryInit, GearDataHelper {
             .build();
 
         PANTS = BaseGearBuilder.of(GearSlots.PANTS, "plate_pants", "Greaves")
-            .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.pants, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
+            .tags(new TagList(SlotTag.armor_stat, SlotTag.pants, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
                 getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.PANTS),
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.PANTS)
@@ -41,7 +41,7 @@ public class BasePlateArmors implements ExileRegistryInit, GearDataHelper {
             .build();
 
         CHESTS = BaseGearBuilder.of(GearSlots.CHEST, "plate_chest", "Chestplate")
-            .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.chest, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
+            .tags(new TagList(SlotTag.armor_stat, SlotTag.chest, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
                 getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.CHEST),
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.CHEST)
@@ -50,7 +50,7 @@ public class BasePlateArmors implements ExileRegistryInit, GearDataHelper {
             .build();
 
         HELMETS = BaseGearBuilder.of(GearSlots.HELMET, "plate_helmet", "Helmet")
-            .tags(new TagList(SlotTag.armor_stat, SlotTag.plate, SlotTag.helmet, SlotTag.armor_family, SlotTag.plate, SlotTag.strength))
+            .tags(new TagList(SlotTag.armor_stat, SlotTag.helmet, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
                 getStat(ArmorStat.HEALTH, ArmorType.HEAVY, ArmorSlot.HELMET),
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.HELMET)

@@ -24,7 +24,7 @@ public class BaseGearOffHands implements ExileRegistryInit {
     public void registerAll() {
 
         ARMOR_SHIELD = BaseGearBuilder.of(GearSlots.SHIELD, "tower_shield", "Tower Shield")
-            .tags(new TagList(SlotTag.shield, SlotTag.plate, SlotTag.offhand_family, SlotTag.armor_stat, SlotTag.strength))
+            .tags(new TagList(SlotTag.shield, SlotTag.offhand_family, SlotTag.armor_stat, SlotTag.strength))
             .baseStat(new StatModifier(6, 12, Armor.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(-25, -25, Stats.STYLE_DAMAGE.get(PlayStyle.magic)))
             .addFullLevelRange()
