@@ -29,7 +29,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "spring_blossoms",
                 "Spring Blossoms",
-                BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_END))
+                BaseGearJewelry.RING.get(LevelRanges.START_TO_END))
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(10, 10, SpecialStats.HEAL_CLEANSE, ModType.FLAT),
@@ -46,7 +46,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "autumn_harvest",
                 "Autumn Harvest",
-                BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_END))
+                BaseGearJewelry.RING.get(LevelRanges.START_TO_END))
             .setReplacesName()
 
             .stats(Arrays.asList(
@@ -67,7 +67,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "winter_chill",
                 "Winter Chill",
-                BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_END))
+                BaseGearJewelry.RING.get(LevelRanges.START_TO_END))
             .setReplacesName()
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
                 new StatModifier(20, 40, new ElementalResist(Elements.Water), ModType.FLAT),
@@ -83,7 +83,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "summer_heat",
                 "Summer Heat",
-                BaseGearJewelry.MANA_RING.get(LevelRanges.START_TO_END))
+                BaseGearJewelry.RING.get(LevelRanges.START_TO_END))
             .setReplacesName()
 
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),

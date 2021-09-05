@@ -66,7 +66,6 @@ restore_type_is_food
 is_staff_wep_type
 effect_has_tag_food
 is_accu_crit_roll_fail_true_is_false
-spell_has_tag_aura
 is_is_basic_atk_true
 threat_gen_type_is_heal
 restore_type_is_regen

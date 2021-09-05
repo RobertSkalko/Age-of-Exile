@@ -26,7 +26,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "blood_stone",
                 "Primordial Blood",
-                BaseGearJewelry.HP_NECKLACE.get(LevelRanges.START_TO_END))
+                BaseGearJewelry.NECKLACE.get(LevelRanges.START_TO_END))
 
             .stats(Arrays.asList(
                 new StatModifier(25, 25, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.BLOODLUST), ModType.FLAT),
@@ -41,7 +41,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "ghast_necklace",
                 "Ghast Tear",
-                BaseGearJewelry.HP_NECKLACE.get(LevelRanges.START_TO_END))
+                BaseGearJewelry.NECKLACE.get(LevelRanges.START_TO_END))
 
             .stats(Arrays.asList(new StatModifier(15, 25, new ElementalResist(Elements.Water)),
                 new StatModifier(15, 25, new ElementalResist(Elements.Fire)),
@@ -58,7 +58,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "skull_of_spirits",
                 "Skull of Spirits",
-                BaseGearJewelry.ALL_RES_NECKLACE.get(LevelRanges.START_TO_END))
+                BaseGearJewelry.NECKLACE.get(LevelRanges.START_TO_END))
             .stats(Arrays.asList(
                 new StatModifier(1, 2, AllAttributes.getInstance(), ModType.FLAT),
                 new StatModifier(10, 20, ManaRegen.getInstance(), ModType.PERCENT),

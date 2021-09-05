@@ -13,7 +13,6 @@ dex
 all_water_damage
 ele_axe_damage
 small_positive_effect_increase
-red_mana_reserved
 healing_strength
 water_weapon_damage
 heal_crit_dmg
@@ -50,7 +49,6 @@ spell_elemental_damage_and_dot
 refined_taste
 health
 more_dualwield_dmg
-inc_aura_effect
 all_earth_damage
 staff_damage
 chance_of_poison

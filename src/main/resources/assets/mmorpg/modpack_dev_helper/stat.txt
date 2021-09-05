@@ -28,7 +28,6 @@ arrow_cdr
 bonus_alchemy_yield
 food_eff_dur_u_cast
 heal_on_shielded_targets
-inc_effect_of_auras_given
 potion_strength
 all_any_wep_damage
 inc_effect_of_positive_buff_on_you
@@ -146,7 +145,6 @@ agility
 movement_spell_dmg
 water_focus
 spell_water_damage
-aura_cdr
 proj_dmg_received
 earth_dmg_when_target_low_hp
 fire_dmg_when_target_low_hp
@@ -195,7 +193,6 @@ bonus_exp_for_t2_mob
 ele_axe_damage
 bonus_cooking_exp
 max_air_resist
-red_mana_reserved
 chance_of_burn_on_crit
 water_weapon_damage
 elemental_vuln_crit
@@ -227,7 +224,6 @@ water_dmg_when_target_low_hp
 increased_quantity
 elemental_dot_damage
 spell_critical_damage
-inc_effect_of_auras
 max_water_resist
 bonus_farming_yield
 give_taunt_stance_to_self_on_tick
@@ -345,7 +341,6 @@ chance_to_give_blessing_to_self
 totem_resto
 heal_effect_on_self
 shield_duration
-aura_spell_dmg
 negative_eff_dur_u_cast
 water_any_wep_damage
 dmg_taken_to_mana

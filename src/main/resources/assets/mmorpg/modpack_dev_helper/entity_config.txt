@@ -4,9 +4,6 @@ npc
 mob
 minecraft:polar_bear
 other
-mmorpg:water_mage
-mmorpg:healer_mage
-mmorpg:fire_mage
 minecraft:zombified_piglin
 minecraft:iron_golem
 minecraft:ender_dragon
@@ -17,6 +14,5 @@ animal
 minecraft:wolf
 lycanite_mobs
 minecraft:wither
-mmorpg:nature_mage
 minecraft:bee
 player
