@@ -15,7 +15,7 @@ public class CurrencyItemRegistrator extends BaseItemRegistrator {
     public List<CurrencyItem> currencies = new ArrayList<>();
 
     public CurrencyItem ORB_OF_TRANSMUTATION = of(new OrbOfTransmutationItem());
-    public CurrencyItem CLEAR_CORRUPTION = of(new ClearCorruptionItem());
+    public CurrencyItem CLEAR_CORRUPTION = of(new PurifyItem());
     public CurrencyItem CRYSTAL_OF_PURIFICATION = of(new CrystalOfPurificationItem());
     public CurrencyItem CRYSTAL_OF_TRUTH = of(new CrystalOfTruth());
     public CurrencyItem CLEAR_RUNES = of(new ClearSocketsItem());
@@ -27,6 +27,7 @@ public class CurrencyItemRegistrator extends BaseItemRegistrator {
     public CurrencyItem ORB_OF_UNIQUE_BLESSING = of(new OrbOfUniqueBlessingItem());
     public CurrencyItem ORB_OF_INFINITY = of(new OrbOfInfinityItem());
     public CurrencyItem CLEAR_INSTABILITY = of(new ClearInstabilityItem());
+    public CurrencyItem ORB_OF_CORRUPTION = of(new OrbOfCorruption());
     public CurrencyItem LEVEL_SPELL = of(new LevelSpellGemItem());
 
     <T> T of(CurrencyItem c) {

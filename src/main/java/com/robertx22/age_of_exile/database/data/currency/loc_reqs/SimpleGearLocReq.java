@@ -20,6 +20,9 @@ public class SimpleGearLocReq extends BaseLocRequirement {
     public static final SimpleGearLocReq HAS_EMPTY_SOCKETS = new SimpleGearLocReq(
         x -> x.sockets.getEmptySockets() > 0, Words.HasEmptySockets.locName());
 
+    public static final SimpleGearLocReq IS_NOT_CORRUPTED = new SimpleGearLocReq(
+        x -> !x.isCorrupted(), Words.IsNotCorrupted.locName());
+
     public static final SimpleGearLocReq IS_SEALED = new SimpleGearLocReq(
         x -> x.s, Words.IsSealed.locName());
 

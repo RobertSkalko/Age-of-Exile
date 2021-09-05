@@ -1,0 +1,14 @@
+These are all default registry entries of this type.
+This registry is modify-able through datapacks.
+ghostly_shores
+insight
+air_disaster
+winter_chill
+autumn_harvest
+skull_of_spirits
+summer_heat
+azuna_ring
+witch_brew
+blood_stone
+spring_blossoms
+ghast_necklace

@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
@@ -68,30 +67,6 @@ public class GearTooltipUtils {
 
         }
 
-        if (gear.isCorrupted()) {
-            if (!Screen.hasShiftDown()) {
-                tip.add(new SText(""));
-
-                tip.add(new LiteralText(Formatting.RED + "").append(
-                        Words.Corrupted.locName())
-                    .formatted(Formatting.RED));
-
-                tip.add(new SText(""));
-
-                tip.add(
-                    Words.CorruptedExplanation1.locName()
-                        .formatted(Formatting.GRAY));
-                tip.add(
-                    Words.CorruptedExplanation2.locName()
-                        .formatted(Formatting.GRAY));
-
-                tip.add(new SText(""));
-
-                return;
-            }
-
-        }
-
         if (gear.baseStats != null) {
             tip.addAll(gear.baseStats.GetTooltipString(info, gear));
         }
@@ -141,24 +116,6 @@ public class GearTooltipUtils {
             list.add(merged);
         }
 
-        if (true || MMORPG.RUN_DEV_TOOLS) {
-            /*
-            list.clear();
-
-
-            Formatting format = gear.getRarity()
-                .textFormatting();
-            tip.add(new LiteralText(format + "+6% Armor"));
-            tip.add(new LiteralText(format + "+3% Health"));
-            tip.add(new LiteralText(format + "+20% Water Resist"));
-            tip.add(new LiteralText(format + "+12% Critical Damage"));
-            tip.add(new LiteralText(format + "+7% Spell Damage"));
-            tip.add(new LiteralText(format + "+12% Magic Find"));
-
-
-             */
-        }
-
         int n = 0;
         for (IGearPartTooltip part : list) {
             if (part != null) {
@@ -200,8 +157,11 @@ public class GearTooltipUtils {
                         .formatted(Formatting.RED));
             }
         }
-
-        tip.add(new SText(""));
+        if (gear.isCorrupted()) {
+            tip.add(new LiteralText(Formatting.RED + "").append(
+                    Words.Corrupted.locName())
+                .formatted(Formatting.RED));
+        }
 
         tip.add(new LiteralText(""));
 

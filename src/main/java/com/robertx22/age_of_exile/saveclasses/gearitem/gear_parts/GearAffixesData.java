@@ -21,11 +21,33 @@ public class GearAffixesData implements IGearPartTooltip {
     public List<AffixData> suf = new ArrayList<>();
     @Store
     public List<AffixData> pre = new ArrayList<>();
+    @Store
+    public List<AffixData> cor = new ArrayList<>();
+
+    public boolean canCorrupt() {
+        return cor.isEmpty();
+    }
+
+    public void addCorruptAffix(GearItemData gear) {
+        // todo currently just gives a normal affix
+
+        if (RandomUtils.roll(50)) {
+            AffixData suffix = new AffixData(Affix.Type.suffix);
+            suffix.RerollFully(gear);
+            cor.add(suffix);
+        } else {
+            AffixData prefix = new AffixData(Affix.Type.prefix);
+            prefix.RerollFully(gear);
+            cor.add(prefix);
+        }
+
+    }
 
     public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
         List<TooltipStatWithContext> list = new ArrayList<>();
         this.suf.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
         this.pre.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
+        this.cor.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
         return list;
     }
 

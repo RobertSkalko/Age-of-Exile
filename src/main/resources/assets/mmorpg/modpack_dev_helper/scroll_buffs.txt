@@ -1,0 +1,13 @@
+These are all default registry entries of this type.
+This registry is modify-able through datapacks.
+mage
+cold_dmg
+crit
+warrior
+light_dmg
+costly_spell_dmg
+paladin
+hunter
+poison_dmg
+fire_dmg
+dark_dmg

@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-public class ClearCorruptionItem extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
+public class PurifyItem extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
 
     @Override
     public String GUID() {
@@ -31,7 +31,7 @@ public class ClearCorruptionItem extends CurrencyItem implements ICurrencyItemEf
         return 0;
     }
 
-    public ClearCorruptionItem() {
+    public PurifyItem() {
         super(ID);
     }
 

@@ -1,0 +1,27 @@
+These are all default registry entries of this type.
+This registry is modify-able through datapacks.
+plate_chest_full
+spirit_shield_full
+staff_full
+tower_shield_full
+crossbow_full
+life_necklace_full
+leather_boots_full
+cloth_pants_full
+plate_pants_full
+scepter_full
+sword_full
+plate_helmet_full
+cloth_boots_full
+axe_full
+bow_full
+mana_reg_ring_full
+leather_helmet_full
+buckler_shield_full
+cloth_helmet_full
+hp_ring_full
+all_res_necklace_full
+cloth_chest_full
+plate_boots_full
+leather_chest_full
+leather_pants_full

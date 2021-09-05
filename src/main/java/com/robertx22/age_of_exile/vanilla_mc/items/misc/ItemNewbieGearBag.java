@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
-import com.robertx22.age_of_exile.aoe_data.database.perks.StartPerks;
-import com.robertx22.age_of_exile.aoe_data.database.spells.impl.*;
+import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
+import com.robertx22.age_of_exile.aoe_data.database.spells.impl.IntSpells;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
@@ -10,11 +10,14 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
+import com.robertx22.age_of_exile.loot.generators.GearSoulLootGen;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.enchantment.Enchantments;
@@ -33,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class ItemNewbieGearBag extends Item {
@@ -43,18 +47,9 @@ public class ItemNewbieGearBag extends Item {
     }
 
     static HashMap<String, NewbieContent> MAP = new HashMap<>();
-    static NewbieContent defaultContent = new NewbieContent(Arrays.asList("staff0"), Arrays.asList(IntSpells.FIREBALL_ID, UtilitySpells.DASH_ID));
+    static NewbieContent defaultContent = new NewbieContent(Arrays.asList(() -> ModRegistry.GEAR_ITEMS.STAFFS.get(VanillaMaterial.WOOD)), Arrays.asList(GearSlots.STAFF), Arrays.asList(IntSpells.FIREBALL_ID));
 
     static {
-
-        MAP.put(StartPerks.MAGE, new NewbieContent(Arrays.asList("staff0"), Arrays.asList(IntSpells.FIREBALL_ID, IntSpells.FROST_NOVA_AOE)));
-        MAP.put(StartPerks.BATTLE_MAGE, new NewbieContent(Arrays.asList("staff0"), Arrays.asList(IntSpells.POISONBALL_ID, TotemSpells.MANA_TOTEM_ID)));
-        MAP.put(StartPerks.HUNTER, new NewbieContent(Arrays.asList("bow0"), Arrays.asList(DexSpells.EXPLOSIVE_ARROW_ID, DexSpells.MAKE_ARROWS)).addStack(new ItemStack(Items.ARROW, 64)));
-        MAP.put(StartPerks.WARRIOR, new NewbieContent(Arrays.asList("sword0"), Arrays.asList(StrSpells.FLAME_STRIKE_ID, StrSpells.GONG_STRIKE_ID)));
-        MAP.put(StartPerks.DUELIST, new NewbieContent(Arrays.asList("dagger0"), Arrays.asList(StrSpells.FLAME_STRIKE_ID, UtilitySpells.DASH_ID)));
-        MAP.put(StartPerks.TEMPLAR, new NewbieContent(Arrays.asList("scepter0"), Arrays.asList(StrSpells.CHARGE_ID, TotemSpells.HEAL_TOTEM_ID)));
-        MAP.put(StartPerks.SCION, new NewbieContent(Arrays.asList("sword0"), Arrays.asList(TotemSpells.GUARD_TOTEM_ID, UtilitySpells.DASH_ID)));
-
     }
 
     static void giveNewbieItemsFor(PlayerEntity player, Perk perk) {
@@ -71,13 +66,15 @@ public class ItemNewbieGearBag extends Item {
 
     static class NewbieContent {
 
-        public List<String> gears;
+        public List<String> gearslots;
         public List<String> skillgems;
+        public List<Supplier<Item>> items;
 
         public List<ItemStack> stacks = new ArrayList<>();
 
-        public NewbieContent(List<String> gears, List<String> skillgems) {
-            this.gears = gears;
+        public NewbieContent(List<Supplier<Item>> items, List<String> gearslots, List<String> skillgems) {
+            this.gearslots = gearslots;
+            this.items = items;
             this.skillgems = skillgems;
         }
 
@@ -88,15 +85,25 @@ public class ItemNewbieGearBag extends Item {
 
         public void give(PlayerEntity player) {
 
-            gears.forEach(x -> {
+            items.forEach(x -> PlayerUtils.giveItem(new ItemStack(x.get()), player));
+
+            gearslots.forEach(x -> {
                 BaseGearType gear = ExileDB.GearTypes()
-                    .get(x);
+                    .getFilterWrapped(e -> e.gear_slot.equals(x))
+                    .random();
                 GearItemData data = getBlueprint(gear).createData();
                 data.lvl = 1;
                 data.can_sal = false;
-                ItemStack stack = ItemStack.EMPTY;// GearCreationUtils.CreateStack(data);
 
-                EnchantedBookItem.addEnchantment(stack, new EnchantmentLevelEntry(Enchantments.UNBREAKING, 1));
+                GearBlueprint b = new GearBlueprint(Items.AIR, 1);
+                b.level.set(1);
+                b.rarity.set(ExileDB.GearRarities()
+                    .get(IRarity.COMMON_ID));
+                b.gearItemSlot.set(gear);
+
+                ItemStack stack = GearSoulLootGen.createSoulBasedOnGear(b);
+
+                EnchantedBookItem.addEnchantment(stack, new EnchantmentLevelEntry(Enchantments.UNBREAKING, 3));
 
                 PlayerUtils.giveItem(stack, player);
 
@@ -136,9 +143,10 @@ public class ItemNewbieGearBag extends Item {
                     .filter(x -> x.is_entry)
                     .collect(Collectors.toList());
 
-                if (!starts.isEmpty()) {
+                if (true || !starts.isEmpty()) { // todo
 
-                    ItemNewbieGearBag.giveNewbieItemsFor(playerIn, starts.get(0));
+                    defaultContent.give(playerIn);
+                    // ItemNewbieGearBag.giveNewbieItemsFor(playerIn, starts.get(0));
 
                     if (FabricLoader.getInstance()
                         .isModLoaded("patchouli")) {

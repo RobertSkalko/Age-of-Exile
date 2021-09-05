@@ -17,7 +17,6 @@
     "PlayerEntityMixin",
     "PlayerInventoryMixin",
     "ServerPlayerEntityAccessor",
-    "SpawnSettingsMixin",
     "StatusEffectAccessor",
     "StopFireInDungeonMixin",
     "bow.ProjectileUtilMixin"
