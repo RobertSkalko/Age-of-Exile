@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.saveclasses.spells;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
@@ -26,7 +25,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -53,60 +51,6 @@ public class SpellCastingData {
 
     @Store
     public ChargeData charges = new ChargeData();
-
-    @Store
-    public List<PlayerAction> last_actions = new ArrayList<>();
-
-    static String BLOCK_ID = "block_action";
-
-    public void onAction(PlayerEntity player, PlayerAction action) {
-
-        if (action == PlayerAction.BLOCK) {
-            if (Load.Unit(player)
-                .getCooldowns()
-                .isOnCooldown(BLOCK_ID)) {
-                return;
-            }
-        }
-
-        last_actions.add(action);
-        if (last_actions.size() > 10) {
-            last_actions.remove(0);
-        }
-
-        if (action == PlayerAction.BLOCK) {
-            Load.Unit(player)
-                .getCooldowns()
-                .setOnCooldown(BLOCK_ID, 20);
-
-        }
-
-    }
-
-    public boolean meetActionRequirements(Spell spell) {
-
-        if (spell.config.actions_needed.isEmpty()) {
-            return true;
-        }
-
-        List<PlayerAction> needed = spell.config.actions_needed;
-
-        if (needed.size() > last_actions.size()) {
-            return false;
-        }
-
-        int x = last_actions.size() - 1;
-        for (int i = needed.size() - 1; i > -1; i--) {
-            PlayerAction act = last_actions.get(x);
-            PlayerAction act2 = needed.get(i);
-            if (act != act2) {
-                return false;
-            }
-            x--;
-        }
-
-        return true;
-    }
 
     @Storable
     public static class AuraData {
@@ -278,13 +222,6 @@ public class SpellCastingData {
 
         if (player.isCreative()) {
             return true;
-        }
-        if (spell.config.hasActionRequirements()) {
-            if (!Load.spells(player)
-                .getCastingData()
-                .meetActionRequirements(spell)) {
-                return false;
-            }
         }
 
         if (spell.GUID()

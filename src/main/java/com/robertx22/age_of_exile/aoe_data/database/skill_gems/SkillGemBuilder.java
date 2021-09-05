@@ -25,7 +25,6 @@ public class SkillGemBuilder {
         gem.type = SkillGemType.SUPPORT_GEM;
         gem.attribute = attri;
         gem.tags = tags;
-        gem.req = req;
 
         if (manaMulti > 1) {
             int mana = (int) ((manaMulti - 1F) * 100F);
@@ -50,22 +49,6 @@ public class SkillGemBuilder {
         gem.stats = Arrays.asList();
         gem.type = SkillGemType.SKILL_GEM;
         gem.attribute = attri;
-
-        //  gem.tags = spell.config.tags;
-
-        StatRequirement req = new StatRequirement();
-        if (attri == StatAttribute.STR) {
-            req.setBaseStr(20);
-            req.setStr(0.5F);
-        } else if (attri == StatAttribute.INT) {
-            req.setBaseInt(20);
-            req.setInt(0.5F);
-        } else if (attri == StatAttribute.DEX) {
-            req.setBaseDex(20);
-            req.setDex(0.5F);
-        }
-
-        gem.req = req;
 
         gem.addToSerializables();
 

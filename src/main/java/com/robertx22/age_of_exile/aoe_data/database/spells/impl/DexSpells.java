@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.value_calc.ValueCalcAdder;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
-import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -63,7 +62,7 @@ public class DexSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of("demon", SpellConfiguration.Builder.nonInstant(10, 60 * 20, 30)
-                    .setRequireActions(Arrays.asList(PlayerAction.TECHNIQUE, PlayerAction.MELEE_ATTACK)),
+                ,
                 "Demon Transformation",
                 Arrays.asList())
             .manualDesc(
@@ -75,7 +74,6 @@ public class DexSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of("execute", SpellConfiguration.Builder.instant(10, 20 * 60)
-                    .setRequireActions(Arrays.asList(PlayerAction.TECHNIQUE, PlayerAction.MELEE_ATTACK))
                     .setSwingArm(), "Execute",
                 Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.technique))
             .attackStyle(PlayStyle.ranged)

@@ -9,15 +9,16 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -67,10 +68,6 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
             return false;
         }
 
-        if (!getSkillGem().req.meetsReq(getLevelForRequirement(player), Load.Unit(player))) {
-            return false;
-        }
-
         return true;
     }
 
@@ -114,7 +111,7 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
         try {
             list.add(new LiteralText(""));
 
-            TooltipUtils.addRequirements(list, getLevelForRequirement(info.player), getSkillGem().req, info.unitdata);
+            TooltipUtils.addRequirements(list, getLevelForRequirement(info.player), new StatRequirement(), info.unitdata);
 
             List<ExactStatData> cStats = getSkillGem().getConstantStats(this);
 

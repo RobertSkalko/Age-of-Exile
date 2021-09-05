@@ -36,13 +36,6 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
     private static final Identifier SPELl_NO_MANA = new Identifier(Ref.MODID,
         "textures/gui/spells/no_mana.png"
     );
-
-    private static final Identifier TECHNIQUE_CAN_ACTIVATE = new Identifier(Ref.MODID,
-        "textures/gui/spells/charged.png"
-    );
-    private static final Identifier TECHNIQUE_CANT_ACTIVATE = new Identifier(Ref.MODID,
-        "textures/gui/spells/not_charged.png"
-    );
     private static final Identifier AURA_ACTIVATED = new Identifier(Ref.MODID,
         "textures/gui/spells/aura_activated.png"
     );
@@ -153,16 +146,6 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                 .getCooldownTicks(spell.GUID()) > 1) {
                 mc.getTextureManager()
                     .bindTexture(SPELL_ON_COOLDOWN);
-            } else if (spell.config.hasActionRequirements() && !Load.spells(mc.player)
-                .getCastingData()
-                .meetActionRequirements(spell)) {
-                mc.getTextureManager()
-                    .bindTexture(TECHNIQUE_CANT_ACTIVATE);
-            } else if (spell.config.hasActionRequirements() && Load.spells(mc.player)
-                .getCastingData()
-                .meetActionRequirements(spell)) {
-                mc.getTextureManager()
-                    .bindTexture(TECHNIQUE_CAN_ACTIVATE);
             } else {
                 mc.getTextureManager()
                     .bindTexture(SPELL_READY_TEX);
@@ -222,7 +205,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                 }
 
                 String txt = CLOC.translate(KeybindsRegister.getSpellHotbar(place)
-                    .getBoundKeyLocalizedText())
+                        .getBoundKeyLocalizedText())
                     .toUpperCase(Locale.ROOT);
 
                 if (txt.length() > 3) {

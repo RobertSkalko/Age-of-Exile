@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
-import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -24,12 +23,7 @@ public class SpellConfiguration {
     public PlayStyle style = PlayStyle.magic;
     public List<SpellTag> tags = new ArrayList<>();
     public SpellCastType cast_type = SpellCastType.NORMAL;
-    public List<PlayerAction> actions_needed = new ArrayList<>();
     public boolean scale_mana_cost_to_player_lvl = false;
-
-    public boolean hasActionRequirements() {
-        return !actions_needed.isEmpty();
-    }
 
     public int getCastTimeTicks() {
         return cast_time_ticks;
@@ -38,12 +32,6 @@ public class SpellConfiguration {
     public SpellConfiguration applyCastSpeedToCooldown() {
         this.apply_cast_speed_to_cd = true;
         return this;
-    }
-
-    public SpellConfiguration setRequireActions(List<PlayerAction> list) {
-        this.actions_needed = list;
-        return this;
-
     }
 
     public boolean usesCharges() {

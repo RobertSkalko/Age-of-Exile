@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
-import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
@@ -36,7 +35,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -183,18 +181,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
         ctx.castedThisTick = true;
 
-        if (ctx.caster instanceof PlayerEntity) {
-            if (ctx.spell.config.tags.contains(SpellTag.technique)) {
-                ctx.spellsCap
-                    .getCastingData()
-                    .onAction((PlayerEntity) ctx.caster, PlayerAction.TECHNIQUE);
-            } else {
-                ctx.spellsCap
-                    .getCastingData()
-                    .onAction((PlayerEntity) ctx.caster, PlayerAction.SPELL);
-            }
-        }
-
         if (this.config.swing_arm) {
             caster.handSwingTicks = -1; // this makes sure hand swings
             caster.swingHand(Hand.MAIN_HAND);
@@ -256,10 +242,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
         TooltipUtils.addEmpty(list);
 
-        if (this.config.tags.contains(SpellTag.technique)) {
-            list.add(new LiteralText(Formatting.RED + "Technique Skill"));
-        }
-
         if (!this.isAura()) {
             list.add(new LiteralText(Formatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
             if (config.usesCharges()) {
@@ -280,20 +262,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
         }
 
         TooltipUtils.addEmpty(list);
-        if (config.hasActionRequirements()) {
 
-            MutableText txt = new LiteralText("Cast Requirement: ");
-
-            for (int i = 0; i < config.actions_needed.size(); i++) {
-                PlayerAction x = config.actions_needed.get(i);
-                if (i > 0 && i < config.actions_needed.size()) {
-                    txt.append(" + ");
-                }
-                txt.append(x.word.locName());
-            }
-
-            list.add(txt);
-        }
         list.add(getConfig().castingWeapon.predicate.text);
 
         TooltipUtils.addEmpty(list);

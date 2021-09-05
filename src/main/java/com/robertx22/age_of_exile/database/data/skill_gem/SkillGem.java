@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
@@ -28,8 +27,6 @@ public class SkillGem implements JsonExileRegistry<SkillGem>, IAutoGson<SkillGem
     public int weight = 1000;
 
     public SkillGemType type = SkillGemType.SKILL_GEM;
-
-    public StatRequirement req = new StatRequirement();
 
     public StatAttribute attribute = StatAttribute.DEX;
 

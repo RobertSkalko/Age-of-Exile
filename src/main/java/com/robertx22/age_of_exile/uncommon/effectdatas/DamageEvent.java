@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.capability.PlayerDamageChart;
 import com.robertx22.age_of_exile.capability.entity.CooldownsData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
-import com.robertx22.age_of_exile.database.data.spells.PlayerAction;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
@@ -13,7 +12,6 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -268,14 +266,6 @@ public class DamageEvent extends EffectEvent {
             return;
         }
 
-        if (data.getBoolean(EventData.IS_BLOCKED)) {
-            if (target instanceof PlayerEntity) {
-                Load.spells(target)
-                    .getCastingData()
-                    .onAction((PlayerEntity) target, PlayerAction.BLOCK);
-            }
-            return;
-        }
         if (ifPlayersShouldNotDamageEachOther()) {
             return;
         }
