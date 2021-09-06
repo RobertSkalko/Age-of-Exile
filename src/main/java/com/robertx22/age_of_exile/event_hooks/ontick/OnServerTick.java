@@ -97,9 +97,11 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     .build();
                 mana.Activate();
 
-                RestoreResourceEvent energy = EventBuilder.ofRestore(player, player, ResourceType.energy, RestoreType.regen, 0)
-                    .build();
-                energy.Activate();
+                if (!player.isSprinting()) {
+                    RestoreResourceEvent energy = EventBuilder.ofRestore(player, player, ResourceType.energy, RestoreType.regen, 0)
+                        .build();
+                    energy.Activate();
+                }
 
                 boolean restored = false;
 

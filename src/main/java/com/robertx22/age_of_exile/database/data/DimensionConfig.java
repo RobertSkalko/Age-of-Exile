@@ -31,12 +31,6 @@ public class DimensionConfig implements JsonExileRegistry<DimensionConfig>, ISer
         return c;
     }
 
-    public static DimensionConfig Hell(String id, int min, int max) {
-        DimensionConfig d = new DimensionConfig(id, min, max);
-        d.scale_to_nearest_player = true;
-        return d;
-    }
-
     public static DimensionConfig Nether() {
         DimensionConfig d = new DimensionConfig(10, "minecraft:the_nether").setMobTier(2);
         d.min_lvl = 10;

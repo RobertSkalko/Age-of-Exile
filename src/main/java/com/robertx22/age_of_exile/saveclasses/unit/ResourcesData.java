@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
@@ -31,8 +32,6 @@ public class ResourcesData {
     private float energy = 0;
     @Store
     private float blood = 0;
-    @Store
-    public float block = 0;
 
     @Store
     public AllShieldsData shields = new AllShieldsData();
@@ -49,19 +48,14 @@ public class ResourcesData {
         return blood;
     }
 
-    public float getBlock() {
-        return block;
-    }
-
     public void onTickBlock(PlayerEntity player) {
         if (player.isBlocking()) {
-            Load.Unit(player)
-                .getResources()
-                .block--;
-        } else {
-            Load.Unit(player)
-                .getResources()
-                .block++;
+            float cost = Energy.getInstance()
+                .scale(0.25F, Load.Unit(player)
+                    .getLevel());
+            SpendResourceEvent event = new SpendResourceEvent(player, ResourceType.energy, cost);
+            event.calculateEffects();
+            event.Activate();
         }
 
         this.cap(player, ResourceType.block);
@@ -90,8 +84,6 @@ public class ResourcesData {
             return blood;
         } else if (type == ResourceType.energy) {
             return energy;
-        } else if (type == ResourceType.block) {
-            return block;
         } else if (type == ResourceType.health) {
             return HealthUtils.getCurrentHealth(en);
         }
@@ -142,8 +134,6 @@ public class ResourcesData {
         }
         if (type == ResourceType.mana) {
             mana = getModifiedValue(en, type, use, amount);
-        } else if (type == ResourceType.block) {
-            block = getModifiedValue(en, type, use, amount);
         } else if (type == ResourceType.blood) {
             blood = getModifiedValue(en, type, use, amount);
         } else if (type == ResourceType.energy) {
@@ -168,9 +158,7 @@ public class ResourcesData {
             blood = MathHelper.clamp(blood, 0, Load.Unit(en)
                 .getMaximumResource(type));
         }
-        if (type == ResourceType.block) {
-            block = MathHelper.clamp(block, -100, 100);
-        }
+
     }
 
     private void sync(LivingEntity en) {

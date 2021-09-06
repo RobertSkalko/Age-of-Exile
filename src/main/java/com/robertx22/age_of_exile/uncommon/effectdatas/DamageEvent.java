@@ -76,8 +76,9 @@ public class DamageEvent extends EffectEvent {
 
     private void calcBlock() {
 
-        if (targetData.getResources()
-            .getBlock() < 1) {
+        if (targetData
+            .getResources()
+            .getEnergy() < 1) {
             return;
         }
 

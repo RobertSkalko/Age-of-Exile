@@ -16,6 +16,6 @@
 - removed magus mobs
 - removed spell action requirements
 - removed loadouts (make less sense with spell school system)
-- added back energy
+- added back energy, attacks and blocking costs energy. Running stops energy regen but doesn't deplete it. If you let your energy get too low you get slowness debuff
 - removed auras
 - merged cloth/leather/plate into just armor

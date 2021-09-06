@@ -694,7 +694,7 @@ public class EntityCap {
                     .getGearSlot();
 
                 float cost = Energy.getInstance()
-                    .scale(slot.energy_cost, getLevel()); // TODO add weapon specific
+                    .scale(slot.energy_cost, getLevel());
                 SpendResourceEvent event = new SpendResourceEvent(entity, ResourceType.energy, cost);
                 event.calculateEffects();
 

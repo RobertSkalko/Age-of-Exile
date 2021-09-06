@@ -143,29 +143,6 @@ public enum BarGuiType {
 
     },
 
-    BLOCK {
-        @Override
-        public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {
-            return data.getResources()
-                .getBlock();
-        }
-
-        @Override
-        public float getMax(EntityCap.UnitData data, PlayerEntity en) {
-            return 100F;
-        }
-
-        @Override
-        public Identifier getTexture(EntityCap.UnitData data, PlayerEntity en) {
-            return Ref.id("textures/gui/overlay/block.png");
-        }
-
-        @Override
-        public boolean shouldRender(EntityCap.UnitData data, PlayerEntity en) {
-            return getCurrent(data, en) < getMax(data, en);
-        }
-
-    },
     HUNGER {
         @Override
         public float getCurrent(EntityCap.UnitData data, PlayerEntity en) {

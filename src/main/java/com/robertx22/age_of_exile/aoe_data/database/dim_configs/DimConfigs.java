@@ -29,7 +29,5 @@ public class DimConfigs implements ExileRegistryInit {
         rift.dimension_id = DimensionIds.RIFT_DIMENSION.toString();
         rift.addToSerializables();
 
-        DimensionConfig.Hell("world_of_exile:hell1", 25, 50)
-            .addToSerializables();
     }
 }
