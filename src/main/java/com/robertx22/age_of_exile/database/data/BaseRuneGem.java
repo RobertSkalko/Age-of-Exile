@@ -1,10 +1,9 @@
 package com.robertx22.age_of_exile.database.data;
 
-import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotFamily;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.registry.IWeighted;
-import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +20,15 @@ public class BaseRuneGem implements IGUID, IWeighted {
 
     public String identifier = "";
 
-    public float required_item_level;
-
+    public int tier = 1;
     public int weight = 1000;
 
-    public float effective_level;
+    public float getEffectiveLevel() {
+        return LevelUtils.tierToLevel(tier);
+    }
 
     public int getReqLevel() {
-        return (int) (MathHelper.clamp(GameBalanceConfig.get().MAX_LEVEL * required_item_level, 1, GameBalanceConfig.get().MAX_LEVEL));
+        return LevelUtils.tierToLevel(tier);
     }
 
     public final List<StatModifier> getFor(SlotFamily sfor) {

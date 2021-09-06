@@ -14,4 +14,3 @@ currency/clear_sockets
 currency/randomize_affixes
 currency/clear_corruption
 currency/reroll_primary_stats_numbers
-currency/level_spell

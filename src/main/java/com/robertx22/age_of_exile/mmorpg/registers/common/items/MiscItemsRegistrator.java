@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.MiscSeedItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.loot_crate.LootCrateItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.RaceResetPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.ResetStatsPotion;
@@ -36,6 +37,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     }
 
     public StatSoulItem STAT_SOUL = item(new StatSoulItem());
+    public LootCrateItem LOOT_CRATE = item(new LootCrateItem());
 
     public HashMap<DungeonKeyItem.KeyRarity, DungeonKeyItem> DUNGEON_KEY_MAP = new HashMap<>();
 
@@ -44,7 +46,6 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public ProjectileItem FIREBALL = item(new ProjectileItem("fireball"));
     public ProjectileItem SNOWBALL = item(new ProjectileItem("snowball"));
-    public ProjectileItem SHADOWBALL = item(new ProjectileItem("shadowball"));
     public ProjectileItem SLIMEBALL = item(new ProjectileItem("slimeball"));
 
     public ScrollBuffItem SCROLL_BUFF = item(new ScrollBuffItem(), "scroll/buff");

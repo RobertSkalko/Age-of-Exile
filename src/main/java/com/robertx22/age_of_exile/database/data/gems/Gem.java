@@ -26,23 +26,6 @@ public class Gem extends BaseRuneGem implements IAutoGson<Gem>, JsonExileRegistr
         return Formatting.GRAY;
     }
 
-    public String getIcon() {
-        if (this.effective_level <= 0.2F) {
-            return "\u2736";
-        }
-        if (this.effective_level <= 0.4F) {
-            return "\u2737";
-        }
-        if (this.effective_level <= 0.6F) {
-            return "\u2738";
-        }
-        if (this.effective_level <= 0.8F) {
-            return "\u2739";
-        }
-
-        return "\u273A";
-    }
-
     public Item getItem() {
         return Registry.ITEM.get(new Identifier(item_id));
     }

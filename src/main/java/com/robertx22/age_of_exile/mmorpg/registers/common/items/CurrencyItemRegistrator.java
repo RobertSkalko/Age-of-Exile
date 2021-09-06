@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.data.currency.*;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
-import com.robertx22.age_of_exile.database.data.currency.spell.LevelSpellGemItem;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -28,7 +27,6 @@ public class CurrencyItemRegistrator extends BaseItemRegistrator {
     public CurrencyItem ORB_OF_INFINITY = of(new OrbOfInfinityItem());
     public CurrencyItem CLEAR_INSTABILITY = of(new ClearInstabilityItem());
     public CurrencyItem ORB_OF_CORRUPTION = of(new OrbOfCorruption());
-    public CurrencyItem LEVEL_SPELL = of(new LevelSpellGemItem());
 
     <T> T of(CurrencyItem c) {
         Registry.register(Registry.ITEM, new Identifier(Ref.MODID, c.GUID()), c);

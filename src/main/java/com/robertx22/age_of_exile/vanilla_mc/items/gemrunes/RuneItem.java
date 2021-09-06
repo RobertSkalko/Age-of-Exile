@@ -55,7 +55,7 @@ public class RuneItem extends Item implements IGUID, IAutoModel, IAutoLocName, I
 
     public RuneItem(RuneType type) {
         super(new Settings().maxCount(64)
-            .group(CreativeTabs.Runes));
+            .group(CreativeTabs.GemRuneCurrency));
         this.type = type;
 
         this.weight = type.weight;
@@ -72,30 +72,30 @@ public class RuneItem extends Item implements IGUID, IAutoModel, IAutoLocName, I
     }
 
     public enum RuneType {
-        YUN(100, "yun", "Yun", 0.75F),
-        NOS(1000, "nos", "Nos", 0.2F),
-        MOS(1000, "mos", "Mos", 0.2F),
-        ITA(1000, "ita", "Ita", 0.2F),
-        CEN(1000, "cen", "Cen", 0.2F),
-        FEY(1000, "fey", "Fey", 0.2F),
-        DOS(1000, "dos", "Dos", 0.2F),
-        ANO(1000, "ano", "Ano", 0.2F),
-        TOQ(1000, "toq", "Toq", 0.2F),
-        ORU(500, "oru", "Oru", 0.6F),
-        WIR(200, "wir", "Wir", 0.7F),
-        ENO(1000, "eno", "Eno", 0.5F),
-        HAR(1000, "har", "Har", 0.5F),
-        XER(1000, "xer", "Xer", 0.5F);
+        YUN(100, "yun", "Yun", 5),
+        NOS(1000, "nos", "Nos", 1),
+        MOS(1000, "mos", "Mos", 1),
+        ITA(1000, "ita", "Ita", 1),
+        CEN(1000, "cen", "Cen", 2),
+        FEY(1000, "fey", "Fey", 2),
+        DOS(1000, "dos", "Dos", 2),
+        ANO(1000, "ano", "Ano", 2),
+        TOQ(1000, "toq", "Toq", 2),
+        ORU(500, "oru", "Oru", 4),
+        WIR(200, "wir", "Wir", 4),
+        ENO(1000, "eno", "Eno", 3),
+        HAR(1000, "har", "Har", 3),
+        XER(1000, "xer", "Xer", 3);
 
         public String id;
         public String locName;
-        public float lvl;
+        public int tier;
         public int weight;
 
-        RuneType(int weight, String id, String locName, float lvl) {
+        RuneType(int weight, String id, String locName, int tier) {
             this.id = id;
             this.locName = locName;
-            this.lvl = lvl;
+            this.tier = tier;
             this.weight = weight;
         }
 

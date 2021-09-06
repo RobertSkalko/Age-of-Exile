@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "mmorpg:block/loot_crate/default"
+    }
+  }
+}

@@ -1,48 +1,14 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.GearMaterialItem;
 import net.minecraft.item.Items;
-
-import java.util.HashMap;
-import java.util.Locale;
 
 public class GearMaterialRegister extends BaseItemRegistrator {
 
     public GearMaterialRegister() {
 
-        for (SkillItemTier tier : SkillItemTier.values()) {
-            for (TYPE type : TYPE.values()) {
-                String lowercase = type.name()
-                    .toLowerCase(Locale.ROOT);
-                String id = lowercase + "/" + lowercase + tier.tier;
-
-                if (!MAP.containsKey(type)) {
-                    MAP.put(type, new HashMap<>());
-                }
-
-                MAP.get(type)
-                    .put(tier, item(new GearMaterialItem(tier, type, id)));
-            }
-        }
-
     }
-
-    public enum TYPE {
-        CLOTH("Cloth"),
-        LEATHER("Leather"),
-        ORE("Ingot");
-
-        public String name;
-
-        TYPE(String name) {
-            this.name = name;
-        }
-    }
-
-    public HashMap<TYPE, HashMap<SkillItemTier, GearMaterialItem>> MAP = new HashMap<>();
 
     public CraftEssenceItem ARCANA = item(new CraftEssenceItem("arcana", () -> Items.PURPLE_DYE, "Essence of Arcana"));
     public CraftEssenceItem MANA = item(new CraftEssenceItem("mana", () -> ModRegistry.MISC_ITEMS.MANA_PLANT, "Essence of Mana"));

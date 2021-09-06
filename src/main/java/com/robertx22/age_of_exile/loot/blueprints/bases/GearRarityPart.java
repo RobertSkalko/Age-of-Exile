@@ -30,11 +30,6 @@ public class GearRarityPart extends BlueprintPart<GearRarity, GearBlueprint> {
 
     public void setupChances(LootInfo info) {
 
-        if (blueprint.gearItemSlot.isGenerated()) {
-            this.possible = blueprint.gearItemSlot.get()
-                .getRarityGroup()
-                .getRarities();
-        }
         this.possible.removeIf(x -> !info.favorRank.drop_unique_gears && x.is_unique_item);
 
         if (info.playerData != null) {

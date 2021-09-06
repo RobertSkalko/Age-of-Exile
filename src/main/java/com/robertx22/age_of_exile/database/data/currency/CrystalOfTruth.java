@@ -37,6 +37,11 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
     }
 
     @Override
+    public int getTier() {
+        return 3;
+    }
+
+    @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
         GearItemData gear = Gear.Load(stack);

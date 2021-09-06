@@ -401,11 +401,6 @@
 	"item.mmorpg.food.meal.red.2": "Empyrean Energizing Meal",
 	"item.mmorpg.food.meal.red.3": "Angelic Energizing Meal",
 	"item.mmorpg.food.meal.red.4": "Divine Energizing Meal",
-	"item.mmorpg.gear_mat.cloth.cloth0": "Spiritual Cloth",
-	"item.mmorpg.gear_mat.cloth.cloth1": "Celestial Cloth",
-	"item.mmorpg.gear_mat.cloth.cloth2": "Empyrean Cloth",
-	"item.mmorpg.gear_mat.cloth.cloth3": "Angelic Cloth",
-	"item.mmorpg.gear_mat.cloth.cloth4": "Divine Cloth",
 	"item.mmorpg.gear_mat.essences.arcana": "Essence of Arcana",
 	"item.mmorpg.gear_mat.essences.elemental": "Essence of Elements",
 	"item.mmorpg.gear_mat.essences.fire": "Essence of Fire",
@@ -415,16 +410,6 @@
 	"item.mmorpg.gear_mat.essences.physical": "Essence of Physique",
 	"item.mmorpg.gear_mat.essences.thunder": "Essence of Thunder",
 	"item.mmorpg.gear_mat.essences.water": "Essence of Water",
-	"item.mmorpg.gear_mat.leather.leather0": "Spiritual Leather",
-	"item.mmorpg.gear_mat.leather.leather1": "Celestial Leather",
-	"item.mmorpg.gear_mat.leather.leather2": "Empyrean Leather",
-	"item.mmorpg.gear_mat.leather.leather3": "Angelic Leather",
-	"item.mmorpg.gear_mat.leather.leather4": "Divine Leather",
-	"item.mmorpg.gear_mat.ore.ore0": "Spiritual Ingot",
-	"item.mmorpg.gear_mat.ore.ore1": "Celestial Ingot",
-	"item.mmorpg.gear_mat.ore.ore2": "Empyrean Ingot",
-	"item.mmorpg.gear_mat.ore.ore3": "Angelic Ingot",
-	"item.mmorpg.gear_mat.ore.ore4": "Divine Ingot",
 	"item.mmorpg.gems.azurite.0": "Chipped Azurite",
 	"item.mmorpg.gems.azurite.1": "Flawed Azurite",
 	"item.mmorpg.gems.azurite.2": "Regular Azurite",
@@ -520,7 +505,6 @@
 	"item.mmorpg.potions.reset_all_perks": "Talent Reset Potion",
 	"item.mmorpg.potions.reset_stats": "Stat Reset Potion",
 	"item.mmorpg.projectile.fireball": "Projectile",
-	"item.mmorpg.projectile.shadowball": "Projectile",
 	"item.mmorpg.projectile.slimeball": "Projectile",
 	"item.mmorpg.projectile.snowball": "Projectile",
 	"item.mmorpg.raw_fish.blue.0": "Raw Spiritual Aqua Fish",
@@ -872,7 +856,6 @@
 	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
 	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
 	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
-	"item.mmorpg.currency.level_spell": "§cOrb of Elevation",
 	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
 	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Infinity",
 	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
@@ -1643,6 +1626,24 @@
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
+	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
+	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
+	"mmorpg.unique_gear.blood_stone.name": "Primordial Blood",
+	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
+	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
+	"mmorpg.unique_gear.insight.name": "Insight",
+	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
+	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
+	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
+	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
+	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.axe_full": "Axe",
@@ -1673,24 +1674,6 @@
 	"mmorpg.gearslot.sword": "Sword",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
-	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
-	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
-	"mmorpg.unique_gear.blood_stone.name": "Primordial Blood",
-	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
-	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
-	"mmorpg.unique_gear.insight.name": "Insight",
-	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
-	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
-	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
-	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
-	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
@@ -1804,7 +1787,6 @@
 	"item.mmorpg.currency.clear_sockets.desc": "Destroys all runes and gems on the item.",
 	"item.mmorpg.currency.crystal_of_purification.desc": "Unseals the item.",
 	"item.mmorpg.currency.crystal_of_truth.desc": "Transform common item into random higher rarity.",
-	"item.mmorpg.currency.level_spell.desc": "Increases level of a spell gem",
 	"item.mmorpg.currency.number_reroll.desc": "Re-rolls explicit numbers on a gear.",
 	"item.mmorpg.currency.orb_of_corruption.desc": "Corrupts item, changing it unpredictably.",
 	"item.mmorpg.currency.orb_of_infinity.desc": "Adds another affix.",

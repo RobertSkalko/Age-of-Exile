@@ -24,6 +24,11 @@ public class ClearInstabilityItem extends CurrencyItem implements ICurrencyItemE
         return "currency/clear_instability";
     }
 
+    @Override
+    public int getTier() {
+        return 1;
+    }
+
     public static final String ID = Ref.MODID + ":currency/clear_instability";
 
     @Override

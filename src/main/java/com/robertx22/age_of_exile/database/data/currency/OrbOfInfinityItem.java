@@ -35,6 +35,11 @@ public class OrbOfInfinityItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
+    public int getTier() {
+        return 5;
+    }
+
+    @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
         GearItemData gear = Gear.Load(stack);

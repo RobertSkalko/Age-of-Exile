@@ -34,6 +34,7 @@ public class LootInfo {
     public int amount = 0;
     public Difficulty diff;
     public int level = 0;
+    public int tier = 1;
 
     public LootOrigin lootOrigin;
     public UnitData mobData;
@@ -204,6 +205,7 @@ public class LootInfo {
                 }
             }
         }
+        this.tier = LevelUtils.levelToTier(level);
     }
 
     private void errorIfClient() {

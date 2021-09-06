@@ -34,6 +34,11 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
     }
 
     @Override
+    public int getTier() {
+        return 2;
+    }
+
+    @Override
     public int getWeight() {
         return 250;
     }
@@ -58,8 +63,6 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
     public float getInstability() {
         return 15;
     }
-
-    
 
     @Override
     public String getRarityRank() {

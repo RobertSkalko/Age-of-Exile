@@ -2,23 +2,20 @@ package com.robertx22.age_of_exile.database.data.currency;
 
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
-import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
+public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect {
     @Override
     public String GUID() {
         return "currency/stone_of_hope";
@@ -30,6 +27,11 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
         super(ID);
 
+    }
+
+    @Override
+    public int getTier() {
+        return 5;
     }
 
     @Override
@@ -89,16 +91,4 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
         return "Transform any rarity gear into higher rarity.";
     }
 
-    @Override
-    public ShapedRecipeJsonFactory getRecipe() {
-        return shaped(ModRegistry.CURRENCIES.STONE_OF_HOPE)
-            .input('#', ModRegistry.MISC_ITEMS.MYTHIC_ESSENCE)
-            .input('t', ModRegistry.CURRENCIES.ORB_OF_INFINITY)
-            .input('v', ModRegistry.CURRENCIES.ORB_OF_UNIQUE_BLESSING)
-            .input('o', ModRegistry.CURRENCIES.ORB_OF_INFINITY)
-            .pattern("#o#")
-            .pattern("#t#")
-            .pattern("vvv")
-            .criterion("player_level", trigger());
-    }
 }

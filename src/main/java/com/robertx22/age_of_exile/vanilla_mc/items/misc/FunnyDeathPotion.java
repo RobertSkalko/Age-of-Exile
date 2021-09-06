@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.FunnyDeathPotion.MySource;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -44,11 +43,8 @@ public class FunnyDeathPotion extends AutoItem {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity en) {
-
         if (en instanceof PlayerEntity) {
-
             en.damage(DMG_SOURCE, Float.MAX_VALUE);
-
             stack.decrement(1);
         }
 

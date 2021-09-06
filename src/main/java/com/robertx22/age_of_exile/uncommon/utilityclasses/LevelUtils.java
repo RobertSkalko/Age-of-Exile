@@ -22,6 +22,10 @@ public class LevelUtils {
         return MathHelper.clamp((tier - 1) * 10, 1, Integer.MAX_VALUE);
     }
 
+    public static int levelToTier(int level) {
+        return MathHelper.clamp((level / 10) + 1, 1, Integer.MAX_VALUE);
+    }
+
     public static SkillItemTier levelToSkillTier(int lvl) {
         for (SkillItemTier tier : SkillItemTier.values()) {
             if (tier.levelRange.isLevelInRange(lvl)) {

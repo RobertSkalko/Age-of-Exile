@@ -252,21 +252,21 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     public enum GemRank {
-        CHIPPED("Chipped", 0, 0.0F, 1),
-        FLAWED("Flawed", 1, 0.2F, 1.2F),
-        REGULAR("Regular", 2, 0.4F, 1.4F),
-        FLAWLESS("Flawless", 3, 0.6F, 1.6F),
-        PERFECT("Perfect", 4, 0.8F, 1.8F);
+        CHIPPED("Chipped", 0, 1, 1),
+        FLAWED("Flawed", 1, 2, 1.2F),
+        REGULAR("Regular", 2, 3, 1.4F),
+        FLAWLESS("Flawless", 3, 4, 1.6F),
+        PERFECT("Perfect", 4, 5, 1.8F);
 
         public String locName;
         public int num;
-        public float lvlreq;
+        public int tier;
         public float valmulti;
 
-        GemRank(String locName, int num, float lvlreq, float valmulti) {
+        GemRank(String locName, int num, int tier, float valmulti) {
             this.locName = locName;
             this.num = num;
-            this.lvlreq = lvlreq;
+            this.tier = tier;
             this.valmulti = valmulti;
         }
 
@@ -291,7 +291,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     public GemItem(GemType type, GemRank gemRank) {
-        super(new Settings().group(CreativeTabs.Gems)
+        super(new Settings().group(CreativeTabs.GemRuneCurrency)
             .maxCount(16));
 
         this.gemType = type;

@@ -25,16 +25,11 @@ public class CreativeTabs {
         ,
         () -> new ItemStack(Items.SOUL_LANTERN));
 
-    public static ItemGroup Gems = FabricItemGroupBuilder.build(
-        new Identifier(Ref.MODID, "gem_group")
+    public static ItemGroup GemRuneCurrency = FabricItemGroupBuilder.build(
+        new Identifier(Ref.MODID, "gemrunecurrency_group")
         ,
         () -> new ItemStack(ModRegistry.GEMS.MAP.get(GemItem.GemType.TOPAZ)
             .get(GemItem.GemRank.PERFECT)));
-
-    public static ItemGroup Runes = FabricItemGroupBuilder.build(
-        new Identifier(Ref.MODID, "runes_group")
-        ,
-        () -> new ItemStack(ModRegistry.RUNES.ALL.get(0)));
 
     public static ItemGroup Professions = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "proffs_group")

@@ -5,19 +5,22 @@ import com.robertx22.library_of_exile.registry.IGUID;
 
 public enum LootType implements IGUID {
 
-    Gear("Gear", "gear", Words.Gear),
-    Gem("Gem", "gem", Words.Gem),
-    DungeonKey("Dungeon Key", "dungeon_keys", Words.DungeonKey),
-    SkillGem("Skill Gem", "skill_gem", Words.SkillGem),
-    LevelingRewards("Leveling Rewards", "lvl_rewards", Words.LevelRewards),
-    Rune("Rune", "rune", Words.Rune),
-    Currency("Currency", "currency", Words.Currency),
-    All("All", "all", Words.All);
+    Gear("Gear", "gear", Words.Gear, 0),
+    Gem("Gem", "gem", Words.Gem, 1),
+    DungeonKey("Dungeon Key", "dungeon_keys", Words.DungeonKey, 0),
+    SkillGem("Skill Gem", "skill_gem", Words.SkillGem, 0),
+    LevelingRewards("Leveling Rewards", "lvl_rewards", Words.LevelRewards, 0),
+    Rune("Rune", "rune", Words.Rune, 2),
+    Currency("Currency", "currency", Words.Currency, 3),
+    All("All", "all", Words.All, 0);
 
-    private LootType(String name, String id, Words word) {
+    public int custommodeldata;
+
+    private LootType(String name, String id, Words word, int custommodeldata) {
         this.thename = name;
         this.id = id;
         this.word = word;
+        this.custommodeldata = custommodeldata;
     }
 
     public static LootType of(String str) {

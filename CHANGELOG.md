@@ -19,3 +19,4 @@
 - added back energy, attacks and blocking costs energy. Running stops energy regen but doesn't deplete it. If you let your energy get too low you get slowness debuff
 - removed auras
 - merged cloth/leather/plate into just armor
+- instead of gems, runes, currencies dropping, now loot crates of them drop. This will reduce inventory clutter even further

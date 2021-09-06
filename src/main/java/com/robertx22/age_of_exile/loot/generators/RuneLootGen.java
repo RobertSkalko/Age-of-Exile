@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.loot.generators;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
+import com.robertx22.age_of_exile.vanilla_mc.items.loot_crate.LootCrateData;
 import net.minecraft.item.ItemStack;
 
 public class RuneLootGen extends BaseLootGen<GearBlueprint> {
@@ -39,13 +39,11 @@ public class RuneLootGen extends BaseLootGen<GearBlueprint> {
     @Override
     public ItemStack generateOne() {
 
-        Rune rune = ExileDB.Runes()
-            .getFilterWrapped(x -> this.info.level >= x.getReqLevel())
-            .random();
+        LootCrateData data = new LootCrateData();
+        data.type = LootType.Rune;
+        data.tier = info.tier;
 
-        ItemStack stack = new ItemStack(rune.getItem());
-
-        return stack;
+        return data.createStack();
 
     }
 

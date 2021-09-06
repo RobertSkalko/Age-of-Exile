@@ -40,6 +40,11 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
+    public int getTier() {
+        return 4;
+    }
+
+    @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
         GearItemData gear = Gear.Load(stack);
@@ -63,8 +68,6 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     public float getInstability() {
         return 50;
     }
-
-    
 
     @Override
     public String getRarityRank() {

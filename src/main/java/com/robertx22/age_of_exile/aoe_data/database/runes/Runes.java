@@ -14,8 +14,7 @@ public class Runes implements ExileRegistryInit {
                 .toString();
             rune.identifier = x.type.id;
 
-            rune.effective_level = x.type.lvl;
-            rune.required_item_level = x.type.lvl;
+            rune.tier = x.type.tier;
 
             rune.weight = x.type.weight;
 

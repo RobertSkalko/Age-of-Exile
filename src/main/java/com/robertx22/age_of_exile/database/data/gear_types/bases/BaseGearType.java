@@ -10,15 +10,11 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.WeaponMechanic;
-import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.GearMaterialRegister;
-import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -333,22 +329,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
 
         return false;
 
-    }
-
-    public Item getMaterial() {
-
-        TagList tags = getTags();
-
-        GearMaterialRegister.TYPE type = GearMaterialRegister.TYPE.ORE;
-
-        return ModRegistry.GEAR_MATERIALS.MAP.get(type)
-            .get(SkillItemTier.of(getLevelRange()));
-
-    }
-
-    public GearRarityGroup getRarityGroup() {
-        return ExileDB.GearRarityGroups()
-            .get(rar_group);
     }
 
     @Override

@@ -1,0 +1,8 @@
+{
+    "parent": "mmorpg:block/loot_crate/default",
+		"overrides": [
+		{ "predicate": {  "custom_model_data": 1 }, "model": "mmorpg:block/loot_crate/gem"},
+		{ "predicate": {  "custom_model_data": 2 }, "model": "mmorpg:block/loot_crate/rune"},
+		{ "predicate": {  "custom_model_data": 3 }, "model": "mmorpg:block/loot_crate/currency"}
+	]
+}

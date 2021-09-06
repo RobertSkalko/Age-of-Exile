@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.currency.base;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -45,8 +46,11 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
     }
 
     public CurrencyItem(String name) {
-        super(new ItemDefault().maxCount(64));
+        super(new ItemDefault().maxCount(64)
+            .group(CreativeTabs.GemRuneCurrency));
     }
+
+    public abstract int getTier();
 
     @Override
     public void generateModel(ItemModelManager manager) {
