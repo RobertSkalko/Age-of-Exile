@@ -36,7 +36,7 @@ public class LevelRanges {
 
     public static LevelRange START_TO_LOW = new LevelRange("_low", 0F, 0.4F);
     public static LevelRange MID_TO_END = new LevelRange("_end", 0.4F, 1F);
-    public static LevelRange START_TO_END = new LevelRange("_full", 0, 1F);
+    public static LevelRange FULL = new LevelRange("_full", 0, 1F);
 
     public static List<LevelRange> allNormal() {
         return Arrays.asList(STARTER, LOW, MIDDLE, HIGH, ENDGAME);

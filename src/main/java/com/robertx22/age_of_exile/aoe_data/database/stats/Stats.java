@@ -1122,7 +1122,7 @@ public class Stats implements ExileRegistryInit {
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.leech))
         .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> "Increased Leech Effects")
+        .setLocName(x -> "Increased Leech")
         .setLocDesc(x -> "Affects all resource leech stats like: onhit, leech dmg, on kill restore etc")
         .modifyAfterDone(x -> {
             x.is_perc = true;

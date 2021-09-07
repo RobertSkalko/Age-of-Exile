@@ -70,7 +70,7 @@ public class BaseGearBuilder implements GearDataHelper {
     }
 
     public BaseGearBuilder addFullLevelRange() {
-        this.addLvlRange(LevelRanges.START_TO_END, "");
+        this.addLvlRange(LevelRanges.FULL, "");
         return this;
     }
 

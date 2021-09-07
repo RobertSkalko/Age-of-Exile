@@ -21,7 +21,7 @@ public class RingRuneWords implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "air_disaster",
                 "Aria of Disaster",
-                BaseGearJewelry.RING.get(LevelRanges.START_TO_END))
+                BaseGearJewelry.RING.get(LevelRanges.FULL))
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(15, 30, Stats.EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG.get(EffectTags.song), ModType.FLAT),

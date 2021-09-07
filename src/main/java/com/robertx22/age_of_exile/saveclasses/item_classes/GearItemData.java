@@ -15,6 +15,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
 import com.robertx22.library_of_exile.utils.RandomUtils;
@@ -95,11 +96,13 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public boolean canPlayerWear(EntityCap.UnitData data) {
 
-        if (lvl > data.getLevel()) {
+        if (LevelUtils.tierToLevel(getTier()) > data.getLevel()) {
             return false;
         }
 
-        return getRequirement().meetsReq(lvl, data);
+        return true;
+
+        //return getRequirement().meetsReq(lvl, data);
 
     }
 

@@ -22,7 +22,7 @@ public class HelmetRunewords implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "insight",
                 "Insight",
-                BasePlateArmors.HELMETS.get(LevelRanges.START_TO_END))
+                BasePlateArmors.HELMETS.get(LevelRanges.FULL))
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(20, 30, ManaRegen.getInstance(), ModType.PERCENT),

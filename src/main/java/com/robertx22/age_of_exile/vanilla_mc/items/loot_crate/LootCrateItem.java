@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -71,6 +72,7 @@ public class LootCrateItem extends Item implements IGUID {
                     reward = new ItemStack(currency);
                 }
 
+                SoundUtils.ding(player.world, player.getBlockPos());
                 PlayerUtils.giveItem(reward, player);
 
             } catch (Exception e) {

@@ -23,12 +23,6 @@ public class BaseGearWeapons implements ExileRegistryInit {
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> SCEPTER;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> BOW;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> CROSSBOW;
-    public static HashMap<LevelRange, DataGenKey<BaseGearType>> SCYTHE;
-    public static HashMap<LevelRange, DataGenKey<BaseGearType>> MACE;
-    public static HashMap<LevelRange, DataGenKey<BaseGearType>> HAMMER;
-    public static HashMap<LevelRange, DataGenKey<BaseGearType>> SPEAR;
-    public static HashMap<LevelRange, DataGenKey<BaseGearType>> GLOVE;
-    public static HashMap<LevelRange, DataGenKey<BaseGearType>> DAGGER;
     public static HashMap<LevelRange, DataGenKey<BaseGearType>> STAFF;
 
     @Override

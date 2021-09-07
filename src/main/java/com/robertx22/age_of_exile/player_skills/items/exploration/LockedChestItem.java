@@ -7,6 +7,8 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -67,7 +69,11 @@ public class LockedChestItem extends TieredItem {
 
                 List<ItemStack> loot = MasterLootGen.generateLoot(LootInfo.ofLockedChestItem(player, lvl));
 
-                loot.forEach(x -> player.dropItem(x, false));
+                SoundUtils.ding(player.world, player.getBlockPos());
+
+                loot.forEach(x -> {
+                    PlayerUtils.giveItem(x, player);
+                });
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -102,7 +108,7 @@ public class LockedChestItem extends TieredItem {
         try {
 
             tooltip.add(new LiteralText("Needs ").append(getKeyItem()
-                .getName())
+                    .getName())
                 .append("."));
             tooltip.add(new LiteralText("Click to open."));
 

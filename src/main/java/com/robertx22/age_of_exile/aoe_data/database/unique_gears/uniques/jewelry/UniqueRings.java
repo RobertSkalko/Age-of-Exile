@@ -26,7 +26,7 @@ public class UniqueRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "witch_brew",
                 "Witch's Brew",
-                BaseGearJewelry.RING.get(LevelRanges.START_TO_END))
+                BaseGearJewelry.RING.get(LevelRanges.FULL))
 
             .stats(Arrays.asList(new StatModifier(15, 25, new ElementalResist(Elements.Earth), ModType.FLAT),
                 new StatModifier(25, 50, SpecialStats.BETTER_FOOD_BUFFS, ModType.FLAT),
@@ -41,7 +41,7 @@ public class UniqueRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "ghostly_shores",
                 "Ghostly Shores",
-                BaseGearJewelry.RING.get(LevelRanges.START_TO_END))
+                BaseGearJewelry.RING.get(LevelRanges.FULL))
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),

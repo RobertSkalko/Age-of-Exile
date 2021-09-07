@@ -19,7 +19,7 @@ public class FabledJewelry implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "azuna_ring",
                 "Azuna's Eternal Decree",
-                BaseGearJewelry.RING.get(LevelRanges.START_TO_END))
+                BaseGearJewelry.RING.get(LevelRanges.FULL))
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(10, 15, new ElementalResist(Elements.Fire), ModType.FLAT),
