@@ -7,7 +7,5 @@ public class DimensionIds {
 
     public static Identifier DUNGEON_STRUCTURE = Ref.id("dungeon");
     public static Identifier DUNGEON_DIMENSION = Ref.id("dungeon");
-    public static Identifier RIFT_DIMENSION = Ref.id("rift");
-    public static Identifier RIFT_STRUCTURE = Ref.id("rift");
 
 }

@@ -1,9 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
-import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
@@ -42,13 +40,6 @@ public class DungeonButton extends TexturedButtonWidget {
             .bindTexture(ICON);
         drawTexture(matrix, this.x, this.y, 0, 0, 32, 32, 32, 32);
 
-        if (Load.playerMaps(mc.player)
-            .isLockedToPlayer(dungeon)) {
-            mc.getTextureManager()
-                .bindTexture(PerkButton.LOCKED_TEX);
-            drawTexture(matrix, this.x + 7, this.y + 3 + 10, 0, 0, 16, 16, 16, 16);
-
-        }
     }
 
     @Override

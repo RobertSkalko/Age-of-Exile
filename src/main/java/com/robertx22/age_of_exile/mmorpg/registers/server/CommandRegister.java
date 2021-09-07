@@ -25,7 +25,6 @@ public class CommandRegister {
         CommandDispatcher<ServerCommandSource> dispatcher = server.getCommandManager()
             .getDispatcher();
 
-        SummonRiftCommand.register(dispatcher);
         GiveBuffScroll.register(dispatcher);
         GiveSkillGem.register(dispatcher);
         GiveExactUnique.register(dispatcher);

@@ -95,7 +95,6 @@ public class MasterLootGen {
             items.addAll(new GemLootGen(info).tryGenerate());
             items.addAll(new RuneLootGen(info).tryGenerate());
             items.addAll(new SkillGemLootGen(info).tryGenerate());
-            items.addAll(new DungeonKeyLootGen(info).tryGenerate());
         } catch (Exception e) {
             e.printStackTrace();
         }

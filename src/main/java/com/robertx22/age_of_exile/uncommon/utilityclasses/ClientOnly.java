@@ -1,8 +1,9 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.gui.screens.delve.ChooseTierScreen;
-import com.robertx22.age_of_exile.gui.screens.delve.DelveScreen;
+import com.robertx22.age_of_exile.gui.screens.delve.DungeonInfoScreen;
 import com.robertx22.age_of_exile.gui.screens.race_select.RaceSelectScreen;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
@@ -51,7 +52,7 @@ public class ClientOnly {
 
     public static void openMapsScreen(BlockPos pos) {
         MinecraftClient.getInstance()
-            .openScreen(new DelveScreen(pos));
+            .openScreen(new DungeonInfoScreen(pos, Load.playerMaps(MinecraftClient.getInstance().player).data.dungeonData));
 
     }
 

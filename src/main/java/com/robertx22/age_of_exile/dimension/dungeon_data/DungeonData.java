@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.dimension.dungeon_data;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
-import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -11,8 +10,6 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +32,6 @@ public class DungeonData {
     public String uuid = "";
     @Store
     public TeamSize team = TeamSize.SOLO;
-    @Store
-    public String key_item = "";
     @Store
     public String diff = "";
     @Store
@@ -101,11 +96,4 @@ public class DungeonData {
             .get(m);
     }
 
-    public DungeonKeyItem getKeyItem() {
-        try {
-            return (DungeonKeyItem) Registry.ITEM.get(new Identifier(key_item));
-        } catch (Exception e) {
-            return null;
-        }
-    }
 }

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.gui.screens.delve;
 import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
 import com.robertx22.age_of_exile.dimension.packets.StartDungeonPacket;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
@@ -29,9 +28,9 @@ public class StartDungeonButton extends TexturedButtonWidget {
 
     TeamSize teamSize;
 
-    public StartDungeonButton(TeamSize teamSize, DungeonInfoScreen screen, PointData point, int xPos, int yPos) {
+    public StartDungeonButton(TeamSize teamSize, DungeonInfoScreen screen, int xPos, int yPos) {
         super(xPos, yPos, SIZE_X, SIZE_Y, 0, 0, SIZE_Y, ID, (button) -> {
-            Packets.sendToServer(new StartDungeonPacket(teamSize, screen.teleporterPos, point));
+            Packets.sendToServer(new StartDungeonPacket(teamSize, screen.teleporterPos));
 
             screen.onClose();
         });

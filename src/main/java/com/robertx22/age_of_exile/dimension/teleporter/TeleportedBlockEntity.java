@@ -60,7 +60,6 @@ public class TeleportedBlockEntity extends BaseModificationStation {
     public void tick() {
         super.tick();
 
-        data.tick(this);
     }
 
 }

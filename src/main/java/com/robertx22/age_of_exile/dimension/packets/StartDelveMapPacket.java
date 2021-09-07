@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.dimension.packets;
 
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.dimension.teleporter.TeleportedBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -67,16 +66,10 @@ public class StartDelveMapPacket extends MyPacket<StartDelveMapPacket> {
 
             TeleportedBlockEntity be = (TeleportedBlockEntity) tile;
 
-            if (be.data.dungeon_type.isDungeon()) {
-                if (stack.getItem() instanceof DungeonKeyItem && stack.getCount() > 0) {
-
-                    maps.initRandomDelveCave((DungeonKeyItem) stack.getItem(), difficulty);
-
-                    stack.decrement(1);
-                }
-            } else if (be.data.dungeon_type.isRift()) {
-                be.data.activated_rift = true;
-                maps.initRift(be.data, difficulty);
+            if (be.data.type.isDungeon()) {
+                maps.createRandomDungeon(difficulty);
+                be.data.activated = true;
+                stack.decrement(1);
             }
         }
     }

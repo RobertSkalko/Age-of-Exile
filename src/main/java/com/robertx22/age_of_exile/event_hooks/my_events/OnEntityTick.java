@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.event_hooks.my_events;
 
 import com.robertx22.age_of_exile.capability.bases.EntityGears;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.dimension.rift.OnMobTick;
 import com.robertx22.age_of_exile.dimension.rules.OnTickCancelTargettingOtherMobs;
 import com.robertx22.age_of_exile.dimension.rules.OnTickDespawnIfFailedOrEmpty;
 import com.robertx22.age_of_exile.dimension.rules.OnTickRegenerate;
@@ -28,8 +27,6 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
         Load.Unit(entity)
             .getCooldowns()
             .onTicksPass(1);
-
-        OnMobTick.tick(entity);
 
         if (entity instanceof MobEntity) {
             OnTickCancelTargettingOtherMobs.cancelTarget((MobEntity) entity);

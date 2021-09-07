@@ -2,13 +2,11 @@ package com.robertx22.age_of_exile.gui.screens.delve;
 
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
-import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonGridType;
 import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.screens.wiki.entries.UniqueGearEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.gui.ItemSlotButton;
 import com.robertx22.library_of_exile.utils.GuiUtils;
@@ -27,16 +25,13 @@ public class DungeonInfoScreen extends BaseScreen {
     public BlockPos teleporterPos = new BlockPos(0, 0, 0);
     public DungeonData selectedDungeon = null;
 
-    PointData point;
-
-    public DungeonInfoScreen(BlockPos pos, DungeonData dungeon, PointData point) {
+    public DungeonInfoScreen(BlockPos pos, DungeonData dungeon) {
         super(MinecraftClient.getInstance()
             .getWindow()
             .getScaledWidth(), MinecraftClient.getInstance()
             .getWindow()
             .getScaledHeight());
 
-        this.point = point;
         this.selectedDungeon = dungeon;
         this.teleporterPos = pos;
 
@@ -44,11 +39,7 @@ public class DungeonInfoScreen extends BaseScreen {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        if (keyCode == 256) { // escape
-            MinecraftClient.getInstance()
-                .openScreen(new DelveScreen(teleporterPos)); // go back to delve screen
-            return false;
-        }
+
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
 
@@ -72,15 +63,12 @@ public class DungeonInfoScreen extends BaseScreen {
             if (selectedDungeon == null) {
                 return;
             }
-            if (Load.playerMaps(mc.player)
-                .canStart(point, selectedDungeon)) {
-                int teamsY = yoff + 185;
+            int teamsY = yoff + 185;
 
-                for (TeamSize size : TeamSize.values()) {
-                    addButton(new StartDungeonButton(size, this, point, xoff - StartDungeonButton.SIZE_X / 2, teamsY));
-                    teamsY += 16;
+            for (TeamSize size : TeamSize.values()) {
+                addButton(new StartDungeonButton(size, this, xoff - StartDungeonButton.SIZE_X / 2, teamsY));
+                teamsY += 16;
 
-                }
             }
 
             this.addButton(new DifficultyButton(selectedDungeon.getDifficulty(), xoff - DifficultyButton.xSize / 2 + 20, yoff + 20));
@@ -100,8 +88,6 @@ public class DungeonInfoScreen extends BaseScreen {
             ItemStack randomitem = new ItemStack(Items.CHEST);
             randomitem.setCustomName(new LiteralText(Formatting.DARK_PURPLE + "Random Unique"));
             this.publicAddButton(new ItemSlotButton(randomitem, x, y));
-
-            this.publicAddButton(new ItemSlotButton(maps.data.getStartCostOf(point), xoff - 8, y + 40));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -128,8 +114,6 @@ public class DungeonInfoScreen extends BaseScreen {
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
         try {
-
-            DelveScreen.renderBackgroundIcon(DungeonGridType.WALL.icon, this, 0);
 
             Identifier BG = Ref.guiId("dungeon/map");
 

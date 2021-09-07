@@ -99,7 +99,6 @@ public class UtilitySpells implements ExileRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.PORTAL, 100D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.OPEN_ENDER_CHEST.create()))
             .disableInDimension(DimensionIds.DUNGEON_DIMENSION)
-            .disableInDimension(DimensionIds.RIFT_DIMENSION)
             .build();
 
         SpellBuilder.of("water_breath", SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 5, 40)

@@ -29,12 +29,6 @@ public enum DungeonType {
 
         }
 
-    },
-    RIFT(DimensionIds.RIFT_DIMENSION) {
-        @Override
-        public void onDeath(DungeonData data, PlayerEntity player) {
-            loseFavor(data, player);
-        }
     };
 
     DungeonType(Identifier DIMENSION_ID) {
@@ -51,10 +45,6 @@ public enum DungeonType {
 
         player.sendMessage(new LiteralText("You lost " + Math.abs(favorloss) + " favor.").formatted(Formatting.RED), false);
 
-    }
-
-    public boolean isRift() {
-        return this == RIFT;
     }
 
     public boolean isDungeon() {

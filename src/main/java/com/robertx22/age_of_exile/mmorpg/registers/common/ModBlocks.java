@@ -1,7 +1,5 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
-import com.robertx22.age_of_exile.dimension.rift.RiftManagerBlock;
-import com.robertx22.age_of_exile.dimension.rift.SummonPortalBlock;
 import com.robertx22.age_of_exile.dimension.spawner.ModSpawnerBlock;
 import com.robertx22.age_of_exile.dimension.teleporter.TeleporterBlock;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlock;
@@ -45,8 +43,6 @@ public class ModBlocks {
     public PortalBlock PORTAL = of("portal", new PortalBlock());
     public BlackHoleBlock BLACK_HOLE = of("black_hole", new BlackHoleBlock());
     public ModSpawnerBlock SPAWNER = of("spawner", new ModSpawnerBlock());
-    public RiftManagerBlock RIFT_MANAGER = of("rift_manager", new RiftManagerBlock());
-    public SummonPortalBlock SUMMON_PORTAL = of("summon_portal", new SummonPortalBlock());
 
     public TotemBlock BLUE_TOTEM = of("blue_totem", new TotemBlock());
     public TotemBlock GREEN_TOTEM = of("green_totem", new TotemBlock());

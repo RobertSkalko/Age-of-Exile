@@ -6,14 +6,10 @@ import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
-import com.robertx22.age_of_exile.dimension.delve_gen.DelveGrid;
 import com.robertx22.age_of_exile.dimension.dungeon_data.*;
-import com.robertx22.age_of_exile.dimension.item.DungeonKeyItem;
-import com.robertx22.age_of_exile.dimension.teleporter.TeleporterData;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
@@ -28,7 +24,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
@@ -37,7 +32,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.*;
 
@@ -81,7 +75,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
         int tier = 0;
         try {
-            tier = data.dungeon_datas.get(data.point_pos)
+            tier = data.dungeonData
                 .getDifficulty().rank;
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,8 +84,6 @@ public class PlayerMapsCap implements ICommonPlayerCap {
         if (tier > highestTierDone) {
             highestTierDone = tier;
         }
-
-        this.data.completed.add(this.data.point_pos);
 
     }
 
@@ -118,16 +110,11 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             Watch first = new Watch();
 
-            ImmutablePair<PointData, DungeonData> pair = getDungeonFromUUID(uuid);
-
-            this.data.started.add(pair.left);
-            this.data.point_pos = pair.left;
-
             this.data.tel_pos = teleporterPos;
 
             // set the dungeon data for the chunk
             World dimWorld = player.world.getServer()
-                .getWorld(RegistryKey.of(Registry.WORLD_KEY, pair.right.dun_type.DIMENSION_ID));
+                .getWorld(RegistryKey.of(Registry.WORLD_KEY, data.dungeonData.dun_type.DIMENSION_ID));
 
             int border = getBorder(dimWorld);
 
@@ -171,9 +158,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                                 moblist = SignUtils.removeBraces(SignUtils.getText((SignBlockEntity) e.getValue())
                                     .get(1));
                             }
-                            if (SignUtils.has("[rift]", (SignBlockEntity) e.getValue())) {
-                                dimWorld.setBlockState(e.getKey(), ModRegistry.BLOCKS.RIFT_MANAGER.getDefaultState());
-                            }
+
                             if (SignUtils.has("[portal]", (SignBlockEntity) e.getValue())) {
                                 dimWorld.setBlockState(e.getKey(), ModRegistry.BLOCKS.PORTAL.getDefaultState());
                                 foundportalback = true;
@@ -213,14 +198,14 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
                     be.data.dungeonPos = tpPos;
                     be.data.tpbackpos = teleporterPos.up();
-                    be.data.dungeonType = pair.right.dun_type;
+                    be.data.dungeonType = data.dungeonData.dun_type;
 
                 }
             }
 
             // first set the data so the mob levels can be set on spawn
             WorldDungeonCap data = Load.dungeonData(dimWorld);
-            SingleDungeonData single = new SingleDungeonData(pair.right, new QuestProgression(pair.right.uuid, 20), player.getUuid()
+            SingleDungeonData single = new SingleDungeonData(this.data.dungeonData, new QuestProgression(this.data.dungeonData.uuid, 20), player.getUuid()
                 .toString());
             if (ExileDB.DungeonMobLists()
                 .isRegistered(moblist)) {
@@ -238,16 +223,6 @@ public class PlayerMapsCap implements ICommonPlayerCap {
             e.printStackTrace();
         }
 
-    }
-
-    public ImmutablePair<PointData, DungeonData> getDungeonFromUUID(String uuid) {
-
-        for (Map.Entry<PointData, DungeonData> x : data.dungeon_datas.entrySet()) {
-            if (x.getValue().uuid.equals(uuid)) {
-                return ImmutablePair.of(x.getKey(), x.getValue());
-            }
-        }
-        return null;
     }
 
     @Override
@@ -274,95 +249,22 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     }
 
-    public boolean isLockedToPlayer(DungeonData dungeon) {
-
-        return false; // todo
-
-    }
-
     @Override
     public PlayerCaps getCapType() {
         return PlayerCaps.MAPS;
     }
 
-    public boolean canStart(PointData point, DungeonData data) {
-        ItemStack cost = this.data.getStartCostOf(point);
-
-        if (player.inventory.count(cost.getItem()) < cost.getCount()) {
-            // return false;
-        }
-
-        if (!this.data.completed.contains(this.data.point_pos) && !this.data.start_pos.equals(point)) {
-            return false;
-        }
-
-        if (this.data.started.contains(point)) {
-            return false;
-        }
-
-        if (isLockedToPlayer(data)) {
-            return false;
-        }
-
-        return true;
-
-    }
-
-    public void initRift(TeleporterData riftdata, Difficulty diff) {
+    public void createRandomDungeon(Difficulty diff) {
 
         this.data = new MapsData();
         data.isEmpty = false;
 
-        PointData middle = new PointData(data.grid.grid.length / 2, data.grid.grid.length / 2);
+        DungeonData dun = new DungeonData();
+        int lvl = Load.Unit(player)
+            .getLevel();
+        dun.randomize(lvl, diff);
 
-        data.dungeon_datas.put(middle, riftdata.rift_data);
-
-        riftdata.rift_data.diff = diff.GUID();
-
-        data.grid.grid[middle.x][middle.y] = DelveGrid.DUNGEON;
-
-        this.data.point_pos = middle;
-        this.data.start_pos = middle;
-
-        this.syncToClient(player);
-
-    }
-
-    public void initRandomDelveCave(DungeonKeyItem key, Difficulty diff) {
-
-        this.data = new MapsData();
-        data.isEmpty = false;
-
-        data.grid.randomize(key.keyRarity.maxDungeons);
-
-        PointData middle = new PointData(data.grid.grid.length / 2, data.grid.grid.length / 2);
-
-        for (int x = 0; x < data.grid.grid.length; x++) {
-            for (int y = 0; y < data.grid.grid.length; y++) {
-                if (data.grid.grid[x][y].equals(DelveGrid.DUNGEON)) {
-
-                    DungeonData dun = new DungeonData();
-                    dun.key_item = Registry.ITEM.getId(key)
-                        .toString();
-
-                    int lvl = Load.Unit(player)
-                        .getLevel();
-
-                    dun.randomize(lvl, diff);
-
-                    this.data.dungeon_datas.put(new PointData(x, y), dun);
-
-                    PointData point = new PointData(x, y);
-
-                    if (point.distanceTo(middle) < this.data.point_pos.distanceTo(middle)) {
-                        // find a spot close to middle lol
-                        this.data.point_pos = point;
-                        this.data.start_pos = point;
-                    }
-                }
-
-            }
-        }
+        this.data.dungeonData = dun;
 
         this.syncToClient(player);
     }
