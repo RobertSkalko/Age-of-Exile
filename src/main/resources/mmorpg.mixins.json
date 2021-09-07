@@ -17,8 +17,7 @@
     "PlayerInventoryMixin",
     "ServerPlayerEntityAccessor",
     "StatusEffectAccessor",
-    "StopFireInDungeonMixin",
-    "bow.ProjectileUtilMixin"
+    "StopFireInDungeonMixin"
   ],
   "client": [
     "AccessorClientAdvancementManager",
@@ -28,8 +27,7 @@
     "ItemStackMixin",
     "MinecraftClientMixin",
     "MobNameTagMixin",
-    "WorldRendererMixin",
-    "bow.HeldItemRendererMixin"
+    "WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

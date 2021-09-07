@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemRing;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.BowWeapon;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ScepterWeapon;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.StaffWeapon;
 import net.minecraft.item.Item;
@@ -22,8 +21,6 @@ import static net.minecraft.util.registry.Registry.ITEM;
 import static net.minecraft.util.registry.Registry.register;
 
 public class BaseGearTypeItemRegister extends BaseItemRegistrator {
-
-    public HashMap<LevelRange, Item> BOWS = of("weapon/bow/bow", () -> new BowWeapon("Bow"));
 
     public HashMap<VanillaMaterial, Item> SCEPTERS = of("weapon/scepter/",
         Arrays.asList(VanillaMaterial.DIAMOND, VanillaMaterial.GOLD, VanillaMaterial.IRON, VanillaMaterial.WOOD),
