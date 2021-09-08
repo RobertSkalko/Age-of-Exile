@@ -19,8 +19,6 @@ import java.util.UUID;
 public class DungeonData {
 
     @Store
-    public PossibleUniques u = new PossibleUniques(); // uniques
-    @Store
     public DungeonAffixes af = new DungeonAffixes(); // affixes
     @Store
     private String m = ""; // mobs
@@ -62,7 +60,6 @@ public class DungeonData {
             .GUID();
         uuid = UUID.randomUUID()
             .toString();
-        u.randomize(diff);
         af.randomize(diff);
     }
 

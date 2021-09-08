@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.config.forge;
 
-import com.robertx22.age_of_exile.config.AllLevelRewardsConfig;
 import com.robertx22.age_of_exile.config.forge.parts.DropRatesContainer;
 import com.robertx22.age_of_exile.config.forge.parts.FoodEffectsConfig;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
@@ -21,10 +20,7 @@ public class ModConfig implements ConfigData {
     public FavorConfig Favor = new FavorConfig();
 
     @ConfigEntry.Gui.CollapsibleObject
-    public AllLevelRewardsConfig LevelRewards = new AllLevelRewardsConfig();
-
-    @ConfigEntry.Gui.CollapsibleObject
-    public ItemSealingConfig ItemSealing = new ItemSealingConfig();
+    public ModifySealingConfig ItemSealing = new ModifySealingConfig();
 
     @ConfigEntry.Gui.CollapsibleObject
     public DropRatesContainer DropRates = new DropRatesContainer();

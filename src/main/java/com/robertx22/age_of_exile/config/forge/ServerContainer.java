@@ -9,7 +9,6 @@ public class ServerContainer {
     public boolean GET_STARTER_ITEMS = true;
     public boolean ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = false;
     public boolean ENABLE_LOOT_ANNOUNCEMENTS = true;
-    public boolean SAVE_GEAR_TO_CHARACTERS = true;
     public boolean REQUIRE_TEAM_FOR_TEAM_DUNGEONS = true;
     public boolean DONT_SYNC_DATA_OF_AMBIENT_MOBS = true;
 
@@ -24,15 +23,9 @@ public class ServerContainer {
 
     public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.15F;
     public double LEVEL_DISTANCE_PENALTY_MIN_MULTI = 0.01F;
-    public double DUNGEON_RANDOM_ITEM_CHANCE = 10F;
-    public double CHANCE_TO_SPAWN_RIFT_PER_MIN = 1F;
     public int LEVELS_NEEDED_TO_START_LVL_PENALTY = 5;
-    public int SWITCHING_LOADOUT_COOLDOWN_TICKS = 6000;
-    public int RIFT_LIVES = 10;
-    public int MIN_PLAYER_LVL_FOR_RIFTS_TO_SPAWN = 25;
 
     public int MAX_UNIQUE_GEARS_WORN = 99;
-    public int MAX_LOADOUTS = 3;
 
     public double EXTRA_MOB_STATS_PER_LEVEL = 0.02F;
 

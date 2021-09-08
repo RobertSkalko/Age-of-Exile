@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.dimension.teleporter;
 
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SendActionToClient;
@@ -56,14 +57,19 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
 
             if (!world.isClient) {
 
+                if (!be.data.activated) {
+                    if (be.data.type.isDungeon()) {
+                        Load.playerMaps(player)
+                            .createRandomDungeon(ExileDB.Difficulties()
+                                .random());
+                        be.data.activated = true;
+                    }
+                }
+
                 Load.playerMaps(player)
                     .syncToClient(player);
 
-                if (!be.data.activated) {
-                    Packets.sendToClient(player, new SendActionToClient(pos, SendActionToClient.Action.OPEN_CHOOSE_DIFFICULTY_GUI));
-                } else {
-                    Packets.sendToClient(player, new SendActionToClient(pos, SendActionToClient.Action.OPEN_MAPS_GUI));
-                }
+                Packets.sendToClient(player, new SendActionToClient(pos, SendActionToClient.Action.OPEN_MAPS_GUI));
 
                 return ActionResult.SUCCESS;
             }

@@ -10,7 +10,6 @@ import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -54,22 +53,16 @@ public class StartDelveMapPacket extends MyPacket<StartDelveMapPacket> {
 
         PlayerMapsCap maps = Load.playerMaps(player);
 
-        ItemStack stack = player
-            .getMainHandStack();
-
         Difficulty difficulty = ExileDB.Difficulties()
             .get(diff);
 
         BlockEntity tile = player.world.getBlockEntity(pos);
 
         if (tile instanceof TeleportedBlockEntity) {
-
             TeleportedBlockEntity be = (TeleportedBlockEntity) tile;
-
             if (be.data.type.isDungeon()) {
                 maps.createRandomDungeon(difficulty);
                 be.data.activated = true;
-                stack.decrement(1);
             }
         }
     }

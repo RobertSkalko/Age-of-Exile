@@ -17,12 +17,6 @@ public class SendActionToClient extends MyPacket<SendActionToClient> {
     }
 
     public enum Action {
-        OPEN_CHOOSE_DIFFICULTY_GUI {
-            @Override
-            public void execute(PlayerEntity player, BlockPos pos) {
-                ClientOnly.openChooseTierScreen(pos);
-            }
-        },
 
         OPEN_MAPS_GUI {
             @Override

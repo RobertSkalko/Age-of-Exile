@@ -119,8 +119,6 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(ExileDB.Difficulties()
             .getSerializable());
-        list.addAll(ExileDB.Races()
-            .getSerializable());
         list.addAll(ExileDB.Sets()
             .getSerializable());
         list.addAll(ExileDB.SkillGemRarities()
@@ -197,8 +195,7 @@ public class CreateLangFile {
 
         list.addAll(ExileDB.Spells()
             .getSerializable());
-        list.addAll(ExileDB.Races()
-            .getSerializable());
+
         list.addAll(ExileDB.ScrollBuffs()
             .getSerializable());
 

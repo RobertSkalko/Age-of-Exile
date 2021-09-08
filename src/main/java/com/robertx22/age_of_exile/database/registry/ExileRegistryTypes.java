@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.random_skill_gem_stats.RandomSkillGemStats;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
@@ -77,7 +76,6 @@ public class ExileRegistryTypes {
     public static ExileRegistryType SKILL_GEM_RARITY = ExileRegistryType.register(Ref.MODID, "skill_gem_rarity", 24, SkillGemRarity.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType RANDOM_SKILL_GEM_STATS = ExileRegistryType.register(Ref.MODID, "random_skill_gem_stats", 25, RandomSkillGemStats.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType SALVAGE_RECIPE = ExileRegistryType.register(Ref.MODID, "salvage_recipe", 27, SalvageRecipe.SERIALIZER, SyncTime.ON_LOGIN);
-    public static ExileRegistryType RACES = ExileRegistryType.register(Ref.MODID, "races", 28, PlayerRace.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType CRAFTING_REQ = ExileRegistryType.register(Ref.MODID, "crafting_req", 30, CraftingReq.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType SCROLL_BUFFS = ExileRegistryType.register(Ref.MODID, "scroll_buffs", 29, ScrollBuff.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType VALUE_CALC = ExileRegistryType.register(Ref.MODID, "value_calc", 40, ValueCalculation.SERIALIZER, SyncTime.ON_LOGIN);

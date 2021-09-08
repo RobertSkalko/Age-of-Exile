@@ -293,10 +293,6 @@ public class Unit {
             statContexts.addAll(CommonStatUtils.addExactCustomStats(entity));
 
             if (entity instanceof PlayerEntity) {
-                if (data.hasRace()) {
-                    data.getRace()
-                        .addStats((PlayerEntity) entity);
-                }
 
                 sets.entrySet()
                     .forEach(x -> {

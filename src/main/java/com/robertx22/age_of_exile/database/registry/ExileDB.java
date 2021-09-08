@@ -16,7 +16,6 @@ import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.random_skill_gem_stats.RandomSkillGemStats;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
@@ -149,10 +148,6 @@ public class ExileDB {
 
     public static ExileRegistryContainer<Perk> Perks() {
         return Database.getRegistry(ExileRegistryTypes.PERK);
-    }
-
-    public static ExileRegistryContainer<PlayerRace> Races() {
-        return Database.getRegistry(ExileRegistryTypes.RACES);
     }
 
     public static ExileRegistryContainer<Rune> Runes() {

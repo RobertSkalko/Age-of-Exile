@@ -3,14 +3,12 @@ package com.robertx22.age_of_exile.capability.entity;
 import com.robertx22.age_of_exile.capability.bases.EntityGears;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.bases.INeededForClient;
-import com.robertx22.age_of_exile.config.LevelRewardConfig;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
-import com.robertx22.age_of_exile.database.data.races.PlayerRace;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
@@ -38,14 +36,15 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.LootTableItem;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.EntityStatusEffectsData;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
-import com.robertx22.library_of_exile.utils.CommandUtils;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.LivingEntity;
@@ -56,11 +55,13 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 public class EntityCap {
 
@@ -182,12 +183,6 @@ public class EntityCap {
         EntityGears getCurrentGears();
 
         MobAffixesData getAffixData();
-
-        PlayerRace getRace();
-
-        boolean hasRace();
-
-        void setRace(String race);
 
         int getBuffSeed();
 
@@ -778,23 +773,6 @@ public class EntityCap {
         }
 
         @Override
-        public PlayerRace getRace() {
-            return ExileDB.Races()
-                .get("empty");
-        }
-
-        @Override
-        public boolean hasRace() {
-            return ExileDB.Races()
-                .isRegistered(race);
-        }
-
-        @Override
-        public void setRace(String race) {
-            this.race = race;
-        }
-
-        @Override
         public int getBuffSeed() {
             return buffSeed;
         }
@@ -922,22 +900,6 @@ public class EntityCap {
                             }
                         }
                     });
-
-                Optional<LevelRewardConfig> opt = ModConfig.get().LevelRewards.levelRewards.stream()
-                    .filter(x -> x.for_level == this.level)
-                    .findAny();
-
-                if (opt.isPresent()) {
-                    PlayerUtils.giveItem(LootTableItem.of(new Identifier(opt.get().loot_table_id)), player);
-
-                    try {
-                        if (!opt.get().exec_command.isEmpty()) {
-                            CommandUtils.execute(player, opt.get().exec_command);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
 
                 OnScreenMessageUtils.sendLevelUpMessage(player, new LiteralText("Player"), level - 1, level);
 

@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 
-public class ItemSealingConfig {
+public class ModifySealingConfig {
 
     private boolean ENABLE_SEALING_FEATURE = true;
 

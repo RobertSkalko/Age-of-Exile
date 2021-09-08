@@ -20,7 +20,7 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
 
     }
 
-    static FeatureConfig config;
+    public static FeatureConfig config;
 
     static {
         config = new FeatureConfig(new FeatureConfig.MyStructureConfig(1, 0, 0));

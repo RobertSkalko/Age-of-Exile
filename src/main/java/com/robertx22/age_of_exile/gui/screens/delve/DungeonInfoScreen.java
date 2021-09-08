@@ -1,11 +1,9 @@
 package com.robertx22.age_of_exile.gui.screens.delve;
 
-import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
 import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
-import com.robertx22.age_of_exile.gui.screens.wiki.entries.UniqueGearEntry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.gui.ItemSlotButton;
@@ -77,14 +75,6 @@ public class DungeonInfoScreen extends BaseScreen {
             int x = xoff - 50;
             int y = yoff + LOOT_Y;
 
-            for (int i = 0; i < selectedDungeon.u.u.size(); i++) {
-
-                ItemStack stack = new UniqueGearEntry(ExileDB.UniqueGears()
-                    .get(selectedDungeon.u.u.get(i))).createMainStack();
-
-                this.publicAddButton(new ItemSlotButton(stack, x, y));
-                x += ItemSlotButton.xSize + 1;
-            }
             ItemStack randomitem = new ItemStack(Items.CHEST);
             randomitem.setCustomName(new LiteralText(Formatting.DARK_PURPLE + "Random Unique"));
             this.publicAddButton(new ItemSlotButton(randomitem, x, y));
@@ -104,9 +94,6 @@ public class DungeonInfoScreen extends BaseScreen {
 
             GuiUtils.renderScaledText(matrix, guiLeft + xoff, yoff - 5, 1D, "Dungeon Info", Formatting.RED);
 
-            GuiUtils.renderScaledText(matrix, guiLeft + xoff, yoff + LOOT_Y - 10, 1D, "Possible Drops:", Formatting.GREEN);
-
-            GuiUtils.renderScaledText(matrix, guiLeft + xoff, yoff + LOOT_Y + 30, 1D, "Cost:", Formatting.GOLD);
         }
     }
 

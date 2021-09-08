@@ -20,11 +20,6 @@ public class StatPointsData {
     }
 
     public void addStats(EntityCap.UnitData data) {
-
-        if (true) {
-            return;
-        }
-
         map.entrySet()
             .forEach(x -> {
                 float val = x.getValue();

@@ -1,2 +1,6 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+minecraft:overworld
+mmorpg:dungeon
+minecraft:the_nether
+minecraft:the_end

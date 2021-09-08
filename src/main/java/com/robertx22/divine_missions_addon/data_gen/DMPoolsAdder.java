@@ -23,15 +23,6 @@ public class DMPoolsAdder implements ExileRegistryInit {
             .addCondition(AoeLevelCondition.of(25, Integer.MAX_VALUE))
             .buildForGods();
 
-        PoolBuilder.of("high_lvl_aoe_tasks", 250, Pool.PoolType.TASKS, Pool.PickType.PICK_ONE,
-                Arrays.asList(
-                    DMTasksAdder.COMPLETE_RIFT
-                )
-            )
-            .addCondition(IsModLoaded.of(Ref.MODID))
-            .addCondition(AoeLevelCondition.of(25, Integer.MAX_VALUE))
-            .buildForGods();
-
         PoolBuilder.of("dungeon_keys", 200, Pool.PoolType.REWARDS, Pool.PickType.PICK_ONE,
                 Arrays.asList(
                     DMRewardsAdder.DUNGEON_KEYS_LOOT_TABLE

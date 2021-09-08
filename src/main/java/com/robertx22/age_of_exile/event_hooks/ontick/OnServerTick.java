@@ -39,18 +39,6 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
     static {
 
-        /*
-        TICK_ACTIONS.add(new PlayerTickAction("summon_rifts", 20 * 60, (player, data) -> {
-            if (RandomUtils.roll(ModConfig.get().Server.CHANCE_TO_SPAWN_RIFT_PER_MIN)) {
-                if (Load.Unit(player)
-                    .getLevel() >= ModConfig.get().Server.MIN_PLAYER_LVL_FOR_RIFTS_TO_SPAWN) {
-                    SummonRiftCommand.summonRift(player);
-                }
-            }
-        }));
-
-         */
-
         TICK_ACTIONS.add(new PlayerTickAction("update_caps", 18, (player, data) -> {
 
             OnTickSetGameMode.onTick(player);

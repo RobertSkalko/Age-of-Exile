@@ -7,7 +7,7 @@ import net.minecraft.client.util.math.MatrixStack;
 
 public class AreaLevelIndicator {
 
-    public static void draw(MatrixStack matrix, int x, int y, int lvl) {
+    public static void draw(MatrixStack matrix, int x, int y) {
 
         MinecraftClient mc = MinecraftClient.getInstance();
 

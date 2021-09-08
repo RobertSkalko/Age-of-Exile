@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ExileDBInit;
 import com.robertx22.age_of_exile.dimension.DimensionInit;
+import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsaw;
 import com.robertx22.age_of_exile.mmorpg.LifeCycleEvents;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
@@ -25,6 +26,13 @@ import com.robertx22.library_of_exile.utils.Watch;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.structure.v1.FabricStructureBuilder;
+import net.minecraft.util.registry.BuiltinRegistries;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypeInfo;
 
@@ -79,6 +87,25 @@ public class CommonInit implements ModInitializer {
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
 
         DimensionInit.init();
+
+        DungeonDimensionJigsaw.initStatics();
+        DungeonDimensionJigsaw jig = new DungeonDimensionJigsaw();
+        jig.init();
+
+        FabricStructureBuilder b = FabricStructureBuilder.create(jig.id, jig.feature)
+            .step(jig.genStep)
+            .defaultConfig(jig.config.config.get())
+            .superflatFeature(jig.configuredFeature);
+        b.register();
+
+        RegistryKey<ConfiguredStructureFeature<?, ?>> myConfigured = RegistryKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_WORLDGEN,
+            jig.id);
+        BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, myConfigured.getValue(), jig.configuredFeature);
+
+        BiomeModifications.addStructure(x -> x.getBiomeKey()
+            .getValue()
+            .equals(BiomeKeys.THE_VOID.getValue()
+            ), RegistryKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_WORLDGEN, jig.id));
 
 
         /*

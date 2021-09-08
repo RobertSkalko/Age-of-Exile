@@ -12,7 +12,6 @@ public class S2CPacketRegister {
 
         Packets.registerServerToClient(new SendActionToClient());
         Packets.registerServerToClient(new DmgNumPacket());
-        Packets.registerServerToClient(new ForceChoosingRace());
         Packets.registerServerToClient(new EfficientMobUnitPacket());
         Packets.registerServerToClient(new EntityUnitPacket());
         Packets.registerServerToClient(new NoManaPacket());
