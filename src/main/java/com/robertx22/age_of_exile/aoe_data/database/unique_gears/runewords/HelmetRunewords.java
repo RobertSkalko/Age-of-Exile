@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
@@ -22,7 +21,7 @@ public class HelmetRunewords implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "insight",
                 "Insight",
-                BasePlateArmors.HELMETS.get(LevelRanges.FULL))
+                BasePlateArmors.HELMETS)
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(20, 30, ManaRegen.getInstance(), ModType.PERCENT),

@@ -711,7 +711,7 @@
 	"mmorpg.affix.of_spell_dmg": "Of Spell Damage",
 	"mmorpg.affix.of_spirit_markings": "Of Spirit Markings",
 	"mmorpg.affix.of_steadiness": "Of Steadiness",
-	"mmorpg.affix.of_the_agile": "Of the Agile",
+	"mmorpg.affix.of_the_agile": "Of Agility",
 	"mmorpg.affix.of_the_philosopher": "Of the Philosopher",
 	"mmorpg.affix.of_the_sky": "Of the Sky",
 	"mmorpg.affix.of_the_titan": "Of the Titan",
@@ -906,7 +906,7 @@
 	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
 	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
 	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Unsealing",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
 	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
 	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
 	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Infinity",
@@ -1622,6 +1622,25 @@
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
+	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
+	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
+	"mmorpg.unique_gear.blood_stone.name": "Primordial Blood",
+	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
+	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
+	"mmorpg.unique_gear.insight.name": "Insight",
+	"mmorpg.unique_gear.skull_cleaver.name": "Skull Cleaver",
+	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
+	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
+	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
+	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
+	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.axe_full": "Axe",
@@ -1652,25 +1671,6 @@
 	"mmorpg.gearslot.sword": "Sword",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
-	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
-	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
-	"mmorpg.unique_gear.blood_stone.name": "Primordial Blood",
-	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
-	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
-	"mmorpg.unique_gear.insight.name": "Insight",
-	"mmorpg.unique_gear.skull_cleaver.name": "Skull Cleaver",
-	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
-	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
-	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
-	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
-	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -1764,7 +1764,7 @@
 	"item.mmorpg.currency.clear_corruption.desc": "Removes corruption from an item.",
 	"item.mmorpg.currency.clear_instability.desc": "Clears 500 instability from an item.",
 	"item.mmorpg.currency.clear_sockets.desc": "Destroys all runes and gems on the item.",
-	"item.mmorpg.currency.crystal_of_purification.desc": "Unseals the item.",
+	"item.mmorpg.currency.crystal_of_purification.desc": "Removes 250 instability from item..",
 	"item.mmorpg.currency.crystal_of_truth.desc": "Transform common item into random higher rarity.",
 	"item.mmorpg.currency.number_reroll.desc": "Re-rolls explicit numbers on a gear.",
 	"item.mmorpg.currency.orb_of_corruption.desc": "Corrupts item, changing it unpredictably.",

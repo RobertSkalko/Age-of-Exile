@@ -63,17 +63,6 @@ public class BaseGearBuilder implements GearDataHelper {
         return this;
     }
 
-    public BaseGearBuilder addLvlRange(LevelRange range, String nameprefix) {
-        this.lvls.add(range);
-        this.namePrefixes.put(range, nameprefix);
-        return this;
-    }
-
-    public BaseGearBuilder addFullLevelRange() {
-        this.addLvlRange(LevelRanges.FULL, "");
-        return this;
-    }
-
     public BaseGearBuilder tags(TagList tags) {
         this.tags = tags;
         return this;
@@ -109,27 +98,26 @@ public class BaseGearBuilder implements GearDataHelper {
         return this;
     }
 
-    public HashMap<LevelRange, DataGenKey<BaseGearType>> build() {
-        HashMap<LevelRange, DataGenKey<BaseGearType>> map = new HashMap<>();
+    public DataGenKey<BaseGearType> build() {
 
-        lvls.forEach(x -> {
-            String name = /*namePrefixes.get(x) + " " + */locnamesuffix;
-            String id = idprefix + x.id_suffix;
-            BaseGearType type = new BaseGearType(slot, id, x, name);
-            type.stat_reqs = req;
-            type.weapon_type = wep;
-            type.tags = tags;
-            type.implicit_stats = implicitstats;
-            type.base_stats = basestats;
-            type.attacksPerSecond = atkspeed;
-            type.weight = weight;
-            type.style = style;
-            type.weapon_offhand_stat_util = weapon_offhand_stat_util;
-            type.essenceItem = essenceItem;
-            map.put(x, new DataGenKey<>(type.GUID()));
-            type.addToSerializables();
-        });
-        return map;
+        LevelRange x = LevelRanges.FULL;
+
+        String name = /*namePrefixes.get(x) + " " + */locnamesuffix;
+        String id = idprefix + x.id_suffix;
+        BaseGearType type = new BaseGearType(slot, id, x, name);
+        type.stat_reqs = req;
+        type.weapon_type = wep;
+        type.tags = tags;
+        type.implicit_stats = implicitstats;
+        type.base_stats = basestats;
+        type.attacksPerSecond = atkspeed;
+        type.weight = weight;
+        type.style = style;
+        type.weapon_offhand_stat_util = weapon_offhand_stat_util;
+        type.essenceItem = essenceItem;
+        type.addToSerializables();
+
+        return new DataGenKey<>(type.GUID());
 
     }
 

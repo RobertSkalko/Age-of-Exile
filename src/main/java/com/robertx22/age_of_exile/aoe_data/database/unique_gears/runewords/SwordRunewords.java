@@ -22,7 +22,7 @@ public class SwordRunewords implements ExileRegistryInit, GearDataHelper {
         UniqueGearBuilder.of(
                 "skull_cleaver",
                 "Skull Cleaver",
-                BaseGearWeapons.SWORD.get(LevelRanges.FULL))
+                BaseGearWeapons.SWORD)
             .setReplacesName()
             .baseStats(
                 Arrays.asList(
