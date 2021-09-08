@@ -6,4 +6,3 @@ specific_mob_kill
 any_mob_kill
 bring_item
 kill_mob_of_tag
-complete_rift

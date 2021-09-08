@@ -23,9 +23,6 @@ public class SimpleGearLocReq extends BaseLocRequirement {
     public static final SimpleGearLocReq IS_NOT_CORRUPTED = new SimpleGearLocReq(
         x -> !x.isCorrupted(), Words.IsNotCorrupted.locName());
 
-    public static final SimpleGearLocReq IS_SEALED = new SimpleGearLocReq(
-        x -> x.s, Words.IsSealed.locName());
-
     public static final SimpleGearLocReq CAN_GET_MORE_AFFIXES = new SimpleGearLocReq(
         x -> x.affixes.canGetMore(Affix.Type.prefix, x) || x.affixes.canGetMore(Affix.Type.suffix, x), Words.CantGetMoreAffixes.locName());
 

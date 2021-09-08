@@ -20,9 +20,6 @@ public class ModConfig implements ConfigData {
     public FavorConfig Favor = new FavorConfig();
 
     @ConfigEntry.Gui.CollapsibleObject
-    public ModifySealingConfig ItemSealing = new ModifySealingConfig();
-
-    @ConfigEntry.Gui.CollapsibleObject
     public DropRatesContainer DropRates = new DropRatesContainer();
 
     @ConfigEntry.Gui.CollapsibleObject

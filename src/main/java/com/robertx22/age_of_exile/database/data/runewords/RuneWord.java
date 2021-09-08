@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.runewords;
 
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
@@ -38,7 +38,7 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
 
         if (slots.stream()
             .noneMatch(e -> {
-                return BaseGearType.isGearOfThisType(ExileDB.GearSlots()
+                return GearSlot.isItemOfThisSlot(ExileDB.GearSlots()
                     .get(e), stack.getItem());
             })) {
             return false;

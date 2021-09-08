@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.fishing.FishingLureItem;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -100,12 +101,15 @@ public class TooltipMethod {
 
             com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext ctx = new com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext(stack, tooltip, unitdata);
 
+            boolean hasdata = false;
+
             if (stack.hasTag()) {
 
                 ICommonDataItem data = ICommonDataItem.load(stack);
 
                 if (data != null) {
                     data.BuildTooltip(ctx);
+                    hasdata = true;
                 }
 
                 MutableText broken = TooltipUtils.itemBrokenText(stack, data);
@@ -113,6 +117,15 @@ public class TooltipMethod {
                     tooltip.add(broken);
                 }
 
+            }
+
+            if (!hasdata) {
+
+                GearSlot slot = GearSlot.getSlotOf(stack.getItem());
+
+                if (slot != null) {
+                    tooltip.add(TooltipUtils.gearSlot(slot));
+                }
             }
 
             if (addCurrencyTooltip) {

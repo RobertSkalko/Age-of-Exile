@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.currency.base;
 
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -37,7 +38,7 @@ public interface ICurrencyItemEffect {
 
         if (context.isGear()) {
             GearItemData gear = (GearItemData) context.data;
-            if (gear.s) {
+            if (gear.getInstability() >= ModConfig.get().Server.MAX_INSTABILITY) {
                 return false;
             }
         }

@@ -70,10 +70,7 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
 
             if (this.getInstability() > 0) {
 
-                if (gear.getInstability() >= ModConfig.get().ItemSealing.MAX_INSTABILITY) {
-                    return false;
-                }
-                if (gear.s) {
+                if (gear.getInstability() >= ModConfig.get().Server.MAX_INSTABILITY) {
                     return false;
                 }
             }

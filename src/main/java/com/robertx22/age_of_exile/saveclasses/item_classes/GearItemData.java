@@ -77,9 +77,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     private float in = 0;
 
     @Store
-    public boolean s = false; // sealed
-
-    @Store
     public boolean can_sal = true;
 
     @Store

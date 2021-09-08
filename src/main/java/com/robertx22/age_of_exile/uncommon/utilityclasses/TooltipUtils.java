@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -202,6 +203,12 @@ public class TooltipUtils {
         return Words.Tier.locName()
             .append(": " + LevelUtils.tierToRomanNumeral(tier));
 
+    }
+
+    public static MutableText gearSlot(GearSlot slot) {
+        return new LiteralText("Item Type: ").formatted(Formatting.WHITE)
+            .append(slot.locName()
+                .formatted(Formatting.AQUA));
     }
 
     public static MutableText gearTier(int tier) {

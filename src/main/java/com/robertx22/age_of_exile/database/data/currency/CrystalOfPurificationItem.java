@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
-import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -36,20 +35,20 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
 
     @Override
     public int getTier() {
-        return 1;
+        return 5;
     }
 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
-        gear.s = false;
+        gear.setInstability(gear.getInstability() - 250);
         Gear.Save(stack, gear);
         return stack;
     }
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_SEALED);
+        return Arrays.asList(GearReq.INSTANCE);
     }
 
     @Override
@@ -59,17 +58,17 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
 
     @Override
     public String getRarityRank() {
-        return IRarity.UNCOMMON;
+        return IRarity.RARE_ID;
     }
 
     @Override
     public String locNameForLangFile() {
-        return nameColor + "Crystal of Unsealing";
+        return nameColor + "Crystal of Purification";
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Unseals the item.";
+        return "Removes 250 instability from item..";
     }
 
     @Override

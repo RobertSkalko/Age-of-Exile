@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station;
 
+import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -89,8 +90,8 @@ public class GuiGearModify extends ModificationGui<ContainerGearModify, TileGear
                             if (context.effect.getInstability() > 0) {
 
                                 GearItemData gear = (GearItemData) context.data;
-                                if (gear.s) {
-                                    tooltip.add(new LiteralText("Sealed items can't be modified until they are unsealed.").formatted(Formatting.RED));
+                                if (gear.getInstability() >= ModConfig.get().Server.MAX_INSTABILITY) {
+                                    tooltip.add(new LiteralText("Items with full instability can't be modified").formatted(Formatting.RED));
                                 }
                             }
                         }

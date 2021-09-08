@@ -199,11 +199,6 @@ public class GearTooltipUtils {
             }
         }
 
-        if (gear.s) {
-            tip.add(Words.Sealed.locName()
-                .formatted(Formatting.RED));
-        }
-
         if (Screen.hasShiftDown() == false) {
             tooltip.add(new LiteralText(Formatting.BLUE + "").append(new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
                 )
@@ -211,7 +206,7 @@ public class GearTooltipUtils {
         } else {
             tip.add(Words.Instability.locName()
                 .formatted(Formatting.RED)
-                .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().ItemSealing.MAX_INSTABILITY)
+                .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().Server.MAX_INSTABILITY)
             );
         }
 

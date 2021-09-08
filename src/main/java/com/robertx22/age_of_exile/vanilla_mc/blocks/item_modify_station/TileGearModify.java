@@ -1,16 +1,15 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station;
 
-import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
 import com.robertx22.library_of_exile.utils.CLOC;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -46,13 +45,8 @@ public class TileGearModify extends BaseModificationStation {
                     if (context.effect.getInstability() > 0) {
                         GearItemData gear = Gear.Load(copy);
 
-                        float chance = ModConfig.get().ItemSealing.getChanceToSeal(gear);
-                        float insta = ModConfig.get().ItemSealing.getInstability(gear, context.effect);
+                        gear.setInstability(gear.getInstability() + context.effect.getInstability());
 
-                        gear.setInstability(gear.getInstability() + insta);
-                        if (RandomUtils.roll(chance)) {
-                            gear.s = true;
-                        }
                         Gear.Save(copy, gear);
                     }
 

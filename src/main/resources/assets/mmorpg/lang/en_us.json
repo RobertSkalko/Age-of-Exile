@@ -498,7 +498,6 @@
 	"item.mmorpg.plant.plant5": "Divine Wheat",
 	"item.mmorpg.potions.add_reset_perk_points": "Single Talent Reset Potion",
 	"item.mmorpg.potions.death_potion": "Death Potion",
-	"item.mmorpg.potions.race_reset": "Race Reset Potion (Creative Item)",
 	"item.mmorpg.potions.reset_all_perks": "Talent Reset Potion",
 	"item.mmorpg.potions.reset_stats": "Stat Reset Potion",
 	"item.mmorpg.projectile.fireball": "Projectile",
@@ -1721,13 +1720,6 @@
 "_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
-"_comment": " [CATEGORY]: RACES - NAMES",
-
-	"races.empty": "empty",
-
-"_comment": " [CATEGORY]: RACES - NAMES",
-
-
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",
 
 	"mmorpg.chat.can_not_go_over_maximum_level": "Can not go over maximum level",
@@ -1765,12 +1757,6 @@
 	"scroll_buffs.desc.warrior": "Torpent",
 
 "_comment": " [CATEGORY]: MISC - DESCRIPTIONS",
-
-
-"_comment": " [CATEGORY]: RACES - DESCRIPTIONS",
-
-
-"_comment": " [CATEGORY]: RACES - DESCRIPTIONS",
 
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
