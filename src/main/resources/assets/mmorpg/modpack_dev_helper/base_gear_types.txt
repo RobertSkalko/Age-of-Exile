@@ -1,15 +1,15 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-axe_full
-plate_chest_full
-bow_full
-staff_full
-tower_shield_full
-crossbow_full
-ring_full
-plate_pants_full
-scepter_full
-plate_boots_full
-sword_full
-plate_helmet_full
-necklace_full
+shield
+chest
+pants
+crossbow
+ring
+scepter
+staff
+necklace
+bow
+axe
+sword
+helmet
+boots

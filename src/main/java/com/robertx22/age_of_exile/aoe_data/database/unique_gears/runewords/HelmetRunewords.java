@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.runewords;
 
-import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BasePlateArmors;
+import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearTypes;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
@@ -21,7 +21,7 @@ public class HelmetRunewords implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "insight",
                 "Insight",
-                BasePlateArmors.HELMETS)
+                BaseGearTypes.HELMET)
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(20, 30, ManaRegen.getInstance(), ModType.PERCENT),

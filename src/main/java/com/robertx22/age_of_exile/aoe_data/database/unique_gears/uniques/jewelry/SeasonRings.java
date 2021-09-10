@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelry;
 
-import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
+import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearTypes;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
-import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -29,7 +28,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "spring_blossoms",
                 "Spring Blossoms",
-                BaseGearJewelry.RING)
+                BaseGearTypes.RING)
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(10, 10, SpecialStats.HEAL_CLEANSE, ModType.FLAT),
@@ -46,7 +45,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "autumn_harvest",
                 "Autumn Harvest",
-                BaseGearJewelry.RING)
+                BaseGearTypes.RING)
             .setReplacesName()
 
             .stats(Arrays.asList(
@@ -67,7 +66,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "winter_chill",
                 "Winter Chill",
-                BaseGearJewelry.RING)
+                BaseGearTypes.RING)
             .setReplacesName()
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
                 new StatModifier(20, 40, new ElementalResist(Elements.Water), ModType.FLAT),
@@ -83,7 +82,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "summer_heat",
                 "Summer Heat",
-                BaseGearJewelry.RING)
+                BaseGearTypes.RING)
             .setReplacesName()
 
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),

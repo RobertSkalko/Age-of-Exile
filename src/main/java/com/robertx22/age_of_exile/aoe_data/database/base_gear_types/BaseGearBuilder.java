@@ -15,39 +15,36 @@ import com.robertx22.library_of_exile.registry.DataGenKey;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class BaseGearBuilder implements GearDataHelper {
 
     private PlayStyle style = PlayStyle.melee;
     private String locnamesuffix;
-    private String idprefix;
+    private String id;
     private String slot;
     private TagList tags;
-    private List<LevelRange> lvls = new ArrayList<>();
     private List<StatModifier> basestats = new ArrayList<>();
     private List<StatModifier> implicitstats = new ArrayList<>();
     private StatRequirement req = new StatRequirement();
     private WeaponTypes wep = WeaponTypes.none;
     private int weapon_offhand_stat_util = 0;
-    private HashMap<LevelRange, String> namePrefixes = new HashMap<>();
     private float atkspeed = 1F;
     private int weight = 1000;
     private CraftEssenceItem essenceItem;
 
-    public static BaseGearBuilder of(String slot, String idprefix, String locnamesuffix) {
+    public static BaseGearBuilder of(DataGenKey<BaseGearType> id, String slot, String locnamesuffix) {
         BaseGearBuilder b = new BaseGearBuilder();
         b.locnamesuffix = locnamesuffix;
-        b.idprefix = idprefix;
+        b.id = id.GUID();
         b.slot = slot;
         return b;
     }
 
-    public static BaseGearBuilder weapon(String slot, WeaponTypes type) {
+    public static BaseGearBuilder weapon(DataGenKey<BaseGearType> id, String slot, WeaponTypes type) {
         BaseGearBuilder b = new BaseGearBuilder();
         b.locnamesuffix = type.locName();
-        b.idprefix = type.id;
+        b.id = id.GUID();
         b.slot = slot;
         b.atkspeed = type.atkPerSec;
         b.weaponType(type);
@@ -103,7 +100,7 @@ public class BaseGearBuilder implements GearDataHelper {
         LevelRange x = LevelRanges.FULL;
 
         String name = /*namePrefixes.get(x) + " " + */locnamesuffix;
-        String id = idprefix + x.id_suffix;
+        String id = this.id;
         BaseGearType type = new BaseGearType(slot, id, x, name);
         type.stat_reqs = req;
         type.weapon_type = wep;

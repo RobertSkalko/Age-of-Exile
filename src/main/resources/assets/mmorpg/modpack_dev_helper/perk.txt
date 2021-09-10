@@ -61,7 +61,6 @@ melee_dmg
 shield_strength
 ele_scepter_damage
 mana_regen
-all_air_damage
 attack_speed
 ranged_dmg
 mana_on_kill
@@ -74,11 +73,9 @@ sniper
 true_hit
 water_resist
 critical_damage
-air_resist
 bow_damage
 mana_cost
 hunter
-spell_air_damage
 axe_damage
 ele_trident_damage
 physical_weapon_damage
@@ -91,7 +88,6 @@ elemental_purity
 armor
 ele_staff_damage
 elemental_resist
-air_weapon_damage
 crit_chance
 spell_water_damage
 divinity
@@ -100,12 +96,10 @@ duelist
 battle_mage
 ele_sword_damage
 elemental_penetration
-spell_air_damage_and_dot
 crossbow_damage
 earth_resist
 spell_slinger
 ele_crossbow_damage
-air_penetration
 fire_weapon_damage
 wis
 dot_dmg

@@ -6,7 +6,6 @@ get_minecraft_book
 get_minecraft_cooked_cod
 get_minecraft_baked_potato
 get_minecraft_diamond
-complete_rift
 loot_a_chest
 complete_dungeon
 get_minecraft_cake

@@ -108,13 +108,8 @@ mmorpg:backpack/upgrade/auto_sal1
 mmorpg:backpack/upgrade/auto_sal0
 mmorpg:backpack/upgrade/auto_sal2
 mmorpg:tablet/anti_hunger
-mmorpg:food/fish/yellow/0
 mmorpg:food/jam/yellow/0
-mmorpg:food/fish/yellow/2
-mmorpg:food/fish/yellow/1
-mmorpg:food/fish/yellow/4
 mmorpg:food/drink/yellow/3
-mmorpg:food/fish/yellow/3
 mmorpg:food/drink/yellow/4
 mmorpg:backpack/upgrade/save1
 mmorpg:food/jam/red/4

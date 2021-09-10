@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelry;
 
-import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
+import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearTypes;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
@@ -26,7 +26,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "rabbit_paw",
                 "Rabbit's Paw",
-                BaseGearJewelry.NECKLACE)
+                BaseGearTypes.NECKLACE)
             .stats(Arrays.asList(
                 new StatModifier(2, 10, DatapackStats.MOVE_SPEED, ModType.FLAT),
                 new StatModifier(5, 25, EnergyRegen.getInstance(), ModType.PERCENT),
@@ -38,7 +38,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "blood_stone",
                 "Primordial Blood",
-                BaseGearJewelry.NECKLACE)
+                BaseGearTypes.NECKLACE)
 
             .stats(Arrays.asList(
                 new StatModifier(25, 25, Stats.CHANCE_TO_GIVE_EFFECT_ON_KILL.get(BeneficialEffects.BLOODLUST), ModType.FLAT),
@@ -53,7 +53,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "ghast_necklace",
                 "Ghast Tear",
-                BaseGearJewelry.NECKLACE)
+                BaseGearTypes.NECKLACE)
 
             .stats(Arrays.asList(new StatModifier(15, 25, new ElementalResist(Elements.Water)),
                 new StatModifier(15, 25, new ElementalResist(Elements.Fire)),
@@ -70,7 +70,7 @@ public class UniqueNecklaces implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "skull_of_spirits",
                 "Skull of Spirits",
-                BaseGearJewelry.NECKLACE)
+                BaseGearTypes.NECKLACE)
             .stats(Arrays.asList(
                 new StatModifier(1, 2, AllAttributes.getInstance(), ModType.FLAT),
                 new StatModifier(10, 20, ManaRegen.getInstance(), ModType.PERCENT),

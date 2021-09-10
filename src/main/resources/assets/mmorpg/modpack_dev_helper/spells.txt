@@ -54,7 +54,6 @@ charge
 poison_arrow
 frost_breath
 curse_of_agony
-storm_call
 frost_trap
 fire_trap
 frostball

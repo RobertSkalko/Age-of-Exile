@@ -1,15 +1,14 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+cdr
 heal_crit_dmg
 fast_proj
-proj_dmg
-spell_crit_dmg
-crit_dmg
-cdr
-air_dmg
 water_dmg
 heal_crit_chance
 earth_dmg
 spell_crit_chance
+proj_dmg
+spell_crit_dmg
 crit_chance
 fire_dmg
+crit_dmg

@@ -5,7 +5,6 @@ wisdom_tasks
 harvest_rewards
 war_tasks
 forge_rewards
-high_lvl_aoe_tasks
 general_aoe_tasks
 ocean_tasks
 general_tasks

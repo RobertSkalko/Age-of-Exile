@@ -49,11 +49,6 @@ public class UniqueGear implements IAutoLocName, JsonExileRegistry<UniqueGear>, 
     }
 
     @Override
-    public String datapackFolder() {
-        return base_gear;
-    }
-
-    @Override
     public JsonObject toJson() {
         JsonObject json = getDefaultJson();
 

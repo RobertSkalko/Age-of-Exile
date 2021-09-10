@@ -23,7 +23,7 @@ public class WeaponPrefixes implements ExileRegistryInit {
             .add(Elements.Water, "Chilled")
             .add(Elements.Earth, "Poisoned")
             .add(Elements.Physical, "Tyrannical")
-            .stats(x -> Arrays.asList(new StatModifier(3, 10, Stats.ELEMENTAL_DAMAGE.get(x), ModType.PERCENT)))
+            .stats(x -> Arrays.asList(new StatModifier(3, 10, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
             .includesTags(SlotTag.weapon_family)
             .Prefix()
             .Build();

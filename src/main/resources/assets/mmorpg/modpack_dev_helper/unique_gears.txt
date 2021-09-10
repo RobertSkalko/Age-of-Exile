@@ -9,8 +9,8 @@ spring_blossoms
 insight
 air_disaster
 rabbit_paw
-skull_of_spirits
 autumn_harvest
+skull_of_spirits
 summer_heat
 witch_brew
 azuna_ring

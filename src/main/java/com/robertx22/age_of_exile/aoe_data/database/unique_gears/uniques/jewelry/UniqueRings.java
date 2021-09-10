@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelry;
 
-import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.adders.BaseGearJewelry;
+import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearTypes;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
-import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -26,7 +25,7 @@ public class UniqueRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "witch_brew",
                 "Witch's Brew",
-                BaseGearJewelry.RING)
+                BaseGearTypes.RING)
 
             .stats(Arrays.asList(new StatModifier(15, 25, new ElementalResist(Elements.Earth), ModType.FLAT),
                 new StatModifier(25, 50, SpecialStats.BETTER_FOOD_BUFFS, ModType.FLAT),
@@ -41,7 +40,7 @@ public class UniqueRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "ghostly_shores",
                 "Ghostly Shores",
-                BaseGearJewelry.RING)
+                BaseGearTypes.RING)
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),
