@@ -7,11 +7,9 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy.AlchemyTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station.ScribeBuffTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station.CookingTile;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station.TileGearModify;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.repair_station.TileGearRepair;
+import com.robertx22.age_of_exile.vanilla_mc.blocks.runeword_station.RuneWordStationTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.TileGearSalvage;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.smithing.SmithingTile;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station.RuneWordStationTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.tablet.TabletStationTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
@@ -22,9 +20,7 @@ import java.util.function.Supplier;
 
 public class ModBlockEntities {
 
-    public BlockEntityType<TileGearModify> GEAR_MODIFY = of(ModRegistry.BLOCKS.GEAR_MODIFY, TileGearModify::new);
-    public BlockEntityType<RuneWordStationTile> SOCKET_STATION = of(ModRegistry.BLOCKS.SOCKET_STATION, RuneWordStationTile::new);
-    public BlockEntityType<TileGearRepair> GEAR_REPAIR = of(ModRegistry.BLOCKS.GEAR_REPAIR, TileGearRepair::new);
+    public BlockEntityType<RuneWordStationTile> SOCKET_STATION = of(ModRegistry.BLOCKS.RUNEWORD_STATION, RuneWordStationTile::new);
     public BlockEntityType<TileGearSalvage> GEAR_SALVAGE = of(ModRegistry.BLOCKS.GEAR_SALVAGE, TileGearSalvage::new);
     public BlockEntityType<ScribeBuffTile> SCRIBE_BUFF = of(ModRegistry.BLOCKS.SCRIBE_BUFF, ScribeBuffTile::new);
     public BlockEntityType<CookingTile> COOKING = of(ModRegistry.BLOCKS.COOKING_STATION, CookingTile::new);

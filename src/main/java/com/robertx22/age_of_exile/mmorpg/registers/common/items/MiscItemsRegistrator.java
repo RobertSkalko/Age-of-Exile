@@ -89,10 +89,8 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public BackpackItem BACKPACK = item(new BackpackItem(), "backpack/normal");
 
-    public Item GEAR_MODIFY = blockItem(ModRegistry.BLOCKS.GEAR_MODIFY);
-    public Item GEAR_REPAIR = blockItem(ModRegistry.BLOCKS.GEAR_REPAIR);
     public Item GEAR_SALVAGE = blockItem(ModRegistry.BLOCKS.GEAR_SALVAGE);
-    public Item GEAR_SOCKET = blockItem(ModRegistry.BLOCKS.SOCKET_STATION);
+    public Item RUNEWORD_STATION = blockItem(ModRegistry.BLOCKS.RUNEWORD_STATION);
     public Item SCRIBE_BUFF_BLOCK = blockItem(ModRegistry.BLOCKS.SCRIBE_BUFF);
     public Item COOKING_STATION = blockItem(ModRegistry.BLOCKS.COOKING_STATION);
     public Item TABLET_STATION = blockItem(ModRegistry.BLOCKS.TABLET_STATION);

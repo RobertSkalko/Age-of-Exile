@@ -18,7 +18,6 @@ bonus_exp
 bonus_favor
 chance_to_get_blessing_on_kill
 all_water_damage
-air_focus
 energy
 heal_crit_dmg
 inc_effect_of_song_buff_given
@@ -31,7 +30,6 @@ heal_on_shielded_targets
 potion_strength
 all_any_wep_damage
 inc_effect_of_positive_buff_on_you
-convert_air_to_phys
 cdr
 projectile_damage
 cast_speed
@@ -192,7 +190,6 @@ global_critical_damage
 bonus_exp_for_t2_mob
 ele_axe_damage
 bonus_cooking_exp
-max_air_resist
 chance_of_burn_on_crit
 water_weapon_damage
 elemental_vuln_crit
@@ -269,7 +266,6 @@ inc_effect_of_positive_buff_given
 physical_any_wep_damage
 day_dmg
 critical_damage
-air_resist
 inc_effect_of_food_buff_on_you
 mana_cost
 inc_effect_of_song_buff_on_you
@@ -293,7 +289,6 @@ heal_over_time_eff_duration
 renamed_or_deleted_stat
 bonus_hot_biome_yield
 elemental_resist
-air_weapon_damage
 health_regen_per_10_wisdom
 heal_cleanse
 all_vuln_crit
@@ -315,7 +310,6 @@ earth_resist
 inc_aoe
 water_health_leech
 ele_crossbow_damage
-air_penetration
 bonus_mining_yield
 crit_water_dmg_mana
 energy_ooc_regen

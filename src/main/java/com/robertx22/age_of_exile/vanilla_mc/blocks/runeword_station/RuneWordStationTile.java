@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.blocks.socket_station;
+package com.robertx22.age_of_exile.vanilla_mc.blocks.runeword_station;
 
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
