@@ -11,6 +11,7 @@
     "FallingBlockEntityMixin",
     "FoodComponentMixin",
     "FurnaceMixin",
+    "ItemInteractionHook",
     "LivingEntityMixin",
     "LootTableMixin",
     "OnCraftMixin",

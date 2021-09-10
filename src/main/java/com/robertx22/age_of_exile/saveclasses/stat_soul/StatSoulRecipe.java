@@ -39,15 +39,13 @@ public class StatSoulRecipe extends SpecialCraftingRecipe {
 
         for (int i = 0; i < inv.size(); ++i) {
             ItemStack stack = inv.getStack(i);
-            if (data.itemMatches(stack.getItem())) {
-                if (!StackSaving.GEARS.has(stack)) {
-
-                    if (hasmatchinggear) {
-                        return false; // dont allow 2! that would make 1 disappear
-                    }
-                    hasmatchinggear = true;
+            if (data.canInsertIntoStack(stack)) {
+                if (hasmatchinggear) {
+                    return false; // dont allow 2! that would make 1 disappear
                 }
+                hasmatchinggear = true;
             }
+
         }
 
         return hassoul && hasmatchinggear;
@@ -75,14 +73,13 @@ public class StatSoulRecipe extends SpecialCraftingRecipe {
 
         for (int i = 0; i < inv.size(); ++i) {
             ItemStack stack = inv.getStack(i);
-            if (data.itemMatches(stack.getItem())) {
-
+            if (data.canInsertIntoStack(stack)) {
                 gear = stack.copy();
                 break;
             }
         }
 
-        StatSoulItem.insertAsUnidentifiedOn(data, gear);
+        data.insertAsUnidentifiedOn(gear);
 
         return gear;
     }

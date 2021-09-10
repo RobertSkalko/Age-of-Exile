@@ -39,7 +39,7 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
+    public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
         gear.setInstability(gear.getInstability() - 250);
         Gear.Save(stack, gear);

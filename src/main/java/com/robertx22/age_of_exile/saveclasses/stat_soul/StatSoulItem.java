@@ -87,10 +87,6 @@ public class StatSoulItem extends Item implements IGUID {
         return txt;
     }
 
-    public static void insertAsUnidentifiedOn(StatSoulData data, ItemStack stack) {
-        LoadSave.Save(data, stack.getOrCreateTag(), TAG);
-    }
-
     public static boolean hasSoul(ItemStack stack) {
         return stack.hasTag() && stack.getTag()
             .contains(TAG);
@@ -118,6 +114,11 @@ public class StatSoulItem extends Item implements IGUID {
                 .get(data.rar)));
 
         }
+
+        tooltip.add(new LiteralText(""));
+
+        tooltip.add(new LiteralText("Infuses stats into empty gear").formatted(Formatting.AQUA));
+        tooltip.add(TooltipUtils.dragOntoGearToUse());
 
     }
 

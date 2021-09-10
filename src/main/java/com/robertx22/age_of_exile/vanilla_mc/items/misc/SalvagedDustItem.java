@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.IWeighted;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,8 +17,8 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
@@ -40,8 +41,16 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
     @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Words.CreatedInSalvageStation.locName()
-            .formatted(Formatting.BLUE));
+
+        tooltip.add(Words.CreatedInSalvageStation.locName());
+
+        tooltip.add(TooltipUtils.gearTier(tier.getDisplayTierNumber()));
+
+        tooltip.add(new LiteralText(""));
+
+        tooltip.add(new LiteralText("Repairs gear of equal tier."));
+        tooltip.add(TooltipUtils.dragOntoGearToUse());
+
     }
 
     @Override

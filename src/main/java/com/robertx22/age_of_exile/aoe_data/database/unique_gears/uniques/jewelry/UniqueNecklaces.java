@@ -9,9 +9,9 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -22,6 +22,18 @@ public class UniqueNecklaces implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
+
+        UniqueGearBuilder.of(
+                "rabbit_paw",
+                "Rabbit's Paw",
+                BaseGearJewelry.NECKLACE)
+            .stats(Arrays.asList(
+                new StatModifier(2, 10, DatapackStats.MOVE_SPEED, ModType.FLAT),
+                new StatModifier(5, 25, EnergyRegen.getInstance(), ModType.PERCENT),
+                new StatModifier(2, 6, DatapackStats.AGI, ModType.FLAT)
+            ))
+            .setReplacesName()
+            .build();
 
         UniqueGearBuilder.of(
                 "blood_stone",

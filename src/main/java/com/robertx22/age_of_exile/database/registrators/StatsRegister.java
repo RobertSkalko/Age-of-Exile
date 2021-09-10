@@ -68,7 +68,6 @@ public class StatsRegister implements ExileRegistryInit {
                     add(AllAttributes.getInstance());
                     add(SpellDamage.getInstance());
 
-                    add(MoreSocketsStat.getInstance());
                     add(ExtraMobDropsStat.getInstance());
                     add(BonusExp.getInstance());
                     add(BonusFavor.getInstance());

@@ -909,7 +909,7 @@
 	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
 	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
 	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Infinity",
+	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
 	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
 	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
 	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
@@ -1358,17 +1358,10 @@
 	"mmorpg.stat.chance_of_burn": "§7Your §c☀ Fire§7 Attacks have §a[VAL1]§7% chance of applying Burn",
 	"mmorpg.stat.chance_of_burn_on_crit": "§7Your §c☀ Fire§7 Criticals have §a[VAL1]§7% chance of applying Burn",
 	"mmorpg.stat.chance_of_frostburn": "§7Your §b❉ Water§7 Attacks have §a[VAL1]§7% chance of applying Frost Burn",
-	"mmorpg.stat.chance_of_hp_reg_on_spell_crit": "§7Your Spell Crits have §a[VAL1]§7% chance to give you Health Regen buff.",
 	"mmorpg.stat.chance_of_judgement": "§7Your §f✪ Air§7 Attacks have §a[VAL1]§7% chance of applying Judgement",
-	"mmorpg.stat.chance_of_mana_reg_on_heal_crit": "§7Your Heal Crits have §a[VAL1]§7% chance to give you Mana Regen buff.",
 	"mmorpg.stat.chance_of_poison": "§7Your §2✿ Earth§7 Attacks have §a[VAL1]§7% chance of applying Poison",
 	"mmorpg.stat.chance_of_poison_when_hit": "§7§7§a§a[VAL1]§7§7% chance to apply Poison to enemies that hit you.",
 	"mmorpg.stat.chance_of_slow": "§7Your §6✦ Physical§7 Attacks have §a[VAL1]§7% chance of applying Slow",
-	"mmorpg.stat.chance_of_spend_bleed_for_double_dmg": "§7Your §6✦ Physical§7 Attacks have §a[VAL1]§7% chance of spending a Bleed stack to deal double damage.",
-	"mmorpg.stat.chance_of_spend_blind_for_double_dmg": "§7Your §f✪ Air§7 Attacks have §a[VAL1]§7% chance of spending a Blind stack to deal double damage.",
-	"mmorpg.stat.chance_of_spend_burn_for_double_dmg": "§7Your §c☀ Fire§7 Attacks have §a[VAL1]§7% chance of spending a Burn stack to deal double damage.",
-	"mmorpg.stat.chance_of_spend_frostburn_for_double_dmg": "§7Your §b❉ Water§7 Attacks have §a[VAL1]§7% chance of spending a Frost Burn stack to deal double damage.",
-	"mmorpg.stat.chance_of_spend_poison_for_double_dmg": "§7Your §2✿ Earth§7 Attacks have §a[VAL1]§7% chance of spending a Poison stack to deal double damage.",
 	"mmorpg.stat.chance_of_torment": "§7Your §d⚜ Elemental§7 Attacks have §a[VAL1]§7% chance of applying Torment",
 	"mmorpg.stat.chance_on_basic_atk_to_give_blade_dance_to_self": "§7Your §6✦ Physical§7 Basic Attacks have §a[VAL1]§7% chance of giving Blade Dance",
 	"mmorpg.stat.chance_on_basic_atk_to_give_gather_storm_to_self": "§7Your §d⚜ Elemental§7 Basic Attacks have §a[VAL1]§7% chance of giving Gather Storm",
@@ -1574,7 +1567,6 @@
 	"mmorpg.stat.shield_strength": "Shield Strength",
 	"mmorpg.stat.shout_cdr": "Shout Spell Cooldown Reduction",
 	"mmorpg.stat.shout_spell_dmg": "Shout Spell Damage",
-	"mmorpg.stat.socket_slots": "Socket Slots",
 	"mmorpg.stat.song_cdr": "Song Spell Cooldown Reduction",
 	"mmorpg.stat.song_eff_dur_u_cast": "§7§a[VAL1]§7% to duration of Song effects you cast.",
 	"mmorpg.stat.song_eff_duration": "§7§a[VAL1]§7% to duration of Song effects on you.",
@@ -1631,6 +1623,8 @@
 	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
 	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
 	"mmorpg.unique_gear.insight.name": "Insight",
+	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
+	"mmorpg.unique_gear.rabbit_paw.name": "Rabbit's Paw",
 	"mmorpg.unique_gear.skull_cleaver.name": "Skull Cleaver",
 	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
 	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
@@ -1673,26 +1667,6 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-	"item.mmorpg.jewelry.necklace.diamond": "Necklace",
-	"item.mmorpg.jewelry.necklace.gold": "Necklace",
-	"item.mmorpg.jewelry.necklace.iron": "Necklace",
-	"item.mmorpg.jewelry.ring.diamond": "Ring",
-	"item.mmorpg.jewelry.ring.gold": "Ring",
-	"item.mmorpg.jewelry.ring.iron": "Ring",
-	"item.mmorpg.weapon.scepter.diamond": "Scepter",
-	"item.mmorpg.weapon.scepter.gold": "Scepter",
-	"item.mmorpg.weapon.scepter.iron": "Scepter",
-	"item.mmorpg.weapon.scepter.wood": "Scepter",
-	"item.mmorpg.weapon.staff.diamond": "Staff",
-	"item.mmorpg.weapon.staff.gold": "Staff",
-	"item.mmorpg.weapon.staff.iron": "Staff",
-	"item.mmorpg.weapon.staff.wood": "Staff",
-
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: POTIONS - NAMES",
 
 	"effect.mmorpg.foods.critical": "Critical",
@@ -1718,6 +1692,26 @@
 	"effect.mmorpg.foods.water": "Aqua",
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+	"item.mmorpg.jewelry.necklace.diamond": "Necklace",
+	"item.mmorpg.jewelry.necklace.gold": "Necklace",
+	"item.mmorpg.jewelry.necklace.iron": "Necklace",
+	"item.mmorpg.jewelry.ring.diamond": "Ring",
+	"item.mmorpg.jewelry.ring.gold": "Ring",
+	"item.mmorpg.jewelry.ring.iron": "Ring",
+	"item.mmorpg.weapon.scepter.diamond": "Scepter",
+	"item.mmorpg.weapon.scepter.gold": "Scepter",
+	"item.mmorpg.weapon.scepter.iron": "Scepter",
+	"item.mmorpg.weapon.scepter.wood": "Scepter",
+	"item.mmorpg.weapon.staff.diamond": "Staff",
+	"item.mmorpg.weapon.staff.gold": "Staff",
+	"item.mmorpg.weapon.staff.iron": "Staff",
+	"item.mmorpg.weapon.staff.wood": "Staff",
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",
@@ -1948,7 +1942,6 @@
 	"mmorpg.stat_desc.shield_duration": "Boosts the shield amount from spells and other sources.",
 	"mmorpg.stat_desc.shield_strength": "Boosts the shield amount you get from spells and other sources.",
 	"mmorpg.stat_desc.shout_cdr": "Reduces spell cooldown of spells with the tag.",
-	"mmorpg.stat_desc.socket_slots": "Adds socket slots to item.",
 	"mmorpg.stat_desc.song_cdr": "Reduces spell cooldown of spells with the tag.",
 	"mmorpg.stat_desc.spell_accuracy": "Increases your chance to hit, low accuracy also causes crits to fail. Specifically it decreases opponent's chance to dodge",
 	"mmorpg.stat_desc.spell_air_damage": "Increases damage of spells of that element.",

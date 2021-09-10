@@ -28,7 +28,7 @@ public class CreativeTabs {
     public static ItemGroup GemRuneCurrency = FabricItemGroupBuilder.build(
         new Identifier(Ref.MODID, "gemrunecurrency_group")
         ,
-        () -> new ItemStack(ModRegistry.GEMS.MAP.get(GemItem.GemType.TOPAZ)
+        () -> new ItemStack(ModRegistry.GEMS.MAP.get(GemItem.GemType.GARNET)
             .get(GemItem.GemRank.PERFECT)));
 
     public static ItemGroup Professions = FabricItemGroupBuilder.build(

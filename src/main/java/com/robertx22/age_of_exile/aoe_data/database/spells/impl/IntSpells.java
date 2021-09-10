@@ -318,29 +318,5 @@ public class IntSpells implements ExileRegistryInit {
             .onExpire(PartBuilder.playSound(SOUNDS.STONE_CRACK, 1D, 1D))
             .build();
 
-        SpellBuilder.of("storm_call", SpellConfiguration.Builder.nonInstant(10, 20 * 45, 30)
-                , "Storm Call", Arrays.asList(SpellTag.area, SpellTag.damage))
-
-            .manualDesc(
-                "Summon a magic circle that attracts the storm, dealing " +
-                    SpellCalcs.STORM_CALL.getLocSpellTooltip() + " " + Elements.Air.getIconNameDmg())
-
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 3)
-                .put(MapField.ENTITY_NAME, "block")
-                .put(MapField.BLOCK_FALL_SPEED, 0D)
-                .put(MapField.FIND_NEAREST_SURFACE, false)
-                .put(MapField.IS_BLOCK_FALLING, false)))
-
-            .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.STORM_CALL, Elements.Air, 3D)
-                .addPerEntityHit(PartBuilder.justAction(SpellAction.SUMMON_LIGHTNING_STRIKE.create())))
-
-            .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 3D, 1.2D, 0.5D)
-                .onTick(3D))
-            .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, 3D, 1.2D, 0.5D)
-                .onTick(3D))
-
-            .build();
     }
 }

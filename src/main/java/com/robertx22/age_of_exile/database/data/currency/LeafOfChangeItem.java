@@ -42,7 +42,7 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
+    public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
 
         GearItemData gear = Gear.Load(stack);
 

@@ -2,11 +2,13 @@ These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 ghostly_shores
 skull_cleaver
+mana_dominion
 winter_chill
 blood_stone
 spring_blossoms
 insight
 air_disaster
+rabbit_paw
 skull_of_spirits
 autumn_harvest
 summer_heat

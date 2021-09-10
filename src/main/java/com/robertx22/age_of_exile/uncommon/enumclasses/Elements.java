@@ -12,7 +12,6 @@ public enum Elements {
     Fire(true, "Fire", Formatting.RED, "fire", "\u2600"),
     Water(true, "Water", Formatting.AQUA, "water", "\u2749"),
     Earth(true, "Earth", Formatting.DARK_GREEN, "earth", "\u273F"), /* Reminder: if i rename this to "earth" satte will get pissed off */
-    Air(true, "Air", Formatting.WHITE, "air", "\u272A"),
 
     Elemental(false, "Elemental", Formatting.LIGHT_PURPLE, "elemental", "\u269C"),
     All(false, "All", Formatting.LIGHT_PURPLE, "all", "\u273F");
@@ -66,13 +65,9 @@ public enum Elements {
         return this == Earth;
     }
 
-    public boolean isAir() {
-        return this == Air;
-    }
-
-    private static List<Elements> allIncludingPhys = Arrays.asList(Physical, Fire, Water, Earth, Air);
-    private static List<Elements> allExcludingPhys = Arrays.asList(Fire, Water, Earth, Air, Elemental);
-    private static List<Elements> allSingleElementals = Arrays.asList(Fire, Water, Earth, Air);
+    private static List<Elements> allIncludingPhys = Arrays.asList(Physical, Fire, Water, Earth);
+    private static List<Elements> allExcludingPhys = Arrays.asList(Fire, Water, Earth, Elemental);
+    private static List<Elements> allSingleElementals = Arrays.asList(Fire, Water, Earth);
 
     public static List<Elements> getAllSingleElementals() {
         return allSingleElementals;

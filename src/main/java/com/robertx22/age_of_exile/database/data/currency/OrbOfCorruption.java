@@ -37,7 +37,7 @@ public class OrbOfCorruption extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
+    public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
 
         GearItemData gear = Gear.Load(stack);
 
@@ -77,7 +77,7 @@ public class OrbOfCorruption extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public String locNameForLangFile() {
-        return nameColor + "Orb of Infinity";
+        return nameColor + "Orb of Corruption";
     }
 
     @Override

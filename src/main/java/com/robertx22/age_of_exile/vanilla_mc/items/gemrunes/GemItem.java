@@ -104,7 +104,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack currency) {
+    public ItemStack internalModifyMethod(ItemStack stack, ItemStack currency) {
 
         GemItem gitem = (GemItem) currency.getItem();
         Gem gem = gitem.getGem();
@@ -232,7 +232,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
                 return Arrays.asList(new StatModifier(3, 10, Stats.CRIT_DAMAGE.get()));
             }
         }),
-        TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Air)),
+        //TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Air)),
         // AMETHYST("amethyst", "Amethyst", Formatting.DARK_PURPLE, new EleGem(Elements.Dark)),
         RUBY("ruby", "Ruby", Formatting.RED, new EleGem(Elements.Fire)),
         EMERALD("emerald", "Emerald", Formatting.GREEN, new EleGem(Elements.Earth)),

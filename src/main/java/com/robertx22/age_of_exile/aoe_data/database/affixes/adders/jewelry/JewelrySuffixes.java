@@ -28,7 +28,6 @@ public class JewelrySuffixes implements ExileRegistryInit {
             .add(Elements.Fire, "Of Embers")
             .add(Elements.Water, "Of Ice")
             .add(Elements.Earth, "Of Venom")
-            .add(Elements.Air, "Of Electricity")
             .stats(x -> Arrays.asList(new StatModifier(2, 15, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()

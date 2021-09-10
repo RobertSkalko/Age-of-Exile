@@ -1,20 +1,18 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.item_modify_station;
 
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
+import com.robertx22.age_of_exile.database.data.currency.base.ModifyResult;
+import com.robertx22.age_of_exile.database.data.currency.base.ResultItem;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
 import com.robertx22.library_of_exile.utils.CLOC;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundEvents;
@@ -22,10 +20,6 @@ import net.minecraft.text.MutableText;
 import net.minecraft.util.math.Vec3d;
 
 public class TileGearModify extends BaseModificationStation {
-
-    public enum ModifyResult {
-        BREAK, SUCCESS, NONE
-    }
 
     public ResultItem getSmeltingResultForItem() {
 
@@ -36,31 +30,7 @@ public class TileGearModify extends BaseModificationStation {
         }
 
         if (context.effect != null && context.effect.forStation() == ICurrencyItemEffect.StationType.MODIFY) {
-
-            if (context.effect.canItemBeModified(context)) {
-                ItemStack copy = context.stack.copy();
-                copy = context.effect.ModifyItem(copy, context.Currency);
-
-                if (context.isGear()) {
-                    if (context.effect.getInstability() > 0) {
-                        GearItemData gear = Gear.Load(copy);
-
-                        gear.setInstability(gear.getInstability() + context.effect.getInstability());
-
-                        Gear.Save(copy, gear);
-                    }
-
-                }
-
-                if (RandomUtils.roll(context.effect.getBreakChance())) {
-                    return new ResultItem(new ItemStack(Items.GUNPOWDER), ModifyResult.BREAK);
-                }
-
-                return new ResultItem(copy, ModifyResult.SUCCESS);
-            } else {
-                return new ResultItem(ItemStack.EMPTY, ModifyResult.NONE);
-            }
-
+            return context.effect.modifyItem(context);
         }
 
         return new ResultItem(ItemStack.EMPTY, ModifyResult.NONE);
@@ -91,17 +61,6 @@ public class TileGearModify extends BaseModificationStation {
 
     public TileGearModify() {
         super(ModRegistry.BLOCK_ENTITIES.GEAR_MODIFY, 2);
-    }
-
-    public static class ResultItem {
-
-        public ItemStack stack;
-        public ModifyResult resultEnum;
-
-        public ResultItem(ItemStack stack, ModifyResult resultEnum) {
-            this.stack = stack;
-            this.resultEnum = resultEnum;
-        }
     }
 
     private ResultItem getResult() {

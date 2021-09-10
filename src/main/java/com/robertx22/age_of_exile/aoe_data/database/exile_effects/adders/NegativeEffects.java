@@ -37,11 +37,11 @@ public class NegativeEffects implements ExileRegistryInit {
     public static EffectCtx POISON = new EffectCtx("poison", "Poison", 3, Elements.Earth, EffectType.negative);
     public static EffectCtx WOUNDS = new EffectCtx("wounds", "Wounds", 4, Elements.Physical, EffectType.negative);
     public static EffectCtx BURN = new EffectCtx("burn", "Burn", 5, Elements.Fire, EffectType.negative);
-    public static EffectCtx JUDGEMENT = new EffectCtx("judgement", "Judgement", 6, Elements.Air, EffectType.negative);
+    public static EffectCtx JUDGEMENT = new EffectCtx("judgement", "Judgement", 6, Elements.Fire, EffectType.negative);
     public static EffectCtx TORMENT = new EffectCtx("torment", "Torment", 7, Elements.Elemental, EffectType.negative);
     public static EffectCtx BLEED = new EffectCtx("bleed", "Bleed", 8, Elements.Physical, EffectType.negative);
     public static EffectCtx MUMMY_CURSE = new EffectCtx("mummy_curse", "Mummy Curse", 9, Elements.Elemental, EffectType.negative);
-    public static EffectCtx BLIND = new EffectCtx("blind", "Blind", 10, Elements.Air, EffectType.negative);
+    public static EffectCtx BLIND = new EffectCtx("blind", "Blind", 10, Elements.Earth, EffectType.negative);
     public static EffectCtx STUN = new EffectCtx("stun", "Stun", 11, Elements.Physical, EffectType.negative);
     public static EffectCtx SLOW = new EffectCtx("slow", "Slow", 12, Elements.Physical, EffectType.negative);
     public static EffectCtx AGONY = new EffectCtx("agony", "Curse of Agony", 13, Elements.Elemental, EffectType.negative);
@@ -240,7 +240,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 10D, 1D)
                     .onTick(20D))
-                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculation.base("judgement", 10), Elements.Air))
+                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculation.base("judgement", 10), Elements.Fire))
                     .setTarget(TargetSelector.TARGET.create()))
                 .onExpire(PartBuilder.justAction(SpellAction.SUMMON_LIGHTNING_STRIKE.create())
                     .setTarget(TargetSelector.TARGET.create()))

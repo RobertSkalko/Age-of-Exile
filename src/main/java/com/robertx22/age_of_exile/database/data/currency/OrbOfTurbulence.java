@@ -39,7 +39,7 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
+    public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
 
         GearItemData gear = Gear.Load(stack);
 

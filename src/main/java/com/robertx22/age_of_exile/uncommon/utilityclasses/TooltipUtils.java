@@ -228,4 +228,8 @@ public class TooltipUtils {
             .append(new LiteralText(lvl + "")
                 .formatted(Formatting.YELLOW));
     }
+
+    public static MutableText dragOntoGearToUse() {
+        return new LiteralText("[Drag onto gear to use]").formatted(Formatting.AQUA, Formatting.BOLD);
+    }
 }

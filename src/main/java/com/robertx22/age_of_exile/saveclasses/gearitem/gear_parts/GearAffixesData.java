@@ -150,6 +150,7 @@ public class GearAffixesData implements IGearPartTooltip {
 
         list.addAll(pre);
         list.addAll(suf);
+        list.addAll(cor);
 
         return list;
     }

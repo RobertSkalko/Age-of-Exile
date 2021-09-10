@@ -2,8 +2,6 @@ package com.robertx22.age_of_exile.saveclasses.item_classes;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -44,29 +42,6 @@ public class GearTooltipUtils {
                 tip.add(x);
             });
 
-        if (false && gear.GetBaseGearType()
-            .family() == BaseGearType.SlotFamily.Weapon) {
-
-            String speed = "Normal";
-
-            float atks = gear.GetBaseGearType().attacksPerSecond;
-
-            if (atks < 1) {
-                speed = "Slow";
-            }
-            if (atks > 1) {
-                speed = "Fast";
-            }
-            String txt = speed + " Attack Speed";
-
-            if (Screen.hasShiftDown()) {
-                txt += " (" + atks + "/s)";
-            }
-
-            tip.add(new LiteralText(txt).formatted(Formatting.GRAY));
-
-        }
-
         if (gear.baseStats != null) {
             tip.addAll(gear.baseStats.GetTooltipString(info, gear));
         }
@@ -77,35 +52,28 @@ public class GearTooltipUtils {
             tip.addAll(gear.imp.GetTooltipString(info, gear));
         }
 
-        // tip.add(new LiteralText(""));
-
         List<IGearPartTooltip> list = new ArrayList<IGearPartTooltip>();
 
         List<ExactStatData> specialStats = new ArrayList<>();
 
-        if (gear.uniqueStats != null) {
-            tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
-
-            gear.uniqueStats.GetAllStats(gear)
-                .forEach(x -> {
-                    if (x.getStat().is_long) {
-                        specialStats.add(x);
-                    }
-                });
-
-        }
-
         //tip.add(new LiteralText(""));
 
         if (info.useInDepthStats()) {
+            if (gear.isUnique()) {
+                tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
+            }
             tip.addAll(gear.affixes.GetTooltipString(info, gear));
             tip.addAll(gear.sockets.GetTooltipString(info, gear));
+            tip.addAll(gear.imp.GetTooltipString(info, gear));
         } else {
             List<ExactStatData> stats = new ArrayList<>();
             gear.affixes.getAllAffixesAndSockets()
                 .forEach(x -> stats.addAll(x.GetAllStats(gear)));
             stats.addAll(gear.sockets.GetAllStats(gear));
-
+            stats.addAll(gear.imp.GetAllStats(gear));
+            if (gear.isUnique()) {
+                stats.addAll(gear.uniqueStats.GetAllStats(gear));
+            }
             List<ExactStatData> longstats = stats.stream()
                 .filter(x -> x.getStat().is_long)
                 .collect(Collectors.toList());
@@ -131,6 +99,7 @@ public class GearTooltipUtils {
             }
             n++;
         }
+        tip.add(new LiteralText(""));
 
         specialStats.forEach(x -> {
             x.GetTooltipString(info)
@@ -162,36 +131,21 @@ public class GearTooltipUtils {
                     Words.Corrupted.locName())
                 .formatted(Formatting.RED));
         }
-
-        tip.add(new LiteralText(""));
-
-        IGearRarity rarity = gear.getRarity();
-
         int socketed = gear.sockets.sockets.size();
-
         if (socketed > 0) {
             TooltipUtils.addSocketNamesLine(tip, gear);
         }
 
         tip.add(new LiteralText(""));
 
-        // TODO
-
         tip.add(TooltipUtils.gearTier(gear.getTier()));
         tip.add(TooltipUtils.gearLevel(gear.lvl));
         tip.add(TooltipUtils.gearRarity(gear.getRarity()));
-        if (false) {
-            tip.add(TooltipUtils.rarity(rarity)
-                .append(" ")
-                .append(gear.GetBaseGearType()
-                    .locName()));
-
-        }
 
         tip.add(new LiteralText(""));
         ItemStack.appendEnchantments(tip, stack.getEnchantments());
 
-        if (true || ModConfig.get().client.SHOW_DURABILITY) {
+        if (ModConfig.get().client.SHOW_DURABILITY) {
             if (stack.isDamageable()) {
                 tip.add(new SText(Formatting.WHITE + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
             } else {

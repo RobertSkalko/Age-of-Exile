@@ -31,7 +31,6 @@ public enum FoodExileEffect {
 
     WATER_DAMAGE("Aqua", "water", EffectColor.BLUE, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Water)), new OptScaleExactStat(20, new ElementalResist(Elements.Water))),
     FIRE_DAMAGE("Ignis", "fire", EffectColor.RED, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)), new OptScaleExactStat(20, new ElementalResist(Elements.Fire))),
-    AIR_DAMAGE("Sky", "light", EffectColor.YELLOW, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Air)), new OptScaleExactStat(20, new ElementalResist(Elements.Air))),
     NATURE_DAMAGE("Terra", "nature", EffectColor.GREEN, new OptScaleExactStat(15, Stats.ELEMENTAL_DAMAGE.get(Elements.Earth)), new OptScaleExactStat(20, new ElementalResist(Elements.Earth))),
     PHYSICAL_DAMAGE("Physical", "physical", EffectColor.RED, new OptScaleExactStat(10, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical)), new OptScaleExactStat(20, Armor.getInstance(), ModType.PERCENT)),
 

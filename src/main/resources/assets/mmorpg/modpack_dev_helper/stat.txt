@@ -285,7 +285,6 @@ inc_effect_of_negative_buff_on_you
 spell_fire_damage
 bonus_exp_for_t1_mob
 cd_ticks
-socket_slots
 chance_of_bleed
 total_damage
 immobilizing_eff_dur_u_cast

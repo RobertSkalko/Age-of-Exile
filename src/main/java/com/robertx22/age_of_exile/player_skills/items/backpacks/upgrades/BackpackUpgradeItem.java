@@ -70,7 +70,7 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack currency) {
+    public ItemStack internalModifyMethod(ItemStack stack, ItemStack currency) {
 
         BagUpgradesData data = BagUpgradesData.load(stack);
 

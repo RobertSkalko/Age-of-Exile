@@ -44,7 +44,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
+    public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
 
         GearItemData gear = Gear.Load(stack);
 

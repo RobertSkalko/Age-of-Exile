@@ -44,7 +44,7 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
+    public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
         gear.affixes.pre.clear();
         gear.affixes.suf.clear();

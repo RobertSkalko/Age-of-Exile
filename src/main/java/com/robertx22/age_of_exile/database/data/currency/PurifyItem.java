@@ -41,7 +41,7 @@ public class PurifyItem extends CurrencyItem implements ICurrencyItemEffect, ISh
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
+    public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
         gear.c = false;
         Gear.Save(stack, gear);

@@ -41,7 +41,7 @@ public class ClearInstabilityItem extends CurrencyItem implements ICurrencyItemE
     }
 
     @Override
-    public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
+    public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
         gear.setInstability(gear.getInstability() - 500);
         Gear.Save(stack, gear);

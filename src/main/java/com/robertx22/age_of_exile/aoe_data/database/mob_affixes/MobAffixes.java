@@ -33,7 +33,6 @@ public class MobAffixes implements ExileRegistryInit {
         eleAffix("Freezing", Water);
         eleAffix("Flaming", Fire);
         eleAffix("Poisoned", Earth);
-        eleAffix("Lightning", Air);
 
         new MobAffix("reflect", Stats.DAMAGE_REFLECTED.get()
             .getFormatAndIcon(), Physical.format)

@@ -564,37 +564,6 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_SPENDING_EFFECT_TO_DOUBLE_DMG = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_of_spend_" + x.id + "_for_double_dmg", x -> x.element)
-        .addAllOfType(Arrays.asList(
-                NegativeEffects.BURN,
-                NegativeEffects.POISON,
-                NegativeEffects.FROSTBURN,
-                NegativeEffects.BLEED,
-                NegativeEffects.BLIND
-            )
-        )
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
-        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
-        .addEffect(x -> StatEffects.REMOVE_EFFECT_FROM_TARGET.get(x))
-        .addEffect(x -> StatEffects.DOUBLE_DAMAGE)
-        .setLocName(x -> Stat.format(
-            "Your " + x.element.getIconNameFormat() + " Attacks have " + Stat.VAL1 + "% chance of spending a " + x.locname + " stack to deal double damage."
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_APPLYING_EFFECT_ON_CRIT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id + "_on_crit", x -> x.element)
         .addAllOfType(Arrays.asList(
@@ -1379,52 +1348,6 @@ public class Stats implements ExileRegistryInit {
         .modifyAfterDone(x -> {
             x.is_long = true;
             x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> CHANCE_OF_HP_REGEN_ON_SPELL_CRIT = DatapackStatBuilder
-        .ofSingle("chance_of_hp_reg_on_spell_crit", Elements.Physical)
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.spell))
-        .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.IF_CRIT)
-        .addEffect(StatEffects.GIVE_SELF_EFFECT.get(BeneficialEffects.HP_REGEN))
-        .setLocName(x -> Stat.format(
-            "Your Spell Crits have " + Stat.VAL1 + "% chance to give you Health Regen buff."
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.is_long = true;
-            x.min = 0;
-            x.max = 100;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> CHANCE_OF_MANA_REGEN_ON_HEAL_CRIT = DatapackStatBuilder
-        .ofSingle("chance_of_mana_reg_on_heal_crit", Elements.Physical)
-        .worksWithEvent(RestoreResourceEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_SPELL)
-        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
-        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
-        .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.IF_CRIT)
-        .addEffect(StatEffects.GIVE_SELF_EFFECT.get(BeneficialEffects.MANA_REGEN))
-        .setLocName(x -> Stat.format(
-            "Your Heal Crits have " + Stat.VAL1 + "% chance to give you Mana Regen buff."
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
             x.scaling = StatScaling.NONE;
         })
         .build();
