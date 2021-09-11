@@ -92,7 +92,6 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
                 text.append(" (" + (int) (attack_scaling.getValue(provider) * 100) + "% Weapon Damage)")
                     .formatted(Formatting.YELLOW);
             }
-
         }
 
         stat_scalings.forEach(x -> {
