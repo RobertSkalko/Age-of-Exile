@@ -1,0 +1,97 @@
+package com.robertx22.age_of_exile.aoe_data.database.spells.schools;
+
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
+import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
+import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
+import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
+import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
+import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
+import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundEvents;
+
+import java.util.Arrays;
+
+import static com.robertx22.age_of_exile.mmorpg.ModRegistry.*;
+
+public class NatureSpells implements ExileRegistryInit {
+    public static String POISONBALL_ID = "poison_ball";
+
+    @Override
+    public void registerAll() {
+
+        SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 20)
+                    .setSwingArm()
+                    .applyCastSpeedToCooldown(), "Poison Ball",
+                Arrays.asList(SpellTag.projectile, SpellTag.damage))
+            .manualDesc(
+                "Throw out a ball of poison, dealing " + SpellCalcs.POISON_BALL.getLocSpellTooltip()
+                    + " " + Elements.Earth.getIconNameDmg())
+            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.SLIMEBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
+            .onTick(PartBuilder.particleOnTick(1D, PARTICLES.POISON, 1D, 0.15D))
+            .onHit(PartBuilder.damage(SpellCalcs.POISON_BALL, Elements.Earth))
+            .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
+
+            .build();
+        SpellBuilder.of("thorn_armor", SpellConfiguration.Builder.instant(15, 200 * 20), "Thorn Armor",
+                Arrays.asList(SpellTag.damage))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.THORN_ARMOR.effectId, 20 * 45D))
+            .build();
+
+        SpellBuilder.of("refresh", SpellConfiguration.Builder.nonInstant(40, 20 * 60 * 3, 20)
+                    .setScaleManaToPlayer(), "Refresh",
+                Arrays.asList())
+
+            .manualDesc(
+                "Refreshes all your spell cooldowns by 1 minute.")
+
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+            .onCast(PartBuilder.playSound(ModRegistry.SOUNDS.FREEZE, 1D, 1D))
+
+            .onCast(PartBuilder.justAction(SpellAction.REFRESH_COOLDOWNS_BY_X_TICKS.create(20 * 60D))
+                .addTarget(TargetSelector.CASTER.create()))
+
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.FALLING_WATER, 100D, 1.5D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.DRIPPING_WATER, 50D, 1.5D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 50D, 1.5D))
+            .build();
+
+        SpellBuilder.of("poisoned_weapons", SpellConfiguration.Builder.instant(15, 160 * 20), "Poison Weapons",
+                Arrays.asList(SpellTag.damage))
+            .attackStyle(PlayStyle.ranged)
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.POISON_WEAPONS, 20 * 30D))
+            .build();
+
+        SpellBuilder.of("nature_balm", SpellConfiguration.Builder.nonInstant(15, 60 * 20, 30)
+                    .setScaleManaToPlayer(), "Rejuvenate",
+                Arrays.asList(SpellTag.heal))
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(3D, BeneficialEffects.REGENERATE.effectId, 20 * 15D))
+            .build();
+
+        SpellBuilder.of("entangling_seed", SpellConfiguration.Builder.instant(15, 60 * 20)
+                    .setSwingArm(), "Entangling Seed",
+                Arrays.asList(SpellTag.area))
+
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.BEETROOT_SEEDS, 1D, ENTITIES.SIMPLE_PROJECTILE, 40D)))
+
+            .onExpire(PartBuilder.justAction(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.PETRIFY, 5))
+                .enemiesInRadius(3D))
+            .onExpire(PartBuilder.groundParticles(ParticleTypes.LARGE_SMOKE, 50D, 3D, 0.25D))
+            .onExpire(PartBuilder.groundParticles(ParticleTypes.ITEM_SLIME, 100D, 3D, 0.25D))
+            .onExpire(PartBuilder.playSound(SOUNDS.STONE_CRACK, 1D, 1D))
+            .build();
+    }
+}

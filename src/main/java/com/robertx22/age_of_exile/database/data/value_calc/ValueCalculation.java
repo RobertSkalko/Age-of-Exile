@@ -13,8 +13,6 @@ import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import info.loenwind.autosave.annotations.Factory;
-import info.loenwind.autosave.annotations.Storable;
-import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
@@ -23,7 +21,6 @@ import net.minecraft.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-@Storable
 public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IAutoGson<ValueCalculation> {
 
     public static ValueCalculation SERIALIZER = new ValueCalculation();
@@ -31,7 +28,7 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
     public static ValueCalculation base(String id, float base) {
         ValueCalculation data = new ValueCalculation();
         data.id = id;
-        data.base_val = base;
+        data.base_min = base;
 
         data.addToSerializables();
         return data;
@@ -41,7 +38,7 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
         ValueCalculation data = new ValueCalculation();
         data.id = id;
         data.attack_scaling = attack;
-        data.base_val = base;
+        data.base_min = base;
         data.addToSerializables();
         return data;
     }
@@ -50,7 +47,7 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
         ValueCalculation data = new ValueCalculation();
         data.id = id;
         data.stat_scalings.add(stat);
-        data.base_val = base;
+        data.base_min = base;
         data.addToSerializables();
         return data;
     }
@@ -64,28 +61,21 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
         return new ArrayList<>(stat_scalings);
     }
 
-    @Store
     public List<ScalingCalc> stat_scalings = new ArrayList<>();
 
-    @Store
     public String id = "";
-    @Store
     public StatScaling base_scaling_type = StatScaling.NORMAL;
-    @Store
-    public StatScaling atk_scaling_type = StatScaling.DOUBLE_AT_MAX_LVL;
-    @Store
-    public float attack_scaling = 0;
-    @Store
-    public float base_val = 0;
+    public LeveledValue attack_scaling = new LeveledValue(0, 0);
+    public LeveledValue base = new LeveledValue(0, 0);
 
     public int getCalculatedBaseValue(int lvl) {
 
         if (base_scaling_type == null) {
-            MMORPG.logError("base scaling null");
+            MMORPG.logError("base scaling type null");
             return 0;
         }
 
-        return (int) base_scaling_type.scale(base_val, lvl);
+        return (int) base_scaling_type.scale(base_min, lvl);
     }
 
     public String getLocSpellTooltip() {
@@ -99,7 +89,7 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
             for (Stat stat : new AttackDamage(Elements.Earth).generateAllPossibleStatVariations()) {
                 amount += data.getUnit()
                     .getCalculatedStat(stat.GUID())
-                    .getValue() * this.atk_scaling_type.scale(attack_scaling, lvl);
+                    .getValue() * attack_scaling;
             }
         }
         amount += getAllScalingValues().stream()
@@ -120,12 +110,12 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
     public Text getShortTooltip(int lvl) {
         MutableText text = new LiteralText("");
 
-        if (this.base_val > 0) {
+        if (this.base_min > 0) {
             text.append(getCalculatedBaseValue(lvl) + "");
         }
 
         if (attack_scaling > 0) {
-            text.append(" + " + (int) (this.atk_scaling_type.scale(attack_scaling, lvl) * 100) + "% Weapon Attack");
+            text.append(" + " + (int) (attack_scaling * 100) + "% Weapon Attack");
         }
 
         stat_scalings.forEach(x -> {

@@ -293,10 +293,9 @@ public class BeneficialEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(FROST_ARMOR)
             .stat(20, new ElementalResist(Elements.Water), ModType.FLAT)
-            .stat(20, Armor.getInstance(), ModType.FLAT)
+            .stat(30, Armor.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .buildForEffect())
-
             .addTags(EffectTags.defensive)
 
             .build();

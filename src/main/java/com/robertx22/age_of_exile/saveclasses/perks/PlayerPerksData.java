@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.perks;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
@@ -24,11 +24,11 @@ public class PlayerPerksData {
     @Store
     public int reset_points = 5;
 
-    public HashMap<String, SchoolData> getPerks(SpellSchool.SchoolType type) {
+    public HashMap<String, SchoolData> getPerks(TalentTree.SchoolType type) {
         return perks;
     }
 
-    public int getAllocatedPoints(SpellSchool.SchoolType type) {
+    public int getAllocatedPoints(TalentTree.SchoolType type) {
         int points = 0;
         for (Map.Entry<String, SchoolData> x : getPerks(type).entrySet()) {
             points += x.getValue()
@@ -37,7 +37,7 @@ public class PlayerPerksData {
         return points;
     }
 
-    public int getFreePoints(EntityCap.UnitData data, SpellSchool.SchoolType type) {
+    public int getFreePoints(EntityCap.UnitData data, TalentTree.SchoolType type) {
 
         int num = 0;
 
@@ -48,14 +48,14 @@ public class PlayerPerksData {
         return num;
     }
 
-    public SchoolData getSchool(SpellSchool school) {
+    public SchoolData getSchool(TalentTree school) {
         if (!getPerks(school.getSchool_type()).containsKey(school.GUID())) {
             getPerks(school.getSchool_type()).put(school.GUID(), new SchoolData());
         }
         return getPerks(school.getSchool_type()).get(school.GUID());
     }
 
-    public void allocate(PlayerEntity player, SpellSchool school, PointData point) {
+    public void allocate(PlayerEntity player, TalentTree school, PointData point) {
 
         getSchool(school).map.put(point, true);
 
@@ -63,15 +63,15 @@ public class PlayerPerksData {
 
     }
 
-    public void remove(SpellSchool school, PointData point) {
+    public void remove(TalentTree school, PointData point) {
         getSchool(school).map.put(point, false);
     }
 
-    public boolean hasFreePoints(EntityCap.UnitData data, SpellSchool.SchoolType type) {
+    public boolean hasFreePoints(EntityCap.UnitData data, TalentTree.SchoolType type) {
         return getFreePoints(data, type) > 0;
     }
 
-    public boolean canAllocate(SpellSchool school, PointData point, EntityCap.UnitData data, PlayerEntity player) {
+    public boolean canAllocate(TalentTree school, PointData point, EntityCap.UnitData data, PlayerEntity player) {
 
         if (!hasFreePoints(data, school.getSchool_type())) {
             return false;
@@ -101,7 +101,7 @@ public class PlayerPerksData {
 
     }
 
-    public boolean canRemove(SpellSchool school, PointData point) {
+    public boolean canRemove(TalentTree school, PointData point) {
 
         if (!getSchool(school).isAllocated(point)) {
             return false;
@@ -127,7 +127,7 @@ public class PlayerPerksData {
 
     }
 
-    private boolean hasPathToStart(SpellSchool school, PointData check, PointData toRemove) {
+    private boolean hasPathToStart(TalentTree school, PointData check, PointData toRemove) {
         Queue<PointData> openSet = new ArrayDeque<>();
 
         openSet.addAll(school.calcData.connections.get(check));

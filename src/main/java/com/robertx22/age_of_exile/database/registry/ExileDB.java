@@ -27,7 +27,7 @@ import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
@@ -138,7 +138,7 @@ public class ExileDB {
         return Database.getRegistry(ExileRegistryTypes.FAVOR_RANK);
     }
 
-    public static ExileRegistryContainer<SpellSchool> SpellSchools() {
+    public static ExileRegistryContainer<TalentTree> TalentTrees() {
         return Database.getRegistry(ExileRegistryTypes.SPELL_SCHOOL);
     }
 

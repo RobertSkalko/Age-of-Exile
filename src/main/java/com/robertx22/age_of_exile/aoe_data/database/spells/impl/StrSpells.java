@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
@@ -28,11 +27,8 @@ import net.minecraft.sound.SoundEvents;
 
 import java.util.Arrays;
 
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.PARTICLES;
-
 public class StrSpells implements ExileRegistryInit {
 
-    public static String FLAME_STRIKE_ID = "flame_strike";
     public static String CHARGE_ID = "charge";
     public static String GONG_STRIKE_ID = "gong_strike";
 
@@ -92,50 +88,6 @@ public class StrSpells implements ExileRegistryInit {
             .attackStyle(PlayStyle.melee)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WOLF_HOWL, 1D, 1D))
             .onCast(PartBuilder.giveShieldInRadius(10D, SpellCalcs.SHOUT_WARN, 10D))
-            .build();
-
-        SpellBuilder.of("thorn_armor", SpellConfiguration.Builder.instant(15, 200 * 20), "Thorn Armor",
-                Arrays.asList(SpellTag.damage))
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.THORN_ARMOR.effectId, 20 * 45D))
-            .build();
-
-        SpellBuilder.of("frost_armor", SpellConfiguration.Builder.instant(15, 120 * 20), "Frost Armor",
-                Arrays.asList())
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.FROST_ARMOR, 20 * 120D))
-            .build();
-
-        SpellBuilder.of("poisoned_weapons", SpellConfiguration.Builder.instant(15, 160 * 20), "Poison Weapons",
-                Arrays.asList(SpellTag.damage))
-            .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.POISON_WEAPONS, 20 * 30D))
-            .build();
-
-        SpellBuilder.of(FLAME_STRIKE_ID, SpellConfiguration.Builder.instant(8, 15)
-                    .setSwingArm(), "Flame Strike",
-                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
-            .attackStyle(PlayStyle.melee)
-            .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
-            .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("flame_strike", 0.5F, 1), Elements.Fire, 2D, 3D)
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D)))
-            .build();
-
-        SpellBuilder.of("tidal_strike", SpellConfiguration.Builder.instant(8, 12)
-                    .setSwingArm(), "Tidal Strike",
-                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
-            .attackStyle(PlayStyle.melee)
-            .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1D, 1D))
-            .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("tidal_strike", 0.5F, 1), Elements.Water, 2D, 3D)
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.RAIN, 75D, 1D, 0.1D))
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SPLASH, 50D, 1D, 0.1D))
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(PARTICLES.BUBBLE, 100D, 1D, 0.1D))
-            )
             .build();
 
         SpellBuilder.of(GONG_STRIKE_ID, SpellConfiguration.Builder.instant(8, 20 * 10)

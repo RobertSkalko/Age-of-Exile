@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.database.data.spell_schools.parser;
 
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
 import com.robertx22.library_of_exile.utils.Watch;
 
 import java.util.*;
 
 public class TalentGrid {
 
-    SpellSchool school;
+    TalentTree school;
 
     List<List<GridPoint>> grid = new ArrayList<>();
 
@@ -16,7 +16,7 @@ public class TalentGrid {
             .get(y);
     }
 
-    public TalentGrid(SpellSchool school, String str) {
+    public TalentGrid(TalentTree school, String str) {
         this.school = school;
 
         int y = 0;

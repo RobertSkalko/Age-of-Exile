@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.testing.tests;
 
 import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.testing.CommandTest;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -13,7 +13,7 @@ public class FindUnusedPerksTest extends CommandTest {
     @Override
     public void run(ServerPlayerEntity player) {
 
-        SpellSchool tree = ExileDB.SpellSchools()
+        TalentTree tree = ExileDB.TalentTrees()
             .get("talents");
 
         List<Perk> perks = ExileDB.Perks()

@@ -26,7 +26,7 @@ public class SpellCalcs {
     public static ValueCalculation TOTEM_GUARD = ValueCalculation.base("totem_guard", 5);
     public static ValueCalculation TOTEM_MANA = ValueCalculation.base("totem_mana", 5);
     public static ValueCalculation CURSE = ValueCalculation.base("curse", 3);
-    public static ValueCalculation STORM_CALL = ValueCalculation.base("storm_call", 7);
     public static ValueCalculation BLACK_HOLE = ValueCalculation.base("black_hole", 5);
+    public static ValueCalculation SMOKE_BOMB = ValueCalculation.base("lose_aggro", 20);
 
 }

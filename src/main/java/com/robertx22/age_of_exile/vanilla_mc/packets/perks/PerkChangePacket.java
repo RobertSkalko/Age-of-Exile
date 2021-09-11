@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets.perks;
 
 import com.robertx22.age_of_exile.capability.player.EntityPerks;
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -30,7 +30,7 @@ public class PerkChangePacket extends MyPacket<PerkChangePacket> {
 
     }
 
-    public PerkChangePacket(SpellSchool school, PointData point, ACTION action) {
+    public PerkChangePacket(TalentTree school, PointData point, ACTION action) {
         this.school = school.identifier;
         this.x = point.x;
         this.y = point.y;
@@ -63,8 +63,8 @@ public class PerkChangePacket extends MyPacket<PerkChangePacket> {
     @Override
     public void onReceived(PacketContext ctx) {
         EntityPerks perks = Load.perks(ctx.getPlayer());
-        SpellSchool sc = ExileDB.SpellSchools()
-                .get(school);
+        TalentTree sc = ExileDB.TalentTrees()
+            .get(school);
 
         if (sc == null) {
             MMORPG.logError("school is null: " + this.school);
@@ -84,9 +84,9 @@ public class PerkChangePacket extends MyPacket<PerkChangePacket> {
         }
 
         Load.Unit(ctx.getPlayer())
-                .setEquipsChanged(true);
+            .setEquipsChanged(true);
         Load.Unit(ctx.getPlayer())
-                .tryRecalculateStats();
+            .tryRecalculateStats();
 
         Packets.sendToClient(ctx.getPlayer(), new SyncCapabilityToClient(ctx.getPlayer(), PlayerCaps.ENTITY_PERKS));
     }

@@ -4,15 +4,15 @@ import com.google.common.collect.Sets;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.player.EntityPerks;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool.SchoolType;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree.SchoolType;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.ConnectionButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.SelectTreeButton;
-import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.SpellSchoolButton;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.TalentTreeButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -81,9 +81,9 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     HashMap<ClickableWidget, PointData> originalButtonLocMap = new HashMap<>();
     HashMap<PointData, PerkButton> pointPerkButtonMap = new HashMap<>();
 
-    public List<SpellSchool> schoolsInOrder;
+    public List<TalentTree> schoolsInOrder;
 
-    public SpellSchool getSchoolByIndexAllowsOutOfBounds(int i) {
+    public TalentTree getSchoolByIndexAllowsOutOfBounds(int i) {
         if (i >= schoolsInOrder.size()) {
             return schoolsInOrder.get(i - schoolsInOrder.size());
         }
@@ -98,7 +98,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     EntityPerks entityPerks = Load.perks(mc.player);
 
-    public SpellSchool school;
+    public TalentTree school;
 
     @Override
     protected void init() {
@@ -107,7 +107,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         try {
             Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.ENTITY_PERKS));
 
-            schoolsInOrder = ExileDB.SpellSchools()
+            schoolsInOrder = ExileDB.TalentTrees()
                 .getFiltered(x -> {
                     return x.getSchool_type() == this.schoolType;
                 });
@@ -213,8 +213,8 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                 int subx = PerkButton.BIGGEST / 2;
                 int suby = PerkButton.BIGGEST / 2;
 
-                int x = getPosForPoint(e.getKey()).x + addx - subx + SpellSchoolButton.XSIZE / 2;
-                int y = getPosForPoint(e.getKey()).y + addy - suby + SpellSchoolButton.YSIZE / 2;
+                int x = getPosForPoint(e.getKey()).x + addx - subx + TalentTreeButton.XSIZE / 2;
+                int y = getPosForPoint(e.getKey()).y + addy - suby + TalentTreeButton.YSIZE / 2;
 
                 this.newButton(new PerkButton(this, entityPerks, school, e.getKey(), perk, x, y));
             } catch (Exception exception) {
@@ -223,30 +223,30 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         }
 
         int sx = mc.getWindow()
-            .getScaledWidth() / 2 - SpellSchoolButton.XSIZE / 2;
+            .getScaledWidth() / 2 - TalentTreeButton.XSIZE / 2;
         int sy = 0;
 
         if (this.schoolsInOrder.size() > 1) {
 
-            this.addButton(new SpellSchoolButton(this, school, sx, sy));
+            this.addButton(new TalentTreeButton(this, school, sx, sy));
 
             int place = this.schoolsInOrder.indexOf(school);
 
             for (int i = 0; i < 2; i++) {
-                int xadd = SpellSchoolButton.XSIZE * (i + 1) + i + 1;
+                int xadd = TalentTreeButton.XSIZE * (i + 1) + i + 1;
 
                 int index1 = i + 1;
                 int index2 = -i - 1;
 
-                SpellSchool school1 = getSchoolByIndexAllowsOutOfBounds(place + index1);
-                SpellSchool school2 = getSchoolByIndexAllowsOutOfBounds(place + index2);
+                TalentTree school1 = getSchoolByIndexAllowsOutOfBounds(place + index1);
+                TalentTree school2 = getSchoolByIndexAllowsOutOfBounds(place + index2);
 
-                this.addButton(new SpellSchoolButton(this, school1, sx + xadd, sy));
-                this.addButton(new SpellSchoolButton(this, school2, sx - xadd, sy));
+                this.addButton(new TalentTreeButton(this, school1, sx + xadd, sy));
+                this.addButton(new TalentTreeButton(this, school2, sx - xadd, sy));
 
                 if (i == 1) {
-                    this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.LEFT, sx - xadd - 15, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
-                    this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.RIGHT, sx + xadd + SpellSchoolButton.XSIZE + 1, sy + SpellSchoolButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+                    this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.LEFT, sx - xadd - 15, sy + TalentTreeButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
+                    this.addButton(new SelectTreeButton(this, SelectTreeButton.LeftOrRight.RIGHT, sx + xadd + TalentTreeButton.XSIZE + 1, sy + TalentTreeButton.YSIZE / 2 - SelectTreeButton.YSIZE / 2));
                 }
             }
         }
@@ -268,8 +268,8 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         float x = (point.x - school.calcData.center.x) * PerkButton.SPACING + 2;
         float y = (point.y - school.calcData.center.y) * PerkButton.SPACING + 2;
 
-        x -= SpellSchoolButton.XSIZE / 2F;
-        y -= SpellSchoolButton.YSIZE / 2F;
+        x -= TalentTreeButton.XSIZE / 2F;
+        y -= TalentTreeButton.YSIZE / 2F;
 
         int tx = (int) (halfx + x);
         int ty = (int) (halfy + y);

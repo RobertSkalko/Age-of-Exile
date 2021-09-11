@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.capability.player;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.PointData;
@@ -18,6 +18,7 @@ import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,20 +39,20 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
     }
 
     public void clearAllTalents() {
-        this.data.getPerks(SpellSchool.SchoolType.TALENTS)
+        this.data.getPerks(TalentTree.SchoolType.TALENTS)
             .clear();
 
     }
 
     public HashMap<PointData, Perk> getAllAllocatedPerks() {
         HashMap<PointData, Perk> perks = new HashMap<>();
-        for (SpellSchool.SchoolType type : SpellSchool.SchoolType.values()) {
+        for (TalentTree.SchoolType type : TalentTree.SchoolType.values()) {
             for (Map.Entry<String, SchoolData> x : data.getPerks(type)
                 .entrySet()) {
-                if (ExileDB.SpellSchools()
+                if (ExileDB.TalentTrees()
                     .isRegistered(x.getKey())) {
 
-                    SpellSchool school = ExileDB.SpellSchools()
+                    TalentTree school = ExileDB.TalentTrees()
                         .get(x.getKey());
                     if (school != null) {
                         for (PointData p : x.getValue()
@@ -65,7 +66,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         return perks;
     }
 
-    public PerkStatus getStatus(PlayerEntity player, SpellSchool school, PointData point) {
+    public PerkStatus getStatus(PlayerEntity player, TalentTree school, PointData point) {
 
         if (isAllocated(school, point)) {
             return PerkStatus.CONNECTED;
@@ -83,7 +84,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         }
     }
 
-    public Perk.Connection getConnection(SpellSchool school, PointData one, PointData two) {
+    public Perk.Connection getConnection(TalentTree school, PointData one, PointData two) {
 
         if (isAllocated(school, one)) {
 
@@ -98,7 +99,7 @@ public class EntityPerks implements ICommonPlayerCap, IApplyableStats {
         return Perk.Connection.BLOCKED;
     }
 
-    public boolean isAllocated(SpellSchool school, PointData point) {
+    public boolean isAllocated(TalentTree school, PointData point) {
         return data.getSchool(school)
             .isAllocated(point);
     }

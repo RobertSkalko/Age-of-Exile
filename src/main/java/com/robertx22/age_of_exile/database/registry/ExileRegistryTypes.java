@@ -25,7 +25,7 @@ import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
@@ -66,7 +66,7 @@ public class ExileRegistryTypes {
     public static ExileRegistryType ENTITY_CONFIGS = ExileRegistryType.register(Ref.MODID, "entity_config", 14, Serializers.ENTITY_CONFIG_SER, SyncTime.NEVER);
     public static ExileRegistryType SPELL = ExileRegistryType.register(Ref.MODID, "spells", 17, Spell.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType PERK = ExileRegistryType.register(Ref.MODID, "perk", 18, Perk.SERIALIZER, SyncTime.ON_LOGIN);
-    public static ExileRegistryType SPELL_SCHOOL = ExileRegistryType.register(Ref.MODID, "spell_school", 19, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN);
+    public static ExileRegistryType SPELL_SCHOOL = ExileRegistryType.register(Ref.MODID, "talent_tree", 19, TalentTree.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType GEAR_RARITY_GROUP = ExileRegistryType.register(Ref.MODID, "gear_rarity_group", 20, GearRarityGroup.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType SALVAGE_OUTPUT = ExileRegistryType.register(Ref.MODID, "salvage_output", 22, SalvageOutput.SERIALIZER, SyncTime.NEVER);
     public static ExileRegistryType PLAYER_SKILLS = ExileRegistryType.register(Ref.MODID, "player_skills", 23, PlayerSkill.SERIALIZER, SyncTime.ON_LOGIN);

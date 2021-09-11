@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree.buttons;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.IMarkOnTop;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -11,17 +11,17 @@ import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
-public class SpellSchoolButton extends TexturedButtonWidget implements IMarkOnTop {
+public class TalentTreeButton extends TexturedButtonWidget implements IMarkOnTop {
     static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/spellschoolbutton.png");
 
     public static int XSIZE = 32;
     public static int YSIZE = 32;
 
-    SpellSchool school;
+    TalentTree school;
 
     SkillTreeScreen screen;
 
-    public SpellSchoolButton(SkillTreeScreen screen, SpellSchool school, int x, int y) {
+    public TalentTreeButton(SkillTreeScreen screen, TalentTree school, int x, int y) {
         super(x, y, XSIZE, YSIZE, 0, 0, 1, ID, (action) -> {
         });
         this.school = school;

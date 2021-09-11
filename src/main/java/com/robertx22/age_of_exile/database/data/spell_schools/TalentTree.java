@@ -15,9 +15,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<SpellSchool> {
+public class TalentTree implements JsonExileRegistry<TalentTree>, IAutoGson<TalentTree> {
 
-    public static SpellSchool SERIALIZER = new SpellSchool();
+    public static TalentTree SERIALIZER = new TalentTree();
 
     public int order = 0;
     public String text_format;
@@ -44,8 +44,8 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
     public transient CalcData calcData = new CalcData();
 
     @Override
-    public Class<SpellSchool> getClassForSerialization() {
-        return SpellSchool.class;
+    public Class<TalentTree> getClassForSerialization() {
+        return TalentTree.class;
     }
 
     @Override

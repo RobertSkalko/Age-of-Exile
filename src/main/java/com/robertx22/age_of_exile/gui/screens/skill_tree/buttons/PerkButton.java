@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.player.EntityPerks;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
@@ -31,7 +31,7 @@ public class PerkButton extends TexturedButtonWidget {
 
     public Perk perk;
     public PointData point;
-    public SpellSchool school;
+    public TalentTree school;
     public EntityPerks enperks;
 
     public int originalWidth;
@@ -42,7 +42,7 @@ public class PerkButton extends TexturedButtonWidget {
     MinecraftClient mc = MinecraftClient.getInstance();
     SkillTreeScreen screen;
 
-    public PerkButton(SkillTreeScreen screen, EntityPerks enperks, SpellSchool school, PointData point, Perk perk, int x, int y) {
+    public PerkButton(SkillTreeScreen screen, EntityPerks enperks, TalentTree school, PointData point, Perk perk, int x, int y) {
         super(x, y, perk.getType().width, perk.getType().height, 0, 0, 1, ID, (action) -> {
         });
         this.perk = perk;

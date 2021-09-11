@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree.buttons;
 
 import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.spell_schools.SpellSchool;
+import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
@@ -17,14 +17,14 @@ public class ConnectionButton extends TexturedButtonWidget {
 
     public static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/lines.png");
 
-    SpellSchool school;
+    TalentTree school;
     PointData one;
     PointData two;
 
     SkillTreeScreen screen;
     MinecraftClient mc = MinecraftClient.getInstance();
 
-    public ConnectionButton(SkillTreeScreen screen, SpellSchool school, PointData one, PointData two, int x, int y) {
+    public ConnectionButton(SkillTreeScreen screen, TalentTree school, PointData one, PointData two, int x, int y) {
         super(x, y, SIZE, SIZE, 0, 0, 0, ID, (action) -> {
         });
         this.school = school;
