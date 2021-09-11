@@ -19,13 +19,11 @@ import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
 import com.robertx22.age_of_exile.aoe_data.database.mob_rarities.MobRaritiesAdder;
 import com.robertx22.age_of_exile.aoe_data.database.perks.AllPerks;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillsAdder;
-import com.robertx22.age_of_exile.aoe_data.database.random_skill_gem_stats.RandomSkillGemStatsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.runes.Runes;
 import com.robertx22.age_of_exile.aoe_data.database.salvage_outputs.SalvageOutputsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.salvage_recipes.SalvageRecipes;
 import com.robertx22.age_of_exile.aoe_data.database.scroll_buffs.ScrollBuffsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
-import com.robertx22.age_of_exile.aoe_data.database.skill_gem_rarity.SkillGemRarityAdder;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
@@ -52,7 +50,6 @@ public class GeneratedData {
 
         new DatapackStats().registerAll();
 
-        new SkillGemRarityAdder().registerAll();
         new GearRaritiesAdder().registerAll();
         new GearRarityGroupAdder().registerAll(); // after gear rarities
         new MobRaritiesAdder().registerAll();
@@ -94,7 +91,6 @@ public class GeneratedData {
         new SalvageRecipes().registerAll();
 
         new SkillGemsAdder().registerAll();
-        new RandomSkillGemStatsAdder().registerAll();
 
         new GameBalanceConfig().addToSerializables();
         new ScrollBuffsAdder().registerAll();

@@ -282,11 +282,6 @@ public class DamageEvent extends EffectEvent {
 
         float dmg = info.totalDmg;
 
-        if (dmg < 1) {
-            cancelDamage();
-            return;
-        }
-
         float vanillaDamage = HealthUtils.realToVanilla(target, dmg);
 
         if (this.data.isCanceled()) {

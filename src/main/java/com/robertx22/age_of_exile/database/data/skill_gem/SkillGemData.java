@@ -1,20 +1,16 @@
 package com.robertx22.age_of_exile.database.data.skill_gem;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
-import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
-import com.robertx22.age_of_exile.saveclasses.ExactStatData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
@@ -32,22 +28,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarity> {
+public class SkillGemData implements ITooltipList, ICommonDataItem<GearRarity> {
 
     @Store
     public String id = "";
     @Store
-    public String rar = "";
-    @Store
-    public int stat_perc = 100;
-    @Store
     public int lvl = 1;
     @Store
     public boolean sal = true;
-
-    // only support gems should have random stats
-    @Store
-    public List<StatModifier> random_stats = new ArrayList<>();
 
     public void tryLevel() {
 
@@ -96,12 +84,13 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
 
     @Override
     public String getRarityRank() {
-        return rar;
+        return IRarity.COMMON_ID;
     }
 
-    public SkillGemRarity getRarity() {
-        return ExileDB.SkillGemRarities()
-            .get(rar);
+    @Override
+    public Rarity getRarity() {
+        return ExileDB.GearRarities()
+            .get(getRarityRank());
     }
 
     @Override
@@ -113,8 +102,6 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
 
             TooltipUtils.addRequirements(list, getLevelForRequirement(info.player), new StatRequirement(), info.unitdata);
 
-            List<ExactStatData> cStats = getSkillGem().getConstantStats(this);
-
             if (this.getSkillGem().type == SkillGemType.SKILL_GEM) {
                 Spell spell = ExileDB.Spells()
                     .get(getSkillGem().spell_id);
@@ -123,19 +110,6 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<SkillGemRarit
             }
 
             list.add(new LiteralText(""));
-
-            if (!cStats.isEmpty()) {
-                list.add(new LiteralText("Supported Skill Gains: "));
-                cStats.forEach(x -> list.addAll(x.GetTooltipString(info)));
-            }
-            if (!random_stats.isEmpty()) {
-                list.add(new LiteralText(""));
-                list.add(new LiteralText("Random Stats: "));
-                this.getSkillGem()
-                    .getRandomStats(this)
-                    .forEach(x -> list.addAll(x.GetTooltipString(info)));
-
-            }
 
             list.add(new LiteralText(""));
             list.add(TooltipUtils.rarity(getRarity())

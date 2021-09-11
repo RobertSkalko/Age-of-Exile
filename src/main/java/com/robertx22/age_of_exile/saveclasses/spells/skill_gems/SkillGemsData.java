@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.saveclasses.spells.skill_gems;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import info.loenwind.autosave.annotations.Storable;
@@ -71,29 +70,6 @@ public class SkillGemsData implements Inventory {
             this.x = x;
             this.y = y;
         }
-    }
-
-    public Unit.StatContainerType getStatContainerFor(Spell spell) {
-        int index = getIndexOfSpell(spell);
-
-        int place = -1;
-        for (SkillGemsData.Places p : SkillGemsData.Places.values()) {
-            if (p.index == index) {
-                place = p.place;
-                break;
-            }
-        }
-        if (place > -1) {
-            for (Unit.StatContainerType type : Unit.StatContainerType.values()) {
-                if (type.place == place) {
-                    return type;
-                }
-            }
-        }
-
-        System.out.print("This shouldn't happen");
-        return Unit.StatContainerType.NORMAL;
-
     }
 
     public int getIndexOfSpell(Spell spell) {

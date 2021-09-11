@@ -16,10 +16,8 @@ import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.database.data.random_skill_gem_stats.RandomSkillGemStats;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
-import com.robertx22.age_of_exile.database.data.rarities.SkillGemRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
@@ -131,10 +129,6 @@ public class ExileDB {
         return Database.getRegistry(ExileRegistryTypes.SALVAGE_RECIPE);
     }
 
-    public static ExileRegistryContainer<SkillGemRarity> SkillGemRarities() {
-        return Database.getRegistry(ExileRegistryTypes.SKILL_GEM_RARITY);
-    }
-
     public static ExileRegistryContainer<FavorRank> FavorRanks() {
         return Database.getRegistry(ExileRegistryTypes.FAVOR_RANK);
     }
@@ -157,10 +151,6 @@ public class ExileDB {
 
     public static ExileRegistryContainer<RuneWord> RuneWords() {
         return Database.getRegistry(ExileRegistryTypes.RUNEWORDS);
-    }
-
-    public static ExileRegistryContainer<RandomSkillGemStats> RandomSkilLGemStats() {
-        return Database.getRegistry(ExileRegistryTypes.RANDOM_SKILL_GEM_STATS);
     }
 
     public static ExileRegistryContainer<Affix> Affixes() {

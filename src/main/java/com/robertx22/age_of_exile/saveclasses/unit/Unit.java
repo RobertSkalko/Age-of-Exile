@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.AttributeStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ICoreStat;
@@ -43,7 +42,10 @@ import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 // this stores data that can be lost without issue, stats that are recalculated all the time
@@ -52,7 +54,7 @@ import java.util.stream.Collectors;
 public class Unit {
 
     @Store
-    private HashMap<StatContainerType, StatContainer> stats = new HashMap<>();
+    private StatContainer stats = new StatContainer();
 
     @Store
     public String GUID = UUID.randomUUID()
@@ -66,38 +68,16 @@ public class Unit {
         return getStats().getStatInCalculation(stat);
     }
 
-    public enum StatContainerType {
-        NORMAL(-1),
-        SPELL1(0),
-        SPELL2(1),
-        SPELL3(2),
-        SPELL4(3),
-        SPELL5(4),
-        SPELL6(5),
-        SPELL7(6),
-        SPELL8(7);
-
-        StatContainerType(int place) {
-            this.place = place;
-        }
-
-        public int place;
-    }
-
     public boolean isBloodMage() {
         return getCalculatedStat(BloodUser.getInstance())
             .getValue() > 0;
     }
 
     public StatContainer getStats() {
-        return getStats(StatContainerType.NORMAL);
-    }
-
-    public StatContainer getStats(StatContainerType type) {
-        if (!stats.containsKey(type)) {
-            stats.put(type, new StatContainer());
+        if (stats == null) {
+            stats = new StatContainer();
         }
-        return stats.get(type);
+        return stats;
     }
 
     public StatData getCalculatedStat(Stat stat) {
@@ -280,10 +260,8 @@ public class Unit {
 
             calcSets(gears);
 
-            stats.values()
-                .forEach(x -> x.stats.clear());
-            stats.values()
-                .forEach(x -> x.statsInCalc.clear());
+            stats.stats.clear();
+            stats.statsInCalc.clear();
 
             DirtyCheck old = getDirtyCheck();
 
@@ -378,70 +356,7 @@ public class Unit {
                     }
                 });
 
-            if (entity instanceof PlayerEntity) {
-
-                for (StatContainerType type : StatContainerType.values()) {
-                    // different stat containers for each spell with support gems.
-                    if (type == StatContainerType.NORMAL) {
-                        this.stats.put(type, getStats());
-                    } else {
-
-                        StatContainer copy = getStats().cloneForSpellStats();
-                        stats.put(type, copy);
-
-                        List<SkillGemData> gems = Load.spells(entity)
-                            .getSkillGemData()
-                            .getSupportGemsOf(type.place);
-                        gems.add(Load.spells(entity)
-                            .getSkillGemData()
-                            .getSkillGemOf(type.place));
-
-                        gems.removeIf(x -> x == null);
-
-                        List<SkillGemData> noGemDuplicateList = new ArrayList<>();
-
-                        Set<String> gemIdSet = new HashSet<>();
-
-                        gems.forEach(x -> {
-                            if (!gemIdSet.contains(x.id)) {// dont allow duplicate gems
-                                noGemDuplicateList.add(x);
-                                gemIdSet.add(x.id);
-                            }
-
-                        });
-
-                        noGemDuplicateList.removeIf(x -> x == null || x.getSkillGem() == null);
-
-                        for (SkillGemData sd : noGemDuplicateList) {
-                            try {
-                                sd.getSkillGem()
-                                    .getConstantStats(sd)
-                                    .forEach(s -> {
-                                        copy.getStatInCalculation(s.getStat())
-                                            .add(s, data);
-                                    });
-                                sd.getSkillGem()
-                                    .getRandomStats(sd)
-                                    .forEach(s -> {
-                                        copy.getStatInCalculation(s.getStat())
-                                            .add(s, data);
-                                    });
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                    }
-
-                }
-
-                stats.values()
-                    .forEach(x -> x.calculate());
-
-            } else {
-                stats.get(StatContainerType.NORMAL)
-                    .calculate();
-            }
+            stats.calculate();
 
             DirtyCheck aftercalc = getDirtyCheck();
 

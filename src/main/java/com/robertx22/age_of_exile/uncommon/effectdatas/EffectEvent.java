@@ -1,19 +1,16 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DatapackStat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.base.EffectWithCtx;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.library_of_exile.registry.IGUID;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,36 +138,11 @@ public abstract class EffectEvent implements IGUID {
         }
     }
 
-    private Unit.StatContainerType getStatType(LivingEntity en) {
-
-        if (en instanceof PlayerEntity) {
-            try {
-                if (this.data.isSpellEffect()) {
-
-                    Spell spell = getSpell();
-
-                    EntitySpellCap.ISpellsCap spells = Load.spells(en);
-
-                    return spells.getSkillGemData()
-                        .getStatContainerFor(spell);
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        return Unit.StatContainerType.NORMAL;
-
-    }
-
     private List<EffectWithCtx> AddEffects(List<EffectWithCtx> effects, UnitData unit, LivingEntity en, EffectSides side) {
-
-        Unit.StatContainerType type = getStatType(en);
 
         if (unit != null) {
             unit.getUnit()
-                .getStats(type).stats
+                .getStats().stats
                 .values()
                 .forEach(data -> {
                     if (data.isNotZero()) {

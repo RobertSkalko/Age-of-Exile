@@ -31,7 +31,6 @@ public class GiveSkillGem {
                                 .suggests(new DatabaseSuggestions(ExileRegistryTypes.SKILL_GEM))
                                 .then(argument("level", IntegerArgumentType.integer())
                                     .then(argument("rarity", StringArgumentType.word())
-                                        .suggests(new DatabaseSuggestions(ExileRegistryTypes.SKILL_GEM_RARITY))
                                         .then(argument("amount", IntegerArgumentType
                                             .integer(1, 5000))
                                             .executes(e -> execute(e.getSource(), EntityArgumentType
@@ -58,11 +57,6 @@ public class GiveSkillGem {
         for (int i = 0; i < amount; i++) {
             SkillGemBlueprint blueprint = new SkillGemBlueprint(lvl);
             blueprint.level.set(lvl);
-
-            if (!rar.equals("random")) {
-                blueprint.rarity.set(ExileDB.SkillGemRarities()
-                    .get(rar));
-            }
 
             if (!id.equals("random")) {
                 blueprint.type.set(ExileDB.SkillGems()
