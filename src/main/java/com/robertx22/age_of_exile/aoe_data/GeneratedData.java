@@ -27,6 +27,7 @@ import com.robertx22.age_of_exile.aoe_data.database.scroll_buffs.ScrollBuffsAdde
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gem_rarity.SkillGemRarityAdder;
 import com.robertx22.age_of_exile.aoe_data.database.skill_gems.SkillGemsAdder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
 import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
@@ -36,7 +37,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.SpellDependentDatapackStatAdder;
 import com.robertx22.age_of_exile.aoe_data.database.tiers.DifficultyAdders;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearReg;
-import com.robertx22.age_of_exile.aoe_data.database.value_calc.ValueCalcAdder;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 
 public class GeneratedData {
@@ -50,7 +50,6 @@ public class GeneratedData {
         new StatConditions().registerAll();
         new Stats().registerAll();
 
-        new ValueCalcAdder().registerAll();
         new DatapackStats().registerAll();
 
         new SkillGemRarityAdder().registerAll();
@@ -68,6 +67,7 @@ public class GeneratedData {
 
         new DifficultyAdders().registerAll();
 
+        SpellCalcs.init();
         new Spells().registerAll();
 
         new SpellDependentDatapackStatAdder().registerAll();

@@ -5,7 +5,6 @@ healing_aura
 song_of_valor
 thorn_armor
 fire_chance
-boss_fire_bombs
 wish
 whirlwind
 poison_chance
@@ -28,7 +27,6 @@ fire_breath
 shout_warn
 curse_of_weak
 frost_armor
-heal_ray
 backflip
 song_of_perseverance
 crit_rate
@@ -42,14 +40,12 @@ smoke_bomb
 gong_strike
 cast_speed
 atk_speed
-lava_sphere
 tidal_strike
 more_radius
 song_of_vigor
 dash
 less_mana_cost
 recoil_shot
-thirst_strike
 poison_ball
 piercing_proj
 teleport
@@ -86,7 +82,6 @@ frost_nova
 bleed_chance
 make_arrows
 spell_crit_dmg
-frost_sphere
 power_chord
 pull
 test_command

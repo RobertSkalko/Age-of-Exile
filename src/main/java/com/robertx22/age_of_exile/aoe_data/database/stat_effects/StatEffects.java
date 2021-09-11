@@ -41,7 +41,7 @@ public class StatEffects implements ExileRegistryInit {
         Arrays.asList(
             NegativeEffects.BURN,
             NegativeEffects.POISON,
-            NegativeEffects.FROSTBURN,
+            NegativeEffects.CHILL,
             NegativeEffects.BLEED,
             NegativeEffects.BLIND
         ),
@@ -79,12 +79,11 @@ public class StatEffects implements ExileRegistryInit {
     public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_TO_TARGET = new DataHolder<>(
         Arrays.asList(
             NegativeEffects.BURN,
-            NegativeEffects.JUDGEMENT,
             NegativeEffects.SLOW,
             NegativeEffects.STUN,
             BeneficialEffects.BLESSING,
             BeneficialEffects.ALACRITY,
-            NegativeEffects.FROSTBURN,
+            NegativeEffects.CHILL,
             NegativeEffects.BLEED,
             NegativeEffects.POISON,
             NegativeEffects.BLIND,

@@ -3,58 +3,22 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
-import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
-import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.*;
 
-public class ExileEffectAction extends SpellAction implements ICTextTooltip {
+public class ExileEffectAction extends SpellAction {
 
     public enum GiveOrTake {
         GIVE_STACKS, REMOVE_STACKS, REMOVE_NEGATIVE
-    }
-
-    @Override
-    public MutableText getText(TooltipInfo info, MapHolder data, EntitySavedSpellData savedData) {
-        MutableText text = new LiteralText("");
-
-        ExileEffect potion = data.getExileEffect();
-        GiveOrTake action = data.getPotionAction();
-        int count = data.get(COUNT)
-            .intValue();
-
-        boolean isStackable = potion.max_stacks > 1;
-
-        if (action == GiveOrTake.GIVE_STACKS) {
-            text.append("Gives ");
-        } else {
-            text.append("Removes ");
-        }
-
-        if (isStackable) {
-            if (count == 1) {
-
-                text.append("a stack of ");
-            } else {
-                text.append(count + "stacks of ");
-            }
-        }
-
-        text.append(potion.locName()); // todo
-
-        return text;
     }
 
     public ExileEffectAction() {
@@ -75,7 +39,7 @@ public class ExileEffectAction extends SpellAction implements ICTextTooltip {
             targets.forEach(t -> {
 
                 ExilePotionEvent potionEvent = EventBuilder.ofEffect(ctx.caster, t, Load.Unit(ctx.caster)
-                    .getLevel(), potion, com.robertx22.age_of_exile.uncommon.effectdatas.GiveOrTake.give, duration)
+                        .getLevel(), potion, com.robertx22.age_of_exile.uncommon.effectdatas.GiveOrTake.give, duration)
                     .setSpell(ctx.calculatedSpellData.getSpell())
                     .set(x -> x.data.getNumber(EventData.STACKS).number = count)
                     .build();

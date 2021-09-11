@@ -44,7 +44,7 @@ public class MobAffixes implements ExileRegistryInit {
         new MobAffix("winter", new AttackDamage(Water).getFormatAndIcon(), Water.format)
             .setMods(
                 new StatModifier(15, 15, Health.getInstance()),
-                new StatModifier(5, 5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN)),
+                new StatModifier(5, 5, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.CHILL)),
                 new StatModifier(75, 75, new PhysConvertToEle(Water)),
                 new StatModifier(1, 1, new AttackDamage(Water), ModType.FLAT),
                 new StatModifier(20, 20, ExtraMobDropsStat.getInstance()))

@@ -220,15 +220,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
         TooltipUtils.addEmpty(list);
 
-        if (Screen.hasShiftDown()) {
+        if (true || Screen.hasShiftDown()) {
 
-            if (!this.manual_tip) {
-                list.addAll(attached
-                    .getTooltip(ctx.calcData));
-            } else {
-                SpellDesc.getTooltip(ctx.caster, this)
-                    .forEach(x -> list.add(new LiteralText(x)));
-            }
+            SpellDesc.getTooltip(ctx.caster, this)
+                .forEach(x -> list.add(new LiteralText(x)));
+
         }
 
         TooltipUtils.addEmpty(list);

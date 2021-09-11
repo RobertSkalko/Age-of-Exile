@@ -65,7 +65,7 @@ public class WeaponPrefixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("yetis")
             .Named("Yeti's")
-            .stats(new StatModifier(5, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.FROSTBURN), ModType.FLAT))
+            .stats(new StatModifier(5, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.CHILL), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Weight(50)
             .Prefix()

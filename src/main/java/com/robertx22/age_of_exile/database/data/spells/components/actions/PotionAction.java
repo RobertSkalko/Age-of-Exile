@@ -3,18 +3,13 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction.GiveOrTake;
-import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
-import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.mixin_ducks.StatusEffectAccesor;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
@@ -24,35 +19,10 @@ import java.util.stream.Collectors;
 
 import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.*;
 
-public class PotionAction extends SpellAction implements ICTextTooltip {
+public class PotionAction extends SpellAction {
 
     public PotionAction() {
         super(Arrays.asList(POTION_ID, POTION_ACTION, POTION_DURATION));
-    }
-
-    @Override
-    public MutableText getText(TooltipInfo info, MapHolder data, EntitySavedSpellData savedData) {
-        MutableText text = new LiteralText("");
-
-        GiveOrTake action = data.getPotionAction();
-
-        if (action == GiveOrTake.GIVE_STACKS) {
-            StatusEffect potion = data.getPotion();
-            text.append("Give ");
-            text.append(potion.getName());
-
-        } else if (action == GiveOrTake.REMOVE_STACKS) {
-            StatusEffect potion = data.getPotion();
-            text.append("Remove ");
-            text.append(potion.getName());
-        } else {
-            int count = data.getOrDefault(COUNT, 1D)
-                .intValue();
-            text.append("Remove " + count + " negative effects");
-        }
-
-        return text;
-
     }
 
     @Override

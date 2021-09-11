@@ -10,6 +10,26 @@ public class SpellCalcs {
 
     }
 
+    public static ValueCalculation POISON = ValueCalcBuilder.of("poison")
+        .attackScaling(0.1F, 0.1F)
+        .build();
+    public static ValueCalculation BLEED = ValueCalcBuilder.of("bleed")
+        .attackScaling(0.2F, 0.2F)
+        .build();
+
+    public static ValueCalculation BURN = ValueCalcBuilder.of("burn")
+        .attackScaling(0.2F, 0.2F)
+        .build();
+
+    public static ValueCalculation PETRIFY = ValueCalcBuilder.of("petrify")
+        .attackScaling(0.2F, 1F)
+        .build();
+    public static ValueCalculation TORMENT = ValueCalcBuilder.of("torment")
+        .attackScaling(0.2F, 0.6F)
+        .build();
+    public static ValueCalculation DESPAIR = ValueCalcBuilder.of("despair")
+        .attackScaling(0.2F, 0.6F)
+        .build();
     public static ValueCalculation DIRECT_ARROW_HIT = ValueCalcBuilder.of("direct_arrow_hit")
         .attackScaling(0.2F, 0.6F)
         .build();

@@ -95,8 +95,7 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
             stats.forEach(x -> list.addAll(x.GetTooltipString(info, data.lvl)));
         }
         if (spell != null) {
-            // list.add(new LiteralText("Effect:"));
-            list.addAll(spell.getEffectTooltip(data));
+            // TODO add manual effect tooltip
         }
 
         if (max_stacks > 1) {

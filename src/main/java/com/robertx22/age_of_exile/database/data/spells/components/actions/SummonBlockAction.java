@@ -1,45 +1,27 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
-import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
-import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.entities.StationaryFallingBlockEntity;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellUtils;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Objects;
 
-public class SummonBlockAction extends SpellAction implements ICMainTooltip {
+public class SummonBlockAction extends SpellAction {
 
     public SummonBlockAction() {
         super(Arrays.asList(MapField.ENTITY_NAME, MapField.BLOCK));
     }
 
     static int SEARCH = 10;
-
-    @Override
-    public List<MutableText> getLines(AttachedSpell spell, MapHolder holder, EntitySavedSpellData savedData) {
-
-        TooltipInfo info = new TooltipInfo(ClientOnly.getPlayer());
-        List<MutableText> list = new ArrayList<>();
-
-        list.add(new LiteralText("Summon a block"));
-
-        list.addAll(spell.getTooltipForEntity(info, spell, holder.get(MapField.ENTITY_NAME), savedData));
-
-        return list;
-    }
 
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {

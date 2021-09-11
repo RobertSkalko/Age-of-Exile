@@ -35,7 +35,6 @@ give_beneficial/4_to_source
 leech_health
 decrease_cd_ticks_num
 give_beneficial/10_to_target
-give_negative/6_to_target
 give_negative/2_to_source
 add_perc_of_mana_to_num
 give_negative/8_to_target

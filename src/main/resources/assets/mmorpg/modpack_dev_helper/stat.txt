@@ -277,6 +277,7 @@ renamed_or_deleted_stat
 bonus_hot_biome_yield
 elemental_resist
 health_regen_per_10_wisdom
+chance_of_chill
 heal_cleanse
 all_vuln_crit
 totem_shield
@@ -306,7 +307,6 @@ armor_per_10_mana
 curse_cdr
 earth_dot_damage
 arrow_spell_dmg
-chance_of_frostburn
 max_elemental_resist
 double_drop_chance
 health_on_kill
@@ -325,4 +325,3 @@ water_any_wep_damage
 dmg_taken_to_mana
 inc_effect_of_food_buff_given
 chance_to_get_frenzy_on_kill
-chance_of_judgement

@@ -535,8 +535,7 @@ public class Stats implements ExileRegistryInit {
         .<EffectCtx>of(x -> "chance_of_" + x.id, x -> x.element)
         .addAllOfType(Arrays.asList(
                 NegativeEffects.BURN,
-                NegativeEffects.FROSTBURN,
-                NegativeEffects.JUDGEMENT,
+                NegativeEffects.CHILL,
                 NegativeEffects.BLEED,
                 NegativeEffects.TORMENT,
                 NegativeEffects.BLIND,

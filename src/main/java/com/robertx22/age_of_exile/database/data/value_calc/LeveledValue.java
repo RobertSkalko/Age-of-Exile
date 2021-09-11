@@ -10,6 +10,10 @@ public class LeveledValue {
     }
 
     public float getValue(LevelProvider provider) {
+        if (min == max) {
+            return min;
+        }
+
         int maxlevel = provider.getMaxLevel();
         int level = provider.getCurrentLevel();
 

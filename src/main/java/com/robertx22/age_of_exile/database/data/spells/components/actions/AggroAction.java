@@ -29,7 +29,7 @@ public class AggroAction extends SpellAction {
 
         if (ctx.caster instanceof PlayerEntity) {
             ValueCalculation calc = data.get(MapField.VALUE_CALCULATION);
-            int num = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData.lvl);
+            int num = calc.getCalculatedValue(ctx.levelProvider);
 
             Type aggro = data.getAggro();
 

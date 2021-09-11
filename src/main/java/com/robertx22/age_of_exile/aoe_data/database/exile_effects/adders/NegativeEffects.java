@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.ExileEffectBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
@@ -16,7 +17,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -33,11 +33,10 @@ public class NegativeEffects implements ExileRegistryInit {
 
     public static EffectCtx ELE_WEAKNESS = new EffectCtx("ele_weakness", "Ele Weakness", 0, Elements.Elemental, EffectType.negative);
     public static EffectCtx PETRIFY = new EffectCtx("petrify", "Petrify", 1, Elements.Earth, EffectType.negative);
-    public static EffectCtx FROSTBURN = new EffectCtx("frostburn", "Frost Burn", 2, Elements.Water, EffectType.negative);
+    public static EffectCtx CHILL = new EffectCtx("chill", "Chill", 2, Elements.Water, EffectType.negative);
     public static EffectCtx POISON = new EffectCtx("poison", "Poison", 3, Elements.Earth, EffectType.negative);
     public static EffectCtx WOUNDS = new EffectCtx("wounds", "Wounds", 4, Elements.Physical, EffectType.negative);
     public static EffectCtx BURN = new EffectCtx("burn", "Burn", 5, Elements.Fire, EffectType.negative);
-    public static EffectCtx JUDGEMENT = new EffectCtx("judgement", "Judgement", 6, Elements.Fire, EffectType.negative);
     public static EffectCtx TORMENT = new EffectCtx("torment", "Torment", 7, Elements.Elemental, EffectType.negative);
     public static EffectCtx BLEED = new EffectCtx("bleed", "Bleed", 8, Elements.Physical, EffectType.negative);
     public static EffectCtx MUMMY_CURSE = new EffectCtx("mummy_curse", "Mummy Curse", 9, Elements.Elemental, EffectType.negative);
@@ -119,7 +118,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(1)
             .stat(-20, Stats.TOTAL_DAMAGE.get())
             .spell(SpellBuilder.forEffect()
-                .onExpire(PartBuilder.damage(ValueCalculation.base("despair", 3F), Elements.Elemental))
+                .onExpire(PartBuilder.damage(SpellCalcs.DESPAIR, Elements.Elemental))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
                     .onTick(20D))
                 .buildForEffect())
@@ -155,24 +154,20 @@ public class NegativeEffects implements ExileRegistryInit {
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
             .stat(-10, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.dotDamageOnTick(TORMENT.effectId, ValueCalculation.base("torment", 2F), Elements.Elemental)
+                .onTick(PartBuilder.dotDamageOnTick(TORMENT.effectId, SpellCalcs.TORMENT, Elements.Elemental)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 1D)
                     .onTick(10D))
                 .buildForEffect())
             .build();
 
-        ExileEffectBuilder.of(FROSTBURN)
+        ExileEffectBuilder.of(CHILL)
 
             .maxStacks(5)
-            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.05F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
+            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
             .stat(-4, new ElementalResist(Elements.Water), ModType.FLAT)
 
             .spell(SpellBuilder.forEffect()
-
-                .onTick(PartBuilder.dotDamageOnTick(FROSTBURN.effectId, ValueCalculation.base("frostburn", 1.5F), Elements.Water)
-                    .onTick(20D))
-
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D)
                     .onTick(10D))
                 .buildForEffect())
@@ -182,7 +177,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(POISON.effectId, ValueCalculation.base("poison", 2), Elements.Earth)
+                .onTick(PartBuilder.dotDamageOnTick(POISON.effectId, SpellCalcs.POISON, Elements.Earth)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.POISON, 1D, 1D)
                     .onTick(2D))
@@ -193,7 +188,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BURN.effectId, ValueCalculation.base("burn", 2), Elements.Fire)
+                .onTick(PartBuilder.dotDamageOnTick(BURN.effectId, SpellCalcs.BURN, Elements.Fire)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 10D, 1D)
@@ -207,7 +202,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BLEED.effectId, ValueCalculation.base("bleed", 2.25F), Elements.Physical)
+                .onTick(PartBuilder.dotDamageOnTick(BLEED.effectId, SpellCalcs.BLEED, Elements.Physical)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.BLOOD_DRIP, 2D, 0.5D)
@@ -235,25 +230,13 @@ public class NegativeEffects implements ExileRegistryInit {
             .stat(-25, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
             .build();
 
-        ExileEffectBuilder.of(JUDGEMENT)
-            .stat(-10, new ElementalResist(Elements.Elemental), ModType.FLAT)
-            .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 10D, 1D)
-                    .onTick(20D))
-                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculation.base("judgement", 10), Elements.Fire))
-                    .setTarget(TargetSelector.TARGET.create()))
-                .onExpire(PartBuilder.justAction(SpellAction.SUMMON_LIGHTNING_STRIKE.create())
-                    .setTarget(TargetSelector.TARGET.create()))
-                .buildForEffect())
-            .build();
-
         ExileEffectBuilder.of(PETRIFY)
             .addTags(EffectTags.immobilizing)
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd5")))
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D)
                     .onTick(20D))
-                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(ValueCalculation.base("petrify", 5), Elements.Earth))
+                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(SpellCalcs.PETRIFY, Elements.Earth))
                     .setTarget(TargetSelector.TARGET.create()))
                 .onExpire(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 15D, 1D))
                 .onExpire(PartBuilder.justAction(SpellAction.PLAY_SOUND.create(SoundEvents.ENTITY_SHEEP_SHEAR, 1D, 1D)))

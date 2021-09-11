@@ -1,14 +1,10 @@
 package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
-import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
-import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.database.data.value_calc.LevelProvider;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
@@ -17,8 +13,6 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,27 +20,10 @@ import java.util.Collection;
 import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.ELEMENT;
 import static com.robertx22.age_of_exile.database.data.spells.map_fields.MapField.VALUE_CALCULATION;
 
-public class DamageAction extends SpellAction implements ICTextTooltip {
+public class DamageAction extends SpellAction {
 
     public DamageAction() {
         super(Arrays.asList(ELEMENT, VALUE_CALCULATION));
-    }
-
-    @Override
-    public MutableText getText(TooltipInfo info, MapHolder data, EntitySavedSpellData savedData) {
-        MutableText text = new LiteralText("");
-
-        ValueCalculation calc = data.get(VALUE_CALCULATION);
-        Elements ele = data.getElement();
-
-        text.append("Deal ")
-            .append(calc.getShortTooltip(new LevelProvider()))
-            .append(" ")
-            .append(ele.dmgName)
-            .append(" Damage");
-
-        return text;
-
     }
 
     @Override

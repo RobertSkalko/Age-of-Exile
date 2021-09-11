@@ -19,7 +19,7 @@ public class ValueCalcBuilder {
     }
 
     public ValueCalcBuilder attackScaling(float min, float max) {
-        calc.base = new LeveledValue(min, max);
+        calc.attack_scaling = new LeveledValue(min, max);
         return this;
     }
 

@@ -4,7 +4,6 @@ undying_will
 healing_aura
 song_of_valor
 thorn_armor
-boss_fire_bombs
 wish
 whirlwind
 curse_of_despair
@@ -19,7 +18,6 @@ fire_breath
 shout_warn
 curse_of_weak
 frost_armor
-heal_ray
 backflip
 song_of_perseverance
 shooting_star
@@ -28,12 +26,10 @@ overload
 astral_totem
 smoke_bomb
 gong_strike
-lava_sphere
 tidal_strike
 song_of_vigor
 dash
 recoil_shot
-thirst_strike
 poison_ball
 teleport
 banish
@@ -62,7 +58,6 @@ meteor
 refresh
 frost_nova
 make_arrows
-frost_sphere
 power_chord
 pull
 test_command

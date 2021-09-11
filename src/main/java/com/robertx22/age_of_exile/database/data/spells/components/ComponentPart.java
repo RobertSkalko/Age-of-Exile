@@ -1,20 +1,12 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.components.conditions.CasterHasStatCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.entity_predicates.SpellEntityPredicate;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.BaseTargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
-import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICMainTooltip;
-import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTextTooltip;
-import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Formatting;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -169,96 +161,6 @@ public class ComponentPart {
     public ComponentPart addEntityPredicate(MapHolder map) {
         this.en_preds.add(map);
         return this;
-    }
-
-    public List<MutableText> GetTooltipString(TooltipInfo info, AttachedSpell spell, EntitySavedSpellData data) {
-        List<MutableText> list = new ArrayList<>();
-
-        MutableText text = new LiteralText("");
-
-        boolean isSpellModifier = false;
-
-        for (MapHolder part : acts) {
-            SpellAction handler = SpellAction.MAP.get(part.type);
-            if (handler instanceof ICMainTooltip) {
-                ICMainTooltip line = (ICMainTooltip) handler;
-                list.addAll(line.getLines(spell, part, data));
-            }
-        }
-
-        for (MapHolder part : ifs) {
-            EffectCondition handler = EffectCondition.MAP.get(part.type);
-            if (handler instanceof CasterHasStatCondition) {
-                isSpellModifier = true;
-            }
-            if (handler instanceof ICMainTooltip) {
-                ICMainTooltip line = (ICMainTooltip) handler;
-                list.addAll(line.getLines(spell, part, data));
-
-            }
-        }
-
-        boolean hasAction = false;
-
-        for (MapHolder part : ifs) {
-            EffectCondition handler = EffectCondition.MAP.get(part.type);
-
-            if (handler instanceof ICTextTooltip) {
-                ICTextTooltip ictext = (ICTextTooltip) handler;
-                text.append(ictext.getText(info, part, data));
-            }
-        }
-
-        for (MapHolder part : acts) {
-            SpellAction handler = SpellAction.MAP.get(part.type);
-
-            if (handler instanceof ICTextTooltip) {
-                ICTextTooltip ictext = (ICTextTooltip) handler;
-                text.append(ictext.getText(info, part, data));
-                hasAction = true;
-            }
-        }
-
-        for (MapHolder part : targets) {
-            BaseTargetSelector handler = BaseTargetSelector.MAP.get(part.type);
-
-            if (handler instanceof ICTextTooltip) {
-                ICTextTooltip ictext = (ICTextTooltip) handler;
-                text.append(ictext.getText(info, part, data));
-            }
-        }
-
-        if (isSpellModifier) {
-
-            text.formatted(Formatting.DARK_PURPLE);
-            text = new LiteralText(" - ").formatted(Formatting.DARK_PURPLE)
-                .append(text);
-        } else {
-            text.formatted(Formatting.GREEN);
-        }
-
-        if (hasAction) {
-            list.add(text);
-        }
-        if (per_entity_hit != null) {
-
-            List<MutableText> pertxt = new ArrayList<>();
-            pertxt.add(new LiteralText("Per entity hit:"));
-            per_entity_hit.forEach(x -> pertxt.addAll(x.GetTooltipString(info, spell, data)));
-
-            if (pertxt.size() > 1) {
-
-                if (isSpellModifier) {
-                    pertxt.forEach(x -> x.formatted(Formatting.DARK_PURPLE));
-                } else {
-                    pertxt.forEach(x -> x.formatted(Formatting.GREEN));
-                }
-                list.addAll(pertxt);
-            }
-
-        }
-
-        return list;
     }
 
 }
