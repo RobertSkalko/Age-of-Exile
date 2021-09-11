@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.tooltips.ICTex
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
+import com.robertx22.age_of_exile.database.data.value_calc.LevelProvider;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -39,7 +40,7 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
         Elements ele = data.getElement();
 
         text.append("Deal ")
-            .append(calc.getShortTooltip(savedData.lvl))
+            .append(calc.getShortTooltip(new LevelProvider()))
             .append(" ")
             .append(ele.dmgName)
             .append(" Damage");
@@ -55,7 +56,7 @@ public class DamageAction extends SpellAction implements ICTextTooltip {
             Elements ele = data.getElement();
             ValueCalculation calc = data.get(VALUE_CALCULATION);
 
-            int value = calc.getCalculatedValue(ctx.caster, ctx.calculatedSpellData.lvl);
+            int value = calc.getCalculatedValue(ctx.levelProvider);
 
             for (LivingEntity t : targets) {
 

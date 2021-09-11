@@ -1,19 +1,15 @@
 package com.robertx22.age_of_exile.database.data.value_calc;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
-import com.robertx22.age_of_exile.saveclasses.spells.calc.BaseStatCalc;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import info.loenwind.autosave.annotations.Factory;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -25,39 +21,12 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
 
     public static ValueCalculation SERIALIZER = new ValueCalculation();
 
-    public static ValueCalculation base(String id, float base) {
-        ValueCalculation data = new ValueCalculation();
-        data.id = id;
-        data.base_min = base;
-
-        data.addToSerializables();
-        return data;
-    }
-
-    public static ValueCalculation scaleWithAttack(String id, float attack, float base) {
-        ValueCalculation data = new ValueCalculation();
-        data.id = id;
-        data.attack_scaling = attack;
-        data.base_min = base;
-        data.addToSerializables();
-        return data;
-    }
-
-    public static ValueCalculation withStat(String id, ScalingCalc stat, float base) {
-        ValueCalculation data = new ValueCalculation();
-        data.id = id;
-        data.stat_scalings.add(stat);
-        data.base_min = base;
-        data.addToSerializables();
-        return data;
-    }
-
     @Factory
     public ValueCalculation() {
 
     }
 
-    public List<BaseStatCalc> getAllScalingValues() {
+    public List<ScalingCalc> getAllScalingValues() {
         return new ArrayList<>(stat_scalings);
     }
 
@@ -68,59 +37,59 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
     public LeveledValue attack_scaling = new LeveledValue(0, 0);
     public LeveledValue base = new LeveledValue(0, 0);
 
-    public int getCalculatedBaseValue(int lvl) {
+    public int getCalculatedBaseValue(LevelProvider provider) {
 
         if (base_scaling_type == null) {
             MMORPG.logError("base scaling type null");
             return 0;
         }
 
-        return (int) base_scaling_type.scale(base_min, lvl);
+        return (int) base_scaling_type.scale(base.getValue(provider), provider.getCasterLevel());
     }
 
     public String getLocSpellTooltip() {
         return "[calc:" + id + "]";
     }
 
-    private int getCalculatedScalingValue(EntityCap.UnitData data, int lvl) {
+    private int getCalculatedScalingValue(LevelProvider provider) {
 
         float amount = 0;
-        if (attack_scaling > 0) {
+        if (attack_scaling.getValue(provider) > 0) {
             for (Stat stat : new AttackDamage(Elements.Earth).generateAllPossibleStatVariations()) {
-                amount += data.getUnit()
+                amount += provider.getCasterData()
+                    .getUnit()
                     .getCalculatedStat(stat.GUID())
-                    .getValue() * attack_scaling;
+                    .getValue() * attack_scaling.getValue(provider);
             }
         }
         amount += getAllScalingValues().stream()
-            .mapToInt(x -> x.getCalculatedValue(data))
+            .mapToInt(x -> x.getCalculatedValue(provider))
             .sum();
 
         return (int) amount;
     }
 
-    public int getCalculatedValue(LivingEntity caster, int lvl) {
-        int val = getCalculatedScalingValue(Load.Unit(caster), lvl);
-        val += getCalculatedBaseValue(lvl);
-
+    public int getCalculatedValue(LevelProvider provider) {
+        int val = getCalculatedScalingValue(provider);
+        val += getCalculatedBaseValue(provider);
         return val;
 
     }
 
-    public Text getShortTooltip(int lvl) {
+    public Text getShortTooltip(LevelProvider provider) {
         MutableText text = new LiteralText("");
 
-        if (this.base_min > 0) {
-            text.append(getCalculatedBaseValue(lvl) + "");
+        if (this.base.getValue(provider) > 0) {
+            text.append(getCalculatedBaseValue(provider) + "");
         }
 
-        if (attack_scaling > 0) {
-            text.append(" + " + (int) (attack_scaling * 100) + "% Weapon Attack");
+        if (attack_scaling.getValue(provider) > 0) {
+            text.append(" + " + (int) (attack_scaling.getValue(provider) * 100) + "% Weapon Attack");
         }
 
         stat_scalings.forEach(x -> {
             text.append(" + ")
-                .append(x.GetTooltipString()); // todo
+                .append(x.GetTooltipString(provider));
         });
 
         return text;

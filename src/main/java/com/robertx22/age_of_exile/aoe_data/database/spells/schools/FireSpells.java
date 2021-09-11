@@ -10,12 +10,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -38,7 +36,7 @@ public class FireSpells implements ExileRegistryInit {
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
             .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("flame_strike", 0.5F, 1), Elements.Fire, 2D, 3D)
+            .onCast(PartBuilder.damageInFront(SpellCalcs.FLAME_STRIKE, Elements.Fire, 2D, 3D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D)))
             .build();
 
@@ -65,7 +63,7 @@ public class FireSpells implements ExileRegistryInit {
                 .put(MapField.FIND_NEAREST_SURFACE, false)
                 .put(MapField.IS_BLOCK_FALLING, true)))
             .onTick("block", PartBuilder.particleOnTick(2D, ParticleTypes.LAVA, 2D, 0.5D))
-            .onExpire("block", PartBuilder.damageInAoe(ValueCalculation.base("meteor", 12), Elements.Fire, 3D))
+            .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.METEOR, Elements.Fire, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.LAVA, 150D, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.ASH, 25D, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 1D))
@@ -82,7 +80,7 @@ public class FireSpells implements ExileRegistryInit {
             .onCast(PartBuilder.nova(ParticleTypes.SMOKE, 200D, 1D, 0.05D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 1D, 0D, 0.2D))
 
-            .onCast(PartBuilder.damageInAoe(ValueCalculation.base("fire_nova", 7), Elements.Fire, 3D))
+            .onCast(PartBuilder.damageInAoe(SpellCalcs.FIRE_NOVA, Elements.Fire, 3D))
             .build();
 
         SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(7, 20)
@@ -104,25 +102,6 @@ public class FireSpells implements ExileRegistryInit {
             .onHit(PartBuilder.damage(SpellCalcs.FIREBALL, Elements.Fire))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_BURN, 1D, 2D))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.LAVA, 1D, 0.5D))
-            .build();
-
-        SpellBuilder.of("lava_sphere", SpellConfiguration.Builder.nonInstant(20, 20 * 15, 20 * 2)
-                    .setSwingArm(), "Lava Sphere",
-                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.area))
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ITEM_FIRECHARGE_USE, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.FIRE_CHARGE, 1D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 100D, false)
-
-            ))
-            .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 3D, 0.2D)
-                .onTick(1D))
-            .onTick(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 1D, 0.2D)
-                .onTick(1D))
-            .onExpire(PartBuilder.damageInAoe(ValueCalculation.base("lava_sphere", 6), Elements.Fire, 2D))
-
-            .onExpire(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 5D, 1D))
-            .onExpire(PartBuilder.aoeParticles(ParticleTypes.FLAME, 25D, 2D))
-
             .build();
 
     }

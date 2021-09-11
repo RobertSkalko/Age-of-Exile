@@ -4,12 +4,15 @@ public class LeveledValue {
     public final float min;
     public final float max;
 
-    public LeveledValue(int min, int max) {
+    public LeveledValue(float min, float max) {
         this.min = min;
         this.max = max;
     }
 
-    public float getValue(int level, int maxlevel) {
+    public float getValue(LevelProvider provider) {
+        int maxlevel = provider.getMaxLevel();
+        int level = provider.getCurrentLevel();
+
         float perlevel = (max - min) / maxlevel;
         return min + (perlevel * level);
     }

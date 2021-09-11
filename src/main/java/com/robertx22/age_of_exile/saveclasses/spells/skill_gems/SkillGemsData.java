@@ -14,13 +14,13 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Storable
 public class SkillGemsData implements Inventory {
+
+    @Store
+    public HashMap<String, Integer> levels = new HashMap<>();
 
     public static int SIZE = 20;
 

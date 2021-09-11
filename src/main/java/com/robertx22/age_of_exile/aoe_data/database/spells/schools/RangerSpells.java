@@ -50,9 +50,9 @@ public class RangerSpells implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        trap("frost_trap", "Frost Trap", ParticleTypes.ITEM_SNOWBALL, ValueCalculation.base("frost_trap", 10), Elements.Water).build();
-        trap("poison_trap", "Poison Trap", ParticleTypes.ITEM_SLIME, ValueCalculation.base("poison_trap", 10), Elements.Earth).build();
-        trap("fire_trap", "Fire Trap", ParticleTypes.FLAME, ValueCalculation.base("fire_trap", 10), Elements.Fire).build();
+        trap("frost_trap", "Frost Trap", ParticleTypes.ITEM_SNOWBALL, SpellCalcs.RANGER_TRAP, Elements.Water).build();
+        trap("poison_trap", "Poison Trap", ParticleTypes.ITEM_SLIME, SpellCalcs.RANGER_TRAP, Elements.Earth).build();
+        trap("fire_trap", "Fire Trap", ParticleTypes.FLAME, SpellCalcs.RANGER_TRAP, Elements.Fire).build();
 
         SpellBuilder.of("smoke_bomb", SpellConfiguration.Builder.instant(7, 20 * 60), "Smoke Bomb",
                 Arrays.asList())
@@ -171,7 +171,7 @@ public class RangerSpells implements ExileRegistryInit {
             .onHit(PartBuilder.damage(ValueCalcAdder.DIRECT_ARROW_HIT, Elements.Physical))
             .onHit(PartBuilder.particleOnTick(3D, ParticleTypes.CLOUD, 3D, 0.1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damage(ValueCalculation.base("arrow_storm_sec", 3), Elements.Elemental))
+            .onHit(PartBuilder.damage(SpellCalcs.ARROW_STORM, Elements.Elemental))
             .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D))
             .build();
 
@@ -189,7 +189,7 @@ public class RangerSpells implements ExileRegistryInit {
 
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("poison_arrow_aoe", 0.2F, 1), Elements.Earth, 2D)
+            .onHit(PartBuilder.damageInAoe(SpellCalcs.POISON_ARROW, Elements.Earth, 2D)
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.SLOWNESS, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();
@@ -206,7 +206,7 @@ public class RangerSpells implements ExileRegistryInit {
 
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("explosive_arrow_eoe", 0.25F, 3), Elements.Physical, 2D)
+            .onHit(PartBuilder.damageInAoe(SpellCalcs.EXPLOSIVE_ARROW, Elements.Physical, 2D)
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.SLOWNESS, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();

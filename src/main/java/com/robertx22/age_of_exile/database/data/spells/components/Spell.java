@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.age_of_exile.database.data.value_calc.MaxLevelProvider;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -45,7 +46,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<Spell>, IAutoLocName, IAutoLocDesc {
+public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<Spell>, IAutoLocName, IAutoLocDesc, MaxLevelProvider {
     public static Spell SERIALIZER = new Spell();
 
     public static String DEFAULT_EN_NAME = "default_entity_name";
@@ -53,6 +54,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
     public static Gson GSON = new Gson();
 
+    public int max_lvl = 16;
     public int weight = 1000;
     public String identifier = "";
     public AttachedSpell attached = new AttachedSpell();
@@ -224,7 +226,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
                 list.addAll(attached
                     .getTooltip(ctx.calcData));
             } else {
-                SpellDesc.getTooltip(this, ctx.calcData.lvl)
+                SpellDesc.getTooltip(ctx.caster, this)
                     .forEach(x -> list.add(new LiteralText(x)));
             }
         }
@@ -333,5 +335,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
     @Override
     public String locDescForLangFile() {
         return locDesc;
+    }
+
+    @Override
+    public int getMaxLevel() {
+        return max_lvl;
     }
 }

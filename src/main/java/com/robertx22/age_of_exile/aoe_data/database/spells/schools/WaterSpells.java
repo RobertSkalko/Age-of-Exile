@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.schools;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
@@ -12,12 +11,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 
@@ -71,23 +68,6 @@ public class WaterSpells implements ExileRegistryInit {
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
             .build();
 
-        SpellBuilder.of("frost_sphere", SpellConfiguration.Builder.nonInstant(20, 20 * 30, 20 * 2)
-                    .setSwingArm(), "Frost Sphere",
-                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.area))
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.SNOWBALL, 1D, 0.2D, ENTITIES.SIMPLE_PROJECTILE, 100D, false)
-                .put(MapField.EXPIRE_ON_ENTITY_HIT, false)
-            ))
-            .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 5D, 1.5D)
-                .onTick(1D))
-            .onTick(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 1D, 0.2D)
-                .onTick(1D))
-            .onTick(PartBuilder.damageInAoe(ValueCalculation.base("frost_sphere", 3), Elements.Water, 2D)
-                .onTick(15D)
-                .addActions(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.SLOW, 3)))
-            .build();
-
         SpellBuilder.of("frost_armor", SpellConfiguration.Builder.instant(15, 120 * 20), "Frost Armor",
                 Arrays.asList())
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
@@ -101,7 +81,7 @@ public class WaterSpells implements ExileRegistryInit {
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1D, 1D))
             .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("tidal_strike", 0.5F, 1), Elements.Water, 2D, 3D)
+            .onCast(PartBuilder.damageInFront(SpellCalcs.TIDAL_STRIKE, Elements.Water, 2D, 3D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.RAIN, 75D, 1D, 0.1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SPLASH, 50D, 1D, 0.1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(PARTICLES.BUBBLE, 100D, 1D, 0.1D))

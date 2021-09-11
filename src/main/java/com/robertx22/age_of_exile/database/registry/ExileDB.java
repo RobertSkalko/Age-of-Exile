@@ -45,6 +45,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 public class ExileDB {
+
     public static DimensionConfig getDimensionConfig(WorldAccess world) {
         String id = MapManager.getResourceLocation((World) world)
             .toString();

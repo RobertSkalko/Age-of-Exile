@@ -68,7 +68,7 @@ public class SpellCastContext {
             }
 
         } else {
-            this.spellsCap = new EntitySpellCap.DefaultImpl(caster);
+            this.spellsCap = new EntitySpellCap.SpellCap(caster);
             this.skillGemData = new SkillGemData();
             skillGemData.lvl = data.getLevel();
         }

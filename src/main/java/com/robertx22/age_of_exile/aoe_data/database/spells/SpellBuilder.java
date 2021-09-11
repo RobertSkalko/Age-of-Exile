@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.item.Items;
@@ -36,7 +35,7 @@ public class SpellBuilder {
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
                 .put(MapField.IS_SILENT, true)))
-            .onHit(PartBuilder.damageInAoe(ValueCalculation.base(id, 2), ele, 1.5D)
+            .onHit(PartBuilder.damageInAoe(SpellCalcs.BREATH, ele, 1.5D)
                 .addCondition(EffectCondition.IS_NOT_ON_COOLDOWN.create("breath"))
                 .addActions(SpellAction.SET_ON_COOLDOWN.create("breath", 20D)))
             .onCast(PartBuilder.Particle.builder(particle, 50D, 0.3D)

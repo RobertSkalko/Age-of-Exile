@@ -13,7 +13,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -74,7 +73,7 @@ public class HolySpells implements ExileRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
-            .onCast(PartBuilder.restoreManaToCaster(ValueCalculation.base("awaken_mana", 30)))
+            .onCast(PartBuilder.restoreManaToCaster(SpellCalcs.AWAKEN_MANA))
 
             .build();
         SpellBuilder.of("shooting_star", SpellConfiguration.Builder.instant(10, 20)
@@ -89,11 +88,11 @@ public class HolySpells implements ExileRegistryInit {
                 .onTick(1D))
             .onTick(PartBuilder.aoeParticles(ParticleTypes.ENCHANT, 1D, 0.7D)
                 .onTick(1D))
-            .onExpire(PartBuilder.healInAoe(ValueCalculation.base("shooting_star", 10), 2D))
+            .onExpire(PartBuilder.healInAoe(SpellCalcs.SHOOTING_STAR, 2D))
             .onExpire(PartBuilder.aoeParticles(ParticleTypes.SOUL_FIRE_FLAME, 10D, 1D))
             .build();
 
-        SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Atmosphere",
+        SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Aura",
                 Arrays.asList(SpellTag.heal))
             .manualDesc(
                 "Heal allies around you for " + SpellCalcs.HEALING_AURA.getLocSpellTooltip() +
@@ -112,21 +111,7 @@ public class HolySpells implements ExileRegistryInit {
             .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 5D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
-            .onCast(PartBuilder.healInAoe(ValueCalculation.base("wish", 10), 5D))
-            .build();
-        SpellBuilder.of("heal_ray", SpellConfiguration.Builder.instant(2, 1), "Healing Ray",
-                Arrays.asList(SpellTag.heal))
-            .onCast(PartBuilder.Particle.builder(ParticleTypes.SOUL_FIRE_FLAME, 1D, 0.5D)
-                .set(MapField.MOTION, ParticleMotion.CasterLook.name())
-                .set(MapField.HEIGHT, 0.1D)
-                .build())
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 3D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
-                    .put(MapField.IS_SILENT, true)
-                    .put(MapField.HITS_ALLIES, true))
-                .addCondition(EffectCondition.CHANCE.create(20D)))
-            .onHit(PartBuilder.healInAoe(ValueCalculation.base("breath_heal", 3), 2D))
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BEACON_ACTIVATE, 0.3D, 2D)
-                .addCondition(EffectCondition.EVERY_X_TICKS.create(10D)))
+            .onCast(PartBuilder.healInAoe(SpellCalcs.WISH, 5D))
             .build();
 
     }

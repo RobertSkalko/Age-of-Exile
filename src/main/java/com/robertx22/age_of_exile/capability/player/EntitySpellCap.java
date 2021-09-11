@@ -37,9 +37,11 @@ public class EntitySpellCap {
 
         public abstract boolean alreadyHit(Entity spellEntity, LivingEntity target);
 
+        public abstract int getLevelOf(String id);
+
     }
 
-    public static class DefaultImpl extends ISpellsCap {
+    public static class SpellCap extends ISpellsCap {
 
         SpellCastingData spellCastingData = new SpellCastingData();
 
@@ -47,7 +49,7 @@ public class EntitySpellCap {
 
         LivingEntity entity;
 
-        public DefaultImpl(LivingEntity entity) {
+        public SpellCap(LivingEntity entity) {
             this.entity = entity;
         }
 
@@ -152,6 +154,11 @@ public class EntitySpellCap {
             }
             return mobsHit.get(key)
                 .contains(target.getUuid());
+        }
+
+        @Override
+        public int getLevelOf(String id) {
+            return skillGems.levels.getOrDefault(id, 0);
         }
 
         @Override

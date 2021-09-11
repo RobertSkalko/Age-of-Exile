@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.ExileEffectBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
@@ -21,8 +22,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.database.data.value_calc.ScalingCalc;
-import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -119,7 +118,7 @@ public class BeneficialEffects implements ExileRegistryInit {
             .stat(50, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
 
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.withStat("taunt_stance", new ScalingCalc(HealthRegen.getInstance(), 0.05F), 2), AggroAction.Type.AGGRO))
+                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(SpellCalcs.TAUNT, AggroAction.Type.AGGRO))
                     .setTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
                     .onTick(60D))
                 .buildForEffect())
@@ -160,18 +159,6 @@ public class BeneficialEffects implements ExileRegistryInit {
         ExileEffectBuilder.of(UNDYING_WILL)
             .stat(-75, Stats.DAMAGE_RECEIVED.get())
             .stat(2, HealthRegen.getInstance())
-            .maxStacks(1)
-            .build();
-
-        ExileEffectBuilder.of(TAUNT_STANCE)
-            .stat(25, Stats.THREAT_GENERATED.get())
-            .stat(50, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
-
-            .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(ValueCalculation.withStat("taunt_stance", new ScalingCalc(HealthRegen.getInstance(), 0.05F), 2), AggroAction.Type.AGGRO))
-                    .setTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
-                    .onTick(60D))
-                .buildForEffect())
             .maxStacks(1)
             .build();
 
@@ -267,7 +254,7 @@ public class BeneficialEffects implements ExileRegistryInit {
             .maxStacks(3)
             .addTags(EffectTags.heal_over_time)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.RESTORE_HEALTH.create(ValueCalculation.base("regenerate_tick", 1)))
+                .onTick(PartBuilder.justAction(SpellAction.RESTORE_HEALTH.create(SpellCalcs.NATURE_BALM))
                     .setTarget(TargetSelector.TARGET.create())
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.HEART, 5D, 1D)

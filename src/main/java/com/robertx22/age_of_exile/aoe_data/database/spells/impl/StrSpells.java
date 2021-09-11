@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -99,7 +98,7 @@ public class StrSpells implements ExileRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_ANVIL_PLACE, 1D, 1D))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
 
-            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("gong_strike", 0.5F, 5), Elements.Physical, 2D, 3D))
+            .onCast(PartBuilder.damageInFront(SpellCalcs.GONG_STRIKE, Elements.Physical, 2D, 3D))
             .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.STUN.effectId, 2D, 2D, 20D * 3))
 
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 300D, 2D, 0.1D))
@@ -107,6 +106,7 @@ public class StrSpells implements ExileRegistryInit {
 
             .build();
 
+        /*
         SpellBuilder.of("thirst_strike", SpellConfiguration.Builder.instant(5, 15)
                     .setSwingArm(), "Thirsting Strike",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
@@ -120,6 +120,7 @@ public class StrSpells implements ExileRegistryInit {
                 .addPerEntityHit(PartBuilder.healCaster(ValueCalculation.base("thirst_strike_heal", 1)))
             )
             .build();
+        */
 
         SpellBuilder.of("whirlwind", SpellConfiguration.Builder.multiCast(10, 0, 100, 10)
                     .setSwingArm(), "Whirlwind",
@@ -129,7 +130,7 @@ public class StrSpells implements ExileRegistryInit {
             .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 100D))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, 1D, 1D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 2D, 0.5D))
-            .onCast(PartBuilder.damageInAoe(ValueCalculation.scaleWithAttack("whirlwind_dmg", 0.2F, 1), Elements.Physical, 1.5D)
+            .onCast(PartBuilder.damageInAoe(SpellCalcs.WHIRLWIND, Elements.Physical, 1.5D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 50D, 0.5D, 0.1D))
             )
             .build();
