@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.gui.screens.delve;
+package com.robertx22.age_of_exile.gui.screens.dungeon;
 
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;

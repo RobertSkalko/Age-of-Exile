@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.event_hooks.ontick;
 
 import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -53,34 +52,6 @@ public class UnequipGear {
 
         int runewords = 0;
         int uniques = 0;
-
-        List<SkillGemData> gems = Load.spells(player)
-            .getSkillGemData().gems;
-        List<ItemStack> stacks = Load.spells(player)
-            .getSkillGemData().stacks;
-
-        if (gems.size() == stacks.size()) {
-
-            for (int i = 0; i < gems.size(); i++) {
-                SkillGemData gem = gems.get(i);
-
-                if (gem == null) {
-                    continue;
-                }
-                if (gem.getSkillGem() == null) {
-                    continue;
-                }
-                ItemStack stack = stacks.get(i);
-
-                if (!gem.canPlayerUse(player)) {
-                    PlayerUtils.giveItem(stack.copy(), player);
-                    player.sendMessage(new LiteralText("Skill Gem uneqipped due to unmet requirements"), false);
-                    stacks.set(i, ItemStack.EMPTY);
-                    gems.set(i, null);
-                }
-
-            }
-        }
 
         for (EquipmentSlot slot : SLOTS) {
 

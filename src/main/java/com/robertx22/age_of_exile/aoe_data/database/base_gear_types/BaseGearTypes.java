@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.library_of_exile.registry.DataGenKey;
 
 public class BaseGearTypes {
+
     public final static DataGenKey<BaseGearType> RING = of("ring");
     public final static DataGenKey<BaseGearType> NECKLACE = of("necklace");
     public final static DataGenKey<BaseGearType> SHIELD = of("shield");

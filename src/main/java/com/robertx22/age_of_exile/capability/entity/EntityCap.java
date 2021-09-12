@@ -10,8 +10,6 @@ import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceC
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemType;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -26,7 +24,10 @@ import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.*;
 import com.robertx22.age_of_exile.threat_aggro.ThreatData;
-import com.robertx22.age_of_exile.uncommon.datasaving.*;
+import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.datasaving.UnitNbt;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
@@ -881,25 +882,6 @@ public class EntityCap {
 
                 this.setLevel(level + 1);
                 setExp(getRemainingExp());
-
-                Load.spells(player)
-                    .getSkillGemData().stacks.forEach(x -> {
-                        // lvl up spell gems, not support gems
-                        SkillGemData data = StackSaving.SKILL_GEMS.loadFrom(x);
-                        if (data != null) {
-                            if (data.getSkillGem().type == SkillGemType.SKILL_GEM) {
-
-                                SkillGemData test = StackSaving.SKILL_GEMS.loadFrom(x);
-                                test.lvl++;
-
-                                if (test.canPlayerUse(player)) {
-                                    // only lvl gems if player can use them after they are lvled
-                                    data.tryLevel();
-                                    data.saveToStack(x);
-                                }
-                            }
-                        }
-                    });
 
                 OnScreenMessageUtils.sendLevelUpMessage(player, new LiteralText("Player"), level - 1, level);
 

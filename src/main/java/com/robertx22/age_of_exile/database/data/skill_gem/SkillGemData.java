@@ -1,13 +1,14 @@
 package com.robertx22.age_of_exile.database.data.skill_gem;
 
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -17,7 +18,6 @@ import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
@@ -36,46 +36,6 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<GearRarity> {
     public int lvl = 1;
     @Store
     public boolean sal = true;
-
-    public void tryLevel() {
-
-        if (lvl < GameBalanceConfig.get().MAX_LEVEL) {
-            lvl++;
-        }
-
-    }
-
-    public boolean canPlayerUse(PlayerEntity player) {
-
-        if (getSkillGem() == null) {
-            return false;
-        }
-
-        if (lvl > Load.Unit(player)
-            .getLevel()) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public int getLevelForRequirement(PlayerEntity player) {
-
-        int level = lvl;
-
-        if (getSkillGem().isSpell()) {
-            if (getSkillGem().getSpell().config.scale_mana_cost_to_player_lvl) {
-
-                int playerlvl = Load.Unit(player)
-                    .getLevel();
-
-                if (playerlvl > lvl) {
-                    level = playerlvl;
-                }
-            }
-        }
-        return level;
-    }
 
     public SkillGem getSkillGem() {
         return ExileDB.SkillGems()
@@ -99,8 +59,6 @@ public class SkillGemData implements ITooltipList, ICommonDataItem<GearRarity> {
         List<Text> list = new ArrayList<>();
         try {
             list.add(new LiteralText(""));
-
-            TooltipUtils.addRequirements(list, getLevelForRequirement(info.player), new StatRequirement(), info.unitdata);
 
             if (this.getSkillGem().type == SkillGemType.SKILL_GEM) {
                 Spell spell = ExileDB.Spells()
