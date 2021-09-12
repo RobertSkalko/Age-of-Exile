@@ -25,6 +25,12 @@ import static com.robertx22.age_of_exile.mmorpg.ModRegistry.*;
 public class NatureSpells implements ExileRegistryInit {
     public static String POISONBALL_ID = "poison_ball";
 
+    public static String THORN_ARMOR = "thorn_armor";
+    public static String REFRESH = "refresh";
+    public static String POISON_WEAPONS = "poisoned_weapons";
+    public static String NATURE_BALM = "nature_balm";
+    public static String ENTANGLE_SEED = "entangling_seed";
+
     @Override
     public void registerAll() {
 
@@ -43,13 +49,13 @@ public class NatureSpells implements ExileRegistryInit {
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
 
             .build();
-        SpellBuilder.of("thorn_armor", SpellConfiguration.Builder.instant(15, 200 * 20), "Thorn Armor",
+        SpellBuilder.of(THORN_ARMOR, SpellConfiguration.Builder.instant(15, 200 * 20), "Thorn Armor",
                 Arrays.asList(SpellTag.damage))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.THORN_ARMOR.effectId, 20 * 45D))
             .build();
 
-        SpellBuilder.of("refresh", SpellConfiguration.Builder.nonInstant(40, 20 * 60 * 3, 20)
+        SpellBuilder.of(REFRESH, SpellConfiguration.Builder.nonInstant(40, 20 * 60 * 3, 20)
                     .setScaleManaToPlayer(), "Refresh",
                 Arrays.asList())
 
@@ -67,21 +73,21 @@ public class NatureSpells implements ExileRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 50D, 1.5D))
             .build();
 
-        SpellBuilder.of("poisoned_weapons", SpellConfiguration.Builder.instant(15, 160 * 20), "Poison Weapons",
+        SpellBuilder.of(POISON_WEAPONS, SpellConfiguration.Builder.instant(15, 160 * 20), "Poison Weapons",
                 Arrays.asList(SpellTag.damage))
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.POISON_WEAPONS, 20 * 30D))
             .build();
 
-        SpellBuilder.of("nature_balm", SpellConfiguration.Builder.nonInstant(15, 60 * 20, 30)
-                    .setScaleManaToPlayer(), "Rejuvenate",
+        SpellBuilder.of(NATURE_BALM, SpellConfiguration.Builder.nonInstant(15, 60 * 20, 30)
+                    .setScaleManaToPlayer(), "Nature's Balm",
                 Arrays.asList(SpellTag.heal))
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveExileEffectToAlliesInRadius(3D, BeneficialEffects.REGENERATE.effectId, 20 * 15D))
             .build();
 
-        SpellBuilder.of("entangling_seed", SpellConfiguration.Builder.instant(15, 60 * 20)
+        SpellBuilder.of(ENTANGLE_SEED, SpellConfiguration.Builder.instant(15, 60 * 20)
                     .setSwingArm(), "Entangling Seed",
                 Arrays.asList(SpellTag.area))
 

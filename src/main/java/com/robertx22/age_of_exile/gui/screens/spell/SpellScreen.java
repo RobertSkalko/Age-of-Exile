@@ -19,7 +19,7 @@ import net.minecraft.util.Identifier;
 public class SpellScreen extends BaseScreen implements INamedScreen {
     private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/spells/spell_school_background.png");
 
-    static int sizeX = 246;
+    static int sizeX = 250;
     static int sizeY = 233;
     public static boolean IS_PICKING_HOTBAR_SPELL = false;
     public static int NUMBER_OF_HOTBAR_FOR_PICKING = 0;
@@ -31,6 +31,7 @@ public class SpellScreen extends BaseScreen implements INamedScreen {
 
     public SpellScreen() {
         super(sizeX, sizeY);
+        IS_PICKING_HOTBAR_SPELL = false;
         Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.SPELLS));
     }
 
@@ -70,7 +71,7 @@ public class SpellScreen extends BaseScreen implements INamedScreen {
             int x = guiLeft + 10 + (PickHotbarButton.BUTTON_SIZE_X * i);
 
             if (i > 3) {
-                x += 66;
+                x += 70;
             }
             int y = guiTop + 204;
 
@@ -101,15 +102,15 @@ public class SpellScreen extends BaseScreen implements INamedScreen {
         mc.getTextureManager()
             .bindTexture(currentSchool.getIconLoc());
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, guiLeft + 106, guiTop + 8, 34, 34, 34, 34, 34, 34);
+        drawTexture(matrix, guiLeft + 108, guiTop + 8, 34, 34, 34, 34, 34, 34);
 
         // background
         mc.getTextureManager()
             .bindTexture(currentSchool.getBackgroundLoc());
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        drawTexture(matrix, guiLeft + 7, guiTop + 7, 91, 36, 91, 36, 91, 36);
-        drawTexture(matrix, guiLeft + 148, guiTop + 7, 91, 36, 91, 36, 91, 36);
+        drawTexture(matrix, guiLeft + 7, guiTop + 7, 93, 36, 93, 36, 93, 36);
+        drawTexture(matrix, guiLeft + 150, guiTop + 7, 93, 36, 93, 36, 93, 36);
 
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 

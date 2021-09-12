@@ -43,7 +43,7 @@ public class BeneficialEffects implements ExileRegistryInit {
     public static EffectCtx HP_REGEN = new EffectCtx("hp_reg_bard", "Health Reg", 2, Elements.Physical, EffectType.beneficial);
     public static EffectCtx MANA_REGEN = new EffectCtx("mana_reg_bard", "Mana Reg", 3, Elements.Physical, EffectType.beneficial);
     public static EffectCtx INFUSED_BLADE = new EffectCtx("infused_blade", "Infused Blade", 4, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx REGENERATE = new EffectCtx("regenerate", "Rejuvenate", 5, Elements.Earth, EffectType.beneficial);
+    public static EffectCtx REGENERATE = new EffectCtx("regenerate", "Nature Balm", 5, Elements.Earth, EffectType.beneficial);
     public static EffectCtx THORN_ARMOR = new EffectCtx("thorn_armor", "Thorn Armor", 6, Elements.Earth, EffectType.beneficial);
     public static EffectCtx ANGER = new EffectCtx("anger", "Anger", 7, Elements.Physical, EffectType.beneficial);
     public static EffectCtx DIVINE_SHIELD = new EffectCtx("divine_shield", "Divine Shield", 8, Elements.Elemental, EffectType.beneficial);

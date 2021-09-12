@@ -26,10 +26,15 @@ public class WaterSpells implements ExileRegistryInit {
     public static String FROST_NOVA_AOE = "frost_nova";
     public static String FROSTBALL_ID = "frostball";
 
+    public static String WATER_BREATH = "water_breath";
+    public static String MAGE_CIRCLE = "mage_circle";
+    public static String FROST_ARMOR = "frost_armor";
+    public static String TIDAL_STRIKE = "tidal_strike";
+
     @Override
     public void registerAll() {
 
-        SpellBuilder.of("water_breath", SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 5, 40)
+        SpellBuilder.of(WATER_BREATH, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 5, 40)
                     .setScaleManaToPlayer(),
                 "Water Breathing",
                 Arrays.asList())
@@ -42,7 +47,7 @@ public class WaterSpells implements ExileRegistryInit {
             .onCast(PartBuilder.giveEffectToAlliesInRadius(StatusEffects.WATER_BREATHING, 20D * 60D * 3, 5D))
             .build();
 
-        SpellBuilder.of("mage_circle", SpellConfiguration.Builder.instant(10, 20 * 45)
+        SpellBuilder.of(MAGE_CIRCLE, SpellConfiguration.Builder.instant(10, 20 * 45)
                 .setScaleManaToPlayer(), "Mage Circle", Arrays.asList(SpellTag.movement))
 
             .manualDesc(
@@ -68,13 +73,13 @@ public class WaterSpells implements ExileRegistryInit {
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
             .build();
 
-        SpellBuilder.of("frost_armor", SpellConfiguration.Builder.instant(15, 120 * 20), "Frost Armor",
+        SpellBuilder.of(FROST_ARMOR, SpellConfiguration.Builder.instant(15, 120 * 20), "Frost Armor",
                 Arrays.asList())
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.FROST_ARMOR, 20 * 120D))
             .build();
 
-        SpellBuilder.of("tidal_strike", SpellConfiguration.Builder.instant(8, 12)
+        SpellBuilder.of(TIDAL_STRIKE, SpellConfiguration.Builder.instant(8, 12)
                     .setSwingArm(), "Tidal Strike",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)

@@ -12,6 +12,7 @@ public class SchoolBuilder {
 
         SchoolBuilder b = new SchoolBuilder();
         b.school.id = id;
+        b.school.locname = name;
         return b;
     }
 

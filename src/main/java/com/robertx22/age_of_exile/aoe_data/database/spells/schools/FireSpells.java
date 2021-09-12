@@ -27,6 +27,9 @@ public class FireSpells implements ExileRegistryInit {
     public static String FIRE_NOVA_ID = "fire_nova";
     public static String FLAME_STRIKE_ID = "flame_strike";
 
+    public static String OVERLOAD = "overload";
+    public static String METEOR = "meteor";
+
     @Override
     public void registerAll() {
         SpellBuilder.of(FLAME_STRIKE_ID, SpellConfiguration.Builder.instant(8, 15)
@@ -40,7 +43,7 @@ public class FireSpells implements ExileRegistryInit {
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D)))
             .build();
 
-        SpellBuilder.of("overload", SpellConfiguration.Builder.nonInstant(10, 60 * 20, 30), "Overload",
+        SpellBuilder.of(OVERLOAD, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 3, 30), "Overload",
                 Arrays.asList())
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.OVERLOAD.effectId, 20 * 10D))
@@ -51,7 +54,7 @@ public class FireSpells implements ExileRegistryInit {
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(10D)))
             .build();
 
-        SpellBuilder.of("meteor", SpellConfiguration.Builder.nonInstant(18, 20 * 30, 30), "Meteor",
+        SpellBuilder.of(METEOR, SpellConfiguration.Builder.nonInstant(18, 20 * 30, 30), "Meteor",
                 Arrays.asList(SpellTag.area, SpellTag.damage)
             )
             .weaponReq(CastingWeapon.MAGE_WEAPON)

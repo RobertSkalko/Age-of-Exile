@@ -17,8 +17,8 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
     public String id = "";
     public transient String locname = "";
 
-    public static int MAX_Y_ROWS = 7;
-    public static int MAX_X_ROWS = 8;
+    public static int MAX_Y_ROWS = 6;
+    public static int MAX_X_ROWS = 10;
 
     public HashMap<String, PointData> spells = new HashMap<>();
 

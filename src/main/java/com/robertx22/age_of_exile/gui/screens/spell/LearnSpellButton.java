@@ -36,6 +36,7 @@ public class LearnSpellButton extends TexturedButtonWidget {
         super(xPos, yPos, BUTTON_SIZE_X, BUTTON_SIZE_Y, 0, 0, BUTTON_SIZE_Y, SPELL_SLOT, (button) -> {
 
             if (SpellScreen.IS_PICKING_HOTBAR_SPELL) {
+                SpellScreen.IS_PICKING_HOTBAR_SPELL = false;
                 Packets.sendToServer(new SetupHotbarPacket(spell, SpellScreen.NUMBER_OF_HOTBAR_FOR_PICKING));
             } else {
                 Packets.sendToServer(new AllocateSpellPacket(spell, AllocateSpellPacket.ACTION.ALLOCATE));
