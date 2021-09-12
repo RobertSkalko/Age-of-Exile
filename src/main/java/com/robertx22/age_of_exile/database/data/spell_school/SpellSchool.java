@@ -1,15 +1,20 @@
 package com.robertx22.age_of_exile.database.data.spell_school;
 
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Identifier;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<SpellSchool>, IAutoLocName {
     public static SpellSchool SERIALIZER = new SpellSchool();
@@ -22,7 +27,21 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
 
     public HashMap<String, PointData> spells = new HashMap<>();
 
+    public List<Integer> lvl_reqs = Arrays.asList(1, 5, 10, 20, 30, 40, 50);
+
     // public HashMap<String, PointData> spells = new HashMap<>(); todo synergies
+
+    public int getLevelNeededToAllocate(PointData point) {
+
+        int req = lvl_reqs.get(point.y);
+
+        return req;
+    }
+
+    public boolean isLevelEnoughForSpell(LivingEntity en, Spell spell) {
+        return Load.Unit(en)
+            .getLevel() >= getLevelNeededToAllocate(spells.get(spell.GUID()));
+    }
 
     public Identifier getIconLoc() {
         return Ref.guiId("spells/schools/" + id);

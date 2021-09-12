@@ -45,6 +45,7 @@ public class BeneficialEffects implements ExileRegistryInit {
     public static EffectCtx FIRE_WEAPON = new EffectCtx("fire_weapon", "Flame Weapon", 7, Elements.Fire, EffectType.beneficial);
     public static EffectCtx DIVINE_SHIELD = new EffectCtx("divine_shield", "Divine Shield", 8, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx POISON_WEAPONS = new EffectCtx("poison_weapons", "Poison Wep", 9, Elements.Earth, EffectType.beneficial);
+    public static EffectCtx ICY_WEAPON = new EffectCtx("ice_weapon", "Icy Weapon", 10, Elements.Water, EffectType.beneficial);
     public static EffectCtx FROST_ARMOR = new EffectCtx("frost_armor", "Frost Armor", 14, Elements.Water, EffectType.beneficial);
     public static EffectCtx OVERLOAD = new EffectCtx("overload", "Overload", 17, Elements.Physical, EffectType.beneficial);
     public static EffectCtx VALOR = new EffectCtx("valor", "Valor", 18, Elements.Physical, EffectType.beneficial);
@@ -59,6 +60,12 @@ public class BeneficialEffects implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(ICY_WEAPON)
+            .stat(3, new AttackDamage(Elements.Water), ModType.FLAT)
+            .maxStacks(1)
+            .addTags(EffectTags.positive)
+            .build();
 
         ExileEffectBuilder.of(FIRE_WEAPON)
             .stat(3, new AttackDamage(Elements.Fire), ModType.FLAT)

@@ -42,7 +42,7 @@ public class ScalingCalc {
     }
 
     public Text GetTooltipString(LevelProvider provider) {
-        return new LiteralText(getMultiAsPercent(provider) + "% " + getStat().getIconNameFormat());
+        return new LiteralText("(" + getMultiAsPercent(provider) + "% of " + getStat().getIconNameFormat() + ")");
     }
 
     public List<Text> getTooltipFor(float multi, float value, MutableText statname, Elements el) {

@@ -50,6 +50,7 @@ public class RangerSpells implements ExileRegistryInit {
     public static String POISON_TRAP = "poison_trap";
     public static String FIRE_TRAP = "fire_trap";
     public static String HUNTER_POTION = "hunter_potion";
+    public static String NIGHT_VISION = "night_vision";
 
     @Override
 
@@ -82,7 +83,7 @@ public class RangerSpells implements ExileRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 50D, 3D))
             .build();
 
-        SpellBuilder.of("night_vision", SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 5, 40)
+        SpellBuilder.of(NIGHT_VISION, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 5, 40)
                     .setScaleManaToPlayer(),
                 "Night Vision",
                 Arrays.asList())

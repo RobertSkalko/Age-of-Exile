@@ -40,12 +40,11 @@ public class NatureSpells implements ExileRegistryInit {
             .manualDesc(
                 "Erupt with poisonous gas, dealing " + SpellCalcs.FROST_NOVA.getLocSpellTooltip()
                     + " " + Elements.Earth.getIconNameDmg() + " to nearby enemies and applying Poison.")
-
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 0.5D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.SNEEZE, 300D, 3.5D, 0.5D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 200D, 3.5D, 0.5D))
-            .onCast(PartBuilder.addExileEffectToEnemiesInAoe(SpellCalcs.POISON_CLOUD.id, 3.5D, 8D))
+            .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.POISON.effectId, 3.5D, 8D * 20))
             .onCast(PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, Elements.Earth, 3.5D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_GENERIC_HURT, 1D, 1D)))
             .build();

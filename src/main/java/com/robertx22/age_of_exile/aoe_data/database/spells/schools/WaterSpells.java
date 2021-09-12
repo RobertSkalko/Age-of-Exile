@@ -31,9 +31,31 @@ public class WaterSpells implements ExileRegistryInit {
     public static String FROST_ARMOR = "frost_armor";
     public static String TIDAL_STRIKE = "tidal_strike";
     public static String NOURISHMENT = "nourishment";
+    public static String HEART_OF_ICE = "heart_of_ice";
+    public static String ICY_WEAPON = "ice_weapon";
 
     @Override
     public void registerAll() {
+
+        SpellBuilder.of(ICY_WEAPON, SpellConfiguration.Builder.instant(10, 20 * 30), "Icy Weapon",
+                Arrays.asList())
+            .manualDesc("Gives effect to nearby allies.")
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ICY_WEAPON.effectId, 20 * 10D))
+            .build();
+
+        SpellBuilder.of(HEART_OF_ICE, SpellConfiguration.Builder.instant(20, 20 * 30), "Heart of Ice",
+                Arrays.asList(SpellTag.heal))
+            .manualDesc(
+                "Heal allies around you for " + SpellCalcs.HEART_OF_ICE.getLocSpellTooltip() +
+                    " health")
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+            .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.SPLASH, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.DRIPPING_WATER, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.healInAoe(SpellCalcs.HEART_OF_ICE, 5D))
+            .build();
 
         SpellBuilder.of(WATER_BREATH, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 5, 40)
                     .setScaleManaToPlayer(),

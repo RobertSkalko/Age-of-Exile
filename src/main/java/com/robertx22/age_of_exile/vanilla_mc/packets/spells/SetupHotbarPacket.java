@@ -9,13 +9,14 @@ import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 public class SetupHotbarPacket extends MyPacket<SetupHotbarPacket> {
 
     int number;
     String spell;
 
-    public SetupHotbarPacket(Spell spell, int number) {
+    public SetupHotbarPacket(@NotNull Spell spell, int number) {
         this.number = number;
         this.spell = spell.GUID();
     }
@@ -46,7 +47,7 @@ public class SetupHotbarPacket extends MyPacket<SetupHotbarPacket> {
 
         EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
-        spells.getSkillGemData().hotbars.put(number, spell);
+        spells.getSpellsData().hotbars.put(number, spell);
 
     }
 

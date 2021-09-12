@@ -4,6 +4,7 @@ undying_will
 healing_aura
 song_of_valor
 thorn_armor
+fire_weapon
 wish
 whirlwind
 curse_of_despair
@@ -12,6 +13,7 @@ conjure_ender_chest
 shred
 poison_trap
 jump_field
+vamp_blood
 charged_bolt
 night_vision
 fire_breath
@@ -26,11 +28,13 @@ execute
 overload
 poison_cloud
 astral_totem
+draconic_blood
 smoke_bomb
 gong_strike
 tidal_strike
 song_of_vigor
 dash
+nourishment
 recoil_shot
 poison_ball
 teleport
@@ -49,6 +53,7 @@ levitation
 water_breath
 explosive_arrow
 charge
+heart_of_ice
 poison_arrow
 frost_breath
 curse_of_agony
@@ -66,5 +71,6 @@ test_command
 awaken_mana
 the_hunt
 fire_nova
+ice_weapon
 poisoned_weapons
 taunt

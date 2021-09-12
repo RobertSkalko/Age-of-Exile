@@ -81,21 +81,27 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
     public Text getShortTooltip(LevelProvider provider) {
         MutableText text = new LiteralText("");
 
+        int val = getCalculatedValue(provider);
+
         if (this.base.getValue(provider) > 0) {
-            text.append(getCalculatedBaseValue(provider) + "");
+            text.append(val + "");
         }
 
         if (attack_scaling.getValue(provider) > 0) {
-            text.append(getCalculatedValue(provider) + "");
+            if (val > 0) {
+                text.append(val + "");
+            }
 
-            if (Screen.hasShiftDown()) {
+            if (val < 1 || Screen.hasShiftDown()) {
                 text.append(" (" + (int) (attack_scaling.getValue(provider) * 100) + "% Weapon Damage)")
                     .formatted(Formatting.YELLOW);
             }
         }
 
         stat_scalings.forEach(x -> {
-            text.append(" + ")
+            text.append(getCalculatedValue(provider) + "");
+
+            text.append(" ")
                 .append(x.GetTooltipString(provider));
         });
 

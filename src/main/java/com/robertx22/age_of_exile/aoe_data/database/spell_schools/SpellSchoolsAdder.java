@@ -12,20 +12,26 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
         SchoolBuilder.of("divine", "Divine")
             .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 0))
-            .addSpell(HolySpells.GONG_STRIKE_ID, new PointData(3, 0))
-            .addSpell(HolySpells.BANISH, new PointData(10, 0))
+            .addSpell(HolySpells.GONG_STRIKE_ID, new PointData(2, 0))
 
             .addSpell(HolySpells.WHIRLWIND, new PointData(6, 1))
+            .addSpell(HolySpells.CHARGE_ID, new PointData(4, 1))
 
-            .addSpell(HolySpells.SHOOTING_STAR, new PointData(1, 3))
-            .addSpell(HolySpells.CHARGE_ID, new PointData(4, 3))
+            .addSpell(HolySpells.SHOOTING_STAR, new PointData(1, 2))
+            .addSpell(HolySpells.UNDYING_WILL, new PointData(3, 2))
 
-            .addSpell(HolySpells.UNDYING_WILL, new PointData(2, 3))
+            .addSpell(HolySpells.PULL, new PointData(8, 3))
 
-            .addSpell(HolySpells.INSPIRATION, new PointData(2, 5))
-            .addSpell(HolySpells.TAUNT, new PointData(2, 5))
+            .addSpell(HolySpells.INSPIRATION, new PointData(7, 4))
 
-            .addSpell(HolySpells.WISH, new PointData(10, 6))
+            .addSpell(HolySpells.HYMN_OF_PERSERVANCE, new PointData(1, 4))
+            .addSpell(HolySpells.HYMN_OF_VALOR, new PointData(2, 4))
+            .addSpell(HolySpells.HYMN_OF_VIGOR, new PointData(3, 4))
+
+            .addSpell(HolySpells.TAUNT, new PointData(5, 5))
+            .addSpell(HolySpells.BANISH, new PointData(10, 5))
+
+            .addSpell(HolySpells.WISH, new PointData(3, 6))
 
             .build();
 
@@ -45,6 +51,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(RangerSpells.FIRE_TRAP, new PointData(6, 4))
             .addSpell(RangerSpells.FROST_TRAP, new PointData(7, 4))
             .addSpell(RangerSpells.POISON_TRAP, new PointData(8, 4))
+            .addSpell(RangerSpells.NIGHT_VISION, new PointData(10, 4))
 
             .addSpell(RangerSpells.EXPLOSIVE_ARROW_ID, new PointData(2, 5))
 
@@ -90,6 +97,8 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(WaterSpells.FROST_NOVA_AOE, new PointData(2, 1))
             .addSpell(WaterSpells.WATER_BREATH, new PointData(10, 1))
             .addSpell(WaterSpells.FROST_ARMOR, new PointData(6, 1))
+
+            .addSpell(WaterSpells.ICY_WEAPON, new PointData(10, 2))
 
             .addSpell(WaterSpells.MAGE_CIRCLE, new PointData(10, 3))
             .build();

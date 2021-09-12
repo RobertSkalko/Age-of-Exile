@@ -112,31 +112,6 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_KILL = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_to_get_" + x.id + "_on_kill", x -> x.element)
-        .addAllOfType(Arrays.asList(
-
-        ))
-        .worksWithEvent(OnMobKilledByDamageEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
-        .addEffect(e -> StatEffects.GIVE_SELF_EFFECT.get(e))
-        .setLocName(x -> Stat.format(
-            "Your " + x.element.getIconNameFormat() + " Killing blows have " + Stat.VAL1 + "% chance of giving you " + x.locname
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-
-        })
-        .build();
-
     public static DataPackStatAccessor<LeechInfo> ELEMENT_LEECH_RESOURCE = DatapackStatBuilder
         .<LeechInfo>of(x -> x.element.guidName + "_" + x.resourceType.id + "_leech", x -> x.element)
         .addAllOfType(LeechInfo.allCombos())
@@ -350,56 +325,6 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_SELF = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self", x -> x.element)
-        .addAllOfType(Arrays.asList(
-
-            )
-        )
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
-        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
-        .addCondition(StatConditions.REQUIRE_CHARGED_ATTACK)
-        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
-        .setLocName(x -> Stat.format(
-            "Your " + x.element.getIconNameFormat() + " Attacks have " + Stat.VAL1 + "% chance of giving " + x.locname
-        ))
-        .setLocDesc(x -> "Chance to give effect")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_EFFECT_WHEN_HIT = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_of_" + x.id + "_when_hit", x -> x.element)
-        .addAllOfType(Arrays.asList(
-
-            )
-        )
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Target)
-        .addCondition(x -> StatConditions.IF_RANDOM_ROLL)
-        .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
-        .setLocName(x -> Stat.format(
-            Stat.format(Stat.VAL1 + "% chance to Gain " + x.locname + " when you are hit.")
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_APPLY_EFFECT_WHEN_HIT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id + "_when_hit", x -> x.element)
         .addAllOfType(Arrays.asList(
@@ -413,34 +338,6 @@ public class Stats implements ExileRegistryInit {
         .addEffect(x -> StatEffects.GIVE_EFFECT_TO_SOURCE.get(x))
         .setLocName(x -> Stat.format(
             Stat.format(Stat.VAL1 + "% chance to apply " + x.locname + " to enemies that hit you.")
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EffectCtx> CHANCE_ON_BASIC_ATK_TO_GIVE_EFFECT_ON_SELF = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_on_basic_atk_to_give_" + x.id + "_to_self", x -> x.element)
-        .addAllOfType(
-            Arrays.asList(
-
-            )
-        )
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
-        .addCondition(StatConditions.REQUIRE_CHARGED_ATTACK)
-        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
-        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
-        .setLocName(x -> Stat.format(
-            "Your " + x.element.getIconNameFormat() + " Basic Attacks have " + Stat.VAL1 + "% chance of giving " + x.locname
         ))
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {

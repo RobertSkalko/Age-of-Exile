@@ -16,7 +16,6 @@ scepter_damage
 give_regenerate_to_allies_in_aoe
 bonus_exp
 bonus_favor
-chance_to_get_blessing_on_kill
 all_water_damage
 energy
 heal_crit_dmg
@@ -43,13 +42,11 @@ damage_spell_dmg
 health_on_spell_hit
 all_health_leech
 all_physical_damage
-chance_on_basic_atk_to_give_gather_storm_to_self
 totem_spell_dmg
 elemental_mana_leech
 critical_hit
 health_on_attack_hit
 song_eff_duration
-chance_of_alacrity_when_hit
 dmg_when_target_near_full_hp
 inc_effect_of_immobilizing_buff_on_you
 faster_projectiles
@@ -66,11 +63,9 @@ all_all_damage
 chance_of_torment
 spell_elemental_damage
 dodge
-chance_on_basic_atk_to_give_blade_dance_to_self
 bonus_swamp_biome_yield
 inc_effect_of_curse_buff_on_you
 fire_vuln_crit
-chance_to_give_bloodlust_to_self
 bonus_blacksmithing_exp
 earth_vuln_crit
 elemental_any_wep_damage
@@ -92,7 +87,6 @@ strength
 ele_scepter_damage
 inc_effect_of_offensive_buff_on_you
 physical_weapon_damage_per_perc_of_mana
-mummy_curse
 non_crit_damage
 health_per_sec
 convert_fire_to_phys
@@ -115,21 +109,18 @@ all_dot_damage
 max_fire_resist
 curse_spell_dmg
 more_food_stats
-chance_of_alacrity_on_spell_hit
 earth_focus
 physical_mana_leech
-mark_on_basic_atk_kill
 critical_hit_per_10_dexterity
 accuracy_per_10_dexterity
 mana_per_10_wisdom
 bonus_mountain_biome_yield
+spell_lifesteal
 heal_cdr
 shield_cdr
-chance_to_give_steam_power_to_self
 mana_ooc_regen
 armor
 ele_staff_damage
-chance_on_basic_atk_to_give_infused_blade_to_self
 heal_over_time_eff_dur_u_cast
 agility
 movement_spell_dmg
@@ -164,7 +155,6 @@ all_fire_damage
 curse_eff_duration
 sword_damage
 crit_heal_chance
-chance_of_blessing_when_hit
 all_attributes
 water_vuln_crit
 chance_of_burn
@@ -172,7 +162,6 @@ area_dmg
 defensive_eff_duration
 max_earth_resist
 hp_resto_to_blood
-blessing_on_spell_kill
 fire_health_leech
 lifesteal
 ele_bow_damage
@@ -185,7 +174,6 @@ bonus_cooking_exp
 chance_of_burn_on_crit
 water_weapon_damage
 elemental_vuln_crit
-chance_to_give_concentration_to_self
 bonus_blacksmithing_yield
 mana_per_10_vitality
 bonus_mining_exp
@@ -235,7 +223,6 @@ spell_critical_hit
 blood_user
 fire_dot_damage
 bonus_salvaging_yield
-chance_to_get_bloodlust_on_kill
 dmg_received
 melee_dmg
 shield_strength
@@ -302,7 +289,6 @@ bonus_mining_yield
 crit_water_dmg_mana
 energy_ooc_regen
 negative_eff_duration
-chance_to_get_mark_on_kill
 armor_per_10_mana
 curse_cdr
 earth_dot_damage
@@ -316,7 +302,6 @@ bonus_exp_for_t5_mob
 dexterity
 bonus_rain_yield
 convert_earth_to_phys
-chance_to_give_blessing_to_self
 totem_resto
 heal_effect_on_self
 shield_duration
@@ -324,4 +309,3 @@ negative_eff_dur_u_cast
 water_any_wep_damage
 dmg_taken_to_mana
 inc_effect_of_food_buff_given
-chance_to_get_frenzy_on_kill

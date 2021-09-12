@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
@@ -45,9 +46,18 @@ public class HolySpells implements ExileRegistryInit {
     public static String WHIRLWIND = "whirlwind";
     public static String TAUNT = "taunt";
     public static String SHOUT_WARN = "shout_warn";
+    public static String PULL = "pull";
+
+    public static String HYMN_OF_VALOR = "song_of_valor";
+    public static String HYMN_OF_PERSERVANCE = "song_of_perseverance";
+    public static String HYMN_OF_VIGOR = "song_of_vigor";
 
     @Override
     public void registerAll() {
+
+        song(HYMN_OF_VALOR, "Song of Valor", BeneficialEffects.VALOR);
+        song(HYMN_OF_PERSERVANCE, "Song of Perseverance", BeneficialEffects.PERSEVERANCE);
+        song(HYMN_OF_VIGOR, "Song of Vigor", BeneficialEffects.VIGOR);
 
         SpellBuilder.of(WHIRLWIND, SpellConfiguration.Builder.multiCast(10, 0, 100, 10)
                     .setSwingArm(), "Whirlwind",
@@ -112,7 +122,8 @@ public class HolySpells implements ExileRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WOLF_HOWL, 1D, 1D))
             .onCast(PartBuilder.giveShieldInRadius(10D, SpellCalcs.SHOUT_WARN, 10D))
             .build();
-        SpellBuilder.of("pull", SpellConfiguration.Builder.instant(5, 60 * 20), "Pull",
+
+        SpellBuilder.of(PULL, SpellConfiguration.Builder.instant(5, 60 * 20), "Pull",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .manualDesc(
                 "Pull enemies in area to you, dealing " +
@@ -236,5 +247,19 @@ public class HolySpells implements ExileRegistryInit {
             .onCast(PartBuilder.healInAoe(SpellCalcs.WISH, 5D))
             .build();
 
+    }
+
+    static void song(String id, String name, EffectCtx effect) {
+
+        SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 10, 30)
+                , name,
+                Arrays.asList(SpellTag.area, SpellTag.song))
+            .manualDesc(
+                "Give a stack of " + effect.locname + " to all allies around you."
+            )
+            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, 1D, 1D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.NOTE, 50D, 3D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, effect.effectId, 20 * 30D))
+            .build();
     }
 }

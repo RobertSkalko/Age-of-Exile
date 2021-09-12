@@ -93,6 +93,9 @@ public class SpellCalcs {
     public static ValueCalculation HEALING_AURA = ValueCalcBuilder.of("healing_aura")
         .baseValue(4, 6)
         .build();
+    public static ValueCalculation HEART_OF_ICE = ValueCalcBuilder.of("heart_of_ice")
+        .baseValue(10, 50)
+        .build();
     public static ValueCalculation FROST_NOVA = ValueCalcBuilder.of("frost_nova")
         .attackScaling(0.5F, 1F)
         .build();

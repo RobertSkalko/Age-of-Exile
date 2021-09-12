@@ -253,7 +253,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
         }
 
-        if (Screen.hasShiftDown()) {
+        if (true || Screen.hasShiftDown()) {
 
             Set<ExileEffect> effect = new HashSet<>();
 

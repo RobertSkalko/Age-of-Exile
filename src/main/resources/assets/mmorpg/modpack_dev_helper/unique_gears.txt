@@ -4,7 +4,6 @@ ghostly_shores
 skull_cleaver
 mana_dominion
 winter_chill
-blood_stone
 spring_blossoms
 insight
 air_disaster

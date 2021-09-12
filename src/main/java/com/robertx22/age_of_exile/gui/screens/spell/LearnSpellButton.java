@@ -13,6 +13,7 @@ import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -39,7 +40,7 @@ public class LearnSpellButton extends TexturedButtonWidget {
                 SpellScreen.IS_PICKING_HOTBAR_SPELL = false;
                 Packets.sendToServer(new SetupHotbarPacket(spell, SpellScreen.NUMBER_OF_HOTBAR_FOR_PICKING));
             } else {
-                Packets.sendToServer(new AllocateSpellPacket(spell, AllocateSpellPacket.ACTION.ALLOCATE));
+                Packets.sendToServer(new AllocateSpellPacket(screen.currentSchool(), spell, AllocateSpellPacket.ACTION.ALLOCATE));
             }
         });
         this.screen = screen;
@@ -78,6 +79,11 @@ public class LearnSpellButton extends TexturedButtonWidget {
             TooltipInfo info = new TooltipInfo(mc.player);
 
             tooltip.addAll(spell.GetTooltipString(info));
+
+            int reqlvl = screen.currentSchool()
+                .getLevelNeededToAllocate(screen.currentSchool().spells.get(spell.GUID()));
+
+            tooltip.add(new LiteralText("Required Level: " + reqlvl).formatted(Formatting.RED));
 
             GuiUtils.renderTooltip(matrix, tooltip, x, y);
 

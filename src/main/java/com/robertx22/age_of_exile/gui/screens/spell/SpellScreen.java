@@ -6,17 +6,23 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
+import com.robertx22.age_of_exile.gui.screens.ILeftRight;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
-public class SpellScreen extends BaseScreen implements INamedScreen {
+import java.util.List;
+
+public class SpellScreen extends BaseScreen implements INamedScreen, ILeftRight {
     private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/spells/spell_school_background.png");
 
     static int sizeX = 250;
@@ -26,8 +32,15 @@ public class SpellScreen extends BaseScreen implements INamedScreen {
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
-    public SpellSchool currentSchool = ExileDB.SpellSchools()
-        .random(); // TODO
+    public List<SpellSchool> schoolsInOrder = ExileDB.SpellSchools()
+        .getList();
+    public int currentIndex = 0;
+    public int maxIndex = ExileDB.SpellSchools()
+        .getSize() - 1;
+
+    public SpellSchool currentSchool() {
+        return schoolsInOrder.get(currentIndex);
+    }
 
     public SpellScreen() {
         super(sizeX, sizeY);
@@ -52,8 +65,12 @@ public class SpellScreen extends BaseScreen implements INamedScreen {
         super.init();
 
         this.buttons.clear();
+        this.children.clear();
 
-        currentSchool.spells.entrySet()
+        addButton(new LeftRightButton(this, guiLeft + 100 - LeftRightButton.xSize - 5, guiTop + 25 - LeftRightButton.ySize / 2, true));
+        addButton(new LeftRightButton(this, guiLeft + 150 + 5, guiTop + 25 - LeftRightButton.ySize / 2, false));
+
+        currentSchool().spells.entrySet()
             .forEach(e -> {
 
                 PointData point = e.getValue();
@@ -97,23 +114,44 @@ public class SpellScreen extends BaseScreen implements INamedScreen {
                 .getScaledHeight() / 2 - sizeY / 2, 0, 0, sizeX, sizeY
         );
 
-        super.render(matrix, x, y, ticks);
-
         mc.getTextureManager()
-            .bindTexture(currentSchool.getIconLoc());
+            .bindTexture(currentSchool().getIconLoc());
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         drawTexture(matrix, guiLeft + 108, guiTop + 8, 34, 34, 34, 34, 34, 34);
 
         // background
         mc.getTextureManager()
-            .bindTexture(currentSchool.getBackgroundLoc());
+            .bindTexture(currentSchool().getBackgroundLoc());
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
         drawTexture(matrix, guiLeft + 7, guiTop + 7, 93, 36, 93, 36, 93, 36);
         drawTexture(matrix, guiLeft + 150, guiTop + 7, 93, 36, 93, 36, 93, 36);
 
+        super.render(matrix, x, y, ticks);
+
+        String txt = "Points: " + Load.spells(mc.player)
+            .getFreeSpellPoints();
+        GuiUtils.renderScaledText(matrix, guiLeft + 125, guiTop + 215, 1D, txt, Formatting.GREEN);
+
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
     }
 
+    @Override
+    public void goLeft() {
+        this.currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = maxIndex;
+        }
+        init();
+    }
+
+    @Override
+    public void goRight() {
+        currentIndex++;
+        if (currentIndex > maxIndex) {
+            currentIndex = 0;
+        }
+        init();
+    }
 }

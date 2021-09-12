@@ -18,6 +18,7 @@ charged_bolt
 burn
 explosive_arrow
 charge
+heart_of_ice
 poison
 hunter_pot_heal
 poison_arrow

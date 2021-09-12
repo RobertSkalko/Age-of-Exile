@@ -1,11 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.impl;
 
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
-import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -22,26 +20,8 @@ import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
 public class SongSpells implements ExileRegistryInit {
 
-    static void song(String id, String name, EffectCtx effect) {
-
-        SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 10, 30)
-                , name,
-                Arrays.asList(SpellTag.area, SpellTag.song))
-            .manualDesc(
-                "Give a stack of " + effect.locname + " to all allies around you."
-            )
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, 1D, 1D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.NOTE, 50D, 3D))
-            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, effect.effectId, 20 * 30D))
-            .build();
-    }
-
     @Override
     public void registerAll() {
-
-        song("song_of_valor", "Song of Valor", BeneficialEffects.VALOR);
-        song("song_of_perseverance", "Song of Perseverance", BeneficialEffects.PERSEVERANCE);
-        song("song_of_vigor", "Song of Vigor", BeneficialEffects.VIGOR);
 
         SpellBuilder.of("power_chord", SpellConfiguration.Builder.instant(7, 15)
                     .setSwingArm()

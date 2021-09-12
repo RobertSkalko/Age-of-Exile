@@ -2,11 +2,12 @@ package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
+import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
-import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
+import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SpellsData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
@@ -31,11 +32,13 @@ public class EntitySpellCap {
 
         public abstract int getFreeSpellPoints();
 
+        public abstract boolean canLearn(SpellSchool school, Spell spell);
+
         public abstract List<Spell> getLearnedSpells();
 
         public abstract SpellCastingData getCastingData();
 
-        public abstract SkillGemsData getSkillGemData();
+        public abstract SpellsData getSpellsData();
 
         public abstract void onSpellHitTarget(Entity spellEntity, LivingEntity target);
 
@@ -49,7 +52,7 @@ public class EntitySpellCap {
 
         SpellCastingData spellCastingData = new SpellCastingData();
 
-        SkillGemsData skillGems = new SkillGemsData();
+        SpellsData spellData = new SpellsData();
 
         LivingEntity entity;
 
@@ -62,7 +65,7 @@ public class EntitySpellCap {
 
             try {
                 LoadSave.Save(spellCastingData, nbt, PLAYER_SPELL_DATA);
-                LoadSave.Save(skillGems, nbt, GEMS);
+                LoadSave.Save(spellData, nbt, GEMS);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -86,10 +89,10 @@ public class EntitySpellCap {
                     spellCastingData = new SpellCastingData();
                 }
 
-                this.skillGems = LoadSave.Load(SkillGemsData.class, new SkillGemsData(), nbt, GEMS);
+                this.spellData = LoadSave.Load(SpellsData.class, new SpellsData(), nbt, GEMS);
 
-                if (skillGems == null) {
-                    skillGems = new SkillGemsData();
+                if (spellData == null) {
+                    spellData = new SpellsData();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -98,7 +101,7 @@ public class EntitySpellCap {
 
         @Override
         public Spell getSpellByNumber(int key) {
-            String spellid = this.skillGems.hotbars.get(key);
+            String spellid = this.spellData.hotbars.get(key);
             if (spellid != null && !spellid.isEmpty()) {
                 return ExileDB.Spells()
                     .get(spellid);
@@ -110,7 +113,7 @@ public class EntitySpellCap {
 
         public int getSpentSpellPoints() {
             int total = 0;
-            for (Integer x : this.skillGems.allocated_lvls.values()) {
+            for (Integer x : this.spellData.allocated_lvls.values()) {
                 total += x;
             }
             return total;
@@ -120,6 +123,23 @@ public class EntitySpellCap {
         public int getFreeSpellPoints() {
             return (int) (GameBalanceConfig.get().SPELL_POINTS_PER_LEVEL * Load.Unit(entity)
                 .getLevel()) - getSpentSpellPoints();
+        }
+
+        @Override
+        public boolean canLearn(SpellSchool school, Spell spell) {
+            if (getFreeSpellPoints() < 1) {
+                return false;
+            }
+            if (!school.isLevelEnoughForSpell(entity, spell)) {
+                return false;
+            }
+            if (spellData.schools.size() > 1) {
+                if (!spellData.schools.contains(school.GUID())) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         @Override
@@ -134,8 +154,8 @@ public class EntitySpellCap {
         }
 
         @Override
-        public SkillGemsData getSkillGemData() {
-            return this.skillGems;
+        public SpellsData getSpellsData() {
+            return this.spellData;
         }
 
         public HashMap<UUID, List<UUID>> mobsHit = new HashMap<>();
@@ -175,7 +195,7 @@ public class EntitySpellCap {
 
         @Override
         public int getLevelOf(String id) {
-            return skillGems.getLevelOf(id);
+            return spellData.getLevelOf(id);
         }
 
         @Override
