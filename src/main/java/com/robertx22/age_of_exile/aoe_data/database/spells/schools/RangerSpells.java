@@ -46,12 +46,28 @@ public class RangerSpells implements ExileRegistryInit {
     public static String RECOIL_SHOT = "recoil_shot";
     public static String DASH_ID = "dash";
 
+    public static String FROST_TRAP = "frost_trap";
+    public static String POISON_TRAP = "poison_trap";
+    public static String FIRE_TRAP = "fire_trap";
+    public static String HUNTER_POTION = "hunter_potion";
+
     @Override
+
     public void registerAll() {
 
-        trap("frost_trap", "Frost Trap", ParticleTypes.ITEM_SNOWBALL, SpellCalcs.RANGER_TRAP, Elements.Water).build();
-        trap("poison_trap", "Poison Trap", ParticleTypes.ITEM_SLIME, SpellCalcs.RANGER_TRAP, Elements.Earth).build();
-        trap("fire_trap", "Fire Trap", ParticleTypes.FLAME, SpellCalcs.RANGER_TRAP, Elements.Fire).build();
+        SpellBuilder.of(HUNTER_POTION, SpellConfiguration.Builder.instant(0, 60 * 20 * 3), "Hunter's Potion",
+                Arrays.asList(SpellTag.heal)
+            )
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+            .onCast(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
+            .onCast(PartBuilder.healCaster(SpellCalcs.HUNTER_POTION_HEAL))
+            .build();
+
+        trap(FROST_TRAP, "Frost Trap", ParticleTypes.ITEM_SNOWBALL, SpellCalcs.RANGER_TRAP, Elements.Water).build();
+        trap(POISON_TRAP, "Poison Trap", ParticleTypes.ITEM_SLIME, SpellCalcs.RANGER_TRAP, Elements.Earth).build();
+        trap(FIRE_TRAP, "Fire Trap", ParticleTypes.FLAME, SpellCalcs.RANGER_TRAP, Elements.Fire).build();
 
         SpellBuilder.of("smoke_bomb", SpellConfiguration.Builder.instant(7, 20 * 60), "Smoke Bomb",
                 Arrays.asList())

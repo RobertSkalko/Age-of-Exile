@@ -21,8 +21,10 @@ frost_armor
 backflip
 song_of_perseverance
 shooting_star
+hunter_potion
 execute
 overload
+poison_cloud
 astral_totem
 smoke_bomb
 gong_strike

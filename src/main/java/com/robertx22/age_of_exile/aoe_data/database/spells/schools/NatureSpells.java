@@ -30,9 +30,25 @@ public class NatureSpells implements ExileRegistryInit {
     public static String POISON_WEAPONS = "poisoned_weapons";
     public static String NATURE_BALM = "nature_balm";
     public static String ENTANGLE_SEED = "entangling_seed";
+    public static String POISON_CLOUD = "poison_cloud";
 
     @Override
     public void registerAll() {
+
+        SpellBuilder.of(POISON_CLOUD, SpellConfiguration.Builder.instant(30, 25 * 20), "Poison Cloud",
+                Arrays.asList(SpellTag.area, SpellTag.damage))
+            .manualDesc(
+                "Erupt with poisonous gas, dealing " + SpellCalcs.FROST_NOVA.getLocSpellTooltip()
+                    + " " + Elements.Earth.getIconNameDmg() + " to nearby enemies and applying Poison.")
+
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 0.5D, 1D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.SNEEZE, 300D, 3.5D, 0.5D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 200D, 3.5D, 0.5D))
+            .onCast(PartBuilder.addExileEffectToEnemiesInAoe(SpellCalcs.POISON_CLOUD.id, 3.5D, 8D))
+            .onCast(PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, Elements.Earth, 3.5D)
+                .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_GENERIC_HURT, 1D, 1D)))
+            .build();
 
         SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 20)
                     .setSwingArm()

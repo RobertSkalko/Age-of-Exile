@@ -60,6 +60,9 @@ public class SpellCalcs {
     public static ValueCalculation AWAKEN_MANA = ValueCalcBuilder.of("awaken_mana")
         .baseValue(20, 100)
         .build();
+    public static ValueCalculation HUNTER_POTION_HEAL = ValueCalcBuilder.of("hunter_pot_heal")
+        .baseValue(20, 100)
+        .build();
     public static ValueCalculation WISH = ValueCalcBuilder.of("wish")
         .baseValue(20, 80)
         .build();
@@ -92,6 +95,9 @@ public class SpellCalcs {
         .build();
     public static ValueCalculation FROST_NOVA = ValueCalcBuilder.of("frost_nova")
         .attackScaling(0.5F, 1F)
+        .build();
+    public static ValueCalculation POISON_CLOUD = ValueCalcBuilder.of("poison_cloud")
+        .attackScaling(0.25F, 0.5F)
         .build();
     public static ValueCalculation POISON_BALL = ValueCalcBuilder.of("poisonball")
         .attackScaling(0.5F, 1F)

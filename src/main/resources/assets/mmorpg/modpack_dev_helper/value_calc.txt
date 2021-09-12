@@ -19,6 +19,7 @@ burn
 explosive_arrow
 charge
 poison
+hunter_pot_heal
 poison_arrow
 shout_warn
 direct_arrow_hit
@@ -29,6 +30,7 @@ frost_nova
 ranger_trap
 execute
 bleed
+poison_cloud
 totem_guard
 power_chord
 pull

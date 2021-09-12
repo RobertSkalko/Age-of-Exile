@@ -74,8 +74,8 @@ public class HolySpells implements ExileRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
             .onCast(PartBuilder.restoreManaToCaster(SpellCalcs.AWAKEN_MANA))
-
             .build();
+
         SpellBuilder.of("shooting_star", SpellConfiguration.Builder.instant(10, 20)
                     .setSwingArm()
                     .applyCastSpeedToCooldown(), "Shooting Star",
