@@ -1,9 +1,11 @@
 package com.robertx22.age_of_exile.aoe_data.database.stat_conditions;
 
 import com.robertx22.age_of_exile.aoe_data.DataHolder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.schools.FireSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.schools.NatureSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.schools.WaterSpells;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ThreatGenType;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
@@ -14,6 +16,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -77,6 +80,7 @@ public class StatConditions implements ExileRegistryInit {
             .map(x -> new WeaponTypeMatches(x).GUID())
             .collect(Collectors.toList())
     );
+
     public static StatCondition IS_RANGED_WEAPON = new EitherIsTrueCondition("is_ranged_weapon",
         Arrays.asList(
             new WeaponTypeMatches(WeaponTypes.crossbow).GUID(),
@@ -104,6 +108,13 @@ public class StatConditions implements ExileRegistryInit {
             .GUID(), ATTACK_TYPE_MATCHES.get(AttackType.spell)
             .GUID())
     );
+    public static DataHolder<String, StatCondition> IS_SPECIFIC_SPELL = new DataHolder<>(
+        Arrays.asList(
+            WaterSpells.FROSTBALL_ID,
+            FireSpells.FIREBALL_ID,
+            NatureSpells.POISONBALL_ID
+        )
+        , x -> new StringMatchesCondition(EventData.SPELL, x));
 
     public static StatCondition CRIT_ROLL_DIDNT_FAIL = new IsBooleanTrueCondition(EventData.ACCURACY_CRIT_FAILED).flipCondition();
 
@@ -113,6 +124,7 @@ public class StatConditions implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
+        IS_SPECIFIC_SPELL.addToSerializables();
         ATTACK_TYPE_MATCHES.addToSerializables();
         REQUIRE_CHARGED_ATTACK.addToSerializables();
         IS_NOT_IN_COMBAT.addToSerializables();

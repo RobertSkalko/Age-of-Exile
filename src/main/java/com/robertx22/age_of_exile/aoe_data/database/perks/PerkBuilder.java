@@ -2,10 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.MarkerStat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -14,17 +11,6 @@ import java.util.List;
 
 public class PerkBuilder {
     private final Perk perk = new Perk();
-
-    public static PerkBuilder spellModifier(MarkerStat modStat, Spell spell) {
-        PerkBuilder b = new PerkBuilder();
-        b.perk.identifier = modStat.id;
-        b.perk.type = Perk.PerkType.SPELL_MOD;
-        b.perk.stats.add(new OptScaleExactStat(1, modStat, ModType.FLAT));
-        b.perk.icon = spell.getIconLoc()
-            .toString();
-        b.perk.one_of_a_kind = spell.GUID() + "_mod";
-        return b;
-    }
 
     public PerkBuilder addStat(OptScaleExactStat stat) {
         perk.stats.add(stat);

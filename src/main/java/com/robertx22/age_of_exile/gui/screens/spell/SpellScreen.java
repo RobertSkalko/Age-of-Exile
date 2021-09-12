@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.gui.screens.spell;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.data.synergy.Synergy;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
@@ -64,35 +65,57 @@ public class SpellScreen extends BaseScreen implements INamedScreen, ILeftRight 
     public void init() {
         super.init();
 
-        this.buttons.clear();
-        this.children.clear();
+        try {
+            this.buttons.clear();
+            this.children.clear();
 
-        addButton(new LeftRightButton(this, guiLeft + 100 - LeftRightButton.xSize - 5, guiTop + 25 - LeftRightButton.ySize / 2, true));
-        addButton(new LeftRightButton(this, guiLeft + 150 + 5, guiTop + 25 - LeftRightButton.ySize / 2, false));
+            addButton(new LeftRightButton(this, guiLeft + 100 - LeftRightButton.xSize - 5, guiTop + 25 - LeftRightButton.ySize / 2, true));
+            addButton(new LeftRightButton(this, guiLeft + 150 + 5, guiTop + 25 - LeftRightButton.ySize / 2, false));
 
-        currentSchool().spells.entrySet()
-            .forEach(e -> {
+            currentSchool().spells.entrySet()
+                .forEach(e -> {
 
-                PointData point = e.getValue();
-                Spell spell = ExileDB.Spells()
-                    .get(e.getKey());
+                    PointData point = e.getValue();
+                    Spell spell = ExileDB.Spells()
+                        .get(e.getKey());
 
-                int x = this.guiLeft + 12 + (point.x * SLOT_SPACING);
-                int y = this.guiTop + 177 - (point.y * SLOT_SPACING);
+                    if (spell != null) {
+                        int x = this.guiLeft + 12 + (point.x * SLOT_SPACING);
+                        int y = this.guiTop + 177 - (point.y * SLOT_SPACING);
 
-                this.addButton(new LearnSpellButton(this, spell, x, y));
-            });
+                        this.addButton(new LearnSpellButton(this, spell, x, y));
+                    }
+                });
 
-        for (int i = 0; i < 8; i++) {
+            currentSchool().synergies.entrySet()
+                .forEach(e -> {
 
-            int x = guiLeft + 10 + (PickHotbarButton.BUTTON_SIZE_X * i);
+                    PointData point = e.getValue();
+                    Synergy synergy = ExileDB.Synergies()
+                        .get(e.getKey());
 
-            if (i > 3) {
-                x += 70;
+                    if (synergy != null) {
+
+                        int x = this.guiLeft + 12 + (point.x * SLOT_SPACING);
+                        int y = this.guiTop + 177 - (point.y * SLOT_SPACING);
+
+                        this.addButton(new LearnSynergyButton(this, synergy, x, y));
+                    }
+                });
+
+            for (int i = 0; i < 8; i++) {
+
+                int x = guiLeft + 10 + (PickHotbarButton.BUTTON_SIZE_X * i);
+
+                if (i > 3) {
+                    x += 70;
+                }
+                int y = guiTop + 204;
+
+                this.addButton(new PickHotbarButton(this, i, x, y));
             }
-            int y = guiTop + 204;
-
-            this.addButton(new PickHotbarButton(this, i, x, y));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -105,35 +128,39 @@ public class SpellScreen extends BaseScreen implements INamedScreen, ILeftRight 
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
-        mc.getTextureManager()
-            .bindTexture(BACKGROUND);
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, mc.getWindow()
-                .getScaledWidth() / 2 - sizeX / 2,
-            mc.getWindow()
-                .getScaledHeight() / 2 - sizeY / 2, 0, 0, sizeX, sizeY
-        );
+        try {
+            mc.getTextureManager()
+                .bindTexture(BACKGROUND);
+            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+            drawTexture(matrix, mc.getWindow()
+                    .getScaledWidth() / 2 - sizeX / 2,
+                mc.getWindow()
+                    .getScaledHeight() / 2 - sizeY / 2, 0, 0, sizeX, sizeY
+            );
 
-        mc.getTextureManager()
-            .bindTexture(currentSchool().getIconLoc());
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, guiLeft + 108, guiTop + 8, 34, 34, 34, 34, 34, 34);
+            mc.getTextureManager()
+                .bindTexture(currentSchool().getIconLoc());
+            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+            drawTexture(matrix, guiLeft + 108, guiTop + 8, 34, 34, 34, 34, 34, 34);
 
-        // background
-        mc.getTextureManager()
-            .bindTexture(currentSchool().getBackgroundLoc());
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+            // background
+            mc.getTextureManager()
+                .bindTexture(currentSchool().getBackgroundLoc());
+            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        drawTexture(matrix, guiLeft + 7, guiTop + 7, 93, 36, 93, 36, 93, 36);
-        drawTexture(matrix, guiLeft + 150, guiTop + 7, 93, 36, 93, 36, 93, 36);
+            drawTexture(matrix, guiLeft + 7, guiTop + 7, 93, 36, 93, 36, 93, 36);
+            drawTexture(matrix, guiLeft + 150, guiTop + 7, 93, 36, 93, 36, 93, 36);
 
-        super.render(matrix, x, y, ticks);
+            super.render(matrix, x, y, ticks);
 
-        String txt = "Points: " + Load.spells(mc.player)
-            .getFreeSpellPoints();
-        GuiUtils.renderScaledText(matrix, guiLeft + 125, guiTop + 215, 1D, txt, Formatting.GREEN);
+            String txt = "Points: " + Load.spells(mc.player)
+                .getFreeSpellPoints();
+            GuiUtils.renderScaledText(matrix, guiLeft + 125, guiTop + 215, 1D, txt, Formatting.GREEN);
 
-        buttons.forEach(b -> b.renderToolTip(matrix, x, y));
+            buttons.forEach(b -> b.renderToolTip(matrix, x, y));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

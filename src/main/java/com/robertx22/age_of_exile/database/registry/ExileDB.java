@@ -27,6 +27,7 @@ import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.synergy.Synergy;
 import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
@@ -199,6 +200,10 @@ public class ExileDB {
 
     public static ExileRegistryContainer<PlayerSkill> PlayerSkills() {
         return Database.getRegistry(ExileRegistryTypes.PLAYER_SKILLS);
+    }
+
+    public static ExileRegistryContainer<Synergy> Synergies() {
+        return Database.getRegistry(ExileRegistryTypes.SYNERGY);
     }
 
     public static ExileRegistryContainer<SpellSchool> SpellSchools() {

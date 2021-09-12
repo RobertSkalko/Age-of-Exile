@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.spell_schools;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.impl.TotemSpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.schools.*;
+import com.robertx22.age_of_exile.aoe_data.database.synergy.SynergiesAdder;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
@@ -101,6 +102,8 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(WaterSpells.ICY_WEAPON, new PointData(10, 2))
 
             .addSpell(WaterSpells.MAGE_CIRCLE, new PointData(10, 3))
+
+            .addSynergy(SynergiesAdder.FROSTBALL_CHILL, new PointData(0, 1))
             .build();
 
     }

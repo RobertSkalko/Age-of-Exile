@@ -25,6 +25,7 @@ import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
+import com.robertx22.age_of_exile.database.data.synergy.Synergy;
 import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
@@ -80,5 +81,6 @@ public class ExileRegistryTypes {
     public static ExileRegistryType STAT_CONDITION = ExileRegistryType.register(Ref.MODID, "stat_condition", 32, StatCondition.SERIALIZER, SyncTime.NEVER);
     public static ExileRegistryType GAME_BALANCE = ExileRegistryType.register(Ref.MODID, "game_balance", 26, GameBalanceConfig.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType SPELL_SCHOOL = ExileRegistryType.register(Ref.MODID, "spell_school", 26, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN);
+    public static ExileRegistryType SYNERGY = ExileRegistryType.register(Ref.MODID, "synergy", 26, Synergy.SERIALIZER, SyncTime.ON_LOGIN);
 
 }

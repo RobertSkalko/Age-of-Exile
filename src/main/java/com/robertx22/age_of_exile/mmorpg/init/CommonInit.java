@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.GeneratedData;
 import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.aoe_data.database.stats.SynergyStats;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -46,6 +47,7 @@ public class CommonInit implements ModInitializer {
         StatEffects.loadClass();
         StatConditions.loadClass();
         Stats.loadClass();
+        SynergyStats.loadClass();
         ExileDBInit.initRegistries();
         SpecialStats.init();
 

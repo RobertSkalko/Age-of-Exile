@@ -165,6 +165,7 @@ hp_resto_to_blood
 fire_health_leech
 lifesteal
 ele_bow_damage
+poison_ball_chance_of_negative/3
 spell_earth_damage
 health_per_10_intelligence
 global_critical_damage
@@ -190,6 +191,7 @@ technique_cdr
 bonus_inscribing_yield
 projectile_spell_dmg
 chance_of_blind
+frostball_chance_of_negative/2
 spell_damage_per_perc_of_increase_healing
 positive_eff_dur_u_cast
 bonus_alchemy_exp
@@ -305,6 +307,7 @@ convert_earth_to_phys
 totem_resto
 heal_effect_on_self
 shield_duration
+fireball_chance_of_negative/5
 negative_eff_dur_u_cast
 water_any_wep_damage
 dmg_taken_to_mana

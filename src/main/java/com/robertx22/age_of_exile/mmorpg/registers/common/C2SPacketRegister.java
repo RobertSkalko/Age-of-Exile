@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.AllocateStatPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ModifyItemPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.OpenGuiPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.perks.PerkChangePacket;
+import com.robertx22.age_of_exile.vanilla_mc.packets.spells.AllocateSynergyPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.SetupHotbarPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCancelSpellCast;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCastSpellPacket;
@@ -24,6 +25,7 @@ public class C2SPacketRegister {
         Packets.registerClientToServerPacket(new TellServerToCastSpellPacket());
         Packets.registerClientToServerPacket(new PerkChangePacket());
         Packets.registerClientToServerPacket(new AllocateSpellPacket());
+        Packets.registerClientToServerPacket(new AllocateSynergyPacket());
         Packets.registerClientToServerPacket(new AllocateStatPacket());
         Packets.registerClientToServerPacket(new OpenGuiPacket());
         Packets.registerClientToServerPacket(new TellServerToCancelSpellCast());
