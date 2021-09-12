@@ -121,8 +121,6 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(ExileDB.Sets()
             .getSerializable());
-        list.addAll(ExileDB.SkillGems()
-            .getSerializable());
         list.addAll(ExileDB.Perks()
             .getSerializable());
         list.addAll(ExileDB.Spells()

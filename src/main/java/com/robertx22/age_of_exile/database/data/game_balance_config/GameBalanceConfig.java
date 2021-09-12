@@ -28,6 +28,7 @@ public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, 
 
     public double TALENT_POINTS_AT_MAX_LEVEL = 100;
     public double STAT_POINTS_PER_LEVEL = 2;
+    public double SPELL_POINTS_PER_LEVEL = 2;
     public double STARTING_TALENT_POINTS = 1;
 
     @Override

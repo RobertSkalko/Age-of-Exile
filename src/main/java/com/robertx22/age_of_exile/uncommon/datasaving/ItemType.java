@@ -9,7 +9,6 @@ import net.minecraft.util.Formatting;
 public enum ItemType {
 
     GEAR(ItemFilterGroup.ANY_GEAR, Words.Gears),
-    SPELL_GEM(ItemFilterGroup.ANY_SPELL_GEM, Words.Gears),
     NONE(null, Words.None);
 
     ItemType(ItemFilterGroup filter, Words word) {

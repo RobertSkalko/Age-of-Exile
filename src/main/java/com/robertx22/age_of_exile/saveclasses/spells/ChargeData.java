@@ -1,9 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.spells;
 
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -64,39 +62,32 @@ public class ChargeData {
 
         List<String> chargesadded = new ArrayList<>(); // no duplicate charge regen
 
-        for (SkillGemData x : sdata.getSkillGemData().gems) {
-            if (x != null && x.getSkillGem() != null) {
-                if (ExileDB.Spells()
-                    .isRegistered(x.getSkillGem().spell_id)) {
-                    Spell s = ExileDB.Spells()
-                        .get(x.getSkillGem().spell_id);
+        for (Spell s : sdata.getLearnedSpells()) {
 
-                    String id = s.config.charge_name;
+            String id = s.config.charge_name;
 
-                    if (getCharges(id) >= s.config.charges) {
-                        continue;
-                    }
+            if (getCharges(id) >= s.config.charges) {
+                continue;
+            }
 
-                    if (!chargesadded.contains(id)) {
+            if (!chargesadded.contains(id)) {
 
-                        if (s.config.charges > 0) {
+                if (s.config.charges > 0) {
 
-                            chargesadded.add(id);
+                    chargesadded.add(id);
 
-                            charge_regen.put(s.config.charge_name, ticks + charge_regen.getOrDefault(s.config.charge_name, 0));
+                    charge_regen.put(s.config.charge_name, ticks + charge_regen.getOrDefault(s.config.charge_name, 0));
 
-                            if (charge_regen.get(id) >= s.config.charge_regen) {
-                                charge_regen.put(id, 0);
-                                addCharge(id, s);
+                    if (charge_regen.get(id) >= s.config.charge_regen) {
+                        charge_regen.put(id, 0);
+                        addCharge(id, s);
 
-                                sync = true;
-
-                            }
-
-                        }
+                        sync = true;
 
                     }
+
                 }
+
             }
 
         }

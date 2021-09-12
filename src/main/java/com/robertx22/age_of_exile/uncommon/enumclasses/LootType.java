@@ -8,7 +8,6 @@ public enum LootType implements IGUID {
     Gear("Gear", "gear", Words.Gear, 0),
     Gem("Gem", "gem", Words.Gem, 1),
     DungeonKey("Dungeon Key", "dungeon_keys", Words.DungeonKey, 0),
-    SkillGem("Skill Gem", "skill_gem", Words.SkillGem, 0),
     LevelingRewards("Leveling Rewards", "lvl_rewards", Words.LevelRewards, 0),
     Rune("Rune", "rune", Words.Rune, 2),
     Currency("Currency", "currency", Words.Currency, 3),

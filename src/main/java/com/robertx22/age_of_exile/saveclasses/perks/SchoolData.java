@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.perks;
 
-import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
+import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;

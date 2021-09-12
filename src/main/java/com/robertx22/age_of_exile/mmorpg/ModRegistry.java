@@ -10,7 +10,6 @@ public class ModRegistry {
     public static MiscItemsRegistrator MISC_ITEMS;
     public static BaseGearTypeItemRegister GEAR_ITEMS;
     public static CurrencyItemRegistrator CURRENCIES;
-    public static SkillGemItemRegister SKILL_GEMS;
     public static FoodItemRegister FOOD_ITEMS;
     public static GemItemRegister GEMS;
     public static RuneItemRegister RUNES;
@@ -51,7 +50,6 @@ public class ModRegistry {
         FOOD_ITEMS = new FoodItemRegister();
         INSCRIBING = new InscribingItemRegister();
         ALCHEMY = new AlchemyItemRegister();
-        SKILL_GEMS = new SkillGemItemRegister();
         TIERED = new TierItemsRegister();
         BACKPACK_UPGRADES = new BackpackUpgradesRegister();
 

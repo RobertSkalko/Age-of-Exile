@@ -24,10 +24,10 @@ import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
-import com.robertx22.age_of_exile.database.data.spell_schools.TalentTree;
+import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
@@ -134,7 +134,7 @@ public class ExileDB {
     }
 
     public static ExileRegistryContainer<TalentTree> TalentTrees() {
-        return Database.getRegistry(ExileRegistryTypes.SPELL_SCHOOL);
+        return Database.getRegistry(ExileRegistryTypes.TALENT_TREE);
     }
 
     public static ExileRegistryContainer<GearSet> Sets() {
@@ -169,10 +169,6 @@ public class ExileDB {
         return Database.getRegistry(ExileRegistryTypes.TIER);
     }
 
-    public static ExileRegistryContainer<SkillGem> SkillGems() {
-        return Database.getRegistry(ExileRegistryTypes.SKILL_GEM);
-    }
-
     public static ExileRegistryContainer<BaseGearType> GearTypes() {
         return Database.getRegistry(ExileRegistryTypes.GEAR_TYPE);
     }
@@ -203,6 +199,10 @@ public class ExileDB {
 
     public static ExileRegistryContainer<PlayerSkill> PlayerSkills() {
         return Database.getRegistry(ExileRegistryTypes.PLAYER_SKILLS);
+    }
+
+    public static ExileRegistryContainer<SpellSchool> SpellSchools() {
+        return Database.getRegistry(ExileRegistryTypes.SPELL_SCHOOL);
     }
 
     public static ExileRegistryContainer<CraftingReq> ItemCraftReq() {

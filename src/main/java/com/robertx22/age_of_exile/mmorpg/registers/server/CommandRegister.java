@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.vanilla_mc.commands.entity.*;
 import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveBuffScroll;
 import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveExactUnique;
 import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveGear;
-import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveSkillGem;
 import com.robertx22.age_of_exile.vanilla_mc.commands.open_gui.OpenHub;
 import com.robertx22.age_of_exile.vanilla_mc.commands.reset.ResetSpellCooldowns;
 import com.robertx22.age_of_exile.vanilla_mc.commands.stats.ClearStats;
@@ -26,7 +25,6 @@ public class CommandRegister {
             .getDispatcher();
 
         GiveBuffScroll.register(dispatcher);
-        GiveSkillGem.register(dispatcher);
         GiveExactUnique.register(dispatcher);
         GiveGear.register(dispatcher);
         SetEntityRarity.register(dispatcher);

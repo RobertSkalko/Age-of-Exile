@@ -1,11 +1,9 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets.spells;
 
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
@@ -46,18 +44,11 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
 
         EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
-        SkillGemData data = spells.getSkillGemData()
-            .getSkillGemOf(number);
-
-        if (data == null || data.getSkillGem() == null) {
-            return;
-        }
         if (player.isBlocking()) {
             return;
         }
 
-        Spell spell = ExileDB.Spells()
-            .get(data.getSkillGem().spell_id);
+        Spell spell = spells.getSpellByNumber(number);
 
         if (spell != null) {
 

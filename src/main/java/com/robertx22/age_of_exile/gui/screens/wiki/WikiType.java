@@ -27,17 +27,6 @@ public enum WikiType {
         }
     },
 
-    SPELLS("spell") {
-        @Override
-        public List<WikiEntry> getAllEntries() {
-            return ExileDB.Spells()
-                .getList()
-                .stream()
-                .filter(x -> x.Weight() > 0)
-                .map(x -> new SpellEntry(x))
-                .collect(Collectors.toList());
-        }
-    },
     EFFECTS("effect") {
         @Override
         public List<WikiEntry> getAllEntries() {

@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellDesc;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -18,6 +17,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
@@ -212,11 +212,13 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
         return (int) ctx.event.data.getNumber(EventData.MANA_COST).number;
     }
 
-    public final List<Text> GetTooltipString(SkillGemData gem, Spell spell, TooltipInfo info) {
+    public final List<Text> GetTooltipString(TooltipInfo info) {
 
-        SpellCastContext ctx = new SpellCastContext(gem, info.player, 0, spell);
+        SpellCastContext ctx = new SpellCastContext(info.player, 0, this);
 
         List<Text> list = new ArrayList<>();
+
+        list.add(locName().formatted(Formatting.RED, Formatting.BOLD));
 
         TooltipUtils.addEmpty(list);
 
@@ -280,6 +282,13 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
                 e.printStackTrace();
             }
         }
+
+        int currentlvl = Load.spells(info.player)
+            .getLevelOf(GUID());
+        int maxlvl = getMaxLevel();
+
+        list.add(new LiteralText("Level: " + currentlvl + "/" + maxlvl).formatted(Formatting.YELLOW));
+
         TooltipUtils.removeDoubleBlankLines(list);
 
         return list;

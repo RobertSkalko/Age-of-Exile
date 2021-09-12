@@ -29,9 +29,9 @@ public class ProfessionButton extends TexturedButtonWidget {
     public static int BUTTON_SIZE_Y = 30;
 
     MinecraftClient mc = MinecraftClient.getInstance();
-    PlayerSkillsScreen screen;
+    TalentTreeScreen screen;
 
-    public ProfessionButton(PlayerSkillsScreen screen, PlayerSkill se, int xPos, int yPos) {
+    public ProfessionButton(TalentTreeScreen screen, PlayerSkill se, int xPos, int yPos) {
         super(xPos, yPos, BUTTON_SIZE_X, BUTTON_SIZE_Y, 0, 0, BUTTON_SIZE_Y,
             Load.playerSkills(MinecraftClient.getInstance().player)
                 .getBackGroundTextureFor(se.type_enum), (button) -> {
@@ -46,7 +46,7 @@ public class ProfessionButton extends TexturedButtonWidget {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        renderIconFor(matrix, skill, x, y, PlayerSkillsScreen.IconRenderType.SCREEN);
+        renderIconFor(matrix, skill, x, y, TalentTreeScreen.IconRenderType.SCREEN);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class ProfessionButton extends TexturedButtonWidget {
         return GuiUtils.isInRect(this.x, this.y, BUTTON_SIZE_X, BUTTON_SIZE_Y, x, y);
     }
 
-    public static void renderIconFor(MatrixStack matrix, PlayerSkillEnum skill, int x, int y, PlayerSkillsScreen.IconRenderType render) {
+    public static void renderIconFor(MatrixStack matrix, PlayerSkillEnum skill, int x, int y, TalentTreeScreen.IconRenderType render) {
         // this is separated because it's used in 2 different places. The screen, and overlay
 
         MinecraftClient mc = MinecraftClient.getInstance();
@@ -90,13 +90,13 @@ public class ProfessionButton extends TexturedButtonWidget {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         drawTexture(matrix, x + 7, y + 7, 16, 16, 16, 16, 16, 16);
 
-        if (render == PlayerSkillsScreen.IconRenderType.OVERLAY || render == PlayerSkillsScreen.IconRenderType.SCREEN) {
+        if (render == TalentTreeScreen.IconRenderType.OVERLAY || render == TalentTreeScreen.IconRenderType.SCREEN) {
             int lvl = data.getLvl();
             String lvltext = "" + lvl;
             TextUtils.renderText(matrix, 0.8F, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 0.85F), Formatting.YELLOW);
         }
 
-        if (render == PlayerSkillsScreen.IconRenderType.SCREEN) {
+        if (render == TalentTreeScreen.IconRenderType.SCREEN) {
             int exp = data.getExp();
             int needed = data.getExpNeededToLevel();
 

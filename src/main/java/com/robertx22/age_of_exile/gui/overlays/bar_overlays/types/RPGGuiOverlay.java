@@ -2,11 +2,9 @@ package com.robertx22.age_of_exile.gui.overlays.bar_overlays.types;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.config.GuiPartConfig;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.TextUtils;
-import com.robertx22.age_of_exile.gui.overlays.AreaLevelIndicator;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.SyncedToClientValues;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
@@ -146,6 +144,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
                     }
                 });
 
+            /*
             GuiPartConfig c = ModConfig.get().client.AREA_LVL_OVERLAY;
 
             if (c.enabled) {
@@ -158,6 +157,8 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
                     );
                 }
             }
+
+             */
 
         } catch (Exception e) {
             e.printStackTrace();

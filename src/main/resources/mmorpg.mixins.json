@@ -24,7 +24,6 @@
     "AccessorClientAdvancementManager",
     "InGameHudMixin",
     "ItemGlintMixin",
-    "ItemRendererMixin",
     "ItemStackMixin",
     "MinecraftClientMixin",
     "MobNameTagMixin",

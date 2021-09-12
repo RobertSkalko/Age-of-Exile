@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.LivingEntity;
@@ -52,7 +53,8 @@ public class TellClientEntityIsCastingSpellPacket extends MyPacket<TellClientEnt
         SpellCastContext c = new SpellCastContext(en, 0, spell);
 
         spell.getAttached()
-            .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(en, en, EntitySavedSpellData.create(c.skillGemData.lvl, en, spell)));
+            .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(en, en, EntitySavedSpellData.create(Load.Unit(en)
+                .getLevel(), en, spell)));
 
     }
 

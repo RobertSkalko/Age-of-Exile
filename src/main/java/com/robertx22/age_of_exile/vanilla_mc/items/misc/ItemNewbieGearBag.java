@@ -4,16 +4,12 @@ import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.loot.blueprints.SkillGemBlueprint;
 import com.robertx22.age_of_exile.loot.generators.GearSoulLootGen;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
@@ -46,7 +42,7 @@ public class ItemNewbieGearBag extends Item {
     }
 
     static HashMap<String, NewbieContent> MAP = new HashMap<>();
-    static NewbieContent defaultContent = new NewbieContent(Arrays.asList(() -> ModRegistry.GEAR_ITEMS.STAFFS.get(VanillaMaterial.WOOD)), Arrays.asList(GearSlots.STAFF), Arrays.asList());
+    static NewbieContent defaultContent = new NewbieContent(Arrays.asList(() -> ModRegistry.GEAR_ITEMS.STAFFS.get(VanillaMaterial.WOOD)), Arrays.asList(GearSlots.STAFF));
 
     static {
     }
@@ -66,15 +62,14 @@ public class ItemNewbieGearBag extends Item {
     static class NewbieContent {
 
         public List<String> gearslots;
-        public List<String> skillgems;
         public List<Supplier<Item>> items;
 
         public List<ItemStack> stacks = new ArrayList<>();
 
-        public NewbieContent(List<Supplier<Item>> items, List<String> gearslots, List<String> skillgems) {
+        public NewbieContent(List<Supplier<Item>> items, List<String> gearslots) {
             this.gearslots = gearslots;
             this.items = items;
-            this.skillgems = skillgems;
+
         }
 
         public NewbieContent addStack(ItemStack stack) {
@@ -106,23 +101,6 @@ public class ItemNewbieGearBag extends Item {
 
                 PlayerUtils.giveItem(stack, player);
 
-            });
-
-            skillgems.forEach(x -> {
-                SkillGem gem = ExileDB.SkillGems()
-                    .get(x);
-                SkillGemBlueprint blueprint = new SkillGemBlueprint(1);
-
-                blueprint.type.set(gem);
-                blueprint.level.set(1);
-
-                ItemStack stack = blueprint.createStack();
-
-                SkillGemData data = StackSaving.SKILL_GEMS.loadFrom(stack);
-                data.sal = false;
-                data.saveToStack(stack);
-
-                PlayerUtils.giveItem(stack, player);
             });
 
             stacks.forEach(x -> PlayerUtils.giveItem(x, player));

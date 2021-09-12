@@ -26,9 +26,8 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.FavorButton;
-import com.robertx22.age_of_exile.gui.screens.MainHubButton;
-import com.robertx22.age_of_exile.gui.screens.PlayerGearButton;
-import com.robertx22.age_of_exile.gui.screens.player_skills.PlayerSkillsScreen;
+import com.robertx22.age_of_exile.gui.screens.player_skills.TalentTreeScreen;
+import com.robertx22.age_of_exile.gui.screens.spell.SpellScreen;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -229,8 +228,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
             // hub buttons
             List<INamedScreen> screens = new ArrayList<>();
-            // TODO screens.add(new TalentsScreen());
-            screens.add(new PlayerSkillsScreen());
+            screens.add(new SpellScreen());
+            screens.add(new TalentTreeScreen());
             screens.add(new WikiScreen());
 
             int x = guiLeft + sizeX - 1;

@@ -1,14 +1,14 @@
 package com.robertx22.age_of_exile.capability.player;
 
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGem;
-import com.robertx22.age_of_exile.database.data.skill_gem.SkillGemData;
+import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SkillGemsData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.Entity;
@@ -28,6 +28,10 @@ public class EntitySpellCap {
     public abstract static class ISpellsCap implements ICommonPlayerCap, IApplyableStats {
 
         public abstract Spell getSpellByNumber(int key);
+
+        public abstract int getFreeSpellPoints();
+
+        public abstract List<Spell> getLearnedSpells();
 
         public abstract SpellCastingData getCastingData();
 
@@ -94,21 +98,34 @@ public class EntitySpellCap {
 
         @Override
         public Spell getSpellByNumber(int key) {
-            SkillGemData data = this.skillGems.getSkillGemOf(key);
+            String spellid = this.skillGems.hotbars.get(key);
+            if (spellid != null && !spellid.isEmpty()) {
+                return ExileDB.Spells()
+                    .get(spellid);
 
-            if (data != null) {
-                SkillGem gem = data.getSkillGem();
-                if (gem != null) {
-                    if (ExileDB.Spells()
-                        .isRegistered(gem.spell_id)) {
-                        return ExileDB.Spells()
-                            .get(data.getSkillGem()
-                                .spell_id);
-                    }
-                }
             }
 
             return null;
+        }
+
+        public int getSpentSpellPoints() {
+            int total = 0;
+            for (Integer x : this.skillGems.allocated_lvls.values()) {
+                total += x;
+            }
+            return total;
+        }
+
+        @Override
+        public int getFreeSpellPoints() {
+            return (int) (GameBalanceConfig.get().SPELL_POINTS_PER_LEVEL * Load.Unit(entity)
+                .getLevel()) - getSpentSpellPoints();
+        }
+
+        @Override
+        public List<Spell> getLearnedSpells() {
+            return ExileDB.Spells()
+                .getFilterWrapped(x -> getLevelOf(x.GUID()) > 0).list;
         }
 
         @Override
@@ -158,7 +175,7 @@ public class EntitySpellCap {
 
         @Override
         public int getLevelOf(String id) {
-            return skillGems.levels.getOrDefault(id, 0);
+            return skillGems.getLevelOf(id);
         }
 
         @Override

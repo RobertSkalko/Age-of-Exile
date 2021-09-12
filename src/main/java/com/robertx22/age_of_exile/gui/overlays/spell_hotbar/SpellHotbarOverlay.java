@@ -125,18 +125,15 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
             return;
         }
 
-        int x = 2;
+        int x = 3;
         int y = mc.getWindow()
-            .getScaledHeight() / 2 - HEIGHT / 2 + 2;
+            .getScaledHeight() / 2 - HEIGHT / 2 + 3;
 
         y += num * 20;
 
-        double scale = 0.6F;
-        RenderSystem.scaled(scale, scale, scale);
-
         try {
-            int xs = (int) (x * 1 / scale);
-            int ys = (int) (y * 1 / scale);
+            int xs = (int) (x);
+            int ys = (int) (y);
 
             if (data.getCastingData().auras.getOrDefault(spell.GUID(), new SpellCastingData.AuraData()).active) {
                 mc.getTextureManager()
@@ -151,12 +148,12 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                     .bindTexture(SPELL_READY_TEX);
             }
 
-            this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
+            this.drawTexture(matrix, xs, ys, 0, 0, 16, 16, 16, 16);
 
             if (spell != null) {
                 mc.getTextureManager()
                     .bindTexture(spell.getIconLoc());
-                this.drawTexture(matrix, xs, ys, 0, 0, 32, 32, 32, 32);
+                this.drawTexture(matrix, xs, ys, 0, 0, 16, 16, 16, 16);
 
                 if (spell.config.charges > 0) {
                     int charges = data.getCastingData().charges.getCharges(spell.config.charge_name);
@@ -173,8 +170,6 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
 
                     }
 
-                    RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
-
                     mc.getTextureManager()
                         .bindTexture(CHARGE);
                     int chargex = x + 21;
@@ -183,8 +178,6 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                         this.drawTexture(matrix, chargex, y + 5, 0, 0, CHARGE_SIZE, CHARGE_SIZE, CHARGE_SIZE, CHARGE_SIZE);
                         chargex += CHARGE_SIZE + 1;
                     }
-
-                    RenderSystem.scaled(scale, scale, scale);
 
                 } else {
 
@@ -200,7 +193,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                     int cdsec = cds.getCooldownTicks(spell.GUID()) / 20;
                     if (cdsec > 1) {
                         String stext = cdsec + "s";
-                        MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, stext, xs + 35, ys + 15, Formatting.YELLOW.getColorValue());
+                        GuiUtils.renderScaledText(matrix, xs + 27, ys + 10, 0.75F, stext, Formatting.YELLOW);
                     }
                 }
 
@@ -212,14 +205,12 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
                     txt = txt.substring(0, 2);
                 }
                 GuiUtils.renderScaledText(matrix,
-                    xs + 23, ys + 23, 1.4F, txt, Formatting.GREEN);
+                    xs + 14, ys + 12, 1, txt, Formatting.GREEN);
 
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        RenderSystem.scaled(1 / scale, 1 / scale, 1 / scale);
 
     }
 
@@ -227,7 +218,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
 
         mc.getTextureManager()
             .bindTexture(COOLDOWN_TEX);
-        this.drawTexture(matrix, x, y, 0, 0, 32, (int) (32 * percent), 32, 32);
+        this.drawTexture(matrix, x, y, 0, 0, 16, (int) (16 * percent), 16, 16);
     }
 
     private void renderHotbar(MatrixStack matrix, int x, int y) {
