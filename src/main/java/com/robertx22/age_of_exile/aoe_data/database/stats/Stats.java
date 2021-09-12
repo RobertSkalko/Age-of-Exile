@@ -115,10 +115,7 @@ public class Stats implements ExileRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_KILL = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_to_get_" + x.id + "_on_kill", x -> x.element)
         .addAllOfType(Arrays.asList(
-            BeneficialEffects.BLOODLUST,
-            BeneficialEffects.MARK,
-            BeneficialEffects.FRENZY,
-            BeneficialEffects.BLESSING
+
         ))
         .worksWithEvent(OnMobKilledByDamageEvent.ID)
         .setPriority(0)
@@ -356,10 +353,8 @@ public class Stats implements ExileRegistryInit {
     public static DataPackStatAccessor<EffectCtx> CHANCE_TO_GIVE_EFFECT_ON_SELF = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_to_give_" + x.id + "_to_self", x -> x.element)
         .addAllOfType(Arrays.asList(
-            BeneficialEffects.BLOODLUST,
-            BeneficialEffects.CONCENTRATION,
-            BeneficialEffects.STEAM_POWER,
-            BeneficialEffects.BLESSING)
+
+            )
         )
         .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
@@ -382,59 +377,10 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_EFFECT_ON_SPELL_HIT = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_of_" + x.id + "_on_spell_hit", x -> x.element)
-        .addAllOfType(Arrays.asList(
-                BeneficialEffects.ALACRITY
-            )
-        )
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_SPELL)
-        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
-        .setLocName(x -> Stat.format(
-            Stat.format(Stat.VAL1 + "% chance to Gain " + x.locname + " on spell hits.")
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EffectCtx> EFFECT_ON_SPELL_KILL = DatapackStatBuilder
-        .<EffectCtx>of(x -> x.id + "_on_spell_kill", x -> x.element)
-        .addAllOfType(Arrays.asList(
-                BeneficialEffects.BLESSING
-            )
-        )
-        .worksWithEvent(OnMobKilledByDamageEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_SPELL)
-        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
-        .setLocName(x -> Stat.format(
-            Stat.format("Gain " + x.locname + " when you kill a mob with a spell")
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_EFFECT_WHEN_HIT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id + "_when_hit", x -> x.element)
         .addAllOfType(Arrays.asList(
-                BeneficialEffects.BLESSING,
-                BeneficialEffects.ALACRITY
+
             )
         )
         .worksWithEvent(DamageEvent.ID)
@@ -477,37 +423,12 @@ public class Stats implements ExileRegistryInit {
             x.scaling = StatScaling.NONE;
         })
         .build();
-    public static DataPackStatAccessor<EffectCtx> EFFECT_ON_BASIC_ATTACK_KILL = DatapackStatBuilder
-        .<EffectCtx>of(x -> x.id + "_on_basic_atk_kill", x -> x.element)
-        .addAllOfType(Arrays.asList(
-                BeneficialEffects.MARK
-            )
-        )
-        .worksWithEvent(OnMobKilledByDamageEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_BASIC_ATTACK)
-        .addEffect(x -> StatEffects.GIVE_SELF_EFFECT.get(x))
-        .setLocName(x -> Stat.format(
-            Stat.format("Gain " + x.locname + " when you kill a mob with a basic attack")
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
 
     public static DataPackStatAccessor<EffectCtx> CHANCE_ON_BASIC_ATK_TO_GIVE_EFFECT_ON_SELF = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_on_basic_atk_to_give_" + x.id + "_to_self", x -> x.element)
         .addAllOfType(
             Arrays.asList(
-                BeneficialEffects.INFUSED_BLADE,
-                BeneficialEffects.BLADE_DANCE,
-                BeneficialEffects.GATHER_STORM
+
             )
         )
         .worksWithEvent(DamageEvent.ID)
@@ -1073,6 +994,25 @@ public class Stats implements ExileRegistryInit {
         .addEffect(StatEffects.LEECH_PERCENT_OF_DAMAGE_AS_RESOURCE.get(ResourceType.health))
         .setLocName(x -> "Lifesteal")
         .setLocDesc(x -> "Restore % of damage as health.")
+        .modifyAfterDone(x -> {
+            x.is_perc = true;
+            x.base = 0;
+            x.min = 0;
+            x.scaling = StatScaling.NONE;
+            x.format = Formatting.RED.getName();
+            x.group = StatGroup.RESTORATION;
+        })
+        .build();
+
+    public static DataPackStatAccessor<EmptyAccessor> SPELL_LIFESTEAL = DatapackStatBuilder
+        .ofSingle("spell_lifesteal", Elements.All)
+        .worksWithEvent(DamageEvent.ID)
+        .setPriority(100)
+        .setSide(EffectSides.Source)
+        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.spell))
+        .addEffect(StatEffects.LEECH_PERCENT_OF_DAMAGE_AS_RESOURCE.get(ResourceType.health))
+        .setLocName(x -> "Spell Lifesteal")
+        .setLocDesc(x -> "Restore % of spell damage as health.")
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;

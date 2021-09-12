@@ -39,7 +39,6 @@ public class NegativeEffects implements ExileRegistryInit {
     public static EffectCtx BURN = new EffectCtx("burn", "Burn", 5, Elements.Fire, EffectType.negative);
     public static EffectCtx TORMENT = new EffectCtx("torment", "Torment", 7, Elements.Elemental, EffectType.negative);
     public static EffectCtx BLEED = new EffectCtx("bleed", "Bleed", 8, Elements.Physical, EffectType.negative);
-    public static EffectCtx MUMMY_CURSE = new EffectCtx("mummy_curse", "Mummy Curse", 9, Elements.Elemental, EffectType.negative);
     public static EffectCtx BLIND = new EffectCtx("blind", "Blind", 10, Elements.Earth, EffectType.negative);
     public static EffectCtx STUN = new EffectCtx("stun", "Stun", 11, Elements.Physical, EffectType.negative);
     public static EffectCtx SLOW = new EffectCtx("slow", "Slow", 12, Elements.Physical, EffectType.negative);
@@ -136,17 +135,6 @@ public class NegativeEffects implements ExileRegistryInit {
             .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -100, ModType.GLOBAL_INCREASE, UUID.fromString("3fb10485-f309-468f-afc6-a23b0d6cf4c1")))
             .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_SPEED, -100, ModType.GLOBAL_INCREASE, UUID.fromString("00fb60a7-904b-462f-a7cb-a557f02e362e")))
             .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_DAMAGE, -100, ModType.GLOBAL_INCREASE, UUID.fromString("10fb60a7-904b-462f-a7cb-a557f02e362e")))
-            .build();
-
-        ExileEffectBuilder.of(MUMMY_CURSE)
-            .maxStacks(1)
-            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic), ModType.FLAT)
-            .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 3D, 1D)
-                    .onTick(10D))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.WHITE_ASH, 10D, 1D)
-                    .onTick(10D))
-                .buildForEffect())
             .build();
 
         ExileEffectBuilder.of(TORMENT)

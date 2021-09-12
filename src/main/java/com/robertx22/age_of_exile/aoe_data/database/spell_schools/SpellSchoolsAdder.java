@@ -1,10 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.spell_schools;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.impl.TotemSpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.schools.FireSpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.schools.NatureSpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.schools.RangerSpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.schools.WaterSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.schools.*;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
@@ -12,6 +9,25 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
+
+        SchoolBuilder.of("divine", "Divine")
+            .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 0))
+            .addSpell(HolySpells.GONG_STRIKE_ID, new PointData(3, 0))
+            .addSpell(HolySpells.BANISH, new PointData(10, 0))
+
+            .addSpell(HolySpells.WHIRLWIND, new PointData(6, 1))
+
+            .addSpell(HolySpells.SHOOTING_STAR, new PointData(1, 3))
+            .addSpell(HolySpells.CHARGE_ID, new PointData(4, 3))
+
+            .addSpell(HolySpells.UNDYING_WILL, new PointData(2, 3))
+
+            .addSpell(HolySpells.INSPIRATION, new PointData(2, 5))
+            .addSpell(HolySpells.TAUNT, new PointData(2, 5))
+
+            .addSpell(HolySpells.WISH, new PointData(10, 6))
+
+            .build();
 
         SchoolBuilder.of("hunting", "Hunting")
             .addSpell(RangerSpells.ARROW_STORM, new PointData(0, 0))
@@ -56,7 +72,12 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(FireSpells.FIREBALL_ID, new PointData(0, 0))
             .addSpell(FireSpells.FLAME_STRIKE_ID, new PointData(5, 0))
 
+            .addSpell(FireSpells.FLAME_WEAPON, new PointData(7, 1))
+
             .addSpell(FireSpells.METEOR, new PointData(2, 3))
+
+            .addSpell(FireSpells.VAMP_BLOOD, new PointData(5, 4))
+            .addSpell(FireSpells.DRACONIC_BLOOD, new PointData(6, 4))
 
             .addSpell(FireSpells.OVERLOAD, new PointData(10, 5))
 

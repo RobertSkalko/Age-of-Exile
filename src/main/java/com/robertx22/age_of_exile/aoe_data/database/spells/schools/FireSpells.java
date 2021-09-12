@@ -30,8 +30,13 @@ public class FireSpells implements ExileRegistryInit {
     public static String OVERLOAD = "overload";
     public static String METEOR = "meteor";
 
+    public static String VAMP_BLOOD = "vamp_blood";
+    public static String DRACONIC_BLOOD = "draconic_blood";
+    public static String FLAME_WEAPON = "fire_weapon";
+
     @Override
     public void registerAll() {
+
         SpellBuilder.of(FLAME_STRIKE_ID, SpellConfiguration.Builder.instant(8, 15)
                     .setSwingArm(), "Flame Strike",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
@@ -45,8 +50,30 @@ public class FireSpells implements ExileRegistryInit {
 
         SpellBuilder.of(OVERLOAD, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 3, 30), "Overload",
                 Arrays.asList())
+            .manualDesc("Gives effect to self.")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.OVERLOAD.effectId, 20 * 10D))
+            .build();
+
+        SpellBuilder.of(VAMP_BLOOD, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 3, 30), "Vampiric BLood",
+                Arrays.asList())
+            .manualDesc("Gives effect to nearby allies.")
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.VAMPIRIC_BLOOD.effectId, 20 * 60D))
+            .build();
+
+        SpellBuilder.of(DRACONIC_BLOOD, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 3, 30), "Draconic BLood",
+                Arrays.asList())
+            .manualDesc("Gives effect to nearby allies.")
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.DRACONIC_BLOOD.effectId, 20 * 60D))
+            .build();
+
+        SpellBuilder.of(FLAME_WEAPON, SpellConfiguration.Builder.instant(10, 20 * 30), "Flame Weapon",
+                Arrays.asList())
+            .manualDesc("Gives effect to nearby allies.")
+            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.FIRE_WEAPON.effectId, 20 * 10D))
             .build();
 
         SpellBuilder.breath("fire_breath", "Fire Breath", Elements.Fire, ParticleTypes.FLAME)

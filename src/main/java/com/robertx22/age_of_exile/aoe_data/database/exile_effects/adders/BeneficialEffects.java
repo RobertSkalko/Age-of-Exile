@@ -34,36 +34,24 @@ import net.minecraft.particle.ParticleTypes;
 
 import java.util.UUID;
 
-import static net.minecraft.entity.attribute.EntityAttributes.GENERIC_MOVEMENT_SPEED;
-
 public class BeneficialEffects implements ExileRegistryInit {
 
-    public static EffectCtx ELE_RESIST = new EffectCtx("ele_res", "Ele Resist", 0, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx ANTIDOTE = new EffectCtx("antidote", "Antidote", 1, Elements.All, EffectType.beneficial);
-    public static EffectCtx HP_REGEN = new EffectCtx("hp_reg_bard", "Health Reg", 2, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx MANA_REGEN = new EffectCtx("mana_reg_bard", "Mana Reg", 3, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx INFUSED_BLADE = new EffectCtx("infused_blade", "Infused Blade", 4, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx NOURISHMENT = new EffectCtx("nourishment", "Nourishment", 2, Elements.Water, EffectType.beneficial);
+    public static EffectCtx VAMPIRIC_BLOOD = new EffectCtx("vamp_blood", "Vamp Blood", 3, Elements.Fire, EffectType.beneficial);
+    public static EffectCtx DRACONIC_BLOOD = new EffectCtx("draconic_blood", "Dragon Blood", 4, Elements.Fire, EffectType.beneficial);
     public static EffectCtx REGENERATE = new EffectCtx("regenerate", "Nature Balm", 5, Elements.Earth, EffectType.beneficial);
     public static EffectCtx THORN_ARMOR = new EffectCtx("thorn_armor", "Thorn Armor", 6, Elements.Earth, EffectType.beneficial);
-    public static EffectCtx ANGER = new EffectCtx("anger", "Anger", 7, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx FIRE_WEAPON = new EffectCtx("fire_weapon", "Flame Weapon", 7, Elements.Fire, EffectType.beneficial);
     public static EffectCtx DIVINE_SHIELD = new EffectCtx("divine_shield", "Divine Shield", 8, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx POISON_WEAPONS = new EffectCtx("poison_weapons", "Poison Wep", 9, Elements.Earth, EffectType.beneficial);
-    public static EffectCtx BLESSING = new EffectCtx("blessing", "Azuna's Blessing", 10, Elements.Elemental, EffectType.beneficial);
-    public static EffectCtx GATHER_STORM = new EffectCtx("gather_storm", "Gather Storm", 11, Elements.Elemental, EffectType.beneficial);
-    public static EffectCtx MARK = new EffectCtx("mark", "Mark of Zadal", 12, Elements.Elemental, EffectType.beneficial);
-    public static EffectCtx BLADE_DANCE = new EffectCtx("blade_dance", "Blade Dance", 13, Elements.Physical, EffectType.beneficial);
     public static EffectCtx FROST_ARMOR = new EffectCtx("frost_armor", "Frost Armor", 14, Elements.Water, EffectType.beneficial);
-    public static EffectCtx BLOODLUST = new EffectCtx("bloodlust", "Bloodlust", 16, Elements.Physical, EffectType.beneficial);
     public static EffectCtx OVERLOAD = new EffectCtx("overload", "Overload", 17, Elements.Physical, EffectType.beneficial);
     public static EffectCtx VALOR = new EffectCtx("valor", "Valor", 18, Elements.Physical, EffectType.beneficial);
     public static EffectCtx PERSEVERANCE = new EffectCtx("perseverance", "Perseverance", 19, Elements.Physical, EffectType.beneficial);
     public static EffectCtx VIGOR = new EffectCtx("vigor", "Vigor", 20, Elements.Physical, EffectType.beneficial);
     public static EffectCtx TAUNT_STANCE = new EffectCtx("taunt_stance", "Taunt Stance", 21, Elements.Physical, EffectType.beneficial);
     public static EffectCtx UNDYING_WILL = new EffectCtx("undying_will", "Undying Will", 24, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx FRENZY = new EffectCtx("frenzy", "Frenzy", 25, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx ALACRITY = new EffectCtx("alacrity", "Alacrity", 27, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx STEAM_POWER = new EffectCtx("steam_power", "Steam Power", 28, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx CONCENTRATION = new EffectCtx("concentration", "Concentration", 29, Elements.Physical, EffectType.beneficial);
     public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 30, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx MURDER_INSTINCT = new EffectCtx("murder_instinct", "Murder Instinct", 31, Elements.Physical, EffectType.beneficial);
     public static EffectCtx DEMON_TRANSFORMATION = new EffectCtx("demon", "Demon", 32, Elements.Physical, EffectType.beneficial);
@@ -71,6 +59,30 @@ public class BeneficialEffects implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
+
+        ExileEffectBuilder.of(FIRE_WEAPON)
+            .stat(3, new AttackDamage(Elements.Fire), ModType.FLAT)
+            .maxStacks(1)
+            .addTags(EffectTags.positive)
+            .build();
+
+        ExileEffectBuilder.of(DRACONIC_BLOOD)
+            .stat(3, Stats.SPELL_LIFESTEAL.get(), ModType.FLAT)
+            .maxStacks(1)
+            .addTags(EffectTags.positive)
+            .build();
+
+        ExileEffectBuilder.of(VAMPIRIC_BLOOD)
+            .stat(5, Stats.LIFESTEAL.get(), ModType.FLAT)
+            .maxStacks(1)
+            .addTags(EffectTags.positive)
+            .build();
+
+        ExileEffectBuilder.of(NOURISHMENT)
+            .stat(1, HealthRegen.getInstance(), ModType.FLAT)
+            .maxStacks(1)
+            .addTags(EffectTags.positive)
+            .build();
 
         ExileEffectBuilder.of(MAGE_CIRCLE)
             .stat(25, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
@@ -125,37 +137,6 @@ public class BeneficialEffects implements ExileRegistryInit {
             .maxStacks(1)
             .build();
 
-        ExileEffectBuilder.of(CONCENTRATION)
-            .stat(10, Stats.ACCURACY.get(), ModType.FLAT)
-            .maxStacks(3)
-            .addTags(EffectTags.offensive)
-            .build();
-
-        ExileEffectBuilder.of(STEAM_POWER)
-            .stat(1, ManaRegen.getInstance(), ModType.FLAT)
-            .maxStacks(3)
-            .addTags(EffectTags.offensive)
-            .build();
-
-        ExileEffectBuilder.of(STEAM_POWER)
-            .stat(1, ManaRegen.getInstance(), ModType.FLAT)
-            .maxStacks(3)
-            .addTags(EffectTags.offensive)
-            .build();
-
-        ExileEffectBuilder.of(ALACRITY)
-            .stat(2, Stats.ATTACK_SPEED.get(), ModType.FLAT)
-            .maxStacks(10)
-            .addTags(EffectTags.offensive)
-            .build();
-
-        ExileEffectBuilder.of(FRENZY)
-            .stat(5, Stats.TOTAL_DAMAGE.get())
-            .stat(5, Stats.DAMAGE_RECEIVED.get())
-            .stat(1, Stats.LIFESTEAL.get())
-            .maxStacks(3)
-            .build();
-
         ExileEffectBuilder.of(UNDYING_WILL)
             .stat(-75, Stats.DAMAGE_RECEIVED.get())
             .stat(2, HealthRegen.getInstance())
@@ -185,62 +166,11 @@ public class BeneficialEffects implements ExileRegistryInit {
             .addTags(EffectTags.song, EffectTags.offensive)
             .build();
 
-        ExileEffectBuilder.of(BLADE_DANCE)
-            .stat(2, Stats.ATTACK_SPEED.get(), ModType.FLAT)
-            .maxStacks(5)
-            .addTags(EffectTags.offensive)
-            .build();
-
-        ExileEffectBuilder.of(GATHER_STORM)
-            .stat(5, Stats.AREA_DAMAGE.get(), ModType.FLAT)
-            .maxStacks(5)
-            .addTags(EffectTags.offensive)
-
-            .build();
-
-        ExileEffectBuilder.of(BLESSING)
-            .stat(-3, Stats.DAMAGE_RECEIVED.get(), ModType.FLAT)
-            .stat(5, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
-            .maxStacks(5)
-            .build();
-
-        ExileEffectBuilder.of(MARK)
-            .stat(5, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
-            .maxStacks(5)
-            .build();
-
-        ExileEffectBuilder.of(INFUSED_BLADE)
-            .stat(5, SpellDamage.getInstance(), ModType.FLAT)
-            .addTags(EffectTags.offensive)
-            .maxStacks(5)
-            .build();
-
-        ExileEffectBuilder.of(HP_REGEN)
-            .stat(20, HealthRegen.getInstance(), ModType.PERCENT)
-            .maxStacks(1)
-            .build();
-
-        ExileEffectBuilder.of(MANA_REGEN)
-            .stat(20, ManaRegen.getInstance(), ModType.PERCENT)
-            .maxStacks(1)
-            .build();
-
         ExileEffectBuilder.of(OVERLOAD)
             .stat(-10, Stats.COOLDOWN_TICKS.get(), ModType.FLAT)
             .stat(25, Stats.MANA_COST.get(), ModType.FLAT)
             .stat(-25, DatapackStats.MOVE_SPEED, ModType.FLAT)
             .maxStacks(1)
-            .build();
-
-        ExileEffectBuilder.of(BLOODLUST)
-            .stat(2, Stats.LIFESTEAL.get(), ModType.FLAT)
-            .stat(2, DatapackStats.MOVE_SPEED, ModType.FLAT)
-            .maxStacks(10)
-            .build();
-
-        ExileEffectBuilder.of(ELE_RESIST)
-            .stat(10, new ElementalResist(Elements.Elemental), ModType.FLAT)
-            .addTags(EffectTags.defensive)
             .build();
 
         ExileEffectBuilder.of(ANTIDOTE)
@@ -284,14 +214,6 @@ public class BeneficialEffects implements ExileRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .buildForEffect())
             .addTags(EffectTags.defensive)
-
-            .build();
-
-        ExileEffectBuilder.of(ANGER)
-            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, 0.15F, ModType.GLOBAL_INCREASE, UUID.fromString("7107DE5E-5CE8-4030-940E-514C1F160890")))
-            .stat(15, Stats.CRIT_CHANCE.get(), ModType.FLAT)
-            .stat(20, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
-            .addTags(EffectTags.offensive)
 
             .build();
 

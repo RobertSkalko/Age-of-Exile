@@ -21,19 +21,7 @@ public class StatEffects implements ExileRegistryInit {
 
     public static DataHolder<EffectCtx, StatEffect> GIVE_SELF_EFFECT = new DataHolder<>(
         Arrays.asList(
-            BeneficialEffects.BLOODLUST,
-            BeneficialEffects.TAUNT_STANCE,
-            BeneficialEffects.GATHER_STORM,
-            BeneficialEffects.FRENZY,
-            BeneficialEffects.ALACRITY,
-            BeneficialEffects.INFUSED_BLADE,
-            BeneficialEffects.BLADE_DANCE,
-            BeneficialEffects.MARK,
-            BeneficialEffects.CONCENTRATION,
-            BeneficialEffects.BLESSING,
-            BeneficialEffects.STEAM_POWER,
-            BeneficialEffects.HP_REGEN,
-            BeneficialEffects.MANA_REGEN
+            BeneficialEffects.TAUNT_STANCE
         ),
         x -> new GiveExileStatusEffect(x.effectId, EffectSides.Source, 10)
     );
@@ -81,8 +69,7 @@ public class StatEffects implements ExileRegistryInit {
             NegativeEffects.BURN,
             NegativeEffects.SLOW,
             NegativeEffects.STUN,
-            BeneficialEffects.BLESSING,
-            BeneficialEffects.ALACRITY,
+
             NegativeEffects.CHILL,
             NegativeEffects.BLEED,
             NegativeEffects.POISON,

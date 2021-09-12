@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.stats.types.special;
 
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
@@ -9,15 +8,16 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseHealEffec
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BasePotionEffect;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseRegenEffect;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpecialStatDamageEffect;
-import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.*;
+import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
+import com.robertx22.age_of_exile.uncommon.effectdatas.ExilePotionEvent;
+import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
@@ -40,43 +40,6 @@ public class SpecialStats {
     public static void init() {
 
     }
-
-    static int VOID_EYE_COOLDOWN_MINUTES = 5;
-
-    public static SpecialStat MUMMY_CURSE = new SpecialStat("mummy_curse",
-        format("Immobilizing effects have " + VAL1 + "% " + "chance to apply Curse of the Mummy"),
-
-        new BasePotionEffect() {
-            @Override
-            public ExilePotionEvent activate(ExilePotionEvent effect, StatData data, Stat stat) {
-
-                ExilePotionEvent potionEvent = EventBuilder.ofEffect(effect.source, effect.target, Load.Unit(effect.source)
-                        .getLevel(), ExileDB.ExileEffects()
-                        .get(NegativeEffects.MUMMY_CURSE.effectId), GiveOrTake.give, 20 * 10 * 20)
-                    .build();
-                potionEvent.Activate();
-
-                return effect;
-            }
-
-            @Override
-            public boolean canActivate(ExilePotionEvent effect, StatData data, Stat stat) {
-                return ExileDB.ExileEffects()
-                    .get(effect.data.getString(EventData.EXILE_EFFECT))
-                    .hasTag(EffectTags.immobilizing) && RandomUtils.roll(data.getValue());
-            }
-
-            @Override
-            public EffectSides Side() {
-                return EffectSides.Source;
-            }
-
-            @Override
-            public int GetPriority() {
-                return 0;
-            }
-        }
-    );
 
     public static SpecialStat BONUS_REGEN_IN_WATER = new SpecialStat("bonus_regen_in_water",
         format("Your Regeneration effects are " + VAL1 + "% stronger inside water."),

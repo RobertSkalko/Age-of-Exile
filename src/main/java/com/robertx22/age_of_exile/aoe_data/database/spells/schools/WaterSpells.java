@@ -30,6 +30,7 @@ public class WaterSpells implements ExileRegistryInit {
     public static String MAGE_CIRCLE = "mage_circle";
     public static String FROST_ARMOR = "frost_armor";
     public static String TIDAL_STRIKE = "tidal_strike";
+    public static String NOURISHMENT = "nourishment";
 
     @Override
     public void registerAll() {
@@ -125,6 +126,18 @@ public class WaterSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.breath("frost_breath", "Frost Breath", Elements.Water, PARTICLES.FROST)
+            .build();
+
+        SpellBuilder.of(NOURISHMENT, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Nourishment",
+                Arrays.asList(SpellTag.heal))
+            .manualDesc(
+                "Apply buff to allies nearby ")
+
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+            .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.NOURISHMENT.id, 20D * 25))
             .build();
     }
 }
