@@ -1,3 +1,5 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 frostball_chill
+fireball_burn
+poisonball_poison

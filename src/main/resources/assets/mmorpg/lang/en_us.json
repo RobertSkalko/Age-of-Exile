@@ -354,7 +354,6 @@
 	"item.mmorpg.locked_chest.2": "Empyrean Locked Chest",
 	"item.mmorpg.locked_chest.3": "Angelic Locked Chest",
 	"item.mmorpg.locked_chest.4": "Divine Locked Chest",
-	"item.mmorpg.loot_crate.ench_exp_bag": "Enchanting Experience Chest",
 	"item.mmorpg.lure.fish.0": "Spiritual Fish Lure",
 	"item.mmorpg.lure.fish.1": "Celestial Fish Lure",
 	"item.mmorpg.lure.fish.2": "Empyrean Fish Lure",
@@ -391,6 +390,7 @@
 	"item.mmorpg.potions.add_reset_perk_points": "Single Talent Reset Potion",
 	"item.mmorpg.potions.death_potion": "Death Potion",
 	"item.mmorpg.potions.reset_all_perks": "Talent Reset Potion",
+	"item.mmorpg.potions.reset_spells": "Spells Reset Potion",
 	"item.mmorpg.potions.reset_stats": "Stat Reset Potion",
 	"item.mmorpg.projectile.fireball": "Projectile",
 	"item.mmorpg.projectile.slimeball": "Projectile",
@@ -549,6 +549,7 @@
 	"mmorpg.spell.black_hole": "Black Hole",
 	"mmorpg.spell.charge": "Charge",
 	"mmorpg.spell.charged_bolt": "Charged Bolt",
+	"mmorpg.spell.chilling_field": "Chilling Field",
 	"mmorpg.spell.conjure_ender_chest": "Conjure Ender Chest",
 	"mmorpg.spell.curse_of_agony": "Curse of Agony",
 	"mmorpg.spell.curse_of_despair": "Curse of Despair",
@@ -615,6 +616,9 @@
 	"mmorpg.spell.water_breath": "Water Breathing",
 	"mmorpg.spell.whirlwind": "Whirlwind",
 	"mmorpg.spell.wish": "Wish",
+	"mmorpg.synergy.fireball_burn": "Inferno",
+	"mmorpg.synergy.frostball_chill": "Chilling Balls",
+	"mmorpg.synergy.poisonball_poison": "Plague",
 
 "_comment": " [CATEGORY]: SPELLS - NAMES",
 
@@ -636,6 +640,7 @@
 	"mmorpg.one_of_a_kind.black_hole_mod": "Black Hole Modifier",
 	"mmorpg.one_of_a_kind.charge_mod": "Charge Modifier",
 	"mmorpg.one_of_a_kind.charged_bolt_mod": "Charged Bolt Modifier",
+	"mmorpg.one_of_a_kind.chilling_field_mod": "Chilling Field Modifier",
 	"mmorpg.one_of_a_kind.conjure_ender_chest_mod": "Conjure Ender Chest Modifier",
 	"mmorpg.one_of_a_kind.curse_of_agony_mod": "Curse of Agony Modifier",
 	"mmorpg.one_of_a_kind.curse_of_despair_mod": "Curse of Despair Modifier",
@@ -1451,26 +1456,6 @@
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
-	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
-	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
-	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
-	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
-	"mmorpg.unique_gear.insight.name": "Insight",
-	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
-	"mmorpg.unique_gear.rabbit_paw.name": "Rabbit's Paw",
-	"mmorpg.unique_gear.skull_cleaver.name": "Skull Cleaver",
-	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
-	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
-	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
-	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
-	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.axe": "Axe",
@@ -1503,24 +1488,24 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
-	"item.mmorpg.jewelry.necklace.diamond": "Necklace",
-	"item.mmorpg.jewelry.necklace.gold": "Necklace",
-	"item.mmorpg.jewelry.necklace.iron": "Necklace",
-	"item.mmorpg.jewelry.ring.diamond": "Ring",
-	"item.mmorpg.jewelry.ring.gold": "Ring",
-	"item.mmorpg.jewelry.ring.iron": "Ring",
-	"item.mmorpg.weapon.scepter.diamond": "Scepter",
-	"item.mmorpg.weapon.scepter.gold": "Scepter",
-	"item.mmorpg.weapon.scepter.iron": "Scepter",
-	"item.mmorpg.weapon.scepter.wood": "Scepter",
-	"item.mmorpg.weapon.staff.diamond": "Staff",
-	"item.mmorpg.weapon.staff.gold": "Staff",
-	"item.mmorpg.weapon.staff.iron": "Staff",
-	"item.mmorpg.weapon.staff.wood": "Staff",
+	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
+	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
+	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
+	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
+	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
+	"mmorpg.unique_gear.insight.name": "Insight",
+	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
+	"mmorpg.unique_gear.rabbit_paw.name": "Rabbit's Paw",
+	"mmorpg.unique_gear.skull_cleaver.name": "Skull Cleaver",
+	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
+	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
+	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
+	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
+	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
 
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
@@ -1547,6 +1532,26 @@
 	"effect.mmorpg.foods.water": "Aqua",
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+	"item.mmorpg.jewelry.necklace.diamond": "Necklace",
+	"item.mmorpg.jewelry.necklace.gold": "Necklace",
+	"item.mmorpg.jewelry.necklace.iron": "Necklace",
+	"item.mmorpg.jewelry.ring.diamond": "Ring",
+	"item.mmorpg.jewelry.ring.gold": "Ring",
+	"item.mmorpg.jewelry.ring.iron": "Ring",
+	"item.mmorpg.weapon.scepter.diamond": "Scepter",
+	"item.mmorpg.weapon.scepter.gold": "Scepter",
+	"item.mmorpg.weapon.scepter.iron": "Scepter",
+	"item.mmorpg.weapon.scepter.wood": "Scepter",
+	"item.mmorpg.weapon.staff.diamond": "Staff",
+	"item.mmorpg.weapon.staff.gold": "Staff",
+	"item.mmorpg.weapon.staff.iron": "Staff",
+	"item.mmorpg.weapon.staff.wood": "Staff",
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",
@@ -1761,6 +1766,7 @@
 	"spell.desc.black_hole": "Summon a dark sphere that attracts nearby enemies to it, dealing [calc:black_hole]§d⚜ Elemental§7 Damage when it expires.",
 	"spell.desc.charge": "Charge in a direction, stopping upon first enemy hit to deal [calc:charge] §6✦ Physical§7 Damage in radius.",
 	"spell.desc.charged_bolt": "Shoot a charged arrow that goes through enemies and deals [calc:charged_bolt] §6✦ Physical§7 Damage in radius and slows.",
+	"spell.desc.chilling_field": "Freeze area of sight, applying chill and damaging enemies for [calc:chilling_field]§b❉ Water§7 Damage every second.",
 	"spell.desc.conjure_ender_chest": "Allows you to access your Ender Chest from any place.",
 	"spell.desc.curse_of_agony": "Curse enemies with Curse of Agony and deal [calc:curse] §d⚜ Elemental§7 Damage",
 	"spell.desc.curse_of_despair": "Curse enemies with Curse of Despair and deal [calc:curse] §d⚜ Elemental§7 Damage",

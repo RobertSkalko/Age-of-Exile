@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;
-import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ChatUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
@@ -36,9 +35,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
     private static final Identifier SPELl_NO_MANA = new Identifier(Ref.MODID,
         "textures/gui/spells/no_mana.png"
     );
-    private static final Identifier AURA_ACTIVATED = new Identifier(Ref.MODID,
-        "textures/gui/spells/aura_activated.png"
-    );
+
     private static final Identifier SPELL_ON_COOLDOWN = new Identifier(Ref.MODID,
         "textures/gui/spells/on_cooldown.png"
     );
@@ -135,10 +132,7 @@ public class SpellHotbarOverlay extends DrawableHelper implements HudRenderCallb
             int xs = (int) (x);
             int ys = (int) (y);
 
-            if (data.getCastingData().auras.getOrDefault(spell.GUID(), new SpellCastingData.AuraData()).active) {
-                mc.getTextureManager()
-                    .bindTexture(AURA_ACTIVATED);
-            } else if (Load.Unit(mc.player)
+            if (Load.Unit(mc.player)
                 .getCooldowns()
                 .getCooldownTicks(spell.GUID()) > 1) {
                 mc.getTextureManager()

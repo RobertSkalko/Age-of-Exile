@@ -34,6 +34,8 @@ public class EntitySpellCap {
 
         public abstract Spell getSpellByNumber(int key);
 
+        public abstract void reset();
+
         public abstract int getFreeSpellPoints();
 
         public abstract boolean canLearn(SpellSchool school, Spell spell);
@@ -117,6 +119,11 @@ public class EntitySpellCap {
             }
 
             return null;
+        }
+
+        @Override
+        public void reset() {
+            this.spellData = new SpellsData();
         }
 
         public int getSpentSpellPoints() {

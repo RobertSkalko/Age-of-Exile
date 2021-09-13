@@ -3,6 +3,7 @@ This registry is modify-able through datapacks.
 petrify
 torment
 healing_aura
+chilling_field
 whirlwind
 breath
 wish

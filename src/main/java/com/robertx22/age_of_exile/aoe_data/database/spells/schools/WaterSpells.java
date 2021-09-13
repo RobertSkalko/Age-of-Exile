@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.schools;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
@@ -14,6 +15,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeap
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
@@ -33,9 +35,37 @@ public class WaterSpells implements ExileRegistryInit {
     public static String NOURISHMENT = "nourishment";
     public static String HEART_OF_ICE = "heart_of_ice";
     public static String ICY_WEAPON = "ice_weapon";
+    public static String CHILLING_FIELD = "chilling_field";
 
     @Override
     public void registerAll() {
+
+        SpellBuilder.of(CHILLING_FIELD, SpellConfiguration.Builder.nonInstant(30, 20 * 60, 30)
+                    .setSwingArm(), "Chilling Field",
+                Arrays.asList(SpellTag.damage, SpellTag.area))
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+
+            .manualDesc("Freeze area of sight, applying chill and damaging enemies for "
+                + SpellCalcs.CHILLING_FIELD.getLocSpellTooltip()
+                + Elements.Water.getIconNameDmg() + " every second.")
+
+            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_END_PORTAL_SPAWN, 1D, 1D))
+
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 20D * 8)
+                .put(MapField.ENTITY_NAME, "block")
+                .put(MapField.BLOCK_FALL_SPEED, 0D)
+                .put(MapField.FIND_NEAREST_SURFACE, true)
+                .put(MapField.IS_BLOCK_FALLING, false)))
+
+            .onTick("block", PartBuilder.groundParticles(ParticleTypes.CLOUD, 40D, 2D, 0.2D))
+            .onTick("block", PartBuilder.playSound(SoundEvents.ENTITY_HORSE_BREATHE, 1.1D, 1.5D)
+                .onTick(20D))
+            .onTick("block", PartBuilder.damageInAoe(SpellCalcs.CHILLING_FIELD, Elements.Water, 2D)
+                .onTick(20D))
+            .onTick("block", PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.CHILL.effectId, 2D, 20 * 4D)
+                .onTick(20D))
+            .build();
 
         SpellBuilder.of(ICY_WEAPON, SpellConfiguration.Builder.instant(10, 20 * 30), "Icy Weapon",
                 Arrays.asList())

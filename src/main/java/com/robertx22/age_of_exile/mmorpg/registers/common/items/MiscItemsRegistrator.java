@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.loot_crate.LootCrateItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.ResetStatsPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.SingleTalentResetPotion;
+import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.SpellResetPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.TalentResetPotion;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -72,8 +73,6 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     CustomLootCrateItem CUSTOM_CRATE = item(new CustomLootCrateItem(), "custom_crate");
 
-    public VanillaExperienceChestItem VANILLA_EXP_CHEST = item(new VanillaExperienceChestItem(), "loot_crate/ench_exp_bag");
-
     public Item NEWBIE_GEAR_BAG = item(new ItemNewbieGearBag(), "newbie_gear_bag");
     public Item INCRESE_MOB_RARITY = item(new ItemIncreaseRarityNearestEntity(), "increase_rarity_nearest_entity");
 
@@ -84,6 +83,7 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
 
     public TalentResetPotion RESET_ALL_PERKS = item(new TalentResetPotion());
     public SingleTalentResetPotion ADD_RESET_PERK_POINTS = item(new SingleTalentResetPotion());
+    public SpellResetPotion RESET_SPELLS = item(new SpellResetPotion());
     public ResetStatsPotion RESET_STATS = item(new ResetStatsPotion());
     public FunnyDeathPotion DEATH_POTION = item(new FunnyDeathPotion());
 

@@ -25,7 +25,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Storable
@@ -47,29 +46,7 @@ public class SpellCastingData {
     public Boolean casting = false;
 
     @Store
-    public HashMap<String, AuraData> auras = new HashMap<>();
-
-    @Store
     public ChargeData charges = new ChargeData();
-
-    @Storable
-    public static class AuraData {
-        @Store
-        public boolean active = false;
-        @Store
-        public int place = 0;
-        @Store
-        public float mana_reserved = 0;
-
-        public AuraData() {
-        }
-
-        public AuraData(boolean active, int place, float mana_reserved) {
-            this.active = active;
-            this.place = place;
-            this.mana_reserved = mana_reserved;
-        }
-    }
 
     public void cancelCast(LivingEntity entity) {
         try {

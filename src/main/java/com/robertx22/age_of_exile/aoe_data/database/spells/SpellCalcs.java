@@ -144,6 +144,9 @@ public class SpellCalcs {
     public static ValueCalculation BLACK_HOLE = ValueCalcBuilder.of("black_hole")
         .attackScaling(0.2F, 1F)
         .build();
+    public static ValueCalculation CHILLING_FIELD = ValueCalcBuilder.of("chilling_field")
+        .attackScaling(0.1F, 0.5F)
+        .build();
     public static ValueCalculation SMOKE_BOMB = ValueCalcBuilder.of("lose_aggro")
         .baseValue(20, 40)
         .build();

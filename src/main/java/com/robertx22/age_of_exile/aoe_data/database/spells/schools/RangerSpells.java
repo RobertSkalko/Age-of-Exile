@@ -51,6 +51,7 @@ public class RangerSpells implements ExileRegistryInit {
     public static String FIRE_TRAP = "fire_trap";
     public static String HUNTER_POTION = "hunter_potion";
     public static String NIGHT_VISION = "night_vision";
+    public static String SMOKE_BOMB = "smoke_bomb";
 
     @Override
 
@@ -70,7 +71,7 @@ public class RangerSpells implements ExileRegistryInit {
         trap(POISON_TRAP, "Poison Trap", ParticleTypes.ITEM_SLIME, SpellCalcs.RANGER_TRAP, Elements.Earth).build();
         trap(FIRE_TRAP, "Fire Trap", ParticleTypes.FLAME, SpellCalcs.RANGER_TRAP, Elements.Fire).build();
 
-        SpellBuilder.of("smoke_bomb", SpellConfiguration.Builder.instant(7, 20 * 60), "Smoke Bomb",
+        SpellBuilder.of(SMOKE_BOMB, SpellConfiguration.Builder.instant(7, 20 * 60), "Smoke Bomb",
                 Arrays.asList())
             .manualDesc("Throw out a smoke bomb, blinding enemies and reducing threat.")
             .attackStyle(PlayStyle.ranged)

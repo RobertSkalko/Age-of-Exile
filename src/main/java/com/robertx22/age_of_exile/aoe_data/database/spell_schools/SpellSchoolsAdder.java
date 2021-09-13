@@ -45,6 +45,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .addSpell(RangerSpells.THE_HUNT, new PointData(10, 2))
             .addSpell(RangerSpells.POISON_ARROW, new PointData(2, 2))
+            .addSpell(RangerSpells.SMOKE_BOMB, new PointData(6, 2))
 
             .addSpell(RangerSpells.CHARGED_BOLT, new PointData(0, 3))
             .addSpell(RangerSpells.BACKFLIP, new PointData(4, 3))
@@ -66,7 +67,6 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(NatureSpells.NATURE_BALM, new PointData(2, 1))
 
             .addSpell(NatureSpells.ENTANGLE_SEED, new PointData(4, 2))
-
             .addSpell(TotemSpells.HEAL_TOTEM_ID, new PointData(6, 2))
             .addSpell(TotemSpells.MANA_TOTEM_ID, new PointData(7, 2))
             .addSpell(TotemSpells.GUARD_TOTEM_ID, new PointData(8, 2))
@@ -74,6 +74,9 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(NatureSpells.POISON_CLOUD, new PointData(2, 3))
 
             .addSpell(NatureSpells.REFRESH, new PointData(10, 6))
+
+            .addSynergy(SynergiesAdder.POISONBALL_POISON, new PointData(0, 1))
+
             .build();
 
         SchoolBuilder.of("fire", "Fire")
@@ -89,6 +92,8 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .addSpell(FireSpells.OVERLOAD, new PointData(10, 5))
 
+            .addSynergy(SynergiesAdder.FIREBALL_BURN, new PointData(0, 1))
+
             .build();
 
         SchoolBuilder.of("water", "Ocean")
@@ -97,11 +102,14 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .addSpell(WaterSpells.FROST_NOVA_AOE, new PointData(2, 1))
             .addSpell(WaterSpells.WATER_BREATH, new PointData(10, 1))
-            .addSpell(WaterSpells.FROST_ARMOR, new PointData(6, 1))
+            .addSpell(WaterSpells.FROST_ARMOR, new PointData(7, 1))
 
             .addSpell(WaterSpells.ICY_WEAPON, new PointData(10, 2))
+            .addSpell(WaterSpells.CHILLING_FIELD, new PointData(5, 2))
 
-            .addSpell(WaterSpells.MAGE_CIRCLE, new PointData(10, 3))
+            .addSpell(WaterSpells.NOURISHMENT, new PointData(7, 3))
+
+            .addSpell(WaterSpells.MAGE_CIRCLE, new PointData(10, 4))
 
             .addSynergy(SynergiesAdder.FROSTBALL_CHILL, new PointData(0, 1))
             .build();
