@@ -58,7 +58,7 @@ public class WaterSpells implements ExileRegistryInit {
                 .put(MapField.FIND_NEAREST_SURFACE, true)
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
-            .onTick("block", PartBuilder.groundParticles(ParticleTypes.CLOUD, 40D, 2D, 0.2D))
+            .onTick("block", PartBuilder.groundParticles(ParticleTypes.CLOUD, 20D, 2D, 0.2D))
             .onTick("block", PartBuilder.playSound(SoundEvents.ENTITY_HORSE_BREATHE, 1.1D, 1.5D)
                 .onTick(20D))
             .onTick("block", PartBuilder.damageInAoe(SpellCalcs.CHILLING_FIELD, Elements.Water, 2D)

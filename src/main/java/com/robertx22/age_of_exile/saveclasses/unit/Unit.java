@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.AttributeStat;
+import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.IAfterStatCalc;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ICoreStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
@@ -373,8 +374,24 @@ public class Unit {
                         AttributeStat stat = (AttributeStat) x.GetStat();
                         stat.addToEntity(entity, x);
                     }
+
                 });
 
+            if (entity instanceof PlayerEntity) {
+
+                Load.spells(entity)
+                    .getSpellsData().extra_lvls.clear();
+
+                this.getStats().stats.values()
+                    .forEach(x -> {
+
+                        if (x.GetStat() instanceof IAfterStatCalc) {
+                            IAfterStatCalc af = (IAfterStatCalc) x.GetStat();
+                            af.affectUnit(data, x);
+                        }
+                    });
+
+            }
             if (old.isDirty(aftercalc)) {
                 if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {
                     return;

@@ -53,6 +53,7 @@ faster_projectiles
 earth_health_leech
 piercing_projectiles
 extra_mob_drops
+plus_to_nature
 inc_effect_of_immobilizing_buff_given
 water_dot_damage
 ranged_dmg_received
@@ -121,6 +122,7 @@ shield_cdr
 mana_ooc_regen
 armor
 ele_staff_damage
+plus_to_water
 heal_over_time_eff_dur_u_cast
 agility
 movement_spell_dmg
@@ -212,6 +214,7 @@ bonus_exploration_exp
 fire_resist
 triple_drop_chance
 projectile_damage_per_10_strength
+plus_to_hunting
 curse_eff_dur_u_cast
 health
 elemental_health_leech
@@ -266,6 +269,7 @@ renamed_or_deleted_stat
 bonus_hot_biome_yield
 elemental_resist
 health_regen_per_10_wisdom
+plus_to_divine
 chance_of_chill
 heal_cleanse
 all_vuln_crit
@@ -298,6 +302,7 @@ arrow_spell_dmg
 max_elemental_resist
 double_drop_chance
 health_on_kill
+plus_to_fire
 bonus_fishing_exp
 fire_penetration
 bonus_exp_for_t5_mob

@@ -9,7 +9,6 @@ public class ValueCalcBuilder {
         ValueCalcBuilder b = new ValueCalcBuilder();
         b.calc = new ValueCalculation();
         b.calc.id = id;
-        b.calc.addToSerializables();
         return b;
     }
 

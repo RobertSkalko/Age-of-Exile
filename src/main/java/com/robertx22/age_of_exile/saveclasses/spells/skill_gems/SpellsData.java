@@ -22,6 +22,10 @@ public class SpellsData {
     @Store
     public Set<String> schools = new HashSet<>();
 
+    public void addToLevelsFromStat(String id, int num) {
+        this.extra_lvls.put(id, extra_lvls.getOrDefault(id, 0) + num);
+    }
+
     public void learnSpell(Spell spell, SpellSchool school) {
 
         schools.add(school.GUID());

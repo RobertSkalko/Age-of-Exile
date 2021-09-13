@@ -8,10 +8,16 @@ import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class SpellSchoolsAdder implements ExileRegistryInit {
 
+    public static String DIVINE = "divine";
+    public static String HUNTING = "hunting";
+    public static String FIRE = "fire";
+    public static String NATURE = "nature";
+    public static String WATER = "water";
+
     @Override
     public void registerAll() {
 
-        SchoolBuilder.of("divine", "Divine")
+        SchoolBuilder.of(DIVINE, "Divine")
             .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 0))
             .addSpell(HolySpells.GONG_STRIKE_ID, new PointData(2, 0))
 
@@ -36,7 +42,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .build();
 
-        SchoolBuilder.of("hunting", "Hunting")
+        SchoolBuilder.of(HUNTING, "Hunting")
             .addSpell(RangerSpells.ARROW_STORM, new PointData(0, 0))
             .addSpell(RangerSpells.MAKE_ARROWS, new PointData(10, 0))
 
@@ -59,7 +65,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .build();
 
-        SchoolBuilder.of("nature", "Nature")
+        SchoolBuilder.of(NATURE, "Nature")
             .addSpell(NatureSpells.POISONBALL_ID, new PointData(0, 0))
             .addSpell(NatureSpells.POISON_WEAPONS, new PointData(7, 0))
 
@@ -79,7 +85,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .build();
 
-        SchoolBuilder.of("fire", "Fire")
+        SchoolBuilder.of(FIRE, "Fire")
             .addSpell(FireSpells.FIREBALL_ID, new PointData(0, 0))
             .addSpell(FireSpells.FLAME_STRIKE_ID, new PointData(5, 0))
 
@@ -96,7 +102,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .build();
 
-        SchoolBuilder.of("water", "Ocean")
+        SchoolBuilder.of(WATER, "Water")
             .addSpell(WaterSpells.FROSTBALL_ID, new PointData(0, 0))
             .addSpell(WaterSpells.TIDAL_STRIKE, new PointData(4, 0))
 

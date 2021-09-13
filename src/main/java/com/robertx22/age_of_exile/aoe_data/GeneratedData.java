@@ -29,6 +29,7 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.spells.Spells;
 import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
+import com.robertx22.age_of_exile.aoe_data.database.stats.PlusSkillsInSchoolStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.AutoDatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
@@ -48,27 +49,27 @@ public class GeneratedData {
         new StatEffects().registerAll();
         new StatConditions().registerAll();
         new Stats().registerAll();
-
         new DatapackStats().registerAll();
 
         new GearRaritiesAdder().registerAll();
         new GearRarityGroupAdder().registerAll(); // after gear rarities
         new MobRaritiesAdder().registerAll();
 
+        SpellCalcs.init();
+        new Spells().registerAll();
+        new SynergiesAdder().registerAll();
+        new SpellSchoolsAdder().registerAll();
+
+        new SpellDependentDatapackStatAdder().registerAll();
+        new PlusSkillsInSchoolStats().registerAll();
+
         new GearSlots().registerAll();
         new BaseGearsAdder().registerAll();
         new UniqueGearReg().registerAll();
 
         new ExileEffects().registerAll();
-
         new DungeonMobListAdder().registerAll();
-
         new DifficultyAdders().registerAll();
-
-        SpellCalcs.init();
-        new Spells().registerAll();
-
-        new SpellDependentDatapackStatAdder().registerAll();
 
         new DungeonAffixAdder().registerAll();
         new Prefixes().registerAll();
@@ -95,9 +96,6 @@ public class GeneratedData {
         new ScrollBuffsAdder().registerAll();
         new CraftReqAdder().registerAll();
         new GearSetsAdder().registerAll();
-
-        new SpellSchoolsAdder().registerAll();
-        new SynergiesAdder().registerAll();
 
     }
 }

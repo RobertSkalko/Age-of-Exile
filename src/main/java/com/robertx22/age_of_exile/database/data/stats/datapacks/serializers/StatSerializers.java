@@ -20,6 +20,7 @@ public class StatSerializers {
         map.put(MarkerStat.SER_ID, new MarkerSer());
         map.put(AttributeStat.SER_ID, new AttributeStatSer());
         map.put(CoreStat.SER_ID, new CoreStatSer());
+        map.put(PlusSchoolLevels.SER_ID, new PlusSchoolSer());
     }
 
 }
