@@ -2,15 +2,10 @@ package com.robertx22.age_of_exile.loot;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.rarities.IGearRarity;
-import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.SlimeEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 
 public class LootUtils {
@@ -34,34 +29,6 @@ public class LootUtils {
         float multi = (float) (1F - num * ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_PER_LVL);
 
         return (float) MathHelper.clamp(multi, ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_MIN_MULTI, 1F);
-    }
-
-    public static ItemStack RandomDamagedGear(ItemStack stack, IGearRarity rar) {
-
-        if (stack.isDamageable()) {
-
-            GearItemData gear = Gear.Load(stack);
-
-            if (gear == null) {
-                return stack;
-            }
-
-            boolean isnewbie = LevelUtils.getMaxLevelMultiplier(gear.lvl) < 0.2F;
-
-            float dmgMulti = (float) RandomUtils.RandomRange(
-                rar.SpawnDurabilityHit().min, rar.SpawnDurabilityHit().max) / (float) 100;
-
-            if (isnewbie) {
-                dmgMulti -= 0.5F;
-            }
-
-            dmgMulti = MathHelper.clamp(dmgMulti, 0, 0.95F);
-
-            stack.setDamage((int) (dmgMulti * stack.getMaxDamage()));
-
-        }
-
-        return stack;
     }
 
     public static float getMobHealthBasedLootMulti(UnitData mob, LivingEntity entity) {

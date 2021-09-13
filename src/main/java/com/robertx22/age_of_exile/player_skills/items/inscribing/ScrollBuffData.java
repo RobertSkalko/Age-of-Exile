@@ -45,7 +45,7 @@ public class ScrollBuffData implements ITooltip {
     public List<ExactStatData> getStats() {
         List<ExactStatData> list = new ArrayList<>();
         getBuff().stats.forEach(x -> {
-            int perc = (int) (getRarity().stat_req_multi * 100); // todo this is close approximation
+            int perc = (int) (getRarity().item_tier_power * 100); // todo this is close approximation
             list.add(x.ToExactStat(perc, lvl));
         });
         return list;

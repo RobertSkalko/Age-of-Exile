@@ -91,6 +91,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return MathHelper.clamp(lvl / 10, 1, Integer.MAX_VALUE);
     }
 
+    public int getEffectiveLevel() {
+        return lvl + getRarity().bonus_effective_lvls;
+    }
+
     public boolean canPlayerWear(EntityCap.UnitData data) {
 
         if (LevelUtils.tierToLevel(getTier()) > data.getLevel()) {

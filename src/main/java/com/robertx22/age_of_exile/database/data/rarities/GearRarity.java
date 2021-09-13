@@ -51,8 +51,7 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
 
     public float item_tier_power;
     public float item_value_multi;
-    public float stat_req_multi;
-    public MinMax spawn_durability_hit = new MinMax(60, 80);
+    public int bonus_effective_lvls = 0;
     public boolean announce_in_chat = false;
 
     public boolean is_unique_item = false;
@@ -91,16 +90,6 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public boolean isHigherThan(GearRarity other) {
         return this.valueMulti() > other.valueMulti();
         // todo can be better
-    }
-
-    @Override
-    public MinMax SpawnDurabilityHit() {
-        return spawn_durability_hit;
-    }
-
-    @Override
-    public float statReqMulti() {
-        return this.stat_req_multi;
     }
 
     @Override

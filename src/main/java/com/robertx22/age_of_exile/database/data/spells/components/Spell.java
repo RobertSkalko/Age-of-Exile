@@ -239,7 +239,16 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
         } else {
             list.add(new LiteralText(Formatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
         }
-        list.add(new LiteralText(Formatting.GREEN + "Cast time: " + getCastTimeTicks(ctx) + "s"));
+
+        int casttime = getCastTimeTicks(ctx);
+
+        if (casttime == 0) {
+            list.add(new LiteralText(Formatting.GREEN + "Cast time: " + "Instant"));
+
+        } else {
+            list.add(new LiteralText(Formatting.GREEN + "Cast time: " + casttime / 20 + "s"));
+
+        }
 
         TooltipUtils.addEmpty(list);
 
@@ -345,5 +354,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
     @Override
     public int getMaxLevel() {
         return max_lvl;
+    }
+
+    @Override
+    public int getMaxLevelWithBonuses() {
+        return getMaxLevel() + 4;
     }
 }

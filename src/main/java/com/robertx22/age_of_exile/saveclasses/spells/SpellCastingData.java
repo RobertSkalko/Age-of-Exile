@@ -24,6 +24,7 @@ import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
@@ -94,6 +95,12 @@ public class SpellCastingData {
                 if (spell != null && spells != null && ExileDB.Spells()
                     .isRegistered(spell)) {
                     spell.onCastingTick(ctx);
+
+                    // slow down player when casting spells
+                    Vec3d v = entity.getVelocity();
+                    entity.setVelocity(new Vec3d(0.25D * v.x, v.y, 0.25D * v.z));
+                    // slow down player when casting spells
+
                 }
 
                 if (ctx.spell.config.cast_type != SpellCastType.USE_ITEM) {

@@ -27,7 +27,8 @@ public class UniqueRings implements ExileRegistryInit {
                 "Witch's Brew",
                 BaseGearTypes.RING)
 
-            .stats(Arrays.asList(new StatModifier(15, 25, new ElementalResist(Elements.Earth), ModType.FLAT),
+            .stats(Arrays.asList(
+                new StatModifier(15, 25, new ElementalResist(Elements.Earth), ModType.FLAT),
                 new StatModifier(25, 50, SpecialStats.BETTER_FOOD_BUFFS, ModType.FLAT),
                 new StatModifier(10, 15, SpellDamage.getInstance(), ModType.FLAT),
                 new StatModifier(5, 10, ManaRegen.getInstance(), ModType.PERCENT)

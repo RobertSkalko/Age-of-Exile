@@ -33,7 +33,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.PlusSkillsInSchoolStat
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.AutoDatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
-import com.robertx22.age_of_exile.aoe_data.database.stats.old.SpellDependentDatapackStatAdder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.PlusToSpecificSpellLevelStats;
 import com.robertx22.age_of_exile.aoe_data.database.synergy.SynergiesAdder;
 import com.robertx22.age_of_exile.aoe_data.database.tiers.DifficultyAdders;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearReg;
@@ -60,7 +60,7 @@ public class GeneratedData {
         new SynergiesAdder().registerAll();
         new SpellSchoolsAdder().registerAll();
 
-        new SpellDependentDatapackStatAdder().registerAll();
+        new PlusToSpecificSpellLevelStats().registerAll();
         new PlusSkillsInSchoolStats().registerAll();
 
         new GearSlots().registerAll();

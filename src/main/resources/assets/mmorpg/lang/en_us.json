@@ -726,26 +726,6 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
-	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
-	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 	"effect.mmorpg.beneficial.1": "Antidote",
@@ -789,6 +769,26 @@
 	"effect.mmorpg.negative.8": "Bleed",
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
+
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
+	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
+	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -1393,6 +1393,7 @@
 	"mmorpg.stat.plus_to_fire": "To All Fire Skills",
 	"mmorpg.stat.plus_to_hunting": "To All Hunting Skills",
 	"mmorpg.stat.plus_to_nature": "To All Nature Skills",
+	"mmorpg.stat.plus_to_refresh": "To Refresh Level",
 	"mmorpg.stat.plus_to_water": "To All Water Skills",
 	"mmorpg.stat.poison_ball_chance_of_negative.3": "§7Adds §a[VAL1]§7% chance of applying Poison",
 	"mmorpg.stat.positive_eff_dur_u_cast": "§7§a[VAL1]§7% to duration of Positive effects you cast.",
@@ -1461,26 +1462,6 @@
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
-	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
-	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
-	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
-	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
-	"mmorpg.unique_gear.insight.name": "Insight",
-	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
-	"mmorpg.unique_gear.rabbit_paw.name": "Rabbit's Paw",
-	"mmorpg.unique_gear.skull_cleaver.name": "Skull Cleaver",
-	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
-	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
-	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
-	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
-	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.axe": "Axe",
@@ -1513,24 +1494,24 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
-	"item.mmorpg.jewelry.necklace.diamond": "Necklace",
-	"item.mmorpg.jewelry.necklace.gold": "Necklace",
-	"item.mmorpg.jewelry.necklace.iron": "Necklace",
-	"item.mmorpg.jewelry.ring.diamond": "Ring",
-	"item.mmorpg.jewelry.ring.gold": "Ring",
-	"item.mmorpg.jewelry.ring.iron": "Ring",
-	"item.mmorpg.weapon.scepter.diamond": "Scepter",
-	"item.mmorpg.weapon.scepter.gold": "Scepter",
-	"item.mmorpg.weapon.scepter.iron": "Scepter",
-	"item.mmorpg.weapon.scepter.wood": "Scepter",
-	"item.mmorpg.weapon.staff.diamond": "Staff",
-	"item.mmorpg.weapon.staff.gold": "Staff",
-	"item.mmorpg.weapon.staff.iron": "Staff",
-	"item.mmorpg.weapon.staff.wood": "Staff",
+	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
+	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
+	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
+	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
+	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
+	"mmorpg.unique_gear.insight.name": "Insight",
+	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
+	"mmorpg.unique_gear.rabbit_paw.name": "Rabbit's Paw",
+	"mmorpg.unique_gear.skull_cleaver.name": "Skull Cleaver",
+	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
+	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
+	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
+	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
+	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
 
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
@@ -1557,6 +1538,26 @@
 	"effect.mmorpg.foods.water": "Aqua",
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+	"item.mmorpg.jewelry.necklace.diamond": "Necklace",
+	"item.mmorpg.jewelry.necklace.gold": "Necklace",
+	"item.mmorpg.jewelry.necklace.iron": "Necklace",
+	"item.mmorpg.jewelry.ring.diamond": "Ring",
+	"item.mmorpg.jewelry.ring.gold": "Ring",
+	"item.mmorpg.jewelry.ring.iron": "Ring",
+	"item.mmorpg.weapon.scepter.diamond": "Scepter",
+	"item.mmorpg.weapon.scepter.gold": "Scepter",
+	"item.mmorpg.weapon.scepter.iron": "Scepter",
+	"item.mmorpg.weapon.scepter.wood": "Scepter",
+	"item.mmorpg.weapon.staff.diamond": "Staff",
+	"item.mmorpg.weapon.staff.gold": "Staff",
+	"item.mmorpg.weapon.staff.iron": "Staff",
+	"item.mmorpg.weapon.staff.wood": "Staff",
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",
@@ -1616,67 +1617,6 @@
 	"item.mmorpg.currency.stone_of_hope.desc": "Transform any rarity gear into higher rarity.",
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
-
-
-"_comment": " [CATEGORY]: SPELLS - DESCRIPTIONS",
-
-	"spell.desc.astral_totem": "Summon a totem which restores [calc:totem_mana] mana to allies around it.",
-	"spell.desc.awaken_mana": "Restores [calc:awaken_mana] mana.",
-	"spell.desc.backflip": "Jump back and gain Cleanse for a short time.",
-	"spell.desc.banish": "Summon a Magic circle that banishes enemies in the area, levitating them for a certain duration.",
-	"spell.desc.black_hole": "Summon a dark sphere that attracts nearby enemies to it, dealing [calc:black_hole]§d⚜ Elemental§7 Damage when it expires.",
-	"spell.desc.charge": "Charge in a direction, stopping upon first enemy hit to deal [calc:charge] §6✦ Physical§7 Damage in radius.",
-	"spell.desc.charged_bolt": "Shoot a charged arrow that goes through enemies and deals [calc:charged_bolt] §6✦ Physical§7 Damage in radius and slows.",
-	"spell.desc.chilling_field": "Freeze area of sight, applying chill and damaging enemies for [calc:chilling_field]§b❉ Water§7 Damage every second.",
-	"spell.desc.conjure_ender_chest": "Allows you to access your Ender Chest from any place.",
-	"spell.desc.curse_of_agony": "Curse enemies with Curse of Agony and deal [calc:curse] §d⚜ Elemental§7 Damage",
-	"spell.desc.curse_of_despair": "Curse enemies with Curse of Despair and deal [calc:curse] §d⚜ Elemental§7 Damage",
-	"spell.desc.curse_of_weak": "Curse enemies with Curse of Weakness and deal [calc:curse] §d⚜ Elemental§7 Damage",
-	"spell.desc.dash": "Dash in your direction and gain slowfall.",
-	"spell.desc.demon": "Temporarily transform into a demon, giving you increased offensive power and knockback resistance.",
-	"spell.desc.draconic_blood": "Gives effect to nearby allies.",
-	"spell.desc.execute": "Slash enemies in front of you for [calc:execute] §6✦ Physical§7 Damage",
-	"spell.desc.fire_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal [calc:ranger_trap]§c☀ Fire§7 Damage damage in area around itself.",
-	"spell.desc.fire_weapon": "Gives effect to nearby allies.",
-	"spell.desc.fireball": "Throw out a ball of fire, dealing [calc:fireball] §c☀ Fire§7 Damage",
-	"spell.desc.frost_nova": "Explode with frost around you, dealing [calc:frost_nova] §b❉ Water§7 Damage to nearby enemies.",
-	"spell.desc.frost_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal [calc:ranger_trap]§b❉ Water§7 Damage damage in area around itself.",
-	"spell.desc.frostball": "Throw out a ball of ice, dealing [calc:iceball] §b❉ Water§7 Damage",
-	"spell.desc.guard_totem": "Summon a totem which gives [calc:totem_guard] shield to allies around it.",
-	"spell.desc.healing_aura": "Heal allies around you for [calc:healing_aura] health",
-	"spell.desc.heart_of_ice": "Heal allies around you for [calc:heart_of_ice] health",
-	"spell.desc.ice_weapon": "Gives effect to nearby allies.",
-	"spell.desc.jump_field": "Summon a Jump Field, stepping on it will propel you upwards at high speeds.",
-	"spell.desc.levitation": "Levitate in the air, but you can't move around besides upwards.",
-	"spell.desc.mage_circle": "Summon a Magic Circle. Standing in it provides you a buff. After a certain duration you will be teleported to its location.",
-	"spell.desc.make_arrows": "Produce a stack of arrows.",
-	"spell.desc.mark_for_death": "Mark your target for death, making them more vulnerable to damage.",
-	"spell.desc.night_vision": "Give Night Vision to allies around you.",
-	"spell.desc.nourishment": "Apply buff to allies nearby ",
-	"spell.desc.overload": "Gives effect to self.",
-	"spell.desc.poison_ball": "Throw out a ball of poison, dealing [calc:poisonball] §2✿ Earth§7 Damage",
-	"spell.desc.poison_cloud": "Erupt with poisonous gas, dealing [calc:frost_nova] §2✿ Earth§7 Damage to nearby enemies and applying Poison.",
-	"spell.desc.poison_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal [calc:ranger_trap]§2✿ Earth§7 Damage damage in area around itself.",
-	"spell.desc.pull": "Pull enemies in area to you, dealing [calc:pull] §6✦ Physical§7 Damage and slowing them.",
-	"spell.desc.refresh": "Refreshes all your spell cooldowns by 1 minute.",
-	"spell.desc.rejuv_totem": "Summon a totem which restores [calc:totem_heal] health to allies around it.",
-	"spell.desc.shooting_star": "Shoots a star that heals allies for [calc:shooting_star] health on hit.",
-	"spell.desc.shout_warn": "Let out a warning shout, giving a [calc:shout_warn] Shield to all nearby allies.",
-	"spell.desc.shred": "Slash all nearby enemies, dealing [calc:shred] §6✦ Physical§7 Damage damage and reducing their defenses.",
-	"spell.desc.smoke_bomb": "Throw out a smoke bomb, blinding enemies and reducing threat.",
-	"spell.desc.song_of_perseverance": "Give a stack of Perseverance to all allies around you.",
-	"spell.desc.song_of_valor": "Give a stack of Valor to all allies around you.",
-	"spell.desc.song_of_vigor": "Give a stack of Vigor to all allies around you.",
-	"spell.desc.taunt": "Shout, making enemies nearby want to attack you. Generates [calc:taunt] threat.",
-	"spell.desc.teleport": "Teleport yourself in the direction you're looking at.",
-	"spell.desc.test_spell": "Throw out a ball of poison, dealing [calc:poisonball] §2✿ Earth§7 Damage",
-	"spell.desc.the_hunt": "Gain Night vision and set all enemies around you to glow.",
-	"spell.desc.undying_will": "Gives buff to self.",
-	"spell.desc.vamp_blood": "Gives effect to nearby allies.",
-	"spell.desc.water_breath": "Give Water Breathing to allies around you.",
-	"spell.desc.wish": "Heal allies around you for [calc:healing_aura] health",
-
-"_comment": " [CATEGORY]: SPELLS - DESCRIPTIONS",
 
 
 "_comment": " [CATEGORY]: STATS - DESCRIPTIONS",
@@ -1820,7 +1760,68 @@
 	"mmorpg.stat_desc.water_dot_damage": "Fire damage over time increases damage of burn, for example.",
 	"mmorpg.stat_desc.wisdom": "Determines your total: Mana, Mana Regen",
 
-"_comment": " [CATEGORY]: STATS - DESCRIPTIONS"
+"_comment": " [CATEGORY]: STATS - DESCRIPTIONS",
+
+
+"_comment": " [CATEGORY]: SPELLS - DESCRIPTIONS",
+
+	"spell.desc.astral_totem": "Summon a totem which restores [calc:totem_mana] mana to allies around it.",
+	"spell.desc.awaken_mana": "Restores [calc:awaken_mana] mana.",
+	"spell.desc.backflip": "Jump back and gain Cleanse for a short time.",
+	"spell.desc.banish": "Summon a Magic circle that banishes enemies in the area, levitating them for a certain duration.",
+	"spell.desc.black_hole": "Summon a dark sphere that attracts nearby enemies to it, dealing [calc:black_hole]§d⚜ Elemental§7 Damage when it expires.",
+	"spell.desc.charge": "Charge in a direction, stopping upon first enemy hit to deal [calc:charge] §6✦ Physical§7 Damage in radius.",
+	"spell.desc.charged_bolt": "Shoot a charged arrow that goes through enemies and deals [calc:charged_bolt] §6✦ Physical§7 Damage in radius and slows.",
+	"spell.desc.chilling_field": "Freeze area of sight, applying chill and damaging enemies for [calc:chilling_field]§b❉ Water§7 Damage every second.",
+	"spell.desc.conjure_ender_chest": "Allows you to access your Ender Chest from any place.",
+	"spell.desc.curse_of_agony": "Curse enemies with Curse of Agony and deal [calc:curse] §d⚜ Elemental§7 Damage",
+	"spell.desc.curse_of_despair": "Curse enemies with Curse of Despair and deal [calc:curse] §d⚜ Elemental§7 Damage",
+	"spell.desc.curse_of_weak": "Curse enemies with Curse of Weakness and deal [calc:curse] §d⚜ Elemental§7 Damage",
+	"spell.desc.dash": "Dash in your direction and gain slowfall.",
+	"spell.desc.demon": "Temporarily transform into a demon, giving you increased offensive power and knockback resistance.",
+	"spell.desc.draconic_blood": "Gives effect to nearby allies.",
+	"spell.desc.execute": "Slash enemies in front of you for [calc:execute] §6✦ Physical§7 Damage",
+	"spell.desc.fire_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal [calc:ranger_trap]§c☀ Fire§7 Damage damage in area around itself.",
+	"spell.desc.fire_weapon": "Gives effect to nearby allies.",
+	"spell.desc.fireball": "Throw out a ball of fire, dealing [calc:fireball] §c☀ Fire§7 Damage",
+	"spell.desc.frost_nova": "Explode with frost around you, dealing [calc:frost_nova] §b❉ Water§7 Damage to nearby enemies.",
+	"spell.desc.frost_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal [calc:ranger_trap]§b❉ Water§7 Damage damage in area around itself.",
+	"spell.desc.frostball": "Throw out a ball of ice, dealing [calc:iceball] §b❉ Water§7 Damage",
+	"spell.desc.guard_totem": "Summon a totem which gives [calc:totem_guard] shield to allies around it.",
+	"spell.desc.healing_aura": "Heal allies around you for [calc:healing_aura] health",
+	"spell.desc.heart_of_ice": "Heal allies around you for [calc:heart_of_ice] health",
+	"spell.desc.ice_weapon": "Gives effect to nearby allies.",
+	"spell.desc.jump_field": "Summon a Jump Field, stepping on it will propel you upwards at high speeds.",
+	"spell.desc.levitation": "Levitate in the air, but you can't move around besides upwards.",
+	"spell.desc.mage_circle": "Summon a Magic Circle. Standing in it provides you a buff. After a certain duration you will be teleported to its location.",
+	"spell.desc.make_arrows": "Produce a stack of arrows.",
+	"spell.desc.mark_for_death": "Mark your target for death, making them more vulnerable to damage.",
+	"spell.desc.night_vision": "Give Night Vision to allies around you.",
+	"spell.desc.nourishment": "Apply buff to allies nearby ",
+	"spell.desc.overload": "Gives effect to self.",
+	"spell.desc.poison_ball": "Throw out a ball of poison, dealing [calc:poisonball] §2✿ Earth§7 Damage",
+	"spell.desc.poison_cloud": "Erupt with poisonous gas, dealing [calc:frost_nova] §2✿ Earth§7 Damage to nearby enemies and applying Poison.",
+	"spell.desc.poison_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal [calc:ranger_trap]§2✿ Earth§7 Damage damage in area around itself.",
+	"spell.desc.pull": "Pull enemies in area to you, dealing [calc:pull] §6✦ Physical§7 Damage and slowing them.",
+	"spell.desc.refresh": "Refreshes all your spell cooldowns by 1 minute.",
+	"spell.desc.rejuv_totem": "Summon a totem which restores [calc:totem_heal] health to allies around it.",
+	"spell.desc.shooting_star": "Shoots a star that heals allies for [calc:shooting_star] health on hit.",
+	"spell.desc.shout_warn": "Let out a warning shout, giving a [calc:shout_warn] Shield to all nearby allies.",
+	"spell.desc.shred": "Slash all nearby enemies, dealing [calc:shred] §6✦ Physical§7 Damage damage and reducing their defenses.",
+	"spell.desc.smoke_bomb": "Throw out a smoke bomb, blinding enemies and reducing threat.",
+	"spell.desc.song_of_perseverance": "Give a stack of Perseverance to all allies around you.",
+	"spell.desc.song_of_valor": "Give a stack of Valor to all allies around you.",
+	"spell.desc.song_of_vigor": "Give a stack of Vigor to all allies around you.",
+	"spell.desc.taunt": "Shout, making enemies nearby want to attack you. Generates [calc:taunt] threat.",
+	"spell.desc.teleport": "Teleport yourself in the direction you're looking at.",
+	"spell.desc.test_spell": "Throw out a ball of poison, dealing [calc:poisonball] §2✿ Earth§7 Damage",
+	"spell.desc.the_hunt": "Gain Night vision and set all enemies around you to glow.",
+	"spell.desc.undying_will": "Gives buff to self.",
+	"spell.desc.vamp_blood": "Gives effect to nearby allies.",
+	"spell.desc.water_breath": "Give Water Breathing to allies around you.",
+	"spell.desc.wish": "Heal allies around you for [calc:healing_aura] health",
+
+"_comment": " [CATEGORY]: SPELLS - DESCRIPTIONS"
 
 
 }

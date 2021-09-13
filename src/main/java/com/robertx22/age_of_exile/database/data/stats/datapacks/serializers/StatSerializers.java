@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.serializers;
 
+import com.robertx22.age_of_exile.aoe_data.database.stats.PlusSpellLevelStat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.IStatSerializer;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.*;
@@ -21,6 +22,7 @@ public class StatSerializers {
         map.put(AttributeStat.SER_ID, new AttributeStatSer());
         map.put(CoreStat.SER_ID, new CoreStatSer());
         map.put(PlusSchoolLevels.SER_ID, new PlusSchoolSer());
+        map.put(PlusSpellLevelStat.SER_ID, new PlusLevelSpellSer());
     }
 
 }

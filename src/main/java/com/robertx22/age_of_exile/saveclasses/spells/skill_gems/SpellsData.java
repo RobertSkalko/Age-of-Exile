@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.spells.skill_gems;
 import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.synergy.Synergy;
+import com.robertx22.age_of_exile.database.data.value_calc.MaxLevelProvider;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -42,7 +43,18 @@ public class SpellsData {
     }
 
     public int getLevelOf(String id) {
-        return allocated_lvls.getOrDefault(id, 0) + extra_lvls.getOrDefault(id, 0);
+
+        int level = allocated_lvls.getOrDefault(id, 0) + extra_lvls.getOrDefault(id, 0);
+
+        MaxLevelProvider provider = MaxLevelProvider.get(id);
+
+        if (provider != null) {
+            if (level > provider.getMaxLevelWithBonuses()) {
+                level = provider.getMaxLevelWithBonuses();
+            }
+        }
+
+        return level;
     }
 
 }

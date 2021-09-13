@@ -20,6 +20,10 @@ public class LevelProvider {
         return maxLevelProvider.getMaxLevel();
     }
 
+    public int getMaxLevelWithBonuses() {
+        return maxLevelProvider.getMaxLevelWithBonuses();
+    }
+
     public int getCurrentLevel() {
         return Load.spells(caster)
             .getLevelOf(maxLevelProvider.GUID());

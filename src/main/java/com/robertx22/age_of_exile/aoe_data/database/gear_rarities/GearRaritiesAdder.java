@@ -11,7 +11,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
     public void registerAll() {
 
         GearRarity common = new GearRarity();
-        common.spawn_durability_hit = new MinMax(60, 80);
         common.affixes = new GearRarity.Part(0, 0, 0);
         common.base_stat_percents = new MinMax(0, 75);
         common.weight = 5000;
@@ -28,7 +27,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         uncommon.base_stat_percents = new MinMax(5, 80);
         uncommon.default_stat_percents = new MinMax(0, 100);
         uncommon.affix_stat_percents = new MinMax(80, 100);
-        uncommon.spawn_durability_hit = new MinMax(60, 80);
+        uncommon.bonus_effective_lvls = 1;
         uncommon.affixes = new GearRarity.Part(1, 2, 15);
         uncommon.weight = 2000;
         uncommon.item_tier = 1;
@@ -41,6 +40,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         uncommon.addToSerializables();
 
         GearRarity rare = new GearRarity();
+        rare.bonus_effective_lvls = 3;
         rare.base_stat_percents = new MinMax(20, 85);
         rare.default_stat_percents = new MinMax(5, 100);
         rare.affix_stat_percents = new MinMax(70, 100);
@@ -56,6 +56,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         rare.addToSerializables();
 
         GearRarity epic = new GearRarity();
+        epic.bonus_effective_lvls = 5;
         epic.base_stat_percents = new MinMax(30, 90);
         epic.default_stat_percents = new MinMax(20, 100);
         epic.affix_stat_percents = new MinMax(20, 100);
@@ -105,8 +106,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         */
 
         GearRarity unique = new GearRarity();
-        unique.stat_req_multi = 1;
-        unique.spawn_durability_hit = new MinMax(60, 80);
+        unique.bonus_effective_lvls = 5;
         unique.affixes = new GearRarity.Part(0, 0, 0);
         unique.weight = 25;
         unique.item_tier_power = 2;
@@ -119,7 +119,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         unique.is_unique_item = true;
 
         GearRarity runeword = new GearRarity();
-        runeword.spawn_durability_hit = new MinMax(60, 80);
+        runeword.bonus_effective_lvls = 5;
         runeword.affixes = new GearRarity.Part(0, 0, 0);
         runeword.weight = 0;
         runeword.item_tier_power = 2;

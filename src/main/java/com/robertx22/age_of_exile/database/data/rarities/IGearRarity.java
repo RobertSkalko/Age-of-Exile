@@ -12,10 +12,6 @@ public interface IGearRarity extends Rarity, SalvagableItem, IStatPercents {
         return ExileRegistryTypes.GEAR_RARITY;
     }
 
-    MinMax SpawnDurabilityHit();
-
-    float statReqMulti();
-
     MinMax affixStatPercents();
 
     MinMax baseStatPercents();

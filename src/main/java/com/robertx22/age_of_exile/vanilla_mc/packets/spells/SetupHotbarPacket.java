@@ -47,8 +47,10 @@ public class SetupHotbarPacket extends MyPacket<SetupHotbarPacket> {
 
         EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
-        spells.getSpellsData().hotbars.put(number, spell);
+        if (spells.getLevelOf(spell) > 0) {
 
+            spells.getSpellsData().hotbars.put(number, spell);
+        }
     }
 
     @Override

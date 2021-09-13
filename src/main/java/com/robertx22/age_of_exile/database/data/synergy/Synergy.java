@@ -80,4 +80,9 @@ public class Synergy implements JsonExileRegistry<Synergy>, IAutoGson<Synergy>, 
     public int getMaxLevel() {
         return maxlvl;
     }
+
+    @Override
+    public int getMaxLevelWithBonuses() {
+        return getMaxLevel() + 4;
+    }
 }

@@ -239,6 +239,7 @@ ranged_dmg
 mana_on_kill
 shout_spell_dmg
 perc_self_hp_dmg_when_immo
+plus_to_refresh
 magic_dmg
 song_cdr
 global_critical_hit

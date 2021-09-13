@@ -22,4 +22,6 @@ public interface MaxLevelProvider extends IGUID {
     }
 
     int getMaxLevel();
+
+    int getMaxLevelWithBonuses();
 }
