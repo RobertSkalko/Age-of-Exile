@@ -22,7 +22,6 @@
   ],
   "client": [
     "AccessorClientAdvancementManager",
-    "InGameHudMixin",
     "ItemGlintMixin",
     "ItemStackMixin",
     "MinecraftClientMixin",
