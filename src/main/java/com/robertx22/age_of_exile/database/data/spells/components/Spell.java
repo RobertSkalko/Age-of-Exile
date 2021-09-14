@@ -32,7 +32,6 @@ import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -141,10 +140,10 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
             }
 
             if (ctx.isLastCastTick) {
-                this.cast(ctx);
+                this.cast(ctx, true);
             } else {
                 if (ctx.ticksInUse > 0 && ctx.ticksInUse % castEveryXTicks == 0) {
-                    this.cast(ctx);
+                    this.cast(ctx, true);
                 }
             }
 
@@ -154,23 +153,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
     }
 
-    public void cast(SpellCastContext ctx) {
-        if (config.cast_type == SpellCastType.USE_ITEM) {
-
-            int use = ctx.caster.getItemUseTime();
-
-            if (ctx.caster.getMainHandStack()
-                .getItem() instanceof BowItem) {
-                if (BowItem.getPullProgress(use) < 1F) {
-                    return;
-                }
-            }
-            if (ctx.caster.getActiveHand() != Hand.MAIN_HAND) {
-                return; // must charge main hand weapon and have full charge
-            }
-
-            ctx.caster.clearActiveItem();
-        }
+    public void cast(SpellCastContext ctx, boolean imbue) {
 
         LivingEntity caster = ctx.caster;
 
@@ -181,7 +164,12 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
             caster.swingHand(Hand.MAIN_HAND);
         }
 
-        attached.onCast(SpellCtx.onCast(caster, ctx.calcData));
+        if (imbue && this.config.cast_type == SpellCastType.USE_ITEM) {
+            ctx.spellsCap.getCastingData()
+                .imbueSpell(this, config.imbues);
+        } else {
+            attached.onCast(SpellCtx.onCast(caster, ctx.calcData));
+        }
     }
 
     public final int getCooldownTicks(SpellCastContext ctx) {

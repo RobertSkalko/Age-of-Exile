@@ -1,14 +1,9 @@
 package com.robertx22.age_of_exile.event_hooks.ontick;
 
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
-import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ChatUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
-import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCancelSpellCast;
-import com.robertx22.library_of_exile.main.Packets;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
@@ -66,19 +61,6 @@ public class OnClientTick implements ClientTickEvents.EndTick {
 
             spells.getCastingData()
                 .onTimePass(player, spells, 1); // ticks spells on client
-
-            if (KeybindsRegister.noSpellKeysAreHeld()) {
-                if (spells.getCastingData()
-                    .isCasting()) {
-                    Spell spell = spells.getCastingData()
-                        .getSpellBeingCast();
-                    if (spell.config.cast_type == SpellCastType.USE_ITEM) {
-                        ClientOnly.stopUseKey();
-                        Packets.sendToServer(new TellServerToCancelSpellCast());
-                    }
-
-                }
-            }
 
             List<String> onCooldownAfter = spells.getCastingData()
                 .getSpellsOnCooldown(player);

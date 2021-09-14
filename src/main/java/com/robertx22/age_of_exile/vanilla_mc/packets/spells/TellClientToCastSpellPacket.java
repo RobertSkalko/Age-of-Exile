@@ -49,7 +49,7 @@ public class TellClientToCastSpellPacket extends MyPacket<TellClientToCastSpellP
             .get(spellid);
         SpellCastContext c = new SpellCastContext(en, 0, spell);
 
-        spell.cast(c);
+        spell.cast(c, true);
 
     }
 

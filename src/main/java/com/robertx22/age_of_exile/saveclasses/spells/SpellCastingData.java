@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.saveclasses.spells;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -12,7 +11,6 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.NoManaPacket;
 import com.robertx22.library_of_exile.main.Packets;
@@ -48,6 +46,38 @@ public class SpellCastingData {
 
     @Store
     public ChargeData charges = new ChargeData();
+
+    @Store
+    public String imbued_spell = "";
+    @Store
+    public int imbued_spell_stacks = 0;
+
+    public void imbueSpell(Spell spell, int amount) {
+        this.imbued_spell = spell.GUID();
+        this.imbued_spell_stacks = amount;
+    }
+
+    public void consumeImbuedSpell() {
+        this.imbued_spell_stacks--;
+        if (imbued_spell_stacks < 1) {
+            imbued_spell = "";
+        }
+    }
+
+    public boolean tryCastImbuedSpell(LivingEntity en) {
+        if (imbued_spell_stacks > 0) {
+
+            Spell spell = ExileDB.Spells()
+                .get(imbued_spell);
+
+            if (spell != null) {
+                spell.cast(new SpellCastContext(en, 0, spell), false);
+                consumeImbuedSpell();
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void cancelCast(LivingEntity entity) {
         try {
@@ -103,17 +133,7 @@ public class SpellCastingData {
 
                 }
 
-                if (ctx.spell.config.cast_type != SpellCastType.USE_ITEM) {
-                    tryCast(ctx);
-                }
-
-                if (entity.world.isClient) {
-                    if (spell.config.cast_type == SpellCastType.USE_ITEM) {
-                        if (Gear.has(entity.getMainHandStack())) {
-                            ClientOnly.pressUseKey();
-                        }
-                    }
-                }
+                tryCast(ctx);
 
                 lastSpell = spell;
 
@@ -121,9 +141,7 @@ public class SpellCastingData {
                 castingTicksDone++;
 
                 if (castingTicksLeft < 0) {
-                    if (spell.config.cast_type != SpellCastType.USE_ITEM) {
-                        this.spellBeingCast = "";
-                    }
+                    this.spellBeingCast = "";
                 }
             } else {
 
@@ -162,7 +180,7 @@ public class SpellCastingData {
                 int timesToCast = ctx.spell.getConfig().times_to_cast;
 
                 if (timesToCast == 1) {
-                    spell.cast(ctx);
+                    spell.cast(ctx, true);
                 }
 
                 onSpellCast(ctx);

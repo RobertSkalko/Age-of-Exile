@@ -18,6 +18,7 @@ public class SpellConfiguration {
     public int times_to_cast = 1;
     public int charges = 0;
     public int charge_regen = 0;
+    public int imbues = 1;
     public String charge_name = "";
     private int cast_time_ticks = 0;
     public int cooldown_ticks = 20;
@@ -77,9 +78,10 @@ public class SpellConfiguration {
 
         public static SpellConfiguration arrowSpell(int mana, int cd) {
             SpellConfiguration c = new SpellConfiguration();
-            c.cast_time_ticks = 0;
+            c.cast_time_ticks = 20;
             c.mana_cost = new LeveledValue(0.5F * mana, 1F * mana);
             c.cooldown_ticks = cd;
+            c.swing_arm = false;
             c.cast_type = SpellCastType.USE_ITEM;
             return c;
         }

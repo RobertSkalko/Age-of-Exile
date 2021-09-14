@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets.spells;
 
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
-import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -59,11 +58,8 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
                     .setToCast(spell, player);
                 SpellCastContext c = new SpellCastContext(player, 0, spell);
 
-                if (spell.config.cast_type == SpellCastType.USE_ITEM) {
+                spell.spendResources(c);
 
-                } else {
-                    spell.spendResources(c);
-                }
             }
             spells.syncToClient(player);
         }
