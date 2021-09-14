@@ -38,7 +38,7 @@ public class NatureSpells implements ExileRegistryInit {
         SpellBuilder.of(POISON_CLOUD, SpellConfiguration.Builder.instant(30, 25 * 20), "Poison Cloud",
                 Arrays.asList(SpellTag.area, SpellTag.damage))
             .manualDesc(
-                "Erupt with poisonous gas, dealing " + SpellCalcs.FROST_NOVA.getLocSpellTooltip()
+                "Erupt with poisonous gas, dealing " + SpellCalcs.FROST_NOVA.getLocDmgTooltip()
                     + " " + Elements.Earth.getIconNameDmg() + " to nearby enemies and applying Poison.")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 0.5D, 1D))
@@ -54,7 +54,7 @@ public class NatureSpells implements ExileRegistryInit {
                     .applyCastSpeedToCooldown(), "Poison Ball",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .manualDesc(
-                "Throw out a ball of poison, dealing " + SpellCalcs.POISON_BALL.getLocSpellTooltip()
+                "Throw out a ball of poison, dealing " + SpellCalcs.POISON_BALL.getLocDmgTooltip()
                     + " " + Elements.Earth.getIconNameDmg())
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
@@ -66,6 +66,8 @@ public class NatureSpells implements ExileRegistryInit {
             .build();
         SpellBuilder.of(THORN_ARMOR, SpellConfiguration.Builder.instant(15, 200 * 20), "Thorn Armor",
                 Arrays.asList(SpellTag.damage))
+            .manualDesc("Gives buff to self:")
+
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.THORN_ARMOR.effectId, 20 * 45D))
             .build();
@@ -90,14 +92,16 @@ public class NatureSpells implements ExileRegistryInit {
 
         SpellBuilder.of(POISON_WEAPONS, SpellConfiguration.Builder.instant(15, 160 * 20), "Poison Weapons",
                 Arrays.asList(SpellTag.damage))
+            .manualDesc("Gives effect to nearby allies.")
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.POISON_WEAPONS, 20 * 30D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.POISON_WEAPONS.effectId, 20 * 30D))
             .build();
 
         SpellBuilder.of(NATURE_BALM, SpellConfiguration.Builder.nonInstant(15, 60 * 20, 30)
                     .setScaleManaToPlayer(), "Nature's Balm",
                 Arrays.asList(SpellTag.heal))
+            .manualDesc("Gives buff to allies nearby:")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveExileEffectToAlliesInRadius(3D, BeneficialEffects.REGENERATE.effectId, 20 * 15D))
             .build();
@@ -105,6 +109,7 @@ public class NatureSpells implements ExileRegistryInit {
         SpellBuilder.of(ENTANGLE_SEED, SpellConfiguration.Builder.instant(15, 60 * 20)
                     .setSwingArm(), "Entangling Seed",
                 Arrays.asList(SpellTag.area))
+            .manualDesc("Throw out a seed that explodes and petrifies enemies.")
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.BEETROOT_SEEDS, 1D, ENTITIES.SIMPLE_PROJECTILE, 40D)))
 

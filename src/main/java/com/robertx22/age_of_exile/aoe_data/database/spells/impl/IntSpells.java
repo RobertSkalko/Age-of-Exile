@@ -33,7 +33,7 @@ public class IntSpells implements ExileRegistryInit {
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
             .manualDesc("Summon a dark sphere that attracts nearby enemies to it, dealing "
-                + SpellCalcs.BLACK_HOLE.getLocSpellTooltip()
+                + SpellCalcs.BLACK_HOLE.getLocDmgTooltip()
                 + Elements.Elemental.getIconNameDmg() + " when it expires.")
 
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_END_PORTAL_SPAWN, 1D, 1D))

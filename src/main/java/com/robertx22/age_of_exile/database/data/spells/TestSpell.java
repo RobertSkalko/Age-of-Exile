@@ -29,7 +29,7 @@ public class TestSpell {
                         .applyCastSpeedToCooldown(), "Poison Ball",
                     Arrays.asList(SpellTag.projectile, SpellTag.damage))
                 .manualDesc(
-                    "Throw out a ball of poison, dealing " + SpellCalcs.POISON_BALL.getLocSpellTooltip()
+                    "Throw out a ball of poison, dealing " + SpellCalcs.POISON_BALL.getLocDmgTooltip()
                         + " " + Elements.Earth.getIconNameDmg())
                 .weaponReq(CastingWeapon.MAGE_WEAPON)
                 .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))

@@ -28,7 +28,7 @@ public class StrSpells implements ExileRegistryInit {
             .attackStyle(PlayStyle.melee)
             .manualDesc(
                 "Slash all nearby enemies, dealing "
-                    + SpellCalcs.SHRED.getLocSpellTooltip() + " " + Elements.Physical.getIconNameDmg()
+                    + SpellCalcs.SHRED.getLocDmgTooltip() + " " + Elements.Physical.getIconNameDmg()
                     + " damage and reducing their defenses."
             )
 

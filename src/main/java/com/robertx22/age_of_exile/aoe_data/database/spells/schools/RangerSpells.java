@@ -60,6 +60,7 @@ public class RangerSpells implements ExileRegistryInit {
         SpellBuilder.of(HUNTER_POTION, SpellConfiguration.Builder.instant(0, 60 * 20 * 3), "Hunter's Potion",
                 Arrays.asList(SpellTag.heal)
             )
+            .manualDesc("Drink a potion, healing you for " + SpellCalcs.HUNTER_POTION_HEAL.getLocDmgTooltip() + " health")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
@@ -90,21 +91,19 @@ public class RangerSpells implements ExileRegistryInit {
                 Arrays.asList())
             .manualDesc(
                 "Give Night Vision to allies around you.")
-
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_LINGERING_POTION_THROW, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 100D, 3D))
             .onCast(PartBuilder.giveEffectToAlliesInRadius(StatusEffects.NIGHT_VISION, 20D * 60D * 3, 5D))
             .build();
+
         SpellBuilder.of(DASH_ID, SpellConfiguration.Builder.instant(10, 15)
                     .setScaleManaToPlayer()
                     .setChargesAndRegen("dash", 3, 20 * 30)
                 , "Dash",
                 Arrays.asList(SpellTag.movement, SpellTag.technique))
-
             .manualDesc(
                 "Dash in your direction and gain slowfall.")
-
             .weaponReq(CastingWeapon.NON_MAGE_WEAPON)
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1D, 1.6D)
@@ -129,7 +128,7 @@ public class RangerSpells implements ExileRegistryInit {
 
             .manualDesc(
                 "Shoot a charged arrow that goes through enemies and deals "
-                    + SpellCalcs.CHARGED_BOLT.getLocSpellTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius and slows.")
+                    + SpellCalcs.CHARGED_BOLT.getLocDmgTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius and slows.")
 
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)
@@ -181,29 +180,28 @@ public class RangerSpells implements ExileRegistryInit {
         SpellBuilder.of(ARROW_STORM, SpellConfiguration.Builder.arrowSpell(20, 20 * 25), "Arrow Storm",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
-
+            .manualDesc("Shoot out arrows in an arc, dealing " + SpellCalcs.ARROW_STORM.getLocDmgTooltip(Elements.Physical))
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(5D)))
-            .onHit(PartBuilder.damage(SpellCalcs.DIRECT_ARROW_HIT, Elements.Physical))
             .onHit(PartBuilder.particleOnTick(3D, ParticleTypes.CLOUD, 3D, 0.1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damage(SpellCalcs.ARROW_STORM, Elements.Elemental))
+            .onHit(PartBuilder.damage(SpellCalcs.ARROW_STORM, Elements.Physical))
             .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D))
             .build();
 
         SpellBuilder.of(POISON_ARROW, SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Poison Arrow",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
+            .manualDesc("Shoot an arrow, dealing "
+                + SpellCalcs.POISON_ARROW.getLocDmgTooltip(Elements.Physical) + " around it and poisoning enemies.")
 
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
-            .onHit(PartBuilder.damage(SpellCalcs.DIRECT_ARROW_HIT, Elements.Earth))
 
             .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.POISON.effectId, 2D, 20 * 8D))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 100D, 2D))
-
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_SPLASH_POTION_BREAK, 1D, 1D))
             .onHit(PartBuilder.damageInAoe(SpellCalcs.POISON_ARROW, Elements.Earth, 2D)
@@ -214,13 +212,11 @@ public class RangerSpells implements ExileRegistryInit {
         SpellBuilder.of(EXPLOSIVE_ARROW_ID, SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Explosive Arrow",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
+            .manualDesc("Shoot an arrow that does " + SpellCalcs.EXPLOSIVE_ARROW.getLocDmgTooltip(Elements.Physical) + " around it")
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
-            .onHit(PartBuilder.damage(SpellCalcs.DIRECT_ARROW_HIT, Elements.Physical))
-
             .onHit(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 0.1D))
-
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
             .onHit(PartBuilder.damageInAoe(SpellCalcs.EXPLOSIVE_ARROW, Elements.Physical, 2D)
@@ -262,7 +258,7 @@ public class RangerSpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.damage, SpellTag.area, SpellTag.trap))
             .manualDesc(
                 "Throw out a trap that stays on the ground and activates when an enemy approaches to deal "
-                    + dmg.getLocSpellTooltip() + element.getIconNameDmg() + " damage in area around itself."
+                    + dmg.getLocDmgTooltip() + element.getIconNameDmg() + " damage in area around itself."
             )
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(PlayStyle.ranged)

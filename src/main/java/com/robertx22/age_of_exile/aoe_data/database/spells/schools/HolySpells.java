@@ -62,6 +62,9 @@ public class HolySpells implements ExileRegistryInit {
         SpellBuilder.of(WHIRLWIND, SpellConfiguration.Builder.multiCast(10, 0, 100, 10)
                     .setSwingArm(), "Whirlwind",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+            .manualDesc("Strike enemies around you for " +
+                SpellCalcs.WHIRLWIND.getLocDmgTooltip(Elements.Fire) + ". Scales with attack speed.")
+
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 100D))
@@ -77,7 +80,7 @@ public class HolySpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.movement))
             .manualDesc(
                 "Charge in a direction, stopping upon first enemy hit to deal "
-                    + SpellCalcs.CHARGE.getLocSpellTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius."
+                    + SpellCalcs.CHARGE.getLocDmgTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius."
 
             )
             .attackStyle(PlayStyle.melee)
@@ -101,7 +104,7 @@ public class HolySpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.area))
             .manualDesc(
                 "Shout, making enemies nearby want to attack you. " +
-                    "Generates " + SpellCalcs.TAUNT.getLocSpellTooltip() + " threat."
+                    "Generates " + SpellCalcs.TAUNT.getLocDmgTooltip() + " threat."
             )
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
@@ -116,7 +119,7 @@ public class HolySpells implements ExileRegistryInit {
 
             .manualDesc(
                 "Let out a warning shout, giving a "
-                    + SpellCalcs.SHOUT_WARN.getLocSpellTooltip() + " Shield to all nearby allies.")
+                    + SpellCalcs.SHOUT_WARN.getLocDmgTooltip() + " Shield to all nearby allies.")
 
             .attackStyle(PlayStyle.melee)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WOLF_HOWL, 1D, 1D))
@@ -127,7 +130,7 @@ public class HolySpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .manualDesc(
                 "Pull enemies in area to you, dealing " +
-                    SpellCalcs.PULL.getLocSpellTooltip() + " " +
+                    SpellCalcs.PULL.getLocDmgTooltip() + " " +
                     Elements.Physical.getIconNameDmg() + " and slowing them."
             )
             .attackStyle(PlayStyle.melee)
@@ -143,6 +146,9 @@ public class HolySpells implements ExileRegistryInit {
         SpellBuilder.of(GONG_STRIKE_ID, SpellConfiguration.Builder.instant(8, 20 * 10)
                     .setSwingArm(), "Gong Strike",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+            .manualDesc("Bash enemies around you for " +
+                SpellCalcs.GONG_STRIKE.getLocDmgTooltip(Elements.Fire))
+
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
 
@@ -196,7 +202,7 @@ public class HolySpells implements ExileRegistryInit {
         SpellBuilder.of(INSPIRATION, SpellConfiguration.Builder.instant(0, 300 * 20), "Inspiration",
                 Arrays.asList(SpellTag.heal)
             )
-            .manualDesc("Restores " + SpellCalcs.AWAKEN_MANA.getLocSpellTooltip() + " mana.")
+            .manualDesc("Restores " + SpellCalcs.AWAKEN_MANA.getLocDmgTooltip() + " mana.")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
@@ -208,7 +214,7 @@ public class HolySpells implements ExileRegistryInit {
                     .setSwingArm()
                     .applyCastSpeedToCooldown(), "Shooting Star",
                 Arrays.asList(SpellTag.projectile, SpellTag.heal))
-            .manualDesc("Shoots a star that heals allies for " + SpellCalcs.SHOOTING_STAR.getLocSpellTooltip() + " health on hit.")
+            .manualDesc("Shoots a star that heals allies for " + SpellCalcs.SHOOTING_STAR.getLocDmgTooltip() + " health on hit.")
 
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BEACON_ACTIVATE, 1D, 1.7D))
@@ -225,7 +231,7 @@ public class HolySpells implements ExileRegistryInit {
         SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Aura",
                 Arrays.asList(SpellTag.heal))
             .manualDesc(
-                "Heal allies around you for " + SpellCalcs.HEALING_AURA.getLocSpellTooltip() +
+                "Heal allies around you for " + SpellCalcs.HEALING_AURA.getLocDmgTooltip() +
                     " health")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)
@@ -238,7 +244,7 @@ public class HolySpells implements ExileRegistryInit {
         SpellBuilder.of(WISH, SpellConfiguration.Builder.instant(20, 20 * 60), "Wish",
                 Arrays.asList(SpellTag.heal))
             .manualDesc(
-                "Heal allies around you for " + SpellCalcs.HEALING_AURA.getLocSpellTooltip() +
+                "Heal allies around you for " + SpellCalcs.HEALING_AURA.getLocDmgTooltip() +
                     " health")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))

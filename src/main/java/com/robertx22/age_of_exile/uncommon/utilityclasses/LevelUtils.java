@@ -18,6 +18,10 @@ public class LevelUtils {
         return RomanNumber.toRoman(tier);
     }
 
+    public static int levelToTierToLevel(int level) {
+        return tierToLevel(levelToTier(level));
+    }
+
     public static int tierToLevel(int tier) {
         return MathHelper.clamp((tier - 1) * 10, 1, Integer.MAX_VALUE);
     }
@@ -46,7 +50,7 @@ public class LevelUtils {
     }
 
     public static int getExpRequiredForLevel(int level) {
-        return (int) (Math.pow(10F * GameBalanceConfig.get().NORMAL_STAT_SCALING.getMultiFor(level), 2.5F));
+        return (int) (Math.pow(10F * GameBalanceConfig.get().NORMAL_STAT_SCALING.getMultiFor(level), 2.1F));
     }
 
     public static int getExpNeededForSkillLevel(int level) {
@@ -90,6 +94,8 @@ public class LevelUtils {
         lvl = MathHelper.clamp(lvl, dimConfig.min_lvl, dimConfig.max_lvl);
 
         lvl = MathHelper.clamp(lvl, 1, GameBalanceConfig.get().MAX_LEVEL);
+
+        lvl = LevelUtils.levelToTierToLevel(lvl);
 
         return lvl;
     }

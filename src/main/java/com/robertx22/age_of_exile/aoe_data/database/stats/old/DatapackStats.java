@@ -14,12 +14,15 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.entity.attribute.EntityAttributes;
 
@@ -29,17 +32,15 @@ import java.util.UUID;
 public class DatapackStats implements ExileRegistryInit {
 
     public static Stat INT = new CoreStat("intelligence", "Intelligence", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(0.25F, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
-        new OptScaleExactStat(0.25F, Stats.HEAL_CRIT_CHANCE.get(), ModType.FLAT),
+        new OptScaleExactStat(0.25F, Stats.STYLE_DAMAGE.get(PlayStyle.magic), ModType.FLAT),
         new OptScaleExactStat(1, Mana.getInstance(), ModType.PERCENT)
     )));
-
     public static Stat STR = new CoreStat("strength", "Strength", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(0.25F, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
+        new OptScaleExactStat(0.25F, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
         new OptScaleExactStat(2, Armor.getInstance(), ModType.PERCENT)
     )));
     public static Stat DEX = new CoreStat("dexterity", "Dexterity", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(0.25F, Stats.CRIT_CHANCE.get(), ModType.FLAT),
+        new OptScaleExactStat(0.25F, Stats.STYLE_DAMAGE.get(PlayStyle.ranged), ModType.FLAT),
         new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.PERCENT)
     )));
     public static Stat VIT = new CoreStat("vitality", "Vitality", CoreStatData.of(Arrays.asList(
@@ -51,8 +52,8 @@ public class DatapackStats implements ExileRegistryInit {
         new OptScaleExactStat(1, ManaRegen.getInstance(), ModType.PERCENT)
     )));
     public static Stat AGI = new CoreStat("agility", "Agility", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(20, Stats.ACCURACY.get(), ModType.FLAT),
-        new OptScaleExactStat(0.5F, Stats.CRIT_CHANCE.get(), ModType.FLAT)
+        new OptScaleExactStat(2, Energy.getInstance(), ModType.PERCENT),
+        new OptScaleExactStat(1, EnergyRegen.getInstance(), ModType.PERCENT)
     )));
 
     public static Stat HEAL_TO_SPELL_DMG = new AddPerPercentOfOther(Stats.HEAL_STRENGTH.get(), SpellDamage.getInstance());

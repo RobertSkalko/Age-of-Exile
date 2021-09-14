@@ -9,8 +9,8 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
-import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Block;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
@@ -56,7 +56,7 @@ public class TotemSpells implements ExileRegistryInit {
         of(ModRegistry.BLOCKS.GUARD_TOTEM, GUARD_TOTEM_ID, SpellConfiguration.Builder.instant(18, 20 * 30), "Guarding Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.EFFECT)
             .manualDesc(
-                "Summon a totem which gives " + SpellCalcs.TOTEM_GUARD.getLocSpellTooltip() + " shield to allies around it."
+                "Summon a totem which gives " + SpellCalcs.TOTEM_GUARD.getLocDmgTooltip() + " shield to allies around it."
             )
             .onTick("block", PartBuilder.justAction(SpellAction.GIVE_SHIELD.create(SpellCalcs.TOTEM_GUARD, 10D))
                 .addTarget(TargetSelector.AOE.alliesInRadius(3D))
@@ -66,7 +66,7 @@ public class TotemSpells implements ExileRegistryInit {
         of(ModRegistry.BLOCKS.BLUE_TOTEM, MANA_TOTEM_ID, SpellConfiguration.Builder.instant(18, 20 * 30), "Astral Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.WITCH)
             .manualDesc(
-                "Summon a totem which restores " + SpellCalcs.TOTEM_MANA.getLocSpellTooltip() + " mana to allies around it."
+                "Summon a totem which restores " + SpellCalcs.TOTEM_MANA.getLocDmgTooltip() + " mana to allies around it."
             )
             .onTick("block", PartBuilder.restoreManaInRadius(SpellCalcs.TOTEM_MANA, RADIUS)
                 .onTick(20D))
@@ -76,7 +76,7 @@ public class TotemSpells implements ExileRegistryInit {
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.HAPPY_VILLAGER)
 
             .manualDesc(
-                "Summon a totem which restores " + SpellCalcs.TOTEM_HEAL.getLocSpellTooltip() + " health to allies around it."
+                "Summon a totem which restores " + SpellCalcs.TOTEM_HEAL.getLocDmgTooltip() + " health to allies around it."
             )
             .onTick("block", PartBuilder.healInAoe(SpellCalcs.TOTEM_HEAL, RADIUS)
                 .onTick(20D))

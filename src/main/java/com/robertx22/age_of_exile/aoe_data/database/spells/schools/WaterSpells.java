@@ -46,7 +46,7 @@ public class WaterSpells implements ExileRegistryInit {
             .weaponReq(CastingWeapon.ANY_WEAPON)
 
             .manualDesc("Freeze area of sight, applying chill and damaging enemies for "
-                + SpellCalcs.CHILLING_FIELD.getLocSpellTooltip()
+                + SpellCalcs.CHILLING_FIELD.getLocDmgTooltip()
                 + Elements.Water.getIconNameDmg() + " every second.")
 
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_END_PORTAL_SPAWN, 1D, 1D))
@@ -71,13 +71,13 @@ public class WaterSpells implements ExileRegistryInit {
                 Arrays.asList())
             .manualDesc("Gives effect to nearby allies.")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.ICY_WEAPON.effectId, 20 * 10D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.ICY_WEAPON.effectId, 20 * 10D))
             .build();
 
         SpellBuilder.of(HEART_OF_ICE, SpellConfiguration.Builder.instant(20, 20 * 30), "Heart of Ice",
                 Arrays.asList(SpellTag.heal))
             .manualDesc(
-                "Heal allies around you for " + SpellCalcs.HEART_OF_ICE.getLocSpellTooltip() +
+                "Heal allies around you for " + SpellCalcs.HEART_OF_ICE.getLocDmgTooltip() +
                     " health")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
@@ -128,6 +128,7 @@ public class WaterSpells implements ExileRegistryInit {
 
         SpellBuilder.of(FROST_ARMOR, SpellConfiguration.Builder.instant(15, 120 * 20), "Frost Armor",
                 Arrays.asList())
+            .manualDesc("Give self effect:")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.FROST_ARMOR, 20 * 120D))
             .build();
@@ -135,6 +136,7 @@ public class WaterSpells implements ExileRegistryInit {
         SpellBuilder.of(TIDAL_STRIKE, SpellConfiguration.Builder.instant(8, 12)
                     .setSwingArm(), "Tidal Strike",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+            .manualDesc("Strike enemies in front of you for " + SpellCalcs.TIDAL_STRIKE.getLocDmgTooltip(Elements.Water))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1D, 1D))
@@ -151,7 +153,7 @@ public class WaterSpells implements ExileRegistryInit {
                     .applyCastSpeedToCooldown(), "Ice Ball",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .manualDesc(
-                "Throw out a ball of ice, dealing " + SpellCalcs.ICEBALL.getLocSpellTooltip()
+                "Throw out a ball of ice, dealing " + SpellCalcs.ICEBALL.getLocDmgTooltip()
                     + " " + Elements.Water.getIconNameDmg())
 
             .weaponReq(CastingWeapon.MAGE_WEAPON)
@@ -165,7 +167,7 @@ public class WaterSpells implements ExileRegistryInit {
         SpellBuilder.of(FROST_NOVA_AOE, SpellConfiguration.Builder.instant(30, 25 * 20), "Frost Nova",
                 Arrays.asList(SpellTag.area, SpellTag.damage))
             .manualDesc(
-                "Explode with frost around you, dealing " + SpellCalcs.FROST_NOVA.getLocSpellTooltip()
+                "Explode with frost around you, dealing " + SpellCalcs.FROST_NOVA.getLocDmgTooltip()
                     + " " + Elements.Water.getIconNameDmg() + " to nearby enemies.")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)

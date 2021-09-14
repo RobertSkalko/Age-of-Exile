@@ -27,7 +27,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         uncommon.base_stat_percents = new MinMax(5, 80);
         uncommon.default_stat_percents = new MinMax(0, 100);
         uncommon.affix_stat_percents = new MinMax(80, 100);
-        uncommon.bonus_effective_lvls = 1;
+        uncommon.bonus_effective_lvls = 2;
         uncommon.affixes = new GearRarity.Part(1, 2, 15);
         uncommon.weight = 2000;
         uncommon.item_tier = 1;
@@ -40,7 +40,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         uncommon.addToSerializables();
 
         GearRarity rare = new GearRarity();
-        rare.bonus_effective_lvls = 3;
+        rare.bonus_effective_lvls = 5;
         rare.base_stat_percents = new MinMax(20, 85);
         rare.default_stat_percents = new MinMax(5, 100);
         rare.affix_stat_percents = new MinMax(70, 100);
@@ -56,7 +56,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         rare.addToSerializables();
 
         GearRarity epic = new GearRarity();
-        epic.bonus_effective_lvls = 5;
+        epic.bonus_effective_lvls = 10;
         epic.base_stat_percents = new MinMax(30, 90);
         epic.default_stat_percents = new MinMax(20, 100);
         epic.affix_stat_percents = new MinMax(20, 100);
@@ -70,43 +70,8 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         epic.setEpicFields();
         epic.addToSerializables();
 
-        /*
-        GearRarity legendary = new GearRarity();
-        legendary.base_stat_percents = new MinMax(40, 100);
-        legendary.stat_req_multi = 0.8F;
-        legendary.default_stat_percents = new MinMax(30, 100);
-        legendary.affix_stat_percents = new MinMax(30, 100);
-        legendary.affixes = new GearRarity.Part(4, 5, 15);
-        legendary.weight = 125;
-        legendary.item_tier = 4;
-        legendary.item_model_data_num = 5;
-        legendary.item_tier_power = 2F;
-        legendary.essence_per_sal = new MinMax(3, 3);
-        legendary.item_value_multi = 2F;
-        legendary.higher_rar = IRarity.MYTHIC_ID;
-        legendary.announce_in_chat = true;
-        legendary.setLegendaryFields();
-        legendary.addToSerializables();
-
-        GearRarity mythic = new GearRarity();
-        mythic.stat_req_multi = 1F;
-        mythic.base_stat_percents = new MinMax(50, 100);
-        mythic.default_stat_percents = new MinMax(40, 100);
-        mythic.affix_stat_percents = new MinMax(40, 100);
-        mythic.affixes = new GearRarity.Part(5, 6, 15);
-        mythic.weight = 25;
-        mythic.item_tier = 5;
-        mythic.item_model_data_num = 6;
-        mythic.essence_per_sal = new MinMax(5, 5);
-        mythic.item_tier_power = 2.5F;
-        mythic.item_value_multi = 3F;
-        mythic.announce_in_chat = true;
-        mythic.setMythicFields();
-        mythic.addToSerializables();
-        */
-
         GearRarity unique = new GearRarity();
-        unique.bonus_effective_lvls = 5;
+        unique.bonus_effective_lvls = 10;
         unique.affixes = new GearRarity.Part(0, 0, 0);
         unique.weight = 25;
         unique.item_tier_power = 2;
@@ -119,7 +84,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         unique.is_unique_item = true;
 
         GearRarity runeword = new GearRarity();
-        runeword.bonus_effective_lvls = 5;
+        runeword.bonus_effective_lvls = 10;
         runeword.affixes = new GearRarity.Part(0, 0, 0);
         runeword.weight = 0;
         runeword.item_tier_power = 2;

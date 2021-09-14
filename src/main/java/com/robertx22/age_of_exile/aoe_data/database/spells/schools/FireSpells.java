@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -40,6 +39,8 @@ public class FireSpells implements ExileRegistryInit {
         SpellBuilder.of(FLAME_STRIKE_ID, SpellConfiguration.Builder.instant(8, 15)
                     .setSwingArm(), "Flame Strike",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+            .manualDesc("Strike enemies in front for " +
+                SpellCalcs.FLAME_STRIKE.getLocDmgTooltip(Elements.Fire))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1D, 1D))
@@ -73,17 +74,15 @@ public class FireSpells implements ExileRegistryInit {
                 Arrays.asList())
             .manualDesc("Gives effect to nearby allies.")
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.FIRE_WEAPON.effectId, 20 * 10D))
-            .build();
-
-        SpellBuilder.breath("fire_breath", "Fire Breath", Elements.Fire, ParticleTypes.FLAME)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_CAT_HISS, 1D, 1D)
-                .addCondition(EffectCondition.EVERY_X_TICKS.create(10D)))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.FIRE_WEAPON.effectId, 20 * 10D))
             .build();
 
         SpellBuilder.of(METEOR, SpellConfiguration.Builder.nonInstant(18, 20 * 30, 30), "Meteor",
                 Arrays.asList(SpellTag.area, SpellTag.damage)
             )
+            .manualDesc("Summon a meteor that falls from the sky, dealing " +
+                SpellCalcs.METEOR.getLocDmgTooltip(Elements.Fire))
+
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 6D)))
@@ -118,7 +117,7 @@ public class FireSpells implements ExileRegistryInit {
                     .applyCastSpeedToCooldown(), "Fire Ball",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .manualDesc(
-                "Throw out a ball of fire, dealing " + SpellCalcs.FIREBALL.getLocSpellTooltip()
+                "Throw out a ball of fire, dealing " + SpellCalcs.FIREBALL.getLocDmgTooltip()
                     + " " + Elements.Fire.getIconNameDmg())
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 

@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.loot;
 
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.LivingEntity;
@@ -10,7 +11,7 @@ import net.minecraft.util.math.MathHelper;
 
 public class LootUtils {
 
-    public static boolean isMaxLevelDistancePenalty(int level, int playerLevel) {
+    public static boolean preventLootDueToLevelPenalty(int level, int playerLevel) {
         return ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_MIN_MULTI >= getLevelDistancePunishmentMulti(level, playerLevel);
 
     }
@@ -18,15 +19,16 @@ public class LootUtils {
     // prevents lvl 50 players farming lvl 1 mobs
     public static float getLevelDistancePunishmentMulti(int level, int playerLevel) {
 
-        int diff = Math.abs(level - playerLevel);
+        int playerTier = LevelUtils.levelToTier(playerLevel);
+        int tier = LevelUtils.levelToTier(level);
 
-        int num = diff - ModConfig.get().Server.LEVELS_NEEDED_TO_START_LVL_PENALTY;
-
-        if (num < 0) {
-            num = 0;
+        if (tier == playerTier) {
+            return 1F;
         }
 
-        float multi = (float) (1F - num * ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_PER_LVL);
+        int num = Math.abs(playerTier - tier);
+
+        float multi = (float) (1F - num * ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_PER_TIER);
 
         return (float) MathHelper.clamp(multi, ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_MIN_MULTI, 1F);
     }

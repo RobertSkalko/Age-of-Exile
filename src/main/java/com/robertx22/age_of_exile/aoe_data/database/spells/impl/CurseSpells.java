@@ -28,7 +28,7 @@ public class CurseSpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.area, SpellTag.curse))
             .manualDesc(
                 "Curse enemies with " + effect.locname +
-                    " and deal " + SpellCalcs.CURSE.getLocSpellTooltip() + " " + Elements.Elemental.getIconNameDmg())
+                    " and deal " + SpellCalcs.CURSE.getLocDmgTooltip() + " " + Elements.Elemental.getIconNameDmg())
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 1D)

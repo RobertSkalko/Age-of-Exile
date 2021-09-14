@@ -17,12 +17,14 @@ import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
-import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.saveclasses.unit.*;
+import com.robertx22.age_of_exile.saveclasses.unit.MobAffixesData;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
+import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
+import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.threat_aggro.ThreatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -47,7 +49,6 @@ import com.robertx22.age_of_exile.vanilla_mc.potion_effects.EntityStatusEffectsD
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.LoadSave;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -60,7 +61,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -399,28 +399,6 @@ public class EntityCap {
 
                 if (expLoss > 0) {
                     this.exp = MathHelper.clamp(exp - expLoss, 0, Integer.MAX_VALUE);
-                }
-
-                if (getLevel() >= ModConfig.get().Server.START_CORRUPT_AT_LVL) {
-                    List<GearData> stacks = CollectGearEvent.getAllGear(null, entity, Load.Unit(entity));
-
-                    int amount = 0;
-
-                    for (GearData data : stacks) {
-                        float chance = (float) (LevelUtils.getMaxLevelMultiplier(getLevel()) * ModConfig.get().Server.CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL);
-
-                        if (data.gear != null && !data.gear.isCorrupted()) {
-                            if (RandomUtils.roll(chance)) {
-                                data.gear.c = true;
-                                data.gear.saveToStack(data.stack);
-                                amount++;
-                            }
-                        }
-                    }
-
-                    if (amount > 0) {
-                        player.sendMessage(new LiteralText(Formatting.RED + "As a result of death, " + amount + " worn items have been corrupted."), false);
-                    }
                 }
 
             }

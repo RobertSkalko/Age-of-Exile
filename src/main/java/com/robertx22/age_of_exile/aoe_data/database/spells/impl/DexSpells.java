@@ -46,7 +46,7 @@ public class DexSpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.technique))
             .attackStyle(PlayStyle.ranged)
             .manualDesc(
-                "Slash enemies in front of you for " + SpellCalcs.EXECUTE.getLocSpellTooltip()
+                "Slash enemies in front of you for " + SpellCalcs.EXECUTE.getLocDmgTooltip()
                     + " " + Elements.Physical.getIconNameDmg()
             )
             .weaponReq(CastingWeapon.MELEE_WEAPON)

@@ -49,7 +49,11 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
         return (int) base_scaling_type.scale(base.getValue(provider), provider.getCasterLevel());
     }
 
-    public String getLocSpellTooltip() {
+    public String getLocDmgTooltip(Elements element) {
+        return "[calc:" + id + "]" + " " + element.getIconNameDmg();
+    }
+
+    public String getLocDmgTooltip() {
         return "[calc:" + id + "]";
     }
 

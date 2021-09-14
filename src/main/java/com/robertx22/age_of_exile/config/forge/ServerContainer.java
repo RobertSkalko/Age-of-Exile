@@ -16,15 +16,10 @@ public class ServerContainer {
     public double EXP_LOSS_ON_DEATH = 0.1F;
     public double EXP_GAIN_MULTI = 1F;
     public double PARTY_RADIUS = 200;
-    public double RANDOM_SKILL_GEM_SALVAGE_CHANCE = 30;
     public double MAX_INSTABILITY = 1000D;
 
-    public double CHANCE_TO_CORRUPT_ITEM_AT_MAX_LEVEL = 20;
-    public double START_CORRUPT_AT_LVL = 30;
-
-    public double LEVEL_DISTANCE_PENALTY_PER_LVL = 0.15F;
+    public double LEVEL_DISTANCE_PENALTY_PER_TIER = 0.5F;
     public double LEVEL_DISTANCE_PENALTY_MIN_MULTI = 0.01F;
-    public int LEVELS_NEEDED_TO_START_LVL_PENALTY = 5;
 
     public int MAX_UNIQUE_GEARS_WORN = 99;
 

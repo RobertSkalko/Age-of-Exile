@@ -51,7 +51,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .addSpell(RangerSpells.THE_HUNT, new PointData(10, 2))
             .addSpell(RangerSpells.POISON_ARROW, new PointData(2, 2))
-            .addSpell(RangerSpells.SMOKE_BOMB, new PointData(6, 2))
+            .addSpell(RangerSpells.SMOKE_BOMB, new PointData(7, 2))
 
             .addSpell(RangerSpells.CHARGED_BOLT, new PointData(0, 3))
             .addSpell(RangerSpells.BACKFLIP, new PointData(4, 3))
