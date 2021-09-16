@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.gather
 
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBuilder;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.player_skills.items.fishing.LureType;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
@@ -37,9 +36,7 @@ public class MiningAdder {
 
         b.addTieredDrops(1F, x -> TIERED.STONE_TIER_MAP.get(x));
 
-        b.addTieredDrops(0.1F, tier -> {
-            return TIERED.LURES.get(ImmutablePair.of(LureType.INK, tier));
-        });
+
 
         return b.build();
     }

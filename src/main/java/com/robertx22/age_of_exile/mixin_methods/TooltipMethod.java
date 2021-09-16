@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
-import com.robertx22.age_of_exile.player_skills.items.fishing.FishingLureItem;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
@@ -49,20 +48,7 @@ public class TooltipMethod {
                 tooltip.add(new LiteralText("Tier " + tier.tier.getDisplayTierNumber()).formatted(Formatting.LIGHT_PURPLE));
             }
 
-            if (stack.getItem() instanceof FishingRodItem) {
-                if (stack.hasTag()) {
-                    int lures = stack.getTag()
-                        .getInt("lure_uses");
-                    String id = stack.getTag()
-                        .getString("lure_id");
 
-                    if (lures > 0) {
-                        FishingLureItem lure = (FishingLureItem) Registry.ITEM.get(new Identifier(id));
-                        tooltip.add(new LiteralText("").append(lure.getName(stack))
-                            .append(": " + lures));
-                    }
-                }
-            }
 
             if (Screen.hasControlDown()) {
                 GearItemData gear = Gear.Load(stack);

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.player_skills.events;
 import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.player_skills.items.fishing.FishingLureItem;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
@@ -58,8 +57,6 @@ public class OnFishing {
 
             SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.FISHING, list);
             effect.Activate();
-
-            FishingLureItem.spendLure(player);
 
             ci.getReturnValue()
                 .addAll(effect.extraDrops);
