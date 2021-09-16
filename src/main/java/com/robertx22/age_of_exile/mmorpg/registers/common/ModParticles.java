@@ -10,13 +10,11 @@ import net.minecraft.util.registry.Registry;
 
 public class ModParticles {
 
-    public final DefaultParticleType THUNDER = register("thunder", FabricParticleTypes.simple());
     public final DefaultParticleType BUBBLE = register("bubble", FabricParticleTypes.simple());
     public final DefaultParticleType FLAME = register("flame", FabricParticleTypes.simple());
     public final DefaultParticleType POISON = register("poison", FabricParticleTypes.simple());
     public final DefaultParticleType FROST = register("frost", FabricParticleTypes.simple());
     public final DefaultParticleType BLOOD_DRIP = register("blood_drip", FabricParticleTypes.simple());
-    public final DefaultParticleType BLOOD_EXPLODE = register("blood_explode", FabricParticleTypes.simple());
 
     private <T extends ParticleType<?>> T register(String name, T particleType) {
         Registry.PARTICLE_TYPE.register(Registry.PARTICLE_TYPE, new Identifier(Ref.MODID, name), particleType);

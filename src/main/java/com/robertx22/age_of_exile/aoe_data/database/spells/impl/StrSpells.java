@@ -43,7 +43,7 @@ public class StrSpells implements ExileRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.SHRED, 10))
                 .enemiesInRadius(3D))
             .onCast(PartBuilder.damageInAoe(SpellCalcs.SHRED, Elements.Physical, 3D)
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ModRegistry.PARTICLES.BLOOD_EXPLODE, 15D, 0.5D, 1D)))
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ModRegistry.PARTICLES.BLOOD_DRIP, 15D, 0.5D, 1D)))
 
             .build();
 
