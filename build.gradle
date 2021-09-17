@@ -43,8 +43,8 @@ dependencies {
     optionally("me.shedaniel:RoughlyEnoughItems:${rei_version}")
 
     // .dev .jar doesn't include included deps, so I have to add them for in IDE to work
-    implementation files("D:/MinecraftModding/library_of_exile/build/libs/lib.jar")
-    implementation files("D:/MinecraftModding/divine_missions/build/libs/Divine-Missions-dev.jar")
+    implementation files("lib.jar")
+    implementation files("Divine-Missions-dev.jar")
     implementation files("World-Of-Exile-1.16.5-1.3.0-dev.jar")
 }
 

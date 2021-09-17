@@ -17,7 +17,6 @@ jump_field
 vamp_blood
 charged_bolt
 night_vision
-fire_breath
 shout_warn
 curse_of_weak
 frost_armor

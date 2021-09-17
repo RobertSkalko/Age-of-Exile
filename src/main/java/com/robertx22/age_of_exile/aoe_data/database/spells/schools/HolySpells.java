@@ -147,7 +147,7 @@ public class HolySpells implements ExileRegistryInit {
                     .setSwingArm(), "Gong Strike",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .manualDesc("Bash enemies around you for " +
-                SpellCalcs.GONG_STRIKE.getLocDmgTooltip(Elements.Fire))
+                SpellCalcs.GONG_STRIKE.getLocDmgTooltip(Elements.Physical))
 
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
