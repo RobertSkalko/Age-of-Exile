@@ -10,12 +10,13 @@ import info.loenwind.autosave.exceptions.NoHandlerFoundException;
 import info.loenwind.autosave.handlers.IHandler;
 import info.loenwind.autosave.util.NBTAction;
 import info.loenwind.autosave.util.NullHelper;
+import net.minecraft.nbt.NbtCompound;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
-import net.minecraft.nbt.NbtCompound;
 
 @Storable(handler = StatContainer.class)
 public class StatContainer implements IHandler<StatContainer> {
@@ -29,22 +30,13 @@ public class StatContainer implements IHandler<StatContainer> {
         return !this.statsInCalc.isEmpty();
     }
 
-    public StatContainer cloneForSpellStats() {
-        StatContainer clone = new StatContainer();
-        statsInCalc.entrySet()
-            .forEach(x -> {
-                clone.statsInCalc.put(x.getKey(), x.getValue()
-                    .cloneForSpellStats());
-            });
-        return clone;
-    }
-
+ 
     public void calculate() {
 
         statsInCalc.values()
-            .forEach(x -> {
-                stats.put(x.id, x.getCalculated());
-            });
+                .forEach(x -> {
+                    stats.put(x.id, x.getCalculated());
+                });
         statsInCalc.clear();
     }
 
@@ -58,7 +50,7 @@ public class StatContainer implements IHandler<StatContainer> {
 
         if (data == null) {
             Stat stat = ExileDB.Stats()
-                .get(guid);
+                    .get(guid);
             if (stat != null) {
                 statsInCalc.put(stat.GUID(), new InCalcStatData(stat.GUID()));
 
@@ -83,7 +75,7 @@ public class StatContainer implements IHandler<StatContainer> {
 
             for (int i = 0; i < size; i++) {
                 tag.putString(i + "", list.get(i)
-                    .toSerializationString());
+                        .toSerializationString());
             }
         }
 
