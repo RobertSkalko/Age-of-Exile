@@ -50,186 +50,186 @@ public class NegativeEffects implements ExileRegistryInit {
     public static EffectCtx MARK_OF_DEATH = new EffectCtx("mark_of_death", "Mark of Death", 18, Elements.Physical, EffectType.negative);
     public static EffectCtx SHRED = new EffectCtx("shred", "Shred", 19, Elements.Physical, EffectType.negative);
 
+
     @Override
     public void registerAll() {
 
         ExileEffectBuilder.of(SHRED)
-            .maxStacks(3)
-            .stat(-25, Armor.getInstance(), ModType.FLAT)
-            .stat(-3, new ElementalResist(Elements.Elemental), ModType.FLAT)
-            .stat(-5, Armor.getInstance(), ModType.PERCENT)
-            .build();
+                .maxStacks(3)
+                .stat(-25, Armor.getInstance(), ModType.FLAT)
+                .stat(-3, new ElementalResist(Elements.Elemental), ModType.FLAT)
+                .stat(-5, Armor.getInstance(), ModType.PERCENT)
+                .build();
 
         ExileEffectBuilder.of(MARK_OF_DEATH)
-            .maxStacks(1)
-            .stat(-50, Armor.getInstance(), ModType.FLAT)
-            .stat(-25, DodgeRating.getInstance(), ModType.PERCENT)
-            .stat(-10, new ElementalResist(Elements.Elemental))
-            .build();
+                .maxStacks(1)
+                .stat(-50, Armor.getInstance(), ModType.FLAT)
+                .stat(-25, DodgeRating.getInstance(), ModType.PERCENT)
+                .stat(-10, new ElementalResist(Elements.Elemental))
+                .build();
 
         ExileEffectBuilder.of(GROUNDING)
-            .maxStacks(1)
-            .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 1D, ParticleMotion.Downwards))
-                    .addTarget(TargetSelector.CASTER.create()))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 2D, 0.5D)
-                    .onTick(20D))
-                .buildForEffect())
-            .build();
+                .maxStacks(1)
+                .spell(SpellBuilder.forEffect()
+                        .onTick(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 1D, ParticleMotion.Downwards))
+                                .addTarget(TargetSelector.CASTER.create()))
+                        .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 2D, 0.5D)
+                                .onTick(20D))
+                        .buildForEffect())
+                .build();
 
         ExileEffectBuilder.of(CHARM)
-            .maxStacks(5)
-            .stat(-3, Armor.getInstance(), ModType.PERCENT)
-            .stat(-3, DodgeRating.getInstance(), ModType.PERCENT)
-            .stat(-3, new ElementalResist(Elements.Elemental))
-            .build();
+                .maxStacks(5)
+                .stat(-3, Armor.getInstance(), ModType.PERCENT)
+                .stat(-3, DodgeRating.getInstance(), ModType.PERCENT)
+                .stat(-3, new ElementalResist(Elements.Elemental))
+                .build();
 
         ExileEffectBuilder.of(AGONY)
-            .maxStacks(1)
-            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee))
-            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
-            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
-            .stat(-10, DatapackStats.MOVE_SPEED)
+                .maxStacks(1)
+                .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee))
+                .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
+                .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
+                .stat(-10, DatapackStats.MOVE_SPEED)
 
-            .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
-                    .onTick(20D))
-                .buildForEffect())
+                .spell(SpellBuilder.forEffect()
+                        .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
+                                .onTick(20D))
+                        .buildForEffect())
 
-            .addTags(EffectTags.curse, EffectTags.negative)
-            .build();
+                .addTags(EffectTags.curse, EffectTags.negative)
+                .build();
 
         ExileEffectBuilder.of(WEAKNESS)
-            .maxStacks(1)
-            .stat(-30, Armor.getInstance())
-            .stat(-30, DodgeRating.getInstance())
-            .stat(-15, new ElementalResist(Elements.Elemental))
+                .maxStacks(1)
+                .stat(-30, Armor.getInstance())
+                .stat(-30, DodgeRating.getInstance())
+                .stat(-15, new ElementalResist(Elements.Elemental))
 
-            .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
-                    .onTick(20D))
-                .buildForEffect())
+                .spell(SpellBuilder.forEffect()
+                        .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
+                                .onTick(20D))
+                        .buildForEffect())
 
-            .addTags(EffectTags.curse, EffectTags.negative)
-            .build();
+                .addTags(EffectTags.curse, EffectTags.negative)
+                .build();
 
         ExileEffectBuilder.of(DESPAIR)
-            .maxStacks(1)
-            .stat(-20, Stats.TOTAL_DAMAGE.get())
-            .spell(SpellBuilder.forEffect()
-                .onExpire(PartBuilder.damage(SpellCalcs.DESPAIR, Elements.Elemental))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
-                    .onTick(20D))
-                .buildForEffect())
-            .addTags(EffectTags.curse, EffectTags.negative)
-            .build();
+                .maxStacks(1)
+                .stat(-20, Stats.TOTAL_DAMAGE.get())
+                .spell(SpellBuilder.forEffect()
+                        .onExpire(PartBuilder.damage(SpellCalcs.DESPAIR, Elements.Elemental))
+                        .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
+                                .onTick(20D))
+                        .buildForEffect())
+                .addTags(EffectTags.curse, EffectTags.negative)
+                .build();
 
         ExileEffectBuilder.of(SLOW)
-            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -25, ModType.GLOBAL_INCREASE, UUID.fromString("3fb10485-f309-468f-afc6-a23b0d6cf4c1")))
-            .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_SPEED, -10, ModType.GLOBAL_INCREASE, UUID.fromString("00fb60a7-904b-462f-a7cb-a557f02e362e")))
-            .addTags(EffectTags.negative)
-            .build();
+                .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -25, ModType.GLOBAL_INCREASE, UUID.fromString("3fb10485-f309-468f-afc6-a23b0d6cf4c1")))
+                .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_SPEED, -10, ModType.GLOBAL_INCREASE, UUID.fromString("00fb60a7-904b-462f-a7cb-a557f02e362e")))
+                .addTags(EffectTags.negative)
+                .build();
 
         ExileEffectBuilder.of(STUN)
-            .addTags(EffectTags.immobilizing, EffectTags.negative)
-            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -100, ModType.GLOBAL_INCREASE, UUID.fromString("3fb10485-f309-468f-afc6-a23b0d6cf4c1")))
-            .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_SPEED, -100, ModType.GLOBAL_INCREASE, UUID.fromString("00fb60a7-904b-462f-a7cb-a557f02e362e")))
-            .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_DAMAGE, -100, ModType.GLOBAL_INCREASE, UUID.fromString("10fb60a7-904b-462f-a7cb-a557f02e362e")))
-            .build();
+                .addTags(EffectTags.immobilizing, EffectTags.negative)
+                .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -100, ModType.GLOBAL_INCREASE, UUID.fromString("3fb10485-f309-468f-afc6-a23b0d6cf4c1")))
+                .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_SPEED, -100, ModType.GLOBAL_INCREASE, UUID.fromString("00fb60a7-904b-462f-a7cb-a557f02e362e")))
+                .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_DAMAGE, -100, ModType.GLOBAL_INCREASE, UUID.fromString("10fb60a7-904b-462f-a7cb-a557f02e362e")))
+                .build();
 
         ExileEffectBuilder.of(TORMENT)
-            .maxStacks(1)
-            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
-            .stat(-10, new ElementalResist(Elements.Elemental), ModType.FLAT)
-            .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.dotDamageOnTick(TORMENT.effectId, SpellCalcs.TORMENT, Elements.Elemental)
-                    .onTick(20D))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 1D)
-                    .onTick(10D))
-                .buildForEffect())
-            .build();
+                .maxStacks(1)
+                .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
+                .stat(-10, new ElementalResist(Elements.Elemental), ModType.FLAT)
+                .spell(SpellBuilder.forEffect()
+                        .onTick(PartBuilder.dotDamageOnTick(TORMENT.effectId, SpellCalcs.TORMENT, Elements.Elemental)
+                                .onTick(20D))
+                        .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 1D)
+                                .onTick(10D))
+                        .buildForEffect())
+                .build();
 
         ExileEffectBuilder.of(CHILL)
 
-            .maxStacks(5)
-            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
-            .stat(-4, new ElementalResist(Elements.Water), ModType.FLAT)
+                .maxStacks(5)
+                .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -0.1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
+                .spell(SpellBuilder.forEffect()
+                        .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D)
+                                .onTick(10D))
+                        .buildForEffect())
+                .build();
 
-            .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D)
-                    .onTick(10D))
-                .buildForEffect())
-            .build();
 
         ExileEffectBuilder.of(POISON)
-            .maxStacks(5)
-            .spell(SpellBuilder.forEffect()
-
-                .onTick(PartBuilder.dotDamageOnTick(POISON.effectId, SpellCalcs.POISON, Elements.Earth)
-                    .onTick(20D))
-                .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.POISON, 1D, 1D)
-                    .onTick(2D))
-                .buildForEffect())
-            .build();
+                .maxStacks(5)
+                .stat(-5, new ElementalResist(Elements.Elemental), ModType.PERCENT)
+                .spell(SpellBuilder.forEffect()
+                        .onTick(PartBuilder.dotDamageOnTick(POISON.effectId, SpellCalcs.POISON, Elements.Earth)
+                                .onTick(20D))
+                        .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.POISON, 1D, 1D)
+                                .onTick(2D))
+                        .buildForEffect())
+                .build();
 
         ExileEffectBuilder.of(BURN)
-            .maxStacks(5)
-            .spell(SpellBuilder.forEffect()
+                .maxStacks(5)
+                .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BURN.effectId, SpellCalcs.BURN, Elements.Fire)
-                    .onTick(20D))
+                        .onTick(PartBuilder.dotDamageOnTick(BURN.effectId, SpellCalcs.BURN, Elements.Fire)
+                                .onTick(20D))
 
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 10D, 1D)
-                    .onTick(20D))
-                .onTick(PartBuilder.playSound(SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 0.5D, 1D)
-                    .onTick(20D))
-                .buildForEffect())
-            .build();
+                        .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 10D, 1D)
+                                .onTick(20D))
+                        .onTick(PartBuilder.playSound(SoundEvents.BLOCK_CAMPFIRE_CRACKLE, 0.5D, 1D)
+                                .onTick(20D))
+                        .buildForEffect())
+                .build();
 
         ExileEffectBuilder.of(BLEED)
-            .maxStacks(5)
-            .spell(SpellBuilder.forEffect()
+                .maxStacks(5)
+                .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BLEED.effectId, SpellCalcs.BLEED, Elements.Physical)
-                    .onTick(20D))
+                        .onTick(PartBuilder.dotDamageOnTick(BLEED.effectId, SpellCalcs.BLEED, Elements.Physical)
+                                .onTick(20D))
 
-                .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.BLOOD_DRIP, 2D, 0.5D)
-                    .onTick(5D))
+                        .onTick(PartBuilder.aoeParticles(ModRegistry.PARTICLES.BLOOD_DRIP, 2D, 0.5D)
+                                .onTick(5D))
 
-                .buildForEffect())
-            .build();
+                        .buildForEffect())
+                .build();
 
         ExileEffectBuilder.of(ELE_WEAKNESS)
-            .stat(-15, new ElementalResist(Elements.Elemental), ModType.FLAT)
-            .build();
+                .stat(-15, new ElementalResist(Elements.Elemental), ModType.FLAT)
+                .build();
 
         ExileEffectBuilder.of(BLIND)
-            .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_DAMAGE, -1000F, ModType.GLOBAL_INCREASE, UUID.fromString("5eccf34c-29f7-4eea-bbad-82a905594064")))
-            .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_SPEED, -1000F, ModType.GLOBAL_INCREASE, UUID.fromString("57eb6210-2a42-4ad3-a604-6f679d440a9b")))
-            .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 3D, 1D)
-                    .onTick(20D))
-                .buildForEffect()
-            )
-            .addTags(EffectTags.immobilizing)
-            .build();
+                .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_DAMAGE, -1000F, ModType.GLOBAL_INCREASE, UUID.fromString("5eccf34c-29f7-4eea-bbad-82a905594064")))
+                .vanillaStat(VanillaStatData.create(GENERIC_ATTACK_SPEED, -1000F, ModType.GLOBAL_INCREASE, UUID.fromString("57eb6210-2a42-4ad3-a604-6f679d440a9b")))
+                .spell(SpellBuilder.forEffect()
+                        .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 3D, 1D)
+                                .onTick(20D))
+                        .buildForEffect()
+                )
+                .addTags(EffectTags.immobilizing)
+                .build();
 
         ExileEffectBuilder.of(WOUNDS)
-            .stat(-25, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
-            .build();
+                .stat(-25, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
+                .build();
 
         ExileEffectBuilder.of(PETRIFY)
-            .addTags(EffectTags.immobilizing)
-            .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd5")))
-            .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D)
-                    .onTick(20D))
-                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(SpellCalcs.PETRIFY, Elements.Earth))
-                    .setTarget(TargetSelector.TARGET.create()))
-                .onExpire(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 15D, 1D))
-                .onExpire(PartBuilder.justAction(SpellAction.PLAY_SOUND.create(SoundEvents.ENTITY_SHEEP_SHEAR, 1D, 1D)))
-                .buildForEffect())
-            .build();
+                .addTags(EffectTags.immobilizing)
+                .vanillaStat(VanillaStatData.create(GENERIC_MOVEMENT_SPEED, -1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd5")))
+                .spell(SpellBuilder.forEffect()
+                        .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D)
+                                .onTick(20D))
+                        .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(SpellCalcs.PETRIFY, Elements.Earth))
+                                .setTarget(TargetSelector.TARGET.create()))
+                        .onExpire(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 15D, 1D))
+                        .onExpire(PartBuilder.justAction(SpellAction.PLAY_SOUND.create(SoundEvents.ENTITY_SHEEP_SHEAR, 1D, 1D)))
+                        .buildForEffect())
+                .build();
 
     }
 }

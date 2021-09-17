@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequiremen
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.CraftEssenceItem;
 import com.robertx22.library_of_exile.registry.DataGenKey;
 
 import java.util.ArrayList;
@@ -31,7 +30,6 @@ public class BaseGearBuilder implements GearDataHelper {
     private int weapon_offhand_stat_util = 0;
     private float atkspeed = 1F;
     private int weight = 1000;
-    private CraftEssenceItem essenceItem;
 
     public static BaseGearBuilder of(DataGenKey<BaseGearType> id, String slot, String locnamesuffix) {
         BaseGearBuilder b = new BaseGearBuilder();
@@ -80,10 +78,6 @@ public class BaseGearBuilder implements GearDataHelper {
         return this;
     }
 
-    public BaseGearBuilder essenceItem(CraftEssenceItem item) {
-        this.essenceItem = item;
-        return this;
-    }
 
     public BaseGearBuilder baseStat(StatModifier... mod) {
         this.basestats.addAll(Arrays.asList(mod));
@@ -102,7 +96,6 @@ public class BaseGearBuilder implements GearDataHelper {
         String name = /*namePrefixes.get(x) + " " + */locnamesuffix;
         String id = this.id;
         BaseGearType type = new BaseGearType(slot, id, x, name);
-        type.stat_reqs = req;
         type.weapon_type = wep;
         type.tags = tags;
         type.implicit_stats = implicitstats;
@@ -111,7 +104,6 @@ public class BaseGearBuilder implements GearDataHelper {
         type.weight = weight;
         type.style = style;
         type.weapon_offhand_stat_util = weapon_offhand_stat_util;
-        type.essenceItem = essenceItem;
         type.addToSerializables();
 
         return new DataGenKey<>(type.GUID());

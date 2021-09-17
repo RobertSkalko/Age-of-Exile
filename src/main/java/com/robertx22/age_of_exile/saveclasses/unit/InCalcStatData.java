@@ -19,6 +19,7 @@ public class InCalcStatData {
     private float Flat = 0;
     private float Percent = 0;
     private float Multi = 0;
+    private boolean calc = false;
 
     @Factory
     private InCalcStatData() {
@@ -45,7 +46,7 @@ public class InCalcStatData {
         this.Multi = 0;
     }
 
-    private float calcFirstValue() {
+    private float calcValue() {
         Stat stat = this.GetStat();
 
         float finalValue = stat.base;
@@ -56,26 +57,15 @@ public class InCalcStatData {
 
         finalValue *= 1 + Multi / 100;
 
+        this.calc = true;
         return MathHelper.clamp(finalValue, stat.min, stat.max);
 
     }
 
-    private float calcSecondValue() {
-        Stat stat = this.GetStat();
-
-        float finalValue = stat.base;
-
-        finalValue *= 1 + Percent / 100;
-
-        finalValue *= 1 + Multi / 100;
-
-        return MathHelper.clamp(finalValue, stat.min, stat.max);
-
-    }
 
     public Stat GetStat() {
         return ExileDB.Stats()
-            .get(id);
+                .get(id);
     }
 
     public void addMulti(float multi) {
@@ -139,6 +129,10 @@ public class InCalcStatData {
     }
 
     public StatData getCalculated() {
+
+        if (!calc) {
+            this.calcValue();
+        }
         return new StatData(this.id, getValue());
     }
 }

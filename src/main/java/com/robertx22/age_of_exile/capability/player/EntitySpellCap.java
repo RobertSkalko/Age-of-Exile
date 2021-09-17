@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.spells.SpellCastingData;
-import com.robertx22.age_of_exile.saveclasses.spells.skill_gems.SpellsData;
+import com.robertx22.age_of_exile.saveclasses.spells.SpellsData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -114,7 +114,7 @@ public class EntitySpellCap {
             String spellid = this.spellData.hotbars.get(key);
             if (spellid != null && !spellid.isEmpty()) {
                 return ExileDB.Spells()
-                    .get(spellid);
+                        .get(spellid);
 
             }
 
@@ -137,7 +137,7 @@ public class EntitySpellCap {
         @Override
         public int getFreeSpellPoints() {
             return (int) (GameBalanceConfig.get().SPELL_POINTS_PER_LEVEL * Load.Unit(entity)
-                .getLevel()) - getSpentSpellPoints();
+                    .getLevel()) - getSpentSpellPoints();
         }
 
         @Override
@@ -185,13 +185,13 @@ public class EntitySpellCap {
         @Override
         public List<Spell> getLearnedSpells() {
             return ExileDB.Spells()
-                .getFilterWrapped(x -> getLevelOf(x.GUID()) > 0).list;
+                    .getFilterWrapped(x -> getLevelOf(x.GUID()) > 0).list;
         }
 
         @Override
         public List<Synergy> getLearnedSynergies() {
             return ExileDB.Synergies()
-                .getFilterWrapped(x -> getLevelOf(x.GUID()) > 0).list;
+                    .getFilterWrapped(x -> getLevelOf(x.GUID()) > 0).list;
         }
 
         @Override
@@ -217,7 +217,7 @@ public class EntitySpellCap {
                 mobsHit.put(key, new ArrayList<>());
             }
             mobsHit.get(key)
-                .add(id);
+                    .add(id);
 
             if (mobsHit.size() > 1000) {
                 mobsHit.clear();
@@ -236,7 +236,7 @@ public class EntitySpellCap {
                 return false;
             }
             return mobsHit.get(key)
-                .contains(target.getUuid());
+                    .contains(target.getUuid());
         }
 
         @Override

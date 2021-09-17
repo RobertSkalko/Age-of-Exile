@@ -11,7 +11,7 @@ public class SpellCalcs {
     }
 
     public static ValueCalculation POISON = ValueCalcBuilder.of("poison")
-        .attackScaling(0.1F, 0.1F)
+        .attackScaling(0.05F, 0.05F)
         .build();
     public static ValueCalculation BLEED = ValueCalcBuilder.of("bleed")
         .attackScaling(0.2F, 0.2F)
