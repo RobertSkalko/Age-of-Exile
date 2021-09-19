@@ -9,7 +9,6 @@
     "CriteriaAccessor",
     "DisableMobSpawnsInDungeon",
     "FallingBlockEntityMixin",
-    "FoodComponentMixin",
     "FurnaceMixin",
     "ItemInteractionHook",
     "LivingEntityMixin",

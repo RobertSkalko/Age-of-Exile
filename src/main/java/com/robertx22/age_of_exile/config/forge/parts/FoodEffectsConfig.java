@@ -4,6 +4,5 @@ public class FoodEffectsConfig {
 
     public boolean ENABLE_FOOD_EFFECTS = true;
     public boolean ENABLE_AUTO_FOOD_COMPAT = false;
-    public boolean FOOD_IS_ALWAYS_EDIBLE = true;
 
 }
