@@ -7,27 +7,27 @@ import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public abstract class TieredItem extends Item implements IAutoLocName, IAutoModel {
 
     public SkillItemTier tier;
 
     public TieredItem(SkillItemTier tier) {
-        super(new Item.Settings().group(CreativeTabs.Professions));
+        super(new Item.Properties().tab(CreativeTabs.Professions));
         this.tier = tier;
     }
 
-    public TieredItem(SkillItemTier tier, Item.Settings settings) {
-        super(settings.group(CreativeTabs.Professions));
+    public TieredItem(SkillItemTier tier, Item.Properties settings) {
+        super(settings.tab(CreativeTabs.Professions));
         this.tier = tier;
     }
 
     @Override
-    public Text getName(ItemStack stack) {
-        return new TranslatableText(this.getTranslationKey()).formatted(tier.format);
+    public ITextComponent getName(ItemStack stack) {
+        return new TranslationTextComponent(this.getDescriptionId()).withStyle(tier.format);
     }
 
     @Override
@@ -42,7 +42,7 @@ public abstract class TieredItem extends Item implements IAutoLocName, IAutoMode
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 

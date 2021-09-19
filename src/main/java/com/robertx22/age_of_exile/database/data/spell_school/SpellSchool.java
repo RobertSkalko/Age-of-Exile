@@ -11,7 +11,7 @@ import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,11 +50,11 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
             .getLevel() >= getLevelNeededToAllocate(synergies.get(synergy.GUID()));
     }
 
-    public Identifier getIconLoc() {
+    public ResourceLocation getIconLoc() {
         return Ref.guiId("spells/schools/" + id);
     }
 
-    public Identifier getBackgroundLoc() {
+    public ResourceLocation getBackgroundLoc() {
         return Ref.guiId("spells/school_backgrounds/" + id);
     }
 

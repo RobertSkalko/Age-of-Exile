@@ -1,28 +1,26 @@
 package com.robertx22.age_of_exile.capability;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import dev.onyxstudios.cca.api.v3.component.CopyableComponent;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.Identifier;
+import com.robertx22.library_of_exile.components.forge.ICommonCap;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 
-public class ChunkPopulatedCap implements CopyableComponent<ChunkPopulatedCap> {
-    public static final Identifier RESOURCE = new Identifier(Ref.MODID, "popchunk");
+public class ChunkPopulatedCap implements ICommonCap {
+    public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "popchunk");
     private static final String LOC = "b";
 
     public boolean populated = false;
 
     @Override
-    public void readFromNbt(NbtCompound tag) {
+    public void loadFromNBT(CompoundNBT tag) {
         this.populated = tag.getBoolean(LOC);
     }
 
     @Override
-    public void writeToNbt(NbtCompound tag) {
+    public CompoundNBT saveToNBT() {
+        CompoundNBT tag = new CompoundNBT();
         tag.putBoolean(LOC, populated);
+        return tag;
     }
 
-    @Override
-    public void copyFrom(ChunkPopulatedCap other) {
-        this.populated = other.populated;
-    }
 }

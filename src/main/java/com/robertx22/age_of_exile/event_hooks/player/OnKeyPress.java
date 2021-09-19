@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.ChatUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCastSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 
 public class OnKeyPress implements ClientTickEvents.EndTick {
@@ -15,7 +15,7 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
 
     @Override
 
-    public void onEndTick(MinecraftClient mc) {
+    public void onEndTick(Minecraft mc) {
 
         if (cooldown > 0) {
             cooldown--;
@@ -30,20 +30,20 @@ public class OnKeyPress implements ClientTickEvents.EndTick {
             return;
         }
 
-        if (KeybindsRegister.HUB_SCREEN_KEY.isPressed()) {
-            mc.openScreen(new CharacterScreen());
+        if (KeybindsRegister.HUB_SCREEN_KEY.isDown()) {
+            mc.setScreen(new CharacterScreen());
             cooldown = 10;
         } else {
 
             int number = -1;
 
-            if (KeybindsRegister.SPELL_HOTBAR_1.isPressed()) {
+            if (KeybindsRegister.SPELL_HOTBAR_1.isDown()) {
                 number = 0;
-            } else if (KeybindsRegister.SPELL_HOTBAR_2.isPressed()) {
+            } else if (KeybindsRegister.SPELL_HOTBAR_2.isDown()) {
                 number = 1;
-            } else if (KeybindsRegister.SPELL_HOTBAR_3.isPressed()) {
+            } else if (KeybindsRegister.SPELL_HOTBAR_3.isDown()) {
                 number = 2;
-            } else if (KeybindsRegister.SPELL_HOTBAR_4.isPressed()) {
+            } else if (KeybindsRegister.SPELL_HOTBAR_4.isDown()) {
                 number = 3;
             } else {
                 number -= 500; // dont cast

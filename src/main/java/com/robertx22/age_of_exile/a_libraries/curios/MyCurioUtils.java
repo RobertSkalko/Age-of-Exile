@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.a_libraries.curios;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.type.component.ICuriosItemHandler;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
 import java.util.ArrayList;
@@ -24,8 +24,8 @@ public class MyCurioUtils {
         List<ICurioStacksHandler> list = new ArrayList<>();
 
         ICuriosItemHandler handler = CuriosApi.getCuriosHelper()
-                .getCuriosHandler(player)
-                .get();
+            .getCuriosHandler(player)
+            .orElse(null);
 
         for (String slot : slots) {
 
@@ -44,7 +44,6 @@ public class MyCurioUtils {
 
     }
 
-
     public static ItemStack get(String slot, PlayerEntity player, int num) {
 
         List<ItemStack> list = getAllSlots(Arrays.asList(slot), player);
@@ -62,11 +61,11 @@ public class MyCurioUtils {
 
         getHandlers(slots, player).forEach(x -> {
             for (int i = 0; i < x
-                    .getSlots(); i++) {
+                .getSlots(); i++) {
 
                 ItemStack stack = x
-                        .getStacks()
-                        .getStack(i);
+                    .getStacks()
+                    .getStackInSlot(i);
                 // if (!stack.isEmpty()) {
                 list.add(stack);
                 // }

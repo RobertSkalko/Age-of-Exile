@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
 
 import java.util.UUID;
 
@@ -14,20 +14,20 @@ public class ExtraMobRarityAttributes {
     static UUID MOVESPEED_ID = UUID.fromString("120E0DFB-87AE-4633-9556-521010E291A0");
     static UUID KNOCKBACK_RES_ID = UUID.fromString("220E0DFB-87AE-4633-9556-521010E291A0");
 
-    static EntityAttributeModifier getMoveSpeedMod(float multi) {
-        return new EntityAttributeModifier(
+    static AttributeModifier getMoveSpeedMod(float multi) {
+        return new AttributeModifier(
             MOVESPEED_ID,
             "Rarity move speed boost",
             multi * 0.02F,
-            EntityAttributeModifier.Operation.ADDITION);
+            AttributeModifier.Operation.ADDITION);
     }
 
-    static EntityAttributeModifier getKnockbackResMod(float multi) {
-        return new EntityAttributeModifier(
+    static AttributeModifier getKnockbackResMod(float multi) {
+        return new AttributeModifier(
             KNOCKBACK_RES_ID,
             "Rarity knockback res",
             multi * 0.15F,
-            EntityAttributeModifier.Operation.ADDITION);
+            AttributeModifier.Operation.ADDITION);
     }
 
     public static void add(LivingEntity en, EntityData data) {
@@ -35,15 +35,15 @@ public class ExtraMobRarityAttributes {
         MobRarity rar = ExileDB.MobRarities()
             .get(data.getRarity());
 
-        if (en.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
+        if (en.getAttribute(Attributes.MOVEMENT_SPEED)
             .getModifier(MOVESPEED_ID) == null) {
-            en.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
-                .addPersistentModifier(getMoveSpeedMod(rar.StatMultiplier()));
+            en.getAttribute(Attributes.MOVEMENT_SPEED)
+                .addPermanentModifier(getMoveSpeedMod(rar.StatMultiplier()));
         }
-        if (en.getAttributeInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)
+        if (en.getAttribute(Attributes.KNOCKBACK_RESISTANCE)
             .getModifier(KNOCKBACK_RES_ID) == null) {
-            en.getAttributeInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)
-                .addPersistentModifier(getKnockbackResMod(rar.StatMultiplier()));
+            en.getAttribute(Attributes.KNOCKBACK_RESISTANCE)
+                .addPermanentModifier(getKnockbackResMod(rar.StatMultiplier()));
 
         }
 

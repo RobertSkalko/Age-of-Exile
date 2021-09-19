@@ -5,6 +5,13 @@ import java.util.List;
 
 public class ServerContainer {
 
+    public boolean ENABLE_FOOD_EFFECTS = true;
+    public boolean ENABLE_AUTO_FOOD_COMPAT = false;
+
+    public boolean ENABLE_FAVOR_SYSTEM = true;
+    public float FAVOR_GAIN_PER_CHEST_LOOTED = 10;
+    public int STARTING_FAVOR = 100;
+
     public boolean ALL_PLAYERS_ARE_TEAMED_PVE_MODE = false;
     public boolean GET_STARTER_ITEMS = true;
     public boolean ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = false;
@@ -32,4 +39,8 @@ public class ServerContainer {
 
     public List<String> BLACKLIST_SPELLS_IN_DIMENSIONS = Arrays.asList("modid:testdim");
 
+    public double GEAR_DROPRATE = 7;
+    public double GEM_DROPRATE = 0.5D;
+    public double RUNE_DROPRATE = 0.05D;
+    public double CURRENCY_DROPRATE = 0.2D;
 }

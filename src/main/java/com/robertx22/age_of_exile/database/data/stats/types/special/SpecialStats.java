@@ -26,9 +26,9 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.library_of_exile.utils.RandomUtils;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectType;
-import net.minecraft.util.Formatting;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectType;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 
@@ -64,7 +64,7 @@ public class SpecialStats {
 
             @Override
             public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                return effect.source.isTouchingWater();
+                return effect.source.isInWater();
             }
         }
     );
@@ -109,15 +109,15 @@ public class SpecialStats {
 
     public static SpecialStat HEAL_CLEANSE = new SpecialStat("heal_cleanse",
         format("Your " + Stats.HEAL_STRENGTH.get()
-            .getFormat() + Stats.HEAL_STRENGTH.get().icon + " Heal Spells " + Formatting.GRAY + "have a " + VAL1 + "%" + " chance to cleanse a negative effect."),
+            .getFormat() + Stats.HEAL_STRENGTH.get().icon + " Heal Spells " + TextFormatting.GRAY + "have a " + VAL1 + "%" + " chance to cleanse a negative effect."),
 
         new BaseHealEffect() {
             @Override
             public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                for (StatusEffectInstance x : new ArrayList<>(effect.target.getStatusEffects())) {
-                    StatusEffectAccessor acc = (StatusEffectAccessor) x.getEffectType();
-                    if (acc.getType() == StatusEffectType.HARMFUL) {
-                        effect.target.removeStatusEffect(x.getEffectType());
+                for (EffectInstance x : new ArrayList<>(effect.target.getActiveEffects())) {
+                    StatusEffectAccessor acc = (StatusEffectAccessor) x.getEffect();
+                    if (acc.getType() == EffectType.HARMFUL) {
+                        effect.target.removeEffect(x.getEffect());
                     }
                 }
                 return effect;

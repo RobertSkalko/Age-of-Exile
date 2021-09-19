@@ -7,10 +7,10 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.library_of_exile.utils.Watch;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public class OnLogin {
 
@@ -24,16 +24,16 @@ public class OnLogin {
         try {
 
             if (!player.getServer()
-                .areCommandBlocksEnabled()) {
-                player.sendMessage(new LiteralText("Command blocks are disabled, this will stop you from playing Age of Exile Dungeons!").formatted(Formatting.RED), false);
-                player.sendMessage(new LiteralText("To enable go to your server.properties file and put enable-command-block as true.").formatted(Formatting.GREEN), false);
+                .isCommandBlockEnabled()) {
+                player.displayClientMessage(new StringTextComponent("Command blocks are disabled, this will stop you from playing Age of Exile Dungeons!").withStyle(TextFormatting.RED), false);
+                player.displayClientMessage(new StringTextComponent("To enable go to your server.properties file and put enable-command-block as true.").withStyle(TextFormatting.GREEN), false);
             }
 
             Load.playerRPGData(player)
                 .syncToClient(player);
 
             if (MMORPG.RUN_DEV_TOOLS) {
-                player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName(), false);
+                player.displayClientMessage(Chats.Dev_tools_enabled_contact_the_author.locName(), false);
             }
 
             EntityData data = Load.Unit(player);
@@ -54,11 +54,11 @@ public class OnLogin {
 
     public static void GiveStarterItems(PlayerEntity player) {
 
-        if (player.world.isClient) {
+        if (player.level.isClientSide) {
             return;
         }
 
-        player.inventory.insertStack(new ItemStack(ModRegistry.MISC_ITEMS.NEWBIE_GEAR_BAG));
+        player.inventory.add(new ItemStack(ModRegistry.MISC_ITEMS.NEWBIE_GEAR_BAG));
 
     }
 

@@ -3,8 +3,8 @@ package com.robertx22.age_of_exile.uncommon.datasaving;
 import com.robertx22.age_of_exile.uncommon.item_filters.bases.ItemFilterGroup;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public enum ItemType {
 
@@ -26,13 +26,13 @@ public enum ItemType {
     private ItemFilterGroup filter;
     public Words word;
 
-    public static MutableText getTooltipString(ItemType types) {
+    public static IFormattableTextComponent getTooltipString(ItemType types) {
 
-        MutableText comp = Words.UsableOn.locName()
+        IFormattableTextComponent comp = Words.UsableOn.locName()
             .append(": ")
             .append(types.word.locName());
 
-        comp.formatted(Formatting.LIGHT_PURPLE);
+        comp.withStyle(TextFormatting.LIGHT_PURPLE);
 
         return comp;
 

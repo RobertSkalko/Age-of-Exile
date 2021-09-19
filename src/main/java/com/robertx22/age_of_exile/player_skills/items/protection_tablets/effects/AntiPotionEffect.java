@@ -1,27 +1,27 @@
 package com.robertx22.age_of_exile.player_skills.items.protection_tablets.effects;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectType;
 
-public class AntiPotionEffect extends StatusEffect {
+public class AntiPotionEffect extends Effect {
 
-    StatusEffect effect;
+    Effect effect;
 
-    public AntiPotionEffect(StatusEffect eff) {
-        super(StatusEffectType.BENEFICIAL, 0);
+    public AntiPotionEffect(Effect eff) {
+        super(EffectType.BENEFICIAL, 0);
         this.effect = eff;
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (entity.hasStatusEffect(effect)) {
-            entity.removeStatusEffect(effect);
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
+        if (entity.hasEffect(effect)) {
+            entity.removeEffect(effect);
         }
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }
 }

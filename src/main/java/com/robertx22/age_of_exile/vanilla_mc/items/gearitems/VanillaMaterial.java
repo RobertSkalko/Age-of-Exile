@@ -1,22 +1,26 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gearitems;
 
-import net.minecraft.item.*;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.tag.Tag;
+import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemTier;
+import net.minecraft.item.Items;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.Tag;
 
 public enum VanillaMaterial {
 
-    WOOD("wood", new ItemOrTag(ItemTags.PLANKS), ArmorMaterials.LEATHER, ToolMaterials.WOOD),
-    IRON("iron", new ItemOrTag(Items.IRON_INGOT), ArmorMaterials.IRON, ToolMaterials.IRON),
-    GOLD("gold", new ItemOrTag(Items.GOLD_INGOT), ArmorMaterials.GOLD, ToolMaterials.GOLD),
-    DIAMOND("diamond", new ItemOrTag(Items.DIAMOND), ArmorMaterials.DIAMOND, ToolMaterials.DIAMOND);
+    WOOD("wood", new ItemOrTag(ItemTags.PLANKS), ArmorMaterial.LEATHER, ItemTier.WOOD),
+    IRON("iron", new ItemOrTag(Items.IRON_INGOT), ArmorMaterial.IRON, ItemTier.IRON),
+    GOLD("gold", new ItemOrTag(Items.GOLD_INGOT), ArmorMaterial.GOLD, ItemTier.GOLD),
+    DIAMOND("diamond", new ItemOrTag(Items.DIAMOND), ArmorMaterial.DIAMOND, ItemTier.DIAMOND);
 
     public String id;
     public ItemOrTag mat;
     public ArmorMaterial armormat;
-    public ToolMaterial toolmat;
+    public ItemTier toolmat;
 
-    VanillaMaterial(String id, ItemOrTag mat, ArmorMaterial armormat, ToolMaterial toolmat) {
+    VanillaMaterial(String id, ItemOrTag mat, ArmorMaterial armormat, ItemTier toolmat) {
         this.id = id;
         this.mat = mat;
         this.armormat = armormat;
@@ -25,13 +29,13 @@ public enum VanillaMaterial {
 
     public static class ItemOrTag {
         public Item item;
-        public Tag.Identified<Item> tag;
+        public ITag.INamedTag<Item> tag;
 
         public ItemOrTag(Item item) {
             this.item = item;
         }
 
-        public ItemOrTag(Tag.Identified<Item> tag) {
+        public ItemOrTag(Tag.INamedTag<Item> tag) {
             this.tag = tag;
         }
     }

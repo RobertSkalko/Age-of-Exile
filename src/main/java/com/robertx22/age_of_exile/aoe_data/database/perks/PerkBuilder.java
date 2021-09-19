@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.perks;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,7 +48,7 @@ public class PerkBuilder {
         perk.locname = locname;
         perk.type = Perk.PerkType.MAJOR;
         perk.identifier = id;
-        perk.icon = new Identifier(Ref.MODID, "textures/gui/stat_icons/game_changers/" + id + ".png")
+        perk.icon = new ResourceLocation(Ref.MODID, "textures/gui/stat_icons/game_changers/" + id + ".png")
             .toString();
         perk.addToSerializables();
         return perk;
@@ -58,7 +58,7 @@ public class PerkBuilder {
         Perk perk = stat(id, stat);
         perk.type = Perk.PerkType.SPECIAL;
         perk.locname = locname;
-        perk.icon = new Identifier(Ref.MODID, "textures/gui/talent_icons/" + perk.identifier + ".png")
+        perk.icon = new ResourceLocation(Ref.MODID, "textures/gui/talent_icons/" + perk.identifier + ".png")
             .toString();
         return perk;
     }

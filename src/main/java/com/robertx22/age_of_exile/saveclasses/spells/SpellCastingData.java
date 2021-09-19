@@ -18,11 +18,11 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.protocol.game.STitlePacket;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.List;
 
@@ -127,8 +127,8 @@ public class SpellCastingData {
                     spell.onCastingTick(ctx);
 
                     // slow down player when casting spells
-                    Vec3d v = entity.getVelocity();
-                    entity.setVelocity(new Vec3d(0.25D * v.x, v.y, 0.25D * v.z));
+                    Vector3d v = entity.getDeltaMovement();
+                    entity.setDeltaMovement(new Vector3d(0.25D * v.x, v.y, 0.25D * v.z));
                     // slow down player when casting spells
 
                 }
@@ -204,7 +204,7 @@ public class SpellCastingData {
 
     public boolean canCast(Spell spell, PlayerEntity player) {
 
-        if (player.world.isClient) {
+        if (player.level.isClientSide) {
             return false;
         }
 
@@ -252,9 +252,9 @@ public class SpellCastingData {
         }
 
         if (!ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.isEmpty()) {
-            Identifier id = ctx.caster.world.getRegistryManager()
-                .getDimensionTypes()
-                .getId(ctx.caster.world.getDimension());
+            ResourceLocation id = ctx.caster.level.registryAccess()
+                .dimensionTypes()
+                .getKey(ctx.caster.level.dimensionType());
 
             if (ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.stream()
                 .anyMatch(x -> x.equals(id.toString()))) {
@@ -266,9 +266,9 @@ public class SpellCastingData {
 
         if (data != null) {
 
-            if (!spell.isAllowedInDimension(caster.world)) {
+            if (!spell.isAllowedInDimension(caster.level)) {
                 if (caster instanceof PlayerEntity) {
-                    ((PlayerEntity) caster).sendMessage(new LiteralText("You feel an entity watching you. [Spell can not be casted in this dimension]"), false);
+                    ((PlayerEntity) caster).displayClientMessage(new StringTextComponent("You feel an entity watching you. [Spell can not be casted in this dimension]"), false);
                 }
                 return false;
             }
@@ -282,7 +282,7 @@ public class SpellCastingData {
                     return false;
                 }
 
-                GearItemData wep = Gear.Load(ctx.caster.getMainHandStack());
+                GearItemData wep = Gear.Load(ctx.caster.getMainHandItem());
 
                 if (wep == null) {
                     return false;
@@ -290,7 +290,7 @@ public class SpellCastingData {
 
                 if (!wep.canPlayerWear(ctx.data)) {
                     if (ctx.caster instanceof PlayerEntity) {
-                        OnScreenMessageUtils.sendMessage((ServerPlayerEntity) ctx.caster, new LiteralText("Weapon requirements not met"), TitleS2CPacket.Action.ACTIONBAR);
+                        OnScreenMessageUtils.sendMessage((ServerPlayerEntity) ctx.caster, new StringTextComponent("Weapon requirements not met"), STitlePacket.Type.ACTIONBAR);
                     }
                     return false;
                 }

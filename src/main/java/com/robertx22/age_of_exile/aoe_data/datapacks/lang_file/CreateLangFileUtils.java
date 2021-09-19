@@ -5,10 +5,9 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IBaseAutoLoc;
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
+import net.minecraft.potion.Effect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class CreateLangFileUtils {
         return "\n" + "\"_comment\": \"" + " [CATEGORY]: " + str + "\",\n" + "\n";
     }
 
-    public static boolean matches(Identifier loc) {
+    public static boolean matches(ResourceLocation loc) {
         if (loc == null || loc.getNamespace()
             .equals(Ref.MODID) == false) {
             return false;
@@ -46,22 +45,18 @@ public class CreateLangFileUtils {
         List<T> list = new ArrayList<>();
 
         for (Item item : Registry.ITEM) {
-            if (matches(Registry.ITEM.getId(item)) && theclass.isAssignableFrom(item.getClass())) {
+            if (matches(Registry.ITEM.getKey(item)) && theclass.isAssignableFrom(item.getClass())) {
                 list.add((T) item);
             }
         }
-        for (Enchantment ench : Registry.ENCHANTMENT) {
-            if (matches(Registry.ENCHANTMENT.getId(ench)) && theclass.isAssignableFrom(ench.getClass())) {
-                list.add((T) ench);
-            }
-        }
+
         for (Block item : Registry.BLOCK) {
-            if (matches(Registry.BLOCK.getId(item)) && theclass.isAssignableFrom(item.getClass())) {
+            if (matches(Registry.BLOCK.getKey(item)) && theclass.isAssignableFrom(item.getClass())) {
                 list.add((T) item);
             }
         }
-        for (StatusEffect item : Registry.STATUS_EFFECT) {
-            if (matches(Registry.STATUS_EFFECT.getId(item)) && theclass.isAssignableFrom(item.getClass())) {
+        for (Effect item : Registry.MOB_EFFECT) {
+            if (matches(Registry.MOB_EFFECT.getKey(item)) && theclass.isAssignableFrom(item.getClass())) {
                 list.add((T) item);
             }
         }

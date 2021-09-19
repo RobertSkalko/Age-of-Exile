@@ -19,7 +19,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
@@ -29,9 +29,9 @@ import java.util.List;
 
 @Storable
 public class ProfessionsData implements IApplyableStats {
-    static Identifier LOW_LVL_TEX = Ref.id("textures/gui/skills/skill_level/low.png");
-    static Identifier MID_LVL_TEX = Ref.id("textures/gui/skills/skill_level/mid.png");
-    static Identifier HIGH_LVL_TEX = Ref.id("textures/gui/skills/skill_level/high.png");
+    static ResourceLocation LOW_LVL_TEX = Ref.id("textures/gui/skills/skill_level/low.png");
+    static ResourceLocation MID_LVL_TEX = Ref.id("textures/gui/skills/skill_level/mid.png");
+    static ResourceLocation HIGH_LVL_TEX = Ref.id("textures/gui/skills/skill_level/high.png");
 
     @Store
     private HashMap<String, PlayerSkillData> map = new HashMap<>();
@@ -104,7 +104,7 @@ public class ProfessionsData implements IApplyableStats {
         }
     }
 
-    public Identifier getBackGroundTextureFor(PlayerSkillEnum se) {
+    public ResourceLocation getBackGroundTextureFor(PlayerSkillEnum se) {
         int lvl = getProfessionLevel(se);
         float multi = LevelUtils.getMaxLevelMultiplier(lvl);
 
@@ -135,11 +135,11 @@ public class ProfessionsData implements IApplyableStats {
 
         Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.PLAYER_RPG_DATA));
 
-        SoundUtils.ding(player.world, player.getBlockPos());
+        SoundUtils.ding(player.level, player.blockPosition());
 
-        player.sendMessage(skill.word.locName()
+        player.displayClientMessage(skill.word.locName()
             .append(" leveled up!")
-            .formatted(skill.format), false);
+            .withStyle(skill.format), false);
 
         Packets.sendToClient(player, new SkillLevelUpToClient(skill));
     }

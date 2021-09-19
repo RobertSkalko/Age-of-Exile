@@ -12,7 +12,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.potion.Effect;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -29,7 +29,7 @@ public class DamageAction extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        if (!ctx.world.isClient) {
+        if (!ctx.world.isClientSide) {
             Elements ele = data.getElement();
             ValueCalculation calc = data.get(VALUE_CALCULATION);
 
@@ -45,8 +45,8 @@ public class DamageAction extends SpellAction {
                 try {
                     if (data.has(MapField.EXILE_POTION_ID)) {
                         // if damage done by effect, multiple dmg by effect stacks.
-                        StatusEffect effect = ModRegistry.POTIONS.getExileEffect(data.get(MapField.EXILE_POTION_ID));
-                        if (t.hasStatusEffect(effect)) {
+                        Effect effect = ModRegistry.POTIONS.getExileEffect(data.get(MapField.EXILE_POTION_ID));
+                        if (t.hasEffect(effect)) {
                             stacks = Load.Unit(t)
                                 .getStatusEffectsData()
                                 .get((ExileStatusEffect) effect).stacks;

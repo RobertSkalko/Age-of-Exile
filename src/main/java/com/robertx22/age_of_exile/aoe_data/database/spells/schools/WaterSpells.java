@@ -16,9 +16,9 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
@@ -49,7 +49,7 @@ public class WaterSpells implements ExileRegistryInit {
                 + SpellCalcs.CHILLING_FIELD.getLocDmgTooltip()
                 + Elements.Water.getIconNameDmg() + " every second.")
 
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_END_PORTAL_SPAWN, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.END_PORTAL_SPAWN, 1D, 1D))
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 20D * 8)
@@ -59,7 +59,7 @@ public class WaterSpells implements ExileRegistryInit {
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
             .onTick("block", PartBuilder.groundParticles(ParticleTypes.CLOUD, 20D, 2D, 0.2D))
-            .onTick("block", PartBuilder.playSound(SoundEvents.ENTITY_HORSE_BREATHE, 1.1D, 1.5D)
+            .onTick("block", PartBuilder.playSound(SoundEvents.HORSE_BREATHE, 1.1D, 1.5D)
                 .onTick(20D))
             .onTick("block", PartBuilder.damageInAoe(SpellCalcs.CHILLING_FIELD, Elements.Water, 2D)
                 .onTick(20D))
@@ -70,7 +70,7 @@ public class WaterSpells implements ExileRegistryInit {
         SpellBuilder.of(ICY_WEAPON, SpellConfiguration.Builder.instant(10, 20 * 30), "Icy Weapon",
                 Arrays.asList())
             .manualDesc("Gives effect to nearby allies.")
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.ICY_WEAPON.effectId, 20 * 10D))
             .build();
 
@@ -95,9 +95,9 @@ public class WaterSpells implements ExileRegistryInit {
                 "Give Water Breathing to allies around you.")
 
             .attackStyle(PlayStyle.magic)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_SPLASH, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.PLAYER_SPLASH, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.FALLING_WATER, 100D, 3D))
-            .onCast(PartBuilder.giveEffectToAlliesInRadius(StatusEffects.WATER_BREATHING, 20D * 60D * 3, 5D))
+            .onCast(PartBuilder.giveEffectToAlliesInRadius(Effects.WATER_BREATHING, 20D * 60D * 3, 5D))
             .build();
 
         SpellBuilder.of(MAGE_CIRCLE, SpellConfiguration.Builder.instant(10, 20 * 45)
@@ -107,7 +107,7 @@ public class WaterSpells implements ExileRegistryInit {
                 "Summon a Magic Circle. Standing in it provides you a buff." +
                     " After a certain duration you will be teleported to its location.")
 
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 10)
                 .put(MapField.ENTITY_NAME, "block")
@@ -117,7 +117,7 @@ public class WaterSpells implements ExileRegistryInit {
 
             .onExpire("block", PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
                 .addTarget(TargetSelector.CASTER.create()))
-            .onExpire(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
+            .onExpire(PartBuilder.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1D, 1D))
 
             .onTick("block", PartBuilder.giveSelfExileEffect(BeneficialEffects.MAGE_CIRCLE, 20D)
                 .addCondition(EffectCondition.IS_ENTITY_IN_RADIUS.alliesInRadius(2D)))
@@ -129,7 +129,7 @@ public class WaterSpells implements ExileRegistryInit {
         SpellBuilder.of(FROST_ARMOR, SpellConfiguration.Builder.instant(15, 120 * 20), "Frost Armor",
                 Arrays.asList())
             .manualDesc("Give self effect:")
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.FROST_ARMOR, 20 * 120D))
             .build();
 
@@ -139,7 +139,7 @@ public class WaterSpells implements ExileRegistryInit {
             .manualDesc("Strike enemies in front of you for " + SpellCalcs.TIDAL_STRIKE.getLocDmgTooltip(Elements.Water))
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ITEM_TRIDENT_THROW, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.TRIDENT_THROW, 1D, 1D))
             .onCast(PartBuilder.swordSweepParticles())
             .onCast(PartBuilder.damageInFront(SpellCalcs.TIDAL_STRIKE, Elements.Water, 2D, 3D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.RAIN, 75D, 1D, 0.1D))
@@ -157,7 +157,7 @@ public class WaterSpells implements ExileRegistryInit {
                     + " " + Elements.Water.getIconNameDmg())
 
             .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.SNOWBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ITEM_SNOWBALL, 2D, 0.15D))
             .onHit(PartBuilder.damage(SpellCalcs.ICEBALL, Elements.Water))
@@ -171,12 +171,12 @@ public class WaterSpells implements ExileRegistryInit {
                     + " " + Elements.Water.getIconNameDmg() + " to nearby enemies.")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.BUBBLE_COLUMN_BUBBLE_POP, 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.ITEM_SNOWBALL, 400D, 3.5D, 0.5D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.BUBBLE_POP, 250D, 3.5D, 0.5D))
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_DROWNED_HURT, 0.5D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.DROWNED_HURT, 0.5D, 1D))
             .onCast(PartBuilder.damageInAoe(SpellCalcs.FROST_NOVA, Elements.Water, 3.5D)
-                .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_DROWNED_HURT, 1D, 1D)))
+                .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.DROWNED_HURT, 1D, 1D)))
             .build();
 
         SpellBuilder.breath("frost_breath", "Frost Breath", Elements.Water, PARTICLES.FROST)

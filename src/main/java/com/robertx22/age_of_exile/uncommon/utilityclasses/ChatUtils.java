@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.ChatScreen;
 
 public class ChatUtils {
 
     public static boolean isChatOpen() {
-        return MinecraftClient.getInstance().currentScreen instanceof ChatScreen;
+        return Minecraft.getInstance().screen instanceof ChatScreen;
     }
 
     public static boolean wasChatOpenRecently() {

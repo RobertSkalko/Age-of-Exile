@@ -7,9 +7,9 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
@@ -43,12 +43,12 @@ public class RestoreResourceEvent extends EffectEvent {
                     if (source != target) {
                         String text = NumberUtils.format(data.getNumber());
 
-                        DmgNumPacket packet = new DmgNumPacket(target, text, data.isCrit(), Formatting.GREEN);
+                        DmgNumPacket packet = new DmgNumPacket(target, text, data.isCrit(), TextFormatting.GREEN);
                         Packets.sendToClient((PlayerEntity) source, packet);
                     }
 
                     float threat = (int) (data.getNumber() * 0.1F);
-                    List<MobEntity> mobs = EntityFinder.start(source, MobEntity.class, source.getBlockPos())
+                    List<MobEntity> mobs = EntityFinder.start(source, MobEntity.class, source.blockPosition())
                         .radius(10)
                         .build();
                     for (MobEntity x : mobs) {

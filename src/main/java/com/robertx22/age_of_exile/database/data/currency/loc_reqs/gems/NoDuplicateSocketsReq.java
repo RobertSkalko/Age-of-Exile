@@ -6,11 +6,11 @@ import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
-import net.minecraft.text.MutableText;
+import net.minecraft.util.text.IFormattableTextComponent;
 
 public class NoDuplicateSocketsReq extends BaseLocRequirement {
     @Override
-    public MutableText getText() {
+    public IFormattableTextComponent getText() {
         return Words.NoDuplicateSockets.locName();
     }
 

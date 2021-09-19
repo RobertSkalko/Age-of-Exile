@@ -3,11 +3,11 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.RaycastContext;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.HitResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,32 +35,32 @@ public class LookUtils {
 
         List<Entity> list = new ArrayList<>();
 
-        Vec3d positionVector = e.getPos();
+        Vector3d positionVector = e.position();
         if (e instanceof PlayerEntity)
-            positionVector = positionVector.add(0, e.getStandingEyeHeight(), 0);
+            positionVector = positionVector.add(0, e.getEyeHeight(), 0);
 
         if (pos != null)
-            distance = pos.getPos()
+            distance = pos.getLocation()
                 .distanceTo(positionVector);
 
-        Vec3d lookVector = e.getRotationVector();
-        Vec3d reachVector = positionVector.add(lookVector.x * distance, lookVector.y * distance, lookVector.z * distance);
+        Vector3d lookVector = e.getLookAngle();
+        Vector3d reachVector = positionVector.add(lookVector.x * distance, lookVector.y * distance, lookVector.z * distance);
 
         Entity lookedEntity = null;
-        List<Entity> entitiesInBoundingBox = e.getEntityWorld()
-            .getOtherEntities(e, e.getBoundingBox()
-                .expand(lookVector.x * distance, lookVector.y * distance, lookVector.z * distance)
-                .stretch(1.2F, 1.2F, 1.2F));
+        List<Entity> entitiesInBoundingBox = e.getCommandSenderWorld()
+            .getEntities(e, e.getBoundingBox()
+                .inflate(lookVector.x * distance, lookVector.y * distance, lookVector.z * distance)
+                .expandTowards(1.2F, 1.2F, 1.2F));
 
         double minDistance = distance;
 
         for (Entity entity : entitiesInBoundingBox) {
-            if (entity.collides()) {
-                float collisionBorderSize = entity.getTargetingMargin();
-                Box hitbox = entity.getBoundingBox()
-                    .stretch(collisionBorderSize, collisionBorderSize, collisionBorderSize);
-                Optional<Vec3d> interceptPosition = hitbox.raycast(positionVector, reachVector);
-                Vec3d interceptVec = interceptPosition.orElse(null);
+            if (entity.isPickable()) {
+                float collisionBorderSize = entity.getPickRadius();
+                AABB hitbox = entity.getBoundingBox()
+                    .expandTowards(collisionBorderSize, collisionBorderSize, collisionBorderSize);
+                Optional<Vector3d> interceptPosition = hitbox.clip(positionVector, reachVector);
+                Vector3d interceptVec = interceptPosition.orElse(null);
 
                 if (hitbox.contains(positionVector)) {
                     if (0.0D < minDistance || minDistance == 0.0D) {
@@ -93,22 +93,22 @@ public class LookUtils {
     }
 
     public static HitResult raycast(Entity e, double len) {
-        Vec3d vec = new Vec3d(e.getX(), e.getY(), e.getZ());
+        Vector3d vec = new Vector3d(e.getX(), e.getY(), e.getZ());
         if (e instanceof PlayerEntity)
-            vec = vec.add(new Vec3d(0, e.getStandingEyeHeight(), 0));
+            vec = vec.add(new Vector3d(0, e.getEyeHeight(), 0));
 
-        Vec3d look = e.getRotationVector();
+        Vector3d look = e.getLookAngle();
         if (look == null)
             return null;
 
-        return raycast(e.getEntityWorld(), vec, look, e, len);
+        return raycast(e.getCommandSenderWorld(), vec, look, e, len);
     }
 
-    public static HitResult raycast(World world, Vec3d origin, Vec3d ray, Entity e,
+    public static HitResult raycast(World world, Vector3d origin, Vector3d ray, Entity e,
                                     double len) {
-        Vec3d end = origin.add(ray.normalize()
-            .multiply(len));
-        HitResult pos = world.raycast(new RaycastContext(origin, end, RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, e));
+        Vector3d end = origin.add(ray.normalize()
+            .scale(len));
+        HitResult pos = world.clip(new ClipContext(origin, end, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, e));
         return pos;
     }
 

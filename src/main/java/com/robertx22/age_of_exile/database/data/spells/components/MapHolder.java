@@ -15,10 +15,10 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.block.Block;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.potion.Effect;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
@@ -62,8 +62,8 @@ public class MapHolder {
         return AttackType.valueOf(get(MapField.DMG_EFFECT_TYPE));
     }
 
-    public StatusEffect getPotion() {
-        return Registry.STATUS_EFFECT.get(new Identifier(get(POTION_ID)));
+    public Effect getPotion() {
+        return Registry.MOB_EFFECT.get(new ResourceLocation(get(POTION_ID)));
     }
 
     public Elements getElement() {
@@ -100,16 +100,16 @@ public class MapHolder {
         }
     }
 
-    public DefaultParticleType getParticle() {
-        return (DefaultParticleType) Registry.PARTICLE_TYPE.get(new Identifier(get(MapField.PARTICLE_TYPE)));
+    public BasicParticleType getParticle() {
+        return (BasicParticleType) Registry.PARTICLE_TYPE.get(new ResourceLocation(get(MapField.PARTICLE_TYPE)));
     }
 
     public Block getBlock() {
-        return Registry.BLOCK.get(new Identifier(get(MapField.BLOCK)));
+        return Registry.BLOCK.get(new ResourceLocation(get(MapField.BLOCK)));
     }
 
     public SoundEvent getSound() {
-        return Registry.SOUND_EVENT.get(new Identifier(get(MapField.SOUND)));
+        return Registry.SOUND_EVENT.get(new ResourceLocation(get(MapField.SOUND)));
     }
 
     public EntityFinder.SelectionType getSelectionType() {

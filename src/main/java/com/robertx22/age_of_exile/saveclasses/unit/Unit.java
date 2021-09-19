@@ -38,10 +38,10 @@ import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.entity.MobCategory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -246,7 +246,7 @@ public class Unit {
     public void recalculateStats(LivingEntity entity, EntityData data, AttackInformation dmgData) {
 
         try {
-            if (entity.world.isClient) {
+            if (entity.level.isClientSide) {
                 return;
             }
 
@@ -362,7 +362,7 @@ public class Unit {
             DirtyCheck aftercalc = getDirtyCheck();
 
             Cached.VANILLA_STAT_UIDS_TO_CLEAR_EVERY_STAT_CALC.forEach(x -> {
-                EntityAttributeInstance in = entity.getAttributeInstance(x.left);
+                ModifiableAttributeInstance in = entity.getAttribute(x.left);
                 if (in.getModifier(x.right) != null) {
                     in.removeModifier(x.right);
                 }
@@ -444,8 +444,8 @@ public class Unit {
     public static boolean shouldSendUpdatePackets(LivingEntity en) {
         if (ModConfig.get().Server.DONT_SYNC_DATA_OF_AMBIENT_MOBS) {
             return en.getType()
-                .getSpawnGroup() != SpawnGroup.AMBIENT && en.getType()
-                .getSpawnGroup() != SpawnGroup.WATER_AMBIENT;
+                .getCategory() != MobCategory.AMBIENT && en.getType()
+                .getCategory() != MobCategory.WATER_AMBIENT;
         }
         return true;
     }

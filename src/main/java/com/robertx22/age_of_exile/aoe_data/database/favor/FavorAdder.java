@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.favor;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 
@@ -27,7 +27,7 @@ public class FavorAdder implements ExileRegistryInit {
         none.favor_drain_per_item = 0;
 
         none.locname = "Empty";
-        none.text_format = Formatting.RED.getName();
+        none.text_format = TextFormatting.RED.getName();
 
         none.addToSerializables();
 
@@ -36,7 +36,7 @@ public class FavorAdder implements ExileRegistryInit {
         low.rank = 1;
 
         low.locname = "Low";
-        low.text_format = Formatting.YELLOW.getName();
+        low.text_format = TextFormatting.YELLOW.getName();
 
         low.addToSerializables();
 
@@ -45,7 +45,7 @@ public class FavorAdder implements ExileRegistryInit {
         normal.rank = 2;
 
         normal.locname = "Normal";
-        normal.text_format = Formatting.GREEN.getName();
+        normal.text_format = TextFormatting.GREEN.getName();
 
         normal.addToSerializables();
 
@@ -57,7 +57,7 @@ public class FavorAdder implements ExileRegistryInit {
         high.extra_items_per_chest = 1;
 
         high.locname = "High";
-        high.text_format = Formatting.AQUA.getName();
+        high.text_format = TextFormatting.AQUA.getName();
 
         high.addToSerializables();
 
@@ -70,7 +70,7 @@ public class FavorAdder implements ExileRegistryInit {
         veryhigh.exp_multi = 1.1F;
 
         veryhigh.locname = "Very High";
-        veryhigh.text_format = Formatting.BLUE.getName();
+        veryhigh.text_format = TextFormatting.BLUE.getName();
 
         veryhigh.addToSerializables();
 
@@ -83,7 +83,7 @@ public class FavorAdder implements ExileRegistryInit {
         favored.exp_multi = 1.25F;
 
         favored.locname = "Favored";
-        favored.text_format = Formatting.LIGHT_PURPLE.getName();
+        favored.text_format = TextFormatting.LIGHT_PURPLE.getName();
 
         favored.addToSerializables();
 

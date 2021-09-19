@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackInfo;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public enum BackpackUpgrade {
         }
 
         @Override
-        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<Text> list) {
+        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<ITextComponent> list) {
             list.add(Words.SavesNamedOrEnchanted.locName());
         }
     },
@@ -41,7 +41,7 @@ public enum BackpackUpgrade {
         }
 
         @Override
-        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<Text> list) {
+        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<ITextComponent> list) {
             addSalvage(list, 0);
         }
     },
@@ -57,7 +57,7 @@ public enum BackpackUpgrade {
         }
 
         @Override
-        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<Text> list) {
+        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<ITextComponent> list) {
             addSalvage(list, 1);
         }
     },
@@ -73,7 +73,7 @@ public enum BackpackUpgrade {
         }
 
         @Override
-        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<Text> list) {
+        public void addToTooltip(BackpackUpgradeItem backpackUpgradeItem, List<ITextComponent> list) {
             addSalvage(list, 2);
         }
     },
@@ -150,8 +150,8 @@ public enum BackpackUpgrade {
         }
 
         @Override
-        public void addToTooltip(BackpackUpgradeItem bag, List<Text> list) {
-            list.add(new LiteralText("Adds " + (bag.tier.tier + 1) * 9 + " Slots"));
+        public void addToTooltip(BackpackUpgradeItem bag, List<ITextComponent> list) {
+            list.add(new StringTextComponent("Adds " + (bag.tier.tier + 1) * 9 + " Slots"));
         }
     };
 
@@ -159,12 +159,12 @@ public enum BackpackUpgrade {
         return false;
     }
 
-    public void addToTooltip(BackpackUpgradeItem bag, List<Text> list) {
+    public void addToTooltip(BackpackUpgradeItem bag, List<ITextComponent> list) {
 
     }
 
-    public void addSalvage(List<Text> list, int tier) {
-        LiteralText txt = new LiteralText("Salvages: ");
+    public void addSalvage(List<ITextComponent> list, int tier) {
+        StringTextComponent txt = new StringTextComponent("Salvages: ");
         ExileDB.GearRarities()
             .getFiltered(x -> x.item_tier == tier)
             .forEach(x -> {

@@ -6,9 +6,9 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.library_of_exile.registry.IAutoGson;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -118,8 +118,8 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
         return this;
     }
 
-    public List<Text> GetTooltipString(int lvl, EntityData data) {
-        List<Text> list = new ArrayList<>();
+    public List<ITextComponent> GetTooltipString(int lvl, EntityData data) {
+        List<ITextComponent> list = new ArrayList<>();
 
         for (Stat x : AllAttributes.getInstance()
             .coreStatsThatBenefit()) {
@@ -140,19 +140,19 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
         return this.base_req.isEmpty() && this.scaling_req.isEmpty();
     }
 
-    static Text getTooltip(int req, Stat stat, EntityData data) {
+    static ITextComponent getTooltip(int req, Stat stat, EntityData data) {
 
         if (data.getUnit()
             .getCalculatedStat(stat)
             .getValue() >= req) {
-            return new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + CHECK_YES_ICON + " ").append(stat.locName()
-                    .formatted(Formatting.GRAY))
-                .append(" " + Formatting.GRAY + "Min: " + req + " ");
+            return new StringTextComponent(TextFormatting.GREEN + "" + TextFormatting.BOLD + CHECK_YES_ICON + " ").append(stat.locName()
+                    .withStyle(TextFormatting.GRAY))
+                .append(" " + TextFormatting.GRAY + "Min: " + req + " ");
         } else {
 
-            return new LiteralText(Formatting.RED + "" + Formatting.BOLD + NO_ICON + " ").append(stat.locName()
-                    .formatted(Formatting.GRAY))
-                .append(" " + Formatting.GRAY + "Min: " + req + " ");
+            return new StringTextComponent(TextFormatting.RED + "" + TextFormatting.BOLD + NO_ICON + " ").append(stat.locName()
+                    .withStyle(TextFormatting.GRAY))
+                .append(" " + TextFormatting.GRAY + "Min: " + req + " ");
 
         }
 

@@ -8,9 +8,9 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
-import net.fabricmc.fabric.api.network.PacketContext;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class PerkChangePacket extends MyPacket<PerkChangePacket> {
 
@@ -35,30 +35,30 @@ public class PerkChangePacket extends MyPacket<PerkChangePacket> {
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "perk_change");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "perk_change");
     }
 
     @Override
-    public void loadFromData(PacketByteBuf tag) {
-        school = tag.readString(30);
+    public void loadFromData(PacketBuffer tag) {
+        school = tag.readUtf(30);
         x = tag.readInt();
         y = tag.readInt();
-        action = tag.readEnumConstant(ACTION.class);
+        action = tag.readEnum(ACTION.class);
 
     }
 
     @Override
-    public void saveToData(PacketByteBuf tag) {
-        tag.writeString(school, 30);
+    public void saveToData(PacketBuffer tag) {
+        tag.writeUtf(school, 30);
         tag.writeInt(x);
         tag.writeInt(y);
-        tag.writeEnumConstant(action);
+        tag.writeEnum(action);
 
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void onReceived(Context ctx) {
         RPGPlayerData playerData = Load.playerRPGData(ctx.getPlayer());
         TalentTree sc = ExileDB.TalentTrees()
             .get(school);

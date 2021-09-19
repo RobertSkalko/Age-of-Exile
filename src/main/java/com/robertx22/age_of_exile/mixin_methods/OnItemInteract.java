@@ -11,22 +11,22 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.SalvagedDustItem;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.container.ClickType;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.SoundEvents;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class OnItemInteract {
 
-    public static void on(ScreenHandler screen, int i, int j, SlotActionType slotActionType, PlayerEntity player, CallbackInfoReturnable<ItemStack> ci) {
+    public static void on(Container screen, int i, int j, ClickType slotActionType, PlayerEntity player, CallbackInfoReturnable<ItemStack> ci) {
 
-        if (slotActionType != SlotActionType.PICKUP) {
+        if (slotActionType != ClickType.PICKUP) {
             return;
         }
 
-        ItemStack cursor = player.inventory.getCursorStack();
+        ItemStack cursor = player.inventory.getCarried();
 
         if (!cursor.isEmpty()) {
 
@@ -39,7 +39,7 @@ public class OnItemInteract {
                 return;
             }
 
-            ItemStack stack = slot.getStack();
+            ItemStack stack = slot.getItem();
 
             boolean success = false;
 
@@ -54,7 +54,7 @@ public class OnItemInteract {
                 SalvagedDustItem essence = (SalvagedDustItem) cursor.getItem();
 
                 if (essence.tier.getDisplayTierNumber() == gear.getTier()) {
-                    stack.setDamage(stack.getDamage() - 250);
+                    stack.setDamageValue(stack.getDamageValue() - 250);
                     success = true;
                 }
             } else if (cursor.getItem() instanceof StatSoulItem) {
@@ -75,7 +75,7 @@ public class OnItemInteract {
                 if (ctx.effect.canItemBeModified(ctx)) {
                     ItemStack result = ctx.effect.modifyItem(ctx).stack;
 
-                    stack.decrement(1);
+                    stack.shrink(1);
                     PlayerUtils.giveItem(result, player);
 
                     success = true;
@@ -84,10 +84,10 @@ public class OnItemInteract {
 
             if (success) {
 
-                SoundUtils.ding(player.world, player.getBlockPos());
-                SoundUtils.playSound(player.world, player.getBlockPos(), SoundEvents.BLOCK_ANVIL_USE, 1, 1);
+                SoundUtils.ding(player.level, player.blockPosition());
+                SoundUtils.playSound(player.level, player.blockPosition(), SoundEvents.ANVIL_USE, 1, 1);
 
-                cursor.decrement(1);
+                cursor.shrink(1);
                 ci.setReturnValue(ItemStack.EMPTY);
                 ci.cancel();
             }

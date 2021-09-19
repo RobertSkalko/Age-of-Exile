@@ -7,9 +7,9 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.util.math.vector.Vector3d;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -26,40 +26,40 @@ public class SpellMotionAction extends SpellAction {
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
         try {
-            if (!ctx.world.isClient) {
+            if (!ctx.world.isClientSide) {
                 float str = data.get(PUSH_STRENGTH)
                     .floatValue();
 
                 ParticleMotion pm = ParticleMotion.valueOf(data.get(MapField.MOTION));
 
-                Vec3d motion = pm
+                Vector3d motion = pm
                     .getMotion(ctx.vecPos, ctx)
-                    .multiply(str);
+                    .scale(str);
 
                 SetAdd setAdd = data.getSetAdd();
 
                 if (data.getOrDefault(MapField.IGNORE_Y, false)) {
                     if (setAdd == SetAdd.ADD) {
-                        motion = new Vec3d(motion.x, 0, motion.z);
+                        motion = new Vector3d(motion.x, 0, motion.z);
                     }
                 }
 
                 for (LivingEntity x : targets) {
                     if (setAdd == SetAdd.SET) {
                         if (data.getOrDefault(MapField.IGNORE_Y, false)) {
-                            x.setVelocity(new Vec3d(motion.x, x.getVelocity().y, motion.z));
+                            x.setDeltaMovement(new Vector3d(motion.x, x.getDeltaMovement().y, motion.z));
                         } else {
-                            x.setVelocity(new Vec3d(motion.x, motion.y, motion.z));
+                            x.setDeltaMovement(new Vector3d(motion.x, motion.y, motion.z));
                         }
                     } else {
-                        x.addVelocity(motion.x, motion.y, motion.z);
+                        x.push(motion.x, motion.y, motion.z);
                     }
 
-                    PlayerStream.watching(x.world, x.getBlockPos())
+                    PlayerStream.watching(x.level, x.blockPosition())
                         .forEach((p) -> {
 
-                            ((ServerPlayerEntity) p).networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(x));
-                            x.velocityModified = false;
+                            ((ServerPlayerEntity) p).connection.send(new ClientboundSetEntityMotionPacket(x));
+                            x.hurtMarked = false;
                         });
 
                 }

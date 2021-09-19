@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.server.ServerWorld;
 
 public class MobTypesTest {
 
@@ -18,7 +18,7 @@ public class MobTypesTest {
             if (en instanceof LivingEntity) {
                 EntityTypeUtils.EntityClassification ent = EntityTypeUtils.getType((LivingEntity) en);
 
-                System.out.println(Registry.ENTITY_TYPE.getId(type)
+                System.out.println(Registry.ENTITY_TYPE.getKey(type)
                     .toString() + ": " + ent.id);
             }
 

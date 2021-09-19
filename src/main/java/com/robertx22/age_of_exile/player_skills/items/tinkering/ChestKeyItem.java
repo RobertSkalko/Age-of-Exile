@@ -6,21 +6,21 @@ import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
 public class ChestKeyItem extends TieredItem implements IStationRecipe {
 
     public ChestKeyItem(SkillItemTier tier) {
-        super(tier, new Settings().group(CreativeTabs.Professions));
+        super(tier, new Properties().tab(CreativeTabs.Professions));
 
     }
 
@@ -35,13 +35,13 @@ public class ChestKeyItem extends TieredItem implements IStationRecipe {
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag context) {
 
         try {
 
-            tooltip.add(new LiteralText("Opens locked chest items."));
-            tooltip.add(new LiteralText("Needs to be in inventory."));
+            tooltip.add(new StringTextComponent("Opens locked chest items."));
+            tooltip.add(new StringTextComponent("Needs to be in inventory."));
 
         } catch (Exception e) {
             e.printStackTrace();

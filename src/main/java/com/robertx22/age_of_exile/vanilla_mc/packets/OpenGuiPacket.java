@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.packets.proxies.OpenGuiWrapper;
 import com.robertx22.library_of_exile.main.MyPacket;
-import net.fabricmc.fabric.api.network.PacketContext;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class OpenGuiPacket extends MyPacket<OpenGuiPacket> {
 
@@ -29,17 +29,17 @@ public class OpenGuiPacket extends MyPacket<OpenGuiPacket> {
     }
 
     @Override
-    public void loadFromData(PacketByteBuf buf) {
-        type = GuiType.valueOf(buf.readString(44));
+    public void loadFromData(PacketBuffer buf) {
+        type = GuiType.valueOf(buf.readUtf(44));
     }
 
     @Override
-    public void saveToData(PacketByteBuf buf) {
-        buf.writeString(type.name(), 44);
+    public void saveToData(PacketBuffer buf) {
+        buf.writeUtf(type.name(), 44);
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void onReceived(Context ctx) {
         if (type == GuiType.MAIN_HUB) {
             OpenGuiWrapper.openMainHub();
         }
@@ -52,8 +52,8 @@ public class OpenGuiPacket extends MyPacket<OpenGuiPacket> {
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "opengui");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "opengui");
     }
 
 }

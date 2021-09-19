@@ -15,20 +15,20 @@ import nerdhub.cardinal.components.api.util.EntityComponents;
 import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 
 @Deprecated
 public class ComponentRegisters {
 
     public ComponentType<EntityData> UNIT_DATA =
         ComponentRegistry.INSTANCE.registerIfAbsent(
-                new Identifier(Ref.MODID, "unit_data"),
+                new ResourceLocation(Ref.MODID, "unit_data"),
                 EntityData.class)
             .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntityData(x));
 
     public ComponentType<EntitySpellCap.ISpellsCap> SPELLS =
         ComponentRegistry.INSTANCE.registerIfAbsent(
-                new Identifier(Ref.MODID, "spells"),
+                new ResourceLocation(Ref.MODID, "spells"),
                 EntitySpellCap.ISpellsCap.class)
             .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntitySpellCap.SpellCap(x));
 

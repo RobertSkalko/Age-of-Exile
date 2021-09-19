@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +43,8 @@ public class TeamUtils {
 
         try {
             player.getServer()
-                .getPlayerManager()
                 .getPlayerList()
+                .getPlayers()
                 .forEach(x -> {
                     if (areOnSameTeam(player, x)) {
                         players.add(x);

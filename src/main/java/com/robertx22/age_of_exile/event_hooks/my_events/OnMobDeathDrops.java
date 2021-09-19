@@ -19,8 +19,8 @@ import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
         try {
 
-            if (mobKilled.world.isClient) {
+            if (mobKilled.level.isClientSide) {
                 return;
             }
 
@@ -42,14 +42,14 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
                 LivingEntity killerEntity = EntityInfoComponent.get(mobKilled)
                     .getDamageStats()
-                    .getHighestDamager((ServerWorld) mobKilled.world);
+                    .getHighestDamager((ServerWorld) mobKilled.level);
 
                 if (killerEntity == null) {
                     try {
-                        if (mobKilled.getRecentDamageSource()
-                            .getAttacker() instanceof PlayerEntity) {
-                            killerEntity = (LivingEntity) mobKilled.getRecentDamageSource()
-                                .getAttacker();
+                        if (mobKilled.getLastDamageSource()
+                            .getEntity() instanceof PlayerEntity) {
+                            killerEntity = (LivingEntity) mobKilled.getLastDamageSource()
+                                .getEntity();
                         }
                     } catch (Exception e) {
                     }
@@ -81,9 +81,9 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
                         GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);
                     }
 
-                    if (WorldUtils.isDungeonWorld(mobKilled.world)) {
+                    if (WorldUtils.isDungeonWorld(mobKilled.level)) {
                         if (EntityTypeUtils.isMob(mobKilled)) {
-                            SingleDungeonData dungeon = Load.dungeonData(mobKilled.world).data.get(mobKilled.getBlockPos());
+                            SingleDungeonData dungeon = Load.dungeonData(mobKilled.level).data.get(mobKilled.blockPosition());
                             dungeon.quest.increaseProgressBy(player, 1, dungeon);
                         }
                     }
@@ -114,8 +114,8 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
             .get(mobData.getRarity())
             .expMulti();
 
-        if (WorldUtils.isMapWorldClass(victim.world)) {
-            SingleDungeonData data = Load.dungeonData(victim.world).data.get(victim.getBlockPos());
+        if (WorldUtils.isMapWorldClass(victim.level)) {
+            SingleDungeonData data = Load.dungeonData(victim.level).data.get(victim.blockPosition());
             if (!data.data.isEmpty()) {
                 exp *= data.data.team.lootMulti;
             }
@@ -130,7 +130,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
         exp += (-1F + Load.playerRPGData(killer).favor
             .getRank().exp_multi) * baseexp;
 
-        exp += (-1F + ExileDB.getDimensionConfig(victim.world).exp_multi) * baseexp;
+        exp += (-1F + ExileDB.getDimensionConfig(victim.level).exp_multi) * baseexp;
 
         exp += (-1F + LootUtils.getMobHealthBasedLootMulti(mobData, killer)) * baseexp;
 

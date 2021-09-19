@@ -6,21 +6,21 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.OutputSlot;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.SalvageSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.util.math.BlockPos;
 
 public class ContainerGearSalvage extends BaseTileContainer {
 
-    Inventory tile;
+    IInventory tile;
 
-    public ContainerGearSalvage(int num, PlayerInventory invPlayer, Inventory inventory,
+    public ContainerGearSalvage(int num, PlayerInventory invPlayer, IInventory inventory,
                                 BlockPos pos) {
         super(TileGearSalvage.TOTAL_SLOTS_COUNT, null, num, invPlayer);
 
         this.pos = pos;
         this.tile = inventory;
 
-        tile.onOpen(invPlayer.player);
+        tile.startOpen(invPlayer.player);
 
         int i = 0;
         for (int x = 0; x < 3; x++) {
@@ -39,7 +39,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
     }
 
     @Override
-    public boolean canUse(PlayerEntity player) {
-        return tile.canPlayerUse(player);
+    public boolean stillValid(PlayerEntity player) {
+        return tile.stillValid(player);
     }
 }

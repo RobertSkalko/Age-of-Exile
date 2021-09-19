@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree.buttons;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
@@ -13,21 +14,20 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.perks.PerkChangePacket;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import com.robertx22.library_of_exile.utils.RenderUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 
-public class PerkButton extends TexturedButtonWidget {
+public class PerkButton extends ImageButton {
 
     public static int SPACING = 26;
     public static int BIGGEST = 33;
 
-    static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/perk_buttons.png");
-    public static Identifier LOCKED_TEX = new Identifier(Ref.MODID, "textures/gui/locked.png");
+    static ResourceLocation ID = new ResourceLocation(Ref.MODID, "textures/gui/skill_tree/perk_buttons.png");
+    public static ResourceLocation LOCKED_TEX = new ResourceLocation(Ref.MODID, "textures/gui/locked.png");
 
     public Perk perk;
     public PointData point;
@@ -39,7 +39,7 @@ public class PerkButton extends TexturedButtonWidget {
 
     public int origX;
     public int origY;
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
     SkillTreeScreen screen;
 
     public PerkButton(SkillTreeScreen screen, RPGPlayerData playerData, TalentTree school, PointData point, Perk perk, int x, int y) {
@@ -73,7 +73,7 @@ public class PerkButton extends TexturedButtonWidget {
 
         if (this.isInside(MmouseX, MmouseY)) {
 
-            List<Text> tooltip = perk.GetTooltipString(new TooltipInfo(MinecraftClient.getInstance().player));
+            List<ITextComponent> tooltip = perk.GetTooltipString(new TooltipInfo(Minecraft.getInstance().player));
             GuiUtils.renderTooltip(matrices, tooltip, mouseX, mouseY);
         }
     }
@@ -92,7 +92,7 @@ public class PerkButton extends TexturedButtonWidget {
 
             boolean bl = this.clicked(mouseX, mouseY);
             if (bl) {
-                this.playDownSound(MinecraftClient.getInstance()
+                this.playDownSound(Minecraft.getInstance()
                     .getSoundManager());
 
                 if (button == 0) {
@@ -134,34 +134,34 @@ public class PerkButton extends TexturedButtonWidget {
 
         matrices.scale(scale, scale, scale);
 
-        PerkStatus status = playerData.talents.getStatus(MinecraftClient.getInstance().player, school, point);
+        PerkStatus status = playerData.talents.getStatus(Minecraft.getInstance().player, school, point);
 
         mc.getTextureManager()
-            .bindTexture(ID);
+            .bind(ID);
 
         int offset = 4;
 
         // background
         RenderSystem.enableDepthTest();
-        drawTexture(matrices, xPos(0, posMulti), yPos(0, posMulti), perk.getType()
+        blit(matrices, xPos(0, posMulti), yPos(0, posMulti), perk.getType()
             .getXOffset(), status
             .getYOffset(), this.width, this.height);
 
         if (this.perk.getType() == Perk.PerkType.STAT) {
             // icon
             mc.getTextureManager()
-                .bindTexture(this.perk.getIcon());
-            drawTexture(matrices, xPos(offset, posMulti), yPos(offset, posMulti), 0, 0, 16, 16, 16, 16);
+                .bind(this.perk.getIcon());
+            blit(matrices, xPos(offset, posMulti), yPos(offset, posMulti), 0, 0, 16, 16, 16, 16);
         } else if (this.perk.getType() == Perk.PerkType.MAJOR) {
             // icon
             mc.getTextureManager()
-                .bindTexture(this.perk.getIcon());
+                .bind(this.perk.getIcon());
             offset = 9;
             RenderUtils.render16Icon(matrices, perk.getIcon(), xPos(offset, posMulti), yPos(offset, posMulti));
         } else if (perk.getType() == Perk.PerkType.START) {
             offset = 9;
             if (perk.icon == null || perk.icon.isEmpty()) {
-                RenderUtils.render16Icon(matrices, new Identifier(school.icon), xPos(offset, posMulti), yPos(offset, posMulti));
+                RenderUtils.render16Icon(matrices, new ResourceLocation(school.icon), xPos(offset, posMulti), yPos(offset, posMulti));
             } else {
                 RenderUtils.render16Icon(matrices, perk.getIcon(), xPos(offset, posMulti), yPos(offset, posMulti));
             }
@@ -170,8 +170,8 @@ public class PerkButton extends TexturedButtonWidget {
             // icon
             offset = 6;
             mc.getTextureManager()
-                .bindTexture(this.perk.getIcon());
-            drawTexture(matrices, xPos(offset, posMulti), yPos(offset, posMulti), 0, 0, 16, 16, 16, 16);
+                .bind(this.perk.getIcon());
+            blit(matrices, xPos(offset, posMulti), yPos(offset, posMulti), 0, 0, 16, 16, 16, 16);
         }
 
         if (this.perk.isLockedToPlayer(mc.player)) {

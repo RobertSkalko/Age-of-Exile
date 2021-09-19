@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.GenerateThreatEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.ThreatGenType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.Arrays;

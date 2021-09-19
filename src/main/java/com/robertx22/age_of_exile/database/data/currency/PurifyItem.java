@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
@@ -74,15 +74,15 @@ public class PurifyItem extends CurrencyItem implements ICurrencyItemEffect, ISh
     }
 
     @Override
-    public ShapedRecipeJsonFactory getRecipe() {
+    public ShapedRecipeBuilder getRecipe() {
         return shaped(this)
-            .input('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
-            .input('v', ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER0))
-            .input('o', ModRegistry.MISC_ITEMS.T3_DUST())
+            .define('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
+            .define('v', ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER0))
+            .define('o', ModRegistry.MISC_ITEMS.T3_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")
-            .criterion("player_level", trigger());
+            .unlockedBy("player_level", trigger());
     }
 
 }

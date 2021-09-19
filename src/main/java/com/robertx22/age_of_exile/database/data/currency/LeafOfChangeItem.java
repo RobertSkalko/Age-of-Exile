@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
@@ -74,16 +74,16 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public ShapedRecipeJsonFactory getRecipe() {
+    public ShapedRecipeBuilder getRecipe() {
         return shaped(ModRegistry.CURRENCIES.LEAF_OF_CHANGE)
-            .input('#', ModRegistry.MISC_ITEMS.GOLDEN_ORB)
-            .input('t', ModRegistry.CURRENCIES.ORB_OF_BLESSING)
-            .input('v', Items.GOLD_INGOT)
-            .input('o', ModRegistry.MISC_ITEMS.T3_DUST())
+            .define('#', ModRegistry.MISC_ITEMS.GOLDEN_ORB)
+            .define('t', ModRegistry.CURRENCIES.ORB_OF_BLESSING)
+            .define('v', Items.GOLD_INGOT)
+            .define('o', ModRegistry.MISC_ITEMS.T3_DUST())
             .pattern("#t#")
             .pattern("tvt")
             .pattern("oto")
-            .criterion("player_level", trigger());
+            .unlockedBy("player_level", trigger());
     }
 
 }

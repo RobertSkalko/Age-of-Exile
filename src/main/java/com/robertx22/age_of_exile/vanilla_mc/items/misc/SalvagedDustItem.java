@@ -11,16 +11,16 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.IWeighted;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -31,24 +31,24 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
     public LevelRange range;
 
     public SalvagedDustItem(String name, SkillItemTier tier, LevelRange range) {
-        super(new Settings().maxCount(64)
-            .group(CreativeTabs.MyModTab));
+        super(new Properties().stacksTo(64)
+            .tab(CreativeTabs.MyModTab));
         this.name = name;
         this.tier = tier;
         this.range = range;
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag context) {
 
         tooltip.add(Words.CreatedInSalvageStation.locName());
 
         tooltip.add(TooltipUtils.gearTier(tier.getDisplayTierNumber()));
 
-        tooltip.add(new LiteralText(""));
+        tooltip.add(new StringTextComponent(""));
 
-        tooltip.add(new LiteralText("Repairs gear of equal tier."));
+        tooltip.add(new StringTextComponent("Repairs gear of equal tier."));
         tooltip.add(TooltipUtils.dragOntoGearToUse());
 
     }
@@ -60,7 +60,7 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 
@@ -85,7 +85,7 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
     }
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
+    public ShapelessRecipeBuilder getRecipe() {
         // de-craft recipe into lower tiers
         if (tier.tier < 1) {
             return null;
@@ -97,9 +97,9 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
             .findAny()
             .get();
 
-        return ShapelessRecipeJsonFactory.create(output, 3)
-            .input(this, 1)
-            .criterion("player_level", trigger());
+        return ShapelessRecipeBuilder.shapeless(output, 3)
+            .requires(this, 1)
+            .unlockedBy("player_level", trigger());
 
     }
 }

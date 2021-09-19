@@ -7,9 +7,9 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +28,11 @@ public class SetEntry extends WikiEntry {
     }
 
     @Override
-    public List<Text> getExtraInfo() {
+    public List<ITextComponent> getExtraInfo() {
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new LiteralText("Set Pieces: ").formatted(Formatting.GREEN));
+        list.add(new StringTextComponent("Set Pieces: ").withStyle(TextFormatting.GREEN));
         ExileDB.UniqueGears()
             .getList()
             .forEach(x -> {
@@ -45,7 +45,7 @@ public class SetEntry extends WikiEntry {
                 }
             });
 
-        list.add(new LiteralText(""));
+        list.add(new StringTextComponent(""));
 
         TooltipInfo info = new TooltipInfo();
 
@@ -60,7 +60,7 @@ public class SetEntry extends WikiEntry {
     }
 
     @Override
-    public Formatting getFormat() {
-        return Formatting.GREEN;
+    public TextFormatting getFormat() {
+        return TextFormatting.GREEN;
     }
 }

@@ -12,7 +12,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
@@ -80,16 +80,16 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
     }
 
     @Override
-    public ShapedRecipeJsonFactory getRecipe() {
-        return ShapedRecipeJsonFactory.create(ModRegistry.CURRENCIES.ORB_OF_DISORDER, 1)
-            .input('#', ModRegistry.MISC_ITEMS.INFUSED_IRON)
-            .input('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
-            .input('v', Items.GOLD_NUGGET)
-            .input('o', ModRegistry.MISC_ITEMS.T3_DUST())
+    public ShapedRecipeBuilder getRecipe() {
+        return ShapedRecipeBuilder.shaped(ModRegistry.CURRENCIES.ORB_OF_DISORDER, 1)
+            .define('#', ModRegistry.MISC_ITEMS.INFUSED_IRON)
+            .define('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
+            .define('v', Items.GOLD_NUGGET)
+            .define('o', ModRegistry.MISC_ITEMS.T3_DUST())
             .pattern("o#o")
             .pattern("oto")
             .pattern("vvv")
-            .criterion("player_level", trigger());
+            .unlockedBy("player_level", trigger());
 
     }
 

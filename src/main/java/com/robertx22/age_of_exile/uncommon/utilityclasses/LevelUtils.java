@@ -7,10 +7,10 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class LevelUtils {
 
@@ -101,11 +101,11 @@ public class LevelUtils {
     }
 
     public static boolean isInMinLevelArea(ServerWorld world, BlockPos pos, DimensionConfig config) {
-        double distance = world.getSpawnPos()
-            .getManhattanDistance(pos);
+        double distance = world.getSharedSpawnPos()
+            .distManhattan(pos);
 
-        double scale = MathHelper.clamp(world.getDimension()
-            .getCoordinateScale() / 3F, 1, Integer.MAX_VALUE);
+        double scale = MathHelper.clamp(world.dimensionType()
+            .coordinateScale() / 3F, 1, Integer.MAX_VALUE);
 
         distance *= scale;
 
@@ -117,11 +117,11 @@ public class LevelUtils {
 
     public static int determineLevelPerDistanceFromSpawn(ServerWorld world, BlockPos pos, DimensionConfig config) {
 
-        double distance = world.getSpawnPos()
-            .getManhattanDistance(pos);
+        double distance = world.getSharedSpawnPos()
+            .distManhattan(pos);
 
-        double scale = MathHelper.clamp(world.getDimension()
-            .getCoordinateScale() / 3F, 1, Integer.MAX_VALUE);
+        double scale = MathHelper.clamp(world.dimensionType()
+            .coordinateScale() / 3F, 1, Integer.MAX_VALUE);
 
         distance *= scale;
 
@@ -140,8 +140,8 @@ public class LevelUtils {
     public static double getBlocksForEachLevelDistance(ServerWorld world) {
         DimensionConfig config = ExileDB.getDimensionConfig(world);
 
-        double scale = MathHelper.clamp(world.getDimension()
-            .getCoordinateScale() / 3F, 1, Integer.MAX_VALUE);
+        double scale = MathHelper.clamp(world.dimensionType()
+            .coordinateScale() / 3F, 1, Integer.MAX_VALUE);
 
         return config.mob_lvl_per_distance / scale;
     }

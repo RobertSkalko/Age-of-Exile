@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapac
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 public class MoreXPerYOf extends BaseDatapackStat implements IAffectsStats {
 
@@ -33,7 +33,7 @@ public class MoreXPerYOf extends BaseDatapackStat implements IAffectsStats {
         this.scaling = StatScaling.NONE;
         this.is_long = true;
 
-        this.locname = Formatting.GRAY + "Gain " + Formatting.GREEN +
+        this.locname = TextFormatting.GRAY + "Gain " + TextFormatting.GREEN +
             Stat.VAL1 + " " + stat_to_add_to.getIconNameFormat() + " for each " + perEach + " "
             + adder_stat.getIconNameFormat();
     }

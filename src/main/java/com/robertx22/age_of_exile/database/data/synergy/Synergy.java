@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +37,8 @@ public class Synergy implements JsonExileRegistry<Synergy>, IAutoGson<Synergy>, 
             .collect(Collectors.toList());
     }
 
-    public final Identifier getIconLoc() {
-        return new Identifier(Ref.MODID, "textures/gui/spells/synergies/" + id + ".png");
+    public final ResourceLocation getIconLoc() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/spells/synergies/" + id + ".png");
     }
 
     @Override

@@ -12,17 +12,17 @@ import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -32,19 +32,19 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
     public FoodExileEffect exileEffect;
 
     public FarmingFoodItem(FoodType type, FoodExileEffect exileEffect, SkillItemTier tier) {
-        super(tier, new Settings().group(CreativeTabs.Professions)
-            .food(type.foodValueItem.getFoodComponent()));
+        super(tier, new Properties().tab(CreativeTabs.Professions)
+            .food(type.foodValueItem.getFoodProperties()));
 
         this.type = type;
         this.exileEffect = exileEffect;
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+    public ActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 
-        ItemStack stack = user.getStackInHand(hand);
+        ItemStack stack = user.getItemInHand(hand);
         if (!IsSkillItemUsableUtil.canUseItem(user, stack, true)) {
-            return TypedActionResult.fail(stack);
+            return ActionResult.fail(stack);
         }
 
         return super.use(world, user, hand);
@@ -55,9 +55,9 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
         FoodEffect eff = new FoodEffect();
         try {
             if (type.effect != null) {
-                eff.effects_given.add(new StatusEffectData(Registry.STATUS_EFFECT.getId(type.effect), tier.durationSeconds, 1));
+                eff.effects_given.add(new StatusEffectData(Registry.MOB_EFFECT.getKey(type.effect), tier.durationSeconds, 1));
             }
-            eff.effects_given.add(new StatusEffectData(Registry.STATUS_EFFECT.getId(ModRegistry.POTIONS.FOOD_EFFECT_MAP.get(exileEffect)), tier.durationSeconds, tier.tier + 1));
+            eff.effects_given.add(new StatusEffectData(Registry.MOB_EFFECT.getKey(ModRegistry.POTIONS.FOOD_EFFECT_MAP.get(exileEffect)), tier.durationSeconds, tier.tier + 1));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,8 +83,8 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag context) {
         try {
 
         } catch (Exception e) {

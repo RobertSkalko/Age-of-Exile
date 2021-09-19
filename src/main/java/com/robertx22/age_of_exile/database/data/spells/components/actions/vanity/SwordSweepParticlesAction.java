@@ -17,11 +17,11 @@ public class SwordSweepParticlesAction extends SpellAction {
 
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
-        if (!ctx.world.isClient) {
+        if (!ctx.world.isClientSide) {
 
             if (ctx.caster instanceof PlayerEntity) {
                 PlayerEntity p = (PlayerEntity) ctx.caster;
-                p.spawnSweepAttackParticles();
+                p.sweepAttack();
             }
         }
     }

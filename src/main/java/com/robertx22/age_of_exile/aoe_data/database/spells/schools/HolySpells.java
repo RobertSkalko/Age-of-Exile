@@ -23,10 +23,10 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
@@ -68,7 +68,7 @@ public class HolySpells implements ExileRegistryInit {
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
             .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 100D))
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1D, 1D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 2D, 0.5D))
             .onCast(PartBuilder.damageInAoe(SpellCalcs.WHIRLWIND, Elements.Physical, 1.5D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 50D, 0.5D, 0.1D))
@@ -85,14 +85,14 @@ public class HolySpells implements ExileRegistryInit {
             )
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_ANCIENT_DEBRIS_STEP, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ANCIENT_DEBRIS_STEP, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 0.2D, ParticleMotion.CasterLook)
                     .put(MapField.IGNORE_Y, true))
                 .addTarget(TargetSelector.CASTER.create()))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 20D, 1D, 0.5D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 1D, 1D, 0.5D))
             .onCast(PartBuilder.damageInAoe(SpellCalcs.CHARGE, Elements.Physical, 1.75D)
-                .addPerEntityHit(PartBuilder.playSound(SoundEvents.BLOCK_ANVIL_LAND, 1D, 1D))
+                .addPerEntityHit(PartBuilder.playSound(SoundEvents.ANVIL_LAND, 1D, 1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 0.5D, 0.1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 100D, 0.5D, 0.1D))
                 .addPerEntityHit(PartBuilder.cancelSpell())
@@ -108,7 +108,7 @@ public class HolySpells implements ExileRegistryInit {
             )
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.SHIELD_BLOCK, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(SpellCalcs.TAUNT, AggroAction.Type.AGGRO))
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 20D, 3D))
@@ -122,7 +122,7 @@ public class HolySpells implements ExileRegistryInit {
                     + SpellCalcs.SHOUT_WARN.getLocDmgTooltip() + " Shield to all nearby allies.")
 
             .attackStyle(PlayStyle.melee)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WOLF_HOWL, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.WOLF_HOWL, 1D, 1D))
             .onCast(PartBuilder.giveShieldInRadius(10D, SpellCalcs.SHOUT_WARN, 10D))
             .build();
 
@@ -134,9 +134,9 @@ public class HolySpells implements ExileRegistryInit {
                     Elements.Physical.getIconNameDmg() + " and slowing them."
             )
             .attackStyle(PlayStyle.melee)
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_ANVIL_HIT, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ANVIL_HIT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
-                .addActions(SpellAction.POTION.createGive(StatusEffects.SLOWNESS, 20D * 5))
+                .addActions(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 20D * 5))
                 .addActions(SpellAction.DEAL_DAMAGE.create(SpellCalcs.PULL, Elements.Physical))
                 .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.STUN.effectId, ExileEffectAction.GiveOrTake.GIVE_STACKS, 20D * 2))
                 .addTarget(TargetSelector.AOE.create(8D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
@@ -152,8 +152,8 @@ public class HolySpells implements ExileRegistryInit {
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
 
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_ANVIL_PLACE, 1D, 1D))
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ANVIL_PLACE, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
 
             .onCast(PartBuilder.damageInFront(SpellCalcs.GONG_STRIKE, Elements.Physical, 2D, 3D))
             .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.STUN.effectId, 2D, 2D, 20D * 3))
@@ -169,7 +169,7 @@ public class HolySpells implements ExileRegistryInit {
             .manualDesc("Gives buff to self.")
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_RAVAGER_ROAR, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.RAVAGER_ROAR, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.UNDYING_WILL, 20D * 10))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 50D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.ENCHANT, 50D, 1D))
@@ -180,7 +180,7 @@ public class HolySpells implements ExileRegistryInit {
             .manualDesc(
                 "Summon a Magic circle that banishes enemies in the area, levitating them for a certain duration.")
 
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 5)
                 .put(MapField.ENTITY_NAME, "block")
@@ -192,7 +192,7 @@ public class HolySpells implements ExileRegistryInit {
                 .onTick(1D)
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
 
-            .onTick("block", PartBuilder.playSound(SoundEvents.BLOCK_SOUL_SOIL_HIT, 0.5D, 1D)
+            .onTick("block", PartBuilder.playSound(SoundEvents.SOUL_SOIL_HIT, 0.5D, 1D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(40D)))
 
             .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.SOUL_FIRE_FLAME, 15D, 3D, 0.5D)
@@ -204,7 +204,7 @@ public class HolySpells implements ExileRegistryInit {
             )
             .manualDesc("Restores " + SpellCalcs.AWAKEN_MANA.getLocDmgTooltip() + " mana.")
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
             .onCast(PartBuilder.restoreManaToCaster(SpellCalcs.AWAKEN_MANA))
@@ -217,7 +217,7 @@ public class HolySpells implements ExileRegistryInit {
             .manualDesc("Shoots a star that heals allies for " + SpellCalcs.SHOOTING_STAR.getLocDmgTooltip() + " health on hit.")
 
             .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_BEACON_ACTIVATE, 1D, 1.7D))
+            .onCast(PartBuilder.playSound(SoundEvents.BEACON_ACTIVATE, 1D, 1.7D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.NETHER_STAR, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
                 .put(MapField.HITS_ALLIES, true)))
             .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 1D, 0.5D)
@@ -263,7 +263,7 @@ public class HolySpells implements ExileRegistryInit {
             .manualDesc(
                 "Give a stack of " + effect.locname + " to all allies around you."
             )
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.NOTE_BLOCK_CHIME, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.NOTE, 50D, 3D))
             .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, effect.effectId, 20 * 30D))
             .build();

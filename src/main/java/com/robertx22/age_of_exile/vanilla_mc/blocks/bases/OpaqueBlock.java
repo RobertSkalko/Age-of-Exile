@@ -2,50 +2,50 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.bases;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.block.RedstoneTorchBlock;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.math.Direction;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 
 public abstract class OpaqueBlock extends Block {
 
-    public static final DirectionProperty direction = HorizontalFacingBlock.FACING;
+    public static final DirectionProperty direction = HorizontalBlock.FACING;
     public static final BooleanProperty light = RedstoneTorchBlock.LIT;
 
-    public OpaqueBlock(Settings properties) {
-        super(properties.nonOpaque());
+    public OpaqueBlock(Properties properties) {
+        super(properties.noOcclusion());
 
-        this.setDefaultState(
-            this.stateManager.getDefaultState()
-                .with(direction, Direction.NORTH)
-                .with(light, false));
+        this.registerDefaultState(
+            this.stateDefinition.any()
+                .setValue(direction, Direction.NORTH)
+                .setValue(light, false));
 
     }
 
     @Override
-    public BlockState getPlacementState(ItemPlacementContext context) {
-        return this.getDefaultState()
-            .with(direction, context.getPlayerFacing()
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return this.defaultBlockState()
+            .setValue(direction, context.getHorizontalDirection()
                 .getOpposite());
     }
 
     @Override
-    public BlockState rotate(BlockState state, BlockRotation rot) {
-        return state.with(direction, rot.rotate(state.get(direction)));
+    public BlockState rotate(BlockState state, Rotation rot) {
+        return state.setValue(direction, rot.rotate(state.getValue(direction)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, BlockMirror mirrorIn) {
-        return state.rotate(mirrorIn.getRotation(state.get(direction)));
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+        return state.rotate(mirrorIn.getRotation(state.getValue(direction)));
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(direction, light);
     }
 

@@ -6,11 +6,11 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStatio
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 public class PortalBlockEntity extends BaseModificationStation {
 
@@ -26,18 +26,18 @@ public class PortalBlockEntity extends BaseModificationStation {
     }
 
     @Override
-    public Text getDisplayName() {
-        return new LiteralText("");
+    public ITextComponent getDisplayName() {
+        return new StringTextComponent("");
     }
 
     @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+    public Container createMenu(int syncId, IInventory inv, PlayerEntity player) {
         return null;
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
+    public CompoundNBT save(CompoundNBT nbt) {
+        super.save(nbt);
         if (data != null) {
             LoadSave.Save(data, nbt, "teldata");
         }
@@ -45,9 +45,9 @@ public class PortalBlockEntity extends BaseModificationStation {
     }
 
     @Override
-    public void fromTag(BlockState state, NbtCompound nbt) {
+    public void load(BlockState state, CompoundNBT nbt) {
         try {
-            super.fromTag(state, nbt);
+            super.load(state, nbt);
             this.data = LoadSave.Load(PortalBlocKData.class, new PortalBlocKData(), nbt, "teldata");
 
         } catch (Exception e) {

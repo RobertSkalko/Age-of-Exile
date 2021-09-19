@@ -5,32 +5,32 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.SingleTargetW
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.world.item.Tier;
 
 public abstract class ModWeapon extends SingleTargetWeapon {
 
-    public ModWeapon(ToolMaterial mat, Settings settings, WeaponTypes type) {
+    public ModWeapon(Tier mat, Properties settings, WeaponTypes type) {
         super(mat, settings, type.locName());
 
         this.attackSpeed = type.getVanillaItemAttackSpeedModifier();
     }
 
     @Override
-    public boolean isSuitableFor(BlockState blockIn) {
+    public boolean isCorrectToolForDrops(BlockState blockIn) {
         return blockIn.getBlock() == Blocks.COBWEB;
     }
 
     @Override
-    public float getMiningSpeedMultiplier(ItemStack stack, BlockState state) {
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
         Block block = state.getBlock();
 
         if (block == Blocks.COBWEB) {
             return 15.0F;
         } else {
             Material material = state.getMaterial();
-            return material != Material.PLANT && material != Material.MOSS_BLOCK && material != Material.LEAVES && material != Material.GOURD ? 1.0F : 1.5F;
+            return material != Material.PLANT && material != Material.CORAL && material != Material.LEAVES && material != Material.VEGETABLE ? 1.0F : 1.5F;
         }
     }
 

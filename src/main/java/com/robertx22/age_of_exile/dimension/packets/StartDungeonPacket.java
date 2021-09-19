@@ -8,11 +8,11 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.library_of_exile.main.MyPacket;
-import net.fabricmc.fabric.api.network.PacketContext;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
 
@@ -30,26 +30,26 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "start_dun");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "start_dun");
     }
 
     @Override
-    public void loadFromData(PacketByteBuf tag) {
+    public void loadFromData(PacketBuffer tag) {
         pos = tag.readBlockPos();
-        teamSize = tag.readEnumConstant(TeamSize.class);
+        teamSize = tag.readEnum(TeamSize.class);
 
     }
 
     @Override
-    public void saveToData(PacketByteBuf tag) {
+    public void saveToData(PacketBuffer tag) {
         tag.writeBlockPos(pos);
-        tag.writeEnumConstant(teamSize);
+        tag.writeEnum(teamSize);
 
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void onReceived(Context ctx) {
 
         RPGPlayerData maps = Load.playerRPGData(ctx.getPlayer());
 
@@ -60,9 +60,9 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
                 if (TeamUtils.getOnlineTeamMembersInRange(ctx.getPlayer())
                     .size() < teamSize.requiredMemberAmount) {
                     ctx.getPlayer()
-                        .sendMessage(new LiteralText("You need at least " + teamSize.requiredMemberAmount + "  party members nearby to start a dungeon in this mode."), false);
+                        .displayClientMessage(new StringTextComponent("You need at least " + teamSize.requiredMemberAmount + "  party members nearby to start a dungeon in this mode."), false);
                     ctx.getPlayer()
-                        .sendMessage(new LiteralText("Use /age_of_exile teams"), false);
+                        .displayClientMessage(new StringTextComponent("Use /age_of_exile teams"), false);
                     return;
 
                 }

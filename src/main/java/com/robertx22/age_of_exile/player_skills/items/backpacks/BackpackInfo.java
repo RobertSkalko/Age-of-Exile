@@ -39,7 +39,7 @@ public class BackpackInfo {
     public boolean canSalvage(ItemStack stack) {
 
         if (dontSalvageEnchantedOrNamed) {
-            if (stack.hasEnchantments() || stack.hasCustomName()) {
+            if (stack.isEnchanted() || stack.hasCustomHoverName()) {
                 return false;
             }
         }

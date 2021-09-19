@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ChatUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.HashMap;
@@ -28,9 +28,9 @@ public class OnClientTick implements ClientTickEvents.EndTick {
     }
 
     @Override
-    public void onEndTick(MinecraftClient mc) {
+    public void onEndTick(Minecraft mc) {
 
-        PlayerEntity player = MinecraftClient.getInstance().player;
+        PlayerEntity player = Minecraft.getInstance().player;
 
         if (player == null) {
             return;
@@ -42,7 +42,7 @@ public class OnClientTick implements ClientTickEvents.EndTick {
             ClientOnly.ticksSinceChatWasOpened--;
         }
 
-        if (player.isPartOf(player)) {
+        if (player.is(player)) {
 
             Load.Unit(player)
                 .getResources()

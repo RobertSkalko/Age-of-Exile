@@ -5,8 +5,8 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.phys.HitResult;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,10 +22,10 @@ public class TeleportCasterToSightAction extends SpellAction {
 
         Double distance = data.getOrDefault(MapField.DISTANCE, 10D);
 
-        HitResult ray = ctx.caster.raycast(distance, 0.0F, false);
-        Vec3d pos = ray.getPos();
+        HitResult ray = ctx.caster.pick(distance, 0.0F, false);
+        Vector3d pos = ray.getLocation();
 
-        EntityUtils.setLoc(ctx.caster, pos, ctx.caster.yaw, ctx.caster.pitch);
+        EntityUtils.setLoc(ctx.caster, pos, ctx.caster.yRot, ctx.caster.xRot);
 
     }
 

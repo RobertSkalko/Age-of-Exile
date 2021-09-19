@@ -40,7 +40,7 @@ public class GiveExileStatusInRadius extends StatEffect {
         ExileEffect eff = ExileDB.ExileEffects()
             .get(effect);
 
-        EntityFinder.start(en, LivingEntity.class, en.getBlockPos())
+        EntityFinder.start(en, LivingEntity.class, en.blockPosition())
             .finder(EntityFinder.SelectionType.RADIUS)
             .searchFor(ally_or_enemy)
             .radius(radius)
@@ -48,7 +48,7 @@ public class GiveExileStatusInRadius extends StatEffect {
             .forEach(x -> {
 
                 ExilePotionEvent potionEvent = EventBuilder.ofEffect(en, x, Load.Unit(en)
-                    .getLevel(), eff, GiveOrTake.give, seconds * 20)
+                        .getLevel(), eff, GiveOrTake.give, seconds * 20)
                     .build();
                 potionEvent.Activate();
 

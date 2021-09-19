@@ -16,14 +16,14 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.IOneOfATypePotion;
 import com.robertx22.library_of_exile.registry.IGUID;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.potion.Effect;
+import net.minecraft.world.entity.ai.attributes.AttributeMap;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyableStats, IOneOfATypePotion {
+public class ExileStatusEffect extends Effect implements IGUID, IApplyableStats, IOneOfATypePotion {
 
     String exileEffectId;
 
@@ -66,7 +66,7 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
     }
 
     @Override
-    public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
+    public void addAttributeModifiers(LivingEntity entity, AttributeMap attributes, int amplifier) {
 
         try {
             ExileEffect exect = getExileEffect();
@@ -84,13 +84,13 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
             e.printStackTrace();
         }
 
-        super.onApplied(entity, attributes, amplifier);
+        super.addAttributeModifiers(entity, attributes, amplifier);
 
     }
 
     @Override
-    public void onRemoved(LivingEntity target, AttributeContainer attributes,
-                          int amplifier) {
+    public void removeAttributeModifiers(LivingEntity target, AttributeMap attributes,
+                                         int amplifier) {
 
         try {
 
@@ -100,7 +100,7 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
             ExileEffectInstanceData data = getSavedData(target);
 
             if (data != null && data.spellData != null) {
-                LivingEntity caster = data.spellData.getCaster(target.world);
+                LivingEntity caster = data.spellData.getCaster(target.level);
                 if (caster != null && exect.spell != null) {
                     SpellCtx ctx = SpellCtx.onExpire(caster, target, data.spellData);
 
@@ -113,22 +113,22 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
                 .get(this).stacks = 0;
             unitdata.setEquipsChanged(true);
 
-            super.onRemoved(target, attributes, amplifier);
+            super.removeAttributeModifiers(target, attributes, amplifier);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
 
         try {
-            if (entity.isDead()) {
+            if (entity.isDeadOrDying()) {
                 return;
             }
 
@@ -144,7 +144,7 @@ public class ExileStatusEffect extends StatusEffect implements IGUID, IApplyable
                 return;
             }
 
-            LivingEntity caster = data.spellData.getCaster(entity.world);
+            LivingEntity caster = data.spellData.getCaster(entity.level);
             if (caster == null) {
                 return;
             }

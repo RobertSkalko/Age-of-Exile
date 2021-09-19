@@ -1,23 +1,23 @@
 package com.robertx22.age_of_exile.database.data.currency.base;
 
-import net.minecraft.advancement.criterion.CriterionConditions;
-import net.minecraft.advancement.criterion.EnchantedItemCriterion;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
-import net.minecraft.item.ItemConvertible;
+import net.minecraft.advancements.ICriterionInstance;
+import net.minecraft.advancements.criterion.EnchantedItemTrigger;
+import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.util.IItemProvider;
 
 public interface IShapedRecipe {
-    ShapedRecipeJsonFactory getRecipe();
+    ShapedRecipeBuilder getRecipe();
 
-    default ShapedRecipeJsonFactory shaped(ItemConvertible pro) {
-        return ShapedRecipeJsonFactory.create(pro, 1);
+    default ShapedRecipeBuilder shaped(IItemProvider pro) {
+        return ShapedRecipeBuilder.shaped(pro, 1);
     }
 
-    default ShapedRecipeJsonFactory shaped(ItemConvertible pro, int i) {
-        return ShapedRecipeJsonFactory.create(pro, i);
+    default ShapedRecipeBuilder shaped(IItemProvider pro, int i) {
+        return ShapedRecipeBuilder.shaped(pro, i);
     }
 
-    default CriterionConditions trigger() {
-        return EnchantedItemCriterion.Conditions.any();
+    default ICriterionInstance trigger() {
+        return EnchantedItemTrigger.Instance.enchantedItem();
     }
 }
 

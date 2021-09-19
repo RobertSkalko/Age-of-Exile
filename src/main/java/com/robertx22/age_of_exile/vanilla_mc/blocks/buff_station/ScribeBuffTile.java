@@ -16,11 +16,11 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStatio
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -94,8 +94,8 @@ public class ScribeBuffTile extends BaseModificationStation {
                 ItemStack stack = new ItemStack(ModRegistry.MISC_ITEMS.SCROLL_BUFF);
                 data.saveToStack(stack);
 
-                itemStacks[PAPER_SLOT].decrement(1);
-                itemStacks[MAT_SLOT].decrement(1);
+                itemStacks[PAPER_SLOT].shrink(1);
+                itemStacks[MAT_SLOT].shrink(1);
                 Load.Unit(player)
                     .randomizeBuffSeed();
 
@@ -121,8 +121,8 @@ public class ScribeBuffTile extends BaseModificationStation {
     }
 
     @Override
-    public Text getDisplayName() {
-        return new LiteralText("");
+    public ITextComponent getDisplayName() {
+        return new StringTextComponent("");
     }
 
     @Override
@@ -131,7 +131,7 @@ public class ScribeBuffTile extends BaseModificationStation {
     }
 
     @Override
-    public ScreenHandler createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
-        return new ScribeBuffContainer(num, inventory, this, this.getPos());
+    public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
+        return new ScribeBuffContainer(num, inventory, this, this.getBlockPos());
     }
 }

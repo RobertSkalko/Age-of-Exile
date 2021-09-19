@@ -1,19 +1,19 @@
 package com.robertx22.age_of_exile.gui.screens.wiki;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.utils.RenderUtils;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.util.ResourceLocation;
 
-public class WikiTypeButton extends TexturedButtonWidget {
+public class WikiTypeButton extends ImageButton {
 
     public static int xSize = 20;
     public static int ySize = 20;
 
-    static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/clear_button.png");
+    static ResourceLocation buttonLoc = new ResourceLocation(Ref.MODID, "textures/gui/clear_button.png");
 
-    Identifier icon;
+    ResourceLocation icon;
 
     WikiType type;
 

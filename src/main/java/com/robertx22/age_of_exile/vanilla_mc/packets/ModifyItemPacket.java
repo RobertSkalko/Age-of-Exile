@@ -3,10 +3,10 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.main.MyPacket;
-import net.fabricmc.fabric.api.network.PacketContext;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class ModifyItemPacket extends MyPacket<ModifyItemPacket> {
 
@@ -30,22 +30,22 @@ public class ModifyItemPacket extends MyPacket<ModifyItemPacket> {
     }
 
     @Override
-    public void loadFromData(PacketByteBuf buf) {
+    public void loadFromData(PacketBuffer buf) {
         this.pos = buf.readBlockPos();
         this.num = buf.readInt();
     }
 
     @Override
-    public void saveToData(PacketByteBuf buf) {
+    public void saveToData(PacketBuffer buf) {
         buf.writeBlockPos(pos);
         buf.writeInt(num);
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void onReceived(Context ctx) {
 
         try {
-            BaseModificationStation modify = (BaseModificationStation) ctx.getPlayer().world.getBlockEntity(pos);
+            BaseModificationStation modify = (BaseModificationStation) ctx.getPlayer().level.getBlockEntity(pos);
             modify.modifyItem(num, ctx.getPlayer());
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,8 +59,8 @@ public class ModifyItemPacket extends MyPacket<ModifyItemPacket> {
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "modifyitem");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "modifyitem");
     }
 
 }

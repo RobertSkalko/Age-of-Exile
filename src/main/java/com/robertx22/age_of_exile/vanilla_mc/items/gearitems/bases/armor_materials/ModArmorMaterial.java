@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials;
 
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorMaterial;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.world.item.ArmorMaterial;
 
 public class ModArmorMaterial implements ArmorMaterial {
 
@@ -20,18 +20,18 @@ public class ModArmorMaterial implements ArmorMaterial {
     }
 
     @Override
-    public int getDurability(EquipmentSlot slotIn) {
-        return 100 + (int) (this.tier.vanillaMat.getDurability(slotIn) * getExtraMulti());
+    public int getDurabilityForSlot(EquipmentSlotType slotIn) {
+        return 100 + (int) (this.tier.vanillaMat.getDurabilityForSlot(slotIn) * getExtraMulti());
     }
 
     @Override
-    public int getProtectionAmount(EquipmentSlot slotIn) {
-        return tier.vanillaMat.getProtectionAmount(slotIn);
+    public int getDefenseForSlot(EquipmentSlotType slotIn) {
+        return tier.vanillaMat.getDefenseForSlot(slotIn);
     }
 
     @Override
-    public int getEnchantability() {
-        return (int) (tier.vanillaMat.getEnchantability() * getExtraMulti());
+    public int getEnchantmentValue() {
+        return (int) (tier.vanillaMat.getEnchantmentValue() * getExtraMulti());
     }
 
     @Override
@@ -55,12 +55,12 @@ public class ModArmorMaterial implements ArmorMaterial {
 
     @Override
     public SoundEvent getEquipSound() {
-        return SoundEvents.ITEM_ARMOR_EQUIP_IRON;
+        return SoundEvents.ARMOR_EQUIP_IRON;
     }
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(Items.STRUCTURE_BLOCK); // as in, nothing besides creative items should repair it
+        return Ingredient.of(Items.STRUCTURE_BLOCK); // as in, nothing besides creative items should repair it
     }
 
 }

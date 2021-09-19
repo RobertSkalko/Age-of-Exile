@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.dungeon;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
@@ -8,15 +9,14 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.gui.ItemSlotButton;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public class DungeonInfoScreen extends BaseScreen {
 
@@ -24,11 +24,11 @@ public class DungeonInfoScreen extends BaseScreen {
     public DungeonData selectedDungeon = null;
 
     public DungeonInfoScreen(BlockPos pos, DungeonData dungeon) {
-        super(MinecraftClient.getInstance()
+        super(Minecraft.getInstance()
             .getWindow()
-            .getScaledWidth(), MinecraftClient.getInstance()
+            .getGuiScaledWidth(), Minecraft.getInstance()
             .getWindow()
-            .getScaledHeight());
+            .getGuiScaledHeight());
 
         this.selectedDungeon = dungeon;
         this.teleporterPos = pos;
@@ -76,7 +76,7 @@ public class DungeonInfoScreen extends BaseScreen {
             int y = yoff + LOOT_Y;
 
             ItemStack randomitem = new ItemStack(Items.CHEST);
-            randomitem.setCustomName(new LiteralText(Formatting.DARK_PURPLE + "Random Unique"));
+            randomitem.setHoverName(new StringTextComponent(TextFormatting.DARK_PURPLE + "Random Unique"));
             this.publicAddButton(new ItemSlotButton(randomitem, x, y));
 
         } catch (Exception e) {
@@ -92,7 +92,7 @@ public class DungeonInfoScreen extends BaseScreen {
             int xoff = this.width / 2;
             int yoff = this.height / 2 - 125;
 
-            GuiUtils.renderScaledText(matrix, guiLeft + xoff, yoff - 5, 1D, "Dungeon Info", Formatting.RED);
+            GuiUtils.renderScaledText(matrix, guiLeft + xoff, yoff - 5, 1D, "Dungeon Info", TextFormatting.RED);
 
         }
     }
@@ -102,7 +102,7 @@ public class DungeonInfoScreen extends BaseScreen {
 
         try {
 
-            Identifier BG = Ref.guiId("dungeon/map");
+            ResourceLocation BG = Ref.guiId("dungeon/map");
 
             int BGX = 123;
             int BGY = 235;
@@ -111,8 +111,8 @@ public class DungeonInfoScreen extends BaseScreen {
             int yoff = this.height / 2;
 
             mc.getTextureManager()
-                .bindTexture(BG);
-            drawTexture(matrix, xoff - BGX / 2, yoff - BGY / 2, 0, 0, BGX, BGY);
+                .bind(BG);
+            blit(matrix, xoff - BGX / 2, yoff - BGY / 2, 0, 0, BGX, BGY);
 
             super.render(matrix, x, y, ticks);
 
@@ -122,7 +122,7 @@ public class DungeonInfoScreen extends BaseScreen {
             e.printStackTrace();
         }
 
-        for (ClickableWidget b : buttons) {
+        for (Widget b : buttons) {
             b.renderToolTip(matrix, x, y);
         }
     }

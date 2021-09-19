@@ -17,7 +17,7 @@ public class BlankTabletItem extends Item implements IAutoLocName, IAutoModel, I
     SkillItemTier stier;
 
     public BlankTabletItem(SkillItemTier stier, BlankTabletTier tier) {
-        super(new Settings().group(CreativeTabs.Professions));
+        super(new Properties().tab(CreativeTabs.Professions));
         this.tier = tier;
         this.stier = stier;
     }
@@ -34,7 +34,7 @@ public class BlankTabletItem extends Item implements IAutoLocName, IAutoModel, I
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 

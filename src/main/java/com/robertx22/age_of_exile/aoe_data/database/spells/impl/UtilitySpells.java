@@ -16,8 +16,8 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
@@ -37,7 +37,7 @@ public class UtilitySpells implements ExileRegistryInit {
                 "Allows you to access your Ender Chest from any place.")
 
             .attackStyle(PlayStyle.magic)
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_ENDER_CHEST_OPEN, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ENDER_CHEST_OPEN, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.PORTAL, 100D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.OPEN_ENDER_CHEST.create()))
             .disableInDimension(DimensionIds.DUNGEON_DIMENSION)
@@ -48,7 +48,7 @@ public class UtilitySpells implements ExileRegistryInit {
             .manualDesc(
                 "Summon a Jump Field, stepping on it will propel you upwards at high speeds.")
 
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(BLOCKS.GLYPH, 20D * 5)
                 .put(MapField.ENTITY_NAME, "block")
@@ -60,7 +60,7 @@ public class UtilitySpells implements ExileRegistryInit {
                 .onTick(1D)
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies))
             )
-            .onTick("block", PartBuilder.playSound(SoundEvents.BLOCK_SOUL_SOIL_HIT, 0.5D, 1D)
+            .onTick("block", PartBuilder.playSound(SoundEvents.SOUL_SOIL_HIT, 0.5D, 1D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(40D)))
             .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 15D, 3D, 0.5D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
@@ -74,7 +74,7 @@ public class UtilitySpells implements ExileRegistryInit {
                 "Levitate in the air, but you can't move around besides upwards.")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.BLOCK_SMOKER_SMOKE, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.SMOKER_SMOKE, 1D, 1D))
 
             .onCast(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, 0.3D, ParticleMotion.Upwards))
                 .addTarget(TargetSelector.CASTER.create()))

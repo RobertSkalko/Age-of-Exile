@@ -14,11 +14,10 @@ import com.robertx22.age_of_exile.saveclasses.spells.SpellsData;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.CompoundNBT;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,7 +70,9 @@ public class EntitySpellCap {
         }
 
         @Override
-        public NbtCompound toTag(NbtCompound nbt) {
+        public CompoundNBT saveToNBT() {
+
+            CompoundNBT nbt = new CompoundNBT();
 
             try {
                 LoadSave.Save(spellCastingData, nbt, PLAYER_SPELL_DATA);
@@ -85,12 +86,7 @@ public class EntitySpellCap {
         }
 
         @Override
-        public PlayerCaps getCapType() {
-            return PlayerCaps.SPELLS;
-        }
-
-        @Override
-        public void fromTag(NbtCompound nbt) {
+        public void loadFromNBT(CompoundNBT nbt) {
 
             try {
                 this.spellCastingData = LoadSave.Load(SpellCastingData.class, new SpellCastingData(), nbt, PLAYER_SPELL_DATA);
@@ -114,7 +110,7 @@ public class EntitySpellCap {
             String spellid = this.spellData.hotbars.get(key);
             if (spellid != null && !spellid.isEmpty()) {
                 return ExileDB.Spells()
-                        .get(spellid);
+                    .get(spellid);
 
             }
 
@@ -137,7 +133,7 @@ public class EntitySpellCap {
         @Override
         public int getFreeSpellPoints() {
             return (int) (GameBalanceConfig.get().SPELL_POINTS_PER_LEVEL * Load.Unit(entity)
-                    .getLevel()) - getSpentSpellPoints();
+                .getLevel()) - getSpentSpellPoints();
         }
 
         @Override
@@ -185,13 +181,13 @@ public class EntitySpellCap {
         @Override
         public List<Spell> getLearnedSpells() {
             return ExileDB.Spells()
-                    .getFilterWrapped(x -> getLevelOf(x.GUID()) > 0).list;
+                .getFilterWrapped(x -> getLevelOf(x.GUID()) > 0).list;
         }
 
         @Override
         public List<Synergy> getLearnedSynergies() {
             return ExileDB.Synergies()
-                    .getFilterWrapped(x -> getLevelOf(x.GUID()) > 0).list;
+                .getFilterWrapped(x -> getLevelOf(x.GUID()) > 0).list;
         }
 
         @Override
@@ -209,15 +205,15 @@ public class EntitySpellCap {
         @Override
         public void onSpellHitTarget(Entity spellEntity, LivingEntity target) {
 
-            UUID id = target.getUuid();
+            UUID id = target.getUUID();
 
-            UUID key = spellEntity.getUuid();
+            UUID key = spellEntity.getUUID();
 
             if (!mobsHit.containsKey(key)) {
                 mobsHit.put(key, new ArrayList<>());
             }
             mobsHit.get(key)
-                    .add(id);
+                .add(id);
 
             if (mobsHit.size() > 1000) {
                 mobsHit.clear();
@@ -230,13 +226,13 @@ public class EntitySpellCap {
             // this makes sure piercing projectiles hit target only once and then pass through
             // i can replace this with an effect that tags them too
 
-            UUID key = spellEntity.getUuid();
+            UUID key = spellEntity.getUUID();
 
             if (!mobsHit.containsKey(key)) {
                 return false;
             }
             return mobsHit.get(key)
-                    .contains(target.getUuid());
+                .contains(target.getUUID());
         }
 
         @Override
@@ -258,6 +254,11 @@ public class EntitySpellCap {
             ctxs.add(new MiscStatCtx(stats));
 
             return ctxs;
+        }
+
+        @Override
+        public String getCapIdForSyncing() {
+            return "spells";
         }
 
     }

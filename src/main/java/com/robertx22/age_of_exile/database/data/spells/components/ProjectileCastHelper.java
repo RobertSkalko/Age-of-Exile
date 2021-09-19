@@ -4,9 +4,9 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 
 public class ProjectileCastHelper {
 
@@ -20,7 +20,7 @@ public class ProjectileCastHelper {
     EntityType projectile;
     EntitySavedSpellData data;
     MapHolder holder;
-    Vec3d pos;
+    Vector3d pos;
 
     public CastType castType = CastType.SPREAD_OUT_IN_RADIUS;
 
@@ -34,23 +34,23 @@ public class ProjectileCastHelper {
 
     public boolean fallDown = false;
 
-    public ProjectileCastHelper(Vec3d pos, MapHolder holder, LivingEntity caster, EntityType projectile, EntitySavedSpellData data) {
+    public ProjectileCastHelper(Vector3d pos, MapHolder holder, LivingEntity caster, EntityType projectile, EntitySavedSpellData data) {
         this.projectile = projectile;
         this.caster = caster;
         this.data = data;
         this.holder = holder;
         this.pos = pos;
 
-        this.pitch = caster.pitch;
-        this.yaw = caster.yaw;
+        this.pitch = caster.xRot;
+        this.yaw = caster.yRot;
     }
 
     public void cast() {
-        World world = caster.world;
+        World world = caster.level;
 
         float addYaw = 0;
 
-        Vec3d posAdd = new Vec3d(0, 0, 0);
+        Vector3d posAdd = new Vector3d(0, 0, 0);
 
         for (int i = 0; i < projectilesAmount; i++) {
 
@@ -70,23 +70,23 @@ public class ProjectileCastHelper {
                     if (i < projectilesAmount / 2) {
 
                     } else if (i == projectilesAmount / 2) {
-                        posAdd = Vec3d.ZERO;
+                        posAdd = Vector3d.ZERO;
                     } else if (i > projectilesAmount / 2) {
 
                     }
                 }
             }
 
-            PersistentProjectileEntity en = (PersistentProjectileEntity) projectile.create(world);
+            AbstractArrow en = (AbstractArrow) projectile.create(world);
             SpellUtils.shootProjectile(pos.add(posAdd), en, caster, shootSpeed, pitch, yaw + addYaw);
             SpellUtils.initSpellEntity(en, caster, data, holder);
 
             if (fallDown) {
-                en.setVelocity(0, -1, 0);
+                en.setDeltaMovement(0, -1, 0);
             }
             en.setSilent(silent);
 
-            caster.world.spawnEntity(en);
+            caster.level.addFreshEntity(en);
         }
 
     }

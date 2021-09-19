@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
@@ -21,7 +21,7 @@ public class PlaySoundPerTarget extends SpellAction {
 
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
-        if (!ctx.world.isClient) {
+        if (!ctx.world.isClientSide) {
 
             targets.forEach(x -> {
                 float pitch = data.get(PITCH)
@@ -41,7 +41,7 @@ public class PlaySoundPerTarget extends SpellAction {
         d.type = GUID();
         d.put(VOLUME, volume);
         d.put(PITCH, pitch);
-        d.put(SOUND, Registry.SOUND_EVENT.getId(sound)
+        d.put(SOUND, Registry.SOUND_EVENT.getKey(sound)
             .toString());
         return d;
     }

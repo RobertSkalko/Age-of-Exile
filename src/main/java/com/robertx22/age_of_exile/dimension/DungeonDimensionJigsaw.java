@@ -4,15 +4,14 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.world_of_exile.config.FeatureConfig;
 import com.robertx22.world_of_exile.main.structures.base.StructureWrapper;
 import com.robertx22.world_of_exile.world_gen.AbstractPool;
-import net.minecraft.structure.pool.StructurePool;
-import net.minecraft.structure.processor.StructureProcessorList;
-import net.minecraft.structure.processor.StructureProcessorLists;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
+import net.minecraft.data.worldgen.ProcessorLists;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.StructureFeature;
-import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
+import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
+import net.minecraft.world.gen.feature.structure.VillageConfig;
+import net.minecraft.world.gen.feature.template.StructureProcessorList;
+import net.minecraft.world.level.biome.Biomes;
 
 public class DungeonDimensionJigsaw extends StructureWrapper {
 
@@ -28,25 +27,25 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
 
     public DungeonDimensionJigsaw() {
         super(x -> x.getBiomeKey()
-            .getValue()
-            .equals(BiomeKeys.THE_VOID.getValue()
-            ), DimensionIds.DUNGEON_STRUCTURE, false, config, GenerationStep.Feature.SURFACE_STRUCTURES);
+            .location()
+            .equals(Biomes.THE_VOID.location()
+            ), DimensionIds.DUNGEON_STRUCTURE, false, config, GenerationStage.Decoration.SURFACE_STRUCTURES);
     }
 
     @Override
-    public ConfiguredStructureFeature createConfiguredFeature() {
-        return feature.configure(new StructurePoolFeatureConfig(() -> {
+    public StructureFeature createConfiguredFeature() {
+        return feature.configured(new VillageConfig(() -> {
             return this.startPool;
         }, 3));
     }
 
     @Override
     public StructureFeature createFeature() {
-        return new DungeonDimensionJigsawFeature(StructurePoolFeatureConfig.CODEC);
+        return new DungeonDimensionJigsawFeature(VillageConfig.CODEC);
     }
 
     @Override
-    public StructurePool createPoolAndInitPools() {
+    public JigsawPattern createPoolAndInitPools() {
         AbstractPool startBuilder = new Pool(Ref.id("dungeon/starts"));
         startBuilder.add(Ref.id("mossy/mossy_start"));
         startBuilder.add(Ref.id("desert/desert_start"));
@@ -65,13 +64,13 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
 
     static class Pool extends AbstractPool {
 
-        public Pool(Identifier poolId) {
+        public Pool(ResourceLocation poolId) {
             super(poolId);
         }
 
         @Override
         public StructureProcessorList processorList() {
-            return StructureProcessorLists.EMPTY;
+            return ProcessorLists.EMPTY;
         }
     }
 

@@ -7,9 +7,9 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,9 +67,9 @@ public class DungeonData {
         return uuid.isEmpty();
     }
 
-    public List<Text> getTooltip() {
+    public List<ITextComponent> getTooltip() {
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
         list.add(getAffixedName());
 
@@ -84,8 +84,8 @@ public class DungeonData {
 
     }
 
-    public MutableText getAffixedName() {
-        return new LiteralText("Dungeon");
+    public IFormattableTextComponent getAffixedName() {
+        return new StringTextComponent("Dungeon");
     }
 
     public DungeonMobList getMobList() {

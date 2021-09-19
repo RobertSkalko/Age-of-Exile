@@ -10,7 +10,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.server.ServerWorld;
 
 public class OnMobSpawn implements ServerEntityEvents.Load {
 
@@ -30,7 +30,7 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
     public static void setupNewMobOnSpawn(LivingEntity entity) {
 
-        if (entity.world.isClient) {
+        if (entity.level.isClientSide) {
             throw new RuntimeException("Don't run this code on client!");
         }
 
@@ -42,7 +42,7 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
             PlayerEntity nearestPlayer = null;
 
-            nearestPlayer = PlayerUtils.nearestPlayer((ServerWorld) entity.world, entity);
+            nearestPlayer = PlayerUtils.nearestPlayer((ServerWorld) entity.level, entity);
 
             if (endata.needsToBeGivenStats()) {
                 setupNewMob(entity, endata, nearestPlayer);

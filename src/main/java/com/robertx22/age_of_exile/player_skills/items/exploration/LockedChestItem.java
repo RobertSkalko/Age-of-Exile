@@ -9,20 +9,19 @@ import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.library_of_exile.utils.SoundUtils;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -43,33 +42,33 @@ public class LockedChestItem extends TieredItem {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 
-        if (!world.isClient) {
+        if (!world.isClientSide) {
 
-            ItemStack stack = player.getStackInHand(hand);
+            ItemStack stack = player.getItemInHand(hand);
 
             try {
                 if (!IsSkillItemUsableUtil.canUseItem(player, stack, true)) {
-                    return TypedActionResult.fail(stack);
+                    return ActionResult.fail(stack);
                 }
 
                 ItemStack key = getKeyStack(player);
 
                 if (key.isEmpty()) {
-                    player.sendMessage(new LiteralText("Needs ").append(new TranslatableText(getKeyItem().getTranslationKey())), false);
-                    return TypedActionResult.fail(stack);
+                    player.displayClientMessage(new StringTextComponent("Needs ").append(new TranslatableComponent(getKeyItem().getDescriptionId())), false);
+                    return ActionResult.fail(stack);
 
                 }
-                key.decrement(1);
-                stack.decrement(1);
+                key.shrink(1);
+                stack.shrink(1);
 
                 int lvl = MathHelper.clamp(Load.Unit(player)
                     .getLevel(), tier.levelRange.getMinLevel(), tier.levelRange.getMaxLevel());
 
                 List<ItemStack> loot = MasterLootGen.generateLoot(LootInfo.ofLockedChestItem(player, lvl));
 
-                SoundUtils.ding(player.world, player.getBlockPos());
+                SoundUtils.ding(player.level, player.blockPosition());
 
                 loot.forEach(x -> {
                     PlayerUtils.giveItem(x, player);
@@ -79,14 +78,14 @@ public class LockedChestItem extends TieredItem {
                 e.printStackTrace();
             }
         }
-        return new TypedActionResult<ItemStack>(ActionResult.PASS, player.getStackInHand(hand));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, player.getItemInHand(hand));
     }
 
     public ItemStack getKeyStack(PlayerEntity player) {
         ItemStack stack = ItemStack.EMPTY;
 
-        for (int i = 0; i < player.inventory.size(); i++) {
-            ItemStack check = player.inventory.getStack(i);
+        for (int i = 0; i < player.inventory.getContainerSize(); i++) {
+            ItemStack check = player.inventory.getItem(i);
 
             if (check.getItem() == getKeyItem()) {
                 return check;
@@ -102,15 +101,15 @@ public class LockedChestItem extends TieredItem {
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag context) {
 
         try {
 
-            tooltip.add(new LiteralText("Needs ").append(getKeyItem()
-                    .getName())
+            tooltip.add(new StringTextComponent("Needs ").append(getKeyItem()
+                    .getDescription())
                 .append("."));
-            tooltip.add(new LiteralText("Click to open."));
+            tooltip.add(new StringTextComponent("Click to open."));
 
         } catch (Exception e) {
             e.printStackTrace();

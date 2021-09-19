@@ -4,11 +4,11 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Npc;
-import net.minecraft.entity.mob.Angerable;
-import net.minecraft.entity.mob.Monster;
-import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.NeutralMob;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.npc.Npc;
 
 public class EntityTypeUtils {
 
@@ -44,18 +44,18 @@ public class EntityTypeUtils {
     }
 
     public static boolean isMob(Entity en) {
-        if (en instanceof Monster) {
+        if (en instanceof IMob) {
             return true;
         }
-        if (en instanceof Angerable) {
+        if (en instanceof NeutralMob) {
             return true;
         }
         if (!en.getType()
-            .getSpawnGroup()
-            .isPeaceful()) {
+            .getCategory()
+            .isFriendly()) {
             return true;
         }
-        if (EntityType.getId(en.getType())
+        if (EntityType.getKey(en.getType())
             .getNamespace()
             .equals(Ref.WORLD_OF_EXILE_ID)) {
             return true; // all my mobs are supposed to be rewarding
@@ -65,7 +65,7 @@ public class EntityTypeUtils {
     }
 
     public static boolean isAnimal(Entity en) {
-        return en instanceof AnimalEntity;
+        return en instanceof Animal;
     }
 
     /**

@@ -17,7 +17,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
-import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.inventory.EquipmentSlotType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,25 +89,25 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         return level_range;
     }
 
-    public final EquipmentSlot getVanillaSlotType() {
+    public final EquipmentSlotType getVanillaSlotType() {
 
         if (tags.contains(SlotTag.shield)) {
-            return EquipmentSlot.OFFHAND;
+            return EquipmentSlotType.OFFHAND;
         }
         if (tags.contains(SlotTag.boots)) {
-            return EquipmentSlot.FEET;
+            return EquipmentSlotType.FEET;
         }
         if (tags.contains(SlotTag.chest)) {
-            return EquipmentSlot.CHEST;
+            return EquipmentSlotType.CHEST;
         }
         if (tags.contains(SlotTag.pants)) {
-            return EquipmentSlot.LEGS;
+            return EquipmentSlotType.LEGS;
         }
         if (tags.contains(SlotTag.helmet)) {
-            return EquipmentSlot.HEAD;
+            return EquipmentSlotType.HEAD;
         }
         if (isWeapon()) {
-            return EquipmentSlot.MAINHAND;
+            return EquipmentSlotType.MAINHAND;
         }
 
         return null;

@@ -22,7 +22,7 @@ public class DoActionForEachEffectOnTarget extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
         try {
-            if (ctx.world.isClient) {
+            if (ctx.world.isClientSide) {
                 return;
             }
 

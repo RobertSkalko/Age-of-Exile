@@ -6,7 +6,7 @@ import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,7 +46,7 @@ public class SalvageRecipe implements JsonExileRegistry<SalvageRecipe>, IAutoGso
         return true;
     }
 
-    public static SalvageRecipe of(String id, String locname, Identifier loottable, ItemIngredient... ingredients) {
+    public static SalvageRecipe of(String id, String locname, ResourceLocation loottable, ItemIngredient... ingredients) {
         SalvageRecipe r = new SalvageRecipe();
 
         r.id = id;

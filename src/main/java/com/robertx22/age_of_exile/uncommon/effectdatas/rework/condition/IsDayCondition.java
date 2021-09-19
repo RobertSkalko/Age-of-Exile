@@ -13,7 +13,7 @@ public class IsDayCondition extends StatCondition {
 
     @Override
     public boolean can(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
-        return event.source.world.isDay();
+        return event.source.level.isDay();
     }
 
     @Override

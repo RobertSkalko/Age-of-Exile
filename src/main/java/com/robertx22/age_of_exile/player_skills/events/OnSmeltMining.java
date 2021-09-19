@@ -10,27 +10,27 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Optional;
 
 public class OnSmeltMining {
 
-    public static void hookOnDropExp(Object2IntOpenHashMap<Identifier> recipesUsed, AbstractFurnaceBlockEntity furnace, PlayerEntity player, CallbackInfo ci) {
+    public static void hookOnDropExp(Object2IntOpenHashMap<ResourceLocation> recipesUsed, AbstractFurnaceBlockEntity furnace, PlayerEntity player, CallbackInfo ci) {
 
         RPGPlayerData data = Load.playerRPGData(player);
 
         PlayerSkill mining = ExileDB.PlayerSkills()
             .get(PlayerSkillEnum.MINING.id);
 
-        for (Object2IntMap.Entry<Identifier> entry : recipesUsed.object2IntEntrySet()) {
-            Optional<? extends Recipe<?>> recipe = player.world.getRecipeManager()
-                .get(entry.getKey());
+        for (Object2IntMap.Entry<ResourceLocation> entry : recipesUsed.object2IntEntrySet()) {
+            Optional<? extends Recipe<?>> recipe = player.level.getRecipeManager()
+                .byKey(entry.getKey());
 
             if (!recipe.isPresent()) {
                 continue;
@@ -40,7 +40,7 @@ public class OnSmeltMining {
 
             for (int i = 0; i < timesUsed; i++) {
                 ItemStack output = recipe.get()
-                    .getOutput();
+                    .getResultItem();
 
                 mining.item_smelt_exp.forEach(s -> {
                     if ((output

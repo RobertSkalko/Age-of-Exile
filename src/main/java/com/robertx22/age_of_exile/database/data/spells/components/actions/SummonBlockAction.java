@@ -25,7 +25,7 @@ public class SummonBlockAction extends SpellAction {
 
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
-        if (!ctx.world.isClient) {
+        if (!ctx.world.isClientSide) {
 
             //HitResult ray = ctx.caster.rayTrace(5D, 0.0F, false);
             BlockPos pos = ctx.pos;
@@ -40,21 +40,21 @@ public class SummonBlockAction extends SpellAction {
 
                 while (!found && pos.getY() > 1 && SEARCH > times) {
                     times++;
-                    if (ctx.world.isAir(pos) && !ctx.world.isAir(pos.down())) {
+                    if (ctx.world.isEmptyBlock(pos) && !ctx.world.isEmptyBlock(pos.below())) {
                         found = true;
                     } else {
-                        pos = pos.down();
+                        pos = pos.below();
                     }
                 }
                 if (!found) {
                     pos = ctx.pos;
                     times = 0;
-                    while (!found && pos.getY() < ctx.world.getHeight() && SEARCH > times) {
+                    while (!found && pos.getY() < ctx.world.getMaxBuildHeight() && SEARCH > times) {
                         times++;
-                        if (ctx.world.isAir(pos) && !ctx.world.isAir(pos.down())) {
+                        if (ctx.world.isEmptyBlock(pos) && !ctx.world.isEmptyBlock(pos.below())) {
                             found = true;
                         } else {
-                            pos = pos.up();
+                            pos = pos.above();
                         }
                     }
                 }
@@ -63,11 +63,11 @@ public class SummonBlockAction extends SpellAction {
             Objects.requireNonNull(block);
 
             if (found) {
-                StationaryFallingBlockEntity be = new StationaryFallingBlockEntity(ctx.world, pos, block.getDefaultState());
-                be.getDataTracker()
+                StationaryFallingBlockEntity be = new StationaryFallingBlockEntity(ctx.world, pos, block.defaultBlockState());
+                be.getEntityData()
                     .set(StationaryFallingBlockEntity.IS_FALLING, data.getOrDefault(MapField.IS_BLOCK_FALLING, false));
                 SpellUtils.initSpellEntity(be, ctx.caster, ctx.calculatedSpellData, data);
-                ctx.world.spawnEntity(be);
+                ctx.world.addFreshEntity(be);
             }
 
         }
@@ -75,7 +75,7 @@ public class SummonBlockAction extends SpellAction {
 
     public MapHolder create(Block block, Double lifespan) {
         MapHolder c = new MapHolder();
-        c.put(MapField.BLOCK, Registry.BLOCK.getId(block)
+        c.put(MapField.BLOCK, Registry.BLOCK.getKey(block)
             .toString());
         c.put(MapField.ENTITY_NAME, Spell.DEFAULT_EN_NAME);
         c.put(MapField.LIFESPAN_TICKS, lifespan);

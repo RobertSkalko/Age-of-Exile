@@ -10,8 +10,8 @@ import com.robertx22.age_of_exile.player_skills.events.OnChestFavorGainedExplora
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Comparator;
 import java.util.Optional;
@@ -28,7 +28,7 @@ public class FavorData {
 
     public FavorRank getRank() {
         try {
-            if (!ModConfig.get().Favor.ENABLE_FAVOR_SYSTEM) {
+            if (!ModConfig.get().Server.ENABLE_FAVOR_SYSTEM) {
                 return getDefault(); // simplest way of disabling everything around the system
             }
             Optional<FavorRank> opt = ExileDB.FavorRanks()
@@ -62,7 +62,7 @@ public class FavorData {
         float lvlpenalty = LootUtils.getLevelDistancePunishmentMulti(info.level, info.playerData
             .getLevel());
 
-        float favorGained = ModConfig.get().Favor.FAVOR_GAIN_PER_CHEST_LOOTED * lvlpenalty;
+        float favorGained = ModConfig.get().Server.FAVOR_GAIN_PER_CHEST_LOOTED * lvlpenalty;
 
         favorGained *= info.playerData.getUnit()
             .getCalculatedStat(BonusFavor.getInstance())
@@ -96,8 +96,8 @@ public class FavorData {
     }
 
     private void onLowFavor(PlayerEntity player) {
-        if (ModConfig.get().Favor.ENABLE_FAVOR_SYSTEM) {
-            player.sendMessage(new LiteralText("You are very low on favor.").formatted(Formatting.RED), false);
+        if (ModConfig.get().Server.ENABLE_FAVOR_SYSTEM) {
+            player.displayClientMessage(new StringTextComponent("You are very low on favor.").withStyle(TextFormatting.RED), false);
         }
     }
 }

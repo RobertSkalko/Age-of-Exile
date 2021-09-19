@@ -40,12 +40,12 @@ import com.robertx22.library_of_exile.registry.Database;
 import com.robertx22.library_of_exile.registry.ExileRegistryContainer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 
 public class ExileDB {
 
-    public static DimensionConfig getDimensionConfig(WorldAccess world) {
+    public static DimensionConfig getDimensionConfig(IWorld world) {
         String id = MapManager.getResourceLocation((World) world)
             .toString();
         return DimensionConfigs().get(id);
@@ -53,9 +53,9 @@ public class ExileDB {
 
     public static EntityConfig getEntityConfig(LivingEntity entity, EntityData data) {
 
-        String monster_id = Registry.ENTITY_TYPE.getId(entity.getType())
+        String monster_id = Registry.ENTITY_TYPE.getKey(entity.getType())
             .toString();
-        String mod_id = Registry.ENTITY_TYPE.getId(entity.getType())
+        String mod_id = Registry.ENTITY_TYPE.getKey(entity.getType())
             .getNamespace();
 
         EntityConfig config = null;

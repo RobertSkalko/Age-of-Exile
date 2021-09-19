@@ -3,8 +3,8 @@ package com.robertx22.age_of_exile.database.data.salvage_recipes;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.util.Identifier;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 public class ItemRequirement {
@@ -26,12 +26,12 @@ public class ItemRequirement {
     public boolean matches(ItemStack stack) {
 
         if (req_type.equals("item")) {
-            return stack.getItem() == Registry.ITEM.get(new Identifier(req_str));
+            return stack.getItem() == Registry.ITEM.get(new ResourceLocation(req_str));
         }
         if (req_type.equals("tag")) {
             return stack.getItem()
-                .isIn(ItemTags.getTagGroup()
-                    .getTag(new Identifier(req_str)));
+                .is(ItemTags.getAllTags()
+                    .getTag(new ResourceLocation(req_str)));
         }
         GearItemData gear = Gear.Load(stack);
 

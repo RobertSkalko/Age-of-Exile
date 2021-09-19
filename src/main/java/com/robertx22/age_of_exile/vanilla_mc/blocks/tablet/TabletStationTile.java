@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseSkillStation;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.screen.ScreenHandler;
+import net.minecraft.inventory.container.Container;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,8 +25,8 @@ public class TabletStationTile extends BaseSkillStation {
     }
 
     @Override
-    public ScreenHandler createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
-        return new TabletStationContainer(num, inventory, this, this.getPos());
+    public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
+        return new TabletStationContainer(num, inventory, this, this.getBlockPos());
     }
 
     @Override

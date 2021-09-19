@@ -1,23 +1,23 @@
 package com.robertx22.age_of_exile.uncommon.enumclasses;
 
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
 
 public enum Elements {
 
-    Physical(false, "Physical", Formatting.GOLD, "physical", "\u2726"),
-    Fire(true, "Fire", Formatting.RED, "fire", "\u2600"),
-    Water(true, "Water", Formatting.AQUA, "water", "\u2749"),
-    Earth(true, "Earth", Formatting.DARK_GREEN, "earth", "\u273F"), /* Reminder: if i rename this to "earth" satte will get pissed off */
+    Physical(false, "Physical", TextFormatting.GOLD, "physical", "\u2726"),
+    Fire(true, "Fire", TextFormatting.RED, "fire", "\u2600"),
+    Water(true, "Water", TextFormatting.AQUA, "water", "\u2749"),
+    Earth(true, "Earth", TextFormatting.DARK_GREEN, "earth", "\u273F"), /* Reminder: if i rename this to "earth" satte will get pissed off */
 
-    Elemental(false, "Elemental", Formatting.LIGHT_PURPLE, "elemental", "\u269C"),
-    All(false, "All", Formatting.LIGHT_PURPLE, "all", "\u273F");
+    Elemental(false, "Elemental", TextFormatting.LIGHT_PURPLE, "elemental", "\u269C"),
+    All(false, "All", TextFormatting.LIGHT_PURPLE, "all", "\u273F");
 
     public boolean isSingleElement = true;
 
-    Elements(boolean isSingleElement, String dmgname, Formatting format, String guidname, String icon) {
+    Elements(boolean isSingleElement, String dmgname, TextFormatting format, String guidname, String icon) {
 
         this.isSingleElement = isSingleElement;
         this.dmgName = dmgname;
@@ -30,7 +30,7 @@ public enum Elements {
     public String guidName;
     public String icon;
 
-    public Formatting format;
+    public TextFormatting format;
 
     public String getIconNameDmg() {
         return getIconNameFormat(dmgName) + " Damage";
@@ -41,7 +41,7 @@ public enum Elements {
     }
 
     public String getIconNameFormat(String str) {
-        return this.format + this.icon + " " + str + Formatting.GRAY;
+        return this.format + this.icon + " " + str + TextFormatting.GRAY;
     }
 
     public boolean isPhysical() {

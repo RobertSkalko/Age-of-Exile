@@ -20,7 +20,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 
@@ -425,7 +425,7 @@ public class Stats implements ExileRegistryInit {
             x.min = 0;
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
-            x.format = Formatting.YELLOW.getName();
+            x.format = TextFormatting.YELLOW.getName();
         })
         .build();
 
@@ -447,7 +447,7 @@ public class Stats implements ExileRegistryInit {
             x.min = 0;
             x.group = StatGroup.MAIN;
             x.icon = "\u2739";
-            x.format = Formatting.LIGHT_PURPLE.getName();
+            x.format = TextFormatting.LIGHT_PURPLE.getName();
         })
         .build();
 
@@ -470,7 +470,7 @@ public class Stats implements ExileRegistryInit {
             x.max = 100;
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
-            x.format = Formatting.YELLOW.getName();
+            x.format = TextFormatting.YELLOW.getName();
         })
         .build();
 
@@ -493,7 +493,7 @@ public class Stats implements ExileRegistryInit {
             x.group = StatGroup.MAIN;
 
             x.icon = "\u2694";
-            x.format = Formatting.RED.getName();
+            x.format = TextFormatting.RED.getName();
 
         })
         .build();
@@ -516,7 +516,7 @@ public class Stats implements ExileRegistryInit {
             x.max = 500;
             x.group = StatGroup.MAIN;
             x.icon = "\u2739";
-            x.format = Formatting.DARK_PURPLE.getName();
+            x.format = TextFormatting.DARK_PURPLE.getName();
 
         })
         .build();
@@ -540,7 +540,7 @@ public class Stats implements ExileRegistryInit {
             x.max = 500;
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
-            x.format = Formatting.GOLD.getName();
+            x.format = TextFormatting.GOLD.getName();
         })
         .build();
 
@@ -559,7 +559,7 @@ public class Stats implements ExileRegistryInit {
             x.max = 500;
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
-            x.format = Formatting.RED.getName();
+            x.format = TextFormatting.RED.getName();
         })
         .build();
 
@@ -610,7 +610,7 @@ public class Stats implements ExileRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.icon = "\u27B9";
-            x.format = Formatting.RED.getName();
+            x.format = TextFormatting.RED.getName();
         })
         .build();
 
@@ -641,7 +641,7 @@ public class Stats implements ExileRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.BLUE.getName();
+            x.format = TextFormatting.BLUE.getName();
         })
         .build();
 
@@ -657,7 +657,7 @@ public class Stats implements ExileRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.DARK_PURPLE.getName();
+            x.format = TextFormatting.DARK_PURPLE.getName();
         })
         .build();
 
@@ -673,7 +673,7 @@ public class Stats implements ExileRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.YELLOW.getName();
+            x.format = TextFormatting.YELLOW.getName();
         })
         .build();
 
@@ -689,7 +689,7 @@ public class Stats implements ExileRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.RED.getName();
+            x.format = TextFormatting.RED.getName();
         })
         .build();
 
@@ -705,7 +705,7 @@ public class Stats implements ExileRegistryInit {
             x.scaling = StatScaling.NONE;
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.RED.getName();
+            x.format = TextFormatting.RED.getName();
         })
         .build();
 
@@ -722,7 +722,7 @@ public class Stats implements ExileRegistryInit {
             x.is_long = true;
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.RED.getName();
+            x.format = TextFormatting.RED.getName();
         })
         .build();
 
@@ -740,7 +740,7 @@ public class Stats implements ExileRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.RED.getName();
+            x.format = TextFormatting.RED.getName();
             x.group = StatGroup.Misc;
         })
         .build();
@@ -761,7 +761,7 @@ public class Stats implements ExileRegistryInit {
             x.is_perc = false;
             x.scaling = StatScaling.NORMAL;
             x.base = 0;
-            x.format = Formatting.YELLOW.getName();
+            x.format = TextFormatting.YELLOW.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -780,7 +780,7 @@ public class Stats implements ExileRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.YELLOW.getName();
+            x.format = TextFormatting.YELLOW.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -800,7 +800,7 @@ public class Stats implements ExileRegistryInit {
             x.is_long = true;
             x.scaling = StatScaling.NONE;
             x.base = 0;
-            x.format = Formatting.YELLOW.getName();
+            x.format = TextFormatting.YELLOW.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -819,7 +819,7 @@ public class Stats implements ExileRegistryInit {
             x.is_long = true;
             x.scaling = StatScaling.NONE;
             x.base = 0;
-            x.format = Formatting.YELLOW.getName();
+            x.format = TextFormatting.YELLOW.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -840,7 +840,7 @@ public class Stats implements ExileRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.is_long = true;
-            x.format = Formatting.YELLOW.getName();
+            x.format = TextFormatting.YELLOW.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -857,7 +857,7 @@ public class Stats implements ExileRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 0;
-            x.format = Formatting.GREEN.getName();
+            x.format = TextFormatting.GREEN.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -877,7 +877,7 @@ public class Stats implements ExileRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.min = -100;
-            x.format = Formatting.YELLOW.getName();
+            x.format = TextFormatting.YELLOW.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -896,7 +896,7 @@ public class Stats implements ExileRegistryInit {
             x.base = 0;
             x.min = 0;
             x.scaling = StatScaling.NONE;
-            x.format = Formatting.RED.getName();
+            x.format = TextFormatting.RED.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -915,7 +915,7 @@ public class Stats implements ExileRegistryInit {
             x.base = 0;
             x.min = 0;
             x.scaling = StatScaling.NONE;
-            x.format = Formatting.RED.getName();
+            x.format = TextFormatting.RED.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -934,7 +934,7 @@ public class Stats implements ExileRegistryInit {
             x.base = 0;
             x.min = 0;
             x.scaling = StatScaling.NONE;
-            x.format = Formatting.RED.getName();
+            x.format = TextFormatting.RED.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -951,7 +951,7 @@ public class Stats implements ExileRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.icon = "\u2748";
-            x.format = Formatting.RED.getName();
+            x.format = TextFormatting.RED.getName();
         })
         .build();
 
@@ -967,7 +967,7 @@ public class Stats implements ExileRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.icon = "\u2748";
-            x.format = Formatting.GREEN.getName();
+            x.format = TextFormatting.GREEN.getName();
         })
         .build();
 
@@ -1092,7 +1092,7 @@ public class Stats implements ExileRegistryInit {
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.icon = "\u27B9";
-            x.format = Formatting.GREEN.getName();
+            x.format = TextFormatting.GREEN.getName();
         })
         .build();
 

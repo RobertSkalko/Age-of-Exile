@@ -5,17 +5,17 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.RepairUtils;
-import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
 public class GearData {
 
     public ItemStack stack;
     public GearItemData gear;
-    public EquipmentSlot slot;
+    public EquipmentSlotType slot;
     public int percentStatUtilization = 100; // todo if stats change stat utilization, they need special handling..
 
-    public GearData(ItemStack stack, EquipmentSlot slot, EntityData data) {
+    public GearData(ItemStack stack, EquipmentSlotType slot, EntityData data) {
         this.stack = stack;
         if (stack != null) {
             this.gear = Gear.Load(stack);
@@ -32,15 +32,15 @@ public class GearData {
         }
         GearData other = (GearData) obj;
 
-        return (ItemStack.areEqual(stack, other.stack));
+        return (ItemStack.matches(stack, other.stack));
     }
 
     private void calcStatUtilization(EntityData data) {
-        if (slot == EquipmentSlot.OFFHAND) {
+        if (slot == EquipmentSlotType.OFFHAND) {
             if (gear != null && gear.GetBaseGearType()
                 .isWeapon()) {
                 GearItemData mainhand = Gear.Load(data.getEntity()
-                    .getMainHandStack());
+                    .getMainHandItem());
 
                 if (mainhand != null) {
                     if (mainhand.GetBaseGearType().weapon_type == gear.GetBaseGearType().weapon_type) {
@@ -63,7 +63,7 @@ public class GearData {
             return false;
         }
 
-        if (stack.isDamageable()) {
+        if (stack.isDamageableItem()) {
             if (RepairUtils.isItemBroken(stack)) {
                 return false;
             }
@@ -83,30 +83,30 @@ public class GearData {
         if (type.isWeapon()) {
 
             if (type.isMeleeWeapon()) {
-                if (slot == EquipmentSlot.OFFHAND) {
+                if (slot == EquipmentSlotType.OFFHAND) {
                     return true;
                 }
             }
 
-            return slot == EquipmentSlot.MAINHAND; // ranged weapon
+            return slot == EquipmentSlotType.MAINHAND; // ranged weapon
         }
         if (type.tags.contains(BaseGearType.SlotTag.chest)) {
-            return slot == EquipmentSlot.CHEST;
+            return slot == EquipmentSlotType.CHEST;
         }
         if (type.tags.contains(BaseGearType.SlotTag.pants)) {
-            return slot == EquipmentSlot.LEGS;
+            return slot == EquipmentSlotType.LEGS;
         }
         if (type.tags.contains(BaseGearType.SlotTag.boots)) {
-            return slot == EquipmentSlot.FEET;
+            return slot == EquipmentSlotType.FEET;
         }
         if (type.tags.contains(BaseGearType.SlotTag.helmet)) {
-            return slot == EquipmentSlot.HEAD;
+            return slot == EquipmentSlotType.HEAD;
         }
         if (type.tags.contains(BaseGearType.SlotTag.jewelry_family)) {
             return slot == null;
         }
         if (type.tags.contains(BaseGearType.SlotTag.offhand_family)) {
-            return slot == EquipmentSlot.OFFHAND;
+            return slot == EquipmentSlotType.OFFHAND;
         }
 
         return false;

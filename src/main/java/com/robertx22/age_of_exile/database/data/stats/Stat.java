@@ -17,13 +17,13 @@ import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.registry.IWeighted;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +32,8 @@ import java.util.function.Function;
 public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDesc, JsonExileRegistry<BaseDatapackStat> {
 
     public static String VAL1 = "[VAL1]";
-    static Formatting FORMAT = Formatting.GRAY;
-    static Formatting NUMBER = Formatting.GREEN;
+    static TextFormatting FORMAT = TextFormatting.GRAY;
+    static TextFormatting NUMBER = TextFormatting.GREEN;
 
     public static String format(String str) {
 
@@ -62,11 +62,11 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     public boolean is_long = false;
     public String icon = "\u2741";
     public int order = 100;
-    public String format = Formatting.AQUA.getName();
+    public String format = TextFormatting.AQUA.getName();
     public StatGroup group = StatGroup.Misc;
 
-    public Formatting getFormat() {
-        return Formatting.byName(format);
+    public TextFormatting getFormat() {
+        return TextFormatting.getByName(format);
     }
 
     public String getIconNameFormat() {
@@ -78,7 +78,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     }
 
     public String getIconNameFormat(String str) {
-        return this.getFormat() + this.icon + " " + str + Formatting.GRAY;
+        return this.getFormat() + this.icon + " " + str + TextFormatting.GRAY;
     }
 
     @Override
@@ -103,14 +103,14 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
         return getScaling().scale(stat, lvl);
     }
 
-    public List<MutableText> getCutDescTooltip() {
-        List<MutableText> list = new ArrayList<>();
+    public List<IFormattableTextComponent> getCutDescTooltip() {
+        List<IFormattableTextComponent> list = new ArrayList<>();
 
-        List<MutableText> cut = TooltipUtils.cutIfTooLong(locDesc());
+        List<IFormattableTextComponent> cut = TooltipUtils.cutIfTooLong(locDesc());
 
         for (int i = 0; i < cut.size(); i++) {
 
-            MutableText comp = new LiteralText("");
+            IFormattableTextComponent comp = new StringTextComponent("");
             if (i == 0) {
                 comp.append(" [");
             }
@@ -122,7 +122,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
 
             list.add(comp);
 
-            comp.formatted(Formatting.BLUE);
+            comp.withStyle(TextFormatting.BLUE);
 
         }
         return list;
@@ -139,17 +139,17 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
         return ExileRegistryTypes.STAT;
     }
 
-    public static Identifier DEFAULT_ICON = new Identifier(Ref.MODID, "textures/gui/stat_icons/default.png");
+    public static ResourceLocation DEFAULT_ICON = new ResourceLocation(Ref.MODID, "textures/gui/stat_icons/default.png");
 
-    public Identifier getIconLocation() {
-        return new Identifier(Ref.MODID, "textures/gui/stat_icons/" + group.id + "/" + GUID() + ".png");
+    public ResourceLocation getIconLocation() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/stat_icons/" + group.id + "/" + GUID() + ".png");
     }
 
-    transient Identifier cachedIcon = null;
+    transient ResourceLocation cachedIcon = null;
 
-    public Identifier getIconForRendering() {
+    public ResourceLocation getIconForRendering() {
         if (cachedIcon == null) {
-            Identifier id = getIconLocation();
+            ResourceLocation id = getIconLocation();
             if (ClientTextureUtils.textureExists(id)) {
                 cachedIcon = id;
             } else {
@@ -185,8 +185,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
 
     public abstract Elements getElement();
 
-    @Environment(EnvType.CLIENT)
-    public List<Text> getTooltipList(TooltipStatWithContext info) {
+    @OnlyIn(Dist.CLIENT)
+    public List<ITextComponent> getTooltipList(TooltipStatWithContext info) {
         return info.statinfo.tooltipInfo.statTooltipType.impl.getTooltipList(null, info);
     }
 

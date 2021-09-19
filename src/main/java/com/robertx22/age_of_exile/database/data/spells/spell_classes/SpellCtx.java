@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,7 +25,7 @@ public class SpellCtx {
     public LivingEntity target;
 
     public BlockPos pos;
-    public Vec3d vecPos;
+    public Vector3d vecPos;
 
     public final EntityActivation activation;
 
@@ -33,13 +33,13 @@ public class SpellCtx {
 
     public EntitySavedSpellData calculatedSpellData;
 
-    private SpellCtx(EntityActivation act, Entity sourceEntity, LivingEntity caster, LivingEntity target, BlockPos pos, Vec3d vec, EntitySavedSpellData calculatedSpellData) {
+    private SpellCtx(EntityActivation act, Entity sourceEntity, LivingEntity caster, LivingEntity target, BlockPos pos, Vector3d vec, EntitySavedSpellData calculatedSpellData) {
         this.sourceEntity = sourceEntity;
         this.caster = caster;
         this.target = target;
         this.pos = pos;
         this.calculatedSpellData = calculatedSpellData;
-        this.world = caster.world;
+        this.world = caster.level;
         this.vecPos = vec;
         this.activation = act;
 
@@ -50,7 +50,7 @@ public class SpellCtx {
     public static SpellCtx onCast(LivingEntity caster, EntitySavedSpellData data) {
         Objects.requireNonNull(caster);
         Objects.requireNonNull(data);
-        return new SpellCtx(EntityActivation.ON_CAST, caster, caster, caster, caster.getBlockPos(), caster.getPos(), data);
+        return new SpellCtx(EntityActivation.ON_CAST, caster, caster, caster, caster.blockPosition(), caster.position(), data);
     }
 
     public static SpellCtx onHit(LivingEntity caster, Entity sourceEntity, LivingEntity target, EntitySavedSpellData data) {
@@ -60,13 +60,13 @@ public class SpellCtx {
 
         Load.spells(caster)
             .onSpellHitTarget(sourceEntity, target);
-        return new SpellCtx(EntityActivation.ON_HIT, sourceEntity, caster, target, target.getBlockPos(), target.getPos(), data);
+        return new SpellCtx(EntityActivation.ON_HIT, sourceEntity, caster, target, target.blockPosition(), target.position(), data);
     }
 
     public static SpellCtx onEntityHit(SpellCtx ctx, LivingEntity target) {
         Objects.requireNonNull(ctx);
         Objects.requireNonNull(target);
-        return new SpellCtx(EntityActivation.PER_ENTITY_HIT, ctx.sourceEntity, ctx.caster, target, target.getBlockPos(), target.getPos(), ctx.calculatedSpellData);
+        return new SpellCtx(EntityActivation.PER_ENTITY_HIT, ctx.sourceEntity, ctx.caster, target, target.blockPosition(), target.position(), ctx.calculatedSpellData);
     }
 
     public static SpellCtx onExpire(LivingEntity caster, Entity sourceEntity, EntitySavedSpellData data) {
@@ -74,7 +74,7 @@ public class SpellCtx {
         Objects.requireNonNull(sourceEntity);
         Objects.requireNonNull(data);
         LivingEntity target = sourceEntity instanceof LivingEntity ? (LivingEntity) sourceEntity : null;
-        return new SpellCtx(EntityActivation.ON_EXPIRE, sourceEntity, caster, target, sourceEntity.getBlockPos(), sourceEntity.getPos(), data);
+        return new SpellCtx(EntityActivation.ON_EXPIRE, sourceEntity, caster, target, sourceEntity.blockPosition(), sourceEntity.position(), data);
     }
 
     public static SpellCtx onTick(LivingEntity caster, Entity sourceEntity, EntitySavedSpellData data) {
@@ -82,7 +82,7 @@ public class SpellCtx {
         Objects.requireNonNull(sourceEntity);
         Objects.requireNonNull(data);
         LivingEntity target = sourceEntity instanceof LivingEntity ? (LivingEntity) sourceEntity : null;
-        return new SpellCtx(EntityActivation.ON_TICK, sourceEntity, caster, target, sourceEntity.getBlockPos(), sourceEntity.getPos(), data);
+        return new SpellCtx(EntityActivation.ON_TICK, sourceEntity, caster, target, sourceEntity.blockPosition(), sourceEntity.position(), data);
     }
 
 }

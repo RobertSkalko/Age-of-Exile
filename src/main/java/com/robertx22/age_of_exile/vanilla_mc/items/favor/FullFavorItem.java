@@ -6,8 +6,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class FullFavorItem extends Item {
@@ -16,19 +16,19 @@ public class FullFavorItem extends Item {
 
     public FullFavorItem() {
 
-        super(new Item.Settings().group(CreativeTabs.MyModTab)
-            .maxCount(64));
+        super(new Item.Properties().tab(CreativeTabs.MyModTab)
+            .stacksTo(64));
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player,
-                                            Hand hand) {
+    public ActionResult<ItemStack> use(World world, PlayerEntity player,
+                                       Hand hand) {
 
-        if (!world.isClient) {
+        if (!world.isClientSide) {
             try {
-                ItemStack stack = player.getStackInHand(hand);
+                ItemStack stack = player.getItemInHand(hand);
 
-                stack.decrement(1);
+                stack.shrink(1);
 
                 Load.playerRPGData(player).favor
                     .setFavor(Load.playerRPGData(player).favor
@@ -38,7 +38,7 @@ public class FullFavorItem extends Item {
                 e.printStackTrace();
             }
         }
-        return new TypedActionResult<ItemStack>(ActionResult.PASS, player.getStackInHand(hand));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, player.getItemInHand(hand));
     }
 
 }

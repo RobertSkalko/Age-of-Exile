@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class RuneItemRegister extends BaseItemRegistrator {
 
             RuneItem item = new RuneItem(type);
 
-            Registry.register(Registry.ITEM, new Identifier(Ref.MODID, item.GUID()), item);
+            Registry.register(Registry.ITEM, new ResourceLocation(Ref.MODID, item.GUID()), item);
 
             MAP.put(type.id, item);
 

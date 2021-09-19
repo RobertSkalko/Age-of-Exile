@@ -3,11 +3,11 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.main.Ref;
-import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.network.NetworkEvent;
 
 public class SendActionToClient extends MyPacket<SendActionToClient> {
 
@@ -36,24 +36,24 @@ public class SendActionToClient extends MyPacket<SendActionToClient> {
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "send_action_to_client");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "send_action_to_client");
     }
 
     @Override
-    public void loadFromData(PacketByteBuf tag) {
-        this.action = tag.readEnumConstant(Action.class);
+    public void loadFromData(PacketBuffer tag) {
+        this.action = tag.readEnum(Action.class);
         this.pos = tag.readBlockPos();
     }
 
     @Override
-    public void saveToData(PacketByteBuf tag) {
-        tag.writeEnumConstant(action);
+    public void saveToData(PacketBuffer tag) {
+        tag.writeEnum(action);
         tag.writeBlockPos(pos);
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void onReceived(NetworkEvent.Context ctx) {
         this.action.execute(ctx.getPlayer(), pos);
     }
 

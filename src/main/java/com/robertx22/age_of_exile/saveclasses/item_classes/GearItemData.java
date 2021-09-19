@@ -21,14 +21,14 @@ import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -155,8 +155,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             .get(this.rarity);
     }
 
-    public Text name(ItemStack stack) {
-        return stack.getName();
+    public ITextComponent name(ItemStack stack) {
+        return stack.getHoverName();
     }
 
     public void WriteOverDataThatShouldStay(GearItemData newdata) {
@@ -170,10 +170,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             .get(gear_type);
     }
 
-    public List<MutableText> GetDisplayName(ItemStack stack) {
+    public List<IFormattableTextComponent> GetDisplayName(ItemStack stack) {
 
         try {
-            Formatting format = this.getRarity()
+            TextFormatting format = this.getRarity()
                 .textFormatting();
 
             if (useFullAffixedName()) {
@@ -195,12 +195,12 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return uniqueStats != null && this.uniqueStats.getUnique(this) != null && !uniqueStats.getUnique(this).base_stats.isEmpty();
     }
 
-    private List<MutableText> getFullAffixedName() {
-        List<MutableText> list = new ArrayList<>();
-        Formatting format = this.getRarity()
+    private List<IFormattableTextComponent> getFullAffixedName() {
+        List<IFormattableTextComponent> list = new ArrayList<>();
+        TextFormatting format = this.getRarity()
             .textFormatting();
 
-        MutableText text = new LiteralText("");
+        IFormattableTextComponent text = new StringTextComponent("");
 
         if (affixes.hasPrefix()) {
 
@@ -226,7 +226,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
                     .locName());
         }
 
-        text.formatted(format);
+        text.withStyle(format);
 
         list.addAll(TooltipUtils.cutIfTooLong(text, format));
 
@@ -234,19 +234,19 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     }
 
-    private List<MutableText> getUniqueName() {
-        List<MutableText> list = new ArrayList<>();
-        Formatting format = this.getRarity()
+    private List<IFormattableTextComponent> getUniqueName() {
+        List<IFormattableTextComponent> list = new ArrayList<>();
+        TextFormatting format = this.getRarity()
             .textFormatting();
 
         UniqueGear uniq = this.uniqueStats.getUnique(this);
 
-        MutableText txt = new LiteralText("").append(uniq.locName()
-            .formatted(format));
+        IFormattableTextComponent txt = new StringTextComponent("").append(uniq.locName()
+            .withStyle(format));
 
         if (!uniq.replaces_name) {
-            txt.append(new LiteralText(format + " ").append(GetBaseGearType().locName()
-                .formatted(format)));
+            txt.append(new StringTextComponent(format + " ").append(GetBaseGearType().locName()
+                .withStyle(format)));
         }
 
         list.addAll(TooltipUtils.cutIfTooLong(txt, format));
@@ -254,9 +254,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return list;
     }
 
-    private List<MutableText> getTooManyAffixesName() {
-        List<MutableText> list = new ArrayList<>();
-        Formatting format = this.getRarity()
+    private List<IFormattableTextComponent> getTooManyAffixesName() {
+        List<IFormattableTextComponent> list = new ArrayList<>();
+        TextFormatting format = this.getRarity()
             .textFormatting();
 
         Words prefix = RareItemAffixNames.getPrefix(this);
@@ -264,17 +264,17 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         if (prefix != null && suffix != null) {
 
-            MutableText txt = new LiteralText("");
+            IFormattableTextComponent txt = new StringTextComponent("");
 
-            txt.append(new LiteralText("").append(prefix.locName())
+            txt.append(new StringTextComponent("").append(prefix.locName())
                 .append(" "));
 
-            txt.append(new LiteralText("").append(suffix.locName())
-                .formatted(format));
+            txt.append(new StringTextComponent("").append(suffix.locName())
+                .withStyle(format));
 
-            txt.append(new LiteralText(" ").append(GetBaseGearType().locName()));
+            txt.append(new StringTextComponent(" ").append(GetBaseGearType().locName()));
 
-            txt.formatted(format);
+            txt.withStyle(format);
 
             list.addAll(TooltipUtils.cutIfTooLong(txt, format));
 
@@ -339,7 +339,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return list;
     }
 
-    @Environment(EnvType.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     @Override
     public void BuildTooltip(TooltipContext ctx) {
         GearTooltipUtils.BuildTooltip(this, ctx.stack, ctx.tooltip, ctx.data);

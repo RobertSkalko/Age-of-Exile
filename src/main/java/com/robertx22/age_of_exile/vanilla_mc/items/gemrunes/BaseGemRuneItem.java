@@ -8,15 +8,15 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.item.Item;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseGemRuneItem extends Item {
-    public BaseGemRuneItem(Settings settings) {
+    public BaseGemRuneItem(Properties settings) {
         super(settings);
     }
 
@@ -47,8 +47,8 @@ public abstract class BaseGemRuneItem extends Item {
 
     }
 
-    public List<Text> getBaseTooltip() {
-        List<Text> tooltip = new ArrayList<>();
+    public List<ITextComponent> getBaseTooltip() {
+        List<ITextComponent> tooltip = new ArrayList<>();
 
         if (ExileDB.Runes()
             .isEmpty() || ExileDB.Gems()
@@ -61,28 +61,28 @@ public abstract class BaseGemRuneItem extends Item {
         int efflvl = Load.Unit(ClientOnly.getPlayer())
             .getLevel();
 
-        tooltip.add(new LiteralText(""));
+        tooltip.add(new StringTextComponent(""));
         List<StatModifier> wep = gem.getFor(SlotFamily.Weapon);
-        tooltip.add(new LiteralText("On Weapon:").formatted(Formatting.RED));
+        tooltip.add(new StringTextComponent("On Weapon:").withStyle(TextFormatting.RED));
         for (StatModifier x : wep) {
             tooltip.addAll(x.getEstimationTooltip(efflvl));
         }
 
-        tooltip.add(new LiteralText(""));
+        tooltip.add(new StringTextComponent(""));
         List<StatModifier> armor = gem.getFor(SlotFamily.Armor);
-        tooltip.add(new LiteralText("On Armor:").formatted(Formatting.BLUE));
+        tooltip.add(new StringTextComponent("On Armor:").withStyle(TextFormatting.BLUE));
         for (StatModifier x : armor) {
             tooltip.addAll(x.getEstimationTooltip(efflvl));
         }
 
-        tooltip.add(new LiteralText(""));
+        tooltip.add(new StringTextComponent(""));
         List<StatModifier> jewelry = gem.getFor(SlotFamily.Jewelry);
-        tooltip.add(new LiteralText("On Jewelry:").formatted(Formatting.LIGHT_PURPLE));
+        tooltip.add(new StringTextComponent("On Jewelry:").withStyle(TextFormatting.LIGHT_PURPLE));
         for (StatModifier x : jewelry) {
             tooltip.addAll(x.getEstimationTooltip(efflvl));
         }
 
-        tooltip.add(new LiteralText(""));
+        tooltip.add(new StringTextComponent(""));
         tooltip.add(TooltipUtils.level(gem.getReqLevel()));
 
         return tooltip;

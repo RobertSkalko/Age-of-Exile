@@ -24,21 +24,21 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.boss.dragon.EnderDragonEntity;
-import net.minecraft.entity.boss.dragon.EnderDragonPart;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Formatting;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.boss.EnderDragonPart;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -87,14 +87,14 @@ public class DamageEvent extends EffectEvent {
 
         // blocking check
         if (target.isBlocking() && attackInfo != null) {
-            Vec3d vec3d = attackInfo.getSource()
-                .getPosition();
+            Vector3d vec3d = attackInfo.getSource()
+                .getSourcePosition();
             if (vec3d != null) {
-                Vec3d vec3d2 = target.getRotationVec(1.0F);
-                Vec3d vec3d3 = vec3d.relativize(target.getPos())
+                Vector3d vec3d2 = target.getViewVector(1.0F);
+                Vector3d vec3d3 = vec3d.vectorTo(target.position())
                     .normalize();
-                vec3d3 = new Vec3d(vec3d3.x, 0.0D, vec3d3.z);
-                if (vec3d3.dotProduct(vec3d2) < 0.0D) {
+                vec3d3 = new Vector3d(vec3d3.x, 0.0D, vec3d3.z);
+                if (vec3d3.dot(vec3d2) < 0.0D) {
                     this.data.setBoolean(EventData.IS_BLOCKED, true);
                 }
             }
@@ -143,13 +143,13 @@ public class DamageEvent extends EffectEvent {
 
             if (this.source instanceof PlayerEntity) {
 
-                GearItemData gear = Gear.Load(source.getMainHandStack());
+                GearItemData gear = Gear.Load(source.getMainHandItem());
 
                 if (gear != null) {
                     float atkpersec = gear.GetBaseGearType()
                         .getAttacksPerSecondCalculated(sourceData);
 
-                    float secWaited = (float) (source.age - source.getLastAttackTime()) / 20F;
+                    float secWaited = (float) (source.tickCount - source.getLastHurtMobTimestamp()) / 20F;
 
                     float secNeededToWaitForFull = 1F / atkpersec;
 
@@ -184,12 +184,12 @@ public class DamageEvent extends EffectEvent {
     private float modifyIfArrowDamage(float dmg) {
         if (attackInfo != null && attackInfo.getSource() != null) {
             if (attackInfo.getSource()
-                .getSource() instanceof ProjectileEntityDuck) {
+                .getDirectEntity() instanceof ProjectileEntityDuck) {
                 if (data.getWeaponType() == WeaponTypes.bow) {
                     // don't use this for crossbows, only bows need to be charged fully
 
                     ProjectileEntityDuck duck = (ProjectileEntityDuck) attackInfo.getSource()
-                        .getSource();
+                        .getDirectEntity();
 
                     float arrowmulti = duck.my$getDmgMulti();
 
@@ -231,15 +231,15 @@ public class DamageEvent extends EffectEvent {
                 return true;
             }
             PlayerEntity sp = (PlayerEntity) this.source;
-            if (!sp.shouldDamagePlayer((PlayerEntity) target)) {
+            if (!sp.canHarmPlayer((PlayerEntity) target)) {
                 return true;
             }
         } else {
             if (this.data.isSpellEffect()) {
-                if (target instanceof TameableEntity) {
+                if (target instanceof TamableAnimal) {
                     if (source instanceof PlayerEntity) {
-                        TameableEntity tame = (TameableEntity) target;
-                        if (tame.isOwner(source)) {
+                        TamableAnimal tame = (TamableAnimal) target;
+                        if (tame.isOwnedBy(source)) {
                             cancelDamage();
                             return true;
                         }
@@ -251,11 +251,11 @@ public class DamageEvent extends EffectEvent {
         return false;
     }
 
-    EntityAttributeModifier NO_KNOCKBACK = new EntityAttributeModifier(
+    AttributeModifier NO_KNOCKBACK = new AttributeModifier(
         UUID.fromString("e926df30-c376-11ea-87d0-0242ac131053"),
-        EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE.getTranslationKey(),
+        Attributes.KNOCKBACK_RESISTANCE.getDescriptionId(),
         100,
-        EntityAttributeModifier.Operation.ADDITION
+        AttributeModifier.Operation.ADDITION
     );
 
     @Override
@@ -279,7 +279,7 @@ public class DamageEvent extends EffectEvent {
         if (data.isDodged()) {
             cancelDamage();
             sendDamageParticle(info);
-            SoundUtils.playSound(target, SoundEvents.ITEM_SHIELD_BLOCK, 1, 1.5F);
+            SoundUtils.playSound(target, SoundEvents.SHIELD_BLOCK, 1, 1.5F);
             return;
         }
 
@@ -309,16 +309,16 @@ public class DamageEvent extends EffectEvent {
 
         if (attackInfo == null || !(attackInfo.getSource() instanceof MyDamageSource)) { // todo wtf
 
-            EntityAttributeInstance attri = target.getAttributeInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE);
+            ModifiableAttributeInstance attri = target.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
 
             if (data.getBoolean(EventData.DISABLE_KNOCKBACK) || this.getAttackType() == AttackType.dot) {
                 if (!attri.hasModifier(NO_KNOCKBACK)) {
-                    attri.addPersistentModifier(NO_KNOCKBACK);
+                    attri.addPermanentModifier(NO_KNOCKBACK);
                 }
             }
 
             if (target instanceof PlayerEntity == false) {
-                target.timeUntilRegen = 0; // disable iframes hopefully
+                target.invulnerableTime = 0; // disable iframes hopefully
                 target.hurtTime = 0;
             }
 
@@ -336,26 +336,26 @@ public class DamageEvent extends EffectEvent {
                 SoundUtils.playSound(target, sound, volume, pitch);
             }
 
-            if (target instanceof EnderDragonEntity) {
+            if (target instanceof EnderDragon) {
                 try {
                     // Dumb vanilla hardcodings require dumb workarounds
-                    EnderDragonEntity dragon = (EnderDragonEntity) target;
-                    EnderDragonPart part = Arrays.stream(dragon.getBodyParts())
+                    EnderDragon dragon = (EnderDragon) target;
+                    EnderDragonPart part = Arrays.stream(dragon.getSubEntities())
                         .filter(x -> x.name.equals("body"))
                         .findFirst()
                         .get();
-                    dragon.damagePart(part, dmgsource, vanillaDamage);
+                    dragon.hurt(part, dmgsource, vanillaDamage);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
             } else {
-                target.damage(dmgsource, vanillaDamage);
+                target.hurt(dmgsource, vanillaDamage);
             }
 
             if (target instanceof PlayerEntity == false) {
                 if (getAttackType() == AttackType.dot) {
-                    target.timeUntilRegen = 0; // disable iframes hopefully
+                    target.invulnerableTime = 0; // disable iframes hopefully
                     target.hurtTime = 0;
                 }
             }
@@ -368,7 +368,7 @@ public class DamageEvent extends EffectEvent {
 
         }
 
-        if (this.target.isDead()) {
+        if (this.target.isDeadOrDying()) {
             OnMobKilledByDamageEvent event = new OnMobKilledByDamageEvent(this);
             event.Activate();
         }
@@ -414,7 +414,7 @@ public class DamageEvent extends EffectEvent {
                     text = "Resist";
                 }
 
-                DmgNumPacket packet = new DmgNumPacket(target, text, false, Formatting.GOLD);
+                DmgNumPacket packet = new DmgNumPacket(target, text, false, TextFormatting.GOLD);
                 Packets.sendToClient(player, packet);
                 return;
             }

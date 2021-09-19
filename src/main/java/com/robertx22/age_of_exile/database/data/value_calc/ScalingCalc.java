@@ -4,10 +4,10 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import info.loenwind.autosave.annotations.Factory;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +41,12 @@ public class ScalingCalc {
         return (int) (multi.getValue(provider) * 100);
     }
 
-    public Text GetTooltipString(LevelProvider provider) {
-        return new LiteralText("(" + getMultiAsPercent(provider) + "% of " + getStat().getIconNameFormat() + ")");
+    public ITextComponent GetTooltipString(LevelProvider provider) {
+        return new StringTextComponent("(" + getMultiAsPercent(provider) + "% of " + getStat().getIconNameFormat() + ")");
     }
 
-    public List<Text> getTooltipFor(float multi, float value, MutableText statname, Elements el) {
-        List<Text> list = new ArrayList<>();
+    public List<ITextComponent> getTooltipFor(float multi, float value, IFormattableTextComponent statname, Elements el) {
+        List<ITextComponent> list = new ArrayList<>();
         String eleStr = "";
 
         if (el != null) {
@@ -54,8 +54,8 @@ public class ScalingCalc {
         }
 
         if (statname != null) {
-            list.add(new LiteralText(
-                Formatting.RED + "Scales with " + (int) (multi * 100F) + "% " + eleStr + " ").append(
+            list.add(new StringTextComponent(
+                TextFormatting.RED + "Scales with " + (int) (multi * 100F) + "% " + eleStr + " ").append(
                     statname)
                 .append(" (" + value + ")"));
         }

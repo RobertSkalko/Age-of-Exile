@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.threat_aggro;
 
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.Comparator;
@@ -16,7 +16,7 @@ public class ThreatData {
 
     public void addThreat(PlayerEntity player, MobEntity mob, int threat) {
 
-        String key = player.getUuid()
+        String key = player.getUUID()
             .toString();
         int cur = map.getOrDefault(key, 0);
         map.put(key, cur + threat);

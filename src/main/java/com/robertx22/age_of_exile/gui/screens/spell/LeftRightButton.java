@@ -1,14 +1,14 @@
 package com.robertx22.age_of_exile.gui.screens.spell;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.gui.screens.ILeftRight;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.util.ResourceLocation;
 
-public class LeftRightButton extends TexturedButtonWidget {
+public class LeftRightButton extends ImageButton {
 
-    public static Identifier TEX = Ref.guiId("leftright/leftright");
+    public static ResourceLocation TEX = Ref.guiId("leftright/leftright");
 
     public static int xSize = 22;
     public static int ySize = 22;

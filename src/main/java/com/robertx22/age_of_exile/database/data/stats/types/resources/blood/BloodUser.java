@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.stats.effects.game_changers.Bloo
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 public class BloodUser extends Stat {
     public static String GUID = "blood_user";
@@ -52,7 +52,7 @@ public class BloodUser extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return Formatting.GRAY + "You now use " + Blood.getInstance()
+        return TextFormatting.GRAY + "You now use " + Blood.getInstance()
             .getIconNameFormat() + " instead of " + Mana.getInstance()
             .getIconNameFormat();
     }

@@ -2,9 +2,9 @@ package com.robertx22.age_of_exile.uncommon.interfaces;
 
 import com.robertx22.library_of_exile.registry.IGUID;
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Effect;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 public interface IBaseAutoLoc extends IGUID {
 
@@ -47,7 +47,7 @@ public interface IBaseAutoLoc extends IGUID {
             return "block.";
         } else if (this instanceof Enchantment) {
             return "enchantment.";
-        } else if (this instanceof StatusEffect) {
+        } else if (this instanceof Effect) {
             return "effect.";
         } else {
             return "";

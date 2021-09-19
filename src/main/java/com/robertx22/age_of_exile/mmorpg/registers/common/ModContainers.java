@@ -4,26 +4,26 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackContainer;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
-import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.util.Identifier;
+import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ModContainers {
 
-    public Identifier BACKPACK = id("backpack");
-    public ScreenHandlerType<BackpackContainer> BACKPACK_TYPE = ScreenHandlerRegistry.registerExtended(BACKPACK, BackpackContainer::new);
+    public ResourceLocation BACKPACK = id("backpack");
+    public ContainerType<BackpackContainer> BACKPACK_TYPE = ScreenHandlerRegistry.registerExtended(BACKPACK, BackpackContainer::new);
 
-    public Identifier GEAR_SALVAGE = id("salvage");
-    public Identifier GEAR_SOCKET = id("socket");
-    public Identifier SCRIBE_BUFF = id("scribe_buff");
-    public Identifier COOKING_STATION = id("cooking");
-    public Identifier TABLET_STATION = id("tablet");
-    public Identifier ALCHEMY_STATION = id("alchemy");
-    public Identifier SMITHING_STATION = id("smithing");
+    public ResourceLocation GEAR_SALVAGE = id("salvage");
+    public ResourceLocation GEAR_SOCKET = id("socket");
+    public ResourceLocation SCRIBE_BUFF = id("scribe_buff");
+    public ResourceLocation COOKING_STATION = id("cooking");
+    public ResourceLocation TABLET_STATION = id("tablet");
+    public ResourceLocation ALCHEMY_STATION = id("alchemy");
+    public ResourceLocation SMITHING_STATION = id("smithing");
 
-    Identifier id(String id) {
-        return new Identifier(Ref.MODID, id);
+    ResourceLocation id(String id) {
+        return new ResourceLocation(Ref.MODID, id);
     }
 
     @SuppressWarnings("deprecation")
@@ -38,15 +38,15 @@ public class ModContainers {
     }
 
     @SuppressWarnings("deprecation")
-    void register(Identifier ide) {
+    void register(ResourceLocation ide) {
 
         ContainerProviderRegistry.INSTANCE.
             registerFactory(ide, (syncId, identifier, player, buf) -> {
 
-                final World world = player.world;
+                final World world = player.level;
                 final BlockPos pos = buf.readBlockPos();
                 return world.getBlockState(pos)
-                    .createScreenHandlerFactory(player.world, pos)
+                    .getMenuProvider(player.level, pos)
                     .createMenu(syncId, player.inventory, player);
             });
 

@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapac
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAffectsStats;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 public class AddPerPercentOfOther extends BaseDatapackStat implements IAffectsStats {
 
@@ -29,10 +29,10 @@ public class AddPerPercentOfOther extends BaseDatapackStat implements IAffectsSt
         this.scaling = StatScaling.NONE;
         this.is_long = true;
 
-        this.locname = Formatting.GRAY + "Gain " + Formatting.GREEN +
-            Stat.VAL1 + "%" + Formatting.GRAY + " of your "
+        this.locname = TextFormatting.GRAY + "Gain " + TextFormatting.GREEN +
+            Stat.VAL1 + "%" + TextFormatting.GRAY + " of your "
             + adder_stat.getIconNameFormat()
-            + Formatting.GRAY + " as extra "
+            + TextFormatting.GRAY + " as extra "
             + stat_to_add_to.getIconNameFormat();
     }
 

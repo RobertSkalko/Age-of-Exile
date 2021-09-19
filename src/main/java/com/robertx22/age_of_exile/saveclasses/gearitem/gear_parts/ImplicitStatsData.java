@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatW
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.text.Text;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +36,9 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
         List<ExactStatData> stats = GetAllStats(gear);
 

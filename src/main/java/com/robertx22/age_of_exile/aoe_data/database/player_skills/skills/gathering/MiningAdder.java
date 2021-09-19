@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
-import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import static com.robertx22.age_of_exile.mmorpg.ModRegistry.TIERED;
 
@@ -35,8 +34,6 @@ public class MiningAdder {
         b.blockExp(Blocks.NETHER_QUARTZ_ORE, 3);
 
         b.addTieredDrops(1F, x -> TIERED.STONE_TIER_MAP.get(x));
-
-
 
         return b.build();
     }

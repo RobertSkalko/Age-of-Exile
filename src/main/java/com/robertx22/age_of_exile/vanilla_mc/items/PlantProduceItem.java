@@ -13,7 +13,7 @@ public class PlantProduceItem extends Item implements IAutoLocName, IAutoModel, 
     public SkillItemTier tier;
 
     public PlantProduceItem(SkillItemTier tier) {
-        super(new Settings().group(CreativeTabs.Professions));
+        super(new Properties().tab(CreativeTabs.Professions));
         this.tier = tier;
     }
 
@@ -29,7 +29,7 @@ public class PlantProduceItem extends Item implements IAutoLocName, IAutoModel, 
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 

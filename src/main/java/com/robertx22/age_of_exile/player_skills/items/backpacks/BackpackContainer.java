@@ -4,10 +4,10 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.slot.Slot;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.PacketBuffer;
 
 import java.util.UUID;
 
@@ -18,8 +18,8 @@ public class BackpackContainer extends BaseTileContainer {
     PlayerEntity player;
     BackpackInfo info;
 
-    public BackpackContainer(int syncid, PlayerInventory playerinv, PacketByteBuf buf) {
-        this(playerinv.player.getMainHandStack(), syncid, playerinv);
+    public BackpackContainer(int syncid, PlayerInventory playerinv, PacketBuffer buf) {
+        this(playerinv.player.getMainHandItem(), syncid, playerinv);
     }
 
     public static BackpackInfo getInfo(PlayerEntity player, ItemStack stack) {
@@ -33,7 +33,7 @@ public class BackpackContainer extends BaseTileContainer {
             this.player = invPlayer.player;
 
             if (!stack.hasTag()) {
-                stack.setTag(new NbtCompound());
+                stack.setTag(new CompoundNBT());
             }
             if (!stack.getTag()
                 .contains("id")) {
@@ -78,16 +78,16 @@ public class BackpackContainer extends BaseTileContainer {
     }
 
     @Override
-    public void sendContentUpdates() {
-        super.sendContentUpdates();
+    public void broadcastChanges() {
+        super.broadcastChanges();
         backpackInv.writeItemStack();
     }
 
     @Override
-    public boolean canUse(PlayerEntity player) {
+    public boolean stillValid(PlayerEntity player) {
 
         try {
-            if (!player.getMainHandStack()
+            if (!player.getMainHandItem()
                 .getTag()
                 .getString("id")
                 .equals(stack.getTag()
@@ -97,7 +97,7 @@ public class BackpackContainer extends BaseTileContainer {
         } catch (Exception e) {
         }
 
-        if (player.getMainHandStack()
+        if (player.getMainHandItem()
             .getItem() != stack.getItem()) {
             return false;
         }
@@ -111,15 +111,15 @@ public class BackpackContainer extends BaseTileContainer {
         }
 
         @Override
-        public boolean canTakeItems(PlayerEntity player) {
-            if (getStack().getItem() instanceof BackpackItem) {
+        public boolean mayPickup(PlayerEntity player) {
+            if (getItem().getItem() instanceof BackpackItem) {
                 return false;
             }
             return true;
         }
 
         @Override
-        public boolean canInsert(ItemStack stack) {
+        public boolean mayPlace(ItemStack stack) {
             if (stack.getItem() instanceof BackpackItem) {
                 return false;
             }

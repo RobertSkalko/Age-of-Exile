@@ -11,8 +11,8 @@ public class ScepterWeapon extends ModWeapon implements IAutoModel {
     VanillaMaterial mat;
 
     public ScepterWeapon(VanillaMaterial mat) {
-        super(mat.toolmat, new Settings().maxDamage(mat.toolmat.getDurability())
-            .group(CreativeTabs.MyModTab), WeaponTypes.scepter);
+        super(mat.toolmat, new Properties().durability(mat.toolmat.getUses())
+            .tab(CreativeTabs.MyModTab), WeaponTypes.scepter);
         this.mat = mat;
     }
 

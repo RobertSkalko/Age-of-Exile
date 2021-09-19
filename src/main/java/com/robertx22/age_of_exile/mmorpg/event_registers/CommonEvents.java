@@ -29,7 +29,7 @@ import nerdhub.cardinal.components.api.event.TrackingStartCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import top.theillusivec4.curios.api.event.CurioChangeCallback;
 
@@ -69,9 +69,9 @@ public class CommonEvents {
                     try {
                         RPGPlayerData data = Load.playerRPGData(event.player);
 
-                        data.deathStats.deathPos = event.player.getBlockPos();
-                        data.deathStats.deathDim = event.player.world.getRegistryKey()
-                            .getValue()
+                        data.deathStats.deathPos = event.player.blockPosition();
+                        data.deathStats.deathDim = event.player.level.dimension()
+                            .location()
                             .toString();
                     } catch (Exception e) {
                         e.printStackTrace();

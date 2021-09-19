@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 import com.robertx22.age_of_exile.database.data.currency.*;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class CurrencyItemRegistrator extends BaseItemRegistrator {
     public CurrencyItem ORB_OF_CORRUPTION = of(new OrbOfCorruption());
 
     <T> T of(CurrencyItem c) {
-        Registry.register(Registry.ITEM, new Identifier(Ref.MODID, c.GUID()), c);
+        Registry.register(Registry.ITEM, new ResourceLocation(Ref.MODID, c.GUID()), c);
 
         currencies.add(c);
 

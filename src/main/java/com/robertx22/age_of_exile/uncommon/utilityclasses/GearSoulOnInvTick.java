@@ -13,11 +13,11 @@ public class GearSoulOnInvTick {
 
         try {
 
-            if (player.world.isClient) {
+            if (player.level.isClientSide) {
                 return;
             }
 
-            for (ItemStack stack : player.inventory.main) {
+            for (ItemStack stack : player.inventory.items) {
 
                 if (stack.isEmpty()) {
                     continue;
@@ -29,7 +29,7 @@ public class GearSoulOnInvTick {
 
                     if (soul != null && soul.canInsertIntoStack(stack)) {
                         GearItemData gear = soul.createGearData();
-                        stack.removeSubTag(StatSoulItem.TAG);
+                        stack.removeTagKey(StatSoulItem.TAG);
                         gear.saveToStack(stack);
                     }
 

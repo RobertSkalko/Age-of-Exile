@@ -16,9 +16,9 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.potion.Effect;
+import net.minecraft.util.SoundEvent;
 
 public class PartBuilder {
 
@@ -148,30 +148,30 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart particleOnTick(Double ticks, DefaultParticleType particle, Double count, Double radius) {
+    public static ComponentPart particleOnTick(Double ticks, BasicParticleType particle, Double count, Double radius) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius));
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         return c;
     }
 
-    public static ComponentPart aoeParticles(DefaultParticleType particle, Double count, Double radius) {
+    public static ComponentPart aoeParticles(BasicParticleType particle, Double count, Double radius) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius));
         return c;
     }
 
-    public static ComponentPart tickCloudParticle(Double ticks, DefaultParticleType particle, Double count, Double radius) {
+    public static ComponentPart tickCloudParticle(Double ticks, BasicParticleType particle, Double count, Double radius) {
         return tickCloudParticle(ticks, particle, count, radius, 2.5D);
     }
 
-    public static ComponentPart tickCloudParticle(Double ticks, DefaultParticleType particle, Double count, Double radius, Double randomY) {
+    public static ComponentPart tickCloudParticle(Double ticks, BasicParticleType particle, Double count, Double radius, Double randomY) {
         ComponentPart c = cloudParticles(particle, count, radius, randomY);
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         return c;
     }
 
-    public static ComponentPart onTickCleanseInRadius(Double ticks, StatusEffect effect, Double radius) {
+    public static ComponentPart onTickCleanseInRadius(Double ticks, Effect effect, Double radius) {
         ComponentPart c = cleanseInRadius(effect, radius);
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         return c;
@@ -190,14 +190,14 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart cleanseInRadius(StatusEffect effect, Double radius) {
+    public static ComponentPart cleanseInRadius(Effect effect, Double radius) {
         ComponentPart c = new ComponentPart();
         c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies));
         c.acts.add(SpellAction.POTION.createRemove(effect));
         return c;
     }
 
-    public static ComponentPart cloudParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
+    public static ComponentPart cloudParticles(BasicParticleType particle, Double count, Double radius, Double randomY) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
             .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
@@ -205,7 +205,7 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart tickGroundParticle(Double ticks, DefaultParticleType particle, Double count, Double radius, Double randomY) {
+    public static ComponentPart tickGroundParticle(Double ticks, BasicParticleType particle, Double count, Double radius, Double randomY) {
         ComponentPart c = groundParticles(particle, count, radius, randomY);
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         return c;
@@ -218,7 +218,7 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart groundEdgeParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
+    public static ComponentPart groundEdgeParticles(BasicParticleType particle, Double count, Double radius, Double randomY) {
         return groundEdgeParticles(particle, count, radius, randomY, ParticleMotion.None);
     }
 
@@ -226,7 +226,7 @@ public class PartBuilder {
 
         MapHolder map;
 
-        public static Particle builder(DefaultParticleType particle, Double count, Double radius) {
+        public static Particle builder(BasicParticleType particle, Double count, Double radius) {
             Particle p = new Particle();
             p.map = SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius);
             p.map.put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.CIRCLE.name());
@@ -246,7 +246,7 @@ public class PartBuilder {
 
     }
 
-    public static ComponentPart nova(DefaultParticleType particle, Double count, Double radius, Double motionMulti) {
+    public static ComponentPart nova(BasicParticleType particle, Double count, Double radius, Double motionMulti) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
             .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
@@ -258,7 +258,7 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart groundEdgeParticles(DefaultParticleType particle, Double count, Double radius, Double randomY, ParticleMotion motion) {
+    public static ComponentPart groundEdgeParticles(BasicParticleType particle, Double count, Double radius, Double randomY, ParticleMotion motion) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
             .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
@@ -269,7 +269,7 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart groundParticles(DefaultParticleType particle, Double count, Double radius, Double randomY) {
+    public static ComponentPart groundParticles(BasicParticleType particle, Double count, Double radius, Double randomY) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius)
             .put(MapField.PARTICLE_SHAPE, ParticleInRadiusAction.Shape.HORIZONTAL_CIRCLE.name())
@@ -311,14 +311,14 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart giveSelfEffect(StatusEffect effect, Double dura) {
+    public static ComponentPart giveSelfEffect(Effect effect, Double dura) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.POTION.createGive(effect, dura));
         c.targets.add(BaseTargetSelector.CASTER.create());
         return c;
     }
 
-    public static ComponentPart giveEffectToAlliesInRadius(StatusEffect effect, Double dura, Double radius) {
+    public static ComponentPart giveEffectToAlliesInRadius(Effect effect, Double dura, Double radius) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.POTION.createGive(effect, dura));
         c.targets.add(BaseTargetSelector.AOE.alliesInRadius(radius));
@@ -339,7 +339,7 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart giveSelfEffect(StatusEffect effect, Double dura, Double str) {
+    public static ComponentPart giveSelfEffect(Effect effect, Double dura, Double str) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.POTION.createGive(effect, dura)
             .put(MapField.POTION_STRENGTH, str));
@@ -347,7 +347,7 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart removeSelfEffect(StatusEffect effect) {
+    public static ComponentPart removeSelfEffect(Effect effect) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.POTION.createRemove(effect));
         c.targets.add(BaseTargetSelector.CASTER.create());
@@ -368,7 +368,7 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart addEffectToEnemiesInAoe(StatusEffect effect, Double radius, Double duration) {
+    public static ComponentPart addEffectToEnemiesInAoe(Effect effect, Double radius, Double duration) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.POTION.createGive(effect, duration));
         c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies));

@@ -6,16 +6,16 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.block.Block;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
-import net.minecraft.item.AliasedBlockItem;
+import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.BlockNamedItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
 
-public class MiscSeedItem extends AliasedBlockItem implements IAutoLocName, IShapelessRecipe, IAutoModel {
+public class MiscSeedItem extends BlockNamedItem implements IAutoLocName, IShapelessRecipe, IAutoModel {
 
     public MiscSeedItem(String name, Item recipeItem, Block block) {
-        super(block, new Item.Settings().group(CreativeTabs.Professions));
+        super(block, new Item.Properties().tab(CreativeTabs.Professions));
         this.name = name;
         this.recipeItem = recipeItem;
     }
@@ -24,11 +24,11 @@ public class MiscSeedItem extends AliasedBlockItem implements IAutoLocName, ISha
     Item recipeItem;
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 6);
-        fac.input(recipeItem);
-        fac.input(Items.WHEAT_SEEDS, 2);
-        return fac.criterion("player_level", trigger());
+    public ShapelessRecipeBuilder getRecipe() {
+        ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 6);
+        fac.requires(recipeItem);
+        fac.requires(Items.WHEAT_SEEDS, 2);
+        return fac.unlockedBy("player_level", trigger());
     }
 
     @Override
@@ -38,7 +38,7 @@ public class MiscSeedItem extends AliasedBlockItem implements IAutoLocName, ISha
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 

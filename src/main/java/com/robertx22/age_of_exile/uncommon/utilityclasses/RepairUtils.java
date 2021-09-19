@@ -5,10 +5,10 @@ import net.minecraft.item.ItemStack;
 public class RepairUtils {
 
     public static boolean isItemBroken(ItemStack stack) {
-        if (!stack.isDamageable()) {
+        if (!stack.isDamageableItem()) {
             return false;
         }
-        return stack.getDamage() >= stack.getMaxDamage() - 10;
+        return stack.getDamageValue() >= stack.getMaxDamage() - 10;
     }
 
 }

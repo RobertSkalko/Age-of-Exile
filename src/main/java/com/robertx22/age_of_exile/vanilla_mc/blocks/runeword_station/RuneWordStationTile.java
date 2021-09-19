@@ -12,10 +12,10 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.MutableText;
+import net.minecraft.util.text.IFormattableTextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -75,7 +75,7 @@ public class RuneWordStationTile extends BaseModificationStation {
 
         if (word != null) {
 
-            runes.forEach(x -> x.decrement(1));
+            runes.forEach(x -> x.shrink(1));
 
             GearBlueprint b = new GearBlueprint(Items.AIR, Load.Unit(player)
                 .getLevel());
@@ -95,12 +95,12 @@ public class RuneWordStationTile extends BaseModificationStation {
     }
 
     @Override
-    public ScreenHandler createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
-        return new RuneWordStationContainer(num, inventory, this, this.getPos());
+    public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
+        return new RuneWordStationContainer(num, inventory, this, this.getBlockPos());
     }
 
     @Override
-    public MutableText getDisplayName() {
+    public IFormattableTextComponent getDisplayName() {
         return CLOC.blank("block.mmorpg.socket_station");
     }
 }

@@ -1,15 +1,15 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.library_of_exile.components.forge.ICommonCap;
 import com.robertx22.library_of_exile.utils.LoadSave;
-import dev.onyxstudios.cca.api.v3.component.CopyableComponent;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.Identifier;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class WorldDungeonCap implements CopyableComponent<WorldDungeonCap> {
+public class WorldDungeonCap implements ICommonCap {
 
-    public static final Identifier RESOURCE = new Identifier(Ref.MODID, "dungeon");
+    public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "dungeon");
     private static final String LOC = "dungeon_data";
 
     World world;
@@ -20,23 +20,18 @@ public class WorldDungeonCap implements CopyableComponent<WorldDungeonCap> {
     }
 
     @Override
-    public void copyFrom(WorldDungeonCap other) {
-        NbtCompound nbt = new NbtCompound();
-        other.writeToNbt(nbt);
-        this.readFromNbt(nbt);
-    }
-
-    @Override
-    public void readFromNbt(NbtCompound nbt) {
+    public void loadFromNBT(CompoundNBT nbt) {
         this.data = LoadSave.Load(WorldDungeonsData.class, new WorldDungeonsData(), nbt, LOC);
-
         if (data == null) {
             data = new WorldDungeonsData();
         }
     }
 
     @Override
-    public void writeToNbt(NbtCompound nbt) {
+    public CompoundNBT saveToNBT() {
+        CompoundNBT nbt = new CompoundNBT();
         LoadSave.Save(data, nbt, LOC);
+        return nbt;
     }
+
 }

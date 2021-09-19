@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.uncommon.datasaving;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.registry.Registry;
 
 public class Gear {
@@ -28,7 +28,7 @@ public class Gear {
 
         if (gear != null) {
 
-            String id = Registry.ITEM.getId(stack.getItem())
+            String id = Registry.ITEM.getKey(stack.getItem())
                 .toString();
 
             if (gear.item_id.isEmpty()) {
@@ -53,7 +53,7 @@ public class Gear {
             return;
         }
         if (!stack.hasTag()) {
-            stack.setTag(new NbtCompound());
+            stack.setTag(new CompoundNBT());
         }
         if (gear != null) {
 

@@ -8,7 +8,7 @@ import net.minecraft.util.registry.Registry;
 
 public abstract class AutoItem extends Item implements IAutoLocName, IAutoModel {
 
-    public AutoItem(Settings settings) {
+    public AutoItem(Properties settings) {
         super(settings);
     }
 
@@ -19,7 +19,7 @@ public abstract class AutoItem extends Item implements IAutoLocName, IAutoModel 
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 

@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.data.ShapelessRecipeBuilder;
 
 public class CondensedEssenceItem extends TieredItem implements IAutoLocName, IAutoModel, IShapelessRecipe {
 
@@ -15,10 +15,10 @@ public class CondensedEssenceItem extends TieredItem implements IAutoLocName, IA
     }
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 1);
-        fac.input(ModRegistry.TIERED.SMELTED_ESSENCE.get(tier), 3);
-        return fac.criterion("player_level", trigger());
+    public ShapelessRecipeBuilder getRecipe() {
+        ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 1);
+        fac.requires(ModRegistry.TIERED.SMELTED_ESSENCE.get(tier), 3);
+        return fac.unlockedBy("player_level", trigger());
     }
 
     @Override

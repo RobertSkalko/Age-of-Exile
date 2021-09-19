@@ -1,25 +1,25 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.mixins.AccessorClientAdvancementManager;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementProgress;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientAdvancementManager;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.util.Identifier;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementProgress;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientAdvancements;
+import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.Map;
 
 public class ClientAdvUtils {
 
     public static boolean hasDone(String advancement) {
-        Identifier id = Identifier.tryParse(advancement);
+        ResourceLocation id = ResourceLocation.tryParse(advancement);
         if (id != null) {
-            ClientPlayNetworkHandler conn = MinecraftClient.getInstance()
-                .getNetworkHandler();
+            ClientPacketListener conn = Minecraft.getInstance()
+                .getConnection();
             if (conn != null) {
-                ClientAdvancementManager cm = conn.getAdvancementHandler();
-                Advancement adv = cm.getManager()
+                ClientAdvancements cm = conn.getAdvancements();
+                Advancement adv = cm.getAdvancements()
                     .get(id);
                 if (adv != null) {
                     Map<Advancement, AdvancementProgress> progressMap = ((AccessorClientAdvancementManager) cm).getAdvancementProgresses();

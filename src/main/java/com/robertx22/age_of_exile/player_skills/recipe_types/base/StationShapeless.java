@@ -4,90 +4,95 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import it.unimi.dsi.fastutil.ints.IntList;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.inventory.Inventory;
+import net.minecraft.core.NonNullList;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.recipe.*;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Iterator;
 
-public abstract class StationShapeless implements Recipe<Inventory> {
-    public final Identifier id;
+public abstract class StationShapeless implements Recipe<IInventory> {
+    public final ResourceLocation id;
     public final String group;
     public final ItemStack output;
-    public final DefaultedList<Ingredient> input;
+    public final NonNullList<Ingredient> input;
 
-    public StationShapeless(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input) {
+    public StationShapeless(ResourceLocation id, String group, ItemStack output, NonNullList<Ingredient> input) {
         this.id = id;
         this.group = group;
         this.output = output;
         this.input = input;
     }
 
-    public Identifier getId() {
+    public ResourceLocation getId() {
         return this.id;
     }
 
-    @Environment(EnvType.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public String getGroup() {
         return this.group;
     }
 
-    public ItemStack getOutput() {
+    public ItemStack getResultItem() {
         return this.output;
     }
 
-    public DefaultedList<Ingredient> getIngredients() {
+    public NonNullList<Ingredient> getIngredients() {
         return this.input;
     }
 
-    public boolean matches(Inventory craftingInventory, World world) {
-        RecipeMatcher recipeFinder = new RecipeMatcher();
+    public boolean matches(IInventory craftingInventory, World world) {
+        StackedContents recipeFinder = new StackedContents();
         int i = 0;
 
-        for (int j = 0; j < craftingInventory.size(); ++j) {
-            ItemStack itemStack = craftingInventory.getStack(j);
+        for (int j = 0; j < craftingInventory.getContainerSize(); ++j) {
+            ItemStack itemStack = craftingInventory.getItem(j);
             if (!itemStack.isEmpty()) {
                 ++i;
-                recipeFinder.method_20478(itemStack, 1);
+                recipeFinder.accountStack(itemStack, 1);
             }
         }
 
-        return i == this.input.size() && recipeFinder.match(this, (IntList) null);
+        return i == this.input.size() && recipeFinder.canCraft(this, (IntList) null);
     }
 
-    public ItemStack craft(Inventory craftingInventory) {
+    public ItemStack assemble(IInventory craftingInventory) {
         return this.output.copy();
     }
 
-    @Environment(EnvType.CLIENT)
-    public boolean fits(int width, int height) {
+    @OnlyIn(Dist.CLIENT)
+    public boolean canCraftInDimensions(int width, int height) {
         return width * height >= this.input.size();
     }
 
-    public abstract static class Serializer<T extends StationShapeless> implements RecipeSerializer<T> {
+    public abstract static class Serializer<T extends StationShapeless> implements IRecipeSerializer<T> {
         @Override
-        public T read(Identifier identifier, JsonObject jsonObject) {
-            String string = JsonHelper.getString(jsonObject, "group", "");
-            DefaultedList<Ingredient> defaultedList = getIngredients(JsonHelper.getArray(jsonObject, "ingredients"));
+        public T fromJson(ResourceLocation identifier, JsonObject jsonObject) {
+            String string = GsonHelper.getAsString(jsonObject, "group", "");
+            NonNullList<Ingredient> defaultedList = getIngredients(GsonHelper.getAsJsonArray(jsonObject, "ingredients"));
             if (defaultedList.isEmpty()) {
                 throw new JsonParseException("No ingredients for station shapeless recipe");
             } else if (defaultedList.size() > 3) {
                 throw new JsonParseException("Too many ingredients for station shapeless recipe");
             } else {
-                ItemStack itemStack = ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result"));
+                ItemStack itemStack = ShapedRecipe.itemFromJson(GsonHelper.getAsJsonObject(jsonObject, "result"));
                 return createNew(identifier, string, itemStack, defaultedList);
             }
         }
 
-        private static DefaultedList<Ingredient> getIngredients(JsonArray json) {
-            DefaultedList<Ingredient> defaultedList = DefaultedList.of();
+        private static NonNullList<Ingredient> getIngredients(JsonArray json) {
+            NonNullList<Ingredient> defaultedList = NonNullList.create();
 
             for (int i = 0; i < json.size(); ++i) {
                 Ingredient ingredient = Ingredient.fromJson(json.get(i));
@@ -99,34 +104,34 @@ public abstract class StationShapeless implements Recipe<Inventory> {
             return defaultedList;
         }
 
-        public abstract T createNew(Identifier id, String group, ItemStack output, DefaultedList<Ingredient> input);
+        public abstract T createNew(ResourceLocation id, String group, ItemStack output, NonNullList<Ingredient> input);
 
         @Override
-        public T read(Identifier identifier, PacketByteBuf packetByteBuf) {
-            String string = packetByteBuf.readString(32767);
+        public T fromNetwork(ResourceLocation identifier, PacketBuffer packetByteBuf) {
+            String string = packetByteBuf.readUtf(32767);
             int i = packetByteBuf.readVarInt();
-            DefaultedList<Ingredient> defaultedList = DefaultedList.ofSize(i, Ingredient.EMPTY);
+            NonNullList<Ingredient> defaultedList = NonNullList.withSize(i, Ingredient.EMPTY);
 
             for (int j = 0; j < defaultedList.size(); ++j) {
-                defaultedList.set(j, Ingredient.fromPacket(packetByteBuf));
+                defaultedList.set(j, Ingredient.fromNetwork(packetByteBuf));
             }
 
-            ItemStack itemStack = packetByteBuf.readItemStack();
+            ItemStack itemStack = packetByteBuf.readItem();
             return createNew(identifier, string, itemStack, defaultedList);
         }
 
         @Override
-        public void write(PacketByteBuf packetByteBuf, T FoodShapeless) {
-            packetByteBuf.writeString(FoodShapeless.group);
+        public void write(PacketBuffer packetByteBuf, T FoodShapeless) {
+            packetByteBuf.writeUtf(FoodShapeless.group);
             packetByteBuf.writeVarInt(FoodShapeless.input.size());
             Iterator var3 = FoodShapeless.input.iterator();
 
             while (var3.hasNext()) {
                 Ingredient ingredient = (Ingredient) var3.next();
-                ingredient.write(packetByteBuf);
+                ingredient.toNetwork(packetByteBuf);
             }
 
-            packetByteBuf.writeItemStack(FoodShapeless.output);
+            packetByteBuf.writeItem(FoodShapeless.output);
         }
     }
 }

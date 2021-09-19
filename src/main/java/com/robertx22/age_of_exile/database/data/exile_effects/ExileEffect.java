@@ -12,10 +12,10 @@ import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEff
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +74,7 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
 
     @Override
     public String locNameLangFileGUID() {
-        return "effect." + Registry.STATUS_EFFECT.getId(getStatusEffect())
+        return "effect." + Registry.MOB_EFFECT.getKey(getStatusEffect())
             .toString();
     }
 
@@ -83,15 +83,15 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
         return this.locName;
     }
 
-    public List<Text> GetTooltipString(TooltipInfo info, EntitySavedSpellData data) {
-        List<Text> list = new ArrayList<>();
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, EntitySavedSpellData data) {
+        List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new LiteralText("Status Effect: ").append(this.locName())
-            .formatted(Formatting.YELLOW));
+        list.add(new StringTextComponent("Status Effect: ").append(this.locName())
+            .withStyle(TextFormatting.YELLOW));
         if (!stats.isEmpty()) {
             list.add(Words.Stats.locName()
                 .append(": ")
-                .formatted(Formatting.GREEN));
+                .withStyle(TextFormatting.GREEN));
             stats.forEach(x -> list.addAll(x.GetTooltipString(info, data.lvl)));
         }
         if (spell != null) {
@@ -99,7 +99,7 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
         }
 
         if (max_stacks > 1) {
-            list.add(new LiteralText("Maximum Stacks: " + max_stacks));
+            list.add(new StringTextComponent("Maximum Stacks: " + max_stacks));
         }
 
         List<EffectTags> tags = this.tags.stream()
@@ -112,7 +112,7 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
             string += x.name + " ";
         }
 
-        list.add(new LiteralText(Formatting.YELLOW + string));
+        list.add(new StringTextComponent(TextFormatting.YELLOW + string));
 
         return list;
 

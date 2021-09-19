@@ -2,17 +2,17 @@ package com.robertx22.age_of_exile.database.data.requirements;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.requirements.bases.BaseRequirement;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,15 +125,15 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new SText(Formatting.GREEN + "Allowed on: "));
+        list.add(new SText(TextFormatting.GREEN + "Allowed on: "));
 
         List<BaseGearType> copy = new ArrayList<>(this.slots);
 
-        MutableText comp = new SText(Formatting.RED + "");
+        IFormattableTextComponent comp = new SText(TextFormatting.RED + "");
 
         List<BaseGearType> armors = ExileDB.GearTypes()
             .getFiltered(x -> x.family()

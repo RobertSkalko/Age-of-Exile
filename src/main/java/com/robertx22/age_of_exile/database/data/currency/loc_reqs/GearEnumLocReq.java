@@ -3,12 +3,12 @@ package com.robertx22.age_of_exile.database.data.currency.loc_reqs;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import net.minecraft.util.text.IFormattableTextComponent;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-import net.minecraft.text.MutableText;
 
 public class GearEnumLocReq extends BaseLocRequirement {
 
@@ -22,9 +22,9 @@ public class GearEnumLocReq extends BaseLocRequirement {
     Predicate<GearItemEnum> gearsThatCanDoThis;
 
     @Override
-    public MutableText getText() {
+    public IFormattableTextComponent getText() {
 
-        MutableText comp = Words.AllowedOn.locName()
+        IFormattableTextComponent comp = Words.AllowedOn.locName()
             .append(": ");
 
         List<GearItemEnum> enums = Arrays.stream(GearItemEnum.values())

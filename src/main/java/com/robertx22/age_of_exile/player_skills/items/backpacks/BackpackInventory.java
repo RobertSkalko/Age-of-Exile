@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
+import net.minecraft.core.NonNullList;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.world.ContainerHelper;
 
-public class BackpackInventory extends SimpleInventory {
+public class BackpackInventory extends Inventory {
 
     protected final ItemStack stack;
 
@@ -48,7 +48,7 @@ public class BackpackInventory extends SimpleInventory {
 
     public void writeItemStack() {
         if (isEmpty()) {
-            stack.removeSubTag("Items");
+            stack.removeTagKey("Items");
         } else {
             writeNBT(stack.getOrCreateTag());
         }
@@ -58,22 +58,22 @@ public class BackpackInventory extends SimpleInventory {
         return getSizeBackpack(5);
     }
 
-    private void readNBT(NbtCompound compound) {
-        final DefaultedList<ItemStack> list = DefaultedList.ofSize(getMaxSize(), ItemStack.EMPTY);
+    private void readNBT(CompoundNBT compound) {
+        final NonNullList<ItemStack> list = NonNullList.withSize(getMaxSize(), ItemStack.EMPTY);
 
-        Inventories.readNbt(compound, list);
+        ContainerHelper.loadAllItems(compound, list);
         for (int i = 0; i < list.size(); i++) {
-            setStack(i, list.get(i));
+            setItem(i, list.get(i));
         }
     }
 
-    private void writeNBT(NbtCompound compound) {
-        final DefaultedList<ItemStack> list = DefaultedList.ofSize(getMaxSize(), ItemStack.EMPTY);
+    private void writeNBT(CompoundNBT compound) {
+        final NonNullList<ItemStack> list = NonNullList.withSize(getMaxSize(), ItemStack.EMPTY);
         for (int i = 0; i < list.size(); i++) {
-            list.set(i, getStack(i));
+            list.set(i, getItem(i));
         }
 
-        Inventories.writeNbt(compound, list, false);
+        ContainerHelper.saveAllItems(compound, list, false);
     }
 
 }

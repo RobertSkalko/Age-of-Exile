@@ -10,7 +10,7 @@ import info.loenwind.autosave.exceptions.NoHandlerFoundException;
 import info.loenwind.autosave.handlers.IHandler;
 import info.loenwind.autosave.util.NBTAction;
 import info.loenwind.autosave.util.NullHelper;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.CompoundNBT;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -30,13 +30,12 @@ public class StatContainer implements IHandler<StatContainer> {
         return !this.statsInCalc.isEmpty();
     }
 
- 
     public void calculate() {
 
         statsInCalc.values()
-                .forEach(x -> {
-                    stats.put(x.id, x.getCalculated());
-                });
+            .forEach(x -> {
+                stats.put(x.id, x.getCalculated());
+            });
         statsInCalc.clear();
     }
 
@@ -50,7 +49,7 @@ public class StatContainer implements IHandler<StatContainer> {
 
         if (data == null) {
             Stat stat = ExileDB.Stats()
-                    .get(guid);
+                .get(guid);
             if (stat != null) {
                 statsInCalc.put(stat.GUID(), new InCalcStatData(stat.GUID()));
 
@@ -64,8 +63,8 @@ public class StatContainer implements IHandler<StatContainer> {
     }
 
     @Override
-    public boolean store(Registry registry, Set<NBTAction> phase, NbtCompound nbt, Type type, String name, StatContainer object) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException {
-        NbtCompound tag = new NbtCompound();
+    public boolean store(Registry registry, Set<NBTAction> phase, CompoundNBT nbt, Type type, String name, StatContainer object) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException {
+        CompoundNBT tag = new CompoundNBT();
 
         if (object.stats != null) {
             List<StatData> list = new ArrayList<>(object.stats.values());
@@ -75,7 +74,7 @@ public class StatContainer implements IHandler<StatContainer> {
 
             for (int i = 0; i < size; i++) {
                 tag.putString(i + "", list.get(i)
-                        .toSerializationString());
+                    .toSerializationString());
             }
         }
 
@@ -84,12 +83,12 @@ public class StatContainer implements IHandler<StatContainer> {
     }
 
     @Override
-    public StatContainer read(Registry registry, Set<NBTAction> phase, NbtCompound nbt, Type type, String name, StatContainer object) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException {
+    public StatContainer read(Registry registry, Set<NBTAction> phase, CompoundNBT nbt, Type type, String name, StatContainer object) throws IllegalArgumentException, IllegalAccessException, InstantiationException, NoHandlerFoundException {
         if (nbt.contains(name)) {
             if (object == null) {
                 object = new StatContainer();
             }
-            NbtCompound tag = NullHelper.notnullM(nbt.getCompound(name), "CompoundNBT.getCompound()");
+            CompoundNBT tag = NullHelper.notnullM(nbt.getCompound(name), "CompoundNBT.getCompound()");
 
             if (tag.contains("size")) {
                 int size = tag.getInt("size");

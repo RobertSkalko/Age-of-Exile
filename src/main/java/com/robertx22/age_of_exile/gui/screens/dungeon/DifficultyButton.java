@@ -1,28 +1,28 @@
 package com.robertx22.age_of_exile.gui.screens.dungeon;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DifficultyButton extends TexturedButtonWidget {
+public class DifficultyButton extends ImageButton {
 
     public static int xSize = 32;
     public static int ySize = 32;
 
-    static Identifier LOC = Ref.guiId("dungeon/difficulty_button");
+    static ResourceLocation LOC = Ref.guiId("dungeon/difficulty_button");
 
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
 
     public Difficulty tier;
 
@@ -36,20 +36,20 @@ public class DifficultyButton extends TexturedButtonWidget {
     public void renderToolTip(MatrixStack matrix, int x, int y) {
         if (isInside(x, y)) {
 
-            List<Text> tooltip = new ArrayList<>();
+            List<ITextComponent> tooltip = new ArrayList<>();
 
             tooltip.addAll(tier
                 .getTooltip());
 
-            tooltip.add(new LiteralText(""));
+            tooltip.add(new StringTextComponent(""));
 
             for (GearRarity r : ExileDB.GearRarities()
                 .getList()) {
                 if (r.drops_after_tier > -1) {
                     if (tier.rank >= r.drops_after_tier) {
-                        tooltip.add(new LiteralText("").append(r.locName())
+                        tooltip.add(new StringTextComponent("").append(r.locName())
                             .append(" items can drop")
-                            .formatted(r.textFormatting()));
+                            .withStyle(r.textFormatting()));
                     }
                 }
             }

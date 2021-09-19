@@ -7,9 +7,9 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
-import net.fabricmc.fabric.api.network.PacketContext;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkEvent;
 
 public class AllocateSpellPacket extends MyPacket<AllocateSpellPacket> {
 
@@ -32,28 +32,28 @@ public class AllocateSpellPacket extends MyPacket<AllocateSpellPacket> {
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "spell_alloc");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "spell_alloc");
     }
 
     @Override
-    public void loadFromData(PacketByteBuf tag) {
-        spellid = tag.readString(100);
-        schoolid = tag.readString(100);
-        action = tag.readEnumConstant(AllocateSpellPacket.ACTION.class);
-
-    }
-
-    @Override
-    public void saveToData(PacketByteBuf tag) {
-        tag.writeString(spellid, 100);
-        tag.writeString(schoolid, 100);
-        tag.writeEnumConstant(action);
+    public void loadFromData(PacketBuffer tag) {
+        spellid = tag.readUtf(100);
+        schoolid = tag.readUtf(100);
+        action = tag.readEnum(AllocateSpellPacket.ACTION.class);
 
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void saveToData(PacketBuffer tag) {
+        tag.writeUtf(spellid, 100);
+        tag.writeUtf(schoolid, 100);
+        tag.writeEnum(action);
+
+    }
+
+    @Override
+    public void onReceived(NetworkEvent.Context ctx) {
 
         EntitySpellCap.ISpellsCap spells = Load.spells(ctx.getPlayer());
 

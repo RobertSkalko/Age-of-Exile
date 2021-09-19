@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatW
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.text.Text;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +52,8 @@ public class GearAffixesData implements IGearPartTooltip {
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
-        List<Text> list = new ArrayList<Text>();
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
+        List<ITextComponent> list = new ArrayList<ITextComponent>();
         getAllStatsWithCtx(gear, info).forEach(x -> list.addAll(x.GetTooltipString(info)));
         return list;
     }

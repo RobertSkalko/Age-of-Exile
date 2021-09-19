@@ -9,19 +9,18 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.utils.LoadSave;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.core.NonNullList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -30,12 +29,12 @@ public class StatSoulItem extends Item implements IGUID {
     public static String TAG = "stat_soul";
 
     public StatSoulItem() {
-        super(new Settings().group(CreativeTabs.GearSouls));
+        super(new Properties().tab(CreativeTabs.GearSouls));
     }
 
     @Override
-    public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-        if (this.isIn(group)) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> stacks) {
+        if (this.allowdedIn(group)) {
 
             for (GearRarity rarity : ExileDB.GearRarities()
                 .getList()) {
@@ -58,9 +57,9 @@ public class StatSoulItem extends Item implements IGUID {
     }
 
     @Override
-    public Text getName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
 
-        MutableText txt = new TranslatableText(this.getTranslationKey());
+        IFormattableTextComponent txt = new TranslatableComponent(this.getDescriptionId());
 
         try {
             StatSoulData data = getSoul(stack);
@@ -79,7 +78,7 @@ public class StatSoulItem extends Item implements IGUID {
                     .append(slot.locName())
                     .append(" ")
                     .append(Words.Soul.locName())
-                    .formatted(rar.textFormatting());
+                    .withStyle(rar.textFormatting());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,26 +97,26 @@ public class StatSoulItem extends Item implements IGUID {
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag context) {
 
         StatSoulData data = StackSaving.STAT_SOULS.loadFrom(stack);
 
         if (data != null) {
             tooltip.add(TooltipUtils.gearTier(data.tier));
-            tooltip.add(new LiteralText("Item Type: ").formatted(Formatting.WHITE)
+            tooltip.add(new StringTextComponent("Item Type: ").withStyle(TextFormatting.WHITE)
                 .append(ExileDB.GearSlots()
                     .get(data.slot)
                     .locName()
-                    .formatted(Formatting.BLUE)));
+                    .withStyle(TextFormatting.BLUE)));
             tooltip.add(TooltipUtils.gearRarity(ExileDB.GearRarities()
                 .get(data.rar)));
 
         }
 
-        tooltip.add(new LiteralText(""));
+        tooltip.add(new StringTextComponent(""));
 
-        tooltip.add(new LiteralText("Infuses stats into empty gear").formatted(Formatting.AQUA));
+        tooltip.add(new StringTextComponent("Infuses stats into empty gear").withStyle(TextFormatting.AQUA));
         tooltip.add(TooltipUtils.dragOntoGearToUse());
 
     }

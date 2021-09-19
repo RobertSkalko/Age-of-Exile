@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.player_skills;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -10,16 +11,15 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfessionButton extends TexturedButtonWidget {
+public class ProfessionButton extends ImageButton {
 
     PlayerSkillEnum skill;
 
@@ -28,12 +28,12 @@ public class ProfessionButton extends TexturedButtonWidget {
     public static int BUTTON_SIZE_X = 30;
     public static int BUTTON_SIZE_Y = 30;
 
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
     ProfessionsScreen screen;
 
     public ProfessionButton(ProfessionsScreen screen, PlayerSkill se, int xPos, int yPos) {
         super(xPos, yPos, BUTTON_SIZE_X, BUTTON_SIZE_Y, 0, 0, BUTTON_SIZE_Y,
-            Load.playerRPGData(MinecraftClient.getInstance().player).professions
+            Load.playerRPGData(Minecraft.getInstance().player).professions
                 .getBackGroundTextureFor(se.type_enum), (button) -> {
                 screen.setCurrentSkill(se);
 
@@ -53,7 +53,7 @@ public class ProfessionButton extends TexturedButtonWidget {
     public void renderToolTip(MatrixStack matrix, int x, int y) {
         if (isInside(x, y)) {
 
-            List<Text> tooltip = new ArrayList<>();
+            List<ITextComponent> tooltip = new ArrayList<>();
 
             TooltipInfo info = new TooltipInfo(mc.player);
 
@@ -73,27 +73,27 @@ public class ProfessionButton extends TexturedButtonWidget {
     public static void renderIconFor(MatrixStack matrix, PlayerSkillEnum skill, int x, int y, ProfessionsScreen.IconRenderType render) {
         // this is separated because it's used in 2 different places. The screen, and overlay
 
-        MinecraftClient mc = MinecraftClient.getInstance();
+        Minecraft mc = Minecraft.getInstance();
         PlayerSkillData data = Load.playerRPGData(mc.player).professions
             .getDataFor(skill);
 
         mc.getTextureManager()
-            .bindTexture(Load.playerRPGData(mc.player).professions
+            .bind(Load.playerRPGData(mc.player).professions
                 .getBackGroundTextureFor(skill));
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, x, y, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X);
+        blit(matrix, x, y, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X);
 
         mc.getTextureManager()
-            .bindTexture(ExileDB.PlayerSkills()
+            .bind(ExileDB.PlayerSkills()
                 .get(skill.id)
                 .getIcon());
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, x + 7, y + 7, 16, 16, 16, 16, 16, 16);
+        blit(matrix, x + 7, y + 7, 16, 16, 16, 16, 16, 16);
 
         if (render == ProfessionsScreen.IconRenderType.OVERLAY || render == ProfessionsScreen.IconRenderType.SCREEN) {
             int lvl = data.getLvl();
             String lvltext = "" + lvl;
-            TextUtils.renderText(matrix, 0.8F, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 0.85F), Formatting.YELLOW);
+            TextUtils.renderText(matrix, 0.8F, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 0.85F), TextFormatting.YELLOW);
         }
 
         if (render == ProfessionsScreen.IconRenderType.SCREEN) {

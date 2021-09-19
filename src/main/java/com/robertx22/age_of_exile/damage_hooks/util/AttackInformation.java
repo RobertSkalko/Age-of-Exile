@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 
 public class AttackInformation {
 
@@ -29,8 +29,8 @@ public class AttackInformation {
         this.weapon = WeaponFinderUtil.getWeapon(source);
         this.weaponData = Gear.Load(weapon);
 
-        Preconditions.checkArgument(source.getAttacker() instanceof LivingEntity);
-        this.attackerEntity = (LivingEntity) source.getAttacker();
+        Preconditions.checkArgument(source.getEntity() instanceof LivingEntity);
+        this.attackerEntity = (LivingEntity) source.getEntity();
 
     }
 

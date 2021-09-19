@@ -9,31 +9,31 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearRaritySuggestions;
-import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.inventory.EquipmentSlotType;
 
 import java.util.Map;
 import java.util.Objects;
 
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+import static net.minecraft.command.Commands.literal;
+import static net.minecraft.commands.Commands.argument;
 
 public class TestBuild {
-    public static void register(CommandDispatcher<ServerCommandSource> commandDispatcher) {
+    public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
 
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .then(literal("dev_replace_equipped_gear").requires(e -> e.hasPermissionLevel(2))
-                    .requires(e -> e.hasPermissionLevel(2))
-                    .then(argument("target", EntityArgumentType.player())
+                .then(literal("dev_replace_equipped_gear").requires(e -> e.hasPermission(2))
+                    .requires(e -> e.hasPermission(2))
+                    .then(argument("target", EntityArgument.player())
                         .then(argument("tag", StringArgumentType.word())
                             .suggests(new SlotTagSuggestions())
                             .then(argument("level", IntegerArgumentType.integer())
                                 .then(argument("rarity", StringArgumentType
                                     .word()).suggests(new GearRaritySuggestions())
-                                    .executes(e -> execute(e.getSource(), EntityArgumentType
+                                    .executes(e -> execute(e.getSource(), EntityArgument
                                         .getPlayer(e, "target"), StringArgumentType
                                         .getString(e, "tag"), IntegerArgumentType
                                         .getInteger(e, "level"), StringArgumentType
@@ -42,19 +42,19 @@ public class TestBuild {
                                     ))))))));
     }
 
-    private static int execute(ServerCommandSource commandSource, PlayerEntity player,
+    private static int execute(CommandSource commandSource, PlayerEntity player,
                                String tag, int lvl, String rarity) {
 
         if (Objects.isNull(player)) {
             try {
-                player = commandSource.getPlayer();
+                player = commandSource.getPlayerOrException();
             } catch (CommandSyntaxException e) {
                 e.printStackTrace();
                 return 1;
             }
         }
 
-        for (Map.Entry<EquipmentSlot, BaseGearType> entry : TestBuilds.getGearsFor(BaseGearType.SlotTag.valueOf(tag), player)
+        for (Map.Entry<EquipmentSlotType, BaseGearType> entry : TestBuilds.getGearsFor(BaseGearType.SlotTag.valueOf(tag), player)
             .entrySet()) {
 
             GearBlueprint blueprint = new GearBlueprint(lvl, 0);
@@ -64,7 +64,7 @@ public class TestBuild {
                 .get(rarity));
             blueprint.gearItemSlot.set(entry.getValue());
 
-            player.equipStack(entry.getKey(), blueprint.createStack());
+            player.setItemSlot(entry.getKey(), blueprint.createStack());
 
         }
 

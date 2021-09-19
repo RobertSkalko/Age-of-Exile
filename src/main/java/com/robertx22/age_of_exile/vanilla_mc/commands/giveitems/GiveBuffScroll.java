@@ -12,24 +12,24 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.DatabaseSuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearRaritySuggestions;
-import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.command.ServerCommandSource;
 
 import java.util.Objects;
 
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+import static net.minecraft.command.Commands.argument;
+import static net.minecraft.command.Commands.literal;
 
 public class GiveBuffScroll {
-    public static void register(CommandDispatcher<ServerCommandSource> commandDispatcher) {
+    public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
 
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .then(literal("give").requires(e -> e.hasPermissionLevel(2))
+                .then(literal("give").requires(e -> e.hasPermission(2))
                     .then(literal("buff_scroll")
-                        .requires(e -> e.hasPermissionLevel(2))
-                        .then(argument("target", EntityArgumentType.player())
+                        .requires(e -> e.hasPermission(2))
+                        .then(argument("target", EntityArgument.player())
                             .then(argument("id", StringArgumentType.word())
                                 .suggests(new DatabaseSuggestions(ExileRegistryTypes.SCROLL_BUFFS))
                                 .then(argument("level", IntegerArgumentType.integer())
@@ -37,7 +37,7 @@ public class GiveBuffScroll {
                                         .suggests(new GearRaritySuggestions())
                                         .then(argument("amount", IntegerArgumentType
                                             .integer(1, 5000))
-                                            .executes(e -> execute(e.getSource(), EntityArgumentType
+                                            .executes(e -> execute(e.getSource(), EntityArgument
                                                 .getPlayer(e, "target"), StringArgumentType
                                                 .getString(e, "id"), IntegerArgumentType
                                                 .getInteger(e, "level"), StringArgumentType.getString(e, "rarity"), IntegerArgumentType
@@ -46,12 +46,12 @@ public class GiveBuffScroll {
                                             ))))))))));
     }
 
-    private static int execute(ServerCommandSource commandSource, PlayerEntity player,
+    private static int execute(CommandSource commandSource, PlayerEntity player,
                                String id, int lvl, String rar, int amount) {
 
         if (Objects.isNull(player)) {
             try {
-                player = commandSource.getPlayer();
+                player = commandSource.getPlayerOrException();
             } catch (CommandSyntaxException e) {
                 e.printStackTrace();
                 return 1;

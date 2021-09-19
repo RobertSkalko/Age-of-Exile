@@ -24,7 +24,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.ai.attributes.Attributes;
 
 import java.util.Arrays;
 import java.util.UUID;
@@ -69,7 +69,7 @@ public class DatapackStats implements ExileRegistryInit {
 
     public static Stat CONVERT_HEALTH_TO_PHYS_DMG = new ConvertFromOneToOtherStat(Health.getInstance(), new AttackDamage(Elements.Physical));
 
-    public static Stat MOVE_SPEED = new AttributeStat("move_speed", "Move Speed", UUID.fromString("7e286d81-3fcf-471c-85b8-980072b30907"), EntityAttributes.GENERIC_MOVEMENT_SPEED, true);
+    public static Stat MOVE_SPEED = new AttributeStat("move_speed", "Move Speed", UUID.fromString("7e286d81-3fcf-471c-85b8-980072b30907"), Attributes.MOVEMENT_SPEED, true);
 
     public static Stat MANA_PER_10_WIS = new MoreXPerYOf(DatapackStats.WIS, Mana.getInstance(), 10);
     public static Stat MINUS_MANA_PER_10_VIT = new MoreXPerYOf(DatapackStats.VIT, Mana.getInstance(), 10);

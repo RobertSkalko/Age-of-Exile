@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.database.data.requirements;
 
 import com.google.gson.JsonObject;
+import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.requirements.bases.BaseRequirement;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
-import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import net.minecraft.text.Text;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class TagRequirement extends BaseRequirement<TagRequirement> {
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         return new ArrayList<>();
     }
 }

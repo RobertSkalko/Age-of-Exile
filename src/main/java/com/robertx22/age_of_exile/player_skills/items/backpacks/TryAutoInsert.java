@@ -1,24 +1,24 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
 import com.robertx22.library_of_exile.utils.SoundUtils;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.SoundEvents;
 
 public class TryAutoInsert {
 
-    public static void run(PlayerInventory inv, ItemStack stack) {
+    public static void run(IInventory inv, ItemStack stack) {
 
         // try put into auto bags
-        for (int i = 0; i < inv.size(); i++) {
+        for (int i = 0; i < inv.getContainerSize(); i++) {
 
-            if (inv.getStack(i)
+            if (inv.getItem(i)
                 .getItem() instanceof BackpackItem) {
 
-                ItemStack backpack = inv.getStack(i);
+                ItemStack backpack = inv.getItem(i);
 
                 if (backpack
-                    .equals(inv.player.getMainHandStack())) {
+                    .equals(inv.player.getMainHandItem())) {
                     continue; // if holding, dont put
                 }
 
@@ -31,11 +31,11 @@ public class TryAutoInsert {
 
                 BackpackInventory binv = new BackpackInventory(inv.player, backpack);
 
-                if (binv.addStack(stack)
+                if (binv.addItem(stack)
                     .isEmpty()) {
                     stack.setCount(0);
                     binv.writeItemStack();
-                    SoundUtils.playSound(inv.player, SoundEvents.ENTITY_ITEM_PICKUP, 1, 1);
+                    SoundUtils.playSound(inv.player, SoundEvents.ITEM_PICKUP, 1, 1);
                     return;
                 }
             }

@@ -8,25 +8,25 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.block.Block;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
-import net.minecraft.item.AliasedBlockItem;
+import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.BlockNamedItem;
 import net.minecraft.util.registry.Registry;
 
-public class PlantSeedItem extends AliasedBlockItem implements IAutoLocName, IShapelessRecipe, IAutoModel {
+public class PlantSeedItem extends BlockNamedItem implements IAutoLocName, IShapelessRecipe, IAutoModel {
 
     SkillItemTier tier;
 
     public PlantSeedItem(SkillItemTier tier, Block block) {
-        super(block, new Settings().group(CreativeTabs.Professions));
+        super(block, new Properties().tab(CreativeTabs.Professions));
         this.tier = tier;
     }
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 9);
-        fac.input(ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(tier), 3);
-        fac.input(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier));
-        return fac.criterion("player_level", trigger());
+    public ShapelessRecipeBuilder getRecipe() {
+        ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 9);
+        fac.requires(ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(tier), 3);
+        fac.requires(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier));
+        return fac.unlockedBy("player_level", trigger());
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PlantSeedItem extends AliasedBlockItem implements IAutoLocName, ISh
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 

@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.gui.screens.wiki.entries.*;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.library_of_exile.registry.Database;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -166,7 +166,7 @@ public enum WikiType {
 
     public abstract List<WikiEntry> getAllEntries();
 
-    public Identifier getIconLoc() {
-        return new Identifier(Ref.MODID, "textures/gui/wiki/buttons/" + icon + ".png");
+    public ResourceLocation getIconLoc() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/wiki/buttons/" + icon + ".png");
     }
 }

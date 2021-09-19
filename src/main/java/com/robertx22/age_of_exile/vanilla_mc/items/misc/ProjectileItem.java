@@ -4,7 +4,7 @@ public class ProjectileItem extends AutoItem {
     String id;
 
     public ProjectileItem(String id) {
-        super(new Settings());
+        super(new Properties());
         this.id = id;
     }
 

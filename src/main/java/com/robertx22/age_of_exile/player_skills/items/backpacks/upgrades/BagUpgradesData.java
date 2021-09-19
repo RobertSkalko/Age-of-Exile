@@ -5,8 +5,8 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.Identifier;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -57,18 +57,18 @@ public class BagUpgradesData {
         this.getUpgrades()
             .forEach(x -> {
                 if (x.upgrade == item.upgrade) {
-                    this.upgrades.remove(Registry.ITEM.getId(x)
+                    this.upgrades.remove(Registry.ITEM.getKey(x)
                         .toString());
                 }
             });
 
-        upgrades.add(Registry.ITEM.getId(item)
+        upgrades.add(Registry.ITEM.getKey(item)
             .toString());
     }
 
     public static BagUpgradesData load(ItemStack stack) {
         if (!stack.hasTag()) {
-            stack.setTag(new NbtCompound());
+            stack.setTag(new CompoundNBT());
         }
         BagUpgradesData data = LoadSave.Load(BagUpgradesData.class, new BagUpgradesData(), stack.getTag(), "upgrades");
 
@@ -83,7 +83,7 @@ public class BagUpgradesData {
     public void saveToStack(ItemStack stack) {
 
         if (!stack.hasTag()) {
-            stack.setTag(new NbtCompound());
+            stack.setTag(new CompoundNBT());
         }
 
         LoadSave.Save(this, stack.getTag(), "upgrades");
@@ -94,7 +94,7 @@ public class BagUpgradesData {
         List<BackpackUpgradeItem> list = new ArrayList<>();
 
         upgrades.forEach(x -> {
-            Item item = Registry.ITEM.get(new Identifier(x));
+            Item item = Registry.ITEM.get(new ResourceLocation(x));
             if (item instanceof BackpackUpgradeItem) {
                 list.add((BackpackUpgradeItem) item);
             }

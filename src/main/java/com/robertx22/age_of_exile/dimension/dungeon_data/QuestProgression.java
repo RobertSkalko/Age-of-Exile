@@ -10,7 +10,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class QuestProgression {
             if (members
                 .size() > 1) {
                 for (PlayerEntity p : members) {
-                    if (p.getUuidAsString()
+                    if (p.getStringUUID()
                         .equals(single.ownerUUID)) {
                         player = p;
                     }
@@ -63,14 +63,14 @@ public class QuestProgression {
                 return; // don't check for completition if dungeon didn't finish generating
             }
 
-            player.sendMessage(new LiteralText("Dungeon Progress: " + this.num + "/" + target), false);
+            player.displayClientMessage(new StringTextComponent("Dungeon Progress: " + this.num + "/" + target), false);
 
             if (this.num >= target) {
                 fini = true;
 
                 for (PlayerEntity x : members) {
-                    x.sendMessage(
-                        new LiteralText("Quest completed!, You can now progress to the next dungeon.")
+                    x.displayClientMessage(
+                        new StringTextComponent("Quest completed!, You can now progress to the next dungeon.")
                         , false);
                     PlayerUtils.giveItem(new ItemStack(ModRegistry.MISC_ITEMS.TELEPORT_BACK), x);
                     TeamCommand.sendDpsCharts(x);

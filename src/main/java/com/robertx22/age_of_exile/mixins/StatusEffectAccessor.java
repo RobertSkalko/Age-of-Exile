@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.mixins;
 
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(StatusEffect.class)
+@Mixin(Effect.class)
 public interface StatusEffectAccessor {
     @Accessor
-    StatusEffectType getType();
+    EffectType getType();
 }

@@ -8,10 +8,10 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,65 +42,65 @@ public class FavorRank implements JsonExileRegistry<FavorRank>, IAutoGson<FavorR
 
     public float favor_drain_per_item = 1;// THIS CAN A PROBLEM. THIS CAN BE GAMED WITH MAGIC FIND!!!!!
 
-    public String text_format = Formatting.GREEN.getName();
+    public String text_format = TextFormatting.GREEN.getName();
 
     public List<String> excludedRarities = new ArrayList<>();
 
     public transient String locname = "";
 
-    public Formatting textFormatting() {
+    public TextFormatting textFormatting() {
         try {
-            return Formatting.byName(text_format);
+            return TextFormatting.getByName(text_format);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Formatting.GRAY;
+        return TextFormatting.GRAY;
     }
 
-    public Identifier getTexture() {
-        return new Identifier(Ref.MODID, "textures/gui/favor/" + GUID() + ".png");
+    public ResourceLocation getTexture() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/favor/" + GUID() + ".png");
     }
 
-    public List<MutableText> getTooltip() {
-        List<MutableText> list = new ArrayList<>();
+    public List<IFormattableTextComponent> getTooltip() {
+        List<IFormattableTextComponent> list = new ArrayList<>();
 
         list.add(Words.Favor.locName()
-            .formatted(textFormatting())
+            .withStyle(textFormatting())
             .append(": ")
-            .append(locName().formatted(textFormatting())));
+            .append(locName().withStyle(textFormatting())));
 
-        list.add(new LiteralText(""));
+        list.add(new StringTextComponent(""));
 
         boolean hasBad = false;
 
         if (!can_salvage_loot) {
-            list.add(new LiteralText("Looted gear can't be salvaged!").formatted(Formatting.RED)
-                .formatted(Formatting.BOLD));
+            list.add(new StringTextComponent("Looted gear can't be salvaged!").withStyle(TextFormatting.RED)
+                .withStyle(TextFormatting.BOLD));
             hasBad = true;
         }
         if (exp_multi < 1) {
-            list.add(new LiteralText("You gain reduced experience.").formatted(Formatting.RED)
-                .formatted(Formatting.BOLD));
+            list.add(new StringTextComponent("You gain reduced experience.").withStyle(TextFormatting.RED)
+                .withStyle(TextFormatting.BOLD));
             hasBad = true;
         } else if (exp_multi > 1) {
-            list.add(new LiteralText("You gain increased experience.").formatted(Formatting.AQUA)
-                .formatted(Formatting.BOLD));
+            list.add(new StringTextComponent("You gain increased experience.").withStyle(TextFormatting.AQUA)
+                .withStyle(TextFormatting.BOLD));
         }
 
         if (!drop_unique_gears) {
-            list.add(new LiteralText("No Unique Gear Drops.").formatted(Formatting.RED));
+            list.add(new StringTextComponent("No Unique Gear Drops.").withStyle(TextFormatting.RED));
             hasBad = true;
         }
         if (!drop_currency) {
-            list.add(new LiteralText("No Currency Drops.").formatted(Formatting.RED));
+            list.add(new StringTextComponent("No Currency Drops.").withStyle(TextFormatting.RED));
             hasBad = true;
         }
         if (!drop_gems) {
-            list.add(new LiteralText("No Gem Drops.").formatted(Formatting.RED));
+            list.add(new StringTextComponent("No Gem Drops.").withStyle(TextFormatting.RED));
             hasBad = true;
         }
         if (!drop_runes) {
-            list.add(new LiteralText("No Rune Drops.").formatted(Formatting.RED));
+            list.add(new StringTextComponent("No Rune Drops.").withStyle(TextFormatting.RED));
             hasBad = true;
         }
 
@@ -111,27 +111,27 @@ public class FavorRank implements JsonExileRegistry<FavorRank>, IAutoGson<FavorR
                     .get(x)
                     .locName()
                     .append(" rarity can't drop.")
-                    .formatted(Formatting.GOLD));
+                    .withStyle(TextFormatting.GOLD));
             });
         }
 
         if (!hasBad) {
-            list.add(new LiteralText("You are blessed by Azuna").formatted(Formatting.GREEN));
+            list.add(new StringTextComponent("You are blessed by Azuna").withStyle(TextFormatting.GREEN));
         } else {
-            list.add(new LiteralText(""));
-            list.add(new LiteralText("Azuna is disappointed in you.").formatted(Formatting.RED));
+            list.add(new StringTextComponent(""));
+            list.add(new StringTextComponent("Azuna is disappointed in you.").withStyle(TextFormatting.RED));
         }
 
         if (extra_items_per_boss > 0) {
-            list.add(new LiteralText(""));
-            list.add(new LiteralText("Bosses Drop extra items.").formatted(Formatting.LIGHT_PURPLE));
+            list.add(new StringTextComponent(""));
+            list.add(new StringTextComponent("Bosses Drop extra items.").withStyle(TextFormatting.LIGHT_PURPLE));
         }
         if (extra_items_per_chest > 0) {
-            list.add(new LiteralText("Loot Chests Drop extra items.").formatted(Formatting.LIGHT_PURPLE));
+            list.add(new StringTextComponent("Loot Chests Drop extra items.").withStyle(TextFormatting.LIGHT_PURPLE));
         }
 
-        list.add(new LiteralText(""));
-        list.add(new LiteralText("Restore favor by looting chests found in the world.").formatted(Formatting.BLUE));
+        list.add(new StringTextComponent(""));
+        list.add(new StringTextComponent("Restore favor by looting chests found in the world.").withStyle(TextFormatting.BLUE));
 
         return list;
 

@@ -8,15 +8,15 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public class ItemUtils {
-    public static Item.Settings getDefaultGearProperties() {
+    public static Item.Properties getDefaultGearProperties() {
 
-        Item.Settings prop = new Item.Settings().group(CreativeTabs.MyModTab);
+        Item.Properties prop = new Item.Properties().tab(CreativeTabs.MyModTab);
 
         return prop;
     }
@@ -39,21 +39,21 @@ public class ItemUtils {
 
                 if (rar.announce_in_chat) {
 
-                    MutableText name = new LiteralText("").append(player.getName())
-                        .formatted(Formatting.BOLD)
-                        .formatted(Formatting.LIGHT_PURPLE);
+                    IFormattableTextComponent name = new StringTextComponent("").append(player.getName())
+                        .withStyle(TextFormatting.BOLD)
+                        .withStyle(TextFormatting.LIGHT_PURPLE);
 
-                    Text txt = name
+                    ITextComponent txt = name
                         .append(" found a ")
                         .append(rar.locName()
-                            .formatted(rar.textFormatting())
-                            .formatted(Formatting.BOLD))
+                            .withStyle(rar.textFormatting())
+                            .withStyle(TextFormatting.BOLD))
                         .append(" item!");
 
                     player.getServer()
-                        .getPlayerManager()
                         .getPlayerList()
-                        .forEach(x -> x.sendMessage(txt, false));
+                        .getPlayers()
+                        .forEach(x -> x.displayClientMessage(txt, false));
 
                 }
 

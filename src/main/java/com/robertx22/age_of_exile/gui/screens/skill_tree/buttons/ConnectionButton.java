@@ -1,28 +1,28 @@
 package com.robertx22.age_of_exile.gui.screens.skill_tree.buttons;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.util.ResourceLocation;
 
-public class ConnectionButton extends TexturedButtonWidget {
+public class ConnectionButton extends ImageButton {
 
     public static int SIZE = 6;
 
-    public static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/lines.png");
+    public static ResourceLocation ID = new ResourceLocation(Ref.MODID, "textures/gui/skill_tree/lines.png");
 
     TalentTree school;
     PointData one;
     PointData two;
 
     SkillTreeScreen screen;
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
 
     public ConnectionButton(SkillTreeScreen screen, TalentTree school, PointData one, PointData two, int x, int y) {
         super(x, y, SIZE, SIZE, 0, 0, 0, ID, (action) -> {
@@ -64,11 +64,11 @@ public class ConnectionButton extends TexturedButtonWidget {
         //RenderSystem.enableDepthTest();
 
         if (connection == Perk.Connection.POSSIBLE) {
-            drawTexture(matrices, this.x, this.y, 0, 0, 6, 6);
+            blit(matrices, this.x, this.y, 0, 0, 6, 6);
         } else if (connection == Perk.Connection.LINKED) {
-            drawTexture(matrices, this.x, this.y, 6, 0, 6, 6);
+            blit(matrices, this.x, this.y, 6, 0, 6, 6);
         } else if (connection == Perk.Connection.BLOCKED) {
-            drawTexture(matrices, this.x, this.y, 12, 0, 6, 6);
+            blit(matrices, this.x, this.y, 12, 0, 6, 6);
         }
 
     }

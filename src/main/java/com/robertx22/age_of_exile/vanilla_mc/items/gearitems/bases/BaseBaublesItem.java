@@ -7,14 +7,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public abstract class BaseBaublesItem extends Item implements IAutoLocName, IAutoModel {
 
-    public BaseBaublesItem(Settings settings, String locname) {
+    public BaseBaublesItem(Properties settings, String locname) {
 
         super(settings);
         this.locname = locname;
@@ -28,7 +28,7 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName, IAut
     String locname;
 
     @Override
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return 10;
     }
 
@@ -39,7 +39,7 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName, IAut
 
     @Override
     public String locNameLangFileGUID() {
-        return getFormatedForLangFile(Registry.ITEM.getId(this)
+        return getFormatedForLangFile(Registry.ITEM.getKey(this)
             .toString());
     }
 
@@ -54,9 +54,9 @@ public abstract class BaseBaublesItem extends Item implements IAutoLocName, IAut
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 
-        return new TypedActionResult<ItemStack>(ActionResult.SUCCESS, player.getStackInHand(hand));
+        return new ActionResult<ItemStack>(ActionResultType.SUCCESS, player.getItemInHand(hand));
     }
 
 }

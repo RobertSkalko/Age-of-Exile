@@ -12,9 +12,9 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Block;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,11 +29,11 @@ public class TotemSpells implements ExileRegistryInit {
     public static String HEAL_TOTEM_ID = "rejuv_totem";
     public static String GUARD_TOTEM_ID = "guard_totem";
 
-    SpellBuilder of(Block block, String id, SpellConfiguration config, String name, List<SpellTag> tags, DefaultParticleType particle) {
+    SpellBuilder of(Block block, String id, SpellConfiguration config, String name, List<SpellTag> tags, BasicParticleType particle) {
 
         return SpellBuilder.of(id, config, name, tags)
 
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(block, 20D * 7.5D)
                 .put(MapField.ENTITY_NAME, "block")
@@ -41,7 +41,7 @@ public class TotemSpells implements ExileRegistryInit {
                 .put(MapField.FIND_NEAREST_SURFACE, false)
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
-            .onTick("block", PartBuilder.playSound(SoundEvents.BLOCK_NOTE_BLOCK_CHIME, 0.5D, 1D)
+            .onTick("block", PartBuilder.playSound(SoundEvents.NOTE_BLOCK_CHIME, 0.5D, 1D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(20D)))
 
             .onTick("block", PartBuilder.particleOnTick(2D, particle, 2D, 0.5D))

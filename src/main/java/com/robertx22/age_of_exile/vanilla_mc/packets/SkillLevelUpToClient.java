@@ -5,9 +5,9 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.SyncedToClientValues;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.library_of_exile.main.MyPacket;
-import net.fabricmc.fabric.api.network.PacketContext;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class SkillLevelUpToClient extends MyPacket<SkillLevelUpToClient> {
 
@@ -22,22 +22,22 @@ public class SkillLevelUpToClient extends MyPacket<SkillLevelUpToClient> {
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "skill_lvl");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "skill_lvl");
     }
 
     @Override
-    public void loadFromData(PacketByteBuf tag) {
-        skill = tag.readString(500);
+    public void loadFromData(PacketBuffer tag) {
+        skill = tag.readUtf(500);
     }
 
     @Override
-    public void saveToData(PacketByteBuf tag) {
-        tag.writeString(skill, 500);
+    public void saveToData(PacketBuffer tag) {
+        tag.writeUtf(skill, 500);
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void onReceived(Context ctx) {
         try {
             SyncedToClientValues.skillJustLeveled = ExileDB.PlayerSkills()
                 .get(skill).type_enum;

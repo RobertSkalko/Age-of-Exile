@@ -3,20 +3,20 @@ package com.robertx22.age_of_exile.database.data.food_effects;
 import com.mojang.datafixers.util.Pair;
 import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectType;
-import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.util.Identifier;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.food.FoodProperties;
 
 public class FoodEffectBuilder {
 
     public static FoodEffect auto(Item food) {
 
-        if (food.getFoodComponent() == null) {
+        if (food.getFoodProperties() == null) {
             return null;
         }
         if (food == Items.ROTTEN_FLESH || food == Items.SPIDER_EYE) {
@@ -27,9 +27,9 @@ public class FoodEffectBuilder {
 
         FoodEffect data = new FoodEffect();
 
-        FoodComponent foodcomponent = food.getFoodComponent();
+        FoodProperties foodcomponent = food.getFoodProperties();
 
-        float total = foodcomponent.getHunger() + foodcomponent.getSaturationModifier();
+        float total = foodcomponent.getNutrition() + foodcomponent.getSaturationModifier();
 
         total = MathHelper.clamp(total, 1, 30);
 
@@ -39,14 +39,14 @@ public class FoodEffectBuilder {
 
         float effectMod = 1;
 
-        for (Pair<StatusEffectInstance, Float> x : foodcomponent.getStatusEffects()) {
-            StatusEffect efg = x.getFirst()
-                .getEffectType();
+        for (Pair<EffectInstance, Float> x : foodcomponent.getEffects()) {
+            Effect efg = x.getFirst()
+                .getEffect();
             StatusEffectAccessor acc = (StatusEffectAccessor) efg;
 
-            if (acc.getType() == StatusEffectType.BENEFICIAL) {
+            if (acc.getType() == EffectType.BENEFICIAL) {
                 effectMod += 0.15F;
-            } else if (acc.getType() == StatusEffectType.HARMFUL) {
+            } else if (acc.getType() == EffectType.HARMFUL) {
                 effectMod -= 0.75F;
             }
         }
@@ -55,7 +55,7 @@ public class FoodEffectBuilder {
         }
         float value = total * effectMod;
 
-        Identifier effect = null;
+        ResourceLocation effect = null;
 
         if (foodcomponent.isMeat()) {
             effect = PotionRegister.FOOD_HP;

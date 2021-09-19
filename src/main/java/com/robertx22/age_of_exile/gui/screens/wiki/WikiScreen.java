@@ -1,24 +1,24 @@
 package com.robertx22.age_of_exile.gui.screens.wiki;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class WikiScreen extends BaseScreen implements INamedScreen {
-    private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/wiki/wiki.png");
+    private static final ResourceLocation BACKGROUND = new ResourceLocation(Ref.MODID, "textures/gui/wiki/wiki.png");
 
     static int sizeX = 256;
     static int sizeY = 207;
 
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
 
     public WikiScreen() {
         super(sizeX, sizeY);
@@ -39,8 +39,8 @@ public class WikiScreen extends BaseScreen implements INamedScreen {
     List<WikiEntry> entries = new ArrayList<>();
 
     @Override
-    public Identifier iconLocation() {
-        return new Identifier(Ref.MODID, "textures/gui/main_hub/icons/wiki.png");
+    public ResourceLocation iconLocation() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/wiki.png");
     }
 
     @Override

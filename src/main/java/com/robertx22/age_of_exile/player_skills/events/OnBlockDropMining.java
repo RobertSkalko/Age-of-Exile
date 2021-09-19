@@ -8,13 +8,13 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameters;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
@@ -24,23 +24,23 @@ public class OnBlockDropMining {
     public static void run(LootContext ctx, CallbackInfoReturnable<List<ItemStack>> ci) {
 
         try {
-            if (!ctx.hasParameter(LootContextParameters.BLOCK_STATE)) {
+            if (!ctx.hasParam(LootParameters.BLOCK_STATE)) {
                 return;
             }
-            if (!ctx.hasParameter(LootContextParameters.TOOL)) {
+            if (!ctx.hasParam(LootParameters.TOOL)) {
                 return;
             }
-            if (!ctx.hasParameter(LootContextParameters.ORIGIN)) {
+            if (!ctx.hasParam(LootParameters.ORIGIN)) {
                 return;
             }
-            if (!ctx.hasParameter(LootContextParameters.THIS_ENTITY)) {
+            if (!ctx.hasParam(LootParameters.THIS_ENTITY)) {
                 return;
             }
-            ItemStack stack = ctx.get(LootContextParameters.TOOL);
-            if (EnchantmentHelper.getLevel(Enchantments.SILK_TOUCH, stack) != 0) {
+            ItemStack stack = ctx.getParamOrNull(LootParameters.TOOL);
+            if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) != 0) {
                 return;
             }
-            Block block = ctx.get(LootContextParameters.BLOCK_STATE)
+            Block block = ctx.getParamOrNull(LootParameters.BLOCK_STATE)
                 .getBlock();
 
             if (ci.getReturnValue()
@@ -49,7 +49,7 @@ public class OnBlockDropMining {
                 return; // if a diamond ore is broken and drops diamond ore, don't give exp and loot
             }
 
-            Entity en = ctx.get(LootContextParameters.THIS_ENTITY);
+            Entity en = ctx.getParamOrNull(LootParameters.THIS_ENTITY);
 
             PlayerEntity player = null;
             if (en instanceof PlayerEntity) {
@@ -57,7 +57,7 @@ public class OnBlockDropMining {
             } else {
                 return;
             }
-            if (player.world.isClient) {
+            if (player.level.isClientSide) {
                 return;
             }
             PlayerSkill skill = ExileDB.PlayerSkills()

@@ -30,7 +30,7 @@ public class ChargeData {
 
     public void spendCharge(PlayerEntity player, String id) {
 
-        if (player.world.isClient) {
+        if (player.level.isClientSide) {
             return;
         }
 
@@ -52,7 +52,7 @@ public class ChargeData {
 
     public void onTicks(PlayerEntity player, int ticks) {
 
-        if (player.world.isClient) {
+        if (player.level.isClientSide) {
             return;
         }
 

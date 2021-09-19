@@ -4,10 +4,10 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.BaseTpItem;
 import com.robertx22.library_of_exile.utils.TeleportUtils;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -16,13 +16,13 @@ public class SpawnTeleportItem extends BaseTpItem {
     @Override
     public ItemStack onDoneUsing(ItemStack stack, World world, ServerPlayerEntity user) {
         try {
-            BlockPos spawn = user.getSpawnPointPosition();
+            BlockPos spawn = user.getRespawnPosition();
 
-            if (spawn != null && user.getSpawnPointDimension()
-                .getValue()
-                .equals(world.getRegistryKey()
-                    .getValue())) {
-                stack.decrement(1);
+            if (spawn != null && user.getRespawnDimension()
+                .location()
+                .equals(world.dimension()
+                    .location())) {
+                stack.shrink(1);
 
                 TeleportUtils.teleport(user, spawn);
             }
@@ -39,11 +39,11 @@ public class SpawnTeleportItem extends BaseTpItem {
     }
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this);
-        fac.input(Items.PAPER);
-        fac.input(Items.ENDER_PEARL);
-        fac.input(ModRegistry.TIERED.INK_TIER_MAP.get(SkillItemTier.TIER0));
-        return fac.criterion("player_level", trigger());
+    public ShapelessRecipeBuilder getRecipe() {
+        ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this);
+        fac.requires(Items.PAPER);
+        fac.requires(Items.ENDER_PEARL);
+        fac.requires(ModRegistry.TIERED.INK_TIER_MAP.get(SkillItemTier.TIER0));
+        return fac.unlockedBy("player_level", trigger());
     }
 }

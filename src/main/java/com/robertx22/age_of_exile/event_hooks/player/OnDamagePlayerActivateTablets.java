@@ -10,7 +10,7 @@ public class OnDamagePlayerActivateTablets extends EventConsumer<ExileEvents.OnD
     @Override
     public void accept(ExileEvents.OnDamageEntity event) {
 
-        if (event.mob.world.isClient) {
+        if (event.mob.level.isClientSide) {
             return;
         }
 

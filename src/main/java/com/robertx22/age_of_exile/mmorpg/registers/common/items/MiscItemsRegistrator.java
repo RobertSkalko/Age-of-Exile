@@ -101,10 +101,10 @@ public class MiscItemsRegistrator extends BaseItemRegistrator {
     public Item MANA_PLANT = item(new ProduceItem("Astral Fruit"), "plant/mana");
     public Item LIFE_PLANT = item(new ProduceItem("Life Berry"), "plant/life");
 
-    static Item.Settings stationProp = new Item.Settings().group(CreativeTabs.MyModTab);
+    static Item.Properties stationProp = new Item.Properties().tab(CreativeTabs.MyModTab);
 
     <T extends Block> Item blockItem(T block) {
-        return item(new BlockItem(block, stationProp), Registry.BLOCK.getId(block)
+        return item(new BlockItem(block, stationProp), Registry.BLOCK.getKey(block)
             .getPath());
     }
 

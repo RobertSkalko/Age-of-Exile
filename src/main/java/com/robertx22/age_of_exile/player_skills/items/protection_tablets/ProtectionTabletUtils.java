@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.player_skills.items.protection_tablets;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.IsSkillItemUsableUtil;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.utils.SoundUtils;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +19,12 @@ public class ProtectionTabletUtils {
         List<ItemStack> items = new ArrayList<>();
 
         try {
-            items.addAll(player.inventory.main);
+            items.addAll(player.inventory.items);
 
             for (int i = 0; i < player.getEnderChestInventory()
-                .size(); i++) {
+                .getContainerSize(); i++) {
                 items.add(player.getEnderChestInventory()
-                    .getStack(i));
+                    .getItem(i));
             }
 
             for (ItemStack stack : items) {
@@ -68,9 +68,9 @@ public class ProtectionTabletUtils {
                 }
 
                 typesUsed.add(x.tablet.type);
-                x.stack.decrement(1);
+                x.stack.shrink(1);
                 x.tablet.type.onActivate(player);
-                SoundUtils.ding(player.world, player.getBlockPos()); // find better sound effect
+                SoundUtils.ding(player.level, player.blockPosition()); // find better sound effect
             }
         }
 

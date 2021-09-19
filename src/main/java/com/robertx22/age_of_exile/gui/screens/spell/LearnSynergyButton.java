@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.spell;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.synergy.Synergy;
 import com.robertx22.age_of_exile.database.data.value_calc.LevelProvider;
@@ -10,25 +11,24 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.AllocateSynergyPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LearnSynergyButton extends TexturedButtonWidget {
+public class LearnSynergyButton extends ImageButton {
 
-    static Identifier SPELL_SLOT = Ref.guiId("spells/slots/synergy");
+    static ResourceLocation SPELL_SLOT = Ref.guiId("spells/slots/synergy");
 
     public static int BUTTON_SIZE_X = 18;
     public static int BUTTON_SIZE_Y = 18;
 
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
     SpellScreen screen;
 
     Synergy synergy;
@@ -45,23 +45,23 @@ public class LearnSynergyButton extends TexturedButtonWidget {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        MinecraftClient mc = MinecraftClient.getInstance();
+        Minecraft mc = Minecraft.getInstance();
 
         mc.getTextureManager()
-            .bindTexture(SPELL_SLOT);
+            .bind(SPELL_SLOT);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, x, y, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X);
+        blit(matrix, x, y, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X);
 
         mc.getTextureManager()
-            .bindTexture(synergy.getIconLoc());
+            .bind(synergy.getIconLoc());
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, x + 1, y + 1, 16, 16, 16, 16, 16, 16);
+        blit(matrix, x + 1, y + 1, 16, 16, 16, 16, 16, 16);
 
         int currentlvl = Load.spells(mc.player)
             .getLevelOf(synergy.GUID());
         int maxlvl = synergy.getMaxLevel();
         String lvltext = currentlvl + "/" + maxlvl;
-        TextUtils.renderText(matrix, 0.8F, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 0.85F), Formatting.GREEN);
+        TextUtils.renderText(matrix, 0.8F, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 0.85F), TextFormatting.GREEN);
 
     }
 
@@ -69,10 +69,10 @@ public class LearnSynergyButton extends TexturedButtonWidget {
     public void renderToolTip(MatrixStack matrix, int x, int y) {
         if (isInside(x, y)) {
 
-            List<Text> tooltip = new ArrayList<>();
+            List<ITextComponent> tooltip = new ArrayList<>();
 
             tooltip.add(synergy.locName()
-                .formatted(Formatting.LIGHT_PURPLE, Formatting.BOLD));
+                .withStyle(TextFormatting.LIGHT_PURPLE, TextFormatting.BOLD));
 
             TooltipInfo info = new TooltipInfo(mc.player);
 
@@ -84,7 +84,7 @@ public class LearnSynergyButton extends TexturedButtonWidget {
             int reqlvl = screen.currentSchool()
                 .getLevelNeededToAllocate(screen.currentSchool().synergies.get(synergy.GUID()));
 
-            tooltip.add(new LiteralText("Required Level: " + reqlvl).formatted(Formatting.RED));
+            tooltip.add(new StringTextComponent("Required Level: " + reqlvl).withStyle(TextFormatting.RED));
 
             GuiUtils.renderTooltip(matrix, tooltip, x, y);
 

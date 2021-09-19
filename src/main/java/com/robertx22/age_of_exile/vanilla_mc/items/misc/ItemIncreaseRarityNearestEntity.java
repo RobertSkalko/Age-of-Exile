@@ -9,46 +9,46 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import net.minecraft.world.phys.AABB;
 
 public class ItemIncreaseRarityNearestEntity extends Item {
 
     public ItemIncreaseRarityNearestEntity() {
 
-        super(new Settings().group(CreativeTabs.MyModTab)
-            .maxCount(64));
+        super(new Properties().tab(CreativeTabs.MyModTab)
+            .stacksTo(64));
 
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player,
-                                            Hand hand) {
+    public ActionResult<ItemStack> use(World world, PlayerEntity player,
+                                       Hand hand) {
 
-        if (!world.isClient) {
+        if (!world.isClientSide) {
             try {
 
-                Box box = new Box(player.getBlockPos()).expand(2);
+                AABB box = new AABB(player.blockPosition()).inflate(2);
 
-                for (LivingEntity en : world.getNonSpectatingEntities(LivingEntity.class, box)) {
+                for (LivingEntity en : world.getEntitiesOfClass(LivingEntity.class, box)) {
 
-                    if (en.isPartOf(player) == false && en instanceof PlayerEntity == false) {
+                    if (en.is(player) == false && en instanceof PlayerEntity == false) {
 
                         EntityData data = Load.Unit(en);
 
                         if (data.increaseRarity()) {
 
-                            player.getStackInHand(hand)
-                                .decrement(1);
+                            player.getItemInHand(hand)
+                                .shrink(1);
 
                             data.trySync();
 
-                            return new TypedActionResult<ItemStack>(ActionResult.PASS, player
-                                .getStackInHand(hand));
+                            return new ActionResult<ItemStack>(ActionResultType.PASS, player
+                                .getItemInHand(hand));
                         } else {
-                            player.sendMessage(Chats.No_targets_found.locName(), false);
+                            player.displayClientMessage(Chats.No_targets_found.locName(), false);
                         }
                     }
 
@@ -58,7 +58,7 @@ public class ItemIncreaseRarityNearestEntity extends Item {
                 e.printStackTrace();
             }
         }
-        return new TypedActionResult<ItemStack>(ActionResult.PASS, player.getStackInHand(hand));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, player.getItemInHand(hand));
     }
 
 }

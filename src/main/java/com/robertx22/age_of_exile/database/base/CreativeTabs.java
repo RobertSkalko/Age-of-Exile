@@ -10,29 +10,29 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 public class CreativeTabs {
 
     public static ItemGroup MyModTab = FabricItemGroupBuilder.build(
-        new Identifier(Ref.MODID, "main_group")
+        new ResourceLocation(Ref.MODID, "main_group")
         ,
         () -> new ItemStack(ModRegistry.GEAR_ITEMS.NECKLACES.get(VanillaMaterial.DIAMOND)));
 
     public static ItemGroup GearSouls = FabricItemGroupBuilder.build(
-        new Identifier(Ref.MODID, "gear_soul_group")
+        new ResourceLocation(Ref.MODID, "gear_soul_group")
         ,
         () -> new ItemStack(Items.SOUL_LANTERN));
 
     public static ItemGroup GemRuneCurrency = FabricItemGroupBuilder.build(
-        new Identifier(Ref.MODID, "gemrunecurrency_group")
+        new ResourceLocation(Ref.MODID, "gemrunecurrency_group")
         ,
         () -> new ItemStack(ModRegistry.GEMS.MAP.get(GemItem.GemType.GARNET)
             .get(GemItem.GemRank.PERFECT)));
 
     public static ItemGroup Professions = FabricItemGroupBuilder.build(
-        new Identifier(Ref.MODID, "proffs_group")
+        new ResourceLocation(Ref.MODID, "proffs_group")
         ,
         () -> new ItemStack(ModRegistry.ALCHEMY.POTIONS_MAP.get(ImmutablePair.of(SkillItemTier.TIER4, PotionType.HEALTH))));
 

@@ -15,7 +15,7 @@ public class OnCraftMixin {
     @Inject(method = "onCraft(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;I)V", at = @At(value = "HEAD"))
     public void onCraft(World world, PlayerEntity player, int amount, CallbackInfo ci) {
         try {
-            if (player != null && player.world.isClient) {
+            if (player != null && player.level.isClientSide) {
                 return;
             }
             ItemStack stack = (ItemStack) (Object) this;

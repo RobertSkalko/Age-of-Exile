@@ -8,15 +8,15 @@ import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -26,8 +26,8 @@ public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoMod
     public SkillItemTier tier;
 
     public ProtectionTabletItem(SkillItemTier tier, TabletTypes type) {
-        super(new Settings().group(CreativeTabs.Professions)
-            .maxCount(8));
+        super(new Properties().tab(CreativeTabs.Professions)
+            .stacksTo(8));
         this.tier = tier;
         this.type = type;
     }
@@ -39,7 +39,7 @@ public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoMod
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 
@@ -59,15 +59,15 @@ public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoMod
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag context) {
 
         try {
-            tooltip.add(new LiteralText("Keep in Inventory or Ender chest."));
-            tooltip.add(new LiteralText("Activates automatically to save you."));
+            tooltip.add(new StringTextComponent("Keep in Inventory or Ender chest."));
+            tooltip.add(new StringTextComponent("Activates automatically to save you."));
 
             if (type.cooldownTicks() > 0) {
-                tooltip.add(new LiteralText("Cooldown: " + type.cooldownTicks() / 20 + "s"));
+                tooltip.add(new StringTextComponent("Cooldown: " + type.cooldownTicks() / 20 + "s"));
             }
         } catch (Exception e) {
             e.printStackTrace();

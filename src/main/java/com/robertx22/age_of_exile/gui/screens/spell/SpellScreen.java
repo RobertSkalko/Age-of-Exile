@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.spell;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -16,22 +17,21 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
 public class SpellScreen extends BaseScreen implements INamedScreen, ILeftRight {
-    private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/spells/spell_school_background.png");
+    private static final ResourceLocation BACKGROUND = new ResourceLocation(Ref.MODID, "textures/gui/spells/spell_school_background.png");
 
     static int sizeX = 250;
     static int sizeY = 233;
     public static boolean IS_PICKING_HOTBAR_SPELL = false;
     public static int NUMBER_OF_HOTBAR_FOR_PICKING = 0;
 
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
 
     public List<SpellSchool> schoolsInOrder = ExileDB.SpellSchools()
         .getList();
@@ -50,8 +50,8 @@ public class SpellScreen extends BaseScreen implements INamedScreen, ILeftRight 
     }
 
     @Override
-    public Identifier iconLocation() {
-        return new Identifier(Ref.MODID, "textures/gui/main_hub/icons/spells.png");
+    public ResourceLocation iconLocation() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/spells.png");
     }
 
     @Override
@@ -130,32 +130,32 @@ public class SpellScreen extends BaseScreen implements INamedScreen, ILeftRight 
 
         try {
             mc.getTextureManager()
-                .bindTexture(BACKGROUND);
+                .bind(BACKGROUND);
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-            drawTexture(matrix, mc.getWindow()
-                    .getScaledWidth() / 2 - sizeX / 2,
+            blit(matrix, mc.getWindow()
+                    .getGuiScaledWidth() / 2 - sizeX / 2,
                 mc.getWindow()
-                    .getScaledHeight() / 2 - sizeY / 2, 0, 0, sizeX, sizeY
+                    .getGuiScaledHeight() / 2 - sizeY / 2, 0, 0, sizeX, sizeY
             );
 
             mc.getTextureManager()
-                .bindTexture(currentSchool().getIconLoc());
+                .bind(currentSchool().getIconLoc());
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-            drawTexture(matrix, guiLeft + 108, guiTop + 8, 34, 34, 34, 34, 34, 34);
+            blit(matrix, guiLeft + 108, guiTop + 8, 34, 34, 34, 34, 34, 34);
 
             // background
             mc.getTextureManager()
-                .bindTexture(currentSchool().getBackgroundLoc());
+                .bind(currentSchool().getBackgroundLoc());
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-            drawTexture(matrix, guiLeft + 7, guiTop + 7, 93, 36, 93, 36, 93, 36);
-            drawTexture(matrix, guiLeft + 150, guiTop + 7, 93, 36, 93, 36, 93, 36);
+            blit(matrix, guiLeft + 7, guiTop + 7, 93, 36, 93, 36, 93, 36);
+            blit(matrix, guiLeft + 150, guiTop + 7, 93, 36, 93, 36, 93, 36);
 
             super.render(matrix, x, y, ticks);
 
             String txt = "Points: " + Load.spells(mc.player)
                 .getFreeSpellPoints();
-            GuiUtils.renderScaledText(matrix, guiLeft + 125, guiTop + 215, 1D, txt, Formatting.GREEN);
+            GuiUtils.renderScaledText(matrix, guiLeft + 125, guiTop + 215, 1D, txt, TextFormatting.GREEN);
 
             buttons.forEach(b -> b.renderToolTip(matrix, x, y));
         } catch (Exception e) {

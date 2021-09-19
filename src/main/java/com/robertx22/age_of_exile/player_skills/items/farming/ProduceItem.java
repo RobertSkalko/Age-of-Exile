@@ -8,7 +8,7 @@ public class ProduceItem extends AutoItem {
     transient String name;
 
     public ProduceItem(String name) {
-        super(new Settings().group(CreativeTabs.Professions));
+        super(new Properties().tab(CreativeTabs.Professions));
         this.name = name;
     }
 

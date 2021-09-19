@@ -10,8 +10,8 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
@@ -32,7 +32,7 @@ public class TestSpell {
                     "Throw out a ball of poison, dealing " + SpellCalcs.POISON_BALL.getLocDmgTooltip()
                         + " " + Elements.Earth.getIconNameDmg())
                 .weaponReq(CastingWeapon.MAGE_WEAPON)
-                .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
+                .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
                 .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 5D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 40D, true)))
                 .onTick(PartBuilder.particleOnTick(1D, PARTICLES.POISON, 1D, 0.15D))
                 .onHit(PartBuilder.damage(SpellCalcs.POISON_BALL, Elements.Earth))

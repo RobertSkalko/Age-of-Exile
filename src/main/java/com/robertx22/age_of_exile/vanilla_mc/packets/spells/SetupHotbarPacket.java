@@ -5,10 +5,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
-import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 import org.jetbrains.annotations.NotNull;
 
 public class SetupHotbarPacket extends MyPacket<SetupHotbarPacket> {
@@ -25,24 +25,24 @@ public class SetupHotbarPacket extends MyPacket<SetupHotbarPacket> {
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "setup_hotbar");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "setup_hotbar");
     }
 
     @Override
-    public void loadFromData(PacketByteBuf tag) {
+    public void loadFromData(PacketBuffer tag) {
         this.number = tag.readInt();
-        this.spell = tag.readString(111);
+        this.spell = tag.readUtf(111);
     }
 
     @Override
-    public void saveToData(PacketByteBuf tag) {
+    public void saveToData(PacketBuffer tag) {
         tag.writeInt(number);
-        tag.writeString(spell, 111);
+        tag.writeUtf(spell, 111);
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void onReceived(Context ctx) {
         PlayerEntity player = ctx.getPlayer();
 
         EntitySpellCap.ISpellsCap spells = Load.spells(player);

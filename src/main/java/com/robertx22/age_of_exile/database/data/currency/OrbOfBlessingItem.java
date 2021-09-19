@@ -13,7 +13,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.BaseStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
@@ -85,16 +85,16 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
-    public ShapedRecipeJsonFactory getRecipe() {
+    public ShapedRecipeBuilder getRecipe() {
         return shaped(ModRegistry.CURRENCIES.ORB_OF_BLESSING)
-            .input('#', ModRegistry.MISC_ITEMS.CRYSTALLIZED_ESSENCE)
-            .input('t', ModRegistry.CURRENCIES.ORB_OF_TURBULENCE)
-            .input('v', Items.COAL)
-            .input('o', ModRegistry.MISC_ITEMS.T4_DUST())
+            .define('#', ModRegistry.MISC_ITEMS.CRYSTALLIZED_ESSENCE)
+            .define('t', ModRegistry.CURRENCIES.ORB_OF_TURBULENCE)
+            .define('v', Items.COAL)
+            .define('o', ModRegistry.MISC_ITEMS.T4_DUST())
             .pattern("v#v")
             .pattern("vtv")
             .pattern("ovo")
-            .criterion("player_level", trigger());
+            .unlockedBy("player_level", trigger());
     }
 
 }

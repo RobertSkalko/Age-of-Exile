@@ -7,11 +7,11 @@ import com.robertx22.age_of_exile.database.data.spells.entities.StationaryFallin
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.MobCategory;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -40,12 +40,12 @@ public class ModEntities {
     private <T extends Entity> EntityType<T> projectile(EntityType.EntityFactory<T> factory,
                                                         String id, boolean itemRender) {
 
-        EntityType<T> type = FabricEntityTypeBuilder.<T>create(SpawnGroup.MISC, factory)
+        EntityType<T> type = FabricEntityTypeBuilder.<T>create(MobCategory.MISC, factory)
             .dimensions(new EntityDimensions(0.5F, 0.5F, true))
             .trackedUpdateRate(10)
             .build();
 
-        Registry.register(Registry.ENTITY_TYPE, new Identifier(Ref.MODID, id), type);
+        Registry.register(Registry.ENTITY_TYPE, new ResourceLocation(Ref.MODID, id), type);
 
         ENTITY_TYPES.add(type);
 

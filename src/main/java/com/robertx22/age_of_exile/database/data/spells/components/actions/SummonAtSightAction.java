@@ -8,8 +8,8 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.phys.HitResult;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,20 +24,20 @@ public class SummonAtSightAction extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        Optional<EntityType<?>> projectile = EntityType.get(data.get(MapField.PROJECTILE_ENTITY));
+        Optional<EntityType<?>> projectile = EntityType.byString(data.get(MapField.PROJECTILE_ENTITY));
 
         Double distance = data.getOrDefault(MapField.DISTANCE, 10D);
         Double height = data.getOrDefault(MapField.HEIGHT, 10D);
 
-        HitResult ray = ctx.caster.raycast(distance, 0.0F, false);
-        Vec3d pos = ray.getPos();
+        HitResult ray = ctx.caster.pick(distance, 0.0F, false);
+        Vector3d pos = ray.getLocation();
 
         Entity en = projectile.get()
             .create(ctx.world);
         SpellUtils.initSpellEntity(en, ctx.caster, ctx.calculatedSpellData, data);
-        en.setPosition(pos.x, pos.y + height, pos.z);
+        en.setPos(pos.x, pos.y + height, pos.z);
 
-        ctx.caster.world.spawnEntity(en);
+        ctx.caster.level.addFreshEntity(en);
 
     }
 
@@ -47,7 +47,7 @@ public class SummonAtSightAction extends SpellAction {
         c.put(MapField.GRAVITY, false);
         c.put(MapField.ENTITY_NAME, Spell.DEFAULT_EN_NAME);
         c.put(MapField.HEIGHT, height);
-        c.put(MapField.PROJECTILE_ENTITY, EntityType.getId(type)
+        c.put(MapField.PROJECTILE_ENTITY, EntityType.getKey(type)
             .toString());
         c.type = GUID();
         this.validate(c);

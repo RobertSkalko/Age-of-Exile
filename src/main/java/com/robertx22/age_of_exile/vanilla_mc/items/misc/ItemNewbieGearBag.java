@@ -13,19 +13,19 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
+import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.text.LiteralText;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.ModList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 public class ItemNewbieGearBag extends Item {
 
     public ItemNewbieGearBag() {
-        super(new Settings().group(CreativeTabs.MyModTab));
+        super(new Properties().tab(CreativeTabs.MyModTab));
 
     }
 
@@ -97,7 +97,7 @@ public class ItemNewbieGearBag extends Item {
 
                 ItemStack stack = GearSoulLootGen.createSoulBasedOnGear(b);
 
-                EnchantedBookItem.addEnchantment(stack, new EnchantmentLevelEntry(Enchantments.UNBREAKING, 3));
+                EnchantedBookItem.addEnchantment(stack, new EnchantmentData(Enchantments.UNBREAKING, 3));
 
                 PlayerUtils.giveItem(stack, player);
 
@@ -108,9 +108,9 @@ public class ItemNewbieGearBag extends Item {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
 
-        if (!worldIn.isClient) {
+        if (!worldIn.isClientSide) {
             try {
 
                 List<Perk> starts = Load.playerRPGData(playerIn).talents
@@ -125,8 +125,8 @@ public class ItemNewbieGearBag extends Item {
                     defaultContent.give(playerIn);
                     // ItemNewbieGearBag.giveNewbieItemsFor(playerIn, starts.get(0));
 
-                    if (FabricLoader.getInstance()
-                        .isModLoaded("patchouli")) {
+                    if (ModList.get()
+                        .isLoaded("patchouli")) {
                         /*
                         // dont give till i update it
                         // guide book
@@ -139,20 +139,20 @@ public class ItemNewbieGearBag extends Item {
                          */
                     }
 
-                    playerIn.getStackInHand(handIn)
-                        .decrement(1);
+                    playerIn.getItemInHand(handIn)
+                        .shrink(1);
 
                 } else {
-                    playerIn.sendMessage(new LiteralText("Choose your path to open this. (Press [H] and then open Talent Tree scren"), false);
+                    playerIn.displayClientMessage(new StringTextComponent("Choose your path to open this. (Press [H] and then open Talent Tree scren"), false);
                 }
 
-                return new TypedActionResult<ItemStack>(ActionResult.PASS, playerIn.getStackInHand(handIn));
+                return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return new TypedActionResult<ItemStack>(ActionResult.PASS, playerIn.getStackInHand(handIn));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
     }
 
     private static GearBlueprint getBlueprint(BaseGearType type) {

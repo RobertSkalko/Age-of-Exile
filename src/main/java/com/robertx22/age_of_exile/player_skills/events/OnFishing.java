@@ -9,12 +9,12 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameterSets;
+import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.world.entity.projectile.FishingHook;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
@@ -25,18 +25,18 @@ public class OnFishing {
 
         try {
 
-            if (!ctx.hasParameter(LootContextParameters.THIS_ENTITY)) {
+            if (!ctx.hasParam(LootParameters.THIS_ENTITY)) {
                 return;
             }
 
-            if (!lootTable.getType()
-                .equals(LootContextTypes.FISHING)) {
+            if (!lootTable.getParamSet()
+                .equals(LootParameterSets.FISHING)) {
                 return;
             }
-            Entity en = ctx.get(LootContextParameters.THIS_ENTITY);
+            Entity en = ctx.getParamOrNull(LootParameters.THIS_ENTITY);
             PlayerEntity player = null;
-            if (en instanceof FishingBobberEntity) {
-                FishingBobberEntity bob = (FishingBobberEntity) en;
+            if (en instanceof FishingHook) {
+                FishingHook bob = (FishingHook) en;
                 player = bob.getPlayerOwner();
             }
 

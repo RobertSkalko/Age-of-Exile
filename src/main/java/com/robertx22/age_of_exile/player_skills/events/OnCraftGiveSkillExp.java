@@ -14,7 +14,7 @@ import java.util.Optional;
 public class OnCraftGiveSkillExp {
     public static void onCraft(ItemStack stack, World world, PlayerEntity player, int amount, CallbackInfo ci) {
 
-        if (world.isClient || player == null || stack.isEmpty()) {
+        if (world.isClientSide || player == null || stack.isEmpty()) {
             return;
         }
 

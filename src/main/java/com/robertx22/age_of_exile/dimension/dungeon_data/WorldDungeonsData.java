@@ -36,7 +36,7 @@ public class WorldDungeonsData {
     public void set(PlayerEntity player, BlockPos pos, SingleDungeonData data) {
 
         String key = keyOf(pos);
-        String playerUUID = player.getUuid()
+        String playerUUID = player.getUUID()
             .toString();
 
         if (!map.containsKey(key)) {

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.overlays;
 
 import com.robertx22.age_of_exile.saveclasses.PointData;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 
 public enum GuiPosition {
 
@@ -10,9 +10,9 @@ public enum GuiPosition {
         public PointData getPos() {
             return new PointData(
                 mc().getWindow()
-                    .getScaledWidth() / 2,
+                    .getGuiScaledWidth() / 2,
                 mc().getWindow()
-                    .getScaledHeight());
+                    .getGuiScaledHeight());
         }
     },
     TOP_LEFT {
@@ -24,7 +24,7 @@ public enum GuiPosition {
 
     public abstract PointData getPos();
 
-    static MinecraftClient mc() {
-        return MinecraftClient.getInstance();
+    static Minecraft mc() {
+        return Minecraft.getInstance();
     }
 }

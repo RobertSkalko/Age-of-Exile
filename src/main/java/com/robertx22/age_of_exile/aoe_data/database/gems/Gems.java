@@ -12,7 +12,7 @@ public class Gems implements ExileRegistryInit {
     public void registerAll() {
         ModRegistry.GEMS.ALL.forEach(x -> {
             Gem gem = new Gem();
-            gem.item_id = Registry.ITEM.getId(x)
+            gem.item_id = Registry.ITEM.getKey(x)
                 .toString();
             gem.identifier = x.gemType.id + x.gemRank.num;
 

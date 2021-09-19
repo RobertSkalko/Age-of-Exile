@@ -9,22 +9,22 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectType;
-import net.minecraft.text.Text;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectType;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 
-public abstract class FoodEffectPotion extends StatusEffect {
+public abstract class FoodEffectPotion extends Effect {
 
     protected FoodEffectPotion(int color) {
-        super(StatusEffectType.BENEFICIAL, color);
+        super(EffectType.BENEFICIAL, color);
     }
 
     public abstract ResourceType resourceType();
 
-    public abstract List<Text> GetTooltipString(TooltipInfo info, int duration, int amplifier);
+    public abstract List<ITextComponent> GetTooltipString(TooltipInfo info, int duration, int amplifier);
 
     public float getTotalRestored(EntityData data, int amplifier) {
         return Health.getInstance()
@@ -39,16 +39,16 @@ public abstract class FoodEffectPotion extends StatusEffect {
     }
 
     @Override
-    public void applyUpdateEffect(LivingEntity en, int amplifier) {
+    public void applyEffectTick(LivingEntity en, int amplifier) {
 
         try {
-            if (en.age % 20 == 0) {
+            if (en.tickCount % 20 == 0) {
 
-                if (en.world.isClient) {
+                if (en.level.isClientSide) {
                     return;
                 }
 
-                StatusEffectInstance instance = en.getStatusEffect(this);
+                EffectInstance instance = en.getEffect(this);
 
                 EntityData data = Load.Unit(en);
 
@@ -66,12 +66,12 @@ public abstract class FoodEffectPotion extends StatusEffect {
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplitude) {
+    public boolean isDurationEffectTick(int duration, int amplitude) {
         return duration >= 1;
     }
 
     @Override
-    public boolean isInstant() {
+    public boolean isInstantenous() {
         return false;
     }
 }

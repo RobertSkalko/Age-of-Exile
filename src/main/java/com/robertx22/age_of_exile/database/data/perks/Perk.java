@@ -16,14 +16,14 @@ import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.registry.serialization.IByteBuf;
-import net.minecraft.advancement.Advancement;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,14 +45,14 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
     public List<OptScaleExactStat> stats = new ArrayList<>();
 
     @Override
-    public Perk getFromBuf(PacketByteBuf buf) {
+    public Perk getFromBuf(PacketBuffer buf) {
         Perk data = new Perk();
 
-        data.type = PerkType.valueOf(buf.readString(50));
-        data.identifier = buf.readString(100);
-        data.lock_under_adv = buf.readString(100);
-        data.icon = buf.readString(150);
-        data.one_of_a_kind = buf.readString(80);
+        data.type = PerkType.valueOf(buf.readUtf(50));
+        data.identifier = buf.readUtf(100);
+        data.lock_under_adv = buf.readUtf(100);
+        data.icon = buf.readUtf(150);
+        data.one_of_a_kind = buf.readUtf(80);
         if (data.one_of_a_kind.isEmpty()) {
             data.one_of_a_kind = null;
         }
@@ -70,13 +70,13 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
     }
 
     @Override
-    public void toBuf(PacketByteBuf buf) {
-        buf.writeString(type.name(), 100);
-        buf.writeString(identifier, 100);
-        buf.writeString(lock_under_adv, 100);
-        buf.writeString(icon, 150);
+    public void toBuf(PacketBuffer buf) {
+        buf.writeUtf(type.name(), 100);
+        buf.writeUtf(identifier, 100);
+        buf.writeUtf(lock_under_adv, 100);
+        buf.writeUtf(icon, 150);
 
-        buf.writeString(one_of_a_kind != null ? one_of_a_kind : "", 80);
+        buf.writeUtf(one_of_a_kind != null ? one_of_a_kind : "", 80);
 
         buf.writeBoolean(is_entry);
         buf.writeInt(lvl_req);
@@ -86,11 +86,11 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
 
     }
 
-    transient Identifier cachedIcon = null;
+    transient ResourceLocation cachedIcon = null;
 
-    public Identifier getIcon() {
+    public ResourceLocation getIcon() {
         if (cachedIcon == null) {
-            Identifier id = new Identifier(icon);
+            ResourceLocation id = new ResourceLocation(icon);
             if (ClientTextureUtils.textureExists(id)) {
                 cachedIcon = id;
             } else {
@@ -106,44 +106,44 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
-        List<Text> list = new ArrayList<>();
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+        List<ITextComponent> list = new ArrayList<>();
 
         try {
 
             if (this.type != PerkType.STAT) {
-                list.add(locName().formatted(type.format));
+                list.add(locName().withStyle(type.format));
             }
 
             info.statTooltipType = StatTooltipType.BASE_LOCAL_STATS;
 
             stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
 
-            Advancement adv = AdvancementUtils.getAdvancement(info.player.world, new Identifier(lock_under_adv));
+            Advancement adv = AdvancementUtils.getAdvancement(info.player.level, new ResourceLocation(lock_under_adv));
 
             if (adv != null) {
-                list.add(new LiteralText("Needs advancement: ").append(adv.toHoverableText()));
+                list.add(new StringTextComponent("Needs advancement: ").append(adv.getChatComponent()));
             }
 
             if (this.one_of_a_kind != null) {
-                list.add(new LiteralText("Can only have one Perk of this type: ").formatted(Formatting.GREEN));
+                list.add(new StringTextComponent("Can only have one Perk of this type: ").withStyle(TextFormatting.GREEN));
 
-                list.add(new TranslatableText(Ref.MODID + ".one_of_a_kind." + one_of_a_kind).formatted(Formatting.GREEN));
+                list.add(new TranslationTextComponent(Ref.MODID + ".one_of_a_kind." + one_of_a_kind).withStyle(TextFormatting.GREEN));
             }
 
             if (lvl_req > 1) {
                 list.add(Words.RequiresLevel.locName()
                     .append(": " + lvl_req)
-                    .formatted(Formatting.YELLOW));
+                    .withStyle(TextFormatting.YELLOW));
             }
 
             if (this.type == PerkType.MAJOR) {
 
-                list.add(new LiteralText("Game changer talent.").formatted(Formatting.RED));
+                list.add(new StringTextComponent("Game changer talent.").withStyle(TextFormatting.RED));
             }
 
             list.add(Words.PressAltForStatInfo.locName()
-                .formatted(Formatting.BLUE));
+                .withStyle(TextFormatting.BLUE));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -172,20 +172,20 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
     }
 
     public enum PerkType {
-        STAT(2, 24, 24, 39, Formatting.WHITE),
-        SPECIAL(3, 28, 28, 77, Formatting.LIGHT_PURPLE),
-        MAJOR(1, 33, 33, 1, Formatting.RED),
-        START(4, 35, 35, 115, Formatting.YELLOW),
-        SPELL_MOD(5, 26, 26, 153, Formatting.BLACK);
+        STAT(2, 24, 24, 39, TextFormatting.WHITE),
+        SPECIAL(3, 28, 28, 77, TextFormatting.LIGHT_PURPLE),
+        MAJOR(1, 33, 33, 1, TextFormatting.RED),
+        START(4, 35, 35, 115, TextFormatting.YELLOW),
+        SPELL_MOD(5, 26, 26, 153, TextFormatting.BLACK);
 
         int order;
 
         public int width;
         public int height;
         private int xoff;
-        public Formatting format;
+        public TextFormatting format;
 
-        PerkType(int order, int width, int height, int xoff, Formatting format) {
+        PerkType(int order, int width, int height, int xoff, TextFormatting format) {
             this.order = order;
             this.width = width;
             this.height = height;
@@ -240,7 +240,7 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
     }
 
     public boolean didPlayerUnlockAdvancement(PlayerEntity player) {
-        Identifier id = new Identifier(this.lock_under_adv);
+        ResourceLocation id = new ResourceLocation(this.lock_under_adv);
         return AdvancementUtils.didPlayerFinish(player, id);
     }
 

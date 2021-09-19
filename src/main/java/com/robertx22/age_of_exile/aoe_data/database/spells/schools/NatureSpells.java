@@ -15,8 +15,8 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
@@ -41,12 +41,12 @@ public class NatureSpells implements ExileRegistryInit {
                 "Erupt with poisonous gas, dealing " + SpellCalcs.FROST_NOVA.getLocDmgTooltip()
                     + " " + Elements.Earth.getIconNameDmg() + " to nearby enemies and applying Poison.")
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED, 0.5D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.PLAYER_SPLASH_HIGH_SPEED, 0.5D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.SNEEZE, 300D, 3.5D, 0.5D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 200D, 3.5D, 0.5D))
             .onCast(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.POISON.effectId, 3.5D, 8D * 20))
             .onCast(PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, Elements.Earth, 3.5D)
-                .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.ENTITY_GENERIC_HURT, 1D, 1D)))
+                .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D)))
             .build();
 
         SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 20)
@@ -57,7 +57,7 @@ public class NatureSpells implements ExileRegistryInit {
                 "Throw out a ball of poison, dealing " + SpellCalcs.POISON_BALL.getLocDmgTooltip()
                     + " " + Elements.Earth.getIconNameDmg())
             .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_SNOWBALL_THROW, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.SLIMEBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
             .onTick(PartBuilder.particleOnTick(1D, PARTICLES.POISON, 1D, 0.15D))
             .onHit(PartBuilder.damage(SpellCalcs.POISON_BALL, Elements.Earth))
@@ -68,7 +68,7 @@ public class NatureSpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.damage))
             .manualDesc("Gives buff to self:")
 
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.THORN_ARMOR.effectId, 20 * 45D))
             .build();
 
@@ -94,7 +94,7 @@ public class NatureSpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.damage))
             .manualDesc("Gives effect to nearby allies.")
             .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.POISON_WEAPONS.effectId, 20 * 30D))
             .build();
 
@@ -102,7 +102,7 @@ public class NatureSpells implements ExileRegistryInit {
                     .setScaleManaToPlayer(), "Nature's Balm",
                 Arrays.asList(SpellTag.heal))
             .manualDesc("Gives buff to allies nearby:")
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.giveExileEffectToAlliesInRadius(3D, BeneficialEffects.REGENERATE.effectId, 20 * 15D))
             .build();
 

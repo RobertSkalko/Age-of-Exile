@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.a_libraries.dmg_number_particle;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.Camera;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Formatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.opengl.GL11;
 
 import java.util.HashSet;
@@ -17,7 +17,7 @@ public class DamageParticleRenderer {
 
     public static Set<DamageParticle> PARTICLES = new HashSet<>();
 
-    public static void renderParticles(MatrixStack matrix, Camera camera) {
+    public static void renderParticles(MatrixStack matrix, ActiveRenderInfo camera) {
         for (DamageParticle p : PARTICLES) {
             renderParticle(matrix, p, camera);
             p.tick();
@@ -26,29 +26,29 @@ public class DamageParticleRenderer {
         PARTICLES.removeIf(x -> x.age > 50);
     }
 
-    private static void renderParticle(MatrixStack matrix, DamageParticle particle, Camera camera) {
+    private static void renderParticle(MatrixStack matrix, DamageParticle particle, ActiveRenderInfo camera) {
         float scaleToGui = 0.025f;
 
         if (particle.packet.iscrit) {
             scaleToGui *= 2;
         }
 
-        MinecraftClient client = MinecraftClient.getInstance();
-        float tickDelta = client.getTickDelta();
+        Minecraft client = Minecraft.getInstance();
+        float tickDelta = client.getFrameTime();
 
         double x = MathHelper.lerp((double) tickDelta, particle.xPrev, particle.x);
         double y = MathHelper.lerp((double) tickDelta, particle.yPrev, particle.y);
         double z = MathHelper.lerp((double) tickDelta, particle.zPrev, particle.z);
 
-        Vec3d camPos = camera.getPos();
+        Vector3d camPos = camera.getPosition();
         double camX = camPos.x;
         double camY = camPos.y;
         double camZ = camPos.z;
 
-        matrix.push();
+        matrix.pushPose();
         matrix.translate(x - camX, y - camY, z - camZ);
-        matrix.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-camera.getYaw()));
-        matrix.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(camera.getPitch()));
+        matrix.mulPose(Vector3f.YP.rotationDegrees(-camera.getYRot()));
+        matrix.mulPose(Vector3f.XP.rotationDegrees(camera.getXRot()));
         matrix.scale(-scaleToGui, -scaleToGui, scaleToGui);
 
         RenderSystem.disableLighting();
@@ -65,14 +65,14 @@ public class DamageParticleRenderer {
         RenderSystem.disableBlend();
         RenderSystem.enableAlphaTest();
 
-        matrix.pop();
+        matrix.popPose();
     }
 
     public static void drawDamageNumber(MatrixStack matrix, String s, double x, double y,
                                         float width) {
 
-        MinecraftClient minecraft = MinecraftClient.getInstance();
-        int sw = minecraft.textRenderer.getWidth(s);
-        minecraft.textRenderer.drawWithShadow(matrix, s, (int) (x + (width / 2) - sw), (int) y + 5, Formatting.RED.getColorValue());
+        Minecraft minecraft = Minecraft.getInstance();
+        int sw = minecraft.font.width(s);
+        minecraft.font.drawShadow(matrix, s, (int) (x + (width / 2) - sw), (int) y + 5, TextFormatting.RED.getColor());
     }
 }

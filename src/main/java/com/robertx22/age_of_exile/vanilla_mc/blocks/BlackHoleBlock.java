@@ -2,10 +2,10 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks;
 
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.block.material.Material;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -14,15 +14,15 @@ import java.util.Random;
 public class BlackHoleBlock extends OpaqueBlock {
 
     public BlackHoleBlock() {
-        super(Settings.of(Material.STONE)
-            .noCollision()
+        super(Properties.of(Material.STONE)
+            .noCollission()
             .strength(5F, 2));
     }
 
     @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+    public void animateTick(BlockState state, World world, BlockPos pos, Random random) {
         if (random.nextInt(100) == 0) {
-            world.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, random.nextFloat() * 0.4F + 0.8F, false);
+            world.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, random.nextFloat() * 0.4F + 0.8F, false);
         }
 
         for (int i = 0; i < 4; ++i) {
@@ -34,8 +34,8 @@ public class BlackHoleBlock extends OpaqueBlock {
             double j = ((double) random.nextFloat() - 0.5D) * 0.5D;
             int k = random.nextInt(2) * 2 - 1;
             if (!world.getBlockState(pos.west())
-                .isOf(this) && !world.getBlockState(pos.east())
-                .isOf(this)) {
+                .is(this) && !world.getBlockState(pos.east())
+                .is(this)) {
                 d = (double) pos.getX() + 0.5D + 0.25D * (double) k;
                 g = (double) (random.nextFloat() * 2.0F * (float) k);
             } else {

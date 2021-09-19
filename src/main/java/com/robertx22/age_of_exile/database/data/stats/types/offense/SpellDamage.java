@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 public class SpellDamage extends Stat {
 
@@ -16,7 +16,7 @@ public class SpellDamage extends Stat {
         this.group = StatGroup.MAIN;
 
         this.statEffect = new Effect();
-        this.format = Formatting.LIGHT_PURPLE.getName();
+        this.format = TextFormatting.LIGHT_PURPLE.getName();
     }
 
     public static String GUID = "spell_damage";

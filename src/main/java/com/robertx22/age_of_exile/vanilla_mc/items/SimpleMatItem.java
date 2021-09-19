@@ -6,8 +6,8 @@ import net.minecraft.item.Item;
 public class SimpleMatItem extends Item {
 
     public SimpleMatItem() {
-        super(new Item.Settings().group(CreativeTabs.MyModTab)
-            .maxCount(64));
+        super(new Item.Properties().tab(CreativeTabs.MyModTab)
+            .stacksTo(64));
 
     }
 }

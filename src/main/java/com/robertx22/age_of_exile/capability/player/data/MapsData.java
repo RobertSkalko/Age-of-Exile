@@ -18,14 +18,14 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.LiteralText;
+import net.minecraft.tileentity.SignTileEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
 import java.util.*;
@@ -100,8 +100,8 @@ public class MapsData {
             tel_pos = teleporterPos;
 
             // set the dungeon data for the chunk
-            World dimWorld = player.world.getServer()
-                .getWorld(RegistryKey.of(Registry.WORLD_KEY, dungeonData.dun_type.DIMENSION_ID));
+            World dimWorld = player.level.getServer()
+                .getLevel(RegistryKey.create(Registry.DIMENSION_REGISTRY, dungeonData.dun_type.DIMENSION_ID));
 
             int border = MapsData.getBorder(dimWorld);
 
@@ -116,8 +116,8 @@ public class MapsData {
 
             ww.print("loading first chunk ");
 
-            BlockPos tpPos = cp.getStartPos()
-                .add(8, DungeonDimensionJigsawFeature.HEIGHT, 8); // todo, seems to not point to correct location?
+            BlockPos tpPos = cp.getWorldPosition()
+                .offset(8, DungeonDimensionJigsawFeature.HEIGHT, 8); // todo, seems to not point to correct location?
 
             first.print("first part ");
 
@@ -134,35 +134,35 @@ public class MapsData {
 
                 for (ChunkPos x : check) {
 
-                    Set<Map.Entry<BlockPos, BlockEntity>> bes = new HashSet<>(dimWorld.getChunk(x.x, x.z)
+                    Set<Map.Entry<BlockPos, TileEntity>> bes = new HashSet<>(dimWorld.getChunk(x.x, x.z)
                         .getBlockEntities()
                         .entrySet());
 
-                    for (Map.Entry<BlockPos, BlockEntity> e : bes) {
+                    for (Map.Entry<BlockPos, TileEntity> e : bes) {
 
-                        if (e.getValue() instanceof SignBlockEntity) {
-                            if (SignUtils.has("[moblist]", (SignBlockEntity) e.getValue())) {
-                                moblist = SignUtils.removeBraces(SignUtils.getText((SignBlockEntity) e.getValue())
+                        if (e.getValue() instanceof SignTileEntity) {
+                            if (SignUtils.has("[moblist]", (SignTileEntity) e.getValue())) {
+                                moblist = SignUtils.removeBraces(SignUtils.getText((SignTileEntity) e.getValue())
                                     .get(1));
                             }
-                            if (SignUtils.has("[portal]", (SignBlockEntity) e.getValue())) {
-                                dimWorld.setBlockState(e.getKey(), ModRegistry.BLOCKS.PORTAL.getDefaultState());
+                            if (SignUtils.has("[portal]", (SignTileEntity) e.getValue())) {
+                                dimWorld.setBlockAndUpdate(e.getKey(), ModRegistry.BLOCKS.PORTAL.defaultBlockState());
                                 foundportalback = true;
                             }
                         } else if (dimWorld.getBlockState(e.getKey())
                             .getBlock() == MapsData.TELEPORT_TO_PLACEHOLDER_BLOCK) {
                             tpPos = e.getKey();
-                            dimWorld.breakBlock(tpPos, false);
+                            dimWorld.destroyBlock(tpPos, false);
                             foundSpawn = true;
                         }
                     }
                 }
 
                 if (!foundSpawn) {
-                    player.sendMessage(new LiteralText("Bug: Couldnt find spawn position, you might be placed weirdly, and possibly die."), false);
+                    player.displayClientMessage(new StringTextComponent("Bug: Couldnt find spawn position, you might be placed weirdly, and possibly die."), false);
                 }
                 if (!foundportalback) {
-                    player.sendMessage(new LiteralText("Bug: Couldnt find portal back position."), false);
+                    player.displayClientMessage(new StringTextComponent("Bug: Couldnt find portal back position."), false);
                 }
 
                 w.print("finding spawn");
@@ -176,14 +176,14 @@ public class MapsData {
             list.add(teleporterPos.west(2));
 
             for (BlockPos x : list) {
-                if (player.world.getBlockState(x)
-                    .isAir() || player.world.getBlockState(x)
+                if (player.level.getBlockState(x)
+                    .isAir() || player.level.getBlockState(x)
                     .getBlock() == ModRegistry.BLOCKS.PORTAL) {
-                    player.world.breakBlock(x, false);
-                    player.world.setBlockState(x, ModRegistry.BLOCKS.PORTAL.getDefaultState());
-                    PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
+                    player.level.destroyBlock(x, false);
+                    player.level.setBlockAndUpdate(x, ModRegistry.BLOCKS.PORTAL.defaultBlockState());
+                    PortalBlockEntity be = (PortalBlockEntity) player.level.getBlockEntity(x);
                     be.data.dungeonPos = tpPos;
-                    be.data.tpbackpos = teleporterPos.up();
+                    be.data.tpbackpos = teleporterPos.above();
                     be.data.dungeonType = dungeonData.dun_type;
 
                 }
@@ -191,7 +191,7 @@ public class MapsData {
 
             // first set the data so the mob levels can be set on spawn
             WorldDungeonCap data = Load.dungeonData(dimWorld);
-            SingleDungeonData single = new SingleDungeonData(dungeonData, new QuestProgression(dungeonData.uuid, 20), player.getUuid()
+            SingleDungeonData single = new SingleDungeonData(dungeonData, new QuestProgression(dungeonData.uuid, 20), player.getUUID()
                 .toString());
             if (ExileDB.DungeonMobLists()
                 .isRegistered(moblist)) {

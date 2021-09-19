@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
@@ -86,16 +86,16 @@ public class OrbOfCorruption extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public ShapedRecipeJsonFactory getRecipe() {
+    public ShapedRecipeBuilder getRecipe() {
         return shaped(ModRegistry.CURRENCIES.ORB_OF_CORRUPTION)
-            .input('#', ModRegistry.MISC_ITEMS.MYTHIC_ESSENCE)
-            .input('t', ModRegistry.CURRENCIES.ORB_OF_INFINITY)
-            .input('v', Items.EMERALD)
-            .input('o', ModRegistry.MISC_ITEMS.GOLDEN_ORB)
+            .define('#', ModRegistry.MISC_ITEMS.MYTHIC_ESSENCE)
+            .define('t', ModRegistry.CURRENCIES.ORB_OF_INFINITY)
+            .define('v', Items.EMERALD)
+            .define('o', ModRegistry.MISC_ITEMS.GOLDEN_ORB)
             .pattern("v#v")
             .pattern("vtv")
             .pattern("ooo")
-            .criterion("player_level", trigger());
+            .unlockedBy("player_level", trigger());
     }
 
 }

@@ -15,35 +15,35 @@ import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.boss.dragon.EnderDragonPart;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.entity.boss.EnderDragonPart;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class SimpleProjectileEntity extends PersistentProjectileEntity implements IMyRenderAsItem, IDatapackSpellEntity {
+public class SimpleProjectileEntity extends AbstractArrow implements IMyRenderAsItem, IDatapackSpellEntity {
 
     EntitySavedSpellData spellData;
 
@@ -55,25 +55,25 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
 
     private int ticksInGround = 0;
 
-    private static final TrackedData<NbtCompound> SPELL_DATA = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
-    private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.STRING);
-    private static final TrackedData<Boolean> EXPIRE_ON_ENTITY_HIT = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    private static final TrackedData<Boolean> HIT_ALLIES = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    private static final TrackedData<Boolean> PIERCE = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    private static final TrackedData<Integer> DEATH_TIME = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private static final TrackedData<Boolean> EXPIRE_ON_BLOCK_HIT = DataTracker.registerData(SimpleProjectileEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final EntityDataAccessor<CompoundNBT> SPELL_DATA = EntityDataManager.defineId(SimpleProjectileEntity.class, EntityDataSerializers.COMPOUND_TAG);
+    private static final EntityDataAccessor<String> ENTITY_NAME = EntityDataManager.defineId(SimpleProjectileEntity.class, EntityDataSerializers.STRING);
+    private static final EntityDataAccessor<Boolean> EXPIRE_ON_ENTITY_HIT = EntityDataManager.defineId(SimpleProjectileEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> HIT_ALLIES = EntityDataManager.defineId(SimpleProjectileEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> PIERCE = EntityDataManager.defineId(SimpleProjectileEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> DEATH_TIME = EntityDataManager.defineId(SimpleProjectileEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> EXPIRE_ON_BLOCK_HIT = EntityDataManager.defineId(SimpleProjectileEntity.class, EntityDataSerializers.BOOLEAN);
 
     public Entity ignoreEntity;
 
     boolean collidedAlready = false;
 
     @Override
-    public Packet<?> createSpawnPacket() {
+    public Packet<?> getAddEntityPacket() {
         return EntityPacket.createPacket(this);
     }
 
     @Override
-    protected ItemStack asItemStack() {
+    protected ItemStack getPickupItem() {
         return ItemStack.EMPTY;
     }
 
@@ -82,17 +82,17 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     @Override
-    public Iterable<ItemStack> getArmorItems() {
+    public Iterable<ItemStack> getArmorSlots() {
         return new ArrayList<>();
     }
 
     @Override
-    public void equipStack(EquipmentSlot slotIn, ItemStack stack) {
+    public void setItemSlot(EquipmentSlotType slotIn, ItemStack stack) {
 
     }
 
     @Override // seems to help making it hit easier?
-    public float getTargetingMargin() {
+    public float getPickRadius() {
         return 1.0F;
     }
 
@@ -101,15 +101,15 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     public int getDeathTime() {
-        return dataTracker.get(DEATH_TIME);
+        return entityData.get(DEATH_TIME);
     }
 
     public void setDeathTime(int newVal) {
-        this.dataTracker.set(DEATH_TIME, newVal);
+        this.entityData.set(DEATH_TIME, newVal);
     }
 
     public SimpleProjectileEntity(EntityType<? extends Entity> type, World worldIn) {
-        super((EntityType<? extends PersistentProjectileEntity>) type, worldIn);
+        super((EntityType<? extends AbstractArrow>) type, worldIn);
         this.xTile = -1;
         this.yTile = -1;
         this.zTile = -1;
@@ -134,7 +134,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         }
 
         if (getCaster() != null) {
-            List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPos())
+            List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, position())
                 .radius(radius)
                 .build();
 
@@ -164,7 +164,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             this.getSpellData()
                 .getSpell()
                 .getAttached()
-                .tryActivate(getEntityName(), SpellCtx.onTick(getCaster(), this, getSpellData()));
+                .tryActivate(getScoreboardName(), SpellCtx.onTick(getCaster(), this, getSpellData()));
 
         }
     }
@@ -178,14 +178,14 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             this.getSpellData()
                 .getSpell()
                 .getAttached()
-                .tryActivate(getEntityName(), SpellCtx.onExpire(caster, this, getSpellData()));
+                .tryActivate(getScoreboardName(), SpellCtx.onExpire(caster, this, getSpellData()));
         }
 
         super.remove();
     }
 
     @Override
-    protected float getDragInWater() {
+    protected float getWaterInertia() {
         return 0.99F;
     }
 
@@ -205,7 +205,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         }
 
         if (this.getSpellData() == null || getCaster() == null) {
-            if (age > 100) {
+            if (tickCount > 100) {
                 this.scheduleRemoval();
             }
             return;
@@ -218,7 +218,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
                 ticksInGround++;
             }
 
-            if (this.age >= this.getDeathTime()) {
+            if (this.tickCount >= this.getDeathTime()) {
                 onExpireProc(this.getCaster());
                 this.scheduleRemoval();
                 return;
@@ -231,16 +231,16 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     @Override
-    protected EntityHitResult getEntityCollision(Vec3d pos, Vec3d posPlusMotion) {
+    protected EntityHitResult findHitEntity(Vector3d pos, Vector3d posPlusMotion) {
 
-        EntityHitResult res = ProjectileUtil.getEntityCollision(
-            this.world, this, pos, posPlusMotion, this.getBoundingBox()
-                .stretch(this.getVelocity())
-                .expand(1D), (e) -> {
-                return !e.isSpectator() && e.collides() && e instanceof Entity && e != this.getCaster() && e != this.ignoreEntity;
+        EntityHitResult res = ProjectileUtil.getEntityHitResult(
+            this.level, this, pos, posPlusMotion, this.getBoundingBox()
+                .expandTowards(this.getDeltaMovement())
+                .inflate(1D), (e) -> {
+                return !e.isSpectator() && e.isPickable() && e instanceof Entity && e != this.getCaster() && e != this.ignoreEntity;
             });
 
-        if (!this.dataTracker.get(HIT_ALLIES)) {
+        if (!this.entityData.get(HIT_ALLIES)) {
             if (res != null && getCaster() != null && res.getEntity() instanceof LivingEntity) {
                 if (AllyOrEnemy.allies.is(getCaster(), (LivingEntity) res.getEntity())) {
                     return null; // don't hit allies with spells, let them pass
@@ -251,12 +251,12 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     @Override
-    protected void onCollision(HitResult raytraceResultIn) {
+    protected void onHit(HitResult raytraceResultIn) {
 
         HitResult.Type raytraceresult$type = raytraceResultIn.getType();
         if (raytraceresult$type == HitResult.Type.ENTITY) {
             this.onImpact(raytraceResultIn);
-            this.playSound(SoundEvents.ENTITY_SHULKER_BULLET_HIT, 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
+            this.playSound(SoundEvents.SHULKER_BULLET_HIT, 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
 
         } else if (raytraceresult$type == HitResult.Type.BLOCK) {
 
@@ -265,18 +265,18 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
             }
             collidedAlready = true;
 
-            BlockHitResult blockraytraceresult = (BlockHitResult) raytraceResultIn;
-            BlockState blockstate = this.world.getBlockState(blockraytraceresult.getBlockPos());
+            BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceResultIn;
+            BlockState blockstate = this.level.getBlockState(blockraytraceresult.getBlockPos());
 
-            Vec3d vec3d = blockraytraceresult.getPos()
+            Vector3d vec3d = blockraytraceresult.getLocation()
                 .subtract(this.getX(), this.getY(), this.getZ());
-            this.setVelocity(vec3d);
+            this.setDeltaMovement(vec3d);
 
             this.inGround = true;
 
             this.onImpact(blockraytraceresult);
 
-            blockstate.onProjectileHit(this.world, blockstate, blockraytraceresult, this);
+            blockstate.onProjectileHit(this.level, blockstate, blockraytraceresult, this);
         }
 
     }
@@ -286,8 +286,8 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         Entity entityHit = getEntityHit(result, 0.3D);
 
         if (entityHit != null) {
-            if (world.isClient) {
-                SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 1F, 0.9F);
+            if (level.isClientSide) {
+                SoundUtils.playSound(this, SoundEvents.GENERIC_HURT, 1F, 0.9F);
             }
 
             LivingEntity caster = getCaster();
@@ -298,8 +298,8 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
                 // HARDCODED support for dumb ender dragon non living entity dragon parts
                 if (entityHit instanceof EnderDragonPart) {
                     EnderDragonPart part = (EnderDragonPart) entityHit;
-                    if (!part.isInvulnerableTo(DamageSource.mob(caster))) {
-                        en = part.owner;
+                    if (!part.isInvulnerableTo(DamageSource.mobAttack(caster))) {
+                        en = part.parentMob;
                     }
                 }
             } else if (entityHit instanceof LivingEntity) {
@@ -316,25 +316,25 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
                     this.getSpellData()
                         .getSpell()
                         .getAttached()
-                        .tryActivate(getEntityName(), SpellCtx.onHit(caster, this, en, getSpellData()));
+                        .tryActivate(getScoreboardName(), SpellCtx.onHit(caster, this, en, getSpellData()));
                 }
             }
 
         } else {
-            if (world.isClient) {
-                SoundUtils.playSound(this, SoundEvents.BLOCK_STONE_HIT, 0.7F, 0.9F);
+            if (level.isClientSide) {
+                SoundUtils.playSound(this, SoundEvents.STONE_HIT, 0.7F, 0.9F);
             }
         }
 
         if (entityHit != null) {
-            if (!dataTracker.get(EXPIRE_ON_ENTITY_HIT)) {
+            if (!entityData.get(EXPIRE_ON_ENTITY_HIT)) {
                 return;
             } else {
                 scheduleRemoval();
             }
         }
 
-        if (result instanceof BlockHitResult && dataTracker.get(EXPIRE_ON_BLOCK_HIT)) {
+        if (result instanceof BlockRayTraceResult && entityData.get(EXPIRE_ON_BLOCK_HIT)) {
             scheduleRemoval();
         }
 
@@ -349,7 +349,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     static Gson GSON = new Gson();
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
+    public void addAdditionalSaveData(CompoundNBT nbt) {
 
         try {
 
@@ -371,7 +371,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
+    public void readAdditionalSaveData(CompoundNBT nbt) {
 
         try {
 
@@ -396,7 +396,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     public LivingEntity getCaster() {
         if (caster == null) {
             try {
-                this.caster = Utilities.getLivingEntityByUUID(world, UUID.fromString(getSpellData().caster_uuid));
+                this.caster = Utilities.getLivingEntityByUUID(level, UUID.fromString(getSpellData().caster_uuid));
             } catch (Exception e) {
                 // e.printStackTrace();
             }
@@ -406,32 +406,32 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     }
 
     @Override
-    protected void initDataTracker() {
-        this.dataTracker.startTracking(SPELL_DATA, new NbtCompound());
-        this.dataTracker.startTracking(ENTITY_NAME, "");
-        this.dataTracker.startTracking(EXPIRE_ON_ENTITY_HIT, true);
-        this.dataTracker.startTracking(EXPIRE_ON_BLOCK_HIT, true);
-        this.dataTracker.startTracking(HIT_ALLIES, false);
-        this.dataTracker.startTracking(PIERCE, false);
-        this.dataTracker.startTracking(DEATH_TIME, 100);
-        super.initDataTracker();
+    protected void defineSynchedData() {
+        this.entityData.define(SPELL_DATA, new CompoundNBT());
+        this.entityData.define(ENTITY_NAME, "");
+        this.entityData.define(EXPIRE_ON_ENTITY_HIT, true);
+        this.entityData.define(EXPIRE_ON_BLOCK_HIT, true);
+        this.entityData.define(HIT_ALLIES, false);
+        this.entityData.define(PIERCE, false);
+        this.entityData.define(DEATH_TIME, 100);
+        super.defineSynchedData();
     }
 
     @Override
-    public boolean doesRenderOnFire() {
+    public boolean displayFireAnimation() {
         return false;
     }
 
     @Override
-    public boolean isPushedByFluids() {
+    public boolean isPushedByFluid() {
         return false;
     }
 
     public EntitySavedSpellData getSpellData() {
         try {
-            if (world.isClient) {
+            if (level.isClientSide) {
                 if (spellData == null) {
-                    NbtCompound nbt = dataTracker.get(SPELL_DATA);
+                    CompoundNBT nbt = entityData.get(SPELL_DATA);
                     if (nbt != null) {
                         this.spellData = GSON.fromJson(nbt.getString("spell"), EntitySavedSpellData.class);
                     }
@@ -446,7 +446,7 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     @Override
     public ItemStack getItem() {
         try {
-            Item item = Registry.ITEM.get(new Identifier(getSpellData().item_id));
+            Item item = Registry.ITEM.get(new ResourceLocation(getSpellData().item_id));
             if (item != null) {
                 return new ItemStack(item);
             }
@@ -457,12 +457,12 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
         return new ItemStack(Items.AIR);
     }
 
-    public String getEntityName() {
-        return dataTracker.get(ENTITY_NAME);
+    public String getScoreboardName() {
+        return entityData.get(ENTITY_NAME);
     }
 
     @Override
-    public void onPlayerCollision(PlayerEntity player) {
+    public void playerTouch(PlayerEntity player) {
         // don't allow player to pickup lol
     }
 
@@ -470,30 +470,30 @@ public class SimpleProjectileEntity extends PersistentProjectileEntity implement
     public void init(LivingEntity caster, EntitySavedSpellData data, MapHolder holder) {
         this.spellData = data;
 
-        this.pickupType = PickupPermission.DISALLOWED;
+        this.pickup = Pickup.DISALLOWED;
 
         this.setNoGravity(!holder.getOrDefault(MapField.GRAVITY, true));
         this.setDeathTime(holder.get(MapField.LIFESPAN_TICKS)
             .intValue());
 
-        this.dataTracker.set(EXPIRE_ON_ENTITY_HIT, holder.getOrDefault(MapField.EXPIRE_ON_ENTITY_HIT, true));
-        this.dataTracker.set(EXPIRE_ON_BLOCK_HIT, holder.getOrDefault(MapField.EXPIRE_ON_BLOCK_HIT, true));
-        this.dataTracker.set(HIT_ALLIES, holder.getOrDefault(MapField.HITS_ALLIES, false));
+        this.entityData.set(EXPIRE_ON_ENTITY_HIT, holder.getOrDefault(MapField.EXPIRE_ON_ENTITY_HIT, true));
+        this.entityData.set(EXPIRE_ON_BLOCK_HIT, holder.getOrDefault(MapField.EXPIRE_ON_BLOCK_HIT, true));
+        this.entityData.set(HIT_ALLIES, holder.getOrDefault(MapField.HITS_ALLIES, false));
 
-        this.checkBlockCollision();
+        this.checkInsideBlocks();
 
         if (data.pierce) {
-            this.dataTracker.set(EXPIRE_ON_ENTITY_HIT, false);
+            this.entityData.set(EXPIRE_ON_ENTITY_HIT, false);
         }
 
         data.item_id = holder.get(MapField.ITEM);
-        NbtCompound nbt = new NbtCompound();
+        CompoundNBT nbt = new CompoundNBT();
         nbt.putString("spell", GSON.toJson(spellData));
-        dataTracker.set(SPELL_DATA, nbt);
+        entityData.set(SPELL_DATA, nbt);
         this.setOwner(caster);
 
         String name = holder.get(MapField.ENTITY_NAME);
-        dataTracker.set(ENTITY_NAME, name);
+        entityData.set(ENTITY_NAME, name);
 
     }
 }

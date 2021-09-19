@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.vanilla_mc.potion_effects;
 
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectType;
 
-public class ModStatusEffect extends StatusEffect {
+public class ModStatusEffect extends Effect {
 
-    public ModStatusEffect(StatusEffectType type, int color) {
+    public ModStatusEffect(EffectType type, int color) {
         super(type, color);
     }
 }

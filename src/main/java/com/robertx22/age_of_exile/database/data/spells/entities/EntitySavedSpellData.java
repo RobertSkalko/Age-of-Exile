@@ -48,7 +48,7 @@ public class EntitySavedSpellData {
         data.exile_effect_id = exEffect.GUID();
         data.lvl = lvl;
 
-        data.caster_uuid = caster.getUuid()
+        data.caster_uuid = caster.getUUID()
             .toString();
 
         return data;
@@ -60,7 +60,7 @@ public class EntitySavedSpellData {
         EntitySavedSpellData data = new EntitySavedSpellData();
         data.spell_id = spell.GUID();
         data.lvl = lvl;
-        data.caster_uuid = caster.getUuid()
+        data.caster_uuid = caster.getUUID()
             .toString();
 
         return data;

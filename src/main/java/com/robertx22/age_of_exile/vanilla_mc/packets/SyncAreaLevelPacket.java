@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.SyncedToClientValues;
 import com.robertx22.library_of_exile.main.MyPacket;
-import net.fabricmc.fabric.api.network.PacketContext;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class SyncAreaLevelPacket extends MyPacket<SyncAreaLevelPacket> {
 
@@ -20,22 +20,22 @@ public class SyncAreaLevelPacket extends MyPacket<SyncAreaLevelPacket> {
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "arealvl");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "arealvl");
     }
 
     @Override
-    public void loadFromData(PacketByteBuf tag) {
+    public void loadFromData(PacketBuffer tag) {
         lvl = tag.readInt();
     }
 
     @Override
-    public void saveToData(PacketByteBuf tag) {
+    public void saveToData(PacketBuffer tag) {
         tag.writeInt(lvl);
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void onReceived(Context ctx) {
         SyncedToClientValues.areaLevel = lvl;
     }
 

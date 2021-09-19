@@ -12,8 +12,8 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Blocks;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
@@ -37,7 +37,7 @@ public class CurseSpells implements ExileRegistryInit {
                 .put(MapField.FIND_NEAREST_SURFACE, false)
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
-            .onExpire("block", PartBuilder.playSound(SoundEvents.ENTITY_WITHER_SKELETON_HURT, 1D, 1D))
+            .onExpire("block", PartBuilder.playSound(SoundEvents.WITHER_SKELETON_HURT, 1D, 1D))
             .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.CURSE, Elements.Elemental, 3D))
             .onExpire("block", PartBuilder.addExileEffectToEnemiesInAoe(effect.effectId, 3D, 20 * 15D)
                 .addPerEntityHit(

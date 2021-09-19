@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.player_skills;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -15,24 +16,23 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.OrderedText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
 public class ProfessionsScreen extends BaseScreen implements INamedScreen {
-    private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/skills/skills_background.png");
+    private static final ResourceLocation BACKGROUND = new ResourceLocation(Ref.MODID, "textures/gui/skills/skills_background.png");
 
     static int sizeX = 256;
     static int sizeY = 207;
 
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
 
     public ProfessionsScreen() {
         super(sizeX, sizeY);
@@ -40,8 +40,8 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
     }
 
     @Override
-    public Identifier iconLocation() {
-        return new Identifier(Ref.MODID, "textures/gui/main_hub/icons/skills.png");
+    public ResourceLocation iconLocation() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/skills.png");
     }
 
     @Override
@@ -94,10 +94,10 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
         }
 
         if (currentSkill.type_enum.wiki != null) {
-            addButton(new ExtraInfoButton(Arrays.asList(new LiteralText("Open Wiki")), guiLeft + 20, guiTop + sizeY - 50, a -> {
+            addButton(new ExtraInfoButton(Arrays.asList(new StringTextComponent("Open Wiki")), guiLeft + 20, guiTop + sizeY - 50, a -> {
                 WikiScreen wiki = new WikiScreen();
                 wiki.changeType(currentSkill.type_enum.wiki);
-                mc.openScreen(wiki);
+                mc.setScreen(wiki);
             }));
 
         }
@@ -111,18 +111,18 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
 
     static int BAR_X = 227;
     static int BAR_Y = 7;
-    static Identifier BAR_TEX = new Identifier(Ref.MODID, "textures/gui/skills/bar.png");
+    static ResourceLocation BAR_TEX = new ResourceLocation(Ref.MODID, "textures/gui/skills/bar.png");
 
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
         mc.getTextureManager()
-            .bindTexture(BACKGROUND);
+            .bind(BACKGROUND);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, mc.getWindow()
-                .getScaledWidth() / 2 - sizeX / 2,
+        blit(matrix, mc.getWindow()
+                .getGuiScaledWidth() / 2 - sizeX / 2,
             mc.getWindow()
-                .getScaledHeight() / 2 - sizeY / 2, 0, 0, sizeX, sizeY
+                .getGuiScaledHeight() / 2 - sizeY / 2, 0, 0, sizeX, sizeY
         );
 
         super.render(matrix, x, y, ticks);
@@ -135,16 +135,16 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
 
             String name = currentSkill.type_enum.word.translate() + " " + "(Level " + Load.playerRPGData(mc.player).professions
                 .getProfessionLevel(currentSkill.type_enum) + ")";
-            renderTextAtMiddle(matrix, name, guiTop + 50, Formatting.GOLD);
+            renderTextAtMiddle(matrix, name, guiTop + 50, TextFormatting.GOLD);
             // renderTextAtMiddle(matrix,, guiTop + 65, Formatting.GREEN);
 
-            List<OrderedText> list = mc.textRenderer.wrapLines(currentSkill.type_enum.desc.locName(), sizeX - 25);
+            List<FormattedCharSequence> list = mc.font.split(currentSkill.type_enum.desc.locName(), sizeX - 25);
 
             int ypos = guiTop + 65;
 
-            for (OrderedText txt : list) {
-                this.renderTextAtMiddle(matrix, txt, ypos, Formatting.WHITE);
-                ypos += mc.textRenderer.fontHeight + 2;
+            for (FormattedCharSequence txt : list) {
+                this.renderTextAtMiddle(matrix, txt, ypos, TextFormatting.WHITE);
+                ypos += mc.font.lineHeight + 2;
             }
 
             renderBar(matrix);
@@ -162,14 +162,14 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
         int y = guiTop + sizeY - 20;
 
         mc.getTextureManager()
-            .bindTexture(BAR_TEX);
-        drawTexture(matrix, mc.getWindow()
-                .getScaledWidth() / 2 - BAR_X / 2,
+            .bind(BAR_TEX);
+        blit(matrix, mc.getWindow()
+                .getGuiScaledWidth() / 2 - BAR_X / 2,
             y, 0, 0, BAR_X, BAR_Y
         );
 
-        drawTexture(matrix, mc.getWindow()
-                .getScaledWidth() / 2 - BAR_X / 2,
+        blit(matrix, mc.getWindow()
+                .getGuiScaledWidth() / 2 - BAR_X / 2,
             y, 0, BAR_Y, (int) (BAR_X * filledMulti), BAR_Y
         );
 
@@ -179,20 +179,20 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
         int needed = data.getExpNeededToLevel();
         String xptext = exp + "/" + needed;
 
-        renderTextAtMiddle(matrix, xptext, y - 10, Formatting.YELLOW);
+        renderTextAtMiddle(matrix, xptext, y - 10, TextFormatting.YELLOW);
 
     }
 
-    private void renderTextAtMiddle(MatrixStack matrix, String text, int y, Formatting format) {
-        mc.textRenderer.drawWithShadow(matrix, text,
-            guiLeft + sizeX / 2 - mc.textRenderer.getWidth(text) / 2, y
-            , format.getColorValue());
+    private void renderTextAtMiddle(MatrixStack matrix, String text, int y, TextFormatting format) {
+        mc.font.drawShadow(matrix, text,
+            guiLeft + sizeX / 2 - mc.font.width(text) / 2, y
+            , format.getColor());
     }
 
-    private void renderTextAtMiddle(MatrixStack matrix, OrderedText text, int y, Formatting format) {
-        mc.textRenderer.drawWithShadow(matrix, text,
-            guiLeft + sizeX / 2 - mc.textRenderer.getWidth(text) / 2, y
-            , format.getColorValue());
+    private void renderTextAtMiddle(MatrixStack matrix, FormattedCharSequence text, int y, TextFormatting format) {
+        mc.font.drawShadow(matrix, text,
+            guiLeft + sizeX / 2 - mc.font.width(text) / 2, y
+            , format.getColor());
     }
 
     public enum IconRenderType {

@@ -6,49 +6,49 @@ import com.robertx22.age_of_exile.database.data.spells.entities.IDatapackSpellEn
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.server.ServerWorld;
 
 public class SpellUtils {
 
     public static void summonLightningStrike(Entity entity) {
 
-        LightningEntity lightningboltentity = new LightningEntity(EntityType.LIGHTNING_BOLT, entity.world);  //boolean true means it's only an effect!'
+        LightningBolt lightningboltentity = new LightningBolt(EntityType.LIGHTNING_BOLT, entity.level);  //boolean true means it's only an effect!'
 
-        lightningboltentity.setPos((double) entity.getX() + 0.5D,
+        lightningboltentity.setPosRaw((double) entity.getX() + 0.5D,
             (double) entity.getY(),
             (double) entity.getZ() + 0.5D);
 
-        lightningboltentity.setCosmetic(true);
+        lightningboltentity.setVisualOnly(true);
 
-        SoundUtils.playSound(entity, SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, 1, 1);
+        SoundUtils.playSound(entity, SoundEvents.LIGHTNING_BOLT_IMPACT, 1, 1);
 
-        addLightningBolt(((ServerWorld) entity.world), lightningboltentity);
+        addLightningBolt(((ServerWorld) entity.level), lightningboltentity);
 
     }
 
-    public static void addLightningBolt(ServerWorld world, LightningEntity entityIn) {
+    public static void addLightningBolt(ServerWorld world, LightningBolt entityIn) {
         world.getServer()
-            .getPlayerManager()
-            .sendToAround((PlayerEntity) null, entityIn.getX(), entityIn.getY(), entityIn.getZ(), 50, world.getRegistryKey()
-                , new EntitySpawnS2CPacket(entityIn));
+            .getPlayerList()
+            .broadcast((PlayerEntity) null, entityIn.getX(), entityIn.getY(), entityIn.getZ(), 50, world.dimension()
+                , new ClientboundAddEntityPacket(entityIn));
     }
 
-    public static void shootProjectile(Vec3d pos, PersistentProjectileEntity projectile, LivingEntity caster, float speed,
+    public static void shootProjectile(Vector3d pos, AbstractArrow projectile, LivingEntity caster, float speed,
                                        float pitch, float yaw) {
 
         // pos = pos.add(caster.getRotationVector()
         //   .multiply(0.25F));
 
-        ((Entity) projectile).setPosition(pos.x, caster.getEyeY() - 0.1F, pos.z);
+        ((Entity) projectile).setPos(pos.x, caster.getEyeY() - 0.1F, pos.z);
 
-        projectile.setProperties(caster, pitch, yaw, 0, speed, 1F);
+        projectile.shootFromRotation(caster, pitch, yaw, 0, speed, 1F);
 
     }
 

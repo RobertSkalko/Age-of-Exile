@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources.health;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 public class Health extends Stat {
     public static String GUID = "health";
@@ -15,7 +15,7 @@ public class Health extends Stat {
 
         this.order = 0;
         this.icon = "\u2764";
-        this.format = Formatting.RED.getName();
+        this.format = TextFormatting.RED.getName();
 
     }
 

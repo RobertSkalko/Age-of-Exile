@@ -20,7 +20,7 @@ public class CraftingReq implements JsonExileRegistry<CraftingReq>, IAutoGson<Cr
 
     public static CraftingReq of(Item item, PlayerSkillEnum skill, int lvl) {
         CraftingReq r = new CraftingReq();
-        r.item_id = Registry.ITEM.getId(item)
+        r.item_id = Registry.ITEM.getKey(item)
             .toString();
         r.lvl = lvl;
         r.skill = skill.id;

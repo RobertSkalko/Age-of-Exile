@@ -7,40 +7,40 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import com.robertx22.library_of_exile.utils.TeleportUtils;
 import com.robertx22.library_of_exile.utils.VanillaReg;
-import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
+public class PortalBlock extends OpaqueBlock implements ITileEntityProvider {
 
     public PortalBlock() {
-        super(Settings.of(Material.STONE)
-            .noCollision()
+        super(Properties.of(Material.STONE)
+            .noCollission()
             .strength(5F, 2));
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
+    public TileEntity newBlockEntity(IBlockReader world) {
         return new PortalBlockEntity();
     }
 
     @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+    public void animateTick(BlockState state, World world, BlockPos pos, Random random) {
         if (random.nextInt(100) == 0) {
-            world.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, random.nextFloat() * 0.4F + 0.8F, false);
+            world.playLocalSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, random.nextFloat() * 0.4F + 0.8F, false);
         }
 
         for (int i = 0; i < 4; ++i) {
@@ -52,8 +52,8 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
             double j = ((double) random.nextFloat() - 0.5D) * 0.5D;
             int k = random.nextInt(2) * 2 - 1;
             if (!world.getBlockState(pos.west())
-                .isOf(this) && !world.getBlockState(pos.east())
-                .isOf(this)) {
+                .is(this) && !world.getBlockState(pos.east())
+                .is(this)) {
                 d = (double) pos.getX() + 0.5D + 0.25D * (double) k;
                 g = (double) (random.nextFloat() * 2.0F * (float) k);
             } else {
@@ -67,10 +67,10 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
         try {
 
-            if (world.isClient) {
+            if (world.isClientSide) {
                 return;
             }
 
@@ -78,7 +78,7 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
 
                 RPGPlayerData maps = Load.playerRPGData((PlayerEntity) entity);
 
-                if (entity.getVelocity().y > 0) {
+                if (entity.getDeltaMovement().y > 0) {
                     maps.maps.ticksinPortal = 0; // jumping bugs it somehow
                     return;
                 }
@@ -88,11 +88,11 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                         maps.maps.ticksinPortal++;
                     } else {
                         maps.maps.ticksinPortal = 0;
-                        BlockPos p = Load.playerRPGData((PlayerEntity) entity).maps.tel_pos.up();
+                        BlockPos p = Load.playerRPGData((PlayerEntity) entity).maps.tel_pos.above();
 
-                        TeleportUtils.teleport((ServerPlayerEntity) entity, p, new Identifier(maps.maps.tp_b_dim));
+                        TeleportUtils.teleport((ServerPlayerEntity) entity, p, new ResourceLocation(maps.maps.tp_b_dim));
 
-                        SoundUtils.playSound(entity, SoundEvents.BLOCK_PORTAL_TRAVEL, world.random.nextFloat() * 0.4F + 0.8F, 0.25F);
+                        SoundUtils.playSound(entity, SoundEvents.PORTAL_TRAVEL, world.random.nextFloat() * 0.4F + 0.8F, 0.25F);
                         return;
                     }
                 }
@@ -100,18 +100,18 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                 PortalBlockEntity be = (PortalBlockEntity) world.getBlockEntity(pos);
 
                 if (entity instanceof ServerPlayerEntity) {
-                    if (!entity.hasVehicle() && !entity.hasPassengers() && entity.canUsePortals()) {
+                    if (!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
 
                         if (maps.maps.ticksinPortal < 40) {
                             maps.maps.ticksinPortal++;
                         } else {
 
-                            if (be.data.dungeonPos == BlockPos.ORIGIN) {
+                            if (be.data.dungeonPos == BlockPos.ZERO) {
                                 return;
                             } else {
                                 maps.maps.ticksinPortal = 0;
                                 maps.maps.tel_pos = be.data.tpbackpos;
-                                maps.maps.tp_b_dim = VanillaReg.getId(entity.world)
+                                maps.maps.tp_b_dim = VanillaReg.getId(entity.level)
                                     .toString();
 
                                 TeleportUtils.teleport((ServerPlayerEntity) entity, be.data.dungeonPos, be.data.dungeonType.DIMENSION_ID);

@@ -5,15 +5,15 @@ import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.damage_hooks.util.DmgSourceUtils;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
+import net.minecraft.network.play.server.STitlePacket;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.List;
 
@@ -31,8 +31,8 @@ public class LivingHurtUtils {
 
             List<ItemStack> curios = MyCurioUtils.getAllSlots(player);
 
-            curios.forEach(x -> x.damage(getItemDamage(dmg), player, (entity) -> {
-                entity.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
+            curios.forEach(x -> x.hurtAndBreak(getItemDamage(dmg), player, (entity) -> {
+                entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
             }));
 
         }
@@ -42,7 +42,7 @@ public class LivingHurtUtils {
 
         LivingEntity target = event.getTargetEntity();
 
-        if (target.world.isClient) {
+        if (target.level.isClientSide) {
             return;
         }
 
@@ -55,7 +55,7 @@ public class LivingHurtUtils {
                 return;
             }
             if (event.getSource()
-                .getAttacker() instanceof LivingEntity) {
+                .getEntity() instanceof LivingEntity) {
                 onAttack(event);
             }
 
@@ -86,7 +86,7 @@ public class LivingHurtUtils {
                 }
 
                 if (!weapondata.canPlayerWear(data.getAttackerEntityData())) {
-                    OnScreenMessageUtils.sendMessage((ServerPlayerEntity) data.getAttackerEntity(), new LiteralText("Weapon requirements not met"), TitleS2CPacket.Action.ACTIONBAR);
+                    OnScreenMessageUtils.sendMessage((ServerPlayerEntity) data.getAttackerEntity(), new StringTextComponent("Weapon requirements not met"), STitlePacket.Type.ACTIONBAR);
                     return;
                 }
 
@@ -114,7 +114,7 @@ public class LivingHurtUtils {
     }
 
     public static boolean isEnviromentalDmg(DamageSource source) {
-        return source.getAttacker() instanceof LivingEntity == false;
+        return source.getEntity() instanceof LivingEntity == false;
     }
 
 }

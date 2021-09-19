@@ -16,8 +16,8 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.LiteralText;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class ScrollBuffData implements ITooltip {
 
     public void saveToStack(ItemStack stack) {
         if (!stack.hasTag()) {
-            stack.setTag(new NbtCompound());
+            stack.setTag(new CompoundNBT());
         }
         LoadSave.Save(this, stack.getTag(), "sb");
 
@@ -72,7 +72,7 @@ public class ScrollBuffData implements ITooltip {
 
         getStats().forEach(x -> ctx.tooltip.addAll(x.GetTooltipString(info)));
 
-        ctx.tooltip.add(new LiteralText("1 Min"));
+        ctx.tooltip.add(new StringTextComponent("1 Min"));
 
         ctx.tooltip.add(TooltipUtils.rarity(getRarity()));
     }

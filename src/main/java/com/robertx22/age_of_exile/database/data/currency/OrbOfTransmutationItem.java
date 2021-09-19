@@ -12,7 +12,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
@@ -86,15 +86,15 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
     }
 
     @Override
-    public ShapedRecipeJsonFactory getRecipe() {
+    public ShapedRecipeBuilder getRecipe() {
         return shaped(ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
-            .input('t', Items.REDSTONE)
-            .input('v', Items.COAL)
-            .input('o', ModRegistry.MISC_ITEMS.T0_DUST())
+            .define('t', Items.REDSTONE)
+            .define('v', Items.COAL)
+            .define('o', ModRegistry.MISC_ITEMS.T0_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")
-            .criterion("player_level", trigger());
+            .unlockedBy("player_level", trigger());
     }
 
 }

@@ -50,7 +50,7 @@ public class ModelHelper {
 
         Path path = DirUtils.generatedResourcesDir();
 
-        String reg = "assets/" + Ref.MODID + "/models/item/" + Registry.ITEM.getId(item)
+        String reg = "assets/" + Ref.MODID + "/models/item/" + Registry.ITEM.getKey(item)
             .getPath()
             + ".json";
 
@@ -78,7 +78,7 @@ public class ModelHelper {
 
     private String getTextureString() {
 
-        String id = Registry.ITEM.getId(item)
+        String id = Registry.ITEM.getKey(item)
             .toString();
 
         if (!modelPath.isEmpty()) {

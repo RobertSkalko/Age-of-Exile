@@ -1,30 +1,30 @@
 package com.robertx22.age_of_exile.gui.screens.dungeon;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
 import com.robertx22.age_of_exile.dimension.packets.StartDungeonPacket;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StartDungeonButton extends TexturedButtonWidget {
+public class StartDungeonButton extends ImageButton {
 
     public static int SIZE_X = 49;
     public static int SIZE_Y = 16;
 
-    static Identifier ID = Ref.guiId("dungeon/start_dungeon_button");
+    static ResourceLocation ID = Ref.guiId("dungeon/start_dungeon_button");
 
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
 
     TeamSize teamSize;
 
@@ -40,16 +40,16 @@ public class StartDungeonButton extends TexturedButtonWidget {
     @Override
     public void renderToolTip(MatrixStack matrix, int x, int y) {
         if (isInside(x, y)) {
-            List<Text> tooltip = new ArrayList<>();
-            tooltip.add(new LiteralText("Choose this dungeon to start."));
+            List<ITextComponent> tooltip = new ArrayList<>();
+            tooltip.add(new StringTextComponent("Choose this dungeon to start."));
 
             if (teamSize.requiredMemberAmount > 1) {
-                tooltip.add(new LiteralText("This starts the dungeon in team mode."));
-                tooltip.add(new LiteralText("/age_of_exile teams, is required to play."));
-                tooltip.add(new LiteralText("The enemies are much more powerful but so are the rewards!"));
+                tooltip.add(new StringTextComponent("This starts the dungeon in team mode."));
+                tooltip.add(new StringTextComponent("/age_of_exile teams, is required to play."));
+                tooltip.add(new StringTextComponent("The enemies are much more powerful but so are the rewards!"));
 
                 if (teamSize.requiredMemberAmount > 2) {
-                    tooltip.add(new LiteralText("A dedicated Tank, Healer and Damage Dealer are recommended."));
+                    tooltip.add(new StringTextComponent("A dedicated Tank, Healer and Damage Dealer are recommended."));
                 }
             }
 
@@ -68,9 +68,9 @@ public class StartDungeonButton extends TexturedButtonWidget {
 
         String txt = CLOC.translate(teamSize.word.locName());
 
-        int width = mc.textRenderer.getWidth(txt);
+        int width = mc.font.width(txt);
 
-        mc.textRenderer.drawWithShadow(matrix, txt, this.x + (SIZE_X / 2F - (width / 2F)), this.y + 3, Formatting.WHITE.getColorValue());
+        mc.font.drawShadow(matrix, txt, this.x + (SIZE_X / 2F - (width / 2F)), this.y + 3, TextFormatting.WHITE.getColor());
     }
 
 }

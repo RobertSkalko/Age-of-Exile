@@ -9,13 +9,13 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.CropBlock;
-import net.minecraft.block.GourdBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameters;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.StemGrownBlock;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
@@ -25,33 +25,33 @@ public class OnBlockDropFarming {
     public static void run(LootContext ctx, CallbackInfoReturnable<List<ItemStack>> ci) {
 
         try {
-            if (!ctx.hasParameter(LootContextParameters.BLOCK_STATE)) {
+            if (!ctx.hasParam(LootParameters.BLOCK_STATE)) {
                 return;
             }
-            if (!ctx.hasParameter(LootContextParameters.ORIGIN)) {
+            if (!ctx.hasParam(LootParameters.ORIGIN)) {
                 return;
             }
-            if (!ctx.hasParameter(LootContextParameters.THIS_ENTITY)) {
+            if (!ctx.hasParam(LootParameters.THIS_ENTITY)) {
                 return;
             }
 
-            BlockState state = ctx.get(LootContextParameters.BLOCK_STATE);
+            BlockState state = ctx.getParamOrNull(LootParameters.BLOCK_STATE);
 
             Block block = state
                 .getBlock();
 
             if (block instanceof CropBlock) {
                 CropBlock crop = (CropBlock) block;
-                if (!crop.isMature(state)) {
+                if (!crop.isMaxAge(state)) {
                     return;
                 }
-            } else if (block instanceof GourdBlock) {
+            } else if (block instanceof StemGrownBlock) {
 
             } else {
                 return;
             }
 
-            Entity en = ctx.get(LootContextParameters.THIS_ENTITY);
+            Entity en = ctx.getParamOrNull(LootParameters.THIS_ENTITY);
 
             PlayerEntity player = null;
             if (en instanceof PlayerEntity) {
@@ -59,7 +59,7 @@ public class OnBlockDropFarming {
             } else {
                 return;
             }
-            if (player.world.isClient) {
+            if (player.level.isClientSide) {
                 return;
             }
 

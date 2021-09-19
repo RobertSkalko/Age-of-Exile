@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.overlays.death_stats;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.gui.TextUtils;
@@ -7,20 +8,19 @@ import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Formatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Map;
 
-public class DeathStatsOverlay extends DrawableHelper implements HudRenderCallback {
+public class DeathStatsOverlay extends AbstractGui implements HudRenderCallback {
 
     public DeathStatsOverlay() {
         super();
     }
 
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
 
     @Override
     public void onHudRender(MatrixStack matrix, float v) {
@@ -29,24 +29,24 @@ public class DeathStatsOverlay extends DrawableHelper implements HudRenderCallba
             if (mc.player == null) {
                 return;
             }
-            if (mc.options.debugEnabled || mc.player.isCreative() || mc.player.isSpectator()) {
+            if (mc.options.renderDebug || mc.player.isCreative() || mc.player.isSpectator()) {
                 return;
             }
             if (!ModConfig.get().client.RENDER_DEATH_STATISTICS) {
                 return;
             }
 
-            if (mc.player.isDead()) {
+            if (mc.player.isDeadOrDying()) {
                 RPGPlayerData data = Load.playerRPGData(mc.player);
 
                 DeathStatsData stats = data.deathStats;
 
                 int x = mc.getWindow()
-                    .getScaledWidth() / 2;
+                    .getGuiScaledWidth() / 2;
                 int y = mc.getWindow()
-                    .getScaledHeight() / 2 + 50;
+                    .getGuiScaledHeight() / 2 + 50;
 
-                TextUtils.renderText(matrix, 1, "Damage Taken:", x, y, Formatting.WHITE);
+                TextUtils.renderText(matrix, 1, "Damage Taken:", x, y, TextFormatting.WHITE);
 
                 int totaldmg = stats.dmg.values()
                     .stream()

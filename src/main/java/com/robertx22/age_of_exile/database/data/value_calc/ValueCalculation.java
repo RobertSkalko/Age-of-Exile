@@ -11,10 +11,10 @@ import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import info.loenwind.autosave.annotations.Factory;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,8 +82,8 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
 
     }
 
-    public Text getShortTooltip(LevelProvider provider) {
-        MutableText text = new LiteralText("");
+    public ITextComponent getShortTooltip(LevelProvider provider) {
+        IFormattableTextComponent text = new StringTextComponent("");
 
         int val = getCalculatedValue(provider);
 
@@ -98,7 +98,7 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
 
             if (val < 1 || Screen.hasShiftDown()) {
                 text.append(" (" + (int) (attack_scaling.getValue(provider) * 100) + "% Weapon Damage)")
-                    .formatted(Formatting.YELLOW);
+                    .withStyle(TextFormatting.YELLOW);
             }
         }
 

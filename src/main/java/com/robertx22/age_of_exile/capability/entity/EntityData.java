@@ -50,14 +50,14 @@ import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.packet.s2c.play.TitleS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Formatting;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.play.server.STitlePacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Comparator;
 import java.util.Random;
@@ -119,7 +119,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     CustomExactStatsData customExactStats = new CustomExactStatsData();
 
     @Override
-    public void addClientNBT(NbtCompound nbt) {
+    public void addClientNBT(CompoundNBT nbt) {
 
         nbt.putInt(LEVEL, level);
         nbt.putString(RARITY, rarity);
@@ -136,7 +136,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     }
 
     @Override
-    public void loadFromClientNBT(NbtCompound nbt) {
+    public void loadFromClientNBT(CompoundNBT nbt) {
 
         this.rarity = nbt.getString(RARITY);
         this.race = nbt.getString(RACE);
@@ -167,7 +167,8 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     }
 
     @Override
-    public NbtCompound toTag(NbtCompound nbt) {
+    public CompoundNBT saveToNBT() {
+        CompoundNBT nbt = new CompoundNBT();
 
         addClientNBT(nbt);
 
@@ -201,7 +202,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     }
 
     @Override
-    public void fromTag(NbtCompound nbt) {
+    public void loadFromNBT(CompoundNBT nbt) {
 
         loadFromClientNBT(nbt);
 
@@ -313,11 +314,6 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
 
     }
 
-    @Override
-    public PlayerCaps getCapType() {
-        return PlayerCaps.ENTITY_DATA;
-    }
-
     public Unit getUnit() {
         return unit;
     }
@@ -355,10 +351,10 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
         uuid = id.toString();
     }
 
-    public MutableText getName() {
+    public IFormattableTextComponent getName() {
 
         if (entity instanceof PlayerEntity) {
-            return new LiteralText("")
+            return new StringTextComponent("")
                 .append(entity.getDisplayName());
 
         } else {
@@ -366,10 +362,10 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
             MobRarity rarity = ExileDB.MobRarities()
                 .get(getRarity());
 
-            Formatting rarformat = rarity.textFormatting();
+            TextFormatting rarformat = rarity.textFormatting();
 
-            MutableText name = new LiteralText("").append(entity.getDisplayName())
-                .formatted(rarformat);
+            IFormattableTextComponent name = new StringTextComponent("").append(entity.getDisplayName())
+                .withStyle(rarformat);
 
             String icons = "";
 
@@ -380,14 +376,14 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
                 icons += " ";
             }
 
-            MutableText finalName = new LiteralText(icons).append(
+            IFormattableTextComponent finalName = new StringTextComponent(icons).append(
                 name);
 
-            MutableText part = new LiteralText("")
+            IFormattableTextComponent part = new StringTextComponent("")
                 .append(finalName)
-                .formatted(rarformat);
+                .withStyle(rarformat);
 
-            MutableText tx = (part);
+            IFormattableTextComponent tx = (part);
 
             return tx;
 
@@ -430,7 +426,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     }
 
     public GearItemData setupWeaponData() {
-        return Gear.Load(entity.getMainHandStack());
+        return Gear.Load(entity.getMainHandItem());
     }
 
     public boolean canUseWeapon(GearItemData weaponData) {
@@ -454,7 +450,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
                 }
 
                 Load.playerRPGData(player).favor
-                    .setFavor(ModConfig.get().Favor.STARTING_FAVOR); // newbie starting favor
+                    .setFavor(ModConfig.get().Server.STARTING_FAVOR); // newbie starting favor
 
                 Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
 
@@ -488,9 +484,9 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
 
     public Difficulty getMapDifficulty() {
 
-        if (WorldUtils.isMapWorldClass(entity.world)) {
-            WorldDungeonCap data = Load.dungeonData(entity.world);
-            return data.data.get(entity.getBlockPos()).data.getDifficulty();
+        if (WorldUtils.isMapWorldClass(entity.level)) {
+            WorldDungeonCap data = Load.dungeonData(entity.level);
+            return data.data.get(entity.blockPosition()).data.getDifficulty();
         }
 
         return ExileDB.Difficulties()
@@ -537,7 +533,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
             event.Activate();
 
             if (data.weapon != null) {
-                data.weapon.damage(1, new Random(), null);
+                data.weapon.hurt(1, new Random(), null);
             }
 
             data.weaponData.GetBaseGearType()
@@ -613,10 +609,10 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     public void SetMobLevelAtSpawn(PlayerEntity nearestPlayer) {
         this.setMobStats = true;
 
-        if (WorldUtils.isMapWorldClass(entity.world)) {
+        if (WorldUtils.isMapWorldClass(entity.level)) {
             try {
-                BlockPos pos = entity.getBlockPos();
-                DungeonData data = Load.dungeonData(entity.world).data.get(pos).data;
+                BlockPos pos = entity.blockPosition();
+                DungeonData data = Load.dungeonData(entity.level).data.get(pos).data;
                 if (!data.isEmpty()) {
                     this.setLevel(data.lv);
                     return;
@@ -636,7 +632,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     private void setMobLvlNormally(LivingEntity entity, PlayerEntity nearestPlayer) {
         EntityConfig entityConfig = ExileDB.getEntityConfig(entity, this);
 
-        int lvl = LevelUtils.determineLevel(entity.world, entity.getBlockPos(),
+        int lvl = LevelUtils.determineLevel(entity.level, entity.blockPosition(),
             nearestPlayer
         );
 
@@ -645,8 +641,8 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
 
     public int GiveExp(PlayerEntity player, int i) {
 
-        MutableText txt = new LiteralText("+" + (int) i + " Experience").formatted(Formatting.GREEN);
-        OnScreenMessageUtils.sendMessage((ServerPlayerEntity) player, txt, TitleS2CPacket.Action.ACTIONBAR);
+        IFormattableTextComponent txt = new StringTextComponent("+" + (int) i + " Experience").withStyle(TextFormatting.GREEN);
+        OnScreenMessageUtils.sendMessage((ServerPlayerEntity) player, txt, STitlePacket.Type.ACTIONBAR);
 
         setExp(exp + i);
 
@@ -683,9 +679,9 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     public boolean LevelUp(PlayerEntity player) {
 
         if (!CheckIfCanLevelUp()) {
-            player.sendMessage(Chats.Not_enough_experience.locName(), false);
+            player.displayClientMessage(Chats.Not_enough_experience.locName(), false);
         } else if (!CheckLevelCap()) {
-            player.sendMessage(Chats.Can_not_go_over_maximum_level.locName(), false);
+            player.displayClientMessage(Chats.Can_not_go_over_maximum_level.locName(), false);
         }
 
         if (CheckIfCanLevelUp() && CheckLevelCap()) {
@@ -705,7 +701,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
             this.setLevel(level + 1);
             setExp(getRemainingExp());
 
-            OnScreenMessageUtils.sendLevelUpMessage(player, new LiteralText("Player"), level - 1, level);
+            OnScreenMessageUtils.sendLevelUpMessage(player, new StringTextComponent("Player"), level - 1, level);
 
             return true;
         }
@@ -737,6 +733,11 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
 
     public LivingEntity getEntity() {
         return entity;
+    }
+
+    @Override
+    public String getCapIdForSyncing() {
+        return "entity_data";
     }
 
 }

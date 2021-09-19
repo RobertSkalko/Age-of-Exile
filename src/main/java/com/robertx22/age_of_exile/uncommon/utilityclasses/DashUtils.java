@@ -2,10 +2,10 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 
 public class DashUtils {
 
@@ -26,11 +26,11 @@ public class DashUtils {
 
     public static void knockback(LivingEntity source, LivingEntity target) {
 
-        target.takeKnockback(0.5F, source.getX() - target.getX(), source.getZ() - target.getZ());
+        target.knockback(0.5F, source.getX() - target.getX(), source.getZ() - target.getZ());
 
         if (target instanceof ServerPlayerEntity) {
-            ((ServerPlayerEntity) target).networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(target));
-            target.velocityModified = false;
+            ((ServerPlayerEntity) target).connection.send(new ClientboundSetEntityMotionPacket(target));
+            target.hurtMarked = false;
         }
     }
 
@@ -38,11 +38,11 @@ public class DashUtils {
     public static void push(Entity en, float f, double d, double e) {
 
         if (f > 0.0F) {
-            en.velocityDirty = true;
-            Vec3d vec3d = en.getVelocity();
-            Vec3d vec3d2 = (new Vec3d(d, 0.0D, e)).normalize()
-                .multiply((double) f);
-            en.setVelocity(vec3d.x / 2.0D - vec3d2.x, en.isOnGround() ? Math.min(0.4D, vec3d.y / 2.0D + (double) f) : vec3d.y, vec3d.z / 2.0D - vec3d2.z);
+            en.hasImpulse = true;
+            Vector3d vec3d = en.getDeltaMovement();
+            Vector3d vec3d2 = (new Vector3d(d, 0.0D, e)).normalize()
+                .scale((double) f);
+            en.setDeltaMovement(vec3d.x / 2.0D - vec3d2.x, en.isOnGround() ? Math.min(0.4D, vec3d.y / 2.0D + (double) f) : vec3d.y, vec3d.z / 2.0D - vec3d2.z);
         }
     }
 
@@ -54,22 +54,22 @@ public class DashUtils {
         final float importantValue = 0.017453292f;
 
         if (way == Way.BACKWARDS) {
-            x = (double) -MathHelper.sin(entity.yaw * importantValue);
-            z = (double) (MathHelper.cos(entity.yaw * importantValue));
+            x = (double) -MathHelper.sin(entity.yRot * importantValue);
+            z = (double) (MathHelper.cos(entity.yRot * importantValue));
         }
         if (way == Way.UPWARDS) {
-            entity.addVelocity(0, str, 0);
+            entity.push(0, str, 0);
             return;
         } else {
-            x = (double) MathHelper.sin(entity.yaw * importantValue);
-            z = (double) -(MathHelper.cos(entity.yaw * importantValue));
+            x = (double) MathHelper.sin(entity.yRot * importantValue);
+            z = (double) -(MathHelper.cos(entity.yRot * importantValue));
         }
 
         push(entity, str, x, z);
 
         if (entity instanceof ServerPlayerEntity) {
-            ((ServerPlayerEntity) entity).networkHandler.sendPacket(new EntityVelocityUpdateS2CPacket(entity));
-            entity.velocityModified = false;
+            ((ServerPlayerEntity) entity).connection.send(new ClientboundSetEntityMotionPacket(entity));
+            entity.hurtMarked = false;
         }
     }
 

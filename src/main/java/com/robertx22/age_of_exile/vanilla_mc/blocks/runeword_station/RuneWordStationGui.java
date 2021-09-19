@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.runeword_station;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -10,16 +11,15 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.ModifyItemPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +29,12 @@ import java.util.stream.Collectors;
 public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer, RuneWordStationTile> {
 
     // This is the resource location for the background image
-    private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/runewordcraft.png");
+    private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/runewordcraft.png");
 
-    public RuneWordStationGui(RuneWordStationContainer cont, PlayerInventory invPlayer, MutableText comp) {
-        super(texture, cont, invPlayer, new LiteralText(""), RuneWordStationTile.class);
-        backgroundWidth = 276;
-        backgroundHeight = 195;
+    public RuneWordStationGui(RuneWordStationContainer cont, IInventory invPlayer, IFormattableTextComponent comp) {
+        super(texture, cont, invPlayer, new StringTextComponent(""), RuneWordStationTile.class);
+        imageWidth = 276;
+        imageHeight = 195;
         this.backgroundCanvasSize = 512;
     }
 
@@ -45,7 +45,7 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
         super.render(matrix, mouseX, mouseY, partialTicks);
 
         if (tile != null) {
-            if (mc.player.age % 20 == 0) {
+            if (mc.player.tickCount % 20 == 0) {
 
                 if (tile.getGearStack()
                     .isEmpty()) {
@@ -61,7 +61,7 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
                     for (int slot : RuneWordStationTile.RUNE_SLOTS) {
                         runes.add(tile.itemStacks[slot]);
                     }
-                    runes.addAll(mc.player.inventory.main);
+                    runes.addAll(mc.player.inventory.items);
 
                     runes.removeIf(x -> x.isEmpty() || x.getItem() instanceof RuneItem == false);
 
@@ -86,7 +86,7 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
                         break;
                     }
 
-                    addButton(new RuneWordButton(word, true, this.x + 5, this.y + 18 + count * RuneWordButton.Y));
+                    addButton(new RuneWordButton(word, true, this.leftPos + 5, this.topPos + 18 + count * RuneWordButton.Y));
 
                     count++;
 
@@ -109,15 +109,15 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
 
          */
 
-        this.addButton(new CraftButton(tile.getPos(), this.x + 176, this.y + 50));
+        this.addButton(new CraftButton(tile.getBlockPos(), this.leftPos + 176, this.topPos + 50));
     }
 
-    private static final Identifier BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/craft_button.png");
-    private static final Identifier RUNEWORD_BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/runeword_button.png");
+    private static final ResourceLocation BUTTON_TEX = new ResourceLocation(Ref.MODID, "textures/gui/craft_button.png");
+    private static final ResourceLocation RUNEWORD_BUTTON_TEX = new ResourceLocation(Ref.MODID, "textures/gui/runeword_button.png");
     static int BUTTON_SIZE_X = 22;
     static int BUTTON_SIZE_Y = 20;
 
-    public class CraftButton extends TexturedButtonWidget {
+    public class CraftButton extends ImageButton {
         BlockPos pos;
 
         public CraftButton(BlockPos pos, int xPos, int yPos) {
@@ -132,10 +132,10 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
             if (isInside(x, y)) {
 
                 try {
-                    List<Text> tooltip = new ArrayList<>();
+                    List<ITextComponent> tooltip = new ArrayList<>();
 
                     if (tooltip.isEmpty()) {
-                        tooltip.add(new LiteralText("Modify Item"));
+                        tooltip.add(new StringTextComponent("Modify Item"));
                     }
 
                     GuiUtils.renderTooltip(matrix,
@@ -153,7 +153,7 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
 
     }
 
-    public static class RuneWordButton extends TexturedButtonWidget {
+    public static class RuneWordButton extends ImageButton {
         static int X = 95;
         static int Y = 18;
 
@@ -172,13 +172,13 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
             if (isInside(x, y)) {
 
                 try {
-                    List<Text> tooltip = new ArrayList<>();
+                    List<ITextComponent> tooltip = new ArrayList<>();
 
                     UniqueGear uniq = ExileDB.UniqueGears()
                         .get(word.uniq_id);
 
                     tooltip.add(uniq.locName()
-                        .formatted(uniq.getUniqueRarity()
+                        .withStyle(uniq.getUniqueRarity()
                             .textFormatting()));
 
                     String runes = "";
@@ -190,7 +190,7 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
                         runes += rune.toUpperCase(Locale.ROOT);
                     }
 
-                    tooltip.add(new LiteralText(runes).formatted(Formatting.GOLD));
+                    tooltip.add(new StringTextComponent(runes).withStyle(TextFormatting.GOLD));
 
                     String usedOn = "";
                     for (String slot : word.slots) {
@@ -198,7 +198,7 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
                             .get(slot)
                             .translate();
                     }
-                    tooltip.add(new LiteralText(Formatting.GREEN + "Can be used on: " + usedOn));
+                    tooltip.add(new StringTextComponent(TextFormatting.GREEN + "Can be used on: " + usedOn));
 
                     GuiUtils.renderTooltip(matrix,
                         tooltip, x, y);
@@ -218,7 +218,7 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
                 .get(word.uniq_id)
                 .translate();
 
-            GuiUtils.renderScaledText(matrices, this.x + X / 2, this.y + Y / 2, 1D, name, Formatting.YELLOW);
+            GuiUtils.renderScaledText(matrices, this.x + X / 2, this.y + Y / 2, 1D, name, TextFormatting.YELLOW);
 
         }
 

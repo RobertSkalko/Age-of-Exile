@@ -8,10 +8,10 @@ import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
 import com.robertx22.age_of_exile.mixin_methods.CanEntityHavePotionMixin;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
@@ -59,7 +59,7 @@ public abstract class LivingEntityMixin implements LivingEntityAccesor {
     public void hookenchreturn(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
         LivingEntity en = (LivingEntity) (Object) this;
 
-        if (!source.isUnblockable()) {
+        if (!source.isBypassMagic()) {
             LivingHurtUtils.damageCurioItems(en, amount);
         }
         if (source instanceof MyDamageSource) {
@@ -79,7 +79,7 @@ public abstract class LivingEntityMixin implements LivingEntityAccesor {
     // ENSURE MY SPECIAL DAMAGE ISNT LOWERED BY ARMOR, ENCHANTS ETC
 
     @Inject(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At(value = "HEAD"), cancellable = true)
-    public void hook(StatusEffectInstance effect, CallbackInfoReturnable<Boolean> ci) {
+    public void hook(EffectInstance effect, CallbackInfoReturnable<Boolean> ci) {
         try {
             LivingEntity en = (LivingEntity) (Object) this;
             CanEntityHavePotionMixin.hook(en, effect, ci);

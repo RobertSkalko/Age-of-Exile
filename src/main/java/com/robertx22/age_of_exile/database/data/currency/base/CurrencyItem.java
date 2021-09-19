@@ -20,15 +20,15 @@ import com.robertx22.age_of_exile.vanilla_mc.items.ItemDefault;
 import com.robertx22.library_of_exile.registry.ExileRegistry;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IWeighted;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
 
     public ItemType itemTypesUsableOn = ItemType.GEAR;
 
-    public static Formatting nameColor = Formatting.RED;
+    public static TextFormatting nameColor = TextFormatting.RED;
 
     public abstract String GUID();
 
@@ -46,8 +46,8 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
     }
 
     public CurrencyItem(String name) {
-        super(new ItemDefault().maxCount(64)
-            .group(CreativeTabs.GemRuneCurrency));
+        super(new ItemDefault().stacksTo(64)
+            .tab(CreativeTabs.GemRuneCurrency));
     }
 
     public abstract int getTier();
@@ -91,7 +91,7 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
 
     @Override
     public String locDescLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString() + ".desc";
     }
 
@@ -109,18 +109,18 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 
-    @Environment(EnvType.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip,
-                              TooltipContext flagIn) {
+    public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip,
+                                ITooltipFlag flagIn) {
 
         tooltip.add(
             this.locDesc()
-                .formatted(Formatting.YELLOW));
+                .withStyle(TextFormatting.YELLOW));
 
         tooltip.add(ItemType.getTooltipString(this.itemTypesUsableOn));
 
@@ -128,11 +128,11 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
 
         tooltip.add(
             Words.Item_modifiable_in_station.locName()
-                .formatted(Formatting.BLUE));
+                .withStyle(TextFormatting.BLUE));
 
         if (this.getInstability() > 0) {
             tooltip.add(Words.Instability.locName()
-                .formatted(Formatting.RED)
+                .withStyle(TextFormatting.RED)
                 .append(": " + getInstability()));
 
         }
@@ -140,7 +140,7 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
         if (this.getBreakChance() > 0) {
             tooltip.add(Words.BreakChance.locName()
                 .append(": " + (int) getBreakChance())
-                .formatted(Formatting.RED));
+                .withStyle(TextFormatting.RED));
         }
 
         TooltipUtils.addEmpty(tooltip);

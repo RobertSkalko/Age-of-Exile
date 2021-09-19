@@ -18,7 +18,7 @@ public class TeleportTargetToSourceAction extends SpellAction {
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
         targets.forEach(x -> {
-            EntityUtils.setLoc(x, ctx.sourceEntity.getPos(), x.yaw, x.pitch);
+            EntityUtils.setLoc(x, ctx.sourceEntity.position(), x.yRot, x.xRot);
         });
 
     }

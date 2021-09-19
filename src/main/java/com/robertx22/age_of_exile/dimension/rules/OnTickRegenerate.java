@@ -14,7 +14,7 @@ public class OnTickRegenerate {
 
     public static void regen(int ticks, LivingEntity en) {
 
-        if (en.age % 50 != 0) {
+        if (en.tickCount % 50 != 0) {
             return;
         }
         if (en instanceof PlayerEntity) {
@@ -24,7 +24,7 @@ public class OnTickRegenerate {
         if (en.getMaxHealth() == en.getHealth()) {
             return;
         }
-        if (WorldUtils.isMapWorldClass(en.world) == false) {
+        if (WorldUtils.isMapWorldClass(en.level) == false) {
             return;
         }
 

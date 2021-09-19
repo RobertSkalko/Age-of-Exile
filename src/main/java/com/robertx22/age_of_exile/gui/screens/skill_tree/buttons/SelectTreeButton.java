@@ -3,16 +3,16 @@ package com.robertx22.age_of_exile.gui.screens.skill_tree.buttons;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.IMarkOnTop;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.util.ResourceLocation;
 
-public class SelectTreeButton extends TexturedButtonWidget implements IMarkOnTop {
+public class SelectTreeButton extends ImageButton implements IMarkOnTop {
 
     public enum LeftOrRight {
         LEFT, RIGHT
     }
 
-    static Identifier ID = new Identifier(Ref.MODID, "textures/gui/skill_tree/left_right.png");
+    static ResourceLocation ID = new ResourceLocation(Ref.MODID, "textures/gui/skill_tree/left_right.png");
 
     public static int XSIZE = 14;
     public static int YSIZE = 22;

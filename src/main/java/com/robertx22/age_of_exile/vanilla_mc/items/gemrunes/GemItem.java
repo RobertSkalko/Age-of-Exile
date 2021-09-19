@@ -35,16 +35,16 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.utils.RandomUtils;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,8 +57,8 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     @Override
-    public Text getName(ItemStack stack) {
-        return new TranslatableText(this.getTranslationKey()).formatted(gemType.format);
+    public ITextComponent getName(ItemStack stack) {
+        return new TranslationTextComponent(this.getDescriptionId()).withStyle(gemType.format);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 
@@ -90,16 +90,16 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     static float MAX_ELE_DMG = 8;
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
+    public ShapelessRecipeBuilder getRecipe() {
 
         if (this.gemRank.lower() == null) {
             return null;
         }
-        return ShapelessRecipeJsonFactory.create(ModRegistry.GEMS.MAP.get(gemType)
+        return ShapelessRecipeBuilder.shapeless(ModRegistry.GEMS.MAP.get(gemType)
                 .get(gemRank))
-            .input(ModRegistry.GEMS.MAP.get(gemType)
+            .requires(ModRegistry.GEMS.MAP.get(gemType)
                 .get(gemRank.lower()), 3)
-            .criterion("player_level", trigger());
+            .unlockedBy("player_level", trigger());
     }
 
     @Override
@@ -166,7 +166,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
     public enum GemType {
 
-        TOURMALINE("tourmaline", "Tourmaline", Formatting.LIGHT_PURPLE, new GemStatPerTypes() {
+        TOURMALINE("tourmaline", "Tourmaline", TextFormatting.LIGHT_PURPLE, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
                 return Arrays.asList(new StatModifier(1, 2, Health.getInstance()));
@@ -182,7 +182,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
                 return Arrays.asList(new StatModifier(2, 5, Stats.LIFESTEAL.get()));
             }
         }),
-        AZURITE("azurite", "Azurite", Formatting.AQUA, new GemStatPerTypes() {
+        AZURITE("azurite", "Azurite", TextFormatting.AQUA, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
                 return Arrays.asList(new StatModifier(2, 4, Mana.getInstance()));
@@ -199,7 +199,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
             }
         }),
 
-        GARNET("garnet", "Garnet", Formatting.GREEN, new GemStatPerTypes() {
+        GARNET("garnet", "Garnet", TextFormatting.GREEN, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
                 return Arrays.asList(new StatModifier(1, 3, DodgeRating.getInstance()));
@@ -215,7 +215,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
                 return Arrays.asList(new StatModifier(2, 6, Stats.CRIT_CHANCE.get()));
             }
         }),
-        OPAL("opal", "Opal", Formatting.GOLD, new GemStatPerTypes() {
+        OPAL("opal", "Opal", TextFormatting.GOLD, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
                 return Arrays.asList(new StatModifier(1, 3, Armor.getInstance()));
@@ -233,16 +233,16 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         }),
         //TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Air)),
         // AMETHYST("amethyst", "Amethyst", Formatting.DARK_PURPLE, new EleGem(Elements.Dark)),
-        RUBY("ruby", "Ruby", Formatting.RED, new EleGem(Elements.Fire)),
-        EMERALD("emerald", "Emerald", Formatting.GREEN, new EleGem(Elements.Earth)),
-        SAPPHIRE("sapphire", "Sapphire", Formatting.BLUE, new EleGem(Elements.Water));
+        RUBY("ruby", "Ruby", TextFormatting.RED, new EleGem(Elements.Fire)),
+        EMERALD("emerald", "Emerald", TextFormatting.GREEN, new EleGem(Elements.Earth)),
+        SAPPHIRE("sapphire", "Sapphire", TextFormatting.BLUE, new EleGem(Elements.Water));
 
         public String locName;
         public String id;
-        public Formatting format;
+        public TextFormatting format;
         public GemStatPerTypes stats;
 
-        GemType(String id, String locName, Formatting format, GemStatPerTypes stats) {
+        GemType(String id, String locName, TextFormatting format, GemStatPerTypes stats) {
             this.locName = locName;
             this.id = id;
             this.format = format;
@@ -290,8 +290,8 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     public GemItem(GemType type, GemRank gemRank) {
-        super(new Settings().group(CreativeTabs.GemRuneCurrency)
-            .maxCount(16));
+        super(new Properties().tab(CreativeTabs.GemRuneCurrency)
+            .stacksTo(16));
 
         this.gemType = type;
         this.gemRank = gemRank;
@@ -326,7 +326,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     public Gem getGem() {
-        String id = Registry.ITEM.getId(this)
+        String id = Registry.ITEM.getKey(this)
             .toString();
 
         Gem gem = ExileDB.Gems()
@@ -339,8 +339,8 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag context) {
 
         try {
 

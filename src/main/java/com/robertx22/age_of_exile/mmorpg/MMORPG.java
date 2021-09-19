@@ -1,8 +1,15 @@
 package com.robertx22.age_of_exile.mmorpg;
 
+import com.robertx22.age_of_exile.a_libraries.curios.CurioEvents;
 import net.minecraft.server.MinecraftServer;
 
 public class MMORPG {
+
+    public MMORPG() {
+
+        CurioEvents.reg();
+
+    }
 
     // DISABLE WHEN PUBLIC BUILD
     public static boolean RUN_DEV_TOOLS = true;

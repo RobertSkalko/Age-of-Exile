@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.uncommon.testing.tests;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.uncommon.testing.CommandTest;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 
 public class SkillLevelTest extends CommandTest {
     @Override

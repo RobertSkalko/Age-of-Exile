@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.overlays.mob_bar;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -9,23 +10,22 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
-public class MobBarScreen extends DrawableHelper implements HudRenderCallback {
+public class MobBarScreen extends AbstractGui implements HudRenderCallback {
 
-    private MinecraftClient mc;
+    private Minecraft mc;
 
-    Identifier TEX = new Identifier(Ref.MODID, "textures/gui/mob_bar/mob_bar.png");
+    ResourceLocation TEX = new ResourceLocation(Ref.MODID, "textures/gui/mob_bar/mob_bar.png");
 
     public MobBarScreen() {
         super();
-        this.mc = MinecraftClient.getInstance();
+        this.mc = Minecraft.getInstance();
 
     }
 
@@ -69,30 +69,30 @@ public class MobBarScreen extends DrawableHelper implements HudRenderCallback {
                     int percent = Math.round((float) currentHp / (float) maxHP * 100);
 
                     int height = mc.getWindow()
-                        .getScaledHeight();
+                        .getGuiScaledHeight();
                     int width = mc.getWindow()
-                        .getScaledWidth();
+                        .getGuiScaledWidth();
 
                     int x = width / 2 - xSize / 2;
                     int y = 30;
 
                     mc.getTextureManager()
-                        .bindTexture(TEX);
+                        .bind(TEX);
 
-                    drawTexture(matrix, x, y, 0, 0, xSize, ySize); // the bar
+                    blit(matrix, x, y, 0, 0, xSize, ySize); // the bar
 
-                    drawTexture(matrix, x, y, 0, ySize, (int) ((float) xSize * percent / 100F), ySize); // inner fill texture
+                    blit(matrix, x, y, 0, ySize, (int) ((float) xSize * percent / 100F), ySize); // inner fill texture
 
                     String name = CLOC.translate(data.getName());
 
-                    mc.textRenderer.drawWithShadow(matrix, name, width / 2 - mc.textRenderer.getWidth(name) / 2,
-                        y - 10, Formatting.WHITE.getColorValue()
+                    mc.font.drawShadow(matrix, name, width / 2 - mc.font.width(name) / 2,
+                        y - 10, TextFormatting.WHITE.getColor()
                     );
 
                     String hpText = (int) currentHp + "/" + (int) maxHP;
 
                     GuiUtils.renderScaledText(matrix,
-                        width / 2, (int) (y + (float) ySize / 2) + 1, 0.75F, hpText, Formatting.GREEN);
+                        width / 2, (int) (y + (float) ySize / 2) + 1, 0.75F, hpText, TextFormatting.GREEN);
 
                 }
             }

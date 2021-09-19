@@ -35,7 +35,7 @@ public class EntityStatusEffectsData {
         if (sb == null) {
             return new MiscStatCtx(Arrays.asList());
         }
-        if (en.hasStatusEffect(ModRegistry.POTIONS.SCROLL_BUFF)) {
+        if (en.hasEffect(ModRegistry.POTIONS.SCROLL_BUFF)) {
             return new MiscStatCtx(sb.getStats());
         }
 

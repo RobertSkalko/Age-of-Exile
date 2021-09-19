@@ -53,7 +53,7 @@ public class DarknessDamage extends Stat {
 
             float extra = data.getValue() - 100;
 
-            int lightlevel = effect.source.world.getLightLevel(effect.source.getBlockPos());
+            int lightlevel = effect.source.level.getMaxLocalRawBrightness(effect.source.blockPosition());
 
             if (lightlevel < 7) {
 

@@ -57,7 +57,7 @@ public class DualWieldDamage extends Stat {
 
         @Override
         public boolean canActivate(DamageEvent effect, StatData data, Stat stat) {
-            GearItemData gear = Gear.Load(effect.source.getOffHandStack());
+            GearItemData gear = Gear.Load(effect.source.getOffhandItem());
             return gear != null && gear.GetBaseGearType()
                 .isWeapon();
         }

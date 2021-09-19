@@ -6,10 +6,10 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.Spell
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
-import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkEvent;
 
 public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellPacket> {
 
@@ -23,22 +23,22 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "tell_server_castspell");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "tell_server_castspell");
     }
 
     @Override
-    public void loadFromData(PacketByteBuf tag) {
+    public void loadFromData(PacketBuffer tag) {
         this.number = tag.readInt();
     }
 
     @Override
-    public void saveToData(PacketByteBuf tag) {
+    public void saveToData(PacketBuffer tag) {
         tag.writeInt(number);
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void onReceived(NetworkEvent.Context ctx) {
         PlayerEntity player = ctx.getPlayer();
 
         EntitySpellCap.ISpellsCap spells = Load.spells(player);

@@ -31,7 +31,7 @@ public class HealthUtils {
     public static float getMaxHealth(LivingEntity en) {
         EntityData data = Load.Unit(en);
 
-        if (en.world.isClient) {
+        if (en.level.isClientSide) {
             return data.getSyncedMaxHealth(); // for client, health needs to be synced
         }
 

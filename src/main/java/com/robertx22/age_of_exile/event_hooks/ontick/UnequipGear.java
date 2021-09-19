@@ -6,12 +6,12 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
 import java.util.Arrays;
@@ -21,31 +21,31 @@ public class UnequipGear {
 
     // dont drop weapons becasuse then newbies can't use stuff like axes at low level!
 
-    public static List<EquipmentSlot> SLOTS = Arrays.asList(EquipmentSlot.FEET, EquipmentSlot.LEGS, EquipmentSlot.CHEST, EquipmentSlot.HEAD, EquipmentSlot.OFFHAND);
+    public static List<EquipmentSlotType> SLOTS = Arrays.asList(EquipmentSlotType.FEET, EquipmentSlotType.LEGS, EquipmentSlotType.CHEST, EquipmentSlotType.HEAD, EquipmentSlotType.OFFHAND);
 
-    static void drop(PlayerEntity player, EquipmentSlot slot, ItemStack stack, MutableText txt) {
+    static void drop(PlayerEntity player, EquipmentSlotType slot, ItemStack stack, IFormattableTextComponent txt) {
         ItemStack copy = stack.copy();
 
-        player.equipStack(slot, ItemStack.EMPTY); // todo is this good?
+        player.setItemSlot(slot, ItemStack.EMPTY); // todo is this good?
 
-        if (player.getEquippedStack(slot)
+        if (player.getItemBySlot(slot)
             .isEmpty()) {
             PlayerUtils.giveItem(copy, player);
-            player.sendMessage(txt
+            player.displayClientMessage(txt
                 , false);
         } else {
-            player.equipStack(slot, copy);
+            player.setItemSlot(slot, copy);
             System.out.print("Error in unequipping gear, weird!!!");
         }
     }
 
-    static void drop(PlayerEntity player, ICurioStacksHandler handler, int number, ItemStack stack, MutableText txt) {
+    static void drop(PlayerEntity player, ICurioStacksHandler handler, int number, ItemStack stack, IFormattableTextComponent txt) {
 
         ItemStack copy = stack.copy();
         handler.getStacks()
-            .setStack(number, ItemStack.EMPTY);
+            .setItem(number, ItemStack.EMPTY);
         PlayerUtils.giveItem(copy, player);
-        player.sendMessage(txt, false);
+        player.displayClientMessage(txt, false);
     }
 
     public static void onTick(PlayerEntity player) {
@@ -53,19 +53,19 @@ public class UnequipGear {
         int runewords = 0;
         int uniques = 0;
 
-        for (EquipmentSlot slot : SLOTS) {
+        for (EquipmentSlotType slot : SLOTS) {
 
-            ItemStack stack = player.getEquippedStack(slot);
+            ItemStack stack = player.getItemBySlot(slot);
 
             GearItemData gear = Gear.Load(stack);
 
             if (gear != null) {
                 if (!gear.canPlayerWear(Load.Unit(player))) {
-                    drop(player, slot, stack, new LiteralText("You do not meet the requirements of that item.").formatted(Formatting.RED));
+                    drop(player, slot, stack, new StringTextComponent("You do not meet the requirements of that item.").withStyle(TextFormatting.RED));
                 } else if (gear.isUnique()) {
                     uniques++;
                     if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_WORN) {
-                        drop(player, slot, stack, new LiteralText("You cannot equip that many unique items.").formatted(Formatting.RED));
+                        drop(player, slot, stack, new StringTextComponent("You cannot equip that many unique items.").withStyle(TextFormatting.RED));
                     }
                 }
             }
@@ -78,18 +78,18 @@ public class UnequipGear {
 
                 ItemStack stack = handler
                     .getStacks()
-                    .getStack(i);
+                    .getItem(i);
 
                 if (!stack.isEmpty()) {
                     GearItemData gear = Gear.Load(stack);
 
                     if (gear != null) {
                         if (!gear.canPlayerWear(Load.Unit(player))) {
-                            drop(player, handler, i, stack, new LiteralText("You do not meet the requirements of that item.").formatted(Formatting.RED));
+                            drop(player, handler, i, stack, new StringTextComponent("You do not meet the requirements of that item.").withStyle(TextFormatting.RED));
                         } else if (gear.isUnique()) {
                             uniques++;
                             if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_WORN) {
-                                drop(player, handler, i, stack, new LiteralText("You cannot equip that many unique items.").formatted(Formatting.RED));
+                                drop(player, handler, i, stack, new StringTextComponent("You cannot equip that many unique items.").withStyle(TextFormatting.RED));
                             }
                         }
                     }

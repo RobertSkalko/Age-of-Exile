@@ -34,14 +34,14 @@ public enum BonusRequirement {
         @Override
         public boolean isAllowed(World world, BlockPos pos) {
             return world.getBiome(pos)
-                .getCategory() == Biome.Category.EXTREME_HILLS;
+                .getBiomeCategory() == Biome.BiomeCategory.EXTREME_HILLS;
         }
     },
     SWAMP_BIOME("swamp_biome", "Swamp Biome") {
         @Override
         public boolean isAllowed(World world, BlockPos pos) {
             return world.getBiome(pos)
-                .getCategory() == Biome.Category.SWAMP;
+                .getBiomeCategory() == Biome.BiomeCategory.SWAMP;
         }
     },
     COLD_BIOME("cold_biome", "Cold Biome") {

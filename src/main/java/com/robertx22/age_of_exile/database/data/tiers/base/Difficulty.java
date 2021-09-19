@@ -8,9 +8,9 @@ import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.registry.serialization.ISerializable;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,22 +50,22 @@ public class Difficulty implements JsonExileRegistry<Difficulty>, IAutoGson<Diff
         return Difficulty.class;
     }
 
-    public List<Text> getTooltip() {
+    public List<ITextComponent> getTooltip() {
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new LiteralText("Difficulty: ").append(locName())
-            .formatted(Formatting.DARK_RED));
+        list.add(new StringTextComponent("Difficulty: ").append(locName())
+            .withStyle(TextFormatting.DARK_RED));
 
-        list.add(new LiteralText(""));
+        list.add(new StringTextComponent(""));
 
-        list.add(new LiteralText("Mob Health: " + (int) (hp_multi * 100) + "%").formatted(Formatting.RED));
-        list.add(new LiteralText("Mob Damage: " + (int) (dmg_multi * 100) + "%").formatted(Formatting.RED));
-        list.add(new LiteralText("Mob Stats: " + (int) (stat_multi * 100) + "%").formatted(Formatting.RED));
+        list.add(new StringTextComponent("Mob Health: " + (int) (hp_multi * 100) + "%").withStyle(TextFormatting.RED));
+        list.add(new StringTextComponent("Mob Damage: " + (int) (dmg_multi * 100) + "%").withStyle(TextFormatting.RED));
+        list.add(new StringTextComponent("Mob Stats: " + (int) (stat_multi * 100) + "%").withStyle(TextFormatting.RED));
 
-        list.add(new LiteralText(""));
+        list.add(new StringTextComponent(""));
 
-        list.add(new LiteralText("Loot: " + (int) (loot_multi * 100) + "%").formatted(Formatting.GOLD));
+        list.add(new StringTextComponent("Loot: " + (int) (loot_multi * 100) + "%").withStyle(TextFormatting.GOLD));
 
         return list;
     }

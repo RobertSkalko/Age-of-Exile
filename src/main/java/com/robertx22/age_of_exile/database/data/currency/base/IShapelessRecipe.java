@@ -1,15 +1,15 @@
 package com.robertx22.age_of_exile.database.data.currency.base;
 
-import net.minecraft.advancement.criterion.CriterionConditions;
-import net.minecraft.advancement.criterion.EnchantedItemCriterion;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.advancements.ICriterionInstance;
+import net.minecraft.advancements.criterion.EnchantedItemTrigger;
+import net.minecraft.data.ShapelessRecipeBuilder;
 
 public interface IShapelessRecipe {
-    
-    ShapelessRecipeJsonFactory getRecipe();
 
-    default CriterionConditions trigger() {
-        return EnchantedItemCriterion.Conditions.any();
+    ShapelessRecipeBuilder getRecipe();
+
+    default ICriterionInstance trigger() {
+        return EnchantedItemTrigger.Instance.enchantedItem();
     }
 }
 

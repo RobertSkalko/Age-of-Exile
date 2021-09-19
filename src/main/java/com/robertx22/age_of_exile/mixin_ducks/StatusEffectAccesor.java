@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.mixin_ducks;
 
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.potion.EffectType;
 
 public interface StatusEffectAccesor {
 
-    StatusEffectType my$getstatusEffectType();
+    EffectType my$getstatusEffectType();
 }

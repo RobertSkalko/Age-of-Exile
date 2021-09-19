@@ -6,10 +6,10 @@ import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.BaseTpItem;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.utils.TeleportUtils;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
 
 public class DeathTeleportItem extends BaseTpItem {
@@ -22,10 +22,10 @@ public class DeathTeleportItem extends BaseTpItem {
             RPGPlayerData data = Load.playerRPGData(user);
 
             if (data.deathStats.deathPos != null && data.deathStats.deathDim != null && data.deathStats.deathDim
-                .equals(world.getRegistryKey()
-                    .getValue()
+                .equals(world.dimension()
+                    .location()
                     .toString())) {
-                stack.decrement(1);
+                stack.shrink(1);
 
                 TeleportUtils.teleport(user, data.deathStats.deathPos);
             }
@@ -42,12 +42,12 @@ public class DeathTeleportItem extends BaseTpItem {
     }
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this);
-        fac.input(Items.PAPER);
-        fac.input(Items.ENDER_EYE);
-        fac.input(ModRegistry.TIERED.INK_TIER_MAP.get(SkillItemTier.TIER0));
-        return fac.criterion("player_level", trigger());
+    public ShapelessRecipeBuilder getRecipe() {
+        ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this);
+        fac.requires(Items.PAPER);
+        fac.requires(Items.ENDER_EYE);
+        fac.requires(ModRegistry.TIERED.INK_TIER_MAP.get(SkillItemTier.TIER0));
+        return fac.unlockedBy("player_level", trigger());
     }
 
 }

@@ -3,18 +3,18 @@ package com.robertx22.age_of_exile.player_skills.recipe_types;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementRewards;
-import net.minecraft.advancement.CriterionMerger;
-import net.minecraft.advancement.criterion.CriterionConditions;
-import net.minecraft.advancement.criterion.RecipeUnlockedCriterion;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementRewards;
+import net.minecraft.advancements.ICriterionInstance;
+import net.minecraft.advancements.IRequirementsStrategy;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
+import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.tag.Tag;
-import net.minecraft.util.Identifier;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.Tag;
+import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 import java.util.Iterator;
@@ -26,36 +26,36 @@ public class StationShapelessFactory {
     private final Item output;
     private final int outputCount;
     private final List<Ingredient> inputs = Lists.newArrayList();
-    private final Advancement.Task builder = Advancement.Task.create();
+    private final Advancement.Builder builder = Advancement.Builder.advancement();
     private String group;
 
-    RecipeSerializer<?> recipeSerializer;
+    IRecipeSerializer<?> recipeSerializer;
 
-    public StationShapelessFactory(RecipeSerializer<?> recipeSerializer, ItemConvertible itemProvider, int outputCount) {
+    public StationShapelessFactory(IRecipeSerializer<?> recipeSerializer, IItemProvider itemProvider, int outputCount) {
         this.output = itemProvider.asItem();
         this.outputCount = outputCount;
         this.recipeSerializer = recipeSerializer;
     }
 
-    public static StationShapelessFactory create(RecipeSerializer<?> recipeSerializer, ItemConvertible output) {
+    public static StationShapelessFactory create(IRecipeSerializer<?> recipeSerializer, IItemProvider output) {
         return new StationShapelessFactory(recipeSerializer, output, 1);
     }
 
-    public static StationShapelessFactory create(RecipeSerializer<?> recipeSerializer, ItemConvertible output, int outputCount) {
+    public static StationShapelessFactory create(IRecipeSerializer<?> recipeSerializer, IItemProvider output, int outputCount) {
         return new StationShapelessFactory(recipeSerializer, output, outputCount);
     }
 
     public StationShapelessFactory input(Tag<Item> tag) {
-        return this.input(Ingredient.fromTag(tag));
+        return this.input(Ingredient.of(tag));
     }
 
-    public StationShapelessFactory input(ItemConvertible itemProvider) {
-        return this.input((ItemConvertible) itemProvider, 1);
+    public StationShapelessFactory input(IItemProvider itemProvider) {
+        return this.input((IItemProvider) itemProvider, 1);
     }
 
-    public StationShapelessFactory input(ItemConvertible itemProvider, int size) {
+    public StationShapelessFactory input(IItemProvider itemProvider, int size) {
         for (int i = 0; i < size; ++i) {
-            this.input(Ingredient.ofItems(itemProvider));
+            this.input(Ingredient.of(itemProvider));
         }
 
         return this;
@@ -73,8 +73,8 @@ public class StationShapelessFactory {
         return this;
     }
 
-    public StationShapelessFactory criterion(String criterionName, CriterionConditions conditions) {
-        this.builder.criterion(criterionName, conditions);
+    public StationShapelessFactory criterion(String criterionName, ICriterionInstance conditions) {
+        this.builder.addCriterion(criterionName, conditions);
         return this;
     }
 
@@ -83,47 +83,47 @@ public class StationShapelessFactory {
         return this;
     }
 
-    public void offerTo(Consumer<RecipeJsonProvider> exporter) {
-        this.offerTo(exporter, Registry.ITEM.getId(this.output));
+    public void offerTo(Consumer<IFinishedRecipe> exporter) {
+        this.offerTo(exporter, Registry.ITEM.getKey(this.output));
     }
 
-    public void offerTo(Consumer<RecipeJsonProvider> exporter, String recipeIdStr) {
-        Identifier identifier = Registry.ITEM.getId(this.output);
-        if ((new Identifier(recipeIdStr)).equals(identifier)) {
+    public void offerTo(Consumer<IFinishedRecipe> exporter, String recipeIdStr) {
+        ResourceLocation identifier = Registry.ITEM.getKey(this.output);
+        if ((new ResourceLocation(recipeIdStr)).equals(identifier)) {
             throw new IllegalStateException("Shapeless Recipe " + recipeIdStr + " should remove its 'save' argument");
         } else {
-            this.offerTo(exporter, new Identifier(recipeIdStr));
+            this.offerTo(exporter, new ResourceLocation(recipeIdStr));
         }
     }
 
-    public void offerTo(Consumer<RecipeJsonProvider> exporter, Identifier recipeId) {
+    public void offerTo(Consumer<IFinishedRecipe> exporter, ResourceLocation recipeId) {
         this.validate(recipeId);
-        this.builder.parent(new Identifier("recipes/root"))
-            .criterion("has_the_recipe", (CriterionConditions) RecipeUnlockedCriterion.create(recipeId))
+        this.builder.parent(new ResourceLocation("recipes/root"))
+            .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(recipeId))
             .rewards(AdvancementRewards.Builder.recipe(recipeId))
-            .criteriaMerger(CriterionMerger.OR);
-        exporter.accept(new StationShapelessProvider(recipeSerializer, recipeId, this.output, this.outputCount, this.group == null ? "" : this.group, this.inputs, this.builder, new Identifier(recipeId.getNamespace(), "recipes/" + this.output.getGroup()
-            .getName() + "/" + recipeId.getPath())));
+            .requirements(IRequirementsStrategy.OR);
+        exporter.accept(new StationShapelessProvider(recipeSerializer, recipeId, this.output, this.outputCount, this.group == null ? "" : this.group, this.inputs, this.builder, new ResourceLocation(recipeId.getNamespace(), "recipes/" + this.output.getItemCategory()
+            .getRecipeFolderName() + "/" + recipeId.getPath())));
     }
 
-    private void validate(Identifier recipeId) {
+    private void validate(ResourceLocation recipeId) {
         if (this.builder.getCriteria()
             .isEmpty()) {
             throw new IllegalStateException("No way of obtaining recipe " + recipeId);
         }
     }
 
-    public static class StationShapelessProvider implements RecipeJsonProvider {
-        private final Identifier recipeId;
+    public static class StationShapelessProvider implements IFinishedRecipe {
+        private final ResourceLocation recipeId;
         private final Item output;
         private final int count;
         private final String group;
         private final List<Ingredient> inputs;
-        private final Advancement.Task builder;
-        private final Identifier advancementId;
-        RecipeSerializer<?> recipeSerializer;
+        private final Advancement.Builder builder;
+        private final ResourceLocation advancementId;
+        IRecipeSerializer<?> recipeSerializer;
 
-        public StationShapelessProvider(RecipeSerializer<?> recipeSerializer, Identifier recipeId, Item output, int outputCount, String group, List<Ingredient> inputs, Advancement.Task builder, Identifier advancementId) {
+        public StationShapelessProvider(IRecipeSerializer<?> recipeSerializer, ResourceLocation recipeId, Item output, int outputCount, String group, List<Ingredient> inputs, Advancement.Builder builder, ResourceLocation advancementId) {
             this.recipeId = recipeId;
             this.output = output;
             this.count = outputCount;
@@ -135,7 +135,7 @@ public class StationShapelessFactory {
         }
 
         @Override
-        public void serialize(JsonObject json) {
+        public void serializeRecipeData(JsonObject json) {
             if (!this.group.isEmpty()) {
                 json.addProperty("group", this.group);
             }
@@ -150,7 +150,7 @@ public class StationShapelessFactory {
 
             json.add("ingredients", jsonArray);
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("item", Registry.ITEM.getId(this.output)
+            jsonObject.addProperty("item", Registry.ITEM.getKey(this.output)
                 .toString());
             if (this.count > 1) {
                 jsonObject.addProperty("count", this.count);
@@ -160,22 +160,22 @@ public class StationShapelessFactory {
         }
 
         @Override
-        public RecipeSerializer<?> getSerializer() {
+        public IRecipeSerializer<?> getType() {
             return recipeSerializer;
         }
 
         @Override
-        public Identifier getRecipeId() {
+        public ResourceLocation getId() {
             return this.recipeId;
         }
 
         @Override
-        public JsonObject toAdvancementJson() {
-            return this.builder.toJson();
+        public JsonObject serializeAdvancement() {
+            return this.builder.serializeToJson();
         }
 
         @Override
-        public Identifier getAdvancementId() {
+        public ResourceLocation getAdvancementId() {
             return this.advancementId;
         }
     }

@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.uncommon.testing;
 import com.robertx22.age_of_exile.uncommon.testing.tests.GivePlayerCapNbt;
 import com.robertx22.age_of_exile.uncommon.testing.tests.PlayerLevelTest;
 import com.robertx22.age_of_exile.uncommon.testing.tests.SkillLevelTest;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 
 import java.util.HashMap;
 

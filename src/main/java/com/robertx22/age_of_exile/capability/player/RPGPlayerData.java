@@ -12,15 +12,14 @@ import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
 import com.robertx22.age_of_exile.saveclasses.perks.TalentsData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.ProfessionsData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.Identifier;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 
 public class RPGPlayerData implements ICommonPlayerCap {
 
-    public static final Identifier RESOURCE = new Identifier(Ref.MODID, "player_data");
+    public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "player_data");
 
     private static final String MAP_DATA = "maps";
     private static final String TEAM_DATA = "teams";
@@ -60,7 +59,9 @@ public class RPGPlayerData implements ICommonPlayerCap {
     }
 
     @Override
-    public NbtCompound toTag(NbtCompound nbt) {
+    public CompoundNBT saveToNBT() {
+
+        CompoundNBT nbt = new CompoundNBT();
 
         LoadSave.Save(maps, nbt, MAP_DATA);
         LoadSave.Save(team, nbt, TEAM_DATA);
@@ -74,7 +75,7 @@ public class RPGPlayerData implements ICommonPlayerCap {
     }
 
     @Override
-    public void fromTag(NbtCompound nbt) {
+    public void loadFromNBT(CompoundNBT nbt) {
 
         this.maps = loadOrBlank(MapsData.class, new MapsData(), nbt, MAP_DATA, new MapsData());
         this.team = loadOrBlank(TeamData.class, new TeamData(), nbt, TEAM_DATA, new TeamData());
@@ -86,7 +87,7 @@ public class RPGPlayerData implements ICommonPlayerCap {
 
     }
 
-    public static <OBJ> OBJ loadOrBlank(Class theclass, OBJ newobj, NbtCompound nbt, String loc, OBJ blank) {
+    public static <OBJ> OBJ loadOrBlank(Class theclass, OBJ newobj, CompoundNBT nbt, String loc, OBJ blank) {
         try {
             OBJ data = LoadSave.Load(theclass, newobj, nbt, loc);
             if (data == null) {
@@ -101,7 +102,8 @@ public class RPGPlayerData implements ICommonPlayerCap {
     }
 
     @Override
-    public PlayerCaps getCapType() {
-        return PlayerCaps.PLAYER_RPG_DATA;
+    public String getCapIdForSyncing() {
+        return "rpg_player_data";
     }
+
 }

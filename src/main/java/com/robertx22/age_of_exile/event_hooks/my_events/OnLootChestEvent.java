@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
 import java.util.Collections;
@@ -25,9 +25,9 @@ public class OnLootChestEvent extends EventConsumer<ExileEvents.OnChestLooted> {
 
         LootInfo info = LootInfo.ofChestLoot(player, event.pos);
 
-        if (WorldUtils.isMapWorldClass(player.world)) {
-            if (Load.dungeonData(event.player.world).data.get(event.pos).data.failedOrEmpty()) {
-                event.inventory.clear();
+        if (WorldUtils.isMapWorldClass(player.level)) {
+            if (Load.dungeonData(event.player.level).data.get(event.pos).data.failedOrEmpty()) {
+                event.inventory.clearContent();
                 // dont gen loot
                 event.canceled = true;
                 return;
@@ -55,16 +55,16 @@ public class OnLootChestEvent extends EventConsumer<ExileEvents.OnChestLooted> {
         for (int i = 0; i < items.size(); i++) {
             if (i < list1.size()) {
                 int emptyslot = list1.get(i);
-                event.inventory.setStack(emptyslot, items.get(i));
+                event.inventory.setItem(emptyslot, items.get(i));
             }
         }
     }
 
-    private static List<Integer> mygetEmptySlotsRandomized(Inventory inventory, Random rand) {
+    private static List<Integer> mygetEmptySlotsRandomized(IInventory inventory, Random rand) {
         List<Integer> list = Lists.newArrayList();
 
-        for (int i = 0; i < inventory.size(); ++i) {
-            if (inventory.getStack(i)
+        for (int i = 0; i < inventory.getContainerSize(); ++i) {
+            if (inventory.getItem(i)
                 .isEmpty()) {
                 list.add(i);
             }

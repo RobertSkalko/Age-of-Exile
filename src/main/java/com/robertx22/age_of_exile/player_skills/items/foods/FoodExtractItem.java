@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.registry.Registry;
@@ -15,7 +15,7 @@ public class FoodExtractItem extends Item implements IAutoLocName, IAutoModel, I
     FoodExileEffect.EffectColor color;
 
     public FoodExtractItem(FoodExileEffect.EffectColor color) {
-        super(new Settings().group(CreativeTabs.Professions));
+        super(new Properties().tab(CreativeTabs.Professions));
         this.color = color;
     }
 
@@ -31,7 +31,7 @@ public class FoodExtractItem extends Item implements IAutoLocName, IAutoModel, I
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 
@@ -46,10 +46,10 @@ public class FoodExtractItem extends Item implements IAutoLocName, IAutoModel, I
     }
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 3);
-        fac.input(this.color.essenceItem.get(), 3);
-        fac.input(Items.BOWL);
-        return fac.criterion("player_level", trigger());
+    public ShapelessRecipeBuilder getRecipe() {
+        ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 3);
+        fac.requires(this.color.essenceItem.get(), 3);
+        fac.requires(Items.BOWL);
+        return fac.unlockedBy("player_level", trigger());
     }
 }

@@ -7,28 +7,28 @@ import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.item.UseAction;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.DrinkHelper;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 
 public abstract class BaseTpItem extends Item implements IAutoLocName, IAutoModel, IShapelessRecipe {
 
     public BaseTpItem() {
-        super(new Settings().group(CreativeTabs.Professions)
-            .maxCount(16));
+        super(new Properties().tab(CreativeTabs.Professions)
+            .stacksTo(16));
     }
 
     public abstract ItemStack onDoneUsing(ItemStack stack, World world, ServerPlayerEntity user);
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity user) {
         if (user instanceof ServerPlayerEntity) {
             return onDoneUsing(stack, world, (ServerPlayerEntity) user);
         }
@@ -36,29 +36,29 @@ public abstract class BaseTpItem extends Item implements IAutoLocName, IAutoMode
     }
 
     @Override
-    public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+    public void onUseTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         for (int i = 0; i < 5; i++) {
             world.addParticle(ParticleTypes.REVERSE_PORTAL,
                 user.getX() - 0.5F + world.random.nextDouble(),
-                user.getY() + user.getHeight() / 2,
+                user.getY() + user.getBbHeight() / 2,
                 user.getZ() - 0.5F + world.random.nextDouble()
                 , 0, 0, 0);
         }
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.BOW;
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack) {
+    public int getUseDuration(ItemStack stack) {
         return 40;
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        return ItemUsage.consumeHeldItem(world, user, hand);
+    public ActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        return DrinkHelper.useDrink(world, user, hand);
     }
 
     @Override
@@ -73,7 +73,7 @@ public abstract class BaseTpItem extends Item implements IAutoLocName, IAutoMode
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 

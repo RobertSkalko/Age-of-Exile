@@ -3,14 +3,14 @@ package com.robertx22.age_of_exile.player_skills.items.protection_tablets;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.text.LiteralText;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,12 +26,12 @@ public enum TabletTypes {
         @Override
         public boolean shouldActivate(PlayerEntity en, DamageSource source) {
             return healthIsBellowTresh(en) && source.isFire()
-                && !en.hasStatusEffect(StatusEffects.FIRE_RESISTANCE);
+                && !en.hasEffect(Effects.FIRE_RESISTANCE);
         }
 
         @Override
         public void onActivate(PlayerEntity en) {
-            en.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, DUR, 1));
+            en.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, DUR, 1));
         }
     },
     ANTI_POISON("Anti Poison", "anti_poison") {
@@ -42,13 +42,13 @@ public enum TabletTypes {
 
         @Override
         public boolean shouldActivate(PlayerEntity en, DamageSource source) {
-            return healthIsBellowTresh(en) && en.hasStatusEffect(StatusEffects.POISON)
-                && !en.hasStatusEffect(ModRegistry.POTIONS.ANTI_POISON);
+            return healthIsBellowTresh(en) && en.hasEffect(Effects.POISON)
+                && !en.hasEffect(ModRegistry.POTIONS.ANTI_POISON);
         }
 
         @Override
         public void onActivate(PlayerEntity en) {
-            en.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.ANTI_POISON, DUR, 1));
+            en.addEffect(new EffectInstance(ModRegistry.POTIONS.ANTI_POISON, DUR, 1));
         }
     },
     ANTI_WITHER("Anti Wither", "anti_wither") {
@@ -59,13 +59,13 @@ public enum TabletTypes {
 
         @Override
         public boolean shouldActivate(PlayerEntity en, DamageSource source) {
-            return healthIsBellowTresh(en) && en.hasStatusEffect(StatusEffects.WITHER)
-                && !en.hasStatusEffect(ModRegistry.POTIONS.ANTI_WITHER);
+            return healthIsBellowTresh(en) && en.hasEffect(Effects.WITHER)
+                && !en.hasEffect(ModRegistry.POTIONS.ANTI_WITHER);
         }
 
         @Override
         public void onActivate(PlayerEntity en) {
-            en.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.ANTI_WITHER, DUR, 1));
+            en.addEffect(new EffectInstance(ModRegistry.POTIONS.ANTI_WITHER, DUR, 1));
         }
     },
     ANTI_DEATH("Anti Death", "anti_death") {
@@ -101,11 +101,11 @@ public enum TabletTypes {
 
             ItemStack stack = PlayerUtils.lowestDurabilityWornGear(en);
 
-            if (stack.isEmpty() || !stack.isDamageable()) {
+            if (stack.isEmpty() || !stack.isDamageableItem()) {
                 return false;
             }
 
-            int left = stack.getMaxDamage() - stack.getDamage();
+            int left = stack.getMaxDamage() - stack.getDamageValue();
             return left < 20;
         }
 
@@ -115,8 +115,8 @@ public enum TabletTypes {
             if (stack.isEmpty()) {
                 return;
             }
-            stack.setDamage(stack.getDamage() - 100);
-            en.sendMessage(new LiteralText("A piece of gear that almost broke was saved!"), false);
+            stack.setDamageValue(stack.getDamageValue() - 100);
+            en.displayClientMessage(new StringTextComponent("A piece of gear that almost broke was saved!"), false);
         }
     },
     GEAR_REPAIR("Gear Repair", "gear_repair") {
@@ -130,11 +130,11 @@ public enum TabletTypes {
 
             ItemStack stack = PlayerUtils.lowestDurabilityWornGear(en);
 
-            if (stack.isEmpty() || !stack.isDamageable()) {
+            if (stack.isEmpty() || !stack.isDamageableItem()) {
                 return false;
             }
 
-            float perc = (float) stack.getDamage() / (float) stack.getMaxDamage();
+            float perc = (float) stack.getDamageValue() / (float) stack.getMaxDamage();
             return perc > 0.7F;
         }
 
@@ -144,8 +144,8 @@ public enum TabletTypes {
             if (stack.isEmpty()) {
                 return;
             }
-            stack.setDamage(0);
-            en.sendMessage(new LiteralText("A piece of gear was fully repaired."), false);
+            stack.setDamageValue(0);
+            en.displayClientMessage(new StringTextComponent("A piece of gear was fully repaired."), false);
         }
     },
     ANTI_HUNGER("Anti Hunger", "anti_hunger") {
@@ -156,13 +156,13 @@ public enum TabletTypes {
 
         @Override
         public boolean shouldActivate(PlayerEntity en, DamageSource source) {
-            return en.getHungerManager()
-                .getFoodLevel() < 10 && !en.hasStatusEffect(StatusEffects.SATURATION);
+            return en.getFoodData()
+                .getFoodLevel() < 10 && !en.hasEffect(Effects.SATURATION);
         }
 
         @Override
         public void onActivate(PlayerEntity en) {
-            en.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, DUR, 1));
+            en.addEffect(new EffectInstance(Effects.SATURATION, DUR, 1));
         }
     };
 

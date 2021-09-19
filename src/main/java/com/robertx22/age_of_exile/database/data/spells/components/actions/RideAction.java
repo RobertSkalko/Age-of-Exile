@@ -17,7 +17,7 @@ public class RideAction extends SpellAction {
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
         targets.forEach(x -> {
-            if (!x.hasVehicle()) {
+            if (!x.isPassenger()) {
                 x.startRiding(ctx.sourceEntity);
             }
         });

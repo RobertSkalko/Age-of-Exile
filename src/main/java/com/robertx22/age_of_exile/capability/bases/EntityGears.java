@@ -1,26 +1,26 @@
 package com.robertx22.age_of_exile.capability.bases;
 
-import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 
 public class EntityGears {
 
-    private HashMap<EquipmentSlot, ItemStack> map = new HashMap<>();
+    private HashMap<EquipmentSlotType, ItemStack> map = new HashMap<>();
 
-    public ItemStack get(EquipmentSlot slot) {
+    public ItemStack get(EquipmentSlotType slot) {
         if (map.isEmpty()) {
-            for (EquipmentSlot s : EquipmentSlot.values()) {
+            for (EquipmentSlotType s : EquipmentSlotType.values()) {
                 map.put(s, ItemStack.EMPTY);
             }
         }
         return map.get(slot);
     }
 
-    public ItemStack put(EquipmentSlot slot, ItemStack stack) {
+    public ItemStack put(EquipmentSlotType slot, ItemStack stack) {
         if (map.isEmpty()) {
-            for (EquipmentSlot s : EquipmentSlot.values()) {
+            for (EquipmentSlotType s : EquipmentSlotType.values()) {
                 map.put(s, ItemStack.EMPTY);
             }
         }

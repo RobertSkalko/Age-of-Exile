@@ -1,25 +1,25 @@
 package com.robertx22.age_of_exile.gui.screens;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
 import com.robertx22.age_of_exile.saveclasses.PointData;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.Widget;
 
 import java.util.HashMap;
 
 public class BaseSelectionScreen extends BaseScreen {
 
-    public MinecraftClient mc;
+    public Minecraft mc;
 
     public BaseSelectionScreen() {
-        super(MinecraftClient.getInstance()
+        super(Minecraft.getInstance()
             .getWindow()
-            .getScaledWidth(), MinecraftClient.getInstance()
+            .getGuiScaledWidth(), Minecraft.getInstance()
             .getWindow()
-            .getScaledHeight());
-        this.mc = MinecraftClient.getInstance();
+            .getGuiScaledHeight());
+        this.mc = Minecraft.getInstance();
 
     }
 
@@ -50,10 +50,10 @@ public class BaseSelectionScreen extends BaseScreen {
 
     }
 
-    HashMap<ClickableWidget, PointData> originalButtonLocMap = new HashMap<>();
+    HashMap<Widget, PointData> originalButtonLocMap = new HashMap<>();
 
     @Override
-    protected <T extends ClickableWidget> T addButton(T b) {
+    protected <T extends Widget> T addButton(T b) {
         super.addButton(b);
         originalButtonLocMap.put(b, new PointData(b.x, b.y));
         return b;

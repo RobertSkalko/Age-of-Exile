@@ -10,8 +10,8 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.EffectSides;
 import com.robertx22.library_of_exile.utils.RandomUtils;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 
 public class DodgeRating extends Stat implements IUsableStat {
 
@@ -34,7 +34,7 @@ public class DodgeRating extends Stat implements IUsableStat {
         this.statEffect = new Effect();
 
         this.icon = "\u2748";
-        this.format = Formatting.DARK_GREEN.getName();
+        this.format = TextFormatting.DARK_GREEN.getName();
 
         this.isLocalTo = x -> x.isArmor();
     }

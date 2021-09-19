@@ -1,16 +1,16 @@
 package com.robertx22.age_of_exile.uncommon.testing.tests;
 
 import com.robertx22.age_of_exile.uncommon.testing.CommandTest;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
 
 public class GivePlayerCapNbt extends CommandTest {
 
     @Override
     public void run(ServerPlayerEntity player) {
 
-        NbtCompound tag = new NbtCompound();
-        player.writeNbt(tag);
+        CompoundNBT tag = new CompoundNBT();
+        player.saveWithoutId(tag);
 
         System.out.print(tag.toString());
     }

@@ -15,10 +15,10 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
@@ -37,7 +37,7 @@ public class DexSpells implements ExileRegistryInit {
                 "Temporarily transform into a demon, giving you increased offensive power and knockback resistance."
             )
             .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_SKELETON_DEATH, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.WITHER_SKELETON_DEATH, 1D, 1D))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.DEMON_TRANSFORMATION, 20D * 20))
             .build();
 
@@ -50,7 +50,7 @@ public class DexSpells implements ExileRegistryInit {
                     + " " + Elements.Physical.getIconNameDmg()
             )
             .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_WITHER_DEATH, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundEvents.WITHER_DEATH, 1D, 1D))
             .onCast(PartBuilder.swordSweepParticles())
             .onCast(PartBuilder.damageInFront(SpellCalcs.EXECUTE, Elements.Physical, 1D, 2D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SOUL, 5D, 1D, 0.1D))
@@ -69,7 +69,7 @@ public class DexSpells implements ExileRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
                 .put(MapField.IS_SILENT, true)
             ))
-            .onHit(PartBuilder.justAction(SpellAction.POTION.createGive(StatusEffects.GLOWING, 20 * 10D))
+            .onHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.GLOWING, 20 * 10D))
                 .addActions(SpellAction.POTION.createGive(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 20 * 10D))
                 .addActions(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.MARK_OF_DEATH, 10))
                 .addTarget(TargetSelector.TARGET.create()))

@@ -3,8 +3,8 @@ package com.robertx22.age_of_exile.database.data.stats.datapacks.serializers;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.IStatSerializer;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.AttributeStat;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.util.Identifier;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 import java.util.UUID;
@@ -23,10 +23,10 @@ public class AttributeStatSer implements IStatSerializer<AttributeStat> {
     @Override
     public AttributeStat getStatFromJson(JsonObject json) {
 
-        Identifier ide = new Identifier(json.get("attribute_id")
+        ResourceLocation ide = new ResourceLocation(json.get("attribute_id")
             .getAsString());
 
-        EntityAttribute attri = Registry.ATTRIBUTE.get(ide);
+        Attribute attri = Registry.ATTRIBUTE.get(ide);
 
         AttributeStat stat = new AttributeStat("", "", UUID.fromString(json.get("uuid")
             .getAsString()), attri, false); // percent and id is loaded by basevalues

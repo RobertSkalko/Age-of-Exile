@@ -10,16 +10,16 @@ import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.CommandSuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.StatSuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.StatTypeSuggestions;
-import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.server.command.ServerCommandSource;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+import static net.minecraft.command.Commands.argument;
+import static net.minecraft.command.Commands.literal;
 
 public class GiveStat {
 
@@ -30,13 +30,13 @@ public class GiveStat {
         }
     }
 
-    public static void register(CommandDispatcher<ServerCommandSource> commandDispatcher) {
+    public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .then(literal("stat").requires(e -> e.hasPermissionLevel(2))
+                .then(literal("stat").requires(e -> e.hasPermission(2))
                     .then(literal("give")
-                        .requires(e -> e.hasPermissionLevel(2))
-                        .then(argument("target", EntityArgumentType.entity())
+                        .requires(e -> e.hasPermission(2))
+                        .then(argument("target", EntityArgument.entity())
                             .then(argument("scaling", StringArgumentType.string())
                                 .suggests(new ModOrExact())
                                 .then(argument("statGUID", StringArgumentType.string())
@@ -49,7 +49,7 @@ public class GiveStat {
                                                 .floatArg())
 
                                                 .executes(ctx -> {
-                                                    return run(EntityArgumentType
+                                                    return run(EntityArgument
                                                         .getPlayer(ctx, "target"), StringArgumentType
                                                         .getString(ctx, "scaling"), StringArgumentType
                                                         .getString(ctx, "statGUID"), StringArgumentType

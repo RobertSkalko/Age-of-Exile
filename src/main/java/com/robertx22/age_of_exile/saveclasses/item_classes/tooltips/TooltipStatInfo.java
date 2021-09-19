@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import net.minecraft.text.Text;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class TooltipStatInfo implements ITooltipList {
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         return stat.getTooltipList(new TooltipStatWithContext(this, null, null));
     }
 

@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.entity.monster.Slime;
 
 public class LootUtils {
 
@@ -41,7 +41,7 @@ public class LootUtils {
 
         multi += (1 + hp / 40F) - 1;
 
-        if (entity instanceof SlimeEntity) {
+        if (entity instanceof Slime) {
             multi *= 0.05F;
         }
 

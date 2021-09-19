@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.overlays.bar_overlays.types;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
@@ -13,17 +14,16 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
-public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
+public class RPGGuiOverlay extends AbstractGui implements HudRenderCallback {
 
-    static Identifier BASETEX = new Identifier(Ref.MODID, "textures/gui/overlay/base.png");
-    static Identifier MANA_RESERVE = new Identifier(Ref.MODID, "textures/gui/overlay/mana_reserve.png");
+    static ResourceLocation BASETEX = new ResourceLocation(Ref.MODID, "textures/gui/overlay/base.png");
+    static ResourceLocation MANA_RESERVE = new ResourceLocation(Ref.MODID, "textures/gui/overlay/mana_reserve.png");
 
     public RPGGuiOverlay() {
         super();
@@ -33,7 +33,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
     public static int INNER_BAR_WIDTH = 78;
     static int INNER_BAR_HEIGHT = 5;
 
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
 
     int ticks = 0;
 
@@ -50,27 +50,27 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
     public static void renderIconFor(MatrixStack matrix, PlayerSkillEnum skill, int x, int y, IconRenderType render) {
         // this is separated because it's used in 2 different places. The screen, and overlay
 
-        MinecraftClient mc = MinecraftClient.getInstance();
+        Minecraft mc = Minecraft.getInstance();
         PlayerSkillData data = Load.playerRPGData(mc.player).professions
             .getDataFor(skill);
 
         mc.getTextureManager()
-            .bindTexture(Load.playerRPGData(mc.player).professions
+            .bind(Load.playerRPGData(mc.player).professions
                 .getBackGroundTextureFor(skill));
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, x, y, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X);
+        blit(matrix, x, y, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X, BUTTON_SIZE_X);
 
         mc.getTextureManager()
-            .bindTexture(ExileDB.PlayerSkills()
+            .bind(ExileDB.PlayerSkills()
                 .get(skill.id)
                 .getIcon());
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexture(matrix, x + 7, y + 7, 16, 16, 16, 16, 16, 16);
+        blit(matrix, x + 7, y + 7, 16, 16, 16, 16, 16, 16);
 
         if (render == IconRenderType.OVERLAY || render == IconRenderType.SCREEN) {
             int lvl = data.getLvl();
             String lvltext = "Lvl: " + lvl;
-            TextUtils.renderText(matrix, 1, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.2F), Formatting.YELLOW);
+            TextUtils.renderText(matrix, 1, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.2F), TextFormatting.YELLOW);
         }
 
         if (render == IconRenderType.SCREEN) {
@@ -80,8 +80,8 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
             String xptext = exp + "/" + needed;
             String nametext = CLOC.translate(skill.word.locName());
 
-            TextUtils.renderText(matrix, 1, nametext, x + BUTTON_SIZE_X / 2, y - 5, Formatting.GOLD);
-            TextUtils.renderText(matrix, 1, xptext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.55F), Formatting.GREEN);
+            TextUtils.renderText(matrix, 1, nametext, x + BUTTON_SIZE_X / 2, y - 5, TextFormatting.GOLD);
+            TextUtils.renderText(matrix, 1, xptext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 1.55F), TextFormatting.GREEN);
 
         }
     }
@@ -94,7 +94,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
             if (mc.player == null) {
                 return;
             }
-            if (mc.options.debugEnabled || mc.player.isCreative() || mc.player.isSpectator()) {
+            if (mc.options.renderDebug || mc.player.isCreative() || mc.player.isSpectator()) {
                 return;
             }
 
@@ -106,7 +106,7 @@ public class RPGGuiOverlay extends DrawableHelper implements HudRenderCallback {
                 if (SyncedToClientValues.ticksToShowSkillLvled > 0) {
                     SyncedToClientValues.ticksToShowSkillLvled--;
                     renderIconFor(matrix, SyncedToClientValues.skillJustLeveled, mc.getWindow()
-                        .getScaledWidth() / 2 - BUTTON_SIZE_X / 2, 0, IconRenderType.OVERLAY);
+                        .getGuiScaledWidth() / 2 - BUTTON_SIZE_X / 2, 0, IconRenderType.OVERLAY);
                 }
             }
 

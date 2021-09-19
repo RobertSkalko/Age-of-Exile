@@ -9,7 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
@@ -25,17 +25,17 @@ public class SummonAtTargetFeet extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        Optional<EntityType<?>> projectile = EntityType.get(data.get(MapField.PROJECTILE_ENTITY));
+        Optional<EntityType<?>> projectile = EntityType.byString(data.get(MapField.PROJECTILE_ENTITY));
 
         Double height = data.getOrDefault(MapField.HEIGHT, 0D);
 
         targets.forEach(x -> {
-            Vec3d pos = x.getPos();
+            Vector3d pos = x.position();
             Entity en = projectile.get()
                 .create(ctx.world);
             SpellUtils.initSpellEntity(en, ctx.caster, ctx.calculatedSpellData, data);
-            en.setPosition(pos.x, pos.y + height, pos.z);
-            ctx.caster.world.spawnEntity(en);
+            en.setPos(pos.x, pos.y + height, pos.z);
+            ctx.caster.level.addFreshEntity(en);
         });
 
     }
@@ -46,10 +46,10 @@ public class SummonAtTargetFeet extends SpellAction {
         c.put(MapField.ENTITY_NAME, Spell.DEFAULT_EN_NAME);
         c.put(MapField.PROJECTILE_SPEED, 0D);
         c.put(MapField.LIFESPAN_TICKS, lifespan);
-        c.put(MapField.ITEM, Registry.ITEM.getId(item)
+        c.put(MapField.ITEM, Registry.ITEM.getKey(item)
             .toString());
         c.put(MapField.GRAVITY, false);
-        c.put(MapField.PROJECTILE_ENTITY, EntityType.getId(type)
+        c.put(MapField.PROJECTILE_ENTITY, EntityType.getKey(type)
             .toString());
         c.type = GUID();
         return c;

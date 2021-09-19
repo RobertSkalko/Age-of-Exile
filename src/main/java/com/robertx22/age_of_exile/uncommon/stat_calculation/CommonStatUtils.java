@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStat
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.potion.EffectInstance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +21,9 @@ public class CommonStatUtils {
 
         List<StatContext> list = new ArrayList<>();
 
-        for (StatusEffectInstance instance : entity.getStatusEffects()) {
-            if (instance.getEffectType() instanceof IApplyableStats) {
-                IApplyableStats stat = (IApplyableStats) instance.getEffectType();
+        for (EffectInstance instance : entity.getActiveEffects()) {
+            if (instance.getEffect() instanceof IApplyableStats) {
+                IApplyableStats stat = (IApplyableStats) instance.getEffect();
                 try {
                     list.addAll(stat.getStatAndContext(entity));
                 } catch (Exception e) {

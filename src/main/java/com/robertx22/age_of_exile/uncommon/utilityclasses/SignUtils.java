@@ -1,15 +1,15 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.world_of_exile.mixin_ducks.SignDuck;
-import net.minecraft.block.entity.SignBlockEntity;
-import net.minecraft.text.Text;
+import net.minecraft.tileentity.SignTileEntity;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SignUtils {
 
-    public static boolean has(String id, SignBlockEntity sign) {
+    public static boolean has(String id, SignTileEntity sign) {
         return getText(sign).stream()
             .anyMatch(x -> x.contains(id));
     }
@@ -19,15 +19,15 @@ public class SignUtils {
             .replace("]", "");
     }
 
-    public static List<String> getText(SignBlockEntity sign) {
+    public static List<String> getText(SignTileEntity sign) {
         SignDuck duck = (SignDuck) sign;
 
-        Text[] list = duck.getTexts();
+        ITextComponent[] list = duck.getTexts();
 
         List<String> texts = new ArrayList<>();
 
-        for (Text text : list) {
-            texts.add(text.asString());
+        for (ITextComponent text : list) {
+            texts.add(text.getContents());
         }
         return texts;
     }

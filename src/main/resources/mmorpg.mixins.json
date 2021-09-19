@@ -1,9 +1,9 @@
 {
+  "minVersion": "0.8",
   "required": true,
   "package": "com.robertx22.age_of_exile.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "AccessorItemTags",
     "AdvancementMixin",
     "ArrowShootMixin",
     "CriteriaAccessor",

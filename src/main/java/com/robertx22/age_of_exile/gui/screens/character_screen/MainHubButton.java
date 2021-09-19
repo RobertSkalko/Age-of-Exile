@@ -1,27 +1,27 @@
 package com.robertx22.age_of_exile.gui.screens.character_screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.gui.bases.IAlertScreen;
 import com.robertx22.age_of_exile.gui.bases.IContainerNamedScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.utils.RenderUtils;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
-public class MainHubButton extends TexturedButtonWidget {
+public class MainHubButton extends ImageButton {
 
     public static int xSize = 105;
     public static int ySize = 28;
-    public static Identifier EXLAMATION_MARK_TEX = new Identifier(
+    public static ResourceLocation EXLAMATION_MARK_TEX = new ResourceLocation(
         Ref.MODID, "textures/gui/main_hub/exclamation_mark.png");
 
     boolean shouldAlert = false;
 
-    static Identifier buttonLoc = new Identifier(Ref.MODID, "textures/gui/main_hub/buttons.png");
+    static ResourceLocation buttonLoc = new ResourceLocation(Ref.MODID, "textures/gui/main_hub/buttons.png");
 
     INamedScreen screen;
 
@@ -31,8 +31,8 @@ public class MainHubButton extends TexturedButtonWidget {
                 IContainerNamedScreen con = (IContainerNamedScreen) screen;
                 con.openContainer();
             } else {
-                MinecraftClient.getInstance()
-                    .openScreen((Screen) screen);
+                Minecraft.getInstance()
+                    .setScreen((Screen) screen);
             }
         });
 
@@ -59,8 +59,8 @@ public class MainHubButton extends TexturedButtonWidget {
             .translate();
 
         if (isHovered()) {
-            MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix,
-                str, this.x + 32, this.y + 9, Formatting.GREEN.getColorValue());
+            Minecraft.getInstance().font.drawShadow(matrix,
+                str, this.x + 32, this.y + 9, TextFormatting.GREEN.getColor());
         }
     }
 

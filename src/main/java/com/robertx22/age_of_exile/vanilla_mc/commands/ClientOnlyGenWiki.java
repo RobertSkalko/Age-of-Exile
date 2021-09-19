@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellDesc;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DirUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.Formatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.text.TextFormatting;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
@@ -32,8 +32,8 @@ public class ClientOnlyGenWiki {
             String desc = "";
 
             if (spell.manual_tip) {
-                desc = StringUtils.join(SpellDesc.getTooltip(MinecraftClient.getInstance().player, spell), " ");
-                desc = Formatting.strip(desc);
+                desc = StringUtils.join(SpellDesc.getTooltip(Minecraft.getInstance().player, spell), " ");
+                desc = TextFormatting.stripFormatting(desc);
             }
 
             content += '\n';

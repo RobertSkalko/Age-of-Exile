@@ -5,13 +5,13 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.FoodExileStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.compat_food_effects.FoodEffectPotion;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class StatusEffectData implements ITooltipList {
 
     }
 
-    public StatusEffectData(Identifier effect_id, int duration_in_seconds, int amplifier) {
+    public StatusEffectData(ResourceLocation effect_id, int duration_in_seconds, int amplifier) {
         this.effect_id = effect_id.toString();
         this.duration_in_seconds = duration_in_seconds;
         this.amplifier = amplifier;
@@ -34,24 +34,24 @@ public class StatusEffectData implements ITooltipList {
 
     public void apply(LivingEntity en) {
         try {
-            StatusEffectInstance in = new StatusEffectInstance(getEffect(), duration_in_seconds * 20, amplifier);
-            en.addStatusEffect(in);
+            EffectInstance in = new EffectInstance(getEffect(), duration_in_seconds * 20, amplifier);
+            en.addEffect(in);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public StatusEffect getEffect() {
-        return Registry.STATUS_EFFECT.get(new Identifier(effect_id));
+    public Effect getEffect() {
+        return Registry.MOB_EFFECT.get(new ResourceLocation(effect_id));
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
-        List<Text> list = null;
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+        List<ITextComponent> list = null;
         try {
             list = new ArrayList<>();
 
-            StatusEffect eff = getEffect();
+            Effect eff = getEffect();
 
             if (eff instanceof FoodEffectPotion) {
                 FoodEffectPotion food = (FoodEffectPotion) eff;
@@ -61,10 +61,10 @@ public class StatusEffectData implements ITooltipList {
                 list.addAll(food.GetTooltipString(info, duration_in_seconds * 20, amplifier));
 
             } else {
-                list.add(new LiteralText("Gives Effect: ").append(getEffect().getName())
-                    .formatted(Formatting.GOLD));
-                list.add(new LiteralText("Duration: " + duration_in_seconds + "s").formatted(Formatting.AQUA));
-                list.add(new LiteralText("Strength: " + amplifier).formatted(Formatting.RED));
+                list.add(new StringTextComponent("Gives Effect: ").append(getEffect().getDisplayName())
+                    .withStyle(TextFormatting.GOLD));
+                list.add(new StringTextComponent("Duration: " + duration_in_seconds + "s").withStyle(TextFormatting.AQUA));
+                list.add(new StringTextComponent("Strength: " + amplifier).withStyle(TextFormatting.RED));
             }
         } catch (Exception e) {
             e.printStackTrace();

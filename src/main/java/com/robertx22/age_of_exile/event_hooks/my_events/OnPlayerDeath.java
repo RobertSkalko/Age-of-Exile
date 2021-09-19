@@ -24,9 +24,9 @@ public class OnPlayerDeath extends EventConsumer<ExileEvents.OnPlayerDeath> {
 
             data.syncToClient(event.player);
 
-            if (WorldUtils.isMapWorldClass(event.player.world)) {
+            if (WorldUtils.isMapWorldClass(event.player.level)) {
 
-                SingleDungeonData dungeon = Load.dungeonData(event.player.world).data.get(event.player.getBlockPos());
+                SingleDungeonData dungeon = Load.dungeonData(event.player.level).data.get(event.player.blockPosition());
 
                 if (!dungeon.data.isEmpty()) {
                     dungeon.data.dun_type.onDeath(dungeon.data, event.player);

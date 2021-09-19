@@ -2,14 +2,14 @@ package com.robertx22.age_of_exile.database.data.stats.types.loot;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 public class TreasureQuantity extends Stat {
 
     private TreasureQuantity() {
         this.group = StatGroup.Misc;
         this.icon = "\u2663";
-        this.format = Formatting.YELLOW.getName();
+        this.format = TextFormatting.YELLOW.getName();
     }
 
     public static TreasureQuantity getInstance() {

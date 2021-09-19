@@ -13,27 +13,27 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.utils.SoundUtils;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.core.NonNullList;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class LootCrateItem extends Item implements IGUID {
     public LootCrateItem() {
-        super(new Settings().group(CreativeTabs.GemRuneCurrency));
+        super(new Properties().tab(CreativeTabs.GemRuneCurrency));
     }
 
     public static List<LootType> LOOT_TYPES = Arrays.asList(LootType.Gem, LootType.Rune, LootType.Currency);
@@ -43,13 +43,13 @@ public class LootCrateItem extends Item implements IGUID {
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 
-        if (!world.isClient) {
+        if (!world.isClientSide) {
             try {
 
-                ItemStack stack = player.getStackInHand(hand);
-                stack.decrement(1);
+                ItemStack stack = player.getItemInHand(hand);
+                stack.shrink(1);
 
                 ItemStack reward = ItemStack.EMPTY;
 
@@ -72,19 +72,19 @@ public class LootCrateItem extends Item implements IGUID {
                     reward = new ItemStack(currency);
                 }
 
-                SoundUtils.ding(player.world, player.getBlockPos());
+                SoundUtils.ding(player.level, player.blockPosition());
                 PlayerUtils.giveItem(reward, player);
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return new TypedActionResult<ItemStack>(ActionResult.PASS, player.getStackInHand(hand));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, player.getItemInHand(hand));
     }
 
     @Override
-    public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-        if (this.isIn(group)) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> stacks) {
+        if (this.allowdedIn(group)) {
 
             for (int tier = 1; tier < GameBalanceConfig.get().MAX_LEVEL / 10; tier++) {
                 for (LootType type : LOOT_TYPES) {
@@ -105,10 +105,10 @@ public class LootCrateItem extends Item implements IGUID {
         }
     }
 
-    @Environment(EnvType.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip,
-                              TooltipContext flagIn) {
+    public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip,
+                                ITooltipFlag flagIn) {
 
         LootCrateData data = getData(stack);
 
@@ -119,7 +119,7 @@ public class LootCrateItem extends Item implements IGUID {
     }
 
     @Override
-    public Text getName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
         LootCrateData data = getData(stack);
         if (data != null) {
             return data.type.word.locName()
@@ -128,7 +128,7 @@ public class LootCrateItem extends Item implements IGUID {
                 .append(" ")
                 .append(Words.Crate.locName());
         }
-        return new LiteralText("Box");
+        return new StringTextComponent("Box");
 
     }
 

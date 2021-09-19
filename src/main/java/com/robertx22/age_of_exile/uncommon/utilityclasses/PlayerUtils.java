@@ -8,11 +8,11 @@ import com.robertx22.age_of_exile.saveclasses.unit.GearData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.*;
 
@@ -30,7 +30,7 @@ public class PlayerUtils {
             }
             return list;
         } else {
-            return Arrays.asList(player.getEquippedStack(type.getVanillaSlotType()));
+            return Arrays.asList(player.getItemBySlot(type.getVanillaSlotType()));
         }
     }
 
@@ -39,7 +39,7 @@ public class PlayerUtils {
 
         Optional<GearData> opt = stacks.stream()
             .filter(x -> !x.stack.isEmpty())
-            .sorted(Comparator.comparingInt(x -> x.stack.getMaxDamage() - x.stack.getDamage()))
+            .sorted(Comparator.comparingInt(x -> x.stack.getMaxDamage() - x.stack.getDamageValue()))
             .findFirst();
 
         if (opt.isPresent()) {
@@ -51,25 +51,25 @@ public class PlayerUtils {
     }
 
     public static void giveItem(ItemStack stack, PlayerEntity player) {
-        if (player.giveItemStack(stack) == false) {
-            player.dropStack(stack, 1F);
+        if (player.addItem(stack) == false) {
+            player.spawnAtLocation(stack, 1F);
         }
-        player.inventory.markDirty();
+        player.inventory.setChanged();
     }
 
     public static PlayerEntity nearestPlayer(ServerWorld world, LivingEntity entity) {
-        return nearestPlayer(world, entity.getPos());
+        return nearestPlayer(world, entity.position());
     }
 
     public static PlayerEntity nearestPlayer(ServerWorld world, BlockPos pos) {
-        return nearestPlayer(world, new Vec3d(pos.getY(), pos.getY(), pos.getZ()));
+        return nearestPlayer(world, new Vector3d(pos.getY(), pos.getY(), pos.getZ()));
     }
 
-    public static PlayerEntity nearestPlayer(ServerWorld world, Vec3d pos) {
+    public static PlayerEntity nearestPlayer(ServerWorld world, Vector3d pos) {
 
-        Optional<ServerPlayerEntity> player = world.getPlayers()
+        Optional<ServerPlayerEntity> player = world.players()
             .stream()
-            .min(Comparator.comparingDouble(x -> x.squaredDistanceTo(pos)));
+            .min(Comparator.comparingDouble(x -> x.distanceToSqr(pos)));
 
         return player.orElse(null);
     }

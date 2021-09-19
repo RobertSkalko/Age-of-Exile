@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.mob_rarities;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 public class MobRaritiesAdder implements ExileRegistryInit {
 
@@ -51,7 +51,7 @@ public class MobRaritiesAdder implements ExileRegistryInit {
         champ.higher_rar = IRarity.BOSS_ID;
         champ.loot_lvl_modifier = 1;
         champ.setRareFields();
-        champ.text_format = Formatting.GOLD.name();
+        champ.text_format = TextFormatting.GOLD.name();
         champ.addToSerializables();
 
         MobRarity boss = new MobRarity();

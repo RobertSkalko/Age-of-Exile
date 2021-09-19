@@ -15,7 +15,7 @@ import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,10 +27,10 @@ public class MobAffix implements JsonExileRegistry<MobAffix>, ISerializable<MobA
     String id = "";
     int weight = 1000;
     public String icon = "";
-    public Formatting format;
+    public TextFormatting format;
     transient String locName;
 
-    public MobAffix(String id, String locName, Formatting format) {
+    public MobAffix(String id, String locName, TextFormatting format) {
         this.id = id;
         this.locName = locName;
         this.format = format;
@@ -67,7 +67,7 @@ public class MobAffix implements JsonExileRegistry<MobAffix>, ISerializable<MobA
         MobAffix affix = new MobAffix(
             getGUIDFromJson(json),
             "",
-            Formatting.valueOf(json.get("format")
+            TextFormatting.valueOf(json.get("format")
                 .getAsString()));
 
         try {

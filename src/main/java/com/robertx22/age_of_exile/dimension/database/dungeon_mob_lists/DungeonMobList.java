@@ -9,12 +9,12 @@ import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class DungeonMobList implements JsonExileRegistry<DungeonMobList>, IAutoG
     public LivingEntity spawnBoss(ServerWorld world, BlockPos pos) {
         WeightedMobEntry random = RandomUtils.weightedRandom(bosses);
 
-        EntityType type = Registry.ENTITY_TYPE.get(new Identifier(random.id));
+        EntityType type = Registry.ENTITY_TYPE.get(new ResourceLocation(random.id));
 
         LivingEntity en = (LivingEntity) type.create(world);
 
@@ -61,7 +61,7 @@ public class DungeonMobList implements JsonExileRegistry<DungeonMobList>, IAutoG
         EntityType type = null;
         try {
             WeightedMobEntry random = RandomUtils.weightedRandom(mobs);
-            type = Registry.ENTITY_TYPE.get(new Identifier(random.id));
+            type = Registry.ENTITY_TYPE.get(new ResourceLocation(random.id));
         } catch (Exception e) {
             e.printStackTrace();
             return EntityType.ZOMBIE;
@@ -88,22 +88,22 @@ public class DungeonMobList implements JsonExileRegistry<DungeonMobList>, IAutoG
 
     private void setup(LivingEntity en, BlockPos pos, ServerWorld world) {
 
-        en.refreshPositionAndAngles(pos.getX(), pos.getY(), pos.getZ(), 0, 0);
+        en.moveTo(pos.getX(), pos.getY(), pos.getZ(), 0, 0);
 
         if (en instanceof MobEntity) {
             MobEntity mob = (MobEntity) en;
 
-            mob.setPersistent();
+            mob.setPersistenceRequired();
 
-            mob.initialize(
+            mob.finalizeSpawn(
                 world,
-                world.getLocalDifficulty(pos),
+                world.getCurrentDifficultyAt(pos),
                 SpawnReason.MOB_SUMMONED,
                 null, null);
 
         }
 
-        world.spawnEntityAndPassengers(en);
+        world.addFreshEntityWithPassengers(en);
 
     }
 

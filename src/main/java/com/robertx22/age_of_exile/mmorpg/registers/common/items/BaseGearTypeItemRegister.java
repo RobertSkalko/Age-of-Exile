@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemRing;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ScepterWeapon;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.StaffWeapon;
 import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,7 +18,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import static net.minecraft.util.registry.Registry.ITEM;
-import static net.minecraft.util.registry.Registry.register;
 
 public class BaseGearTypeItemRegister extends BaseItemRegistrator {
 
@@ -65,8 +64,8 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
         return map;
     }
 
-    private Identifier id(String id) {
-        return new Identifier(Ref.MODID, id);
+    private ResourceLocation id(String id) {
+        return new ResourceLocation(Ref.MODID, id);
     }
 
     public BaseGearTypeItemRegister() {

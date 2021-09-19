@@ -13,10 +13,10 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
 
 public class GearTooltipUtils {
 
-    public static void BuildTooltip(GearItemData gear, ItemStack stack, List<Text> tooltip, EntityData data) {
+    public static void BuildTooltip(GearItemData gear, ItemStack stack, List<ITextComponent> tooltip, EntityData data) {
 
-        List<Text> tip = tooltip;
+        List<ITextComponent> tip = tooltip;
 
         if (gear.GetBaseGearType() == null) {
             return;
@@ -91,15 +91,15 @@ public class GearTooltipUtils {
 
                 if (n == list.size() - 1) {
                     for (int i = 0; i < gear.sockets.getEmptySockets(); i++) {
-                        tip.add(new SText(Formatting.YELLOW + "[Socket]"));
+                        tip.add(new SText(TextFormatting.YELLOW + "[Socket]"));
                     }
                 }
 
-                tip.add(new LiteralText(""));
+                tip.add(new StringTextComponent(""));
             }
             n++;
         }
-        tip.add(new LiteralText(""));
+        tip.add(new StringTextComponent(""));
 
         specialStats.forEach(x -> {
             x.GetTooltipString(info)
@@ -108,7 +108,7 @@ public class GearTooltipUtils {
 
                 });
         });
-        tip.add(new LiteralText(""));
+        tip.add(new StringTextComponent(""));
 
         if (gear.uniqueStats != null) {
             UniqueGear uniq = gear.uniqueStats.getUnique(gear);
@@ -123,48 +123,48 @@ public class GearTooltipUtils {
             if (!gear.can_sal) {
                 tip.add(
                     Words.Unsalvagable.locName()
-                        .formatted(Formatting.RED));
+                        .withStyle(TextFormatting.RED));
             }
         }
         if (gear.isCorrupted()) {
-            tip.add(new LiteralText(Formatting.RED + "").append(
+            tip.add(new StringTextComponent(TextFormatting.RED + "").append(
                     Words.Corrupted.locName())
-                .formatted(Formatting.RED));
+                .withStyle(TextFormatting.RED));
         }
         int socketed = gear.sockets.sockets.size();
         if (socketed > 0) {
             TooltipUtils.addSocketNamesLine(tip, gear);
         }
 
-        tip.add(new LiteralText(""));
+        tip.add(new StringTextComponent(""));
 
         tip.add(TooltipUtils.gearTier(gear.getTier()));
         tip.add(TooltipUtils.gearLevel(gear.lvl));
         tip.add(TooltipUtils.gearRarity(gear.getRarity()));
 
-        tip.add(new LiteralText(""));
-        ItemStack.appendEnchantments(tip, stack.getEnchantments());
+        tip.add(new StringTextComponent(""));
+        ItemStack.appendEnchantmentNames(tip, stack.getEnchantmentTags());
 
         if (ModConfig.get().client.SHOW_DURABILITY) {
-            if (stack.isDamageable()) {
-                tip.add(new SText(Formatting.WHITE + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
+            if (stack.isDamageableItem()) {
+                tip.add(new SText(TextFormatting.WHITE + "Durability: " + (stack.getMaxDamage() - stack.getDamageValue()) + "/" + stack.getMaxDamage()));
             } else {
-                tip.add(new SText(Formatting.WHITE + "Unbreakable"));
+                tip.add(new SText(TextFormatting.WHITE + "Unbreakable"));
             }
         }
 
         if (Screen.hasShiftDown() == false) {
-            tooltip.add(new LiteralText(Formatting.BLUE + "").append(new TranslatableText(Ref.MODID + ".tooltip." + "press_shift_more_info")
+            tooltip.add(new StringTextComponent(TextFormatting.BLUE + "").append(new TranslationTextComponent(Ref.MODID + ".tooltip." + "press_shift_more_info")
                 )
-                .formatted(Formatting.BLUE));
+                .withStyle(TextFormatting.BLUE));
         } else {
             tip.add(Words.Instability.locName()
-                .formatted(Formatting.RED)
+                .withStyle(TextFormatting.RED)
                 .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().Server.MAX_INSTABILITY)
             );
         }
 
-        List<Text> tool = TooltipUtils.removeDoubleBlankLines(tip,
+        List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip,
             ModConfig.get().client.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES);
 
         tip.clear();

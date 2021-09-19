@@ -11,7 +11,7 @@ public class WeightedMobEntry implements IWeighted {
 
     public WeightedMobEntry(int weight, EntityType<?> type) {
         this.weight = weight;
-        this.id = Registry.ENTITY_TYPE.getId(type)
+        this.id = Registry.ENTITY_TYPE.getKey(type)
             .toString();
     }
 

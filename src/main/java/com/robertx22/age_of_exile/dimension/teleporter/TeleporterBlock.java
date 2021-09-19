@@ -5,23 +5,23 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SendActionToClient;
 import com.robertx22.library_of_exile.main.Packets;
-import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider {
+public class TeleporterBlock extends OpaqueBlock implements ITileEntityProvider {
 
     public TeleporterBlock() {
-        super(Settings.of(Material.STONE)
+        super(Properties.of(Material.STONE)
             .strength(5F, 2));
     }
 
@@ -37,24 +37,24 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
      */
 
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
+    public TileEntity newBlockEntity(IBlockReader world) {
         return new TeleportedBlockEntity();
     }
 
     @Override
     @Deprecated
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
-                              Hand hand, BlockHitResult ray) {
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player,
+                                Hand hand, BlockRayTraceResult ray) {
 
-        ItemStack stack = player.getStackInHand(hand);
+        ItemStack stack = player.getItemInHand(hand);
 
-        BlockEntity tile = world.getBlockEntity(pos);
+        TileEntity tile = world.getBlockEntity(pos);
 
         if (tile instanceof TeleportedBlockEntity) {
 
             TeleportedBlockEntity be = (TeleportedBlockEntity) tile;
 
-            if (!world.isClient) {
+            if (!world.isClientSide) {
 
                 if (!be.data.activated) {
                     if (be.data.type.isDungeon()) {
@@ -70,12 +70,12 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
 
                 Packets.sendToClient(player, new SendActionToClient(pos, SendActionToClient.Action.OPEN_MAPS_GUI));
 
-                return ActionResult.SUCCESS;
+                return ActionResultType.SUCCESS;
             }
 
-            return ActionResult.SUCCESS;
+            return ActionResultType.SUCCESS;
         }
 
-        return ActionResult.CONSUME;
+        return ActionResultType.CONSUME;
     }
 }

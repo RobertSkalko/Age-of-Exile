@@ -11,16 +11,16 @@ import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,8 +32,8 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
     public BackpackUpgrade upgrade;
 
     public BackpackUpgradeItem(BackpackUpgrade upgrade, SkillItemTier tier, String id, String locname) {
-        super(tier, new Settings().group(CreativeTabs.Professions)
-            .maxCount(1));
+        super(tier, new Properties().tab(CreativeTabs.Professions)
+            .stacksTo(1));
         this.id = id;
         this.upgrade = upgrade;
         this.locname = locname;
@@ -59,11 +59,11 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World worldIn, List<Text> tooltip, TooltipContext flagIn) {
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         tooltip.add(Words.BagUpgradeDesc.locName()
-            .formatted(Formatting.BLUE));
+            .withStyle(TextFormatting.BLUE));
 
         this.upgrade.addToTooltip(this, tooltip);
 
@@ -104,8 +104,8 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
     public List<BaseLocRequirement> requirements() {
         return Arrays.asList(new BaseLocRequirement() {
             @Override
-            public MutableText getText() {
-                return new LiteralText("No duplicate upgrades, Must upgrade tier by tier.");
+            public IFormattableTextComponent getText() {
+                return new StringTextComponent("No duplicate upgrades, Must upgrade tier by tier.");
             }
 
             @Override

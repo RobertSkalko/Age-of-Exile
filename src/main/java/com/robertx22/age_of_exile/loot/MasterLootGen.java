@@ -122,11 +122,11 @@ public class MasterLootGen {
                 GearRarity rar = Gear.Load(stack)
                     .getRarity();
                 if (rar.is_unique_item) {
-                    SoundUtils.ding(victim.world, victim.getBlockPos());
+                    SoundUtils.ding(victim.level, victim.blockPosition());
                 }
             }
 
-            victim.dropStack(stack, 1F);
+            victim.spawnAtLocation(stack, 1F);
         }
     }
 

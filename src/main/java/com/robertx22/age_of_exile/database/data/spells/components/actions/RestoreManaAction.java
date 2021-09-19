@@ -23,7 +23,7 @@ public class RestoreManaAction extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        if (!ctx.world.isClient) {
+        if (!ctx.world.isClientSide) {
             ValueCalculation calc = data.get(VALUE_CALCULATION);
 
             int value = calc.getCalculatedValue(ctx.levelProvider);

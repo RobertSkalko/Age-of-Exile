@@ -6,8 +6,8 @@ public class OpenGuiWrapper {
 
     public static void openMainHub() {
 
-        net.minecraft.client.MinecraftClient.getInstance()
-            .openScreen(new CharacterScreen());
+        net.minecraft.client.Minecraft.getInstance()
+            .setScreen(new CharacterScreen());
 
     }
 

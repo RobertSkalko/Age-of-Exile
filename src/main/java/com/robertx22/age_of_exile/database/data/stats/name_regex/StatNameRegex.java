@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatW
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 public abstract class StatNameRegex {
 
@@ -27,26 +27,26 @@ public abstract class StatNameRegex {
         return this;
     }
 
-    public Formatting statColor(Stat stat) {
-        return Formatting.GRAY;
+    public TextFormatting statColor(Stat stat) {
+        return TextFormatting.GRAY;
     }
 
-    public Formatting numberColor(Formatting format, Stat stat, float val) {
+    public TextFormatting numberColor(TextFormatting format, Stat stat, float val) {
 
         if (format != null) {
             return format;
         }
 
         if (val > 0) {
-            return Formatting.GREEN;
+            return TextFormatting.GREEN;
         } else {
-            return Formatting.RED;
+            return TextFormatting.RED;
         }
     }
 
-    public abstract String getStatNameRegex(Formatting format, ModType type, Stat stat, float v1);
+    public abstract String getStatNameRegex(TextFormatting format, ModType type, Stat stat, float v1);
 
-    public String translate(Formatting format, TooltipStatWithContext ctx, ModType type, float v1, Stat stat) {
+    public String translate(TextFormatting format, TooltipStatWithContext ctx, ModType type, float v1, Stat stat) {
 
         String v1s = NumberUtils.formatForTooltip(v1);
 
@@ -68,7 +68,7 @@ public abstract class StatNameRegex {
 
         String str = statColor(stat) + getStatNameRegex(format, type, stat, v1);
 
-        str = str.replace(VALUE, numberColor(format, stat, v1) + "" + plusminus + v1s + percent + Formatting.RESET + statColor(stat));
+        str = str.replace(VALUE, numberColor(format, stat, v1) + "" + plusminus + v1s + percent + TextFormatting.RESET + statColor(stat));
 
         str = str.replace(NAME, CLOC.translate(stat.locName()));
 

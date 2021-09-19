@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.player_skills.items.fishing.RawFishItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.*;
+import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect.EffectColor;
 import org.apache.commons.lang3.tuple.Triple;
 
 import java.util.ArrayList;

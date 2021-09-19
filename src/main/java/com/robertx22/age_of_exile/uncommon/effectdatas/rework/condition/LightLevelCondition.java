@@ -21,7 +21,7 @@ public class LightLevelCondition extends StatCondition {
 
     @Override
     public boolean can(EffectEvent event, EffectSides statSource, StatData data, Stat stat) {
-        int light = event.source.world.getLightLevel(event.source.getBlockPos());
+        int light = event.source.level.getMaxLocalRawBrightness(event.source.blockPosition());
         return comparison.is(light);
     }
 

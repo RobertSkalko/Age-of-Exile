@@ -15,12 +15,12 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.BlockGearSal
 import com.robertx22.age_of_exile.vanilla_mc.blocks.smithing.SmithingBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.tablet.TabletStationBlock;
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.BeetrootsBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
+import net.minecraft.block.material.Material;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.level.block.BeetrootBlock;
+import net.minecraft.world.level.block.SoundType;
 
 import java.util.HashMap;
 
@@ -59,15 +59,15 @@ public class ModBlocks {
     }
 
     Block plant(String id) {
-        return of(id, new BeetrootsBlock(AbstractBlock.Settings.of(Material.PLANT)
-            .noCollision()
-            .ticksRandomly()
-            .breakInstantly()
-            .sounds(BlockSoundGroup.CROP)));
+        return of(id, new BeetrootBlock(AbstractBlock.Properties.of(Material.PLANT)
+            .noCollission()
+            .randomTicks()
+            .instabreak()
+            .sound(SoundType.CROP)));
     }
 
     <T extends Block> T of(String id, T c) {
-        Registry.register(Registry.BLOCK, new Identifier(Ref.MODID, id), c);
+        Registry.register(Registry.BLOCK, new ResourceLocation(Ref.MODID, id), c);
         return c;
     }
 

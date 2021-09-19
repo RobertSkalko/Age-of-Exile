@@ -21,23 +21,23 @@ import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameterSets;
+import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -117,9 +117,9 @@ public class TileGearSalvage extends BaseSkillStation {
                         if (itemStacks[slot].isEmpty()) {
                             itemStacks[slot] = result;
                             outputed.add(i);
-                        } else if (itemStacks[slot].isItemEqual(result)) {
+                        } else if (itemStacks[slot].sameItemStackIgnoreDurability(result)) {
                             if ((itemStacks[slot].getCount() + result.getCount()) < result.getItem()
-                                .getMaxCount()) {
+                                .getMaxStackSize()) {
                                 itemStacks[slot].setCount(itemStacks[slot].getCount() + result.getCount());
                                 outputed.add(i);
                             }
@@ -130,21 +130,21 @@ public class TileGearSalvage extends BaseSkillStation {
             }
         } else {
 
-            Vec3d itempos = new Vec3d(pos.getX(), pos.getY(), pos.getZ());
+            Vector3d itempos = new Vector3d(worldPosition.getX(), worldPosition.getY(), worldPosition.getZ());
 
-            BlockState block = world.getBlockState(pos);
+            BlockState block = level.getBlockState(worldPosition);
 
-            Direction dir = block.get(NonFullBlock.direction);
+            Direction dir = block.getValue(NonFullBlock.direction);
 
-            itempos = itempos.add(dir.getVector()
-                .getX(), 0, dir.getVector()
+            itempos = itempos.add(dir.getNormal()
+                .getX(), 0, dir.getNormal()
                 .getZ());
 
             for (ItemStack x : results) {
                 ItemEntity itemEntity = new ItemEntity(
-                    this.world, itempos.getX(), itempos.getY(), itempos.getZ(), x);
-                itemEntity.setToDefaultPickupDelay();
-                this.world.spawnEntity(itemEntity);
+                    this.level, itempos.x(), itempos.y(), itempos.z(), x);
+                itemEntity.setDefaultPickUpDelay();
+                this.level.addFreshEntity(itemEntity);
             }
         }
     }
@@ -170,19 +170,19 @@ public class TileGearSalvage extends BaseSkillStation {
 
     private void salvageRecipe(SalvageRecipe recipe) {
 
-        Identifier loottableId = new Identifier(recipe.loot_table_output);
+        ResourceLocation loottableId = new ResourceLocation(recipe.loot_table_output);
 
-        LootContext lootContext = new LootContext.Builder((ServerWorld) world)
-            .parameter(LootContextParameters.TOOL, ItemStack.EMPTY)
-            .parameter(LootContextParameters.ORIGIN, new Vec3d(pos.getX(), pos.getY(), pos.getZ()))
-            .parameter(LootContextParameters.BLOCK_STATE, Blocks.AIR.getDefaultState())
-            .build(LootContextTypes.BLOCK);
-        ServerWorld serverWorld = lootContext.getWorld();
+        LootContext lootContext = new LootContext.Builder((ServerWorld) level)
+            .withParameter(LootParameters.TOOL, ItemStack.EMPTY)
+            .withParameter(LootParameters.ORIGIN, new Vector3d(worldPosition.getX(), worldPosition.getY(), worldPosition.getZ()))
+            .withParameter(LootParameters.BLOCK_STATE, Blocks.AIR.defaultBlockState())
+            .create(LootParameterSets.BLOCK);
+        ServerWorld serverWorld = lootContext.getLevel();
         LootTable lootTable = serverWorld.getServer()
-            .getLootManager()
-            .getTable(loottableId);
+            .getLootTables()
+            .get(loottableId);
 
-        List<ItemStack> drops = lootTable.generateLoot(lootContext);
+        List<ItemStack> drops = lootTable.getRandomItems(lootContext);
 
         for (int inputSlot : INPUT_SLOTS) {
             itemStacks[inputSlot] = ItemStack.EMPTY;
@@ -228,13 +228,13 @@ public class TileGearSalvage extends BaseSkillStation {
     }
 
     @Override
-    public MutableText getDisplayName() {
+    public IFormattableTextComponent getDisplayName() {
         return CLOC.blank("block.mmorpg.salvage_station");
     }
 
     @Override
-    public ScreenHandler createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
-        return new ContainerGearSalvage(num, inventory, this, this.getPos());
+    public Container createMenu(int num, PlayerInventory inventory, PlayerEntity player) {
+        return new ContainerGearSalvage(num, inventory, this, this.getBlockPos());
     }
 
     @Override
@@ -306,17 +306,17 @@ public class TileGearSalvage extends BaseSkillStation {
 
             if (sal) {
 
-                SoundUtils.playSound(world, pos, SoundEvents.BLOCK_ANVIL_USE, 0.3F, 1);
+                SoundUtils.playSound(level, worldPosition, SoundEvents.ANVIL_USE, 0.3F, 1);
 
                 ParticleEnum.sendToClients(
-                    pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
+                    worldPosition.above(), level, new ParticlePacketData(worldPosition.above(), ParticleEnum.AOE).radius(0.5F)
                         .type(ParticleTypes.DUST)
                         .amount(15));
 
                 ParticleEnum.sendToClients(
-                    pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
+                    worldPosition.above(), level, new ParticlePacketData(worldPosition.above(), ParticleEnum.AOE).radius(0.5F)
                         .type(ParticleTypes.FLAME)
-                        .motion(new Vec3d(0, 0, 0))
+                        .motion(new Vector3d(0, 0, 0))
                         .amount(15));
 
             }

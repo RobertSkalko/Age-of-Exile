@@ -18,10 +18,10 @@ import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -46,7 +46,7 @@ public class PlayerSkill implements JsonExileRegistry<PlayerSkill>, IAutoGson<Pl
 
     List<SkillStatReward> cachedStatRewards = null;
 
-    public Identifier getIcon() {
+    public ResourceLocation getIcon() {
         return Ref.id("textures/gui/skills/icons/" + id + ".png");
     }
 
@@ -77,7 +77,7 @@ public class PlayerSkill implements JsonExileRegistry<PlayerSkill>, IAutoGson<Pl
         int exp = exp_per_action;
 
         if (this.type_enum == PlayerSkillEnum.FISHING) {
-            if (player.world.isRaining()) {
+            if (player.level.isRaining()) {
                 exp *= 1.2F;
             }
         }
@@ -117,7 +117,7 @@ public class PlayerSkill implements JsonExileRegistry<PlayerSkill>, IAutoGson<Pl
 
             if (dropTable.tier == tierContext) {
 
-                if (dropTable.req.isAllowed(player.world, player.getBlockPos())) {
+                if (dropTable.req.isAllowed(player.level, player.blockPosition())) {
                     float chance = dropTable.loot_chance_per_action_exp * expForAction;
 
                     if (RandomUtils.roll(chance)) {
@@ -152,17 +152,17 @@ public class PlayerSkill implements JsonExileRegistry<PlayerSkill>, IAutoGson<Pl
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
         int lvl = Load.playerRPGData(info.player).professions
             .getProfessionLevel(type_enum);
 
         list.add(this.type_enum.word.locName()
-            .formatted(type_enum.format));
+            .withStyle(type_enum.format));
 
-        list.add(new LiteralText(""));
+        list.add(new StringTextComponent(""));
 
         List<OptScaleExactStat> stats = new ArrayList<>();
 
@@ -195,8 +195,8 @@ public class PlayerSkill implements JsonExileRegistry<PlayerSkill>, IAutoGson<Pl
             nextstatrewards.forEach(x -> nextStats.addAll(x.stats));
             OptScaleExactStat.combine(nextStats);
 
-            list.add(new LiteralText(""));
-            list.add(new LiteralText("Level " + opt.get().lvl_req + " unlocks:"));
+            list.add(new StringTextComponent(""));
+            list.add(new StringTextComponent("Level " + opt.get().lvl_req + " unlocks:"));
             nextStats.forEach(x -> list.addAll(x.GetTooltipString(info)));
         }
 
@@ -206,9 +206,9 @@ public class PlayerSkill implements JsonExileRegistry<PlayerSkill>, IAutoGson<Pl
             if (lvl >= Load.Unit(info.player)
                 .getLevel()) {
                 if (lvl < GameBalanceConfig.get().MAX_LEVEL) {
-                    list.add(new LiteralText(""));
-                    list.add(new LiteralText("Skill level Capped to Combat level.").formatted(Formatting.RED));
-                    list.add(new LiteralText("Level your Combat level to progress further.").formatted(Formatting.RED));
+                    list.add(new StringTextComponent(""));
+                    list.add(new StringTextComponent("Skill level Capped to Combat level.").withStyle(TextFormatting.RED));
+                    list.add(new StringTextComponent("Level your Combat level to progress further.").withStyle(TextFormatting.RED));
                 }
             }
         }

@@ -4,15 +4,15 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.OutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.screen.slot.Slot;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.math.BlockPos;
 
 public class AlchemyContainer extends BaseTileContainer {
 
-    Inventory tile;
+    IInventory tile;
 
-    public AlchemyContainer(int i, PlayerInventory invPlayer, Inventory inventory,
+    public AlchemyContainer(int i, PlayerInventory invPlayer, IInventory inventory,
                             BlockPos pos) {
 
         super(AlchemyTile.totalSlots(), null, i, invPlayer);
@@ -20,7 +20,7 @@ public class AlchemyContainer extends BaseTileContainer {
         this.pos = pos;
         int count = 0;
 
-        tile.onOpen(invPlayer.player);
+        tile.startOpen(invPlayer.player);
 
         addSlot(new Slot(inventory, count++, 57, 38));
         addSlot(new Slot(inventory, count++, 80, 31));
@@ -31,8 +31,8 @@ public class AlchemyContainer extends BaseTileContainer {
     }
 
     @Override
-    public boolean canUse(PlayerEntity player) {
-        return tile.canPlayerUse(player);
+    public boolean stillValid(PlayerEntity player) {
+        return tile.stillValid(player);
     }
 
 }

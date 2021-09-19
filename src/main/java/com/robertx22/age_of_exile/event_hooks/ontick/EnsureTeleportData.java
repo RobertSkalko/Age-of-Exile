@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.ontick;
 
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.function.Consumer;

@@ -2,19 +2,19 @@ package com.robertx22.age_of_exile.mixin_methods;
 
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.IOneOfATypePotion;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class CanEntityHavePotionMixin {
 
-    public static void hook(LivingEntity en, StatusEffectInstance effect, CallbackInfoReturnable<Boolean> ci) {
-        if (!canAddPotion(en, effect.getEffectType())) {
+    public static void hook(LivingEntity en, EffectInstance effect, CallbackInfoReturnable<Boolean> ci) {
+        if (!canAddPotion(en, effect.getEffect())) {
             ci.setReturnValue(false);
         }
     }
 
-    public static boolean canAddPotion(LivingEntity en, StatusEffect effect) {
+    public static boolean canAddPotion(LivingEntity en, Effect effect) {
 
         try {
 
@@ -22,16 +22,16 @@ public class CanEntityHavePotionMixin {
                 IOneOfATypePotion one = (IOneOfATypePotion) effect;
 
                 if (one.isOneOfAKind()) {
-                    if (en.getStatusEffects()
+                    if (en.getActiveEffects()
                         .stream()
                         .anyMatch(x -> {
-                            if (x.getEffectType() instanceof IOneOfATypePotion) {
-                                IOneOfATypePotion ot = (IOneOfATypePotion) x.getEffectType();
+                            if (x.getEffect() instanceof IOneOfATypePotion) {
+                                IOneOfATypePotion ot = (IOneOfATypePotion) x.getEffect();
                                 if (ot.getOneOfATypeType()
                                     .equals(one.getOneOfATypeType())) {
                                     return true;
                                 }
-                                if (x.getEffectType()
+                                if (x.getEffect()
                                     .equals(effect)) {
                                     return true;
                                 }

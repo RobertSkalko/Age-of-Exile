@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.testing;
 
 import com.robertx22.age_of_exile.uncommon.testing.tests.MobTypesTest;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.server.ServerWorld;
 
 public class TestManager {
 

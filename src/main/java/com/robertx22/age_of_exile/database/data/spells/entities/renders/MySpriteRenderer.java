@@ -1,17 +1,17 @@
 package com.robertx22.age_of_exile.database.data.spells.entities.renders;
 
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.model.json.ModelTransformation;
-import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.vector.Vector3f;
 
 public class MySpriteRenderer<T extends Entity & IMyRenderAsItem> extends EntityRenderer<T> {
     private final ItemRenderer itemRenderer;
@@ -30,24 +30,24 @@ public class MySpriteRenderer<T extends Entity & IMyRenderAsItem> extends Entity
     }
 
     @Override
-    protected int getBlockLight(T entity, BlockPos blockPos) {
-        return this.lit ? 15 : super.getBlockLight(entity, blockPos);
+    protected int getBlockLightLevel(T entity, BlockPos blockPos) {
+        return this.lit ? 15 : super.getBlockLightLevel(entity, blockPos);
     }
 
     @Override
-    public void render(T entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-        if (entity.age >= 3) {
-            matrices.push();
+    public void render(T entity, float yaw, float tickDelta, MatrixStack matrices, MultiBufferSource vertexConsumers, int light) {
+        if (entity.tickCount >= 3) {
+            matrices.pushPose();
             matrices.scale(this.scale, this.scale, this.scale);
-            matrices.multiply(this.dispatcher.getRotation());
-            matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F));
-            this.itemRenderer.renderItem(((IMyRenderAsItem) entity).getItem(), ModelTransformation.Mode.GROUND, light, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers);
-            matrices.pop();
+            matrices.mulPose(this.entityRenderDispatcher.cameraOrientation());
+            matrices.mulPose(Vector3f.YP.rotationDegrees(180.0F));
+            this.itemRenderer.renderStatic(((IMyRenderAsItem) entity).getItem(), ItemTransforms.TransformType.GROUND, light, OverlayTexture.NO_OVERLAY, matrices, vertexConsumers);
+            matrices.popPose();
             super.render(entity, yaw, tickDelta, matrices, vertexConsumers, light);
         }
     }
 
-    public Identifier getTexture(Entity entity) {
-        return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
+    public ResourceLocation getTextureLocation(Entity entity) {
+        return TextureAtlas.LOCATION_BLOCKS;
     }
 }

@@ -14,9 +14,9 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,25 +59,25 @@ public class GearSet implements JsonExileRegistry<GearSet>, IAutoGson<GearSet>, 
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
         int lvl = info.unitdata.getLevel();
 
         list.add(locName().append(" Set")
-            .formatted(Formatting.GREEN));
+            .withStyle(TextFormatting.GREEN));
 
         stats.entrySet()
             .forEach(x -> {
-                Formatting format = Formatting.GRAY;
+                TextFormatting format = TextFormatting.GRAY;
 
                 int num = x.getKey();
                 if (info.unitdata.getUnit().sets.getOrDefault(id, 0) >= x.getKey()) {
-                    format = Formatting.GREEN;
+                    format = TextFormatting.GREEN;
                 }
 
-                list.add(new LiteralText(format + "[" + num + "/" + num + "]" + " Set Bonus:"));
+                list.add(new StringTextComponent(format + "[" + num + "/" + num + "]" + " Set Bonus:"));
 
                 x.getValue()
                     .forEach(s -> {

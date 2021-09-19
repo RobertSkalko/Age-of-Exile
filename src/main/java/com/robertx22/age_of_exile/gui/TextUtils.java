@@ -1,16 +1,16 @@
 package com.robertx22.age_of_exile.gui;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Formatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.text.TextFormatting;
 
 public class TextUtils {
 
-    public static void renderText(MatrixStack matrix, double scale, String text, int x, int y, Formatting color) {
-        MinecraftClient mc = MinecraftClient.getInstance();
+    public static void renderText(MatrixStack matrix, double scale, String text, int x, int y, TextFormatting color) {
+        Minecraft mc = Minecraft.getInstance();
 
-        int width = mc.textRenderer.getWidth(text);
+        int width = mc.font.width(text);
         int textX = (int) (x - width / 2F);
         int textY = y;
 
@@ -24,7 +24,7 @@ public class TextUtils {
         float xf = (float) ((double) xp * antiScale);
         float yf = (float) ((double) yp * antiScale);
 
-        mc.textRenderer.drawWithShadow(matrix, text, xf, yf, color.getColorValue());
+        mc.font.drawShadow(matrix, text, xf, yf, color.getColor());
         RenderSystem.scaled(antiScale, antiScale, antiScale);
     }
 

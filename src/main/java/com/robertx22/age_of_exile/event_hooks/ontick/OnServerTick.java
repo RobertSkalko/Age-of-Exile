@@ -19,12 +19,12 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientEntityIsCa
 import com.robertx22.library_of_exile.main.Packets;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.server.PlayerStream;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +42,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
             OnTickSetGameMode.onTick(player);
             CapSyncUtil.syncAll(player);
-            Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.world, player.getBlockPos(), player)));
+            Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.level, player.blockPosition(), player)));
         }));
 
         TICK_ACTIONS.add(new
@@ -55,7 +55,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 .getUnit()
                 .energyData()
                 .getValue() / 10) {
-                player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20 * 3, 1));
+                player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20 * 3, 1));
             }
 
             UnequipGear.onTick(player);
@@ -71,7 +71,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
             if (player.isAlive()) {
 
-                PopulateDungeonChunks.tryPopulateChunksAroundPlayer(player.world, player);
+                PopulateDungeonChunks.tryPopulateChunksAroundPlayer(player.level, player);
 
                 EntityData unitdata = Load.Unit(player);
 
@@ -92,7 +92,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 boolean restored = false;
 
-                boolean canHeal = player.getHungerManager()
+                boolean canHeal = player.getFoodData()
                     .getFoodLevel() >= 16;
 
                 if (canHeal) {
@@ -111,7 +111,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                         float exhaustion = (float) ModConfig.get().Server.REGEN_HUNGER_COST * percentHealed;
 
-                        player.getHungerManager()
+                        player.getFoodData()
                             .addExhaustion(exhaustion);
 
                     }
@@ -157,7 +157,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(player, player, EntitySavedSpellData.create(Load.Unit(player)
                         .getLevel(), player, spell)));
 
-                PlayerStream.watching(player.world, player.getBlockPos())
+                PlayerStream.watching(player.level, player.blockPosition())
                     .forEach((p) -> {
                         Packets.sendToClient(p, new TellClientEntityIsCastingSpellPacket(player, spell));
                     });
@@ -171,7 +171,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
         {
 
-            if (!WorldUtils.isMapWorldClass(player.world)) {
+            if (!WorldUtils.isMapWorldClass(player.level)) {
 
                 boolean wasnt = false;
                 if (!data.isInHighLvlZone) {
@@ -182,15 +182,15 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     .getLevel();
 
                 if (lvl < 20) {
-                    data.isInHighLvlZone = LevelUtils.determineLevel(player.world, player.getBlockPos(), player) - lvl > 10;
+                    data.isInHighLvlZone = LevelUtils.determineLevel(player.level, player.blockPosition(), player) - lvl > 10;
 
                     if (wasnt && data.isInHighLvlZone) {
                         OnScreenMessageUtils.sendMessage(
                             player,
-                            new LiteralText("YOU ARE ENTERING").formatted(Formatting.RED)
-                                .formatted(Formatting.BOLD),
-                            new LiteralText("A HIGH LEVEL ZONE").formatted(Formatting.RED)
-                                .formatted(Formatting.BOLD));
+                            new StringTextComponent("YOU ARE ENTERING").withStyle(TextFormatting.RED)
+                                .withStyle(TextFormatting.BOLD),
+                            new StringTextComponent("A HIGH LEVEL ZONE").withStyle(TextFormatting.RED)
+                                .withStyle(TextFormatting.BOLD));
                     }
                 }
             }
@@ -203,12 +203,12 @@ public class OnServerTick implements ServerTickEvents.EndTick {
     @Override
     public void onEndTick(MinecraftServer server) {
 
-        for (ServerPlayerEntity player : server.getPlayerManager()
-            .getPlayerList()) {
+        for (ServerPlayerEntity player : server.getPlayerList()
+            .getPlayers()) {
 
             try {
 
-                PlayerTickData data = PlayerTickDatas.get(player.getUuid());
+                PlayerTickData data = PlayerTickDatas.get(player.getUUID());
 
                 if (data == null) {
                     data = new PlayerTickData();
@@ -216,7 +216,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 data.tick(player);
 
-                PlayerTickDatas.put(player.getUuid(), data);
+                PlayerTickDatas.put(player.getUUID(), data);
 
             } catch (Exception e) {
                 e.printStackTrace();

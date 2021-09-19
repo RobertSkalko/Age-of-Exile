@@ -1,55 +1,55 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.gui.buttons.OwnerButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.library_of_exile.gui.HelpButton;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class GuiGearSalvage extends ModificationGui<ContainerGearSalvage, TileGearSalvage> {
 
     // This is the resource location for the background image
-    private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/salvage_station.png");
+    private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/salvage_station.png");
 
-    public GuiGearSalvage(ContainerGearSalvage cont, PlayerInventory invPlayer,
-                          MutableText comp) {
-        super(texture, cont, invPlayer, new LiteralText("Salvage"), TileGearSalvage.class);
+    public GuiGearSalvage(ContainerGearSalvage cont, IInventory invPlayer,
+                          IFormattableTextComponent comp) {
+        super(texture, cont, invPlayer, new StringTextComponent("Salvage"), TileGearSalvage.class);
 
-        backgroundWidth = 176;
-        backgroundHeight = 207;
+        imageWidth = 176;
+        imageHeight = 207;
     }
 
     @Override
     protected void init() {
         super.init();
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new LiteralText("Here you can salvage gears with Age of Exile stats."));
-        list.add(new LiteralText("Gears are turned into scraps, which is used to fuel gear."));
+        list.add(new StringTextComponent("Here you can salvage gears with Age of Exile stats."));
+        list.add(new StringTextComponent("Gears are turned into scraps, which is used to fuel gear."));
 
-        list.add(new LiteralText("There are some secret recipes."));
+        list.add(new StringTextComponent("There are some secret recipes."));
 
-        this.addButton(new HelpButton(list, this.x + this.backgroundWidth - 25, this.y + 5));
+        this.addButton(new HelpButton(list, this.leftPos + this.imageWidth - 25, this.topPos + 5));
 
-        addButton(new OwnerButton(tile, putInTheMiddleX(OwnerButton.SIZE_X), this.y + 10));
+        addButton(new OwnerButton(tile, putInTheMiddleX(OwnerButton.SIZE_X), this.topPos + 10));
 
     }
 
     @Override
     public void renderOther(MatrixStack matrix, int mouseX, int mouseY) {
-        this.renderCookArrow(matrix, this.x + 79, this.y + 58, tile.getCookProgress());
-        this.renderCookFlame(matrix, this.x + 80, this.y + 79, tile.getFuelProgress());
+        this.renderCookArrow(matrix, this.leftPos + 79, this.topPos + 58, tile.getCookProgress());
+        this.renderCookFlame(matrix, this.leftPos + 80, this.topPos + 79, tile.getFuelProgress());
     }
 }

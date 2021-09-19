@@ -10,7 +10,7 @@ public class Runes implements ExileRegistryInit {
     public void registerAll() {
         ModRegistry.RUNES.ALL.forEach(x -> {
             Rune rune = new Rune();
-            rune.item_id = Registry.ITEM.getId(x)
+            rune.item_id = Registry.ITEM.getKey(x)
                 .toString();
             rune.identifier = x.type.id;
 

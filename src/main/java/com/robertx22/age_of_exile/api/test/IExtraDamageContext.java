@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.api.test;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 
 /*
 Every time you deal damage with spells you would need to implement this interface into the vanilla damage source,
@@ -18,6 +18,6 @@ public interface IExtraDamageContext {
 
     LivingEntity getDamageCaster();
 
-    Identifier getDamageUniqueId();
+    ResourceLocation getDamageUniqueId();
 
 }

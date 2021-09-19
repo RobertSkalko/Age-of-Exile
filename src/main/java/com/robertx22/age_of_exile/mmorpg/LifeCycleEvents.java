@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.mmorpg;
 import com.robertx22.age_of_exile.mmorpg.registers.server.CommandRegister;
 import com.robertx22.age_of_exile.uncommon.testing.TestManager;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.minecraft.world.GameRules;
+import net.minecraft.world.level.GameRules;
 
 public class LifeCycleEvents {
 
@@ -25,15 +25,15 @@ public class LifeCycleEvents {
 
             regenDefault = server
                 .getGameRules()
-                .get(GameRules.NATURAL_REGENERATION)
+                .getRule(GameRules.RULE_NATURAL_REGENERATION)
                 .get();
 
             server.getGameRules()
-                .get(GameRules.NATURAL_REGENERATION)
+                .getRule(GameRules.RULE_NATURAL_REGENERATION)
                 .set(false, server);
 
             if (MMORPG.RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
-                TestManager.RunAllTests(server.getOverworld());
+                TestManager.RunAllTests(server.overworld());
             }
 
         });
@@ -41,7 +41,7 @@ public class LifeCycleEvents {
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
 
             server.getGameRules()
-                .get(GameRules.NATURAL_REGENERATION)
+                .getRule(GameRules.RULE_NATURAL_REGENERATION)
                 .set(regenDefault, server);
         });
 

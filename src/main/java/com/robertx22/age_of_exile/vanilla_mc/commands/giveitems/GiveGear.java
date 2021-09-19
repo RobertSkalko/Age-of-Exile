@@ -8,24 +8,24 @@ import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.DatabaseSuggestions;
 import com.robertx22.age_of_exile.vanilla_mc.commands.suggestions.GearRaritySuggestions;
-import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.CommandSource;
+import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.command.ServerCommandSource;
 
 import java.util.Objects;
 
-import static net.minecraft.server.command.CommandManager.argument;
-import static net.minecraft.server.command.CommandManager.literal;
+import static net.minecraft.command.Commands.argument;
+import static net.minecraft.command.Commands.literal;
 
 public class GiveGear {
 
-    public static void register(CommandDispatcher<ServerCommandSource> commandDispatcher) {
+    public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
 
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .then(literal("give").requires(e -> e.hasPermissionLevel(2))
+                .then(literal("give").requires(e -> e.hasPermission(2))
                     .then(literal("gear")
-                        .then(argument("target", EntityArgumentType.player())
+                        .then(argument("target", EntityArgument.player())
                             .then(argument("type", StringArgumentType.word())
                                 .suggests(new DatabaseSuggestions(ExileRegistryTypes.GEAR_TYPE))
                                 .then(argument("level",
@@ -46,7 +46,7 @@ public class GiveGear {
                                             .executes(
                                                 e -> execute(
                                                     e.getSource(),
-                                                    EntityArgumentType
+                                                    EntityArgument
                                                         .getPlayer(
                                                             e,
                                                             "target"
@@ -75,12 +75,12 @@ public class GiveGear {
                                                 ))))))))));
     }
 
-    private static int execute(ServerCommandSource commandSource, PlayerEntity player, String type, int lvl,
+    private static int execute(CommandSource commandSource, PlayerEntity player, String type, int lvl,
                                String rarity, int amount) {
 
         if (Objects.isNull(player)) {
             try {
-                player = commandSource.getPlayer();
+                player = commandSource.getPlayerOrException();
             } catch (CommandSyntaxException e) {
                 e.printStackTrace();
                 return 1;

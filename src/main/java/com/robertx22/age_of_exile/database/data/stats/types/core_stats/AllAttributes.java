@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITra
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +24,7 @@ public class AllAttributes extends Stat implements ITransferToOtherStats {
 
     private AllAttributes() {
         this.scaling = StatScaling.CORE_STAT;
-        this.format = Formatting.LIGHT_PURPLE.getName();
+        this.format = TextFormatting.LIGHT_PURPLE.getName();
     }
 
     public static AllAttributes getInstance() {

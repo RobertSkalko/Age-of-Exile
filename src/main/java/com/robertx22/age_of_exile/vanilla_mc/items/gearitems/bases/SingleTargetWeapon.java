@@ -3,19 +3,19 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolItem;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TieredItem;
 
-public abstract class SingleTargetWeapon extends ToolItem implements IAutoLocName {
+public abstract class SingleTargetWeapon extends TieredItem implements IAutoLocName {
 
-    public SingleTargetWeapon(ToolMaterial mat, Settings settings, String locname) {
+    public SingleTargetWeapon(Tier mat, Properties settings, String locname) {
 
         super(mat, settings);
         this.locname = locname;
@@ -36,7 +36,7 @@ public abstract class SingleTargetWeapon extends ToolItem implements IAutoLocNam
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.ITEM.getId(this)
+        return Registry.ITEM.getKey(this)
             .toString();
     }
 
@@ -46,28 +46,28 @@ public abstract class SingleTargetWeapon extends ToolItem implements IAutoLocNam
     }
 
     @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damage(1, attacker, (entity) -> {
-            entity.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(1, attacker, (entity) -> {
+            entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
         });
 
         return true;
     }
 
     @Override
-    public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
-        Multimap<EntityAttribute, EntityAttributeModifier> map = HashMultimap.create();
-        if (slot == EquipmentSlot.MAINHAND) {
+    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType slot) {
+        Multimap<Attribute, AttributeModifier> map = HashMultimap.create();
+        if (slot == EquipmentSlotType.MAINHAND) {
             map.put(
-                EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                new EntityAttributeModifier(ATTACK_DAMAGE_MODIFIER_ID, "Weapon modifier", 6,
-                    EntityAttributeModifier.Operation.ADDITION
+                Attributes.ATTACK_DAMAGE,
+                new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", 6,
+                    AttributeModifier.Operation.ADDITION
                 )
             );
             map.put(
-                EntityAttributes.GENERIC_ATTACK_SPEED,
-                new EntityAttributeModifier(ATTACK_SPEED_MODIFIER_ID, "Weapon modifier",
-                    (double) this.attackSpeed, EntityAttributeModifier.Operation.ADDITION));
+                Attributes.ATTACK_SPEED,
+                new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier",
+                    (double) this.attackSpeed, AttributeModifier.Operation.ADDITION));
 
         }
 

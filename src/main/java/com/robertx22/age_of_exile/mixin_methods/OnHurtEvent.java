@@ -8,7 +8,7 @@ public class OnHurtEvent {
 
     public static float onHurtEvent(AttackInformation event) {
 
-        if (event.getTargetEntity().world.isClient) {
+        if (event.getTargetEntity().level.isClientSide) {
             return event.getAmount();
         }
 

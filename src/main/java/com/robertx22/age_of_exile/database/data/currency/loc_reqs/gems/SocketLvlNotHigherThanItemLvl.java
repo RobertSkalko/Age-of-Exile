@@ -5,11 +5,11 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.BaseGemRuneItem;
-import net.minecraft.text.MutableText;
+import net.minecraft.util.text.IFormattableTextComponent;
 
 public class SocketLvlNotHigherThanItemLvl extends BaseLocRequirement {
     @Override
-    public MutableText getText() {
+    public IFormattableTextComponent getText() {
         return Words.SocketLvlIsntHigherThanItemLvl.locName();
     }
 

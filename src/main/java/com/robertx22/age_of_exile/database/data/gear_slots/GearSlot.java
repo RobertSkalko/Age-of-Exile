@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.StaffWeapon
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.registry.serialization.ISerializable;
-import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import top.theillusivec4.curios.api.CuriosApi;
 
@@ -82,14 +82,14 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<Gear
 
         try {
             if (item instanceof ArmorItem) {
-                EquipmentSlot eqslot = ((ArmorItem) item).getSlotType();
-                if (eqslot == EquipmentSlot.CHEST && id.equals(GearSlots.CHEST)) {
+                EquipmentSlotType eqslot = ((ArmorItem) item).getSlot();
+                if (eqslot == EquipmentSlotType.CHEST && id.equals(GearSlots.CHEST)) {
                     bool = true;
-                } else if (eqslot == EquipmentSlot.LEGS && id.equals(GearSlots.PANTS)) {
+                } else if (eqslot == EquipmentSlotType.LEGS && id.equals(GearSlots.PANTS)) {
                     bool = true;
-                } else if (eqslot == EquipmentSlot.HEAD && id.equals(GearSlots.HELMET)) {
+                } else if (eqslot == EquipmentSlotType.HEAD && id.equals(GearSlots.HELMET)) {
                     bool = true;
-                } else if (eqslot == EquipmentSlot.FEET && id.equals(GearSlots.BOOTS)) {
+                } else if (eqslot == EquipmentSlotType.FEET && id.equals(GearSlots.BOOTS)) {
                     bool = true;
                 }
 

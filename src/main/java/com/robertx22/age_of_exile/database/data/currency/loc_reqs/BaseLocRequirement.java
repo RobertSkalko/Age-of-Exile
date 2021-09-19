@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.database.data.currency.loc_reqs;
 
-import net.minecraft.text.MutableText;
+import net.minecraft.util.text.IFormattableTextComponent;
 
 public abstract class BaseLocRequirement {
 
-    public abstract MutableText getText();
+    public abstract IFormattableTextComponent getText();
 
     public abstract boolean isAllowed(LocReqContext context);
 

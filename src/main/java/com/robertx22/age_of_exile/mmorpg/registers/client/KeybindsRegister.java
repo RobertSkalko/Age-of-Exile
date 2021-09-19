@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.mmorpg.registers.client;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import org.lwjgl.glfw.GLFW;
 
 public class KeybindsRegister {
@@ -35,12 +35,12 @@ public class KeybindsRegister {
 
     public static void register() {
 
-        KeyBindingHelper.registerKeyBinding(HUB_SCREEN_KEY);
+        ClientRegistry.registerKeyBinding(HUB_SCREEN_KEY);
 
-        KeyBindingHelper.registerKeyBinding(SPELL_HOTBAR_1);
-        KeyBindingHelper.registerKeyBinding(SPELL_HOTBAR_2);
-        KeyBindingHelper.registerKeyBinding(SPELL_HOTBAR_3);
-        KeyBindingHelper.registerKeyBinding(SPELL_HOTBAR_4);
+        ClientRegistry.registerKeyBinding(SPELL_HOTBAR_1);
+        ClientRegistry.registerKeyBinding(SPELL_HOTBAR_2);
+        ClientRegistry.registerKeyBinding(SPELL_HOTBAR_3);
+        ClientRegistry.registerKeyBinding(SPELL_HOTBAR_4);
 
     }
 

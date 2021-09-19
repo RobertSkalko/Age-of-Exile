@@ -1,41 +1,41 @@
 package com.robertx22.age_of_exile.dimension;
 
 import com.mojang.serialization.Codec;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.dynamic.RegistryLookupCodec;
+import net.minecraft.resources.RegistryLookupCodec;
+import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.ChunkRegion;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.biome.source.BiomeAccess;
-import net.minecraft.world.biome.source.FixedBiomeSource;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.StructureAccessor;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.chunk.StructuresConfig;
-import net.minecraft.world.gen.chunk.VerticalBlockSample;
+import net.minecraft.world.chunk.IChunk;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.level.NoiseColumn;
+import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.biome.BiomeManager;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.biome.FixedBiomeSource;
+import net.minecraft.world.level.levelgen.StructureSettings;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class VoidChunkGenerator extends ChunkGenerator {
     private final Registry<Biome> biomeRegistry;
 
     public static Codec<VoidChunkGenerator> VOID_CODED =
-        RegistryLookupCodec.of(Registry.BIOME_KEY)
+        RegistryLookupCodec.create(Registry.BIOME_REGISTRY)
             .xmap(VoidChunkGenerator::new, VoidChunkGenerator::getBiomeRegistry)
             .stable()
             .codec();
 
     public VoidChunkGenerator(Registry<Biome> biomeRegistry) {
-        super(new FixedBiomeSource((Biome) biomeRegistry.getOrThrow(BiomeKeys.THE_VOID)), new StructuresConfig(false));
-        this.getStructuresConfig()
-            .getStructures()
+        super(new FixedBiomeSource((Biome) biomeRegistry.getOrThrow(Biomes.THE_VOID)), new StructureSettings(false));
+        this.getSettings()
+            .structureConfig()
             .clear();
         this.biomeRegistry = biomeRegistry;
     }
@@ -45,29 +45,29 @@ public class VoidChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    protected Codec<? extends ChunkGenerator> getCodec() {
+    protected Codec<? extends ChunkGenerator> codec() {
         return VOID_CODED;
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
+    @OnlyIn(Dist.CLIENT)
     public ChunkGenerator withSeed(long seed) {
         return this;
     }
 
     @Override
-    public void buildSurface(ChunkRegion region, Chunk chunk) {
+    public void buildSurfaceAndBedrock(WorldGenRegion region, IChunk chunk) {
     }
 
     @Override
-    public void carve(long seed, BiomeAccess access, Chunk chunk, GenerationStep.Carver carver) {
+    public void applyCarvers(long seed, BiomeManager access, IChunk chunk, GenerationStage.Carving carver) {
     }
 
     @Override
-    public void populateNoise(WorldAccess world, StructureAccessor accessor, Chunk chunk) {
+    public void fillFromNoise(IWorld world, StructureFeatureManager accessor, IChunk chunk) {
 
-        BlockState blockState = Blocks.STONE.getDefaultState();
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        BlockState blockState = Blocks.STONE.defaultBlockState();
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
 
         if (blockState != null) {
             for (int i = 0; i < 220; ++i) {
@@ -81,13 +81,13 @@ public class VoidChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public int getHeight(int x, int z, Heightmap.Type heightmapType) {
+    public int getBaseHeight(int x, int z, Heightmap.Types heightmapType) {
         return 0;
     }
 
     @Override
-    public BlockView getColumnSample(int x, int z) {
-        return new VerticalBlockSample(new BlockState[0]);
+    public IBlockReader getBaseColumn(int x, int z) {
+        return new NoiseColumn(new BlockState[0]);
     }
 
 }

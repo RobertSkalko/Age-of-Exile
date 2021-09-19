@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import net.minecraft.text.Text;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -38,9 +38,9 @@ public class MergedStats implements IGearPartTooltip {
     }
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info, GearItemData gear) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
-        List<Text> tooltip = new ArrayList<>();
+        List<ITextComponent> tooltip = new ArrayList<>();
 
         list.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
         return tooltip;

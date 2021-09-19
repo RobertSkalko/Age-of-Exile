@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.a_libraries.dmg_number_particle;
 
 import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 
 public class DamageParticle {
 
@@ -36,22 +36,22 @@ public class DamageParticle {
             this.renderString += "!";
         }
 
-        MinecraftClient mc = MinecraftClient.getInstance();
-        Vec3d entityLocation = entity.getPos()
-            .add(0, entity.getHeight(), 0);
-        Vec3d cameraLocation = mc.gameRenderer.getCamera()
-            .getPos();
-        double offsetBy = entity.getWidth();
-        Vec3d offset = cameraLocation.subtract(entityLocation)
+        Minecraft mc = Minecraft.getInstance();
+        Vector3d entityLocation = entity.position()
+            .add(0, entity.getBbHeight(), 0);
+        Vector3d cameraLocation = mc.gameRenderer.getMainCamera()
+            .getPosition();
+        double offsetBy = entity.getBbWidth();
+        Vector3d offset = cameraLocation.subtract(entityLocation)
             .normalize()
-            .multiply(offsetBy);
-        Vec3d pos = entityLocation.add(offset);
+            .scale(offsetBy);
+        Vector3d pos = entityLocation.add(offset);
 
         age = 0;
 
-        vx = mc.world.random.nextGaussian() * 0.01;
-        vy = 0.05 + (mc.world.random.nextGaussian() * 0.01);
-        vz = mc.world.random.nextGaussian() * 0.01;
+        vx = mc.level.random.nextGaussian() * 0.01;
+        vy = 0.05 + (mc.level.random.nextGaussian() * 0.01);
+        vz = mc.level.random.nextGaussian() * 0.01;
 
         x = pos.x;
         y = pos.y;

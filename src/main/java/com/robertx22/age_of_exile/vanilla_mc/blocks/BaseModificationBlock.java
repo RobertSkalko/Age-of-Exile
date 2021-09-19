@@ -3,49 +3,50 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
 import com.robertx22.library_of_exile.tile_bases.NonFullBlock;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.util.ActionResult;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameters;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseModificationBlock extends OpaqueBlock implements BlockEntityProvider {
+public abstract class BaseModificationBlock extends OpaqueBlock implements ITileEntityProvider {
 
-    protected BaseModificationBlock(AbstractBlock.Settings prop) {
-        super(prop.luminance(x -> x.get(NonFullBlock.light) ? 10 : 0));
+    protected BaseModificationBlock(AbstractBlock.Properties prop) {
+        super(prop.lightLevel(x -> x.getValue(NonFullBlock.light) ? 10 : 0));
 
     }
 
     @Override
-    public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-        return (NamedScreenHandlerFactory) world.getBlockEntity(pos);
+    public INamedContainerProvider getMenuProvider(BlockState state, World world, BlockPos pos) {
+        return (INamedContainerProvider) world.getBlockEntity(pos);
     }
 
     @Override
     @Deprecated
-    public List<ItemStack> getDroppedStacks(BlockState blockstate, LootContext.Builder context) {
+    public List<ItemStack> getDrops(BlockState blockstate, LootContext.Builder context) {
 
         ArrayList<ItemStack> items = new ArrayList<ItemStack>();
         items.add(new ItemStack(this));
 
-        BlockEntity tileentity = context.getNullable(LootContextParameters.BLOCK_ENTITY);
+        TileEntity tileentity = context.getOptionalParameter(LootParameters.BLOCK_ENTITY);
 
         if (tileentity instanceof BaseModificationStation) {
 
@@ -63,36 +64,37 @@ public abstract class BaseModificationBlock extends OpaqueBlock implements Block
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public float getAmbientOcclusionLightLevel(BlockState state, BlockView worldIn, BlockPos pos) {
+    @OnlyIn(Dist.CLIENT)
+    public float getShadeBrightness(BlockState state, IBlockReader worldIn, BlockPos pos) {
         return 1.0F;
     }
 
     @Override
-    public boolean isTranslucent(BlockState state, BlockView reader, BlockPos pos) {
+    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
         return true;
     }
 
-    public abstract Identifier getContainerId();
+    public abstract ResourceLocation getContainerId();
 
     @Override
     @Deprecated
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
-                              Hand hand, BlockHitResult ray) {
-        if (world.isClient) {
-            return ActionResult.CONSUME;
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player,
+                                Hand hand, BlockRayTraceResult ray) {
+        if (world.isClientSide) {
+            return ActionResultType.CONSUME;
         }
 
-        BlockEntity tile = world.getBlockEntity(pos);
+        TileEntity tile = world.getBlockEntity(pos);
 
         if (tile instanceof BaseModificationStation) {
 
-            ContainerProviderRegistry.INSTANCE.openContainer(getContainerId(), player, buf -> buf.writeBlockPos(pos));
+            NetworkHooks.openGui((ServerPlayerEntity) player, (BaseModificationStation) tile, pos);
+            // ContainerProviderRegistry.INSTANCE.openContainer(getContainerId(), player, buf -> buf.writeBlockPos(pos));
 
-            return ActionResult.SUCCESS;
+            return ActionResultType.SUCCESS;
         }
 
-        return ActionResult.CONSUME;
+        return ActionResultType.CONSUME;
     }
 
 }

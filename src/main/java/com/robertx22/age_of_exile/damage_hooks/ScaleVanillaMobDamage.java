@@ -11,7 +11,7 @@ public class ScaleVanillaMobDamage extends EventConsumer<ExileEvents.OnDamageEnt
 
     @Override
     public void accept(ExileEvents.OnDamageEntity event) {
-        if (event.mob.world.isClient) {
+        if (event.mob.level.isClientSide) {
             return;
         }
         if (LivingHurtUtils.isEnviromentalDmg(event.source)) {
@@ -20,8 +20,8 @@ public class ScaleVanillaMobDamage extends EventConsumer<ExileEvents.OnDamageEnt
         if (event.source instanceof MyDamageSource) {
             return;
         }
-        if (event.source.getAttacker() instanceof LivingEntity) {
-            if (!(event.source.getAttacker() instanceof PlayerEntity)) {
+        if (event.source.getEntity() instanceof LivingEntity) {
+            if (!(event.source.getEntity() instanceof PlayerEntity)) {
                 event.damage = HealthUtils.realToVanilla(event.mob, event.damage);
             }
         }

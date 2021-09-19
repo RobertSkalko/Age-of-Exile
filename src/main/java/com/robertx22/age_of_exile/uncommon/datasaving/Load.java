@@ -10,7 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.IChunk;
 
 public class Load {
 
@@ -18,7 +18,7 @@ public class Load {
         return ModRegistry.COMPONENTS.SPELLS.get(provider);
     }
 
-    public static ChunkPopulatedCap chunkPopulated(Chunk chunk) {
+    public static ChunkPopulatedCap chunkPopulated(IChunk chunk) {
         return ModRegistry.COMPONENTS.CHUNK_POPULATED.get(chunk);
     }
 
@@ -32,7 +32,7 @@ public class Load {
         }
 
         if (data == null) {
-            System.out.println("Unit data is null? " + entity.getEntityName());
+            System.out.println("Unit data is null? " + entity.getScoreboardName());
         }
 
         return data;

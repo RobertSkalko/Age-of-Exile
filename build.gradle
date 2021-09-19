@@ -1,120 +1,144 @@
-plugins {
-    id 'fabric-loom' version '0.8-SNAPSHOT'
-    id 'maven-publish'
-    id 'com.matthewprenger.cursegradle' version '1.4.0'
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+    }
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+plugins {
+    id 'java'
+    id 'idea'
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
+}
+apply plugin: 'net.minecraftforge.gradle'
 
-archivesBaseName = project.archives_base_name
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+
+archivesBaseName = "${mod_archive_name}-${minecraft_version}"
 version = project.mod_version
 group = project.maven_group
 
 repositories {
-    maven { url 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master' }
-    maven { url "https://maven.theillusivec4.top" }
-    maven { url 'https://dl.bintray.com/ladysnake/libs' }
-    maven { url 'https://ladysnake.jfrog.io/artifactory/mods' }
-    maven { url 'https://maven.terraformersmc.com/releases' }
-    maven { url 'https://maven.blamejared.com' }
-    maven { url "https://maven.shedaniel.me" }
-    maven { url "https://jitpack.io" }
+    maven { url '"https://maven.theillusivec4.top/' }
 }
 
-dependencies {
-    // Base
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    optionally("net.fabricmc:fabric-loader:${project.loader_version}")
-    modApi("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}") {
-        exclude(module: "fabric-dimensions")
-        exclude(module: "fabric-biomes")
-    }
+minecraft {
 
-    //API
-    optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-base:${cardinal_version}")
-    optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-entity:${cardinal_version}")
-    optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-world:${cardinal_version}")
-    optionally("io.github.onyxstudios.Cardinal-Components-API:cardinal-components-chunk:${cardinal_version}")
-    optionally("me.sargunvohra.mcmods:autoconfig1u:${auto_config_version}")
-    optionally("com.terraformersmc:modmenu:${mod_menu_version}")
-    optionally("top.theillusivec4.curios:curios-fabric:${curios_version}")
-    optionally("me.shedaniel:RoughlyEnoughItems:${rei_version}")
+    mappings channel: 'official', version: "$project.minecraft_version"
 
-    // .dev .jar doesn't include included deps, so I have to add them for in IDE to work
-    implementation files("lib.jar")
-    implementation files("Divine-Missions-dev.jar")
-    implementation files("World-Of-Exile-1.16.5-1.3.0-dev.jar")
-}
+    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
-remapJar {
-    include file("D:/MinecraftModding/divine_missions/build/libs/Divine-Missions.jar")
-    include file("World-Of-Exile-1.16.5-1.2.4.jar")
-}
-
-tasks.withType(JavaCompile).configureEach {
-    // ensure that the encoding is set to UTF-8, no matter what the system default is
-    // this fixes some edge cases with special characters not displaying correctly
-    // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-    // If Javadoc is generated, this must be specified in that task too.
-    it.options.encoding = "UTF-8"
-
-    // The Minecraft launcher currently installs Java 8 for users, so your mod probably wants to target Java 8 too
-    // JDK 9 introduced a new way of specifying this that will make sure no newer classes or methods are used.
-    // We'll use that if it's available, but otherwise we'll use the older option.
-    def targetVersion = 8
-    if (JavaVersion.current().isJava9Compatible()) {
-        it.options.release = targetVersion
-    }
-}
-
-
-def optionally(str) {
-    runtime(str)
-    dependencies.modCompileOnly(str) {
-        exclude(group: "net.fabricmc")
-        exclude(group: "net.fabricmc.fabric-api")
-        exclude(group: "io.github.prospector")
-        exclude(module: "config-2")
-    }
-}
-
-def runtime(str) {
-    dependencies.modRuntime(str) {
-        exclude(group: "net.fabricmc")
-        exclude(group: "net.fabricmc.fabric-api")
-        exclude(group: "io.github.prospector")
-        exclude(module: "config-2")
-    }
-}
-
-processResources {
-    inputs.property "version", project.version
-
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
-    }
-}
-
-sourceSets {
-    main {
-        resources {
-            srcDirs += project.file("src/generated/resources")
+    runs {
+        client {
+            workingDirectory project.file('run')
+            arg "-mixin.config=${mod_id}-mixins.json"
+            mods {
+                modid {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            arg "-mixin.config=${mod_id}-mixins.json"
+            mods {
+                modid {
+                    source sourceSets.main
+                }
+            }
+        }
+        data {
+            workingDirectory project.file('run')
+            arg "-mixin.config=${mod_id}-mixins.json"
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            args '--mod', '${mod_id}', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            mods {
+                modid {
+                    source sourceSets.main
+                }
+            }
         }
     }
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+
+///////////////////////////////////////////////
+// LOCAL JAR DEPENDENCIES
+def getModVersion(filename) {
+    println(filename);
+    def pattern = /^(?<modid>[^-]+)(?:-(?<mcversion>[0-9.]+))?(?:-(?<modver>[0-9.\-]+))\.jar$/;
+    def matcher = filename =~ pattern
+    def found = matcher.find()
+    if (found) {
+        def mod = matcher.group("modid");
+        // Extract MC version or default
+        def mcVersion = matcher.group("mcversion");
+        // Extract mod version
+        def version = matcher.group("modver");
+        // println("> mod: ${mod}; mc: ${mcVersion}; version: ${version}");
+        if (mcVersion == null)
+            return "${mod}:${mod}:${version}";
+        else
+            return "${mod}:${mod}-${mcVersion}:${version}";
+
+    } else {
+        println("> not a mod filename")
+        return filename;
+    }
 }
 
-jar {
-    from "LICENSE"
+def dev_mods_dir = "libs"
+def dev_mods = fileTree(dev_mods_dir).matching {
+    include "**/*.jar"
+}.filter { it -> it.isFile() }.files.name.collect({ getModVersion(it) })
+
+repositories {
+    maven {
+        url = "https://maven.theillusivec4.top/"
+    }
+    flatDir {
+        dirs dev_mods_dir
+    }
+}
+dependencies {
+    dev_mods.each {
+        implementation fg.deobf(it)
+    }
+}
+// LOCAL JAR DEPENDENCIES
+///////////////////////////////////////////////
+
+dependencies {
+
+    minecraft([
+            group  : "net.minecraftforge",
+            name   : 'forge',
+            version: "$project.minecraft_version-${project.forgeversion}"
+    ])
+    annotationProcessor 'org.spongepowered:mixin:0.8.3:processor'
+	implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+  
 }
 
 
 // CURSEFORGE STUFF
+
+
+jar {
+    manifest {
+        attributes([
+                "MixinConnector": "com.robertx22.${mod_id}.main.MixinConnector",
+                "MixinConfigs"  : "${mod_id}-mixins.json"
+        ])
+    }
+}
 
 curseforge {
 
@@ -126,25 +150,30 @@ curseforge {
         apiKey = curseProp.getProperty('curseKey')
         id = "${curse_id}"
         releaseType = "${curse_release}"
-        changelogType = 'markdown'
-        changelog = file('CHANGELOG.md')
+        changelogType = 'text'
+        changelog = file('CHANGELOG.txt')
         addGameVersion("${project.minecraft_version}")
-        addGameVersion("Fabric")
+        addGameVersion("Forge")
         addGameVersion("Java 8")
 
         relations {
             requiredDependency 'fabric-api'
             requiredDependency 'library-of-exile'
-            requiredDependency 'curios-fabric'
+            requiredDependency 'curios'
+			requiredDependency 'dungeons-of-exile'			
         }
-        mainArtifact(remapJar)
+        mainArtifact(jar)
 
         afterEvaluate {
             uploadTask.dependsOn("remapJar")
         }
     }
     options {
-        forgeGradleIntegration = false
+        forgeGradleIntegration = true
     }
 }
 
+apply plugin: 'org.spongepowered.mixin'
+mixin {
+    add sourceSets.main, "${mod_id}-refmap.json"
+}

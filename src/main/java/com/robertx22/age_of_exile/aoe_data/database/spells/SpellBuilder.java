@@ -15,8 +15,8 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeap
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.item.Items;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.util.Identifier;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 public class SpellBuilder {
     Spell spell;
 
-    public static SpellBuilder breath(String id, String name, Elements ele, DefaultParticleType particle) {
+    public static SpellBuilder breath(String id, String name, Elements ele, BasicParticleType particle) {
 
         return SpellBuilder.of(id, SpellConfiguration.Builder.instant(2, 1), name,
                 Arrays.asList(SpellTag.damage))
@@ -87,7 +87,7 @@ public class SpellBuilder {
         return this;
     }
 
-    public SpellBuilder disableInDimension(Identifier id) {
+    public SpellBuilder disableInDimension(ResourceLocation id) {
         this.spell.disabled_dims.add(id.toString());
         return this;
     }

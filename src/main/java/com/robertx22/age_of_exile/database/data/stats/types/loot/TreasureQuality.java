@@ -2,13 +2,13 @@ package com.robertx22.age_of_exile.database.data.stats.types.loot;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 public class TreasureQuality extends Stat {
 
     private TreasureQuality() {
         this.icon = "\u2663";
-        this.format = Formatting.AQUA.getName();
+        this.format = TextFormatting.AQUA.getName();
     }
 
     public static TreasureQuality getInstance() {

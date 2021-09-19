@@ -7,9 +7,9 @@ import com.robertx22.divine_missions.database.db_types.RewardType;
 import com.robertx22.divine_missions.main.DivineMissions;
 import com.robertx22.divine_missions.saving.RewardData;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public class GiveAoeExpReward extends RewardType {
 
@@ -28,8 +28,8 @@ public class GiveAoeExpReward extends RewardType {
     }
 
     @Override
-    public MutableText getTranslatable(RewardData rewardData) {
-        return new LiteralText(rewardData.count + " ").append(DivineMissions.ofTranslation("aoe_exp"))
-            .formatted(Formatting.GREEN);
+    public IFormattableTextComponent getTranslatable(RewardData rewardData) {
+        return new StringTextComponent(rewardData.count + " ").append(DivineMissions.ofTranslation("aoe_exp"))
+            .withStyle(TextFormatting.GREEN);
     }
 }

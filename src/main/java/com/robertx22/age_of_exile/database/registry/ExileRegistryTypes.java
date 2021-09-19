@@ -38,7 +38,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition.StatCond
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.SyncTime;
 import com.robertx22.library_of_exile.registry.loaders.BaseDataPackLoader;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.TextFormatting;
 
 public class ExileRegistryTypes {
 
@@ -51,7 +51,7 @@ public class ExileRegistryTypes {
     public static ExileRegistryType TIER = ExileRegistryType.register(Ref.MODID, "tier", 5, Difficulty.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType GEM = ExileRegistryType.register(Ref.MODID, "gems", 6, Gem.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType RUNE = ExileRegistryType.register(Ref.MODID, "runes", 7, Rune.SERIALIZER, SyncTime.ON_LOGIN);
-    public static ExileRegistryType MOB_AFFIX = ExileRegistryType.register(Ref.MODID, "mob_affix", 8, new MobAffix("empty", "empty", Formatting.AQUA), SyncTime.ON_LOGIN);
+    public static ExileRegistryType MOB_AFFIX = ExileRegistryType.register(Ref.MODID, "mob_affix", 8, new MobAffix("empty", "empty", TextFormatting.AQUA), SyncTime.ON_LOGIN);
     public static ExileRegistryType AFFIX = ExileRegistryType.register(Ref.MODID, "affixes", 10, EmptyAffix.getInstance(), SyncTime.ON_LOGIN);
     public static ExileRegistryType UNIQUE_GEAR = ExileRegistryType.register(Ref.MODID, "unique_gears", 11, UniqueGear.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType RUNEWORDS = ExileRegistryType.register(Ref.MODID, "runeword", 12, RuneWord.SERIALIZER, SyncTime.ON_LOGIN);

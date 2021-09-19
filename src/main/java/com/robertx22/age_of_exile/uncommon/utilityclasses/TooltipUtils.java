@@ -11,10 +11,10 @@ import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,52 +22,52 @@ import java.util.stream.Collectors;
 
 public class TooltipUtils {
 
-    public static String CHECKMARK = Formatting.GREEN + "\u2714";
-    public static String X = Formatting.RED + "\u2716";
+    public static String CHECKMARK = TextFormatting.GREEN + "\u2714";
+    public static String X = TextFormatting.RED + "\u2716";
 
-    public static MutableText color(Formatting format, MutableText comp) {
-        return new LiteralText(format + "").append(comp);
+    public static IFormattableTextComponent color(TextFormatting format, IFormattableTextComponent comp) {
+        return new StringTextComponent(format + "").append(comp);
     }
 
-    public static void addRequirements(List<Text> tip, int lvl, StatRequirement req, EntityData data) {
+    public static void addRequirements(List<ITextComponent> tip, int lvl, StatRequirement req, EntityData data) {
 
         if (data.getLevel() >= lvl) {
-            tip.add(new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + StatRequirement.CHECK_YES_ICON + Formatting.GRAY)
-                .append(Formatting.GRAY + " Level Min: " + lvl + " "));
+            tip.add(new StringTextComponent(TextFormatting.GREEN + "" + TextFormatting.BOLD + StatRequirement.CHECK_YES_ICON + TextFormatting.GRAY)
+                .append(TextFormatting.GRAY + " Level Min: " + lvl + " "));
 
         } else {
-            tip.add(new LiteralText(Formatting.RED + "" + Formatting.BOLD + StatRequirement.NO_ICON + Formatting.GRAY)
-                .append(Formatting.GRAY + " Level Min: " + lvl + " ")
+            tip.add(new StringTextComponent(TextFormatting.RED + "" + TextFormatting.BOLD + StatRequirement.NO_ICON + TextFormatting.GRAY)
+                .append(TextFormatting.GRAY + " Level Min: " + lvl + " ")
             );
         }
         tip.addAll(req
             .GetTooltipString(lvl, data));
     }
 
-    public static void addSocketNamesLine(List<Text> tip, GearItemData gear) {
+    public static void addSocketNamesLine(List<ITextComponent> tip, GearItemData gear) {
         if (gear.sockets.sockets.size() > 0) {
-            tip.add(new LiteralText("Gemmed").formatted(Formatting.LIGHT_PURPLE));
+            tip.add(new StringTextComponent("Gemmed").withStyle(TextFormatting.LIGHT_PURPLE));
         }
     }
 
-    public static void addEmpty(List<Text> tooltip) {
+    public static void addEmpty(List<ITextComponent> tooltip) {
         tooltip.add(CLOC.blank(""));
     }
 
-    public static List<String> compsToStrings(List<Text> list) {
+    public static List<String> compsToStrings(List<ITextComponent> list) {
         return list.stream()
-            .map(x -> x.asString())
+            .map(x -> x.getContents())
             .collect(Collectors.toList());
     }
 
-    public static MutableText level(int lvl) {
-        return new LiteralText(Formatting.YELLOW + "").append(Words.Level.locName())
+    public static IFormattableTextComponent level(int lvl) {
+        return new StringTextComponent(TextFormatting.YELLOW + "").append(Words.Level.locName())
             .append((": " + lvl))
-            .formatted(Formatting.YELLOW);
+            .withStyle(TextFormatting.YELLOW);
 
     }
 
-    public static List<MutableText> cutIfTooLong(MutableText comp) {
+    public static List<IFormattableTextComponent> cutIfTooLong(IFormattableTextComponent comp) {
         List<String> stringList = cutIfTooLong(CLOC.translate(comp));
         return stringList.stream()
             .map(x -> new SText(x))
@@ -75,10 +75,10 @@ public class TooltipUtils {
 
     }
 
-    public static List<MutableText> cutIfTooLong(MutableText comp, Formatting format) {
+    public static List<IFormattableTextComponent> cutIfTooLong(IFormattableTextComponent comp, TextFormatting format) {
         List<String> stringList = cutIfTooLong(CLOC.translate(comp));
         return stringList.stream()
-            .map(x -> new SText(x).formatted(format))
+            .map(x -> new SText(x).withStyle(format))
             .collect(Collectors.toList());
 
     }
@@ -89,19 +89,19 @@ public class TooltipUtils {
 
         List<String> list = new ArrayList<>();
 
-        Formatting format = null;
+        TextFormatting format = null;
 
         char[] array = str.toCharArray();
 
         int start = 0;
         int i = 0;
 
-        Formatting formattouse = null;
+        TextFormatting formattouse = null;
 
         for (Character c : array) {
 
             if (c.equals('§')) {
-                format = Formatting.byCode(array[i + 1]);
+                format = TextFormatting.getByCode(array[i + 1]);
             }
 
             if (i == str.length() - 1) {
@@ -135,12 +135,12 @@ public class TooltipUtils {
         return list;
     }
 
-    public static MutableText itemBrokenText(ItemStack stack, ICommonDataItem data) {
+    public static IFormattableTextComponent itemBrokenText(ItemStack stack, ICommonDataItem data) {
 
         if (data != null) {
 
             if (RepairUtils.isItemBroken(stack)) {
-                MutableText comp = new LiteralText(X + " ").append(Words.Broken.locName());
+                IFormattableTextComponent comp = new StringTextComponent(X + " ").append(Words.Broken.locName());
                 return comp;
             }
 
@@ -149,13 +149,13 @@ public class TooltipUtils {
         return null;
     }
 
-    public static List<Text> removeDoubleBlankLines(List<Text> list) {
+    public static List<ITextComponent> removeDoubleBlankLines(List<ITextComponent> list) {
         return removeDoubleBlankLines(list, 5000);
     }
 
-    public static List<Text> removeDoubleBlankLines(List<Text> list, int minLinesCutAllBlanks) {
+    public static List<ITextComponent> removeDoubleBlankLines(List<ITextComponent> list, int minLinesCutAllBlanks) {
 
-        List<Text> newt = new ArrayList();
+        List<ITextComponent> newt = new ArrayList();
 
         boolean lastIsEmpty = false;
 
@@ -188,48 +188,48 @@ public class TooltipUtils {
         return newt;
     }
 
-    public static MutableText rarity(Rarity rarity) {
+    public static IFormattableTextComponent rarity(Rarity rarity) {
 
-        return new LiteralText(rarity.textFormatting() + "")
+        return new StringTextComponent(rarity.textFormatting() + "")
             .append(rarity.locName())
-            .formatted(rarity.textFormatting());
+            .withStyle(rarity.textFormatting());
     }
 
-    public static MutableText rarityShort(Rarity rarity) {
-        return (new LiteralText(rarity.textFormatting() + "").append(rarity.locName()));
+    public static IFormattableTextComponent rarityShort(Rarity rarity) {
+        return (new StringTextComponent(rarity.textFormatting() + "").append(rarity.locName()));
     }
 
-    public static MutableText tier(int tier) {
+    public static IFormattableTextComponent tier(int tier) {
         return Words.Tier.locName()
             .append(": " + LevelUtils.tierToRomanNumeral(tier));
 
     }
 
-    public static MutableText gearSlot(GearSlot slot) {
-        return new LiteralText("Item Type: ").formatted(Formatting.WHITE)
+    public static IFormattableTextComponent gearSlot(GearSlot slot) {
+        return new StringTextComponent("Item Type: ").withStyle(TextFormatting.WHITE)
             .append(slot.locName()
-                .formatted(Formatting.AQUA));
+                .withStyle(TextFormatting.AQUA));
     }
 
-    public static MutableText gearTier(int tier) {
-        return new LiteralText("Item Tier: ").formatted(Formatting.WHITE)
-            .append(new LiteralText(LevelUtils.tierToRomanNumeral(tier)).formatted(Formatting.AQUA));
+    public static IFormattableTextComponent gearTier(int tier) {
+        return new StringTextComponent("Item Tier: ").withStyle(TextFormatting.WHITE)
+            .append(new StringTextComponent(LevelUtils.tierToRomanNumeral(tier)).withStyle(TextFormatting.AQUA));
     }
 
-    public static MutableText gearRarity(GearRarity rarity) {
-        return new LiteralText("Rarity: ").formatted(Formatting.WHITE)
+    public static IFormattableTextComponent gearRarity(GearRarity rarity) {
+        return new StringTextComponent("Rarity: ").withStyle(TextFormatting.WHITE)
             .append(rarity.locName()
-                .formatted(rarity.textFormatting()));
+                .withStyle(rarity.textFormatting()));
     }
 
-    public static MutableText gearLevel(int lvl) {
-        return new LiteralText("Level: ")
-            .formatted(Formatting.WHITE)
-            .append(new LiteralText(lvl + "")
-                .formatted(Formatting.YELLOW));
+    public static IFormattableTextComponent gearLevel(int lvl) {
+        return new StringTextComponent("Level: ")
+            .withStyle(TextFormatting.WHITE)
+            .append(new StringTextComponent(lvl + "")
+                .withStyle(TextFormatting.YELLOW));
     }
 
-    public static MutableText dragOntoGearToUse() {
-        return new LiteralText("[Drag onto gear to use]").formatted(Formatting.AQUA, Formatting.BOLD);
+    public static IFormattableTextComponent dragOntoGearToUse() {
+        return new StringTextComponent("[Drag onto gear to use]").withStyle(TextFormatting.AQUA, TextFormatting.BOLD);
     }
 }

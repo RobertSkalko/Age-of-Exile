@@ -10,15 +10,15 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.world_of_exile.main.ModLoottables;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BeaconBlockEntity;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.tileentity.ChestTileEntity;
+import net.minecraft.tileentity.SignTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.IChunk;
+import net.minecraft.world.level.block.entity.BeaconBlockEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +33,14 @@ public class PopulateDungeonChunks {
             // Watch watch = new Watch();
 
             int populated = 0;
-            List<ChunkPos> list = getChunksAround(new ChunkPos(player.getBlockPos()));
+            List<ChunkPos> list = getChunksAround(new ChunkPos(player.blockPosition()));
 
             for (ChunkPos cp : list) {
-                Chunk chunk = world.getChunk(cp.x, cp.z);
+                IChunk chunk = world.getChunk(cp.x, cp.z);
 
                 if (!Load.chunkPopulated(chunk).populated) {
                     DungeonData data = Load.dungeonData(world).data.get(chunk.getPos()
-                        .getStartPos()).data;
+                        .getWorldPosition()).data;
 
                     if (!data.isEmpty()) {
                         PopulateDungeonChunks.populateChunk(world, chunk, data, new DungeonPopulateData());
@@ -79,7 +79,7 @@ public class PopulateDungeonChunks {
 
     }
 
-    public static void populate(Set<DungeonPopulateData.CP> toPopulate, Set<DungeonPopulateData.CP> populated, World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
+    public static void populate(Set<DungeonPopulateData.CP> toPopulate, Set<DungeonPopulateData.CP> populated, World world, IChunk chunk, DungeonData dungeon, DungeonPopulateData data) {
 
         boolean has = populateChunk(world, chunk, dungeon, data);
 
@@ -92,26 +92,26 @@ public class PopulateDungeonChunks {
             .equals(chunk.getPos()));
     }
 
-    public static boolean populateChunk(World world, Chunk chunk, DungeonData dungeon, DungeonPopulateData data) {
+    public static boolean populateChunk(World world, IChunk chunk, DungeonData dungeon, DungeonPopulateData data) {
 
-        Set<BlockPos> list = chunk.getBlockEntityPositions();
+        Set<BlockPos> list = chunk.getBlockEntitiesPos();
 
         boolean has = !list.isEmpty();
 
         for (BlockPos blockPos : list) {
-            BlockEntity be = world.getBlockEntity(blockPos);
+            TileEntity be = world.getBlockEntity(blockPos);
             if (be instanceof BeaconBlockEntity) {
                 try {
                     populate(world, blockPos, dungeon, data);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else if (be instanceof SignBlockEntity) {
-                SignBlockEntity sign = (SignBlockEntity) be;
+            } else if (be instanceof SignTileEntity) {
+                SignTileEntity sign = (SignTileEntity) be;
                 if (SignUtils.has("[chest]", sign)) {
                     setChest(world, blockPos);
                 } else if (SignUtils.has("[portal]", sign)) {
-                    world.setBlockState(blockPos, ModRegistry.BLOCKS.PORTAL.getDefaultState());
+                    world.setBlockAndUpdate(blockPos, ModRegistry.BLOCKS.PORTAL.defaultBlockState());
                 }
             }
         }
@@ -127,7 +127,7 @@ public class PopulateDungeonChunks {
         List<BlockPos> list = new ArrayList<>();
         for (int x = -5; x < 5; x++) {
             for (int z = -5; z < 5; z++) {
-                list.add(pos.add(x, 0, z));
+                list.add(pos.offset(x, 0, z));
             }
         }
 
@@ -197,7 +197,7 @@ public class PopulateDungeonChunks {
             }
             data.mobs += ModSpawnerBlockEntity.DEFAULT_SPAWNS;
 
-            world.setBlockState(p, ModRegistry.BLOCKS.SPAWNER.getDefaultState(), 2);
+            world.setBlock(p, ModRegistry.BLOCKS.SPAWNER.defaultBlockState(), 2);
 
             list.remove(p);
         }
@@ -218,9 +218,9 @@ public class PopulateDungeonChunks {
 
             data.mobs += mobs;
 
-            world.setBlockState(p, ModRegistry.BLOCKS.SPAWNER.getDefaultState(), 2);
+            world.setBlock(p, ModRegistry.BLOCKS.SPAWNER.defaultBlockState(), 2);
 
-            BlockEntity be = world.getBlockEntity(p);
+            TileEntity be = world.getBlockEntity(p);
 
             if (be instanceof ModSpawnerBlockEntity) {
                 ModSpawnerBlockEntity ms = (ModSpawnerBlockEntity) be;
@@ -231,13 +231,13 @@ public class PopulateDungeonChunks {
             list.remove(p);
         }
 
-        world.breakBlock(pos, false);
+        world.destroyBlock(pos, false);
 
     }
 
     public static void setChest(World world, BlockPos p) {
-        world.setBlockState(p, Blocks.CHEST.getDefaultState(), 2);
-        ChestBlockEntity chest = (ChestBlockEntity) world.getBlockEntity(p);
+        world.setBlock(p, Blocks.CHEST.defaultBlockState(), 2);
+        ChestTileEntity chest = (ChestTileEntity) world.getBlockEntity(p);
         chest.setLootTable(ModLoottables.DUNGEON_DEFAULT, world.random.nextLong());
 
     }

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.interfaces;
 
 import com.robertx22.library_of_exile.utils.CLOC;
-import net.minecraft.text.MutableText;
+import net.minecraft.util.text.IFormattableTextComponent;
 
 public interface IAutoLocDesc extends IBaseAutoLoc {
 
@@ -21,7 +21,7 @@ public interface IAutoLocDesc extends IBaseAutoLoc {
         return true;
     }
 
-    public default MutableText locDesc() {
+    public default IFormattableTextComponent locDesc() {
         return CLOC.blank(formattedLocDescLangFileGUID());
     }
 

@@ -7,9 +7,9 @@ import com.robertx22.age_of_exile.gui.screens.wiki.WikiEntry;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +39,11 @@ public class UniqueGearEntry extends WikiEntry {
     }
 
     @Override
-    public List<Text> getExtraInfo() {
-        List<Text> list = new ArrayList<>();
+    public List<ITextComponent> getExtraInfo() {
+        List<ITextComponent> list = new ArrayList<>();
 
         if (!uniq.filters.list.isEmpty()) {
-            list.add(new LiteralText(""));
+            list.add(new StringTextComponent(""));
             uniq.filters.list.forEach(x -> list.addAll(DropFilters.get(x.type)
                 .getTooltip(x)));
         }
@@ -57,7 +57,7 @@ public class UniqueGearEntry extends WikiEntry {
     }
 
     @Override
-    public Formatting getFormat() {
-        return Formatting.RED;
+    public TextFormatting getFormat() {
+        return TextFormatting.RED;
     }
 }

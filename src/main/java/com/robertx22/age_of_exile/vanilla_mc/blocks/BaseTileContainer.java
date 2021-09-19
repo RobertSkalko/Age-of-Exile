@@ -1,14 +1,14 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.math.BlockPos;
 
-public abstract class BaseTileContainer extends ScreenHandler {
+public abstract class BaseTileContainer extends Container {
 
     public int size = 0;
 
@@ -18,7 +18,7 @@ public abstract class BaseTileContainer extends ScreenHandler {
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
 
-    protected BaseTileContainer(int size, ScreenHandlerType<?> type, int id, PlayerInventory invPlayer) {
+    protected BaseTileContainer(int size, ContainerType<?> type, int id, IInventory invPlayer) {
         super(type, id);
         this.size = size;
 
@@ -38,7 +38,7 @@ public abstract class BaseTileContainer extends ScreenHandler {
         return 183;
     }
 
-    public void addPlayerInventory(PlayerInventory invPlayer) {
+    public void addPlayerInventory(IInventory invPlayer) {
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -79,28 +79,28 @@ public abstract class BaseTileContainer extends ScreenHandler {
     }
 
     @Override
-    public ItemStack transferSlot(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
 
         ItemStack itemstack = ItemStack.EMPTY;
 
         try {
             Slot slot = this.slots.get(index);
-            if (slot != null && slot.hasStack()) {
-                ItemStack itemstack1 = slot.getStack();
+            if (slot != null && slot.hasItem()) {
+                ItemStack itemstack1 = slot.getItem();
                 itemstack = itemstack1.copy();
 
                 if (isPlayerInventory(index)) {
-                    if (!this.insertItem(itemstack1, getContainerStart(), getContainerEnd(), true)) {
+                    if (!this.moveItemStackTo(itemstack1, getContainerStart(), getContainerEnd(), true)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (!this.insertItem(itemstack1, getPlayerInvStart(), getPlayerInvEnd(), false)) {
+                } else if (!this.moveItemStackTo(itemstack1, getPlayerInvStart(), getPlayerInvEnd(), false)) {
                     return ItemStack.EMPTY;
                 }
 
                 if (itemstack1.isEmpty()) {
-                    slot.setStack(ItemStack.EMPTY);
+                    slot.set(ItemStack.EMPTY);
                 } else {
-                    slot.markDirty();
+                    slot.setChanged();
                 }
             }
         } catch (Exception e) {

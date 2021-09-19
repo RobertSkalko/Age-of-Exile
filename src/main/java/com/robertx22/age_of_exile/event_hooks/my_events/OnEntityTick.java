@@ -8,10 +8,10 @@ import com.robertx22.age_of_exile.dimension.rules.OnTickRegenerate;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 
 public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
@@ -20,7 +20,7 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
     public void accept(ExileEvents.OnEntityTick onEntityTick) {
         LivingEntity entity = onEntityTick.entity;
 
-        if (entity.world.isClient) {
+        if (entity.level.isClientSide) {
             return;
         }
 
@@ -36,7 +36,7 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
         OnTickRegenerate.regen(40, entity);
 
         if (entity instanceof PlayerEntity == false) {
-            if (entity.age % 40 != 0) {
+            if (entity.tickCount % 40 != 0) {
                 return; // dont check gear of mobs as often as players
             }
         }
@@ -46,7 +46,7 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
 
     public static void checkGearChanged(LivingEntity entity) {
 
-        if (entity.world.isClient) {
+        if (entity.level.isClientSide) {
             return;
         }
 
@@ -56,8 +56,8 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
 
         boolean calc = false;
 
-        for (EquipmentSlot s : EquipmentSlot.values()) {
-            ItemStack now = entity.getEquippedStack(s);
+        for (EquipmentSlotType s : EquipmentSlotType.values()) {
+            ItemStack now = entity.getItemBySlot(s);
             ItemStack before = gears.get(s);
 
             if (now != before) {

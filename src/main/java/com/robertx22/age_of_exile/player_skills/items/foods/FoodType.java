@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.player_skills.items.foods;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.potion.Effect;
 import org.apache.commons.lang3.tuple.Triple;
 
 public enum FoodType {
@@ -19,12 +19,12 @@ public enum FoodType {
 
     public String word;
     public String id;
-    public StatusEffect effect;
+    public Effect effect;
     private Item vanillaCraftingItem;
 
     public Item foodValueItem;
 
-    FoodType(String word, String id, StatusEffect effect, Item vanillaCraftingItem, Item foodValueItem) {
+    FoodType(String word, String id, Effect effect, Item vanillaCraftingItem, Item foodValueItem) {
         this.word = word;
         this.id = id;
         this.effect = effect;

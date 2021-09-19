@@ -6,9 +6,9 @@ import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import net.minecraft.item.Item;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.TextFormatting;
 
 public class Gem extends BaseRuneGem implements IAutoGson<Gem>, JsonExileRegistry<Gem> {
 
@@ -17,17 +17,17 @@ public class Gem extends BaseRuneGem implements IAutoGson<Gem>, JsonExileRegistr
     public String socket_type = "";
     public String text_format = "";
 
-    public Formatting getFormat() {
+    public TextFormatting getFormat() {
         try {
-            return Formatting.valueOf(text_format);
+            return TextFormatting.valueOf(text_format);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
-        return Formatting.GRAY;
+        return TextFormatting.GRAY;
     }
 
     public Item getItem() {
-        return Registry.ITEM.get(new Identifier(item_id));
+        return Registry.ITEM.get(new ResourceLocation(item_id));
     }
 
     @Override

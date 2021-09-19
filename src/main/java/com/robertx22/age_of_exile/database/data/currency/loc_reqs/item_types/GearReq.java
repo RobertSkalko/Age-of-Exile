@@ -4,14 +4,14 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequire
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import net.minecraft.text.MutableText;
+import net.minecraft.util.text.IFormattableTextComponent;
 
 public class GearReq extends BaseLocRequirement {
 
     public static GearReq INSTANCE = new GearReq();
 
     @Override
-    public MutableText getText() {
+    public IFormattableTextComponent getText() {
         return Words.MustBeGear.locName();
     }
 

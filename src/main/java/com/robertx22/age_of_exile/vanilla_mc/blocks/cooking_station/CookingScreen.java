@@ -1,16 +1,16 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.gui.buttons.OwnerButton;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.CraftRequirementButton;
 import com.robertx22.library_of_exile.gui.HelpButton;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,31 +18,31 @@ import java.util.List;
 public class CookingScreen extends ModificationGui<CookingContainer, CookingTile> {
 
     // This is the resource location for the background image
-    private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/cooking/cooking_station.png");
+    private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/cooking/cooking_station.png");
 
-    public CookingScreen(CookingContainer cont, PlayerInventory invPlayer, MutableText comp) {
-        super(texture, cont, invPlayer, new LiteralText(""), CookingTile.class);
-        backgroundWidth = 176;
-        backgroundHeight = 207;
+    public CookingScreen(CookingContainer cont, IInventory invPlayer, IFormattableTextComponent comp) {
+        super(texture, cont, invPlayer, new StringTextComponent(""), CookingTile.class);
+        imageWidth = 176;
+        imageHeight = 207;
     }
 
     @Override
     protected void init() {
         super.init();
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
-        this.addButton(new HelpButton(list, this.x + 5, this.y + 5));
+        this.addButton(new HelpButton(list, this.leftPos + 5, this.topPos + 5));
 
-        addButton(new CraftRequirementButton(tile, client.player, this.x + 116, this.y + 68));
+        addButton(new CraftRequirementButton(tile, minecraft.player, this.leftPos + 116, this.topPos + 68));
 
-        addButton(new OwnerButton(tile, putInTheMiddleX(OwnerButton.SIZE_X), this.y + 100));
+        addButton(new OwnerButton(tile, putInTheMiddleX(OwnerButton.SIZE_X), this.topPos + 100));
     }
 
     @Override
     public void renderOther(MatrixStack matrix, int mouseX, int mouseY) {
-        this.renderCookArrow(matrix, this.x + 79, this.y + 44, tile.getCookProgress());
-        this.renderCookFlame(matrix, this.x + 56, this.y + 46, tile.getFuelProgress());
+        this.renderCookArrow(matrix, this.leftPos + 79, this.topPos + 44, tile.getCookProgress());
+        this.renderCookFlame(matrix, this.leftPos + 56, this.topPos + 46, tile.getFuelProgress());
     }
 
 }

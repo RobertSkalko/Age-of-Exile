@@ -2,16 +2,16 @@ package com.robertx22.age_of_exile.dimension;
 
 import com.mojang.serialization.Codec;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ErrorUtils;
+import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.source.BiomeSource;
-import net.minecraft.world.gen.ChunkRandom;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.feature.JigsawFeature;
-import net.minecraft.world.gen.feature.StructurePoolFeatureConfig;
+import net.minecraft.world.biome.provider.BiomeProvider;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.feature.structure.JigsawStructure;
+import net.minecraft.world.gen.feature.structure.VillageConfig;
 
-public class DungeonDimensionJigsawFeature extends JigsawFeature {
+public class DungeonDimensionJigsawFeature extends JigsawStructure {
 
     public static int HEIGHT = 80;
 
@@ -44,13 +44,13 @@ public class DungeonDimensionJigsawFeature extends JigsawFeature {
         return o;
     }
 
-    public DungeonDimensionJigsawFeature(Codec<StructurePoolFeatureConfig> codec) {
+    public DungeonDimensionJigsawFeature(Codec<VillageConfig> codec) {
         super(codec, 80, true, false);
 
     }
 
     @Override
-    protected boolean shouldStartAt(ChunkGenerator chunkGen, BiomeSource biomeSource, long l, ChunkRandom chunkRandom, int i, int j, Biome biome, ChunkPos cpos, StructurePoolFeatureConfig structurePoolFeatureConfig) {
+    protected boolean shouldStartAt(ChunkGenerator chunkGen, BiomeProvider biomeSource, long l, SharedSeedRandom chunkRandom, int i, int j, Biome biome, ChunkPos cpos, VillageConfig structurePoolFeatureConfig) {
 
         if (chunkGen instanceof VoidChunkGenerator == false) {
             return false;

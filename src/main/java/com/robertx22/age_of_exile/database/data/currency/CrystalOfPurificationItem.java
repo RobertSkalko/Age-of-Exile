@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
@@ -72,15 +72,15 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
     }
 
     @Override
-    public ShapedRecipeJsonFactory getRecipe() {
+    public ShapedRecipeBuilder getRecipe() {
         return shaped(this)
-            .input('t', ModRegistry.CURRENCIES.CRYSTAL_OF_TRUTH)
-            .input('v', ModRegistry.GEAR_MATERIALS.ARCANA)
-            .input('o', ModRegistry.MISC_ITEMS.T3_DUST())
+            .define('t', ModRegistry.CURRENCIES.CRYSTAL_OF_TRUTH)
+            .define('v', ModRegistry.GEAR_MATERIALS.ARCANA)
+            .define('o', ModRegistry.MISC_ITEMS.T3_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")
-            .criterion("player_level", trigger());
+            .unlockedBy("player_level", trigger());
     }
 
 }

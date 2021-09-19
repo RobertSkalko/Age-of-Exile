@@ -10,11 +10,11 @@ import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,23 +40,23 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
     }
 
     @Override
-    public StatModifier getFromBuf(PacketByteBuf buf) {
+    public StatModifier getFromBuf(PacketBuffer buf) {
         StatModifier mod = new StatModifier();
         mod.min = buf.readFloat();
         mod.max = buf.readFloat();
 
-        mod.stat = buf.readString(100);
-        mod.type = buf.readString(100);
+        mod.stat = buf.readUtf(100);
+        mod.type = buf.readUtf(100);
         return mod;
     }
 
     @Override
-    public void toBuf(PacketByteBuf buf) {
+    public void toBuf(PacketBuffer buf) {
         buf.writeFloat(min);
         buf.writeFloat(max);
 
-        buf.writeString(stat, 100);
-        buf.writeString(type, 100);
+        buf.writeUtf(stat, 100);
+        buf.writeUtf(type, 100);
 
     }
 
@@ -95,7 +95,7 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
             .get(stat);
     }
 
-    public MutableText getRangeToShow(int lvl) {
+    public IFormattableTextComponent getRangeToShow(int lvl) {
 
         int fmin = (int) min;
         int fmax = (int) max;
@@ -112,7 +112,7 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
             text = text + " Global";
         }
 
-        return new LiteralText("(").formatted(Formatting.GREEN)
+        return new StringTextComponent("(").withStyle(TextFormatting.GREEN)
             .append(text)
             .append(")");
 
@@ -154,11 +154,11 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
 
     }
 
-    public List<Text> getEstimationTooltip(int lvl) {
+    public List<ITextComponent> getEstimationTooltip(int lvl) {
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
-        Text txt = getRangeToShow(lvl).append(" ")
+        ITextComponent txt = getRangeToShow(lvl).append(" ")
             .append(GetStat().locName());
 
         list.add(txt);

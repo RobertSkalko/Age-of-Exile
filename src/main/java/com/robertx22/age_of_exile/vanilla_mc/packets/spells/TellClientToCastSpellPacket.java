@@ -5,10 +5,10 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.Spell
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.MyPacket;
-import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class TellClientToCastSpellPacket extends MyPacket<TellClientToCastSpellPacket> {
 
@@ -17,33 +17,33 @@ public class TellClientToCastSpellPacket extends MyPacket<TellClientToCastSpellP
 
     public TellClientToCastSpellPacket(LivingEntity en, Spell spell) {
         this.spellid = spell.GUID();
-        this.enid = en.getEntityId();
+        this.enid = en.getId();
     }
 
     public TellClientToCastSpellPacket() {
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "tellclienttocastspell");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "tellclienttocastspell");
     }
 
     @Override
-    public void loadFromData(PacketByteBuf tag) {
-        this.spellid = tag.readString(30);
+    public void loadFromData(PacketBuffer tag) {
+        this.spellid = tag.readUtf(30);
         this.enid = tag.readInt();
     }
 
     @Override
-    public void saveToData(PacketByteBuf tag) {
-        tag.writeString(spellid);
+    public void saveToData(PacketBuffer tag) {
+        tag.writeUtf(spellid);
         tag.writeInt(enid);
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void onReceived(Context ctx) {
 
-        LivingEntity en = (LivingEntity) ctx.getPlayer().world.getEntityById(enid);
+        LivingEntity en = (LivingEntity) ctx.getPlayer().level.getEntity(enid);
 
         Spell spell = ExileDB.Spells()
             .get(spellid);

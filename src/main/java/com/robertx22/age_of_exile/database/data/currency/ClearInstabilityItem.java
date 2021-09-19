@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonFactory;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
@@ -79,15 +79,15 @@ public class ClearInstabilityItem extends CurrencyItem implements ICurrencyItemE
     }
 
     @Override
-    public ShapedRecipeJsonFactory getRecipe() {
+    public ShapedRecipeBuilder getRecipe() {
         return shaped(this)
-            .input('t', ModRegistry.CURRENCIES.CLEAR_RUNES)
-            .input('v', ModRegistry.MISC_ITEMS.T4_DUST())
-            .input('o', ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER4))
+            .define('t', ModRegistry.CURRENCIES.CLEAR_RUNES)
+            .define('v', ModRegistry.MISC_ITEMS.T4_DUST())
+            .define('o', ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER4))
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")
-            .criterion("player_level", trigger());
+            .unlockedBy("player_level", trigger());
     }
 
 }

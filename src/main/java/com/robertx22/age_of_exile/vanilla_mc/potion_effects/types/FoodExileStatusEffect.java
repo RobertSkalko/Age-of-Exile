@@ -11,59 +11,59 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.IOneOfATypePotion;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectType;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectType;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.entity.ai.attributes.AttributeMap;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FoodExileStatusEffect extends StatusEffect implements IApplyableStats, IOneOfATypePotion, IAutoLocName {
+public class FoodExileStatusEffect extends Effect implements IApplyableStats, IOneOfATypePotion, IAutoLocName {
 
     FoodExileEffect effect;
 
     public FoodExileStatusEffect(FoodExileEffect effect) {
-        super(StatusEffectType.BENEFICIAL, 0);
+        super(EffectType.BENEFICIAL, 0);
         this.effect = effect;
 
     }
 
-    public List<Text> GetTooltipString(TooltipInfo info, int duration, int amplifier) {
-        List<Text> tooltip = new ArrayList<>();
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, int duration, int amplifier) {
+        List<ITextComponent> tooltip = new ArrayList<>();
         List<OptScaleExactStat> list = getStats(amplifier);
 
-        tooltip.add(new LiteralText(""));
-        tooltip.add(new LiteralText("Exile Stats:").formatted(Formatting.AQUA));
+        tooltip.add(new StringTextComponent(""));
+        tooltip.add(new StringTextComponent("Exile Stats:").withStyle(TextFormatting.AQUA));
         list.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
         return tooltip;
     }
 
     @Override
-    public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
+    public void addAttributeModifiers(LivingEntity entity, AttributeMap attributes, int amplifier) {
 
         Load.Unit(entity)
             .forceRecalculateStats();
 
-        super.onApplied(entity, attributes, amplifier);
+        super.addAttributeModifiers(entity, attributes, amplifier);
 
     }
 
     @Override
-    public void onRemoved(LivingEntity target, AttributeContainer attributes,
-                          int amplifier) {
+    public void removeAttributeModifiers(LivingEntity target, AttributeMap attributes,
+                                         int amplifier) {
 
         try {
             Load.Unit(target)
                 .forceRecalculateStats();
 
-            super.onRemoved(target, attributes, amplifier);
+            super.removeAttributeModifiers(target, attributes, amplifier);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,7 +97,7 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyableSta
 
     @Override
     public String locNameLangFileGUID() {
-        return Registry.STATUS_EFFECT.getId(this)
+        return Registry.MOB_EFFECT.getKey(this)
             .toString();
     }
 
@@ -113,7 +113,7 @@ public class FoodExileStatusEffect extends StatusEffect implements IApplyableSta
 
     @Override
     public List<StatContext> getStatAndContext(LivingEntity en) {
-        StatusEffectInstance instance = en.getStatusEffect(this);
+        EffectInstance instance = en.getEffect(this);
 
         return Arrays.asList(new SimpleStatCtx(
             StatContext.StatCtxType.FOOD_BUFF,

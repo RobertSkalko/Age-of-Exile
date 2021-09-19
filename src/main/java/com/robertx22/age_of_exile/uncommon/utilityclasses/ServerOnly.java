@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.UUID;
 

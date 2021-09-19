@@ -35,7 +35,7 @@ public class EntityConfig implements JsonExileRegistry<EntityConfig>, ISerializa
     }
 
     public EntityConfig(EntityType type, float loot) {
-        this.identifier = Registry.ENTITY_TYPE.getId(type)
+        this.identifier = Registry.ENTITY_TYPE.getKey(type)
             .toString();
         this.loot_multi = loot;
         this.exp_multi = loot;

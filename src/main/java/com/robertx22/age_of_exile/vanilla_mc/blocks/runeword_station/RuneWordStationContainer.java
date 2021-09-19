@@ -3,15 +3,15 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.runeword_station;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.screen.slot.Slot;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.math.BlockPos;
 
 public class RuneWordStationContainer extends BaseTileContainer {
 
-    Inventory tile;
+    IInventory tile;
 
-    public RuneWordStationContainer(int i, PlayerInventory invPlayer, Inventory inventory,
+    public RuneWordStationContainer(int i, PlayerInventory invPlayer, IInventory inventory,
                                     BlockPos pos) {
 
         super(RuneWordStationTile.SLOT_COUNT, null, i, invPlayer);
@@ -52,8 +52,8 @@ public class RuneWordStationContainer extends BaseTileContainer {
     }
 
     @Override
-    public boolean canUse(PlayerEntity player) {
-        return tile.canPlayerUse(player);
+    public boolean stillValid(PlayerEntity player) {
+        return tile.stillValid(player);
     }
 
 }

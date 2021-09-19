@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.SkillRequirement;
@@ -10,17 +11,16 @@ import com.robertx22.library_of_exile.gui.HelpButton;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,40 +28,40 @@ import java.util.List;
 public class ScribeBuffScreen extends ModificationGui<ScribeBuffContainer, ScribeBuffTile> {
 
     // This is the resource location for the background image
-    private static final Identifier texture = new Identifier(Ref.MODID, "textures/gui/inscribing/buff_station.png");
+    private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/inscribing/buff_station.png");
 
-    public ScribeBuffScreen(ScribeBuffContainer cont, PlayerInventory invPlayer, MutableText comp) {
-        super(texture, cont, invPlayer, new LiteralText(""), ScribeBuffTile.class);
-        backgroundWidth = 176;
-        backgroundHeight = 207;
+    public ScribeBuffScreen(ScribeBuffContainer cont, IInventory invPlayer, IFormattableTextComponent comp) {
+        super(texture, cont, invPlayer, new StringTextComponent(""), ScribeBuffTile.class);
+        imageWidth = 176;
+        imageHeight = 207;
     }
 
     @Override
     protected void init() {
         super.init();
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
-        this.addButton(new HelpButton(list, this.x + 5, this.y + 5));
+        this.addButton(new HelpButton(list, this.leftPos + 5, this.topPos + 5));
 
-        List<ScrollBuff> buffs = ScribeBuffTile.getCurrentSelection(client.player);
+        List<ScrollBuff> buffs = ScribeBuffTile.getCurrentSelection(minecraft.player);
 
-        int x = this.x + 58;
-        int y = this.y + 16;
+        int x = this.leftPos + 58;
+        int y = this.topPos + 16;
 
         for (int i = 0; i < buffs.size(); i++) {
 
-            addButton(new OutcomeButton(i, tile.getPos(), x, y));
+            addButton(new OutcomeButton(i, tile.getBlockPos(), x, y));
             y += BUTTON_SIZE_Y;
         }
 
     }
 
-    private static final Identifier BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/inscribing/button.png");
+    private static final ResourceLocation BUTTON_TEX = new ResourceLocation(Ref.MODID, "textures/gui/inscribing/button.png");
     static int BUTTON_SIZE_X = 109;
     static int BUTTON_SIZE_Y = 19;
 
-    public class OutcomeButton extends TexturedButtonWidget {
+    public class OutcomeButton extends ImageButton {
         BlockPos pos;
         int num;
 
@@ -79,14 +79,14 @@ public class ScribeBuffScreen extends ModificationGui<ScribeBuffContainer, Scrib
             if (isInside(x, y)) {
 
                 try {
-                    List<Text> tooltip = new ArrayList<>();
+                    List<ITextComponent> tooltip = new ArrayList<>();
                     ItemStack stack = tile.itemStacks[ScribeBuffTile.MAT_SLOT];
                     if (ScribeBuffTile.isValidInk(stack)) {
                         EssenceInkItem ink = (EssenceInkItem) stack.getItem();
                         SkillRequirement req = ink.getSkillRequirement();
 
-                        if (req.meetsRequirement(client.player)) {
-                            tooltip.add(new LiteralText("Choose?"));
+                        if (req.meetsRequirement(minecraft.player)) {
+                            tooltip.add(new StringTextComponent("Choose?"));
                         } else {
                             tooltip.add(req.getUnmetReqText());
                         }
@@ -109,16 +109,16 @@ public class ScribeBuffScreen extends ModificationGui<ScribeBuffContainer, Scrib
             ItemStack stack = tile.itemStacks[ScribeBuffTile.MAT_SLOT];
             if (ScribeBuffTile.isValidInk(stack)) {
 
-                MinecraftClient mc = MinecraftClient.getInstance();
+                Minecraft mc = Minecraft.getInstance();
 
-                ScrollBuff buff = ScribeBuffTile.getCurrentSelection(client.player)
+                ScrollBuff buff = ScribeBuffTile.getCurrentSelection(minecraft.player)
                     .get(this.num);
 
                 String str = CLOC.translate(buff.locDesc()) + "...";
 
-                mc.textRenderer.drawWithShadow(matrix,
-                    str, this.x + 22, this.y + 3, Formatting.YELLOW
-                        .getColorValue());
+                mc.font.drawShadow(matrix,
+                    str, this.x + 22, this.y + 3, TextFormatting.YELLOW
+                        .getColor());
             }
         }
 

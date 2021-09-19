@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.mixins;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.mixin_methods.RenderMobInfo;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Final;
@@ -23,7 +23,7 @@ public abstract class MobNameTagMixin {
     protected EntityRenderDispatcher dispatcher;
 
     @Shadow
-    public abstract TextRenderer getFontRenderer();
+    public abstract FontRenderer getFontRenderer();
 
     @Shadow
     public abstract EntityRenderDispatcher getRenderManager();
@@ -31,7 +31,7 @@ public abstract class MobNameTagMixin {
     // TODO this might be the wrong way to do it.
     @Inject(method = "render", at = @At(value = "HEAD"),
         cancellable = true)
-    private void render(Entity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
+    private void render(Entity entity, float yaw, float tickDelta, MatrixStack matrices, MultiBufferSource vertexConsumers, int light, CallbackInfo ci) {
         if (entity instanceof LivingEntity) {
             RenderMobInfo.renderLivingEntityLabelIfPresent(getFontRenderer(), dispatcher, (LivingEntity) entity,
                 matrices, vertexConsumers, light);

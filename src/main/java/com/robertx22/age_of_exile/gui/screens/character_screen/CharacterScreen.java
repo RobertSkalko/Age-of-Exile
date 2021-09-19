@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.gui.screens.character_screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
@@ -44,13 +45,12 @@ import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.utils.RenderUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,7 +63,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
     static int sizeX = 256;
     static int sizeY = 178;
 
-    MinecraftClient mc = MinecraftClient.getInstance();
+    Minecraft mc = Minecraft.getInstance();
 
     public enum StatType {
         HUB("hub"),
@@ -78,8 +78,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             this.id = id;
         }
 
-        Identifier getIcon() {
-            return new Identifier(Ref.MODID, "textures/gui/stat_groups/" + id + ".png");
+        ResourceLocation getIcon() {
+            return new ResourceLocation(Ref.MODID, "textures/gui/stat_groups/" + id + ".png");
         }
     }
 
@@ -129,8 +129,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
     }
 
     @Override
-    public Identifier iconLocation() {
-        return new Identifier(Ref.MODID, "textures/gui/main_hub/icons/stat_overview.png");
+    public ResourceLocation iconLocation() {
+        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/stat_overview.png");
     }
 
     @Override
@@ -161,10 +161,10 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
         if (this.isMainScreen()) {
 
-            List<Text> help = new ArrayList<>();
+            List<ITextComponent> help = new ArrayList<>();
 
             help.add(Words.DidYouKnow.locName());
-            help.add(new LiteralText(""));
+            help.add(new StringTextComponent(""));
             help.addAll(TooltipUtils.cutIfTooLong(RandomUtils.randomFromList(Arrays.asList(RandomTips.values()))
                 .locName()));
             addButton(new HelpButton(help, guiLeft + 15, guiTop + 15));
@@ -252,26 +252,26 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         }
     }
 
-    private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/stats.png");
-    private static final Identifier WIDE_BACKGROUND = new Identifier(Ref.MODID, "textures/gui/full_stats_panel.png");
+    private static final ResourceLocation BACKGROUND = new ResourceLocation(Ref.MODID, "textures/gui/stats.png");
+    private static final ResourceLocation WIDE_BACKGROUND = new ResourceLocation(Ref.MODID, "textures/gui/full_stats_panel.png");
 
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {
 
         if (isMainScreen()) {
             mc.getTextureManager()
-                .bindTexture(BACKGROUND);
+                .bind(BACKGROUND);
         } else {
             mc.getTextureManager()
-                .bindTexture(WIDE_BACKGROUND);
+                .bind(WIDE_BACKGROUND);
         }
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        drawTexture(matrix, mc.getWindow()
-                .getScaledWidth() / 2 - sizeX / 2,
+        blit(matrix, mc.getWindow()
+                .getGuiScaledWidth() / 2 - sizeX / 2,
             mc.getWindow()
-                .getScaledHeight() / 2 - sizeY / 2, 0, 0, sizeX, sizeY
+                .getGuiScaledHeight() / 2 - sizeY / 2, 0, 0, sizeX, sizeY
         );
 
         super.render(matrix, x, y, ticks);
@@ -282,20 +282,20 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             .getFreePoints(mc.player);
         if (p > 0) {
             String points = "Points: " + p;
-            mc.textRenderer.drawWithShadow(matrix, points, guiLeft + sizeX / 2 - mc.textRenderer.getWidth(points) / 2, guiTop + sizeY + 10, Formatting.GREEN.getColorValue());
+            mc.font.drawShadow(matrix, points, guiLeft + sizeX / 2 - mc.font.width(points) / 2, guiTop + sizeY + 10, TextFormatting.GREEN.getColor());
         }
 
     }
 
-    private static final Identifier STAT_PAGE_BUTTON_TEXT = new Identifier(Ref.MODID, "textures/gui/main_hub/buttons_backwards.png");
+    private static final ResourceLocation STAT_PAGE_BUTTON_TEXT = new ResourceLocation(Ref.MODID, "textures/gui/main_hub/buttons_backwards.png");
 
     static int PLUS_BUTTON_SIZE_X = 13;
     static int PLUS_BUTTON_SIZE_Y = 13;
 
-    public static class AllocateStatButton extends TexturedButtonWidget {
+    public static class AllocateStatButton extends ImageButton {
         static int SIZEX = 18;
         static int SIZEY = 18;
-        static Identifier BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/plus_button.png");
+        static ResourceLocation BUTTON_TEX = new ResourceLocation(Ref.MODID, "textures/gui/plus_button.png");
 
         Stat stat;
 
@@ -312,13 +312,13 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         public void renderToolTip(MatrixStack matrix, int x, int y) {
             if (isInside(x, y)) {
 
-                MinecraftClient mc = MinecraftClient.getInstance();
+                Minecraft mc = Minecraft.getInstance();
 
-                List<Text> tooltip = new ArrayList<>();
+                List<ITextComponent> tooltip = new ArrayList<>();
 
                 tooltip.add(stat
                     .locName()
-                    .formatted(Formatting.GREEN));
+                    .withStyle(TextFormatting.GREEN));
 
                 tooltip.add(new SText(""));
 
@@ -341,7 +341,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
             super.renderButton(matrix, x, y, f);
 
-            MinecraftClient mc = MinecraftClient.getInstance();
+            Minecraft mc = Minecraft.getInstance();
 
             String txt = ((int) Load.Unit(mc.player)
                 .getUnit()
@@ -350,17 +350,17 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
             RenderUtils.render16Icon(matrix, stat.getIconForRendering(), this.x - 20, this.y + 1);
 
-            mc.textRenderer.drawWithShadow(matrix, txt, this.x + SIZEX + 4, this.y + 4, Formatting.YELLOW.getColorValue());
+            mc.font.drawShadow(matrix, txt, this.x + SIZEX + 4, this.y + 4, TextFormatting.YELLOW.getColor());
 
         }
 
     }
 
-    private static final Identifier BUTTON_TEX = new Identifier(Ref.MODID, "textures/gui/button.png");
+    private static final ResourceLocation BUTTON_TEX = new ResourceLocation(Ref.MODID, "textures/gui/button.png");
     static int STAT_BUTTON_SIZE_X = 18;
     static int STAT_BUTTON_SIZE_Y = 18;
 
-    public static class StatButton extends TexturedButtonWidget {
+    public static class StatButton extends ImageButton {
 
         Stat stat;
         public String presetValue = "";
@@ -375,11 +375,11 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         @Override
         public void renderToolTip(MatrixStack matrix, int x, int y) {
             if (isInside(x, y)) {
-                List<Text> tooltip = new ArrayList<>();
+                List<ITextComponent> tooltip = new ArrayList<>();
 
                 tooltip.add(stat
                     .locName()
-                    .formatted(Formatting.GREEN));
+                    .withStyle(TextFormatting.GREEN));
 
                 tooltip.addAll(stat
                     .getCutDescTooltip());
@@ -397,7 +397,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         @Override
         public void renderButton(MatrixStack matrix, int x, int y, float f) {
             if (!(stat instanceof UnknownStat)) {
-                MinecraftClient mc = MinecraftClient.getInstance();
+                Minecraft mc = Minecraft.getInstance();
                 String str = getStatString(Load.Unit(mc.player)
                     .getUnit()
                     .getCalculatedStat(stat), Load.Unit(mc.player));
@@ -406,12 +406,12 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
                     str = presetValue;
                 }
 
-                Identifier res = stat
+                ResourceLocation res = stat
                     .getIconForRendering();
 
                 RenderUtils.render16Icon(matrix, res, this.x, this.y);
 
-                mc.textRenderer.drawWithShadow(matrix, str, this.x + STAT_BUTTON_SIZE_X, this.y + 2, Formatting.GOLD.getColorValue());
+                mc.font.drawShadow(matrix, str, this.x + STAT_BUTTON_SIZE_X, this.y + 2, TextFormatting.GOLD.getColor());
 
             }
         }
@@ -446,7 +446,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
     }
 
-    static class StatPageButton extends TexturedButtonWidget {
+    static class StatPageButton extends ImageButton {
 
         public static int SIZEX = 105;
         public static int SIZEY = 28;
@@ -463,7 +463,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
         @Override
         public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            MinecraftClient mc = MinecraftClient.getInstance();
+            Minecraft mc = Minecraft.getInstance();
 
             super.renderButton(matrices, x, y, delta);
 
@@ -471,8 +471,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
             if (isHovered()) {
                 String txt = page.id;
-                MinecraftClient.getInstance().textRenderer.drawWithShadow(matrices,
-                    txt, this.x + SIZEX - 30 - mc.textRenderer.getWidth(txt), this.y + 9, Formatting.YELLOW.getColorValue());
+                Minecraft.getInstance().font.drawShadow(matrices,
+                    txt, this.x + SIZEX - 30 - mc.font.width(txt), this.y + 9, TextFormatting.YELLOW.getColor());
             }
 
         }
@@ -481,7 +481,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         public void renderToolTip(MatrixStack matrix, int x, int y) {
             if (isInside(x, y)) {
 
-                List<Text> tooltip = new ArrayList<>();
+                List<ITextComponent> tooltip = new ArrayList<>();
                 GuiUtils.renderTooltip(matrix, tooltip, x, y);
 
             }

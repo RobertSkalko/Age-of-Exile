@@ -1,16 +1,14 @@
 package com.robertx22.age_of_exile.database.data.exile_effects;
 
-import net.minecraft.entity.effect.StatusEffectType;
-
 public enum EffectType {
-    beneficial(StatusEffectType.BENEFICIAL),
-    negative(StatusEffectType.HARMFUL),
-    buff(StatusEffectType.BENEFICIAL),
-    neutral(StatusEffectType.NEUTRAL);
+    beneficial(net.minecraft.potion.EffectType.BENEFICIAL),
+    negative(net.minecraft.potion.EffectType.HARMFUL),
+    buff(net.minecraft.potion.EffectType.BENEFICIAL),
+    neutral(net.minecraft.potion.EffectType.NEUTRAL);
 
-    public StatusEffectType type;
+    public net.minecraft.potion.EffectType type;
 
-    EffectType(StatusEffectType type) {
+    EffectType(net.minecraft.potion.EffectType type) {
         this.type = type;
     }
 }

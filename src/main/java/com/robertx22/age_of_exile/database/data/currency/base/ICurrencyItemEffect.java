@@ -11,9 +11,9 @@ import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
@@ -55,19 +55,19 @@ public interface ICurrencyItemEffect {
         return true;
     }
 
-    public default void addToTooltip(List<Text> tooltip) {
+    public default void addToTooltip(List<ITextComponent> tooltip) {
 
         if (Screen.hasShiftDown()) {
-            tooltip.add(TooltipUtils.color(Formatting.RED, Words.Requirements.locName()
+            tooltip.add(TooltipUtils.color(TextFormatting.RED, Words.Requirements.locName()
                 .append(": ")));
 
             for (BaseLocRequirement req : requirements()) {
-                tooltip.add(TooltipUtils.color(Formatting.RED,
-                    new LiteralText(" * ").append(req.getText())
+                tooltip.add(TooltipUtils.color(TextFormatting.RED,
+                    new StringTextComponent(" * ").append(req.getText())
                 ));
             }
         } else {
-            tooltip.add(TooltipUtils.color(Formatting.GREEN, Words.PressShiftForRequirements.locName()));
+            tooltip.add(TooltipUtils.color(TextFormatting.GREEN, Words.PressShiftForRequirements.locName()));
 
         }
     }

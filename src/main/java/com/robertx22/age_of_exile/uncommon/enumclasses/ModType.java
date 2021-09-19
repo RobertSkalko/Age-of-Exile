@@ -1,21 +1,21 @@
 package com.robertx22.age_of_exile.uncommon.enumclasses;
 
-import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 
 import java.util.Locale;
 
 public enum ModType {
 
-    FLAT("flat", EntityAttributeModifier.Operation.ADDITION),
-    PERCENT("percent", EntityAttributeModifier.Operation.MULTIPLY_BASE),
-    GLOBAL_INCREASE("global_increase", EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+    FLAT("flat", AttributeModifier.Operation.ADDITION),
+    PERCENT("percent", AttributeModifier.Operation.MULTIPLY_BASE),
+    GLOBAL_INCREASE("global_increase", AttributeModifier.Operation.MULTIPLY_TOTAL);
 
-    ModType(String id, EntityAttributeModifier.Operation op) {
+    ModType(String id, AttributeModifier.Operation op) {
         this.id = id;
         this.operation = op;
     }
 
-    public EntityAttributeModifier.Operation operation;
+    public AttributeModifier.Operation operation;
     public String id;
 
     public boolean isFlat() {

@@ -1,20 +1,20 @@
 package com.robertx22.age_of_exile.dimension.spawner;
 
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.Material;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.world.BlockView;
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.Material;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockReader;
 
-public class ModSpawnerBlock extends OpaqueBlock implements BlockEntityProvider {
+public class ModSpawnerBlock extends OpaqueBlock implements ITileEntityProvider {
 
     public ModSpawnerBlock() {
-        super(Settings.of(Material.STONE)
+        super(Properties.of(Material.STONE)
             .strength(5F, 2));
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
+    public TileEntity newBlockEntity(IBlockReader world) {
         return new ModSpawnerBlockEntity();
     }
 

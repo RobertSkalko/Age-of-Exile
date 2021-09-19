@@ -3,22 +3,17 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.annotation.Nullable;
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
-import net.minecraft.block.CropBlock;
-import net.minecraft.data.DataCache;
-import net.minecraft.data.DataProvider;
+import net.minecraft.block.CropsBlock;
+import net.minecraft.data.DirectoryCache;
+import net.minecraft.data.IDataProvider;
 import net.minecraft.item.Item;
-import net.minecraft.loot.LootGsons;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.UniformLootTableRange;
-import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
-import net.minecraft.loot.condition.LootCondition;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.predicate.StatePredicate;
-import net.minecraft.util.Identifier;
+import net.minecraft.loot.*;
+import net.minecraft.loot.conditions.BlockStateProperty;
+import net.minecraft.loot.conditions.ILootCondition;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.loading.FMLLoader;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -27,21 +22,19 @@ import java.util.HashMap;
 
 public class LootTableGenerator {
 
-    protected DataCache cache;
+    protected DirectoryCache cache;
 
     public LootTableGenerator() {
 
         try {
-            cache = new DataCache(FabricLoader.getInstance()
-                .getGameDir(), "datagencache");
+            cache = new DirectoryCache(FMLLoader.getGamePath(), "datagencache");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     protected Path getBasePath() {
-        return FabricLoader.getInstance()
-            .getGameDir();
+        return FMLLoader.getGamePath();
     }
 
     protected Path movePath(Path target) {
@@ -62,11 +55,11 @@ public class LootTableGenerator {
         generateAll(cache);
     }
 
-    static Gson GSON = LootGsons.getTableGsonBuilder()
+    static Gson GSON = LootSerializers.createLootTableSerializer()
         .setPrettyPrinting()
         .create();
 
-    protected void generateAll(DataCache cache) {
+    protected void generateAll(DirectoryCache cache) {
 
         Path path = getBasePath();
 
@@ -76,7 +69,7 @@ public class LootTableGenerator {
                     .getPath()));
 
                 try {
-                    DataProvider.writeToPath(GSON, cache, GSON.toJsonTree(x.getValue()), target);
+                    IDataProvider.save(GSON, cache, GSON.toJsonTree(x.getValue()), target);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -84,39 +77,39 @@ public class LootTableGenerator {
 
     }
 
-    public static Identifier RUNE_SALVAGE_RECIPE = Ref.id("runes_salvage_recipe");
-    public static Identifier GEM_SALVAGE_RECIPE = Ref.id("gems_salvage_recipe");
-    public static Identifier CURRENCIES_SALVAGE_RECIPE = Ref.id("currencies_salvage_recipe");
+    public static ResourceLocation RUNE_SALVAGE_RECIPE = Ref.id("runes_salvage_recipe");
+    public static ResourceLocation GEM_SALVAGE_RECIPE = Ref.id("gems_salvage_recipe");
+    public static ResourceLocation CURRENCIES_SALVAGE_RECIPE = Ref.id("currencies_salvage_recipe");
 
-    private HashMap<Identifier, LootTable> getLootTables() {
-        HashMap<Identifier, LootTable> map = new HashMap<Identifier, LootTable>();
+    private HashMap<ResourceLocation, LootTable> getLootTables() {
+        HashMap<ResourceLocation, LootTable> map = new HashMap<ResourceLocation, LootTable>();
 
-        LootTable.Builder gems = LootTable.builder();
-        LootPool.Builder gemloot = LootPool.builder();
-        gemloot.rolls(UniformLootTableRange.between(1, 3));
+        LootTable.Builder gems = LootTable.lootTable();
+        LootPool.Builder gemloot = LootPool.lootPool();
+        gemloot.setRolls(RandomValueRange.between(1, 3));
         ModRegistry.GEMS.ALL.forEach(x -> {
-            gemloot.with(ItemEntry.builder(x)
-                .weight(x.weight));
+            gemloot.add(ItemLootEntry.lootTableItem(x)
+                .setWeight(x.weight));
         });
-        gems.pool(gemloot);
+        gems.withPool(gemloot);
 
-        LootTable.Builder runes = LootTable.builder();
-        LootPool.Builder runeloot = LootPool.builder();
-        runeloot.rolls(UniformLootTableRange.between(1, 3));
+        LootTable.Builder runes = LootTable.lootTable();
+        LootPool.Builder runeloot = LootPool.lootPool();
+        runeloot.setRolls(RandomValueRange.between(1, 3));
         ModRegistry.RUNES.ALL.forEach(x -> {
-            runeloot.with(ItemEntry.builder(x)
-                .weight(x.weight));
+            runeloot.add(ItemLootEntry.lootTableItem(x)
+                .setWeight(x.weight));
         });
-        runes.pool(runeloot);
+        runes.withPool(runeloot);
 
-        LootTable.Builder currencies = LootTable.builder();
-        LootPool.Builder curLoot = LootPool.builder();
-        curLoot.rolls(UniformLootTableRange.between(1, 3));
+        LootTable.Builder currencies = LootTable.lootTable();
+        LootPool.Builder curLoot = LootPool.lootPool();
+        curLoot.setRolls(RandomValueRange.between(1, 3));
         ModRegistry.CURRENCIES.currencies.forEach(x -> {
-            curLoot.with(ItemEntry.builder(x)
-                .weight(x.Weight()));
+            curLoot.add(ItemLootEntry.lootTableItem(x)
+                .setWeight(x.Weight()));
         });
-        currencies.pool(curLoot);
+        currencies.withPool(curLoot);
 
         map.put(RUNE_SALVAGE_RECIPE, runes.build());
         map.put(GEM_SALVAGE_RECIPE, gems.build());
@@ -134,29 +127,29 @@ public class LootTableGenerator {
 
     }
 
-    private void addFarming(Block block, Item item, @Nullable Item seed, int age, HashMap<Identifier, LootTable> map) {
+    private void addFarming(Block block, Item item, Item seed, int age, HashMap<ResourceLocation, LootTable> map) {
 
-        LootCondition.Builder condition = BlockStatePropertyLootCondition.builder(block)
-            .properties(StatePredicate.Builder.create()
-                .exactMatch(CropBlock.AGE, age));
+        ILootCondition.IBuilder condition = BlockStateProperty.hasBlockStateProperties(block)
+            .setProperties(StatePropertiesPredicate.Builder.properties()
+                .hasProperty(CropsBlock.AGE, age));
 
-        LootTable.Builder b = LootTable.builder();
+        LootTable.Builder b = LootTable.lootTable();
 
-        LootPool.Builder loot = LootPool.builder();
-        loot.conditionally(condition);
-        loot.rolls(UniformLootTableRange.between(1, 3));
-        loot.with(ItemEntry.builder(item));
-        b.pool(loot);
+        LootPool.Builder loot = LootPool.lootPool();
+        loot.when(condition);
+        loot.setRolls(RandomValueRange.between(1, 3));
+        loot.add(ItemLootEntry.lootTableItem(item));
+        b.withPool(loot);
 
         if (seed != null) {
-            LootPool.Builder seedpool = LootPool.builder();
-            seedpool.conditionally(condition);
-            seedpool.rolls(UniformLootTableRange.between(1, 2));
-            seedpool.with(ItemEntry.builder(seed));
-            b.pool(seedpool);
+            LootPool.Builder seedpool = LootPool.lootPool();
+            seedpool.when(condition);
+            seedpool.setRolls(RandomValueRange.between(1, 2));
+            seedpool.add(ItemLootEntry.lootTableItem(seed));
+            b.withPool(seedpool);
         }
 
-        map.put(block.getLootTableId(), b.build());
+        map.put(block.getLootTable(), b.build());
     }
 
 }

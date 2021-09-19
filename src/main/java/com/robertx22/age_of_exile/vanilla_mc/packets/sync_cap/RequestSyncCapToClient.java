@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.main.Packets;
-import net.fabricmc.fabric.api.network.PacketContext;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class RequestSyncCapToClient extends MyPacket<RequestSyncCapToClient> {
 
@@ -20,23 +20,23 @@ public class RequestSyncCapToClient extends MyPacket<RequestSyncCapToClient> {
     }
 
     @Override
-    public Identifier getIdentifier() {
-        return new Identifier(Ref.MODID, "reqdata");
+    public ResourceLocation getIdentifier() {
+        return new ResourceLocation(Ref.MODID, "reqdata");
     }
 
     @Override
-    public void loadFromData(PacketByteBuf tag) {
-        type = tag.readEnumConstant(PlayerCaps.class);
+    public void loadFromData(PacketBuffer tag) {
+        type = tag.readEnum(PlayerCaps.class);
     }
 
     @Override
-    public void saveToData(PacketByteBuf tag) {
-        tag.writeEnumConstant(type);
+    public void saveToData(PacketBuffer tag) {
+        tag.writeEnum(type);
 
     }
 
     @Override
-    public void onReceived(PacketContext ctx) {
+    public void onReceived(Context ctx) {
         Packets.sendToClient(ctx.getPlayer(), new SyncCapabilityToClient(ctx.getPlayer(), type));
     }
 

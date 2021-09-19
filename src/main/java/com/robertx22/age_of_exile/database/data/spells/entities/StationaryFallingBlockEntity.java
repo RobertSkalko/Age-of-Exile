@@ -9,20 +9,20 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.library_of_exile.packets.defaults.EntityPacket;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.FallingBlockEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MovementType;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.util.Identifier;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 
 import java.util.ArrayList;
 
@@ -37,21 +37,21 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         FallingBlockAccessor acc = (FallingBlockAccessor) this;
         acc.setBlockState(block);
         acc.setDestroyedOnLanding(false);
-        this.inanimate = true;
-        this.setPosition(pos.getX() + 0.5D, pos.getY() + (double) ((1.0F - this.getHeight()) / 2.0F), pos.getZ() + 0.5D);
-        this.setVelocity(Vec3d.ZERO);
-        this.prevX = pos.getX();
-        this.prevY = pos.getY();
-        this.prevZ = pos.getZ();
-        this.setFallingBlockPos(this.getBlockPos());
+        this.blocksBuilding = true;
+        this.setPos(pos.getX() + 0.5D, pos.getY() + (double) ((1.0F - this.getBbHeight()) / 2.0F), pos.getZ() + 0.5D);
+        this.setDeltaMovement(Vector3d.ZERO);
+        this.xo = pos.getX();
+        this.yo = pos.getY();
+        this.zo = pos.getZ();
+        this.setStartPos(this.blockPosition());
     }
 
     @Override
     public BlockState getBlockState() {
 
         try {
-            return Registry.BLOCK.get(new Identifier(this.dataTracker.get(BLOCK)))
-                .getDefaultState();
+            return Registry.BLOCK.get(new ResourceLocation(this.entityData.get(BLOCK)))
+                .defaultBlockState();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,7 +59,7 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
     }
 
     @Override
-    public Packet<?> createSpawnPacket() {
+    public Packet<?> getAddEntityPacket() {
         return EntityPacket.createPacket(this);
     }
 
@@ -67,14 +67,14 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
 
     EntitySavedSpellData spellData;
 
-    private static final TrackedData<NbtCompound> SPELL_DATA = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.TAG_COMPOUND);
-    private static final TrackedData<String> ENTITY_NAME = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.STRING);
-    private static final TrackedData<String> BLOCK = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.STRING);
-    public static final TrackedData<Boolean> IS_FALLING = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    public static final TrackedData<Float> FALL_SPEED = DataTracker.registerData(StationaryFallingBlockEntity.class, TrackedDataHandlerRegistry.FLOAT);
+    private static final EntityDataAccessor<CompoundNBT> SPELL_DATA = EntityDataManager.defineId(StationaryFallingBlockEntity.class, EntityDataSerializers.COMPOUND_TAG);
+    private static final EntityDataAccessor<String> ENTITY_NAME = EntityDataManager.defineId(StationaryFallingBlockEntity.class, EntityDataSerializers.STRING);
+    private static final EntityDataAccessor<String> BLOCK = EntityDataManager.defineId(StationaryFallingBlockEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<Boolean> IS_FALLING = EntityDataManager.defineId(StationaryFallingBlockEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Float> FALL_SPEED = EntityDataManager.defineId(StationaryFallingBlockEntity.class, EntityDataSerializers.FLOAT);
 
     @Override
-    public Iterable<ItemStack> getArmorItems() {
+    public Iterable<ItemStack> getArmorSlots() {
         return new ArrayList<>();
     }
 
@@ -94,16 +94,16 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
 
         //this.age++; this is called somewhere again idk
 
-        if (dataTracker.get(IS_FALLING)) {
-            if (!this.hasNoGravity()) {
+        if (entityData.get(IS_FALLING)) {
+            if (!this.isNoGravity()) {
 
-                float speed = dataTracker.get(FALL_SPEED);
-                speed *= 1 + 0.03F * age;
+                float speed = entityData.get(FALL_SPEED);
+                speed *= 1 + 0.03F * tickCount;
 
-                this.setVelocity(this.getVelocity()
+                this.setDeltaMovement(this.getDeltaMovement()
                     .add(0.0D, speed, 0.0D));
             }
-            this.move(MovementType.SELF, this.getVelocity());
+            this.move(MoverType.SELF, this.getDeltaMovement());
 
             if (this.onGround) {
                 remove();
@@ -115,13 +115,13 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
             this.getSpellData()
                 .getSpell()
                 .getAttached()
-                .tryActivate(getEntityName(), SpellCtx.onTick(getSpellData().getCaster(world), this, getSpellData()));
+                .tryActivate(getScoreboardName(), SpellCtx.onTick(getSpellData().getCaster(level), this, getSpellData()));
         } catch (Exception e) {
             e.printStackTrace();
             this.remove();
         }
 
-        if (age > lifespan) {
+        if (tickCount > lifespan) {
             remove();
         }
     }
@@ -131,13 +131,13 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
 
         try {
             if (getSpellData() != null) {
-                LivingEntity caster = getSpellData().getCaster(world);
+                LivingEntity caster = getSpellData().getCaster(level);
 
                 if (caster != null) {
                     this.getSpellData()
                         .getSpell()
                         .getAttached()
-                        .tryActivate(getEntityName(), SpellCtx.onExpire(caster, this, getSpellData()));
+                        .tryActivate(getScoreboardName(), SpellCtx.onExpire(caster, this, getSpellData()));
                 }
             }
         } catch (Exception e) {
@@ -150,9 +150,9 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
     static Gson GSON = new Gson();
 
     public EntitySavedSpellData getSpellData() {
-        if (world.isClient) {
+        if (level.isClientSide) {
             if (spellData == null) {
-                NbtCompound nbt = dataTracker.get(SPELL_DATA);
+                CompoundNBT nbt = entityData.get(SPELL_DATA);
                 if (nbt != null) {
                     this.spellData = GSON.fromJson(nbt.getString("spell"), EntitySavedSpellData.class);
                 }
@@ -162,17 +162,17 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
     }
 
     @Override
-    protected void initDataTracker() {
-        this.dataTracker.startTracking(SPELL_DATA, new NbtCompound());
-        this.dataTracker.startTracking(ENTITY_NAME, "");
-        this.dataTracker.startTracking(BLOCK, "");
-        this.dataTracker.startTracking(IS_FALLING, false);
-        this.dataTracker.startTracking(FALL_SPEED, -0.04F);
-        super.initDataTracker();
+    protected void defineSynchedData() {
+        this.entityData.define(SPELL_DATA, new CompoundNBT());
+        this.entityData.define(ENTITY_NAME, "");
+        this.entityData.define(BLOCK, "");
+        this.entityData.define(IS_FALLING, false);
+        this.entityData.define(FALL_SPEED, -0.04F);
+        super.defineSynchedData();
     }
 
-    public String getEntityName() {
-        return dataTracker.get(ENTITY_NAME);
+    public String getScoreboardName() {
+        return entityData.get(ENTITY_NAME);
     }
 
     @Override
@@ -183,12 +183,12 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
             .intValue();
 
         data.item_id = holder.get(MapField.ITEM);
-        NbtCompound nbt = new NbtCompound();
+        CompoundNBT nbt = new CompoundNBT();
         nbt.putString("spell", GSON.toJson(spellData));
-        dataTracker.set(SPELL_DATA, nbt);
-        dataTracker.set(ENTITY_NAME, holder.get(MapField.ENTITY_NAME));
-        dataTracker.set(BLOCK, holder.get(MapField.BLOCK));
-        dataTracker.set(FALL_SPEED, holder.getOrDefault(MapField.BLOCK_FALL_SPEED, -0.04D)
+        entityData.set(SPELL_DATA, nbt);
+        entityData.set(ENTITY_NAME, holder.get(MapField.ENTITY_NAME));
+        entityData.set(BLOCK, holder.get(MapField.BLOCK));
+        entityData.set(FALL_SPEED, holder.getOrDefault(MapField.BLOCK_FALL_SPEED, -0.04D)
             .floatValue());
 
     }

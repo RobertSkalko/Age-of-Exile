@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.math.Matrix4f;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
@@ -7,27 +9,25 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.decoration.ArmorStandEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.Matrix4f;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.entity.decoration.ArmorStand;
 
 public class RenderMobInfo {
 
     static Entity lastLooked;
 
-    public static void renderLivingEntityLabelIfPresent(TextRenderer textRenderer, EntityRenderDispatcher dispatcher, LivingEntity entity,
+    public static void renderLivingEntityLabelIfPresent(FontRenderer textRenderer, EntityRenderDispatcher dispatcher, LivingEntity entity,
                                                         MatrixStack matrixStack,
-                                                        VertexConsumerProvider vertex, int i) {
+                                                        MultiBufferSource vertex, int i) {
         try {
 
             if (!ModConfig.get().client.RENDER_MOB_HEALTH_GUI) {
@@ -35,11 +35,11 @@ public class RenderMobInfo {
             }
 
             double squaredDistance =
-                dispatcher.getSquaredDistanceToCamera(entity);
+                dispatcher.distanceToSqr(entity);
             if (squaredDistance <= 300) {
 
                 if (ModConfig.get().client.ONLY_RENDER_MOB_LOOKED_AT) {
-                    if (LookUtils.getEntityLookedAt(MinecraftClient.getInstance().player) != entity) {
+                    if (LookUtils.getEntityLookedAt(Minecraft.getInstance().player) != entity) {
                         if (lastLooked != entity) {
                             return;
                         }
@@ -47,67 +47,67 @@ public class RenderMobInfo {
                         lastLooked = entity;
                     }
                 }
-                if (entity instanceof ArmorStandEntity) {
+                if (entity instanceof ArmorStand) {
                     return;
                 }
-                if (entity.hasPassenger(MinecraftClient.getInstance().player)) {
+                if (entity.hasPassenger(Minecraft.getInstance().player)) {
                     return; // dont display horse's bar if the player is riding it
                 }
 
-                float yOffset = entity.getHeight() + 0.5F;
+                float yOffset = entity.getBbHeight() + 0.5F;
 
                 EntityData data = Load.Unit(entity);
 
-                boolean hidelvl = data.getLevel() - 10 > Load.Unit(MinecraftClient.getInstance().player)
+                boolean hidelvl = data.getLevel() - 10 > Load.Unit(Minecraft.getInstance().player)
                     .getLevel();
 
-                MutableText lvlcomp =
-                    new LiteralText(" [" + data.getLevel() + "]").formatted(Formatting.YELLOW);
+                IFormattableTextComponent lvlcomp =
+                    new StringTextComponent(" [" + data.getLevel() + "]").withStyle(TextFormatting.YELLOW);
 
                 if (hidelvl) {
                     lvlcomp =
-                        new LiteralText(" [" + "???" + "]").formatted(Formatting.YELLOW);
+                        new StringTextComponent(" [" + "???" + "]").withStyle(TextFormatting.YELLOW);
                 }
 
-                Text text = data.getName()
+                ITextComponent text = data.getName()
                     .append(lvlcomp);
 
                 float percent = HealthUtils.getCurrentHealth(entity) / HealthUtils.getMaxHealth(entity) * 100F;
 
-                MutableText hpText = new LiteralText("[").formatted(Formatting.DARK_RED);
+                IFormattableTextComponent hpText = new StringTextComponent("[").withStyle(TextFormatting.DARK_RED);
                 int times = 0;
 
                 for (int x = 0; x < 10; x++) {
                     times++;
 
                     if (percent > 0) {
-                        hpText.append(new LiteralText("|")
-                            .formatted(Formatting.RED)
+                        hpText.append(new StringTextComponent("|")
+                            .withStyle(TextFormatting.RED)
                         );
                     } else {
-                        hpText.append(new LiteralText("|")
-                            .formatted(Formatting.DARK_RED)
+                        hpText.append(new StringTextComponent("|")
+                            .withStyle(TextFormatting.DARK_RED)
                         );
                     }
 
                     if (times == 5) {
-                        hpText.append(new LiteralText((int) HealthUtils.getCurrentHealth(entity) + "").formatted(Formatting.GOLD));
+                        hpText.append(new StringTextComponent((int) HealthUtils.getCurrentHealth(entity) + "").withStyle(TextFormatting.GOLD));
                     }
                     percent -= 10;
 
                 }
 
-                hpText.append(new LiteralText("]").formatted(Formatting.DARK_RED));
+                hpText.append(new StringTextComponent("]").withStyle(TextFormatting.DARK_RED));
 
-                matrixStack.push();
+                matrixStack.pushPose();
                 matrixStack.translate(0.0D, yOffset, 0.0D);
-                matrixStack.multiply(dispatcher.getRotation());
+                matrixStack.mulPose(dispatcher.cameraOrientation());
                 matrixStack.scale(-0.025F, -0.025F, 0.025F);
 
-                Matrix4f matrix4f = matrixStack.peek()
-                    .getModel();
+                Matrix4f matrix4f = matrixStack.last()
+                    .pose();
                 float bgAlpha =
-                    MinecraftClient.getInstance().options.getTextBackgroundOpacity(0.25F);
+                    Minecraft.getInstance().options.getBackgroundOpacity(0.25F);
                 int bgColor = (int) (bgAlpha * 255.0F) << 24;
 
                 if (matrix4f == null || textRenderer == null) {
@@ -115,12 +115,12 @@ public class RenderMobInfo {
                 }
 
                 try {
-                    textRenderer.draw(text,
-                        -textRenderer.getWidth(text) / 2.0f,
+                    textRenderer.drawInBatch(text,
+                        -textRenderer.width(text) / 2.0f,
                         -12, -1, true, matrix4f,
                         vertex, false, bgColor, i);
 
-                    textRenderer.draw(hpText, -textRenderer.getWidth(hpText) / 2.0f,
+                    textRenderer.drawInBatch(hpText, -textRenderer.width(hpText) / 2.0f,
                         0, -1, true, matrix4f,
                         vertex, false, bgColor, i);
 
@@ -132,17 +132,17 @@ public class RenderMobInfo {
                         icon = rar.textFormatting() + icon;
 
                         matrixStack.scale(2, 2, 2);
-                        textRenderer.draw(icon, -textRenderer.getWidth(icon) / 2.0f,
+                        textRenderer.drawInBatch(icon, -textRenderer.width(icon) / 2.0f,
                             -15, -1, true, matrix4f,
-                            vertex, false, Formatting.YELLOW
-                                .getColorIndex(), i);
+                            vertex, false, TextFormatting.YELLOW
+                                .getId(), i);
                         matrixStack.scale(0.5F, 0.5F, 0.5F);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                matrixStack.pop();
+                matrixStack.popPose();
 
             }
         } catch (Exception e) {

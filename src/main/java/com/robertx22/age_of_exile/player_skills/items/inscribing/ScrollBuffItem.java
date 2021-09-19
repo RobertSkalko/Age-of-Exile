@@ -6,35 +6,35 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 import com.robertx22.library_of_exile.utils.LoadSave;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
+import net.minecraft.item.UseAction;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.DrinkHelper;
 import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
 public class ScrollBuffItem extends AutoItem {
 
     public ScrollBuffItem() {
-        super(new Settings().maxCount(1));
+        super(new Properties().stacksTo(1));
     }
 
     @Override
-    public Text getName(ItemStack stack) {
-        MutableText txt = new TranslatableText(this.getTranslationKey()).formatted(Formatting.YELLOW);
+    public ITextComponent getName(ItemStack stack) {
+        IFormattableTextComponent txt = new TranslationTextComponent(this.getDescriptionId()).withStyle(TextFormatting.YELLOW);
 
         try {
             ScrollBuffData data = getData(stack);
@@ -43,7 +43,7 @@ public class ScrollBuffItem extends AutoItem {
                 txt.append(" ")
                     .append(data.getBuff()
                         .locName())
-                    .formatted(Formatting.YELLOW);
+                    .withStyle(TextFormatting.YELLOW);
             }
         } catch (Exception e) {
         }
@@ -52,19 +52,19 @@ public class ScrollBuffItem extends AutoItem {
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity user) {
 
         if (user instanceof ServerPlayerEntity) {
 
             try {
 
-                stack.decrement(1);
+                stack.shrink(1);
                 ScrollBuffData data = getData(stack);
 
                 TeamUtils.getOnlineTeamMembersInRange((PlayerEntity) user, 50)
                     .forEach(x -> {
                         ServerPlayerEntity p = (ServerPlayerEntity) x;
-                        p.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.SCROLL_BUFF, 20 * 60 * 3));
+                        p.addEffect(new EffectInstance(ModRegistry.POTIONS.SCROLL_BUFF, 20 * 60 * 3));
 
                         Load.Unit(p)
                             .getStatusEffectsData().sb = data;
@@ -80,26 +80,26 @@ public class ScrollBuffItem extends AutoItem {
 
         }
 
-        if (world.isClient) {
-            user.addStatusEffect(new StatusEffectInstance(ModRegistry.POTIONS.SCROLL_BUFF, 20 * 60));
+        if (world.isClientSide) {
+            user.addEffect(new EffectInstance(ModRegistry.POTIONS.SCROLL_BUFF, 20 * 60));
         }
 
         return stack;
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.BOW;
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack) {
+    public int getUseDuration(ItemStack stack) {
         return 40;
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        return ItemUsage.consumeHeldItem(world, user, hand);
+    public ActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        return DrinkHelper.useDrink(world, user, hand);
     }
 
     public static ItemStack create(ScrollBuffData data) {
@@ -123,8 +123,8 @@ public class ScrollBuffItem extends AutoItem {
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag context) {
         ScrollBuffData data = getData(stack);
 
         if (data != null) {

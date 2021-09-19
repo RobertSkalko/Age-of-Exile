@@ -2,10 +2,10 @@ package com.robertx22.age_of_exile.database.data.stats.tooltips;
 
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +13,13 @@ import java.util.List;
 public class NormalStatTooltip implements IStatTooltipType {
 
     @Override
-    public List<Text> getTooltipList(Formatting format, TooltipStatWithContext ctx) {
+    public List<ITextComponent> getTooltipList(TextFormatting format, TooltipStatWithContext ctx) {
 
         TooltipStatInfo info = ctx.statinfo;
 
-        List<Text> list = new ArrayList<>();
+        List<ITextComponent> list = new ArrayList<>();
 
-        MutableText txt = new LiteralText(Formatting.BLUE + info.stat.getStatNameRegex()
+        IFormattableTextComponent txt = new StringTextComponent(TextFormatting.BLUE + info.stat.getStatNameRegex()
             .translate(format, ctx, info.type, info.firstValue, info.stat));
 
         if (ctx.statinfo.stat.is_long) {
@@ -41,22 +41,22 @@ public class NormalStatTooltip implements IStatTooltipType {
 
     }
 
-    public static MutableText getPercentageView(int perc) {
-        Formatting format = Formatting.RED;
+    public static IFormattableTextComponent getPercentageView(int perc) {
+        TextFormatting format = TextFormatting.RED;
         if (perc > 25) {
-            format = Formatting.YELLOW;
+            format = TextFormatting.YELLOW;
         }
         if (perc > 50) {
-            format = Formatting.GREEN;
+            format = TextFormatting.GREEN;
         }
         if (perc > 75) {
-            format = Formatting.AQUA;
+            format = TextFormatting.AQUA;
         }
         if (perc > 90) {
-            format = Formatting.LIGHT_PURPLE;
+            format = TextFormatting.LIGHT_PURPLE;
         }
 
-        return new LiteralText(format + " [" + perc + "%]").formatted(format);
+        return new StringTextComponent(format + " [" + perc + "%]").withStyle(format);
 
     }
 

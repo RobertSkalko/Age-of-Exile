@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.player_skills;
 
 import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
 public class ItemCraftExp {
@@ -11,7 +11,7 @@ public class ItemCraftExp {
 
     public ItemCraftExp(int exp, Item item) {
         this.exp = exp;
-        this.item_id = Registry.ITEM.getId(item)
+        this.item_id = Registry.ITEM.getKey(item)
             .toString();
     }
 
@@ -19,7 +19,7 @@ public class ItemCraftExp {
     }
 
     public Item getItem() {
-        return Registry.ITEM.get(new Identifier(item_id));
+        return Registry.ITEM.get(new ResourceLocation(item_id));
     }
 
 }

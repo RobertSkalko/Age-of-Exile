@@ -12,13 +12,13 @@ public class OnPlayerDamageEntityEvent extends EventConsumer<ExileEvents.OnDamag
     @Override
     public void accept(ExileEvents.OnDamageEntity event) {
 
-        if (event.mob.world.isClient) {
+        if (event.mob.level.isClientSide) {
             return;
         }
         if (event.source instanceof MyDamageSource) {
             return;
         }
-        if (event.source.getAttacker() instanceof PlayerEntity) {
+        if (event.source.getEntity() instanceof PlayerEntity) {
             OnHurtEvent.onHurtEvent(new AttackInformation(AttackInformation.Mitigation.POST, event.mob, event.source, event.damage));
         }
     }

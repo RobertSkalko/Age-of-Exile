@@ -28,9 +28,9 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effects;
 
 import java.util.UUID;
 
@@ -99,7 +99,7 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(DEMON_TRANSFORMATION)
-            .vanillaStat(VanillaStatData.create(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1, ModType.FLAT, UUID.fromString("116a0931-d576-4721-b286-8d11de1ee42b")))
+            .vanillaStat(VanillaStatData.create(Attributes.KNOCKBACK_RESISTANCE, 1, ModType.FLAT, UUID.fromString("116a0931-d576-4721-b286-8d11de1ee42b")))
             .stat(25, Stats.COOLDOWN_REDUCTION_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
             .stat(25, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
             .stat(25, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
@@ -182,7 +182,7 @@ public class BeneficialEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(ANTIDOTE)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.removeSelfEffect(StatusEffects.POISON)
+                .onTick(PartBuilder.removeSelfEffect(Effects.POISON)
                     .onTick(10D))
                 .buildForEffect())
             .build();

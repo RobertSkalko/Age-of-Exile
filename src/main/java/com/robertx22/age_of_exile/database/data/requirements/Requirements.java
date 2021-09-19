@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import com.robertx22.library_of_exile.registry.serialization.ISerializablePart;
-import net.minecraft.text.Text;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,8 +46,8 @@ public class Requirements implements ITooltipList {
         new SlotRequirement(), new TagRequirement());
 
     @Override
-    public List<Text> GetTooltipString(TooltipInfo info) {
-        List<Text> list = new ArrayList<>();
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+        List<ITextComponent> list = new ArrayList<>();
         this.tag_requirements.forEach(x -> {
             list.add(new SText(""));
             list.addAll(x.GetTooltipString(info));

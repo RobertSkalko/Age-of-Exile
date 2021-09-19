@@ -6,12 +6,12 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.IGatheringMat;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonFactory;
+import net.minecraft.data.ShapelessRecipeBuilder;
 
 public class MiningStoneItem extends TieredItem implements IGatheringMat, IShapelessRecipe {
 
     public MiningStoneItem(SkillItemTier tier) {
-        super(tier, new Settings().group(CreativeTabs.Professions));
+        super(tier, new Properties().tab(CreativeTabs.Professions));
     }
 
     @Override
@@ -25,13 +25,13 @@ public class MiningStoneItem extends TieredItem implements IGatheringMat, IShape
     }
 
     @Override
-    public ShapelessRecipeJsonFactory getRecipe() {
+    public ShapelessRecipeBuilder getRecipe() {
         if (this.tier.higherTier() == null) {
             return null;
         }
-        ShapelessRecipeJsonFactory fac = ShapelessRecipeJsonFactory.create(this, 2);
-        fac.input(ModRegistry.TIERED.STONE_TIER_MAP.get(tier.higherTier()), 1);
-        return fac.criterion("player_level", trigger());
+        ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 2);
+        fac.requires(ModRegistry.TIERED.STONE_TIER_MAP.get(tier.higherTier()), 1);
+        return fac.unlockedBy("player_level", trigger());
     }
 }
 

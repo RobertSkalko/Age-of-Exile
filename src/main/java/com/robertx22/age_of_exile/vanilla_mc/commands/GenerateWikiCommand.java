@@ -4,16 +4,16 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.command.CommandSource;
 
-import static net.minecraft.server.command.CommandManager.literal;
+import static net.minecraft.command.Commands.literal;
 
 public class GenerateWikiCommand {
 
-    public static void register(CommandDispatcher<ServerCommandSource> commandDispatcher) {
+    public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .then(literal("generate_wiki_files").requires(e -> e.hasPermissionLevel(2))
+                .then(literal("generate_wiki_files").requires(e -> e.hasPermission(2))
                     .executes(x -> {
 
                         if (!MMORPG.RUN_DEV_TOOLS) {
