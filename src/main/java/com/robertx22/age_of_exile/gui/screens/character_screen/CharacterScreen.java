@@ -278,8 +278,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
         buttons.forEach(b -> b.renderToolTip(matrix, x, y));
 
-        int p = Load.statPoints(mc.player)
-            .getFreePoints();
+        int p = Load.playerRPGData(mc.player).statPoints
+            .getFreePoints(mc.player);
         if (p > 0) {
             String points = "Points: " + p;
             mc.textRenderer.drawWithShadow(matrix, points, guiLeft + sizeX / 2 - mc.textRenderer.getWidth(points) / 2, guiTop + sizeY + 10, Formatting.GREEN.getColorValue());

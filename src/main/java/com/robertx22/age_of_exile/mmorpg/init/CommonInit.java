@@ -17,8 +17,6 @@ import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.event_registers.CommonEvents;
 import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
-import com.robertx22.age_of_exile.mmorpg.registers.common.MobAttributes;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModItemTags;
 import com.robertx22.divine_missions_addon.DMRegInit;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
@@ -57,7 +55,6 @@ public class CommonInit implements ModInitializer {
         ModRegistry.init();
 
         ModItemTags.init();
-        MobAttributes.register();
 
         ExileDBInit.registerAllItems(); // after config registerAll
         DMRegInit.init();
@@ -76,8 +73,6 @@ public class CommonInit implements ModInitializer {
             .build());
         CuriosApi.enqueueSlotType(SlotTypeInfo.BuildScheme.REGISTER, new SlotTypeInfo.Builder("necklace").size(1)
             .build());
-
-        ModCriteria.init();
 
         AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
 

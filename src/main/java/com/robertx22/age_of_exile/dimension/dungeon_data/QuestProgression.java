@@ -76,8 +76,8 @@ public class QuestProgression {
                     TeamCommand.sendDpsCharts(x);
                 }
 
-                Load.playerMaps(player)
-                    .onDungeonCompletedAdvanceProgress();
+                Load.playerRPGData(player).maps
+                    .onDungeonCompletedAdvanceProgress(player);
 
             }
         }

@@ -33,7 +33,7 @@ public class ConnectionButton extends TexturedButtonWidget {
 
         this.screen = screen;
 
-        connection = Load.perks(mc.player)
+        connection = Load.playerRPGData(mc.player).talents
             .getConnection(school, one, two);
 
     }
@@ -55,7 +55,7 @@ public class ConnectionButton extends TexturedButtonWidget {
         if (screen.mouseRecentlyClickedTicks > 1) {
             if (ticks % 10 == 0) {
                 if (screen.pointClicked.equals(this.one) || screen.pointClicked.equals(this.two)) {
-                    connection = Load.perks(mc.player)
+                    connection = Load.playerRPGData(mc.player).talents
                         .getConnection(school, one, two);
                 }
             }

@@ -49,8 +49,8 @@ public class MasterLootGen {
                 items.removeIf(x -> x.equals(randomtoremove));
             }
 
-            if (info.favor != null && info.favorRank != null) {
-                info.favor.afterLootingItems(info.favorRank.favor_drain_per_item, info, items.size());
+            if (info.rpgData != null && info.favorRank != null) {
+                info.rpgData.favor.afterLootingItems(info.player, info.favorRank.favor_drain_per_item, info, items.size());
 
                 List<ItemStack> extraFavorItems = new ArrayList<ItemStack>();
 
@@ -69,7 +69,7 @@ public class MasterLootGen {
                     }
                 }
 
-                info.favor.afterLootingItems(info.favorRank.extra_item_favor_cost, info, extraFavorItems.size());
+                info.rpgData.favor.afterLootingItems(info.player, info.favorRank.extra_item_favor_cost, info, extraFavorItems.size());
 
                 items.addAll(extraFavorItems);
 

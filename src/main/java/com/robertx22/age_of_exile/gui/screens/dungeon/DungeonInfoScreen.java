@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.gui.screens.dungeon;
 
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
-import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -50,7 +50,7 @@ public class DungeonInfoScreen extends BaseScreen {
         super.init();
 
         try {
-            PlayerMapsCap maps = Load.playerMaps(mc.player);
+            RPGPlayerData maps = Load.playerRPGData(mc.player);
 
             int xoff = this.width / 2;
             int yoff = this.height / 2 - 125;

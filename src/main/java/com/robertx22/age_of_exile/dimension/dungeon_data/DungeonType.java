@@ -40,7 +40,7 @@ public enum DungeonType {
     protected void loseFavor(DungeonData data, PlayerEntity player) {
         int favorloss = data.getDifficulty().death_favor_penalty;
 
-        Load.favor(player)
+        Load.playerRPGData(player).favor
             .addFavor(favorloss);
 
         player.sendMessage(new LiteralText("You lost " + Math.abs(favorloss) + " favor.").formatted(Formatting.RED), false);

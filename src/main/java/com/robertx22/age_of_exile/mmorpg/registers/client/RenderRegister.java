@@ -20,7 +20,6 @@ public class RenderRegister {
         }
 
         INSTANCE.register(ENTITIES.SIMPLE_ARROW, (d, ctx) -> new RangerArrowRenderer<>(d));
-        INSTANCE.register(ENTITIES.SIMPLE_BONE_PROJECTILE, (d, ctx) -> new RangerArrowRenderer<>(d));
         INSTANCE.register(ENTITIES.SIMPLE_BLOCK_ENTITY, (d, ctx) -> new FallingBlockEntityRenderer(d));
         INSTANCE.register(ENTITIES.SIMPLE_TRIDENT, (d, ctx) -> new ModTridentRenderer(d));
 

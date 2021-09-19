@@ -1,32 +1,27 @@
-package com.robertx22.age_of_exile.dimension.player_data;
+package com.robertx22.age_of_exile.capability.player.data;
 
 import com.robertx22.age_of_exile.capability.PlayerDamageChart;
-import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
-import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.dungeon_data.*;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.divine_missions.mission_gen.MissionUtil;
 import com.robertx22.divine_missions_addon.types.CompleteDungeonTask;
-import com.robertx22.library_of_exile.utils.LoadSave;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.utils.Watch;
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.SignBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.LiteralText;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.registry.Registry;
@@ -35,33 +30,37 @@ import net.minecraft.world.World;
 
 import java.util.*;
 
-public class PlayerMapsCap implements ICommonPlayerCap {
+@Storable
+public class MapsData {
 
-    public static final Identifier RESOURCE = new Identifier(Ref.MODID, "player_maps");
-    private static final String LOC = "maps";
+    public static Block TELEPORT_TO_PLACEHOLDER_BLOCK = Blocks.PLAYER_HEAD;
+    static int cachedBorder = 0;
 
-    PlayerEntity player;
-
-    public MapsData data = new MapsData();
-
+    @Store
     public int ticksinPortal = 0;
+    @Store
     public int highestTierDone = 0;
 
-    public int getHighestTierPossibleToStart() {
-        return highestTierDone + 1;
+    @Store
+    public DungeonData dungeonData = new DungeonData();
+    @Store
+    public BlockPos tel_pos = new BlockPos(0, 0, 0);
+    @Store
+    public String tp_b_dim = "";
+    @Store
+    public boolean isEmpty = true;
+    @Store
+    public String orig_gamemode = "";
+
+    static int getBorder(World world) {
+        if (cachedBorder == 0) {
+            cachedBorder = (int) (world.getWorldBorder()
+                .getSize() / 2);
+        }
+        return cachedBorder;
     }
 
-    public PlayerMapsCap(PlayerEntity player) {
-        this.player = player;
-    }
-
-    public void printDelveMapDebug() {
-        NbtCompound nbt = new NbtCompound();
-        toTag(nbt);
-        System.out.print(nbt.toString());
-    }
-
-    public void onDungeonCompletedAdvanceProgress() {
+    public void onDungeonCompletedAdvanceProgress(PlayerEntity player) {
 
         TeamUtils.getOnlineMembers(player)
             .forEach(e -> {
@@ -75,7 +74,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
         int tier = 0;
         try {
-            tier = data.dungeonData
+            tier = dungeonData
                 .getDifficulty().rank;
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,19 +86,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     }
 
-    public static Block TELEPORT_TO_PLACEHOLDER_BLOCK = Blocks.PLAYER_HEAD;
-
-    static int cachedBorder = 0;
-
-    static int getBorder(World world) {
-        if (cachedBorder == 0) {
-            cachedBorder = (int) (world.getWorldBorder()
-                .getSize() / 2);
-        }
-        return cachedBorder;
-    }
-
-    public void onStartDungeon(TeamSize teamSize, BlockPos teleporterPos, String uuid) {
+    public void onStartDungeon(PlayerEntity player, TeamSize teamSize, BlockPos teleporterPos, String uuid) {
 
         try {
 
@@ -110,13 +97,13 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
             Watch first = new Watch();
 
-            this.data.tel_pos = teleporterPos;
+            tel_pos = teleporterPos;
 
             // set the dungeon data for the chunk
             World dimWorld = player.world.getServer()
-                .getWorld(RegistryKey.of(Registry.WORLD_KEY, data.dungeonData.dun_type.DIMENSION_ID));
+                .getWorld(RegistryKey.of(Registry.WORLD_KEY, dungeonData.dun_type.DIMENSION_ID));
 
-            int border = getBorder(dimWorld);
+            int border = MapsData.getBorder(dimWorld);
 
             int X = RandomUtils.RandomRange(-border, border);
             int Z = RandomUtils.RandomRange(-border, border);
@@ -163,7 +150,7 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                                 foundportalback = true;
                             }
                         } else if (dimWorld.getBlockState(e.getKey())
-                            .getBlock() == TELEPORT_TO_PLACEHOLDER_BLOCK) {
+                            .getBlock() == MapsData.TELEPORT_TO_PLACEHOLDER_BLOCK) {
                             tpPos = e.getKey();
                             dimWorld.breakBlock(tpPos, false);
                             foundSpawn = true;
@@ -197,14 +184,14 @@ public class PlayerMapsCap implements ICommonPlayerCap {
                     PortalBlockEntity be = (PortalBlockEntity) player.world.getBlockEntity(x);
                     be.data.dungeonPos = tpPos;
                     be.data.tpbackpos = teleporterPos.up();
-                    be.data.dungeonType = data.dungeonData.dun_type;
+                    be.data.dungeonType = dungeonData.dun_type;
 
                 }
             }
 
             // first set the data so the mob levels can be set on spawn
             WorldDungeonCap data = Load.dungeonData(dimWorld);
-            SingleDungeonData single = new SingleDungeonData(this.data.dungeonData, new QuestProgression(this.data.dungeonData.uuid, 20), player.getUuid()
+            SingleDungeonData single = new SingleDungeonData(dungeonData, new QuestProgression(dungeonData.uuid, 20), player.getUuid()
                 .toString());
             if (ExileDB.DungeonMobLists()
                 .isRegistered(moblist)) {
@@ -224,47 +211,6 @@ public class PlayerMapsCap implements ICommonPlayerCap {
 
     }
 
-    @Override
-    public NbtCompound toTag(NbtCompound nbt) {
-        LoadSave.Save(data, nbt, LOC);
-        nbt.putInt("t", ticksinPortal);
-        nbt.putInt("h", highestTierDone);
-        return nbt;
-    }
+    // todo add to RPG CAP
 
-    @Override
-    public void fromTag(NbtCompound nbt) {
-        this.ticksinPortal = nbt.getInt("t");
-        this.highestTierDone = nbt.getInt("h");
-
-        try {
-            this.data = LoadSave.Load(MapsData.class, new MapsData(), nbt, LOC);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (data == null) {
-            data = new MapsData();
-        }
-
-    }
-
-    @Override
-    public PlayerCaps getCapType() {
-        return PlayerCaps.MAPS;
-    }
-
-    public void createRandomDungeon(Difficulty diff) {
-
-        this.data = new MapsData();
-        data.isEmpty = false;
-
-        DungeonData dun = new DungeonData();
-        int lvl = Load.Unit(player)
-            .getLevel();
-        dun.randomize(lvl, diff);
-
-        this.data.dungeonData = dun;
-
-        this.syncToClient(player);
-    }
 }

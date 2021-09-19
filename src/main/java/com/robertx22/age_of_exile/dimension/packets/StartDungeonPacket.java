@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.dimension.packets;
 
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
-import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
@@ -51,9 +51,9 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
     @Override
     public void onReceived(PacketContext ctx) {
 
-        PlayerMapsCap maps = Load.playerMaps(ctx.getPlayer());
+        RPGPlayerData maps = Load.playerRPGData(ctx.getPlayer());
 
-        DungeonData dungeon = maps.data.dungeonData;
+        DungeonData dungeon = maps.maps.dungeonData;
 
         if (teamSize.requiredMemberAmount > 1) {
             if (ModConfig.get().Server.REQUIRE_TEAM_FOR_TEAM_DUNGEONS) {
@@ -69,7 +69,7 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
             }
         }
 
-        maps.onStartDungeon(teamSize, pos, dungeon.uuid);
+        maps.maps.onStartDungeon(ctx.getPlayer(), teamSize, pos, dungeon.uuid);
 
     }
 

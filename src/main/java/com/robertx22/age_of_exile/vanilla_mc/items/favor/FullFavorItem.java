@@ -30,8 +30,8 @@ public class FullFavorItem extends Item {
 
                 stack.decrement(1);
 
-                Load.favor(player)
-                    .setFavor(Load.favor(player)
+                Load.playerRPGData(player).favor
+                    .setFavor(Load.playerRPGData(player).favor
                         .getFavor() + FAVOR_CAPACITY);
 
             } catch (Exception e) {

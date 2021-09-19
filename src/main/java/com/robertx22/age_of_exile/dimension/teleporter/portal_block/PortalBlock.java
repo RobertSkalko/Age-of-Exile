@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.dimension.teleporter.portal_block;
 
-import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.OpaqueBlock;
@@ -76,21 +76,21 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
 
             if (entity instanceof PlayerEntity) {
 
-                PlayerMapsCap maps = Load.playerMaps((PlayerEntity) entity);
+                RPGPlayerData maps = Load.playerRPGData((PlayerEntity) entity);
 
                 if (entity.getVelocity().y > 0) {
-                    maps.ticksinPortal = 0; // jumping bugs it somehow
+                    maps.maps.ticksinPortal = 0; // jumping bugs it somehow
                     return;
                 }
 
                 if (WorldUtils.isMapWorldClass(world)) {
-                    if (maps.ticksinPortal < 40) {
-                        maps.ticksinPortal++;
+                    if (maps.maps.ticksinPortal < 40) {
+                        maps.maps.ticksinPortal++;
                     } else {
-                        maps.ticksinPortal = 0;
-                        BlockPos p = Load.playerMaps((PlayerEntity) entity).data.tel_pos.up();
+                        maps.maps.ticksinPortal = 0;
+                        BlockPos p = Load.playerRPGData((PlayerEntity) entity).maps.tel_pos.up();
 
-                        TeleportUtils.teleport((ServerPlayerEntity) entity, p, new Identifier(maps.data.tp_b_dim));
+                        TeleportUtils.teleport((ServerPlayerEntity) entity, p, new Identifier(maps.maps.tp_b_dim));
 
                         SoundUtils.playSound(entity, SoundEvents.BLOCK_PORTAL_TRAVEL, world.random.nextFloat() * 0.4F + 0.8F, 0.25F);
                         return;
@@ -102,16 +102,16 @@ public class PortalBlock extends OpaqueBlock implements BlockEntityProvider {
                 if (entity instanceof ServerPlayerEntity) {
                     if (!entity.hasVehicle() && !entity.hasPassengers() && entity.canUsePortals()) {
 
-                        if (maps.ticksinPortal < 40) {
-                            maps.ticksinPortal++;
+                        if (maps.maps.ticksinPortal < 40) {
+                            maps.maps.ticksinPortal++;
                         } else {
 
                             if (be.data.dungeonPos == BlockPos.ORIGIN) {
                                 return;
                             } else {
-                                maps.ticksinPortal = 0;
-                                maps.data.tel_pos = be.data.tpbackpos;
-                                maps.data.tp_b_dim = VanillaReg.getId(entity.world)
+                                maps.maps.ticksinPortal = 0;
+                                maps.maps.tel_pos = be.data.tpbackpos;
+                                maps.maps.tp_b_dim = VanillaReg.getId(entity.world)
                                     .toString();
 
                                 TeleportUtils.teleport((ServerPlayerEntity) entity, be.data.dungeonPos, be.data.dungeonType.DIMENSION_ID);

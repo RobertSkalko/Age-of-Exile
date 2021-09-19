@@ -28,7 +28,7 @@ public class GiveFavor {
     private static int run(PlayerEntity player, int favor) {
 
         try {
-            Load.favor(player)
+            Load.playerRPGData(player).favor
                 .addFavor(favor);
         } catch (Exception e) {
             e.printStackTrace();

@@ -50,7 +50,7 @@ public class ClientOnly {
 
     public static void openMapsScreen(BlockPos pos) {
         MinecraftClient.getInstance()
-            .openScreen(new DungeonInfoScreen(pos, Load.playerMaps(MinecraftClient.getInstance().player).data.dungeonData));
+            .openScreen(new DungeonInfoScreen(pos, Load.playerRPGData(MinecraftClient.getInstance().player).maps.dungeonData));
 
     }
 

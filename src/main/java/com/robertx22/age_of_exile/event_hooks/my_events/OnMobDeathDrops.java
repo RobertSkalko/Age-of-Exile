@@ -127,7 +127,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
         exp += (-1F + ModConfig.get().Server.EXP_GAIN_MULTI) * baseexp;
 
-        exp += (-1F + Load.favor(killer)
+        exp += (-1F + Load.playerRPGData(killer).favor
             .getRank().exp_multi) * baseexp;
 
         exp += (-1F + ExileDB.getDimensionConfig(victim.world).exp_multi) * baseexp;

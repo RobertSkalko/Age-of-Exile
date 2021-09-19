@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.gui.screens.skill_tree;
 
 import com.google.common.collect.Sets;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.capability.player.EntityPerks;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree;
 import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree.SchoolType;
@@ -96,7 +96,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     public MinecraftClient mc = MinecraftClient.getInstance();
 
-    EntityPerks entityPerks = Load.perks(mc.player);
+    RPGPlayerData playerData = Load.playerRPGData(mc.player);
 
     public TalentTree school;
 
@@ -105,7 +105,8 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         super.init();
 
         try {
-            Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.ENTITY_PERKS));
+
+            Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.PLAYER_RPG_DATA));
 
             schoolsInOrder = ExileDB.TalentTrees()
                 .getFiltered(x -> {
@@ -216,7 +217,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                 int x = getPosForPoint(e.getKey()).x + addx - subx + TalentTreeButton.XSIZE / 2;
                 int y = getPosForPoint(e.getKey()).y + addy - suby + TalentTreeButton.YSIZE / 2;
 
-                this.newButton(new PerkButton(this, entityPerks, school, e.getKey(), perk, x, y));
+                this.newButton(new PerkButton(this, playerData, school, e.getKey(), perk, x, y));
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -466,14 +467,14 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         xp = savedx;
         yp = savedy;
 
-        String text = "Points: " + entityPerks.data.getFreePoints(Load.Unit(mc.player), this.schoolType);
+        String text = "Points: " + playerData.talents.getFreePoints(Load.Unit(mc.player), this.schoolType);
 
         int tx = xp - mc.textRenderer.getWidth(text) - 10;
         int yx = yp + BG_HEIGHT / 2 - mc.textRenderer.fontHeight / 2;
 
         MinecraftClient.getInstance().textRenderer.drawWithShadow(matrix, text, tx, yx, Formatting.GREEN.getColorValue());
 
-        text = "Reset Points: " + entityPerks.data.reset_points;
+        text = "Reset Points: " + playerData.talents.reset_points;
 
         tx = savedx + 10 + BG_WIDTH;
 

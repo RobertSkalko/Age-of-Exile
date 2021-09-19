@@ -1,10 +1,10 @@
 package com.robertx22.age_of_exile.gui.overlays.death_stats;
 
-import com.robertx22.age_of_exile.capability.player.data.PlayerDeathData;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.gui.TextUtils;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
+import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
@@ -37,9 +37,9 @@ public class DeathStatsOverlay extends DrawableHelper implements HudRenderCallba
             }
 
             if (mc.player.isDead()) {
-                PlayerDeathData data = ModRegistry.COMPONENTS.PLAYER_DEATH_DATA.get(mc.player);
+                RPGPlayerData data = Load.playerRPGData(mc.player);
 
-                PlayerDeathStatistics stats = data.deathStats;
+                DeathStatsData stats = data.deathStats;
 
                 int x = mc.getWindow()
                     .getScaledWidth() / 2;

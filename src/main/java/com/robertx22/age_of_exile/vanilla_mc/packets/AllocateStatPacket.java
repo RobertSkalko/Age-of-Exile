@@ -1,15 +1,12 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
-import com.robertx22.age_of_exile.capability.player.PlayerStatPointsCap;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.CoreStat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.library_of_exile.main.MyPacket;
-import com.robertx22.library_of_exile.main.Packets;
 import net.fabricmc.fabric.api.network.PacketContext;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
@@ -59,13 +56,15 @@ public class AllocateStatPacket extends MyPacket<AllocateStatPacket> {
         Load.Unit(ctx.getPlayer())
             .tryRecalculateStats();
 
-        PlayerStatPointsCap cap = Load.statPoints(ctx.getPlayer());
+        RPGPlayerData cap = Load.playerRPGData(ctx.getPlayer());
 
-        if (cap.getFreePoints() > 0) {
+        if (cap.statPoints.getFreePoints(ctx.getPlayer()) > 0) {
             if (ExileDB.Stats()
                 .get(stat) instanceof CoreStat) {
-                cap.data.map.put(stat, 1 + cap.data.map.getOrDefault(stat, 0));
-                Packets.sendToClient(ctx.getPlayer(), new SyncCapabilityToClient(ctx.getPlayer(), PlayerCaps.STAT_POINTS));
+                cap.statPoints.map.put(stat, 1 + cap.statPoints.map.getOrDefault(stat, 0));
+
+                cap.syncToClient(ctx.getPlayer());
+
             }
         }
     }

@@ -29,10 +29,7 @@ public class OnLogin {
                 player.sendMessage(new LiteralText("To enable go to your server.properties file and put enable-command-block as true.").formatted(Formatting.GREEN), false);
             }
 
-            Load.perks(player)
-                .syncToClient(player);
-
-            Load.playerMaps(player)
+            Load.playerRPGData(player)
                 .syncToClient(player);
 
             if (MMORPG.RUN_DEV_TOOLS) {

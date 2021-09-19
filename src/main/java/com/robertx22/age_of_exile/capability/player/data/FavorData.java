@@ -1,31 +1,24 @@
-package com.robertx22.age_of_exile.capability.player;
+package com.robertx22.age_of_exile.capability.player.data;
 
-import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusFavor;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.LootUtils;
-import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.events.OnChestFavorGainedExploration;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
+import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 
 import java.util.Comparator;
 import java.util.Optional;
 
-public class PlayerFavor implements ICommonPlayerCap {
-
-    public static final Identifier RESOURCE = new Identifier(Ref.MODID, "favor");
-    private static final String LOC = "favor";
-
-    PlayerEntity player;
-
+@Storable
+public class FavorData {
+    @Store
     int favor = 0;
 
     private FavorRank getDefault() {
@@ -56,10 +49,6 @@ public class PlayerFavor implements ICommonPlayerCap {
         this.favor = favor;
     }
 
-    public PlayerFavor(PlayerEntity player) {
-        this.player = player;
-    }
-
     public int getFavor() {
         return favor;
     }
@@ -85,7 +74,7 @@ public class PlayerFavor implements ICommonPlayerCap {
 
     }
 
-    public void afterLootingItems(float favorCost, LootInfo info, int amount) {
+    public void afterLootingItems(PlayerEntity player, float favorCost, LootInfo info, int amount) {
 
         boolean lowfavor = false;
 
@@ -102,31 +91,13 @@ public class PlayerFavor implements ICommonPlayerCap {
         }
 
         if (lowfavor) {
-            onLowFavor();
+            onLowFavor(player);
         }
     }
 
-    private void onLowFavor() {
+    private void onLowFavor(PlayerEntity player) {
         if (ModConfig.get().Favor.ENABLE_FAVOR_SYSTEM) {
-            this.player.sendMessage(new LiteralText("You are very low on favor.").formatted(Formatting.RED), false);
+            player.sendMessage(new LiteralText("You are very low on favor.").formatted(Formatting.RED), false);
         }
     }
-
-    @Override
-    public NbtCompound toTag(NbtCompound nbt) {
-        nbt.putInt(LOC, favor);
-
-        return nbt;
-    }
-
-    @Override
-    public PlayerCaps getCapType() {
-        return PlayerCaps.FAVOR;
-    }
-
-    @Override
-    public void fromTag(NbtCompound nbt) {
-        this.favor = nbt.getInt(LOC);
-    }
-
 }

@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.event_registers;
 
 import com.robertx22.age_of_exile.a_libraries.curios.OnCurioChangeEvent;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.damage_hooks.OnNonPlayerDamageEntityEvent;
 import com.robertx22.age_of_exile.damage_hooks.OnPlayerDamageEntityEvent;
 import com.robertx22.age_of_exile.damage_hooks.ScaleVanillaMobDamage;
@@ -18,7 +19,7 @@ import com.robertx22.age_of_exile.event_hooks.ontick.OnTickDungeonWorld;
 import com.robertx22.age_of_exile.event_hooks.player.OnDamagePlayerActivateTablets;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.event_hooks.player.StopCastingIfInteract;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.error_checks.base.ErrorChecks;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import com.robertx22.divine_missions_addon.events.IsMobKilledValid;
@@ -66,8 +67,10 @@ public class CommonEvents {
             public void accept(ExileEvents.OnPlayerDeath event) {
                 if (event.player instanceof ServerPlayerEntity) {
                     try {
-                        ModRegistry.COMPONENTS.PLAYER_DEATH_DATA.get(event.player).deathPos = event.player.getBlockPos();
-                        ModRegistry.COMPONENTS.PLAYER_DEATH_DATA.get(event.player).deathDim = event.player.world.getRegistryKey()
+                        RPGPlayerData data = Load.playerRPGData(event.player);
+
+                        data.deathStats.deathPos = event.player.getBlockPos();
+                        data.deathStats.deathDim = event.player.world.getRegistryKey()
                             .getValue()
                             .toString();
                     } catch (Exception e) {

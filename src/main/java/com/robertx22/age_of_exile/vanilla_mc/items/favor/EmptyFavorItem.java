@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.favor;
 
-import com.robertx22.age_of_exile.capability.player.PlayerFavor;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -35,10 +35,10 @@ public class EmptyFavorItem extends Item {
                 if (Load.Unit(player)
                     .getLevel() >= 20) {
 
-                    PlayerFavor favor = Load.favor(player);
+                    RPGPlayerData rpg = Load.playerRPGData(player);
 
-                    if (favor.getFavor() >= FullFavorItem.FAVOR_CAPACITY) {
-                        favor.setFavor(favor.getFavor() - FullFavorItem.FAVOR_CAPACITY);
+                    if (rpg.favor.getFavor() >= FullFavorItem.FAVOR_CAPACITY) {
+                        rpg.favor.setFavor(rpg.favor.getFavor() - FullFavorItem.FAVOR_CAPACITY);
 
                         stack.decrement(1);
 

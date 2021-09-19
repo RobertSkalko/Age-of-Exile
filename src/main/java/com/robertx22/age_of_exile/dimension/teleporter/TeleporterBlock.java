@@ -58,14 +58,14 @@ public class TeleporterBlock extends OpaqueBlock implements BlockEntityProvider 
 
                 if (!be.data.activated) {
                     if (be.data.type.isDungeon()) {
-                        Load.playerMaps(player)
+                        Load.playerRPGData(player)
                             .createRandomDungeon(ExileDB.Difficulties()
                                 .random());
                         be.data.activated = true;
                     }
                 }
 
-                Load.playerMaps(player)
+                Load.playerRPGData(player)
                     .syncToClient(player);
 
                 Packets.sendToClient(player, new SendActionToClient(pos, SendActionToClient.Action.OPEN_MAPS_GUI));

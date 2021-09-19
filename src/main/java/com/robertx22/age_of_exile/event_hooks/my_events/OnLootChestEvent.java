@@ -41,7 +41,7 @@ public class OnLootChestEvent extends EventConsumer<ExileEvents.OnChestLooted> {
             return;
         }
 
-        Load.favor(player)
+        Load.playerRPGData(player).favor
             .onOpenNewLootChest(info);
 
         List<ItemStack> items = MasterLootGen.generateLoot(info);

@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbso
 import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
 import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import com.robertx22.age_of_exile.saveclasses.PlayerDeathStatistics;
+import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
@@ -301,7 +301,7 @@ public class DamageEvent extends EffectEvent {
 
         if (target instanceof PlayerEntity) {
             info.dmgmap.forEach((key, value) -> {
-                PlayerDeathStatistics.record((PlayerEntity) target, key, value);
+                DeathStatsData.record((PlayerEntity) target, key, value);
             });
         }
 

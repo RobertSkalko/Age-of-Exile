@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.dimension.packets;
 
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.dimension.teleporter.TeleportedBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -51,7 +51,7 @@ public class StartDelveMapPacket extends MyPacket<StartDelveMapPacket> {
 
         PlayerEntity player = ctx.getPlayer();
 
-        PlayerMapsCap maps = Load.playerMaps(player);
+        RPGPlayerData maps = Load.playerRPGData(player);
 
         Difficulty difficulty = ExileDB.Difficulties()
             .get(diff);

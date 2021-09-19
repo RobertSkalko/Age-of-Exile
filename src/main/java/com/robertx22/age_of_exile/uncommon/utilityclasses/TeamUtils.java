@@ -67,7 +67,7 @@ public class TeamUtils {
             return true;
         }
 
-        if (Load.team(p1)
+        if (Load.playerRPGData(p1).team
             .isOnSameTeam(p2)) {
             return true;
         }

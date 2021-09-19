@@ -2,10 +2,10 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.capability.ChunkPopulatedCap;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
-import com.robertx22.age_of_exile.capability.player.*;
-import com.robertx22.age_of_exile.capability.player.data.PlayerDeathData;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
+import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
-import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
@@ -33,53 +33,23 @@ public class ComponentRegisters {
                 EntitySpellCap.ISpellsCap.class)
             .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntitySpellCap.SpellCap(x));
 
-    public ComponentType<PlayerFavor> PLAYER_FAVOR =
-        ComponentRegistry.INSTANCE.registerIfAbsent(
-                PlayerFavor.RESOURCE,
-                PlayerFavor.class)
-            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerFavor(x));
-
     public ComponentType<ChunkPopulatedCap> CHUNK_POPULATED =
         ComponentRegistry.INSTANCE.registerIfAbsent(
                 ChunkPopulatedCap.RESOURCE,
                 ChunkPopulatedCap.class)
             .attach(ChunkComponentCallback.EVENT, x -> new ChunkPopulatedCap());
 
-    public ComponentType<PlayerMapsCap> PLAYER_MAPS =
+    public ComponentType<RPGPlayerData> PLAYER_RPG_DATA =
         ComponentRegistry.INSTANCE.registerIfAbsent(
-                PlayerMapsCap.RESOURCE,
-                PlayerMapsCap.class)
-            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerMapsCap(x));
-
-    public ComponentType<PlayerStatPointsCap> STAT_POINTS =
-        ComponentRegistry.INSTANCE.registerIfAbsent(
-                PlayerStatPointsCap.RESOURCE,
-                PlayerStatPointsCap.class)
-            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerStatPointsCap(x));
-
-    public ComponentType<TeamCap> TEAM =
-        ComponentRegistry.INSTANCE.registerIfAbsent(
-                TeamCap.RESOURCE,
-                TeamCap.class)
-            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new TeamCap(x));
+                RPGPlayerData.RESOURCE,
+                RPGPlayerData.class)
+            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new RPGPlayerData(x));
 
     public ComponentType<PlayerSkills> PLAYER_SKILLS =
         ComponentRegistry.INSTANCE.registerIfAbsent(
                 PlayerSkills.RESOURCE,
                 PlayerSkills.class)
             .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerSkills(x));
-
-    public ComponentType<EntityPerks> PERKS =
-        ComponentRegistry.INSTANCE.registerIfAbsent(
-                new Identifier(Ref.MODID, "perks"),
-                EntityPerks.class)
-            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new EntityPerks(x));
-
-    public ComponentType<PlayerDeathData> PLAYER_DEATH_DATA =
-        ComponentRegistry.INSTANCE.registerIfAbsent(
-                new Identifier(Ref.MODID, "player_death_data"),
-                PlayerDeathData.class)
-            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerDeathData());
 
     public ComponentType<WorldDungeonCap> DUNGEON_DATA =
         ComponentRegistry.INSTANCE.registerIfAbsent(
@@ -90,14 +60,10 @@ public class ComponentRegisters {
     public ComponentRegisters() {
 
         EntityComponents.setRespawnCopyStrategy(UNIT_DATA, RespawnCopyStrategy.ALWAYS_COPY);
-        EntityComponents.setRespawnCopyStrategy(PLAYER_MAPS, RespawnCopyStrategy.ALWAYS_COPY);
+
+        EntityComponents.setRespawnCopyStrategy(PLAYER_RPG_DATA, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(SPELLS, RespawnCopyStrategy.ALWAYS_COPY);
-        EntityComponents.setRespawnCopyStrategy(PERKS, RespawnCopyStrategy.ALWAYS_COPY);
-        EntityComponents.setRespawnCopyStrategy(PLAYER_FAVOR, RespawnCopyStrategy.ALWAYS_COPY);
         EntityComponents.setRespawnCopyStrategy(PLAYER_SKILLS, RespawnCopyStrategy.ALWAYS_COPY);
-        EntityComponents.setRespawnCopyStrategy(PLAYER_DEATH_DATA, RespawnCopyStrategy.ALWAYS_COPY);
-        EntityComponents.setRespawnCopyStrategy(STAT_POINTS, RespawnCopyStrategy.ALWAYS_COPY);
-        EntityComponents.setRespawnCopyStrategy(TEAM, RespawnCopyStrategy.ALWAYS_COPY);
 
     }
 

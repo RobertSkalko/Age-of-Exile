@@ -18,7 +18,7 @@ public class GiveFavorReward extends RewardType {
 
     @Override
     public void giveReward(PlayerEntity playerEntity, RewardData rewardData) {
-        Load.favor(playerEntity)
+        Load.playerRPGData(playerEntity).favor
             .addFavor(rewardData.count);
     }
 

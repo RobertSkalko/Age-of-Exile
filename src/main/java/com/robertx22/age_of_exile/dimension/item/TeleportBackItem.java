@@ -47,7 +47,7 @@ public class TeleportBackItem extends AutoItem {
 
         if (!world.isClient) {
             if (WorldUtils.isMapWorldClass(world)) {
-                BlockPos pos = Load.playerMaps((PlayerEntity) player).data.tel_pos.up();
+                BlockPos pos = Load.playerRPGData((PlayerEntity) player).maps.tel_pos.up();
                 TeleportUtils.teleport((ServerPlayerEntity) player, pos, DimensionType.OVERWORLD_ID);
                 SoundUtils.playSound(player, SoundEvents.BLOCK_PORTAL_TRAVEL, world.random.nextFloat() * 0.4F + 0.8F, 0.25F);
             }

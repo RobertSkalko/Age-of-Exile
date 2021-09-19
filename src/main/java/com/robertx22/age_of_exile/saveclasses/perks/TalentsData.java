@@ -3,20 +3,28 @@ package com.robertx22.age_of_exile.saveclasses.perks;
 import com.robertx22.age_of_exile.capability.entity.EntityCap;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
+import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.PointData;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.TalentStatCtx;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.library_of_exile.main.Packets;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.*;
 
 @Storable
-public class PlayerPerksData {
+public class TalentsData implements IApplyableStats {
 
     @Store
     private HashMap<String, SchoolData> perks = new HashMap<>();
@@ -156,6 +164,91 @@ public class PlayerPerksData {
         }
 
         return false;
+    }
+
+    public void clearAllTalents() {
+        getPerks(TalentTree.SchoolType.TALENTS)
+            .clear();
+
+    }
+
+    public HashMap<PointData, Perk> getAllAllocatedPerks() {
+        HashMap<PointData, Perk> perks = new HashMap<>();
+        for (TalentTree.SchoolType type : TalentTree.SchoolType.values()) {
+            for (Map.Entry<String, SchoolData> x : getPerks(type)
+                .entrySet()) {
+                if (ExileDB.TalentTrees()
+                    .isRegistered(x.getKey())) {
+
+                    TalentTree school = ExileDB.TalentTrees()
+                        .get(x.getKey());
+                    if (school != null) {
+                        for (PointData p : x.getValue()
+                            .getAllocatedPoints(school)) {
+                            perks.put(p, school.calcData.getPerk(p));
+                        }
+                    }
+                }
+            }
+        }
+        return perks;
+    }
+
+    public PerkStatus getStatus(PlayerEntity player, TalentTree school, PointData point) {
+
+        if (isAllocated(school, point)) {
+            return PerkStatus.CONNECTED;
+        }
+        Perk perk = school.calcData.getPerk(point);
+
+        if (perk.isLockedToPlayer(player)) {
+            return PerkStatus.LOCKED_UNDER_ACHIEV;
+        }
+
+        if (canAllocate(school, point, Load.Unit(player), player)) {
+            return PerkStatus.POSSIBLE;
+        } else {
+            return PerkStatus.BLOCKED;
+        }
+    }
+
+    public Perk.Connection getConnection(TalentTree school, PointData one, PointData two) {
+
+        if (isAllocated(school, one)) {
+
+            if (isAllocated(school, two)) {
+                return Perk.Connection.LINKED;
+            }
+            return Perk.Connection.POSSIBLE;
+        } else if (isAllocated(school, two)) {
+            return Perk.Connection.POSSIBLE;
+        }
+
+        return Perk.Connection.BLOCKED;
+    }
+
+    public boolean isAllocated(TalentTree school, PointData point) {
+        return getSchool(school)
+            .isAllocated(point);
+    }
+
+    @Override
+    public List<StatContext> getStatAndContext(LivingEntity en) {
+        List<StatContext> ctx = new ArrayList<>();
+
+        HashMap<PointData, Perk> map = getAllAllocatedPerks();
+
+        int lvl = Load.Unit(en)
+            .getLevel();
+
+        map.forEach((key, value) -> {
+            List<ExactStatData> stats = new ArrayList<>();
+            value.stats.forEach(s -> stats.add(s.toExactStat(lvl)));
+            ctx.add(new TalentStatCtx(key, value, stats));
+
+        });
+
+        return ctx;
     }
 
 }

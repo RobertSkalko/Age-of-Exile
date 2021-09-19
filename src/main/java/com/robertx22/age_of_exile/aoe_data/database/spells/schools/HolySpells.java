@@ -55,9 +55,9 @@ public class HolySpells implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        song(HYMN_OF_VALOR, "Song of Valor", BeneficialEffects.VALOR);
-        song(HYMN_OF_PERSERVANCE, "Song of Perseverance", BeneficialEffects.PERSEVERANCE);
-        song(HYMN_OF_VIGOR, "Song of Vigor", BeneficialEffects.VIGOR);
+        song(HYMN_OF_VALOR, "Hymn of Valor", BeneficialEffects.VALOR);
+        song(HYMN_OF_PERSERVANCE, "Hymn of Perseverance", BeneficialEffects.PERSEVERANCE);
+        song(HYMN_OF_VIGOR, "Hymn of Vigor", BeneficialEffects.VIGOR);
 
         SpellBuilder.of(WHIRLWIND, SpellConfiguration.Builder.multiCast(10, 0, 100, 10)
                     .setSwingArm(), "Whirlwind",

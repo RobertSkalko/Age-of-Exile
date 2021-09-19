@@ -34,7 +34,7 @@ public class TalentResetPotion extends AutoItem implements IShapedRecipe {
 
         if (player instanceof PlayerEntity) {
             PlayerEntity p = (PlayerEntity) player;
-            Load.perks(p)
+            Load.playerRPGData(p).talents
                 .clearAllTalents();
             p.giveItemStack(new ItemStack(Items.GLASS_BOTTLE));
         }

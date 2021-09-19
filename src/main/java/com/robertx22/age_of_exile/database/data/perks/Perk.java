@@ -217,7 +217,7 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
         if (one_of_a_kind != null) {
             if (!one_of_a_kind.isEmpty()) {
 
-                if (Load.perks(player)
+                if (Load.playerRPGData(player).talents
                     .getAllAllocatedPerks()
                     .values()
                     .stream()

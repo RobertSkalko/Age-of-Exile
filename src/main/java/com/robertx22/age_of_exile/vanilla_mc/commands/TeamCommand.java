@@ -49,14 +49,14 @@ public class TeamCommand {
                 .then(literal("teams").requires(e -> e.hasPermissionLevel(0))
 
                     .then(literal("create").executes(x -> {
-                        Load.team(x.getSource()
-                            .getPlayer())
+                        Load.playerRPGData(x.getSource()
+                                .getPlayer()).team
                             .createTeam();
                         return 0;
                     }))
                     .then(literal("leave").executes(x -> {
-                        Load.team(x.getSource()
-                            .getPlayer())
+                        Load.playerRPGData(x.getSource()
+                                .getPlayer()).team
                             .leaveTeam();
                         return 0;
                     }))
@@ -82,7 +82,7 @@ public class TeamCommand {
                                 PlayerEntity player = x.getSource()
                                     .getPlayer();
 
-                                if (!Load.team(player)
+                                if (!Load.playerRPGData(player).team
                                     .isOnTeam()) {
                                     player.sendMessage(new LiteralText("You are not in a team."), false);
                                     return 0;
@@ -95,7 +95,7 @@ public class TeamCommand {
                                 other.sendMessage(new LiteralText("Do /age_of_exile teams join ").append(player.getDisplayName())
                                     .append(" to accept"), false);
 
-                                Load.team(other).invitedToTeam = Load.team(player).team_id;
+                                Load.playerRPGData(other).team.invitedToTeam = Load.playerRPGData(player).team.team_id;
 
                                 player.sendMessage(new LiteralText("You have invited ").append(other.getDisplayName())
                                     .append(new LiteralText(" to join your team.")), false);
@@ -112,7 +112,7 @@ public class TeamCommand {
 
                                 PlayerEntity other = EntityArgumentType.getPlayer(x, "player");
 
-                                if (!Load.team(player)
+                                if (!Load.playerRPGData(player).team
                                     .isOnSameTeam(other)) {
                                     player.sendMessage(new LiteralText("They aren't on your team"), false);
                                     return 0;
@@ -123,7 +123,7 @@ public class TeamCommand {
 
                                 player.sendMessage(new LiteralText("You have been made a team leader."), false);
 
-                                Load.team(other).isLeader = true;
+                                Load.playerRPGData(other).team.isLeader = true;
 
                                 player.sendMessage(new LiteralText("You have invited ").append(other.getDisplayName())
                                     .append(new LiteralText(" to join your team.")), false);
@@ -140,17 +140,17 @@ public class TeamCommand {
 
                                 PlayerEntity other = EntityArgumentType.getPlayer(x, "player");
 
-                                if (!Load.team(player).isLeader) {
+                                if (!Load.playerRPGData(player).team.isLeader) {
                                     player.sendMessage(new LiteralText("You can't kick members because you aren't the leader."), false);
                                     return 0;
                                 }
-                                if (!Load.team(player)
+                                if (!Load.playerRPGData(player).team
                                     .isOnSameTeam(other)) {
                                     player.sendMessage(new LiteralText("They aren't on your team"), false);
                                     return 0;
                                 }
 
-                                Load.team(other).team_id = "";
+                                Load.playerRPGData(other).team.team_id = "";
 
                                 other.sendMessage(new LiteralText("You have been kicked from your team."), false);
 
@@ -169,12 +169,12 @@ public class TeamCommand {
 
                                 PlayerEntity other = EntityArgumentType.getPlayer(x, "player");
 
-                                if (Load.team(other)
+                                if (Load.playerRPGData(other).team
                                     .isOnTeam()) {
 
-                                    if (Load.team(player).invitedToTeam.equals(Load.team(other).team_id)) {
-                                        Load.team(x.getSource()
-                                            .getPlayer())
+                                    if (Load.playerRPGData(player).team.invitedToTeam.equals(Load.playerRPGData(other).team.team_id)) {
+                                        Load.playerRPGData(x.getSource()
+                                                .getPlayer()).team
                                             .joinTeamOf(other);
 
                                         player.sendMessage(new LiteralText("You have joined ").append(other.getDisplayName())

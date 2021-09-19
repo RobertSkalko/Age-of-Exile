@@ -280,9 +280,9 @@ public class Unit {
                         statContexts.add(set.getStats(data));
                     });
 
-                Load.statPoints((PlayerEntity) entity).data.addStats(data);
+                Load.playerRPGData((PlayerEntity) entity).statPoints.addStats(data);
                 statContexts.addAll(PlayerStatUtils.AddPlayerBaseStats(entity));
-                statContexts.addAll(Load.perks(entity)
+                statContexts.addAll(Load.playerRPGData((PlayerEntity) entity).talents
                     .getStatAndContext(entity));
                 statContexts.addAll(Load.playerSkills((PlayerEntity) entity)
                     .getStatAndContext(entity));

@@ -33,11 +33,11 @@ public class FavorButton extends TexturedButtonWidget {
         if (isInside(x, y)) {
             List<Text> tooltip = new ArrayList<>();
 
-            FavorRank rank = Load.favor(mc.player)
+            FavorRank rank = Load.playerRPGData(mc.player).favor
                 .getRank();
 
             tooltip.add(Words.Favor.locName()
-                .append(": " + (int) Load.favor(mc.player)
+                .append(": " + (int) Load.playerRPGData(mc.player).favor
                     .getFavor())
                 .formatted(Formatting.WHITE)
                 .formatted(Formatting.BOLD));
@@ -59,7 +59,7 @@ public class FavorButton extends TexturedButtonWidget {
     @Override
     public void renderButton(MatrixStack matrix, int x, int y, float f) {
 
-        Identifier TEX = Load.favor(mc.player)
+        Identifier TEX = Load.playerRPGData(mc.player).favor
             .getRank()
             .getTexture();
 

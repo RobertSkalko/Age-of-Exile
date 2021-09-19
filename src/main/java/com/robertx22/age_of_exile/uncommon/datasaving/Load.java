@@ -2,9 +2,10 @@ package com.robertx22.age_of_exile.uncommon.datasaving;
 
 import com.robertx22.age_of_exile.capability.ChunkPopulatedCap;
 import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
-import com.robertx22.age_of_exile.capability.player.*;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
+import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
-import com.robertx22.age_of_exile.dimension.player_data.PlayerMapsCap;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -38,20 +39,8 @@ public class Load {
         return data;
     }
 
-    public static PlayerFavor favor(PlayerEntity provider) {
-        return ModRegistry.COMPONENTS.PLAYER_FAVOR.get(provider);
-    }
-
-    public static PlayerMapsCap playerMaps(PlayerEntity provider) {
-        return ModRegistry.COMPONENTS.PLAYER_MAPS.get(provider);
-    }
-
-    public static TeamCap team(PlayerEntity provider) {
-        return ModRegistry.COMPONENTS.TEAM.get(provider);
-    }
-
-    public static PlayerStatPointsCap statPoints(PlayerEntity provider) {
-        return ModRegistry.COMPONENTS.STAT_POINTS.get(provider);
+    public static RPGPlayerData playerRPGData(PlayerEntity provider) {
+        return ModRegistry.COMPONENTS.PLAYER_RPG_DATA.get(provider);
     }
 
     public static WorldDungeonCap dungeonData(World world) {
@@ -62,7 +51,4 @@ public class Load {
         return ModRegistry.COMPONENTS.PLAYER_SKILLS.get(provider);
     }
 
-    public static EntityPerks perks(Entity provider) {
-        return ModRegistry.COMPONENTS.PERKS.get(provider);
-    }
 }

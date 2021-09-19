@@ -18,7 +18,6 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModCriteria;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.MobAffixesData;
@@ -587,7 +586,7 @@ public class EntityCap {
                         OnLogin.GiveStarterItems(player);
                     }
 
-                    Load.favor(player)
+                    Load.playerRPGData(player).favor
                         .setFavor(ModConfig.get().Favor.STARTING_FAVOR); // newbie starting favor
 
                     Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
@@ -847,7 +846,7 @@ public class EntityCap {
             if (CheckIfCanLevelUp() && CheckLevelCap()) {
 
                 if (player instanceof ServerPlayerEntity) {
-                    ModCriteria.PLAYER_LEVEL.trigger((ServerPlayerEntity) player);
+                    //ModCriteria.PLAYER_LEVEL.trigger((ServerPlayerEntity) player);
                 }
 
                 // fully restore on lvlup
