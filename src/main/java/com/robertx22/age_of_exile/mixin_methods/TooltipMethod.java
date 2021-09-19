@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
@@ -18,14 +18,11 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.FishingRodItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
@@ -48,8 +45,6 @@ public class TooltipMethod {
                 tooltip.add(new LiteralText("Tier " + tier.tier.getDisplayTierNumber()).formatted(Formatting.LIGHT_PURPLE));
             }
 
-
-
             if (Screen.hasControlDown()) {
                 GearItemData gear = Gear.Load(stack);
                 if (gear != null) {
@@ -61,7 +56,7 @@ public class TooltipMethod {
                 return;
             }
 
-            EntityCap.UnitData unitdata = Load.Unit(player);
+            EntityData unitdata = Load.Unit(player);
 
             if (unitdata == null) {
                 return;

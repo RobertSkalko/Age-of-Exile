@@ -18,8 +18,8 @@ public class SkillRequirement {
     }
 
     public boolean meetsRequirement(PlayerEntity p) {
-        return Load.playerSkills(p)
-            .getLevel(skill) >= level;
+        return Load.playerRPGData(p).professions
+            .getProfessionLevel(skill) >= level;
 
     }
 

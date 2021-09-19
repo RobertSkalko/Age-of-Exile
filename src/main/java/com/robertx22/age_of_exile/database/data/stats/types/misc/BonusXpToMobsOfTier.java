@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.misc;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -59,7 +59,7 @@ public class BonusXpToMobsOfTier extends Stat implements IGenerated<Stat> {
         return "Tier " + tier.getDisplayTierNumber() + " Mob Exp";
     }
 
-    public boolean worksOn(EntityCap.UnitData mob) {
+    public boolean worksOn(EntityData mob) {
         return tier.levelRange.isLevelInRange(mob.getLevel());
 
     }

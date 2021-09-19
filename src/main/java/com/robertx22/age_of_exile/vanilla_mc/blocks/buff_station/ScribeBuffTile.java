@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station;
 
-import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -12,8 +12,8 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -108,9 +108,9 @@ public class ScribeBuffTile extends BaseModificationStation {
 
                 PlayerSkill skill = ExileDB.PlayerSkills()
                     .get(PlayerSkillEnum.INSCRIBING.id);
-                PlayerSkills skills = Load.playerSkills(player);
+                RPGPlayerData playerData = Load.playerRPGData(player);
                 int exp = (ink.tier.tier + 1) * skill.exp_per_action;
-                skills.addExp(skill.type_enum, exp);
+                playerData.professions.addExp(player, skill.type_enum, exp);
 
                 Load.Unit(player)
                     .syncToClient(player);

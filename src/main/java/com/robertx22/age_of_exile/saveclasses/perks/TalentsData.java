@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.perks;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
@@ -45,7 +45,7 @@ public class TalentsData implements IApplyableStats {
         return points;
     }
 
-    public int getFreePoints(EntityCap.UnitData data, TalentTree.SchoolType type) {
+    public int getFreePoints(EntityData data, TalentTree.SchoolType type) {
 
         int num = 0;
 
@@ -75,11 +75,11 @@ public class TalentsData implements IApplyableStats {
         getSchool(school).map.put(point, false);
     }
 
-    public boolean hasFreePoints(EntityCap.UnitData data, TalentTree.SchoolType type) {
+    public boolean hasFreePoints(EntityData data, TalentTree.SchoolType type) {
         return getFreePoints(data, type) > 0;
     }
 
-    public boolean canAllocate(TalentTree school, PointData point, EntityCap.UnitData data, PlayerEntity player) {
+    public boolean canAllocate(TalentTree school, PointData point, EntityData data, PlayerEntity player) {
 
         if (!hasFreePoints(data, school.getSchool_type())) {
             return false;

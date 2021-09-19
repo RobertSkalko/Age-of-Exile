@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.stats;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
@@ -34,7 +34,7 @@ public class PlusSpellLevelStat extends BaseDatapackStat implements IAfterStatCa
     }
 
     @Override
-    public void affectUnit(EntityCap.UnitData unitdata, StatData statdata) {
+    public void affectUnit(EntityData unitdata, StatData statdata) {
         Load.spells(unitdata.getEntity())
             .getSpellsData()
             .addToLevelsFromStat(this.spell, (int) statdata.getValue());

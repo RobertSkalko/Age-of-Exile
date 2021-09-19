@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.entity;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
@@ -34,7 +34,7 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
             throw new RuntimeException("Don't run this code on client!");
         }
 
-        UnitData endata = Load.Unit(entity);
+        EntityData endata = Load.Unit(entity);
 
         if (endata != null) {
 
@@ -63,7 +63,7 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
 
     }
 
-    public static Unit setupNewMob(LivingEntity entity, UnitData endata,
+    public static Unit setupNewMob(LivingEntity entity, EntityData endata,
                                    PlayerEntity nearestPlayer) {
 
         Unit mob = new Unit();

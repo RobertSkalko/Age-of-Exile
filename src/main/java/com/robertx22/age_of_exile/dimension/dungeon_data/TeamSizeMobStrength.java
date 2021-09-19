@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -19,7 +19,7 @@ public class TeamSizeMobStrength {
         this.regen = regen;
     }
 
-    public void addStats(EntityCap.UnitData data) {
+    public void addStats(EntityData data) {
 
         ExactStatData.noScaling(hp, ModType.GLOBAL_INCREASE, Health.getInstance()
                 .GUID())

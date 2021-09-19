@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
 import com.robertx22.age_of_exile.saveclasses.perks.TalentsData;
+import com.robertx22.age_of_exile.saveclasses.player_skills.ProfessionsData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.library_of_exile.utils.LoadSave;
@@ -27,6 +28,7 @@ public class RPGPlayerData implements ICommonPlayerCap {
     private static final String TALENTS_DATA = "talents";
     private static final String STAT_POINTS = "stat_points";
     private static final String DEATH_STATS = "death_stats";
+    private static final String PROFESSIONS = "profs";
 
     PlayerEntity player;
 
@@ -36,6 +38,7 @@ public class RPGPlayerData implements ICommonPlayerCap {
     public TalentsData talents = new TalentsData();
     public StatPointsData statPoints = new StatPointsData();
     public DeathStatsData deathStats = new DeathStatsData();
+    public ProfessionsData professions = new ProfessionsData();
 
     public RPGPlayerData(PlayerEntity player) {
         this.player = player;
@@ -65,6 +68,7 @@ public class RPGPlayerData implements ICommonPlayerCap {
         LoadSave.Save(talents, nbt, TALENTS_DATA);
         LoadSave.Save(statPoints, nbt, STAT_POINTS);
         LoadSave.Save(deathStats, nbt, DEATH_STATS);
+        LoadSave.Save(professions, nbt, PROFESSIONS);
 
         return nbt;
     }
@@ -78,6 +82,7 @@ public class RPGPlayerData implements ICommonPlayerCap {
         this.talents = loadOrBlank(TalentsData.class, new TalentsData(), nbt, TALENTS_DATA, new TalentsData());
         this.statPoints = loadOrBlank(StatPointsData.class, new StatPointsData(), nbt, STAT_POINTS, new StatPointsData());
         this.deathStats = loadOrBlank(DeathStatsData.class, new DeathStatsData(), nbt, DEATH_STATS, new DeathStatsData());
+        this.professions = loadOrBlank(ProfessionsData.class, new ProfessionsData(), nbt, PROFESSIONS, new ProfessionsData());
 
     }
 

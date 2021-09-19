@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.event_hooks.ontick;
 
 import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
@@ -73,7 +73,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
                 PopulateDungeonChunks.tryPopulateChunksAroundPlayer(player.world, player);
 
-                EntityCap.UnitData unitdata = Load.Unit(player);
+                EntityData unitdata = Load.Unit(player);
 
                 unitdata.getResources()
                     .shields.onTicksPassed(60);

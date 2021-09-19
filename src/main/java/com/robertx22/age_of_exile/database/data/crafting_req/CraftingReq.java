@@ -30,7 +30,7 @@ public class CraftingReq implements JsonExileRegistry<CraftingReq>, IAutoGson<Cr
     }
 
     public boolean meets(PlayerEntity player) {
-        return Load.playerSkills(player)
+        return Load.playerRPGData(player).professions
             .getDataFor(skill)
             .getLvl() >= lvl;
     }

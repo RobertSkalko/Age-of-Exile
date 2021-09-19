@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
@@ -20,7 +20,7 @@ public class EfficientMobUnitPacket extends MyPacket<EfficientMobUnitPacket> {
 
     }
 
-    public EfficientMobUnitPacket(Entity entity, EntityCap.UnitData data) {
+    public EfficientMobUnitPacket(Entity entity, EntityData data) {
         this.id = entity.getEntityId();
         NbtCompound nbt = new NbtCompound();
         data.addClientNBT(nbt);

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
@@ -163,7 +163,7 @@ public class Unit {
         return StatData.empty();
     }
 
-    public String randomRarity(LivingEntity entity, UnitData data) {
+    public String randomRarity(LivingEntity entity, EntityData data) {
 
         List<MobRarity> rarities = ExileDB.MobRarities()
             .getList()
@@ -243,7 +243,7 @@ public class Unit {
         });
     }
 
-    public void recalculateStats(LivingEntity entity, UnitData data, AttackInformation dmgData) {
+    public void recalculateStats(LivingEntity entity, EntityData data, AttackInformation dmgData) {
 
         try {
             if (entity.world.isClient) {
@@ -284,7 +284,7 @@ public class Unit {
                 statContexts.addAll(PlayerStatUtils.AddPlayerBaseStats(entity));
                 statContexts.addAll(Load.playerRPGData((PlayerEntity) entity).talents
                     .getStatAndContext(entity));
-                statContexts.addAll(Load.playerSkills((PlayerEntity) entity)
+                statContexts.addAll(Load.playerRPGData((PlayerEntity) entity).professions
                     .getStatAndContext(entity));
                 statContexts.addAll(Load.spells(entity)
                     .getStatAndContext(entity));
@@ -408,7 +408,7 @@ public class Unit {
 
     }
 
-    private void addVanillaHpToStats(LivingEntity entity, UnitData data) {
+    private void addVanillaHpToStats(LivingEntity entity, EntityData data) {
         if (entity instanceof PlayerEntity) {
 
             float maxhp = MathHelper.clamp(entity.getMaxHealth(), 0, 500);
@@ -421,7 +421,7 @@ public class Unit {
         }
     }
 
-    private List<StatContext> addGearStats(List<GearData> gears, LivingEntity entity, UnitData data) {
+    private List<StatContext> addGearStats(List<GearData> gears, LivingEntity entity, EntityData data) {
 
         List<StatContext> ctxs = new ArrayList<>();
 
@@ -450,7 +450,7 @@ public class Unit {
         return true;
     }
 
-    public static MyPacket getUpdatePacketFor(LivingEntity en, UnitData data) {
+    public static MyPacket getUpdatePacketFor(LivingEntity en, EntityData data) {
         return new EfficientMobUnitPacket(en, data);
     }
 

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station;
 
-import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -289,13 +289,13 @@ public class TileGearSalvage extends BaseSkillStation {
                 PlayerSkill skill = ExileDB.PlayerSkills()
                     .get(PlayerSkillEnum.SALVAGING.id);
 
-                PlayerSkills skills = Load.playerSkills(player);
+                RPGPlayerData playerData = Load.playerRPGData(player);
 
                 int exp = skill.getExpForAction(player);
 
-                skills.addExp(skill.type_enum, exp);
+                playerData.professions.addExp(player, skill.type_enum, exp);
 
-                List<ItemStack> list = skill.getExtraDropsFor(player, exp, LevelUtils.levelToSkillTier(skills.getLevel(skill.type_enum)));
+                List<ItemStack> list = skill.getExtraDropsFor(player, exp, LevelUtils.levelToSkillTier(playerData.professions.getProfessionLevel(skill.type_enum)));
 
                 SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.SALVAGING, list);
                 effect.Activate();

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
@@ -29,7 +29,7 @@ public class TooltipUtils {
         return new LiteralText(format + "").append(comp);
     }
 
-    public static void addRequirements(List<Text> tip, int lvl, StatRequirement req, EntityCap.UnitData data) {
+    public static void addRequirements(List<Text> tip, int lvl, StatRequirement req, EntityData data) {
 
         if (data.getLevel() >= lvl) {
             tip.add(new LiteralText(Formatting.GREEN + "" + Formatting.BOLD + StatRequirement.CHECK_YES_ICON + Formatting.GRAY)

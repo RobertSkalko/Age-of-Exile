@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseRegenEffect;
@@ -28,9 +28,9 @@ public class RegeneratePercentStat extends Stat {
     Stat statRestored;
     ResourceType type;
 
-    Function<EntityCap.UnitData, Float> maxGetter;
+    Function<EntityData, Float> maxGetter;
 
-    private RegeneratePercentStat(Stat statRestored, ResourceType rtype, Function<EntityCap.UnitData, Float> getmax) {
+    private RegeneratePercentStat(Stat statRestored, ResourceType rtype, Function<EntityData, Float> getmax) {
         this.statRestored = statRestored;
         this.scaling = StatScaling.NONE;
         this.type = rtype;

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.core_stats;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
@@ -68,7 +68,7 @@ public class AllAttributes extends Stat implements ITransferToOtherStats {
     }
 
     @Override
-    public void transferStats(EntityCap.UnitData unit, InCalcStatData thisstat) {
+    public void transferStats(EntityData unit, InCalcStatData thisstat) {
         for (Stat ele : coreStatsThatBenefit()) {
             thisstat.addFullyTo(unit.getUnit()
                 .getStatInCalculation(ele));

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.registry;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
@@ -51,7 +51,7 @@ public class ExileDB {
         return DimensionConfigs().get(id);
     }
 
-    public static EntityConfig getEntityConfig(LivingEntity entity, EntityCap.UnitData data) {
+    public static EntityConfig getEntityConfig(LivingEntity entity, EntityData data) {
 
         String monster_id = Registry.ENTITY_TYPE.getId(entity.getType())
             .toString();

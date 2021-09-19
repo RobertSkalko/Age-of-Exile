@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.gear_types.bases;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.NormalWeaponMechanic;
@@ -70,7 +70,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         return tags;
     }
 
-   
     @Override
     public final String GUID() {
         return guid;
@@ -78,7 +77,7 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
 
     public GearSlot getGearSlot() {
         return ExileDB.GearSlots()
-                .get(gear_slot);
+            .get(gear_slot);
     }
 
     @Override
@@ -118,16 +117,15 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         return weight;
     }
 
-
-    public final float getAttacksPerSecondCalculated(EntityCap.UnitData data) {
+    public final float getAttacksPerSecondCalculated(EntityData data) {
         return getAttacksPerSecondCalculated(data.getUnit()
-                .getCalculatedStat(Stats.ATTACK_SPEED.get()));
+            .getCalculatedStat(Stats.ATTACK_SPEED.get()));
     }
 
     public final float getAttacksPerSecondCalculated(StatData stat) {
 
         float multi = stat
-                .getMultiplier();
+            .getMultiplier();
 
         float f = multi * attacksPerSecond;
 
@@ -148,7 +146,7 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
 
     public final boolean isMeleeWeapon() {
         return this.getTags()
-                .contains(SlotTag.melee_weapon);
+            .contains(SlotTag.melee_weapon);
     }
 
     public boolean isShield() {
@@ -253,7 +251,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
     public final boolean isMageWeapon() {
         return getTags().contains(SlotTag.mage_weapon);
     }
-
 
     @Override
     public Class<BaseGearType> getClassForSerialization() {

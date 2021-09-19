@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.base.ITransferToOtherStats;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
@@ -42,7 +42,7 @@ public abstract class ElementalStat extends Stat implements IElementalGenerated<
     }
 
     @Override
-    public void transferStats(EntityCap.UnitData unit, InCalcStatData thisstat) {
+    public void transferStats(EntityData unit, InCalcStatData thisstat) {
         if (this.element == Elements.Elemental) {
             for (Elements ele : Elements.getAllSingleElementals()) {
                 thisstat.addFullyTo(unit.getUnit()

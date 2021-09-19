@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
@@ -95,7 +95,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return lvl + getRarity().bonus_effective_lvls;
     }
 
-    public boolean canPlayerWear(EntityCap.UnitData data) {
+    public boolean canPlayerWear(EntityData data) {
 
         if (LevelUtils.tierToLevel(getTier()) > data.getLevel()) {
             return false;
@@ -110,7 +110,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public boolean isValidItem() {
 
         return ExileDB.GearTypes()
-                .isRegistered(gear_type);
+            .isRegistered(gear_type);
     }
 
     public boolean canGetAffix(Affix affix) {
@@ -123,7 +123,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     }
 
- 
     public float getInstability() {
         return in;
     }
@@ -153,7 +152,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Override
     public GearRarity getRarity() {
         return ExileDB.GearRarities()
-                .get(this.rarity);
+            .get(this.rarity);
     }
 
     public Text name(ItemStack stack) {
@@ -168,14 +167,14 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public BaseGearType GetBaseGearType() {
         return ExileDB.GearTypes()
-                .get(gear_type);
+            .get(gear_type);
     }
 
     public List<MutableText> GetDisplayName(ItemStack stack) {
 
         try {
             Formatting format = this.getRarity()
-                    .textFormatting();
+                .textFormatting();
 
             if (useFullAffixedName()) {
                 return getFullAffixedName();
@@ -199,7 +198,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     private List<MutableText> getFullAffixedName() {
         List<MutableText> list = new ArrayList<>();
         Formatting format = this.getRarity()
-                .textFormatting();
+            .textFormatting();
 
         MutableText text = new LiteralText("");
 
@@ -208,23 +207,23 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             AffixData prefix = affixes.pre.get(0);
 
             text
-                    .append(prefix.BaseAffix()
-                            .locName()
-                            .append(" "));
+                .append(prefix.BaseAffix()
+                    .locName()
+                    .append(" "));
         }
         if (this.uniqueStats == null) {
             text.append(GetBaseGearType().locName());
         } else {
             text.append(uniqueStats.getUnique(this)
-                    .locName()
+                .locName()
             );
         }
 
         if (affixes.hasSuffix()) {
             AffixData suffix = affixes.suf.get(0);
             text.append(" ")
-                    .append(suffix.BaseAffix()
-                            .locName());
+                .append(suffix.BaseAffix()
+                    .locName());
         }
 
         text.formatted(format);
@@ -238,16 +237,16 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     private List<MutableText> getUniqueName() {
         List<MutableText> list = new ArrayList<>();
         Formatting format = this.getRarity()
-                .textFormatting();
+            .textFormatting();
 
         UniqueGear uniq = this.uniqueStats.getUnique(this);
 
         MutableText txt = new LiteralText("").append(uniq.locName()
-                .formatted(format));
+            .formatted(format));
 
         if (!uniq.replaces_name) {
             txt.append(new LiteralText(format + " ").append(GetBaseGearType().locName()
-                    .formatted(format)));
+                .formatted(format)));
         }
 
         list.addAll(TooltipUtils.cutIfTooLong(txt, format));
@@ -258,7 +257,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     private List<MutableText> getTooManyAffixesName() {
         List<MutableText> list = new ArrayList<>();
         Formatting format = this.getRarity()
-                .textFormatting();
+            .textFormatting();
 
         Words prefix = RareItemAffixNames.getPrefix(this);
         Words suffix = RareItemAffixNames.getSuffix(this);
@@ -268,10 +267,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             MutableText txt = new LiteralText("");
 
             txt.append(new LiteralText("").append(prefix.locName())
-                    .append(" "));
+                .append(" "));
 
             txt.append(new LiteralText("").append(suffix.locName())
-                    .formatted(format));
+                .formatted(format));
 
             txt.append(new LiteralText(" ").append(GetBaseGearType().locName()));
 
@@ -309,7 +308,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         IfNotNullAdd(imp, list);
 
         affixes.getAllAffixesAndSockets()
-                .forEach(x -> IfNotNullAdd(x, list));
+            .forEach(x -> IfNotNullAdd(x, list));
 
         IfNotNullAdd(sockets, list);
 
@@ -351,7 +350,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         IfNotNullAdd(baseStats, list);
 
         affixes.getAllAffixesAndSockets()
-                .forEach(x -> IfNotNullAdd(x, list));
+            .forEach(x -> IfNotNullAdd(x, list));
 
         list.add(imp);
 
@@ -370,7 +369,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         if (this.can_sal) {
             try {
                 SalvageOutput sal = RandomUtils.weightedRandom(ExileDB.SalvageOutputs()
-                        .getFiltered(x -> x.isForItem(this.lvl))
+                    .getFiltered(x -> x.isForItem(this.lvl))
                 );
                 if (sal != null) {
                     return sal.getResult(this);
@@ -402,8 +401,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public boolean isWeapon() {
         try {
             if (GetBaseGearType()
-                    .family()
-                    .equals(BaseGearType.SlotFamily.Weapon)) {
+                .family()
+                .equals(BaseGearType.SlotFamily.Weapon)) {
                 return true;
             }
         } catch (Exception e) {
@@ -418,7 +417,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             return false;
         }
         return getRarity()
-                .isHigherThan(other.getRarity());
+            .isHigherThan(other.getRarity());
     }
 
 }

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.loot;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
@@ -35,8 +35,8 @@ public class LootInfo {
     public int tier = 1;
 
     public LootOrigin lootOrigin;
-    public UnitData mobData;
-    public UnitData playerData;
+    public EntityData mobData;
+    public EntityData playerData;
     public LivingEntity mobKilled;
     public PlayerEntity player;
     public World world;

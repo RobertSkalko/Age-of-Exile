@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.stat_calculation;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 
 public class MobStatUtils {
 
-    public static void addMapStats(LivingEntity en, UnitData mobdata, Unit unit) {
+    public static void addMapStats(LivingEntity en, EntityData mobdata, Unit unit) {
 
         Difficulty tier = mobdata.getMapDifficulty();
 
@@ -103,7 +103,7 @@ public class MobStatUtils {
 
     }
 
-    public static List<StatContext> getMobConfigStats(LivingEntity entity, UnitData unitdata) {
+    public static List<StatContext> getMobConfigStats(LivingEntity entity, EntityData unitdata) {
         List<StatContext> list = new ArrayList<>();
         List<ExactStatData> stats = new ArrayList<>();
 
@@ -132,7 +132,7 @@ public class MobStatUtils {
         return list;
     }
 
-    public static List<StatContext> getMobBaseStats(UnitData unitdata, LivingEntity en) {
+    public static List<StatContext> getMobBaseStats(EntityData unitdata, LivingEntity en) {
         List<StatContext> list = new ArrayList<>();
         List<ExactStatData> stats = new ArrayList<>();
 

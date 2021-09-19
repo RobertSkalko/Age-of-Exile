@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 public class GearTooltipUtils {
 
-    public static void BuildTooltip(GearItemData gear, ItemStack stack, List<Text> tooltip, UnitData data) {
+    public static void BuildTooltip(GearItemData gear, ItemStack stack, List<Text> tooltip, EntityData data) {
 
         List<Text> tip = tooltip;
 

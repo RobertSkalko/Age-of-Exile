@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
@@ -49,7 +49,7 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
     public StatRequirement() {
     }
 
-    public boolean meetsReq(int lvl, EntityCap.UnitData data) {
+    public boolean meetsReq(int lvl, EntityData data) {
 
         for (Stat x : AllAttributes.getInstance()
             .coreStatsThatBenefit()) {
@@ -118,7 +118,7 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
         return this;
     }
 
-    public List<Text> GetTooltipString(int lvl, EntityCap.UnitData data) {
+    public List<Text> GetTooltipString(int lvl, EntityData data) {
         List<Text> list = new ArrayList<>();
 
         for (Stat x : AllAttributes.getInstance()
@@ -140,7 +140,7 @@ public class StatRequirement implements IAutoGson<StatRequirement> {
         return this.base_req.isEmpty() && this.scaling_req.isEmpty();
     }
 
-    static Text getTooltip(int req, Stat stat, EntityCap.UnitData data) {
+    static Text getTooltip(int req, Stat stat, EntityData data) {
 
         if (data.getUnit()
             .getCalculatedStat(stat)

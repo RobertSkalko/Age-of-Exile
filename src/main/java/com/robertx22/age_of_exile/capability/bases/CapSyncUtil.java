@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.capability.bases;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +19,7 @@ public class CapSyncUtil {
     }
 
     public static void syncEntityCap(PlayerEntity player) {
-        EntityCap.UnitData data = Load.Unit(player);
+        EntityData data = Load.Unit(player);
         data.syncToClient(player);
     }
 

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
@@ -29,7 +29,7 @@ public class HealthUtils {
     }
 
     public static float getMaxHealth(LivingEntity en) {
-        EntityCap.UnitData data = Load.Unit(en);
+        EntityData data = Load.Unit(en);
 
         if (en.world.isClient) {
             return data.getSyncedMaxHealth(); // for client, health needs to be synced
@@ -52,13 +52,13 @@ public class HealthUtils {
     }
 
     public static float getCombinedMaxHealth(LivingEntity en) {
-        EntityCap.UnitData data = Load.Unit(en);
+        EntityData data = Load.Unit(en);
         return getMaxHealth(en);
 
     }
 
     public static float getCombinedCurrentHealth(LivingEntity en) {
-        EntityCap.UnitData data = Load.Unit(en);
+        EntityData data = Load.Unit(en);
         return getCurrentHealth(en);
     }
 }

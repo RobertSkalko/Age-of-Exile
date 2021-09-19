@@ -44,7 +44,7 @@ public class SetSkillLevel {
             }
         }
 
-        Load.playerSkills(player)
+        Load.playerRPGData(player).professions
             .getDataFor(id)
             .setLvl(lvl);
 

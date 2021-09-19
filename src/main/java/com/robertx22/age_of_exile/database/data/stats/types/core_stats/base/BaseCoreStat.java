@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.types.core_stats.base;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
@@ -62,7 +62,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         return (data.getValue() - 1) * 100;
     }
 
-    public List<Text> getCoreStatTooltip(EntityCap.UnitData unitdata, StatData data) {
+    public List<Text> getCoreStatTooltip(EntityData unitdata, StatData data) {
 
         TooltipInfo info = new TooltipInfo(unitdata, null);
 
@@ -98,7 +98,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
     }
 
     @Override
-    public void addToOtherStats(EntityCap.UnitData unitdata, InCalcStatData data) {
+    public void addToOtherStats(EntityData unitdata, InCalcStatData data) {
         int perc = (int) getPercent(data.getCalculated());
         getMods(perc, unitdata.getLevel()).forEach(x -> x.applyStats(unitdata));
     }

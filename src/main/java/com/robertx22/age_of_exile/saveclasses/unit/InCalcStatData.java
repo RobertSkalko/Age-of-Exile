@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -25,7 +25,6 @@ public class InCalcStatData {
     private InCalcStatData() {
 
     }
-
 
     public InCalcStatData(String id) {
         this.id = id;
@@ -53,10 +52,9 @@ public class InCalcStatData {
 
     }
 
-
     public Stat GetStat() {
         return ExileDB.Stats()
-                .get(id);
+            .get(id);
     }
 
     public void addMulti(float multi) {
@@ -98,7 +96,7 @@ public class InCalcStatData {
         this.Flat *= multi;
     }
 
-    public void add(ExactStatData modData, EntityCap.UnitData data) {
+    public void add(ExactStatData modData, EntityData data) {
         ModType type = modData.getType();
 
         float v1 = modData.getFirstValue();

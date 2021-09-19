@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.set;
 
 import com.google.common.base.Preconditions;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -38,7 +38,7 @@ public class GearSet implements JsonExileRegistry<GearSet>, IAutoGson<GearSet>, 
         return 1000;
     }
 
-    public StatContext getStats(EntityCap.UnitData data) {
+    public StatContext getStats(EntityData data) {
 
         List<ExactStatData> list = new ArrayList<>();
 

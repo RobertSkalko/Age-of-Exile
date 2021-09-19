@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.a_libraries.curios;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ public class OnCurioChangeEvent implements CurioChangeCallback {
 
         if (entity != null) {
             if (!entity.world.isClient) {
-                EntityCap.UnitData data = Load.Unit(entity);
+                EntityData data = Load.Unit(entity);
                 if (data != null) {
                     data.setEquipsChanged(true);
                     data.tryRecalculateStats();

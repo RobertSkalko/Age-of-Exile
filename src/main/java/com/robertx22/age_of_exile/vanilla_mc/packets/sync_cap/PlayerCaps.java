@@ -13,15 +13,6 @@ public enum PlayerCaps {
         }
 
     },
-
-    PLAYER_SKILLS {
-        @Override
-        public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.playerSkills(player);
-        }
-
-    },
-
     PLAYER_RPG_DATA {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {
@@ -29,7 +20,6 @@ public enum PlayerCaps {
         }
 
     },
-
     SPELLS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {

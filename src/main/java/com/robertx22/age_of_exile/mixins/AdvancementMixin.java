@@ -40,7 +40,7 @@ public abstract class AdvancementMixin {
                     // System.out.print(" giving " + xp + " xp for " + adv.getId()
                     //   .toString());
 
-                    Load.playerSkills(player)
+                    Load.playerRPGData(player).professions
                         .getDataFor(PlayerSkillEnum.EXPLORATION)
                         .addExp(player, (int) xp);
 

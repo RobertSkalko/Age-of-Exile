@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.player;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -36,7 +36,7 @@ public class OnLogin {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName(), false);
             }
 
-            UnitData data = Load.Unit(player);
+            EntityData data = Load.Unit(player);
 
             data.onLogin(player);
 

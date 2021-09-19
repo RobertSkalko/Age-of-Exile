@@ -16,8 +16,8 @@ public class OwnerData {
 
     public OwnerData(PlayerEntity p) {
         for (PlayerSkillEnum sk : PlayerSkillEnum.values()) {
-            lvls.put(sk.id, Load.playerSkills(p)
-                .getLevel(sk));
+            lvls.put(sk.id, Load.playerRPGData(p).professions
+                .getProfessionLevel(sk));
         }
     }
 

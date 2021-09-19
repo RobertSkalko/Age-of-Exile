@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.events;
 
-import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -66,13 +66,13 @@ public class OnBlockDropFarming {
             PlayerSkill skill = ExileDB.PlayerSkills()
                 .get(PlayerSkillEnum.FARMING.id);
 
-            PlayerSkills skills = Load.playerSkills(player);
+            RPGPlayerData data = Load.playerRPGData(player);
 
             int exp = skill.getExpForBlockBroken(block);
 
             if (exp > 0) {
 
-                skills.addExp(skill.type_enum, exp);
+                data.professions.addExp(player, skill.type_enum, exp);
                 List<ItemStack> list = skill.getExtraDropsFor(player, exp, SkillItemTier.TIER0); // todo tier
 
                 SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.FARMING, list);

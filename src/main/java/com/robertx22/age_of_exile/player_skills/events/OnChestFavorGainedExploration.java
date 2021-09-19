@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.events;
 
-import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.LootInfo;
@@ -21,9 +21,9 @@ public class OnChestFavorGainedExploration {
         PlayerSkill exploration = ExileDB.PlayerSkills()
             .get(PlayerSkillEnum.EXPLORATION.id);
 
-        PlayerSkills skills = Load.playerSkills(player);
+        RPGPlayerData skills = Load.playerRPGData(player);
 
-        skills.addExp(PlayerSkillEnum.EXPLORATION, favor * 2);
+        skills.professions.addExp(player, PlayerSkillEnum.EXPLORATION, favor * 2);
         List<ItemStack> list = exploration.getExtraDropsFor(player, favor, LevelUtils.levelToSkillTier(info.level));
 
         SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.EXPLORATION, list);

@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
@@ -36,7 +36,7 @@ public class ItemIncreaseRarityNearestEntity extends Item {
 
                     if (en.isPartOf(player) == false && en instanceof PlayerEntity == false) {
 
-                        UnitData data = Load.Unit(en);
+                        EntityData data = Load.Unit(en);
 
                         if (data.increaseRarity()) {
 

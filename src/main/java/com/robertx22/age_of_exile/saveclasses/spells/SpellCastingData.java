@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.spells;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -262,7 +262,7 @@ public class SpellCastingData {
             }
         }
 
-        EntityCap.UnitData data = Load.Unit(caster);
+        EntityData data = Load.Unit(caster);
 
         if (data != null) {
 

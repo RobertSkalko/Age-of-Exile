@@ -25,8 +25,8 @@ public class OnCraftGiveSkillExp {
                 .findAny();
 
             if (opt.isPresent()) {
-                Load.playerSkills(player)
-                    .addExp(skill.type_enum, (int) opt.get().exp);
+                Load.playerRPGData(player).professions
+                    .addExp(player, skill.type_enum, (int) opt.get().exp);
             }
 
         }

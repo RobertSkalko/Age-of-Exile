@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.damage_hooks.util;
 
 import com.google.common.base.Preconditions;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -54,11 +54,11 @@ public class AttackInformation {
         return attackerEntity;
     }
 
-    public EntityCap.UnitData getAttackerEntityData() {
+    public EntityData getAttackerEntityData() {
         return Load.Unit(attackerEntity);
     }
 
-    public EntityCap.UnitData getTargetEntityData() {
+    public EntityData getTargetEntityData() {
         return Load.Unit(targetEntity);
     }
 

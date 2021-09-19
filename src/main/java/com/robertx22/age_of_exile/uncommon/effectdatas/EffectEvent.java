@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.test.DatapackStat;
@@ -17,8 +17,8 @@ import java.util.List;
 
 public abstract class EffectEvent implements IGUID {
 
-    public UnitData sourceData;
-    public UnitData targetData;
+    public EntityData sourceData;
+    public EntityData targetData;
 
     public LivingEntity source;
     public LivingEntity target;
@@ -103,7 +103,7 @@ public abstract class EffectEvent implements IGUID {
 
     protected abstract void activate();
 
-    protected void TryApplyEffects(LivingEntity en, UnitData data, EffectSides side) {
+    protected void TryApplyEffects(LivingEntity en, EntityData data, EffectSides side) {
 
         if (this.data.isCanceled()) {
             return;
@@ -138,7 +138,7 @@ public abstract class EffectEvent implements IGUID {
         }
     }
 
-    private List<EffectWithCtx> AddEffects(List<EffectWithCtx> effects, UnitData unit, LivingEntity en, EffectSides side) {
+    private List<EffectWithCtx> AddEffects(List<EffectWithCtx> effects, EntityData unit, LivingEntity en, EffectSides side) {
 
         if (unit != null) {
             unit.getUnit()

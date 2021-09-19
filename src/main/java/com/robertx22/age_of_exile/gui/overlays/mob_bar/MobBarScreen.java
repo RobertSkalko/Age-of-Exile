@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.gui.overlays.mob_bar;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -61,7 +61,7 @@ public class MobBarScreen extends DrawableHelper implements HudRenderCallback {
 
             if (en != null) {
 
-                EntityCap.UnitData data = Load.Unit(en);
+                EntityData data = Load.Unit(en);
 
                 if (data != null && data.getUnit() != null) {
                     int currentHp = (int) en.getHealth();

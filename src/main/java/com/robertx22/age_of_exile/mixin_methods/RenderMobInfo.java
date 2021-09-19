@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -56,7 +56,7 @@ public class RenderMobInfo {
 
                 float yOffset = entity.getHeight() + 0.5F;
 
-                EntityCap.UnitData data = Load.Unit(entity);
+                EntityData data = Load.Unit(entity);
 
                 boolean hidelvl = data.getLevel() - 10 > Load.Unit(MinecraftClient.getInstance().player)
                     .getLevel();

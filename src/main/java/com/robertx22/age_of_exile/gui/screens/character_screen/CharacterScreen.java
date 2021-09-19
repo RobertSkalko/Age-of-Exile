@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.gui.screens.character_screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.CoreStat;
@@ -26,7 +26,7 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.FavorButton;
-import com.robertx22.age_of_exile.gui.screens.player_skills.TalentTreeScreen;
+import com.robertx22.age_of_exile.gui.screens.player_skills.ProfessionsScreen;
 import com.robertx22.age_of_exile.gui.screens.spell.SpellScreen;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiScreen;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -229,7 +229,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             // hub buttons
             List<INamedScreen> screens = new ArrayList<>();
             screens.add(new SpellScreen());
-            screens.add(new TalentTreeScreen());
+            screens.add(new ProfessionsScreen());
             screens.add(new WikiScreen());
 
             int x = guiLeft + sizeX - 1;
@@ -418,7 +418,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
     }
 
-    public static String getStatString(StatData data, EntityCap.UnitData unitdata) {
+    public static String getStatString(StatData data, EntityData unitdata) {
         Stat stat = data.GetStat();
 
         String v1 = NumberUtils.formatForTooltip(data

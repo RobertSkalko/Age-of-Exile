@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.commands.stats;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.commands.CommandRefs;
 import net.minecraft.command.argument.EntityArgumentType;
@@ -38,7 +38,7 @@ public class RemoveStat {
 
             if (en instanceof LivingEntity) {
 
-                EntityCap.UnitData data = Load.Unit(en);
+                EntityData data = Load.Unit(en);
 
                 if (scaling.equals("exact")) {
                     data.getCustomExactStats()

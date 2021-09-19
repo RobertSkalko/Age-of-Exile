@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.event_hooks.my_events;
 
 import com.robertx22.age_of_exile.capability.bases.EntityGears;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.dimension.rules.OnTickCancelTargettingOtherMobs;
 import com.robertx22.age_of_exile.dimension.rules.OnTickDespawnIfFailedOrEmpty;
 import com.robertx22.age_of_exile.dimension.rules.OnTickRegenerate;
@@ -50,7 +50,7 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
             return;
         }
 
-        EntityCap.UnitData data = Load.Unit(entity);
+        EntityData data = Load.Unit(entity);
 
         EntityGears gears = data.getCurrentGears();
 
@@ -75,7 +75,7 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
     private static void on$change(LivingEntity entity) {
         if (entity != null) {
 
-            EntityCap.UnitData data = Load.Unit(entity);
+            EntityData data = Load.Unit(entity);
             data.setEquipsChanged(true);
             data.tryRecalculateStats();
 

@@ -1,9 +1,8 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.capability.ChunkPopulatedCap;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
-import com.robertx22.age_of_exile.capability.player.PlayerSkills;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
@@ -21,11 +20,11 @@ import net.minecraft.util.Identifier;
 @Deprecated
 public class ComponentRegisters {
 
-    public ComponentType<EntityCap.UnitData> UNIT_DATA =
+    public ComponentType<EntityData> UNIT_DATA =
         ComponentRegistry.INSTANCE.registerIfAbsent(
                 new Identifier(Ref.MODID, "unit_data"),
-                EntityCap.UnitData.class)
-            .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntityCap.DefaultImpl(x));
+                EntityData.class)
+            .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntityData(x));
 
     public ComponentType<EntitySpellCap.ISpellsCap> SPELLS =
         ComponentRegistry.INSTANCE.registerIfAbsent(
@@ -45,12 +44,6 @@ public class ComponentRegisters {
                 RPGPlayerData.class)
             .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new RPGPlayerData(x));
 
-    public ComponentType<PlayerSkills> PLAYER_SKILLS =
-        ComponentRegistry.INSTANCE.registerIfAbsent(
-                PlayerSkills.RESOURCE,
-                PlayerSkills.class)
-            .attach(EntityComponentCallback.event(PlayerEntity.class), x -> new PlayerSkills(x));
-
     public ComponentType<WorldDungeonCap> DUNGEON_DATA =
         ComponentRegistry.INSTANCE.registerIfAbsent(
                 WorldDungeonCap.RESOURCE,
@@ -62,8 +55,8 @@ public class ComponentRegisters {
         EntityComponents.setRespawnCopyStrategy(UNIT_DATA, RespawnCopyStrategy.ALWAYS_COPY);
 
         EntityComponents.setRespawnCopyStrategy(PLAYER_RPG_DATA, RespawnCopyStrategy.ALWAYS_COPY);
+
         EntityComponents.setRespawnCopyStrategy(SPELLS, RespawnCopyStrategy.ALWAYS_COPY);
-        EntityComponents.setRespawnCopyStrategy(PLAYER_SKILLS, RespawnCopyStrategy.ALWAYS_COPY);
 
     }
 

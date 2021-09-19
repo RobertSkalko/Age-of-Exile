@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.stats;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
@@ -50,7 +50,7 @@ public class MoreXPerYOf extends BaseDatapackStat implements IAffectsStats {
     }
 
     @Override
-    public void affectStats(EntityCap.UnitData data, InCalcStatData statData) {
+    public void affectStats(EntityData data, InCalcStatData statData) {
         InCalcStatData add_to = data.getUnit()
             .getStatInCalculation(stat_to_add_to);
         InCalcStatData adder = data.getUnit()

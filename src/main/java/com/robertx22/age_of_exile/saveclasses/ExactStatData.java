@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses;
 
 import com.google.gson.JsonObject;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -137,7 +137,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
             .get(stat);
     }
 
-    public void applyStats(EntityCap.UnitData data) {
+    public void applyStats(EntityData data) {
         data.getUnit()
             .getStats()
             .getStatInCalculation(stat)

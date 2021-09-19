@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.dimension.rules;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
@@ -28,7 +28,7 @@ public class OnTickRegenerate {
             return;
         }
 
-        EntityCap.UnitData unitdata = Load.Unit(en);
+        EntityData unitdata = Load.Unit(en);
 
         unitdata.getResources()
             .shields.onTicksPassed(50);

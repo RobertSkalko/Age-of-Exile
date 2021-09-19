@@ -26,7 +26,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class TalentTreeScreen extends BaseScreen implements INamedScreen {
+public class ProfessionsScreen extends BaseScreen implements INamedScreen {
     private static final Identifier BACKGROUND = new Identifier(Ref.MODID, "textures/gui/skills/skills_background.png");
 
     static int sizeX = 256;
@@ -34,9 +34,9 @@ public class TalentTreeScreen extends BaseScreen implements INamedScreen {
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
-    public TalentTreeScreen() {
+    public ProfessionsScreen() {
         super(sizeX, sizeY);
-        Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.PLAYER_SKILLS));
+        Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.PLAYER_RPG_DATA));
     }
 
     @Override
@@ -133,8 +133,8 @@ public class TalentTreeScreen extends BaseScreen implements INamedScreen {
 
         if (currentSkill != null) {
 
-            String name = currentSkill.type_enum.word.translate() + " " + "(Level " + Load.playerSkills(mc.player)
-                .getLevel(currentSkill.type_enum) + ")";
+            String name = currentSkill.type_enum.word.translate() + " " + "(Level " + Load.playerRPGData(mc.player).professions
+                .getProfessionLevel(currentSkill.type_enum) + ")";
             renderTextAtMiddle(matrix, name, guiTop + 50, Formatting.GOLD);
             // renderTextAtMiddle(matrix,, guiTop + 65, Formatting.GREEN);
 
@@ -156,7 +156,7 @@ public class TalentTreeScreen extends BaseScreen implements INamedScreen {
     }
 
     void renderBar(MatrixStack matrix) {
-        float filledMulti = Load.playerSkills(mc.player)
+        float filledMulti = Load.playerRPGData(mc.player).professions
             .getExpDividedByNeededToLevelMulti(currentSkill.type_enum);
 
         int y = guiTop + sizeY - 20;
@@ -173,7 +173,7 @@ public class TalentTreeScreen extends BaseScreen implements INamedScreen {
             y, 0, BAR_Y, (int) (BAR_X * filledMulti), BAR_Y
         );
 
-        PlayerSkillData data = Load.playerSkills(mc.player)
+        PlayerSkillData data = Load.playerRPGData(mc.player).professions
             .getDataFor(currentSkill.type_enum);
         int exp = data.getExp();
         int needed = data.getExpNeededToLevel();

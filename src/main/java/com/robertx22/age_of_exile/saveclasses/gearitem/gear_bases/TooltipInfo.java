@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.stats.tooltips.StatTooltipType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -10,7 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class TooltipInfo implements Cloneable {
 
-    public TooltipInfo(EntityCap.UnitData unitdata, MinMax minmax) {
+    public TooltipInfo(EntityData unitdata, MinMax minmax) {
         this.minmax = minmax;
 
         this.unitdata = unitdata;
@@ -20,7 +20,7 @@ public class TooltipInfo implements Cloneable {
         this.player = ClientOnly.getPlayer();
     }
 
-    public TooltipInfo(EntityCap.UnitData unitdata) {
+    public TooltipInfo(EntityData unitdata) {
         this.minmax = new MinMax(100, 100);
 
         this.unitdata = unitdata;
@@ -57,7 +57,7 @@ public class TooltipInfo implements Cloneable {
     public boolean showAbilityExtraInfo = true;
 
     public PlayerEntity player;
-    public EntityCap.UnitData unitdata;
+    public EntityData unitdata;
     public MinMax minmax = new MinMax(0, 100);
     public boolean isSet = false;
     public StatTooltipType statTooltipType = StatTooltipType.NORMAL;

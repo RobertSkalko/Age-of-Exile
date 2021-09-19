@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.events;
 
-import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
@@ -23,7 +23,7 @@ public class OnSmeltMining {
 
     public static void hookOnDropExp(Object2IntOpenHashMap<Identifier> recipesUsed, AbstractFurnaceBlockEntity furnace, PlayerEntity player, CallbackInfo ci) {
 
-        PlayerSkills skills = Load.playerSkills(player);
+        RPGPlayerData data = Load.playerRPGData(player);
 
         PlayerSkill mining = ExileDB.PlayerSkills()
             .get(PlayerSkillEnum.MINING.id);
@@ -46,9 +46,12 @@ public class OnSmeltMining {
                     if ((output
                         .getItem() == s.getItem())) {
                         int exp = s.exp;
-                        skills.addExp(mining.type_enum, exp);
+                        data.professions.addExp(player, mining.type_enum, exp);
 
-                        SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.MINING, mining.getExtraDropsFor(player, exp, LevelUtils.levelToSkillTier(skills.getLevel(mining.type_enum))));
+                        SkillDropEvent effect = new SkillDropEvent(
+                            player,
+                            PlayerSkillEnum.MINING,
+                            mining.getExtraDropsFor(player, exp, LevelUtils.levelToSkillTier(data.professions.getProfessionLevel(mining.type_enum))));
                         effect.Activate();
 
                         effect.extraDrops.forEach(x -> PlayerUtils.giveItem(x, player));

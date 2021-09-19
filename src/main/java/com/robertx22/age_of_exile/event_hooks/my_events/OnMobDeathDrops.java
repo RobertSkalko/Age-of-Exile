@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.my_events;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
@@ -38,7 +38,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
             if (!(mobKilled instanceof PlayerEntity)) {
 
-                UnitData mobKilledData = Load.Unit(mobKilled);
+                EntityData mobKilledData = Load.Unit(mobKilled);
 
                 LivingEntity killerEntity = EntityInfoComponent.get(mobKilled)
                     .getDamageStats()
@@ -66,7 +66,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
                 if (killerEntity instanceof ServerPlayerEntity) {
 
                     ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
-                    UnitData playerData = Load.Unit(player);
+                    EntityData playerData = Load.Unit(player);
 
                     EntityConfig config = ExileDB.getEntityConfig(mobKilled, mobKilledData);
 
@@ -100,7 +100,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
     }
 
-    private static void GiveExp(LivingEntity victim, PlayerEntity killer, UnitData killerData, UnitData mobData, float multi) {
+    private static void GiveExp(LivingEntity victim, PlayerEntity killer, EntityData killerData, EntityData mobData, float multi) {
 
         float exp = LevelUtils.getBaseExpMobReward(mobData.getLevel());
 

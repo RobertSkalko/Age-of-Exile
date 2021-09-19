@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
@@ -92,7 +92,7 @@ public class ResourcesData {
     }
 
     public float getMax(LivingEntity en, ResourceType type) {
-        UnitData data = Load.Unit(en);
+        EntityData data = Load.Unit(en);
 
         if (type == ResourceType.block) {
             return 100F;

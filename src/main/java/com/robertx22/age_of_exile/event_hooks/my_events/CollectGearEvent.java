@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.event_hooks.my_events;
 
 import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.saveclasses.unit.GearData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -27,7 +27,7 @@ public class CollectGearEvent {
             this.gears = gears;
             this.data = data;
 
-            EntityCap.UnitData unitdata = Load.Unit(entity);
+            EntityData unitdata = Load.Unit(entity);
 
             gears.addAll(CollectGearEvent.getAllGear(data, entity, unitdata));
 
@@ -37,7 +37,7 @@ public class CollectGearEvent {
 
     }
 
-    public static List<GearData> getAllGear(AttackInformation event, LivingEntity entity, EntityCap.UnitData unitdata) {
+    public static List<GearData> getAllGear(AttackInformation event, LivingEntity entity, EntityData unitdata) {
         List<GearData> list = new ArrayList<>();
 
         Boolean hasWeapon = false;
@@ -73,7 +73,7 @@ public class CollectGearEvent {
 
     }
 
-    static GearData getDataFor(EquipmentSlot slot, LivingEntity en, EntityCap.UnitData data) {
+    static GearData getDataFor(EquipmentSlot slot, LivingEntity en, EntityData data) {
         ItemStack stack = en.getEquippedStack(slot);
         return new GearData(stack, slot, data);
     }

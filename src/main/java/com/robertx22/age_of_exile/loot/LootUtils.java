@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.loot;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap.UnitData;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.utils.EntityUtils;
@@ -33,7 +33,7 @@ public class LootUtils {
         return (float) MathHelper.clamp(multi, ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_MIN_MULTI, 1F);
     }
 
-    public static float getMobHealthBasedLootMulti(UnitData mob, LivingEntity entity) {
+    public static float getMobHealthBasedLootMulti(EntityData mob, LivingEntity entity) {
 
         float multi = 1;
 

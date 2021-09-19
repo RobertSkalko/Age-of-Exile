@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.datapacks.stats;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
@@ -34,7 +34,7 @@ public class PlusSchoolLevels extends BaseDatapackStat implements IAfterStatCalc
     }
 
     @Override
-    public void affectUnit(EntityCap.UnitData unitdata, StatData statdata) {
+    public void affectUnit(EntityData unitdata, StatData statdata) {
 
         SpellSchool sc = ExileDB.SpellSchools()
             .get(school);

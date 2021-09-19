@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.bases;
 
-import com.robertx22.age_of_exile.capability.player.PlayerSkills;
+import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -184,11 +184,11 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
                         PlayerSkill skill = ExileDB.PlayerSkills()
                             .get(this.skill.id);
 
-                        PlayerSkills skills = Load.playerSkills(player);
+                        RPGPlayerData skills = Load.playerRPGData(player);
 
                         int exp = skill.getExpForCraft(output, player);
 
-                        skills.addExp(skill.type_enum, exp);
+                        skills.professions.addExp(player, skill.type_enum, exp);
 
                         pushTo(x, output);
                     }

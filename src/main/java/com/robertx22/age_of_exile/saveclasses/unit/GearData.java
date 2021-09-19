@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -15,7 +15,7 @@ public class GearData {
     public EquipmentSlot slot;
     public int percentStatUtilization = 100; // todo if stats change stat utilization, they need special handling..
 
-    public GearData(ItemStack stack, EquipmentSlot slot, EntityCap.UnitData data) {
+    public GearData(ItemStack stack, EquipmentSlot slot, EntityData data) {
         this.stack = stack;
         if (stack != null) {
             this.gear = Gear.Load(stack);
@@ -35,7 +35,7 @@ public class GearData {
         return (ItemStack.areEqual(stack, other.stack));
     }
 
-    private void calcStatUtilization(EntityCap.UnitData data) {
+    private void calcStatUtilization(EntityData data) {
         if (slot == EquipmentSlot.OFFHAND) {
             if (gear != null && gear.GetBaseGearType()
                 .isWeapon()) {
@@ -55,7 +55,7 @@ public class GearData {
         }
     }
 
-    public boolean isUsableBy(EntityCap.UnitData data) {
+    public boolean isUsableBy(EntityData data) {
         if (stack == null) {
             return false;
         }

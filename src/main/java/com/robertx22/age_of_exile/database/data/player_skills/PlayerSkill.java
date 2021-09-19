@@ -156,8 +156,8 @@ public class PlayerSkill implements JsonExileRegistry<PlayerSkill>, IAutoGson<Pl
 
         List<Text> list = new ArrayList<>();
 
-        int lvl = Load.playerSkills(info.player)
-            .getLevel(type_enum);
+        int lvl = Load.playerRPGData(info.player).professions
+            .getProfessionLevel(type_enum);
 
         list.add(this.type_enum.word.locName()
             .formatted(type_enum.format));

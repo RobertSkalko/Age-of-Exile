@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.items.alchemy;
 
-import com.robertx22.age_of_exile.capability.entity.EntityCap;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
@@ -62,7 +62,7 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
         }
         if (!world.isClient) {
 
-            EntityCap.UnitData unitdata = Load.Unit(player);
+            EntityData unitdata = Load.Unit(player);
 
             int restore = (int) (tier.percent_healed / 100F * unitdata.getResources()
                 .getMax(player, this.type.resource));
