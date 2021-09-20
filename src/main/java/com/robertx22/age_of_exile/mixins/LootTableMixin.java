@@ -17,7 +17,7 @@ import java.util.List;
 @Mixin(LootTable.class)
 public class LootTableMixin {
 
-    @Inject(method = "generateLoot(Lnet/minecraft/loot/context/LootContext;)Ljava/util/List;", at = @At(value = "RETURN"))
+    @Inject(method = "getRandomItems(Lnet/minecraft/loot/LootContext;)Ljava/util/List;", at = @At(value = "RETURN"))
     public void hookLoot(LootContext context, CallbackInfoReturnable<List<ItemStack>> ci) {
 
         try {

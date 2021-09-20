@@ -22,13 +22,13 @@ public abstract class ItemStackMixin {
     }
 
     // copied from TooltipCallback fabric event
-    @Inject(method = {"getTooltip"}, at = {@At("RETURN")})
+    @Inject(method = {"getTooltipLines"}, at = {@At("RETURN")})
     private void getTooltip(PlayerEntity entity, ITooltipFlag tooltipContext, CallbackInfoReturnable<List<ITextComponent>> list) {
         ItemStack stack = (ItemStack) (Object) this;
         TooltipMethod.getTooltip(stack, entity, tooltipContext, list);
     }
 
-    @Inject(method = {"onStoppedUsing(Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;I)V"}, cancellable = true, at = {@At("HEAD")})
+    @Inject(method = {"releaseUsing"}, cancellable = true, at = {@At("HEAD")})
     public void onStoppedUsing(World world, LivingEntity user, int remainingUseTicks, CallbackInfo ci) {
         ItemStack stack = (ItemStack) (Object) this;
         OnItemStoppedUsingCastImbuedSpell.onStoppedUsing(stack, world, user, remainingUseTicks, ci);

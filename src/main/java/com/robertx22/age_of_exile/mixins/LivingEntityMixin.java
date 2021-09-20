@@ -14,6 +14,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,8 +24,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements LivingEntityAccesor {
 
+    @Shadow
+    protected abstract float getVoicePitch();
+
     @Override
-    @Invoker("knockback")
+    @Invoker("blockedByShield")
     public abstract void myknockback(LivingEntity target);
 
     @Override
@@ -36,7 +40,7 @@ public abstract class LivingEntityMixin implements LivingEntityAccesor {
     public abstract float myGetHurtVolume();
 
     @Override
-    @Invoker("getSoundPitch")
+    @Invoker("getVoicePitch")
     public abstract float myGetHurtPitch();
 
     @ModifyVariable(method = "heal(F)V", at = @At(value = "HEAD"), argsOnly = true, ordinal = 0)
@@ -44,18 +48,21 @@ public abstract class LivingEntityMixin implements LivingEntityAccesor {
         LivingEntity en = (LivingEntity) (Object) this;
         return HealthUtils.realToVanilla(en, amount);
 
+
     }
 
+
     // ENSURE MY SPECIAL DAMAGE ISNT LOWERED BY ARMOR, ENCHANTS ETC
-    @Inject(method = "applyEnchantmentsToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F", at = @At(value = "HEAD"), cancellable = true)
+    @Inject(method = "getDamageAfterMagicAbsorb(Lnet/minecraft/util/DamageSource;F)F", at = @At(value = "HEAD"), cancellable = true)
     public void hookench(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
         LivingEntity en = (LivingEntity) (Object) this;
         if (source instanceof MyDamageSource) {
             ci.setReturnValue(amount);
         }
+
     }
 
-    @Inject(method = "applyEnchantmentsToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F", at = @At(value = "RETURN"), cancellable = true)
+    @Inject(method = "getDamageAfterMagicAbsorb(Lnet/minecraft/util/DamageSource;F)F", at = @At(value = "RETURN"), cancellable = true)
     public void hookenchreturn(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
         LivingEntity en = (LivingEntity) (Object) this;
 
@@ -68,7 +75,7 @@ public abstract class LivingEntityMixin implements LivingEntityAccesor {
 
     }
 
-    @Inject(method = "applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F", at = @At(value = "HEAD"), cancellable = true)
+    @Inject(method = "getDamageAfterArmorAbsorb(Lnet/minecraft/util/DamageSource;F)F", at = @At(value = "HEAD"), cancellable = true)
     public void hookarmortodmg(DamageSource source, float amount, CallbackInfoReturnable<Float> ci) {
         LivingEntity en = (LivingEntity) (Object) this;
         if (source instanceof MyDamageSource) {
@@ -78,7 +85,7 @@ public abstract class LivingEntityMixin implements LivingEntityAccesor {
     }
     // ENSURE MY SPECIAL DAMAGE ISNT LOWERED BY ARMOR, ENCHANTS ETC
 
-    @Inject(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At(value = "HEAD"), cancellable = true)
+    @Inject(method = "canBeAffected(Lnet/minecraft/potion/EffectInstance;)Z", at = @At(value = "HEAD"), cancellable = true)
     public void hook(EffectInstance effect, CallbackInfoReturnable<Boolean> ci) {
         try {
             LivingEntity en = (LivingEntity) (Object) this;
@@ -88,7 +95,7 @@ public abstract class LivingEntityMixin implements LivingEntityAccesor {
         }
     }
 
-    @Inject(method = "eatFood(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;", at = @At(value = "HEAD"))
+    @Inject(method = "eat(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;)Lnet/minecraft/item/ItemStack;", at = @At(value = "HEAD"))
     public void food(World world, ItemStack stack, CallbackInfoReturnable<ItemStack> ci) {
         try {
             LivingEntity en = (LivingEntity) (Object) this;

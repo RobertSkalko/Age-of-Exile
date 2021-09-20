@@ -18,23 +18,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(EntityRenderer.class)
 public abstract class MobNameTagMixin {
 
+
+    @Shadow
+    public abstract FontRenderer getFont();
+
     @Shadow
     @Final
-    protected EntityRendererManager dispatcher;
+    protected EntityRendererManager entityRenderDispatcher;
 
-    @Shadow
-    public abstract FontRenderer getFontRenderer();
-
-    @Shadow
-    public abstract EntityRendererManager getRenderManager();
 
     // TODO this might be the wrong way to do it.
     @Inject(method = "render", at = @At(value = "HEAD"),
-        cancellable = true)
+            cancellable = true)
     private void render(Entity entity, float yaw, float tickDelta, MatrixStack matrices, IRenderTypeBuffer vertexConsumers, int light, CallbackInfo ci) {
         if (entity instanceof LivingEntity) {
-            RenderMobInfo.renderLivingEntityLabelIfPresent(getFontRenderer(), dispatcher, (LivingEntity) entity,
-                matrices, vertexConsumers, light);
+
+            RenderMobInfo.renderLivingEntityLabelIfPresent(getFont(), this.entityRenderDispatcher, (LivingEntity) entity,
+                    matrices, vertexConsumers, light);
             ci.cancel();
 
         }

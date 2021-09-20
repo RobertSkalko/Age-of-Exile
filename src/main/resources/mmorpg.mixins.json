@@ -4,9 +4,7 @@
   "package": "com.robertx22.age_of_exile.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "AdvancementMixin",
     "ArrowShootMixin",
-    "CriteriaAccessor",
     "DisableMobSpawnsInDungeon",
     "FallingBlockEntityMixin",
     "FurnaceMixin",
@@ -20,10 +18,8 @@
     "StopFireInDungeonMixin"
   ],
   "client": [
-    "AccessorClientAdvancementManager",
     "ItemGlintMixin",
     "ItemStackMixin",
-    "MinecraftClientMixin",
     "MobNameTagMixin",
     "WorldRendererMixin"
   ],

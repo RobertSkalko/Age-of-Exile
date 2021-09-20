@@ -8,5 +8,5 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(Effect.class)
 public interface StatusEffectAccessor {
     @Accessor
-    EffectType getType();
+    EffectType getCategory();
 }

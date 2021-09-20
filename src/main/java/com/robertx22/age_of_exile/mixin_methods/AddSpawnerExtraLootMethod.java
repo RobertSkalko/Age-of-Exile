@@ -3,6 +3,8 @@ package com.robertx22.age_of_exile.mixin_methods;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
 import net.minecraft.block.Blocks;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -10,8 +12,6 @@ import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class AddSpawnerExtraLootMethod {
                 return;
             }
             if (context.getParamOrNull(LootParameters.BLOCK_STATE)
-                .getBlock() != Blocks.SPAWNER) {
+                    .getBlock() != Blocks.SPAWNER) {
                 return;
             }
 
@@ -61,7 +61,7 @@ public class AddSpawnerExtraLootMethod {
             List<ItemStack> list = MasterLootGen.generateLoot(info);
 
             ci.getReturnValue()
-                .addAll(list);
+                    .addAll(list);
         } catch (Exception e) {
             e.printStackTrace();
         }

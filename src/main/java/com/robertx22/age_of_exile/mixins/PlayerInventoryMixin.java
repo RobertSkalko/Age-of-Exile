@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvents;
 import org.spongepowered.asm.mixin.Final;
@@ -23,17 +23,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mixin(IInventory.class)
+@Mixin(PlayerInventory.class)
 public class PlayerInventoryMixin {
+
 
     @Shadow
     @Final
     public PlayerEntity player;
 
-    @Inject(method = "insertStack(Lnet/minecraft/item/ItemStack;)Z", at = @At(value = "HEAD"))
+    @Inject(method = "add(Lnet/minecraft/item/ItemStack;)Z", at = @At(value = "HEAD"))
     private void hookonStackInserted(ItemStack stack, CallbackInfoReturnable<Boolean> ci) {
         try {
-            IInventory inv = (IInventory) (Object) this;
+            PlayerInventory inv = (PlayerInventory) (Object) this;
 
             List<ItemStack> backpacks = new ArrayList<>();
 
@@ -49,7 +50,7 @@ public class PlayerInventoryMixin {
 
                 for (ItemStack bagstack : backpacks) {
 
-                    BackpackInfo info = BackpackContainer.getInfo(player, bagstack);
+                    BackpackInfo info = BackpackContainer.getInfo(this.player, bagstack);
 
                     GearItemData gear = Gear.Load(stack);
                     if (gear != null) {

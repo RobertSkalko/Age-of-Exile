@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityAccessor implements PlayerTeleStateAccessor {
 
-    @Accessor(value = "inTeleportationState")
+    @Accessor(value = "isChangingDimension")
     @Override
-    public abstract void setIsInTeleportationState(boolean bool);
+    public abstract void setawaitingTeleport(boolean bool);
 
 }

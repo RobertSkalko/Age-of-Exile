@@ -10,13 +10,11 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.AdvancementUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientTextureUtils;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
 import com.robertx22.library_of_exile.registry.serialization.IByteBuf;
-import net.minecraft.advancements.Advancement;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
@@ -28,12 +26,12 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipList, IByteBuf<Perk>, IAutoLocName {
     public static Perk SERIALIZER = new Perk();
 
     public PerkType type;
     public String identifier;
-    public String lock_under_adv = "";
     public String icon = "";
     public String one_of_a_kind = null;
 
@@ -50,7 +48,6 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
 
         data.type = PerkType.valueOf(buf.readUtf(50));
         data.identifier = buf.readUtf(100);
-        data.lock_under_adv = buf.readUtf(100);
         data.icon = buf.readUtf(150);
         data.one_of_a_kind = buf.readUtf(80);
         if (data.one_of_a_kind.isEmpty()) {
@@ -73,7 +70,6 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
     public void toBuf(PacketBuffer buf) {
         buf.writeUtf(type.name(), 100);
         buf.writeUtf(identifier, 100);
-        buf.writeUtf(lock_under_adv, 100);
         buf.writeUtf(icon, 150);
 
         buf.writeUtf(one_of_a_kind != null ? one_of_a_kind : "", 80);
@@ -119,11 +115,6 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
 
             stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
 
-            Advancement adv = AdvancementUtils.getAdvancement(info.player.level, new ResourceLocation(lock_under_adv));
-
-            if (adv != null) {
-                list.add(new StringTextComponent("Needs advancement: ").append(adv.getChatComponent()));
-            }
 
             if (this.one_of_a_kind != null) {
                 list.add(new StringTextComponent("Can only have one Perk of this type: ").withStyle(TextFormatting.GREEN));
@@ -133,8 +124,8 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
 
             if (lvl_req > 1) {
                 list.add(Words.RequiresLevel.locName()
-                    .append(": " + lvl_req)
-                    .withStyle(TextFormatting.YELLOW));
+                        .append(": " + lvl_req)
+                        .withStyle(TextFormatting.YELLOW));
             }
 
             if (this.type == PerkType.MAJOR) {
@@ -143,7 +134,7 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
             }
 
             list.add(Words.PressAltForStatInfo.locName()
-                .withStyle(TextFormatting.BLUE));
+                    .withStyle(TextFormatting.BLUE));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -199,9 +190,6 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
 
     }
 
-    public boolean isLockedUnderAdvancement() {
-        return !lock_under_adv.isEmpty();
-    }
 
     public PerkType getType() {
         return type;
@@ -210,7 +198,7 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
     public boolean isLockedToPlayer(PlayerEntity player) {
 
         if (Load.Unit(player)
-            .getLevel() < lvl_req) {
+                .getLevel() < lvl_req) {
             return true;
         }
 
@@ -218,31 +206,23 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
             if (!one_of_a_kind.isEmpty()) {
 
                 if (Load.playerRPGData(player).talents
-                    .getAllAllocatedPerks()
-                    .values()
-                    .stream()
-                    .filter(x -> {
-                        return this.one_of_a_kind.equals(x.one_of_a_kind);
-                    })
-                    .count() > 0) {
+                        .getAllAllocatedPerks()
+                        .values()
+                        .stream()
+                        .filter(x -> {
+                            return this.one_of_a_kind.equals(x.one_of_a_kind);
+                        })
+                        .count() > 0) {
                     return true;
                 }
             }
         }
-        if (isLockedUnderAdvancement()) {
-            if (!didPlayerUnlockAdvancement(player)) {
-                return true;
-            }
-        }
+
 
         return false;
 
     }
 
-    public boolean didPlayerUnlockAdvancement(PlayerEntity player) {
-        ResourceLocation id = new ResourceLocation(this.lock_under_adv);
-        return AdvancementUtils.didPlayerFinish(player, id);
-    }
 
     @Override
     public Class<Perk> getClassForSerialization() {
