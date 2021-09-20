@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackContainer;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
@@ -23,7 +23,7 @@ public class ModContainers {
     public ResourceLocation SMITHING_STATION = id("smithing");
 
     ResourceLocation id(String id) {
-        return new ResourceLocation(Ref.MODID, id);
+        return new ResourceLocation(SlashRef.MODID, id);
     }
 
     @SuppressWarnings("deprecation")

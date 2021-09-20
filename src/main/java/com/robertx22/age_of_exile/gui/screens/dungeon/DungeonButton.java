@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.gui.screens.dungeon;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -17,8 +17,8 @@ public class DungeonButton extends ImageButton {
     public static int xSize = 32;
     public static int ySize = 32;
 
-    static ResourceLocation LOC = Ref.guiId("dungeon_button");
-    static ResourceLocation ICON = Ref.guiId("dungeon/icons/nether");
+    static ResourceLocation LOC = SlashRef.guiId("dungeon_button");
+    static ResourceLocation ICON = SlashRef.guiId("dungeon/icons/nether");
 
     Minecraft mc = Minecraft.getInstance();
 

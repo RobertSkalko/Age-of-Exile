@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.SimpleArrowEntit
 import com.robertx22.age_of_exile.database.data.spells.entities.SimpleProjectileEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.SimpleTridentEntity;
 import com.robertx22.age_of_exile.database.data.spells.entities.StationaryFallingBlockEntity;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -45,7 +45,7 @@ public class ModEntities {
             .trackedUpdateRate(10)
             .build();
 
-        Registry.register(Registry.ENTITY_TYPE, new ResourceLocation(Ref.MODID, id), type);
+        Registry.register(Registry.ENTITY_TYPE, new ResourceLocation(SlashRef.MODID, id), type);
 
         ENTITY_TYPES.add(type);
 

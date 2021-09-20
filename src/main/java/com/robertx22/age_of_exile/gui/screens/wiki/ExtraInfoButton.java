@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.gui.screens.wiki;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -16,7 +16,7 @@ public class ExtraInfoButton extends ImageButton {
     public static int xSize = 20;
     public static int ySize = 20;
 
-    static ResourceLocation buttonLoc = new ResourceLocation(Ref.MODID, "textures/gui/wiki/extra_info_button.png");
+    static ResourceLocation buttonLoc = new ResourceLocation(SlashRef.MODID, "textures/gui/wiki/extra_info_button.png");
 
     Minecraft mc = Minecraft.getInstance();
 

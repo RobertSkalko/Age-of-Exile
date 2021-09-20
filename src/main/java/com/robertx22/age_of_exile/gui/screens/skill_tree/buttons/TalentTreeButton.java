@@ -5,14 +5,14 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.IMarkOnTop;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
 
 public class TalentTreeButton extends ImageButton implements IMarkOnTop {
-    static ResourceLocation ID = new ResourceLocation(Ref.MODID, "textures/gui/skill_tree/spellschoolbutton.png");
+    static ResourceLocation ID = new ResourceLocation(SlashRef.MODID, "textures/gui/skill_tree/spellschoolbutton.png");
 
     public static int XSIZE = 32;
     public static int YSIZE = 32;

@@ -1,6 +1,6 @@
 package com.robertx22.divine_missions_addon.data_gen;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.divine_missions.data_gen.builders.PoolBuilder;
 import com.robertx22.divine_missions.database.condition_types.IsModLoaded;
 import com.robertx22.divine_missions.database.db_types.Pool;
@@ -19,7 +19,7 @@ public class DMPoolsAdder implements ExileRegistryInit {
                     DMTasksAdder.COMPLETE_DUNGEON
                 )
             )
-            .addCondition(IsModLoaded.of(Ref.MODID))
+            .addCondition(IsModLoaded.of(SlashRef.MODID))
             .addCondition(AoeLevelCondition.of(25, Integer.MAX_VALUE))
             .buildForGods();
 
@@ -29,7 +29,7 @@ public class DMPoolsAdder implements ExileRegistryInit {
                 )
             )
             .addCondition(AoeLevelCondition.of(10, Integer.MAX_VALUE))
-            .addCondition(IsModLoaded.of(Ref.MODID))
+            .addCondition(IsModLoaded.of(SlashRef.MODID))
             .buildForGods();
 
         PoolBuilder.of("favor", 1000, Pool.PoolType.REWARDS, Pool.PickType.ALWAYS_INCLUDE,
@@ -37,13 +37,13 @@ public class DMPoolsAdder implements ExileRegistryInit {
                     DMRewardsAdder.FAVOR
                 )
             )
-            .addCondition(IsModLoaded.of(Ref.MODID))
+            .addCondition(IsModLoaded.of(SlashRef.MODID))
             .buildForGods();
 
         PoolBuilder.of("aoe_exp", 1000, Pool.PoolType.REWARDS, Pool.PickType.ALWAYS_INCLUDE,
                 Arrays.asList(DMRewardsAdder.AOE_EXP)
             )
-            .addCondition(IsModLoaded.of(Ref.MODID))
+            .addCondition(IsModLoaded.of(SlashRef.MODID))
             .buildForGods();
 
     }

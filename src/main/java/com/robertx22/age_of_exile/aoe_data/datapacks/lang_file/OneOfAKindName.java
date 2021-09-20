@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.lang_file;
 
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 
 public class OneOfAKindName implements IAutoLocName {
@@ -21,7 +21,7 @@ public class OneOfAKindName implements IAutoLocName {
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".one_of_a_kind." + id;
+        return SlashRef.MODID + ".one_of_a_kind." + id;
     }
 
     @Override

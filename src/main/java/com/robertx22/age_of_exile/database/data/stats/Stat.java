@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -139,10 +139,10 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
         return ExileRegistryTypes.STAT;
     }
 
-    public static ResourceLocation DEFAULT_ICON = new ResourceLocation(Ref.MODID, "textures/gui/stat_icons/default.png");
+    public static ResourceLocation DEFAULT_ICON = new ResourceLocation(SlashRef.MODID, "textures/gui/stat_icons/default.png");
 
     public ResourceLocation getIconLocation() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/stat_icons/" + group.id + "/" + GUID() + ".png");
+        return new ResourceLocation(SlashRef.MODID, "textures/gui/stat_icons/" + group.id + "/" + GUID() + ".png");
     }
 
     transient ResourceLocation cachedIcon = null;
@@ -166,12 +166,12 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".stat." + GUID();
+        return SlashRef.MODID + ".stat." + GUID();
     }
 
     @Override
     public String locDescLangFileGUID() {
-        return Ref.MODID + ".stat_desc." + GUID();
+        return SlashRef.MODID + ".stat_desc." + GUID();
     }
 
     @Override

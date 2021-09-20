@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.gui.bases.IAlertScreen;
 import com.robertx22.age_of_exile.gui.bases.IContainerNamedScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.library_of_exile.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
@@ -17,11 +17,11 @@ public class MainHubButton extends ImageButton {
     public static int xSize = 105;
     public static int ySize = 28;
     public static ResourceLocation EXLAMATION_MARK_TEX = new ResourceLocation(
-        Ref.MODID, "textures/gui/main_hub/exclamation_mark.png");
+        SlashRef.MODID, "textures/gui/main_hub/exclamation_mark.png");
 
     boolean shouldAlert = false;
 
-    static ResourceLocation buttonLoc = new ResourceLocation(Ref.MODID, "textures/gui/main_hub/buttons.png");
+    static ResourceLocation buttonLoc = new ResourceLocation(SlashRef.MODID, "textures/gui/main_hub/buttons.png");
 
     INamedScreen screen;
 

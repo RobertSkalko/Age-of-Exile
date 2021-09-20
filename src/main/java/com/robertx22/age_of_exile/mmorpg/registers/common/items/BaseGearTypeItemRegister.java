@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemRing;
@@ -65,7 +65,7 @@ public class BaseGearTypeItemRegister extends BaseItemRegistrator {
     }
 
     private ResourceLocation id(String id) {
-        return new ResourceLocation(Ref.MODID, id);
+        return new ResourceLocation(SlashRef.MODID, id);
     }
 
     public BaseGearTypeItemRegister() {

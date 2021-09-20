@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.localization;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 
 import java.util.Locale;
@@ -534,7 +534,7 @@ public enum Words implements IAutoLocName {
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".word." + GUID();
+        return SlashRef.MODID + ".word." + GUID();
     }
 
     @Override

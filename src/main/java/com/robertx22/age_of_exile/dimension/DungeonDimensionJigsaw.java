@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.dimension;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.world_of_exile.config.FeatureConfig;
 import com.robertx22.world_of_exile.main.structures.base.StructureWrapper;
 import com.robertx22.world_of_exile.world_gen.AbstractPool;
@@ -47,16 +47,16 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
 
     @Override
     public JigsawPattern createPoolAndInitPools() {
-        AbstractPool startBuilder = new Pool(Ref.id("dungeon/starts"));
-        startBuilder.add(Ref.id("mossy/mossy_start"));
-        startBuilder.add(Ref.id("desert/desert_start"));
+        AbstractPool startBuilder = new Pool(SlashRef.id("dungeon/starts"));
+        startBuilder.add(SlashRef.id("mossy/mossy_start"));
+        startBuilder.add(SlashRef.id("desert/desert_start"));
 
-        AbstractPool stone = new Pool(Ref.id("stone"));
-        stone.add(Ref.id("stone/1"));
-        stone.add(Ref.id("stone/2"));
-        stone.add(Ref.id("stone/3"));
-        stone.add(Ref.id("stone/4"));
-        stone.add(Ref.id("stone/5"));
+        AbstractPool stone = new Pool(SlashRef.id("stone"));
+        stone.add(SlashRef.id("stone/1"));
+        stone.add(SlashRef.id("stone/2"));
+        stone.add(SlashRef.id("stone/3"));
+        stone.add(SlashRef.id("stone/4"));
+        stone.add(SlashRef.id("stone/5"));
 
         stone.build();
 

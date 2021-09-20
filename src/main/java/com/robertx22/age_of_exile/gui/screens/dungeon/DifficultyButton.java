@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -20,7 +20,7 @@ public class DifficultyButton extends ImageButton {
     public static int xSize = 32;
     public static int ySize = 32;
 
-    static ResourceLocation LOC = Ref.guiId("dungeon/difficulty_button");
+    static ResourceLocation LOC = SlashRef.guiId("dungeon/difficulty_button");
 
     Minecraft mc = Minecraft.getInstance();
 

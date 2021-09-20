@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
 import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.gui.ItemSlotButton;
 import net.minecraft.client.Minecraft;
@@ -21,7 +21,7 @@ public class PlayerGearButton extends ImageButton {
     public static int xSize = 99;
     public static int ySize = 80;
 
-    static ResourceLocation TEX = new ResourceLocation(Ref.MODID, "textures/gui/player_gear.png");
+    static ResourceLocation TEX = new ResourceLocation(SlashRef.MODID, "textures/gui/player_gear.png");
     BaseScreen screen;
     PlayerEntity player;
 

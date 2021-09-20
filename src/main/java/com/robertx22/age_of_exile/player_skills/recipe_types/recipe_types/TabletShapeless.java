@@ -4,10 +4,10 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.StationShapeless;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.item.crafting.RecipeType;
 
 public class TabletShapeless extends StationShapeless {
 
@@ -15,8 +15,9 @@ public class TabletShapeless extends StationShapeless {
         super(id, group, output, input);
     }
 
+    
     @Override
-    public RecipeType<?> getType() {
+    public IRecipeType<?> getType() {
         return ModRegistry.RECIPE_TYPES.TABLET_RECIPE;
     }
 

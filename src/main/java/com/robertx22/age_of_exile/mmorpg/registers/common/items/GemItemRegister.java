@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -21,7 +21,7 @@ public class GemItemRegister extends BaseItemRegistrator {
 
                 GemItem item = new GemItem(type, rank);
 
-                Registry.register(Registry.ITEM, new ResourceLocation(Ref.MODID, item.GUID()), item);
+                Registry.register(Registry.ITEM, new ResourceLocation(SlashRef.MODID, item.GUID()), item);
 
                 if (!MAP.containsKey(type)) {
                     MAP.put(type, new HashMap<>());

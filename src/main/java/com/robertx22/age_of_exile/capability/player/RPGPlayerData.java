@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.capability.player.data.StatPointsData;
 import com.robertx22.age_of_exile.capability.player.data.TeamData;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
 import com.robertx22.age_of_exile.saveclasses.perks.TalentsData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.ProfessionsData;
@@ -19,7 +19,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RPGPlayerData implements ICommonPlayerCap {
 
-    public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "player_data");
+    public static final ResourceLocation RESOURCE = new ResourceLocation(SlashRef.MODID, "player_data");
 
     private static final String MAP_DATA = "maps";
     private static final String TEAM_DATA = "teams";

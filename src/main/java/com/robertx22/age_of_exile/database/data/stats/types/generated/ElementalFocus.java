@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.generated;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseDamageEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.SingleElementalStat;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -57,7 +57,7 @@ public class ElementalFocus extends SingleElementalStat {
 
     @Override
     public String locDescLangFileGUID() {
-        return Ref.MODID + ".stat_desc." + "elemental_focus";
+        return SlashRef.MODID + ".stat_desc." + "elemental_focus";
     }
 
     private static class Effect extends BaseDamageEffect {

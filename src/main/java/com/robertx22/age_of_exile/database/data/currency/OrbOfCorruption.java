@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequire
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -25,7 +25,7 @@ public class OrbOfCorruption extends CurrencyItem implements ICurrencyItemEffect
         return "currency/orb_of_corruption";
     }
 
-    private static final String name = Ref.MODID + ":currency/orb_of_corruption";
+    private static final String name = SlashRef.MODID + ":currency/orb_of_corruption";
 
     public OrbOfCorruption() {
         super(name);

@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.wiki.ExtraInfoButton;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiScreen;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -27,7 +27,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ProfessionsScreen extends BaseScreen implements INamedScreen {
-    private static final ResourceLocation BACKGROUND = new ResourceLocation(Ref.MODID, "textures/gui/skills/skills_background.png");
+    private static final ResourceLocation BACKGROUND = new ResourceLocation(SlashRef.MODID, "textures/gui/skills/skills_background.png");
 
     static int sizeX = 256;
     static int sizeY = 207;
@@ -41,7 +41,7 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
 
     @Override
     public ResourceLocation iconLocation() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/skills.png");
+        return new ResourceLocation(SlashRef.MODID, "textures/gui/main_hub/icons/skills.png");
     }
 
     @Override
@@ -111,7 +111,7 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
 
     static int BAR_X = 227;
     static int BAR_Y = 7;
-    static ResourceLocation BAR_TEX = new ResourceLocation(Ref.MODID, "textures/gui/skills/bar.png");
+    static ResourceLocation BAR_TEX = new ResourceLocation(SlashRef.MODID, "textures/gui/skills/bar.png");
 
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {

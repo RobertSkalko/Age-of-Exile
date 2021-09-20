@@ -2,14 +2,14 @@ package com.robertx22.age_of_exile.mmorpg;
 
 import net.minecraft.util.ResourceLocation;
 
-public class Ref {
+public class SlashRef {
 
     public static ResourceLocation id(String id) {
         return new ResourceLocation(MODID, id);
     }
 
     public static ResourceLocation guiId(String id) {
-        return new ResourceLocation(Ref.MODID, "textures/gui/" + id + ".png");
+        return new ResourceLocation(SlashRef.MODID, "textures/gui/" + id + ".png");
     }
 
     public static final String MODID = "mmorpg";

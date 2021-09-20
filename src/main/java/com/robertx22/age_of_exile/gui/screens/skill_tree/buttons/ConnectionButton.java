@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
@@ -15,7 +15,7 @@ public class ConnectionButton extends ImageButton {
 
     public static int SIZE = 6;
 
-    public static ResourceLocation ID = new ResourceLocation(Ref.MODID, "textures/gui/skill_tree/lines.png");
+    public static ResourceLocation ID = new ResourceLocation(SlashRef.MODID, "textures/gui/skill_tree/lines.png");
 
     TalentTree school;
     PointData one;

@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDam
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
 import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -60,7 +60,7 @@ public class DamageEvent extends EffectEvent {
         calcBlock();
     }
 
-    public static String dmgSourceName = Ref.MODID + ".custom_damage";
+    public static String dmgSourceName = SlashRef.MODID + ".custom_damage";
 
     AttackInformation attackInfo;
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();

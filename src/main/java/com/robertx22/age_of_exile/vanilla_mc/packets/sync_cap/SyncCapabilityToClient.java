@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,7 +25,7 @@ public class SyncCapabilityToClient extends MyPacket<SyncCapabilityToClient> {
 
     @Override
     public ResourceLocation getIdentifier() {
-        return new ResourceLocation(Ref.MODID, "synccaptoc");
+        return new ResourceLocation(SlashRef.MODID, "synccaptoc");
     }
 
     @Override

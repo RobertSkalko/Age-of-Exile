@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.mixins.AccessorItemTags;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import net.minecraft.item.Item;
 import net.minecraft.tags.Tag;
 
@@ -16,6 +16,6 @@ public class ModItemTags {
     }
 
     private static Tag.Named<Item> get(String id) {
-        return AccessorItemTags.callRegister(Ref.MODID + ":" + id);
+        return AccessorItemTags.callRegister(SlashRef.MODID + ":" + id);
     }
 }

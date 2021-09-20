@@ -30,7 +30,7 @@ import com.robertx22.age_of_exile.gui.buttons.FavorButton;
 import com.robertx22.age_of_exile.gui.screens.player_skills.ProfessionsScreen;
 import com.robertx22.age_of_exile.gui.screens.spell.SpellScreen;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiScreen;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -79,7 +79,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         }
 
         ResourceLocation getIcon() {
-            return new ResourceLocation(Ref.MODID, "textures/gui/stat_groups/" + id + ".png");
+            return new ResourceLocation(SlashRef.MODID, "textures/gui/stat_groups/" + id + ".png");
         }
     }
 
@@ -130,7 +130,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
     @Override
     public ResourceLocation iconLocation() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/stat_overview.png");
+        return new ResourceLocation(SlashRef.MODID, "textures/gui/main_hub/icons/stat_overview.png");
     }
 
     @Override
@@ -252,8 +252,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         }
     }
 
-    private static final ResourceLocation BACKGROUND = new ResourceLocation(Ref.MODID, "textures/gui/stats.png");
-    private static final ResourceLocation WIDE_BACKGROUND = new ResourceLocation(Ref.MODID, "textures/gui/full_stats_panel.png");
+    private static final ResourceLocation BACKGROUND = new ResourceLocation(SlashRef.MODID, "textures/gui/stats.png");
+    private static final ResourceLocation WIDE_BACKGROUND = new ResourceLocation(SlashRef.MODID, "textures/gui/full_stats_panel.png");
 
     @Override
     public void render(MatrixStack matrix, int x, int y, float ticks) {
@@ -287,7 +287,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
     }
 
-    private static final ResourceLocation STAT_PAGE_BUTTON_TEXT = new ResourceLocation(Ref.MODID, "textures/gui/main_hub/buttons_backwards.png");
+    private static final ResourceLocation STAT_PAGE_BUTTON_TEXT = new ResourceLocation(SlashRef.MODID, "textures/gui/main_hub/buttons_backwards.png");
 
     static int PLUS_BUTTON_SIZE_X = 13;
     static int PLUS_BUTTON_SIZE_Y = 13;
@@ -295,7 +295,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
     public static class AllocateStatButton extends ImageButton {
         static int SIZEX = 18;
         static int SIZEY = 18;
-        static ResourceLocation BUTTON_TEX = new ResourceLocation(Ref.MODID, "textures/gui/plus_button.png");
+        static ResourceLocation BUTTON_TEX = new ResourceLocation(SlashRef.MODID, "textures/gui/plus_button.png");
 
         Stat stat;
 
@@ -356,7 +356,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
     }
 
-    private static final ResourceLocation BUTTON_TEX = new ResourceLocation(Ref.MODID, "textures/gui/button.png");
+    private static final ResourceLocation BUTTON_TEX = new ResourceLocation(SlashRef.MODID, "textures/gui/button.png");
     static int STAT_BUTTON_SIZE_X = 18;
     static int STAT_BUTTON_SIZE_Y = 18;
 

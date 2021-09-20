@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -71,7 +71,7 @@ public class CraftEssenceItem extends Item implements IAutoLocName, IAutoModel, 
     @Override
     public ShapedRecipeBuilder getRecipe() {
 
-        Item resultItem = Registry.ITEM.get(new ResourceLocation(Ref.MODID, GUID()));
+        Item resultItem = Registry.ITEM.get(new ResourceLocation(SlashRef.MODID, GUID()));
 
         ShapedRecipeBuilder fac = ShapedRecipeBuilder.shaped(resultItem, 8);
 

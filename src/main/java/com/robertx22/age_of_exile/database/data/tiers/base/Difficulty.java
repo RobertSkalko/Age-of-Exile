@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.tiers.base;
 
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
@@ -96,7 +96,7 @@ public class Difficulty implements JsonExileRegistry<Difficulty>, IAutoGson<Diff
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".difficulty." + id;
+        return SlashRef.MODID + ".difficulty." + id;
     }
 
     @Override

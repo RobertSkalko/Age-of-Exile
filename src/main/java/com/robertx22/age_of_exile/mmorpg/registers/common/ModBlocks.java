@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 import com.robertx22.age_of_exile.dimension.spawner.ModSpawnerBlock;
 import com.robertx22.age_of_exile.dimension.teleporter.TeleporterBlock;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlock;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BlackHoleBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.TotemBlock;
@@ -67,7 +67,7 @@ public class ModBlocks {
     }
 
     <T extends Block> T of(String id, T c) {
-        Registry.register(Registry.BLOCK, new ResourceLocation(Ref.MODID, id), c);
+        Registry.register(Registry.BLOCK, new ResourceLocation(SlashRef.MODID, id), c);
         return c;
     }
 

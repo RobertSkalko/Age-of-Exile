@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequire
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.AffixData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -28,7 +28,7 @@ public class OrbOfInfinityItem extends CurrencyItem implements ICurrencyItemEffe
         return "currency/orb_of_infinity";
     }
 
-    private static final String name = Ref.MODID + ":currency/orb_of_infinity";
+    private static final String name = SlashRef.MODID + ":currency/orb_of_infinity";
 
     public OrbOfInfinityItem() {
         super(name);

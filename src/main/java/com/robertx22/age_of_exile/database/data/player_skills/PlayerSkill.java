@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.player_skills;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -47,7 +47,7 @@ public class PlayerSkill implements JsonExileRegistry<PlayerSkill>, IAutoGson<Pl
     List<SkillStatReward> cachedStatRewards = null;
 
     public ResourceLocation getIcon() {
-        return Ref.id("textures/gui/skills/icons/" + id + ".png");
+        return SlashRef.id("textures/gui/skills/icons/" + id + ".png");
     }
 
     public int getExpForCraft(ItemStack stack, PlayerEntity player) {

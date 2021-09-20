@@ -14,7 +14,7 @@ import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.ConnectionButto
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.PerkButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.SelectTreeButton;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.TalentTreeButton;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
@@ -37,8 +37,8 @@ import java.util.List;
 import java.util.*;
 
 public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen {
-    static ResourceLocation BIG_PANEL = new ResourceLocation(Ref.MODID, "textures/gui/skill_tree/background.png");
-    static ResourceLocation SMALL_PANEL = new ResourceLocation(Ref.MODID, "textures/gui/skill_tree/small_panel.png");
+    static ResourceLocation BIG_PANEL = new ResourceLocation(SlashRef.MODID, "textures/gui/skill_tree/background.png");
+    static ResourceLocation SMALL_PANEL = new ResourceLocation(SlashRef.MODID, "textures/gui/skill_tree/small_panel.png");
 
     public SchoolType schoolType;
 
@@ -482,7 +482,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     }
 
-    static ResourceLocation BACKGROUND = Ref.guiId("skill_tree/background");
+    static ResourceLocation BACKGROUND = SlashRef.guiId("skill_tree/background");
 
     public static void renderBackgroundDirt(Screen screen, int vOffset) {
         //copied from Scree

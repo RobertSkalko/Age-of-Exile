@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.misc;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.interfaces.IGenerated;
@@ -51,7 +51,7 @@ public class BonusXpToMobsOfTier extends Stat implements IGenerated<Stat> {
 
     @Override
     public String locDescLangFileGUID() {
-        return Ref.MODID + ".stat_desc." + "ele_wep_damage";
+        return SlashRef.MODID + ".stat_desc." + "ele_wep_damage";
     }
 
     @Override

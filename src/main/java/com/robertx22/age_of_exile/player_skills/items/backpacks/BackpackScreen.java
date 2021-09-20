@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BackpackUpgradeItem;
 import com.robertx22.library_of_exile.gui.ItemSlotButton;
 import net.minecraft.client.Minecraft;
@@ -14,7 +14,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 public class BackpackScreen extends ContainerScreen<BackpackContainer> {
-    private ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/backpack/background.png");
+    private ResourceLocation texture = new ResourceLocation(SlashRef.MODID, "textures/gui/backpack/background.png");
 
     public BackpackScreen(BackpackContainer handler, PlayerInventory inventory, ITextComponent text) {
         super(handler, inventory, new StringTextComponent(""));
@@ -22,7 +22,7 @@ public class BackpackScreen extends ContainerScreen<BackpackContainer> {
         imageWidth = 176;
         imageHeight = 233;
 
-        this.texture = new ResourceLocation(Ref.MODID, "textures/gui/backpack/" + handler.info.tier + ".png");
+        this.texture = new ResourceLocation(SlashRef.MODID, "textures/gui/backpack/" + handler.info.tier + ".png");
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.effects.AntiPotionEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ModStatusEffect;
@@ -23,8 +23,8 @@ public class PotionRegister {
 
     public HashMap<FoodExileEffect, Effect> FOOD_EFFECT_MAP = new HashMap<>();
 
-    public static ResourceLocation FOOD_HP = new ResourceLocation(Ref.MODID, "food_health_regen");
-    public static ResourceLocation FOOD_MANA = new ResourceLocation(Ref.MODID, "food_mana_regen");
+    public static ResourceLocation FOOD_HP = new ResourceLocation(SlashRef.MODID, "food_health_regen");
+    public static ResourceLocation FOOD_MANA = new ResourceLocation(SlashRef.MODID, "food_mana_regen");
 
     public AntiPotionEffect ANTI_WITHER = new AntiPotionEffect(Effects.WITHER);
     public AntiPotionEffect ANTI_POISON = new AntiPotionEffect(Effects.POISON);
@@ -45,25 +45,25 @@ public class PotionRegister {
 
         for (FoodExileEffect exileEffect : FoodExileEffect.values()) {
             FoodExileStatusEffect statusEffect = new FoodExileStatusEffect(exileEffect);
-            Registry.register(Registry.MOB_EFFECT, Ref.id("foods/" + exileEffect.id), statusEffect);
+            Registry.register(Registry.MOB_EFFECT, SlashRef.id("foods/" + exileEffect.id), statusEffect);
             FOOD_EFFECT_MAP.put(exileEffect, statusEffect);
         }
 
         for (int i = 0; i < 20; i++) {
             String key = ExileStatusEffect.getIdPath(EffectType.negative, i);
-            ExileStatusEffect eff = Registry.register(Registry.MOB_EFFECT, new ResourceLocation(Ref.MODID, key), new ExileStatusEffect(EffectType.negative, i));
+            ExileStatusEffect eff = Registry.register(Registry.MOB_EFFECT, new ResourceLocation(SlashRef.MODID, key), new ExileStatusEffect(EffectType.negative, i));
             exileEffectsMap.put(key, eff);
         }
         for (int i = 0; i < 40; i++) {
             String key = ExileStatusEffect.getIdPath(EffectType.beneficial, i);
-            ExileStatusEffect eff = Registry.register(Registry.MOB_EFFECT, new ResourceLocation(Ref.MODID, key), new ExileStatusEffect(EffectType.beneficial, i));
+            ExileStatusEffect eff = Registry.register(Registry.MOB_EFFECT, new ResourceLocation(SlashRef.MODID, key), new ExileStatusEffect(EffectType.beneficial, i));
             exileEffectsMap.put(key, eff);
         }
 
-        Registry.register(Registry.MOB_EFFECT, Ref.id("knockback_resist"), KNOCKBACK_RESISTANCE);
-        Registry.register(Registry.MOB_EFFECT, Ref.id("anti_wither"), ANTI_WITHER);
-        Registry.register(Registry.MOB_EFFECT, Ref.id("anti_poison"), ANTI_POISON);
-        Registry.register(Registry.MOB_EFFECT, Ref.id("scroll_buff"), SCROLL_BUFF);
+        Registry.register(Registry.MOB_EFFECT, SlashRef.id("knockback_resist"), KNOCKBACK_RESISTANCE);
+        Registry.register(Registry.MOB_EFFECT, SlashRef.id("anti_wither"), ANTI_WITHER);
+        Registry.register(Registry.MOB_EFFECT, SlashRef.id("anti_poison"), ANTI_POISON);
+        Registry.register(Registry.MOB_EFFECT, SlashRef.id("scroll_buff"), SCROLL_BUFF);
 
         Registry.register(Registry.MOB_EFFECT, FOOD_HP, HealthRegenFoodEffect.INSTANCE);
         Registry.register(Registry.MOB_EFFECT, FOOD_MANA, ManaRegenFoodEffect.INSTANCE);

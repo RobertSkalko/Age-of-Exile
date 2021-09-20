@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequire
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -21,7 +21,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
         return "currency/stone_of_hope";
     }
 
-    public static final String ID = Ref.MODID + ":currency/stone_of_hope";
+    public static final String ID = SlashRef.MODID + ":currency/stone_of_hope";
 
     public StoneOfHopeItem() {
 

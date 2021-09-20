@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.player_skills.items.SkillRequirement;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssenceInkItem;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
@@ -28,7 +28,7 @@ import java.util.List;
 public class ScribeBuffScreen extends ModificationGui<ScribeBuffContainer, ScribeBuffTile> {
 
     // This is the resource location for the background image
-    private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/inscribing/buff_station.png");
+    private static final ResourceLocation texture = new ResourceLocation(SlashRef.MODID, "textures/gui/inscribing/buff_station.png");
 
     public ScribeBuffScreen(ScribeBuffContainer cont, PlayerInventory invPlayer, IFormattableTextComponent comp) {
         super(texture, cont, invPlayer, new StringTextComponent(""), ScribeBuffTile.class);
@@ -57,7 +57,7 @@ public class ScribeBuffScreen extends ModificationGui<ScribeBuffContainer, Scrib
 
     }
 
-    private static final ResourceLocation BUTTON_TEX = new ResourceLocation(Ref.MODID, "textures/gui/inscribing/button.png");
+    private static final ResourceLocation BUTTON_TEX = new ResourceLocation(SlashRef.MODID, "textures/gui/inscribing/button.png");
     static int BUTTON_SIZE_X = 109;
     static int BUTTON_SIZE_Y = 19;
 

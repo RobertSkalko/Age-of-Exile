@@ -10,7 +10,7 @@ import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.unique_items.drop_filters.DropFiltersGroupData;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
@@ -124,7 +124,7 @@ public class UniqueGear implements IAutoLocName, JsonExileRegistry<UniqueGear>, 
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".unique_gear." + this.GUID() + ".name";
+        return SlashRef.MODID + ".unique_gear." + this.GUID() + ".name";
     }
 
     @Override

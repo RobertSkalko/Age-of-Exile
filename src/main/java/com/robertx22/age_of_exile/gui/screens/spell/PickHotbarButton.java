@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.gui.screens.spell;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.utils.GuiUtils;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class PickHotbarButton extends ImageButton {
 
-    static ResourceLocation SPELL_SLOT = Ref.guiId("spells/pick_hotbar");
+    static ResourceLocation SPELL_SLOT = SlashRef.guiId("spells/pick_hotbar");
 
     public static int BUTTON_SIZE_X = 20;
     public static int BUTTON_SIZE_Y = 20;

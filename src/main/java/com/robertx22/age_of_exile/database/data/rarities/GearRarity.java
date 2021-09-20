@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.rarities;
 
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientTextureUtils;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import net.minecraft.util.ResourceLocation;
@@ -62,11 +62,11 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public ResourceLocation getGlintTextureFull() {
 
         if (glintFull == null) {
-            ResourceLocation tex = Ref.id("textures/gui/rarity_glint/full/" + GUID() + ".png");
+            ResourceLocation tex = SlashRef.id("textures/gui/rarity_glint/full/" + GUID() + ".png");
             if (ClientTextureUtils.textureExists(tex)) {
                 glintFull = tex;
             } else {
-                glintFull = Ref.id("textures/gui/rarity_glint/full/default.png");
+                glintFull = SlashRef.id("textures/gui/rarity_glint/full/default.png");
             }
         }
         return glintFull;
@@ -76,11 +76,11 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public ResourceLocation getGlintTextureBorder() {
 
         if (glintTexBorder == null) {
-            ResourceLocation tex = Ref.id("textures/gui/rarity_glint/border/" + GUID() + ".png");
+            ResourceLocation tex = SlashRef.id("textures/gui/rarity_glint/border/" + GUID() + ".png");
             if (ClientTextureUtils.textureExists(tex)) {
                 glintTexBorder = tex;
             } else {
-                glintTexBorder = Ref.id("textures/gui/rarity_glint/border/default.png");
+                glintTexBorder = SlashRef.id("textures/gui/rarity_glint/border/default.png");
             }
         }
         return glintTexBorder;

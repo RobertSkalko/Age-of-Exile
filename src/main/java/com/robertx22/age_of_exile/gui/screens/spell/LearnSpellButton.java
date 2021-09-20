@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.gui.TextUtils;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.packets.AllocateSpellPacket;
@@ -23,7 +23,7 @@ import java.util.List;
 
 public class LearnSpellButton extends ImageButton {
 
-    static ResourceLocation SPELL_SLOT = Ref.guiId("spells/slots/spell");
+    static ResourceLocation SPELL_SLOT = SlashRef.guiId("spells/slots/spell");
 
     public static int BUTTON_SIZE_X = 18;
     public static int BUTTON_SIZE_Y = 18;

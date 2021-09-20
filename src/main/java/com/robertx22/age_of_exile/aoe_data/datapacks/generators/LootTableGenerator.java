@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
@@ -47,7 +47,7 @@ public class LootTableGenerator {
     private Path resolve(Path path, String id) {
 
         return path.resolve(
-            "data/" + Ref.MODID + "/loot_tables/" + id
+            "data/" + SlashRef.MODID + "/loot_tables/" + id
                 + ".json");
     }
 
@@ -77,9 +77,9 @@ public class LootTableGenerator {
 
     }
 
-    public static ResourceLocation RUNE_SALVAGE_RECIPE = Ref.id("runes_salvage_recipe");
-    public static ResourceLocation GEM_SALVAGE_RECIPE = Ref.id("gems_salvage_recipe");
-    public static ResourceLocation CURRENCIES_SALVAGE_RECIPE = Ref.id("currencies_salvage_recipe");
+    public static ResourceLocation RUNE_SALVAGE_RECIPE = SlashRef.id("runes_salvage_recipe");
+    public static ResourceLocation GEM_SALVAGE_RECIPE = SlashRef.id("gems_salvage_recipe");
+    public static ResourceLocation CURRENCIES_SALVAGE_RECIPE = SlashRef.id("currencies_salvage_recipe");
 
     private HashMap<ResourceLocation, LootTable> getLootTables() {
         HashMap<ResourceLocation, LootTable> map = new HashMap<ResourceLocation, LootTable>();

@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.favor;
 
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
@@ -58,7 +58,7 @@ public class FavorRank implements JsonExileRegistry<FavorRank>, IAutoGson<FavorR
     }
 
     public ResourceLocation getTexture() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/favor/" + GUID() + ".png");
+        return new ResourceLocation(SlashRef.MODID, "textures/gui/favor/" + GUID() + ".png");
     }
 
     public List<IFormattableTextComponent> getTooltip() {
@@ -163,7 +163,7 @@ public class FavorRank implements JsonExileRegistry<FavorRank>, IAutoGson<FavorR
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".favor." + GUID();
+        return SlashRef.MODID + ".favor." + GUID();
     }
 
     @Override

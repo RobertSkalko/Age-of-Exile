@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.tooltips.StatTooltipType;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -119,7 +119,7 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
             if (this.one_of_a_kind != null) {
                 list.add(new StringTextComponent("Can only have one Perk of this type: ").withStyle(TextFormatting.GREEN));
 
-                list.add(new TranslationTextComponent(Ref.MODID + ".one_of_a_kind." + one_of_a_kind).withStyle(TextFormatting.GREEN));
+                list.add(new TranslationTextComponent(SlashRef.MODID + ".one_of_a_kind." + one_of_a_kind).withStyle(TextFormatting.GREEN));
             }
 
             if (lvl_req > 1) {
@@ -150,7 +150,7 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".talent." + identifier;
+        return SlashRef.MODID + ".talent." + identifier;
     }
 
     @Override

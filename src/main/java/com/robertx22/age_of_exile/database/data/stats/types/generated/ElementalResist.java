@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.generated;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.defense.ElementalResistEffect;
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.wrappers.MapWrapper;
 
@@ -52,7 +52,7 @@ public class ElementalResist extends ElementalStat {
 
     @Override
     public String locDescLangFileGUID() {
-        return Ref.MODID + ".stat_desc." + "ele_resist";
+        return SlashRef.MODID + ".stat_desc." + "ele_resist";
     }
 
     @Override

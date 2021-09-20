@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.weapons.mechanics.Wea
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
@@ -245,7 +245,7 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".gear_type." + GUID();
+        return SlashRef.MODID + ".gear_type." + GUID();
     }
 
     public final boolean isMageWeapon() {

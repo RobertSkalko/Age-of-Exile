@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.player_skills;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusSkillExp;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
@@ -29,9 +29,9 @@ import java.util.List;
 
 @Storable
 public class ProfessionsData implements IApplyableStats {
-    static ResourceLocation LOW_LVL_TEX = Ref.id("textures/gui/skills/skill_level/low.png");
-    static ResourceLocation MID_LVL_TEX = Ref.id("textures/gui/skills/skill_level/mid.png");
-    static ResourceLocation HIGH_LVL_TEX = Ref.id("textures/gui/skills/skill_level/high.png");
+    static ResourceLocation LOW_LVL_TEX = SlashRef.id("textures/gui/skills/skill_level/low.png");
+    static ResourceLocation MID_LVL_TEX = SlashRef.id("textures/gui/skills/skill_level/mid.png");
+    static ResourceLocation HIGH_LVL_TEX = SlashRef.id("textures/gui/skills/skill_level/high.png");
 
     @Store
     private HashMap<String, PlayerSkillData> map = new HashMap<>();

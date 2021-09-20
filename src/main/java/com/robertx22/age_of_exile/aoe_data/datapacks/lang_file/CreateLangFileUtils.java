@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.lang_file;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IBaseAutoLoc;
@@ -34,7 +34,7 @@ public class CreateLangFileUtils {
 
     public static boolean matches(ResourceLocation loc) {
         if (loc == null || loc.getNamespace()
-            .equals(Ref.MODID) == false) {
+            .equals(SlashRef.MODID) == false) {
             return false;
         }
         return true;

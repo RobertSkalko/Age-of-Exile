@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.rarities;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.util.text.TextFormatting;
@@ -31,7 +31,7 @@ public abstract class BaseRarity implements Rarity {
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".rarity." + rarity_type.id + "." + GUID();
+        return SlashRef.MODID + ".rarity." + rarity_type.id + "." + GUID();
     }
 
     @Override

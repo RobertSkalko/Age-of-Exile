@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.library_of_exile.components.forge.ICommonCap;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.nbt.CompoundNBT;
@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class WorldDungeonCap implements ICommonCap {
 
-    public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "dungeon");
+    public static final ResourceLocation RESOURCE = new ResourceLocation(SlashRef.MODID, "dungeon");
     private static final String LOC = "dungeon_data";
 
     World world;

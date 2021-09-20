@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.item_classes;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -154,7 +154,7 @@ public class GearTooltipUtils {
         }
 
         if (Screen.hasShiftDown() == false) {
-            tooltip.add(new StringTextComponent(TextFormatting.BLUE + "").append(new TranslationTextComponent(Ref.MODID + ".tooltip." + "press_shift_more_info")
+            tooltip.add(new StringTextComponent(TextFormatting.BLUE + "").append(new TranslationTextComponent(SlashRef.MODID + ".tooltip." + "press_shift_more_info")
                 )
                 .withStyle(TextFormatting.BLUE));
         } else {

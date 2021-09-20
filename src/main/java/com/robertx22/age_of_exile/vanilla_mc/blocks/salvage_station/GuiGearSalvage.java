@@ -2,10 +2,9 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.gui.buttons.OwnerButton;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.library_of_exile.gui.HelpButton;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
@@ -20,7 +19,7 @@ import java.util.List;
 public class GuiGearSalvage extends ModificationGui<ContainerGearSalvage, TileGearSalvage> {
 
     // This is the resource location for the background image
-    private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/salvage_station.png");
+    private static final ResourceLocation texture = new ResourceLocation(SlashRef.MODID, "textures/gui/salvage_station.png");
 
     public GuiGearSalvage(ContainerGearSalvage cont, PlayerInventory invPlayer,
                           IFormattableTextComponent comp) {

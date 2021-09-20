@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.gui.screens.wiki;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WikiScreen extends BaseScreen implements INamedScreen {
-    private static final ResourceLocation BACKGROUND = new ResourceLocation(Ref.MODID, "textures/gui/wiki/wiki.png");
+    private static final ResourceLocation BACKGROUND = new ResourceLocation(SlashRef.MODID, "textures/gui/wiki/wiki.png");
 
     static int sizeX = 256;
     static int sizeY = 207;
@@ -40,7 +40,7 @@ public class WikiScreen extends BaseScreen implements INamedScreen {
 
     @Override
     public ResourceLocation iconLocation() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/wiki.png");
+        return new ResourceLocation(SlashRef.MODID, "textures/gui/main_hub/icons/wiki.png");
     }
 
     @Override

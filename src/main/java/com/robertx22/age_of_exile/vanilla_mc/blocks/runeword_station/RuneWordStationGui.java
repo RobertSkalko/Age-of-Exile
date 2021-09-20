@@ -4,7 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ModifyItemPacket;
@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer, RuneWordStationTile> {
 
     // This is the resource location for the background image
-    private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/runewordcraft.png");
+    private static final ResourceLocation texture = new ResourceLocation(SlashRef.MODID, "textures/gui/runewordcraft.png");
 
     public RuneWordStationGui(RuneWordStationContainer cont, PlayerInventory invPlayer, IFormattableTextComponent comp) {
         super(texture, cont, invPlayer, new StringTextComponent(""), RuneWordStationTile.class);
@@ -112,8 +112,8 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
         this.addButton(new CraftButton(tile.getBlockPos(), this.leftPos + 176, this.topPos + 50));
     }
 
-    private static final ResourceLocation BUTTON_TEX = new ResourceLocation(Ref.MODID, "textures/gui/craft_button.png");
-    private static final ResourceLocation RUNEWORD_BUTTON_TEX = new ResourceLocation(Ref.MODID, "textures/gui/runeword_button.png");
+    private static final ResourceLocation BUTTON_TEX = new ResourceLocation(SlashRef.MODID, "textures/gui/craft_button.png");
+    private static final ResourceLocation RUNEWORD_BUTTON_TEX = new ResourceLocation(SlashRef.MODID, "textures/gui/runeword_button.png");
     static int BUTTON_SIZE_X = 22;
     static int BUTTON_SIZE_Y = 20;
 

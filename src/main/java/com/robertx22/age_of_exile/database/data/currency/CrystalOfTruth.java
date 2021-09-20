@@ -8,7 +8,7 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocR
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -25,7 +25,7 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
         return "currency/crystal_of_truth";
     }
 
-    public static final String ID = Ref.MODID + ":currency/crystal_of_truth";
+    public static final String ID = SlashRef.MODID + ":currency/crystal_of_truth";
 
     @Override
     public int getWeight() {

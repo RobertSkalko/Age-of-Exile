@@ -9,7 +9,7 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.screens.ILeftRight;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -24,7 +24,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.List;
 
 public class SpellScreen extends BaseScreen implements INamedScreen, ILeftRight {
-    private static final ResourceLocation BACKGROUND = new ResourceLocation(Ref.MODID, "textures/gui/spells/spell_school_background.png");
+    private static final ResourceLocation BACKGROUND = new ResourceLocation(SlashRef.MODID, "textures/gui/spells/spell_school_background.png");
 
     static int sizeX = 250;
     static int sizeY = 233;
@@ -51,7 +51,7 @@ public class SpellScreen extends BaseScreen implements INamedScreen, ILeftRight 
 
     @Override
     public ResourceLocation iconLocation() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/spells.png");
+        return new ResourceLocation(SlashRef.MODID, "textures/gui/main_hub/icons/spells.png");
     }
 
     @Override

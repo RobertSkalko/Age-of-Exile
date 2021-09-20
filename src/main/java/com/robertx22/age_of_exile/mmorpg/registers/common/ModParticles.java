@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -17,7 +17,7 @@ public class ModParticles {
     public final BasicParticleType BLOOD_DRIP = register("blood_drip", FabricParticleTypes.simple());
 
     private <T extends ParticleType<?>> T register(String name, T particleType) {
-        Registry.PARTICLE_TYPE.register(Registry.PARTICLE_TYPE, new ResourceLocation(Ref.MODID, name), particleType);
+        Registry.PARTICLE_TYPE.register(Registry.PARTICLE_TYPE, new ResourceLocation(SlashRef.MODID, name), particleType);
         return particleType;
     }
 

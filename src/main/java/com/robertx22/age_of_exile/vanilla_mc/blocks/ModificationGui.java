@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.packets.RequestTilePacket;
@@ -47,7 +47,7 @@ public abstract class ModificationGui<T extends BaseTileContainer, Tile extends 
 
     }
 
-    static ResourceLocation COOK_ARROW = Ref.id("textures/gui/cook_arrow.png");
+    static ResourceLocation COOK_ARROW = SlashRef.id("textures/gui/cook_arrow.png");
     static int COOK_X = 24;
     static int COOK_Y = 17;
 
@@ -57,7 +57,7 @@ public abstract class ModificationGui<T extends BaseTileContainer, Tile extends 
         blit(matrix, x, y, 0, 0, (int) (COOK_X * progress), COOK_Y);
     }
 
-    static ResourceLocation COOK_FLAME = Ref.id("textures/gui/cook_flame.png");
+    static ResourceLocation COOK_FLAME = SlashRef.id("textures/gui/cook_flame.png");
     static int FLAME_X = 14;
     static int FLAME_Y = 14;
 
@@ -70,7 +70,7 @@ public abstract class ModificationGui<T extends BaseTileContainer, Tile extends 
 
     }
 
-    static ResourceLocation ALCHEMY_ARROW = Ref.id("textures/gui/alchemy_arrow.png");
+    static ResourceLocation ALCHEMY_ARROW = SlashRef.id("textures/gui/alchemy_arrow.png");
     static int A_ARROW_X = 9;
     static int A_ARROW_Y = 28;
 

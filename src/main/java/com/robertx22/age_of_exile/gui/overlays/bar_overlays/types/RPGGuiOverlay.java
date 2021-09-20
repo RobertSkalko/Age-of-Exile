@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.TextUtils;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.SyncedToClientValues;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
@@ -22,8 +22,8 @@ import net.minecraft.util.text.TextFormatting;
 
 public class RPGGuiOverlay extends AbstractGui implements HudRenderCallback {
 
-    static ResourceLocation BASETEX = new ResourceLocation(Ref.MODID, "textures/gui/overlay/base.png");
-    static ResourceLocation MANA_RESERVE = new ResourceLocation(Ref.MODID, "textures/gui/overlay/mana_reserve.png");
+    static ResourceLocation BASETEX = new ResourceLocation(SlashRef.MODID, "textures/gui/overlay/base.png");
+    static ResourceLocation MANA_RESERVE = new ResourceLocation(SlashRef.MODID, "textures/gui/overlay/mana_reserve.png");
 
     public RPGGuiOverlay() {
         super();

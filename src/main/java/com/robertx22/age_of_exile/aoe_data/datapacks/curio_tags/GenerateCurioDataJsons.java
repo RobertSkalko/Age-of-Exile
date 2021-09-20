@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.curio_tags;
 
 import com.google.common.base.Joiner;
 import com.robertx22.age_of_exile.a_libraries.curios.interfaces.ICuriosType;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DirUtils;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
@@ -26,7 +26,7 @@ public class GenerateCurioDataJsons {
 
             if (Registry.ITEM.getKey(item)
                 .getNamespace()
-                .equals(Ref.MODID) && item instanceof ICuriosType) {
+                .equals(SlashRef.MODID) && item instanceof ICuriosType) {
 
                 ICuriosType type = (ICuriosType) item;
                 String slot = type.curioTypeName();

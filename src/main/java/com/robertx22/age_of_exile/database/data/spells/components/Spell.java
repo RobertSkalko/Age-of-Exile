@@ -12,7 +12,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.Spell
 import com.robertx22.age_of_exile.database.data.value_calc.MaxLevelProvider;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -99,7 +99,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
     }
 
     public static final ResourceLocation getIconLoc(String id) {
-        return new ResourceLocation(Ref.MODID, "textures/gui/spells/icons/" + id + ".png");
+        return new ResourceLocation(SlashRef.MODID, "textures/gui/spells/icons/" + id + ".png");
     }
 
     public WeaponTypes getWeapon(LivingEntity en) {
@@ -314,7 +314,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".spell." + GUID();
+        return SlashRef.MODID + ".spell." + GUID();
     }
 
     public transient String locName;

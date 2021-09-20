@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.gui.overlays;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
@@ -21,7 +21,7 @@ public enum BarGuiType {
 
         @Override
         public ResourceLocation getTexture(EntityData data, PlayerEntity en) {
-            return Ref.id("empty");
+            return SlashRef.id("empty");
         }
     },
     EXP {
@@ -37,7 +37,7 @@ public enum BarGuiType {
 
         @Override
         public ResourceLocation getTexture(EntityData data, PlayerEntity en) {
-            return Ref.id("textures/gui/overlay/exp.png");
+            return SlashRef.id("textures/gui/overlay/exp.png");
         }
 
         @Override
@@ -62,7 +62,7 @@ public enum BarGuiType {
 
         @Override
         public ResourceLocation getTexture(EntityData data, PlayerEntity en) {
-            return Ref.id("textures/gui/overlay/energy.png");
+            return SlashRef.id("textures/gui/overlay/energy.png");
         }
     },
 
@@ -96,9 +96,9 @@ public enum BarGuiType {
             if (data.getUnit()
                 .getCalculatedStat(BloodUser.getInstance())
                 .getValue() > 0) {
-                return Ref.id("textures/gui/overlay/blood.png");
+                return SlashRef.id("textures/gui/overlay/blood.png");
             } else {
-                return Ref.id("textures/gui/overlay/mana.png");
+                return SlashRef.id("textures/gui/overlay/mana.png");
             }
         }
     },
@@ -115,7 +115,7 @@ public enum BarGuiType {
 
         @Override
         public ResourceLocation getTexture(EntityData data, PlayerEntity en) {
-            return Ref.id("textures/gui/overlay/health.png");
+            return SlashRef.id("textures/gui/overlay/health.png");
         }
 
     },
@@ -133,7 +133,7 @@ public enum BarGuiType {
 
         @Override
         public ResourceLocation getTexture(EntityData data, PlayerEntity en) {
-            return Ref.id("textures/gui/overlay/shield.png");
+            return SlashRef.id("textures/gui/overlay/shield.png");
         }
 
         @Override
@@ -157,7 +157,7 @@ public enum BarGuiType {
 
         @Override
         public ResourceLocation getTexture(EntityData data, PlayerEntity en) {
-            return Ref.id("textures/gui/overlay/hunger.png");
+            return SlashRef.id("textures/gui/overlay/hunger.png");
         }
 
         @Override
@@ -180,7 +180,7 @@ public enum BarGuiType {
 
         @Override
         public ResourceLocation getTexture(EntityData data, PlayerEntity en) {
-            return Ref.id("textures/gui/overlay/air.png");
+            return SlashRef.id("textures/gui/overlay/air.png");
         }
 
         @Override

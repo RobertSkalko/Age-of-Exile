@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.gui.overlays.mob_bar;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
@@ -21,7 +21,7 @@ public class MobBarScreen extends AbstractGui implements HudRenderCallback {
 
     private Minecraft mc;
 
-    ResourceLocation TEX = new ResourceLocation(Ref.MODID, "textures/gui/mob_bar/mob_bar.png");
+    ResourceLocation TEX = new ResourceLocation(SlashRef.MODID, "textures/gui/mob_bar/mob_bar.png");
 
     public MobBarScreen() {
         super();

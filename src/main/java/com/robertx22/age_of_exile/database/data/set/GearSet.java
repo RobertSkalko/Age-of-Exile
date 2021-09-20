@@ -4,7 +4,7 @@ import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -97,7 +97,7 @@ public class GearSet implements JsonExileRegistry<GearSet>, IAutoGson<GearSet>, 
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".sets." + id;
+        return SlashRef.MODID + ".sets." + id;
     }
 
     @Override

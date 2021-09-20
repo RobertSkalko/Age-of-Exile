@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.spell_school;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.synergy.Synergy;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -51,11 +51,11 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
     }
 
     public ResourceLocation getIconLoc() {
-        return Ref.guiId("spells/schools/" + id);
+        return SlashRef.guiId("spells/schools/" + id);
     }
 
     public ResourceLocation getBackgroundLoc() {
-        return Ref.guiId("spells/school_backgrounds/" + id);
+        return SlashRef.guiId("spells/school_backgrounds/" + id);
     }
 
     @Override
@@ -90,6 +90,6 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
 
     @Override
     public String locNameForLangFile() {
-        return Ref.MODID + ".spell_school." + id;
+        return SlashRef.MODID + ".spell_school." + id;
     }
 }

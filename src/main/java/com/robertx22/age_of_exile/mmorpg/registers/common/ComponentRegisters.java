@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.event.ChunkComponentCallback;
@@ -22,13 +22,13 @@ public class ComponentRegisters {
 
     public ComponentType<EntityData> UNIT_DATA =
         ComponentRegistry.INSTANCE.registerIfAbsent(
-                new ResourceLocation(Ref.MODID, "unit_data"),
+                new ResourceLocation(SlashRef.MODID, "unit_data"),
                 EntityData.class)
             .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntityData(x));
 
     public ComponentType<EntitySpellCap.ISpellsCap> SPELLS =
         ComponentRegistry.INSTANCE.registerIfAbsent(
-                new ResourceLocation(Ref.MODID, "spells"),
+                new ResourceLocation(SlashRef.MODID, "spells"),
                 EntitySpellCap.ISpellsCap.class)
             .attach(EntityComponentCallback.event(LivingEntity.class), x -> new EntitySpellCap.SpellCap(x));
 

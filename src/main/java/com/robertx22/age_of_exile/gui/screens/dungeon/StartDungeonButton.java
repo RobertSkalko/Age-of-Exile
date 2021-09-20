@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.gui.screens.dungeon;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
 import com.robertx22.age_of_exile.dimension.packets.StartDungeonPacket;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
@@ -22,7 +22,7 @@ public class StartDungeonButton extends ImageButton {
     public static int SIZE_X = 49;
     public static int SIZE_Y = 16;
 
-    static ResourceLocation ID = Ref.guiId("dungeon/start_dungeon_button");
+    static ResourceLocation ID = SlashRef.guiId("dungeon/start_dungeon_button");
 
     Minecraft mc = Minecraft.getInstance();
 

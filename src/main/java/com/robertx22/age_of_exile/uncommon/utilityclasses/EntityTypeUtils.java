@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import net.minecraft.entity.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -53,7 +53,7 @@ public class EntityTypeUtils {
         }
         if (EntityType.getKey(en.getType())
             .getNamespace()
-            .equals(Ref.WORLD_OF_EXILE_ID)) {
+            .equals(SlashRef.WORLD_OF_EXILE_ID)) {
             return true; // all my mobs are supposed to be rewarding
         }
 

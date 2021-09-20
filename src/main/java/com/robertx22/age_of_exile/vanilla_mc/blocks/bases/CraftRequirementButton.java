@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.blocks.bases;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.Minecraft;
@@ -23,8 +23,8 @@ public class CraftRequirementButton extends ImageButton {
     public static int xSize = 14;
     public static int ySize = 14;
 
-    static ResourceLocation ANVIL = new ResourceLocation(Ref.MODID, "textures/gui/craft.png");
-    static ResourceLocation BARRIER = new ResourceLocation(Ref.MODID, "textures/gui/barrier.png");
+    static ResourceLocation ANVIL = new ResourceLocation(SlashRef.MODID, "textures/gui/craft.png");
+    static ResourceLocation BARRIER = new ResourceLocation(SlashRef.MODID, "textures/gui/barrier.png");
     PlayerEntity player;
 
     BaseSkillStation station;

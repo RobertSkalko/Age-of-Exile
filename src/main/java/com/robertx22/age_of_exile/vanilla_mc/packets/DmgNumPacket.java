@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 
 import com.robertx22.age_of_exile.a_libraries.dmg_number_particle.DamageParticleAdder;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.entity.LivingEntity;
@@ -30,7 +30,7 @@ public class DmgNumPacket extends MyPacket<DmgNumPacket> {
 
     @Override
     public ResourceLocation getIdentifier() {
-        return new ResourceLocation(Ref.MODID, "dmgnum");
+        return new ResourceLocation(SlashRef.MODID, "dmgnum");
     }
 
     @Override

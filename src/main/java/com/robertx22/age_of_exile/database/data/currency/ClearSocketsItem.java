@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -23,7 +23,7 @@ public class ClearSocketsItem extends CurrencyItem implements ICurrencyItemEffec
         return "currency/clear_sockets";
     }
 
-    public static final String ID = Ref.MODID + ":currency/clear_sockets";
+    public static final String ID = SlashRef.MODID + ":currency/clear_sockets";
 
     @Override
     public int getWeight() {

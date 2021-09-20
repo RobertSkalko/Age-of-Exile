@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.models;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DirUtils;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
@@ -50,7 +50,7 @@ public class ModelHelper {
 
         Path path = DirUtils.generatedResourcesDir();
 
-        String reg = "assets/" + Ref.MODID + "/models/item/" + Registry.ITEM.getKey(item)
+        String reg = "assets/" + SlashRef.MODID + "/models/item/" + Registry.ITEM.getKey(item)
             .getPath()
             + ".json";
 
@@ -82,11 +82,11 @@ public class ModelHelper {
             .toString();
 
         if (!modelPath.isEmpty()) {
-            id = Ref.MODID + ":" + modelPath;
+            id = SlashRef.MODID + ":" + modelPath;
         }
 
         String tex = id
-            .replace(Ref.MODID + ":", Ref.MODID + ":items/");
+            .replace(SlashRef.MODID + ":", SlashRef.MODID + ":items/");
 
         return tex;
     }

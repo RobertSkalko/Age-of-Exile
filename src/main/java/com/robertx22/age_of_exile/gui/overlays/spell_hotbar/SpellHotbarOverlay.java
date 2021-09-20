@@ -5,7 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.CooldownsData;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ChatUtils;
@@ -22,24 +22,24 @@ import java.util.Locale;
 
 public class SpellHotbarOverlay extends AbstractGui {
 
-    private static final ResourceLocation HOTBAR_TEX = new ResourceLocation(Ref.MODID,
+    private static final ResourceLocation HOTBAR_TEX = new ResourceLocation(SlashRef.MODID,
             "textures/gui/spells/hotbar.png"
     );
-    private static final ResourceLocation COOLDOWN_TEX = new ResourceLocation(Ref.MODID,
+    private static final ResourceLocation COOLDOWN_TEX = new ResourceLocation(SlashRef.MODID,
             "textures/gui/spells/cooldown.png"
     );
-    private static final ResourceLocation SPELL_READY_TEX = new ResourceLocation(Ref.MODID,
+    private static final ResourceLocation SPELL_READY_TEX = new ResourceLocation(SlashRef.MODID,
             "textures/gui/spells/spell_ready.png"
     );
-    private static final ResourceLocation SPELl_NO_MANA = new ResourceLocation(Ref.MODID,
+    private static final ResourceLocation SPELl_NO_MANA = new ResourceLocation(SlashRef.MODID,
             "textures/gui/spells/no_mana.png"
     );
 
-    private static final ResourceLocation SPELL_ON_COOLDOWN = new ResourceLocation(Ref.MODID,
+    private static final ResourceLocation SPELL_ON_COOLDOWN = new ResourceLocation(SlashRef.MODID,
             "textures/gui/spells/on_cooldown.png"
     );
 
-    private static final ResourceLocation CHARGE = new ResourceLocation(Ref.MODID,
+    private static final ResourceLocation CHARGE = new ResourceLocation(SlashRef.MODID,
             "textures/gui/spells/charge_icon.png"
     );
 

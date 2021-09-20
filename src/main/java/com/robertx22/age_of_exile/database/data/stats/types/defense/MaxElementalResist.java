@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.database.data.stats.types.defense;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.ElementalStat;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class MaxElementalResist extends ElementalStat {
@@ -22,7 +22,7 @@ public class MaxElementalResist extends ElementalStat {
 
     @Override
     public String locDescLangFileGUID() {
-        return Ref.MODID + ".stat.max_res";
+        return SlashRef.MODID + ".stat.max_res";
     }
 
     @Override

@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.SimpleStatCtx;
@@ -110,7 +110,7 @@ public class MobAffix implements JsonExileRegistry<MobAffix>, ISerializable<MobA
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".mob_affix." + GUID();
+        return SlashRef.MODID + ".mob_affix." + GUID();
     }
 
     @Override

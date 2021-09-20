@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.registry.Registry;
@@ -17,8 +17,8 @@ public class ModSounds {
     public SoundEvent BURN = of("burn");
 
     SoundEvent of(String id) {
-        SoundEvent sound = new SoundEvent(new ResourceLocation(Ref.MODID, id));
-        Registry.register(Registry.SOUND_EVENT, new ResourceLocation(Ref.MODID, id), sound);
+        SoundEvent sound = new SoundEvent(new ResourceLocation(SlashRef.MODID, id));
+        Registry.register(Registry.SOUND_EVENT, new ResourceLocation(SlashRef.MODID, id), sound);
         return sound;
     }
 

@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.perks.PerkStatus;
 import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree;
 import com.robertx22.age_of_exile.gui.screens.skill_tree.SkillTreeScreen;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.vanilla_mc.packets.perks.PerkChangePacket;
@@ -26,8 +26,8 @@ public class PerkButton extends ImageButton {
     public static int SPACING = 26;
     public static int BIGGEST = 33;
 
-    static ResourceLocation ID = new ResourceLocation(Ref.MODID, "textures/gui/skill_tree/perk_buttons.png");
-    public static ResourceLocation LOCKED_TEX = new ResourceLocation(Ref.MODID, "textures/gui/locked.png");
+    static ResourceLocation ID = new ResourceLocation(SlashRef.MODID, "textures/gui/skill_tree/perk_buttons.png");
+    public static ResourceLocation LOCKED_TEX = new ResourceLocation(SlashRef.MODID, "textures/gui/locked.png");
 
     public Perk perk;
     public PointData point;

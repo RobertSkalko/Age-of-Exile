@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.packets.spells;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.entity.LivingEntity;
@@ -25,7 +25,7 @@ public class TellClientToCastSpellPacket extends MyPacket<TellClientToCastSpellP
 
     @Override
     public ResourceLocation getIdentifier() {
-        return new ResourceLocation(Ref.MODID, "tellclienttocastspell");
+        return new ResourceLocation(SlashRef.MODID, "tellclienttocastspell");
     }
 
     @Override

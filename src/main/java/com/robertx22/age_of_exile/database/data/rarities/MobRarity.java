@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.rarities;
 
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.Ref;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
@@ -65,7 +65,7 @@ public final class MobRarity extends BaseRarity implements Rarity, IAutoGson<Mob
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + ".mob_rarity." + GUID();
+        return SlashRef.MODID + ".mob_rarity." + GUID();
     }
 
     @Override
