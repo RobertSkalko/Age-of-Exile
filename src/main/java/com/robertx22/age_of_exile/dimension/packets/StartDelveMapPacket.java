@@ -7,12 +7,12 @@ import com.robertx22.age_of_exile.dimension.teleporter.TeleportedBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
+import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkEvent;
 
 public class StartDelveMapPacket extends MyPacket<StartDelveMapPacket> {
 
@@ -47,7 +47,7 @@ public class StartDelveMapPacket extends MyPacket<StartDelveMapPacket> {
     }
 
     @Override
-    public void onReceived(NetworkEvent.Context ctx) {
+    public void onReceived(ExilePacketContext ctx) {
 
         PlayerEntity player = ctx.getPlayer();
 

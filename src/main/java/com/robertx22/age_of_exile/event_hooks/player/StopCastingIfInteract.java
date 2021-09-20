@@ -7,8 +7,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
-import net.minecraft.world.phys.EntityHitResult;
 
 public class StopCastingIfInteract implements AttackEntityCallback {
 
@@ -27,7 +27,7 @@ public class StopCastingIfInteract implements AttackEntityCallback {
     }
 
     @Override
-    public ActionResultType interact(PlayerEntity playerEntity, World world, Hand hand, Entity entity, EntityHitResult entityHitResult) {
+    public ActionResultType interact(PlayerEntity playerEntity, World world, Hand hand, Entity entity, EntityRayTraceResult entityHitResult) {
         stop(playerEntity);
         return ActionResultType.PASS;
     }

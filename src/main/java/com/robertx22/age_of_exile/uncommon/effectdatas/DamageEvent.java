@@ -28,6 +28,9 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonPartEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.DamageSource;
@@ -36,9 +39,6 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.entity.TamableAnimal;
-import net.minecraft.world.entity.boss.EnderDragonPart;
-import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -236,9 +236,9 @@ public class DamageEvent extends EffectEvent {
             }
         } else {
             if (this.data.isSpellEffect()) {
-                if (target instanceof TamableAnimal) {
+                if (target instanceof TameableEntity) {
                     if (source instanceof PlayerEntity) {
-                        TamableAnimal tame = (TamableAnimal) target;
+                        TameableEntity tame = (TameableEntity) target;
                         if (tame.isOwnedBy(source)) {
                             cancelDamage();
                             return true;
@@ -336,11 +336,11 @@ public class DamageEvent extends EffectEvent {
                 SoundUtils.playSound(target, sound, volume, pitch);
             }
 
-            if (target instanceof EnderDragon) {
+            if (target instanceof EnderDragonEntity) {
                 try {
                     // Dumb vanilla hardcodings require dumb workarounds
-                    EnderDragon dragon = (EnderDragon) target;
-                    EnderDragonPart part = Arrays.stream(dragon.getSubEntities())
+                    EnderDragonEntity dragon = (EnderDragonEntity) target;
+                    EnderDragonPartEntity part = Arrays.stream(dragon.getSubEntities())
                         .filter(x -> x.name.equals("body"))
                         .findFirst()
                         .get();

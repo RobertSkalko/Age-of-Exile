@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraftforge.fml.loading.FMLLoader;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,8 +10,7 @@ public class DirUtils {
 
     public static Path generatedResourcesDir() {
 
-        String path = FabricLoader.getInstance()
-            .getGameDir()
+        String path = FMLLoader.getGamePath()
             .toString();
 
         String movedpath = path;
@@ -21,8 +20,7 @@ public class DirUtils {
     }
 
     public static String modDir() {
-        return FabricLoader.getInstance()
-            .getGameDirectory()
+        return FMLLoader.getGamePath()
             .toString()
             .replace("run", "src");
     }

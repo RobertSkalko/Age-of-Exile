@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class RequestSyncCapToClient extends MyPacket<RequestSyncCapToClient> {
 
@@ -36,7 +36,7 @@ public class RequestSyncCapToClient extends MyPacket<RequestSyncCapToClient> {
     }
 
     @Override
-    public void onReceived(Context ctx) {
+    public void onReceived(ExilePacketContext ctx) {
         Packets.sendToClient(ctx.getPlayer(), new SyncCapabilityToClient(ctx.getPlayer(), type));
     }
 

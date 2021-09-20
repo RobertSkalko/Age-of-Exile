@@ -1,11 +1,11 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
-import net.minecraft.core.NonNullList;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.world.ContainerHelper;
+import net.minecraft.util.NonNullList;
 
 public class BackpackInventory extends Inventory {
 
@@ -61,7 +61,7 @@ public class BackpackInventory extends Inventory {
     private void readNBT(CompoundNBT compound) {
         final NonNullList<ItemStack> list = NonNullList.withSize(getMaxSize(), ItemStack.EMPTY);
 
-        ContainerHelper.loadAllItems(compound, list);
+        ItemStackHelper.loadAllItems(compound, list);
         for (int i = 0; i < list.size(); i++) {
             setItem(i, list.get(i));
         }
@@ -73,7 +73,7 @@ public class BackpackInventory extends Inventory {
             list.set(i, getItem(i));
         }
 
-        ContainerHelper.saveAllItems(compound, list, false);
+        ItemStackHelper.saveAllItems(compound, list, false);
     }
 
 }

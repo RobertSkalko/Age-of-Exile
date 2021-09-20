@@ -5,10 +5,10 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.Spell
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.library_of_exile.main.MyPacket;
+import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class TellClientToCastSpellPacket extends MyPacket<TellClientToCastSpellPacket> {
 
@@ -41,7 +41,7 @@ public class TellClientToCastSpellPacket extends MyPacket<TellClientToCastSpellP
     }
 
     @Override
-    public void onReceived(Context ctx) {
+    public void onReceived(ExilePacketContext ctx) {
 
         LivingEntity en = (LivingEntity) ctx.getPlayer().level.getEntity(enid);
 

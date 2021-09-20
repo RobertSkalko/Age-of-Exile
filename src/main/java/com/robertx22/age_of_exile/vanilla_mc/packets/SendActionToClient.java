@@ -3,11 +3,11 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.main.Ref;
+import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkEvent;
 
 public class SendActionToClient extends MyPacket<SendActionToClient> {
 
@@ -53,7 +53,7 @@ public class SendActionToClient extends MyPacket<SendActionToClient> {
     }
 
     @Override
-    public void onReceived(NetworkEvent.Context ctx) {
+    public void onReceived(ExilePacketContext ctx) {
         this.action.execute(ctx.getPlayer(), pos);
     }
 

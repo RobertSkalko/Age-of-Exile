@@ -37,11 +37,11 @@ import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.entity.MobCategory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -444,8 +444,8 @@ public class Unit {
     public static boolean shouldSendUpdatePackets(LivingEntity en) {
         if (ModConfig.get().Server.DONT_SYNC_DATA_OF_AMBIENT_MOBS) {
             return en.getType()
-                .getCategory() != MobCategory.AMBIENT && en.getType()
-                .getCategory() != MobCategory.WATER_AMBIENT;
+                .getCategory() != EntityClassification.AMBIENT && en.getType()
+                .getCategory() != EntityClassification.WATER_AMBIENT;
         }
         return true;
     }

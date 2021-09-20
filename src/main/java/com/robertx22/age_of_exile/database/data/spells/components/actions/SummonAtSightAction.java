@@ -8,8 +8,8 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.phys.HitResult;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -29,7 +29,7 @@ public class SummonAtSightAction extends SpellAction {
         Double distance = data.getOrDefault(MapField.DISTANCE, 10D);
         Double height = data.getOrDefault(MapField.HEIGHT, 10D);
 
-        HitResult ray = ctx.caster.pick(distance, 0.0F, false);
+        RayTraceResult ray = ctx.caster.pick(distance, 0.0F, false);
         Vector3d pos = ray.getLocation();
 
         Entity en = projectile.get()

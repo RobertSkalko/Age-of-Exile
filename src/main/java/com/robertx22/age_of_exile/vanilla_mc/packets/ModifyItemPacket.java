@@ -3,10 +3,10 @@ package com.robertx22.age_of_exile.vanilla_mc.packets;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.main.MyPacket;
+import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class ModifyItemPacket extends MyPacket<ModifyItemPacket> {
 
@@ -42,7 +42,7 @@ public class ModifyItemPacket extends MyPacket<ModifyItemPacket> {
     }
 
     @Override
-    public void onReceived(Context ctx) {
+    public void onReceived(ExilePacketContext ctx) {
 
         try {
             BaseModificationStation modify = (BaseModificationStation) ctx.getPlayer().level.getBlockEntity(pos);

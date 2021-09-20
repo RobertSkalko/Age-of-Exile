@@ -9,13 +9,13 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.CropsBlock;
+import net.minecraft.block.StemGrownBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameters;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.StemGrownBlock;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
@@ -40,8 +40,8 @@ public class OnBlockDropFarming {
             Block block = state
                 .getBlock();
 
-            if (block instanceof CropBlock) {
-                CropBlock crop = (CropBlock) block;
+            if (block instanceof CropsBlock) {
+                CropsBlock crop = (CropsBlock) block;
                 if (!crop.isMaxAge(state)) {
                     return;
                 }

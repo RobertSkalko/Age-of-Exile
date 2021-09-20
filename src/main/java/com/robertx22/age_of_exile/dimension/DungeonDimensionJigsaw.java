@@ -4,14 +4,15 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.world_of_exile.config.FeatureConfig;
 import com.robertx22.world_of_exile.main.structures.base.StructureWrapper;
 import com.robertx22.world_of_exile.world_gen.AbstractPool;
-import net.minecraft.data.worldgen.ProcessorLists;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraft.world.gen.feature.jigsaw.JigsawPattern;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
+import net.minecraft.world.gen.feature.template.ProcessorLists;
 import net.minecraft.world.gen.feature.template.StructureProcessorList;
-import net.minecraft.world.level.biome.Biomes;
 
 public class DungeonDimensionJigsaw extends StructureWrapper {
 
@@ -26,21 +27,21 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
     }
 
     public DungeonDimensionJigsaw() {
-        super(x -> x.getBiomeKey()
-            .location()
-            .equals(Biomes.THE_VOID.location()
-            ), DimensionIds.DUNGEON_STRUCTURE, false, config, GenerationStage.Decoration.SURFACE_STRUCTURES);
+        super(x -> x.getCategory()
+                .equals(Biome.Category.THEEND)
+            , DimensionIds.DUNGEON_STRUCTURE, false, config, GenerationStage.Decoration.SURFACE_STRUCTURES);
     }
 
     @Override
     public StructureFeature createConfiguredFeature() {
-        return feature.configured(new VillageConfig(() -> {
-            return this.startPool;
-        }, 3));
+        return feature.get()
+            .configured(new VillageConfig(() -> {
+                return this.startPool;
+            }, 3));
     }
 
     @Override
-    public StructureFeature createFeature() {
+    public Structure<VillageConfig> createFeature() {
         return new DungeonDimensionJigsawFeature(VillageConfig.CODEC);
     }
 

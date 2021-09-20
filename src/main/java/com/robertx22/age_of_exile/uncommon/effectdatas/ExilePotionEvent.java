@@ -5,11 +5,12 @@ import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectInstanc
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
-import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
+import net.minecraft.network.play.server.SPlayEntityEffectPacket;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.MathHelper;
@@ -116,8 +117,9 @@ public class ExilePotionEvent extends EffectEvent {
             }
 
             // sync packets to client
-            ClientboundUpdateMobEffectPacket packet = new ClientboundUpdateMobEffectPacket(target.getId(), newInstance);
-            PlayerStream.watching(target.level, target.blockPosition())
+            SPlayEntityEffectPacket packet = new SPlayEntityEffectPacket(target.getId(), newInstance);
+
+            PlayerUtils.getNearbyPlayers((PlayerEntity) target, 50D)
                 .forEach((x) -> {
                     ServerPlayerEntity server = (ServerPlayerEntity) x;
                     server.connection.send(packet);

@@ -11,8 +11,8 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.IFormattableTextComponent;
@@ -25,9 +25,9 @@ public class RenderMobInfo {
 
     static Entity lastLooked;
 
-    public static void renderLivingEntityLabelIfPresent(FontRenderer textRenderer, EntityRenderDispatcher dispatcher, LivingEntity entity,
+    public static void renderLivingEntityLabelIfPresent(FontRenderer textRenderer, EntityRendererManager dispatcher, LivingEntity entity,
                                                         MatrixStack matrixStack,
-                                                        MultiBufferSource vertex, int i) {
+                                                        IRenderTypeBuffer vertex, int i) {
         try {
 
             if (!ModConfig.get().client.RENDER_MOB_HEALTH_GUI) {

@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materia
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ArmorType;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.bases.armor_materials.ModArmorMaterial;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.item.ArmorItem;
 
 public class BaseArmorItem extends ArmorItem implements IAutoLocName {
 

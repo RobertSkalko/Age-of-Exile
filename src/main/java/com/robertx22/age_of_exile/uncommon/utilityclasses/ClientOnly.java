@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import com.robertx22.age_of_exile.gui.screens.dungeon.DungeonInfoScreen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -17,8 +17,8 @@ public class ClientOnly {
 
     public static Entity getEntityByUUID(World world, UUID id) {
 
-        if (world instanceof ClientLevel) {
-            for (Entity entity : ((ClientLevel) world).entitiesForRendering()) {
+        if (world instanceof ClientWorld) {
+            for (Entity entity : ((ClientWorld) world).entitiesForRendering()) {
                 if (entity.getUUID()
                     .equals(id)) {
 

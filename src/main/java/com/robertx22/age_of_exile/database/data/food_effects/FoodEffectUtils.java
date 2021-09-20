@@ -14,7 +14,7 @@ public class FoodEffectUtils {
 
     public static FoodEffect getEffect(Item item) {
 
-        if (ModConfig.get().foodEffects.ENABLE_FOOD_EFFECTS) {
+        if (ModConfig.get().Server.ENABLE_FOOD_EFFECTS) {
 
             if (item instanceof AlchemyPotionItem) {
                 AlchemyPotionItem cast = (AlchemyPotionItem) item;
@@ -25,7 +25,7 @@ public class FoodEffectUtils {
                 return cast.getFoodEffect();
             }
 
-            if (ModConfig.get().foodEffects.ENABLE_AUTO_FOOD_COMPAT) {
+            if (ModConfig.get().Server.ENABLE_AUTO_FOOD_COMPAT) {
                 return FoodEffectBuilder.auto(item); // TODO
             }
 

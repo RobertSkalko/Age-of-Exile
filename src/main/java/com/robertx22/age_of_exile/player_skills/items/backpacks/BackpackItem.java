@@ -7,17 +7,15 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BagUpgradesData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.registry.Registry;
@@ -29,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BackpackItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe {
@@ -51,23 +50,20 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
                 return ActionResult.fail(stack);
             }
 
-            user.openMenu(new ExtendedScreenHandlerFactory() {
-                @Override
-                public void writeScreenOpeningData(ServerPlayerEntity serverPlayerEntity, PacketBuffer packetByteBuf) {
-                    packetByteBuf.writeEnum(hand);
-                }
-
+            user.openMenu(new INamedContainerProvider() {
                 @Override
                 public ITextComponent getDisplayName() {
                     return new StringTextComponent("");
                 }
 
+                @Nullable
                 @Override
-                public Container createMenu(int syncId, IInventory inv, PlayerEntity player) {
-                    ItemStack stack = player.getMainHandItem();
+                public Container createMenu(int syncId, PlayerInventory inv, PlayerEntity p) {
+                    ItemStack stack = p.getMainHandItem();
                     return new BackpackContainer(stack, syncId, inv);
                 }
             });
+
         }
 
         return ActionResult.success(user.getItemInHand(hand));

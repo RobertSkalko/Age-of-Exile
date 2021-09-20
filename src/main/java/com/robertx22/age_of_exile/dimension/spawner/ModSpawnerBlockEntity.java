@@ -15,9 +15,9 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class ModSpawnerBlockEntity extends TileEntity implements ITickableTileEn
             if (!level.isClientSide) {
                 if (isPlayerInRange()) {
                     if (WorldUtils.isMapWorldClass(level)) {
-                        int entities = level.getEntitiesOfClass(LivingEntity.class, (new AABB(worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), (worldPosition.getX() + 1), (worldPosition.getY() + 1), (worldPosition.getZ() + 1))).inflate(this.spawnRange))
+                        int entities = level.getEntitiesOfClass(LivingEntity.class, (new AxisAlignedBB(worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), (worldPosition.getX() + 1), (worldPosition.getY() + 1), (worldPosition.getZ() + 1))).inflate(this.spawnRange))
                             .size();
                         if (!spawnAllAtOnce && entities > MAX_NEARBY_ENTITIES) {
                             return;

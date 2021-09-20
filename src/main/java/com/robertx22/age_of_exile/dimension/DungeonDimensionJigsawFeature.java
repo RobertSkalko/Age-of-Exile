@@ -50,7 +50,7 @@ public class DungeonDimensionJigsawFeature extends JigsawStructure {
     }
 
     @Override
-    protected boolean shouldStartAt(ChunkGenerator chunkGen, BiomeProvider biomeSource, long l, SharedSeedRandom chunkRandom, int i, int j, Biome biome, ChunkPos cpos, VillageConfig structurePoolFeatureConfig) {
+    protected boolean isFeatureChunk(ChunkGenerator chunkGen, BiomeProvider biomeSource, long l, SharedSeedRandom chunkRandom, int i, int j, Biome biome, ChunkPos cpos, VillageConfig structurePoolFeatureConfig) {
 
         if (chunkGen instanceof VoidChunkGenerator == false) {
             return false;

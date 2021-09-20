@@ -13,7 +13,7 @@ import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +30,7 @@ public class ScribeBuffScreen extends ModificationGui<ScribeBuffContainer, Scrib
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/inscribing/buff_station.png");
 
-    public ScribeBuffScreen(ScribeBuffContainer cont, IInventory invPlayer, IFormattableTextComponent comp) {
+    public ScribeBuffScreen(ScribeBuffContainer cont, PlayerInventory invPlayer, IFormattableTextComponent comp) {
         super(texture, cont, invPlayer, new StringTextComponent(""), ScribeBuffTile.class);
         imageWidth = 176;
         imageHeight = 207;

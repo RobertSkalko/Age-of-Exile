@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.network.play.server.SEntityVelocityPacket;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 
@@ -29,7 +29,7 @@ public class DashUtils {
         target.knockback(0.5F, source.getX() - target.getX(), source.getZ() - target.getZ());
 
         if (target instanceof ServerPlayerEntity) {
-            ((ServerPlayerEntity) target).connection.send(new ClientboundSetEntityMotionPacket(target));
+            ((ServerPlayerEntity) target).connection.send(new SEntityVelocityPacket(target));
             target.hurtMarked = false;
         }
     }
@@ -68,7 +68,7 @@ public class DashUtils {
         push(entity, str, x, z);
 
         if (entity instanceof ServerPlayerEntity) {
-            ((ServerPlayerEntity) entity).connection.send(new ClientboundSetEntityMotionPacket(entity));
+            ((ServerPlayerEntity) entity).connection.send(new SEntityVelocityPacket(entity));
             entity.hurtMarked = false;
         }
     }

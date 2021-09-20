@@ -9,13 +9,13 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTier;
+import net.minecraft.item.TieredItem;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TieredItem;
 
 public abstract class SingleTargetWeapon extends TieredItem implements IAutoLocName {
 
-    public SingleTargetWeapon(Tier mat, Properties settings, String locname) {
+    public SingleTargetWeapon(ItemTier mat, Properties settings, String locname) {
 
         super(mat, settings);
         this.locname = locname;

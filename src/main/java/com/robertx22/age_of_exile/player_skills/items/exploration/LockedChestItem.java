@@ -19,6 +19,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -56,7 +57,7 @@ public class LockedChestItem extends TieredItem {
                 ItemStack key = getKeyStack(player);
 
                 if (key.isEmpty()) {
-                    player.displayClientMessage(new StringTextComponent("Needs ").append(new TranslatableComponent(getKeyItem().getDescriptionId())), false);
+                    player.displayClientMessage(new StringTextComponent("Needs ").append(new TranslationTextComponent(getKeyItem().getDescriptionId())), false);
                     return ActionResult.fail(stack);
 
                 }

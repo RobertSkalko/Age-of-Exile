@@ -7,11 +7,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.item.Tier;
+import net.minecraft.item.ItemTier;
 
 public abstract class ModWeapon extends SingleTargetWeapon {
 
-    public ModWeapon(Tier mat, Properties settings, WeaponTypes type) {
+    public ModWeapon(ItemTier mat, Properties settings, WeaponTypes type) {
         super(mat, settings, type.locName());
 
         this.attackSpeed = type.getVanillaItemAttackSpeedModifier();

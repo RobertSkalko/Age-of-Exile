@@ -9,7 +9,7 @@ import com.robertx22.library_of_exile.packets.RequestTilePacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
@@ -23,7 +23,7 @@ public abstract class ModificationGui<T extends BaseTileContainer, Tile extends 
     public FontRenderer font = Minecraft.getInstance().font;
     ResourceLocation background;
 
-    public ModificationGui(ResourceLocation background, T cont, IInventory inv, IFormattableTextComponent text, Class<Tile> token) {
+    public ModificationGui(ResourceLocation background, T cont, PlayerInventory inv, IFormattableTextComponent text, Class<Tile> token) {
         super(cont, inv, text);
         this.background = background;
         this.mc = Minecraft.getInstance();

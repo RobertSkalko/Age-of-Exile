@@ -17,8 +17,8 @@ import net.minecraft.inventory.EquipmentSlotType;
 import java.util.Map;
 import java.util.Objects;
 
+import static net.minecraft.command.Commands.argument;
 import static net.minecraft.command.Commands.literal;
-import static net.minecraft.commands.Commands.argument;
 
 public class TestBuild {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {

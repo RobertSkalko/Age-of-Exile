@@ -3,9 +3,9 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.UUID;
@@ -43,7 +43,7 @@ public final class Utilities {
                 .scale(distance));
     }
 
-    public static void spawnParticlesForTesting(AABB aabb, World world) {
+    public static void spawnParticlesForTesting(AxisAlignedBB aabb, World world) {
         if (!world.isClientSide) {
             for (double x = aabb.minX; x < aabb.maxX; x += 0.3F) {
                 for (double y = aabb.minY; y < aabb.maxY; y += 1F) {

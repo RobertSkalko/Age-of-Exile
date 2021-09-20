@@ -19,7 +19,7 @@ public class SmithingScreen extends ModificationGui<SmithingContainer, SmithingT
 
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/cooking/cooking_station.png");
 
-    public SmithingScreen(SmithingContainer cont, IInventory invPlayer, IFormattableTextComponent comp) {
+    public SmithingScreen(SmithingContainer cont, PlayerInventory invPlayer, IFormattableTextComponent comp) {
         super(texture, cont, invPlayer, new StringTextComponent(""), SmithingTile.class);
         imageWidth = 176;
         imageHeight = 207;

@@ -13,19 +13,18 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.tileentity.FurnaceTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.block.entity.FurnaceBlockEntity;
 
 public abstract class BaseSkillStation extends BaseModificationStation implements IAutomatable, ISmeltingStation {
 
     PlayerSkillEnum skill;
     IRecipeType<? extends IRecipe<IInventory>> recipeType;
 
-    public BaseSkillStation(RecipeType<? extends IRecipe<IInventory>> recipeType, PlayerSkillEnum skill, TileEntityType<?> type, int slots) {
+    public BaseSkillStation(IRecipeType<? extends IRecipe<IInventory>> recipeType, PlayerSkillEnum skill, TileEntityType<?> type, int slots) {
         super(type, slots);
         this.skill = skill;
         this.recipeType = recipeType;
@@ -55,7 +54,7 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
             getFuelSlots().forEach(x -> {
                 ItemStack stack = itemStacks[x];
 
-                int val = FurnaceBlockEntity.getFuel()
+                int val = FurnaceTileEntity.getFuel()
                     .getOrDefault(stack.getItem(), 0);
 
                 if (val > 0) {

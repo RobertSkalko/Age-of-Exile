@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.dimension.rules;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.world.level.GameType;
+import net.minecraft.world.GameType;
 
 public class OnTickSetGameMode {
 

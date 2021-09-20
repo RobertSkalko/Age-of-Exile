@@ -8,9 +8,10 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.utils.RandomUtils;
-import com.robertx22.world_of_exile.main.ModLoottables;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.loot.LootTables;
+import net.minecraft.tileentity.BeaconTileEntity;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -18,7 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.level.block.entity.BeaconBlockEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +100,7 @@ public class PopulateDungeonChunks {
 
         for (BlockPos blockPos : list) {
             TileEntity be = world.getBlockEntity(blockPos);
-            if (be instanceof BeaconBlockEntity) {
+            if (be instanceof BeaconTileEntity) {
                 try {
                     populate(world, blockPos, dungeon, data);
                 } catch (Exception e) {
@@ -238,7 +238,7 @@ public class PopulateDungeonChunks {
     public static void setChest(World world, BlockPos p) {
         world.setBlock(p, Blocks.CHEST.defaultBlockState(), 2);
         ChestTileEntity chest = (ChestTileEntity) world.getBlockEntity(p);
-        chest.setLootTable(ModLoottables.DUNGEON_DEFAULT, world.random.nextLong());
+        chest.setLootTable(LootTables.SIMPLE_DUNGEON, world.random.nextLong());
 
     }
 }

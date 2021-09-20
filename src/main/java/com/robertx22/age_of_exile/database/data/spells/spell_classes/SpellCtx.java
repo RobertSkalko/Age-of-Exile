@@ -9,7 +9,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
@@ -21,7 +20,6 @@ public class SpellCtx {
     public World world;
     public LivingEntity caster;
 
-    @Nullable
     public LivingEntity target;
 
     public BlockPos pos;

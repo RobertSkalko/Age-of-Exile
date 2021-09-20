@@ -1,13 +1,13 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
 import com.robertx22.library_of_exile.utils.SoundUtils;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvents;
 
 public class TryAutoInsert {
 
-    public static void run(IInventory inv, ItemStack stack) {
+    public static void run(PlayerInventory inv, ItemStack stack) {
 
         // try put into auto bags
         for (int i = 0; i < inv.getContainerSize(); i++) {

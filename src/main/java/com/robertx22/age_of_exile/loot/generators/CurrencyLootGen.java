@@ -15,7 +15,7 @@ public class CurrencyLootGen extends BaseLootGen<ItemBlueprint> {
 
     @Override
     public float baseDropChance() {
-        float chance = (float) ModConfig.get().DropRates.CURRENCY_DROPRATE;
+        float chance = (float) ModConfig.get().Server.CURRENCY_DROPRATE;
 
         return chance;
 

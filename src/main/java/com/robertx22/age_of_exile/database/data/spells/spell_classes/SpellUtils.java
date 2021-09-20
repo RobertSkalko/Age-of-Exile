@@ -7,19 +7,19 @@ import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.network.play.server.SSpawnObjectPacket;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.server.ServerWorld;
 
 public class SpellUtils {
 
     public static void summonLightningStrike(Entity entity) {
 
-        LightningBolt lightningboltentity = new LightningBolt(EntityType.LIGHTNING_BOLT, entity.level);  //boolean true means it's only an effect!'
+        LightningBoltEntity lightningboltentity = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, entity.level);  //boolean true means it's only an effect!'
 
         lightningboltentity.setPosRaw((double) entity.getX() + 0.5D,
             (double) entity.getY(),
@@ -33,18 +33,15 @@ public class SpellUtils {
 
     }
 
-    public static void addLightningBolt(ServerWorld world, LightningBolt entityIn) {
+    public static void addLightningBolt(ServerWorld world, LightningBoltEntity entityIn) {
         world.getServer()
             .getPlayerList()
             .broadcast((PlayerEntity) null, entityIn.getX(), entityIn.getY(), entityIn.getZ(), 50, world.dimension()
-                , new ClientboundAddEntityPacket(entityIn));
+                , new SSpawnObjectPacket(entityIn));
     }
 
-    public static void shootProjectile(Vector3d pos, AbstractArrow projectile, LivingEntity caster, float speed,
+    public static void shootProjectile(Vector3d pos, AbstractArrowEntity projectile, LivingEntity caster, float speed,
                                        float pitch, float yaw) {
-
-        // pos = pos.add(caster.getRotationVector()
-        //   .multiply(0.25F));
 
         ((Entity) projectile).setPos(pos.x, caster.getEyeY() - 0.1F, pos.z);
 

@@ -17,7 +17,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToCl
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -138,11 +138,12 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
             renderTextAtMiddle(matrix, name, guiTop + 50, TextFormatting.GOLD);
             // renderTextAtMiddle(matrix,, guiTop + 65, Formatting.GREEN);
 
-            List<FormattedCharSequence> list = mc.font.split(currentSkill.type_enum.desc.locName(), sizeX - 25);
+            List<IReorderingProcessor> list = mc.font.split(currentSkill.type_enum.desc.locName(), sizeX - 25);
 
             int ypos = guiTop + 65;
 
-            for (FormattedCharSequence txt : list) {
+            for (IReorderingProcessor txt : list) {
+
                 this.renderTextAtMiddle(matrix, txt, ypos, TextFormatting.WHITE);
                 ypos += mc.font.lineHeight + 2;
             }
@@ -189,7 +190,7 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
             , format.getColor());
     }
 
-    private void renderTextAtMiddle(MatrixStack matrix, FormattedCharSequence text, int y, TextFormatting format) {
+    private void renderTextAtMiddle(MatrixStack matrix, IReorderingProcessor text, int y, TextFormatting format) {
         mc.font.drawShadow(matrix, text,
             guiLeft + sizeX / 2 - mc.font.width(text) / 2, y
             , format.getColor());

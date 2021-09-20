@@ -4,19 +4,18 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.util.text.ITextComponent;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class TooltipStatWithContext implements ITooltipList {
 
     public TooltipStatInfo statinfo;
-    public @Nullable
+    public
     StatModifier mod;
-    public @Nullable
+    public
     Integer level;
 
-    public TooltipStatWithContext(TooltipStatInfo statinfo, @Nullable StatModifier mod, Integer level) {
+    public TooltipStatWithContext(TooltipStatInfo statinfo, StatModifier mod, Integer level) {
         this.statinfo = statinfo;
         this.mod = mod;
         this.level = level;

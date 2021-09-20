@@ -2,11 +2,11 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraft.world.entity.TamableAnimal;
-import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,8 +14,8 @@ import java.util.Objects;
 public class EntityFinder {
 
     public static boolean isTamed(LivingEntity x) {
-        if (x instanceof TamableAnimal) {
-            TamableAnimal tame = (TamableAnimal) x;
+        if (x instanceof TameableEntity) {
+            TameableEntity tame = (TameableEntity) x;
             return tame.isTame();
         }
         return false;
@@ -33,7 +33,7 @@ public class EntityFinder {
                 double hori = setup.horizontal;
                 double verti = setup.vertical;
 
-                AABB aabb = new AABB(x - hori, y - verti, z - hori, x + hori, y + verti, z + hori);
+                AxisAlignedBB aabb = new AxisAlignedBB(x - hori, y - verti, z - hori, x + hori, y + verti, z + hori);
 
                 if (setup.addTestParticles) {
                     Utilities.spawnParticlesForTesting(aabb, setup.world);
@@ -86,7 +86,7 @@ public class EntityFinder {
                 double maxY = Math.max(y, l.y);
                 double maxZ = Math.max(z, l.z);
 
-                AABB aabb = new AABB(minX - horizontal, minY - vertical, minZ - horizontal,
+                AxisAlignedBB aabb = new AxisAlignedBB(minX - horizontal, minY - vertical, minZ - horizontal,
                     maxX + horizontal, maxY + vertical, maxZ + horizontal
                 );
 

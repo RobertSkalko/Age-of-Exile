@@ -17,7 +17,7 @@ public class RuneLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return (float) (ModConfig.get().DropRates.RUNE_DROPRATE);
+        return (float) (ModConfig.get().Server.RUNE_DROPRATE);
     }
 
     @Override

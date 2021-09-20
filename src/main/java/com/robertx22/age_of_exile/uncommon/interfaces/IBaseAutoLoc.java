@@ -2,9 +2,9 @@ package com.robertx22.age_of_exile.uncommon.interfaces;
 
 import com.robertx22.library_of_exile.registry.IGUID;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
-import net.minecraft.world.item.enchantment.Enchantment;
 
 public interface IBaseAutoLoc extends IGUID {
 

@@ -8,11 +8,11 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.library_of_exile.main.MyPacket;
+import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
 
@@ -49,7 +49,7 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
     }
 
     @Override
-    public void onReceived(Context ctx) {
+    public void onReceived(ExilePacketContext ctx) {
 
         RPGPlayerData maps = Load.playerRPGData(ctx.getPlayer());
 

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.ChatScreen;
+import net.minecraft.client.gui.screen.ChatScreen;
 
 public class ChatUtils {
 

@@ -22,7 +22,7 @@ public class GuiGearSalvage extends ModificationGui<ContainerGearSalvage, TileGe
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/salvage_station.png");
 
-    public GuiGearSalvage(ContainerGearSalvage cont, IInventory invPlayer,
+    public GuiGearSalvage(ContainerGearSalvage cont, PlayerInventory invPlayer,
                           IFormattableTextComponent comp) {
         super(texture, cont, invPlayer, new StringTextComponent("Salvage"), TileGearSalvage.class);
 

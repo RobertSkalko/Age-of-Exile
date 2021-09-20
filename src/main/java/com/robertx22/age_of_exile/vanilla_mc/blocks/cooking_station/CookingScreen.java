@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.CraftRequirementButton;
 import com.robertx22.library_of_exile.gui.HelpButton;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
@@ -20,7 +20,7 @@ public class CookingScreen extends ModificationGui<CookingContainer, CookingTile
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/cooking/cooking_station.png");
 
-    public CookingScreen(CookingContainer cont, IInventory invPlayer, IFormattableTextComponent comp) {
+    public CookingScreen(CookingContainer cont, PlayerInventory invPlayer, IFormattableTextComponent comp) {
         super(texture, cont, invPlayer, new StringTextComponent(""), CookingTile.class);
         imageWidth = 176;
         imageHeight = 207;

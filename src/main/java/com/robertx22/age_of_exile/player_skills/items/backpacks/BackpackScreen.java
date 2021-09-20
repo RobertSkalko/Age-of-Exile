@@ -7,7 +7,7 @@ import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.Backpac
 import com.robertx22.library_of_exile.gui.ItemSlotButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -16,7 +16,7 @@ import net.minecraft.util.text.StringTextComponent;
 public class BackpackScreen extends ContainerScreen<BackpackContainer> {
     private ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/backpack/background.png");
 
-    public BackpackScreen(BackpackContainer handler, IInventory inventory, ITextComponent text) {
+    public BackpackScreen(BackpackContainer handler, PlayerInventory inventory, ITextComponent text) {
         super(handler, inventory, new StringTextComponent(""));
 
         imageWidth = 176;

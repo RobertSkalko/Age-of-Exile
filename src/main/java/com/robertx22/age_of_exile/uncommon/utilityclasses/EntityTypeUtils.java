@@ -1,14 +1,10 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.robertx22.age_of_exile.mmorpg.Ref;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.entity.NeutralMob;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.npc.Npc;
 
 public class EntityTypeUtils {
 
@@ -47,7 +43,7 @@ public class EntityTypeUtils {
         if (en instanceof IMob) {
             return true;
         }
-        if (en instanceof NeutralMob) {
+        if (en instanceof IAngerable) {
             return true;
         }
         if (!en.getType()
@@ -65,7 +61,7 @@ public class EntityTypeUtils {
     }
 
     public static boolean isAnimal(Entity en) {
-        return en instanceof Animal;
+        return en instanceof AnimalEntity;
     }
 
     /**
@@ -76,7 +72,7 @@ public class EntityTypeUtils {
      */
     public static boolean isNPC(Entity en) {
 
-        return en instanceof Npc;
+        return en instanceof INPC;
 
     }
 }

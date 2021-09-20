@@ -3,23 +3,23 @@ package com.robertx22.age_of_exile.dimension;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.resources.RegistryLookupCodec;
-import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryLookupCodec;
+import net.minecraft.world.Blockreader;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeManager;
+import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.biome.provider.SingleBiomeProvider;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.level.NoiseColumn;
-import net.minecraft.world.level.StructureFeatureManager;
-import net.minecraft.world.level.biome.BiomeManager;
-import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.biome.FixedBiomeSource;
-import net.minecraft.world.level.levelgen.StructureSettings;
+import net.minecraft.world.gen.WorldGenRegion;
+import net.minecraft.world.gen.feature.structure.StructureManager;
+import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -33,7 +33,7 @@ public class VoidChunkGenerator extends ChunkGenerator {
             .codec();
 
     public VoidChunkGenerator(Registry<Biome> biomeRegistry) {
-        super(new FixedBiomeSource((Biome) biomeRegistry.getOrThrow(Biomes.THE_VOID)), new StructureSettings(false));
+        super(new SingleBiomeProvider((Biome) biomeRegistry.getOrThrow(Biomes.THE_VOID)), new DimensionStructuresSettings(false));
         this.getSettings()
             .structureConfig()
             .clear();
@@ -64,10 +64,10 @@ public class VoidChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public void fillFromNoise(IWorld world, StructureFeatureManager accessor, IChunk chunk) {
+    public void fillFromNoise(IWorld world, StructureManager accessor, IChunk chunk) {
 
         BlockState blockState = Blocks.STONE.defaultBlockState();
-        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
 
         if (blockState != null) {
             for (int i = 0; i < 220; ++i) {
@@ -81,13 +81,13 @@ public class VoidChunkGenerator extends ChunkGenerator {
     }
 
     @Override
-    public int getBaseHeight(int x, int z, Heightmap.Types heightmapType) {
+    public int getBaseHeight(int x, int z, Heightmap.Type heightmapType) {
         return 0;
     }
 
     @Override
     public IBlockReader getBaseColumn(int x, int z) {
-        return new NoiseColumn(new BlockState[0]);
+        return new Blockreader(new BlockState[0]);
     }
 
 }

@@ -12,11 +12,27 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PlayerUtils {
+
+    public static List<PlayerEntity> getNearbyPlayers(World world, BlockPos pos, double range) {
+        return world.getServer()
+            .getPlayerList()
+            .getPlayers()
+            .stream()
+            .filter(x -> pos.distSqr(x.getX(), x.getY(), x.getZ(), false) < range)
+            .collect(Collectors.toList());
+
+    }
+
+    public static List<PlayerEntity> getNearbyPlayers(PlayerEntity player, double range) {
+        return getNearbyPlayers(player.level, player.blockPosition(), range);
+    }
 
     public static List<ItemStack> getEquippedStacksOf(PlayerEntity player, BaseGearType type) {
 

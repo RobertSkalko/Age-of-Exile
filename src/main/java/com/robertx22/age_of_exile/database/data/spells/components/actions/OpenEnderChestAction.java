@@ -4,10 +4,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EnderChestInventory;
+import net.minecraft.inventory.container.ChestContainer;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.SimpleMenuProvider;
-import net.minecraft.world.inventory.ChestMenu;
-import net.minecraft.world.inventory.PlayerEnderChestContainer;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -25,10 +25,10 @@ public class OpenEnderChestAction extends SpellAction {
                 PlayerEntity player = (PlayerEntity) ctx.caster;
 
                 // copied from EnderChestBlock, if bug copy again
-                PlayerEnderChestContainer enderChestInventory = player.getEnderChestInventory();
+                EnderChestInventory enderChestInventory = player.getEnderChestInventory();
 
-                player.openMenu(new SimpleMenuProvider((i, playerInventory, playerEntity) -> {
-                    return ChestMenu.threeRows(i, playerInventory, enderChestInventory);
+                player.openMenu(new SimpleNamedContainerProvider((i, playerInventory, playerEntity) -> {
+                    return ChestContainer.threeRows(i, playerInventory, enderChestInventory);
                 }, new TranslationTextComponent("container.enderchest")));
             }
         }

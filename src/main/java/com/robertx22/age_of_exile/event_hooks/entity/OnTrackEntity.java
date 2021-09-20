@@ -15,13 +15,10 @@ public class OnTrackEntity implements TrackingStartCallback {
 
         try {
             if (entity instanceof LivingEntity) {
-
                 if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {
                     return;
                 }
-
                 if (entity.is(serverPlayerEntity) == false) {
-
                     Packets.sendToClient(serverPlayerEntity,
                         Unit.getUpdatePacketFor((LivingEntity) entity, Load.Unit(entity))
                     );

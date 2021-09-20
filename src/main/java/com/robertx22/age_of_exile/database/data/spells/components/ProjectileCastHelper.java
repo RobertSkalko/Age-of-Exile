@@ -4,9 +4,9 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
-import net.minecraft.world.entity.projectile.AbstractArrow;
 
 public class ProjectileCastHelper {
 
@@ -77,7 +77,7 @@ public class ProjectileCastHelper {
                 }
             }
 
-            AbstractArrow en = (AbstractArrow) projectile.create(world);
+            AbstractArrowEntity en = (AbstractArrowEntity) projectile.create(world);
             SpellUtils.shootProjectile(pos.add(posAdd), en, caster, shootSpeed, pitch, yaw + addYaw);
             SpellUtils.initSpellEntity(en, caster, data, holder);
 

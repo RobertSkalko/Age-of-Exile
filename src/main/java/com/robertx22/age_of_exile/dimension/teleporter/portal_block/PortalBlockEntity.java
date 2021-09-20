@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStatio
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.ITextComponent;
@@ -31,7 +31,7 @@ public class PortalBlockEntity extends BaseModificationStation {
     }
 
     @Override
-    public Container createMenu(int syncId, IInventory inv, PlayerEntity player) {
+    public Container createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
         return null;
     }
 

@@ -12,7 +12,7 @@ import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.gui.widget.button.ImageButton;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +31,7 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/runewordcraft.png");
 
-    public RuneWordStationGui(RuneWordStationContainer cont, IInventory invPlayer, IFormattableTextComponent comp) {
+    public RuneWordStationGui(RuneWordStationContainer cont, PlayerInventory invPlayer, IFormattableTextComponent comp) {
         super(texture, cont, invPlayer, new StringTextComponent(""), RuneWordStationTile.class);
         imageWidth = 276;
         imageHeight = 195;

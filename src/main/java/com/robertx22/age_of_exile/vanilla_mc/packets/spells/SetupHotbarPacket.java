@@ -5,18 +5,17 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
+import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
-import org.jetbrains.annotations.NotNull;
 
 public class SetupHotbarPacket extends MyPacket<SetupHotbarPacket> {
 
     int number;
     String spell;
 
-    public SetupHotbarPacket(@NotNull Spell spell, int number) {
+    public SetupHotbarPacket(Spell spell, int number) {
         this.number = number;
         this.spell = spell.GUID();
     }
@@ -42,7 +41,7 @@ public class SetupHotbarPacket extends MyPacket<SetupHotbarPacket> {
     }
 
     @Override
-    public void onReceived(Context ctx) {
+    public void onReceived(ExilePacketContext ctx) {
         PlayerEntity player = ctx.getPlayer();
 
         EntitySpellCap.ISpellsCap spells = Load.spells(player);

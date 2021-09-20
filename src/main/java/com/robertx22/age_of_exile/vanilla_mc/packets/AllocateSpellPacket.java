@@ -7,9 +7,9 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
+import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.NetworkEvent;
 
 public class AllocateSpellPacket extends MyPacket<AllocateSpellPacket> {
 
@@ -53,7 +53,7 @@ public class AllocateSpellPacket extends MyPacket<AllocateSpellPacket> {
     }
 
     @Override
-    public void onReceived(NetworkEvent.Context ctx) {
+    public void onReceived(ExilePacketContext ctx) {
 
         EntitySpellCap.ISpellsCap spells = Load.spells(ctx.getPlayer());
 

@@ -3,10 +3,10 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
 import com.robertx22.library_of_exile.utils.SoundUtils;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleType;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
@@ -22,15 +22,15 @@ public class ParticleUtils {
         }
     }
 
-    public static void spawn(ParticleOptions type, World world, Vector3d vec, Vector3d mot) {
+    public static void spawn(IParticleData type, World world, Vector3d vec, Vector3d mot) {
         world.addParticle(type, vec.x, vec.y, vec.z, mot.x, mot.y, mot.z);
     }
 
-    public static void spawn(ParticleOptions type, World world, Vector3d vec) {
+    public static void spawn(IParticleData type, World world, Vector3d vec) {
         world.addParticle(type, vec.x, vec.y, vec.z, 0, 0, 0);
     }
 
-    public static void spawn(ParticleOptions particleData, World world, double x, double y, double z, double xSpeed,
+    public static void spawn(IParticleData particleData, World world, double x, double y, double z, double xSpeed,
                              double ySpeed, double zSpeed) {
         world.addParticle(particleData, x, y, z, xSpeed, ySpeed, zSpeed);
 

@@ -10,14 +10,11 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.core.NonNullList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -59,7 +56,7 @@ public class StatSoulItem extends Item implements IGUID {
     @Override
     public ITextComponent getName(ItemStack stack) {
 
-        IFormattableTextComponent txt = new TranslatableComponent(this.getDescriptionId());
+        IFormattableTextComponent txt = new TranslationTextComponent(this.getDescriptionId());
 
         try {
             StatSoulData data = getSoul(stack);

@@ -12,16 +12,16 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Optional;
 
 public class OnSmeltMining {
 
-    public static void hookOnDropExp(Object2IntOpenHashMap<ResourceLocation> recipesUsed, AbstractFurnaceBlockEntity furnace, PlayerEntity player, CallbackInfo ci) {
+    public static void hookOnDropExp(Object2IntOpenHashMap<ResourceLocation> recipesUsed, AbstractFurnaceTileEntity furnace, PlayerEntity player, CallbackInfo ci) {
 
         RPGPlayerData data = Load.playerRPGData(player);
 
@@ -29,7 +29,7 @@ public class OnSmeltMining {
             .get(PlayerSkillEnum.MINING.id);
 
         for (Object2IntMap.Entry<ResourceLocation> entry : recipesUsed.object2IntEntrySet()) {
-            Optional<? extends Recipe<?>> recipe = player.level.getRecipeManager()
+            Optional<? extends IRecipe<?>> recipe = player.level.getRecipeManager()
                 .byKey(entry.getKey());
 
             if (!recipe.isPresent()) {

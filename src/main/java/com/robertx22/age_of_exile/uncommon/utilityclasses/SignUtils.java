@@ -22,7 +22,7 @@ public class SignUtils {
     public static List<String> getText(SignTileEntity sign) {
         SignDuck duck = (SignDuck) sign;
 
-        ITextComponent[] list = duck.getTexts();
+        ITextComponent[] list = duck.getMessages();
 
         List<String> texts = new ArrayList<>();
 

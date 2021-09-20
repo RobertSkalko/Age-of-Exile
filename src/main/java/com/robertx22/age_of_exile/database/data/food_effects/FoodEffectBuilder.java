@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.food_effects;
 import com.mojang.datafixers.util.Pair;
 import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
+import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
@@ -10,7 +11,6 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.food.FoodProperties;
 
 public class FoodEffectBuilder {
 
@@ -27,7 +27,7 @@ public class FoodEffectBuilder {
 
         FoodEffect data = new FoodEffect();
 
-        FoodProperties foodcomponent = food.getFoodProperties();
+        Food foodcomponent = food.getFoodProperties();
 
         float total = foodcomponent.getNutrition() + foodcomponent.getSaturationModifier();
 

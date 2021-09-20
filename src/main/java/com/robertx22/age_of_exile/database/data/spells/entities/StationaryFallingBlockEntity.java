@@ -6,23 +6,21 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.mixin_ducks.FallingBlockAccessor;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.library_of_exile.packets.defaults.EntityPacket;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MoverType;
+import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.entity.item.FallingBlockEntity;
 
 import java.util.ArrayList;
 
@@ -58,20 +56,15 @@ public class StationaryFallingBlockEntity extends FallingBlockEntity implements 
         return super.getBlockState();
     }
 
-    @Override
-    public Packet<?> getAddEntityPacket() {
-        return EntityPacket.createPacket(this);
-    }
-
     int lifespan = 1000;
 
     EntitySavedSpellData spellData;
 
-    private static final EntityDataAccessor<CompoundNBT> SPELL_DATA = EntityDataManager.defineId(StationaryFallingBlockEntity.class, EntityDataSerializers.COMPOUND_TAG);
-    private static final EntityDataAccessor<String> ENTITY_NAME = EntityDataManager.defineId(StationaryFallingBlockEntity.class, EntityDataSerializers.STRING);
-    private static final EntityDataAccessor<String> BLOCK = EntityDataManager.defineId(StationaryFallingBlockEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<Boolean> IS_FALLING = EntityDataManager.defineId(StationaryFallingBlockEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<Float> FALL_SPEED = EntityDataManager.defineId(StationaryFallingBlockEntity.class, EntityDataSerializers.FLOAT);
+    private static final DataParameter<CompoundNBT> SPELL_DATA = EntityDataManager.defineId(StationaryFallingBlockEntity.class, DataSerializers.COMPOUND_TAG);
+    private static final DataParameter<String> ENTITY_NAME = EntityDataManager.defineId(StationaryFallingBlockEntity.class, DataSerializers.STRING);
+    private static final DataParameter<String> BLOCK = EntityDataManager.defineId(StationaryFallingBlockEntity.class, DataSerializers.STRING);
+    public static final DataParameter<Boolean> IS_FALLING = EntityDataManager.defineId(StationaryFallingBlockEntity.class, DataSerializers.BOOLEAN);
+    public static final DataParameter<Float> FALL_SPEED = EntityDataManager.defineId(StationaryFallingBlockEntity.class, DataSerializers.FLOAT);
 
     @Override
     public Iterable<ItemStack> getArmorSlots() {

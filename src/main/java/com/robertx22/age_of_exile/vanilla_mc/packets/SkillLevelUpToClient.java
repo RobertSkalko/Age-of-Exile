@@ -5,9 +5,9 @@ import com.robertx22.age_of_exile.mmorpg.Ref;
 import com.robertx22.age_of_exile.mmorpg.SyncedToClientValues;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.library_of_exile.main.MyPacket;
+import com.robertx22.library_of_exile.packets.ExilePacketContext;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
 
 public class SkillLevelUpToClient extends MyPacket<SkillLevelUpToClient> {
 
@@ -37,7 +37,7 @@ public class SkillLevelUpToClient extends MyPacket<SkillLevelUpToClient> {
     }
 
     @Override
-    public void onReceived(Context ctx) {
+    public void onReceived(ExilePacketContext ctx) {
         try {
             SyncedToClientValues.skillJustLeveled = ExileDB.PlayerSkills()
                 .get(skill).type_enum;

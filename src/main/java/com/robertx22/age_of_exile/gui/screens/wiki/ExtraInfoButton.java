@@ -28,7 +28,7 @@ public class ExtraInfoButton extends ImageButton {
         this.list = list;
     }
 
-    public ExtraInfoButton(List<ITextComponent> list, int xPos, int yPos, OnPress action) {
+    public ExtraInfoButton(List<ITextComponent> list, int xPos, int yPos, IPressable action) {
         super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, buttonLoc, action);
         this.list = list;
     }

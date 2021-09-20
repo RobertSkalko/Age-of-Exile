@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks;
 
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
@@ -18,7 +18,7 @@ public abstract class BaseTileContainer extends Container {
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
 
-    protected BaseTileContainer(int size, ContainerType<?> type, int id, IInventory invPlayer) {
+    protected BaseTileContainer(int size, ContainerType<?> type, int id, PlayerInventory invPlayer) {
         super(type, id);
         this.size = size;
 
@@ -38,7 +38,7 @@ public abstract class BaseTileContainer extends Container {
         return 183;
     }
 
-    public void addPlayerInventory(IInventory invPlayer) {
+    public void addPlayerInventory(PlayerInventory invPlayer) {
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;

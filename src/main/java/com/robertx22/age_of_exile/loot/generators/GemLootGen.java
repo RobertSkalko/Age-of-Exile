@@ -17,7 +17,7 @@ public class GemLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return (float) (ModConfig.get().DropRates.GEM_DROPRATE);
+        return (float) (ModConfig.get().Server.GEM_DROPRATE);
     }
 
     @Override

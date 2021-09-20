@@ -5,10 +5,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
-import net.fabricmc.fabric.api.server.PlayerStream;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.network.play.server.SEntityVelocityPacket;
 import net.minecraft.util.math.vector.Vector3d;
 
 import java.util.Arrays;
@@ -55,10 +55,9 @@ public class SpellMotionAction extends SpellAction {
                         x.push(motion.x, motion.y, motion.z);
                     }
 
-                    PlayerStream.watching(x.level, x.blockPosition())
-                        .forEach((p) -> {
-
-                            ((ServerPlayerEntity) p).connection.send(new ClientboundSetEntityMotionPacket(x));
+                    PlayerUtils.getNearbyPlayers(ctx.world, ctx.pos, 100)
+                        .forEach(p -> {
+                            ((ServerPlayerEntity) p).connection.send(new SEntityVelocityPacket(x));
                             x.hurtMarked = false;
                         });
 
