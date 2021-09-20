@@ -40,7 +40,7 @@ public class PopulateDungeonChunks {
 
                 if (!Load.chunkPopulated(chunk).populated) {
                     DungeonData data = Load.dungeonData(world).data.get(chunk.getPos()
-                        .getWorldPosition()).data;
+                            .getWorldPosition()).data;
 
                     if (!data.isEmpty()) {
                         PopulateDungeonChunks.populateChunk(world, chunk, data, new DungeonPopulateData());
@@ -89,7 +89,7 @@ public class PopulateDungeonChunks {
             getChunksAround(chunk.getPos()).forEach(x -> toPopulate.add(new DungeonPopulateData.CP(x)));
         }
         toPopulate.removeIf(x -> x.getChunkPos()
-            .equals(chunk.getPos()));
+                .equals(chunk.getPos()));
     }
 
     public static boolean populateChunk(World world, IChunk chunk, DungeonData dungeon, DungeonPopulateData data) {
@@ -111,7 +111,7 @@ public class PopulateDungeonChunks {
                 if (SignUtils.has("[chest]", sign)) {
                     setChest(world, blockPos);
                 } else if (SignUtils.has("[portal]", sign)) {
-                    world.setBlockAndUpdate(blockPos, ModRegistry.BLOCKS.PORTAL.defaultBlockState());
+                    world.setBlockAndUpdate(blockPos, ModRegistry.BLOCKS.PORTAL.get().defaultBlockState());
                 }
             }
         }
@@ -197,7 +197,7 @@ public class PopulateDungeonChunks {
             }
             data.mobs += ModSpawnerBlockEntity.DEFAULT_SPAWNS;
 
-            world.setBlock(p, ModRegistry.BLOCKS.SPAWNER.defaultBlockState(), 2);
+            world.setBlock(p, ModRegistry.BLOCKS.SPAWNER.get().defaultBlockState(), 2);
 
             list.remove(p);
         }
@@ -218,7 +218,7 @@ public class PopulateDungeonChunks {
 
             data.mobs += mobs;
 
-            world.setBlock(p, ModRegistry.BLOCKS.SPAWNER.defaultBlockState(), 2);
+            world.setBlock(p, ModRegistry.BLOCKS.SPAWNER.get().defaultBlockState(), 2);
 
             TileEntity be = world.getBlockEntity(p);
 

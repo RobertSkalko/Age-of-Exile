@@ -1,10 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
-import com.robertx22.world_of_exile.main.WOEBlockEntities;
-import com.robertx22.world_of_exile.main.WOEBlocks;
-import com.robertx22.world_of_exile.main.WOEItems;
-import com.robertx22.world_of_exile.main.WOEStructures;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.MiscItemsRegistrator;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
@@ -41,6 +38,7 @@ public class SlashDeferred {
         IEventBus bus = FMLJavaModLoadingContext.get()
                 .getModEventBus();
 
+
         BLOCKS.register(bus);
         ITEMS.register(bus);
         BLOCK_ENTITIES.register(bus);
@@ -51,12 +49,16 @@ public class SlashDeferred {
         STRUCTURES.register(bus);
         POTIONS.register(bus);
         RECIPE_SERIALIZERS.register(bus);
-        
 
-        WOEBlocks.init();
-        WOEBlockEntities.init();
-        WOEItems.init();
-        WOEStructures.init();
+
+        SlashEntities.init();
+        SlashBlocks.init();
+        SlashBlockEntities.init();
+
+        //items
+        MiscItemsRegistrator.init();
+
+
     }
 
 }

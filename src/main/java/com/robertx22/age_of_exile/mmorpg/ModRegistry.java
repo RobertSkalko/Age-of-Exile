@@ -13,11 +13,11 @@ public class ModRegistry {
     public static FoodItemRegister FOOD_ITEMS;
     public static GemItemRegister GEMS;
     public static RuneItemRegister RUNES;
-    public static ModBlocks BLOCKS;
+    public static SlashBlocks BLOCKS;
     public static ModContainers CONTAINERS;
     public static ModSounds SOUNDS;
-    public static ModEntities ENTITIES;
-    public static ModBlockEntities BLOCK_ENTITIES;
+    public static SlashEntities ENTITIES;
+    public static SlashBlockEntities BLOCK_ENTITIES;
     public static ModParticles PARTICLES;
     public static ComponentRegisters COMPONENTS;
     public static GearMaterialRegister GEAR_MATERIALS;
@@ -32,13 +32,13 @@ public class ModRegistry {
         RECIPE_TYPES = new ModRecipeTypes();
         RECIPE_SER = new ModRecipeSerializers();
         POTIONS = new PotionRegister();
-        BLOCKS = new ModBlocks(); // blocks first, cus items are made from blocks
+        BLOCKS = new SlashBlocks(); // blocks first, cus items are made from blocks
         MISC_ITEMS = new MiscItemsRegistrator();
         CURRENCIES = new CurrencyItemRegistrator();
         CONTAINERS = new ModContainers();
         SOUNDS = new ModSounds();
-        ENTITIES = new ModEntities();
-        BLOCK_ENTITIES = new ModBlockEntities();
+        ENTITIES = new SlashEntities();
+        BLOCK_ENTITIES = new SlashBlockEntities();
         PARTICLES = new ModParticles();
         COMPONENTS = new ComponentRegisters();
         GEAR_MATERIALS = new GearMaterialRegister();
