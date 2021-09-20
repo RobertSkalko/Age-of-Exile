@@ -17,8 +17,6 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientEntityIsCastingSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -32,7 +30,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 
-public class OnServerTick implements ServerTickEvents.EndTick {
+public class OnServerTick {
 
     static List<PlayerTickAction> TICK_ACTIONS = new ArrayList<>();
 
@@ -46,26 +44,26 @@ public class OnServerTick implements ServerTickEvents.EndTick {
         }));
 
         TICK_ACTIONS.add(new
-            PlayerTickAction("second_pass", 20, (player, data) ->
+                PlayerTickAction("second_pass", 20, (player, data) ->
         {
 
             if (Load.Unit(player)
-                .getResources()
-                .getEnergy() < Load.Unit(player)
-                .getUnit()
-                .energyData()
-                .getValue() / 10) {
+                    .getResources()
+                    .getEnergy() < Load.Unit(player)
+                    .getUnit()
+                    .energyData()
+                    .getValue() / 10) {
                 player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20 * 3, 1));
             }
 
             UnequipGear.onTick(player);
             Load.spells(player)
-                .getCastingData().charges.onTicks(player, 20);
+                    .getCastingData().charges.onTicks(player, 20);
         }));
 
         TICK_ACTIONS.add(new
 
-            PlayerTickAction("regen", 60, (player, data) ->
+                PlayerTickAction("regen", 60, (player, data) ->
 
         {
 
@@ -76,24 +74,24 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 EntityData unitdata = Load.Unit(player);
 
                 unitdata.getResources()
-                    .shields.onTicksPassed(60);
+                        .shields.onTicksPassed(60);
 
                 unitdata.tryRecalculateStats();
 
                 RestoreResourceEvent mana = EventBuilder.ofRestore(player, player, ResourceType.mana, RestoreType.regen, 0)
-                    .build();
+                        .build();
                 mana.Activate();
 
                 if (!player.isSprinting()) {
                     RestoreResourceEvent energy = EventBuilder.ofRestore(player, player, ResourceType.energy, RestoreType.regen, 0)
-                        .build();
+                            .build();
                     energy.Activate();
                 }
 
                 boolean restored = false;
 
                 boolean canHeal = player.getFoodData()
-                    .getFoodLevel() >= 16;
+                        .getFoodLevel() >= 16;
 
                 if (canHeal) {
                     if (player.getHealth() < player.getMaxHealth()) {
@@ -101,7 +99,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                     }
 
                     RestoreResourceEvent hpevent = EventBuilder.ofRestore(player, player, ResourceType.health, RestoreType.regen, 0)
-                        .build();
+                            .build();
                     hpevent.Activate();
 
                     if (restored) {
@@ -112,7 +110,7 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                         float exhaustion = (float) ModConfig.get().Server.REGEN_HUNGER_COST * percentHealed;
 
                         player.getFoodData()
-                            .addExhaustion(exhaustion);
+                                .addExhaustion(exhaustion);
 
                     }
                 }
@@ -127,47 +125,46 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
         TICK_ACTIONS.add(new
 
-            PlayerTickAction("every_tick", 1, (player, data) ->
+                PlayerTickAction("every_tick", 1, (player, data) ->
 
         {
             if (player.isBlocking()) {
                 if (Load.spells(player)
-                    .getCastingData()
-                    .isCasting()) {
-                    Load.spells(player)
                         .getCastingData()
-                        .cancelCast(player);
+                        .isCasting()) {
+                    Load.spells(player)
+                            .getCastingData()
+                            .cancelCast(player);
                 }
             }
 
             Load.spells(player)
-                .getCastingData()
-                .onTimePass(player, Load.spells(player), 1);
+                    .getCastingData()
+                    .onTimePass(player, Load.spells(player), 1);
 
             Load.Unit(player)
-                .getResources()
-                .onTickBlock(player);
+                    .getResources()
+                    .onTickBlock(player);
 
             Spell spell = Load.spells(player)
-                .getCastingData()
-                .getSpellBeingCast();
+                    .getCastingData()
+                    .getSpellBeingCast();
 
             if (spell != null) {
                 spell.getAttached()
-                    .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(player, player, EntitySavedSpellData.create(Load.Unit(player)
-                        .getLevel(), player, spell)));
+                        .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(player, player, EntitySavedSpellData.create(Load.Unit(player)
+                                .getLevel(), player, spell)));
 
-                PlayerStream.watching(player.level, player.blockPosition())
-                    .forEach((p) -> {
-                        Packets.sendToClient(p, new TellClientEntityIsCastingSpellPacket(player, spell));
-                    });
-
+                PlayerUtils.getNearbyPlayers(player, 50).forEach(x -> {
+                    Packets.sendToClient(x, new TellClientEntityIsCastingSpellPacket(player, spell));
+                });
+                
             }
         }));
 
         TICK_ACTIONS.add(new
 
-            PlayerTickAction("level_warning", 200, (player, data) ->
+                PlayerTickAction("level_warning", 200, (player, data) ->
 
         {
 
@@ -179,18 +176,18 @@ public class OnServerTick implements ServerTickEvents.EndTick {
                 }
 
                 int lvl = Load.Unit(player)
-                    .getLevel();
+                        .getLevel();
 
                 if (lvl < 20) {
                     data.isInHighLvlZone = LevelUtils.determineLevel(player.level, player.blockPosition(), player) - lvl > 10;
 
                     if (wasnt && data.isInHighLvlZone) {
                         OnScreenMessageUtils.sendMessage(
-                            player,
-                            new StringTextComponent("YOU ARE ENTERING").withStyle(TextFormatting.RED)
-                                .withStyle(TextFormatting.BOLD),
-                            new StringTextComponent("A HIGH LEVEL ZONE").withStyle(TextFormatting.RED)
-                                .withStyle(TextFormatting.BOLD));
+                                player,
+                                new StringTextComponent("YOU ARE ENTERING").withStyle(TextFormatting.RED)
+                                        .withStyle(TextFormatting.BOLD),
+                                new StringTextComponent("A HIGH LEVEL ZONE").withStyle(TextFormatting.RED)
+                                        .withStyle(TextFormatting.BOLD));
                     }
                 }
             }
@@ -200,11 +197,11 @@ public class OnServerTick implements ServerTickEvents.EndTick {
 
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
-    @Override
-    public void onEndTick(MinecraftServer server) {
+
+    public static void onEndTick(MinecraftServer server) {
 
         for (ServerPlayerEntity player : server.getPlayerList()
-            .getPlayers()) {
+                .getPlayers()) {
 
             try {
 

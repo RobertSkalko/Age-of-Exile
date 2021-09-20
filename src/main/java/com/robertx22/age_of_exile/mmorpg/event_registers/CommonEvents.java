@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.mmorpg.event_registers;
 
-import com.robertx22.age_of_exile.a_libraries.curios.OnCurioChangeEvent;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.damage_hooks.OnNonPlayerDamageEntityEvent;
 import com.robertx22.age_of_exile.damage_hooks.OnPlayerDamageEntityEvent;
@@ -25,13 +24,15 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import com.robertx22.divine_missions_addon.events.IsMobKilledValid;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
-import nerdhub.cardinal.components.api.event.TrackingStartCallback;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import com.robertx22.library_of_exile.main.ForgeEvents;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import top.theillusivec4.curios.api.event.CurioChangeCallback;
 
 import java.util.ArrayList;
 
@@ -39,13 +40,37 @@ public class CommonEvents {
 
     public static void register() {
 
-        AttackEntityCallback.EVENT.register(new StopCastingIfInteract());
-        CurioChangeCallback.EVENT.register(new OnCurioChangeEvent());
+        ForgeEvents.registerForgeEvent(LivingSpawnEvent.class, event -> {
+            OnMobSpawn.onLoad(event.getEntityLiving());
+        });
 
-        TrackingStartCallback.EVENT.register(new OnTrackEntity());
-        ServerEntityEvents.ENTITY_LOAD.register(new OnMobSpawn());
-        ServerTickEvents.END_SERVER_TICK.register(new OnServerTick());
-        ServerTickEvents.END_WORLD_TICK.register(new OnTickDungeonWorld());
+        ForgeEvents.registerForgeEvent(TickEvent.ServerTickEvent.class, event -> {
+            if (event.phase == TickEvent.Phase.END) {
+                OnServerTick.onEndTick(ServerLifecycleHooks.getCurrentServer());
+            }
+        });
+
+
+        ForgeEvents.registerForgeEvent(TickEvent.WorldTickEvent.class, event -> {
+            if (event.phase == TickEvent.Phase.END && event.world instanceof ServerWorld) {
+                OnTickDungeonWorld.onEndTick((ServerWorld) event.world);
+            }
+        });
+
+
+        ForgeEvents.registerForgeEvent(AttackEntityEvent.class, event -> {
+            if (event.getEntityLiving() instanceof ServerPlayerEntity) {
+                StopCastingIfInteract.interact(event.getPlayer());
+            }
+        });
+
+
+        ForgeEvents.registerForgeEvent(PlayerEvent.StartTracking.class, event -> {
+            if (event.getPlayer() instanceof ServerPlayerEntity) {
+                OnTrackEntity.onPlayerStartTracking((ServerPlayerEntity) event.getPlayer(), event.getEntityLiving());
+            }
+        });
+
 
         ExileEvents.IS_KILLED_ENTITY_VALID.register(new IsMobKilledValid());
         ExileEvents.ON_CHEST_LOOTED.register(new OnLootChestEvent());
@@ -71,8 +96,8 @@ public class CommonEvents {
 
                         data.deathStats.deathPos = event.player.blockPosition();
                         data.deathStats.deathDim = event.player.level.dimension()
-                            .location()
-                            .toString();
+                                .location()
+                                .toString();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -92,7 +117,7 @@ public class CommonEvents {
                 Cached.reset();
                 setupStatsThatAffectVanillaStatsList();
                 ErrorChecks.getAll()
-                    .forEach(x -> x.check());
+                        .forEach(x -> x.check());
             }
         });
 
@@ -102,9 +127,9 @@ public class CommonEvents {
         Cached.VANILLA_STAT_UIDS_TO_CLEAR_EVERY_STAT_CALC = new ArrayList<>();
 
         ExileDB.Stats()
-            .getFilterWrapped(x -> x instanceof AttributeStat).list.forEach(x -> {
-                AttributeStat attri = (AttributeStat) x;
-                Cached.VANILLA_STAT_UIDS_TO_CLEAR_EVERY_STAT_CALC.add(ImmutablePair.of(attri.attribute, attri.uuid));
-            });
+                .getFilterWrapped(x -> x instanceof AttributeStat).list.forEach(x -> {
+                    AttributeStat attri = (AttributeStat) x;
+                    Cached.VANILLA_STAT_UIDS_TO_CLEAR_EVERY_STAT_CALC.add(ImmutablePair.of(attri.attribute, attri.uuid));
+                });
     }
 }

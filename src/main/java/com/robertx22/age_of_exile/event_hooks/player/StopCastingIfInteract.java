@@ -2,15 +2,9 @@ package com.robertx22.age_of_exile.event_hooks.player;
 
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.world.World;
 
-public class StopCastingIfInteract implements AttackEntityCallback {
+public class StopCastingIfInteract {
 
     private static void stop(PlayerEntity player) {
         if (player.level.isClientSide) {
@@ -19,17 +13,16 @@ public class StopCastingIfInteract implements AttackEntityCallback {
         EntitySpellCap.ISpellsCap data = Load.spells(player);
 
         if (data.getCastingData()
-            .isCasting()) {
+                .isCasting()) {
             data.getCastingData()
-                .cancelCast(player);
+                    .cancelCast(player);
             data.syncToClient(player);
         }
     }
 
-    @Override
-    public ActionResultType interact(PlayerEntity playerEntity, World world, Hand hand, Entity entity, EntityRayTraceResult entityHitResult) {
+
+    public static void interact(PlayerEntity playerEntity) {
         stop(playerEntity);
-        return ActionResultType.PASS;
     }
 }
 

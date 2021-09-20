@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ChatUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.client.gui.screen.Screen;
@@ -21,27 +20,27 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.Locale;
 
-public class SpellHotbarOverlay extends AbstractGui implements HudRenderCallback {
+public class SpellHotbarOverlay extends AbstractGui {
 
     private static final ResourceLocation HOTBAR_TEX = new ResourceLocation(Ref.MODID,
-        "textures/gui/spells/hotbar.png"
+            "textures/gui/spells/hotbar.png"
     );
     private static final ResourceLocation COOLDOWN_TEX = new ResourceLocation(Ref.MODID,
-        "textures/gui/spells/cooldown.png"
+            "textures/gui/spells/cooldown.png"
     );
     private static final ResourceLocation SPELL_READY_TEX = new ResourceLocation(Ref.MODID,
-        "textures/gui/spells/spell_ready.png"
+            "textures/gui/spells/spell_ready.png"
     );
     private static final ResourceLocation SPELl_NO_MANA = new ResourceLocation(Ref.MODID,
-        "textures/gui/spells/no_mana.png"
+            "textures/gui/spells/no_mana.png"
     );
 
     private static final ResourceLocation SPELL_ON_COOLDOWN = new ResourceLocation(Ref.MODID,
-        "textures/gui/spells/on_cooldown.png"
+            "textures/gui/spells/on_cooldown.png"
     );
 
     private static final ResourceLocation CHARGE = new ResourceLocation(Ref.MODID,
-        "textures/gui/spells/charge_icon.png"
+            "textures/gui/spells/charge_icon.png"
     );
 
     int CHARGE_SIZE = 9;
@@ -53,8 +52,9 @@ public class SpellHotbarOverlay extends AbstractGui implements HudRenderCallback
 
     EntitySpellCap.ISpellsCap data;
 
-    @Override
+
     public void onHudRender(MatrixStack matrix, float v) {
+
 
         try {
             if (mc.options.renderDebug || mc.player.isSpectator()) {
@@ -74,7 +74,7 @@ public class SpellHotbarOverlay extends AbstractGui implements HudRenderCallback
 
             int x = 0;
             int y = mc.getWindow()
-                .getGuiScaledHeight() / 2 - HEIGHT / 2;
+                    .getGuiScaledHeight() / 2 - HEIGHT / 2;
 
             renderHotbar(matrix, x, y);
             //renderSpellsOnHotbar(matrix, x, y);
@@ -107,7 +107,7 @@ public class SpellHotbarOverlay extends AbstractGui implements HudRenderCallback
         Spell spell = null;
         try {
             spell = Load.spells(this.mc.player)
-                .getSpellByNumber(place);
+                    .getSpellByNumber(place);
 
             if (spell == null) {
                 return;
@@ -124,7 +124,7 @@ public class SpellHotbarOverlay extends AbstractGui implements HudRenderCallback
 
         int x = 3;
         int y = mc.getWindow()
-            .getGuiScaledHeight() / 2 - HEIGHT / 2 + 3;
+                .getGuiScaledHeight() / 2 - HEIGHT / 2 + 3;
 
         y += num * 20;
 
@@ -133,20 +133,20 @@ public class SpellHotbarOverlay extends AbstractGui implements HudRenderCallback
             int ys = (int) (y);
 
             if (Load.Unit(mc.player)
-                .getCooldowns()
-                .getCooldownTicks(spell.GUID()) > 1) {
+                    .getCooldowns()
+                    .getCooldownTicks(spell.GUID()) > 1) {
                 mc.getTextureManager()
-                    .bind(SPELL_ON_COOLDOWN);
+                        .bind(SPELL_ON_COOLDOWN);
             } else {
                 mc.getTextureManager()
-                    .bind(SPELL_READY_TEX);
+                        .bind(SPELL_READY_TEX);
             }
 
             this.blit(matrix, xs, ys, 0, 0, 16, 16, 16, 16);
 
             if (spell != null) {
                 mc.getTextureManager()
-                    .bind(spell.getIconLoc());
+                        .bind(spell.getIconLoc());
                 this.blit(matrix, xs, ys, 0, 0, 16, 16, 16, 16);
 
                 if (spell.config.charges > 0) {
@@ -165,7 +165,7 @@ public class SpellHotbarOverlay extends AbstractGui implements HudRenderCallback
                     }
 
                     mc.getTextureManager()
-                        .bind(CHARGE);
+                            .bind(CHARGE);
                     int chargex = x + 21;
 
                     for (int i = 0; i < charges; i++) {
@@ -176,7 +176,7 @@ public class SpellHotbarOverlay extends AbstractGui implements HudRenderCallback
                 } else {
 
                     CooldownsData cds = Load.Unit(mc.player)
-                        .getCooldowns();
+                            .getCooldowns();
 
                     float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) cds.getNeededTicks(spell.GUID());
                     if (cds.getCooldownTicks(spell.GUID()) > 1) {
@@ -192,14 +192,14 @@ public class SpellHotbarOverlay extends AbstractGui implements HudRenderCallback
                 }
 
                 String txt = CLOC.translate(KeybindsRegister.getSpellHotbar(place)
-                        .getTranslatedKeyMessage())
-                    .toUpperCase(Locale.ROOT);
+                                .getTranslatedKeyMessage())
+                        .toUpperCase(Locale.ROOT);
 
                 if (txt.length() > 3) {
                     txt = txt.substring(0, 2);
                 }
                 GuiUtils.renderScaledText(matrix,
-                    xs + 14, ys + 12, 1, txt, TextFormatting.GREEN);
+                        xs + 14, ys + 12, 1, txt, TextFormatting.GREEN);
 
             }
         } catch (Exception e) {
@@ -211,7 +211,7 @@ public class SpellHotbarOverlay extends AbstractGui implements HudRenderCallback
     private void drawCooldown(float percent, MatrixStack matrix, int x, int y) {
 
         mc.getTextureManager()
-            .bind(COOLDOWN_TEX);
+                .bind(COOLDOWN_TEX);
         this.blit(matrix, x, y, 0, 0, 16, (int) (16 * percent), 16, 16);
     }
 
@@ -219,7 +219,7 @@ public class SpellHotbarOverlay extends AbstractGui implements HudRenderCallback
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager()
-            .bind(HOTBAR_TEX);
+                .bind(HOTBAR_TEX);
 
         this.blit(matrix, x, y, 0, 0, WIDTH, HEIGHT);
 

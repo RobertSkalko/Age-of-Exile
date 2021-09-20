@@ -4,14 +4,13 @@ import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ChatUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class OnClientTick implements ClientTickEvents.EndTick {
+public class OnClientTick {
 
     public static HashMap<String, Integer> COOLDOWN_READY_MAP = new HashMap<>();
 
@@ -27,8 +26,8 @@ public class OnClientTick implements ClientTickEvents.EndTick {
         NO_MANA_SOUND_COOLDOWN = 30;
     }
 
-    @Override
-    public void onEndTick(Minecraft mc) {
+
+    public static void onEndTick(Minecraft mc) {
 
         PlayerEntity player = Minecraft.getInstance().player;
 
@@ -45,30 +44,30 @@ public class OnClientTick implements ClientTickEvents.EndTick {
         if (player.is(player)) {
 
             Load.Unit(player)
-                .getResources()
-                .onTickBlock(player);
+                    .getResources()
+                    .onTickBlock(player);
 
             NO_MANA_SOUND_COOLDOWN--;
 
             EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
             List<String> onCooldown = spells.getCastingData()
-                .getSpellsOnCooldown(player);
+                    .getSpellsOnCooldown(player);
 
             Load.Unit(player)
-                .getCooldowns()
-                .onTicksPass(1);
+                    .getCooldowns()
+                    .onTicksPass(1);
 
             spells.getCastingData()
-                .onTimePass(player, spells, 1); // ticks spells on client
+                    .onTimePass(player, spells, 1); // ticks spells on client
 
             List<String> onCooldownAfter = spells.getCastingData()
-                .getSpellsOnCooldown(player);
+                    .getSpellsOnCooldown(player);
 
             onCooldown.removeAll(onCooldownAfter);
 
             COOLDOWN_READY_MAP.entrySet()
-                .forEach(x -> x.setValue(x.getValue() - 1));
+                    .forEach(x -> x.setValue(x.getValue() - 1));
 
             onCooldown.forEach(x -> {
                 COOLDOWN_READY_MAP.put(x, TICKS_TO_SHOW);

@@ -6,16 +6,15 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.server.ServerWorld;
 
-public class OnMobSpawn implements ServerEntityEvents.Load {
+public class OnMobSpawn {
 
-    @Override
-    public void onLoad(Entity entity, ServerWorld serverWorld) {
+
+    public static void onLoad(Entity entity) {
 
         if (!(entity instanceof LivingEntity)) {
             return;
@@ -53,7 +52,7 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
                 }
 
                 endata.getUnit()
-                    .initStats(); // give new stats to mob on spawn
+                        .initStats(); // give new stats to mob on spawn
                 endata.forceRecalculateStats();
             }
 
@@ -77,9 +76,9 @@ public class OnMobSpawn implements ServerEntityEvents.Load {
         endata.setRarity(rar);
 
         MobRarity rarity = ExileDB.MobRarities()
-            .get(rar);
+                .get(rar);
         endata.getAffixData()
-            .randomizeAffixes(rarity);
+                .randomizeAffixes(rarity);
 
         endata.setUnit(mob);
 
