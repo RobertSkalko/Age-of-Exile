@@ -1,8 +1,9 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
+import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
+import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.player_skills.items.fishing.RawFishItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.*;
-import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect.EffectColor;
 import org.apache.commons.lang3.tuple.Triple;
 
 import java.util.ArrayList;
@@ -12,18 +13,12 @@ import java.util.List;
 
 import static com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect.*;
 
-public class FoodItemRegister extends BaseItemRegistrator {
+public class FoodItems {
 
-    public HashMap<EffectColor, FoodExtractItem> EXTRACT_MAP = new HashMap<>();
-
-    public HashMap<Triple<FoodType, EffectColor, SkillItemTier>, FarmingFoodItem> MAP = new HashMap<>();
-
-    public HashMap<Triple<FoodType, EffectColor, SkillItemTier>, RawFishItem> RAW_FISH = new HashMap<>();
-
-    public FoodItemRegister() {
+    public static void init() {
 
         for (EffectColor color : EffectColor.values()) {
-            EXTRACT_MAP.put(color, item(new FoodExtractItem(color)));
+            EXTRACT_MAP.put(color, Def.item(() -> new FoodExtractItem(color)));
         }
 
         reg(FoodType.APPLE, Arrays.asList(MANA_REGEN, HEALTH_REGEN));
@@ -39,23 +34,27 @@ public class FoodItemRegister extends BaseItemRegistrator {
 
     }
 
-    void regFish(FoodType type, List<FoodExileEffect> effects) {
+    public static HashMap<EffectColor, RegObj<FoodExtractItem>> EXTRACT_MAP = new HashMap<>();
+    public static HashMap<Triple<FoodType, EffectColor, SkillItemTier>, RegObj<FarmingFoodItem>> MAP = new HashMap<>();
+    public static HashMap<Triple<FoodType, EffectColor, SkillItemTier>, RegObj<RawFishItem>> RAW_FISH = new HashMap<>();
+
+    static void regFish(FoodType type, List<FoodExileEffect> effects) {
 
         for (FoodExileEffect effect : effects) {
             for (SkillItemTier tier : SkillItemTier.values()) {
-                RAW_FISH.put(Triple.of(type, effect.color, tier), item(new RawFishItem(tier, type, effect)));
-                MAP.put(Triple.of(type, effect.color, tier), item(new FarmingFoodItem(type, effect, tier)));
+                RAW_FISH.put(Triple.of(type, effect.color, tier), Def.item(() -> new RawFishItem(tier, type, effect)));
+                MAP.put(Triple.of(type, effect.color, tier), Def.item(() -> new FarmingFoodItem(type, effect, tier)));
             }
         }
     }
 
-    void reg(FoodType type, List<FoodExileEffect> effects) {
+    static void reg(FoodType type, List<FoodExileEffect> effects) {
         List<FoodExileEffect.EffectColor> colors = new ArrayList<>();
 
         for (FoodExileEffect effect : effects) {
             for (SkillItemTier tier : SkillItemTier.values()) {
 
-                MAP.put(Triple.of(type, effect.color, tier), item(new FarmingFoodItem(type, effect, tier)));
+                MAP.put(Triple.of(type, effect.color, tier), Def.item(() -> new FarmingFoodItem(type, effect, tier)));
 
                 if (tier == SkillItemTier.TIER3) {
                     if (colors.contains(effect.color)) {

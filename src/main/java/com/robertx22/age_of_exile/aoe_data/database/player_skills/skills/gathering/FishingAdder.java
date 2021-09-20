@@ -7,15 +7,14 @@ import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.player_skills.SkillDropReward;
 import com.robertx22.age_of_exile.database.data.player_skills.SkillDropTable;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.BonusRequirement;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.FoodItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
 import com.robertx22.age_of_exile.player_skills.items.foods.FoodType;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import net.minecraft.item.Item;
 import org.apache.commons.lang3.tuple.Triple;
-
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.TIERED;
 
 public class FishingAdder {
 
@@ -27,14 +26,16 @@ public class FishingAdder {
         b.addBonusYieldMasteryLevelStats(PlayerSkillEnum.FISHING);
         b.skill.exp_per_action = 50;
 
-        b.addTieredDrops(0.4F, x -> TIERED.INK_TIER_MAP.get(x), SkillDropTable.INK_TAG);
+        b.addTieredDrops(0.4F, x -> ProfessionItems.INK_TIER_MAP.get(x)
+            .get(), SkillDropTable.INK_TAG);
 
         for (FoodExileEffect.EffectColor color : FoodExileEffect.EffectColor.values()) {
             for (SkillItemTier tier : SkillItemTier.values()) {
 
                 Triple<FoodType, FoodExileEffect.EffectColor, SkillItemTier> key = Triple.of(FoodType.FISH, color, tier);
-                if (ModRegistry.FOOD_ITEMS.RAW_FISH.containsKey(key)) {
-                    Item rawfish = ModRegistry.FOOD_ITEMS.RAW_FISH.get(key);
+                if (FoodItems.RAW_FISH.containsKey(key)) {
+                    Item rawfish = FoodItems.RAW_FISH.get(key)
+                        .get();
 
                     BonusRequirement req = BonusRequirement.NONE;
 

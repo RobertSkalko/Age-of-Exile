@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
@@ -45,7 +45,7 @@ public class DamageAction extends SpellAction {
                 try {
                     if (data.has(MapField.EXILE_POTION_ID)) {
                         // if damage done by effect, multiple dmg by effect stacks.
-                        Effect effect = ModRegistry.POTIONS.getExileEffect(data.get(MapField.EXILE_POTION_ID));
+                        Effect effect = SlashPotions.getExileEffect(data.get(MapField.EXILE_POTION_ID));
                         if (t.hasEffect(effect)) {
                             stacks = Load.Unit(t)
                                 .getStatusEffectsData()

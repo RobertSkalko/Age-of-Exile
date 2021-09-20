@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.items.fishing;
 
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.IGatheringMat;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -29,7 +29,8 @@ public class ScribeInkItem extends TieredItem implements IGatheringMat, IShapele
             return null;
         }
         ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 2);
-        fac.requires(ModRegistry.TIERED.INK_TIER_MAP.get(tier.higherTier()), 1);
+        fac.requires(ProfessionItems.INK_TIER_MAP.get(tier.higherTier())
+            .get(), 1);
         return fac.unlockedBy("player_level", trigger());
     }
 }

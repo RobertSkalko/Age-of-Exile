@@ -6,7 +6,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 
-public class ModItemTags {
+public class SlashItemTags {
 
     public static final Tag.INamedTag<Item> CHIPPED_GEMS = get("chipped_gems");
     public static final Tag.INamedTag<Item> FLAWED_GEMS = get("flawed_gems");

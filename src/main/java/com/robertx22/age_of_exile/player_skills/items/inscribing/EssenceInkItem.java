@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.items.inscribing;
 
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.ISkillRequirement;
 import com.robertx22.age_of_exile.player_skills.items.SkillRequirement;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
@@ -29,10 +29,10 @@ public class EssenceInkItem extends TieredItem implements IShapelessRecipe, ISki
     @Override
     public ShapelessRecipeBuilder getRecipe() {
         ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 1);
-        fac.requires(ModRegistry.TIERED.INK_TIER_MAP.get(this.tier)
+        fac.requires(ProfessionItems.INK_TIER_MAP.get(this.tier)
             .get());
         fac.requires(Items.GLASS_BOTTLE);
-        fac.requires(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier)
+        fac.requires(ProfessionItems.CONDENSED_ESSENCE_MAP.get(tier)
             .get());
         return fac.unlockedBy("player_level", trigger());
     }

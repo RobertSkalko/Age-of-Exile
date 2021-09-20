@@ -15,7 +15,8 @@ import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsaw;
 import com.robertx22.age_of_exile.mmorpg.event_registers.CommonEvents;
 import com.robertx22.age_of_exile.mmorpg.init.ClientInit;
 import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModItemTags;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashCapabilities;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashItemTags;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.SlashDeferred;
 import com.robertx22.divine_missions_addon.DMRegInit;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
@@ -29,13 +30,19 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 
+@Mod(SlashRef.MODID)
 public class MMORPG {
+
+    // DISABLE WHEN PUBLIC BUILD
+    public static boolean RUN_DEV_TOOLS = true;
 
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel NETWORK = NetworkRegistry.newSimpleChannel(
@@ -55,14 +62,14 @@ public class MMORPG {
             }
         });
 
-        SlashDeferred.registerDefferedAtStartOfModLoading();
-
         final IEventBus bus = FMLJavaModLoadingContext.get()
             .getModEventBus();
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             bus.addListener(ClientInit::onInitializeClient);
         });
+
+        bus.addListener(this::commonSetupEvent);
 
         CurioEvents.reg();
 
@@ -73,19 +80,15 @@ public class MMORPG {
         ExileDBInit.initRegistries();
         SpecialStats.init();
 
+        SlashDeferred.registerDefferedAtStartOfModLoading();
+
         MapField.init();
         EffectCondition.init();
 
-        ModRegistry.init();
-
-        ModItemTags.init();
+        SlashItemTags.init();
 
         ExileDBInit.registerAllItems(); // after config registerAll
         DMRegInit.init();
-
-        if (MMORPG.RUN_DEV_TOOLS) {
-            GeneratedData.addAllObjectsToGenerate();
-        }
 
         CommonEvents.register();
 
@@ -94,6 +97,11 @@ public class MMORPG {
         LifeCycleEvents.register();
 
         ForgeEvents.registerForgeEvent(InterModEnqueueEvent.class, event -> {
+
+            if (MMORPG.RUN_DEV_TOOLS) {
+                GeneratedData.addAllObjectsToGenerate();
+            }
+
             InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("ring").size(2)
                 .build());
             InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("necklace").size(1)
@@ -109,8 +117,9 @@ public class MMORPG {
 
     }
 
-    // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = true;
+    public void commonSetupEvent(FMLCommonSetupEvent event) {
+        SlashCapabilities.register();
+    }
 
     public static void devToolsLog(String string) {
         if (RUN_DEV_TOOLS) {

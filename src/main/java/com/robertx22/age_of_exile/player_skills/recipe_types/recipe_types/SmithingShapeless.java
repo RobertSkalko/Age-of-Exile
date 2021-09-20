@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.recipe_types.recipe_types;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeSerializers;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeTypes;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.StationShapeless;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -18,12 +18,12 @@ public class SmithingShapeless extends StationShapeless {
 
     @Override
     public IRecipeType<?> getType() {
-        return ModRegistry.RECIPE_TYPES.SMITHING_RECIPE;
+        return ModRecipeTypes.SMITHING_RECIPE;
     }
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipeSerializers.SMITHING.get();
+        return SlashRecipeSers.SMITHING.get();
     }
 
 }

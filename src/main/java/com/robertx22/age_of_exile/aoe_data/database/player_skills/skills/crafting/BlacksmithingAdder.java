@@ -2,7 +2,8 @@ package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.crafti
 
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBuilder;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.BackpackItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.TabletItems;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 
@@ -14,10 +15,10 @@ public class BlacksmithingAdder {
         b.addDefaultBonusExpRewards();
         b.addDefaultHpMsMana();
 
-        ModRegistry.TIERED.KEY_TIER_MAP.values()
-            .forEach(x -> b.itemCraftExp(x, 25 + x.tier.tier * 20));
+        ProfessionItems.KEY_TIER_MAP.values()
+            .forEach(x -> b.itemCraftExp(x.get(), 25 + x.get().tier.tier * 20));
 
-        ModRegistry.BACKPACK_UPGRADES.ALL
+        BackpackItems.ALL
             .forEach(x -> b.itemCraftExp(x, 100 + x.tier.tier * 100));
 
         b.itemCraftExp(TabletItems.BLANK_TABLET.get(), 20);

@@ -10,9 +10,9 @@ import com.robertx22.age_of_exile.database.data.spells.components.SpellConfigura
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModParticles;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModSounds;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashParticles;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashSounds;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -60,7 +60,7 @@ public class NatureSpells implements ExileRegistryInit {
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(SlashItems.SLIMEBALL.get(), 1D, 1D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)))
-            .onTick(PartBuilder.particleOnTick(1D, ModParticles.POISON.get(), 1D, 0.15D))
+            .onTick(PartBuilder.particleOnTick(1D, SlashParticles.POISON.get(), 1D, 0.15D))
             .onHit(PartBuilder.damage(SpellCalcs.POISON_BALL, Elements.Earth))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
 
@@ -81,7 +81,7 @@ public class NatureSpells implements ExileRegistryInit {
                 "Refreshes all your spell cooldowns by 1 minute.")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(ModSounds.FREEZE.get(), 1D, 1D))
+            .onCast(PartBuilder.playSound(SlashSounds.FREEZE.get(), 1D, 1D))
 
             .onCast(PartBuilder.justAction(SpellAction.REFRESH_COOLDOWNS_BY_X_TICKS.create(20 * 60D))
                 .addTarget(TargetSelector.CASTER.create()))
@@ -118,7 +118,7 @@ public class NatureSpells implements ExileRegistryInit {
                 .enemiesInRadius(3D))
             .onExpire(PartBuilder.groundParticles(ParticleTypes.LARGE_SMOKE, 50D, 3D, 0.25D))
             .onExpire(PartBuilder.groundParticles(ParticleTypes.ITEM_SLIME, 100D, 3D, 0.25D))
-            .onExpire(PartBuilder.playSound(ModSounds.STONE_CRACK.get(), 1D, 1D))
+            .onExpire(PartBuilder.playSound(SlashSounds.STONE_CRACK.get(), 1D, 1D))
             .build();
     }
 }

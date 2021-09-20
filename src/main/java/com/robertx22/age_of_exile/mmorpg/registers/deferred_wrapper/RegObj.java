@@ -11,6 +11,7 @@ public class RegObj<T extends IForgeRegistryEntry<? super T>> {
 
     private final RegistryObject<T> obj;
 
+    //DO NOT CALL THIS BEFORE THE FORGE'S REGISTRY EVENT FOR THIS TYPE HAS BEEN CALLED
     public T get() {
         return obj.get();
     }

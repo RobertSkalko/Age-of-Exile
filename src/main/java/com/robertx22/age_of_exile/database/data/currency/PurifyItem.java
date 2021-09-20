@@ -5,8 +5,9 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -77,8 +78,8 @@ public class PurifyItem extends CurrencyItem implements ICurrencyItemEffect, ISh
     @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(this)
-            .define('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
-            .define('v', ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER0)
+            .define('t', CurrencyItems.ORB_OF_TRANSMUTATION.get())
+            .define('v', ProfessionItems.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER0)
                 .get())
             .define('o', SlashItems.T3_DUST())
             .pattern("ovo")

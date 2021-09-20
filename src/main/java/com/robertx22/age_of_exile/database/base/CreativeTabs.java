@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.base;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.AlchemyPotions;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.GemItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.player_skills.items.alchemy.PotionType;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -31,15 +32,17 @@ public class CreativeTabs {
     public static ItemGroup GemRuneCurrency = new ItemGroup("mmorpg:gemrunecurrency_group") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModRegistry.GEMS.MAP.get(GemItem.GemType.GARNET)
-                .get(GemItem.GemRank.PERFECT));
+            return new ItemStack(GemItems.MAP.get(GemItem.GemType.GARNET)
+                .get(GemItem.GemRank.PERFECT)
+                .get());
         }
     };
 
     public static ItemGroup Professions = new ItemGroup("mmorpg:proffs_group") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModRegistry.ALCHEMY.POTIONS_MAP.get(ImmutablePair.of(SkillItemTier.TIER4, PotionType.HEALTH)));
+            return new ItemStack(AlchemyPotions.POTIONS_MAP.get(ImmutablePair.of(SkillItemTier.TIER4, PotionType.HEALTH))
+                .get());
         }
     };
 

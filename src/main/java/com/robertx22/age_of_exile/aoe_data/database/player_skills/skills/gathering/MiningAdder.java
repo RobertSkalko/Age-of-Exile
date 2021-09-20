@@ -2,11 +2,10 @@ package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.gather
 
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBuilder;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
-
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.TIERED;
 
 public class MiningAdder {
 
@@ -33,7 +32,8 @@ public class MiningAdder {
         b.blockExp(Blocks.NETHER_GOLD_ORE, 3);
         b.blockExp(Blocks.NETHER_QUARTZ_ORE, 3);
 
-        b.addTieredDrops(1F, x -> TIERED.STONE_TIER_MAP.get(x));
+        b.addTieredDrops(1F, x -> ProfessionItems.STONE_TIER_MAP.get(x)
+            .get());
 
         return b.build();
     }

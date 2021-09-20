@@ -5,8 +5,9 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -75,9 +76,9 @@ public class ClearSocketsItem extends CurrencyItem implements ICurrencyItemEffec
     @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(this)
-            .define('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
-            .define('v', ModRegistry.MISC_ITEMS.T2_DUST())
-            .define('o', ModRegistry.MISC_ITEMS.T3_DUST())
+            .define('t', CurrencyItems.ORB_OF_TRANSMUTATION.get())
+            .define('v', SlashItems.T2_DUST())
+            .define('o', SlashItems.T3_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

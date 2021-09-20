@@ -5,8 +5,8 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -75,9 +75,9 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
     @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(this)
-            .define('t', ModRegistry.CURRENCIES.CRYSTAL_OF_TRUTH)
+            .define('t', CurrencyItems.CRYSTAL_OF_TRUTH.get())
             .define('v', SlashItems.EssenceMaterials.ARCANA.get())
-            .define('o', ModRegistry.MISC_ITEMS.T3_DUST())
+            .define('o', SlashItems.T3_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

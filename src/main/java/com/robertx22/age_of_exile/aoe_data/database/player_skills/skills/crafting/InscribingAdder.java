@@ -14,7 +14,7 @@ public class InscribingAdder {
         b.addDefaultBonusExpRewards();
         b.addDefaultHpMsMana();
 
-        TabletItems.ALL_TABLETS.forEach(x -> b.itemCraftExp(x, 20 + (x.tier.tier * 20)));
+        TabletItems.ALL_TABLETS.forEach(x -> b.itemCraftExp(x.get(), 20 + (x.get().tier.tier * 20)));
 
         b.itemCraftExp(TabletItems.SPAWN_TELEPORT.get(), 25);
         b.itemCraftExp(TabletItems.DEATH_TELEPORT.get(), 25);

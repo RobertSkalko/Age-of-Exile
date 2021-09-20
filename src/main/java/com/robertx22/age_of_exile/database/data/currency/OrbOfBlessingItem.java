@@ -7,8 +7,8 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequire
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.BaseStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -87,11 +87,11 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
 
     @Override
     public ShapedRecipeBuilder getRecipe() {
-        return shaped(ModRegistry.CURRENCIES.ORB_OF_BLESSING)
+        return shaped(CurrencyItems.ORB_OF_BLESSING.get())
             .define('#', SlashItems.CRYSTALLIZED_ESSENCE.get())
-            .define('t', ModRegistry.CURRENCIES.ORB_OF_TURBULENCE)
+            .define('t', CurrencyItems.ORB_OF_TURBULENCE.get())
             .define('v', Items.COAL)
-            .define('o', ModRegistry.MISC_ITEMS.T4_DUST())
+            .define('o', SlashItems.T4_DUST())
             .pattern("v#v")
             .pattern("vtv")
             .pattern("ovo")

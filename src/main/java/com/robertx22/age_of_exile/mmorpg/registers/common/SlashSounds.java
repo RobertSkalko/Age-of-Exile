@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import net.minecraft.util.SoundEvent;
 
-public class ModSounds {
+public class SlashSounds {
 
     public static void init() {
 

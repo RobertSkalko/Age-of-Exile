@@ -10,17 +10,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class SlashEntities {
 
     public static void init() {
 
     }
-
-    public static List<EntityType<? extends Entity>> ENTITY_TYPES = new LinkedList();
-    public static List<EntityType<? extends Entity>> ENTITY_THAT_USE_ITEM_RENDERS = new LinkedList();
 
     public static RegObj<EntityType<SimpleProjectileEntity>> SIMPLE_PROJECTILE = projectile(SimpleProjectileEntity::new, "spell_projectile");
     public static RegObj<EntityType<SimpleArrowEntity>> SIMPLE_ARROW = projectile(SimpleArrowEntity::new, "spell_arrow");
@@ -41,13 +35,8 @@ public class SlashEntities {
             .setTrackingRange(10)
             .build(id);
 
-        RegObj<EntityType<T>> def = Def.entity(id, type);
+        RegObj<EntityType<T>> def = Def.entity(id, () -> type);
 
-        ENTITY_TYPES.add(def.get());
-
-        if (itemRender) {
-            ENTITY_THAT_USE_ITEM_RENDERS.add(def.get());
-        }
         return def;
     }
 

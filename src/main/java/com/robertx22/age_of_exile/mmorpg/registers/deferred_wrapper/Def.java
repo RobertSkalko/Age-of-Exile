@@ -8,6 +8,7 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.particles.ParticleType;
+import net.minecraft.potion.Effect;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -17,52 +18,60 @@ import java.util.function.Supplier;
 
 public class Def {
 
-    public static <T extends Block> RegObj<T> block(String id, T block) {
-        RegistryObject<T> reg = SlashDeferred.BLOCKS.register(id, () -> block);
+    public static <T extends Block> RegObj<T> block(String id, Supplier<T> block) {
+        RegistryObject<T> reg = SlashDeferred.BLOCKS.register(id, block);
         RegObj<T> obj = new RegObj<T>(reg);
         return obj;
     }
 
-    public static <T extends Item & IGUID> RegObj<T> item(T object) {
-        return item(object.GUID(), object);
+    public static <T extends Item & IGUID> RegObj<T> item(Supplier<T> object) {
+        return item(object.get()
+            .GUID(), object);
     }
+    // todo not lazy
 
-    public static <T extends Item> RegObj<T> item(T object, String id) {
+    public static <T extends Item> RegObj<T> item(Supplier<T> object, String id) {
         return item(id, object);
     }
 
-    public static <T extends Item> RegObj<T> item(String id, T object) {
-        RegistryObject<T> reg = SlashDeferred.ITEMS.register(id, () -> object);
+    public static <T extends Item> RegObj<T> item(String id, Supplier<T> object) {
+        RegistryObject<T> reg = SlashDeferred.ITEMS.register(id, object);
         RegObj<T> wrapper = new RegObj<T>(reg);
         return wrapper;
     }
 
-    public static <T extends ParticleType<?>> RegObj<T> particle(String id, T object) {
-        RegistryObject<T> reg = SlashDeferred.PARTICLES.register(id, () -> object);
+    public static <T extends ParticleType<?>> RegObj<T> particle(String id, Supplier<T> object) {
+        RegistryObject<T> reg = SlashDeferred.PARTICLES.register(id, object);
         RegObj<T> wrapper = new RegObj<T>(reg);
         return wrapper;
     }
 
-    public static <T extends TileEntityType<?>> RegObj<T> blockEntity(String id, T object) {
-        RegistryObject<T> reg = SlashDeferred.BLOCK_ENTITIES.register(id, () -> object);
+    public static <T extends Effect> RegObj<T> potion(String id, Supplier<T> object) {
+        RegistryObject<T> reg = SlashDeferred.POTIONS.register(id, object);
         RegObj<T> wrapper = new RegObj<T>(reg);
         return wrapper;
     }
 
-    public static <T extends EntityType<?>> RegObj<T> entity(String id, T object) {
-        RegistryObject<T> reg = SlashDeferred.ENTITIES.register(id, () -> object);
+    public static <T extends TileEntityType<?>> RegObj<T> blockEntity(String id, Supplier<T> object) {
+        RegistryObject<T> reg = SlashDeferred.BLOCK_ENTITIES.register(id, object);
         RegObj<T> wrapper = new RegObj<T>(reg);
         return wrapper;
     }
 
-    public static <T extends IRecipeSerializer<?>> RegObj<T> recipeSer(String id, T object) {
-        RegistryObject<T> reg = SlashDeferred.RECIPE_SERIALIZERS.register(id, () -> object);
+    public static <T extends EntityType<?>> RegObj<T> entity(String id, Supplier<T> object) {
+        RegistryObject<T> reg = SlashDeferred.ENTITIES.register(id, object);
         RegObj<T> wrapper = new RegObj<T>(reg);
         return wrapper;
     }
 
-    public static <T extends ContainerType<?>> RegObj<T> container(String id, T object) {
-        RegistryObject<T> reg = SlashDeferred.CONTAINERS.register(id, () -> object);
+    public static <T extends IRecipeSerializer<?>> RegObj<T> recipeSer(String id, Supplier<T> object) {
+        RegistryObject<T> reg = SlashDeferred.RECIPE_SERIALIZERS.register(id, object);
+        RegObj<T> wrapper = new RegObj<T>(reg);
+        return wrapper;
+    }
+
+    public static <T extends ContainerType<?>> RegObj<T> container(String id, Supplier<T> object) {
+        RegistryObject<T> reg = SlashDeferred.CONTAINERS.register(id, object);
         RegObj<T> wrapper = new RegObj<T>(reg);
         return wrapper;
     }

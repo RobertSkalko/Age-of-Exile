@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.tablet;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeTypes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlockEntities;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseSkillStation;
@@ -22,7 +22,7 @@ public class TabletStationTile extends BaseSkillStation {
     }
 
     public TabletStationTile() {
-        super(ModRegistry.RECIPE_TYPES.TABLET_RECIPE, PlayerSkillEnum.INSCRIBING, SlashBlockEntities.TABLET.get(), totalSlots());
+        super(ModRecipeTypes.TABLET_RECIPE, PlayerSkillEnum.INSCRIBING, SlashBlockEntities.TABLET.get(), totalSlots());
     }
 
     @Override

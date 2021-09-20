@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.dimension;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonPopulateData;
 import com.robertx22.age_of_exile.dimension.spawner.ModSpawnerBlockEntity;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
@@ -18,6 +18,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunk;
 
 import java.util.ArrayList;
@@ -36,11 +37,11 @@ public class PopulateDungeonChunks {
             List<ChunkPos> list = getChunksAround(new ChunkPos(player.blockPosition()));
 
             for (ChunkPos cp : list) {
-                IChunk chunk = world.getChunk(cp.x, cp.z);
+                Chunk chunk = world.getChunk(cp.x, cp.z);
 
                 if (!Load.chunkPopulated(chunk).populated) {
                     DungeonData data = Load.dungeonData(world).data.get(chunk.getPos()
-                            .getWorldPosition()).data;
+                        .getWorldPosition()).data;
 
                     if (!data.isEmpty()) {
                         PopulateDungeonChunks.populateChunk(world, chunk, data, new DungeonPopulateData());
@@ -89,7 +90,7 @@ public class PopulateDungeonChunks {
             getChunksAround(chunk.getPos()).forEach(x -> toPopulate.add(new DungeonPopulateData.CP(x)));
         }
         toPopulate.removeIf(x -> x.getChunkPos()
-                .equals(chunk.getPos()));
+            .equals(chunk.getPos()));
     }
 
     public static boolean populateChunk(World world, IChunk chunk, DungeonData dungeon, DungeonPopulateData data) {
@@ -111,7 +112,8 @@ public class PopulateDungeonChunks {
                 if (SignUtils.has("[chest]", sign)) {
                     setChest(world, blockPos);
                 } else if (SignUtils.has("[portal]", sign)) {
-                    world.setBlockAndUpdate(blockPos, ModRegistry.BLOCKS.PORTAL.get().defaultBlockState());
+                    world.setBlockAndUpdate(blockPos, SlashBlocks.PORTAL.get()
+                        .defaultBlockState());
                 }
             }
         }
@@ -197,7 +199,8 @@ public class PopulateDungeonChunks {
             }
             data.mobs += ModSpawnerBlockEntity.DEFAULT_SPAWNS;
 
-            world.setBlock(p, ModRegistry.BLOCKS.SPAWNER.get().defaultBlockState(), 2);
+            world.setBlock(p, SlashBlocks.SPAWNER.get()
+                .defaultBlockState(), 2);
 
             list.remove(p);
         }
@@ -218,7 +221,8 @@ public class PopulateDungeonChunks {
 
             data.mobs += mobs;
 
-            world.setBlock(p, ModRegistry.BLOCKS.SPAWNER.get().defaultBlockState(), 2);
+            world.setBlock(p, SlashBlocks.SPAWNER.get()
+                .defaultBlockState(), 2);
 
             TileEntity be = world.getBlockEntity(p);
 

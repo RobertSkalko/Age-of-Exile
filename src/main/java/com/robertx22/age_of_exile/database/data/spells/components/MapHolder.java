@@ -20,6 +20,7 @@ import net.minecraft.potion.Effect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
 
@@ -108,8 +109,8 @@ public class MapHolder {
         return Registry.BLOCK.get(new ResourceLocation(get(MapField.BLOCK)));
     }
 
-    public static RegObj<SoundEvent> getSound() {
-        return Registry.SOUND_EVENT.get(new ResourceLocation(get(MapField.SOUND)));
+    public SoundEvent getSound() {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(get(MapField.SOUND)));
     }
 
     public EntityFinder.SelectionType getSelectionType() {

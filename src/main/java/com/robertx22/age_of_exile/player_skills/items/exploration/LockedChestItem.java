@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.player_skills.items.exploration;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.IsSkillItemUsableUtil;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.MasterLootGen;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -98,7 +98,7 @@ public class LockedChestItem extends TieredItem {
     }
 
     Item getKeyItem() {
-        return ModRegistry.TIERED.KEY_TIER_MAP.get(tier)
+        return ProfessionItems.KEY_TIER_MAP.get(tier)
             .get();
     }
 

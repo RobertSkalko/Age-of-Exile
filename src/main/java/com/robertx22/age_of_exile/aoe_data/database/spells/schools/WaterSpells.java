@@ -12,10 +12,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModParticles;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModSounds;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashParticles;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashSounds;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -83,7 +83,7 @@ public class WaterSpells implements ExileRegistryInit {
                 "Heal allies around you for " + SpellCalcs.HEART_OF_ICE.getLocDmgTooltip() +
                     " health")
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(ModSounds.BUFF.get(), 1D, 1D))
+            .onCast(PartBuilder.playSound(SlashSounds.BUFF.get(), 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.SPLASH, 50D, 5D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.DRIPPING_WATER, 50D, 5D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
@@ -147,7 +147,7 @@ public class WaterSpells implements ExileRegistryInit {
             .onCast(PartBuilder.damageInFront(SpellCalcs.TIDAL_STRIKE, Elements.Water, 2D, 3D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.RAIN, 75D, 1D, 0.1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SPLASH, 50D, 1D, 0.1D))
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ModParticles.BUBBLE.get(), 100D, 1D, 0.1D))
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.BUBBLE, 100D, 1D, 0.1D))
             )
             .build();
 
@@ -182,7 +182,7 @@ public class WaterSpells implements ExileRegistryInit {
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.DROWNED_HURT, 1D, 1D)))
             .build();
 
-        SpellBuilder.breath("frost_breath", "Frost Breath", Elements.Water, ModParticles.FROST.get())
+        SpellBuilder.breath("frost_breath", "Frost Breath", Elements.Water, SlashParticles.FROST.get())
             .build();
 
         SpellBuilder.of(NOURISHMENT, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Nourishment",
@@ -191,7 +191,7 @@ public class WaterSpells implements ExileRegistryInit {
                 "Apply buff to allies nearby ")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(ModSounds.BUFF.get(), 1D, 1D))
+            .onCast(PartBuilder.playSound(SlashSounds.BUFF.get(), 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
             .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.NOURISHMENT.id, 20D * 25))

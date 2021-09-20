@@ -4,9 +4,11 @@ import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeSerializers;
-import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.AlchemyPotions;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
+import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
@@ -58,9 +60,9 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
         if (player instanceof PlayerEntity) {
             PlayerEntity p = (PlayerEntity) player;
 
-            for (AlchemyPotionItem x : ModRegistry.ALCHEMY.POTIONS_MAP.values()) {
+            for (RegObj<AlchemyPotionItem> x : AlchemyPotions.POTIONS_MAP.values()) {
                 p.getCooldowns()
-                    .addCooldown(x, 20 * 20);
+                    .addCooldown(x.get(), 20 * 20);
             }
 
             PlayerUtils.giveItem(new ItemStack(Items.GLASS_BOTTLE), (PlayerEntity) player);
@@ -119,11 +121,11 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
             ResourceLocation effect = null;
 
             if (this.type == PotionType.HEALTH) {
-                effect = PotionRegister.FOOD_HP;
+                effect = SlashPotions.FOOD_HP;
             }
 
             if (this.type == PotionType.MANA) {
-                effect = PotionRegister.FOOD_MANA;
+                effect = SlashPotions.FOOD_MANA;
             }
 
             if (effect == null) {
@@ -140,10 +142,10 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
 
     @Override
     public StationShapelessFactory getStationRecipe() {
-        StationShapelessFactory fac = StationShapelessFactory.create(ModRecipeSerializers.ALCHEMY.get(), this, 3);
+        StationShapelessFactory fac = StationShapelessFactory.create(SlashRecipeSers.ALCHEMY.get(), this, 3);
         fac.input(type.craftItem.get());
         fac.input(Items.GLASS_BOTTLE);
-        fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier)
+        fac.input(ProfessionItems.FARMING_PRODUCE.get(tier)
             .get());
         return fac.criterion("player_level", trigger());
     }

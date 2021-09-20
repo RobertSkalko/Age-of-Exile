@@ -24,7 +24,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.GemItems;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -95,10 +95,12 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         if (this.gemRank.lower() == null) {
             return null;
         }
-        return ShapelessRecipeBuilder.shapeless(ModRegistry.GEMS.MAP.get(gemType)
-                .get(gemRank))
-            .requires(ModRegistry.GEMS.MAP.get(gemType)
-                .get(gemRank.lower()), 3)
+        return ShapelessRecipeBuilder.shapeless(GemItems.MAP.get(gemType)
+                .get(gemRank)
+                .get())
+            .requires(GemItems.MAP.get(gemType)
+                .get(gemRank.lower())
+                .get(), 3)
             .unlockedBy("player_level", trigger());
     }
 

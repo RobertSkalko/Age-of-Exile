@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -61,7 +61,7 @@ public class SingleTalentResetPotion extends AutoItem implements IShapedRecipe {
     @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(this)
-            .define('t', ModRegistry.MISC_ITEMS.T0_DUST())
+            .define('t', SlashItems.T0_DUST())
             .define('v', Items.DIAMOND)
             .define('b', Items.GLASS_BOTTLE)
             .pattern(" v ")

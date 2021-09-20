@@ -7,8 +7,9 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequire
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -87,10 +88,10 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
 
     @Override
     public ShapedRecipeBuilder getRecipe() {
-        return shaped(ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
+        return shaped(CurrencyItems.ORB_OF_TRANSMUTATION.get())
             .define('t', Items.REDSTONE)
             .define('v', Items.COAL)
-            .define('o', ModRegistry.MISC_ITEMS.T0_DUST())
+            .define('o', SlashItems.T0_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

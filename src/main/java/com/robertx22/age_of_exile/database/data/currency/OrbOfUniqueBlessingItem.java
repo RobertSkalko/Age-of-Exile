@@ -6,8 +6,8 @@ import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -82,11 +82,11 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
 
     @Override
     public ShapedRecipeBuilder getRecipe() {
-        return shaped(ModRegistry.CURRENCIES.ORB_OF_UNIQUE_BLESSING)
+        return shaped(CurrencyItems.ORB_OF_UNIQUE_BLESSING.get())
             .define('#', SlashItems.GOLDEN_ORB.get())
-            .define('t', ModRegistry.CURRENCIES.ORB_OF_BLESSING)
+            .define('t', CurrencyItems.ORB_OF_BLESSING.get())
             .define('v', Items.GOLD_INGOT)
-            .define('o', ModRegistry.MISC_ITEMS.T4_DUST())
+            .define('o', SlashItems.T4_DUST())
             .pattern("o#o")
             .pattern("oto")
             .pattern("v#v")

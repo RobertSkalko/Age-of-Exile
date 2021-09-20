@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.player_skills.skills.gather
 
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillBuilder;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 
 public class FarmingAdder {
@@ -13,7 +13,7 @@ public class FarmingAdder {
         b.addBonusYieldMasteryLevelStats(PlayerSkillEnum.FARMING);
         b.addDefaultBonusExpRewards();
 
-        ModRegistry.BLOCKS.FARMING_PLANTS.entrySet()
+        SlashBlocks.FARMING_PLANTS.entrySet()
             .forEach(x -> {
                 b.blockExp(x.getValue()
                     .get(), ((x.getKey().tier + 1) * 15));

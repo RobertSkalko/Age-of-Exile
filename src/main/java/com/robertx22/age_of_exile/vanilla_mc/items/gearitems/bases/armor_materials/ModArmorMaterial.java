@@ -54,7 +54,7 @@ public class ModArmorMaterial implements IArmorMaterial {
     }
 
     @Override
-    public static RegObj<SoundEvent> getEquipSound() {
+    public SoundEvent getEquipSound() {
         return SoundEvents.ARMOR_EQUIP_IRON;
     }
 

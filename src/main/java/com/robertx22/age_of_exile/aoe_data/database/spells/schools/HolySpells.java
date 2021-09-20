@@ -17,10 +17,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModSounds;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashSounds;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
@@ -68,7 +68,7 @@ public class HolySpells implements ExileRegistryInit {
 
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 100D))
+            .onCast(PartBuilder.giveSelfEffect(SlashPotions.KNOCKBACK_RESISTANCE.get(), 100D))
             .onCast(PartBuilder.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1D, 1D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 2D, 0.5D))
             .onCast(PartBuilder.damageInAoe(SpellCalcs.WHIRLWIND, Elements.Physical, 1.5D)
@@ -236,7 +236,7 @@ public class HolySpells implements ExileRegistryInit {
                     " health")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(ModSounds.BUFF.get(), 1D, 1D))
+            .onCast(PartBuilder.playSound(SlashSounds.BUFF.get(), 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
             .onCast(PartBuilder.healInAoe(SpellCalcs.HEALING_AURA, 2D))
@@ -248,7 +248,7 @@ public class HolySpells implements ExileRegistryInit {
                 "Heal allies around you for " + SpellCalcs.HEALING_AURA.getLocDmgTooltip() +
                     " health")
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(ModSounds.BUFF.get(), 1D, 1D))
+            .onCast(PartBuilder.playSound(SlashSounds.BUFF.get(), 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 5D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
             .onCast(PartBuilder.healInAoe(SpellCalcs.WISH, 5D))

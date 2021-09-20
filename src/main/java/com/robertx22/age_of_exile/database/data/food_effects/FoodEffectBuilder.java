@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.food_effects;
 
 import com.mojang.datafixers.util.Pair;
 import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
-import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -58,10 +58,10 @@ public class FoodEffectBuilder {
         ResourceLocation effect = null;
 
         if (foodcomponent.isMeat()) {
-            effect = PotionRegister.FOOD_HP;
+            effect = SlashPotions.FOOD_HP;
             value *= 0.75F;
         } else {
-            effect = PotionRegister.FOOD_MANA;
+            effect = SlashPotions.FOOD_MANA;
             value *= 1;
         }
 

@@ -6,9 +6,8 @@ import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.player_skills.SkillStatReward;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusFavor;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
-
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.TIERED;
 
 public class ExplorationAdder {
 
@@ -39,7 +38,8 @@ public class ExplorationAdder {
             new OptScaleExactStat(5, BonusFavor.getInstance()),
             new OptScaleExactStat(5, TreasureQuality.getInstance())));
 
-        b.addTieredDrops(1, x -> TIERED.LOCKED_CHEST_TIER_MAP.get(x));
+        b.addTieredDrops(1, x -> ProfessionItems.LOCKED_CHEST_TIER_MAP.get(x)
+            .get());
 
         return b.build();
     }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class GemItems extends BaseItemRegistrator {
+public class GemItems {
 
     public static HashMap<GemItem.GemType, HashMap<GemItem.GemRank, RegObj<GemItem>>> MAP = new HashMap<>();
     public static List<RegObj<GemItem>> ALL = new ArrayList<>();
@@ -20,7 +20,7 @@ public class GemItems extends BaseItemRegistrator {
 
                 GemItem item = new GemItem(type, rank);
 
-                RegObj<GemItem> def = Def.item(item);
+                RegObj<GemItem> def = Def.item(() -> item);
 
                 if (!MAP.containsKey(type)) {
                     MAP.put(type, new HashMap<>());

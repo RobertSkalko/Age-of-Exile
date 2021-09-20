@@ -7,8 +7,8 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequire
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -82,11 +82,11 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
 
     @Override
     public ShapedRecipeBuilder getRecipe() {
-        return ShapedRecipeBuilder.shaped(ModRegistry.CURRENCIES.ORB_OF_DISORDER, 1)
+        return ShapedRecipeBuilder.shaped(CurrencyItems.ORB_OF_DISORDER.get(), 1)
             .define('#', SlashItems.INFUSED_IRON.get())
-            .define('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
+            .define('t', CurrencyItems.ORB_OF_TRANSMUTATION.get())
             .define('v', Items.GOLD_NUGGET)
-            .define('o', ModRegistry.MISC_ITEMS.T3_DUST())
+            .define('o', SlashItems.T3_DUST())
             .pattern("o#o")
             .pattern("oto")
             .pattern("vvv")

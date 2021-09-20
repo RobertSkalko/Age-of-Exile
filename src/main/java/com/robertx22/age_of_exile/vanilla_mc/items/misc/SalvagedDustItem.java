@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -91,10 +91,11 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
             return null;
         }
 
-        Item output = ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.values()
+        Item output = ProfessionItems.SALVAGED_ESSENCE_MAP.values()
             .stream()
-            .filter(x -> x.tier.tier == tier.tier - 1)
+            .filter(x -> x.get().tier.tier == tier.tier - 1)
             .findAny()
+            .get()
             .get();
 
         return ShapelessRecipeBuilder.shapeless(output, 3)

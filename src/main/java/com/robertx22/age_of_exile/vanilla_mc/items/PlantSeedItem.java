@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.block.Block;
@@ -24,9 +24,9 @@ public class PlantSeedItem extends BlockNamedItem implements IAutoLocName, IShap
     @Override
     public ShapelessRecipeBuilder getRecipe() {
         ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 9);
-        fac.requires(ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(tier)
+        fac.requires(ProfessionItems.SALVAGED_ESSENCE_MAP.get(tier)
             .get(), 3);
-        fac.requires(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier)
+        fac.requires(ProfessionItems.CONDENSED_ESSENCE_MAP.get(tier)
             .get());
         return fac.unlockedBy("player_level", trigger());
     }

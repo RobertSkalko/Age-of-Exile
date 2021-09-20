@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.capability.entity;
 import com.robertx22.age_of_exile.capability.bases.EntityGears;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.bases.INeededForClient;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
@@ -45,29 +46,75 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
 import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.EntityStatusEffectsData;
+import com.robertx22.library_of_exile.components.forge.BaseProvider;
+import com.robertx22.library_of_exile.components.forge.BaseStorage;
 import com.robertx22.library_of_exile.main.Packets;
+import com.robertx22.library_of_exile.main.Ref;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.LoadSave;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.play.server.STitlePacket;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.Comparator;
 import java.util.Random;
 import java.util.UUID;
 
+@Mod.EventBusSubscriber
 public class EntityData implements ICommonPlayerCap, INeededForClient {
 
     public EntityData(LivingEntity entity) {
         this.entity = entity;
     }
+
+    public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "entity_data");
+
+    @Mod.EventBusSubscriber
+    public static class EventHandler {
+        @SubscribeEvent
+        public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
+            if (event.getObject() instanceof LivingEntity) {
+                event.addCapability(RESOURCE, new EntitySpellCap.Provider((LivingEntity) event.getObject()));
+            }
+        }
+    }
+
+    public static class Storage implements BaseStorage<EntityData> {
+
+    }
+
+    public static class Provider extends BaseProvider<EntityData, LivingEntity> {
+        public Provider(LivingEntity owner) {
+            super(owner);
+        }
+
+        @Override
+        public EntityData newDefaultImpl(LivingEntity owner) {
+            return new EntityData(owner);
+        }
+
+        @Override
+        public Capability<EntityData> dataInstance() {
+            return Data;
+        }
+    }
+
+    @CapabilityInject(EntityData.class)
+    public static final Capability<EntityData> Data = null;
 
     private static final String RARITY = "rarity";
     private static final String RACE = "race";

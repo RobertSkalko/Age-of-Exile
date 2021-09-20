@@ -3,8 +3,8 @@ package com.robertx22.age_of_exile.player_skills.items.protection_tablets;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeSerializers;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.IGatheringMat;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
@@ -51,8 +51,8 @@ public class BlankTabletItem extends Item implements IAutoLocName, IAutoModel, I
 
     @Override
     public StationShapelessFactory getStationRecipe() {
-        return StationShapelessFactory.create(ModRecipeSerializers.SMITHING.get(), this, 1)
-            .input(ModRegistry.TIERED.STONE_TIER_MAP.get(stier)
+        return StationShapelessFactory.create(SlashRecipeSers.SMITHING.get(), this, 1)
+            .input(ProfessionItems.STONE_TIER_MAP.get(stier)
                 .get(), 3)
             .criterion("player_level", trigger());
     }

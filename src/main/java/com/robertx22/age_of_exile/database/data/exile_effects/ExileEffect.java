@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -49,7 +49,7 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
     public AttachedSpell spell;
 
     public ExileStatusEffect getStatusEffect() {
-        return ModRegistry.POTIONS.getExileEffect(id);
+        return SlashPotions.getExileEffect(id);
     }
 
     @Override

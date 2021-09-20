@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.items.protection_tablets;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.TabletItems;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
@@ -44,12 +44,12 @@ public enum TabletTypes {
         @Override
         public boolean shouldActivate(PlayerEntity en, DamageSource source) {
             return healthIsBellowTresh(en) && en.hasEffect(Effects.POISON)
-                && !en.hasEffect(ModRegistry.POTIONS.ANTI_POISON);
+                && !en.hasEffect(SlashPotions.ANTI_POISON.get());
         }
 
         @Override
         public void onActivate(PlayerEntity en) {
-            en.addEffect(new EffectInstance(ModRegistry.POTIONS.ANTI_POISON, DUR, 1));
+            en.addEffect(new EffectInstance(SlashPotions.ANTI_POISON.get(), DUR, 1));
         }
     },
     ANTI_WITHER("Anti Wither", "anti_wither") {
@@ -61,12 +61,12 @@ public enum TabletTypes {
         @Override
         public boolean shouldActivate(PlayerEntity en, DamageSource source) {
             return healthIsBellowTresh(en) && en.hasEffect(Effects.WITHER)
-                && !en.hasEffect(ModRegistry.POTIONS.ANTI_WITHER);
+                && !en.hasEffect(SlashPotions.ANTI_WITHER.get());
         }
 
         @Override
         public void onActivate(PlayerEntity en) {
-            en.addEffect(new EffectInstance(ModRegistry.POTIONS.ANTI_WITHER, DUR, 1));
+            en.addEffect(new EffectInstance(SlashPotions.ANTI_WITHER.get(), DUR, 1));
         }
     },
     ANTI_DEATH("Anti Death", "anti_death") {

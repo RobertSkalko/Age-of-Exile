@@ -7,8 +7,8 @@ import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.AffixData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -96,9 +96,9 @@ public class OrbOfInfinityItem extends CurrencyItem implements ICurrencyItemEffe
 
     @Override
     public ShapedRecipeBuilder getRecipe() {
-        return shaped(ModRegistry.CURRENCIES.ORB_OF_INFINITY)
+        return shaped(CurrencyItems.ORB_OF_INFINITY.get())
             .define('#', SlashItems.MYTHIC_ESSENCE.get())
-            .define('t', ModRegistry.CURRENCIES.ORB_OF_DISORDER)
+            .define('t', CurrencyItems.ORB_OF_DISORDER.get())
             .define('v', Items.DIAMOND)
             .define('o', SlashItems.GOLDEN_ORB.get())
             .pattern("v#v")

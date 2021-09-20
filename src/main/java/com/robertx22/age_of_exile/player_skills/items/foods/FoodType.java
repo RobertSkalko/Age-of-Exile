@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.items.foods;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.FoodItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Effect;
@@ -34,7 +34,8 @@ public enum FoodType {
 
     public Item getCraftItem(SkillItemTier tier, FoodExileEffect.EffectColor color) {
         if (this == FISH) {
-            return ModRegistry.FOOD_ITEMS.RAW_FISH.get(Triple.of(FISH, color, tier));
+            return FoodItems.RAW_FISH.get(Triple.of(FISH, color, tier))
+                .get();
         }
         return vanillaCraftingItem;
     }

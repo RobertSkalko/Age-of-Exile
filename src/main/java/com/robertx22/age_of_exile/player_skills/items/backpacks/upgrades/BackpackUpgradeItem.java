@@ -4,8 +4,8 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeSerializers;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -52,8 +52,8 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
 
     @Override
     public StationShapelessFactory getStationRecipe() {
-        return StationShapelessFactory.create(ModRecipeSerializers.SMITHING.get(), this, 1)
-            .input(ModRegistry.TIERED.STONE_TIER_MAP.get(tier)
+        return StationShapelessFactory.create(SlashRecipeSers.SMITHING.get(), this, 1)
+            .input(ProfessionItems.STONE_TIER_MAP.get(tier)
                 .get(), 1)
             .input(Items.GOLD_INGOT)
             .input(upgrade.craftItem(), 1)

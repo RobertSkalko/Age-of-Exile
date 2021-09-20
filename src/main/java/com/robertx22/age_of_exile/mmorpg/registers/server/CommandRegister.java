@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.mmorpg.registers.server;
 import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.age_of_exile.vanilla_mc.commands.*;
 import com.robertx22.age_of_exile.vanilla_mc.commands.entity.*;
-import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveBuffScroll;
 import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveExactUnique;
 import com.robertx22.age_of_exile.vanilla_mc.commands.giveitems.GiveGear;
 import com.robertx22.age_of_exile.vanilla_mc.commands.open_gui.OpenHub;
@@ -24,7 +23,6 @@ public class CommandRegister {
         CommandDispatcher<CommandSource> dispatcher = server.getCommands()
             .getDispatcher();
 
-        GiveBuffScroll.register(dispatcher);
         GiveExactUnique.register(dispatcher);
         GiveGear.register(dispatcher);
         SetEntityRarity.register(dispatcher);

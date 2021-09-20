@@ -7,8 +7,10 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.ModelHelper;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeSerializers;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.FoodItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
@@ -58,7 +60,8 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
             if (type.effect != null) {
                 eff.effects_given.add(new StatusEffectData(Registry.MOB_EFFECT.getKey(type.effect), tier.durationSeconds, 1));
             }
-            eff.effects_given.add(new StatusEffectData(Registry.MOB_EFFECT.getKey(ModRegistry.POTIONS.FOOD_EFFECT_MAP.get(exileEffect)), tier.durationSeconds, tier.tier + 1));
+            eff.effects_given.add(new StatusEffectData(Registry.MOB_EFFECT.getKey(SlashPotions.FOOD_EFFECT_MAP.get(exileEffect)
+                .get()), tier.durationSeconds, tier.tier + 1));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,14 +100,15 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
     @Override
     public StationShapelessFactory getStationRecipe() {
         if (type.getCraftItem(tier, exileEffect.color) != null) {
-            StationShapelessFactory fac = StationShapelessFactory.create(ModRecipeSerializers.FOOD.get(), this);
+            StationShapelessFactory fac = StationShapelessFactory.create(SlashRecipeSers.FOOD.get(), this);
 
             if (this.type == FoodType.FISH) {
                 fac.input(Items.COAL);
             } else {
-                fac.input(ModRegistry.FOOD_ITEMS.EXTRACT_MAP.get(this.exileEffect.color));
+                fac.input(FoodItems.EXTRACT_MAP.get(this.exileEffect.color)
+                    .get());
             }
-            fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier)
+            fac.input(ProfessionItems.FARMING_PRODUCE.get(tier)
                 .get());
             fac.input(type.getCraftItem(tier, exileEffect.color));
             return fac.criterion("player_level", trigger());

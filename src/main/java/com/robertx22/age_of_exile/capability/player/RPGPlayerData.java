@@ -12,14 +12,57 @@ import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
 import com.robertx22.age_of_exile.saveclasses.perks.TalentsData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.ProfessionsData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.library_of_exile.components.forge.BaseProvider;
+import com.robertx22.library_of_exile.components.forge.BaseStorage;
 import com.robertx22.library_of_exile.utils.LoadSave;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber
 public class RPGPlayerData implements ICommonPlayerCap {
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(SlashRef.MODID, "player_data");
+
+    @Mod.EventBusSubscriber
+    public static class EventHandler {
+        @SubscribeEvent
+        public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
+            if (event.getObject() instanceof PlayerEntity) {
+                event.addCapability(RESOURCE, new Provider((PlayerEntity) event.getObject()));
+            }
+        }
+    }
+
+    public static class Storage implements BaseStorage<RPGPlayerData> {
+
+    }
+
+    public static class Provider extends BaseProvider<RPGPlayerData, PlayerEntity> {
+        public Provider(PlayerEntity owner) {
+            super(owner);
+        }
+
+        @Override
+        public RPGPlayerData newDefaultImpl(PlayerEntity owner) {
+            return new RPGPlayerData(owner);
+        }
+
+        @Override
+        public Capability<RPGPlayerData> dataInstance() {
+            return Data;
+        }
+    }
+
+    @CapabilityInject(RPGPlayerData.class)
+    public static final Capability<RPGPlayerData> Data = null;
+    // stupid bloatware
 
     private static final String MAP_DATA = "maps";
     private static final String TEAM_DATA = "teams";

@@ -47,16 +47,19 @@ public class SlashDeferred {
         POTIONS.register(bus);
         RECIPE_SERIALIZERS.register(bus);
 
-        ModSounds.init();
-        ModContainers.init();
-        ModRecipeSerializers.init();
+        SlashPotions.init();
+        ModRecipeTypes.init();
+        SlashSounds.init();
+        SlashRecipeSers.init();
 
-        ModParticles.init();
+        SlashParticles.init();
         SlashEntities.init();
         SlashBlocks.init();
         SlashBlockEntities.init();
+        SlashContainers.init();
 
         //items
+        CurrencyItems.init();
         ProfessionItems.init();
         SlashItems.init();
         TabletItems.init();

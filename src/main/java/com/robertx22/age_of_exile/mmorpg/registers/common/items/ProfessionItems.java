@@ -37,19 +37,19 @@ public class ProfessionItems {
 
         for (SkillItemTier tier : SkillItemTier.values()) {
 
-            INK_TIER_MAP.put(tier, Def.item(new ScribeInkItem(tier)));
+            INK_TIER_MAP.put(tier, Def.item(() -> new ScribeInkItem(tier)));
 
-            SMELTED_ESSENCE.put(tier, Def.item(new SmeltedEssenceItem(tier)));
-            ESSENCE_INK.put(tier, Def.item(new EssenceInkItem(tier)));
-            CONDENSED_ESSENCE_MAP.put(tier, Def.item(new CondensedEssenceItem(tier)));
-            SALVAGED_ESSENCE_MAP.put(tier, Def.item(new SalvagedDustItem("Tier " + (tier.tier + 1) + " Purified Essence", tier, tier.levelRange)));
-            FARMING_SEEDS.put(tier, Def.item(new PlantSeedItem(tier, SlashBlocks.FARMING_PLANTS.get(tier)
+            SMELTED_ESSENCE.put(tier, Def.item(() -> new SmeltedEssenceItem(tier)));
+            ESSENCE_INK.put(tier, Def.item(() -> new EssenceInkItem(tier)));
+            CONDENSED_ESSENCE_MAP.put(tier, Def.item(() -> new CondensedEssenceItem(tier)));
+            SALVAGED_ESSENCE_MAP.put(tier, Def.item(() -> new SalvagedDustItem("Tier " + (tier.tier + 1) + " Purified Essence", tier, tier.levelRange)));
+            FARMING_SEEDS.put(tier, Def.item(() -> new PlantSeedItem(tier, SlashBlocks.FARMING_PLANTS.get(tier)
                 .get()), "seed/plant" + (tier.tier + 1)));
-            FARMING_PRODUCE.put(tier, Def.item(new PlantProduceItem(tier), "plant/plant" + (tier.tier + 1)));
+            FARMING_PRODUCE.put(tier, Def.item(() -> new PlantProduceItem(tier), "plant/plant" + (tier.tier + 1)));
 
-            KEY_TIER_MAP.put(tier, Def.item(new ChestKeyItem(tier)));
-            STONE_TIER_MAP.put(tier, Def.item(new MiningStoneItem(tier)));
-            LOCKED_CHEST_TIER_MAP.put(tier, Def.item(new LockedChestItem(tier)));
+            KEY_TIER_MAP.put(tier, Def.item(() -> new ChestKeyItem(tier)));
+            STONE_TIER_MAP.put(tier, Def.item(() -> new MiningStoneItem(tier)));
+            LOCKED_CHEST_TIER_MAP.put(tier, Def.item(() -> new LockedChestItem(tier)));
 
         }
 

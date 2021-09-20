@@ -2,7 +2,8 @@ package com.robertx22.age_of_exile.aoe_data.database.gems;
 
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.GemItems;
+import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.util.registry.Registry;
 
@@ -10,7 +11,9 @@ public class Gems implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
-        ModRegistry.GEMS.ALL.forEach(x -> {
+        GemItems.ALL.forEach(g -> {
+            GemItem x = g.get();
+
             Gem gem = new Gem();
             gem.item_id = Registry.ITEM.getKey(x)
                 .toString();

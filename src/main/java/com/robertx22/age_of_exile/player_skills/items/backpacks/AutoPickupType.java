@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.BackpackUpgradesRegister;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.BackpackItems;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.SalvagedDustItem;
@@ -21,7 +21,7 @@ public enum AutoPickupType {
         public boolean autoPicksUp(ItemStack stack) {
             Item item = stack.getItem();
 
-            return BackpackUpgradesRegister.TRASH_ITEMS.stream()
+            return BackpackItems.TRASH_ITEMS.stream()
                 .anyMatch(x -> item == x);
         }
     },

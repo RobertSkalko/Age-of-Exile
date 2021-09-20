@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.player_skills.items.inscribing;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 import net.minecraft.data.ShapelessRecipeBuilder;
@@ -29,7 +29,8 @@ public class EssencePaperItem extends AutoItem implements IShapelessRecipe {
         ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 1);
         fac.requires(Items.STRING);
         fac.requires(Items.PAPER);
-        fac.requires(ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER1), 2);
+        fac.requires(ProfessionItems.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER1)
+            .get(), 2);
         return fac.unlockedBy("player_level", trigger());
     }
 }

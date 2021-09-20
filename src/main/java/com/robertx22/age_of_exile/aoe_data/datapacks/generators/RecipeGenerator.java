@@ -7,8 +7,8 @@ import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
@@ -120,19 +120,21 @@ public class RecipeGenerator {
             }
         }
 
-        ModRegistry.TIERED.SMELTED_ESSENCE.values()
+        ProfessionItems.SMELTED_ESSENCE.values()
             .forEach(x -> {
-                Item ess = ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(x.tier);
-                CookingRecipeBuilder.smelting(Ingredient.of(ess), x, 0.2F, 200)
-                    .unlockedBy("ess" + x.tier, conditionsFromItem(ess))
+                Item ess = ProfessionItems.SALVAGED_ESSENCE_MAP.get(x.get().tier)
+                    .get();
+                CookingRecipeBuilder.smelting(Ingredient.of(ess), x.get(), 0.2F, 200)
+                    .unlockedBy("ess" + x.get().tier, conditionsFromItem(ess))
                     .save(consumer);
             });
 
-        ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.values()
+        ProfessionItems.SALVAGED_ESSENCE_MAP.values()
             .forEach(x -> {
-                if (x.tier.lowerTier() != null) {
-                    ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(x, 1);
-                    fac.requires(ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(x.tier.lowerTier()), 4);
+                if (x.get().tier.lowerTier() != null) {
+                    ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(x.get(), 1);
+                    fac.requires(ProfessionItems.SALVAGED_ESSENCE_MAP.get(x.get().tier.lowerTier())
+                        .get(), 4);
                     fac.unlockedBy("player_level", EnchantedItemTrigger.Instance.enchantedItem())
                         .save(consumer);
                 }

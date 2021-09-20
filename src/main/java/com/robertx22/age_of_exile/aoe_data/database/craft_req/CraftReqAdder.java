@@ -2,8 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.craft_req;
 
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.TabletItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.*;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
@@ -14,26 +13,26 @@ public class CraftReqAdder implements ExileRegistryInit {
 
         int max = GameBalanceConfig.get().MAX_LEVEL;
 
-        ModRegistry.FOOD_ITEMS.MAP.values()
+        FoodItems.MAP.values()
             .forEach(x -> {
-                CraftingReq.of(x, PlayerSkillEnum.COOKING, (int) (x.tier.lvl_req * max));
+                CraftingReq.of(x.get(), PlayerSkillEnum.COOKING, (int) (x.get().tier.lvl_req * max));
             });
 
         TabletItems.ALL_TABLETS.forEach(x -> {
-            CraftingReq.of(x, PlayerSkillEnum.INSCRIBING, (int) (x.tier.lvl_req * max));
+            CraftingReq.of(x.get(), PlayerSkillEnum.INSCRIBING, (int) (x.get().tier.lvl_req * max));
         });
 
-        ModRegistry.ALCHEMY.POTIONS_MAP.values()
+        AlchemyPotions.POTIONS_MAP.values()
             .forEach(x -> {
-                CraftingReq.of(x, PlayerSkillEnum.ALCHEMY, (int) (x.tier.lvl_req * max));
+                CraftingReq.of(x.get(), PlayerSkillEnum.ALCHEMY, (int) (x.get().tier.lvl_req * max));
             });
 
-        ModRegistry.TIERED.KEY_TIER_MAP.values()
+        ProfessionItems.KEY_TIER_MAP.values()
             .forEach(x -> {
-                CraftingReq.of(x, PlayerSkillEnum.BLACKSMITHING, (int) (x.tier.lvl_req * max));
+                CraftingReq.of(x.get(), PlayerSkillEnum.BLACKSMITHING, (int) (x.get().tier.lvl_req * max));
             });
 
-        ModRegistry.BACKPACK_UPGRADES.ALL
+        BackpackItems.ALL
             .forEach(x -> {
                 CraftingReq.of(x, PlayerSkillEnum.BLACKSMITHING, (int) (x.tier.lvl_req * max));
             });

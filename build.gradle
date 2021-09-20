@@ -37,6 +37,10 @@ minecraft {
         client {
             workingDirectory project.file('run')
             arg "-mixin.config=${mod_id}-mixins.json"
+            // This makes dependencies with mixins work
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+            // This makes dependencies with mixins work
             mods {
                 modid {
                     source sourceSets.main
@@ -46,6 +50,10 @@ minecraft {
         server {
             workingDirectory project.file('run')
             arg "-mixin.config=${mod_id}-mixins.json"
+            // This makes dependencies with mixins work
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+            // This makes dependencies with mixins work
             mods {
                 modid {
                     source sourceSets.main
@@ -122,9 +130,13 @@ dependencies {
             name   : 'forge',
             version: "$project.minecraft_version-${project.forgeversion}"
     ])
-    annotationProcessor 'org.spongepowered:mixin:0.8.3:processor'
-	implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
-  
+
+    if (System.getProperty("idea.sync.active") != "true") {
+        annotationProcessor 'org.spongepowered:mixin:0.8.3:processor'
+    }
+
+    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+
 }
 
 
@@ -134,7 +146,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "MixinConnector": "com.robertx22.${mod_id}.main.MixinConnector",
+                "MixinConnector": "com.robertx22.age_of_exile.mmorpg.MixinConnector",
                 "MixinConfigs"  : "${mod_id}-mixins.json"
         ])
     }
@@ -160,7 +172,7 @@ curseforge {
             requiredDependency 'fabric-api'
             requiredDependency 'library-of-exile'
             requiredDependency 'curios'
-			requiredDependency 'dungeons-of-exile'			
+            requiredDependency 'dungeons-of-exile'
         }
         mainArtifact(jar)
 

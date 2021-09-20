@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.dimension.item.TeleportBackItem;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
@@ -28,7 +27,6 @@ import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.ResetStatsPot
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.SingleTalentResetPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.SpellResetPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.TalentResetPotion;
-import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -45,84 +43,80 @@ public class SlashItems {
 
     }
 
-    public static RegObj<StatSoulItem> STAT_SOUL = Def.item(new StatSoulItem());
-    public static RegObj<LootCrateItem> LOOT_CRATE = Def.item(new LootCrateItem());
+    public static RegObj<StatSoulItem> STAT_SOUL = Def.item(() -> new StatSoulItem());
+    public static RegObj<LootCrateItem> LOOT_CRATE = Def.item(() -> new LootCrateItem());
 
-    public static RegObj<MiscSeedItem> MANA_FLOWER_SEED = Def.item(new MiscSeedItem("Mana Flower Seed", Items.LAPIS_LAZULI, SlashBlocks.MANA_PLANT.get()), "seed/mana");
-    public static RegObj<MiscSeedItem> HP_FLOWER_SEED = Def.item(new MiscSeedItem("Life Flower Seed", Items.APPLE, SlashBlocks.LIFE_PLANT.get()), "seed/life");
+    public static RegObj<MiscSeedItem> MANA_FLOWER_SEED = Def.item(() -> new MiscSeedItem("Mana Flower Seed", Items.LAPIS_LAZULI, SlashBlocks.MANA_PLANT.get()), "seed/mana");
+    public static RegObj<MiscSeedItem> HP_FLOWER_SEED = Def.item(() -> new MiscSeedItem("Life Flower Seed", Items.APPLE, SlashBlocks.LIFE_PLANT.get()), "seed/life");
 
-    public static RegObj<ProjectileItem> FIREBALL = Def.item(new ProjectileItem("fireball"));
-    public static RegObj<ProjectileItem> SNOWBALL = Def.item(new ProjectileItem("snowball"));
-    public static RegObj<ProjectileItem> SLIMEBALL = Def.item(new ProjectileItem("slimeball"));
+    public static RegObj<ProjectileItem> FIREBALL = Def.item(() -> new ProjectileItem("fireball"));
+    public static RegObj<ProjectileItem> SNOWBALL = Def.item(() -> new ProjectileItem("snowball"));
+    public static RegObj<ProjectileItem> SLIMEBALL = Def.item(() -> new ProjectileItem("slimeball"));
 
-    public static RegObj<EssencePaperItem> ESSENCE_PAPER = Def.item(new EssencePaperItem(), "scroll/paper");
+    public static RegObj<EssencePaperItem> ESSENCE_PAPER = Def.item(() -> new EssencePaperItem(), "scroll/paper");
 
-    public static RegObj<TeleportBackItem> TELEPORT_BACK = Def.item(new TeleportBackItem(), "misc/teleport_back");
+    public static RegObj<TeleportBackItem> TELEPORT_BACK = Def.item(() -> new TeleportBackItem(), "misc/teleport_back");
 
     public static SalvagedDustItem T0_DUST() {
-        return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER0)
+        return ProfessionItems.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER0)
             .get();
     }
 
     public static SalvagedDustItem T1_DUST() {
-        return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER1)
+        return ProfessionItems.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER1)
             .get();
     }
 
     public static SalvagedDustItem T2_DUST() {
-        return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER2)
+        return ProfessionItems.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER2)
             .get();
     }
 
     public static SalvagedDustItem T3_DUST() {
-        return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER3)
+        return ProfessionItems.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER3)
             .get();
     }
 
     public static SalvagedDustItem T4_DUST() {
-        return ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER4)
+        return ProfessionItems.SALVAGED_ESSENCE_MAP.get(SkillItemTier.TIER4)
             .get();
     }
 
-    public static RegObj<LootTableItem> LOOT_TABLE_ITEM = Def.item(new LootTableItem(), "loot_table_chest");
+    public static RegObj<LootTableItem> LOOT_TABLE_ITEM = Def.item(() -> new LootTableItem(), "loot_table_chest");
 
-    public static RegObj<FullFavorItem> FULL_FAVOR = Def.item(new FullFavorItem(), "full_favor");
-    public static RegObj<EmptyFavorItem> EMPTY_FAVOR = Def.item(new EmptyFavorItem(), "empty_favor");
+    public static RegObj<FullFavorItem> FULL_FAVOR = Def.item(() -> new FullFavorItem(), "full_favor");
+    public static RegObj<EmptyFavorItem> EMPTY_FAVOR = Def.item(() -> new EmptyFavorItem(), "empty_favor");
 
-    public static RegObj<CustomLootCrateItem> CUSTOM_CRATE = Def.item(new CustomLootCrateItem(), "custom_crate");
+    public static RegObj<CustomLootCrateItem> CUSTOM_CRATE = Def.item(() -> new CustomLootCrateItem(), "custom_crate");
 
-    public static RegObj<Item> NEWBIE_GEAR_BAG = Def.item(new ItemNewbieGearBag(), "newbie_gear_bag");
+    public static RegObj<Item> NEWBIE_GEAR_BAG = Def.item(() -> new ItemNewbieGearBag(), "newbie_gear_bag");
 
-    public static RegObj<Item> INFUSED_IRON = Def.item(new SimpleMatItem(), "mat/infused_iron");
-    public static RegObj<Item> CRYSTALLIZED_ESSENCE = Def.item(new SimpleMatItem(), "mat/crystallized_essence");
-    public static RegObj<Item> GOLDEN_ORB = Def.item(new SimpleMatItem(), "mat/golden_orb");
-    public static RegObj<Item> MYTHIC_ESSENCE = Def.item(new SimpleMatItem(), "mat/mythic_essence");
+    public static RegObj<Item> INFUSED_IRON = Def.item(() -> new SimpleMatItem(), "mat/infused_iron");
+    public static RegObj<Item> CRYSTALLIZED_ESSENCE = Def.item(() -> new SimpleMatItem(), "mat/crystallized_essence");
+    public static RegObj<Item> GOLDEN_ORB = Def.item(() -> new SimpleMatItem(), "mat/golden_orb");
+    public static RegObj<Item> MYTHIC_ESSENCE = Def.item(() -> new SimpleMatItem(), "mat/mythic_essence");
 
-    public static RegObj<TalentResetPotion> RESET_ALL_PERKS = Def.item(new TalentResetPotion());
-    public static RegObj<SingleTalentResetPotion> ADD_RESET_PERK_POINTS = Def.item(new SingleTalentResetPotion());
-    public static RegObj<SpellResetPotion> RESET_SPELLS = Def.item(new SpellResetPotion());
-    public static RegObj<ResetStatsPotion> RESET_STATS = Def.item(new ResetStatsPotion());
-    public static RegObj<FunnyDeathPotion> DEATH_POTION = Def.item(new FunnyDeathPotion());
+    public static RegObj<TalentResetPotion> RESET_ALL_PERKS = Def.item(() -> new TalentResetPotion());
+    public static RegObj<SingleTalentResetPotion> ADD_RESET_PERK_POINTS = Def.item(() -> new SingleTalentResetPotion());
+    public static RegObj<SpellResetPotion> RESET_SPELLS = Def.item(() -> new SpellResetPotion());
+    public static RegObj<ResetStatsPotion> RESET_STATS = Def.item(() -> new ResetStatsPotion());
+    public static RegObj<FunnyDeathPotion> DEATH_POTION = Def.item(() -> new FunnyDeathPotion());
 
-    public static RegObj<BackpackItem> BACKPACK = Def.item(new BackpackItem(), "backpack/normal");
-
-    public static RegObj<Item> GEAR_SALVAGE = blockItem(SlashBlocks.GEAR_SALVAGE.get());
-    public static RegObj<Item> RUNEWORD_STATION = blockItem(SlashBlocks.RUNEWORD.get());
-    public static RegObj<Item> COOKING_STATION = blockItem(SlashBlocks.COOKING_STATION.get());
-    public static RegObj<Item> TABLET_STATION = blockItem(SlashBlocks.TABLET_STATION.get());
-    public static RegObj<Item> ALCHEMY_STATION = blockItem(SlashBlocks.ALCHEMY_STATION.get());
-    public static RegObj<Item> SMITHING_STATION = blockItem(SlashBlocks.SMITHING_STATION.get());
-    public static RegObj<Item> TELEPORTER_BLOCK = blockItem(SlashBlocks.TELEPORTER.get());
-
-    public static RegObj<Item> MANA_PLANT = Def.item(new ProduceItem("Astral Fruit"), "plant/mana");
-    public static RegObj<Item> LIFE_PLANT = Def.item(new ProduceItem("Life Berry"), "plant/life");
+    public static RegObj<BackpackItem> BACKPACK = Def.item(() -> new BackpackItem(), "backpack/normal");
 
     static Item.Properties stationProp = new Item.Properties().tab(CreativeTabs.MyModTab);
 
-    static <T extends Block> RegObj<Item> blockItem(T block) {
-        return Def.item(block.getRegistryName()
-            .getPath(), new BlockItem(block, stationProp));
-    }
+    public static RegObj<Item> GEAR_SALVAGE = Def.item("salvage_station", () -> new BlockItem(SlashBlocks.GEAR_SALVAGE.get(), stationProp));
+    public static RegObj<Item> COOKING_STATION = Def.item("cooking_station", () -> new BlockItem(SlashBlocks.COOKING_STATION.get(), stationProp));
+    public static RegObj<Item> TABLET_STATION = Def.item("tablet_station", () -> new BlockItem(SlashBlocks.TABLET_STATION.get(), stationProp));
+    public static RegObj<Item> ALCHEMY_STATION = Def.item("alchemy_station", () -> new BlockItem(SlashBlocks.ALCHEMY_STATION.get(), stationProp));
+    public static RegObj<Item> SMITHING_STATION = Def.item("smithing_station", () -> new BlockItem(SlashBlocks.SMITHING_STATION.get(), stationProp));
+    public static RegObj<Item> TELEPORTER_BLOCK = Def.item("teleporter", () -> new BlockItem(SlashBlocks.TELEPORTER.get(), stationProp));
+    public static RegObj<Item> RUNEWORD_STATION = Def.item("salvage", () -> new BlockItem(SlashBlocks.RUNEWORD.get(), stationProp));
+    public static RegObj<Item> PORTAL = Def.item("portal", () -> new BlockItem(SlashBlocks.PORTAL.get(), stationProp));
+
+    public static RegObj<Item> MANA_PLANT = Def.item(() -> new ProduceItem("Astral Fruit"), "plant/mana");
+    public static RegObj<Item> LIFE_PLANT = Def.item(() -> new ProduceItem("Life Berry"), "plant/life");
 
     public static class GearItems {
 
@@ -145,7 +139,7 @@ public class SlashItems {
             HashMap<VanillaMaterial, RegObj<Item>> map = new HashMap<VanillaMaterial, RegObj<Item>>();
             list
                 .forEach(x -> {
-                    map.put(x, Def.item(idprefix + x.id, item.apply(x)));
+                    map.put(x, Def.item(idprefix + x.id, () -> item.apply(x)));
                 });
             return map;
         }
@@ -154,7 +148,7 @@ public class SlashItems {
             HashMap<LevelRange, RegObj<Item>> map = new HashMap<LevelRange, RegObj<Item>>();
             LevelRanges.allNormal()
                 .forEach(x -> {
-                    map.put(x, Def.item(idprefix + x.id_suffix, item.get()));
+                    map.put(x, Def.item(idprefix + x.id_suffix, () -> item.get()));
                 });
             return map;
         }
@@ -163,15 +157,15 @@ public class SlashItems {
 
     public static class EssenceMaterials {
 
-        public static RegObj<CraftEssenceItem> ARCANA = Def.item(new CraftEssenceItem("arcana", () -> Items.PURPLE_DYE, "Essence of Arcana"));
-        public static RegObj<CraftEssenceItem> MANA = Def.item(new CraftEssenceItem("mana", () -> SlashItems.MANA_PLANT.get(), "Essence of Mana"));
-        public static RegObj<CraftEssenceItem> LIFE = Def.item(new CraftEssenceItem("life", () -> SlashItems.LIFE_PLANT.get(), "Essence of Life"));
-        public static RegObj<CraftEssenceItem> ELEMENTAL = Def.item(new CraftEssenceItem("elemental", () -> Items.WHITE_DYE, "Essence of Elements"));
-        public static RegObj<CraftEssenceItem> WATER = Def.item(new CraftEssenceItem("water", () -> Items.CYAN_DYE, "Essence of Water"));
-        public static RegObj<CraftEssenceItem> NATURE = Def.item(new CraftEssenceItem("nature", () -> Items.GREEN_DYE, "Essence of Nature"));
-        public static RegObj<CraftEssenceItem> FIRE = Def.item(new CraftEssenceItem("fire", () -> Items.ORANGE_DYE, "Essence of Fire"));
-        public static RegObj<CraftEssenceItem> THUNDER = Def.item(new CraftEssenceItem("thunder", () -> Items.YELLOW_DYE, "Essence of Thunder"));
-        public static RegObj<CraftEssenceItem> PHYSICAL = Def.item(new CraftEssenceItem("physical", () -> Items.BLACK_DYE, "Essence of Physique"));
+        public static RegObj<CraftEssenceItem> ARCANA = Def.item(() -> new CraftEssenceItem("arcana", () -> Items.PURPLE_DYE, "Essence of Arcana"));
+        public static RegObj<CraftEssenceItem> MANA = Def.item(() -> new CraftEssenceItem("mana", () -> SlashItems.MANA_PLANT.get(), "Essence of Mana"));
+        public static RegObj<CraftEssenceItem> LIFE = Def.item(() -> new CraftEssenceItem("life", () -> SlashItems.LIFE_PLANT.get(), "Essence of Life"));
+        public static RegObj<CraftEssenceItem> ELEMENTAL = Def.item(() -> new CraftEssenceItem("elemental", () -> Items.WHITE_DYE, "Essence of Elements"));
+        public static RegObj<CraftEssenceItem> WATER = Def.item(() -> new CraftEssenceItem("water", () -> Items.CYAN_DYE, "Essence of Water"));
+        public static RegObj<CraftEssenceItem> NATURE = Def.item(() -> new CraftEssenceItem("nature", () -> Items.GREEN_DYE, "Essence of Nature"));
+        public static RegObj<CraftEssenceItem> FIRE = Def.item(() -> new CraftEssenceItem("fire", () -> Items.ORANGE_DYE, "Essence of Fire"));
+        public static RegObj<CraftEssenceItem> THUNDER = Def.item(() -> new CraftEssenceItem("thunder", () -> Items.YELLOW_DYE, "Essence of Thunder"));
+        public static RegObj<CraftEssenceItem> PHYSICAL = Def.item(() -> new CraftEssenceItem("physical", () -> Items.BLACK_DYE, "Essence of Physique"));
 
     }
 

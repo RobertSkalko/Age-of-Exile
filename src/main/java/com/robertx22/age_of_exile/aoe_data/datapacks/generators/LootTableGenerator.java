@@ -1,10 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 
 import com.google.gson.Gson;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.*;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
@@ -89,27 +88,28 @@ public class LootTableGenerator {
         LootTable.Builder gems = LootTable.lootTable();
         LootPool.Builder gemloot = LootPool.lootPool();
         gemloot.setRolls(RandomValueRange.between(1, 3));
-        ModRegistry.GEMS.ALL.forEach(x -> {
-            gemloot.add(ItemLootEntry.lootTableItem(x)
-                .setWeight(x.weight));
+        GemItems.ALL.forEach(x -> {
+            gemloot.add(ItemLootEntry.lootTableItem(x.get())
+                .setWeight(x.get().weight));
         });
         gems.withPool(gemloot);
 
         LootTable.Builder runes = LootTable.lootTable();
         LootPool.Builder runeloot = LootPool.lootPool();
         runeloot.setRolls(RandomValueRange.between(1, 3));
-        ModRegistry.RUNES.ALL.forEach(x -> {
-            runeloot.add(ItemLootEntry.lootTableItem(x)
-                .setWeight(x.weight));
+        RuneItems.ALL.forEach(x -> {
+            runeloot.add(ItemLootEntry.lootTableItem(x.get())
+                .setWeight(x.get().weight));
         });
         runes.withPool(runeloot);
 
         LootTable.Builder currencies = LootTable.lootTable();
         LootPool.Builder curLoot = LootPool.lootPool();
         curLoot.setRolls(RandomValueRange.between(1, 3));
-        ModRegistry.CURRENCIES.currencies.forEach(x -> {
-            curLoot.add(ItemLootEntry.lootTableItem(x)
-                .setWeight(x.Weight()));
+        CurrencyItems.currencies.forEach(x -> {
+            curLoot.add(ItemLootEntry.lootTableItem(x.get())
+                .setWeight(x.get()
+                    .Weight()));
         });
         currencies.withPool(curLoot);
 
@@ -117,10 +117,10 @@ public class LootTableGenerator {
         map.put(GEM_SALVAGE_RECIPE, gems.build());
         map.put(CURRENCIES_SALVAGE_RECIPE, currencies.build());
 
-        ModRegistry.TIERED.FARMING_PRODUCE.values()
+        ProfessionItems.FARMING_PRODUCE.values()
             .forEach(x -> {
-                addFarming(SlashBlocks.FARMING_PLANTS.get(x.tier)
-                    .get(), x, null, 3, map);
+                addFarming(SlashBlocks.FARMING_PLANTS.get(x.get().tier)
+                    .get(), x.get(), null, 3, map);
             });
 
         addFarming(SlashBlocks.LIFE_PLANT.get(), SlashItems.HP_FLOWER_SEED.get(), SlashItems.LIFE_PLANT.get(), 3, map)

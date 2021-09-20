@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class RuneItems extends BaseItemRegistrator {
+public class RuneItems {
 
     public static HashMap<String, RegObj<RuneItem>> MAP = new HashMap<>();
     public static List<RegObj<RuneItem>> ALL = new ArrayList<>();
@@ -19,7 +19,7 @@ public class RuneItems extends BaseItemRegistrator {
 
             RuneItem item = new RuneItem(type);
 
-            RegObj<RuneItem> def = Def.item(item);
+            RegObj<RuneItem> def = Def.item(() -> item);
 
             MAP.put(type.id, def);
             ALL.add(def);

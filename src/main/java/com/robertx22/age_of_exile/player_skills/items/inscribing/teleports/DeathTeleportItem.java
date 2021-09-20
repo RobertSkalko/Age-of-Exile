@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.items.inscribing.teleports;
 
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.BaseTpItem;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -46,7 +46,8 @@ public class DeathTeleportItem extends BaseTpItem {
         ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this);
         fac.requires(Items.PAPER);
         fac.requires(Items.ENDER_EYE);
-        fac.requires(ModRegistry.TIERED.INK_TIER_MAP.get(SkillItemTier.TIER0));
+        fac.requires(ProfessionItems.INK_TIER_MAP.get(SkillItemTier.TIER0)
+            .get());
         return fac.unlockedBy("player_level", trigger());
     }
 

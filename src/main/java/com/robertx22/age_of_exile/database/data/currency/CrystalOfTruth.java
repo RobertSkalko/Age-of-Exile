@@ -7,8 +7,9 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequire
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -84,10 +85,10 @@ public class CrystalOfTruth extends CurrencyItem implements ICurrencyItemEffect,
 
     @Override
     public ShapedRecipeBuilder getRecipe() {
-        return shaped(ModRegistry.CURRENCIES.CRYSTAL_OF_TRUTH)
+        return shaped(CurrencyItems.CRYSTAL_OF_TRUTH.get())
             .define('t', Items.REDSTONE)
-            .define('v', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
-            .define('o', ModRegistry.MISC_ITEMS.T2_DUST())
+            .define('v', CurrencyItems.ORB_OF_TRANSMUTATION.get())
+            .define('o', SlashItems.T2_DUST())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

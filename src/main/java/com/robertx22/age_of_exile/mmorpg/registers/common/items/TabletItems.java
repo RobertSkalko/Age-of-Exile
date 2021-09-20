@@ -19,10 +19,10 @@ public class TabletItems {
 
     }
 
-    public static List<ProtectionTabletItem> ALL_TABLETS = new ArrayList<ProtectionTabletItem>();
+    public static List<RegObj<ProtectionTabletItem>> ALL_TABLETS = new ArrayList<>();
 
-    public static RegObj<BlankTabletItem> BLANK_TABLET = Def.item(new BlankTabletItem(SkillItemTier.TIER1, BlankTabletTier.NORMAL), "tablet/blank_tablet0");
-    public static RegObj<BlankTabletItem> RARE_BLANK_TABLET = Def.item(new BlankTabletItem(SkillItemTier.TIER4, BlankTabletTier.SUPREME), "tablet/blank_tablet1");
+    public static RegObj<BlankTabletItem> BLANK_TABLET = Def.item(() -> new BlankTabletItem(SkillItemTier.TIER1, BlankTabletTier.NORMAL), "tablet/blank_tablet0");
+    public static RegObj<BlankTabletItem> RARE_BLANK_TABLET = Def.item(() -> new BlankTabletItem(SkillItemTier.TIER4, BlankTabletTier.SUPREME), "tablet/blank_tablet1");
 
     public static RegObj<ProtectionTabletItem> ANTI_FIRE = tablet(new ProtectionTabletItem(SkillItemTier.TIER0, TabletTypes.ANTI_FIRE));
     public static RegObj<ProtectionTabletItem> ANTI_POISON = tablet(new ProtectionTabletItem(SkillItemTier.TIER0, TabletTypes.ANTI_POISON));
@@ -32,12 +32,12 @@ public class TabletItems {
     public static RegObj<ProtectionTabletItem> ANTI_DEATH = tablet(new ProtectionTabletItem(SkillItemTier.TIER4, TabletTypes.ANTI_DEATH));
     public static RegObj<ProtectionTabletItem> GEAR_REPAIR = tablet(new ProtectionTabletItem(SkillItemTier.TIER4, TabletTypes.GEAR_REPAIR));
 
-    public static RegObj<DeathTeleportItem> DEATH_TELEPORT = Def.item(new DeathTeleportItem(), "scroll/death_teleport");
-    public static RegObj<SpawnTeleportItem> SPAWN_TELEPORT = Def.item(new SpawnTeleportItem(), "scroll/spawn_teleport");
+    public static RegObj<DeathTeleportItem> DEATH_TELEPORT = Def.item(() -> new DeathTeleportItem(), "scroll/death_teleport");
+    public static RegObj<SpawnTeleportItem> SPAWN_TELEPORT = Def.item(() -> new SpawnTeleportItem(), "scroll/spawn_teleport");
 
     static RegObj<ProtectionTabletItem> tablet(ProtectionTabletItem c) {
-        RegObj<ProtectionTabletItem> d = Def.item(c);
-        ALL_TABLETS.add(d.get());
+        RegObj<ProtectionTabletItem> d = Def.item(() -> c);
+        ALL_TABLETS.add(d);
         return d;
     }
 }
