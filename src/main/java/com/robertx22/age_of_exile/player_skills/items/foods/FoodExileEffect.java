@@ -13,7 +13,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Hea
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -77,11 +77,11 @@ public enum FoodExileEffect {
     }
 
     public enum EffectColor {
-        RED("red", "Red", () -> ModRegistry.GEAR_MATERIALS.LIFE),
-        GREEN("green", "Green", () -> ModRegistry.GEAR_MATERIALS.NATURE),
-        BLUE("blue", "Blue", () -> ModRegistry.GEAR_MATERIALS.WATER),
-        PURPLE("purple", "Purple", () -> ModRegistry.GEAR_MATERIALS.ARCANA),
-        YELLOW("yellow", "Yellow", () -> ModRegistry.GEAR_MATERIALS.THUNDER);
+        RED("red", "Red", () -> SlashItems.EssenceMaterials.LIFE.get()),
+        GREEN("green", "Green", () -> SlashItems.EssenceMaterials.NATURE.get()),
+        BLUE("blue", "Blue", () -> SlashItems.EssenceMaterials.WATER.get()),
+        PURPLE("purple", "Purple", () -> SlashItems.EssenceMaterials.ARCANA.get()),
+        YELLOW("yellow", "Yellow", () -> SlashItems.EssenceMaterials.THUNDER.get());
 
         public String id;
         public String word;

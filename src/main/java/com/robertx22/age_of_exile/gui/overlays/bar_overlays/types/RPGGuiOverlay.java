@@ -13,14 +13,13 @@ import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
 import com.robertx22.library_of_exile.utils.CLOC;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class RPGGuiOverlay extends AbstractGui implements HudRenderCallback {
+public class RPGGuiOverlay extends AbstractGui {
 
     static ResourceLocation BASETEX = new ResourceLocation(SlashRef.MODID, "textures/gui/overlay/base.png");
     static ResourceLocation MANA_RESERVE = new ResourceLocation(SlashRef.MODID, "textures/gui/overlay/mana_reserve.png");
@@ -86,7 +85,6 @@ public class RPGGuiOverlay extends AbstractGui implements HudRenderCallback {
         }
     }
 
-    @Override
     public void onHudRender(MatrixStack matrix, float v) {
 
         try {

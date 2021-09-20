@@ -17,7 +17,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 
-@Deprecated
 public class ComponentRegisters {
 
     public ComponentType<EntityData> UNIT_DATA =

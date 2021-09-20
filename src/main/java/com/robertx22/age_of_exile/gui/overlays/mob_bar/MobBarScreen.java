@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LookUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
 import com.robertx22.library_of_exile.utils.GuiUtils;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.entity.Entity;
@@ -17,7 +16,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
-public class MobBarScreen extends AbstractGui implements HudRenderCallback {
+public class MobBarScreen extends AbstractGui {
 
     private Minecraft mc;
 
@@ -35,7 +34,6 @@ public class MobBarScreen extends AbstractGui implements HudRenderCallback {
     LivingEntity en;
     int ticks = 0;
 
-    @Override
     public void onHudRender(MatrixStack matrix, float v) {
 
         try {

@@ -19,5 +19,4 @@ public class RegObj<T extends IForgeRegistryEntry<? super T>> {
         return obj;
     }
 
-
 }

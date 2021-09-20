@@ -7,14 +7,13 @@ import com.robertx22.age_of_exile.gui.TextUtils;
 import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.AbstractGui;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Map;
 
-public class DeathStatsOverlay extends AbstractGui implements HudRenderCallback {
+public class DeathStatsOverlay extends AbstractGui {
 
     public DeathStatsOverlay() {
         super();
@@ -22,7 +21,6 @@ public class DeathStatsOverlay extends AbstractGui implements HudRenderCallback 
 
     Minecraft mc = Minecraft.getInstance();
 
-    @Override
     public void onHudRender(MatrixStack matrix, float v) {
 
         try {

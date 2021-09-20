@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
+import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.dimension.item.TeleportBackItem;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
@@ -9,12 +11,16 @@ import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
 import com.robertx22.age_of_exile.player_skills.items.farming.ProduceItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
-import com.robertx22.age_of_exile.player_skills.items.inscribing.ScrollBuffItem;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.MiscSeedItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemNecklace;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemRing;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ScepterWeapon;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.StaffWeapon;
 import com.robertx22.age_of_exile.vanilla_mc.items.loot_crate.LootCrateItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.ResetStatsPotion;
@@ -25,6 +31,12 @@ import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class SlashItems {
 
@@ -42,7 +54,6 @@ public class SlashItems {
     public static RegObj<ProjectileItem> SNOWBALL = Def.item(new ProjectileItem("snowball"));
     public static RegObj<ProjectileItem> SLIMEBALL = Def.item(new ProjectileItem("slimeball"));
 
-    public static RegObj<ScrollBuffItem> SCROLL_BUFF = Def.item(new ScrollBuffItem(), "scroll/buff");
     public static RegObj<EssencePaperItem> ESSENCE_PAPER = Def.item(new EssencePaperItem(), "scroll/paper");
 
     public static RegObj<TeleportBackItem> TELEPORT_BACK = Def.item(new TeleportBackItem(), "misc/teleport_back");
@@ -91,7 +102,6 @@ public class SlashItems {
 
     public static RegObj<Item> GEAR_SALVAGE = blockItem(ModRegistry.BLOCKS.GEAR_SALVAGE.get());
     public static RegObj<Item> RUNEWORD_STATION = blockItem(ModRegistry.BLOCKS.RUNEWORD.get());
-    public static RegObj<Item> SCRIBE_BUFF_BLOCK = blockItem(ModRegistry.BLOCKS.SCRIBE_BUFF.get());
     public static RegObj<Item> COOKING_STATION = blockItem(ModRegistry.BLOCKS.COOKING_STATION.get());
     public static RegObj<Item> TABLET_STATION = blockItem(ModRegistry.BLOCKS.TABLET_STATION.get());
     public static RegObj<Item> ALCHEMY_STATION = blockItem(ModRegistry.BLOCKS.ALCHEMY_STATION.get());
@@ -106,6 +116,57 @@ public class SlashItems {
     static <T extends Block> RegObj<Item> blockItem(T block) {
         return Def.item(block.getRegistryName()
             .getPath(), new BlockItem(block, stationProp));
+    }
+
+    public static class GearItems {
+
+        public static HashMap<VanillaMaterial, RegObj<Item>> SCEPTERS = of("weapon/scepter/",
+            Arrays.asList(VanillaMaterial.DIAMOND, VanillaMaterial.GOLD, VanillaMaterial.IRON, VanillaMaterial.WOOD),
+            x -> new ScepterWeapon(x));
+
+        public static HashMap<VanillaMaterial, RegObj<Item>> STAFFS = of("weapon/staff/",
+            Arrays.asList(VanillaMaterial.DIAMOND, VanillaMaterial.GOLD, VanillaMaterial.IRON, VanillaMaterial.WOOD),
+            x -> new StaffWeapon(x));
+
+        public static HashMap<VanillaMaterial, RegObj<Item>> RINGS = of("jewelry/ring/", Arrays.asList(
+            VanillaMaterial.DIAMOND, VanillaMaterial.GOLD, VanillaMaterial.IRON
+        ), x -> new ItemRing(x));
+        public static HashMap<VanillaMaterial, RegObj<Item>> NECKLACES = of("jewelry/necklace/", Arrays.asList(
+            VanillaMaterial.DIAMOND, VanillaMaterial.GOLD, VanillaMaterial.IRON
+        ), x -> new ItemNecklace(x));
+
+        private static HashMap<VanillaMaterial, RegObj<Item>> of(String idprefix, List<VanillaMaterial> list, Function<VanillaMaterial, Item> item) {
+            HashMap<VanillaMaterial, RegObj<Item>> map = new HashMap<VanillaMaterial, RegObj<Item>>();
+            list
+                .forEach(x -> {
+                    map.put(x, Def.item(idprefix + x.id, item.apply(x)));
+                });
+            return map;
+        }
+
+        private static HashMap<LevelRange, RegObj<Item>> of(String idprefix, Supplier<Item> item) {
+            HashMap<LevelRange, RegObj<Item>> map = new HashMap<LevelRange, RegObj<Item>>();
+            LevelRanges.allNormal()
+                .forEach(x -> {
+                    map.put(x, Def.item(idprefix + x.id_suffix, item.get()));
+                });
+            return map;
+        }
+
+    }
+
+    public static class EssenceMaterials {
+
+        public static RegObj<CraftEssenceItem> ARCANA = Def.item(new CraftEssenceItem("arcana", () -> Items.PURPLE_DYE, "Essence of Arcana"));
+        public static RegObj<CraftEssenceItem> MANA = Def.item(new CraftEssenceItem("mana", () -> ModRegistry.MISC_ITEMS.MANA_PLANT.get(), "Essence of Mana"));
+        public static RegObj<CraftEssenceItem> LIFE = Def.item(new CraftEssenceItem("life", () -> ModRegistry.MISC_ITEMS.LIFE_PLANT.get(), "Essence of Life"));
+        public static RegObj<CraftEssenceItem> ELEMENTAL = Def.item(new CraftEssenceItem("elemental", () -> Items.WHITE_DYE, "Essence of Elements"));
+        public static RegObj<CraftEssenceItem> WATER = Def.item(new CraftEssenceItem("water", () -> Items.CYAN_DYE, "Essence of Water"));
+        public static RegObj<CraftEssenceItem> NATURE = Def.item(new CraftEssenceItem("nature", () -> Items.GREEN_DYE, "Essence of Nature"));
+        public static RegObj<CraftEssenceItem> FIRE = Def.item(new CraftEssenceItem("fire", () -> Items.ORANGE_DYE, "Essence of Fire"));
+        public static RegObj<CraftEssenceItem> THUNDER = Def.item(new CraftEssenceItem("thunder", () -> Items.YELLOW_DYE, "Essence of Thunder"));
+        public static RegObj<CraftEssenceItem> PHYSICAL = Def.item(new CraftEssenceItem("physical", () -> Items.BLACK_DYE, "Essence of Physique"));
+
     }
 
 }

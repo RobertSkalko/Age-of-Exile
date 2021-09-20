@@ -9,6 +9,8 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
+import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
@@ -136,19 +138,20 @@ public class RecipeGenerator {
                 }
             });
 
-        gearRecipe(consumer, ModRegistry.GEAR_ITEMS.NECKLACES, GearSlots.NECKLACE);
-        gearRecipe(consumer, ModRegistry.GEAR_ITEMS.RINGS, GearSlots.RING);
-        gearRecipe(consumer, ModRegistry.GEAR_ITEMS.SCEPTERS, GearSlots.SCEPTER);
-        gearRecipe(consumer, ModRegistry.GEAR_ITEMS.STAFFS, GearSlots.STAFF);
+        gearRecipe(consumer, SlashItems.GearItems.NECKLACES, GearSlots.NECKLACE);
+        gearRecipe(consumer, SlashItems.GearItems.RINGS, GearSlots.RING);
+        gearRecipe(consumer, SlashItems.GearItems.SCEPTERS, GearSlots.SCEPTER);
+        gearRecipe(consumer, SlashItems.GearItems.STAFFS, GearSlots.STAFF);
 
     }
 
-    public static void gearRecipe(Consumer<IFinishedRecipe> cons, HashMap<VanillaMaterial, Item> map, String slot) {
+    public static void gearRecipe(Consumer<IFinishedRecipe> cons, HashMap<VanillaMaterial, RegObj<Item>> map, String slot) {
 
         map.entrySet()
             .forEach(x -> {
 
-                ShapedRecipeBuilder fac = ShapedRecipeBuilder.shaped(x.getValue(), 1);
+                ShapedRecipeBuilder fac = ShapedRecipeBuilder.shaped(x.getValue()
+                    .get(), 1);
 
                 String[] pattern = getRecipePattern(ExileDB.GearSlots()
                     .get(slot));

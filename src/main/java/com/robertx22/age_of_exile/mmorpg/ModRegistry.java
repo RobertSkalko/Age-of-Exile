@@ -8,7 +8,7 @@ public class ModRegistry {
     public static BackpackUpgradesRegister BACKPACK_UPGRADES;
     public static ModRecipeTypes RECIPE_TYPES;
     public static SlashItems MISC_ITEMS;
-    public static BaseGearTypeItemRegister GEAR_ITEMS;
+    public static GearItems GEAR_ITEMS;
     public static CurrencyItemRegistrator CURRENCIES;
     public static FoodItemRegister FOOD_ITEMS;
     public static GemItemRegister GEMS;
@@ -20,10 +20,10 @@ public class ModRegistry {
     public static SlashBlockEntities BLOCK_ENTITIES;
     public static ModParticles PARTICLES;
     public static ComponentRegisters COMPONENTS;
-    public static GearMaterialRegister GEAR_MATERIALS;
+    public static EssenceMaterials GEAR_MATERIALS;
     public static PotionRegister POTIONS;
     public static ModRecipeSerializers RECIPE_SER;
-    public static InscribingItemRegister INSCRIBING;
+    public static TabletItems INSCRIBING;
     public static AlchemyItemRegister ALCHEMY;
     public static TierItemsRegister TIERED;
 
@@ -40,12 +40,12 @@ public class ModRegistry {
         ENTITIES = new SlashEntities();
         BLOCK_ENTITIES = new SlashBlockEntities();
         COMPONENTS = new ComponentRegisters();
-        GEAR_MATERIALS = new GearMaterialRegister();
+        GEAR_MATERIALS = new EssenceMaterials();
         GEMS = new GemItemRegister();
         RUNES = new RuneItemRegister();
-        GEAR_ITEMS = new BaseGearTypeItemRegister();
+        GEAR_ITEMS = new GearItems();
         FOOD_ITEMS = new FoodItemRegister();
-        INSCRIBING = new InscribingItemRegister();
+        INSCRIBING = new TabletItems();
         ALCHEMY = new AlchemyItemRegister();
         TIERED = new TierItemsRegister();
         BACKPACK_UPGRADES = new BackpackUpgradesRegister();

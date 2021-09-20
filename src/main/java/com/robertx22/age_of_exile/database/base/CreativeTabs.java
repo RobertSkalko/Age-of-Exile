@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.base;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.player_skills.items.alchemy.PotionType;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
@@ -15,7 +16,8 @@ public class CreativeTabs {
     public static ItemGroup MyModTab = new ItemGroup("mmorpg:main_group") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModRegistry.GEAR_ITEMS.NECKLACES.get(VanillaMaterial.DIAMOND));
+            return new ItemStack(SlashItems.GearItems.NECKLACES.get(VanillaMaterial.DIAMOND)
+                .get());
         }
     };
 

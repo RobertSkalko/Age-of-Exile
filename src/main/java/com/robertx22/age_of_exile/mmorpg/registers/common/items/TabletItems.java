@@ -11,7 +11,7 @@ import com.robertx22.age_of_exile.player_skills.items.protection_tablets.TabletT
 import java.util.ArrayList;
 import java.util.List;
 
-public class InscribingItemRegister extends BaseItemRegistrator {
+public class TabletItems extends BaseItemRegistrator {
 
     public List<ProtectionTabletItem> ALL_TABLETS = new ArrayList<>();
 
@@ -29,7 +29,7 @@ public class InscribingItemRegister extends BaseItemRegistrator {
     public DeathTeleportItem DEATH_TELEPORT = item(new DeathTeleportItem(), "scroll/death_teleport");
     public SpawnTeleportItem SPAWN_TELEPORT = item(new SpawnTeleportItem(), "scroll/spawn_teleport");
 
-    public InscribingItemRegister() {
+    public TabletItems() {
 
     }
 
