@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.mixin_ducks.FallingBlockAccessor;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -27,11 +27,11 @@ import java.util.ArrayList;
 public class StationaryFallingBlockEntity extends FallingBlockEntity implements IDatapackSpellEntity {
 
     public StationaryFallingBlockEntity(EntityType<? extends FallingBlockEntity> entityType, World world) {
-        super(ModRegistry.ENTITIES.SIMPLE_BLOCK_ENTITY, world);
+        super(SlashEntities.SIMPLE_BLOCK_ENTITY.get(), world);
     }
 
     public StationaryFallingBlockEntity(World world, BlockPos pos, BlockState block) {
-        this(ModRegistry.ENTITIES.SIMPLE_BLOCK_ENTITY, world);
+        this(SlashEntities.SIMPLE_BLOCK_ENTITY.get(), world);
         FallingBlockAccessor acc = (FallingBlockAccessor) this;
         acc.setBlockState(block);
         acc.setDestroyedOnLanding(false);

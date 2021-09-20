@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocR
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -76,7 +77,7 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
     @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(ModRegistry.CURRENCIES.LEAF_OF_CHANGE)
-            .define('#', ModRegistry.MISC_ITEMS.GOLDEN_ORB)
+            .define('#', SlashItems.GOLDEN_ORB.get())
             .define('t', ModRegistry.CURRENCIES.ORB_OF_BLESSING)
             .define('v', Items.GOLD_INGOT)
             .define('o', ModRegistry.MISC_ITEMS.T3_DUST())

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.dimension.dungeon_data;
 
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
@@ -72,7 +72,7 @@ public class QuestProgression {
                     x.displayClientMessage(
                         new StringTextComponent("Quest completed!, You can now progress to the next dungeon.")
                         , false);
-                    PlayerUtils.giveItem(new ItemStack(ModRegistry.MISC_ITEMS.TELEPORT_BACK), x);
+                    PlayerUtils.giveItem(new ItemStack(SlashItems.TELEPORT_BACK.get()), x);
                     TeamCommand.sendDpsCharts(x);
                 }
 

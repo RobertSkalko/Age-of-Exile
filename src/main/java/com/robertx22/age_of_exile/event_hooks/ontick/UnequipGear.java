@@ -43,7 +43,7 @@ public class UnequipGear {
 
         ItemStack copy = stack.copy();
         handler.getStacks()
-            .setItem(number, ItemStack.EMPTY);
+            .setStackInSlot(number, ItemStack.EMPTY);
         PlayerUtils.giveItem(copy, player);
         player.displayClientMessage(txt, false);
     }
@@ -78,7 +78,7 @@ public class UnequipGear {
 
                 ItemStack stack = handler
                     .getStacks()
-                    .getItem(i);
+                    .getStackInSlot(i);
 
                 if (!stack.isEmpty()) {
                     GearItemData gear = Gear.Load(stack);

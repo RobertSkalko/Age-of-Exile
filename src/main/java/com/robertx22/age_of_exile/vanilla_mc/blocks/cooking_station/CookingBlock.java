@@ -1,10 +1,8 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseModificationBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockReader;
 
 public class CookingBlock extends BaseModificationBlock {
@@ -19,8 +17,4 @@ public class CookingBlock extends BaseModificationBlock {
         return new CookingTile();
     }
 
-    @Override
-    public ResourceLocation getContainerId() {
-        return ModRegistry.CONTAINERS.COOKING_STATION;
-    }
 }

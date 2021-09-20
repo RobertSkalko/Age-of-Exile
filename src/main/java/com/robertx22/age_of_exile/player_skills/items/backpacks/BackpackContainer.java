@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModContainers;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -27,7 +27,7 @@ public class BackpackContainer extends BaseTileContainer {
     }
 
     public BackpackContainer(ItemStack stack, int id, PlayerInventory invPlayer) {
-        super(BackpackInventory.getSizeBackpack(stack), ModRegistry.CONTAINERS.BACKPACK_TYPE, id, invPlayer);
+        super(BackpackInventory.getSizeBackpack(stack), ModContainers.BACKPACK.get(), id, invPlayer);
 
         try {
             this.player = invPlayer.player;

@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocR
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.BaseStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -87,7 +88,7 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(ModRegistry.CURRENCIES.ORB_OF_BLESSING)
-            .define('#', ModRegistry.MISC_ITEMS.CRYSTALLIZED_ESSENCE)
+            .define('#', SlashItems.CRYSTALLIZED_ESSENCE.get())
             .define('t', ModRegistry.CURRENCIES.ORB_OF_TURBULENCE)
             .define('v', Items.COAL)
             .define('o', ModRegistry.MISC_ITEMS.T4_DUST())

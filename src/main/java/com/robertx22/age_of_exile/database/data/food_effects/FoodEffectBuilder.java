@@ -44,9 +44,9 @@ public class FoodEffectBuilder {
                 .getEffect();
             StatusEffectAccessor acc = (StatusEffectAccessor) efg;
 
-            if (acc.getType() == EffectType.BENEFICIAL) {
+            if (acc.getCategory() == EffectType.BENEFICIAL) {
                 effectMod += 0.15F;
-            } else if (acc.getType() == EffectType.HARMFUL) {
+            } else if (acc.getCategory() == EffectType.HARMFUL) {
                 effectMod -= 0.75F;
             }
         }

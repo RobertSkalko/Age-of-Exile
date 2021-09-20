@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.event_hooks.player;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.library_of_exile.utils.Watch;
@@ -58,7 +58,7 @@ public class OnLogin {
             return;
         }
 
-        player.inventory.add(new ItemStack(ModRegistry.MISC_ITEMS.NEWBIE_GEAR_BAG));
+        player.inventory.add(new ItemStack(SlashItems.NEWBIE_GEAR_BAG.get()));
 
     }
 

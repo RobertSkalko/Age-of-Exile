@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BlackHoleBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.TotemBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy.AlchemyBlock;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station.ScribeBuffBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station.CookingBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.runeword_station.RuneWordStationBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.BlockGearSalvage;
@@ -26,13 +25,13 @@ import java.util.HashMap;
 public class SlashBlocks {
 
     public static void init() {
-
+        for (SkillItemTier tier : SkillItemTier.values()) {
+            FARMING_PLANTS.put(tier, plant("plant" + (tier.tier + 1)));
+        }
     }
-
 
     public static RegObj<RuneWordStationBlock> RUNEWORD = Def.block("socket_station", new RuneWordStationBlock());
     public static RegObj<BlockGearSalvage> GEAR_SALVAGE = Def.block("salvage_station", new BlockGearSalvage());
-    public static RegObj<ScribeBuffBlock> SCRIBE_BUFF = Def.block("scribe_buff", new ScribeBuffBlock());
     public static RegObj<CookingBlock> COOKING_STATION = Def.block("cooking_station", new CookingBlock());
     public static RegObj<TabletStationBlock> TABLET_STATION = Def.block("tablet_station", new TabletStationBlock());
     public static RegObj<AlchemyBlock> ALCHEMY_STATION = Def.block("alchemy_station", new AlchemyBlock());
@@ -48,25 +47,17 @@ public class SlashBlocks {
     public static RegObj<TotemBlock> TRAP = Def.block("trap", new TotemBlock());
     public static RegObj<TotemBlock> GLYPH = Def.block("glyph", new TotemBlock());
 
+    public static HashMap<SkillItemTier, RegObj<Block>> FARMING_PLANTS = new HashMap<>();
 
-    public HashMap<SkillItemTier, RegObj<Block>> FARMING_PLANTS = new HashMap<>();
+    public static RegObj<Block> MANA_PLANT = plant("mana");
+    public static RegObj<Block> LIFE_PLANT = plant("life");
 
-    public RegObj<Block> MANA_PLANT = plant("mana");
-    public RegObj<Block> LIFE_PLANT = plant("life");
-
-    public SlashBlocks() {
-        for (SkillItemTier tier : SkillItemTier.values()) {
-            FARMING_PLANTS.put(tier, plant("plant" + (tier.tier + 1)));
-        }
-    }
-
-    RegObj<Block> plant(String id) {
+    static RegObj<Block> plant(String id) {
         return Def.block(id, new BeetrootBlock(AbstractBlock.Properties.of(Material.PLANT)
-                .noCollission()
-                .randomTicks()
-                .instabreak()
-                .sound(SoundType.CROP)));
+            .noCollission()
+            .randomTicks()
+            .instabreak()
+            .sound(SoundType.CROP)));
     }
-
 
 }

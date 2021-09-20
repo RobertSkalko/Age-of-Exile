@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.dimension.teleporter;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlockEntities;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.block.BlockState;
@@ -14,7 +14,7 @@ import net.minecraft.util.text.StringTextComponent;
 public class TeleportedBlockEntity extends BaseModificationStation {
 
     public TeleportedBlockEntity() {
-        super(ModRegistry.BLOCK_ENTITIES.TELEPORTER, 0);
+        super(SlashBlockEntities.TELEPORTER.get(), 0);
     }
 
     public TeleporterData data = new TeleporterData();

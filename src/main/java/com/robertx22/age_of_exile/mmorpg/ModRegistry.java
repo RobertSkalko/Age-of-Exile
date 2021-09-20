@@ -7,7 +7,7 @@ public class ModRegistry {
 
     public static BackpackUpgradesRegister BACKPACK_UPGRADES;
     public static ModRecipeTypes RECIPE_TYPES;
-    public static MiscItemsRegistrator MISC_ITEMS;
+    public static SlashItems MISC_ITEMS;
     public static BaseGearTypeItemRegister GEAR_ITEMS;
     public static CurrencyItemRegistrator CURRENCIES;
     public static FoodItemRegister FOOD_ITEMS;
@@ -33,13 +33,12 @@ public class ModRegistry {
         RECIPE_SER = new ModRecipeSerializers();
         POTIONS = new PotionRegister();
         BLOCKS = new SlashBlocks(); // blocks first, cus items are made from blocks
-        MISC_ITEMS = new MiscItemsRegistrator();
+        MISC_ITEMS = new SlashItems();
         CURRENCIES = new CurrencyItemRegistrator();
         CONTAINERS = new ModContainers();
         SOUNDS = new ModSounds();
         ENTITIES = new SlashEntities();
         BLOCK_ENTITIES = new SlashBlockEntities();
-        PARTICLES = new ModParticles();
         COMPONENTS = new ComponentRegisters();
         GEAR_MATERIALS = new GearMaterialRegister();
         GEMS = new GemItemRegister();

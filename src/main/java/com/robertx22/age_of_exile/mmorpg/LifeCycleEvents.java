@@ -2,8 +2,11 @@ package com.robertx22.age_of_exile.mmorpg;
 
 import com.robertx22.age_of_exile.mmorpg.registers.server.CommandRegister;
 import com.robertx22.age_of_exile.uncommon.testing.TestManager;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.minecraft.world.level.GameRules;
+import com.robertx22.library_of_exile.main.ForgeEvents;
+import net.minecraft.world.GameRules;
+import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 
 public class LifeCycleEvents {
 
@@ -11,38 +14,37 @@ public class LifeCycleEvents {
 
     public static void register() {
 
-        ServerLifecycleEvents.SERVER_STARTING.register(server -> {
+        ForgeEvents.registerForgeEvent(FMLServerStartingEvent.class, event -> {
             if (MMORPG.RUN_DEV_TOOLS) {
                 DataGeneration.generateAll();
             }
-            MMORPG.server = server;
-
+            MMORPG.server = event.getServer();
         });
 
-        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
+        ForgeEvents.registerForgeEvent(FMLServerStartedEvent.class, event -> {
+            CommandRegister.Register(event.getServer());
 
-            CommandRegister.Register(server);
-
-            regenDefault = server
+            regenDefault = event.getServer()
                 .getGameRules()
                 .getRule(GameRules.RULE_NATURAL_REGENERATION)
                 .get();
 
-            server.getGameRules()
+            event.getServer()
+                .getGameRules()
                 .getRule(GameRules.RULE_NATURAL_REGENERATION)
-                .set(false, server);
+                .set(false, event.getServer());
 
             if (MMORPG.RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
-                TestManager.RunAllTests(server.overworld());
+                TestManager.RunAllTests(event.getServer()
+                    .overworld());
             }
-
         });
 
-        ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
-
-            server.getGameRules()
+        ForgeEvents.registerForgeEvent(FMLServerStoppedEvent.class, event -> {
+            event.getServer()
+                .getGameRules()
                 .getRule(GameRules.RULE_NATURAL_REGENERATION)
-                .set(regenDefault, server);
+                .set(regenDefault, event.getServer());
         });
 
     }

@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Blocks;
@@ -16,8 +17,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
-
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
 public class CurseSpells implements ExileRegistryInit {
 
@@ -30,7 +29,7 @@ public class CurseSpells implements ExileRegistryInit {
                 "Curse enemies with " + effect.locname +
                     " and deal " + SpellCalcs.CURSE.getLocDmgTooltip() + " " + Elements.Elemental.getIconNameDmg())
 
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(ENTITIES.SIMPLE_PROJECTILE, 1D, 0D)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 1D)
                 .put(MapField.ENTITY_NAME, "block")
                 .put(MapField.BLOCK_FALL_SPEED, 0D)

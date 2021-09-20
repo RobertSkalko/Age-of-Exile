@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlockEntities;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
@@ -34,7 +34,7 @@ public class RuneWordStationTile extends BaseModificationStation {
     }
 
     public RuneWordStationTile() {
-        super(ModRegistry.BLOCK_ENTITIES.SOCKET_STATION, SLOT_COUNT);
+        super(SlashBlockEntities.RUNEWORD.get(), SLOT_COUNT);
     }
 
     @Override

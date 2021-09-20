@@ -24,15 +24,26 @@ import com.robertx22.library_of_exile.main.ForgeEvents;
 import com.robertx22.library_of_exile.utils.Watch;
 import com.robertx22.world_of_exile.main.WorldOfExile;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 
 public class MMORPG {
+
+    private static final String PROTOCOL_VERSION = "1";
+    public static final SimpleChannel NETWORK = NetworkRegistry.newSimpleChannel(
+        new ResourceLocation(SlashRef.MODID, "main"),
+        () -> PROTOCOL_VERSION,
+        PROTOCOL_VERSION::equals,
+        PROTOCOL_VERSION::equals
+    );
 
     public MMORPG() {
         Watch watch = new Watch();
@@ -47,7 +58,7 @@ public class MMORPG {
         SlashDeferred.registerDefferedAtStartOfModLoading();
 
         final IEventBus bus = FMLJavaModLoadingContext.get()
-                .getModEventBus();
+            .getModEventBus();
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             bus.addListener(ClientInit::onInitializeClient);
@@ -82,14 +93,12 @@ public class MMORPG {
 
         LifeCycleEvents.register();
 
-
         ForgeEvents.registerForgeEvent(InterModEnqueueEvent.class, event -> {
             InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("ring").size(2)
-                    .build());
+                .build());
             InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("necklace").size(1)
-                    .build());
+                .build());
         });
-
 
         DimensionInit.init();
 
@@ -99,7 +108,6 @@ public class MMORPG {
         watch.print("Age of Exile mod initialization ");
 
     }
-
 
     // DISABLE WHEN PUBLIC BUILD
     public static boolean RUN_DEV_TOOLS = true;

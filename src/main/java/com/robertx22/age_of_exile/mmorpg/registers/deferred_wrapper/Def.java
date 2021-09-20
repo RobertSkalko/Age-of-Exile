@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.SlashDeferred;
 import com.robertx22.library_of_exile.registry.IGUID;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.tileentity.TileEntityType;
@@ -45,6 +46,12 @@ public class Def {
 
     public static <T extends EntityType<?>> RegObj<T> entity(String id, T object) {
         RegistryObject<T> reg = SlashDeferred.ENTITIES.register(id, () -> object);
+        RegObj<T> wrapper = new RegObj<T>(reg);
+        return wrapper;
+    }
+
+    public static <T extends ContainerType<?>> RegObj<T> container(String id, T object) {
+        RegistryObject<T> reg = SlashDeferred.CONTAINERS.register(id, () -> object);
         RegObj<T> wrapper = new RegObj<T>(reg);
         return wrapper;
     }

@@ -7,12 +7,18 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.OutputSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 
 public class SmithingContainer extends BaseTileContainer {
 
     IInventory tile;
+
+    public SmithingContainer(int num, PlayerInventory invPlayer, PacketBuffer packet) {
+        this(num, invPlayer, new Inventory(SmithingTile.totalSlots()), packet.readBlockPos());
+    }
 
     public SmithingContainer(int i, PlayerInventory invPlayer, IInventory inventory,
                              BlockPos pos) {

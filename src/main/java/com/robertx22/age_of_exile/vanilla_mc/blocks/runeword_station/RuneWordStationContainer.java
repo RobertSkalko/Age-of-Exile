@@ -4,12 +4,18 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 
 public class RuneWordStationContainer extends BaseTileContainer {
 
     IInventory tile;
+
+    public RuneWordStationContainer(int num, PlayerInventory invPlayer, PacketBuffer packet) {
+        this(num, invPlayer, new Inventory(RuneWordStationTile.SLOT_COUNT), packet.readBlockPos());
+    }
 
     public RuneWordStationContainer(int i, PlayerInventory invPlayer, IInventory inventory,
                                     BlockPos pos) {

@@ -1,10 +1,8 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.smithing;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseModificationBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockReader;
 
 public class SmithingBlock extends BaseModificationBlock {
@@ -19,8 +17,4 @@ public class SmithingBlock extends BaseModificationBlock {
         return new SmithingTile();
     }
 
-    @Override
-    public ResourceLocation getContainerId() {
-        return ModRegistry.CONTAINERS.SMITHING_STATION;
-    }
 }

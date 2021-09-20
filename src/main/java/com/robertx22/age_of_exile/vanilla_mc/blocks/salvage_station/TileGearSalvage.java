@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlockEntities;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
@@ -90,7 +90,7 @@ public class TileGearSalvage extends BaseSkillStation {
     }
 
     public TileGearSalvage() {
-        super(null, PlayerSkillEnum.SALVAGING, ModRegistry.BLOCK_ENTITIES.GEAR_SALVAGE, TOTAL_SLOTS_COUNT);
+        super(null, PlayerSkillEnum.SALVAGING, SlashBlockEntities.GEAR_SALVAGE.get(), TOTAL_SLOTS_COUNT);
 
     }
 

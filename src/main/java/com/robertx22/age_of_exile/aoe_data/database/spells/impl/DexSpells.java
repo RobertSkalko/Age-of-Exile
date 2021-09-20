@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -21,8 +22,6 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
-
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
 
 public class DexSpells implements ExileRegistryInit {
 
@@ -66,7 +65,7 @@ public class DexSpells implements ExileRegistryInit {
             .manualDesc("Mark your target for death, making them more vulnerable to damage.")
             .onCast(PartBuilder.giveSelfEffect(ModRegistry.POTIONS.KNOCKBACK_RESISTANCE, 20D * 10))
             .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.MURDER_INSTINCT, 20D * 10))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)
                 .put(MapField.IS_SILENT, true)
             ))
             .onHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.GLOWING, 20 * 10D))

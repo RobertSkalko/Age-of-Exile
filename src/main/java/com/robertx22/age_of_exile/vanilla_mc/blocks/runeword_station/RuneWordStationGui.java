@@ -16,7 +16,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -31,7 +30,7 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(SlashRef.MODID, "textures/gui/runewordcraft.png");
 
-    public RuneWordStationGui(RuneWordStationContainer cont, PlayerInventory invPlayer, IFormattableTextComponent comp) {
+    public RuneWordStationGui(RuneWordStationContainer cont, PlayerInventory invPlayer, ITextComponent comp) {
         super(texture, cont, invPlayer, new StringTextComponent(""), RuneWordStationTile.class);
         imageWidth = 276;
         imageHeight = 195;

@@ -116,7 +116,7 @@ public class SpecialStats {
             public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
                 for (EffectInstance x : new ArrayList<>(effect.target.getActiveEffects())) {
                     StatusEffectAccessor acc = (StatusEffectAccessor) x.getEffect();
-                    if (acc.getType() == EffectType.HARMFUL) {
+                    if (acc.getCategory() == EffectType.HARMFUL) {
                         effect.target.removeEffect(x.getEffect());
                     }
                 }

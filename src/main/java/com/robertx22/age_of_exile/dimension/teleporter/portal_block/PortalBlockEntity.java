@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.dimension.teleporter.portal_block;
 
 import com.robertx22.age_of_exile.dimension.teleporter.PortalBlocKData;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlockEntities;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import net.minecraft.block.BlockState;
@@ -17,7 +17,7 @@ public class PortalBlockEntity extends BaseModificationStation {
     public PortalBlocKData data = new PortalBlocKData();
 
     public PortalBlockEntity() {
-        super(ModRegistry.BLOCK_ENTITIES.PORTAL, 0);
+        super(SlashBlockEntities.PORTAL.get(), 0);
     }
 
     @Override

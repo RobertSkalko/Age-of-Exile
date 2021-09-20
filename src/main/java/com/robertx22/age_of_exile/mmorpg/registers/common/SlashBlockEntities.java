@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy.AlchemyTile;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.buff_station.ScribeBuffTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station.CookingTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.runeword_station.RuneWordStationTile;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.TileGearSalvage;
@@ -26,9 +25,8 @@ public class SlashBlockEntities {
 
     }
 
-    public static RegObj<TileEntityType<RuneWordStationTile>> SOCKET_STATION = of(ModRegistry.BLOCKS.RUNEWORD.get(), RuneWordStationTile::new);
+    public static RegObj<TileEntityType<RuneWordStationTile>> RUNEWORD = of(ModRegistry.BLOCKS.RUNEWORD.get(), RuneWordStationTile::new);
     public static RegObj<TileEntityType<TileGearSalvage>> GEAR_SALVAGE = of(ModRegistry.BLOCKS.GEAR_SALVAGE.get(), TileGearSalvage::new);
-    public static RegObj<TileEntityType<ScribeBuffTile>> SCRIBE_BUFF = of(ModRegistry.BLOCKS.SCRIBE_BUFF.get(), ScribeBuffTile::new);
     public static RegObj<TileEntityType<CookingTile>> COOKING = of(ModRegistry.BLOCKS.COOKING_STATION.get(), CookingTile::new);
     public static RegObj<TileEntityType<TabletStationTile>> TABLET = of(ModRegistry.BLOCKS.TABLET_STATION.get(), TabletStationTile::new);
     public static RegObj<TileEntityType<AlchemyTile>> ALCHEMY_STATION = of(ModRegistry.BLOCKS.ALCHEMY_STATION.get(), AlchemyTile::new);
@@ -39,9 +37,10 @@ public class SlashBlockEntities {
 
     private static <T extends TileEntity> RegObj<TileEntityType<T>> of(Block block, Supplier<T> en) {
         TileEntityType<T> type = TileEntityType.Builder.of(en, block)
-                .build(null);
+            .build(null);
 
-        return Def.blockEntity(Registry.BLOCK.getKey(block).getPath(), type);
+        return Def.blockEntity(Registry.BLOCK.getKey(block)
+            .getPath(), type);
 
     }
 }

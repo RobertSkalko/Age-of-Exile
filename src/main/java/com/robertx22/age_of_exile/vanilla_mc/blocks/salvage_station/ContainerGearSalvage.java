@@ -7,11 +7,17 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.SalvageSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 
 public class ContainerGearSalvage extends BaseTileContainer {
 
     IInventory tile;
+
+    public ContainerGearSalvage(int num, PlayerInventory invPlayer, PacketBuffer packet) {
+        this(num, invPlayer, new Inventory(TileGearSalvage.TOTAL_SLOTS_COUNT), packet.readBlockPos());
+    }
 
     public ContainerGearSalvage(int num, PlayerInventory invPlayer, IInventory inventory,
                                 BlockPos pos) {

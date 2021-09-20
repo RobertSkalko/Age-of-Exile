@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.dimension.spawner;
 
 import com.robertx22.age_of_exile.dimension.SpawnUtil;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlockEntities;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
@@ -31,7 +31,7 @@ public class ModSpawnerBlockEntity extends TileEntity implements ITickableTileEn
     private static int spawnRange = 16;
 
     public ModSpawnerBlockEntity() {
-        super(ModRegistry.BLOCK_ENTITIES.SPAWNER);
+        super(SlashBlockEntities.SPAWNER.get());
     }
 
     int ticks = 0;

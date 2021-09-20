@@ -3,6 +3,8 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
@@ -117,11 +119,13 @@ public class LootTableGenerator {
 
         ModRegistry.TIERED.FARMING_PRODUCE.values()
             .forEach(x -> {
-                addFarming(ModRegistry.BLOCKS.FARMING_PLANTS.get(x.tier), x, null, 3, map);
+                addFarming(SlashBlocks.FARMING_PLANTS.get(x.tier)
+                    .get(), x, null, 3, map);
             });
 
-        addFarming(ModRegistry.BLOCKS.LIFE_PLANT, ModRegistry.MISC_ITEMS.HP_FLOWER_SEED, ModRegistry.MISC_ITEMS.LIFE_PLANT, 3, map);
-        addFarming(ModRegistry.BLOCKS.MANA_PLANT, ModRegistry.MISC_ITEMS.MANA_FLOWER_SEED, ModRegistry.MISC_ITEMS.MANA_PLANT, 3, map);
+        addFarming(SlashBlocks.LIFE_PLANT.get(), SlashItems.HP_FLOWER_SEED.get(), SlashItems.LIFE_PLANT.get(), 3, map)
+        ;
+        addFarming(SlashBlocks.MANA_PLANT.get(), SlashItems.MANA_FLOWER_SEED.get(), SlashItems.MANA_PLANT.get(), 3, map);
 
         return map;
 

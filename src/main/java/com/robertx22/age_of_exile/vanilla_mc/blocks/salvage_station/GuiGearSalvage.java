@@ -5,8 +5,8 @@ import com.robertx22.age_of_exile.gui.buttons.OwnerButton;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.ModificationGui;
 import com.robertx22.library_of_exile.gui.HelpButton;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,7 +22,7 @@ public class GuiGearSalvage extends ModificationGui<ContainerGearSalvage, TileGe
     private static final ResourceLocation texture = new ResourceLocation(SlashRef.MODID, "textures/gui/salvage_station.png");
 
     public GuiGearSalvage(ContainerGearSalvage cont, PlayerInventory invPlayer,
-                          IFormattableTextComponent comp) {
+                          ITextComponent comp) {
         super(texture, cont, invPlayer, new StringTextComponent("Salvage"), TileGearSalvage.class);
 
         imageWidth = 176;

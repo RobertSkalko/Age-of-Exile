@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.CraftRequirementButton
 import com.robertx22.library_of_exile.gui.HelpButton;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -20,7 +19,7 @@ public class TabletStationScreen extends ModificationGui<TabletStationContainer,
     // This is the resource location for the background image
     private static final ResourceLocation texture = new ResourceLocation(SlashRef.MODID, "textures/gui/tablet/tablet_station.png");
 
-    public TabletStationScreen(TabletStationContainer cont, PlayerInventory invPlayer, IFormattableTextComponent comp) {
+    public TabletStationScreen(TabletStationContainer cont, PlayerInventory invPlayer, ITextComponent comp) {
         super(texture, cont, invPlayer, new StringTextComponent(""), TabletStationTile.class);
         imageWidth = 176;
         imageHeight = 207;

@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.MiscItemsRegistrator;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
@@ -19,7 +19,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class SlashDeferred {
 
-
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, SlashRef.MODID);
     public static final DeferredRegister<TileEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, SlashRef.MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SlashRef.MODID);
@@ -30,14 +29,11 @@ public class SlashDeferred {
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SlashRef.MODID);
     public static final DeferredRegister<Effect> POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS, SlashRef.MODID);
 
-
     public static final DeferredRegister<Structure<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, SlashRef.MODID);
-
 
     public static void registerDefferedAtStartOfModLoading() {
         IEventBus bus = FMLJavaModLoadingContext.get()
-                .getModEventBus();
-
+            .getModEventBus();
 
         BLOCKS.register(bus);
         ITEMS.register(bus);
@@ -50,14 +46,15 @@ public class SlashDeferred {
         POTIONS.register(bus);
         RECIPE_SERIALIZERS.register(bus);
 
+        ModContainers.init();
 
+        ModParticles.init();
         SlashEntities.init();
         SlashBlocks.init();
         SlashBlockEntities.init();
 
         //items
-        MiscItemsRegistrator.init();
-
+        SlashItems.init();
 
     }
 

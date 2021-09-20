@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.item.Items;
@@ -23,8 +24,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
-
 public class SpellBuilder {
     Spell spell;
 
@@ -33,7 +32,7 @@ public class SpellBuilder {
         return SpellBuilder.of(id, SpellConfiguration.Builder.instant(2, 1), name,
                 Arrays.asList(SpellTag.damage))
 
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)
                 .put(MapField.IS_SILENT, true)))
             .onHit(PartBuilder.damageInAoe(SpellCalcs.BREATH, ele, 1.5D)
                 .addCondition(EffectCondition.IS_NOT_ON_COOLDOWN.create("breath"))

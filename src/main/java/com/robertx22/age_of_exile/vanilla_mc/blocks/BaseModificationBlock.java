@@ -15,7 +15,6 @@ import net.minecraft.loot.LootParameters;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
@@ -73,8 +72,6 @@ public abstract class BaseModificationBlock extends OpaqueBlock implements ITile
     public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos) {
         return true;
     }
-
-    public abstract ResourceLocation getContainerId();
 
     @Override
     @Deprecated

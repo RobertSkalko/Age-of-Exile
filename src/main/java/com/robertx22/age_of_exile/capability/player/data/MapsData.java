@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.dungeon_data.*;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
@@ -146,7 +146,8 @@ public class MapsData {
                                     .get(1));
                             }
                             if (SignUtils.has("[portal]", (SignTileEntity) e.getValue())) {
-                                dimWorld.setBlockAndUpdate(e.getKey(), ModRegistry.BLOCKS.PORTAL.defaultBlockState());
+                                dimWorld.setBlockAndUpdate(e.getKey(), SlashBlocks.PORTAL.get()
+                                    .defaultBlockState());
                                 foundportalback = true;
                             }
                         } else if (dimWorld.getBlockState(e.getKey())
@@ -178,9 +179,10 @@ public class MapsData {
             for (BlockPos x : list) {
                 if (player.level.getBlockState(x)
                     .isAir() || player.level.getBlockState(x)
-                    .getBlock() == ModRegistry.BLOCKS.PORTAL) {
+                    .getBlock() == SlashBlocks.PORTAL.get()) {
                     player.level.destroyBlock(x, false);
-                    player.level.setBlockAndUpdate(x, ModRegistry.BLOCKS.PORTAL.defaultBlockState());
+                    player.level.setBlockAndUpdate(x, SlashBlocks.PORTAL.get()
+                        .defaultBlockState());
                     PortalBlockEntity be = (PortalBlockEntity) player.level.getBlockEntity(x);
                     be.data.dungeonPos = tpPos;
                     be.data.tpbackpos = teleporterPos.above();

@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocR
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -84,7 +85,7 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
     @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(ModRegistry.CURRENCIES.ORB_OF_TURBULENCE)
-            .define('#', ModRegistry.MISC_ITEMS.CRYSTALLIZED_ESSENCE)
+            .define('#', SlashItems.CRYSTALLIZED_ESSENCE.get())
             .define('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
             .define('v', Items.GLISTERING_MELON_SLICE)
             .define('o', ModRegistry.MISC_ITEMS.T4_DUST())

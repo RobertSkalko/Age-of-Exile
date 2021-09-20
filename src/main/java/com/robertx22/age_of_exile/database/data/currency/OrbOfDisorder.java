@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocR
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -82,7 +83,7 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
     @Override
     public ShapedRecipeBuilder getRecipe() {
         return ShapedRecipeBuilder.shaped(ModRegistry.CURRENCIES.ORB_OF_DISORDER, 1)
-            .define('#', ModRegistry.MISC_ITEMS.INFUSED_IRON)
+            .define('#', SlashItems.INFUSED_IRON.get())
             .define('t', ModRegistry.CURRENCIES.ORB_OF_TRANSMUTATION)
             .define('v', Items.GOLD_NUGGET)
             .define('o', ModRegistry.MISC_ITEMS.T3_DUST())

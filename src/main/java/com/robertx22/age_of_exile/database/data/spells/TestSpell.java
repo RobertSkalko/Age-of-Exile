@@ -6,17 +6,12 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
-
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.ENTITIES;
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.PARTICLES;
 
 public class TestSpell {
 
@@ -33,8 +28,6 @@ public class TestSpell {
                         + " " + Elements.Earth.getIconNameDmg())
                 .weaponReq(CastingWeapon.MAGE_WEAPON)
                 .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
-                .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 5D, 0.5D, ENTITIES.SIMPLE_PROJECTILE, 40D, true)))
-                .onTick(PartBuilder.particleOnTick(1D, PARTICLES.POISON, 1D, 0.15D))
                 .onHit(PartBuilder.damage(SpellCalcs.POISON_BALL, Elements.Earth))
                 .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
 

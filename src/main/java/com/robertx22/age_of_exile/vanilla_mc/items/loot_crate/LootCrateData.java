@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.loot_crate;
 
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
 import info.loenwind.autosave.annotations.Storable;
@@ -20,7 +20,7 @@ public class LootCrateData {
     }
 
     public ItemStack createStack() {
-        ItemStack stack = new ItemStack(ModRegistry.MISC_ITEMS.LOOT_CRATE);
+        ItemStack stack = new ItemStack(SlashItems.LOOT_CRATE.get());
         StackSaving.LOOT_CRATE.saveTo(stack, this);
         return stack;
     }

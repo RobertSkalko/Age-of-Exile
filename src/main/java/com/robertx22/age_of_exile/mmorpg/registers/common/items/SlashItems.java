@@ -26,7 +26,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
-public class MiscItemsRegistrator {
+public class SlashItems {
 
     public static void init() {
 
@@ -35,8 +35,8 @@ public class MiscItemsRegistrator {
     public static RegObj<StatSoulItem> STAT_SOUL = Def.item(new StatSoulItem());
     public static RegObj<LootCrateItem> LOOT_CRATE = Def.item(new LootCrateItem());
 
-    public static RegObj<MiscSeedItem> MANA_FLOWER_SEED = Def.item(new MiscSeedItem("Mana Flower Seed", Items.LAPIS_LAZULI, ModRegistry.BLOCKS.MANA_PLANT), "seed/mana");
-    public static RegObj<MiscSeedItem> HP_FLOWER_SEED = Def.item(new MiscSeedItem("Life Flower Seed", Items.APPLE, ModRegistry.BLOCKS.LIFE_PLANT), "seed/life");
+    public static RegObj<MiscSeedItem> MANA_FLOWER_SEED = Def.item(new MiscSeedItem("Mana Flower Seed", Items.LAPIS_LAZULI, ModRegistry.BLOCKS.MANA_PLANT.get()), "seed/mana");
+    public static RegObj<MiscSeedItem> HP_FLOWER_SEED = Def.item(new MiscSeedItem("Life Flower Seed", Items.APPLE, ModRegistry.BLOCKS.LIFE_PLANT.get()), "seed/life");
 
     public static RegObj<ProjectileItem> FIREBALL = Def.item(new ProjectileItem("fireball"));
     public static RegObj<ProjectileItem> SNOWBALL = Def.item(new ProjectileItem("snowball"));
@@ -104,7 +104,8 @@ public class MiscItemsRegistrator {
     static Item.Properties stationProp = new Item.Properties().tab(CreativeTabs.MyModTab);
 
     static <T extends Block> RegObj<Item> blockItem(T block) {
-        return Def.item(block.getRegistryName().getPath(), new BlockItem(block, stationProp));
+        return Def.item(block.getRegistryName()
+            .getPath(), new BlockItem(block, stationProp));
     }
 
 }

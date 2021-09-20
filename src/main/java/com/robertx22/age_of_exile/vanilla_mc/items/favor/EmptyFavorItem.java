@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.items.favor;
 
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,7 +42,7 @@ public class EmptyFavorItem extends Item {
 
                         stack.shrink(1);
 
-                        ItemStack newstack = new ItemStack(ModRegistry.MISC_ITEMS.FULL_FAVOR);
+                        ItemStack newstack = new ItemStack(SlashItems.FULL_FAVOR.get());
                         PlayerUtils.giveItem(newstack, player);
                     }
                 } else {

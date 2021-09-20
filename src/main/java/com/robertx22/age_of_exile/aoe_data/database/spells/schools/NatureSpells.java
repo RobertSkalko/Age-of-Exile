@@ -11,6 +11,9 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModParticles;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -20,7 +23,7 @@ import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.*;
+import static com.robertx22.age_of_exile.mmorpg.ModRegistry.SOUNDS;
 
 public class NatureSpells implements ExileRegistryInit {
     public static String POISONBALL_ID = "poison_ball";
@@ -58,8 +61,8 @@ public class NatureSpells implements ExileRegistryInit {
                     + " " + Elements.Earth.getIconNameDmg())
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(MISC_ITEMS.SLIMEBALL, 1D, 1D, ENTITIES.SIMPLE_PROJECTILE, 20D, false)))
-            .onTick(PartBuilder.particleOnTick(1D, PARTICLES.POISON, 1D, 0.15D))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(SlashItems.SLIMEBALL.get(), 1D, 1D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)))
+            .onTick(PartBuilder.particleOnTick(1D, ModParticles.POISON.get(), 1D, 0.15D))
             .onHit(PartBuilder.damage(SpellCalcs.POISON_BALL, Elements.Earth))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
 
@@ -111,7 +114,7 @@ public class NatureSpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.area))
             .manualDesc("Throw out a seed that explodes and petrifies enemies.")
 
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.BEETROOT_SEEDS, 1D, ENTITIES.SIMPLE_PROJECTILE, 40D)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.BEETROOT_SEEDS, 1D, SlashEntities.SIMPLE_PROJECTILE.get(), 40D)))
 
             .onExpire(PartBuilder.justAction(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.PETRIFY, 5))
                 .enemiesInRadius(3D))

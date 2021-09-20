@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Blocks;
@@ -45,7 +45,7 @@ public class LootTableItem extends Item implements IAutoModel {
 
     public static ItemStack of(ResourceLocation loottable) {
 
-        ItemStack stack = new ItemStack(ModRegistry.MISC_ITEMS.LOOT_TABLE_ITEM);
+        ItemStack stack = new ItemStack(SlashItems.LOOT_TABLE_ITEM.get());
         stack.setTag(new CompoundNBT());
         stack.getTag()
             .putString("loot_table", loottable.toString());
