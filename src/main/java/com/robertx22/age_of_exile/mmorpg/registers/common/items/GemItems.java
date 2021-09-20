@@ -1,36 +1,35 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
-import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
+import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class GemItemRegister extends BaseItemRegistrator {
+public class GemItems extends BaseItemRegistrator {
 
-    public HashMap<GemItem.GemType, HashMap<GemItem.GemRank, GemItem>> MAP = new HashMap<>();
-    public List<GemItem> ALL = new ArrayList<>();
+    public static HashMap<GemItem.GemType, HashMap<GemItem.GemRank, RegObj<GemItem>>> MAP = new HashMap<>();
+    public static List<RegObj<GemItem>> ALL = new ArrayList<>();
 
-    public GemItemRegister() {
+    public static void init() {
 
         for (GemItem.GemType type : GemItem.GemType.values()) {
             for (GemItem.GemRank rank : GemItem.GemRank.values()) {
 
                 GemItem item = new GemItem(type, rank);
 
-                Registry.register(Registry.ITEM, new ResourceLocation(SlashRef.MODID, item.GUID()), item);
+                RegObj<GemItem> def = Def.item(item);
 
                 if (!MAP.containsKey(type)) {
                     MAP.put(type, new HashMap<>());
                 }
 
                 MAP.get(type)
-                    .put(rank, item);
+                    .put(rank, def);
 
-                ALL.add(item);
+                ALL.add(def);
 
             }
         }

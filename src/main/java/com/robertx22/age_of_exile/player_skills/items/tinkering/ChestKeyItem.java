@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.player_skills.items.tinkering;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeSerializers;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
@@ -51,8 +52,9 @@ public class ChestKeyItem extends TieredItem implements IStationRecipe {
 
     @Override
     public StationShapelessFactory getStationRecipe() {
-        StationShapelessFactory fac = StationShapelessFactory.create(ModRegistry.RECIPE_SER.SMITHING, this, 1);
-        fac.input(ModRegistry.TIERED.STONE_TIER_MAP.get(this.tier), 2);
+        StationShapelessFactory fac = StationShapelessFactory.create(ModRecipeSerializers.SMITHING.get(), this, 1);
+        fac.input(ModRegistry.TIERED.STONE_TIER_MAP.get(this.tier)
+            .get(), 2);
         fac.input(Items.IRON_INGOT, 1);
         return fac.criterion("player_level", trigger());
     }

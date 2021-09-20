@@ -1,25 +1,22 @@
 package com.robertx22.age_of_exile.mmorpg.registers.common;
 
-import com.robertx22.age_of_exile.mmorpg.SlashRef;
-import net.minecraft.util.ResourceLocation;
+import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
+import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.registry.Registry;
 
 public class ModSounds {
 
-    public SoundEvent FREEZE = of("freeze");
-    public SoundEvent DASH = of("dash");
-    public SoundEvent SPLASH = of("splash");
-    public SoundEvent STONE_CRACK = of("stone_crack");
-    public SoundEvent FIREBALL = of("fireball");
-    public SoundEvent BUFF = of("buff");
-    public SoundEvent FIRE = of("fire");
-    public SoundEvent BURN = of("burn");
+    public static void init() {
 
-    SoundEvent of(String id) {
-        SoundEvent sound = new SoundEvent(new ResourceLocation(SlashRef.MODID, id));
-        Registry.register(Registry.SOUND_EVENT, new ResourceLocation(SlashRef.MODID, id), sound);
-        return sound;
     }
+
+    public static RegObj<SoundEvent> FREEZE = Def.sound("freeze");
+    public static RegObj<SoundEvent> DASH = Def.sound("dash");
+    public static RegObj<SoundEvent> SPLASH = Def.sound("splash");
+    public static RegObj<SoundEvent> STONE_CRACK = Def.sound("stone_crack");
+    public static RegObj<SoundEvent> FIREBALL = Def.sound("fireball");
+    public static RegObj<SoundEvent> BUFF = Def.sound("buff");
+    public static RegObj<SoundEvent> FIRE = Def.sound("fire");
+    public static RegObj<SoundEvent> BURN = Def.sound("burn");
 
 }

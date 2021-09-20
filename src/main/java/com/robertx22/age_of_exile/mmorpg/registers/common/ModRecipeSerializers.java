@@ -10,9 +10,9 @@ public class ModRecipeSerializers {
 
     }
 
-    public RegObj<IRecipeSerializer<FoodShapeless>> FOOD = Def.recipeSer("food_shapeless", new FoodSerializer());
-    public RegObj<IRecipeSerializer<TabletShapeless>> TABLET = Def.recipeSer("tablet_shapeless", new TabletSerializer());
-    public RegObj<IRecipeSerializer<AlchemyShapeless>> ALCHEMY = Def.recipeSer("alchemy_shapeless", new AlchemySerializer());
-    public RegObj<IRecipeSerializer<SmithingShapeless>> SMITHING = Def.recipeSer("smithing_shapeless", new SmithingSerializer());
+    public static RegObj<IRecipeSerializer<FoodShapeless>> FOOD = Def.recipeSer("food_shapeless", new FoodSerializer());
+    public static RegObj<IRecipeSerializer<TabletShapeless>> TABLET = Def.recipeSer("tablet_shapeless", new TabletSerializer());
+    public static RegObj<IRecipeSerializer<AlchemyShapeless>> ALCHEMY = Def.recipeSer("alchemy_shapeless", new AlchemySerializer());
+    public static RegObj<IRecipeSerializer<SmithingShapeless>> SMITHING = Def.recipeSer("smithing_shapeless", new SmithingSerializer());
 
 }

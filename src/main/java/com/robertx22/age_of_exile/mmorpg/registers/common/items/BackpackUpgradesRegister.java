@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class BackpackUpgradesRegister extends BaseItemRegistrator {
+public class BackpackUpgradesRegister {
 
     public static List<Item> TRASH_ITEMS = Arrays.asList(
         Items.ROTTEN_FLESH, Items.STRING, Items.SPIDER_EYE, Items.BOW, Items.BONE

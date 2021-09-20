@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.recipe_types.recipe_types;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeSerializers;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.StationShapeless;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -22,7 +23,7 @@ public class FoodShapeless extends StationShapeless {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRegistry.RECIPE_SER.FOOD;
+        return ModRecipeSerializers.FOOD.get();
     }
 
 }

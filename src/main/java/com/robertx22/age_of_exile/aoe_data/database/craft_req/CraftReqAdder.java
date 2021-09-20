@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.craft_req;
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.TabletItems;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
@@ -18,7 +19,7 @@ public class CraftReqAdder implements ExileRegistryInit {
                 CraftingReq.of(x, PlayerSkillEnum.COOKING, (int) (x.tier.lvl_req * max));
             });
 
-        ModRegistry.INSCRIBING.ALL_TABLETS.forEach(x -> {
+        TabletItems.ALL_TABLETS.forEach(x -> {
             CraftingReq.of(x, PlayerSkillEnum.INSCRIBING, (int) (x.tier.lvl_req * max));
         });
 

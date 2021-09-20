@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequire
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -82,8 +83,9 @@ public class ClearInstabilityItem extends CurrencyItem implements ICurrencyItemE
     public ShapedRecipeBuilder getRecipe() {
         return shaped(this)
             .define('t', ModRegistry.CURRENCIES.CLEAR_RUNES)
-            .define('v', ModRegistry.MISC_ITEMS.T4_DUST())
-            .define('o', ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER4))
+            .define('v', SlashItems.T4_DUST())
+            .define('o', ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER4)
+                .get())
             .pattern("ovo")
             .pattern("vtv")
             .pattern("ovo")

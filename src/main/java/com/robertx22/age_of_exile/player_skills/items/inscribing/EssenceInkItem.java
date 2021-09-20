@@ -29,9 +29,11 @@ public class EssenceInkItem extends TieredItem implements IShapelessRecipe, ISki
     @Override
     public ShapelessRecipeBuilder getRecipe() {
         ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 1);
-        fac.requires(ModRegistry.TIERED.INK_TIER_MAP.get(this.tier));
+        fac.requires(ModRegistry.TIERED.INK_TIER_MAP.get(this.tier)
+            .get());
         fac.requires(Items.GLASS_BOTTLE);
-        fac.requires(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier));
+        fac.requires(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier)
+            .get());
         return fac.unlockedBy("player_level", trigger());
     }
 

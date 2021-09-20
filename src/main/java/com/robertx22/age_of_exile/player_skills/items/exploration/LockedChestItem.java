@@ -98,7 +98,8 @@ public class LockedChestItem extends TieredItem {
     }
 
     Item getKeyItem() {
-        return ModRegistry.TIERED.KEY_TIER_MAP.get(tier);
+        return ModRegistry.TIERED.KEY_TIER_MAP.get(tier)
+            .get();
     }
 
     @Override

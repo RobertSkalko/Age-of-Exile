@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper;
 
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.common.*;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
@@ -47,6 +47,7 @@ public class SlashDeferred {
         POTIONS.register(bus);
         RECIPE_SERIALIZERS.register(bus);
 
+        ModSounds.init();
         ModContainers.init();
         ModRecipeSerializers.init();
 
@@ -56,8 +57,11 @@ public class SlashDeferred {
         SlashBlockEntities.init();
 
         //items
+        ProfessionItems.init();
         SlashItems.init();
-
+        TabletItems.init();
+        RuneItems.init();
+        GemItems.init();
     }
 
 }

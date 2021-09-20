@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.items.protection_tablets;
 
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.TabletItems;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +21,7 @@ public enum TabletTypes {
     ANTI_FIRE("Anti Fire", "anti_fire") {
         @Override
         public List<Item> getRecipeItems() {
-            return Arrays.asList(Items.BLAZE_POWDER, ModRegistry.INSCRIBING.BLANK_TABLET);
+            return Arrays.asList(Items.BLAZE_POWDER, TabletItems.BLANK_TABLET.get());
         }
 
         @Override
@@ -37,7 +38,7 @@ public enum TabletTypes {
     ANTI_POISON("Anti Poison", "anti_poison") {
         @Override
         public List<Item> getRecipeItems() {
-            return Arrays.asList(Items.SPIDER_EYE, ModRegistry.INSCRIBING.BLANK_TABLET);
+            return Arrays.asList(Items.SPIDER_EYE, TabletItems.BLANK_TABLET.get());
         }
 
         @Override
@@ -54,7 +55,7 @@ public enum TabletTypes {
     ANTI_WITHER("Anti Wither", "anti_wither") {
         @Override
         public List<Item> getRecipeItems() {
-            return Arrays.asList(Items.BLACK_DYE, ModRegistry.INSCRIBING.BLANK_TABLET);
+            return Arrays.asList(Items.BLACK_DYE, TabletItems.BLANK_TABLET.get());
         }
 
         @Override
@@ -76,7 +77,7 @@ public enum TabletTypes {
 
         @Override
         public List<Item> getRecipeItems() {
-            return Arrays.asList(Items.ENCHANTED_GOLDEN_APPLE, ModRegistry.INSCRIBING.RARE_BLANK_TABLET);
+            return Arrays.asList(Items.ENCHANTED_GOLDEN_APPLE, TabletItems.RARE_BLANK_TABLET.get());
         }
 
         @Override
@@ -93,7 +94,7 @@ public enum TabletTypes {
     ANTI_GEAR_BREAK("Anti Gear Break", "anti_gear_break") {
         @Override
         public List<Item> getRecipeItems() {
-            return Arrays.asList(Items.IRON_INGOT, ModRegistry.INSCRIBING.BLANK_TABLET);
+            return Arrays.asList(Items.IRON_INGOT, TabletItems.BLANK_TABLET.get());
         }
 
         @Override
@@ -122,7 +123,7 @@ public enum TabletTypes {
     GEAR_REPAIR("Gear Repair", "gear_repair") {
         @Override
         public List<Item> getRecipeItems() {
-            return Arrays.asList(Items.IRON_INGOT, ModRegistry.INSCRIBING.RARE_BLANK_TABLET);
+            return Arrays.asList(Items.IRON_INGOT, TabletItems.RARE_BLANK_TABLET.get());
         }
 
         @Override
@@ -151,7 +152,7 @@ public enum TabletTypes {
     ANTI_HUNGER("Anti Hunger", "anti_hunger") {
         @Override
         public List<Item> getRecipeItems() {
-            return Arrays.asList(Items.BREAD, ModRegistry.INSCRIBING.BLANK_TABLET);
+            return Arrays.asList(Items.BREAD, TabletItems.BLANK_TABLET.get());
         }
 
         @Override

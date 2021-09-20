@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeSerializers;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
@@ -96,14 +97,15 @@ public class FarmingFoodItem extends TieredItem implements IAutoLocName, IAutoMo
     @Override
     public StationShapelessFactory getStationRecipe() {
         if (type.getCraftItem(tier, exileEffect.color) != null) {
-            StationShapelessFactory fac = StationShapelessFactory.create(ModRegistry.RECIPE_SER.FOOD, this);
+            StationShapelessFactory fac = StationShapelessFactory.create(ModRecipeSerializers.FOOD.get(), this);
 
             if (this.type == FoodType.FISH) {
                 fac.input(Items.COAL);
             } else {
                 fac.input(ModRegistry.FOOD_ITEMS.EXTRACT_MAP.get(this.exileEffect.color));
             }
-            fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier));
+            fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier)
+                .get());
             fac.input(type.getCraftItem(tier, exileEffect.color));
             return fac.criterion("player_level", trigger());
         }

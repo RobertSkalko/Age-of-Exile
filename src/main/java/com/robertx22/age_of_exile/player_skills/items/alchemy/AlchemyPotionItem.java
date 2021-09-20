@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeSerializers;
 import com.robertx22.age_of_exile.mmorpg.registers.common.PotionRegister;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -139,10 +140,11 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
 
     @Override
     public StationShapelessFactory getStationRecipe() {
-        StationShapelessFactory fac = StationShapelessFactory.create(ModRegistry.RECIPE_SER.ALCHEMY, this, 3);
+        StationShapelessFactory fac = StationShapelessFactory.create(ModRecipeSerializers.ALCHEMY.get(), this, 3);
         fac.input(type.craftItem.get());
         fac.input(Items.GLASS_BOTTLE);
-        fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier));
+        fac.input(ModRegistry.TIERED.FARMING_PRODUCE.get(tier)
+            .get());
         return fac.criterion("player_level", trigger());
     }
 }

@@ -22,7 +22,6 @@ public class SlashEntities {
     public static List<EntityType<? extends Entity>> ENTITY_TYPES = new LinkedList();
     public static List<EntityType<? extends Entity>> ENTITY_THAT_USE_ITEM_RENDERS = new LinkedList();
 
-
     public static RegObj<EntityType<SimpleProjectileEntity>> SIMPLE_PROJECTILE = projectile(SimpleProjectileEntity::new, "spell_projectile");
     public static RegObj<EntityType<SimpleArrowEntity>> SIMPLE_ARROW = projectile(SimpleArrowEntity::new, "spell_arrow");
     public static RegObj<EntityType<StationaryFallingBlockEntity>> SIMPLE_BLOCK_ENTITY = projectile(StationaryFallingBlockEntity::new, "spell_block_entity", false);
@@ -37,18 +36,19 @@ public class SlashEntities {
     private static <T extends Entity> RegObj<EntityType<T>> projectile(EntityType.IFactory<T> factory,
                                                                        String id, boolean itemRender) {
 
-
         EntityType<T> type = EntityType.Builder.of(factory, EntityClassification.MISC)
-                .sized(0.5F, 0.5F).setTrackingRange(10).build(id);
+            .sized(0.5F, 0.5F)
+            .setTrackingRange(10)
+            .build(id);
 
+        RegObj<EntityType<T>> def = Def.entity(id, type);
 
-        ENTITY_TYPES.add(type);
+        ENTITY_TYPES.add(def.get());
 
         if (itemRender) {
-            ENTITY_THAT_USE_ITEM_RENDERS.add(type);
+            ENTITY_THAT_USE_ITEM_RENDERS.add(def.get());
         }
-
-        return Def.entity(id, type);
+        return def;
     }
 
 }

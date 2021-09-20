@@ -18,6 +18,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModSounds;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -31,8 +32,6 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
-
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.SOUNDS;
 
 public class HolySpells implements ExileRegistryInit {
 
@@ -237,7 +236,7 @@ public class HolySpells implements ExileRegistryInit {
                     " health")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
+            .onCast(PartBuilder.playSound(ModSounds.BUFF.get(), 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
             .onCast(PartBuilder.healInAoe(SpellCalcs.HEALING_AURA, 2D))
@@ -249,7 +248,7 @@ public class HolySpells implements ExileRegistryInit {
                 "Heal allies around you for " + SpellCalcs.HEALING_AURA.getLocDmgTooltip() +
                     " health")
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
+            .onCast(PartBuilder.playSound(ModSounds.BUFF.get(), 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 5D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
             .onCast(PartBuilder.healInAoe(SpellCalcs.WISH, 5D))

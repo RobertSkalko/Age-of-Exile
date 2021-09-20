@@ -108,7 +108,7 @@ public class MapHolder {
         return Registry.BLOCK.get(new ResourceLocation(get(MapField.BLOCK)));
     }
 
-    public SoundEvent getSound() {
+    public static RegObj<SoundEvent> getSound() {
         return Registry.SOUND_EVENT.get(new ResourceLocation(get(MapField.SOUND)));
     }
 

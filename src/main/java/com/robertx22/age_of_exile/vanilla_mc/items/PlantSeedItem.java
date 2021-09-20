@@ -24,8 +24,10 @@ public class PlantSeedItem extends BlockNamedItem implements IAutoLocName, IShap
     @Override
     public ShapelessRecipeBuilder getRecipe() {
         ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 9);
-        fac.requires(ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(tier), 3);
-        fac.requires(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier));
+        fac.requires(ModRegistry.TIERED.SALVAGED_ESSENCE_MAP.get(tier)
+            .get(), 3);
+        fac.requires(ModRegistry.TIERED.CONDENSED_ESSENCE_MAP.get(tier)
+            .get());
         return fac.unlockedBy("player_level", trigger());
     }
 

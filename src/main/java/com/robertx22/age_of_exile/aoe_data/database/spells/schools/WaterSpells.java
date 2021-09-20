@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.ModParticles;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModSounds;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
@@ -25,8 +26,6 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
-
-import static com.robertx22.age_of_exile.mmorpg.ModRegistry.SOUNDS;
 
 public class WaterSpells implements ExileRegistryInit {
     public static String FROST_NOVA_AOE = "frost_nova";
@@ -84,7 +83,7 @@ public class WaterSpells implements ExileRegistryInit {
                 "Heal allies around you for " + SpellCalcs.HEART_OF_ICE.getLocDmgTooltip() +
                     " health")
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
+            .onCast(PartBuilder.playSound(ModSounds.BUFF.get(), 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.SPLASH, 50D, 5D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.DRIPPING_WATER, 50D, 5D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
@@ -192,7 +191,7 @@ public class WaterSpells implements ExileRegistryInit {
                 "Apply buff to allies nearby ")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SOUNDS.BUFF, 1D, 1D))
+            .onCast(PartBuilder.playSound(ModSounds.BUFF.get(), 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
             .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.NOURISHMENT.id, 20D * 25))

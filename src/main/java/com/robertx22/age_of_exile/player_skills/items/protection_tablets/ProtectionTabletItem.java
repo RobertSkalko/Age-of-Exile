@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.mmorpg.ModRegistry;
+import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeSerializers;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
 import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
@@ -77,11 +78,12 @@ public class ProtectionTabletItem extends Item implements IAutoLocName, IAutoMod
 
     @Override
     public StationShapelessFactory getStationRecipe() {
-        StationShapelessFactory fac = StationShapelessFactory.create(ModRegistry.RECIPE_SER.TABLET, this);
+        StationShapelessFactory fac = StationShapelessFactory.create(ModRecipeSerializers.TABLET.get(), this);
 
         this.type.getRecipeItems()
             .forEach(x -> fac.input(x));
-        fac.input(ModRegistry.TIERED.INK_TIER_MAP.get(tier));
+        fac.input(ModRegistry.TIERED.INK_TIER_MAP.get(tier)
+            .get());
 
         return fac.criterion("player_level", trigger());
     }
