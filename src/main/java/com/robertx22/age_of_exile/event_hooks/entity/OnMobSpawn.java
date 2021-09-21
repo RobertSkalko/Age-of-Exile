@@ -13,7 +13,6 @@ import net.minecraft.world.server.ServerWorld;
 
 public class OnMobSpawn {
 
-
     public static void onLoad(Entity entity) {
 
         if (!(entity instanceof LivingEntity)) {
@@ -30,7 +29,7 @@ public class OnMobSpawn {
     public static void setupNewMobOnSpawn(LivingEntity entity) {
 
         if (entity.level.isClientSide) {
-            throw new RuntimeException("Don't run this code on client!");
+            return;
         }
 
         EntityData endata = Load.Unit(entity);
@@ -45,18 +44,16 @@ public class OnMobSpawn {
 
             if (endata.needsToBeGivenStats()) {
                 setupNewMob(entity, endata, nearestPlayer);
-
+                entity.heal(Integer.MAX_VALUE);
             } else {
                 if (endata.getUnit() == null) {
                     endata.setUnit(new Unit());
                 }
 
                 endata.getUnit()
-                        .initStats(); // give new stats to mob on spawn
+                    .initStats(); // give new stats to mob on spawn
                 endata.forceRecalculateStats();
             }
-
-            entity.heal(Integer.MAX_VALUE);
 
         }
 
@@ -76,9 +73,9 @@ public class OnMobSpawn {
         endata.setRarity(rar);
 
         MobRarity rarity = ExileDB.MobRarities()
-                .get(rar);
+            .get(rar);
         endata.getAffixData()
-                .randomizeAffixes(rarity);
+            .randomizeAffixes(rarity);
 
         endata.setUnit(mob);
 

@@ -14,7 +14,7 @@ import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -28,14 +28,14 @@ public class LootTableGenerator {
     public LootTableGenerator() {
 
         try {
-            cache = new DirectoryCache(FMLLoader.getGamePath(), "datagencache");
+            cache = new DirectoryCache(FMLPaths.GAMEDIR.get(), "datagencache");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     protected Path getBasePath() {
-        return FMLLoader.getGamePath();
+        return FMLPaths.GAMEDIR.get();
     }
 
     protected Path movePath(Path target) {
@@ -106,11 +106,12 @@ public class LootTableGenerator {
         LootTable.Builder currencies = LootTable.lootTable();
         LootPool.Builder curLoot = LootPool.lootPool();
         curLoot.setRolls(RandomValueRange.between(1, 3));
-        CurrencyItems.currencies.forEach(x -> {
-            curLoot.add(ItemLootEntry.lootTableItem(x.get())
-                .setWeight(x.get()
-                    .Weight()));
-        });
+        CurrencyItems.getAllCurrenciesFromRegistry()
+            .forEach(x -> {
+                curLoot.add(ItemLootEntry.lootTableItem(x)
+                    .setWeight(x
+                        .Weight()));
+            });
         currencies.withPool(curLoot);
 
         map.put(RUNE_SALVAGE_RECIPE, runes.build());

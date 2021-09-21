@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.vanilla_mc.packets.*;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientEntityIsCastingSpellPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientToCastSpellPacket;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.library_of_exile.main.Packets;
 
 public class S2CPacketRegister {
@@ -18,7 +17,6 @@ public class S2CPacketRegister {
         Packets.registerServerToClient(MMORPG.NETWORK, new EntityUnitPacket(), i++);
         Packets.registerServerToClient(MMORPG.NETWORK, new NoManaPacket(), i++);
         Packets.registerServerToClient(MMORPG.NETWORK, new OpenGuiPacket(), i++);
-        Packets.registerServerToClient(MMORPG.NETWORK, new SyncCapabilityToClient(), i++);
         Packets.registerServerToClient(MMORPG.NETWORK, new TellClientToCastSpellPacket(), i++);
         Packets.registerServerToClient(MMORPG.NETWORK, new SyncAreaLevelPacket(), i++);
         Packets.registerServerToClient(MMORPG.NETWORK, new SkillLevelUpToClient(), i++);

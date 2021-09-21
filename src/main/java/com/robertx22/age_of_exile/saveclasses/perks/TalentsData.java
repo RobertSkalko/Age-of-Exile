@@ -13,9 +13,6 @@ import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.TalentStatCtx;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
-import com.robertx22.library_of_exile.main.Packets;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
@@ -64,11 +61,7 @@ public class TalentsData implements IApplyableStats {
     }
 
     public void allocate(PlayerEntity player, TalentTree school, PointData point) {
-
         getSchool(school).map.put(point, true);
-
-        Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.SPELLS));
-
     }
 
     public void remove(TalentTree school, PointData point) {

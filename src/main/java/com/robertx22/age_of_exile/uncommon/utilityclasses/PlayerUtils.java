@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.age_of_exile.saveclasses.unit.GearData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -30,8 +31,8 @@ public class PlayerUtils {
 
     }
 
-    public static List<PlayerEntity> getNearbyPlayers(PlayerEntity player, double range) {
-        return getNearbyPlayers(player.level, player.blockPosition(), range);
+    public static List<PlayerEntity> getNearbyPlayers(Entity en, double range) {
+        return getNearbyPlayers(en.level, en.blockPosition(), range);
     }
 
     public static List<ItemStack> getEquippedStacksOf(PlayerEntity player, BaseGearType type) {

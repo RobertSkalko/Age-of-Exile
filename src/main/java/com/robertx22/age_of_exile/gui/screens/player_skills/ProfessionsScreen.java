@@ -12,9 +12,6 @@ import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
-import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.IReorderingProcessor;
@@ -36,7 +33,6 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
 
     public ProfessionsScreen() {
         super(sizeX, sizeY);
-        Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.PLAYER_RPG_DATA));
     }
 
     @Override

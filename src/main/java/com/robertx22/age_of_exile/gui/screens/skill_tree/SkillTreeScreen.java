@@ -17,9 +17,6 @@ import com.robertx22.age_of_exile.gui.screens.skill_tree.buttons.TalentTreeButto
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
-import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import com.robertx22.library_of_exile.utils.GuiUtils.PointF;
 import net.minecraft.client.Minecraft;
@@ -105,8 +102,6 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         super.init();
 
         try {
-
-            Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.PLAYER_RPG_DATA));
 
             schoolsInOrder = ExileDB.TalentTrees()
                 .getFiltered(x -> {

@@ -21,8 +21,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.registry.Registry;
-import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -39,7 +39,7 @@ public class RecipeGenerator {
     public RecipeGenerator() {
 
         try {
-            cache = new DirectoryCache(FMLLoader.getGamePath()
+            cache = new DirectoryCache(FMLPaths.GAMEDIR.get()
                 , "datagencache");
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class RecipeGenerator {
     }
 
     protected Path getBasePath() {
-        return FMLLoader.getGamePath();
+        return FMLPaths.GAMEDIR.get();
     }
 
     protected Path movePath(Path target) {
@@ -87,7 +87,7 @@ public class RecipeGenerator {
     }
 
     private void generate(Consumer<IFinishedRecipe> consumer) {
-        for (Item item : Registry.ITEM) {
+        for (Item item : ForgeRegistries.ITEMS) {
             if (item instanceof IShapedRecipe) {
                 IShapedRecipe ir = (IShapedRecipe) item;
                 ShapedRecipeBuilder rec = ir.getRecipe();

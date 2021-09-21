@@ -9,8 +9,6 @@ import net.minecraft.util.ResourceLocation;
 
 public class OpenGuiPacket extends MyPacket<OpenGuiPacket> {
 
-    public static OpenGuiPacket EMPTY = new OpenGuiPacket();
-
     public enum GuiType {
         TALENTS,
         PICK_STATS,

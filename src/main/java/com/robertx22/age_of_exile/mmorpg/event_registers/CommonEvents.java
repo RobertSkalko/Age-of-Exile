@@ -28,7 +28,7 @@ import com.robertx22.library_of_exile.main.ForgeEvents;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -40,8 +40,8 @@ public class CommonEvents {
 
     public static void register() {
 
-        ForgeEvents.registerForgeEvent(LivingSpawnEvent.class, event -> {
-            OnMobSpawn.onLoad(event.getEntityLiving());
+        ForgeEvents.registerForgeEvent(EntityJoinWorldEvent.class, event -> {
+            OnMobSpawn.onLoad(event.getEntity());
         });
 
         ForgeEvents.registerForgeEvent(TickEvent.ServerTickEvent.class, event -> {
@@ -50,13 +50,11 @@ public class CommonEvents {
             }
         });
 
-
         ForgeEvents.registerForgeEvent(TickEvent.WorldTickEvent.class, event -> {
             if (event.phase == TickEvent.Phase.END && event.world instanceof ServerWorld) {
                 OnTickDungeonWorld.onEndTick((ServerWorld) event.world);
             }
         });
-
 
         ForgeEvents.registerForgeEvent(AttackEntityEvent.class, event -> {
             if (event.getEntityLiving() instanceof ServerPlayerEntity) {
@@ -64,13 +62,11 @@ public class CommonEvents {
             }
         });
 
-
         ForgeEvents.registerForgeEvent(PlayerEvent.StartTracking.class, event -> {
             if (event.getPlayer() instanceof ServerPlayerEntity) {
-                OnTrackEntity.onPlayerStartTracking((ServerPlayerEntity) event.getPlayer(), event.getEntityLiving());
+                OnTrackEntity.onPlayerStartTracking((ServerPlayerEntity) event.getPlayer(), event.getTarget());
             }
         });
-
 
         ExileEvents.IS_KILLED_ENTITY_VALID.register(new IsMobKilledValid());
         ExileEvents.ON_CHEST_LOOTED.register(new OnLootChestEvent());
@@ -96,8 +92,8 @@ public class CommonEvents {
 
                         data.deathStats.deathPos = event.player.blockPosition();
                         data.deathStats.deathDim = event.player.level.dimension()
-                                .location()
-                                .toString();
+                            .location()
+                            .toString();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -117,7 +113,7 @@ public class CommonEvents {
                 Cached.reset();
                 setupStatsThatAffectVanillaStatsList();
                 ErrorChecks.getAll()
-                        .forEach(x -> x.check());
+                    .forEach(x -> x.check());
             }
         });
 
@@ -127,9 +123,9 @@ public class CommonEvents {
         Cached.VANILLA_STAT_UIDS_TO_CLEAR_EVERY_STAT_CALC = new ArrayList<>();
 
         ExileDB.Stats()
-                .getFilterWrapped(x -> x instanceof AttributeStat).list.forEach(x -> {
-                    AttributeStat attri = (AttributeStat) x;
-                    Cached.VANILLA_STAT_UIDS_TO_CLEAR_EVERY_STAT_CALC.add(ImmutablePair.of(attri.attribute, attri.uuid));
-                });
+            .getFilterWrapped(x -> x instanceof AttributeStat).list.forEach(x -> {
+                AttributeStat attri = (AttributeStat) x;
+                Cached.VANILLA_STAT_UIDS_TO_CLEAR_EVERY_STAT_CALC.add(ImmutablePair.of(attri.attribute, attri.uuid));
+            });
     }
 }

@@ -11,8 +11,6 @@ import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SkillLevelUpToClient;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -133,7 +131,8 @@ public class ProfessionsData implements IApplyableStats {
 
     public void onLevelUp(PlayerEntity player, PlayerSkillEnum skill) {
 
-        Packets.sendToClient(player, new SyncCapabilityToClient(player, PlayerCaps.PLAYER_RPG_DATA));
+        Load.playerRPGData(player)
+            .syncToClient(player);
 
         SoundUtils.ding(player.level, player.blockPosition());
 

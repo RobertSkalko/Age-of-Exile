@@ -13,9 +13,6 @@ import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.PlayerCaps;
-import com.robertx22.age_of_exile.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
-import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -46,7 +43,6 @@ public class SpellScreen extends BaseScreen implements INamedScreen, ILeftRight 
     public SpellScreen() {
         super(sizeX, sizeY);
         IS_PICKING_HOTBAR_SPELL = false;
-        Packets.sendToServer(new RequestSyncCapToClient(PlayerCaps.SPELLS));
     }
 
     @Override

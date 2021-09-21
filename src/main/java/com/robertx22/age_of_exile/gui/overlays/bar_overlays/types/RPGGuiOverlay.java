@@ -34,8 +34,6 @@ public class RPGGuiOverlay extends AbstractGui {
 
     Minecraft mc = Minecraft.getInstance();
 
-    int ticks = 0;
-
     int areaLvlTicks = 0;
     int currentAreaLvl = 0;
 
@@ -115,8 +113,6 @@ public class RPGGuiOverlay extends AbstractGui {
                 return;
             }
 
-            ticks++;
-
             if (currentAreaLvl != SyncedToClientValues.areaLevel) {
                 currentAreaLvl = SyncedToClientValues.areaLevel;
                 areaLvlTicks = 200;
@@ -141,22 +137,6 @@ public class RPGGuiOverlay extends AbstractGui {
                             true);
                     }
                 });
-
-            /*
-            GuiPartConfig c = ModConfig.get().client.AREA_LVL_OVERLAY;
-
-            if (c.enabled) {
-                if (ModConfig.get().client.ALWAYS_RENDER_LEVEL_OVERLAY || areaLvlTicks > 0) {
-                    areaLvlTicks--;
-                    AreaLevelIndicator.draw(
-                        matrix,
-                        c.getPosition().x,
-                        c.getPosition().y
-                    );
-                }
-            }
-
-             */
 
         } catch (Exception e) {
             e.printStackTrace();

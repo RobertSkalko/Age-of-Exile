@@ -14,7 +14,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 
 public class CreativeTabs {
 
-    public static ItemGroup MyModTab = new ItemGroup("mmorpg:main_group") {
+    public static ItemGroup MyModTab = new ItemGroup("mmorpg_main_group") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(SlashItems.GearItems.NECKLACES.get(VanillaMaterial.DIAMOND)
@@ -22,14 +22,14 @@ public class CreativeTabs {
         }
     };
 
-    public static ItemGroup GearSouls = new ItemGroup("mmorpg:gear_soul_group") {
+    public static ItemGroup GearSouls = new ItemGroup("mmorpg_gear_soul_group") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(Items.SOUL_LANTERN);
         }
     };
 
-    public static ItemGroup GemRuneCurrency = new ItemGroup("mmorpg:gemrunecurrency_group") {
+    public static ItemGroup GemRuneCurrency = new ItemGroup("mmorpg_gemrunes") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(GemItems.MAP.get(GemItem.GemType.GARNET)
@@ -38,7 +38,7 @@ public class CreativeTabs {
         }
     };
 
-    public static ItemGroup Professions = new ItemGroup("mmorpg:proffs_group") {
+    public static ItemGroup Professions = new ItemGroup("mmorpg_proffs_group") {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(AlchemyPotions.POTIONS_MAP.get(ImmutablePair.of(SkillItemTier.TIER4, PotionType.HEALTH))

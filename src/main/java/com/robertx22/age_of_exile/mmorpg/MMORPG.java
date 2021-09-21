@@ -20,7 +20,6 @@ import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.SlashDeferre
 import com.robertx22.divine_missions_addon.DMRegInit;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
-import com.robertx22.library_of_exile.main.ForgeEvents;
 import com.robertx22.library_of_exile.utils.Watch;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
@@ -68,6 +67,7 @@ public class MMORPG {
         });
 
         bus.addListener(this::commonSetupEvent);
+        bus.addListener(this::interMod);
 
         CurioEvents.reg();
 
@@ -94,18 +94,6 @@ public class MMORPG {
 
         LifeCycleEvents.register();
 
-        ForgeEvents.registerForgeEvent(InterModEnqueueEvent.class, event -> {
-
-            if (MMORPG.RUN_DEV_TOOLS) {
-                GeneratedData.addAllObjectsToGenerate();
-            }
-
-            InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("ring").size(2)
-                .build());
-            InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("necklace").size(1)
-                .build());
-        });
-
         DimensionInit.init();
 
         // DungeonDimensionJigsaw.initStatics();
@@ -117,7 +105,20 @@ public class MMORPG {
 
     }
 
+    public void interMod(InterModEnqueueEvent event) {
+
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("ring").size(2)
+            .build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("necklace").size(1)
+            .build());
+    }
+
     public void commonSetupEvent(FMLCommonSetupEvent event) {
+
+        if (MMORPG.RUN_DEV_TOOLS) {
+            GeneratedData.addAllObjectsToGenerate();
+        }
+
         SlashCapabilities.register();
     }
 

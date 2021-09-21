@@ -1,16 +1,2 @@
 These are all default registry entries of this type.
 This registry can't be modified or added to.
-currency/clear_instability
-currency/number_reroll
-currency/reroll_affix_numbers
-currency/orb_of_transmutation
-currency/orb_of_infinity
-currency/orb_of_corruption
-currency/stone_of_hope
-currency/reroll_unique_numbers
-currency/crystal_of_purification
-currency/crystal_of_truth
-currency/clear_sockets
-currency/randomize_affixes
-currency/clear_corruption
-currency/reroll_primary_stats_numbers

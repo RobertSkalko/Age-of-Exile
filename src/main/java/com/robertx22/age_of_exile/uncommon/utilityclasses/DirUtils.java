@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,7 +10,7 @@ public class DirUtils {
 
     public static Path generatedResourcesDir() {
 
-        String path = FMLLoader.getGamePath()
+        String path = FMLPaths.GAMEDIR.get()
             .toString();
 
         String movedpath = path;
@@ -20,7 +20,7 @@ public class DirUtils {
     }
 
     public static String modDir() {
-        return FMLLoader.getGamePath()
+        return FMLPaths.GAMEDIR.get()
             .toString()
             .replace("run", "src");
     }

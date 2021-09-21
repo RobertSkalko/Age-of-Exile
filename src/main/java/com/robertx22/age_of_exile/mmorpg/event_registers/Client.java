@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.event_hooks.ontick.OnClientTick;
 import com.robertx22.age_of_exile.event_hooks.player.OnKeyPress;
 import com.robertx22.age_of_exile.gui.overlays.bar_overlays.types.RPGGuiOverlay;
 import com.robertx22.age_of_exile.gui.overlays.death_stats.DeathStatsOverlay;
-import com.robertx22.age_of_exile.gui.overlays.mob_bar.MobBarScreen;
 import com.robertx22.age_of_exile.gui.overlays.spell_cast_bar.SpellCastBarOverlay;
 import com.robertx22.age_of_exile.gui.overlays.spell_hotbar.SpellHotbarOverlay;
 import com.robertx22.library_of_exile.main.ForgeEvents;
@@ -16,13 +15,10 @@ public class Client {
 
     public static void register() {
 
-
         SpellHotbarOverlay spellHotbarOverlay = new SpellHotbarOverlay();
-        MobBarScreen mobbar = new MobBarScreen();
         DeathStatsOverlay death = new DeathStatsOverlay();
         SpellCastBarOverlay castbar = new SpellCastBarOverlay();
         RPGGuiOverlay rpggui = new RPGGuiOverlay();
-
 
         ForgeEvents.registerForgeEvent(TickEvent.ClientTickEvent.class, event -> {
             OnClientTick.onEndTick(Minecraft.getInstance());
@@ -31,12 +27,20 @@ public class Client {
 
         // todo does this work?
         ForgeEvents.registerForgeEvent(RenderGameOverlayEvent.class, event -> {
-            spellHotbarOverlay.onHudRender(event.getMatrixStack(), event.getPartialTicks());
-            castbar.onHudRender(event.getMatrixStack(), event.getPartialTicks());
-            death.onHudRender(event.getMatrixStack(), event.getPartialTicks());
-            rpggui.onHudRender(event.getMatrixStack(), event.getPartialTicks());
-            mobbar.onHudRender(event.getMatrixStack(), event.getPartialTicks());
 
+            if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
+                return;
+            }
+
+            if (true) {
+                spellHotbarOverlay.onHudRender(event.getMatrixStack(), event.getPartialTicks());
+                castbar.onHudRender(event.getMatrixStack(), event.getPartialTicks());
+                death.onHudRender(event.getMatrixStack(), event.getPartialTicks());
+            }
+
+            if (true) {
+                rpggui.onHudRender(event.getMatrixStack(), event.getPartialTicks());
+            }
         });
     }
 }

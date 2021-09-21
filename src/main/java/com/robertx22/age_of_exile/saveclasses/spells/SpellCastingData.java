@@ -333,8 +333,7 @@ public class SpellCastingData {
 
         this.casting = false;
 
-        if (ctx.caster instanceof PlayerEntity) {
-
+        if (ctx.caster instanceof ServerPlayerEntity) {
             Load.Unit(ctx.caster)
                 .syncToClient((PlayerEntity) ctx.caster);
         }
