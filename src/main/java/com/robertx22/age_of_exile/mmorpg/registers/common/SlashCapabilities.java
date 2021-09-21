@@ -48,6 +48,7 @@ public class SlashCapabilities {
             });
 
         PlayerCapabilities.register(EntityData.Data, new EntityData(null)); // todo will forge's async screw with this?
+        PlayerCapabilities.register(EntitySpellCap.Data, new EntitySpellCap.SpellCap(null)); // todo will forge's async screw with this?
         PlayerCapabilities.register(RPGPlayerData.Data, new RPGPlayerData(null)); // todo will forge's async screw with this?
 
     }
