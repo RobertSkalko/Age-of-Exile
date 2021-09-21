@@ -18,9 +18,6 @@ import com.robertx22.age_of_exile.vanilla_mc.items.misc.SalvagedDustItem;
 import java.util.HashMap;
 
 public class ProfessionItems {
-    public static void init() {
-
-    }
 
     public static HashMap<SkillItemTier, RegObj<CondensedEssenceItem>> CONDENSED_ESSENCE_MAP = new HashMap<>();
     public static HashMap<SkillItemTier, RegObj<SmeltedEssenceItem>> SMELTED_ESSENCE = new HashMap<>();
@@ -33,7 +30,7 @@ public class ProfessionItems {
     public static HashMap<SkillItemTier, RegObj<LockedChestItem>> LOCKED_CHEST_TIER_MAP = new HashMap<>();
     public static HashMap<SkillItemTier, RegObj<EssenceInkItem>> ESSENCE_INK = new HashMap<>();
 
-    public ProfessionItems() {
+    public static void init() {
 
         for (SkillItemTier tier : SkillItemTier.values()) {
 

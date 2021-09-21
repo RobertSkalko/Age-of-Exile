@@ -30,7 +30,7 @@ public class SlashBlocks {
         }
     }
 
-    public static RegObj<RuneWordStationBlock> RUNEWORD = Def.block("socket_station", () -> new RuneWordStationBlock());
+    public static RegObj<RuneWordStationBlock> RUNEWORD = Def.block("runeword_station", () -> new RuneWordStationBlock());
     public static RegObj<BlockGearSalvage> GEAR_SALVAGE = Def.block("salvage_station", () -> new BlockGearSalvage());
     public static RegObj<CookingBlock> COOKING_STATION = Def.block("cooking_station", () -> new CookingBlock());
     public static RegObj<TabletStationBlock> TABLET_STATION = Def.block("tablet_station", () -> new TabletStationBlock());

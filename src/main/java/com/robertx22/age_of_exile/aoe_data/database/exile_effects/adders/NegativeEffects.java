@@ -17,7 +17,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashParticles;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -165,7 +164,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.dotDamageOnTick(POISON.effectId, SpellCalcs.POISON, Elements.Earth)
                     .onTick(20D))
-                .onTick(PartBuilder.aoeParticles(SlashParticles.POISON.get(), 1D, 1D)
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.SNEEZE, 1D, 1D)
                     .onTick(2D))
                 .buildForEffect())
             .build();
@@ -190,9 +189,6 @@ public class NegativeEffects implements ExileRegistryInit {
 
                 .onTick(PartBuilder.dotDamageOnTick(BLEED.effectId, SpellCalcs.BLEED, Elements.Physical)
                     .onTick(20D))
-
-                .onTick(PartBuilder.aoeParticles(SlashParticles.BLOOD_DRIP.get(), 2D, 0.5D)
-                    .onTick(5D))
 
                 .buildForEffect())
             .build();

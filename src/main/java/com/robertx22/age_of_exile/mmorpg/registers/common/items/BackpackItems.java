@@ -25,7 +25,7 @@ public class BackpackItems {
         Items.ROTTEN_FLESH, Items.STRING, Items.SPIDER_EYE, Items.BOW, Items.BONE
     );
 
-    public static List<BackpackUpgradeItem> ALL = new ArrayList<>();
+    public static List<RegObj<BackpackUpgradeItem>> ALL = new ArrayList<>();
 
     public static HashMap<SkillItemTier, RegObj<BackpackUpgradeItem>> SIZE = new HashMap<>();
 
@@ -43,7 +43,7 @@ public class BackpackItems {
 
     public static RegObj<BackpackUpgradeItem> upgrade(BackpackUpgradeItem item) {
         RegObj<BackpackUpgradeItem> def = Def.item(() -> item);
-        ALL.add(def.get());
+        ALL.add(def);
         return def;
     }
 

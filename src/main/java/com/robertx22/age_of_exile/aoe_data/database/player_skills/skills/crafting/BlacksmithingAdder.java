@@ -19,7 +19,7 @@ public class BlacksmithingAdder {
             .forEach(x -> b.itemCraftExp(x.get(), 25 + x.get().tier.tier * 20));
 
         BackpackItems.ALL
-            .forEach(x -> b.itemCraftExp(x, 100 + x.tier.tier * 100));
+            .forEach(x -> b.itemCraftExp(x.get(), 100 + x.get().tier.tier * 100));
 
         b.itemCraftExp(TabletItems.BLANK_TABLET.get(), 20);
         b.itemCraftExp(TabletItems.RARE_BLANK_TABLET.get(), 40);

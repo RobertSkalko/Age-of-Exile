@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.database.data.skill_gem.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashParticles;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -43,7 +42,7 @@ public class StrSpells implements ExileRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.SHRED, 10))
                 .enemiesInRadius(3D))
             .onCast(PartBuilder.damageInAoe(SpellCalcs.SHRED, Elements.Physical, 3D)
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(SlashParticles.BLOOD_DRIP.get(), 15D, 0.5D, 1D)))
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.ENCHANTED_HIT, 15D, 0.5D, 1D)))
 
             .build();
 

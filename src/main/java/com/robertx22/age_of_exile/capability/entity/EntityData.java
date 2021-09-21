@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.capability.entity;
 import com.robertx22.age_of_exile.capability.bases.EntityGears;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.bases.INeededForClient;
-import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
@@ -88,7 +87,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
         @SubscribeEvent
         public static void onEntityConstruct(AttachCapabilitiesEvent<Entity> event) {
             if (event.getObject() instanceof LivingEntity) {
-                event.addCapability(RESOURCE, new EntitySpellCap.Provider((LivingEntity) event.getObject()));
+                event.addCapability(RESOURCE, new Provider((LivingEntity) event.getObject()));
             }
         }
     }

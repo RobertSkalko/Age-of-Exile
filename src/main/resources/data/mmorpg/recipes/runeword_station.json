@@ -7,16 +7,16 @@
   ],
   "key": {  
 	"C": {
-      "item": "minecraft:enchanting_table"
+      "item": "minecraft:furnace"
     }, 
 	"A": {
       "item": "minecraft:crafting_table"
     }, 
 	"B": {
-      "item": "minecraft:diamond"
+      "item": "minecraft:gold_ingot"
     }
   },
   "result": {
-    "item": "mmorpg:scribe_buff"
+    "item": "mmorpg:runeword_station"
   }
 }

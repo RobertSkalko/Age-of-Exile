@@ -34,7 +34,7 @@ public class CraftReqAdder implements ExileRegistryInit {
 
         BackpackItems.ALL
             .forEach(x -> {
-                CraftingReq.of(x, PlayerSkillEnum.BLACKSMITHING, (int) (x.tier.lvl_req * max));
+                CraftingReq.of(x.get(), PlayerSkillEnum.BLACKSMITHING, (int) (x.get().tier.lvl_req * max));
             });
 
     }

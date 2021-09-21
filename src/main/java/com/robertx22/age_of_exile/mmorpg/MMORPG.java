@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ExileDBInit;
 import com.robertx22.age_of_exile.dimension.DimensionInit;
-import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsaw;
 import com.robertx22.age_of_exile.mmorpg.event_registers.CommonEvents;
 import com.robertx22.age_of_exile.mmorpg.init.ClientInit;
 import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
@@ -23,7 +22,6 @@ import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.main.ForgeEvents;
 import com.robertx22.library_of_exile.utils.Watch;
-import com.robertx22.world_of_exile.main.WorldOfExile;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -110,8 +108,10 @@ public class MMORPG {
 
         DimensionInit.init();
 
-        DungeonDimensionJigsaw.initStatics();
-        WorldOfExile.registerStructure(new DungeonDimensionJigsaw());
+        // DungeonDimensionJigsaw.initStatics();
+        // DungeonDimensionJigsaw test = new DungeonDimensionJigsaw();
+        // test.initFeature();
+        // WorldOfExile.registerStructure(test);
 
         watch.print("Age of Exile mod initialization ");
 

@@ -14,7 +14,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashParticles;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashSounds;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -180,9 +179,6 @@ public class WaterSpells implements ExileRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.DROWNED_HURT, 0.5D, 1D))
             .onCast(PartBuilder.damageInAoe(SpellCalcs.FROST_NOVA, Elements.Water, 3.5D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.DROWNED_HURT, 1D, 1D)))
-            .build();
-
-        SpellBuilder.breath("frost_breath", "Frost Breath", Elements.Water, SlashParticles.FROST.get())
             .build();
 
         SpellBuilder.of(NOURISHMENT, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Nourishment",

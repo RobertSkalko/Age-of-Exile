@@ -112,13 +112,17 @@ public class SlashItems {
     public static RegObj<Item> ALCHEMY_STATION = Def.item("alchemy_station", () -> new BlockItem(SlashBlocks.ALCHEMY_STATION.get(), stationProp));
     public static RegObj<Item> SMITHING_STATION = Def.item("smithing_station", () -> new BlockItem(SlashBlocks.SMITHING_STATION.get(), stationProp));
     public static RegObj<Item> TELEPORTER_BLOCK = Def.item("teleporter", () -> new BlockItem(SlashBlocks.TELEPORTER.get(), stationProp));
-    public static RegObj<Item> RUNEWORD_STATION = Def.item("salvage", () -> new BlockItem(SlashBlocks.RUNEWORD.get(), stationProp));
+    public static RegObj<Item> RUNEWORD_STATION = Def.item("runeword_station", () -> new BlockItem(SlashBlocks.RUNEWORD.get(), stationProp));
     public static RegObj<Item> PORTAL = Def.item("portal", () -> new BlockItem(SlashBlocks.PORTAL.get(), stationProp));
 
     public static RegObj<Item> MANA_PLANT = Def.item(() -> new ProduceItem("Astral Fruit"), "plant/mana");
     public static RegObj<Item> LIFE_PLANT = Def.item(() -> new ProduceItem("Life Berry"), "plant/life");
 
     public static class GearItems {
+
+        public static void init() {
+
+        }
 
         public static HashMap<VanillaMaterial, RegObj<Item>> SCEPTERS = of("weapon/scepter/",
             Arrays.asList(VanillaMaterial.DIAMOND, VanillaMaterial.GOLD, VanillaMaterial.IRON, VanillaMaterial.WOOD),
@@ -156,6 +160,9 @@ public class SlashItems {
     }
 
     public static class EssenceMaterials {
+        public static void init() {
+
+        }
 
         public static RegObj<CraftEssenceItem> ARCANA = Def.item(() -> new CraftEssenceItem("arcana", () -> Items.PURPLE_DYE, "Essence of Arcana"));
         public static RegObj<CraftEssenceItem> MANA = Def.item(() -> new CraftEssenceItem("mana", () -> SlashItems.MANA_PLANT.get(), "Essence of Mana"));

@@ -60,8 +60,13 @@ public class SlashDeferred {
 
         //items
         CurrencyItems.init();
+        AlchemyPotions.init();
+        FoodItems.init();
+        BackpackItems.init();
         ProfessionItems.init();
         SlashItems.init();
+        SlashItems.GearItems.init();
+        SlashItems.EssenceMaterials.init();
         TabletItems.init();
         RuneItems.init();
         GemItems.init();

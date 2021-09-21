@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellA
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashParticles;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashSounds;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -60,7 +59,7 @@ public class NatureSpells implements ExileRegistryInit {
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(SlashItems.SLIMEBALL.get(), 1D, 1D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)))
-            .onTick(PartBuilder.particleOnTick(1D, SlashParticles.POISON.get(), 1D, 0.15D))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SNEEZE, 1D, 0.15D))
             .onHit(PartBuilder.damage(SpellCalcs.POISON_BALL, Elements.Earth))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
 
