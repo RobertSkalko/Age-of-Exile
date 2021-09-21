@@ -19,7 +19,6 @@ import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemRing;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ScepterWeapon;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.StaffWeapon;
 import com.robertx22.age_of_exile.vanilla_mc.items.loot_crate.LootCrateItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
@@ -123,10 +122,6 @@ public class SlashItems {
         public static void init() {
 
         }
-
-        public static HashMap<VanillaMaterial, RegObj<Item>> SCEPTERS = of("weapon/scepter/",
-            Arrays.asList(VanillaMaterial.DIAMOND, VanillaMaterial.GOLD, VanillaMaterial.IRON, VanillaMaterial.WOOD),
-            x -> new ScepterWeapon(x));
 
         public static HashMap<VanillaMaterial, RegObj<Item>> STAFFS = of("weapon/staff/",
             Arrays.asList(VanillaMaterial.DIAMOND, VanillaMaterial.GOLD, VanillaMaterial.IRON, VanillaMaterial.WOOD),

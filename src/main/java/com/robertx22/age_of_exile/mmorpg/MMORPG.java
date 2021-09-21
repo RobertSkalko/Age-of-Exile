@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.registry.ExileDBInit;
 import com.robertx22.age_of_exile.dimension.DimensionInit;
 import com.robertx22.age_of_exile.mmorpg.event_registers.CommonEvents;
 import com.robertx22.age_of_exile.mmorpg.init.ClientInit;
+import com.robertx22.age_of_exile.mmorpg.registers.client.S2CPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashCapabilities;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashItemTags;
@@ -91,6 +92,7 @@ public class MMORPG {
         CommonEvents.register();
 
         C2SPacketRegister.register();
+        S2CPacketRegister.register();
 
         LifeCycleEvents.register();
 

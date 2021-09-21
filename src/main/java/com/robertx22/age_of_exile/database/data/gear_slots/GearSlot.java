@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.ScepterWeapon;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.StaffWeapon;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
@@ -103,10 +102,8 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<Gear
                 bool = item instanceof ShieldItem;
             } else if (id.equals(GearSlots.CROSBOW)) {
                 bool = item instanceof CrossbowItem;
-            } else if (id.equals(GearSlots.STAFF)) {
+            } else if (id.equals(GearSlots.SCEPTER) || id.equals(GearSlots.STAFF)) {
                 bool = item instanceof StaffWeapon;
-            } else if (id.equals(GearSlots.SCEPTER)) {
-                bool = item instanceof ScepterWeapon;
             } else if (id.equals(GearSlots.NECKLACE)) {
                 bool = CuriosApi.getCuriosHelper()
                     .getCurioTags(item)

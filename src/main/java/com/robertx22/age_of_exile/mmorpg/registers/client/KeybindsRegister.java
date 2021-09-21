@@ -9,8 +9,8 @@ public class KeybindsRegister {
 
     public static KeyBinding HUB_SCREEN_KEY = new KeyBinding("Main Hub Screen", GLFW.GLFW_KEY_H, SlashRef.MOD_NAME);
 
-    public static KeyBinding SPELL_HOTBAR_1 = new KeyBinding("Use Spell 1", GLFW.GLFW_KEY_V, SlashRef.MOD_NAME);
-    public static KeyBinding SPELL_HOTBAR_2 = new KeyBinding("Use Spell 2", GLFW.GLFW_KEY_R, SlashRef.MOD_NAME);
+    public static KeyBinding SPELL_HOTBAR_1 = new KeyBinding("Use Spell 1", GLFW.GLFW_KEY_R, SlashRef.MOD_NAME);
+    public static KeyBinding SPELL_HOTBAR_2 = new KeyBinding("Use Spell 2", GLFW.GLFW_KEY_V, SlashRef.MOD_NAME);
     public static KeyBinding SPELL_HOTBAR_3 = new KeyBinding("Use Spell 3", GLFW.GLFW_KEY_C, SlashRef.MOD_NAME);
     public static KeyBinding SPELL_HOTBAR_4 = new KeyBinding("Use Spell 4", GLFW.GLFW_KEY_G, SlashRef.MOD_NAME);
 

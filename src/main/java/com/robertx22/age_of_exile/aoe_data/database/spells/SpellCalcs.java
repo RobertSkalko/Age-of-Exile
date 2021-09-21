@@ -11,8 +11,9 @@ public class SpellCalcs {
     }
 
     public static ValueCalculation POISON = ValueCalcBuilder.of("poison")
-        .attackScaling(0.05F, 0.05F)
+        .attackScaling(0.1F, 0.1F)
         .build();
+
     public static ValueCalculation BLEED = ValueCalcBuilder.of("bleed")
         .attackScaling(0.2F, 0.2F)
         .build();
@@ -22,7 +23,7 @@ public class SpellCalcs {
         .build();
 
     public static ValueCalculation PETRIFY = ValueCalcBuilder.of("petrify")
-        .attackScaling(0.2F, 1F)
+        .attackScaling(0.5F, 0.5F)
         .build();
     public static ValueCalculation TORMENT = ValueCalcBuilder.of("torment")
         .attackScaling(0.2F, 0.6F)

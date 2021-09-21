@@ -37,6 +37,10 @@ public abstract class ModificationGui<T extends BaseTileContainer, Tile extends 
             }
         }
 
+        if (tile == null) {
+            this.onClose();
+        }
+
     }
 
     public int putInTheMiddleX(int buttnowidth) {

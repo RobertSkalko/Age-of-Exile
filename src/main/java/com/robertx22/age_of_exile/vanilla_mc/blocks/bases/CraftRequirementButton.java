@@ -40,6 +40,10 @@ public class CraftRequirementButton extends ImageButton {
     @Override
     public void renderButton(MatrixStack matrix, int x, int y, float ticks) {
 
+        if (station == null) {
+            return;
+        }
+
         CraftingReq req = getReq();
 
         if (!req.item_id.isEmpty()) {

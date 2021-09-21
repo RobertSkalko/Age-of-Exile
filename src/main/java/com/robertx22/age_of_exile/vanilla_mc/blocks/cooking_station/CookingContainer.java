@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station;
 
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashContainers;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.VanillaFuelSlot;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.OutputSlot;
@@ -7,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
@@ -36,6 +38,11 @@ public class CookingContainer extends BaseTileContainer {
         addSlot(new VanillaFuelSlot(inventory, count++, 55, 62)); // fuel
         addSlot(new OutputSlot(inventory, count++, 114, 43)); // output
 
+    }
+
+    @Override
+    public ContainerType<?> getType() {
+        return SlashContainers.COOKING_STATION.get();
     }
 
     @Override

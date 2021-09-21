@@ -71,9 +71,7 @@ public class GearData {
         if (!gear.isValidItem()) {
             return false;
         }
-        if (gear.isCorrupted()) {
-            return false;
-        }
+
         if (data.getLevel() < gear.lvl) {
             return false;
         }

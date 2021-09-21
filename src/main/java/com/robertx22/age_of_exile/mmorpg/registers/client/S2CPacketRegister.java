@@ -9,7 +9,7 @@ import com.robertx22.library_of_exile.main.Packets;
 public class S2CPacketRegister {
 
     public static void register() {
-        int i = 0;
+        int i = 1000;
 
         Packets.registerServerToClient(MMORPG.NETWORK, new SendActionToClient(), i++);
         Packets.registerServerToClient(MMORPG.NETWORK, new DmgNumPacket(), i++);

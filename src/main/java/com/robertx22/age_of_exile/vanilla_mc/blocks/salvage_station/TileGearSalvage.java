@@ -90,7 +90,7 @@ public class TileGearSalvage extends BaseSkillStation {
     }
 
     public TileGearSalvage() {
-        super(null, PlayerSkillEnum.SALVAGING, SlashBlockEntities.GEAR_SALVAGE.get(), TOTAL_SLOTS_COUNT);
+        super(null, PlayerSkillEnum.SALVAGING, SlashBlockEntities.SALVAGE.get(), TOTAL_SLOTS_COUNT);
 
     }
 

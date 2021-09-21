@@ -142,7 +142,6 @@ public class RecipeGenerator {
 
         gearRecipe(consumer, SlashItems.GearItems.NECKLACES, GearSlots.NECKLACE);
         gearRecipe(consumer, SlashItems.GearItems.RINGS, GearSlots.RING);
-        gearRecipe(consumer, SlashItems.GearItems.SCEPTERS, GearSlots.SCEPTER);
         gearRecipe(consumer, SlashItems.GearItems.STAFFS, GearSlots.STAFF);
 
     }
