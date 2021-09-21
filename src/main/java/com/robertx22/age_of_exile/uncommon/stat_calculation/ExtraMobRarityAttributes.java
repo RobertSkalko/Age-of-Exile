@@ -1,16 +1,8 @@
 package com.robertx22.age_of_exile.uncommon.stat_calculation;
 
-import com.robertx22.age_of_exile.capability.entity.EntityData;
-import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
-import com.robertx22.age_of_exile.database.registry.ExileDB;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-
-import java.util.UUID;
-
 public class ExtraMobRarityAttributes {
 
+    /*
     static UUID MOVESPEED_ID = UUID.fromString("120E0DFB-87AE-4633-9556-521010E291A0");
     static UUID KNOCKBACK_RES_ID = UUID.fromString("220E0DFB-87AE-4633-9556-521010E291A0");
 
@@ -48,4 +40,6 @@ public class ExtraMobRarityAttributes {
         }
 
     }
+
+     */
 }
