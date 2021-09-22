@@ -156,6 +156,8 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(Arrays.asList(Chats.values()));
         list.addAll(Arrays.asList(RandomTips.values()));
+        list.addAll(ExileDB.Ingredients()
+            .getSerializable());
 
         ExileDB.Spells()
             .getSerializable()
@@ -204,6 +206,7 @@ public class CreateLangFile {
             .collect(Collectors.toList());
         list.addAll(ExileDB.Stats()
             .getSerializable());
+
         list.addAll(stats);
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocDesc>> map = new HashMap<>();

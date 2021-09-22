@@ -7,7 +7,7 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
-public class ModRecipeTypes {
+public class SlashRecipeTypes {
 
     public static void init() {
 

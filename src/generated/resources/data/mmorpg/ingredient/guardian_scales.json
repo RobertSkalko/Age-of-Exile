@@ -1,0 +1,24 @@
+{
+  "id": "guardian_scales",
+  "item_id": "mmorpg:ingredient/guardian_scales",
+  "weight": 5000,
+  "rar": "common",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "water_resist",
+      "type": "FLAT"
+    },
+    {
+      "min": 2.0,
+      "max": 4.0,
+      "stat": "armor",
+      "type": "PERCENT"
+    }
+  ],
+  "allowed_in": [
+    "alchemy",
+    "armor_craft"
+  ]
+}

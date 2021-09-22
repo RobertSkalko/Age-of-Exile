@@ -13,6 +13,7 @@ energy_regen
 trident_damage
 increase_healing
 scepter_damage
+bonus_armor_craft_yield
 give_regenerate_to_allies_in_aoe
 bonus_exp
 bonus_favor
@@ -141,6 +142,7 @@ absorb_ele_dmg_to_hp
 projectile_cdr
 area_spell_dmg
 fire_weapon_damage
+bonus_jewel_craft_exp
 more_threat_on_take_dmg
 dot_dmg
 dmg_when_target_is_low_hp
@@ -177,10 +179,12 @@ bonus_cooking_exp
 chance_of_burn_on_crit
 water_weapon_damage
 elemental_vuln_crit
+bonus_wep_craft_exp
 bonus_blacksmithing_yield
 mana_per_10_vitality
 bonus_mining_exp
 water_mana_leech
+bonus_armor_craft_exp
 intelligence
 song_spell_dmg
 song_eff_dur_u_cast
@@ -220,6 +224,7 @@ health
 elemental_health_leech
 inc_effect_of_curse_buff_given
 transfer_health_to_physical_weapon_damage
+bonus_jewel_craft_yield
 damage_reflected
 all_earth_damage
 staff_damage
@@ -305,6 +310,7 @@ double_drop_chance
 health_on_kill
 plus_to_fire
 bonus_fishing_exp
+bonus_wep_craft_yield
 fire_penetration
 bonus_exp_for_t5_mob
 dexterity

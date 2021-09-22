@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
+import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
@@ -82,5 +83,6 @@ public class ExileRegistryTypes {
     public static ExileRegistryType GAME_BALANCE = ExileRegistryType.register(SlashRef.MODID, "game_balance", 26, GameBalanceConfig.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType SPELL_SCHOOL = ExileRegistryType.register(SlashRef.MODID, "spell_school", 26, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType SYNERGY = ExileRegistryType.register(SlashRef.MODID, "synergy", 26, Synergy.SERIALIZER, SyncTime.ON_LOGIN);
+    public static ExileRegistryType INGREDIENT = ExileRegistryType.register(SlashRef.MODID, "ingredient", 26, SlashIngredient.SERIALIZER, SyncTime.ON_LOGIN);
 
 }

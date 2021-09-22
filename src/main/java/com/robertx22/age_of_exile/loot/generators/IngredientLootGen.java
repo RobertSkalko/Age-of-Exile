@@ -1,0 +1,55 @@
+package com.robertx22.age_of_exile.loot.generators;
+
+import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
+import com.robertx22.age_of_exile.loot.LootInfo;
+import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
+import com.robertx22.age_of_exile.player_skills.ingredient.IngredientData;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
+import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
+import net.minecraft.item.ItemStack;
+
+public class IngredientLootGen extends BaseLootGen<GearBlueprint> {
+
+    public IngredientLootGen(LootInfo info) {
+        super(info);
+    }
+
+    @Override
+    public float baseDropChance() {
+        return (float) (ModConfig.get().Server.INGREDIENT_DROPRATE);
+    }
+
+    @Override
+    public LootType lootType() {
+        return LootType.Ingredient;
+    }
+
+    @Override
+    public boolean condition() {
+        if (info.favorRank != null) {
+            if (!info.favorRank.can_salvage_loot) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public ItemStack generateOne() {
+
+        SlashIngredient ing = ExileDB.Ingredients()
+            .random();
+
+        IngredientData data = IngredientData.of(ing, info.tier);
+
+        ItemStack stack = new ItemStack(ing.getItem());
+
+        StackSaving.INGREDIENTS.saveTo(stack, data);
+
+        return stack;
+
+    }
+
+}

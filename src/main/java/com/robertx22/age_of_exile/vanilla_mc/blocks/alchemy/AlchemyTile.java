@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy;
 
-import com.robertx22.age_of_exile.mmorpg.registers.common.ModRecipeTypes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlockEntities;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeTypes;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseSkillStation;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,7 +22,7 @@ public class AlchemyTile extends BaseSkillStation {
     }
 
     public AlchemyTile() {
-        super(ModRecipeTypes.ALCHEMY_RECIPE, PlayerSkillEnum.ALCHEMY, SlashBlockEntities.ALCHEMY_STATION.get(), totalSlots());
+        super(SlashRecipeTypes.ALCHEMY_RECIPE, PlayerSkillEnum.ALCHEMY, SlashBlockEntities.ALCHEMY_STATION.get(), totalSlots());
     }
 
     @Override

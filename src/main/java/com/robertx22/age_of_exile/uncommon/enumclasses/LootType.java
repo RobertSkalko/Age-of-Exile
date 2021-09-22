@@ -11,6 +11,7 @@ public enum LootType implements IGUID {
     LevelingRewards("Leveling Rewards", "lvl_rewards", Words.LevelRewards, 0),
     Rune("Rune", "rune", Words.Rune, 2),
     Currency("Currency", "currency", Words.Currency, 3),
+    Ingredient("Ingredient", "ingredient", Words.Ingredient, 4),
     All("All", "all", Words.All, 0);
 
     public int custommodeldata;

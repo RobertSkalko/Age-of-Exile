@@ -15,6 +15,7 @@ import com.robertx22.age_of_exile.aoe_data.database.gear_rarities.GearRaritiesAd
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.aoe_data.database.gems.Gems;
 import com.robertx22.age_of_exile.aoe_data.database.groups.GearRarityGroupAdder;
+import com.robertx22.age_of_exile.aoe_data.database.ingredient.SlashIngredientsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
 import com.robertx22.age_of_exile.aoe_data.database.mob_rarities.MobRaritiesAdder;
 import com.robertx22.age_of_exile.aoe_data.database.perks.AllPerks;
@@ -96,6 +97,8 @@ public class GeneratedData {
         new ScrollBuffsAdder().registerAll();
         new CraftReqAdder().registerAll();
         new GearSetsAdder().registerAll();
+
+        new SlashIngredientsAdder().registerAll();
 
     }
 }

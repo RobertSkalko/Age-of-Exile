@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.database.data.skill_gem;
+package com.robertx22.age_of_exile.database.data.spells;
 
 public enum SpellTag {
     projectile("Projectile"),

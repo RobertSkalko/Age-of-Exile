@@ -48,7 +48,7 @@ public class SlashDeferred {
         RECIPE_SERIALIZERS.register(bus);
 
         SlashPotions.init();
-        ModRecipeTypes.init();
+        SlashRecipeTypes.init();
         SlashSounds.init();
         SlashRecipeSers.init();
 
@@ -69,6 +69,7 @@ public class SlashDeferred {
         SlashItems.EssenceMaterials.init();
         TabletItems.init();
         RuneItems.init();
+        IngredientItems.init();
         GemItems.init();
     }
 

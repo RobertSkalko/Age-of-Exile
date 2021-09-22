@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroup;
+import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
@@ -112,6 +113,10 @@ public class ExileDB {
 
     public static ExileRegistryContainer<StatCondition> StatConditions() {
         return Database.getRegistry(ExileRegistryTypes.STAT_CONDITION);
+    }
+
+    public static ExileRegistryContainer<SlashIngredient> Ingredients() {
+        return Database.getRegistry(ExileRegistryTypes.INGREDIENT);
     }
 
     public static ExileRegistryContainer<StatEffect> StatEffects() {

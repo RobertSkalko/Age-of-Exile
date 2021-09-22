@@ -5,12 +5,14 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
 import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.player_skills.ingredient.IngredientData;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.Database;
@@ -38,6 +40,14 @@ public class TooltipMethod {
         PlayerEntity player = Minecraft.getInstance().player;
 
         try {
+
+            if (StackSaving.INGREDIENTS.has(stack)) {
+                IngredientData data = StackSaving.INGREDIENTS.loadFrom(stack);
+                if (data != null) {
+                    data.makeTooltip(tooltip);
+                    return;
+                }
+            }
 
             if (stack.getItem() instanceof TieredItem) {
                 TieredItem tier = (TieredItem) stack.getItem();
