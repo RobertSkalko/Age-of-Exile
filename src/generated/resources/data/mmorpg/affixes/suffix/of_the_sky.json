@@ -1,0 +1,26 @@
+{
+  "guid": "of_the_sky",
+  "loc_name": "Of the Sky",
+  "only_one_per_item": true,
+  "weight": 50,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "jewelry_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "suffix",
+  "stats": [
+    {
+      "min": 0.1,
+      "max": 0.4,
+      "stat": "all_attributes",
+      "type": "FLAT"
+    }
+  ]
+}

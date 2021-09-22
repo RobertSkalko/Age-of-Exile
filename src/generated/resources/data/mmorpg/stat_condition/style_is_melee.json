@@ -1,0 +1,6 @@
+{
+  "string_id": "melee",
+  "string_key": "style",
+  "id": "style_is_melee",
+  "ser": "string_matches"
+}

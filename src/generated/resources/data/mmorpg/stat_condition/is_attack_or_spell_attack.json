@@ -1,0 +1,8 @@
+{
+  "ifs": [
+    "attack_type_is_attack",
+    "attack_type_is_spell"
+  ],
+  "id": "is_attack_or_spell_attack",
+  "ser": "either_is_true"
+}

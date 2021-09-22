@@ -1,0 +1,32 @@
+{
+  "socket_type": "emerald",
+  "text_format": "GREEN",
+  "on_armor_stats": [
+    {
+      "min": 7.2,
+      "max": 21.599998,
+      "stat": "earth_resist",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 7.2,
+      "max": 14.4,
+      "stat": "spell_earth_damage",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 3.6,
+      "max": 27.0,
+      "stat": "all_earth_damage",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/emerald/4",
+  "identifier": "emerald4",
+  "tier": 5,
+  "weight": 50
+}

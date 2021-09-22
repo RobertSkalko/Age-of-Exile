@@ -1,0 +1,27 @@
+{
+  "guid": "of_the_troll",
+  "loc_name": "Of The Troll",
+  "only_one_per_item": true,
+  "weight": 200,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "jewelry_family",
+          "armor_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "suffix",
+  "stats": [
+    {
+      "min": 0.5,
+      "max": 2.0,
+      "stat": "health_regen",
+      "type": "FLAT"
+    }
+  ]
+}

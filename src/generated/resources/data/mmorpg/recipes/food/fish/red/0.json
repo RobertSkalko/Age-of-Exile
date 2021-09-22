@@ -1,0 +1,17 @@
+{
+  "type": "mmorpg:food_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "mmorpg:plant/plant1"
+    },
+    {
+      "item": "mmorpg:raw_fish/red/0"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:food/fish/red/0"
+  }
+}

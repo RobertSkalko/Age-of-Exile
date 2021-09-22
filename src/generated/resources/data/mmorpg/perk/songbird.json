@@ -1,0 +1,33 @@
+{
+  "type": "MAJOR",
+  "identifier": "songbird",
+  "icon": "mmorpg:textures/gui/stat_icons/game_changers/songbird.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": -50.0,
+      "stat": "total_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 25.0,
+      "stat": "inc_effect_of_song_buff_given",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 25.0,
+      "stat": "crit_heal_chance",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 20.0,
+      "stat": "cdr",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

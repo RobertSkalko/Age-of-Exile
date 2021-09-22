@@ -1,0 +1,26 @@
+{
+  "guid": "of_treasure",
+  "loc_name": "Of Treasure",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "jewelry_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "suffix",
+  "stats": [
+    {
+      "min": 5.0,
+      "max": 15.0,
+      "stat": "magic_find",
+      "type": "FLAT"
+    }
+  ]
+}

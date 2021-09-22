@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "chance_of_blind",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/chance_of_blind.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "chance_of_blind",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "witch_brew",
+  "weight": 1000,
+  "unique_stats": [
+    {
+      "min": 15.0,
+      "max": 25.0,
+      "stat": "earth_resist",
+      "type": "flat"
+    },
+    {
+      "min": 25.0,
+      "max": 50.0,
+      "stat": "more_food_stats",
+      "type": "flat"
+    },
+    {
+      "min": 10.0,
+      "max": 15.0,
+      "stat": "spell_damage",
+      "type": "flat"
+    },
+    {
+      "min": 5.0,
+      "max": 10.0,
+      "stat": "mana_regen",
+      "type": "percent"
+    }
+  ],
+  "base_stats": [],
+  "rarity": "unique",
+  "set": "",
+  "replaces_name": false,
+  "base_gear": "ring",
+  "filters": {
+    "list": []
+  }
+}

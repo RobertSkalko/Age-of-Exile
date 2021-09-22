@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "int",
+  "icon": "mmorpg:textures/gui/stat_icons/core/intelligence.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 1.0,
+      "stat": "intelligence",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

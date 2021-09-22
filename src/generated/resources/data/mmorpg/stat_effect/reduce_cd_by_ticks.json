@@ -1,0 +1,9 @@
+{
+  "number_id": "cd_ticks",
+  "num_provider": {
+    "type": "stat_data",
+    "calc": ""
+  },
+  "id": "reduce_cd_by_ticks",
+  "ser": "add_to_number"
+}

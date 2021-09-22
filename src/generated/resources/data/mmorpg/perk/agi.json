@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "agi",
+  "icon": "mmorpg:textures/gui/stat_icons/core/agility.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 1.0,
+      "stat": "agility",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

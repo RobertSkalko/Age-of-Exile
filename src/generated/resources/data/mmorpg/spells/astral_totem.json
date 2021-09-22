@@ -1,0 +1,206 @@
+{
+  "max_lvl": 16,
+  "weight": 1000,
+  "identifier": "astral_totem",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.illusioner.cast_spell",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "summon_at_sight",
+            "map": {
+              "entity_name": "default_entity_name",
+              "gravity": false,
+              "life_ticks": 1.0,
+              "proj_en": "mmorpg:spell_projectile",
+              "height": 0.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      }
+    ],
+    "entity_components": {
+      "block": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "sound",
+              "map": {
+                "volume": 0.5,
+                "sound": "minecraft:block.note_block.chime",
+                "pitch": 1.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 20.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:witch",
+                "motion": "None",
+                "radius": 0.5,
+                "particle_count": 2.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 2.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:witch",
+                "y_rand": 0.5,
+                "motion": "None",
+                "shape": "HORIZONTAL_CIRCLE_EDGE",
+                "radius": 3.0,
+                "particle_count": 50.0,
+                "height": 0.5
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 20.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "allies",
+                "radius": 3.0
+              }
+            }
+          ],
+          "acts": [
+            {
+              "type": "restore_mana",
+              "map": {
+                "value_calculation": "totem_mana"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 20.0
+              }
+            }
+          ],
+          "en_preds": []
+        }
+      ],
+      "default_entity_name": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "summon_block",
+              "map": {
+                "entity_name": "block",
+                "is_falling_block": false,
+                "block_fall_speed": 0.0,
+                "life_ticks": 150.0,
+                "block": "mmorpg:blue_totem",
+                "find_surface": false
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  },
+  "config": {
+    "swing_arm": false,
+    "apply_cast_speed_to_cd": false,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": {
+      "min": 9.0,
+      "max": 18.0
+    },
+    "times_to_cast": 1,
+    "charges": 0,
+    "charge_regen": 0,
+    "imbues": 1,
+    "charge_name": "",
+    "cast_time_ticks": 0,
+    "cooldown_ticks": 600,
+    "style": "magic",
+    "tags": [
+      "totem",
+      "area"
+    ],
+    "cast_type": "NORMAL",
+    "scale_mana_cost_to_player_lvl": false
+  },
+  "manual_tip": true,
+  "disabled_dims": [],
+  "effect_tip": ""
+}

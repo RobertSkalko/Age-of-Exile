@@ -1,0 +1,27 @@
+{
+  "ser": "data",
+  "id": "mana_cost",
+  "ele": "Physical",
+  "effect": {
+    "order": 0,
+    "side": "Source",
+    "ifs": [],
+    "effects": [
+      "increase_mana_cost_num"
+    ],
+    "events": [
+      "on_spell_stat_calc"
+    ]
+  },
+  "show": true,
+  "min": -1000.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "SLOW",
+  "is_long": false,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

@@ -1,0 +1,8 @@
+{
+  "ally_or_enemy": "allies",
+  "seconds": 10,
+  "effect": "beneficial/5",
+  "radius": 4.0,
+  "id": "give_regenerate_to_allies_in_radius",
+  "ser": "give_exile_effect_in_radius"
+}

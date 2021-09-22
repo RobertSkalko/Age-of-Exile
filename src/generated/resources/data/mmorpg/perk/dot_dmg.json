@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "dot_dmg",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/dot_dmg.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "dot_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

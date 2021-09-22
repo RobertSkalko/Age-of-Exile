@@ -1,0 +1,17 @@
+{
+  "type": "mmorpg:food_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:food/extract/yellow"
+    },
+    {
+      "item": "mmorpg:plant/plant4"
+    },
+    {
+      "item": "minecraft:mushroom_stew"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:food/brew/yellow/3"
+  }
+}

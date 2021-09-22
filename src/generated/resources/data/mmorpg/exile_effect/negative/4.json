@@ -1,0 +1,18 @@
+{
+  "id": "negative/4",
+  "one_of_a_kind_id": "",
+  "type": "negative",
+  "max_stacks": 1,
+  "tags": [
+    "negative"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": -25.0,
+      "stat": "increase_healing",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    }
+  ]
+}

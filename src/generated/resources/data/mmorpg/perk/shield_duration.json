@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "shield_duration",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/shield_duration.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "shield_duration",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

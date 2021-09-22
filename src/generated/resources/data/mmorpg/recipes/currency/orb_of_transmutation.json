@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ovo",
+    "vtv",
+    "ovo"
+  ],
+  "key": {
+    "t": {
+      "item": "minecraft:redstone"
+    },
+    "v": {
+      "item": "minecraft:coal"
+    },
+    "o": {
+      "item": "mmorpg:mat/salvage/salvage0"
+    }
+  },
+  "result": {
+    "item": "mmorpg:currency/orb_of_transmutation"
+  }
+}

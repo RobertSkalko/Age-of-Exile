@@ -1,0 +1,11 @@
+{
+  "rarities": [
+    "uncommon",
+    "common",
+    "rare",
+    "unique",
+    "epic",
+    "runeword"
+  ],
+  "id": "droppable_rarities"
+}

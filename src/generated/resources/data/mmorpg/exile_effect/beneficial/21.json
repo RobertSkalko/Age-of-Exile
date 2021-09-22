@@ -1,0 +1,61 @@
+{
+  "id": "beneficial/21",
+  "one_of_a_kind_id": "",
+  "type": "beneficial",
+  "max_stacks": 1,
+  "tags": [
+    "positive"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": 25.0,
+      "stat": "threat_generated",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 50.0,
+      "stat": "more_threat_on_take_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ],
+  "spell": {
+    "on_cast": [],
+    "entity_components": {
+      "default_entity_name": [
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 10.0
+              }
+            }
+          ],
+          "acts": [
+            {
+              "type": "aggro",
+              "map": {
+                "aggro": "AGGRO",
+                "value_calculation": "taunt"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 60.0
+              }
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  }
+}

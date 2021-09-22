@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:gems/garnet/1"
+    },
+    {
+      "item": "mmorpg:gems/garnet/1"
+    },
+    {
+      "item": "mmorpg:gems/garnet/1"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:gems/garnet/2"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "string_id": "heal",
+  "string_key": "restore_type",
+  "id": "restore_type_is_heal",
+  "ser": "string_matches"
+}

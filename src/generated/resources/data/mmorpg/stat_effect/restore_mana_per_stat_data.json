@@ -1,0 +1,11 @@
+{
+  "num_provider": {
+    "type": "stat_data",
+    "calc": ""
+  },
+  "type": "mana",
+  "side": "Source",
+  "restore_type": "leech",
+  "id": "restore_mana_per_stat_data",
+  "ser": "restore_resource"
+}

@@ -1,0 +1,12 @@
+{
+  "dimension_id": "mmorpg:dungeon",
+  "mob_tier": 0,
+  "exp_multi": 1.0,
+  "all_drop_multi": 1.0,
+  "mob_lvl_per_distance": 100,
+  "unique_gear_drop_multi": 1.0,
+  "mob_strength_multi": 1.0,
+  "min_lvl": 1,
+  "max_lvl": 2147483647,
+  "scale_to_nearest_player": false
+}

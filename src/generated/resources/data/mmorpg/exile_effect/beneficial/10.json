@@ -1,0 +1,18 @@
+{
+  "id": "beneficial/10",
+  "one_of_a_kind_id": "",
+  "type": "beneficial",
+  "max_stacks": 1,
+  "tags": [
+    "positive"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "water_weapon_damage",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    }
+  ]
+}

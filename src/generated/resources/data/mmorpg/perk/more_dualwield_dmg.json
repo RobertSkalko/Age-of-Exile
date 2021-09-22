@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "more_dualwield_dmg",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/dual_wield_dmg.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "dual_wield_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

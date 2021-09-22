@@ -1,0 +1,18 @@
+{
+  "id": "negative/0",
+  "one_of_a_kind_id": "",
+  "type": "negative",
+  "max_stacks": 1,
+  "tags": [
+    "negative"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": -15.0,
+      "stat": "elemental_resist",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    }
+  ]
+}

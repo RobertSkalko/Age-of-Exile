@@ -1,0 +1,39 @@
+{
+  "type": "MAJOR",
+  "identifier": "spell_slinger",
+  "icon": "mmorpg:textures/gui/stat_icons/game_changers/spell_slinger.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": -50.0,
+      "stat": "total_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -50.0,
+      "stat": "mana_regen",
+      "type": "PERCENT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 30.0,
+      "stat": "cdr",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 30.0,
+      "stat": "faster_projectiles",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 30.0,
+      "stat": "projectile_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

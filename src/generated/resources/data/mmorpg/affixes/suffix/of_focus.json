@@ -1,0 +1,26 @@
+{
+  "guid": "of_focus",
+  "loc_name": "Of Focus",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "mage_weapon"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "suffix",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 8.0,
+      "stat": "spell_critical_hit",
+      "type": "FLAT"
+    }
+  ]
+}

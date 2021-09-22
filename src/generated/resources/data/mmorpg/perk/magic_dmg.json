@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "magic_dmg",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/magic_dmg.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 1.0,
+      "stat": "magic_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

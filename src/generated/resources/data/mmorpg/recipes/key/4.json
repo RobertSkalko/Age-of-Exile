@@ -1,0 +1,17 @@
+{
+  "type": "mmorpg:smithing_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:stone/4"
+    },
+    {
+      "item": "mmorpg:stone/4"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:key/4"
+  }
+}

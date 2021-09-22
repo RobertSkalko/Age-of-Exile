@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:mat/smelted/1"
+    },
+    {
+      "item": "mmorpg:mat/smelted/1"
+    },
+    {
+      "item": "mmorpg:mat/smelted/1"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:mat/condensed_salvage/c1"
+  }
+}

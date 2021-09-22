@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "less_aggro",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/threat_generated.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": -2.0,
+      "stat": "threat_generated",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

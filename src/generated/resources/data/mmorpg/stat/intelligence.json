@@ -1,0 +1,26 @@
+{
+  "ser": "core_stat",
+  "data": {
+    "id": "intelligence",
+    "min": 0.0,
+    "max": 2.14748365E9,
+    "base": 0.0,
+    "perc": true,
+    "ele": "Physical",
+    "scale": "CORE_STAT",
+    "core_stat_data": {
+      "stats": [
+        {
+          "v1": 0.25,
+          "stat": "magic_dmg",
+          "type": "FLAT"
+        },
+        {
+          "v1": 1.0,
+          "stat": "mana",
+          "type": "PERCENT"
+        }
+      ]
+    }
+  }
+}

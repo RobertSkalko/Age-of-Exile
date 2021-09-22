@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "v#v",
+    "vtv",
+    "ooo"
+  ],
+  "key": {
+    "#": {
+      "item": "mmorpg:mat/mythic_essence"
+    },
+    "t": {
+      "item": "mmorpg:currency/randomize_affixes"
+    },
+    "v": {
+      "item": "minecraft:diamond"
+    },
+    "o": {
+      "item": "mmorpg:mat/golden_orb"
+    }
+  },
+  "result": {
+    "item": "mmorpg:currency/orb_of_infinity"
+  }
+}

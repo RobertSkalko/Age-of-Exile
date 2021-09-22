@@ -1,0 +1,83 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 1.0,
+        "max": 3.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "name": "mmorpg:runes/yun"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:runes/nos"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:runes/mos"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:runes/ita"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:runes/cen"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:runes/fey"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:runes/dos"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:runes/ano"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:runes/toq"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 500,
+          "name": "mmorpg:runes/oru"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 200,
+          "name": "mmorpg:runes/wir"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:runes/eno"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:runes/har"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:runes/xer"
+        }
+      ]
+    }
+  ]
+}

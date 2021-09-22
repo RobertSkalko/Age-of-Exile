@@ -1,0 +1,26 @@
+{
+  "guid": "of_gluttony",
+  "loc_name": "Of Gluttony",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "weapon_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "suffix",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 6.0,
+      "stat": "health_on_kill",
+      "type": "FLAT"
+    }
+  ]
+}

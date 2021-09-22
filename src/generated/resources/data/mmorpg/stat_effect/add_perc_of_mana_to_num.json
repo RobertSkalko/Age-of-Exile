@@ -1,0 +1,9 @@
+{
+  "number_id": "number",
+  "num_provider": {
+    "type": "perc_of_stat",
+    "calc": "mana"
+  },
+  "id": "add_perc_of_mana_to_num",
+  "ser": "add_to_number"
+}

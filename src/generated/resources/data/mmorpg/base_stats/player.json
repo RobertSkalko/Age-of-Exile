@@ -1,0 +1,95 @@
+{
+  "id": "player",
+  "base_stats": [
+    {
+      "v1": 10.0,
+      "stat": "mana",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 10.0,
+      "stat": "health",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 20.0,
+      "stat": "mana",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 20.0,
+      "stat": "energy",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 1.0,
+      "stat": "health_regen",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 1.0,
+      "stat": "mana_regen",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 1.0,
+      "stat": "energy_regen",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 1.0,
+      "stat": "critical_hit",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 1.0,
+      "stat": "critical_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 1.0,
+      "stat": "spell_critical_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 1.0,
+      "stat": "heal_crit_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 1.0,
+      "stat": "spell_critical_hit",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 0.0,
+      "stat": "spell_critical_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 10.0,
+      "stat": "spell_accuracy",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 20.0,
+      "stat": "accuracy",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    }
+  ]
+}

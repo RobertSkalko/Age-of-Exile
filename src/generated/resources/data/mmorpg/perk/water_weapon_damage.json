@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "water_weapon_damage",
+  "icon": "mmorpg:textures/gui/stat_icons/elemental/water_weapon_damage.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 2.0,
+      "stat": "water_weapon_damage",
+      "type": "PERCENT",
+      "scale_to_lvl": false
+    }
+  ]
+}

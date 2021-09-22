@@ -1,0 +1,139 @@
+{
+  "max_lvl": 16,
+  "weight": 1000,
+  "identifier": "refresh",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "mmorpg:freeze",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [
+          {
+            "type": "self",
+            "map": {}
+          }
+        ],
+        "acts": [
+          {
+            "type": "refresh_cds",
+            "map": {
+              "cooldown_ticks": 1200.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:falling_water",
+              "motion": "None",
+              "radius": 1.5,
+              "particle_count": 100.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:dripping_water",
+              "motion": "None",
+              "radius": 1.5,
+              "particle_count": 50.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:effect",
+              "motion": "None",
+              "radius": 1.5,
+              "particle_count": 50.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      }
+    ],
+    "entity_components": {}
+  },
+  "config": {
+    "swing_arm": false,
+    "apply_cast_speed_to_cd": false,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": {
+      "min": 20.0,
+      "max": 40.0
+    },
+    "times_to_cast": 1,
+    "charges": 0,
+    "charge_regen": 0,
+    "imbues": 1,
+    "charge_name": "",
+    "cast_time_ticks": 20,
+    "cooldown_ticks": 3600,
+    "style": "magic",
+    "tags": [],
+    "cast_type": "NORMAL",
+    "scale_mana_cost_to_player_lvl": true
+  },
+  "manual_tip": true,
+  "disabled_dims": [],
+  "effect_tip": ""
+}

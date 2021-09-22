@@ -1,0 +1,12 @@
+{
+  "id": "mythic",
+  "hp_multi": 2.0,
+  "dmg_multi": 2.0,
+  "stat_multi": 1.5,
+  "loot_multi": 1.5,
+  "higher_rar_chance": 25.0,
+  "req_player_lvl": 40,
+  "deaths_allowed": 3,
+  "death_favor_penalty": -50,
+  "rank": 2
+}

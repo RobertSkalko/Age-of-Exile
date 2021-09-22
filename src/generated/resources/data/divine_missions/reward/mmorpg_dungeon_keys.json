@@ -1,0 +1,10 @@
+{
+  "weight": 1000,
+  "id": "mmorpg_dungeon_keys",
+  "worth": 500,
+  "worth_type": "aoe",
+  "type": "give_loot_table",
+  "data": "mmorpg:dungeon_keys",
+  "min": 1,
+  "max": 1
+}

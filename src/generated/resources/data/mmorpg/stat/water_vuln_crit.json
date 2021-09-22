@@ -1,0 +1,29 @@
+{
+  "ser": "data",
+  "id": "water_vuln_crit",
+  "ele": "Water",
+  "effect": {
+    "order": 0,
+    "side": "Target",
+    "ifs": [
+      "ele_match_stat"
+    ],
+    "effects": [
+      "set_bool_crit"
+    ],
+    "events": [
+      "on_damage"
+    ]
+  },
+  "show": true,
+  "min": -1000.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "SLOW",
+  "is_long": true,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

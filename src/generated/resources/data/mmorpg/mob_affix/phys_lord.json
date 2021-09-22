@@ -1,0 +1,26 @@
+{
+  "id": "phys_lord",
+  "weight": 250,
+  "format": "GRAY",
+  "icon": "",
+  "stats": [
+    {
+      "min": 15.0,
+      "max": 15.0,
+      "stat": "health",
+      "type": "flat"
+    },
+    {
+      "min": 2.0,
+      "max": 2.0,
+      "stat": "physical_weapon_damage",
+      "type": "flat"
+    },
+    {
+      "min": 20.0,
+      "max": 20.0,
+      "stat": "extra_mob_drops",
+      "type": "flat"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "string_id": "block",
+  "string_key": "resource_type",
+  "id": "resource_type_is_block",
+  "ser": "string_matches"
+}

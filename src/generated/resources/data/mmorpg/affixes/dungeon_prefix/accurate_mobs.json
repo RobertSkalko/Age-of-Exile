@@ -1,0 +1,24 @@
+{
+  "guid": "accurate_mobs",
+  "loc_name": "Accurate",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "dungeon_prefix",
+  "stats": [
+    {
+      "min": 20.0,
+      "max": 50.0,
+      "stat": "accuracy",
+      "type": "PERCENT"
+    }
+  ]
+}

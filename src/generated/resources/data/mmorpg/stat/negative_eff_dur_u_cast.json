@@ -1,0 +1,29 @@
+{
+  "ser": "data",
+  "id": "negative_eff_dur_u_cast",
+  "ele": "Physical",
+  "effect": {
+    "order": 0,
+    "side": "Source",
+    "ifs": [
+      "effect_has_tag_negative"
+    ],
+    "effects": [
+      "increase_effect_duration_ticks_num"
+    ],
+    "events": [
+      "on_exile_effect"
+    ]
+  },
+  "show": true,
+  "min": -1000.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": false,
+  "scaling": "SLOW",
+  "is_long": true,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "spring_blossoms",
+  "weight": 1000,
+  "unique_stats": [
+    {
+      "min": 10.0,
+      "max": 10.0,
+      "stat": "heal_cleanse",
+      "type": "flat"
+    },
+    {
+      "min": 5.0,
+      "max": 10.0,
+      "stat": "health_regen",
+      "type": "percent"
+    },
+    {
+      "min": 10.0,
+      "max": 15.0,
+      "stat": "increase_healing",
+      "type": "flat"
+    },
+    {
+      "min": 15.0,
+      "max": 25.0,
+      "stat": "earth_resist",
+      "type": "flat"
+    }
+  ],
+  "base_stats": [],
+  "rarity": "unique",
+  "set": "seasons_set",
+  "replaces_name": true,
+  "base_gear": "ring",
+  "filters": {
+    "list": []
+  }
+}

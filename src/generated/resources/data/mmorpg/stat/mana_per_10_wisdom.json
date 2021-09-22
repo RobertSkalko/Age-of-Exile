@@ -1,0 +1,15 @@
+{
+  "ser": "more_x_per_y",
+  "data": {
+    "id": "mana_per_10_wisdom",
+    "min": 0.0,
+    "max": 2.14748365E9,
+    "base": 0.0,
+    "perc": true,
+    "ele": "Physical",
+    "scale": "NONE",
+    "adder_stat": "wisdom",
+    "add_to": "mana",
+    "per_amount": 10
+  }
+}

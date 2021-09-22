@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "armor",
+  "icon": "mmorpg:textures/gui/stat_icons/main/armor.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "armor",
+      "type": "PERCENT",
+      "scale_to_lvl": false
+    }
+  ]
+}

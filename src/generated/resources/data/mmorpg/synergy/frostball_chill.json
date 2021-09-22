@@ -1,0 +1,13 @@
+{
+  "id": "frostball_chill",
+  "spell_id": "frostball",
+  "maxlvl": 8,
+  "stats": [
+    {
+      "min": 5.0,
+      "max": 20.0,
+      "stat": "frostball_chance_of_negative/2",
+      "type": "FLAT"
+    }
+  ]
+}

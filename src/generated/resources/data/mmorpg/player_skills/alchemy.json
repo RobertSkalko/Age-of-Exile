@@ -1,0 +1,194 @@
+{
+  "type_enum": "ALCHEMY",
+  "id": "alchemy",
+  "exp_per_action": 0,
+  "order": 5,
+  "dropTables": [],
+  "stat_rewards": [
+    {
+      "lvl_req": 5,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t1_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 15,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t2_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 25,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t3_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 35,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t4_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 45,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t5_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 10,
+      "stats": [
+        {
+          "v1": 2.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 2.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 20,
+      "stats": [
+        {
+          "v1": 3.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 3.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 30,
+      "stats": [
+        {
+          "v1": 4.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 4.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 40,
+      "stats": [
+        {
+          "v1": 5.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 5.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 50,
+      "stats": [
+        {
+          "v1": 5.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 5.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    }
+  ],
+  "mastery_stat_reward": [],
+  "block_break_exp": [],
+  "item_craft_exp": [
+    {
+      "exp": 125,
+      "item_id": "mmorpg:alchemy/potion/health/3"
+    },
+    {
+      "exp": 150,
+      "item_id": "mmorpg:alchemy/potion/health/4"
+    },
+    {
+      "exp": 50,
+      "item_id": "mmorpg:alchemy/potion/mana/0"
+    },
+    {
+      "exp": 75,
+      "item_id": "mmorpg:alchemy/potion/mana/1"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:alchemy/potion/mana/2"
+    },
+    {
+      "exp": 50,
+      "item_id": "mmorpg:alchemy/potion/health/0"
+    },
+    {
+      "exp": 75,
+      "item_id": "mmorpg:alchemy/potion/health/1"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:alchemy/potion/health/2"
+    },
+    {
+      "exp": 125,
+      "item_id": "mmorpg:alchemy/potion/mana/3"
+    },
+    {
+      "exp": 150,
+      "item_id": "mmorpg:alchemy/potion/mana/4"
+    }
+  ],
+  "item_smelt_exp": []
+}

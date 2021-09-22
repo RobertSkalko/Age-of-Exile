@@ -1,0 +1,32 @@
+{
+  "socket_type": "emerald",
+  "text_format": "GREEN",
+  "on_armor_stats": [
+    {
+      "min": 4.0,
+      "max": 12.0,
+      "stat": "earth_resist",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 4.0,
+      "max": 8.0,
+      "stat": "spell_earth_damage",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 2.0,
+      "max": 15.0,
+      "stat": "all_earth_damage",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/emerald/0",
+  "identifier": "emerald0",
+  "tier": 1,
+  "weight": 20000
+}

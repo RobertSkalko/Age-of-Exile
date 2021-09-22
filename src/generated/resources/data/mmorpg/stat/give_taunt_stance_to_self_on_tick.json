@@ -1,0 +1,30 @@
+{
+  "ser": "data",
+  "id": "give_taunt_stance_to_self_on_tick",
+  "ele": "Physical",
+  "effect": {
+    "order": 0,
+    "side": "Source",
+    "ifs": [
+      "resource_type_is_health",
+      "restore_type_is_regen"
+    ],
+    "effects": [
+      "give_beneficial/21_to_source"
+    ],
+    "events": [
+      "on_spend_resource"
+    ]
+  },
+  "show": true,
+  "min": 0.0,
+  "max": 1.0,
+  "base": 0.0,
+  "is_perc": false,
+  "scaling": "SLOW",
+  "is_long": true,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

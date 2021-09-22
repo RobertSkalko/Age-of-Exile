@@ -1,0 +1,13 @@
+{
+  "stat_scalings": [],
+  "id": "heart_of_ice",
+  "base_scaling_type": "NORMAL",
+  "attack_scaling": {
+    "min": 0.0,
+    "max": 0.0
+  },
+  "base": {
+    "min": 10.0,
+    "max": 50.0
+  }
+}

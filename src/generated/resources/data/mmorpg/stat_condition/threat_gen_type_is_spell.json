@@ -1,0 +1,6 @@
+{
+  "string_id": "spell",
+  "string_key": "threat_gen_type",
+  "id": "threat_gen_type_is_spell",
+  "ser": "string_matches"
+}

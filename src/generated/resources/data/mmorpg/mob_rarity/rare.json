@@ -1,0 +1,16 @@
+{
+  "min_lvl": 15,
+  "loot_lvl_modifier": 1,
+  "dmg_multi": 2.0,
+  "extra_hp_multi": 5.0,
+  "stat_multi": 3.5,
+  "loot_multi": 4.0,
+  "exp_multi": 4.0,
+  "affixes": 2,
+  "name_add": "★",
+  "rarity_type": "MOB",
+  "weight": 50,
+  "text_format": "GOLD",
+  "higher_rar": "boss",
+  "guid": "rare"
+}

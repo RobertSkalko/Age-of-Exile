@@ -1,0 +1,6 @@
+{
+  "string_id": "shield",
+  "string_key": "resource_type",
+  "id": "resource_type_is_shield",
+  "ser": "string_matches"
+}

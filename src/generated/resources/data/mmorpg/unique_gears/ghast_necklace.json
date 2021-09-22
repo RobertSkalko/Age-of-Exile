@@ -1,0 +1,44 @@
+{
+  "id": "ghast_necklace",
+  "weight": 1000,
+  "unique_stats": [
+    {
+      "min": 1.0,
+      "max": 2.0,
+      "stat": "plus_to_water",
+      "type": "flat"
+    },
+    {
+      "min": 25.0,
+      "max": 25.0,
+      "stat": "mana_per_10_intelligence",
+      "type": "flat"
+    },
+    {
+      "min": 3.0,
+      "max": 5.0,
+      "stat": "spell_damage",
+      "type": "flat"
+    },
+    {
+      "min": 1.0,
+      "max": 3.0,
+      "stat": "vitality",
+      "type": "flat"
+    },
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "agility",
+      "type": "flat"
+    }
+  ],
+  "base_stats": [],
+  "rarity": "unique",
+  "set": "",
+  "replaces_name": false,
+  "base_gear": "necklace",
+  "filters": {
+    "list": []
+  }
+}

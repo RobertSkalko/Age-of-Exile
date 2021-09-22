@@ -1,0 +1,61 @@
+{
+  "id": "negative/17",
+  "one_of_a_kind_id": "",
+  "type": "negative",
+  "max_stacks": 1,
+  "tags": [
+    "negative"
+  ],
+  "mc_stats": [],
+  "stats": [],
+  "spell": {
+    "on_cast": [],
+    "entity_components": {
+      "default_entity_name": [
+        {
+          "targets": [
+            {
+              "type": "self",
+              "map": {}
+            }
+          ],
+          "acts": [
+            {
+              "type": "motion",
+              "map": {
+                "set_add": "ADD",
+                "motion": "Downwards",
+                "push_str": 1.0
+              }
+            }
+          ],
+          "ifs": [],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:squid_ink",
+                "motion": "None",
+                "radius": 0.5,
+                "particle_count": 2.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 20.0
+              }
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  }
+}

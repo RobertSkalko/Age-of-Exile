@@ -1,0 +1,31 @@
+{
+  "ser": "data",
+  "id": "chance_of_slow",
+  "ele": "Physical",
+  "effect": {
+    "order": 100,
+    "side": "Source",
+    "ifs": [
+      "random_roll",
+      "ele_match_stat",
+      "is_attack_or_spell_attack"
+    ],
+    "effects": [
+      "give_negative/12_to_target"
+    ],
+    "events": [
+      "on_damage"
+    ]
+  },
+  "show": true,
+  "min": 0.0,
+  "max": 100.0,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "NONE",
+  "is_long": true,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

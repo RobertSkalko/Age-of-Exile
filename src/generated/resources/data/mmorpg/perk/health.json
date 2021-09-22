@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "health",
+  "icon": "mmorpg:textures/gui/stat_icons/main/health.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 2.0,
+      "stat": "health",
+      "type": "PERCENT",
+      "scale_to_lvl": false
+    }
+  ]
+}

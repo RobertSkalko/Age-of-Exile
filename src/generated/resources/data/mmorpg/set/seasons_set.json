@@ -1,0 +1,13 @@
+{
+  "id": "seasons_set",
+  "stats": {
+    "2": [
+      {
+        "v1": 1.0,
+        "stat": "plus_to_refresh",
+        "type": "FLAT",
+        "scale_to_lvl": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "heal_crit_dmg",
+  "icon": "mmorpg:textures/gui/stat_icons/main/heal_crit_dmg.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "heal_crit_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

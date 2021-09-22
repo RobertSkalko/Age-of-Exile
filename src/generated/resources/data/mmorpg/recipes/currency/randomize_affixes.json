@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "o#o",
+    "oto",
+    "vvv"
+  ],
+  "key": {
+    "#": {
+      "item": "mmorpg:mat/infused_iron"
+    },
+    "t": {
+      "item": "mmorpg:currency/orb_of_transmutation"
+    },
+    "v": {
+      "item": "minecraft:gold_nugget"
+    },
+    "o": {
+      "item": "mmorpg:mat/salvage/salvage3"
+    }
+  },
+  "result": {
+    "item": "mmorpg:currency/randomize_affixes"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "ser": "data",
+  "id": "crit_heal_chance",
+  "ele": "Physical",
+  "effect": {
+    "order": 0,
+    "side": "Source",
+    "ifs": [
+      "random_roll",
+      "is_spell",
+      "restore_type_is_heal",
+      "resource_type_is_health"
+    ],
+    "effects": [
+      "set_bool_crit"
+    ],
+    "events": [
+      "on_spend_resource"
+    ]
+  },
+  "show": true,
+  "min": 0.0,
+  "max": 100.0,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "SLOW",
+  "is_long": false,
+  "icon": "⚔",
+  "order": 100,
+  "format": "yellow",
+  "group": "MAIN"
+}

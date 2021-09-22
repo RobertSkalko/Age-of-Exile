@@ -1,0 +1,18 @@
+{
+  "id": "very_high",
+  "min": 2000,
+  "rank": 4,
+  "drop_unique_gears": true,
+  "drop_runes": true,
+  "drop_gems": true,
+  "drop_currency": true,
+  "drop_lvl_rewards": true,
+  "extra_item_favor_cost": 5.0,
+  "extra_items_per_boss": 2,
+  "extra_items_per_chest": 2,
+  "can_salvage_loot": true,
+  "exp_multi": 1.1,
+  "favor_drain_per_item": 1.0,
+  "text_format": "blue",
+  "excludedRarities": []
+}

@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "mana_cost",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/mana_cost.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": -2.0,
+      "stat": "mana_cost",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "ser": "data",
+  "id": "damage_reflected",
+  "ele": "Physical",
+  "effect": {
+    "order": 200,
+    "side": "Target",
+    "ifs": [
+      "is_attack_or_spell_attack"
+    ],
+    "effects": [
+      "reflect_perc_dmg"
+    ],
+    "events": [
+      "on_damage"
+    ]
+  },
+  "show": true,
+  "min": -1000.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "NONE",
+  "is_long": false,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

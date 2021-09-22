@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "healing_strength",
+  "icon": "mmorpg:textures/gui/stat_icons/restoration/increase_healing.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 4.0,
+      "stat": "increase_healing",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

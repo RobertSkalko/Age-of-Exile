@@ -1,0 +1,32 @@
+{
+  "attacksPerSecond": 1.6,
+  "guid": "sword",
+  "level_range": {
+    "start": 0.0,
+    "end": 1.0
+  },
+  "gear_slot": "sword",
+  "weight": 1000,
+  "weapon_offhand_stat_util": 15,
+  "style": "melee",
+  "implicit_stats": [],
+  "base_stats": [
+    {
+      "min": 0.9,
+      "max": 2.6999998,
+      "stat": "physical_weapon_damage",
+      "type": "FLAT"
+    }
+  ],
+  "weapon_type": "sword",
+  "tags": {
+    "tags": [
+      "dexterity",
+      "warrior_casting_weapon",
+      "sword",
+      "strength",
+      "melee_weapon",
+      "weapon_family"
+    ]
+  }
+}

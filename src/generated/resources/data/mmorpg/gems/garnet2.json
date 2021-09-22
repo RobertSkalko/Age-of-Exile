@@ -1,0 +1,32 @@
+{
+  "socket_type": "garnet",
+  "text_format": "GREEN",
+  "on_armor_stats": [
+    {
+      "min": 1.4,
+      "max": 4.2,
+      "stat": "dodge",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 4.2,
+      "max": 14.0,
+      "stat": "critical_damage",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 2.8,
+      "max": 8.4,
+      "stat": "critical_hit",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/garnet/2",
+  "identifier": "garnet2",
+  "tier": 3,
+  "weight": 1000
+}

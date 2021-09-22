@@ -1,0 +1,45 @@
+{
+  "id": "skull_cleaver",
+  "weight": 0,
+  "unique_stats": [
+    {
+      "min": 15.0,
+      "max": 25.0,
+      "stat": "dmg_to_undead",
+      "type": "flat"
+    },
+    {
+      "min": 1.0,
+      "max": 10.0,
+      "stat": "critical_hit",
+      "type": "flat"
+    },
+    {
+      "min": 5.0,
+      "max": 25.0,
+      "stat": "inc_leech",
+      "type": "flat"
+    }
+  ],
+  "base_stats": [
+    {
+      "min": 0.45,
+      "max": 1.3499999,
+      "stat": "physical_weapon_damage",
+      "type": "flat"
+    },
+    {
+      "min": 0.45,
+      "max": 1.3499999,
+      "stat": "water_weapon_damage",
+      "type": "flat"
+    }
+  ],
+  "rarity": "runeword",
+  "set": "",
+  "replaces_name": true,
+  "base_gear": "sword",
+  "filters": {
+    "list": []
+  }
+}

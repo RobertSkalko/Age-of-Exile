@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:gear_mat/essences/thunder"
+    },
+    {
+      "item": "mmorpg:gear_mat/essences/thunder"
+    },
+    {
+      "item": "mmorpg:gear_mat/essences/thunder"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:food/extract/yellow",
+    "count": 3
+  }
+}

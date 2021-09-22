@@ -1,0 +1,27 @@
+{
+  "type": "MAJOR",
+  "identifier": "divinity",
+  "icon": "mmorpg:textures/gui/stat_icons/game_changers/divinity.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 25.0,
+      "stat": "spell_damage_per_perc_of_increase_healing",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -50.0,
+      "stat": "critical_damage",
+      "type": "GLOBAL_INCREASE",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -50.0,
+      "stat": "spell_critical_damage",
+      "type": "GLOBAL_INCREASE",
+      "scale_to_lvl": false
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "negative/7",
+  "one_of_a_kind_id": "",
+  "type": "negative",
+  "max_stacks": 1,
+  "tags": [
+    "negative"
+  ],
+  "mc_stats": [
+    {
+      "val": 0.2,
+      "uuid": "bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8",
+      "id": "minecraft:generic.movement_speed",
+      "type": "GLOBAL_INCREASE"
+    }
+  ],
+  "stats": [
+    {
+      "v1": -10.0,
+      "stat": "elemental_resist",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    }
+  ],
+  "spell": {
+    "on_cast": [],
+    "entity_components": {
+      "default_entity_name": [
+        {
+          "targets": [
+            {
+              "type": "target",
+              "map": {}
+            }
+          ],
+          "acts": [
+            {
+              "type": "damage",
+              "map": {
+                "exile_potion_id": "negative/7",
+                "dmg_effect_type": "dot",
+                "value_calculation": "torment",
+                "element": "Elemental"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 20.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:soul",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 10.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 10.0
+              }
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  }
+}

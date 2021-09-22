@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "health_on_hit",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/health_on_attack_hit.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "health_on_attack_hit",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

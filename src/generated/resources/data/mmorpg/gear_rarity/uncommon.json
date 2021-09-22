@@ -1,0 +1,40 @@
+{
+  "affixes": {
+    "min_amount": 1,
+    "max_amount": 2,
+    "chance_for_more": 15
+  },
+  "item_model_data_num": 2,
+  "drops_after_tier": -1,
+  "default_stat_percents": {
+    "min": 0,
+    "max": 100
+  },
+  "affix_stat_percents": {
+    "min": 80,
+    "max": 100
+  },
+  "unique_stat_percents": {
+    "min": 0,
+    "max": 100
+  },
+  "base_stat_percents": {
+    "min": 5,
+    "max": 80
+  },
+  "essence_per_sal": {
+    "min": 1,
+    "max": 2
+  },
+  "item_tier": 1,
+  "item_tier_power": 1.25,
+  "item_value_multi": 1.25,
+  "bonus_effective_lvls": 2,
+  "announce_in_chat": false,
+  "is_unique_item": false,
+  "rarity_type": "GEAR",
+  "weight": 2000,
+  "text_format": "GREEN",
+  "higher_rar": "rare",
+  "guid": "uncommon"
+}

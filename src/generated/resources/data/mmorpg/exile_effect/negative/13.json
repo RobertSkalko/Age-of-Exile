@@ -1,0 +1,67 @@
+{
+  "id": "negative/13",
+  "one_of_a_kind_id": "",
+  "type": "negative",
+  "max_stacks": 1,
+  "tags": [
+    "negative",
+    "curse"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": 20.0,
+      "stat": "melee_dmg_received",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 20.0,
+      "stat": "magic_dmg_received",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 20.0,
+      "stat": "ranged_dmg_received",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -10.0,
+      "stat": "move_speed",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ],
+  "spell": {
+    "on_cast": [],
+    "entity_components": {
+      "default_entity_name": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:witch",
+                "motion": "None",
+                "radius": 0.5,
+                "particle_count": 2.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 20.0
+              }
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  }
+}

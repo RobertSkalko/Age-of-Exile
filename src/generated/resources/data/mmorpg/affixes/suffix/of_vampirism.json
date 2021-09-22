@@ -1,0 +1,26 @@
+{
+  "guid": "of_vampirism",
+  "loc_name": "Of Vampirism",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "weapon_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "suffix",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 5.0,
+      "stat": "lifesteal",
+      "type": "FLAT"
+    }
+  ]
+}

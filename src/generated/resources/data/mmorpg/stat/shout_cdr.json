@@ -1,0 +1,29 @@
+{
+  "ser": "data",
+  "id": "shout_cdr",
+  "ele": "Physical",
+  "effect": {
+    "order": 0,
+    "side": "Source",
+    "ifs": [
+      "spell_has_tag_shout"
+    ],
+    "effects": [
+      "decrease_cd_ticks_num"
+    ],
+    "events": [
+      "on_spell_stat_calc"
+    ]
+  },
+  "show": true,
+  "min": -1000.0,
+  "max": 50.0,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "SLOW",
+  "is_long": false,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

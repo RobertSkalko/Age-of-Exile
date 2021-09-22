@@ -1,0 +1,183 @@
+{
+  "max_lvl": 16,
+  "weight": 1000,
+  "identifier": "curse_of_agony",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "summon_at_sight",
+            "map": {
+              "entity_name": "default_entity_name",
+              "gravity": false,
+              "life_ticks": 1.0,
+              "proj_en": "mmorpg:spell_projectile",
+              "height": 0.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      }
+    ],
+    "entity_components": {
+      "block": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "sound",
+              "map": {
+                "volume": 1.0,
+                "sound": "minecraft:entity.wither_skeleton.hurt",
+                "pitch": 1.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 3.0
+              }
+            }
+          ],
+          "acts": [
+            {
+              "type": "damage",
+              "map": {
+                "value_calculation": "curse",
+                "element": "Elemental"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 3.0
+              }
+            }
+          ],
+          "acts": [
+            {
+              "type": "exile_effect",
+              "map": {
+                "exile_potion_id": "negative/13",
+                "potion_action": "GIVE_STACKS",
+                "count": 1.0,
+                "potion_dur": 300.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": [],
+          "per_entity_hit": [
+            {
+              "targets": [],
+              "acts": [
+                {
+                  "type": "particles_in_radius",
+                  "map": {
+                    "particle_type": "minecraft:smoke",
+                    "motion": "None",
+                    "radius": 0.3,
+                    "particle_count": 50.0,
+                    "height": 2.2
+                  }
+                }
+              ],
+              "ifs": [],
+              "en_preds": []
+            }
+          ]
+        }
+      ],
+      "default_entity_name": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "summon_block",
+              "map": {
+                "entity_name": "block",
+                "is_falling_block": false,
+                "block_fall_speed": 0.0,
+                "life_ticks": 1.0,
+                "block": "minecraft:air",
+                "find_surface": false
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  },
+  "config": {
+    "swing_arm": true,
+    "apply_cast_speed_to_cd": false,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": {
+      "min": 5.0,
+      "max": 10.0
+    },
+    "times_to_cast": 1,
+    "charges": 0,
+    "charge_regen": 0,
+    "imbues": 1,
+    "charge_name": "",
+    "cast_time_ticks": 20,
+    "cooldown_ticks": 600,
+    "style": "magic",
+    "tags": [
+      "area",
+      "curse"
+    ],
+    "cast_type": "NORMAL",
+    "scale_mana_cost_to_player_lvl": false
+  },
+  "manual_tip": true,
+  "disabled_dims": [],
+  "effect_tip": ""
+}

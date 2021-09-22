@@ -1,0 +1,15 @@
+{
+  "ser": "more_x_per_y",
+  "data": {
+    "id": "critical_damage_per_10_attack_speed",
+    "min": 0.0,
+    "max": 2.14748365E9,
+    "base": 0.0,
+    "perc": true,
+    "ele": "Physical",
+    "scale": "NONE",
+    "adder_stat": "attack_speed",
+    "add_to": "critical_damage",
+    "per_amount": 10
+  }
+}

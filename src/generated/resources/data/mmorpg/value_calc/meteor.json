@@ -1,0 +1,13 @@
+{
+  "stat_scalings": [],
+  "id": "meteor",
+  "base_scaling_type": "NORMAL",
+  "attack_scaling": {
+    "min": 0.75,
+    "max": 2.0
+  },
+  "base": {
+    "min": 0.0,
+    "max": 0.0
+  }
+}

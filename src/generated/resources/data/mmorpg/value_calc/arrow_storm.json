@@ -1,0 +1,13 @@
+{
+  "stat_scalings": [],
+  "id": "arrow_storm",
+  "base_scaling_type": "NORMAL",
+  "attack_scaling": {
+    "min": 0.3,
+    "max": 0.6
+  },
+  "base": {
+    "min": 0.0,
+    "max": 0.0
+  }
+}

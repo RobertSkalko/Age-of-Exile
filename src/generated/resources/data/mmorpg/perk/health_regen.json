@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "health_regen",
+  "icon": "mmorpg:textures/gui/stat_icons/main/health_regen.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 5.0,
+      "stat": "health_regen",
+      "type": "PERCENT",
+      "scale_to_lvl": false
+    }
+  ]
+}

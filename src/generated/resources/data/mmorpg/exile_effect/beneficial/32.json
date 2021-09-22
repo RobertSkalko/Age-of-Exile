@@ -1,0 +1,91 @@
+{
+  "id": "beneficial/32",
+  "one_of_a_kind_id": "",
+  "type": "beneficial",
+  "max_stacks": 1,
+  "tags": [
+    "positive",
+    "offensive"
+  ],
+  "mc_stats": [
+    {
+      "val": 1.0,
+      "uuid": "116a0931-d576-4721-b286-8d11de1ee42b",
+      "id": "minecraft:generic.knockback_resistance",
+      "type": "FLAT"
+    }
+  ],
+  "stats": [
+    {
+      "v1": 25.0,
+      "stat": "technique_cdr",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 25.0,
+      "stat": "technique_spell_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 25.0,
+      "stat": "critical_damage",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    }
+  ],
+  "spell": {
+    "on_cast": [],
+    "entity_components": {
+      "default_entity_name": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:smoke",
+                "motion": "None",
+                "radius": 0.5,
+                "particle_count": 2.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 1.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:large_smoke",
+                "motion": "None",
+                "radius": 0.1,
+                "particle_count": 1.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 1.0
+              }
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  }
+}

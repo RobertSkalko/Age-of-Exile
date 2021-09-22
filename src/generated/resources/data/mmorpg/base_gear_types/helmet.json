@@ -1,0 +1,36 @@
+{
+  "attacksPerSecond": 1.0,
+  "guid": "helmet",
+  "level_range": {
+    "start": 0.0,
+    "end": 1.0
+  },
+  "gear_slot": "helmet",
+  "weight": 1000,
+  "weapon_offhand_stat_util": 0,
+  "style": "melee",
+  "implicit_stats": [],
+  "base_stats": [
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "health",
+      "type": "FLAT"
+    },
+    {
+      "min": 3.0,
+      "max": 7.5,
+      "stat": "armor",
+      "type": "FLAT"
+    }
+  ],
+  "weapon_type": "none",
+  "tags": {
+    "tags": [
+      "armor_family",
+      "strength",
+      "helmet",
+      "armor_stat"
+    ]
+  }
+}

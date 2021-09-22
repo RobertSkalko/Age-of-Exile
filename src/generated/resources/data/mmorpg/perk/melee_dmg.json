@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "melee_dmg",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/melee_dmg.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 1.0,
+      "stat": "melee_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

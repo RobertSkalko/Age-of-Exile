@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "water_penetration",
+  "icon": "mmorpg:textures/gui/stat_icons/elemental/water_penetration.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 5.0,
+      "stat": "water_penetration",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

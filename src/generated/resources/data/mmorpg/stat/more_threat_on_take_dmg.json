@@ -1,0 +1,29 @@
+{
+  "ser": "data",
+  "id": "more_threat_on_take_dmg",
+  "ele": "Physical",
+  "effect": {
+    "order": 0,
+    "side": "Source",
+    "ifs": [
+      "threat_gen_type_is_take_dmg"
+    ],
+    "effects": [
+      "increase_number_num"
+    ],
+    "events": [
+      "on_gen_threat"
+    ]
+  },
+  "show": true,
+  "min": -1000.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "NONE",
+  "is_long": true,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

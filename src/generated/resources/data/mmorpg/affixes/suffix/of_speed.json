@@ -1,0 +1,26 @@
+{
+  "guid": "of_speed",
+  "loc_name": "Of Speed",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "melee_weapon"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "suffix",
+  "stats": [
+    {
+      "min": 5.0,
+      "max": 20.0,
+      "stat": "attack_speed",
+      "type": "FLAT"
+    }
+  ]
+}

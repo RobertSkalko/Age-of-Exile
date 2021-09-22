@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ses"
+  ],
+  "key": {
+    "e": {
+      "item": "minecraft:coal"
+    },
+    "s": {
+      "item": "minecraft:purple_dye"
+    }
+  },
+  "result": {
+    "item": "mmorpg:gear_mat/essences/arcana",
+    "count": 8
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "game_balance",
+  "MAX_LEVEL": 50,
+  "NORMAL_STAT_SCALING": {
+    "base_scaling": 1.0,
+    "per_level_scaling": 0.5,
+    "cap_to_max_lvl": true
+  },
+  "SLOW_STAT_SCALING": {
+    "base_scaling": 1.0,
+    "per_level_scaling": 0.01,
+    "cap_to_max_lvl": true
+  },
+  "MANA_COST_SCALING": {
+    "base_scaling": 1.0,
+    "per_level_scaling": 0.1,
+    "cap_to_max_lvl": true
+  },
+  "CORE_STAT_SCALING": {
+    "base_scaling": 1.0,
+    "per_level_scaling": 0.05,
+    "cap_to_max_lvl": true
+  },
+  "STAT_REQ_SCALING": {
+    "base_scaling": 2.0,
+    "per_level_scaling": 2.0,
+    "cap_to_max_lvl": true
+  },
+  "TALENT_POINTS_AT_MAX_LEVEL": 100.0,
+  "STAT_POINTS_PER_LEVEL": 2.0,
+  "SPELL_POINTS_PER_LEVEL": 2.0,
+  "STARTING_TALENT_POINTS": 1.0
+}

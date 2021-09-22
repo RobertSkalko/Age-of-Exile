@@ -1,0 +1,21 @@
+{
+  "type": "STAT",
+  "identifier": "spell_earth_damage_and_dot",
+  "icon": "mmorpg:textures/gui/stat_icons/elemental/spell_earth_damage.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 1.0,
+      "stat": "spell_earth_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 3.0,
+      "stat": "earth_dot_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

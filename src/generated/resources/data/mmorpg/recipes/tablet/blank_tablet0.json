@@ -1,0 +1,17 @@
+{
+  "type": "mmorpg:smithing_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:stone/1"
+    },
+    {
+      "item": "mmorpg:stone/1"
+    },
+    {
+      "item": "mmorpg:stone/1"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:tablet/blank_tablet0"
+  }
+}

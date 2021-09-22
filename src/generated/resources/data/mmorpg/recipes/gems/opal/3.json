@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:gems/opal/2"
+    },
+    {
+      "item": "mmorpg:gems/opal/2"
+    },
+    {
+      "item": "mmorpg:gems/opal/2"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:gems/opal/3"
+  }
+}

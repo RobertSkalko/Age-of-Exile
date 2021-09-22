@@ -1,0 +1,24 @@
+{
+  "id": "negative/12",
+  "one_of_a_kind_id": "",
+  "type": "negative",
+  "max_stacks": 1,
+  "tags": [
+    "negative"
+  ],
+  "mc_stats": [
+    {
+      "val": -25.0,
+      "uuid": "3fb10485-f309-468f-afc6-a23b0d6cf4c1",
+      "id": "minecraft:generic.movement_speed",
+      "type": "GLOBAL_INCREASE"
+    },
+    {
+      "val": -10.0,
+      "uuid": "00fb60a7-904b-462f-a7cb-a557f02e362e",
+      "id": "minecraft:generic.attack_speed",
+      "type": "GLOBAL_INCREASE"
+    }
+  ],
+  "stats": []
+}

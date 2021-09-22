@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "dex",
+  "icon": "mmorpg:textures/gui/stat_icons/core/dexterity.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 1.0,
+      "stat": "dexterity",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

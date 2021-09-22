@@ -1,0 +1,9 @@
+{
+  "on_armor_stats": [],
+  "on_jewelry_stats": [],
+  "on_weapons_stats": [],
+  "item_id": "mmorpg:runes/yun",
+  "identifier": "yun",
+  "tier": 5,
+  "weight": 100
+}

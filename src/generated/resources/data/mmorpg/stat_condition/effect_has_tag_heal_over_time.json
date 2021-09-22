@@ -1,0 +1,5 @@
+{
+  "tag": "heal_over_time",
+  "id": "effect_has_tag_heal_over_time",
+  "ser": "effect_has_tag"
+}

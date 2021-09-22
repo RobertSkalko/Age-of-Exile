@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ovo",
+    "vtv",
+    "ovo"
+  ],
+  "key": {
+    "t": {
+      "item": "mmorpg:currency/crystal_of_truth"
+    },
+    "v": {
+      "item": "mmorpg:gear_mat/essences/arcana"
+    },
+    "o": {
+      "item": "mmorpg:mat/salvage/salvage3"
+    }
+  },
+  "result": {
+    "item": "mmorpg:currency/crystal_of_purification"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "beneficial/33",
+  "one_of_a_kind_id": "",
+  "type": "beneficial",
+  "max_stacks": 1,
+  "tags": [
+    "positive",
+    "offensive"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": 25.0,
+      "stat": "spell_critical_damage",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 20.0,
+      "stat": "spell_damage",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    }
+  ]
+}

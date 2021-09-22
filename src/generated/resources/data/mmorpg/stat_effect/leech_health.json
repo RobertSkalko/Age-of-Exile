@@ -1,0 +1,11 @@
+{
+  "num_provider": {
+    "type": "perc_of_num",
+    "calc": "number"
+  },
+  "type": "health",
+  "side": "Source",
+  "restore_type": "leech",
+  "id": "leech_health",
+  "ser": "restore_resource"
+}

@@ -1,0 +1,31 @@
+{
+  "ser": "data",
+  "id": "increase_healing",
+  "ele": "All",
+  "effect": {
+    "order": 100,
+    "side": "Source",
+    "ifs": [
+      "is_spell",
+      "resource_type_is_health",
+      "restore_type_is_heal"
+    ],
+    "effects": [
+      "increase_number_num"
+    ],
+    "events": [
+      "on_spend_resource"
+    ]
+  },
+  "show": true,
+  "min": -1000.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "SLOW",
+  "is_long": false,
+  "icon": "❁",
+  "order": 100,
+  "format": "yellow",
+  "group": "RESTORATION"
+}

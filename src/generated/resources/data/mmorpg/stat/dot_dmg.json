@@ -1,0 +1,29 @@
+{
+  "ser": "data",
+  "id": "dot_dmg",
+  "ele": "All",
+  "effect": {
+    "order": 0,
+    "side": "Source",
+    "ifs": [
+      "attack_type_is_dot"
+    ],
+    "effects": [
+      "increase_number_num"
+    ],
+    "events": [
+      "on_damage"
+    ]
+  },
+  "show": true,
+  "min": -1000.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "SLOW",
+  "is_long": false,
+  "icon": "❁",
+  "order": 100,
+  "format": "red",
+  "group": "Misc"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "beneficial/19",
+  "one_of_a_kind_id": "",
+  "type": "beneficial",
+  "max_stacks": 3,
+  "tags": [
+    "positive",
+    "song",
+    "defensive"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": -5.0,
+      "stat": "melee_dmg_received",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -5.0,
+      "stat": "ranged_dmg_received",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -5.0,
+      "stat": "magic_dmg_received",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

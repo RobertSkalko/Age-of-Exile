@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "cdr",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/cdr.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "cdr",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

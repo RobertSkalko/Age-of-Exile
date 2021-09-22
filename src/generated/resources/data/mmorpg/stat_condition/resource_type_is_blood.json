@@ -1,0 +1,6 @@
+{
+  "string_id": "blood",
+  "string_key": "resource_type",
+  "id": "resource_type_is_blood",
+  "ser": "string_matches"
+}

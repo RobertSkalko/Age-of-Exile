@@ -1,0 +1,24 @@
+{
+  "weight": 1000,
+  "id": "favor",
+  "gods": [
+    "ocean",
+    "forge",
+    "hunt",
+    "wisdom",
+    "harvest"
+  ],
+  "pick_type": "ALWAYS_INCLUDE",
+  "type": "REWARDS",
+  "entries": [
+    "favor"
+  ],
+  "conditions": [
+    {
+      "id": "is_mod_loaded",
+      "map": {
+        "modid": "mmorpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "ghostly_shores",
+  "weight": 1000,
+  "unique_stats": [
+    {
+      "min": 5.0,
+      "max": 15.0,
+      "stat": "all_water_damage",
+      "type": "flat"
+    },
+    {
+      "min": 6.0,
+      "max": 10.0,
+      "stat": "dodge",
+      "type": "percent"
+    },
+    {
+      "min": 6.0,
+      "max": 15.0,
+      "stat": "mana_on_kill",
+      "type": "flat"
+    },
+    {
+      "min": 10.0,
+      "max": 15.0,
+      "stat": "critical_damage",
+      "type": "flat"
+    },
+    {
+      "min": 5.0,
+      "max": 10.0,
+      "stat": "cdr",
+      "type": "flat"
+    },
+    {
+      "min": -3.0,
+      "max": -6.0,
+      "stat": "vitality",
+      "type": "flat"
+    },
+    {
+      "min": 15.0,
+      "max": 25.0,
+      "stat": "bonus_regen_in_water",
+      "type": "flat"
+    }
+  ],
+  "base_stats": [],
+  "rarity": "unique",
+  "set": "",
+  "replaces_name": true,
+  "base_gear": "ring",
+  "filters": {
+    "list": []
+  }
+}

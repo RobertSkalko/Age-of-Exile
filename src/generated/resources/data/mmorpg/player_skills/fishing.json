@@ -1,0 +1,726 @@
+{
+  "type_enum": "FISHING",
+  "id": "fishing",
+  "exp_per_action": 50,
+  "order": 3,
+  "dropTables": [
+    {
+      "loot_chance_per_action_exp": 0.4,
+      "tag": "ink",
+      "req": "NONE",
+      "tier": "TIER0",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:ink/0",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.4,
+      "tag": "ink",
+      "req": "NONE",
+      "tier": "TIER1",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:ink/1",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.4,
+      "tag": "ink",
+      "req": "NONE",
+      "tier": "TIER2",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:ink/2",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.4,
+      "tag": "ink",
+      "req": "NONE",
+      "tier": "TIER3",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:ink/3",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.4,
+      "tag": "ink",
+      "req": "NONE",
+      "tier": "TIER4",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:ink/4",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "HOT_BIOME",
+      "tier": "TIER0",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/red/0",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "HOT_BIOME",
+      "tier": "TIER0",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/red/0",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "HOT_BIOME",
+      "tier": "TIER1",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/red/1",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "HOT_BIOME",
+      "tier": "TIER1",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/red/1",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "HOT_BIOME",
+      "tier": "TIER2",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/red/2",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "HOT_BIOME",
+      "tier": "TIER2",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/red/2",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "HOT_BIOME",
+      "tier": "TIER3",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/red/3",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "HOT_BIOME",
+      "tier": "TIER3",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/red/3",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "HOT_BIOME",
+      "tier": "TIER4",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/red/4",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "HOT_BIOME",
+      "tier": "TIER4",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/red/4",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "SWAMP_BIOME",
+      "tier": "TIER0",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/green/0",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "SWAMP_BIOME",
+      "tier": "TIER0",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/green/0",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "SWAMP_BIOME",
+      "tier": "TIER1",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/green/1",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "SWAMP_BIOME",
+      "tier": "TIER1",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/green/1",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "SWAMP_BIOME",
+      "tier": "TIER2",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/green/2",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "SWAMP_BIOME",
+      "tier": "TIER2",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/green/2",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "SWAMP_BIOME",
+      "tier": "TIER3",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/green/3",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "SWAMP_BIOME",
+      "tier": "TIER3",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/green/3",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "SWAMP_BIOME",
+      "tier": "TIER4",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/green/4",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "SWAMP_BIOME",
+      "tier": "TIER4",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/green/4",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "COLD_BIOME",
+      "tier": "TIER0",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/blue/0",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "COLD_BIOME",
+      "tier": "TIER0",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/blue/0",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "COLD_BIOME",
+      "tier": "TIER1",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/blue/1",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "COLD_BIOME",
+      "tier": "TIER1",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/blue/1",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "COLD_BIOME",
+      "tier": "TIER2",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/blue/2",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "COLD_BIOME",
+      "tier": "TIER2",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/blue/2",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "COLD_BIOME",
+      "tier": "TIER3",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/blue/3",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "COLD_BIOME",
+      "tier": "TIER3",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/blue/3",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.3,
+      "tag": "fish",
+      "req": "COLD_BIOME",
+      "tier": "TIER4",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/blue/4",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 0.1,
+      "tag": "fish",
+      "req": "COLD_BIOME",
+      "tier": "TIER4",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:raw_fish/blue/4",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    }
+  ],
+  "stat_rewards": [
+    {
+      "lvl_req": 5,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t1_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 15,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t2_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 25,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t3_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 35,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t4_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 45,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t5_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 10,
+      "stats": [
+        {
+          "v1": 2.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 2.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 20,
+      "stats": [
+        {
+          "v1": 3.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 3.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 30,
+      "stats": [
+        {
+          "v1": 4.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 4.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 40,
+      "stats": [
+        {
+          "v1": 5.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 5.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 50,
+      "stats": [
+        {
+          "v1": 5.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 5.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    }
+  ],
+  "mastery_stat_reward": [
+    {
+      "stats": [
+        {
+          "v1": 1.0,
+          "stat": "bonus_fishing_yield",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ],
+      "every_x_lvls": 10
+    }
+  ],
+  "block_break_exp": [],
+  "item_craft_exp": [],
+  "item_smelt_exp": []
+}

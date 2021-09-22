@@ -1,0 +1,29 @@
+{
+  "ser": "data",
+  "id": "lifesteal",
+  "ele": "All",
+  "effect": {
+    "order": 100,
+    "side": "Source",
+    "ifs": [
+      "attack_type_is_attack"
+    ],
+    "effects": [
+      "leech_health"
+    ],
+    "events": [
+      "on_damage"
+    ]
+  },
+  "show": true,
+  "min": 0.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "NONE",
+  "is_long": false,
+  "icon": "❁",
+  "order": 100,
+  "format": "red",
+  "group": "RESTORATION"
+}

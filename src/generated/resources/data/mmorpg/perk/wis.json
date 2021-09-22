@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "wis",
+  "icon": "mmorpg:textures/gui/stat_icons/core/wisdom.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 1.0,
+      "stat": "wisdom",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

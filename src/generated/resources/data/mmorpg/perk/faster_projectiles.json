@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "faster_projectiles",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/faster_projectiles.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "faster_projectiles",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "reflect",
+  "weight": 200,
+  "format": "GOLD",
+  "icon": "",
+  "stats": [
+    {
+      "min": 15.0,
+      "max": 15.0,
+      "stat": "damage_reflected",
+      "type": "flat"
+    }
+  ]
+}

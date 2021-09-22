@@ -1,0 +1,85 @@
+{
+  "max_lvl": 16,
+  "weight": 1000,
+  "identifier": "poisoned_weapons",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.illusioner.cast_spell",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [
+          {
+            "type": "aoe",
+            "map": {
+              "selection_type": "RADIUS",
+              "en_predicate": "allies",
+              "radius": 5.0
+            }
+          }
+        ],
+        "acts": [
+          {
+            "type": "exile_effect",
+            "map": {
+              "exile_potion_id": "beneficial/9",
+              "potion_action": "GIVE_STACKS",
+              "count": 1.0,
+              "potion_dur": 600.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      }
+    ],
+    "entity_components": {}
+  },
+  "config": {
+    "swing_arm": false,
+    "apply_cast_speed_to_cd": false,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": {
+      "min": 7.5,
+      "max": 15.0
+    },
+    "times_to_cast": 1,
+    "charges": 0,
+    "charge_regen": 0,
+    "imbues": 1,
+    "charge_name": "",
+    "cast_time_ticks": 0,
+    "cooldown_ticks": 3200,
+    "style": "ranged",
+    "tags": [
+      "damage"
+    ],
+    "cast_type": "NORMAL",
+    "scale_mana_cost_to_player_lvl": false
+  },
+  "manual_tip": true,
+  "disabled_dims": [],
+  "effect_tip": ""
+}

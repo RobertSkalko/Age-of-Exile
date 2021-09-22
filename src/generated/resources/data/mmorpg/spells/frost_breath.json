@@ -1,0 +1,127 @@
+{
+  "max_lvl": 16,
+  "weight": 1000,
+  "identifier": "frost_breath",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "projectile",
+            "map": {
+              "proj_speed": 2.0,
+              "item": "minecraft:air",
+              "entity_name": "default_entity_name",
+              "gravity": false,
+              "proj_count": 1.0,
+              "life_ticks": 20.0,
+              "is_silent": true,
+              "proj_en": "mmorpg:spell_projectile"
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "mmorpg:frost",
+              "motion": "CasterLook",
+              "shape": "CIRCLE",
+              "radius": 0.3,
+              "particle_count": 50.0,
+              "height": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      }
+    ],
+    "entity_components": {
+      "default_entity_name": [
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 1.5
+              }
+            }
+          ],
+          "acts": [
+            {
+              "type": "damage",
+              "map": {
+                "value_calculation": "breath",
+                "element": "Water"
+              }
+            },
+            {
+              "type": "set_on_cd",
+              "map": {
+                "cooldown_id": "breath",
+                "cooldown_ticks": 20.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "is_not_on_cd",
+              "map": {
+                "cooldown_id": "breath"
+              }
+            },
+            {
+              "type": "on_hit",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  },
+  "config": {
+    "swing_arm": false,
+    "apply_cast_speed_to_cd": false,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": {
+      "min": 1.0,
+      "max": 2.0
+    },
+    "times_to_cast": 1,
+    "charges": 0,
+    "charge_regen": 0,
+    "imbues": 1,
+    "charge_name": "",
+    "cast_time_ticks": 0,
+    "cooldown_ticks": 1,
+    "style": "magic",
+    "tags": [
+      "damage"
+    ],
+    "cast_type": "NORMAL",
+    "scale_mana_cost_to_player_lvl": false
+  },
+  "manual_tip": false,
+  "disabled_dims": [],
+  "effect_tip": ""
+}

@@ -1,0 +1,17 @@
+{
+  "type": "mmorpg:food_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:food/extract/green"
+    },
+    {
+      "item": "mmorpg:plant/plant1"
+    },
+    {
+      "item": "minecraft:melon"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:food/jam/green/0"
+  }
+}

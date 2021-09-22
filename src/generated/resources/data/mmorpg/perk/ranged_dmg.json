@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "ranged_dmg",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/ranged_dmg.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 1.0,
+      "stat": "ranged_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

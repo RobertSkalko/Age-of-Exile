@@ -1,0 +1,31 @@
+{
+  "attacksPerSecond": 1.5,
+  "guid": "axe",
+  "level_range": {
+    "start": 0.0,
+    "end": 1.0
+  },
+  "gear_slot": "axe",
+  "weight": 1000,
+  "weapon_offhand_stat_util": 15,
+  "style": "melee",
+  "implicit_stats": [],
+  "base_stats": [
+    {
+      "min": 1.25,
+      "max": 3.75,
+      "stat": "physical_weapon_damage",
+      "type": "FLAT"
+    }
+  ],
+  "weapon_type": "axe",
+  "tags": {
+    "tags": [
+      "warrior_casting_weapon",
+      "strength",
+      "weapon_family",
+      "melee_weapon",
+      "axe"
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "string_id": "leech",
+  "string_key": "restore_type",
+  "id": "restore_type_is_leech",
+  "ser": "string_matches"
+}

@@ -1,0 +1,13 @@
+{
+  "stat_scalings": [],
+  "id": "awaken_mana",
+  "base_scaling_type": "NORMAL",
+  "attack_scaling": {
+    "min": 0.0,
+    "max": 0.0
+  },
+  "base": {
+    "min": 20.0,
+    "max": 100.0
+  }
+}

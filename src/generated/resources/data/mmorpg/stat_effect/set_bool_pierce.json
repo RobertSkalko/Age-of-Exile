@@ -1,0 +1,6 @@
+{
+  "bool_id": "pierce",
+  "bool": true,
+  "id": "set_bool_pierce",
+  "ser": "set_bool"
+}

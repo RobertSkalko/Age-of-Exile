@@ -1,0 +1,24 @@
+{
+  "guid": "water_wep_dmg_dun",
+  "loc_name": "Freezing",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "dungeon_prefix",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 2.0,
+      "stat": "water_weapon_damage",
+      "type": "FLAT"
+    }
+  ]
+}

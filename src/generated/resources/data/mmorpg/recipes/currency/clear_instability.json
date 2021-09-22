@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ovo",
+    "vtv",
+    "ovo"
+  ],
+  "key": {
+    "t": {
+      "item": "mmorpg:currency/clear_sockets"
+    },
+    "v": {
+      "item": "mmorpg:mat/salvage/salvage4"
+    },
+    "o": {
+      "item": "mmorpg:mat/condensed_salvage/c4"
+    }
+  },
+  "result": {
+    "item": "mmorpg:currency/clear_instability"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "string_id": "reflect",
+  "string_key": "attack_type",
+  "id": "attack_type_is_reflect",
+  "ser": "string_matches"
+}

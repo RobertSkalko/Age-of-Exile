@@ -1,0 +1,38 @@
+{
+  "id": "azuna_ring",
+  "weight": 1000,
+  "unique_stats": [
+    {
+      "min": 10.0,
+      "max": 15.0,
+      "stat": "fire_resist",
+      "type": "flat"
+    },
+    {
+      "min": 10.0,
+      "max": 15.0,
+      "stat": "earth_resist",
+      "type": "flat"
+    },
+    {
+      "min": 5.0,
+      "max": 5.0,
+      "stat": "global_critical_hit_per_25_magic_find",
+      "type": "flat"
+    },
+    {
+      "min": 10.0,
+      "max": 10.0,
+      "stat": "global_critical_damage_per_25_increased_quantity",
+      "type": "flat"
+    }
+  ],
+  "base_stats": [],
+  "rarity": "unique",
+  "set": "",
+  "replaces_name": true,
+  "base_gear": "ring",
+  "filters": {
+    "list": []
+  }
+}

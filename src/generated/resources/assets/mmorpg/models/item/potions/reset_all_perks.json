@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mmorpg:items/potions/reset_all_perks"
+  }
+}

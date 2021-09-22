@@ -1,0 +1,6 @@
+{
+  "string_id": "energy",
+  "string_key": "resource_type",
+  "id": "resource_type_is_energy",
+  "ser": "string_matches"
+}

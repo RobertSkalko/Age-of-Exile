@@ -1,0 +1,26 @@
+{
+  "guid": "snakes",
+  "loc_name": "Snake\u0027s",
+  "only_one_per_item": true,
+  "weight": 50,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "weapon_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "prefix",
+  "stats": [
+    {
+      "min": 5.0,
+      "max": 10.0,
+      "stat": "chance_of_poison",
+      "type": "FLAT"
+    }
+  ]
+}

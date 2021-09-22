@@ -1,0 +1,50 @@
+{
+  "id": "winter_chill",
+  "weight": 1000,
+  "unique_stats": [
+    {
+      "min": 5.0,
+      "max": 10.0,
+      "stat": "health",
+      "type": "flat"
+    },
+    {
+      "min": 20.0,
+      "max": 40.0,
+      "stat": "water_resist",
+      "type": "flat"
+    },
+    {
+      "min": 10.0,
+      "max": 10.0,
+      "stat": "chance_of_chill",
+      "type": "flat"
+    },
+    {
+      "min": 10.0,
+      "max": 20.0,
+      "stat": "all_water_damage",
+      "type": "flat"
+    },
+    {
+      "min": 5.0,
+      "max": 15.0,
+      "stat": "mana",
+      "type": "percent"
+    },
+    {
+      "min": 5.0,
+      "max": 15.0,
+      "stat": "spell_critical_hit",
+      "type": "flat"
+    }
+  ],
+  "base_stats": [],
+  "rarity": "unique",
+  "set": "seasons_set",
+  "replaces_name": true,
+  "base_gear": "ring",
+  "filters": {
+    "list": []
+  }
+}

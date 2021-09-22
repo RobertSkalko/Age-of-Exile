@@ -1,0 +1,32 @@
+{
+  "socket_type": "tourmaline",
+  "text_format": "LIGHT_PURPLE",
+  "on_armor_stats": [
+    {
+      "min": 1.6,
+      "max": 3.2,
+      "stat": "health",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 0.64000005,
+      "max": 2.4,
+      "stat": "health_regen",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 3.2,
+      "max": 8.0,
+      "stat": "lifesteal",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/tourmaline/3",
+  "identifier": "tourmaline3",
+  "tier": 4,
+  "weight": 250
+}

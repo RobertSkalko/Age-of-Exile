@@ -1,0 +1,17 @@
+{
+  "type": "mmorpg:tablet_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "mmorpg:tablet/blank_tablet0"
+    },
+    {
+      "item": "mmorpg:ink/2"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:tablet/anti_gear_break"
+  }
+}

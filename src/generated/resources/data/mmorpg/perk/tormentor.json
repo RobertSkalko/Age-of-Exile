@@ -1,0 +1,21 @@
+{
+  "type": "MAJOR",
+  "identifier": "tormentor",
+  "icon": "mmorpg:textures/gui/stat_icons/game_changers/tormentor.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 35.0,
+      "stat": "dot_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -10.0,
+      "stat": "total_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

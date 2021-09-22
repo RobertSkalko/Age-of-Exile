@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "mmorpg:mat/salvage/salvage3"
+  },
+  "result": "mmorpg:mat/smelted/3",
+  "experience": 0.2,
+  "cookingtime": 200
+}

@@ -1,0 +1,5 @@
+{
+  "type": "trident",
+  "id": "is_trident_wep_type",
+  "ser": "wep_type_match"
+}

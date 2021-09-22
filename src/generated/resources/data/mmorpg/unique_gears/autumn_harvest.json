@@ -1,0 +1,56 @@
+{
+  "id": "autumn_harvest",
+  "weight": 1000,
+  "unique_stats": [
+    {
+      "min": 10.0,
+      "max": 20.0,
+      "stat": "earth_resist",
+      "type": "flat"
+    },
+    {
+      "min": 10.0,
+      "max": 20.0,
+      "stat": "fire_resist",
+      "type": "flat"
+    },
+    {
+      "min": 10.0,
+      "max": 20.0,
+      "stat": "water_resist",
+      "type": "flat"
+    },
+    {
+      "min": 25.0,
+      "max": 25.0,
+      "stat": "more_food_stats",
+      "type": "flat"
+    },
+    {
+      "min": 5.0,
+      "max": 10.0,
+      "stat": "armor",
+      "type": "percent"
+    },
+    {
+      "min": 5.0,
+      "max": 10.0,
+      "stat": "dodge",
+      "type": "percent"
+    },
+    {
+      "min": 2.0,
+      "max": 3.0,
+      "stat": "all_attributes",
+      "type": "flat"
+    }
+  ],
+  "base_stats": [],
+  "rarity": "unique",
+  "set": "seasons_set",
+  "replaces_name": true,
+  "base_gear": "ring",
+  "filters": {
+    "list": []
+  }
+}

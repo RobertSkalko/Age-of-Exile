@@ -1,0 +1,11 @@
+{
+  "num_provider": {
+    "type": "stat_data",
+    "calc": ""
+  },
+  "type": "health",
+  "side": "Source",
+  "restore_type": "leech",
+  "id": "restore_health_per_stat_data",
+  "ser": "restore_resource"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "beneficial/24",
+  "one_of_a_kind_id": "",
+  "type": "beneficial",
+  "max_stacks": 1,
+  "tags": [
+    "positive"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": -75.0,
+      "stat": "dmg_received",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 2.0,
+      "stat": "health_regen",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "attacksPerSecond": 1.0,
+  "guid": "bow",
+  "level_range": {
+    "start": 0.0,
+    "end": 1.0
+  },
+  "gear_slot": "bow",
+  "weight": 1000,
+  "weapon_offhand_stat_util": 0,
+  "style": "ranged",
+  "implicit_stats": [],
+  "base_stats": [
+    {
+      "min": 0.8,
+      "max": 2.4,
+      "stat": "physical_weapon_damage",
+      "type": "FLAT"
+    }
+  ],
+  "weapon_type": "bow",
+  "tags": {
+    "tags": [
+      "dexterity",
+      "ranger_casting_weapon",
+      "ranged_weapon",
+      "weapon_family",
+      "bow"
+    ]
+  }
+}

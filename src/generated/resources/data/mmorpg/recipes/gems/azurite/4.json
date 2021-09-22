@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:gems/azurite/3"
+    },
+    {
+      "item": "mmorpg:gems/azurite/3"
+    },
+    {
+      "item": "mmorpg:gems/azurite/3"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:gems/azurite/4"
+  }
+}

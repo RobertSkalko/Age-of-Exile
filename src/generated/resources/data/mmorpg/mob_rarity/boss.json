@@ -1,0 +1,16 @@
+{
+  "min_lvl": 20,
+  "loot_lvl_modifier": 1,
+  "dmg_multi": 2.4,
+  "extra_hp_multi": 10.0,
+  "stat_multi": 3.75,
+  "loot_multi": 6.0,
+  "exp_multi": 10.0,
+  "affixes": 2,
+  "name_add": "☠",
+  "rarity_type": "MOB",
+  "weight": 2,
+  "text_format": "RED",
+  "higher_rar": "",
+  "guid": "boss"
+}

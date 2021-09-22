@@ -1,0 +1,48 @@
+{
+  "id": "fire",
+  "spells": {
+    "draconic_blood": {
+      "x": 6,
+      "y": 4
+    },
+    "flame_strike": {
+      "x": 5,
+      "y": 0
+    },
+    "fire_weapon": {
+      "x": 7,
+      "y": 1
+    },
+    "meteor": {
+      "x": 2,
+      "y": 3
+    },
+    "fireball": {
+      "x": 0,
+      "y": 0
+    },
+    "overload": {
+      "x": 10,
+      "y": 5
+    },
+    "vamp_blood": {
+      "x": 5,
+      "y": 4
+    }
+  },
+  "synergies": {
+    "fireball_burn": {
+      "x": 0,
+      "y": 1
+    }
+  },
+  "lvl_reqs": [
+    1,
+    5,
+    10,
+    20,
+    30,
+    40,
+    50
+  ]
+}

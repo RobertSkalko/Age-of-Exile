@@ -1,0 +1,32 @@
+{
+  "ser": "data",
+  "id": "chance_of_burn_on_crit",
+  "ele": "Fire",
+  "effect": {
+    "order": 100,
+    "side": "Source",
+    "ifs": [
+      "is_crit_true",
+      "random_roll",
+      "ele_match_stat",
+      "is_attack_or_spell_attack"
+    ],
+    "effects": [
+      "give_negative/5_to_target"
+    ],
+    "events": [
+      "on_damage"
+    ]
+  },
+  "show": true,
+  "min": 0.0,
+  "max": 100.0,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "NONE",
+  "is_long": true,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

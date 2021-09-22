@@ -1,0 +1,13 @@
+{
+  "identifier": "lycanite_mobs",
+  "stats": {
+    "stats": []
+  },
+  "loot_multi": 1.2000000476837158,
+  "exp_multi": 1.2000000476837158,
+  "min_lvl": 1,
+  "max_lvl": 1000000,
+  "dmg_multi": 1.0,
+  "hp_multi": 1.0,
+  "stat_multi": 1.0
+}

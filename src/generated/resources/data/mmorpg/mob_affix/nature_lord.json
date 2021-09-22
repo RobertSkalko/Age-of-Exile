@@ -1,0 +1,38 @@
+{
+  "id": "nature_lord",
+  "weight": 250,
+  "format": "DARK_GREEN",
+  "icon": "§2✿",
+  "stats": [
+    {
+      "min": 15.0,
+      "max": 15.0,
+      "stat": "health",
+      "type": "flat"
+    },
+    {
+      "min": 5.0,
+      "max": 5.0,
+      "stat": "chance_of_poison",
+      "type": "flat"
+    },
+    {
+      "min": 75.0,
+      "max": 75.0,
+      "stat": "convert_earth_to_phys",
+      "type": "flat"
+    },
+    {
+      "min": 1.0,
+      "max": 1.0,
+      "stat": "earth_weapon_damage",
+      "type": "flat"
+    },
+    {
+      "min": 20.0,
+      "max": 20.0,
+      "stat": "extra_mob_drops",
+      "type": "flat"
+    }
+  ]
+}

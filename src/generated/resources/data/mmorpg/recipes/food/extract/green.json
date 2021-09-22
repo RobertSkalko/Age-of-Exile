@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:gear_mat/essences/nature"
+    },
+    {
+      "item": "mmorpg:gear_mat/essences/nature"
+    },
+    {
+      "item": "mmorpg:gear_mat/essences/nature"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:food/extract/green",
+    "count": 3
+  }
+}

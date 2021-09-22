@@ -1,0 +1,30 @@
+{
+  "id": "beneficial/17",
+  "one_of_a_kind_id": "",
+  "type": "beneficial",
+  "max_stacks": 1,
+  "tags": [
+    "positive"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": -10.0,
+      "stat": "cd_ticks",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 25.0,
+      "stat": "mana_cost",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": -25.0,
+      "stat": "move_speed",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

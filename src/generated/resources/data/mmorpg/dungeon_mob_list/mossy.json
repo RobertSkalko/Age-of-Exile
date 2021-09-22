@@ -1,0 +1,31 @@
+{
+  "id": "mossy",
+  "mobs": [
+    {
+      "weight": 1000,
+      "id": "minecraft:skeleton"
+    },
+    {
+      "weight": 1000,
+      "id": "minecraft:zombie"
+    },
+    {
+      "weight": 200,
+      "id": "minecraft:pillager"
+    },
+    {
+      "weight": 200,
+      "id": "minecraft:stray"
+    },
+    {
+      "weight": 50,
+      "id": "minecraft:witch"
+    }
+  ],
+  "bosses": [
+    {
+      "weight": 1000,
+      "id": "minecraft:wither_skeleton"
+    }
+  ]
+}

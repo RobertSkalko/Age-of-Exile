@@ -1,0 +1,25 @@
+{
+  "id": "beneficial/9",
+  "one_of_a_kind_id": "",
+  "type": "beneficial",
+  "max_stacks": 1,
+  "tags": [
+    "positive",
+    "offensive"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "earth_weapon_damage",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 20.0,
+      "stat": "chance_of_poison",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

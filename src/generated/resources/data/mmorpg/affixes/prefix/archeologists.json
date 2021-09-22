@@ -1,0 +1,26 @@
+{
+  "guid": "archeologists",
+  "loc_name": "Archeologist\u0027s",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "jewelry_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "prefix",
+  "stats": [
+    {
+      "min": 5.0,
+      "max": 15.0,
+      "stat": "magic_find",
+      "type": "FLAT"
+    }
+  ]
+}

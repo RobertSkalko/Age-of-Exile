@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:mat/salvage/salvage0"
+    },
+    {
+      "item": "mmorpg:mat/salvage/salvage0"
+    },
+    {
+      "item": "mmorpg:mat/salvage/salvage0"
+    },
+    {
+      "item": "mmorpg:mat/condensed_salvage/c0"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:seed/plant1",
+    "count": 9
+  }
+}

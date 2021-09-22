@@ -1,0 +1,6 @@
+{
+  "string_id": "health",
+  "string_key": "resource_type",
+  "id": "resource_type_is_health",
+  "ser": "string_matches"
+}

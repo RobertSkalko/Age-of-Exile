@@ -1,0 +1,23 @@
+{
+  "id": "undead",
+  "mobs": [
+    {
+      "weight": 1000,
+      "id": "minecraft:skeleton"
+    },
+    {
+      "weight": 1000,
+      "id": "minecraft:zombie"
+    },
+    {
+      "weight": 200,
+      "id": "minecraft:stray"
+    }
+  ],
+  "bosses": [
+    {
+      "weight": 1000,
+      "id": "minecraft:wither_skeleton"
+    }
+  ]
+}

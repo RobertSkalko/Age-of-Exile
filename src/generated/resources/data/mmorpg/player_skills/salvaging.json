@@ -1,0 +1,220 @@
+{
+  "type_enum": "SALVAGING",
+  "id": "salvaging",
+  "exp_per_action": 20,
+  "order": -1,
+  "dropTables": [],
+  "stat_rewards": [
+    {
+      "lvl_req": 5,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t1_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 15,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t2_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 25,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t3_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 35,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t4_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 45,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t5_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 10,
+      "stats": [
+        {
+          "v1": 2.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 2.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 20,
+      "stats": [
+        {
+          "v1": 3.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 3.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 30,
+      "stats": [
+        {
+          "v1": 4.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 4.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 40,
+      "stats": [
+        {
+          "v1": 5.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 5.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 50,
+      "stats": [
+        {
+          "v1": 5.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 5.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 10,
+      "stats": [
+        {
+          "v1": 5.0,
+          "stat": "bonus_salvaging_yield",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 20,
+      "stats": [
+        {
+          "v1": 10.0,
+          "stat": "bonus_salvaging_yield",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 30,
+      "stats": [
+        {
+          "v1": 10.0,
+          "stat": "bonus_salvaging_yield",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 40,
+      "stats": [
+        {
+          "v1": 15.0,
+          "stat": "bonus_salvaging_yield",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 50,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_salvaging_yield",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    }
+  ],
+  "mastery_stat_reward": [
+    {
+      "stats": [
+        {
+          "v1": 1.0,
+          "stat": "bonus_salvaging_yield",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ],
+      "every_x_lvls": 10
+    }
+  ],
+  "block_break_exp": [],
+  "item_craft_exp": [],
+  "item_smelt_exp": []
+}

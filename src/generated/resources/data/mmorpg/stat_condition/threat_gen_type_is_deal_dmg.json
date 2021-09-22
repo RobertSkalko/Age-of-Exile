@@ -1,0 +1,6 @@
+{
+  "string_id": "deal_dmg",
+  "string_key": "threat_gen_type",
+  "id": "threat_gen_type_is_deal_dmg",
+  "ser": "string_matches"
+}

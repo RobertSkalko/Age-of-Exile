@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:gems/emerald/1"
+    },
+    {
+      "item": "mmorpg:gems/emerald/1"
+    },
+    {
+      "item": "mmorpg:gems/emerald/1"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:gems/emerald/2"
+  }
+}

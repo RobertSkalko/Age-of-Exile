@@ -1,0 +1,27 @@
+{
+  "type": "MAJOR",
+  "identifier": "mantra",
+  "icon": "mmorpg:textures/gui/stat_icons/game_changers/mantra.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "physical_weapon_damage_per_perc_of_mana",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -10.0,
+      "stat": "attack_speed",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -25.0,
+      "stat": "critical_hit",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

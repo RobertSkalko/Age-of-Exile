@@ -1,0 +1,17 @@
+{
+  "type": "mmorpg:food_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:food/extract/purple"
+    },
+    {
+      "item": "mmorpg:plant/plant3"
+    },
+    {
+      "item": "minecraft:bread"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:food/meal/purple/2"
+  }
+}

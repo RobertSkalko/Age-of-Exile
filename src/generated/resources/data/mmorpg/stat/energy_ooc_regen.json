@@ -1,0 +1,30 @@
+{
+  "ser": "data",
+  "id": "energy_ooc_regen",
+  "ele": "Physical",
+  "effect": {
+    "order": 100,
+    "side": "Source",
+    "ifs": [
+      "restore_type_is_regen",
+      "is_in_combat_is_false"
+    ],
+    "effects": [
+      "add_stat_data_to_num"
+    ],
+    "events": [
+      "on_spend_resource"
+    ]
+  },
+  "show": true,
+  "min": -1000.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": false,
+  "scaling": "NORMAL",
+  "is_long": false,
+  "icon": "❁",
+  "order": 100,
+  "format": "yellow",
+  "group": "RESTORATION"
+}

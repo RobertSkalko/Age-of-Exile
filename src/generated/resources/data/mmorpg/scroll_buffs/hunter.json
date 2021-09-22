@@ -1,0 +1,18 @@
+{
+  "id": "hunter",
+  "weight": 1000,
+  "stats": [
+    {
+      "min": 10.0,
+      "max": 30.0,
+      "stat": "ranged_dmg",
+      "type": "FLAT"
+    },
+    {
+      "min": 10.0,
+      "max": 30.0,
+      "stat": "critical_damage",
+      "type": "PERCENT"
+    }
+  ]
+}

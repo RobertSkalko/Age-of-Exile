@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "v#v",
+    "vtv",
+    "ovo"
+  ],
+  "key": {
+    "#": {
+      "item": "mmorpg:mat/crystallized_essence"
+    },
+    "t": {
+      "item": "mmorpg:currency/reroll_affix_numbers"
+    },
+    "v": {
+      "item": "minecraft:coal"
+    },
+    "o": {
+      "item": "mmorpg:mat/salvage/salvage4"
+    }
+  },
+  "result": {
+    "item": "mmorpg:currency/number_reroll"
+  }
+}

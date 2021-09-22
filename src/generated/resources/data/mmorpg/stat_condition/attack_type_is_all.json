@@ -1,0 +1,6 @@
+{
+  "string_id": "all",
+  "string_key": "attack_type",
+  "id": "attack_type_is_all",
+  "ser": "string_matches"
+}

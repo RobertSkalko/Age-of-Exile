@@ -1,0 +1,6 @@
+{
+  "string_id": "regen",
+  "string_key": "restore_type",
+  "id": "restore_type_is_regen",
+  "ser": "string_matches"
+}

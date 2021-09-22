@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "spell_water_damage",
+  "icon": "mmorpg:textures/gui/stat_icons/elemental/spell_water_damage.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "spell_water_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

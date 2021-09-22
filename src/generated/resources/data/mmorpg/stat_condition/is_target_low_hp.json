@@ -1,0 +1,6 @@
+{
+  "side": "Target",
+  "perc": 30,
+  "id": "is_target_low_hp",
+  "ser": "is_hp_under"
+}

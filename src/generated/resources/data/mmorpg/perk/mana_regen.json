@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "mana_regen",
+  "icon": "mmorpg:textures/gui/stat_icons/main/mana_regen.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 5.0,
+      "stat": "mana_regen",
+      "type": "PERCENT",
+      "scale_to_lvl": false
+    }
+  ]
+}

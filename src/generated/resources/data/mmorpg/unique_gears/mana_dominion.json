@@ -1,0 +1,38 @@
+{
+  "id": "mana_dominion",
+  "weight": 1000,
+  "unique_stats": [
+    {
+      "min": 25.0,
+      "max": 50.0,
+      "stat": "mana",
+      "type": "percent"
+    },
+    {
+      "min": 3.0,
+      "max": 10.0,
+      "stat": "spell_critical_hit",
+      "type": "flat"
+    },
+    {
+      "min": -10.0,
+      "max": -25.0,
+      "stat": "health",
+      "type": "percent"
+    },
+    {
+      "min": 1.0,
+      "max": 10.0,
+      "stat": "mana_per_10_intelligence",
+      "type": "flat"
+    }
+  ],
+  "base_stats": [],
+  "rarity": "unique",
+  "set": "",
+  "replaces_name": true,
+  "base_gear": "helmet",
+  "filters": {
+    "list": []
+  }
+}

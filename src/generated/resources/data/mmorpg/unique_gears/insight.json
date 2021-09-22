@@ -1,0 +1,32 @@
+{
+  "id": "insight",
+  "weight": 0,
+  "unique_stats": [
+    {
+      "min": 20.0,
+      "max": 30.0,
+      "stat": "mana_regen",
+      "type": "percent"
+    },
+    {
+      "min": 10.0,
+      "max": 25.0,
+      "stat": "mana",
+      "type": "flat"
+    },
+    {
+      "min": 10.0,
+      "max": 25.0,
+      "stat": "fire_resist",
+      "type": "flat"
+    }
+  ],
+  "base_stats": [],
+  "rarity": "runeword",
+  "set": "",
+  "replaces_name": true,
+  "base_gear": "helmet",
+  "filters": {
+    "list": []
+  }
+}

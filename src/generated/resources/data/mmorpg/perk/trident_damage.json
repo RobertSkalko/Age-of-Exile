@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "trident_damage",
+  "icon": "mmorpg:textures/gui/stat_icons/weapon/trident_damage.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 2.0,
+      "stat": "trident_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

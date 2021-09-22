@@ -1,0 +1,32 @@
+{
+  "socket_type": "opal",
+  "text_format": "GOLD",
+  "on_armor_stats": [
+    {
+      "min": 1.8,
+      "max": 5.3999996,
+      "stat": "armor",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 3.6,
+      "max": 10.799999,
+      "stat": "critical_hit",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 5.3999996,
+      "max": 18.0,
+      "stat": "critical_damage",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/opal/4",
+  "identifier": "opal4",
+  "tier": 5,
+  "weight": 50
+}

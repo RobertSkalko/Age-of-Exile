@@ -1,0 +1,186 @@
+{
+  "type_enum": "FARMING",
+  "id": "farming",
+  "exp_per_action": 0,
+  "order": 2,
+  "dropTables": [],
+  "stat_rewards": [
+    {
+      "lvl_req": 5,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t1_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 15,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t2_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 25,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t3_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 35,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t4_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 45,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t5_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 10,
+      "stats": [
+        {
+          "v1": 2.0,
+          "stat": "health_regen",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 2.0,
+          "stat": "mana_regen",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 20,
+      "stats": [
+        {
+          "v1": 4.0,
+          "stat": "health_regen",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 4.0,
+          "stat": "mana_regen",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 30,
+      "stats": [
+        {
+          "v1": 6.0,
+          "stat": "health_regen",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 6.0,
+          "stat": "mana_regen",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 40,
+      "stats": [
+        {
+          "v1": 8.0,
+          "stat": "health_regen",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 8.0,
+          "stat": "mana_regen",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 50,
+      "stats": [
+        {
+          "v1": 10.0,
+          "stat": "health_regen",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 10.0,
+          "stat": "mana_regen",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    }
+  ],
+  "mastery_stat_reward": [
+    {
+      "stats": [
+        {
+          "v1": 1.0,
+          "stat": "bonus_farming_yield",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ],
+      "every_x_lvls": 10
+    }
+  ],
+  "block_break_exp": [
+    {
+      "exp": 45.0,
+      "block_id": "mmorpg:plant3"
+    },
+    {
+      "exp": 15.0,
+      "block_id": "mmorpg:plant1"
+    },
+    {
+      "exp": 30.0,
+      "block_id": "mmorpg:plant2"
+    },
+    {
+      "exp": 75.0,
+      "block_id": "mmorpg:plant5"
+    },
+    {
+      "exp": 60.0,
+      "block_id": "mmorpg:plant4"
+    }
+  ],
+  "item_craft_exp": [],
+  "item_smelt_exp": []
+}

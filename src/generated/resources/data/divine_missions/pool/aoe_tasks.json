@@ -1,0 +1,31 @@
+{
+  "weight": 250,
+  "id": "aoe_tasks",
+  "gods": [
+    "ocean",
+    "forge",
+    "hunt",
+    "wisdom",
+    "harvest"
+  ],
+  "pick_type": "PICK_ONE",
+  "type": "TASKS",
+  "entries": [
+    "complete_dungeon"
+  ],
+  "conditions": [
+    {
+      "id": "is_mod_loaded",
+      "map": {
+        "modid": "mmorpg"
+      }
+    },
+    {
+      "id": "aoe_level",
+      "map": {
+        "min": "25",
+        "max": "2147483647"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "heroic",
+  "hp_multi": 1.5,
+  "dmg_multi": 1.5,
+  "stat_multi": 1.25,
+  "loot_multi": 1.25,
+  "higher_rar_chance": 10.0,
+  "req_player_lvl": 25,
+  "deaths_allowed": 4,
+  "death_favor_penalty": -20,
+  "rank": 1
+}

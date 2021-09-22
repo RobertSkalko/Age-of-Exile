@@ -1,0 +1,30 @@
+{
+  "guid": "earth_ele_mobs",
+  "loc_name": "Of Diseases",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "dungeon_suffix",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 2.0,
+      "stat": "earth_weapon_damage",
+      "type": "FLAT"
+    },
+    {
+      "min": 20.0,
+      "max": 30.0,
+      "stat": "earth_resist",
+      "type": "FLAT"
+    }
+  ]
+}

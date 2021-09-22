@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:gear_mat/essences/life"
+    },
+    {
+      "item": "mmorpg:gear_mat/essences/life"
+    },
+    {
+      "item": "mmorpg:gear_mat/essences/life"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:food/extract/red",
+    "count": 3
+  }
+}

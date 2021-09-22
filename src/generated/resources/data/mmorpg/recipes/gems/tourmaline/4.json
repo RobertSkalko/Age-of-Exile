@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:gems/tourmaline/3"
+    },
+    {
+      "item": "mmorpg:gems/tourmaline/3"
+    },
+    {
+      "item": "mmorpg:gems/tourmaline/3"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:gems/tourmaline/4"
+  }
+}

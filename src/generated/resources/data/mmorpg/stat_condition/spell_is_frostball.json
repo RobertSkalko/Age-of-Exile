@@ -1,0 +1,6 @@
+{
+  "string_id": "frostball",
+  "string_key": "spell",
+  "id": "spell_is_frostball",
+  "ser": "string_matches"
+}

@@ -1,0 +1,17 @@
+{
+  "type": "mmorpg:food_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:food/extract/red"
+    },
+    {
+      "item": "mmorpg:plant/plant1"
+    },
+    {
+      "item": "minecraft:cookie"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:food/cookie/red/0"
+  }
+}

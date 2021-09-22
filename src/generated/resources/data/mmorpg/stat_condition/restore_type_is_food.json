@@ -1,0 +1,6 @@
+{
+  "string_id": "food",
+  "string_key": "restore_type",
+  "id": "restore_type_is_food",
+  "ser": "string_matches"
+}

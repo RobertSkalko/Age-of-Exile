@@ -1,0 +1,10 @@
+{
+  "weight": 1000,
+  "id": "aoe_exp",
+  "worth": 4,
+  "worth_type": "default",
+  "type": "give_age_of_exile_exp",
+  "data": "",
+  "min": 20,
+  "max": 50
+}

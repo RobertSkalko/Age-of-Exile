@@ -1,0 +1,12 @@
+{
+  "id": "cold_dmg",
+  "weight": 1000,
+  "stats": [
+    {
+      "min": 10.0,
+      "max": 50.0,
+      "stat": "all_water_damage",
+      "type": "FLAT"
+    }
+  ]
+}

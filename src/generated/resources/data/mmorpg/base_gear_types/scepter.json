@@ -1,0 +1,38 @@
+{
+  "attacksPerSecond": 1.2,
+  "guid": "scepter",
+  "level_range": {
+    "start": 0.0,
+    "end": 1.0
+  },
+  "gear_slot": "scepter",
+  "weight": 1000,
+  "weapon_offhand_stat_util": 0,
+  "style": "magic",
+  "implicit_stats": [
+    {
+      "min": 3.0,
+      "max": 10.0,
+      "stat": "increase_healing",
+      "type": "FLAT"
+    }
+  ],
+  "base_stats": [
+    {
+      "min": 0.9,
+      "max": 2.6999998,
+      "stat": "physical_weapon_damage",
+      "type": "FLAT"
+    }
+  ],
+  "weapon_type": "scepter",
+  "tags": {
+    "tags": [
+      "scepter",
+      "mage_weapon",
+      "weapon_family",
+      "melee_weapon",
+      "intelligence"
+    ]
+  }
+}

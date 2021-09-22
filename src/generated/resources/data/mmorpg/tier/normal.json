@@ -1,0 +1,12 @@
+{
+  "id": "normal",
+  "hp_multi": 1.0,
+  "dmg_multi": 1.0,
+  "stat_multi": 1.0,
+  "loot_multi": 1.0,
+  "higher_rar_chance": 0.0,
+  "req_player_lvl": 0,
+  "deaths_allowed": 5,
+  "death_favor_penalty": -10,
+  "rank": 0
+}

@@ -1,0 +1,13 @@
+{
+  "id": "fireball_burn",
+  "spell_id": "fireball",
+  "maxlvl": 8,
+  "stats": [
+    {
+      "min": 5.0,
+      "max": 20.0,
+      "stat": "fireball_chance_of_negative/5",
+      "type": "FLAT"
+    }
+  ]
+}

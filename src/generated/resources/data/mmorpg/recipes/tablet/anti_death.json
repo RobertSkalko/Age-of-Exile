@@ -1,0 +1,17 @@
+{
+  "type": "mmorpg:tablet_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:enchanted_golden_apple"
+    },
+    {
+      "item": "mmorpg:tablet/blank_tablet1"
+    },
+    {
+      "item": "mmorpg:ink/4"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:tablet/anti_death"
+  }
+}

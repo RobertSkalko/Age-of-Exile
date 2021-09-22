@@ -1,0 +1,32 @@
+{
+  "socket_type": "sapphire",
+  "text_format": "BLUE",
+  "on_armor_stats": [
+    {
+      "min": 5.6,
+      "max": 16.8,
+      "stat": "water_resist",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 5.6,
+      "max": 11.2,
+      "stat": "spell_water_damage",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 2.8,
+      "max": 21.0,
+      "stat": "all_water_damage",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/sapphire/2",
+  "identifier": "sapphire2",
+  "tier": 3,
+  "weight": 1000
+}

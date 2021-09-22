@@ -1,0 +1,30 @@
+{
+  "ser": "data",
+  "id": "frostball_chance_of_negative/2",
+  "ele": "Water",
+  "effect": {
+    "order": 100,
+    "side": "Source",
+    "ifs": [
+      "random_roll",
+      "spell_is_frostball"
+    ],
+    "effects": [
+      "give_negative/2_to_target"
+    ],
+    "events": [
+      "on_damage"
+    ]
+  },
+  "show": true,
+  "min": 0.0,
+  "max": 100.0,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "NONE",
+  "is_long": true,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

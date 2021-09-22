@@ -1,0 +1,9 @@
+{
+  "rarities": [
+    "uncommon",
+    "common",
+    "rare",
+    "epic"
+  ],
+  "id": "non_unique"
+}

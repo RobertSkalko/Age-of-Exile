@@ -1,0 +1,246 @@
+{
+  "type_enum": "EXPLORATION",
+  "id": "exploration",
+  "exp_per_action": 0,
+  "order": 4,
+  "dropTables": [
+    {
+      "loot_chance_per_action_exp": 1.0,
+      "tag": "",
+      "req": "NONE",
+      "tier": "TIER0",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:locked_chest/0",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 1.0,
+      "tag": "",
+      "req": "NONE",
+      "tier": "TIER1",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:locked_chest/1",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 1.0,
+      "tag": "",
+      "req": "NONE",
+      "tier": "TIER2",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:locked_chest/2",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 1.0,
+      "tag": "",
+      "req": "NONE",
+      "tier": "TIER3",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:locked_chest/3",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "loot_chance_per_action_exp": 1.0,
+      "tag": "",
+      "req": "NONE",
+      "tier": "TIER4",
+      "drop_rewards": [
+        {
+          "weight": 100,
+          "item_id": "mmorpg:locked_chest/4",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
+        }
+      ]
+    }
+  ],
+  "stat_rewards": [
+    {
+      "lvl_req": 5,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t1_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 15,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t2_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 25,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t3_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 35,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t4_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 45,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t5_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 10,
+      "stats": [
+        {
+          "v1": 2.0,
+          "stat": "bonus_favor",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 2.0,
+          "stat": "magic_find",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 20,
+      "stats": [
+        {
+          "v1": 2.0,
+          "stat": "bonus_favor",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 2.0,
+          "stat": "magic_find",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 30,
+      "stats": [
+        {
+          "v1": 3.0,
+          "stat": "bonus_favor",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 3.0,
+          "stat": "magic_find",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 40,
+      "stats": [
+        {
+          "v1": 4.0,
+          "stat": "bonus_favor",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 4.0,
+          "stat": "magic_find",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 50,
+      "stats": [
+        {
+          "v1": 5.0,
+          "stat": "bonus_favor",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 5.0,
+          "stat": "magic_find",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    }
+  ],
+  "mastery_stat_reward": [
+    {
+      "stats": [
+        {
+          "v1": 1.0,
+          "stat": "bonus_exploration_yield",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ],
+      "every_x_lvls": 10
+    }
+  ],
+  "block_break_exp": [],
+  "item_craft_exp": [],
+  "item_smelt_exp": []
+}

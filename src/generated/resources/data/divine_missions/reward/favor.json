@@ -1,0 +1,10 @@
+{
+  "weight": 5000,
+  "id": "favor",
+  "worth": 25,
+  "worth_type": "aoe",
+  "type": "give_age_of_exile_favor",
+  "data": "",
+  "min": 5,
+  "max": 15
+}

@@ -1,0 +1,17 @@
+{
+  "type": "mmorpg:tablet_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:black_dye"
+    },
+    {
+      "item": "mmorpg:tablet/blank_tablet0"
+    },
+    {
+      "item": "mmorpg:ink/1"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:tablet/anti_wither"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "negative/19",
+  "one_of_a_kind_id": "",
+  "type": "negative",
+  "max_stacks": 3,
+  "tags": [
+    "negative"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": -25.0,
+      "stat": "armor",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": -3.0,
+      "stat": "elemental_resist",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": -5.0,
+      "stat": "armor",
+      "type": "PERCENT",
+      "scale_to_lvl": true
+    }
+  ]
+}

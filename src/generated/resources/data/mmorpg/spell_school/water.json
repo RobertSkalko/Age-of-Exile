@@ -1,0 +1,56 @@
+{
+  "id": "water",
+  "spells": {
+    "water_breath": {
+      "x": 10,
+      "y": 1
+    },
+    "frost_armor": {
+      "x": 7,
+      "y": 1
+    },
+    "frostball": {
+      "x": 0,
+      "y": 0
+    },
+    "tidal_strike": {
+      "x": 4,
+      "y": 0
+    },
+    "ice_weapon": {
+      "x": 10,
+      "y": 2
+    },
+    "chilling_field": {
+      "x": 5,
+      "y": 2
+    },
+    "frost_nova": {
+      "x": 2,
+      "y": 1
+    },
+    "mage_circle": {
+      "x": 10,
+      "y": 4
+    },
+    "nourishment": {
+      "x": 7,
+      "y": 3
+    }
+  },
+  "synergies": {
+    "frostball_chill": {
+      "x": 0,
+      "y": 1
+    }
+  },
+  "lvl_reqs": [
+    1,
+    5,
+    10,
+    20,
+    30,
+    40,
+    50
+  ]
+}

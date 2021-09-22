@@ -1,0 +1,7 @@
+{
+  "remove_from": "Source",
+  "effect": "negative/8",
+  "stacks": 1,
+  "id": "give_negative/8_to_source",
+  "ser": "remove_exile_effect"
+}

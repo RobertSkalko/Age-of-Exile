@@ -1,0 +1,8 @@
+{
+  "ifs": [
+    "is_crossbow_wep_type",
+    "is_bow_wep_type"
+  ],
+  "id": "is_ranged_weapon",
+  "ser": "either_is_true"
+}

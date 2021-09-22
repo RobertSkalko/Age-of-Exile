@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " v ",
+    "vtv",
+    " b "
+  ],
+  "key": {
+    "t": {
+      "item": "mmorpg:mat/salvage/salvage0"
+    },
+    "v": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "item": "mmorpg:potions/add_reset_perk_points"
+  }
+}

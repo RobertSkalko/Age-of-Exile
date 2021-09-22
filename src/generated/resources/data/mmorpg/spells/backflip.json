@@ -1,0 +1,112 @@
+{
+  "max_lvl": 16,
+  "weight": 1000,
+  "identifier": "backflip",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [
+          {
+            "type": "self",
+            "map": {}
+          }
+        ],
+        "acts": [
+          {
+            "type": "motion",
+            "map": {
+              "set_add": "SET",
+              "motion": "CasterLook",
+              "push_str": -1.5,
+              "ignore_y": true
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [
+          {
+            "type": "self",
+            "map": {}
+          }
+        ],
+        "acts": [
+          {
+            "type": "motion",
+            "map": {
+              "set_add": "ADD",
+              "motion": "Upwards",
+              "push_str": 0.5
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [
+          {
+            "type": "self",
+            "map": {}
+          }
+        ],
+        "acts": [
+          {
+            "type": "exile_effect",
+            "map": {
+              "exile_potion_id": "beneficial/30",
+              "potion_action": "GIVE_STACKS",
+              "count": 1.0,
+              "potion_dur": 60.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      }
+    ],
+    "entity_components": {}
+  },
+  "config": {
+    "swing_arm": false,
+    "apply_cast_speed_to_cd": false,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": {
+      "min": 1.5,
+      "max": 3.0
+    },
+    "times_to_cast": 1,
+    "charges": 0,
+    "charge_regen": 0,
+    "imbues": 1,
+    "charge_name": "",
+    "cast_time_ticks": 0,
+    "cooldown_ticks": 500,
+    "style": "ranged",
+    "tags": [
+      "technique"
+    ],
+    "cast_type": "NORMAL",
+    "scale_mana_cost_to_player_lvl": false
+  },
+  "manual_tip": true,
+  "disabled_dims": [],
+  "effect_tip": ""
+}

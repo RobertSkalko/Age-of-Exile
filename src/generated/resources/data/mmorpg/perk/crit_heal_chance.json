@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "crit_heal_chance",
+  "icon": "mmorpg:textures/gui/stat_icons/main/crit_heal_chance.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 2.0,
+      "stat": "crit_heal_chance",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

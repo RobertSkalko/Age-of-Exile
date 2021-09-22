@@ -1,0 +1,29 @@
+{
+  "ser": "data",
+  "id": "inc_effect_of_food_buff_given",
+  "ele": "Physical",
+  "effect": {
+    "order": 0,
+    "side": "Source",
+    "ifs": [
+      "effect_has_tag_food"
+    ],
+    "effects": [
+      "increase_number_num"
+    ],
+    "events": [
+      "on_exile_effect"
+    ]
+  },
+  "show": true,
+  "min": -1000.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "NONE",
+  "is_long": true,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

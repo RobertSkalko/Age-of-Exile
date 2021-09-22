@@ -1,0 +1,21 @@
+{
+  "attacksPerSecond": 1.0,
+  "guid": "ring",
+  "level_range": {
+    "start": 0.0,
+    "end": 1.0
+  },
+  "gear_slot": "ring",
+  "weight": 1000,
+  "weapon_offhand_stat_util": 0,
+  "style": "melee",
+  "implicit_stats": [],
+  "base_stats": [],
+  "weapon_type": "none",
+  "tags": {
+    "tags": [
+      "ring",
+      "jewelry_family"
+    ]
+  }
+}

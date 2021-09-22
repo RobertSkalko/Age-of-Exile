@@ -1,0 +1,27 @@
+{
+  "type": "MAJOR",
+  "identifier": "harmony",
+  "icon": "mmorpg:textures/gui/stat_icons/game_changers/harmony.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 20.0,
+      "stat": "health",
+      "type": "PERCENT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 20.0,
+      "stat": "mana",
+      "type": "PERCENT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -10.0,
+      "stat": "total_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

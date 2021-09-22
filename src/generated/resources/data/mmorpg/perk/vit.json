@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "vit",
+  "icon": "mmorpg:textures/gui/stat_icons/core/vitality.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 1.0,
+      "stat": "vitality",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

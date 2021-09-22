@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:gear_mat/essences/arcana"
+    },
+    {
+      "item": "mmorpg:gear_mat/essences/arcana"
+    },
+    {
+      "item": "mmorpg:gear_mat/essences/arcana"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:food/extract/purple",
+    "count": 3
+  }
+}

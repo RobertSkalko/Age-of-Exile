@@ -1,0 +1,17 @@
+{
+  "type": "mmorpg:tablet_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:spider_eye"
+    },
+    {
+      "item": "mmorpg:tablet/blank_tablet0"
+    },
+    {
+      "item": "mmorpg:ink/0"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:tablet/anti_poison"
+  }
+}

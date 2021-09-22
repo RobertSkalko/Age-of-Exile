@@ -1,0 +1,9 @@
+{
+  "on_armor_stats": [],
+  "on_jewelry_stats": [],
+  "on_weapons_stats": [],
+  "item_id": "mmorpg:runes/wir",
+  "identifier": "wir",
+  "tier": 4,
+  "weight": 200
+}

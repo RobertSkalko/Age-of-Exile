@@ -1,0 +1,32 @@
+{
+  "socket_type": "opal",
+  "text_format": "GOLD",
+  "on_armor_stats": [
+    {
+      "min": 1.2,
+      "max": 3.6000001,
+      "stat": "armor",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 2.4,
+      "max": 7.2000003,
+      "stat": "critical_hit",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 3.6000001,
+      "max": 12.0,
+      "stat": "critical_damage",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/opal/1",
+  "identifier": "opal1",
+  "tier": 2,
+  "weight": 5000
+}

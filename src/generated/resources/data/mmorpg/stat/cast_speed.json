@@ -1,0 +1,30 @@
+{
+  "ser": "data",
+  "id": "cast_speed",
+  "ele": "Physical",
+  "effect": {
+    "order": 0,
+    "side": "Source",
+    "ifs": [
+      "style_is_magic"
+    ],
+    "effects": [
+      "decrease_cast_ticks_num",
+      "apply_cd_as_cast_time"
+    ],
+    "events": [
+      "on_spell_stat_calc"
+    ]
+  },
+  "show": true,
+  "min": -75.0,
+  "max": 75.0,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "SLOW",
+  "is_long": false,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

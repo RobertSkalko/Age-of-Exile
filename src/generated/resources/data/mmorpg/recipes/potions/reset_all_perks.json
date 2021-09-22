@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cvc",
+    "vtv",
+    "cbc"
+  ],
+  "key": {
+    "t": {
+      "item": "mmorpg:mat/salvage/salvage0"
+    },
+    "v": {
+      "item": "minecraft:gold_ingot"
+    },
+    "b": {
+      "item": "minecraft:glass_bottle"
+    },
+    "c": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "mmorpg:potions/reset_all_perks"
+  }
+}

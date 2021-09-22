@@ -1,0 +1,13 @@
+{
+  "identifier": "other",
+  "stats": {
+    "stats": []
+  },
+  "loot_multi": 0.0,
+  "exp_multi": 0.0,
+  "min_lvl": 1,
+  "max_lvl": 1000000,
+  "dmg_multi": 1.0,
+  "hp_multi": 1.0,
+  "stat_multi": 1.0
+}

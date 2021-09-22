@@ -1,0 +1,21 @@
+{
+  "stat_scalings": [
+    {
+      "stat": "health",
+      "multi": {
+        "min": 0.05,
+        "max": 0.1
+      }
+    }
+  ],
+  "id": "taunt",
+  "base_scaling_type": "NORMAL",
+  "attack_scaling": {
+    "min": 0.0,
+    "max": 0.0
+  },
+  "base": {
+    "min": 0.0,
+    "max": 0.0
+  }
+}

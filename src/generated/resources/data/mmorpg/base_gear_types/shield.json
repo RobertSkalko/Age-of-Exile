@@ -1,0 +1,36 @@
+{
+  "attacksPerSecond": 1.0,
+  "guid": "shield",
+  "level_range": {
+    "start": 0.0,
+    "end": 1.0
+  },
+  "gear_slot": "shield",
+  "weight": 1000,
+  "weapon_offhand_stat_util": 0,
+  "style": "melee",
+  "implicit_stats": [],
+  "base_stats": [
+    {
+      "min": 6.0,
+      "max": 12.0,
+      "stat": "armor",
+      "type": "FLAT"
+    },
+    {
+      "min": -25.0,
+      "max": -25.0,
+      "stat": "magic_dmg",
+      "type": "FLAT"
+    }
+  ],
+  "weapon_type": "none",
+  "tags": {
+    "tags": [
+      "shield",
+      "strength",
+      "offhand_family",
+      "armor_stat"
+    ]
+  }
+}

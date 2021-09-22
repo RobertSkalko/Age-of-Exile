@@ -1,0 +1,21 @@
+{
+  "id": "none",
+  "min": -2147483647,
+  "rank": 0,
+  "drop_unique_gears": false,
+  "drop_runes": false,
+  "drop_gems": false,
+  "drop_currency": false,
+  "drop_lvl_rewards": false,
+  "extra_item_favor_cost": 1.0,
+  "extra_items_per_boss": 0,
+  "extra_items_per_chest": 0,
+  "can_salvage_loot": false,
+  "exp_multi": 0.25,
+  "favor_drain_per_item": 0.0,
+  "text_format": "red",
+  "excludedRarities": [
+    "epic",
+    "rare"
+  ]
+}

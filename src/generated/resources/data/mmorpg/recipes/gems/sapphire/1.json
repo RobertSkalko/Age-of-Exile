@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:gems/sapphire/0"
+    },
+    {
+      "item": "mmorpg:gems/sapphire/0"
+    },
+    {
+      "item": "mmorpg:gems/sapphire/0"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:gems/sapphire/1"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:ink/3"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "mmorpg:mat/condensed_salvage/c3"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:essence_ink/3"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "ifs": [
+    "is_none_wep_type",
+    "is_axe_wep_type",
+    "is_staff_wep_type",
+    "is_sword_wep_type",
+    "is_scepter_wep_type"
+  ],
+  "id": "is_melee_weapon",
+  "ser": "either_is_true"
+}

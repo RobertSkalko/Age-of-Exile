@@ -1,0 +1,190 @@
+{
+  "type_enum": "INSCRIBING",
+  "id": "inscribing",
+  "exp_per_action": 25,
+  "order": 7,
+  "dropTables": [],
+  "stat_rewards": [
+    {
+      "lvl_req": 5,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t1_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 15,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t2_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 25,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t3_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 35,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t4_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 45,
+      "stats": [
+        {
+          "v1": 20.0,
+          "stat": "bonus_exp_for_t5_mob",
+          "type": "FLAT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 10,
+      "stats": [
+        {
+          "v1": 2.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 2.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 20,
+      "stats": [
+        {
+          "v1": 3.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 3.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 30,
+      "stats": [
+        {
+          "v1": 4.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 4.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 40,
+      "stats": [
+        {
+          "v1": 5.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 5.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    },
+    {
+      "lvl_req": 50,
+      "stats": [
+        {
+          "v1": 5.0,
+          "stat": "health",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        },
+        {
+          "v1": 5.0,
+          "stat": "mana",
+          "type": "PERCENT",
+          "scale_to_lvl": false
+        }
+      ]
+    }
+  ],
+  "mastery_stat_reward": [],
+  "block_break_exp": [],
+  "item_craft_exp": [
+    {
+      "exp": 20,
+      "item_id": "mmorpg:tablet/anti_fire"
+    },
+    {
+      "exp": 20,
+      "item_id": "mmorpg:tablet/anti_poison"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:tablet/anti_hunger"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:tablet/anti_wither"
+    },
+    {
+      "exp": 60,
+      "item_id": "mmorpg:tablet/anti_gear_break"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:tablet/anti_death"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:tablet/gear_repair"
+    },
+    {
+      "exp": 25,
+      "item_id": "mmorpg:scroll/spawn_teleport"
+    },
+    {
+      "exp": 25,
+      "item_id": "mmorpg:scroll/death_teleport"
+    }
+  ],
+  "item_smelt_exp": []
+}

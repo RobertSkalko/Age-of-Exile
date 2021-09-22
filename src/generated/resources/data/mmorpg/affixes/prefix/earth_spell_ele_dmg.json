@@ -1,0 +1,26 @@
+{
+  "guid": "earth_spell_ele_dmg",
+  "loc_name": "Poisoned",
+  "only_one_per_item": true,
+  "weight": 500,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "mage_weapon"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "prefix",
+  "stats": [
+    {
+      "min": 5.0,
+      "max": 15.0,
+      "stat": "spell_earth_damage",
+      "type": "FLAT"
+    }
+  ]
+}

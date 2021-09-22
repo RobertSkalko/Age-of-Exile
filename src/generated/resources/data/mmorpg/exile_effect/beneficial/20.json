@@ -1,0 +1,25 @@
+{
+  "id": "beneficial/20",
+  "one_of_a_kind_id": "",
+  "type": "beneficial",
+  "max_stacks": 3,
+  "tags": [
+    "positive",
+    "song"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": 0.5,
+      "stat": "health_regen",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    },
+    {
+      "v1": 0.5,
+      "stat": "mana_regen",
+      "type": "FLAT",
+      "scale_to_lvl": true
+    }
+  ]
+}

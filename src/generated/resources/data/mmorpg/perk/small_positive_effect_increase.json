@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "small_positive_effect_increase",
+  "icon": "mmorpg:textures/gui/stat_icons/misc/inc_effect_of_positive_buff_on_you.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 3.0,
+      "stat": "inc_effect_of_positive_buff_on_you",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

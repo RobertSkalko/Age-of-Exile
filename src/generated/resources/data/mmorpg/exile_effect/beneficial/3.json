@@ -1,0 +1,18 @@
+{
+  "id": "beneficial/3",
+  "one_of_a_kind_id": "",
+  "type": "beneficial",
+  "max_stacks": 1,
+  "tags": [
+    "positive"
+  ],
+  "mc_stats": [],
+  "stats": [
+    {
+      "v1": 5.0,
+      "stat": "lifesteal",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

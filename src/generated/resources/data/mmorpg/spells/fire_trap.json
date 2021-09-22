@@ -1,0 +1,205 @@
+{
+  "max_lvl": 16,
+  "weight": 1000,
+  "identifier": "fire_trap",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.snowball.throw",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "projectile",
+            "map": {
+              "proj_speed": 0.5,
+              "item": "minecraft:iron_ingot",
+              "entity_name": "default_entity_name",
+              "gravity": true,
+              "proj_count": 1.0,
+              "life_ticks": 100.0,
+              "proj_en": "mmorpg:spell_projectile"
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      }
+    ],
+    "entity_components": {
+      "expire": [
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 3.0
+              }
+            }
+          ],
+          "acts": [
+            {
+              "type": "damage",
+              "map": {
+                "value_calculation": "ranger_trap",
+                "element": "Fire"
+              }
+            }
+          ],
+          "ifs": [],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:flame",
+                "motion": "None",
+                "radius": 3.0,
+                "particle_count": 30.0
+              }
+            }
+          ],
+          "ifs": [],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "sound",
+              "map": {
+                "volume": 1.0,
+                "sound": "minecraft:entity.generic.explode",
+                "pitch": 1.0
+              }
+            }
+          ],
+          "ifs": [],
+          "en_preds": []
+        }
+      ],
+      "trap": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:flame",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 5.0
+              }
+            },
+            {
+              "type": "expire",
+              "map": {}
+            },
+            {
+              "type": "specific_action",
+              "map": {
+                "specific_action": "expire"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "is_en_in_radius",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 1.0
+              }
+            },
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 2.0
+              }
+            }
+          ],
+          "en_preds": []
+        }
+      ],
+      "default_entity_name": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "summon_block",
+              "map": {
+                "entity_name": "trap",
+                "is_falling_block": false,
+                "life_ticks": 300.0,
+                "block": "mmorpg:trap",
+                "find_surface": true
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  },
+  "config": {
+    "swing_arm": true,
+    "apply_cast_speed_to_cd": false,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": {
+      "min": 3.5,
+      "max": 7.0
+    },
+    "times_to_cast": 1,
+    "charges": 3,
+    "charge_regen": 600,
+    "imbues": 1,
+    "charge_name": "trap",
+    "cast_time_ticks": 0,
+    "cooldown_ticks": 20,
+    "style": "ranged",
+    "tags": [
+      "damage",
+      "area",
+      "trap"
+    ],
+    "cast_type": "NORMAL",
+    "scale_mana_cost_to_player_lvl": false
+  },
+  "manual_tip": true,
+  "disabled_dims": [],
+  "effect_tip": ""
+}

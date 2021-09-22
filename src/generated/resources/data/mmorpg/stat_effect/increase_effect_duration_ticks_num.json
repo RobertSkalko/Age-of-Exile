@@ -1,0 +1,5 @@
+{
+  "num_id": "effect_duration_ticks",
+  "id": "increase_effect_duration_ticks_num",
+  "ser": "increase_number"
+}

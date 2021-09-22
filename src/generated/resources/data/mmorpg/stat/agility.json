@@ -1,0 +1,26 @@
+{
+  "ser": "core_stat",
+  "data": {
+    "id": "agility",
+    "min": 0.0,
+    "max": 2.14748365E9,
+    "base": 0.0,
+    "perc": true,
+    "ele": "Physical",
+    "scale": "CORE_STAT",
+    "core_stat_data": {
+      "stats": [
+        {
+          "v1": 2.0,
+          "stat": "energy",
+          "type": "PERCENT"
+        },
+        {
+          "v1": 1.0,
+          "stat": "energy_regen",
+          "type": "PERCENT"
+        }
+      ]
+    }
+  }
+}

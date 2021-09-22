@@ -1,0 +1,16 @@
+{
+  "min_lvl": 5,
+  "loot_lvl_modifier": 0,
+  "dmg_multi": 2.0,
+  "extra_hp_multi": 3.0,
+  "stat_multi": 3.0,
+  "loot_multi": 2.0,
+  "exp_multi": 2.5,
+  "affixes": 1,
+  "name_add": "★",
+  "rarity_type": "MOB",
+  "weight": 100,
+  "text_format": "GREEN",
+  "higher_rar": "rare",
+  "guid": "uncommon"
+}

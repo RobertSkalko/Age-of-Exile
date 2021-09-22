@@ -1,0 +1,32 @@
+{
+  "socket_type": "ruby",
+  "text_format": "RED",
+  "on_armor_stats": [
+    {
+      "min": 5.6,
+      "max": 16.8,
+      "stat": "fire_resist",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 5.6,
+      "max": 11.2,
+      "stat": "spell_fire_damage",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 2.8,
+      "max": 21.0,
+      "stat": "all_fire_damage",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/ruby/2",
+  "identifier": "ruby2",
+  "tier": 3,
+  "weight": 1000
+}

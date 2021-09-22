@@ -1,0 +1,40 @@
+{
+  "affixes": {
+    "min_amount": 2,
+    "max_amount": 3,
+    "chance_for_more": 15
+  },
+  "item_model_data_num": 3,
+  "drops_after_tier": -1,
+  "default_stat_percents": {
+    "min": 5,
+    "max": 100
+  },
+  "affix_stat_percents": {
+    "min": 70,
+    "max": 100
+  },
+  "unique_stat_percents": {
+    "min": 0,
+    "max": 100
+  },
+  "base_stat_percents": {
+    "min": 20,
+    "max": 85
+  },
+  "essence_per_sal": {
+    "min": 2,
+    "max": 2
+  },
+  "item_tier": 2,
+  "item_tier_power": 1.5,
+  "item_value_multi": 1.5,
+  "bonus_effective_lvls": 5,
+  "announce_in_chat": false,
+  "is_unique_item": false,
+  "rarity_type": "GEAR",
+  "weight": 300,
+  "text_format": "AQUA",
+  "higher_rar": "epic",
+  "guid": "rare"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "STAT",
+  "identifier": "elemental_resist",
+  "icon": "mmorpg:textures/gui/stat_icons/elemental/elemental_resist.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": 4.0,
+      "stat": "elemental_resist",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}

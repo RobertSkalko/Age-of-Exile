@@ -1,0 +1,46 @@
+{
+  "id": "negative/8",
+  "one_of_a_kind_id": "",
+  "type": "negative",
+  "max_stacks": 5,
+  "tags": [
+    "negative"
+  ],
+  "mc_stats": [],
+  "stats": [],
+  "spell": {
+    "on_cast": [],
+    "entity_components": {
+      "default_entity_name": [
+        {
+          "targets": [
+            {
+              "type": "target",
+              "map": {}
+            }
+          ],
+          "acts": [
+            {
+              "type": "damage",
+              "map": {
+                "exile_potion_id": "negative/8",
+                "dmg_effect_type": "dot",
+                "value_calculation": "bleed",
+                "element": "Physical"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 20.0
+              }
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  }
+}

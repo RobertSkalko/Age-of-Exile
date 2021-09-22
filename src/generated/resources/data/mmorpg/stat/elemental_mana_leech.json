@@ -1,0 +1,29 @@
+{
+  "ser": "data",
+  "id": "elemental_mana_leech",
+  "ele": "Elemental",
+  "effect": {
+    "order": 100,
+    "side": "Source",
+    "ifs": [
+      "ele_match_stat"
+    ],
+    "effects": [
+      "restore_mana_per_stat_data"
+    ],
+    "events": [
+      "on_damage"
+    ]
+  },
+  "show": true,
+  "min": 0.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "NONE",
+  "is_long": true,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

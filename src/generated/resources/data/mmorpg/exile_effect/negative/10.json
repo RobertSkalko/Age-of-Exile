@@ -1,0 +1,55 @@
+{
+  "id": "negative/10",
+  "one_of_a_kind_id": "",
+  "type": "negative",
+  "max_stacks": 1,
+  "tags": [
+    "negative",
+    "immobilizing"
+  ],
+  "mc_stats": [
+    {
+      "val": -1000.0,
+      "uuid": "5eccf34c-29f7-4eea-bbad-82a905594064",
+      "id": "minecraft:generic.attack_damage",
+      "type": "GLOBAL_INCREASE"
+    },
+    {
+      "val": -1000.0,
+      "uuid": "57eb6210-2a42-4ad3-a604-6f679d440a9b",
+      "id": "minecraft:generic.attack_speed",
+      "type": "GLOBAL_INCREASE"
+    }
+  ],
+  "stats": [],
+  "spell": {
+    "on_cast": [],
+    "entity_components": {
+      "default_entity_name": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:squid_ink",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 3.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 20.0
+              }
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  }
+}

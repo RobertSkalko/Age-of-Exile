@@ -1,0 +1,14 @@
+{
+  "levelRange": {
+    "start": 0.8,
+    "end": 1.0
+  },
+  "outputs": [
+    {
+      "item": "mmorpg:mat/salvage/salvage4",
+      "weight": 1000
+    }
+  ],
+  "id": "t4",
+  "weight": 1000
+}

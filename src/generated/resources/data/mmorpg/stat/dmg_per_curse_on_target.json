@@ -1,0 +1,27 @@
+{
+  "ser": "data",
+  "id": "dmg_per_curse_on_target",
+  "ele": "All",
+  "effect": {
+    "order": 0,
+    "side": "Source",
+    "ifs": [],
+    "effects": [
+      "increase_number_per_curse_on_target"
+    ],
+    "events": [
+      "on_damage"
+    ]
+  },
+  "show": true,
+  "min": -1000.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "NONE",
+  "is_long": true,
+  "icon": "❁",
+  "order": 100,
+  "format": "red",
+  "group": "Misc"
+}

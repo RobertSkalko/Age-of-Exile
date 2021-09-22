@@ -1,0 +1,24 @@
+{
+  "weight": 1000,
+  "id": "aoe_exp",
+  "gods": [
+    "ocean",
+    "forge",
+    "hunt",
+    "wisdom",
+    "harvest"
+  ],
+  "pick_type": "ALWAYS_INCLUDE",
+  "type": "REWARDS",
+  "entries": [
+    "aoe_exp"
+  ],
+  "conditions": [
+    {
+      "id": "is_mod_loaded",
+      "map": {
+        "modid": "mmorpg"
+      }
+    }
+  ]
+}

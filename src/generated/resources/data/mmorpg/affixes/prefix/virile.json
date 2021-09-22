@@ -1,0 +1,28 @@
+{
+  "guid": "virile",
+  "loc_name": "Virile",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "armor_family",
+          "shield",
+          "jewelry_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "prefix",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 3.0,
+      "stat": "health",
+      "type": "FLAT"
+    }
+  ]
+}

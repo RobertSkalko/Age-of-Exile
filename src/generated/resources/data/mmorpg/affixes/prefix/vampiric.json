@@ -1,0 +1,26 @@
+{
+  "guid": "vampiric",
+  "loc_name": "Vampiric",
+  "only_one_per_item": true,
+  "weight": 100,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "jewelry_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "prefix",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 2.0,
+      "stat": "lifesteal",
+      "type": "FLAT"
+    }
+  ]
+}

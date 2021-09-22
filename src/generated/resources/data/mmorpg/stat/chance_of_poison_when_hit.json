@@ -1,0 +1,29 @@
+{
+  "ser": "data",
+  "id": "chance_of_poison_when_hit",
+  "ele": "Earth",
+  "effect": {
+    "order": 100,
+    "side": "Target",
+    "ifs": [
+      "random_roll"
+    ],
+    "effects": [
+      "give_negative/3_to_source"
+    ],
+    "events": [
+      "on_damage"
+    ]
+  },
+  "show": true,
+  "min": 0.0,
+  "max": 100.0,
+  "base": 0.0,
+  "is_perc": true,
+  "scaling": "NONE",
+  "is_long": true,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

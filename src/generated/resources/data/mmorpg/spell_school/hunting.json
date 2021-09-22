@@ -1,0 +1,71 @@
+{
+  "id": "hunting",
+  "spells": {
+    "charged_bolt": {
+      "x": 0,
+      "y": 3
+    },
+    "night_vision": {
+      "x": 10,
+      "y": 4
+    },
+    "explosive_arrow": {
+      "x": 2,
+      "y": 5
+    },
+    "poison_arrow": {
+      "x": 2,
+      "y": 2
+    },
+    "fire_trap": {
+      "x": 6,
+      "y": 4
+    },
+    "frost_trap": {
+      "x": 7,
+      "y": 4
+    },
+    "backflip": {
+      "x": 4,
+      "y": 3
+    },
+    "make_arrows": {
+      "x": 10,
+      "y": 0
+    },
+    "hunter_potion": {
+      "x": 10,
+      "y": 1
+    },
+    "smoke_bomb": {
+      "x": 7,
+      "y": 2
+    },
+    "the_hunt": {
+      "x": 10,
+      "y": 2
+    },
+    "arrow_storm": {
+      "x": 0,
+      "y": 0
+    },
+    "dash": {
+      "x": 5,
+      "y": 1
+    },
+    "poison_trap": {
+      "x": 8,
+      "y": 4
+    }
+  },
+  "synergies": {},
+  "lvl_reqs": [
+    1,
+    5,
+    10,
+    20,
+    30,
+    40,
+    50
+  ]
+}

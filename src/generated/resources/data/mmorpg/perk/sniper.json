@@ -1,0 +1,27 @@
+{
+  "type": "MAJOR",
+  "identifier": "sniper",
+  "icon": "mmorpg:textures/gui/stat_icons/game_changers/sniper.png",
+  "is_entry": false,
+  "lvl_req": 1,
+  "stats": [
+    {
+      "v1": -50.0,
+      "stat": "melee_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": -25.0,
+      "stat": "cdr",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 25.0,
+      "stat": "arrow_spell_dmg",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    }
+  ]
+}
