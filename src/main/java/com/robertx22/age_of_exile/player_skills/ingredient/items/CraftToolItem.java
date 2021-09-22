@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.player_skills.ingredient;
+package com.robertx22.age_of_exile.player_skills.ingredient.items;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 
 public class CraftToolItem extends AutoItem {
 
-    PlayerSkillEnum skill;
+    public PlayerSkillEnum skill;
     public String locname;
 
     public CraftToolItem(String locname, PlayerSkillEnum skill) {

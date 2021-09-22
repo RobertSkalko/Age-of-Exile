@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.MergedStats;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -22,7 +23,9 @@ import java.util.List;
 public class CraftedConsumableData {
 
     @Store
-    public int seconds = 60; // todo
+    public int seconds = 60;
+    @Store
+    public String crafter = "";
 
     @Store
     public String prof = "";
@@ -50,23 +53,27 @@ public class CraftedConsumableData {
         IFormattableTextComponent name = new StringTextComponent("").append(stack.getDisplayName())
             .withStyle(TextFormatting.DARK_AQUA);
 
-        tip.add(name);
-
         if (maxuses > 1) {
             name.append(new StringTextComponent(" [" + uses + "/" + maxuses + "]").withStyle(TextFormatting.AQUA));
         }
 
         tip.add(name);
+        if (!crafter.isEmpty()) {
+            tip.add(new StringTextComponent(TextFormatting.DARK_GRAY + "Crafted by: " + TextFormatting.LIGHT_PURPLE + crafter));
+        }
 
         tip.add(new StringTextComponent(""));
 
         MergedStats merged = new MergedStats(stats, new TooltipInfo());
 
+        tip.add(Words.Stats.locName()
+            .withStyle(TextFormatting.AQUA)
+            .append(":"));
         tip.addAll(merged.GetTooltipString(new TooltipInfo(), null));
 
         tip.add(new StringTextComponent(""));
 
-        tip.add(new StringTextComponent("Duration: " + seconds + "s").withStyle(TextFormatting.BLUE));
+        tip.add(new StringTextComponent(TextFormatting.DARK_GRAY + "Duration: " + TextFormatting.BLUE + seconds + "s"));
 
         tip.add(new StringTextComponent(""));
 

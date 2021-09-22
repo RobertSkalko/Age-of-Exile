@@ -75,10 +75,10 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
             .stats(new StatModifier(1, 3, SpellDamage.getInstance()))
             .build();
 
-        IngredientBuilder.of(IngredientItems.LOOTUS_PETALS, IRarity.UNCOMMON)
+        IngredientBuilder.of(IngredientItems.LOTUS_PETALS, IRarity.UNCOMMON)
             .allowedIn(PlayerSkillEnum.ALCHEMY)
             .allowedIn(PlayerSkillEnum.COOKING)
-            .allowedIn(PlayerSkillEnum.INSCRIBING)
+            .allowedIn(PlayerSkillEnum.JEWEL_CRAFTING)
             .stats(new StatModifier(2, 6, Stats.HEAL_STRENGTH.get()))
             .stats(new StatModifier(1, 3, Health.getInstance(), ModType.PERCENT))
             .build();

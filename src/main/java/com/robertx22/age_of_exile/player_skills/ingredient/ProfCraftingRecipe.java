@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.ingredient;
 
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
+import com.robertx22.age_of_exile.player_skills.ingredient.items.CraftToolItem;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import net.minecraft.inventory.CraftingInventory;
@@ -24,6 +25,15 @@ public class ProfCraftingRecipe extends SpecialRecipe {
         List<IngredientData> list = new ArrayList<>();
 
         PlayerSkillEnum skill = null;
+
+        for (int i = 0; i < inv.getContainerSize(); ++i) {
+            ItemStack stack = inv.getItem(i);
+            if (!stack.isEmpty()) {
+                if (stack.getItem() instanceof CraftToolItem == false && !StackSaving.INGREDIENTS.has(stack)) {
+                    return false;
+                }
+            }
+        }
 
         for (int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack stack = inv.getItem(i);

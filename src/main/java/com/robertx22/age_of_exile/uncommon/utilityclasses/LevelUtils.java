@@ -23,7 +23,7 @@ public class LevelUtils {
     }
 
     public static int tierToLevel(int tier) {
-        return MathHelper.clamp((tier - 1) * 10, 1, Integer.MAX_VALUE);
+        return MathHelper.clamp((tier) * 10, 1, Integer.MAX_VALUE);
     }
 
     public static int levelToTier(int level) {

@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
-import com.robertx22.age_of_exile.player_skills.ingredient.CraftToolItem;
+import com.robertx22.age_of_exile.player_skills.ingredient.items.CraftToolItem;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 
 public class CraftToolItems {

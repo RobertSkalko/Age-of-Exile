@@ -150,6 +150,14 @@
   "block_break_exp": [],
   "item_craft_exp": [
     {
+      "exp": 45,
+      "item_id": "mmorpg:key/1"
+    },
+    {
+      "exp": 85,
+      "item_id": "mmorpg:key/3"
+    },
+    {
       "exp": 25,
       "item_id": "mmorpg:key/0"
     },
@@ -158,16 +166,8 @@
       "item_id": "mmorpg:key/2"
     },
     {
-      "exp": 85,
-      "item_id": "mmorpg:key/3"
-    },
-    {
       "exp": 105,
       "item_id": "mmorpg:key/4"
-    },
-    {
-      "exp": 45,
-      "item_id": "mmorpg:key/1"
     },
     {
       "exp": 200,

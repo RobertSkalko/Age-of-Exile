@@ -78,6 +78,7 @@ public class CraftingProcessData {
 
         IFormattableTextComponent name = new StringTextComponent("").append(stack.getDisplayName())
             .withStyle(TextFormatting.DARK_AQUA);
+        tip.add(name);
 
         tip.add(new StringTextComponent(""));
 
@@ -115,6 +116,8 @@ public class CraftingProcessData {
         Item item = skill.getCraftResultItem();
 
         data.tier = this.getAverageTier();
+        data.crafter = player.getGameProfile()
+            .getName();
 
         if (skill == PlayerSkillEnum.COOKING) {
             data.uses = 3;

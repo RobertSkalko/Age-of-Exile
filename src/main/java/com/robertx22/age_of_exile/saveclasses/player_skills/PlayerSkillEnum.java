@@ -21,14 +21,14 @@ public enum PlayerSkillEnum implements IGUID {
                 .get();
         }
     },
-    INSCRIBING("inscribing", WikiType.SCRIBE_EXP, Words.Inscribing, Words.InscribingDesc, TextFormatting.AQUA, 1) {
+    INSCRIBING("inscribing", WikiType.SCRIBE_EXP, Words.Inscribing, Words.InscribingDesc, TextFormatting.AQUA, 2) {
         @Override
         public Item getCraftResultItem() {
             return RandomUtils.randomFromList(CraftedConsumableItems.SCROLLS)
                 .get();
         }
     },
-    COOKING("cooking", WikiType.COOKING_EXP, Words.Cooking, Words.CookingDesc, TextFormatting.RED, 1) {
+    COOKING("cooking", WikiType.COOKING_EXP, Words.Cooking, Words.CookingDesc, TextFormatting.RED, 1.5F) {
         @Override
         public Item getCraftResultItem() {
             return RandomUtils.randomFromList(CraftedConsumableItems.FOODS)
