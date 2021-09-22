@@ -7,16 +7,18 @@ import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 public class CraftToolItem extends AutoItem {
 
     PlayerSkillEnum skill;
+    public String locname;
 
-    public CraftToolItem(PlayerSkillEnum skill) {
+    public CraftToolItem(String locname, PlayerSkillEnum skill) {
 
         super(new Properties().tab(CreativeTabs.Professions));
         this.skill = skill;
+        this.locname = locname;
     }
 
     @Override
     public String locNameForLangFile() {
-        return "todo";
+        return locname;
     }
 
     @Override

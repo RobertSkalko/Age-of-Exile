@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.ingredient;
 
 import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
+import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -56,11 +57,15 @@ public class IngredientData {
         tip.add(new StringTextComponent(""));
 
         tip.add(new StringTextComponent("Used in:"));
+
         ingredient.allowed_in.forEach(x -> {
-            tip.add(new StringTextComponent(TooltipUtils.CHECKMARK + " ").withStyle(TextFormatting.GREEN)
-                .append(ExileDB.PlayerSkills()
-                    .get(x).type_enum.word.locName())
-                .withStyle(TextFormatting.GRAY));
+            PlayerSkill skill = ExileDB.PlayerSkills()
+                .get(x);
+            if (skill != null) {
+                tip.add(new StringTextComponent(TooltipUtils.CHECKMARK + " ").withStyle(TextFormatting.GREEN)
+                    .append(skill.type_enum.word.locName())
+                    .withStyle(TextFormatting.GRAY));
+            }
         });
 
     }

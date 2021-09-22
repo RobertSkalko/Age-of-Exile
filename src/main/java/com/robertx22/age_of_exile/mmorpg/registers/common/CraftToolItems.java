@@ -11,8 +11,8 @@ public class CraftToolItems {
 
     }
 
-    public static RegObj<CraftToolItem> COOKING = Def.item(() -> new CraftToolItem(PlayerSkillEnum.COOKING));
-    public static RegObj<CraftToolItem> ALCHEMY = Def.item(() -> new CraftToolItem(PlayerSkillEnum.ALCHEMY));
-    public static RegObj<CraftToolItem> INSCRIBING = Def.item(() -> new CraftToolItem(PlayerSkillEnum.INSCRIBING));
+    public static RegObj<CraftToolItem> COOKING = Def.item(() -> new CraftToolItem("Cook's Pot", PlayerSkillEnum.COOKING));
+    public static RegObj<CraftToolItem> ALCHEMY = Def.item(() -> new CraftToolItem("Alchemist's Mortar", PlayerSkillEnum.ALCHEMY));
+    public static RegObj<CraftToolItem> INSCRIBING = Def.item(() -> new CraftToolItem("Scribe's Fabric", PlayerSkillEnum.INSCRIBING));
 
 }

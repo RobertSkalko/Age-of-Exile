@@ -1,0 +1,24 @@
+{
+  "id": "fresh_heart",
+  "item_id": "mmorpg:ingredient/fresh_heart",
+  "weight": 2000,
+  "rar": "uncommon",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 10.0,
+      "stat": "health_regen",
+      "type": "PERCENT"
+    },
+    {
+      "min": 1.0,
+      "max": 3.0,
+      "stat": "health",
+      "type": "PERCENT"
+    }
+  ],
+  "allowed_in": [
+    "alchemy",
+    "cooking"
+  ]
+}

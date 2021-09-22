@@ -1,8 +1,10 @@
 package com.robertx22.age_of_exile.saveclasses.player_skills;
 
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiType;
+import com.robertx22.age_of_exile.mmorpg.registers.common.CraftedConsumableItems;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.library_of_exile.registry.IGUID;
+import net.minecraft.item.Item;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
@@ -11,9 +13,19 @@ import java.util.stream.Collectors;
 
 public enum PlayerSkillEnum implements IGUID {
 
-    ALCHEMY("alchemy", WikiType.ALCHEMY_EXP, Words.Alchemy, Words.AlchemyDesc, TextFormatting.LIGHT_PURPLE, 3),
+    ALCHEMY("alchemy", WikiType.ALCHEMY_EXP, Words.Alchemy, Words.AlchemyDesc, TextFormatting.LIGHT_PURPLE, 3) {
+        @Override
+        public Item getCraftResultItem() {
+            return null;
+        }
+    },
     INSCRIBING("inscribing", WikiType.SCRIBE_EXP, Words.Inscribing, Words.InscribingDesc, TextFormatting.AQUA, 1),
-    COOKING("cooking", WikiType.COOKING_EXP, Words.Cooking, Words.CookingDesc, TextFormatting.RED, 1),
+    COOKING("cooking", WikiType.COOKING_EXP, Words.Cooking, Words.CookingDesc, TextFormatting.RED, 1) {
+        @Override
+        public Item getCraftResultItem() {
+            return CraftedConsumableItems.FOOD.get();
+        }
+    },
 
     JEWEL_CRAFTING("jewel_craft", WikiType.COOKING_EXP, Words.JewelCrafting, Words.CookingDesc, TextFormatting.GREEN, 1),
     ARMOR_CRAFTING("armor_craft", WikiType.COOKING_EXP, Words.ArmorCrafting, Words.CookingDesc, TextFormatting.BLUE, 1),
@@ -44,6 +56,10 @@ public enum PlayerSkillEnum implements IGUID {
         this.format = format;
         this.desc = desc;
         this.wiki = wiki;
+    }
+
+    public Item getCraftResultItem() {
+        return null;
     }
 
     public static List<PlayerSkillEnum> getAll() {

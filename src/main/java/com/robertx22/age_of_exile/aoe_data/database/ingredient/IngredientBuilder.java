@@ -10,16 +10,16 @@ import com.robertx22.library_of_exile.registry.DataGenKey;
 
 import java.util.Arrays;
 
-public class SlashIngredientBuilder {
+public class IngredientBuilder {
 
     private SlashIngredient ingredient = new SlashIngredient();
 
-    public static SlashIngredientBuilder of(String id, String name, String rarity, RegObj<IngredientItem> item) {
+    public static IngredientBuilder of(String id, String name, String rarity, RegObj<IngredientItem> item) {
         return of(id, name, rarity, item.get());
     }
 
-    public static SlashIngredientBuilder of(String id, String name, String rarity, IngredientItem item) {
-        SlashIngredientBuilder b = new SlashIngredientBuilder();
+    public static IngredientBuilder of(String id, String name, String rarity, IngredientItem item) {
+        IngredientBuilder b = new IngredientBuilder();
         b.ingredient.id = id;
         b.ingredient.locname = name;
         b.ingredient.weight = ExileDB.GearRarities()
@@ -31,12 +31,12 @@ public class SlashIngredientBuilder {
         return b;
     }
 
-    public SlashIngredientBuilder allowedIn(PlayerSkillEnum skill) {
+    public IngredientBuilder allowedIn(PlayerSkillEnum skill) {
         this.ingredient.allowed_in.add(skill.GUID());
         return this;
     }
 
-    public SlashIngredientBuilder stats(StatModifier... stats) {
+    public IngredientBuilder stats(StatModifier... stats) {
         this.ingredient.stats.addAll(Arrays.asList(stats));
         return this;
     }

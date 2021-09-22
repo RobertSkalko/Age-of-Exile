@@ -77,6 +77,13 @@ public class CraftedFoodItem extends AutoItem {
     public void appendHoverText(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag context) {
         try {
 
+            CraftingProcessData pdata = StackSaving.CRAFT_PROCESS.loadFrom(stack);
+
+            if (pdata != null) {
+                pdata.makeTooltip(tooltip);
+                return;
+            }
+
             CraftedConsumableData data = StackSaving.CRAFTED_CONSUMABLE.loadFrom(stack);
 
             if (data != null) {

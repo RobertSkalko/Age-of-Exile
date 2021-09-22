@@ -31,6 +31,10 @@ public class SlashIngredient implements JsonExileRegistry<SlashIngredient>, IAut
         return ForgeRegistries.ITEMS.getValue(new ResourceLocation(item_id));
     }
 
+    public boolean isAllowedInProfession(String id) {
+        return allowed_in.contains(id);
+    }
+
     @Override
     public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.INGREDIENT;

@@ -1,17 +1,10 @@
 package com.robertx22.age_of_exile.player_skills.ingredient;
 
-import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.mmorpg.registers.common.CraftedConsumableItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
-import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.SpecialRecipe;
 import net.minecraft.util.ResourceLocation;
@@ -20,9 +13,9 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfCraftingTabletRecipe extends SpecialRecipe {
+public class ProfCraftingRecipe extends SpecialRecipe {
 
-    public ProfCraftingTabletRecipe(ResourceLocation id) {
+    public ProfCraftingRecipe(ResourceLocation id) {
         super(id);
     }
 
@@ -49,12 +42,17 @@ public class ProfCraftingTabletRecipe extends SpecialRecipe {
             if (StackSaving.INGREDIENTS.has(stack)) {
                 IngredientData data = StackSaving.INGREDIENTS.loadFrom(stack);
                 if (data != null) {
+                    if (!data.getIngredient()
+                        .isAllowedInProfession(skill.id)) {
+                        return false;
+                    }
+
                     list.add(data);
                 }
             }
         }
 
-        if (list.isEmpty()) {
+        if (list.isEmpty() || list.size() > 6) {
             return false;
         }
 
@@ -93,29 +91,13 @@ public class ProfCraftingTabletRecipe extends SpecialRecipe {
             return ItemStack.EMPTY;
         }
 
-        CraftedConsumableData data = new CraftedConsumableData();
+        CraftingProcessData data = new CraftingProcessData();
         data.prof = skill.GUID();
+        data.ingredients = list;
 
-        for (IngredientData x : list) {
-            int lvl = LevelUtils.tierToLevel(x.tier);
-            int perc = RandomUtils.RandomRange(0, 100);
-            for (StatModifier s : x.getIngredient().stats) {
-                ExactStatData stat = s.ToExactStat(perc, lvl);
-                stat.multiplyBy(skill.craftedStatMulti);
-                data.stats.add(stat);
-            }
-        }
+        ItemStack stack = new ItemStack(skill.getCraftResultItem());
 
-        Item item = Items.AIR;
-
-        if (skill == PlayerSkillEnum.COOKING) {
-            data.uses = 3;
-            item = CraftedConsumableItems.FOOD.get();
-        }
-
-        ItemStack stack = new ItemStack(item);
-
-        StackSaving.CRAFTED_CONSUMABLE.saveTo(stack, data);
+        StackSaving.CRAFT_PROCESS.saveTo(stack, data);
 
         return stack;
     }
