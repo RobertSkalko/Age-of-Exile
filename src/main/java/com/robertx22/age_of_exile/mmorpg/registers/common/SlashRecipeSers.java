@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common;
 
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
-import com.robertx22.age_of_exile.player_skills.recipe_types.ProfCraftingTabletRecipe;
+import com.robertx22.age_of_exile.player_skills.ingredient.ProfCraftingTabletRecipe;
 import com.robertx22.age_of_exile.player_skills.recipe_types.recipe_types.*;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.SpecialRecipeSerializer;

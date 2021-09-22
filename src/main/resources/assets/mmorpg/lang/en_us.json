@@ -180,6 +180,8 @@
 	"item.mmorpg.backpack.upgrade.size3": "Angelic Size Upgrade",
 	"item.mmorpg.backpack.upgrade.size4": "Divine Size Upgrade",
 	"item.mmorpg.backpack.upgrade.trash0": "Auto Trash Pickup Upgrade",
+	"item.mmorpg.cooking": "todo",
+	"item.mmorpg.craft_result.cooking": "Crafted Meal",
 	"item.mmorpg.essence_ink.0": "Spiritual Essence Ink",
 	"item.mmorpg.essence_ink.1": "Celestial Essence Ink",
 	"item.mmorpg.essence_ink.2": "Empyrean Essence Ink",
@@ -1510,6 +1512,8 @@
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
 
+	"effect.mmorpg.alchemy_consumable": "Alchemy",
+	"effect.mmorpg.cooking_consumable": "Cooking",
 	"effect.mmorpg.foods.critical": "Critical",
 	"effect.mmorpg.foods.def_blue": "Arcana Defense",
 	"effect.mmorpg.foods.def_gray": "Physical Defense",
@@ -1530,6 +1534,7 @@
 	"effect.mmorpg.foods.spell_damage": "Enigma",
 	"effect.mmorpg.foods.treasure": "Treasure",
 	"effect.mmorpg.foods.water": "Aqua",
+	"effect.mmorpg.inscribing_consumable": "Inscribing",
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
 

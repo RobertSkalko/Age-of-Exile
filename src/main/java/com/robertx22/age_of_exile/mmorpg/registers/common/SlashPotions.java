@@ -5,8 +5,10 @@ import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
+import com.robertx22.age_of_exile.player_skills.ingredient.ConsumablePotionEffect;
 import com.robertx22.age_of_exile.player_skills.items.foods.FoodExileEffect;
 import com.robertx22.age_of_exile.player_skills.items.protection_tablets.effects.AntiPotionEffect;
+import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ModStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.FoodExileStatusEffect;
@@ -18,12 +20,16 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class SlashPotions {
 
     public static ResourceLocation FOOD_HP = new ResourceLocation(SlashRef.MODID, "food_health_regen");
     public static ResourceLocation FOOD_MANA = new ResourceLocation(SlashRef.MODID, "food_mana_regen");
+
+    public static HashMap<PlayerSkillEnum, RegObj<Effect>> CRAFTED_CONSUMABLES_MAP = new HashMap<>();
 
     public static HashMap<FoodExileEffect, RegObj<Effect>> FOOD_EFFECT_MAP = new HashMap<>();
 
@@ -42,6 +48,13 @@ public class SlashPotions {
     }
 
     public static void init() {
+
+        List<PlayerSkillEnum> professions = Arrays.asList(PlayerSkillEnum.ALCHEMY, PlayerSkillEnum.COOKING, PlayerSkillEnum.INSCRIBING);
+
+        professions.forEach(x -> {
+            RegObj<Effect> ef = Def.potion(x.id + "_consumable", () -> new ConsumablePotionEffect(x));
+            CRAFTED_CONSUMABLES_MAP.put(x, ef);
+        });
 
         for (FoodExileEffect exileEffect : FoodExileEffect.values()) {
             FoodExileStatusEffect statusEffect = new FoodExileStatusEffect(exileEffect);

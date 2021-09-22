@@ -71,6 +71,8 @@ public class SlashDeferred {
         RuneItems.init();
         IngredientItems.init();
         GemItems.init();
+        CraftToolItems.init();
+        CraftedConsumableItems.init();
     }
 
 }

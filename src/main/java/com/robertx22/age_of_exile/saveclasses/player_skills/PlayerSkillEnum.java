@@ -11,33 +11,36 @@ import java.util.stream.Collectors;
 
 public enum PlayerSkillEnum implements IGUID {
 
-    ALCHEMY("alchemy", WikiType.ALCHEMY_EXP, Words.Alchemy, Words.AlchemyDesc, TextFormatting.LIGHT_PURPLE),
-    INSCRIBING("inscribing", WikiType.SCRIBE_EXP, Words.Inscribing, Words.InscribingDesc, TextFormatting.AQUA),
-    COOKING("cooking", WikiType.COOKING_EXP, Words.Cooking, Words.CookingDesc, TextFormatting.RED),
+    ALCHEMY("alchemy", WikiType.ALCHEMY_EXP, Words.Alchemy, Words.AlchemyDesc, TextFormatting.LIGHT_PURPLE, 3),
+    INSCRIBING("inscribing", WikiType.SCRIBE_EXP, Words.Inscribing, Words.InscribingDesc, TextFormatting.AQUA, 1),
+    COOKING("cooking", WikiType.COOKING_EXP, Words.Cooking, Words.CookingDesc, TextFormatting.RED, 1),
 
-    JEWEL_CRAFTING("jewel_craft", WikiType.COOKING_EXP, Words.JewelCrafting, Words.CookingDesc, TextFormatting.GREEN),
-    ARMOR_CRAFTING("armor_craft", WikiType.COOKING_EXP, Words.ArmorCrafting, Words.CookingDesc, TextFormatting.BLUE),
-    WEAPON_CRAFTING("wep_craft", WikiType.COOKING_EXP, Words.WeaponCrafting, Words.CookingDesc, TextFormatting.RED),
+    JEWEL_CRAFTING("jewel_craft", WikiType.COOKING_EXP, Words.JewelCrafting, Words.CookingDesc, TextFormatting.GREEN, 1),
+    ARMOR_CRAFTING("armor_craft", WikiType.COOKING_EXP, Words.ArmorCrafting, Words.CookingDesc, TextFormatting.BLUE, 1),
+    WEAPON_CRAFTING("wep_craft", WikiType.COOKING_EXP, Words.WeaponCrafting, Words.CookingDesc, TextFormatting.RED, 1),
 
-    MINING("mining", WikiType.MINING_BLOCK_EXP, Words.Mining, Words.MiningDesc, TextFormatting.GRAY),
-    FARMING("farming", WikiType.FARMING_EXP, Words.Farming, Words.FarmingDesc, TextFormatting.YELLOW),
-    SALVAGING("salvaging", null, Words.Salvaging, Words.SalvagingDesc, TextFormatting.LIGHT_PURPLE),
-    FISHING("fishing", null, Words.Fishing, Words.FishingDesc, TextFormatting.BLUE),
-    EXPLORATION("exploration", null, Words.Exploration, Words.ExplorationDesc, TextFormatting.GOLD),
-    BLACKSMITHING("blacksmithing", WikiType.BLACKSMITH_EXP, Words.Blacksmithing, Words.BlacksmithDesc, TextFormatting.GREEN),
-    ALL("all", null, Words.Skill, Words.Skill, TextFormatting.GREEN),
-    NONE("none", null, Words.Skill, Words.Skill, TextFormatting.BLACK);
+    MINING("mining", WikiType.MINING_BLOCK_EXP, Words.Mining, Words.MiningDesc, TextFormatting.GRAY, 1),
+    FARMING("farming", WikiType.FARMING_EXP, Words.Farming, Words.FarmingDesc, TextFormatting.YELLOW, 1),
+    SALVAGING("salvaging", null, Words.Salvaging, Words.SalvagingDesc, TextFormatting.LIGHT_PURPLE, 1),
+    FISHING("fishing", null, Words.Fishing, Words.FishingDesc, TextFormatting.BLUE, 1),
+    EXPLORATION("exploration", null, Words.Exploration, Words.ExplorationDesc, TextFormatting.GOLD, 1),
+    BLACKSMITHING("blacksmithing", WikiType.BLACKSMITH_EXP, Words.Blacksmithing, Words.BlacksmithDesc, TextFormatting.GREEN, 1),
+    ALL("all", null, Words.Skill, Words.Skill, TextFormatting.GREEN, 1),
+    NONE("none", null, Words.Skill, Words.Skill, TextFormatting.BLACK, 1);
 
     public String id;
     public Words word;
     public Words desc;
     public TextFormatting format;
 
+    public float craftedStatMulti = 1;
+
     public WikiType wiki;
 
-    PlayerSkillEnum(String id, WikiType wiki, Words word, Words desc, TextFormatting format) {
+    PlayerSkillEnum(String id, WikiType wiki, Words word, Words desc, TextFormatting format, float craftedStatMulti) {
         this.id = id;
         this.word = word;
+        this.craftedStatMulti = craftedStatMulti;
         this.format = format;
         this.desc = desc;
         this.wiki = wiki;

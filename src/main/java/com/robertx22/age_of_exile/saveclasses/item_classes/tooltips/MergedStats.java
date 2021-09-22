@@ -15,7 +15,7 @@ public class MergedStats implements IGearPartTooltip {
 
     public List<TooltipStatInfo> list;
 
-    public MergedStats(List<ExactStatData> list, TooltipInfo info, GearItemData gear) {
+    public MergedStats(List<ExactStatData> list, TooltipInfo info) {
 
         list.removeIf(x -> x.getStat().is_long);
 
@@ -39,9 +39,7 @@ public class MergedStats implements IGearPartTooltip {
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
-
         List<ITextComponent> tooltip = new ArrayList<>();
-
         list.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
         return tooltip;
     }

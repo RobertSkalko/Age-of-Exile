@@ -79,7 +79,7 @@ public class GearTooltipUtils {
                 .collect(Collectors.toList());
             specialStats.addAll(longstats);
 
-            MergedStats merged = new MergedStats(stats, info, gear);
+            MergedStats merged = new MergedStats(stats, info);
 
             list.add(merged);
         }

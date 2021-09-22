@@ -161,8 +161,8 @@
   ],
   "block_break_exp": [
     {
-      "exp": 15.0,
-      "block_id": "mmorpg:plant1"
+      "exp": 30.0,
+      "block_id": "mmorpg:plant2"
     },
     {
       "exp": 45.0,
@@ -173,12 +173,12 @@
       "block_id": "mmorpg:plant5"
     },
     {
-      "exp": 60.0,
-      "block_id": "mmorpg:plant4"
+      "exp": 15.0,
+      "block_id": "mmorpg:plant1"
     },
     {
-      "exp": 30.0,
-      "block_id": "mmorpg:plant2"
+      "exp": 60.0,
+      "block_id": "mmorpg:plant4"
     }
   ],
   "item_craft_exp": [],
