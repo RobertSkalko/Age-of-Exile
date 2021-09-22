@@ -15,7 +15,7 @@ import net.minecraft.world.server.ServerWorld;
 public class LevelUtils {
 
     public static String tierToRomanNumeral(int tier) {
-        return RomanNumber.toRoman(tier);
+        return RomanNumber.toRoman(tier + 1);
     }
 
     public static int levelToTierToLevel(int level) {
@@ -27,7 +27,7 @@ public class LevelUtils {
     }
 
     public static int levelToTier(int level) {
-        return MathHelper.clamp((level / 10) + 1, 1, Integer.MAX_VALUE);
+        return MathHelper.clamp((level / 10), 1, Integer.MAX_VALUE);
     }
 
     public static SkillItemTier levelToSkillTier(int lvl) {

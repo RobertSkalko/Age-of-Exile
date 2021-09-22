@@ -1,9 +1,10 @@
 package com.robertx22.age_of_exile.saveclasses.player_skills;
 
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiType;
-import com.robertx22.age_of_exile.mmorpg.registers.common.CraftedConsumableItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.CraftedConsumableItems;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.library_of_exile.registry.IGUID;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.item.Item;
 import net.minecraft.util.text.TextFormatting;
 
@@ -16,14 +17,22 @@ public enum PlayerSkillEnum implements IGUID {
     ALCHEMY("alchemy", WikiType.ALCHEMY_EXP, Words.Alchemy, Words.AlchemyDesc, TextFormatting.LIGHT_PURPLE, 3) {
         @Override
         public Item getCraftResultItem() {
-            return null;
+            return RandomUtils.randomFromList(CraftedConsumableItems.POTIONS)
+                .get();
         }
     },
-    INSCRIBING("inscribing", WikiType.SCRIBE_EXP, Words.Inscribing, Words.InscribingDesc, TextFormatting.AQUA, 1),
+    INSCRIBING("inscribing", WikiType.SCRIBE_EXP, Words.Inscribing, Words.InscribingDesc, TextFormatting.AQUA, 1) {
+        @Override
+        public Item getCraftResultItem() {
+            return RandomUtils.randomFromList(CraftedConsumableItems.SCROLLS)
+                .get();
+        }
+    },
     COOKING("cooking", WikiType.COOKING_EXP, Words.Cooking, Words.CookingDesc, TextFormatting.RED, 1) {
         @Override
         public Item getCraftResultItem() {
-            return CraftedConsumableItems.FOOD.get();
+            return RandomUtils.randomFromList(CraftedConsumableItems.FOODS)
+                .get();
         }
     },
 

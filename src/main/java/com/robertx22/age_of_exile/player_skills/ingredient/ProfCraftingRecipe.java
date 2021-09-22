@@ -104,7 +104,7 @@ public class ProfCraftingRecipe extends SpecialRecipe {
 
     @Override
     public boolean canCraftInDimensions(int x, int y) {
-        return x * y >= 2;
+        return x * y >= 2 && x * y < 10;
     }
 
     @Override

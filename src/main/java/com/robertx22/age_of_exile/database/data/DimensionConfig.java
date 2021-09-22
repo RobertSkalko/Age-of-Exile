@@ -27,21 +27,21 @@ public class DimensionConfig implements JsonExileRegistry<DimensionConfig>, ISer
     public static DimensionConfig Overworld() {
         DimensionConfig c = new DimensionConfig(1, "minecraft:overworld");
         c.min_lvl = 1;
-        c.max_lvl = 10;
+        c.max_lvl = 50;
         return c;
     }
 
     public static DimensionConfig Nether() {
         DimensionConfig d = new DimensionConfig(10, "minecraft:the_nether").setMobTier(2);
         d.min_lvl = 10;
-        d.max_lvl = 20;
+        d.max_lvl = 50;
         return d;
     }
 
     public static DimensionConfig End() {
         DimensionConfig d = new DimensionConfig(10, "minecraft:the_end").setMobTier(3);
         d.min_lvl = 20;
-        d.max_lvl = 30;
+        d.max_lvl = 50;
         return d;
     }
 

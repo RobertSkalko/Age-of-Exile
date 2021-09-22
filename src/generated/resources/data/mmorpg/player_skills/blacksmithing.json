@@ -154,10 +154,6 @@
       "item_id": "mmorpg:key/0"
     },
     {
-      "exp": 45,
-      "item_id": "mmorpg:key/1"
-    },
-    {
       "exp": 65,
       "item_id": "mmorpg:key/2"
     },
@@ -168,6 +164,10 @@
     {
       "exp": 105,
       "item_id": "mmorpg:key/4"
+    },
+    {
+      "exp": 45,
+      "item_id": "mmorpg:key/1"
     },
     {
       "exp": 200,

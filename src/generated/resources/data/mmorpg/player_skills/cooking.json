@@ -151,159 +151,19 @@
   "item_craft_exp": [
     {
       "exp": 70,
-      "item_id": "mmorpg:food/drink/yellow/1"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/fish/green/4"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/meal/blue/1"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/jam/yellow/4"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/brew/red/4"
-    },
-    {
-      "exp": 130,
-      "item_id": "mmorpg:food/cookie/red/3"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/jam/blue/0"
-    },
-    {
-      "exp": 70,
       "item_id": "mmorpg:food/jam/yellow/1"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/meal/blue/4"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/drink/yellow/4"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/fish/green/1"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/meal/red/2"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/brew/red/1"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/meal/purple/0"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/jam/purple/4"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/apple/red/0"
-    },
-    {
-      "exp": 130,
-      "item_id": "mmorpg:food/fish/red/3"
-    },
-    {
-      "exp": 130,
-      "item_id": "mmorpg:food/brew/green/3"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/jam/purple/1"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/drink/yellow/0"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/brew/yellow/2"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/jam/blue/4"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/meal/blue/0"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/jam/red/2"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/jam/blue/1"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/jam/yellow/0"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/fish/green/0"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/brew/red/0"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/apple/red/4"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/brew/purple/2"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/apple/blue/2"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/meal/purple/1"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/apple/red/1"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/meal/purple/4"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/jam/purple/0"
     },
     {
       "exp": 100,
       "item_id": "mmorpg:food/jam/green/2"
     },
     {
-      "exp": 130,
-      "item_id": "mmorpg:food/meal/purple/3"
+      "exp": 100,
+      "item_id": "mmorpg:food/meal/red/2"
     },
     {
-      "exp": 130,
-      "item_id": "mmorpg:food/apple/red/3"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/fish/red/0"
+      "exp": 100,
+      "item_id": "mmorpg:food/jam/blue/2"
     },
     {
       "exp": 40,
@@ -311,95 +171,71 @@
     },
     {
       "exp": 100,
-      "item_id": "mmorpg:food/cookie/yellow/2"
+      "item_id": "mmorpg:food/drink/yellow/2"
     },
     {
-      "exp": 40,
-      "item_id": "mmorpg:food/cookie/red/0"
+      "exp": 160,
+      "item_id": "mmorpg:food/fish/green/4"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/apple/blue/4"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/meal/purple/1"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/fish/blue/4"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/apple/red/1"
     },
     {
       "exp": 130,
-      "item_id": "mmorpg:food/jam/blue/3"
+      "item_id": "mmorpg:food/brew/green/3"
     },
     {
       "exp": 160,
-      "item_id": "mmorpg:food/fish/red/4"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/brew/green/4"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/fish/blue/2"
+      "item_id": "mmorpg:food/jam/purple/4"
     },
     {
       "exp": 70,
       "item_id": "mmorpg:food/fish/red/1"
     },
     {
-      "exp": 130,
-      "item_id": "mmorpg:food/jam/purple/3"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/brew/green/1"
+      "exp": 40,
+      "item_id": "mmorpg:food/cookie/yellow/0"
     },
     {
       "exp": 160,
-      "item_id": "mmorpg:food/cookie/red/4"
+      "item_id": "mmorpg:food/jam/red/4"
     },
     {
-      "exp": 130,
-      "item_id": "mmorpg:food/meal/blue/3"
-    },
-    {
-      "exp": 130,
-      "item_id": "mmorpg:food/drink/yellow/3"
-    },
-    {
-      "exp": 130,
-      "item_id": "mmorpg:food/fish/green/3"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/cookie/red/1"
-    },
-    {
-      "exp": 130,
-      "item_id": "mmorpg:food/jam/yellow/3"
-    },
-    {
-      "exp": 130,
-      "item_id": "mmorpg:food/brew/red/3"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/drink/yellow/2"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/meal/blue/2"
+      "exp": 160,
+      "item_id": "mmorpg:food/meal/blue/4"
     },
     {
       "exp": 40,
       "item_id": "mmorpg:food/brew/yellow/0"
     },
     {
-      "exp": 40,
-      "item_id": "mmorpg:food/jam/red/0"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/meal/red/4"
+      "exp": 70,
+      "item_id": "mmorpg:food/drink/yellow/1"
     },
     {
       "exp": 100,
       "item_id": "mmorpg:food/jam/yellow/2"
     },
     {
-      "exp": 100,
-      "item_id": "mmorpg:food/fish/green/2"
+      "exp": 70,
+      "item_id": "mmorpg:food/jam/green/1"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/jam/blue/1"
     },
     {
       "exp": 70,
@@ -407,59 +243,19 @@
     },
     {
       "exp": 100,
-      "item_id": "mmorpg:food/brew/red/2"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/apple/blue/0"
+      "item_id": "mmorpg:food/apple/red/2"
     },
     {
       "exp": 130,
-      "item_id": "mmorpg:food/fish/blue/3"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/brew/purple/0"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/jam/purple/2"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/brew/yellow/1"
+      "item_id": "mmorpg:food/brew/yellow/3"
     },
     {
       "exp": 130,
       "item_id": "mmorpg:food/cookie/yellow/3"
     },
     {
-      "exp": 70,
-      "item_id": "mmorpg:food/jam/red/1"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/brew/yellow/4"
-    },
-    {
       "exp": 100,
-      "item_id": "mmorpg:food/jam/blue/2"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/jam/red/4"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:food/meal/red/0"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/brew/purple/1"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/apple/blue/1"
+      "item_id": "mmorpg:food/fish/red/2"
     },
     {
       "exp": 100,
@@ -470,28 +266,120 @@
       "item_id": "mmorpg:food/jam/green/3"
     },
     {
-      "exp": 100,
-      "item_id": "mmorpg:food/apple/red/2"
-    },
-    {
-      "exp": 160,
-      "item_id": "mmorpg:food/apple/blue/4"
-    },
-    {
       "exp": 160,
       "item_id": "mmorpg:food/brew/purple/4"
     },
     {
-      "exp": 70,
-      "item_id": "mmorpg:food/jam/green/1"
+      "exp": 130,
+      "item_id": "mmorpg:food/jam/blue/3"
     },
     {
       "exp": 130,
-      "item_id": "mmorpg:food/apple/blue/3"
+      "item_id": "mmorpg:food/meal/red/3"
+    },
+    {
+      "exp": 130,
+      "item_id": "mmorpg:food/drink/yellow/3"
     },
     {
       "exp": 40,
-      "item_id": "mmorpg:food/fish/blue/0"
+      "item_id": "mmorpg:food/jam/blue/0"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/meal/red/0"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/jam/green/0"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/brew/yellow/1"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/drink/yellow/0"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:food/brew/green/2"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/cookie/yellow/1"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/fish/red/0"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/apple/red/0"
+    },
+    {
+      "exp": 130,
+      "item_id": "mmorpg:food/jam/yellow/3"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/meal/purple/0"
+    },
+    {
+      "exp": 130,
+      "item_id": "mmorpg:food/apple/red/3"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:food/brew/yellow/2"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/brew/green/1"
+    },
+    {
+      "exp": 130,
+      "item_id": "mmorpg:food/fish/red/3"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:food/cookie/yellow/2"
+    },
+    {
+      "exp": 130,
+      "item_id": "mmorpg:food/meal/purple/3"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/cookie/red/4"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/brew/red/4"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/jam/yellow/0"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/drink/yellow/4"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/meal/blue/1"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/jam/red/1"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/meal/red/4"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/jam/blue/4"
     },
     {
       "exp": 130,
@@ -502,16 +390,148 @@
       "item_id": "mmorpg:food/jam/green/4"
     },
     {
+      "exp": 100,
+      "item_id": "mmorpg:food/jam/purple/2"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/brew/purple/0"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:food/fish/blue/2"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:food/apple/blue/2"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:food/fish/green/2"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/cookie/red/0"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/jam/yellow/4"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/brew/red/0"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:food/jam/red/2"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:food/meal/blue/2"
+    },
+    {
       "exp": 130,
-      "item_id": "mmorpg:food/brew/yellow/3"
+      "item_id": "mmorpg:food/brew/red/3"
     },
     {
       "exp": 70,
-      "item_id": "mmorpg:food/cookie/yellow/1"
+      "item_id": "mmorpg:food/fish/blue/1"
+    },
+    {
+      "exp": 130,
+      "item_id": "mmorpg:food/cookie/red/3"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/apple/blue/1"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/meal/purple/4"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/fish/green/1"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/fish/red/4"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/jam/purple/1"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/apple/red/4"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/jam/purple/0"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/fish/green/0"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/apple/blue/0"
+    },
+    {
+      "exp": 40,
+      "item_id": "mmorpg:food/fish/blue/0"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:food/brew/purple/2"
+    },
+    {
+      "exp": 130,
+      "item_id": "mmorpg:food/jam/purple/3"
+    },
+    {
+      "exp": 160,
+      "item_id": "mmorpg:food/brew/green/4"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/brew/red/1"
+    },
+    {
+      "exp": 130,
+      "item_id": "mmorpg:food/fish/blue/3"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/cookie/red/1"
+    },
+    {
+      "exp": 130,
+      "item_id": "mmorpg:food/apple/blue/3"
+    },
+    {
+      "exp": 130,
+      "item_id": "mmorpg:food/fish/green/3"
+    },
+    {
+      "exp": 70,
+      "item_id": "mmorpg:food/brew/purple/1"
+    },
+    {
+      "exp": 130,
+      "item_id": "mmorpg:food/meal/blue/3"
     },
     {
       "exp": 130,
       "item_id": "mmorpg:food/jam/red/3"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:food/brew/red/2"
+    },
+    {
+      "exp": 100,
+      "item_id": "mmorpg:food/cookie/red/2"
     },
     {
       "exp": 160,
@@ -519,35 +539,15 @@
     },
     {
       "exp": 40,
-      "item_id": "mmorpg:food/jam/green/0"
-    },
-    {
-      "exp": 70,
-      "item_id": "mmorpg:food/fish/blue/1"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/fish/red/2"
+      "item_id": "mmorpg:food/meal/blue/0"
     },
     {
       "exp": 160,
-      "item_id": "mmorpg:food/fish/blue/4"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/brew/green/2"
+      "item_id": "mmorpg:food/brew/yellow/4"
     },
     {
       "exp": 40,
-      "item_id": "mmorpg:food/cookie/yellow/0"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:food/cookie/red/2"
-    },
-    {
-      "exp": 130,
-      "item_id": "mmorpg:food/meal/red/3"
+      "item_id": "mmorpg:food/jam/red/0"
     }
   ],
   "item_smelt_exp": []

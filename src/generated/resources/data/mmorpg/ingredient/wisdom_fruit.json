@@ -1,0 +1,24 @@
+{
+  "id": "wisdom_fruit",
+  "item_id": "mmorpg:ingredient/wisdom_fruit",
+  "weight": 300,
+  "rar": "rare",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "mana",
+      "type": "PERCENT"
+    },
+    {
+      "min": 1.0,
+      "max": 3.0,
+      "stat": "wisdom",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "alchemy",
+    "cooking"
+  ]
+}

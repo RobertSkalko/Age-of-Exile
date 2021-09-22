@@ -1,0 +1,24 @@
+{
+  "id": "blackpearl",
+  "item_id": "mmorpg:ingredient/blackpearl",
+  "weight": 100,
+  "rar": "epic",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "critical_damage",
+      "type": "FLAT"
+    },
+    {
+      "min": -3.0,
+      "max": -5.0,
+      "stat": "armor",
+      "type": "PERCENT"
+    }
+  ],
+  "allowed_in": [
+    "jewel_craft",
+    "alchemy"
+  ]
+}

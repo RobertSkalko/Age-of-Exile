@@ -1,0 +1,25 @@
+{
+  "id": "lootus_petals",
+  "item_id": "mmorpg:ingredient/lootus_petals",
+  "weight": 2000,
+  "rar": "uncommon",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "increase_healing",
+      "type": "FLAT"
+    },
+    {
+      "min": 1.0,
+      "max": 3.0,
+      "stat": "health",
+      "type": "PERCENT"
+    }
+  ],
+  "allowed_in": [
+    "alchemy",
+    "cooking",
+    "inscribing"
+  ]
+}

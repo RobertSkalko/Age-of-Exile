@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
-import com.robertx22.age_of_exile.player_skills.ingredient.IngredientItem;
+import com.robertx22.age_of_exile.player_skills.ingredient.items.IngredientItem;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.library_of_exile.registry.DataGenKey;
 
@@ -14,8 +14,8 @@ public class IngredientBuilder {
 
     private SlashIngredient ingredient = new SlashIngredient();
 
-    public static IngredientBuilder of(String id, String name, String rarity, RegObj<IngredientItem> item) {
-        return of(id, name, rarity, item.get());
+    public static IngredientBuilder of(RegObj<IngredientItem> item, String rarity) {
+        return of(item.get().id, item.get().locname, rarity, item.get());
     }
 
     public static IngredientBuilder of(String id, String name, String rarity, IngredientItem item) {

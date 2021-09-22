@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.player_skills.ingredient.IngredientData;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.item.ItemStack;
 
 public class IngredientLootGen extends BaseLootGen<GearBlueprint> {
@@ -45,6 +46,10 @@ public class IngredientLootGen extends BaseLootGen<GearBlueprint> {
         IngredientData data = IngredientData.of(ing, info.tier);
 
         ItemStack stack = new ItemStack(ing.getItem());
+
+        int count = RandomUtils.RandomRange(1, 3);
+
+        stack.setCount(count);
 
         StackSaving.INGREDIENTS.saveTo(stack, data);
 

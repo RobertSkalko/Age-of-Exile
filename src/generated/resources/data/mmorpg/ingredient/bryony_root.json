@@ -1,0 +1,18 @@
+{
+  "id": "bryony_root",
+  "item_id": "mmorpg:ingredient/bryony_root",
+  "weight": 300,
+  "rar": "rare",
+  "stats": [
+    {
+      "min": 3.0,
+      "max": 15.0,
+      "stat": "health",
+      "type": "PERCENT"
+    }
+  ],
+  "allowed_in": [
+    "alchemy",
+    "cooking"
+  ]
+}

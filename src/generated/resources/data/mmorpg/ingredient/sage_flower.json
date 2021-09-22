@@ -1,0 +1,24 @@
+{
+  "id": "sage_flower",
+  "item_id": "mmorpg:ingredient/sage_flower",
+  "weight": 300,
+  "rar": "rare",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 3.0,
+      "stat": "intelligence",
+      "type": "FLAT"
+    },
+    {
+      "min": 1.0,
+      "max": 3.0,
+      "stat": "spell_damage",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "alchemy",
+    "cooking"
+  ]
+}

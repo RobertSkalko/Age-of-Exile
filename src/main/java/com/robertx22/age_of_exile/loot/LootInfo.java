@@ -154,7 +154,7 @@ public class LootInfo {
         // order matters
         errorIfClient();
         setWorld();
-        setTier();
+        setDifficulty();
         setLevel();
         setFavor();
 
@@ -180,7 +180,7 @@ public class LootInfo {
         }
     }
 
-    private LootInfo setTier() {
+    private LootInfo setDifficulty() {
 
         if (world != null && pos != null) {
             if (WorldUtils.isMapWorldClass(world)) {

@@ -1,5 +1,18 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
+blackpearl
+lootus_petals
+bryony_root
+wisdom_fruit
+ender_heart
+earth_crystal
+yarrow_flower
+guardian_scales
+hemlock
 slime_bolus
 fresh_heart
-guardian_scales
+helock
+frigid_runestone
+dark_stone
+moonstone
+sage_flower

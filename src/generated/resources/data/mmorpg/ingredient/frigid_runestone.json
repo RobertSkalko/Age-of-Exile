@@ -1,0 +1,18 @@
+{
+  "id": "frigid_runestone",
+  "item_id": "mmorpg:ingredient/frigid_runestone",
+  "weight": 100,
+  "rar": "epic",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 8.0,
+      "stat": "spell_water_damage",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "inscribing",
+    "armor_craft"
+  ]
+}

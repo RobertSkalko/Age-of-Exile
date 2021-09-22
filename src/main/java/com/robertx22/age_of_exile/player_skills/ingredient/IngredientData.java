@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.player_skills.ingredient;
 
 import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -10,6 +11,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
@@ -29,16 +31,41 @@ public class IngredientData {
         return data;
     }
 
+    public TextComponent getStars() {
+        GearRarity rar = ExileDB.GearRarities()
+            .get(getIngredient().rar);
+
+        TextFormatting BLANK = TextFormatting.GRAY;
+        TextFormatting format = rar.textFormatting();
+
+        String txt = "";
+        if (rar.item_tier == 0) {
+            txt = " [✫✫✫]";
+        } else if (rar.item_tier == 1) {
+            txt = " " + format + "[✫" + BLANK + "✫✫" + format + "]";
+        } else if (rar.item_tier == 2) {
+            txt = " " + format + "[✫✫" + BLANK + "✫" + format + "]";
+        } else if (rar.item_tier == 3) {
+            txt = " " + format + "[✫✫✫]";
+        }
+
+        return new StringTextComponent(txt);
+    }
+
     public void makeTooltip(List<ITextComponent> tip) {
+        GearRarity rar = ExileDB.GearRarities()
+            .get(getIngredient().rar);
 
         SlashIngredient ingredient = getIngredient();
         tip.clear();
 
         int lvl = LevelUtils.tierToLevel(tier);
 
-        tip.add(ingredient.locName());
+        tip.add(ingredient.locName()
+            .withStyle(rar.textFormatting())
+            .append(getStars()));
 
-        tip.add(new StringTextComponent(""));
+        //  tip.add(new StringTextComponent(""));
 
         tip.add(Words.Ingredient.locName()
             .withStyle(TextFormatting.DARK_GRAY));
