@@ -35,7 +35,6 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
             .allowedIn(PlayerSkillEnum.ALCHEMY)
             .allowedIn(PlayerSkillEnum.COOKING)
             .stats(new StatModifier(2, 8, HealthRegen.getInstance(), ModType.PERCENT))
-            .stats(new StatModifier(1, 3, Health.getInstance(), ModType.PERCENT))
             .build();
 
         IngredientBuilder.of(IngredientItems.SLIME_BOLUS, IRarity.COMMON_ID)
@@ -57,8 +56,7 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
             .allowedIn(PlayerSkillEnum.ALCHEMY)
             .allowedIn(PlayerSkillEnum.JEWEL_CRAFTING)
             .allowedIn(PlayerSkillEnum.INSCRIBING)
-            .stats(new StatModifier(1, 5, new ElementalResist(Elements.Water)))
-            .stats(new StatModifier(1, 3, ManaRegen.getInstance(), ModType.PERCENT))
+            .stats(new StatModifier(2, 6, ManaRegen.getInstance(), ModType.PERCENT))
             .build();
 
         IngredientBuilder.of(IngredientItems.WISDOM_FRUIT, IRarity.RARE_ID)

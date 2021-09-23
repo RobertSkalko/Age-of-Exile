@@ -12,19 +12,19 @@ import java.util.List;
 
 public class MergedStats implements IGearPartTooltip {
 
-    public List<TooltipStatInfo> list;
+    public List<TooltipStatInfo> mergedList;
 
-    public MergedStats(List<ExactStatData> list, TooltipInfo info) {
+    public MergedStats(List<ExactStatData> stats, TooltipInfo info) {
 
-        list.removeIf(x -> x.getStat().is_long);
+        stats.removeIf(x -> x.getStat().is_long);
 
         List<TooltipStatInfo> infolist = new ArrayList<>();
 
-        list.forEach(x -> infolist.add(new TooltipStatInfo(x, -99, info)));
+        stats.forEach(x -> infolist.add(new TooltipStatInfo(x, -99, info)));
 
-        this.list = TooltipStatInfo.mergeDuplicates(infolist);
+        this.mergedList = TooltipStatInfo.mergeDuplicates(infolist);
 
-        this.list.sort(Comparator.comparingInt(x -> 100 - x.stat.translate()
+        this.mergedList.sort(Comparator.comparingInt(x -> 100 - x.stat.translate()
             .length()));
 
     }
@@ -32,7 +32,7 @@ public class MergedStats implements IGearPartTooltip {
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
         List<ITextComponent> tooltip = new ArrayList<>();
-        list.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
+        mergedList.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
         return tooltip;
     }
 
