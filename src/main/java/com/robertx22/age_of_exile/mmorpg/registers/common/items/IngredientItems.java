@@ -25,6 +25,12 @@ public class IngredientItems {
     public static RegObj<IngredientItem> DARK_STONE = of("dark_stone", "Dark Stone");
     public static RegObj<IngredientItem> YARROW_FLOWER = of("yarrow_flower", "Yarrow Flower");
     public static RegObj<IngredientItem> HEMLOCK = of("hemlock", "Hemlock");
+    public static RegObj<IngredientItem> CRYSTAL_BERYL = of("crystal_beryl", "Crystal Beryl");
+    public static RegObj<IngredientItem> RED_CORAL = of("red_coral", "Red Coral");
+    public static RegObj<IngredientItem> ECTOPLASM = of("ectoplasm", "Ectoplasm");
+    public static RegObj<IngredientItem> BLOOD_ROOT = of("blootroot", "Blood Root");
+    public static RegObj<IngredientItem> CRYSTAL_AMETHYST = of("crystal_amethyst", "Crystal Amethyst");
+    public static RegObj<IngredientItem> ENDERMAN_HEART = of("enderman_heart", "Enderman Heart");
 
     static RegObj<IngredientItem> of(String id, String locname) {
         RegObj<IngredientItem> def = Def.item("ingredient/" + id, () -> new IngredientItem(id, locname));
