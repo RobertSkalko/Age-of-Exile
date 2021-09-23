@@ -31,6 +31,11 @@ public class IngredientItems {
     public static RegObj<IngredientItem> BLOOD_ROOT = of("blootroot", "Blood Root");
     public static RegObj<IngredientItem> CRYSTAL_AMETHYST = of("crystal_amethyst", "Crystal Amethyst");
     public static RegObj<IngredientItem> ENDERMAN_HEART = of("enderman_heart", "Enderman Heart");
+    public static RegObj<IngredientItem> FIRE_STONE = of("fire_stone", "Fire Stone");
+    public static RegObj<IngredientItem> CRYSTAL_BLUE_ROCK = of("crystal_blue_rock", "Crystal Blue Rock");
+    public static RegObj<IngredientItem> BOLETE_MUSHROOM = of("bolete_mushroom", "Bolete Mushroom");
+    public static RegObj<IngredientItem> MAGIC_LOG = of("magic_log", "Magic Log");
+    public static RegObj<IngredientItem> REDSTONE_CRYSTAL = of("redstone_crystal", "Redstone Crystal");
 
     static RegObj<IngredientItem> of(String id, String locname) {
         RegObj<IngredientItem> def = Def.item("ingredient/" + id, () -> new IngredientItem(id, locname));

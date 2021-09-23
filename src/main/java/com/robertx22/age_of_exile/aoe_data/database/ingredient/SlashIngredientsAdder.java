@@ -140,5 +140,44 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
                 .stats(new StatModifier(1, 3, Stats.SPELL_ACCURACY.get()))
                 .build();
 
+        IngredientBuilder.of(IngredientItems.FIRE_STONE, IRarity.UNCOMMON)
+                .allowedIn(PlayerSkillEnum.ARMOR_CRAFTING)
+                .allowedIn(PlayerSkillEnum.WEAPON_CRAFTING)
+                .stats(new StatModifier(1, 3, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)))
+                .stats(new StatModifier(1, 2, Stats.LIFESTEAL.get()))
+                .build();
+
+
+        IngredientBuilder.of(IngredientItems.CRYSTAL_BLUE_ROCK, IRarity.RARE_ID)
+                .allowedIn(PlayerSkillEnum.ARMOR_CRAFTING)
+                .allowedIn(PlayerSkillEnum.JEWEL_CRAFTING)
+                .allowedIn(PlayerSkillEnum.INSCRIBING)
+                .stats(new StatModifier(2, 8, Mana.getInstance(), ModType.PERCENT))
+                .build();
+
+
+        IngredientBuilder.of(IngredientItems.BOLETE_MUSHROOM, IRarity.COMMON_ID)
+                .allowedIn(PlayerSkillEnum.ALCHEMY)
+                .allowedIn(PlayerSkillEnum.COOKING)
+                .allowedIn(PlayerSkillEnum.INSCRIBING)
+                .stats(new StatModifier(1, 4, Stats.DOT_DAMAGE.get()))
+                .build();
+
+
+        IngredientBuilder.of(IngredientItems.MAGIC_LOG, IRarity.UNCOMMON)
+                .allowedIn(PlayerSkillEnum.ALCHEMY)
+                .allowedIn(PlayerSkillEnum.WEAPON_CRAFTING)
+                .allowedIn(PlayerSkillEnum.INSCRIBING)
+                .stats(new StatModifier(3, 6, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Earth)))
+                .build();
+
+
+        IngredientBuilder.of(IngredientItems.REDSTONE_CRYSTAL, IRarity.UNCOMMON)
+                .allowedIn(PlayerSkillEnum.JEWEL_CRAFTING)
+                .allowedIn(PlayerSkillEnum.ARMOR_CRAFTING)
+                .allowedIn(PlayerSkillEnum.INSCRIBING)
+                .stats(new StatModifier(3, 6, Stats.SPELL_CRIT_DAMAGE.get()))
+                .build();
+
     }
 }
