@@ -38,7 +38,7 @@ public class ServerContainer {
 
     public double GEAR_DROPRATE = 7;
     public double GEM_DROPRATE = 0.5D;
-    public double INGREDIENT_DROPRATE = 300; // todo just for testing
+    public double INGREDIENT_DROPRATE = 400; // todo just for testing
     public double RUNE_DROPRATE = 0.05D;
     public double CURRENCY_DROPRATE = 0.2D;
 }

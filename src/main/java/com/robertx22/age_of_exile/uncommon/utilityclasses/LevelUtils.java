@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
+import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
@@ -12,7 +13,38 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class LevelUtils {
+
+    static Set<Integer> cachedTiers = new HashSet<>();
+
+    public static int getMaxTier() {
+        return levelToTier(GameBalanceConfig.get().MAX_LEVEL);
+    }
+
+    public static Set<Integer> getAllTiers() {
+
+        if (cachedTiers.isEmpty()) {
+
+            int maxlvl = GameBalanceConfig.get().MAX_LEVEL;
+
+            Set<Integer> tiers = new HashSet<>();
+
+            for (int i = 0; i < maxlvl; i++) {
+                tiers.add(levelToTier(i));
+            }
+
+            cachedTiers = tiers;
+        }
+
+        return cachedTiers;
+    }
+
+    public static void runTests() {
+        Preconditions.checkArgument(levelToTierToLevel(1) == 1);
+    }
 
     public static String tierToRomanNumeral(int tier) {
         return RomanNumber.toRoman(tier + 1);
@@ -27,7 +59,7 @@ public class LevelUtils {
     }
 
     public static int levelToTier(int level) {
-        return MathHelper.clamp((level / 10), 1, Integer.MAX_VALUE);
+        return MathHelper.clamp((level / 10), 0, Integer.MAX_VALUE);
     }
 
     public static SkillItemTier levelToSkillTier(int lvl) {

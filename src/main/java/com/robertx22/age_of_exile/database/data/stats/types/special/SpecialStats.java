@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseHealEffec
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BasePotionEffect;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseRegenEffect;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpecialStatDamageEffect;
-import com.robertx22.age_of_exile.mixins.StatusEffectAccessor;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -115,8 +114,8 @@ public class SpecialStats {
             @Override
             public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
                 for (EffectInstance x : new ArrayList<>(effect.target.getActiveEffects())) {
-                    StatusEffectAccessor acc = (StatusEffectAccessor) x.getEffect();
-                    if (acc.getCategory() == EffectType.HARMFUL) {
+                    if (x.getEffect()
+                        .getCategory() == EffectType.HARMFUL) {
                         effect.target.removeEffect(x.getEffect());
                     }
                 }

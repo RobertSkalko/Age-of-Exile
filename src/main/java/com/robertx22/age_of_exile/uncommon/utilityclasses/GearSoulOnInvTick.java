@@ -41,9 +41,7 @@ public class GearSoulOnInvTick {
                             e.printStackTrace();
                         }
                     }
-                }
-
-                if (StackSaving.CRAFT_PROCESS.has(stack)) {
+                } else if (StackSaving.CRAFT_PROCESS.has(stack)) {
                     try {
                         CraftingProcessData pdata = StackSaving.CRAFT_PROCESS.loadFrom(stack);
                         if (RandomUtils.roll(pdata.getSuccessChance(player))) {

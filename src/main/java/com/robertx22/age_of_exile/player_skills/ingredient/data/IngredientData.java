@@ -31,6 +31,8 @@ public class IngredientData {
         return data;
     }
 
+    static String STAR = "\u272B";
+
     public TextComponent getStars() {
         GearRarity rar = ExileDB.GearRarities()
             .get(getIngredient().rar);
@@ -42,11 +44,11 @@ public class IngredientData {
         if (rar.item_tier == 0) {
             txt = " [✫✫✫]";
         } else if (rar.item_tier == 1) {
-            txt = " " + format + "[✫" + BLANK + "✫✫" + format + "]";
+            txt = " " + format + "[" + STAR + BLANK + STAR + STAR + format + "]";
         } else if (rar.item_tier == 2) {
-            txt = " " + format + "[✫✫" + BLANK + "✫" + format + "]";
+            txt = " " + format + "[" + STAR + STAR + BLANK + STAR + format + "]";
         } else if (rar.item_tier == 3) {
-            txt = " " + format + "[✫✫✫]";
+            txt = " " + format + "[" + STAR + STAR + STAR + "]";
         }
 
         return new StringTextComponent(txt);

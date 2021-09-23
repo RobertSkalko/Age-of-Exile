@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.base;
 
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.AlchemyPotions;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.GemItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.IngredientItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.player_skills.items.alchemy.PotionType;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -28,7 +29,12 @@ public class CreativeTabs {
             return new ItemStack(Items.SOUL_LANTERN);
         }
     };
-
+    public static ItemGroup Materials = new ItemGroup("mmorpg_mats") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(IngredientItems.BOLETE_MUSHROOM.get());
+        }
+    };
     public static ItemGroup GemRuneCurrency = new ItemGroup("mmorpg_gemrunes") {
         @Override
         public ItemStack makeIcon() {

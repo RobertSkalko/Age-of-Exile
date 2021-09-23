@@ -23,7 +23,6 @@ import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -98,8 +97,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     public int getTier() {
-// TODO
-        return MathHelper.clamp(lvl / 10, 1, Integer.MAX_VALUE);
+        return LevelUtils.levelToTier(lvl);
     }
 
     public int getEffectiveLevel() {

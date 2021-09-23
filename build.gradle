@@ -131,9 +131,11 @@ dependencies {
             version: "$project.minecraft_version-${project.forgeversion}"
     ])
 
-    if (System.getProperty("idea.sync.active") != "true") {
-        annotationProcessor 'org.spongepowered:mixin:0.8.3:processor'
-    }
+
+	
+    if (System.getProperty("idea.sync.active") != "true") {       
+    annotationProcessor 'org.spongepowered:mixin:0.8.3:processor'	
+	}
 
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
 
@@ -147,7 +149,7 @@ jar {
     manifest {
         attributes([
                 "MixinConnector": "com.robertx22.age_of_exile.mmorpg.MixinConnector",
-                "MixinConfigs"  : "${mod_id}-mixins.json"
+                "MixinConfigs"  : "mmorpg-mixins.json"
         ])
     }
 }
@@ -187,5 +189,5 @@ curseforge {
 
 apply plugin: 'org.spongepowered.mixin'
 mixin {
-    add sourceSets.main, "${mod_id}-refmap.json"
+    add sourceSets.main, "mmorpg.refmap.json"
 }
