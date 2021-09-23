@@ -1,0 +1,19 @@
+{
+  "id": "magic_log",
+  "item_id": "mmorpg:ingredient/magic_log",
+  "weight": 2000,
+  "rar": "uncommon",
+  "stats": [
+    {
+      "min": 3.0,
+      "max": 6.0,
+      "stat": "spell_earth_damage",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "alchemy",
+    "wep_craft",
+    "inscribing"
+  ]
+}

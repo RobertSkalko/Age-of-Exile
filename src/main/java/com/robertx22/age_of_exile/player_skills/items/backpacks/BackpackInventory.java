@@ -19,7 +19,6 @@ public class BackpackInventory extends Inventory {
         this.stack = stack;
         this.size = getMaxSize();
         this.player = player;
-
         setup();
     }
 

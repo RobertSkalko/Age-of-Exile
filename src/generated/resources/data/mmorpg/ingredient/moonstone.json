@@ -5,14 +5,8 @@
   "rar": "uncommon",
   "stats": [
     {
-      "min": 1.0,
-      "max": 5.0,
-      "stat": "water_resist",
-      "type": "FLAT"
-    },
-    {
-      "min": 1.0,
-      "max": 3.0,
+      "min": 2.0,
+      "max": 6.0,
       "stat": "mana_regen",
       "type": "PERCENT"
     }

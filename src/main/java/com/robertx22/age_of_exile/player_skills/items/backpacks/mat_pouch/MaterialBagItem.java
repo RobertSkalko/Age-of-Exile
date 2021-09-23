@@ -1,10 +1,9 @@
-package com.robertx22.age_of_exile.player_skills.items.backpacks;
+package com.robertx22.age_of_exile.player_skills.items.backpacks.mat_pouch;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
-import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BagUpgradesData;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.data.ShapedRecipeBuilder;
@@ -29,9 +28,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BackpackItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe {
+public class MaterialBagItem extends Item implements IAutoLocName, IAutoModel, IShapedRecipe {
 
-    public BackpackItem() {
+    public MaterialBagItem() {
         super(new Properties().tab(CreativeTabs.Professions)
             .fireResistant()
             .stacksTo(1));
@@ -45,9 +44,6 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
         if (world != null && !world.isClientSide) {
 
             ItemStack stack = user.getItemInHand(hand);
-            //  if (!IsSkillItemUsableUtil.canUseItem(user, stack, true)) {
-            ///     return ActionResult.fail(stack);
-            //}
 
             user.openMenu(new INamedContainerProvider() {
                 @Override
@@ -59,7 +55,7 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
                 @Override
                 public Container createMenu(int syncId, PlayerInventory inv, PlayerEntity p) {
                     ItemStack stack = p.getMainHandItem();
-                    return new BackpackContainer(stack, syncId, inv);
+                    return new MatBagContainer(stack, syncId, inv);
                 }
             });
 
@@ -73,12 +69,7 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
     public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
 
         try {
-            BagUpgradesData data = BagUpgradesData.load(stack);
 
-            data.getUpgrades()
-                .forEach(x -> {
-                    tooltip.add(x.getName(stack));
-                });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -108,7 +99,7 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
 
     @Override
     public String locNameForLangFile() {
-        return "Adventurer's Backpack";
+        return "Material Pouch";
     }
 
     @Override
@@ -121,7 +112,7 @@ public class BackpackItem extends Item implements IAutoLocName, IAutoModel, ISha
         return shaped(this)
             .define('o', Items.LEATHER)
             .define('m', Items.CHEST)
-            .define('d', Items.IRON_INGOT)
+            .define('d', Items.BREAD)
             .pattern("ooo")
             .pattern("omo")
             .pattern("odo")

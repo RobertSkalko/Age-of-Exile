@@ -1,0 +1,19 @@
+{
+  "id": "crystal_amethyst",
+  "item_id": "mmorpg:ingredient/crystal_amethyst",
+  "weight": 300,
+  "rar": "rare",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 4.0,
+      "stat": "spell_critical_hit",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "jewel_craft",
+    "inscribing",
+    "wep_craft"
+  ]
+}

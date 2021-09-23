@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
+import com.robertx22.age_of_exile.player_skills.items.backpacks.mat_pouch.MaterialBagItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
@@ -101,6 +102,7 @@ public class SlashItems {
     public static RegObj<FunnyDeathPotion> DEATH_POTION = Def.item(() -> new FunnyDeathPotion());
 
     public static RegObj<BackpackItem> BACKPACK = Def.item(() -> new BackpackItem(), "backpack/normal");
+    public static RegObj<MaterialBagItem> MATERIAL_POUCH = Def.item(() -> new MaterialBagItem(), "backpack/material_pouch");
 
     static Item.Properties stationProp = new Item.Properties().tab(CreativeTabs.MyModTab);
 

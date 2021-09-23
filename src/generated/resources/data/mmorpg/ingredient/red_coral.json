@@ -1,0 +1,18 @@
+{
+  "id": "red_coral",
+  "item_id": "mmorpg:ingredient/red_coral",
+  "weight": 5000,
+  "rar": "common",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 3.0,
+      "stat": "health_regen",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "cooking",
+    "alchemy"
+  ]
+}

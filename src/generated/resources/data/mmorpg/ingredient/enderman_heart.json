@@ -1,0 +1,18 @@
+{
+  "id": "enderman_heart",
+  "item_id": "mmorpg:ingredient/enderman_heart",
+  "weight": 300,
+  "rar": "rare",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 3.0,
+      "stat": "spell_accuracy",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "alchemy",
+    "armor_craft"
+  ]
+}

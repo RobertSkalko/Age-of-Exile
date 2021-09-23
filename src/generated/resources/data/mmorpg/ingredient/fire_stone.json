@@ -1,0 +1,24 @@
+{
+  "id": "fire_stone",
+  "item_id": "mmorpg:ingredient/fire_stone",
+  "weight": 2000,
+  "rar": "uncommon",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 3.0,
+      "stat": "all_fire_damage",
+      "type": "FLAT"
+    },
+    {
+      "min": 1.0,
+      "max": 2.0,
+      "stat": "lifesteal",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "armor_craft",
+    "wep_craft"
+  ]
+}

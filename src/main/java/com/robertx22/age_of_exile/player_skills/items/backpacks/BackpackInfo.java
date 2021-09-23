@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
+import com.robertx22.age_of_exile.player_skills.items.backpacks.mat_pouch.MaterialBagItem;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades.BagUpgradesData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -23,9 +24,15 @@ public class BackpackInfo {
                 x.upgrade.upgrade(x, this);
             });
 
+        if (stack.getItem() instanceof MaterialBagItem) {
+            extraRows = 5;
+            this.tier = 4;
+        }
+
         if (extraRows > 5) {
             extraRows = 5;
         }
+
     }
 
     public int tier = -1;

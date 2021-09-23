@@ -1,0 +1,18 @@
+{
+  "id": "blootroot",
+  "item_id": "mmorpg:ingredient/blootroot",
+  "weight": 300,
+  "rar": "rare",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 4.0,
+      "stat": "lifesteal",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "cooking",
+    "alchemy"
+  ]
+}

@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
+import com.robertx22.age_of_exile.player_skills.items.backpacks.mat_pouch.MaterialBagItem;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -27,6 +29,27 @@ public class TryAutoInsert {
                 if (info.autoPickups.stream()
                     .noneMatch(x -> x.autoPicksUp(stack))) {
                     continue;
+                }
+
+                BackpackInventory binv = new BackpackInventory(inv.player, backpack);
+
+                if (binv.addItem(stack)
+                    .isEmpty()) {
+                    stack.setCount(0);
+                    binv.writeItemStack();
+                    SoundUtils.playSound(inv.player, SoundEvents.ITEM_PICKUP, 1, 1);
+                    return;
+                }
+            } else if (inv.getItem(i)
+                .getItem() instanceof MaterialBagItem) {
+                ItemStack backpack = inv.getItem(i);
+                if (backpack
+                    .equals(inv.player.getMainHandItem())) {
+                    continue; // if holding, dont put
+                }
+
+                if (!StackSaving.INGREDIENTS.has(stack)) {
+                    return;
                 }
 
                 BackpackInventory binv = new BackpackInventory(inv.player, backpack);
