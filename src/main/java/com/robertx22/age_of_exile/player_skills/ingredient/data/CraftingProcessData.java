@@ -1,11 +1,17 @@
 package com.robertx22.age_of_exile.player_skills.ingredient.data;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.CraftStatData;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.CraftedStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.utils.RandomUtils;
@@ -77,6 +83,8 @@ public class CraftingProcessData {
 
         tip.clear();
 
+        PlayerSkillEnum skill = getProfession();
+
         IFormattableTextComponent name = new StringTextComponent("").append(stack.getDisplayName())
             .withStyle(TextFormatting.DARK_AQUA);
         tip.add(name);
@@ -88,6 +96,19 @@ public class CraftingProcessData {
                 tip.addAll(s.getEstimationTooltip(LevelUtils.tierToLevel(x.tier)));
             });
         });
+
+        if (skill.isGearCraftingProf()) {
+
+            GearRarity min = getMinRarity();
+            GearRarity max = getMaxRarity();
+
+            tip.add(new StringTextComponent(""));
+            tip.add(new StringTextComponent("Mini Rarity: ").append(min.locName()
+                .withStyle(min.textFormatting())));
+            tip.add(new StringTextComponent("Max Rarity: ").append(max.locName()
+                .withStyle(max.textFormatting())));
+
+        }
 
         tip.add(new StringTextComponent(""));
         tip.add(new StringTextComponent("Success Chance:" + getSuccessChance(ClientOnly.getPlayer()) + "%").withStyle(TextFormatting.RED, TextFormatting.BOLD));
@@ -121,9 +142,98 @@ public class CraftingProcessData {
 
     }
 
-    public GearItemData craftGear(PlayerEntity player) {
+    GearRarity getMinRarity() {
+        GearRarity rar = ExileDB.GearRarities()
+            .get(IRarity.COMMON_ID);
+        int uptimes = getIngredientsCount() / 4;
 
-        return null; // todo
+        for (int i = 0; i < uptimes; i++) {
+            if (rar.hasHigherRarity()) {
+                rar = rar.getHigherRarity();
+            }
+        }
+        return rar;
+    }
+
+    GearRarity getMaxRarity() {
+        GearRarity rar = ExileDB.GearRarities()
+            .get(IRarity.COMMON_ID);
+        int uptimes = getIngredientsCount();
+
+        for (int i = 0; i < uptimes; i++) {
+            if (rar.hasHigherRarity()) {
+                rar = rar.getHigherRarity();
+            }
+        }
+        return rar;
+    }
+
+    public int getIngredientsCount() {
+        return ingredients.size();
+    }
+
+    public List<GearRarity> getPossibleRarities() {
+
+        GearRarity min = getMinRarity();
+        GearRarity max = getMaxRarity();
+
+        List<GearRarity> possible = new ArrayList<>();
+
+        possible.add(min);
+        possible.add(max);
+
+        while (min.hasHigherRarity() && min.item_tier < max.item_tier) {
+            possible.add(min.getHigherRarity());
+            min = min.getHigherRarity();
+        }
+
+        possible = possible.stream()
+            .distinct()
+            .collect(Collectors.toList());
+
+        return possible;
+
+    }
+
+    public GearItemData craftGear(ItemStack stack, PlayerEntity player) {
+        GearItemData data = new GearItemData();
+
+        GearSlot slot = GearSlot.getSlotOf(stack.getItem());
+
+        BaseGearType baseGearType = ExileDB.GearTypes()
+            .getFilterWrapped(x -> x.gear_slot.equals(slot.GUID()))
+            .random();
+
+        GearRarity rar = RandomUtils.weightedRandom(getPossibleRarities());
+
+        data.rarity = rar.GUID();
+        int tier = ingredients.stream()
+            .mapToInt(x -> x.tier)
+            .sum() / ingredients.size();
+        int lvl = LevelUtils.tierToLevel(tier);
+
+        data.lvl = lvl;
+        data.gear_type = baseGearType.GUID();
+
+        data.baseStats.RerollFully(data);
+        data.imp.RerollFully(data);
+
+        List<ExactStatData> stats = getResultingStats();
+
+        data.cr = new CraftedStatsData();
+
+        while (stats.size() > rar.affixes.max_amount) {
+            // don't allow more stats than rarity allows
+            stats.remove(RandomUtils.RandomRange(0, stats.size() - 1));
+        }
+
+        stats.forEach(x -> {
+            CraftStatData singleStatData = new CraftStatData();
+            singleStatData.s = x;
+            data.cr.stats.add(singleStatData);
+        });
+
+        return data; // todo
     }
 
     public CraftedConsumableData craftConsumable(PlayerEntity player) {

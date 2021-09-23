@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.mixin_methods;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftingProcessData;
 import com.robertx22.age_of_exile.player_skills.ingredient.data.IngredientData;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -37,6 +38,13 @@ public class TooltipMethod {
         PlayerEntity player = Minecraft.getInstance().player;
 
         try {
+
+            CraftingProcessData pdata = StackSaving.CRAFT_PROCESS.loadFrom(stack);
+
+            if (pdata != null) {
+                pdata.makeTooltip(stack, tooltip);
+                return;
+            }
 
             if (StackSaving.INGREDIENTS.has(stack)) {
                 IngredientData data = StackSaving.INGREDIENTS.loadFrom(stack);

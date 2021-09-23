@@ -10,6 +10,7 @@ import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.SpecialRecipe;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -30,23 +31,24 @@ public class ProfCraftingRecipe extends SpecialRecipe {
 
         for (int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack stack = inv.getItem(i);
-            if (!stack.isEmpty()) {
-                if (stack.getItem() instanceof CraftToolItem == false && !StackSaving.INGREDIENTS.has(stack)) {
-                    return false;
-                }
-            }
-        }
-
-        for (int i = 0; i < inv.getContainerSize(); ++i) {
-            ItemStack stack = inv.getItem(i);
             if (stack.getItem() instanceof CraftToolItem) {
                 CraftToolItem tool = (CraftToolItem) stack.getItem();
                 skill = tool.skill;
             }
         }
-
         if (skill == null) {
             return false;
+        }
+
+        for (int i = 0; i < inv.getContainerSize(); ++i) {
+            ItemStack stack = inv.getItem(i);
+            if (!stack.isEmpty()) {
+                if (stack.getItem() instanceof CraftToolItem == false && !StackSaving.INGREDIENTS.has(stack)) {
+                    if (!skill.isGearCraftingProf()) {
+                        return false;
+                    }
+                }
+            }
         }
 
         for (int i = 0; i < inv.getContainerSize(); ++i) {
@@ -66,6 +68,20 @@ public class ProfCraftingRecipe extends SpecialRecipe {
 
         if (list.isEmpty() || list.size() > 6) {
             return false;
+        }
+
+        if (skill.isGearCraftingProf()) {
+            boolean hasgear = false;
+
+            for (int i = 0; i < inv.getContainerSize(); ++i) {
+                ItemStack stack = inv.getItem(i);
+                if (skill.gearMatchesProfession(stack.getItem())) {
+                    hasgear = true;
+                }
+            }
+            if (!hasgear) {
+                return false;
+            }
         }
 
         return true;
@@ -107,11 +123,40 @@ public class ProfCraftingRecipe extends SpecialRecipe {
         data.prof = skill.GUID();
         data.ingredients = list;
 
-        ItemStack stack = new ItemStack(skill.getCraftResultItem());
+        ItemStack stack = ItemStack.EMPTY;
+
+        if (skill.isGearCraftingProf()) {
+            boolean hasgear = false;
+
+            for (int i = 0; i < inv.getContainerSize(); ++i) {
+                ItemStack gearstack = inv.getItem(i);
+                if (skill.gearMatchesProfession(gearstack.getItem())) {
+                    stack = gearstack.copy();
+                    break;
+                }
+            }
+        } else {
+            stack = new ItemStack(skill.getCraftResultItem());
+        }
 
         StackSaving.CRAFT_PROCESS.saveTo(stack, data);
-
         return stack;
+    }
+
+    @Override
+    public NonNullList<ItemStack> getRemainingItems(CraftingInventory inv) {
+
+        NonNullList<ItemStack> list = NonNullList.withSize(inv.getContainerSize(), ItemStack.EMPTY);
+        NonNullList<ItemStack> remains = NonNullList.create();
+
+        for (int i = 0; i < list.size(); ++i) {
+            ItemStack stack = inv.getItem(i);
+            if (stack.getItem() instanceof CraftToolItem) {
+                remains.add(new ItemStack(stack.getItem()));
+            }
+        }
+
+        return remains;
     }
 
     @Override

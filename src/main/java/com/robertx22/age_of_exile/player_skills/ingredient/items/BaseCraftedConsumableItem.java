@@ -86,7 +86,6 @@ public abstract class BaseCraftedConsumableItem extends AutoItem {
             CraftingProcessData pdata = StackSaving.CRAFT_PROCESS.loadFrom(stack);
 
             if (pdata != null) {
-                pdata.makeTooltip(stack, tooltip);
                 return;
             }
 

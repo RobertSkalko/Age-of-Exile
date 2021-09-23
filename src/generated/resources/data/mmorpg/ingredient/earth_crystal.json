@@ -13,6 +13,7 @@
   ],
   "allowed_in": [
     "armor_craft",
-    "alchemy"
+    "alchemy",
+    "jewel_craft"
   ]
 }

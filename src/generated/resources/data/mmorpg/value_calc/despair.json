@@ -3,11 +3,11 @@
   "id": "despair",
   "base_scaling_type": "NORMAL",
   "attack_scaling": {
-    "min": 0.2,
-    "max": 0.6
-  },
-  "base": {
     "min": 0.0,
     "max": 0.0
+  },
+  "base": {
+    "min": 2.0,
+    "max": 6.0
   }
 }

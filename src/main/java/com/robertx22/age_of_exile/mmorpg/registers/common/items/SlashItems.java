@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.player_skills.items.backpacks.mat_pouch.Materi
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.MiscSeedItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
@@ -44,9 +43,6 @@ public class SlashItems {
 
     public static RegObj<StatSoulItem> STAT_SOUL = Def.item(() -> new StatSoulItem());
     public static RegObj<LootCrateItem> LOOT_CRATE = Def.item(() -> new LootCrateItem());
-
-    public static RegObj<MiscSeedItem> MANA_FLOWER_SEED = Def.item(() -> new MiscSeedItem("Mana Flower Seed", Items.LAPIS_LAZULI, SlashBlocks.MANA_PLANT.get()), "seed/mana");
-    public static RegObj<MiscSeedItem> HP_FLOWER_SEED = Def.item(() -> new MiscSeedItem("Life Flower Seed", Items.APPLE, SlashBlocks.LIFE_PLANT.get()), "seed/life");
 
     public static RegObj<ProjectileItem> FIREBALL = Def.item(() -> new ProjectileItem("fireball"));
     public static RegObj<ProjectileItem> SNOWBALL = Def.item(() -> new ProjectileItem("snowball"));

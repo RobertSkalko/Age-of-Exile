@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.database.data.value_calc;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellPower;
 
 public class ValueCalcBuilder {
     ValueCalculation calc;
@@ -20,6 +21,11 @@ public class ValueCalcBuilder {
     public ValueCalcBuilder attackScaling(float min, float max) {
         calc.attack_scaling = new LeveledValue(min, max);
         return this;
+
+    }
+
+    public ValueCalcBuilder spellScaling(float min, float max) {
+        return statScaling(SpellPower.getInstance(), min, max);
     }
 
     public ValueCalcBuilder statScaling(Stat stat, float min, float max) {

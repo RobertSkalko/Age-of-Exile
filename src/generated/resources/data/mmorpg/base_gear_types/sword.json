@@ -16,6 +16,12 @@
       "max": 2.6999998,
       "stat": "physical_weapon_damage",
       "type": "FLAT"
+    },
+    {
+      "min": 2.0,
+      "max": 4.0,
+      "stat": "spell_power",
+      "type": "FLAT"
     }
   ],
   "weapon_type": "sword",

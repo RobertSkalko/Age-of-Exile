@@ -31,6 +31,7 @@ public class EpicIngredientsAdder implements ExileRegistryInit {
         IngredientBuilder.of(IngredientItems.EARTH_CRYSTAL, IRarity.EPIC_ID)
             .allowedIn(PlayerSkillEnum.ARMOR_CRAFTING)
             .allowedIn(PlayerSkillEnum.ALCHEMY)
+            .allowedIn(PlayerSkillEnum.JEWEL_CRAFTING)
             .stats(new StatModifier(2, 8, Stats.ELEMENTAL_SPELL_DAMAGE.get(Elements.Earth)))
             .build();
 

@@ -3,11 +3,11 @@
   "id": "poison",
   "base_scaling_type": "NORMAL",
   "attack_scaling": {
-    "min": 0.1,
-    "max": 0.1
-  },
-  "base": {
     "min": 0.0,
     "max": 0.0
+  },
+  "base": {
+    "min": 2.0,
+    "max": 2.0
   }
 }

@@ -11,7 +11,8 @@ public class CraftToolItem extends AutoItem {
 
     public CraftToolItem(String locname, PlayerSkillEnum skill) {
 
-        super(new Properties().tab(CreativeTabs.Professions));
+        super(new Properties().tab(CreativeTabs.Professions)
+            .stacksTo(1));
         this.skill = skill;
         this.locname = locname;
     }

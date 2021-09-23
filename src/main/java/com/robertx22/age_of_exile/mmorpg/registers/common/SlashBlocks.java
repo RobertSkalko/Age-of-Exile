@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.dimension.teleporter.TeleporterBlock;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlock;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
-import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BlackHoleBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.TotemBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.runeword_station.RuneWordStationBlock;
@@ -16,14 +15,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 
-import java.util.HashMap;
-
 public class SlashBlocks {
 
     public static void init() {
-        for (SkillItemTier tier : SkillItemTier.values()) {
-            FARMING_PLANTS.put(tier, plant("plant" + (tier.tier + 1)));
-        }
+
     }
 
     public static RegObj<RuneWordStationBlock> RUNEWORD = Def.block("runeword_station", () -> new RuneWordStationBlock());
@@ -38,11 +33,6 @@ public class SlashBlocks {
     public static RegObj<TotemBlock> GUARD_TOTEM = Def.block("guard_totem", () -> new TotemBlock());
     public static RegObj<TotemBlock> TRAP = Def.block("trap", () -> new TotemBlock());
     public static RegObj<TotemBlock> GLYPH = Def.block("glyph", () -> new TotemBlock());
-
-    public static HashMap<SkillItemTier, RegObj<Block>> FARMING_PLANTS = new HashMap<>();
-
-    public static RegObj<Block> MANA_PLANT = plant("mana");
-    public static RegObj<Block> LIFE_PLANT = plant("life");
 
     static RegObj<Block> plant(String id) {
         return Def.block(id, () -> new BeetrootBlock(AbstractBlock.Properties.of(Material.PLANT)

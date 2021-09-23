@@ -47,6 +47,9 @@ public enum PlayerSkillEnum implements IGUID {
         @Override
         public boolean gearMatchesProfession(Item item) {
             GearSlot slot = GearSlot.getSlotOf(item);
+            if (slot == null) {
+                return false;
+            }
             return slot.fam == SlotFamily.Jewelry;
         }
     },
@@ -59,6 +62,9 @@ public enum PlayerSkillEnum implements IGUID {
         @Override
         public boolean gearMatchesProfession(Item item) {
             GearSlot slot = GearSlot.getSlotOf(item);
+            if (slot == null) {
+                return false;
+            }
             return slot.fam == SlotFamily.Armor;
         }
     },
@@ -71,6 +77,9 @@ public enum PlayerSkillEnum implements IGUID {
         @Override
         public boolean gearMatchesProfession(Item item) {
             GearSlot slot = GearSlot.getSlotOf(item);
+            if (slot == null) {
+                return false;
+            }
             return slot.fam == SlotFamily.Weapon;
         }
     },

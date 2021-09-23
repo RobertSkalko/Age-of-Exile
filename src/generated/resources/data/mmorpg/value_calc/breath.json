@@ -1,10 +1,18 @@
 {
-  "stat_scalings": [],
+  "stat_scalings": [
+    {
+      "stat": "spell_power",
+      "multi": {
+        "min": 0.2,
+        "max": 0.6
+      }
+    }
+  ],
   "id": "breath",
   "base_scaling_type": "NORMAL",
   "attack_scaling": {
-    "min": 0.2,
-    "max": 0.6
+    "min": 0.0,
+    "max": 0.0
   },
   "base": {
     "min": 0.0,

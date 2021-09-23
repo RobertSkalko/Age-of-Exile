@@ -1,6 +1,7 @@
 {
   "id": "ring",
-  "energy_cost": 0,
   "weight": 750,
-  "model_num": 12
+  "energy_cost": 0,
+  "model_num": 12,
+  "fam": "Jewelry"
 }

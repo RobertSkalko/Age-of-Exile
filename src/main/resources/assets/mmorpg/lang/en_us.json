@@ -195,8 +195,11 @@
 	"item.mmorpg.craft_result.inscribing.3": "Enchanted Scroll",
 	"item.mmorpg.craft_result.inscribing.4": "Enchanted Scroll",
 	"item.mmorpg.craft_tools.alchemy": "Alchemist's Mortar",
+	"item.mmorpg.craft_tools.armor_craft": "Armorer's Fabric",
 	"item.mmorpg.craft_tools.cooking": "Cook's Pot",
 	"item.mmorpg.craft_tools.inscribing": "Scribe's Fabric",
+	"item.mmorpg.craft_tools.jewel_craft": "Jeweler's Tool",
+	"item.mmorpg.craft_tools.wep_craft": "Weapon Crafter's Hammer",
 	"item.mmorpg.gear_mat.essences.arcana": "Essence of Arcana",
 	"item.mmorpg.gear_mat.essences.elemental": "Essence of Elements",
 	"item.mmorpg.gear_mat.essences.fire": "Essence of Fire",
@@ -281,11 +284,6 @@
 	"item.mmorpg.mat.smelted.3": "Smelted Angelic Essence",
 	"item.mmorpg.mat.smelted.4": "Smelted Divine Essence",
 	"item.mmorpg.misc.teleport_back": "Teleport Back",
-	"item.mmorpg.plant.plant1": "Spiritual Wheat",
-	"item.mmorpg.plant.plant2": "Celestial Wheat",
-	"item.mmorpg.plant.plant3": "Empyrean Wheat",
-	"item.mmorpg.plant.plant4": "Angelic Wheat",
-	"item.mmorpg.plant.plant5": "Divine Wheat",
 	"item.mmorpg.potions.add_reset_perk_points": "Single Talent Reset Potion",
 	"item.mmorpg.potions.death_potion": "Death Potion",
 	"item.mmorpg.potions.reset_all_perks": "Talent Reset Potion",
@@ -309,13 +307,6 @@
 	"item.mmorpg.runes.xer": "Xer Rune",
 	"item.mmorpg.runes.yun": "Yun Rune",
 	"item.mmorpg.scroll.paper": "Essence Filled Paper",
-	"item.mmorpg.seed.life": "Life Flower Seed",
-	"item.mmorpg.seed.mana": "Mana Flower Seed",
-	"item.mmorpg.seed.plant1": "Spiritual Wheat Seed",
-	"item.mmorpg.seed.plant2": "Celestial Wheat Seed",
-	"item.mmorpg.seed.plant3": "Empyrean Wheat Seed",
-	"item.mmorpg.seed.plant4": "Angelic Wheat Seed",
-	"item.mmorpg.seed.plant5": "Divine Wheat Seed",
 	"item.mmorpg.stone.0": "Spiritual Stone",
 	"item.mmorpg.stone.1": "Celestial Stone",
 	"item.mmorpg.stone.2": "Empyrean Stone",
@@ -620,6 +611,26 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
+	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
+	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 	"effect.mmorpg.beneficial.1": "Antidote",
@@ -663,26 +674,6 @@
 	"effect.mmorpg.negative.8": "Bleed",
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
-
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
-	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
-	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -1321,6 +1312,7 @@
 	"mmorpg.stat.spell_elemental_damage": "Elemental Skill Damage",
 	"mmorpg.stat.spell_fire_damage": "Fire Skill Damage",
 	"mmorpg.stat.spell_lifesteal": "Spell Lifesteal",
+	"mmorpg.stat.spell_power": "Spell Power",
 	"mmorpg.stat.spell_water_damage": "Water Skill Damage",
 	"mmorpg.stat.staff_damage": "Staff Damage",
 	"mmorpg.stat.strength": "Strength",
@@ -1406,6 +1398,15 @@
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.alchemy_consumable": "Alchemy",
+	"effect.mmorpg.cooking_consumable": "Cooking",
+	"effect.mmorpg.inscribing_consumable": "Inscribing",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.jewelry.necklace.diamond": "Necklace",
@@ -1420,15 +1421,6 @@
 	"item.mmorpg.weapon.staff.wood": "Staff",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.alchemy_consumable": "Alchemy",
-	"effect.mmorpg.cooking_consumable": "Cooking",
-	"effect.mmorpg.inscribing_consumable": "Inscribing",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",
@@ -1615,6 +1607,7 @@
 	"mmorpg.stat_desc.spell_elemental_damage": "Increases damage of spells of that element.",
 	"mmorpg.stat_desc.spell_fire_damage": "Increases damage of spells of that element.",
 	"mmorpg.stat_desc.spell_lifesteal": "Restore % of spell damage as health.",
+	"mmorpg.stat_desc.spell_power": "Used for certain spells",
 	"mmorpg.stat_desc.spell_water_damage": "Increases damage of spells of that element.",
 	"mmorpg.stat_desc.staff_damage": "Increases damage done if it was caused by that weapon",
 	"mmorpg.stat_desc.strength": "Determines your total: Melee Damage, Armor",

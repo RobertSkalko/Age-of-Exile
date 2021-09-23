@@ -139,6 +139,9 @@ public class GearTooltipUtils {
                     Words.Corrupted.locName())
                 .withStyle(TextFormatting.RED));
         }
+        if (gear.hasCraftedStats()) {
+            tip.add(new StringTextComponent("Crafted").withStyle(TextFormatting.GOLD));
+        }
         int socketed = gear.sockets.sockets.size();
         if (socketed > 0) {
             TooltipUtils.addSocketNamesLine(tip, gear);

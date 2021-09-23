@@ -1,6 +1,7 @@
 {
   "id": "boots",
-  "energy_cost": 0,
   "weight": 1000,
-  "model_num": 7
+  "energy_cost": 0,
+  "model_num": 7,
+  "fam": "Armor"
 }

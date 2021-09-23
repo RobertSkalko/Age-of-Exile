@@ -1,10 +1,18 @@
 {
-  "stat_scalings": [],
+  "stat_scalings": [
+    {
+      "stat": "spell_power",
+      "multi": {
+        "min": 0.5,
+        "max": 1.0
+      }
+    }
+  ],
   "id": "fire_nova",
   "base_scaling_type": "NORMAL",
   "attack_scaling": {
-    "min": 0.5,
-    "max": 1.0
+    "min": 0.0,
+    "max": 0.0
   },
   "base": {
     "min": 0.0,

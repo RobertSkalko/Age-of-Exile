@@ -3,11 +3,11 @@
   "id": "petrify",
   "base_scaling_type": "NORMAL",
   "attack_scaling": {
-    "min": 0.5,
-    "max": 0.5
-  },
-  "base": {
     "min": 0.0,
     "max": 0.0
+  },
+  "base": {
+    "min": 5.0,
+    "max": 10.0
   }
 }

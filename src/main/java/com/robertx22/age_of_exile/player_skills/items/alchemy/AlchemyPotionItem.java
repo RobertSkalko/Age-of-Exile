@@ -113,7 +113,7 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
         StationShapelessFactory fac = StationShapelessFactory.create(SlashRecipeSers.ALCHEMY.get(), this, 3);
         fac.input(type.craftItem.get());
         fac.input(Items.GLASS_BOTTLE);
-        fac.input(ProfessionItems.FARMING_PRODUCE.get(tier)
+        fac.input(ProfessionItems.CONDENSED_ESSENCE_MAP.get(tier)
             .get());
         return fac.criterion("player_level", trigger());
     }

@@ -2,10 +2,8 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.GemItems;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.RuneItems;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
@@ -120,12 +118,6 @@ public class LootTableGenerator {
         map.put(RUNE_SALVAGE_RECIPE, runes.build());
         map.put(GEM_SALVAGE_RECIPE, gems.build());
         map.put(CURRENCIES_SALVAGE_RECIPE, currencies.build());
-
-        ProfessionItems.FARMING_PRODUCE.values()
-            .forEach(x -> {
-                addFarming(SlashBlocks.FARMING_PLANTS.get(x.get().tier)
-                    .get(), x.get(), null, 3, map);
-            });
 
         return map;
 

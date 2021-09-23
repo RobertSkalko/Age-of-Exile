@@ -3,11 +3,11 @@
   "id": "burn",
   "base_scaling_type": "NORMAL",
   "attack_scaling": {
-    "min": 0.2,
-    "max": 0.2
-  },
-  "base": {
     "min": 0.0,
     "max": 0.0
+  },
+  "base": {
+    "min": 4.0,
+    "max": 4.0
   }
 }

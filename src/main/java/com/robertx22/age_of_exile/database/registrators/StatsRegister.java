@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DarknessDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DualWieldDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellPower;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.*;
@@ -52,6 +53,8 @@ public class StatsRegister implements ExileRegistryInit {
                     add(ArmorPenetration.getInstance());
 
                     add(DarknessDamage.getInstance());
+
+                    add(SpellPower.getInstance());
 
                     add(SpellDodge.getInstance());
 

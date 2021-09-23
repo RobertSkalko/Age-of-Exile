@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "mmorpg:items/seed/plant4"
+    "layer0": "mmorpg:items/craft_tools/armor_craft"
   }
 }

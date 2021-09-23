@@ -1,13 +1,21 @@
 {
-  "stat_scalings": [],
+  "stat_scalings": [
+    {
+      "stat": "spell_power",
+      "multi": {
+        "min": 0.2,
+        "max": 0.4
+      }
+    }
+  ],
   "id": "poison_cloud",
   "base_scaling_type": "NORMAL",
   "attack_scaling": {
-    "min": 0.25,
-    "max": 0.5
-  },
-  "base": {
     "min": 0.0,
     "max": 0.0
+  },
+  "base": {
+    "min": 2.0,
+    "max": 4.0
   }
 }

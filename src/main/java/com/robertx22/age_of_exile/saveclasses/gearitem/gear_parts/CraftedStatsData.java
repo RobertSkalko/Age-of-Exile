@@ -7,12 +7,14 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IStatsContaine
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
+import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Storable
 public class CraftedStatsData implements IStatsContainer, IGearPartTooltip {
 
     @Store

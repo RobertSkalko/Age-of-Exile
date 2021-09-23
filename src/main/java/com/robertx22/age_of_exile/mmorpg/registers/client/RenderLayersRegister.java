@@ -11,9 +11,6 @@ public class RenderLayersRegister {
         RenderTypeLookup.setRenderLayer(SlashBlocks.BLACK_HOLE.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(SlashBlocks.TELEPORTER.get(), RenderType.translucent());
 
-        RenderTypeLookup.setRenderLayer(SlashBlocks.MANA_PLANT.get(), RenderType.cutout());
-        RenderTypeLookup.setRenderLayer(SlashBlocks.LIFE_PLANT.get(), RenderType.cutout());
-
         RenderTypeLookup.setRenderLayer(SlashBlocks.BLUE_TOTEM.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(SlashBlocks.GUARD_TOTEM.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(SlashBlocks.TRAP.get(), RenderType.cutout());
@@ -23,11 +20,6 @@ public class RenderLayersRegister {
         RenderTypeLookup.setRenderLayer(SlashBlocks.GEAR_SALVAGE.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(SlashBlocks.RUNEWORD.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(SlashBlocks.SPAWNER.get(), RenderType.cutout());
-
-        SlashBlocks.FARMING_PLANTS.values()
-            .forEach(x -> {
-                RenderTypeLookup.setRenderLayer(x.get(), RenderType.cutout());
-            });
 
     }
 }

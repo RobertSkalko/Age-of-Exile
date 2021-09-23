@@ -199,6 +199,7 @@ water_dmg_when_target_low_hp
 increased_quantity
 elemental_dot_damage
 spell_critical_damage
+spell_power
 max_water_resist
 give_taunt_stance_to_self_on_tick
 damage_cdr

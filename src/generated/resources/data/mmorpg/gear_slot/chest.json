@@ -1,6 +1,7 @@
 {
   "id": "chest",
-  "energy_cost": 0,
   "weight": 1000,
-  "model_num": 9
+  "energy_cost": 0,
+  "model_num": 9,
+  "fam": "Armor"
 }

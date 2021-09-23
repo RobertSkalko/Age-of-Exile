@@ -49,7 +49,7 @@ public class GearSoulOnInvTick {
                         if (RandomUtils.roll(pdata.getSuccessChance(player))) {
                             PlayerSkillEnum skill = pdata.getProfession();
                             if (skill.isGearCraftingProf()) {
-                                GearItemData data = pdata.craftGear(player);
+                                GearItemData data = pdata.craftGear(stack, player);
                                 stack.setTag(new CompoundNBT()); // clear the craft process nbt
                                 StackSaving.GEARS.saveTo(stack, data);
                             } else {
