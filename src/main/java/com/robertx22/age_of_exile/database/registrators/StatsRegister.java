@@ -98,10 +98,10 @@ public class StatsRegister implements ExileRegistryInit {
                     add(DodgeRating.getInstance());
                     add(DamageShield.getInstance());
 
-                    add(new BonusSkillExp(PlayerSkillEnum.MINING));
+                    add(new BonusSkillExp(PlayerSkillEnum.NONE));
 
                     add(new BonusYield(BonusRequirement.COLD_BIOME));
-                    add(new BonusSkillYield(PlayerSkillEnum.FISHING));
+                    add(new BonusSkillYield(PlayerSkillEnum.NONE));
                     add(DoubleDropChance.getInstance());
                     add(TripleDropChance.getInstance());
                 }

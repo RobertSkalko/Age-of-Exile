@@ -2,12 +2,9 @@ package com.robertx22.age_of_exile.mixin_methods;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
-import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
-import com.robertx22.age_of_exile.database.data.food_effects.FoodEffectUtils;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.player_skills.ingredient.data.IngredientData;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -79,15 +76,6 @@ public class TooltipMethod {
             }
             if (!Database.areDatapacksLoaded(player.level)) {
                 return;
-            }
-
-            if (FoodEffectUtils.isFood(stack.getItem())) {
-
-                FoodEffect effect = FoodEffectUtils.getEffect(stack.getItem());
-
-                if (effect != null) {
-                    tooltip.addAll(effect.GetTooltipString(new TooltipInfo(player)));
-                }
             }
 
             com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext ctx = new com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext(stack, tooltip, unitdata);

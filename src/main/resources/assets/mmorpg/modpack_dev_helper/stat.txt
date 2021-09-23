@@ -68,7 +68,6 @@ dodge
 bonus_swamp_biome_yield
 inc_effect_of_curse_buff_on_you
 fire_vuln_crit
-bonus_blacksmithing_exp
 earth_vuln_crit
 elemental_any_wep_damage
 blood
@@ -78,7 +77,6 @@ bonus_cooking_yield
 mana
 chance_of_poison
 trap_cdr
-bonus_fishing_yield
 health_on_all_hit
 bonus_inscribing_exp
 critical_damage_per_10_attack_speed
@@ -137,7 +135,6 @@ ele_sword_damage
 totem_cdr
 wisdom
 dmg_to_undead
-bonus_farming_exp
 absorb_ele_dmg_to_hp
 projectile_cdr
 area_spell_dmg
@@ -148,12 +145,10 @@ dot_dmg
 dmg_when_target_is_low_hp
 mana_shield
 bonus_night_yield
-bonus_salvaging_exp
 spell_accuracy
 mana_per_sec
 mana_on_all_hit
 health_ooc_regen
-bonus_exploration_yield
 shield_ooc_regen
 all_fire_damage
 curse_eff_duration
@@ -180,9 +175,7 @@ chance_of_burn_on_crit
 water_weapon_damage
 elemental_vuln_crit
 bonus_wep_craft_exp
-bonus_blacksmithing_yield
 mana_per_10_vitality
-bonus_mining_exp
 water_mana_leech
 bonus_armor_craft_exp
 intelligence
@@ -207,14 +200,12 @@ increased_quantity
 elemental_dot_damage
 spell_critical_damage
 max_water_resist
-bonus_farming_yield
 give_taunt_stance_to_self_on_tick
 damage_cdr
 all_mana_leech
 offensive_eff_dur_u_cast
 magic_dmg_received
 dmg_per_curse_on_target
-bonus_exploration_exp
 fire_resist
 triple_drop_chance
 projectile_damage_per_10_strength
@@ -232,7 +223,6 @@ bonus_day_yield
 spell_critical_hit
 blood_user
 fire_dot_damage
-bonus_salvaging_yield
 dmg_received
 melee_dmg
 shield_strength
@@ -297,7 +287,6 @@ earth_resist
 inc_aoe
 water_health_leech
 ele_crossbow_damage
-bonus_mining_yield
 crit_water_dmg_mana
 energy_ooc_regen
 negative_eff_duration
@@ -309,7 +298,6 @@ max_elemental_resist
 double_drop_chance
 health_on_kill
 plus_to_fire
-bonus_fishing_exp
 bonus_wep_craft_yield
 fire_penetration
 bonus_exp_for_t5_mob

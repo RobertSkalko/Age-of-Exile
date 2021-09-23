@@ -1,17 +1,11 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station;
 
-import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
-import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlockEntities;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SkillDropEvent;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseSkillStation;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
 import com.robertx22.library_of_exile.packets.particles.ParticlePacketData;
@@ -90,7 +84,7 @@ public class TileGearSalvage extends BaseSkillStation {
     }
 
     public TileGearSalvage() {
-        super(null, PlayerSkillEnum.SALVAGING, SlashBlockEntities.SALVAGE.get(), TOTAL_SLOTS_COUNT);
+        super(null, PlayerSkillEnum.NONE, SlashBlockEntities.SALVAGE.get(), TOTAL_SLOTS_COUNT);
 
     }
 
@@ -285,22 +279,6 @@ public class TileGearSalvage extends BaseSkillStation {
                 cook_ticks = 0;
 
                 sal = true;
-
-                PlayerSkill skill = ExileDB.PlayerSkills()
-                    .get(PlayerSkillEnum.SALVAGING.id);
-
-                RPGPlayerData playerData = Load.playerRPGData(player);
-
-                int exp = skill.getExpForAction(player);
-
-                playerData.professions.addExp(player, skill.type_enum, exp);
-
-                List<ItemStack> list = skill.getExtraDropsFor(player, exp, LevelUtils.levelToSkillTier(playerData.professions.getProfessionLevel(skill.type_enum)));
-
-                SkillDropEvent effect = new SkillDropEvent(player, PlayerSkillEnum.SALVAGING, list);
-                effect.Activate();
-
-                effect.extraDrops.forEach(x -> PlayerUtils.giveItem(x, player));
 
             }
 

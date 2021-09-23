@@ -81,53 +81,6 @@ public enum WikiType {
             return false; // only by linking from professions page
         }
     },
-    BLACKSMITH_EXP("smith") {
-        @Override
-        public List<WikiEntry> getAllEntries() {
-            return craftExp(PlayerSkillEnum.BLACKSMITHING);
-        }
-
-        @Override
-        public boolean showsInWiki() {
-            return false; // only by linking from professions page
-        }
-    },
-    MINING_BLOCK_EXP("mining_exp") {
-        @Override
-        public boolean showsInWiki() {
-            return false; // only by linking from professions page
-        }
-
-        @Override
-        public List<WikiEntry> getAllEntries() {
-            List<WikiEntry> list = new ArrayList<>();
-
-            ExileDB.PlayerSkills()
-                .get(PlayerSkillEnum.MINING.id).block_break_exp.forEach(x -> {
-                    list.add(new MiningBlockExpEntry(x.getBlock(), (int) x.exp));
-                });
-            ExileDB.PlayerSkills()
-                .get(PlayerSkillEnum.MINING.id).item_smelt_exp.forEach(x -> {
-                    list.add(new MiningSmeltEntry(x.getItem(), x.exp));
-                });
-            return list;
-        }
-    }, FARMING_EXP("farming_exp") {
-        @Override
-        public boolean showsInWiki() {
-            return false; // only by linking from professions page
-        }
-
-        @Override
-        public List<WikiEntry> getAllEntries() {
-            List<WikiEntry> list = new ArrayList<>();
-            ExileDB.PlayerSkills()
-                .get(PlayerSkillEnum.FARMING.id).block_break_exp.forEach(x -> {
-                    list.add(new MiningBlockExpEntry(x.getBlock(), (int) x.exp));
-                });
-            return list;
-        }
-    },
     DIMENSIONS("dimension") {
         @Override
         public List<WikiEntry> getAllEntries() {

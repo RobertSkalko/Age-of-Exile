@@ -1,9 +1,6 @@
 package com.robertx22.age_of_exile.mixins;
 
 import com.robertx22.age_of_exile.mixin_methods.AddSpawnerExtraLootMethod;
-import com.robertx22.age_of_exile.player_skills.events.OnBlockDropFarming;
-import com.robertx22.age_of_exile.player_skills.events.OnBlockDropMining;
-import com.robertx22.age_of_exile.player_skills.events.OnFishing;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootTable;
@@ -24,9 +21,7 @@ public class LootTableMixin {
             LootTable lootTable = (LootTable) (Object) this;
 
             AddSpawnerExtraLootMethod.hookLoot(context, ci);
-            OnBlockDropMining.run(context, ci);
-            OnBlockDropFarming.run(context, ci);
-            OnFishing.run(lootTable, context, ci);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

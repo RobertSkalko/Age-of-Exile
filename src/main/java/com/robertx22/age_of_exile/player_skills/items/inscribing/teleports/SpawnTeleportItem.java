@@ -43,7 +43,7 @@ public class SpawnTeleportItem extends BaseTpItem {
         ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this);
         fac.requires(Items.PAPER);
         fac.requires(Items.ENDER_PEARL);
-        fac.requires(ProfessionItems.INK_TIER_MAP.get(SkillItemTier.TIER0)
+        fac.requires(ProfessionItems.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER0)
             .get());
         return fac.unlockedBy("player_level", trigger());
     }

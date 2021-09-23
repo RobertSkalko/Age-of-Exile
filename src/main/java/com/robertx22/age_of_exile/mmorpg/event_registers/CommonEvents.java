@@ -15,7 +15,6 @@ import com.robertx22.age_of_exile.event_hooks.my_events.OnMobDeathDrops;
 import com.robertx22.age_of_exile.event_hooks.my_events.OnPlayerDeath;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnTickDungeonWorld;
-import com.robertx22.age_of_exile.event_hooks.player.OnDamagePlayerActivateTablets;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.event_hooks.player.StopCastingIfInteract;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -79,7 +78,6 @@ public class CommonEvents {
         ExileEvents.DAMAGE_BEFORE_CALC.register(new ScaleVanillaPlayerDamage());
 
         ExileEvents.DAMAGE_AFTER_CALC.register(new OnPlayerDamageEntityEvent());
-        ExileEvents.DAMAGE_AFTER_CALC.register(new OnDamagePlayerActivateTablets());
 
         ExileEvents.PLAYER_DEATH.register(new OnPlayerDeath());
 

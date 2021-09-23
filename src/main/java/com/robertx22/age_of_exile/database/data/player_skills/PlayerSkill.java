@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 public class PlayerSkill implements JsonExileRegistry<PlayerSkill>, IAutoGson<PlayerSkill>, ITooltipList {
     public static PlayerSkill SERIALIZER = new PlayerSkill();
 
-    public PlayerSkillEnum type_enum = PlayerSkillEnum.MINING;
+    public PlayerSkillEnum type_enum = PlayerSkillEnum.NONE;
     public String id;
     public int exp_per_action = 0;
     public int order = 0;
@@ -75,12 +75,6 @@ public class PlayerSkill implements JsonExileRegistry<PlayerSkill>, IAutoGson<Pl
     public int getExpForAction(PlayerEntity player) {
 
         int exp = exp_per_action;
-
-        if (this.type_enum == PlayerSkillEnum.FISHING) {
-            if (player.level.isRaining()) {
-                exp *= 1.2F;
-            }
-        }
 
         return exp;
 

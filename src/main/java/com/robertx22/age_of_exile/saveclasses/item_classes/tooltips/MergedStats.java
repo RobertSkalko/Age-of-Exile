@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes.tooltips;
 
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -25,15 +24,9 @@ public class MergedStats implements IGearPartTooltip {
 
         this.list = TooltipStatInfo.mergeDuplicates(infolist);
 
-        // local stats first, then others, and lastly ele resists
-        this.list.sort(Comparator.comparing(x -> {
-
-            if (x.stat instanceof ElementalResist) {
-                return 2;
-            }
-
-            return 1;
-        }));
+        list.sort(Comparator.comparingInt(x -> x.getStat()
+            .translate()
+            .length())); // todo why doesnt this work?
 
     }
 

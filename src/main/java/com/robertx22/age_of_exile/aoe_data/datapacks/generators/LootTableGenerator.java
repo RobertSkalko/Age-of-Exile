@@ -3,7 +3,10 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.*;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.GemItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.RuneItems;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
@@ -123,10 +126,6 @@ public class LootTableGenerator {
                 addFarming(SlashBlocks.FARMING_PLANTS.get(x.get().tier)
                     .get(), x.get(), null, 3, map);
             });
-
-        addFarming(SlashBlocks.LIFE_PLANT.get(), SlashItems.HP_FLOWER_SEED.get(), SlashItems.LIFE_PLANT.get(), 3, map)
-        ;
-        addFarming(SlashBlocks.MANA_PLANT.get(), SlashItems.MANA_FLOWER_SEED.get(), SlashItems.MANA_PLANT.get(), 3, map);
 
         return map;
 

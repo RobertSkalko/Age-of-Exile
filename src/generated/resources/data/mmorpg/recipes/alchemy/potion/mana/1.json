@@ -2,7 +2,7 @@
   "type": "mmorpg:alchemy_shapeless",
   "ingredients": [
     {
-      "item": "mmorpg:gear_mat/essences/mana"
+      "item": "minecraft:lapis_lazuli"
     },
     {
       "item": "minecraft:glass_bottle"

@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
-import com.robertx22.age_of_exile.player_skills.items.farming.ProduceItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
@@ -106,16 +105,9 @@ public class SlashItems {
     static Item.Properties stationProp = new Item.Properties().tab(CreativeTabs.MyModTab);
 
     public static RegObj<Item> GEAR_SALVAGE = Def.item("salvage_station", () -> new BlockItem(SlashBlocks.GEAR_SALVAGE.get(), stationProp));
-    public static RegObj<Item> COOKING_STATION = Def.item("cooking_station", () -> new BlockItem(SlashBlocks.COOKING_STATION.get(), stationProp));
-    public static RegObj<Item> TABLET_STATION = Def.item("tablet_station", () -> new BlockItem(SlashBlocks.TABLET_STATION.get(), stationProp));
-    public static RegObj<Item> ALCHEMY_STATION = Def.item("alchemy_station", () -> new BlockItem(SlashBlocks.ALCHEMY_STATION.get(), stationProp));
-    public static RegObj<Item> SMITHING_STATION = Def.item("smithing_station", () -> new BlockItem(SlashBlocks.SMITHING_STATION.get(), stationProp));
     public static RegObj<Item> TELEPORTER_BLOCK = Def.item("teleporter", () -> new BlockItem(SlashBlocks.TELEPORTER.get(), stationProp));
     public static RegObj<Item> RUNEWORD_STATION = Def.item("runeword_station", () -> new BlockItem(SlashBlocks.RUNEWORD.get(), stationProp));
     public static RegObj<Item> PORTAL = Def.item("portal", () -> new BlockItem(SlashBlocks.PORTAL.get(), stationProp));
-
-    public static RegObj<Item> MANA_PLANT = Def.item(() -> new ProduceItem("Astral Fruit"), "plant/mana");
-    public static RegObj<Item> LIFE_PLANT = Def.item(() -> new ProduceItem("Life Berry"), "plant/life");
 
     public static class GearItems {
 
@@ -160,8 +152,6 @@ public class SlashItems {
         }
 
         public static RegObj<CraftEssenceItem> ARCANA = Def.item(() -> new CraftEssenceItem("arcana", () -> Items.PURPLE_DYE, "Essence of Arcana"));
-        public static RegObj<CraftEssenceItem> MANA = Def.item(() -> new CraftEssenceItem("mana", () -> SlashItems.MANA_PLANT.get(), "Essence of Mana"));
-        public static RegObj<CraftEssenceItem> LIFE = Def.item(() -> new CraftEssenceItem("life", () -> SlashItems.LIFE_PLANT.get(), "Essence of Life"));
         public static RegObj<CraftEssenceItem> ELEMENTAL = Def.item(() -> new CraftEssenceItem("elemental", () -> Items.WHITE_DYE, "Essence of Elements"));
         public static RegObj<CraftEssenceItem> WATER = Def.item(() -> new CraftEssenceItem("water", () -> Items.CYAN_DYE, "Essence of Water"));
         public static RegObj<CraftEssenceItem> NATURE = Def.item(() -> new CraftEssenceItem("nature", () -> Items.GREEN_DYE, "Essence of Nature"));

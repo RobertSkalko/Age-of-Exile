@@ -1,8 +1,8 @@
 {
-  "type_enum": "COOKING",
-  "id": "cooking",
+  "type_enum": "WEAPON_CRAFTING",
+  "id": "wep_craft",
   "exp_per_action": 0,
-  "order": 0,
+  "order": 5,
   "dropTables": [],
   "stat_rewards": [
     {

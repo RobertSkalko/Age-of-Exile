@@ -48,14 +48,6 @@ public class PlayerSkillBuilder {
         return this;
     }
 
-    public PlayerSkillBuilder bonusSalvagingYield(int lvl, float num) {
-        stat(new SkillStatReward(lvl,
-            new OptScaleExactStat(num, new BonusSkillYield(PlayerSkillEnum.SALVAGING), ModType.FLAT)
-
-        ));
-        return this;
-    }
-
     public PlayerSkillBuilder hpMsMana(int lvl, float num) {
         stat(new SkillStatReward(lvl,
             new OptScaleExactStat(num, Health.getInstance(), ModType.PERCENT),
@@ -100,15 +92,6 @@ public class PlayerSkillBuilder {
 
     public PlayerSkillBuilder itemCraftExp(Item block, int exp) {
         skill.item_craft_exp.add(new ItemCraftExp(exp, block));
-        return this;
-    }
-
-    public PlayerSkillBuilder addSalvagingBonusYield() {
-        bonusSalvagingYield(10, 5);
-        bonusSalvagingYield(20, 10);
-        bonusSalvagingYield(30, 10);
-        bonusSalvagingYield(40, 15);
-        bonusSalvagingYield(50, 20);
         return this;
     }
 

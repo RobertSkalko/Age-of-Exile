@@ -181,14 +181,17 @@ public abstract class BaseSkillStation extends BaseModificationStation implement
                                 itemStacks[e].shrink(1);
                             });
 
-                        PlayerSkill skill = ExileDB.PlayerSkills()
-                            .get(this.skill.id);
+                        if (skill != PlayerSkillEnum.NONE) {
 
-                        RPGPlayerData skills = Load.playerRPGData(player);
+                            PlayerSkill skill = ExileDB.PlayerSkills()
+                                .get(this.skill.id);
 
-                        int exp = skill.getExpForCraft(output, player);
+                            RPGPlayerData skills = Load.playerRPGData(player);
 
-                        skills.professions.addExp(player, skill.type_enum, exp);
+                            int exp = skill.getExpForCraft(output, player);
+
+                            skills.professions.addExp(player, skill.type_enum, exp);
+                        }
 
                         pushTo(x, output);
                     }

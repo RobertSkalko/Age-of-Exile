@@ -40,12 +40,6 @@ public enum PlayerSkillEnum implements IGUID {
     ARMOR_CRAFTING("armor_craft", WikiType.COOKING_EXP, Words.ArmorCrafting, Words.CookingDesc, TextFormatting.BLUE, 1),
     WEAPON_CRAFTING("wep_craft", WikiType.COOKING_EXP, Words.WeaponCrafting, Words.CookingDesc, TextFormatting.RED, 1),
 
-    MINING("mining", WikiType.MINING_BLOCK_EXP, Words.Mining, Words.MiningDesc, TextFormatting.GRAY, 1),
-    FARMING("farming", WikiType.FARMING_EXP, Words.Farming, Words.FarmingDesc, TextFormatting.YELLOW, 1),
-    SALVAGING("salvaging", null, Words.Salvaging, Words.SalvagingDesc, TextFormatting.LIGHT_PURPLE, 1),
-    FISHING("fishing", null, Words.Fishing, Words.FishingDesc, TextFormatting.BLUE, 1),
-    EXPLORATION("exploration", null, Words.Exploration, Words.ExplorationDesc, TextFormatting.GOLD, 1),
-    BLACKSMITHING("blacksmithing", WikiType.BLACKSMITH_EXP, Words.Blacksmithing, Words.BlacksmithDesc, TextFormatting.GREEN, 1),
     ALL("all", null, Words.Skill, Words.Skill, TextFormatting.GREEN, 1),
     NONE("none", null, Words.Skill, Words.Skill, TextFormatting.BLACK, 1);
 

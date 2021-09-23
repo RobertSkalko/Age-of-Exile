@@ -8,12 +8,8 @@ import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BlackHoleBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.TotemBlock;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.alchemy.AlchemyBlock;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.cooking_station.CookingBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.runeword_station.RuneWordStationBlock;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station.BlockGearSalvage;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.smithing.SmithingBlock;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.tablet.TabletStationBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BeetrootBlock;
 import net.minecraft.block.Block;
@@ -32,10 +28,6 @@ public class SlashBlocks {
 
     public static RegObj<RuneWordStationBlock> RUNEWORD = Def.block("runeword_station", () -> new RuneWordStationBlock());
     public static RegObj<BlockGearSalvage> GEAR_SALVAGE = Def.block("salvage_station", () -> new BlockGearSalvage());
-    public static RegObj<CookingBlock> COOKING_STATION = Def.block("cooking_station", () -> new CookingBlock());
-    public static RegObj<TabletStationBlock> TABLET_STATION = Def.block("tablet_station", () -> new TabletStationBlock());
-    public static RegObj<AlchemyBlock> ALCHEMY_STATION = Def.block("alchemy_station", () -> new AlchemyBlock());
-    public static RegObj<SmithingBlock> SMITHING_STATION = Def.block("smithing_station", () -> new SmithingBlock());
     public static RegObj<TeleporterBlock> TELEPORTER = Def.block("teleporter", () -> new TeleporterBlock());
     public static RegObj<PortalBlock> PORTAL = Def.block("portal", () -> new PortalBlock());
 

@@ -2,7 +2,7 @@
   "type_enum": "INSCRIBING",
   "id": "inscribing",
   "exp_per_action": 25,
-  "order": 7,
+  "order": 2,
   "dropTables": [],
   "stat_rewards": [
     {
@@ -148,43 +148,6 @@
   ],
   "mastery_stat_reward": [],
   "block_break_exp": [],
-  "item_craft_exp": [
-    {
-      "exp": 20,
-      "item_id": "mmorpg:tablet/anti_fire"
-    },
-    {
-      "exp": 20,
-      "item_id": "mmorpg:tablet/anti_poison"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:tablet/anti_hunger"
-    },
-    {
-      "exp": 40,
-      "item_id": "mmorpg:tablet/anti_wither"
-    },
-    {
-      "exp": 60,
-      "item_id": "mmorpg:tablet/anti_gear_break"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:tablet/anti_death"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:tablet/gear_repair"
-    },
-    {
-      "exp": 25,
-      "item_id": "mmorpg:scroll/spawn_teleport"
-    },
-    {
-      "exp": 25,
-      "item_id": "mmorpg:scroll/death_teleport"
-    }
-  ],
+  "item_craft_exp": [],
   "item_smelt_exp": []
 }

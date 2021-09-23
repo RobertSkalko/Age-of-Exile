@@ -2,7 +2,7 @@
   "type": "mmorpg:alchemy_shapeless",
   "ingredients": [
     {
-      "item": "mmorpg:gear_mat/essences/life"
+      "item": "minecraft:glistering_melon_slice"
     },
     {
       "item": "minecraft:glass_bottle"

@@ -5,9 +5,6 @@ import java.util.List;
 
 public class ServerContainer {
 
-    public boolean ENABLE_FOOD_EFFECTS = true;
-    public boolean ENABLE_AUTO_FOOD_COMPAT = false;
-
     public boolean ENABLE_FAVOR_SYSTEM = true;
     public float FAVOR_GAIN_PER_CHEST_LOOTED = 10;
     public int STARTING_FAVOR = 100;

@@ -2,9 +2,6 @@ package com.robertx22.age_of_exile.player_skills.items.alchemy;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.database.data.food_effects.FoodEffect;
-import com.robertx22.age_of_exile.database.data.food_effects.StatusEffectData;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.AlchemyPotions;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
@@ -27,7 +24,6 @@ import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -78,8 +74,6 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
                 .build();
             event.Activate();
 
-            getFoodEffect().apply(player); // because it's only applied when eating food normally
-
             SoundUtils.playSound(player, SoundEvents.GENERIC_DRINK, 1, 1);
         }
 
@@ -112,32 +106,6 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
     @Override
     public String GUID() {
         return "alchemy/potion/" + type.id + "/" + tier.tier;
-    }
-
-    public FoodEffect getFoodEffect() {
-
-        FoodEffect eff = new FoodEffect();
-        try {
-            ResourceLocation effect = null;
-
-            if (this.type == PotionType.HEALTH) {
-                effect = SlashPotions.FOOD_HP;
-            }
-
-            if (this.type == PotionType.MANA) {
-                effect = SlashPotions.FOOD_MANA;
-            }
-
-            if (effect == null) {
-                return null;
-            }
-
-            eff.effects_given.add(new StatusEffectData(effect, 6, (int) (this.tier.statMulti * 20)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return eff;
-
     }
 
     @Override

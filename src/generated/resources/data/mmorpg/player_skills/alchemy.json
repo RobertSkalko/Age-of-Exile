@@ -2,7 +2,7 @@
   "type_enum": "ALCHEMY",
   "id": "alchemy",
   "exp_per_action": 0,
-  "order": 5,
+  "order": 1,
   "dropTables": [],
   "stat_rewards": [
     {
@@ -148,47 +148,6 @@
   ],
   "mastery_stat_reward": [],
   "block_break_exp": [],
-  "item_craft_exp": [
-    {
-      "exp": 50,
-      "item_id": "mmorpg:alchemy/potion/mana/0"
-    },
-    {
-      "exp": 75,
-      "item_id": "mmorpg:alchemy/potion/mana/1"
-    },
-    {
-      "exp": 125,
-      "item_id": "mmorpg:alchemy/potion/mana/3"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:alchemy/potion/mana/2"
-    },
-    {
-      "exp": 150,
-      "item_id": "mmorpg:alchemy/potion/health/4"
-    },
-    {
-      "exp": 50,
-      "item_id": "mmorpg:alchemy/potion/health/0"
-    },
-    {
-      "exp": 75,
-      "item_id": "mmorpg:alchemy/potion/health/1"
-    },
-    {
-      "exp": 125,
-      "item_id": "mmorpg:alchemy/potion/health/3"
-    },
-    {
-      "exp": 100,
-      "item_id": "mmorpg:alchemy/potion/health/2"
-    },
-    {
-      "exp": 150,
-      "item_id": "mmorpg:alchemy/potion/mana/4"
-    }
-  ],
+  "item_craft_exp": [],
   "item_smelt_exp": []
 }

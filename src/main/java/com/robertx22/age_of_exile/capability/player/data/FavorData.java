@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusFavor;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.LootUtils;
-import com.robertx22.age_of_exile.player_skills.events.OnChestFavorGainedExploration;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.player.PlayerEntity;
@@ -67,8 +66,6 @@ public class FavorData {
         favorGained *= info.playerData.getUnit()
             .getCalculatedStat(BonusFavor.getInstance())
             .getMultiplier();
-
-        OnChestFavorGainedExploration.run(info, info.player, (int) favorGained);
 
         this.favor += favorGained;
 
