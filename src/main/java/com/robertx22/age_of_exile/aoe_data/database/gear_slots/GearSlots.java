@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.gear_slots;
 
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class GearSlots implements ExileRegistryInit {
@@ -25,22 +26,22 @@ public class GearSlots implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        new GearSlot(SWORD, "Sword", 4, 1, 1000).addToSerializables();
-        new GearSlot(SCEPTER, "Scepter", 3, 2, 1000).addToSerializables();
-        new GearSlot(STAFF, "Staff", 3, 3, 1500).addToSerializables();
-        new GearSlot(AXE, "Axe", 5, 4, 1000).addToSerializables();
-        new GearSlot(BOW, "Bow", 8, 5, 750).addToSerializables();
-        new GearSlot(CROSBOW, "Crossbow", 7, 6, 750).addToSerializables();
+        new GearSlot(SWORD, "Sword", SlotFamily.Weapon, 4, 1, 1000).addToSerializables();
+        new GearSlot(SCEPTER, "Scepter", SlotFamily.Weapon, 3, 2, 1000).addToSerializables();
+        new GearSlot(STAFF, "Staff", SlotFamily.Weapon, 3, 3, 1500).addToSerializables();
+        new GearSlot(AXE, "Axe", SlotFamily.Weapon, 5, 4, 1000).addToSerializables();
+        new GearSlot(BOW, "Bow", SlotFamily.Weapon, 8, 5, 750).addToSerializables();
+        new GearSlot(CROSBOW, "Crossbow", SlotFamily.Weapon, 7, 6, 750).addToSerializables();
 
-        new GearSlot(BOOTS, "Boots", 0, 7, 1000).addToSerializables();
-        new GearSlot(PANTS, "Pants", 0, 8, 1000).addToSerializables();
-        new GearSlot(CHEST, "Chest", 0, 9, 1000).addToSerializables();
-        new GearSlot(HELMET, "Helmet", 0, 10, 1000).addToSerializables();
+        new GearSlot(BOOTS, "Boots", SlotFamily.Armor, 0, 7, 1000).addToSerializables();
+        new GearSlot(PANTS, "Pants", SlotFamily.Armor, 0, 8, 1000).addToSerializables();
+        new GearSlot(CHEST, "Chest", SlotFamily.Armor, 0, 9, 1000).addToSerializables();
+        new GearSlot(HELMET, "Helmet", SlotFamily.Armor, 0, 10, 1000).addToSerializables();
 
-        new GearSlot(SHIELD, "Shield", 0, 11, 1000).addToSerializables();
+        new GearSlot(SHIELD, "Shield", SlotFamily.OffHand, 0, 11, 1000).addToSerializables();
 
-        new GearSlot(RING, "Ring", 0, 12, 750).addToSerializables();
-        new GearSlot(NECKLACE, "Necklace", 0, 13, 750).addToSerializables();
+        new GearSlot(RING, "Ring", SlotFamily.Jewelry, 0, 12, 750).addToSerializables();
+        new GearSlot(NECKLACE, "Necklace", SlotFamily.Jewelry, 0, 13, 750).addToSerializables();
 
     }
 }

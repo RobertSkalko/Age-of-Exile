@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.aoe_data.datapacks.JsonUtils;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.data.requirements.bases.BaseRequirement;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -48,13 +49,13 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
     }
 
-    public static SlotRequirement everythingBesides(BaseGearType.SlotFamily type) {
+    public static SlotRequirement everythingBesides(SlotFamily type) {
         return new SlotRequirement(ExileDB.GearTypes()
             .getFiltered(x -> x.family() != type));
 
     }
 
-    public static SlotRequirement of(BaseGearType.SlotFamily type) {
+    public static SlotRequirement of(SlotFamily type) {
         return new SlotRequirement(ExileDB.GearTypes()
             .getFiltered(x -> x.family() == type));
 
@@ -137,30 +138,30 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
         List<BaseGearType> armors = ExileDB.GearTypes()
             .getFiltered(x -> x.family()
-                .equals(BaseGearType.SlotFamily.Armor));
+                .equals(SlotFamily.Armor));
         if (copy.containsAll(armors)) {
             copy.removeIf(x -> x.family()
-                .equals(BaseGearType.SlotFamily.Armor));
+                .equals(SlotFamily.Armor));
             comp.append(" ")
                 .append(new SText("All Armors"));
         }
 
         List<BaseGearType> weapons = ExileDB.GearTypes()
             .getFiltered(x -> x.family()
-                .equals(BaseGearType.SlotFamily.Weapon));
+                .equals(SlotFamily.Weapon));
         if (copy.containsAll(weapons)) {
             copy.removeIf(x -> x.family()
-                .equals(BaseGearType.SlotFamily.Weapon));
+                .equals(SlotFamily.Weapon));
             comp.append(" ")
                 .append(new SText("All Weapons"));
         }
 
         List<BaseGearType> jewerly = ExileDB.GearTypes()
             .getFiltered(x -> x.family()
-                .equals(BaseGearType.SlotFamily.Jewelry));
+                .equals(SlotFamily.Jewelry));
         if (copy.containsAll(jewerly)) {
             copy.removeIf(x -> x.family()
-                .equals(BaseGearType.SlotFamily.Jewelry));
+                .equals(SlotFamily.Jewelry));
             comp.append(" ")
                 .append(new SText("All Jewerly"));
         }

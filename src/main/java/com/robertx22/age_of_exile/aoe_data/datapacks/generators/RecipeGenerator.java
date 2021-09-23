@@ -189,7 +189,7 @@ public class RecipeGenerator {
 
     public static String[] getRecipePattern(GearSlot type) {
 
-        String id = type.guid;
+        String id = type.id;
 
         if (id.equals(GearSlots.SWORD)) {
             return new String[]{

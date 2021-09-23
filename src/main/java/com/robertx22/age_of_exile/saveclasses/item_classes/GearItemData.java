@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.item_classes;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
@@ -47,6 +48,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Store
     public GearSocketsData sockets = new GearSocketsData();
     @Store
+    public CraftedStatsData cr;
+    @Store
     public UniqueStatsData uniqueStats;
 
     // Stats
@@ -84,6 +87,14 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public boolean isCorrupted() {
         return c;
+    }
+
+    public boolean hasCraftedStats() {
+        return cr != null;
+    }
+
+    public CraftedStatsData getCraftedStats() {
+        return cr;
     }
 
     public int getTier() {
@@ -305,6 +316,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         IfNotNullAdd(baseStats, list);
 
+        IfNotNullAdd(cr, list);
+
         IfNotNullAdd(imp, list);
 
         affixes.getAllAffixesAndSockets()
@@ -319,16 +332,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     public List<ExactStatData> GetAllStats() {
-        return GetAllStats(true);
-    }
-
-    public List<ExactStatData> GetAllStats(boolean includebase) {
 
         List<ExactStatData> list = new ArrayList<>();
         for (IStatsContainer x : GetAllStatContainers()) {
-            if (includebase == false && x instanceof BaseStatsData) {
-                continue;
-            }
+
             List<ExactStatData> stats = x.GetAllStats(this);
 
             stats.forEach(s -> {
@@ -384,7 +391,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     @Override
     public boolean isSalvagable(SalvageContext context) {
-
         return this.can_sal;
     }
 
@@ -402,7 +408,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         try {
             if (GetBaseGearType()
                 .family()
-                .equals(BaseGearType.SlotFamily.Weapon)) {
+                .equals(SlotFamily.Weapon)) {
                 return true;
             }
         } catch (Exception e) {

@@ -20,13 +20,13 @@ public class TagList implements ISerializable<TagList> {
         return tags.contains(tag.name());
     }
 
-    public BaseGearType.SlotFamily getFamily() {
+    public SlotFamily getFamily() {
         Optional<SlotTag> opt = tags.stream()
             .filter(f -> Arrays.stream(SlotTag.values())
                 .anyMatch(m -> m.name()
                     .equals(f)))
             .map(x -> SlotTag.valueOf(x))
-            .filter(t -> t.family != BaseGearType.SlotFamily.NONE)
+            .filter(t -> t.family != SlotFamily.NONE)
             .findFirst();
 
         if (!opt.isPresent()) {

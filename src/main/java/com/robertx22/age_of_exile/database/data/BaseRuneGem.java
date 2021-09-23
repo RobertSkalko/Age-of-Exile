@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data;
 
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotFamily;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.registry.IWeighted;

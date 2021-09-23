@@ -26,7 +26,7 @@ public class GearItemSlotPart extends BlueprintPart<BaseGearType, GearBlueprint>
         List<BaseGearType> filt = all.stream()
             .filter(x -> x.getGearSlot()
                 .GUID()
-                .equals(slot.guid))
+                .equals(slot.id))
             .collect(Collectors.toList());
 
         return ExileDB.GearTypes()

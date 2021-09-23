@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -38,7 +38,7 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
     public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
         List<TooltipStatWithContext> list = new ArrayList<>();
 
-        BaseGearType.SlotFamily fam = gear.GetBaseGearType()
+        SlotFamily fam = gear.GetBaseGearType()
             .family();
 
         if (isGem()) {
@@ -85,7 +85,7 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
 
     @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
-        BaseGearType.SlotFamily fam = gear.GetBaseGearType()
+        SlotFamily fam = gear.GetBaseGearType()
             .family();
 
         List<ExactStatData> stats = new ArrayList<>();

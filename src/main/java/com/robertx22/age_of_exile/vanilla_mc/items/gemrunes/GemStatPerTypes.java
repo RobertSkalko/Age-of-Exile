@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gemrunes;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotFamily;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 
 import java.util.List;
 

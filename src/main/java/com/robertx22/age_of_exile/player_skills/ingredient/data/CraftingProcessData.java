@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -95,12 +96,10 @@ public class CraftingProcessData {
 
     }
 
-    public CraftedConsumableData craft(PlayerEntity player) {
-        CraftedConsumableData data = new CraftedConsumableData();
-        data.prof = prof;
+    private List<ExactStatData> getResultingStats() {
+        PlayerSkillEnum skill = getProfession();
 
-        PlayerSkillEnum skill = ExileDB.PlayerSkills()
-            .get(prof).type_enum;
+        List<ExactStatData> stats = new ArrayList<>();
 
         for (IngredientData x : ingredients) {
             int lvl = LevelUtils.tierToLevel(x.tier);
@@ -109,9 +108,34 @@ public class CraftingProcessData {
                 ExactStatData stat = s.ToExactStat(perc, lvl);
                 stat.multiplyBy(skill.craftedStatMulti);
                 stat.multiplyBy(getStatMulti());
-                data.stats.add(stat);
+                stats.add(stat);
             }
         }
+
+        return stats;
+    }
+
+    public PlayerSkillEnum getProfession() {
+        return ExileDB.PlayerSkills()
+            .get(prof).type_enum;
+
+    }
+
+    public GearItemData craftGear(PlayerEntity player) {
+
+        return null; // todo
+    }
+
+    public CraftedConsumableData craftConsumable(PlayerEntity player) {
+
+        PlayerSkillEnum skill = getProfession();
+
+        List<ExactStatData> stats = getResultingStats();
+
+        CraftedConsumableData data = new CraftedConsumableData();
+        data.prof = prof;
+
+        data.stats.addAll(stats);
 
         Item item = skill.getCraftResultItem();
 

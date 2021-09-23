@@ -1,38 +1,40 @@
 package com.robertx22.age_of_exile.database.data.gear_slots;
 
-import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.StaffWeapon;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
-import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.HashMap;
 
-public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<GearSlot>, IAutoLocName {
+public class GearSlot implements JsonExileRegistry<GearSlot>, IAutoGson<GearSlot>, IAutoLocName {
 
-    public static GearSlot SERIALIZER = new GearSlot("", "", 1, -1, 0);
+    public static GearSlot SERIALIZER = new GearSlot("", "", SlotFamily.NONE, 1, -1, 0);
     private static HashMap<String, HashMap<Item, Boolean>> CACHED_GEAR_SLOTS = new HashMap<>();
     static HashMap<Item, GearSlot> CACHED = new HashMap<>();
 
-    public String guid;
+    public String id;
     public int weight;
     public int energy_cost;
-    public int custom_model_data_num = -1;
+    public int model_num = -1;
     public transient String locname = "";
+    public SlotFamily fam = SlotFamily.Armor;
 
-    public GearSlot(String guid, String name, int energy_cost, int modelnnum, int weight) {
-        this.guid = guid;
+    public GearSlot(String id, String name, SlotFamily fam, int energy_cost, int modelnnum, int weight) {
+        this.id = id;
+        this.fam = fam;
         this.energy_cost = energy_cost;
         this.locname = name;
-        this.custom_model_data_num = modelnnum;
+        this.model_num = modelnnum;
         this.weight = weight;
     }
 
@@ -134,32 +136,12 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<Gear
 
     @Override
     public String GUID() {
-        return guid;
+        return id;
     }
 
     @Override
     public int Weight() {
         return weight;
-    }
-
-    @Override
-    public JsonObject toJson() {
-        JsonObject json = new JsonObject();
-        json.addProperty("id", guid);
-        json.addProperty("energy_cost", energy_cost);
-        json.addProperty("weight", weight);
-        json.addProperty("model_num", custom_model_data_num);
-
-        return json;
-    }
-
-    @Override
-    public GearSlot fromJson(JsonObject json) {
-        return new GearSlot(json.get("id")
-            .getAsString(), "", json.get("energy_cost")
-            .getAsInt(), json.get("weight")
-            .getAsInt(), json.get("model_num")
-            .getAsInt());
     }
 
     @Override
@@ -169,11 +151,16 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, ISerializable<Gear
 
     @Override
     public String locNameLangFileGUID() {
-        return "mmorpg.gearslot." + guid;
+        return "mmorpg.gearslot." + id;
     }
 
     @Override
     public String locNameForLangFile() {
         return locname;
+    }
+
+    @Override
+    public Class<GearSlot> getClassForSerialization() {
+        return GearSlot.class;
     }
 }

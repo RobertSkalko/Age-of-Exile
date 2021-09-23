@@ -65,11 +65,19 @@ public class GearTooltipUtils {
             tip.addAll(gear.affixes.GetTooltipString(info, gear));
             tip.addAll(gear.sockets.GetTooltipString(info, gear));
             tip.addAll(gear.imp.GetTooltipString(info, gear));
+            if (gear.hasCraftedStats()) {
+                tip.addAll(gear.getCraftedStats()
+                    .GetTooltipString(info, gear));
+            }
         } else {
             List<ExactStatData> stats = new ArrayList<>();
             gear.affixes.getAllAffixesAndSockets()
                 .forEach(x -> stats.addAll(x.GetAllStats(gear)));
             stats.addAll(gear.sockets.GetAllStats(gear));
+            if (gear.hasCraftedStats()) {
+                stats.addAll(gear.getCraftedStats()
+                    .GetAllStats(gear));
+            }
             stats.addAll(gear.imp.GetAllStats(gear));
             if (gear.isUnique()) {
                 stats.addAll(gear.uniqueStats.GetAllStats(gear));

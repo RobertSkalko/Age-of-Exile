@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.player_skills;
 
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiType;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.CraftedConsumableItems;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -36,9 +38,42 @@ public enum PlayerSkillEnum implements IGUID {
         }
     },
 
-    JEWEL_CRAFTING("jewel_craft", WikiType.COOKING_EXP, Words.JewelCrafting, Words.CookingDesc, TextFormatting.GREEN, 1),
-    ARMOR_CRAFTING("armor_craft", WikiType.COOKING_EXP, Words.ArmorCrafting, Words.CookingDesc, TextFormatting.BLUE, 1),
-    WEAPON_CRAFTING("wep_craft", WikiType.COOKING_EXP, Words.WeaponCrafting, Words.CookingDesc, TextFormatting.RED, 1),
+    JEWEL_CRAFTING("jewel_craft", WikiType.COOKING_EXP, Words.JewelCrafting, Words.CookingDesc, TextFormatting.GREEN, 1) {
+        @Override
+        public boolean isGearCraftingProf() {
+            return true;
+        }
+
+        @Override
+        public boolean gearMatchesProfession(Item item) {
+            GearSlot slot = GearSlot.getSlotOf(item);
+            return slot.fam == SlotFamily.Jewelry;
+        }
+    },
+    ARMOR_CRAFTING("armor_craft", WikiType.COOKING_EXP, Words.ArmorCrafting, Words.CookingDesc, TextFormatting.BLUE, 1) {
+        @Override
+        public boolean isGearCraftingProf() {
+            return true;
+        }
+
+        @Override
+        public boolean gearMatchesProfession(Item item) {
+            GearSlot slot = GearSlot.getSlotOf(item);
+            return slot.fam == SlotFamily.Armor;
+        }
+    },
+    WEAPON_CRAFTING("wep_craft", WikiType.COOKING_EXP, Words.WeaponCrafting, Words.CookingDesc, TextFormatting.RED, 1) {
+        @Override
+        public boolean isGearCraftingProf() {
+            return true;
+        }
+
+        @Override
+        public boolean gearMatchesProfession(Item item) {
+            GearSlot slot = GearSlot.getSlotOf(item);
+            return slot.fam == SlotFamily.Weapon;
+        }
+    },
 
     ALL("all", null, Words.Skill, Words.Skill, TextFormatting.GREEN, 1),
     NONE("none", null, Words.Skill, Words.Skill, TextFormatting.BLACK, 1);
@@ -51,6 +86,14 @@ public enum PlayerSkillEnum implements IGUID {
     public float craftedStatMulti = 1;
 
     public WikiType wiki;
+
+    public boolean isGearCraftingProf() {
+        return false;
+    }
+
+    public boolean gearMatchesProfession(Item item) {
+        return false;
+    }
 
     PlayerSkillEnum(String id, WikiType wiki, Words word, Words desc, TextFormatting format, float craftedStatMulti) {
         this.id = id;

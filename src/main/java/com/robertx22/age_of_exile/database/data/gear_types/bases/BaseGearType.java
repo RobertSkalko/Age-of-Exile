@@ -200,31 +200,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
         }
     }
 
-    public enum SlotFamily {
-        Weapon,
-        Armor,
-        Jewelry,
-        OffHand,
-        NONE;
-
-        public boolean isJewelry() {
-            return this == Jewelry;
-        }
-
-        public boolean isArmor() {
-            return this == Armor;
-        }
-
-        public boolean isWeapon() {
-            return this == Weapon;
-        }
-
-        public boolean isOffhand() {
-            return this == OffHand;
-        }
-
-    }
-
     public final SlotFamily family() {
         return getTags().getFamily();
     }

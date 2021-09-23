@@ -38,7 +38,7 @@ public class StatSoulData {
 
         stack.getOrCreateTag()
             .putInt("CustomModelData", ExileDB.GearSlots()
-                .get(slot).custom_model_data_num);
+                .get(slot).model_num);
 
         return stack;
 
