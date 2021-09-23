@@ -24,9 +24,8 @@ public class MergedStats implements IGearPartTooltip {
 
         this.list = TooltipStatInfo.mergeDuplicates(infolist);
 
-        list.sort(Comparator.comparingInt(x -> x.getStat()
-            .translate()
-            .length())); // todo why doesnt this work?
+        this.list.sort(Comparator.comparingInt(x -> 100 - x.stat.translate()
+            .length()));
 
     }
 
