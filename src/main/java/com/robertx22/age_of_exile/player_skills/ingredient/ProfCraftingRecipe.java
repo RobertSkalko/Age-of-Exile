@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.player_skills.ingredient;
 
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
+import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftingProcessData;
+import com.robertx22.age_of_exile.player_skills.ingredient.data.IngredientData;
 import com.robertx22.age_of_exile.player_skills.ingredient.items.CraftToolItem;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;

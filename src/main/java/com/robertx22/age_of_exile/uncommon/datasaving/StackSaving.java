@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.uncommon.datasaving;
 
-import com.robertx22.age_of_exile.player_skills.ingredient.CraftedConsumableData;
-import com.robertx22.age_of_exile.player_skills.ingredient.CraftingProcessData;
-import com.robertx22.age_of_exile.player_skills.ingredient.IngredientData;
+import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftedConsumableData;
+import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftingProcessData;
+import com.robertx22.age_of_exile.player_skills.ingredient.data.IngredientData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;

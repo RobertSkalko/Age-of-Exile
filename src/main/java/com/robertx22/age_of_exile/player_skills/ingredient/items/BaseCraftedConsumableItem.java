@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.player_skills.ingredient.items;
 
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
-import com.robertx22.age_of_exile.player_skills.ingredient.CraftedConsumableData;
-import com.robertx22.age_of_exile.player_skills.ingredient.CraftingProcessData;
+import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftedConsumableData;
+import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftingProcessData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;

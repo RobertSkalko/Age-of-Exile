@@ -5,7 +5,7 @@ import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
-import com.robertx22.age_of_exile.player_skills.ingredient.IngredientData;
+import com.robertx22.age_of_exile.player_skills.ingredient.data.IngredientData;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
 import com.robertx22.library_of_exile.utils.RandomUtils;

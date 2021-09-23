@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.player_skills.ingredient;
+package com.robertx22.age_of_exile.player_skills.ingredient.data;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
