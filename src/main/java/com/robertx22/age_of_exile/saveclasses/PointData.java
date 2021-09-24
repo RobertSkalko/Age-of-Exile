@@ -26,6 +26,22 @@ public class PointData {
         return x + "_" + y;
     }
 
+    public PointData up() {
+        return new PointData(x, y + 1);
+    }
+
+    public PointData down() {
+        return new PointData(x, y - 1);
+    }
+
+    public PointData left() {
+        return new PointData(x - 1, y);
+    }
+
+    public PointData right() {
+        return new PointData(x + 1, y);
+    }
+
     @Override
     public int hashCode() {
         long bits = java.lang.Double.doubleToLongBits(x);

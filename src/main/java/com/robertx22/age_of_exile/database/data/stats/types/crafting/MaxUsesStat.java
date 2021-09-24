@@ -5,10 +5,10 @@ import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
-public class PlusConsumableUses extends Stat implements DoNotTransferToCraftedMarker {
+public class MaxUsesStat extends Stat implements DoNotTransferToCraftedMarker {
 
-    public static PlusConsumableUses getInstance() {
-        return PlusConsumableUses.SingletonHolder.INSTANCE;
+    public static MaxUsesStat getInstance() {
+        return MaxUsesStat.SingletonHolder.INSTANCE;
     }
 
     @Override
@@ -18,9 +18,9 @@ public class PlusConsumableUses extends Stat implements DoNotTransferToCraftedMa
 
     public static String GUID = "plus_consu_uses";
 
-    private PlusConsumableUses() {
+    private MaxUsesStat() {
 
-        this.min = 0;
+        this.min = -100;
         this.scaling = StatScaling.NONE;
         this.group = StatGroup.Misc;
         this.icon = "\u2748";
@@ -49,6 +49,6 @@ public class PlusConsumableUses extends Stat implements DoNotTransferToCraftedMa
     }
 
     private static class SingletonHolder {
-        private static final PlusConsumableUses INSTANCE = new PlusConsumableUses();
+        private static final MaxUsesStat INSTANCE = new MaxUsesStat();
     }
 }

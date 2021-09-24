@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.player_skills.ingredient;
 
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
+import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftSlotData;
 import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftingProcessData;
 import com.robertx22.age_of_exile.player_skills.ingredient.data.IngredientData;
 import com.robertx22.age_of_exile.player_skills.ingredient.items.CraftToolItem;
@@ -101,7 +102,9 @@ public class ProfCraftingRecipe extends SpecialRecipe {
 
     @Override
     public ItemStack assemble(CraftingInventory inv) {
-        List<IngredientData> list = new ArrayList<>();
+        List<CraftSlotData> list = new ArrayList<>();
+
+        int ingredientCount = 0;
 
         PlayerSkillEnum skill = null;
 
@@ -119,15 +122,25 @@ public class ProfCraftingRecipe extends SpecialRecipe {
 
         for (int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack stack = inv.getItem(i);
+
+            CraftSlotData slot = new CraftSlotData();
+            slot.place = i;
+
             if (StackSaving.INGREDIENTS.has(stack)) {
                 IngredientData data = StackSaving.INGREDIENTS.loadFrom(stack);
+
+                slot.ing = data;
+
                 if (data != null) {
-                    list.add(data);
+                    ingredientCount++;
                 }
+
             }
+
+            list.add(slot);
         }
 
-        if (list.isEmpty()) {
+        if (ingredientCount < 1) {
             return ItemStack.EMPTY;
         }
 
@@ -172,7 +185,7 @@ public class ProfCraftingRecipe extends SpecialRecipe {
 
     @Override
     public boolean canCraftInDimensions(int x, int y) {
-        return x * y >= 2 && x * y < 10;
+        return x * y == 9;
     }
 
     @Override

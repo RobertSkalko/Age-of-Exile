@@ -7,6 +7,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -25,6 +27,7 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
 
         new EpicIngredientsAdder().registerAll();
         new SpecialIngredientsAdder().registerAll();
+        new GridIngredientsAdder().registerAll();
 
         IngredientBuilder.of(IngredientItems.GUARDIAN_SCALES, IRarity.COMMON_ID)
             .allowedIn(PlayerSkillEnum.ALCHEMY)
@@ -173,6 +176,19 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
             .allowedIn(PlayerSkillEnum.ARMOR_CRAFTING)
             .allowedIn(PlayerSkillEnum.INSCRIBING)
             .stats(new StatModifier(3, 6, Stats.SPELL_CRIT_DAMAGE.get()))
+            .build();
+
+        IngredientBuilder.of(IngredientItems.ENDER_CRYSTAL, IRarity.UNCOMMON)
+            .allowedIn(PlayerSkillEnum.JEWEL_CRAFTING)
+            .allowedIn(PlayerSkillEnum.ARMOR_CRAFTING)
+            .allowedIn(PlayerSkillEnum.ALCHEMY)
+            .stats(new StatModifier(3, 6, Energy.getInstance(), ModType.PERCENT))
+            .build();
+
+        IngredientBuilder.of(IngredientItems.ENDER_CREAM, IRarity.COMMON_ID)
+            .allowedIn(PlayerSkillEnum.ALCHEMY)
+            .allowedIn(PlayerSkillEnum.COOKING)
+            .stats(new StatModifier(0.5F, 1F, EnergyRegen.getInstance()))
             .build();
 
     }

@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.ingredient;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.crafting.CraftingSuccessChance;
 import com.robertx22.age_of_exile.database.data.stats.types.crafting.IncreaseMinRarityStat;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.PlusConsumableUses;
+import com.robertx22.age_of_exile.database.data.stats.types.crafting.MaxUsesStat;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.IngredientItems;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -27,7 +27,7 @@ public class SpecialIngredientsAdder implements ExileRegistryInit {
             .allowedIn(PlayerSkillEnum.ALCHEMY)
             .allowedIn(PlayerSkillEnum.COOKING)
             .allowedIn(PlayerSkillEnum.INSCRIBING)
-            .stats(new StatModifier(2, 2, PlusConsumableUses.getInstance()))
+            .stats(new StatModifier(2, 2, MaxUsesStat.getInstance()))
             .setIsArtifact()
             .build();
 

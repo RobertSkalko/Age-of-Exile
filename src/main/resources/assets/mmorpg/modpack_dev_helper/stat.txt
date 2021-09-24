@@ -128,6 +128,7 @@ agility
 movement_spell_dmg
 water_focus
 spell_water_damage
+not_touch_this
 proj_dmg_received
 earth_dmg_when_target_low_hp
 fire_dmg_when_target_low_hp
@@ -196,6 +197,7 @@ spell_damage_per_perc_of_increase_healing
 positive_eff_dur_u_cast
 bonus_alchemy_exp
 shield_spell_dmg
+touch_this
 water_dmg_when_target_low_hp
 increased_quantity
 elemental_dot_damage

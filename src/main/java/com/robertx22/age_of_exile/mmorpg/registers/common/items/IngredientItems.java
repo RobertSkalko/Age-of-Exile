@@ -10,6 +10,9 @@ public class IngredientItems {
 
     }
 
+    //grid affecting
+    public static RegObj<IngredientItem> BONE_FIGURINE = of("bone_figurine", "Bone Figurine");
+
     //specials
     public static RegObj<IngredientItem> WISHING_BOWL = of("wishing_bowl", "Wishing Bowl");
     public static RegObj<IngredientItem> POT_OF_GREED = of("pot_of_greed", "Pot of Greed");
@@ -42,6 +45,8 @@ public class IngredientItems {
     public static RegObj<IngredientItem> BOLETE_MUSHROOM = of("bolete_mushroom", "Bolete Mushroom");
     public static RegObj<IngredientItem> MAGIC_LOG = of("magic_log", "Magic Log");
     public static RegObj<IngredientItem> REDSTONE_CRYSTAL = of("redstone_crystal", "Redstone Crystal");
+    public static RegObj<IngredientItem> ENDER_CRYSTAL = of("ender_crystal", "Ender Crystal");
+    public static RegObj<IngredientItem> ENDER_CREAM = of("ender_cream", "Ender Cream");
 
     static RegObj<IngredientItem> of(String id, String locname) {
         RegObj<IngredientItem> def = Def.item("ingredient/" + id, () -> new IngredientItem(id, locname));

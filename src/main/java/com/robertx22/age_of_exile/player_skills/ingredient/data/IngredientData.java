@@ -75,6 +75,9 @@ public class IngredientData {
 
         ingredient.stats.forEach(x -> {
             tip.addAll(x.getEstimationTooltip(lvl));
+            if (x.GetStat().is_long) {
+                tip.add(new StringTextComponent(""));
+            }
         });
 
         if (ingredient.isOneOfAKind()) {
@@ -102,6 +105,8 @@ public class IngredientData {
                     .withStyle(TextFormatting.GRAY));
             }
         });
+
+        TooltipUtils.removeDoubleBlankLines(tip);
 
     }
 

@@ -111,7 +111,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     public List<IFormattableTextComponent> getCutDescTooltip() {
         List<IFormattableTextComponent> list = new ArrayList<>();
 
-        List<IFormattableTextComponent> cut = TooltipUtils.cutIfTooLong(locDesc());
+        List<ITextComponent> cut = TooltipUtils.cutIfTooLong(locDesc());
 
         for (int i = 0; i < cut.size(); i++) {
 

@@ -10,6 +10,7 @@ magic_log
 enderman_heart
 pot_of_greed
 slime_bolus
+bone_figurine
 crystal_beryl
 soul_matrix
 frigid_runestone

@@ -48,22 +48,21 @@ public abstract class StatNameRegex {
 
     public String translate(TextFormatting format, TooltipStatWithContext ctx, ModType type, float v1, Stat stat) {
 
+        String plusminus = v1 > 0 && addPlus ? "+" : "";
+
+        String percent = "";
+
+        if (type == ModType.PERCENT || type == ModType.GLOBAL_INCREASE || stat.IsPercent()) {
+            percent = "%";
+        }
         String v1s = NumberUtils.formatForTooltip(v1);
 
         if (stat.is_long) {
             String txt = CLOC.translate(stat.locName());
 
-            txt = txt.replace(Stat.VAL1, v1s);
+            txt = txt.replace(Stat.VAL1, plusminus + v1s + percent);
 
             return txt;
-        }
-
-        String percent = "";
-
-        String plusminus = v1 > 0 && addPlus ? "+" : "";
-
-        if (type == ModType.PERCENT || type == ModType.GLOBAL_INCREASE || stat.IsPercent()) {
-            percent = "%";
         }
 
         String str = statColor(stat) + getStatNameRegex(format, type, stat, v1);

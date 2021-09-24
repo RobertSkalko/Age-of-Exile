@@ -20,8 +20,8 @@ public class CraftingSuccessChance extends Stat implements DoNotTransferToCrafte
 
     private CraftingSuccessChance() {
 
-        this.min = 0;
-        this.scaling = StatScaling.SLOW;
+        this.min = -100;
+        this.scaling = StatScaling.NONE;
         this.group = StatGroup.Misc;
         this.icon = "\u2748";
         this.format = TextFormatting.BLUE.getName();

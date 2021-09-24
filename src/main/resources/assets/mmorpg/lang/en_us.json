@@ -195,7 +195,7 @@
 	"item.mmorpg.craft_result.inscribing.3": "Enchanted Scroll",
 	"item.mmorpg.craft_result.inscribing.4": "Enchanted Scroll",
 	"item.mmorpg.craft_tools.alchemy": "Alchemist's Mortar",
-	"item.mmorpg.craft_tools.armor_craft": "Armorer's Fabric",
+	"item.mmorpg.craft_tools.armor_craft": "Armorer's Cloth",
 	"item.mmorpg.craft_tools.cooking": "Cook's Pot",
 	"item.mmorpg.craft_tools.inscribing": "Scribe's Fabric",
 	"item.mmorpg.craft_tools.jewel_craft": "Jeweler's Tool",
@@ -245,6 +245,7 @@
 	"item.mmorpg.ingredient.blackpearl": "Black Pearl",
 	"item.mmorpg.ingredient.blootroot": "Blood Root",
 	"item.mmorpg.ingredient.bolete_mushroom": "Bolete Mushroom",
+	"item.mmorpg.ingredient.bone_figurine": "Bone Figurine",
 	"item.mmorpg.ingredient.bryony_root": "Bryony Root",
 	"item.mmorpg.ingredient.crystal_amethyst": "Crystal Amethyst",
 	"item.mmorpg.ingredient.crystal_beryl": "Crystal Beryl",
@@ -481,6 +482,7 @@
 	"mmorpg.ingredient.blackpearl": "Black Pearl",
 	"mmorpg.ingredient.blootroot": "Blood Root",
 	"mmorpg.ingredient.bolete_mushroom": "Bolete Mushroom",
+	"mmorpg.ingredient.bone_figurine": "Bone Figurine",
 	"mmorpg.ingredient.bryony_root": "Bryony Root",
 	"mmorpg.ingredient.crystal_amethyst": "Crystal Amethyst",
 	"mmorpg.ingredient.crystal_beryl": "Crystal Beryl",
@@ -606,6 +608,26 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
+	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
+	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 	"effect.mmorpg.beneficial.1": "Antidote",
@@ -651,26 +673,6 @@
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
-	"item.mmorpg.currency.crystal_of_truth": "§cCrystal of Truth",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
-	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: TALENTS - NAMES",
 
 	"mmorpg.talent.battle_mage": "Battle Mage",
@@ -706,7 +708,7 @@
 	"mmorpg.word.addrarestaffixes": "Add Rarest Affixes",
 	"mmorpg.word.aegis": "Aegis",
 	"mmorpg.word.alchemy": "Alchemy",
-	"mmorpg.word.alchemydesc": "Alchemy is about making potions in the alchemy station.",
+	"mmorpg.word.alchemydesc": "Combine the alchemist's mortar with ingredients to produce potions. Potions have strong but short effects.",
 	"mmorpg.word.all": "All",
 	"mmorpg.word.allowedon": "Allowed on",
 	"mmorpg.word.altdescshiftdetails": "[Shift]: Details",
@@ -720,6 +722,7 @@
 	"mmorpg.word.armor": "Armor",
 	"mmorpg.word.armorcraftercrate": "Armor Crafter's Crate",
 	"mmorpg.word.armorcrafting": "Armor Crafting",
+	"mmorpg.word.armorcraftingdesc": "Combine an Armorer's Cloth with a piece of armor and some materials to enchant that item with stats. ",
 	"mmorpg.word.attack": "Attack",
 	"mmorpg.word.average": "Average",
 	"mmorpg.word.azunasfavor": "Azuna's Favor",
@@ -765,7 +768,7 @@
 	"mmorpg.word.commonercrate": "Commoner's Dream Crate",
 	"mmorpg.word.compendium": "Compendium",
 	"mmorpg.word.cooking": "Cooking",
-	"mmorpg.word.cookingdesc": "Cooking is about creating foods that give helpful buffs to help you in your journey! Farming provides wheat, and Fishing provides fish.",
+	"mmorpg.word.cookingdesc": "Combine the Cook's pot with ingredients to produce foods. Food has a long lasting effect.",
 	"mmorpg.word.cooldown": "Cooldown",
 	"mmorpg.word.cooldownreductionefficiency": "Cooldown Reduction Efficiency",
 	"mmorpg.word.cooldownseconds": "Cooldown Seconds",
@@ -833,7 +836,7 @@
 	"mmorpg.word.infusion": "Infusion",
 	"mmorpg.word.ingredient": "Crafting Ingredient",
 	"mmorpg.word.inscribing": "Inscribing",
-	"mmorpg.word.inscribingdesc": "Inscribing is about using words of wisdom to produce beneficial items. Paper is enchanted with ink to produce scrolls that buff you. Chalk is used to write on glyphs to create defensive glyphs. ",
+	"mmorpg.word.inscribingdesc": "Combine the Scribe's Fabric with ingredients to produce scrolls. Scrolls buff everyone around you for a short duration.",
 	"mmorpg.word.instability": "Instability",
 	"mmorpg.word.instabilitylimitreached": "Instability Limit Reached",
 	"mmorpg.word.isatool": "Is a Tool",
@@ -848,6 +851,7 @@
 	"mmorpg.word.item_modifiable_in_station": "Can be used inside Modify Station",
 	"mmorpg.word.itemisunidentified": "This item is currently sealed.",
 	"mmorpg.word.jewelcrafting": "Jewel Crafting",
+	"mmorpg.word.jewelcraftingdesc": "Combine a Jeweler's Tool with a ring or necklace and some materials to enchant that item with stats.",
 	"mmorpg.word.jewerly": "Jewerly",
 	"mmorpg.word.jewerlycraftercrate": "Jewerly Crafter's Crate",
 	"mmorpg.word.kill": "Kill",
@@ -1012,6 +1016,7 @@
 	"mmorpg.word.weapon": "Weapon",
 	"mmorpg.word.weaponcrafterscrate": "Weapon Crafter's Crate",
 	"mmorpg.word.weaponcrafting": "Weapon Crafting",
+	"mmorpg.word.weaponcraftingdesc": "Combine a Weapon Crafter's Hammer with a weapon and some materials to enchant that item with stats.",
 	"mmorpg.word.weaponoffhand": "Weapon/Offhand",
 	"mmorpg.word.wiki": "Wiki",
 	"mmorpg.word.wind": "Wind",
@@ -1258,6 +1263,7 @@
 	"mmorpg.stat.negative_eff_duration": "§7§a[VAL1]§7% to duration of Negative effects on you.",
 	"mmorpg.stat.night_dmg": "Night Damage",
 	"mmorpg.stat.non_crit_damage": "Non Critical Damage",
+	"mmorpg.stat.not_touch_this": "§7Ingredients not touching this one have §a[VAL1]§7 effectiveness.",
 	"mmorpg.stat.offensive_eff_dur_u_cast": "§7§a[VAL1]§7% to duration of Offensive effects you cast.",
 	"mmorpg.stat.offensive_eff_duration": "§7§a[VAL1]§7% to duration of Offensive effects on you.",
 	"mmorpg.stat.perc_self_hp_dmg_when_immo": "§7Deal §a[VAL1]§7% of your health as §2✿ Earth§7 Damage when you cast immobilizing effects",
@@ -1323,6 +1329,7 @@
 	"mmorpg.stat.totem_resto": "Your Totem restoration effects are [VAL1]% stronger.",
 	"mmorpg.stat.totem_shield": "Your Totem shield effects are [VAL1]% stronger.",
 	"mmorpg.stat.totem_spell_dmg": "Totem Spell Damage",
+	"mmorpg.stat.touch_this": "§7Ingredients touching this one have §a[VAL1]§7 effectiveness.",
 	"mmorpg.stat.transfer_health_to_physical_weapon_damage": "§7Transfer §a[VAL1]%§7 of your §c❤ Health§7§7 towards your §6✦ Physical Damage§7",
 	"mmorpg.stat.trap_cdr": "Trap Spell Cooldown Reduction",
 	"mmorpg.stat.trap_spell_dmg": "Trap Spell Damage",
@@ -1342,6 +1349,26 @@
 	"mmorpg.stat.wisdom": "Wisdom",
 
 "_comment": " [CATEGORY]: STATS - NAMES",
+
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
+	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
+	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
+	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
+	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
+	"mmorpg.unique_gear.insight.name": "Insight",
+	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
+	"mmorpg.unique_gear.rabbit_paw.name": "Rabbit's Paw",
+	"mmorpg.unique_gear.skull_cleaver.name": "Skull Cleaver",
+	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
+	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
+	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
+	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
+	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
@@ -1376,35 +1403,6 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
-	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
-	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
-	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
-	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
-	"mmorpg.unique_gear.insight.name": "Insight",
-	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
-	"mmorpg.unique_gear.rabbit_paw.name": "Rabbit's Paw",
-	"mmorpg.unique_gear.skull_cleaver.name": "Skull Cleaver",
-	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
-	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
-	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
-	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
-	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.alchemy_consumable": "Alchemy",
-	"effect.mmorpg.cooking_consumable": "Cooking",
-	"effect.mmorpg.inscribing_consumable": "Inscribing",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.jewelry.necklace.diamond": "Necklace",
@@ -1419,6 +1417,15 @@
 	"item.mmorpg.weapon.staff.wood": "Staff",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.alchemy_consumable": "Alchemy",
+	"effect.mmorpg.cooking_consumable": "Cooking",
+	"effect.mmorpg.inscribing_consumable": "Inscribing",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",

@@ -2,9 +2,11 @@ package com.robertx22.age_of_exile.database.data;
 
 import com.google.gson.JsonObject;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.serialization.IByteBuf;
 import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 import info.loenwind.autosave.annotations.Factory;
@@ -156,6 +158,12 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
     public List<ITextComponent> getEstimationTooltip(int lvl) {
 
         List<ITextComponent> list = new ArrayList<>();
+
+        if (GetStat().is_long) {
+            return TooltipUtils.cutIfTooLong(new StringTextComponent(
+                StatNameRegex.JUST_NAME.translate(TextFormatting.GREEN, null, getModType(), min, GetStat())
+            ));
+        }
 
         ITextComponent txt = getRangeToShow(lvl).append(" ")
             .append(GetStat().locName());

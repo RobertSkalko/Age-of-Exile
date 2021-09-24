@@ -9,8 +9,10 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.crafting.CraftingSuccessChance;
 import com.robertx22.age_of_exile.database.data.stats.types.crafting.DoNotTransferToCraftedMarker;
 import com.robertx22.age_of_exile.database.data.stats.types.crafting.IncreaseMinRarityStat;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.PlusConsumableUses;
+import com.robertx22.age_of_exile.database.data.stats.types.crafting.MaxUsesStat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
+import com.robertx22.age_of_exile.player_skills.ingredient.GridHelper;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.CraftStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.CraftedStatsData;
@@ -42,12 +44,19 @@ public class CraftingProcessData {
     public String prof = "";
 
     @Store
-    public List<IngredientData> ingredients = new ArrayList<>();
+    public List<CraftSlotData> ingredients = new ArrayList<>();
+
+    public List<IngredientData> getAllIngredients() {
+        return ingredients.stream()
+            .filter(x -> x.ing != null)
+            .map(x -> x.ing)
+            .collect(Collectors.toList());
+    }
 
     public int getSuccessChance(PlayerEntity player) {
         int plus = getStat(CraftingSuccessChance.getInstance());
 
-        int total = 100 - ((ingredients.size() - 1) * 10);
+        int total = 100 - ((this.getIngredientsCount() - 1) * 10);
         total += plus;
 
         return MathHelper.clamp(total, 0, 100);
@@ -58,7 +67,7 @@ public class CraftingProcessData {
     }
 
     public int getAverageTier() {
-        return ingredients.stream()
+        return getAllIngredients().stream()
             .mapToInt(x -> x.tier)
             .sum()
             / ingredients.size();
@@ -68,7 +77,7 @@ public class CraftingProcessData {
 
         int total = ingredients.size();
 
-        List<SlashIngredient> distinct = ingredients.stream()
+        List<SlashIngredient> distinct = getAllIngredients().stream()
             .map(x -> x.getIngredient())
             .distinct()
             .collect(Collectors.toList());
@@ -76,7 +85,8 @@ public class CraftingProcessData {
         float multi = 1F;
 
         for (SlashIngredient x : distinct) {
-            int amount = (int) this.ingredients.stream()
+            int amount = (int) this.getAllIngredients()
+                .stream()
                 .filter(e -> e.getIngredient()
                     .GUID()
                     .equals(x.GUID()))
@@ -90,8 +100,10 @@ public class CraftingProcessData {
     }
 
     public void makeTooltip(ItemStack stack, List<ITextComponent> tip) {
-
         tip.clear();
+
+        GridHelper grid = new GridHelper(ingredients);
+        grid.calcStats();
 
         PlayerSkillEnum skill = getProfession();
 
@@ -101,9 +113,11 @@ public class CraftingProcessData {
 
         tip.add(new StringTextComponent(""));
 
-        ingredients.forEach(x -> {
+        getAllIngredients().forEach(x -> {
             x.getIngredient().stats.forEach(s -> {
-                tip.addAll(s.getEstimationTooltip(LevelUtils.tierToLevel(x.tier)));
+                if (s.GetStat() instanceof DoNotTransferToCraftedMarker == false) {
+                    tip.addAll(s.getEstimationTooltip(LevelUtils.tierToLevel(x.tier)));
+                }
             });
         });
 
@@ -125,14 +139,26 @@ public class CraftingProcessData {
         tip.add(new StringTextComponent(""));
         tip.add(new StringTextComponent("Stat Multiplier:" + (int) (getStatMulti() * 100) + "%").withStyle(TextFormatting.LIGHT_PURPLE, TextFormatting.BOLD));
 
+        if (MMORPG.RUN_DEV_TOOLS) {
+            ingredients.forEach(x -> {
+                if (x.ing != null && x.multi != 1) {
+                    tip.add(new StringTextComponent(x.ing.id + " has " + x.multi + "x stats"));
+                }
+            });
+        }
+
     }
 
     private List<ExactStatData> getResultingStats() {
+        GridHelper grid = new GridHelper(ingredients);
+        grid.calcStats();
+
         PlayerSkillEnum skill = getProfession();
 
         List<ExactStatData> stats = new ArrayList<>();
 
-        for (IngredientData x : ingredients) {
+        for (CraftSlotData data : ingredients) {
+            IngredientData x = data.ing;
             int lvl = LevelUtils.tierToLevel(x.tier);
             int perc = RandomUtils.RandomRange(0, 100);
             for (StatModifier s : x.getIngredient().stats) {
@@ -140,6 +166,7 @@ public class CraftingProcessData {
                     ExactStatData stat = s.ToExactStat(perc, lvl);
                     stat.multiplyBy(skill.craftedStatMulti);
                     stat.multiplyBy(getStatMulti());
+                    stat.multiplyBy(data.multi);
                     stats.add(stat);
                 }
             }
@@ -173,7 +200,7 @@ public class CraftingProcessData {
     int getStat(Stat stat) {
         int num = 0;
 
-        for (IngredientData x : ingredients) {
+        for (IngredientData x : getAllIngredients()) {
 
             for (StatModifier e : x.getIngredient().stats) {
                 if (e.GetStat()
@@ -202,7 +229,10 @@ public class CraftingProcessData {
     }
 
     public int getIngredientsCount() {
-        return ingredients.size();
+        return ingredients.stream()
+            .filter(x -> x.ing != null)
+            .collect(Collectors.toList())
+            .size();
     }
 
     public List<GearRarity> getPossibleRarities() {
@@ -240,7 +270,7 @@ public class CraftingProcessData {
         GearRarity rar = RandomUtils.weightedRandom(getPossibleRarities());
 
         data.rarity = rar.GUID();
-        int tier = ingredients.stream()
+        int tier = getAllIngredients().stream()
             .mapToInt(x -> x.tier)
             .sum() / ingredients.size();
         int lvl = LevelUtils.tierToLevel(tier);
@@ -261,9 +291,11 @@ public class CraftingProcessData {
         }
 
         stats.forEach(x -> {
-            CraftStatData singleStatData = new CraftStatData();
-            singleStatData.s = x;
-            data.cr.stats.add(singleStatData);
+            if (x.getStat() instanceof DoNotTransferToCraftedMarker == false) {
+                CraftStatData singleStatData = new CraftStatData();
+                singleStatData.s = x;
+                data.cr.stats.add(singleStatData);
+            }
         });
 
         return data; // todo
@@ -300,7 +332,7 @@ public class CraftingProcessData {
             data.seconds = 60 * 5;
         }
 
-        int plusUses = getStat(PlusConsumableUses.getInstance());
+        int plusUses = getStat(MaxUsesStat.getInstance());
 
         data.uses += plusUses;
         data.maxuses += plusUses;

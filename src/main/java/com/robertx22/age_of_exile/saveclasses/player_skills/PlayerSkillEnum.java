@@ -38,7 +38,7 @@ public enum PlayerSkillEnum implements IGUID {
         }
     },
 
-    JEWEL_CRAFTING("jewel_craft", WikiType.COOKING_EXP, Words.JewelCrafting, Words.CookingDesc, TextFormatting.GREEN, 1) {
+    JEWEL_CRAFTING("jewel_craft", WikiType.COOKING_EXP, Words.JewelCrafting, Words.JewelCraftingDesc, TextFormatting.GREEN, 1) {
         @Override
         public boolean isGearCraftingProf() {
             return true;
@@ -53,7 +53,7 @@ public enum PlayerSkillEnum implements IGUID {
             return slot.fam == SlotFamily.Jewelry;
         }
     },
-    ARMOR_CRAFTING("armor_craft", WikiType.COOKING_EXP, Words.ArmorCrafting, Words.CookingDesc, TextFormatting.BLUE, 1) {
+    ARMOR_CRAFTING("armor_craft", WikiType.COOKING_EXP, Words.ArmorCrafting, Words.ArmorCraftingDesc, TextFormatting.BLUE, 1) {
         @Override
         public boolean isGearCraftingProf() {
             return true;
@@ -68,7 +68,7 @@ public enum PlayerSkillEnum implements IGUID {
             return slot.fam == SlotFamily.Armor;
         }
     },
-    WEAPON_CRAFTING("wep_craft", WikiType.COOKING_EXP, Words.WeaponCrafting, Words.CookingDesc, TextFormatting.RED, 1) {
+    WEAPON_CRAFTING("wep_craft", WikiType.COOKING_EXP, Words.WeaponCrafting, Words.WeaponCraftingDesc, TextFormatting.RED, 1) {
         @Override
         public boolean isGearCraftingProf() {
             return true;

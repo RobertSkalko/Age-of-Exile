@@ -7,6 +7,10 @@ import java.util.Locale;
 
 public enum Words implements IAutoLocName {
 
+    ArmorCraftingDesc("Combine an Armorer's Cloth with a piece of armor and some materials to enchant that item with stats. "),
+    JewelCraftingDesc("Combine a Jeweler's Tool with a ring or necklace and some materials to enchant that item with stats."),
+    WeaponCraftingDesc("Combine a Weapon Crafter's Hammer with a weapon and some materials to enchant that item with stats."),
+
     Ingredient("Crafting Ingredient"),
     ArmorCrafting("Armor Crafting"),
     JewelCrafting("Jewel Crafting"),
@@ -21,9 +25,9 @@ public enum Words implements IAutoLocName {
     BagUpgradeDesc("Backpack Upgrade Item."),
     DidYouKnow("Did You Know?"),
     BlacksmithDesc("Blacksmithing turns stones and minerals into useful tools."),
-    AlchemyDesc("Alchemy is about making potions in the alchemy station."),
-    CookingDesc("Cooking is about creating foods that give helpful buffs to help you in your journey! Farming provides wheat, and Fishing provides fish."),
-    InscribingDesc("Inscribing is about using words of wisdom to produce beneficial items. Paper is enchanted with ink to produce scrolls that buff you. Chalk is used to write on glyphs to create defensive glyphs. "),
+    AlchemyDesc("Combine the alchemist's mortar with ingredients to produce potions. Potions have strong but short effects."),
+    CookingDesc("Combine the Cook's pot with ingredients to produce foods. Food has a long lasting effect."),
+    InscribingDesc("Combine the Scribe's Fabric with ingredients to produce scrolls. Scrolls buff everyone around you for a short duration."),
     SalvagingDesc("Salvaging is about turning useless gear into essence, a material that's useful for many things."),
     FishingDesc("Fishing is the simplest profession. You catch fish and get experience. Sometimes you might get important materials like ink, which is used in other professions. You can also catch different fish in different biomes."),
     ExplorationDesc("Exploration is all about treasure finding! Looting chests out in the world gives not only loot and favor, but also exploration experience. Completing minecraft advancements also rewards experience."),

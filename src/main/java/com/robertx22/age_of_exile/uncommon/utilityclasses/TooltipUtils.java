@@ -33,15 +33,15 @@ public class TooltipUtils {
 
         if (data.getLevel() >= lvl) {
             tip.add(new StringTextComponent(TextFormatting.GREEN + "" + TextFormatting.BOLD + StatRequirement.CHECK_YES_ICON + TextFormatting.GRAY)
-                    .append(TextFormatting.GRAY + " Level Min: " + lvl + " "));
+                .append(TextFormatting.GRAY + " Level Min: " + lvl + " "));
 
         } else {
             tip.add(new StringTextComponent(TextFormatting.RED + "" + TextFormatting.BOLD + StatRequirement.NO_ICON + TextFormatting.GRAY)
-                    .append(TextFormatting.GRAY + " Level Min: " + lvl + " ")
+                .append(TextFormatting.GRAY + " Level Min: " + lvl + " ")
             );
         }
         tip.addAll(req
-                .GetTooltipString(lvl, data));
+            .GetTooltipString(lvl, data));
     }
 
     public static void addSocketNamesLine(List<ITextComponent> tip, GearItemData gear) {
@@ -56,30 +56,30 @@ public class TooltipUtils {
 
     public static List<String> compsToStrings(List<ITextComponent> list) {
         return list.stream()
-                .map(x -> x.getContents())
-                .collect(Collectors.toList());
+            .map(x -> x.getContents())
+            .collect(Collectors.toList());
     }
 
     public static IFormattableTextComponent level(int lvl) {
         return new StringTextComponent(TextFormatting.YELLOW + "").append(Words.Level.locName())
-                .append((": " + lvl))
-                .withStyle(TextFormatting.YELLOW);
+            .append((": " + lvl))
+            .withStyle(TextFormatting.YELLOW);
 
     }
 
-    public static List<IFormattableTextComponent> cutIfTooLong(IFormattableTextComponent comp) {
+    public static List<ITextComponent> cutIfTooLong(IFormattableTextComponent comp) {
         List<String> stringList = cutIfTooLong(CLOC.translate(comp));
         return stringList.stream()
-                .map(x -> new SText(x))
-                .collect(Collectors.toList());
+            .map(x -> new SText(x))
+            .collect(Collectors.toList());
 
     }
 
     public static List<IFormattableTextComponent> cutIfTooLong(IFormattableTextComponent comp, TextFormatting format) {
         List<String> stringList = cutIfTooLong(CLOC.translate(comp));
         return stringList.stream()
-                .map(x -> new SText(x).withStyle(format))
-                .collect(Collectors.toList());
+            .map(x -> new SText(x).withStyle(format))
+            .collect(Collectors.toList());
 
     }
 
@@ -166,8 +166,8 @@ public class TooltipUtils {
         for (int i = 0; i < list.size(); i++) {
 
             if (list.get(i)
-                    .getString()
-                    .length() > 2) {
+                .getString()
+                .length() > 2) {
                 lastIsEmpty = false;
                 newt.add(list.get(i));
             } else {
@@ -193,8 +193,8 @@ public class TooltipUtils {
     public static IFormattableTextComponent rarity(Rarity rarity) {
 
         return new StringTextComponent(rarity.textFormatting() + "")
-                .append(rarity.locName())
-                .withStyle(rarity.textFormatting());
+            .append(rarity.locName())
+            .withStyle(rarity.textFormatting());
     }
 
     public static IFormattableTextComponent rarityShort(Rarity rarity) {
@@ -203,32 +203,32 @@ public class TooltipUtils {
 
     public static IFormattableTextComponent tier(int tier) {
         return Words.Tier.locName()
-                .append(": " + LevelUtils.tierToRomanNumeral(tier));
+            .append(": " + LevelUtils.tierToRomanNumeral(tier));
 
     }
 
     public static IFormattableTextComponent gearSlot(GearSlot slot) {
         return new StringTextComponent("Item Type: ").withStyle(TextFormatting.WHITE)
-                .append(slot.locName()
-                        .withStyle(TextFormatting.AQUA));
+            .append(slot.locName()
+                .withStyle(TextFormatting.AQUA));
     }
 
     public static IFormattableTextComponent gearTier(int tier) {
         return new StringTextComponent("Item Tier: ").withStyle(TextFormatting.WHITE)
-                .append(new StringTextComponent(LevelUtils.tierToRomanNumeral(tier)).withStyle(TextFormatting.AQUA));
+            .append(new StringTextComponent(LevelUtils.tierToRomanNumeral(tier)).withStyle(TextFormatting.AQUA));
     }
 
     public static IFormattableTextComponent gearRarity(GearRarity rarity) {
         return new StringTextComponent("Rarity: ").withStyle(TextFormatting.WHITE)
-                .append(rarity.locName()
-                        .withStyle(rarity.textFormatting()));
+            .append(rarity.locName()
+                .withStyle(rarity.textFormatting()));
     }
 
     public static IFormattableTextComponent gearLevel(int lvl) {
         return new StringTextComponent("Level: ")
-                .withStyle(TextFormatting.WHITE)
-                .append(new StringTextComponent(lvl + "")
-                        .withStyle(TextFormatting.YELLOW));
+            .withStyle(TextFormatting.WHITE)
+            .append(new StringTextComponent(lvl + "")
+                .withStyle(TextFormatting.YELLOW));
     }
 
     public static IFormattableTextComponent dragOntoGearToUse() {
