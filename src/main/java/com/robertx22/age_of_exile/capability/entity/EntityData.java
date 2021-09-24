@@ -32,10 +32,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.UnitNbt;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
-import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
-import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
+import com.robertx22.age_of_exile.uncommon.enumclasses.*;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
@@ -564,7 +561,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
                 .getGearSlot();
 
             float cost = Energy.getInstance()
-                .scale(slot.energy_cost, getLevel());
+                .scale(ModType.FLAT, slot.energy_cost, getLevel());
             SpendResourceEvent event = new SpendResourceEvent(entity, ResourceType.energy, cost);
             event.calculateEffects();
 
@@ -598,7 +595,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
 
         num *= ExileDB.getEntityConfig(entity, this).dmg_multi;
 
-        num = new AttackDamage(Elements.Physical).scale(num, getLevel());
+        num = new AttackDamage(Elements.Physical).scale(ModType.FLAT, num, getLevel());
 
         PlayStyle style = PlayStyle.melee;
 

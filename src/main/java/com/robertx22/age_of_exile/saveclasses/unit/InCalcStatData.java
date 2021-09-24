@@ -48,6 +48,7 @@ public class InCalcStatData {
         finalValue *= 1 + Multi / 100;
 
         this.calc = true;
+
         return MathHelper.clamp(finalValue, stat.min, stat.max);
 
     }
@@ -77,7 +78,7 @@ public class InCalcStatData {
     }
 
     public void addFlat(float val1, int lvl) {
-        this.Flat += GetStat().scale(val1, lvl);
+        this.Flat += GetStat().scale(ModType.FLAT, val1, lvl);
     }
 
     public boolean isMoreThanZero() {
@@ -119,9 +120,6 @@ public class InCalcStatData {
 
     public StatData getCalculated() {
 
-        if (!calc) {
-            this.calcValue();
-        }
-        return new StatData(this.id, getValue());
+        return new StatData(this.id, calcValue());
     }
 }

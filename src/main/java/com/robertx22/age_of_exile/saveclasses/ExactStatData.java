@@ -85,9 +85,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
 
     private void scaleToLevel(int lvl) {
         if (!scaled) {
-            if (this.type.isFlat()) {
-                this.v1 = getStat().scale(v1, lvl);
-            }
+            this.v1 = getStat().scale(type, v1, lvl);
         }
     }
 

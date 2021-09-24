@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats;
 
+import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
+
 public interface IUsableStat {
 
     /**
@@ -34,7 +36,7 @@ public interface IUsableStat {
         if (this instanceof Stat) {
             Stat stat = (Stat) this;
 
-            float valNeededForMax = stat.scale(valueNeededToReachMaximumPercentAtLevelOne(), lvl);
+            float valNeededForMax = stat.scale(ModType.FLAT, valueNeededToReachMaximumPercentAtLevelOne(), lvl);
 
             float percOfMax = (float) value / valNeededForMax / (value / valNeededForMax + 1.5F);
 

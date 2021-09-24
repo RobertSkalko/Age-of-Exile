@@ -100,10 +100,9 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
         int fmin = (int) min;
         int fmax = (int) max;
 
-        if (getModType().isFlat()) {
-            fmin = (int) GetStat().scale(min, lvl);
-            fmax = (int) GetStat().scale(max, lvl);
-        }
+        fmin = (int) GetStat().scale(getModType(), min, lvl);
+        fmax = (int) GetStat().scale(getModType(), max, lvl);
+
         String text = fmin + "/" + fmax;
 
         if (GetStat().IsPercent() || getModType().isLocalIncrease()) {

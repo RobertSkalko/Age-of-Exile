@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
+import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.EntityUnitPacket;
 import com.robertx22.library_of_exile.main.Packets;
@@ -51,7 +52,7 @@ public class ResourcesData {
     public void onTickBlock(PlayerEntity player) {
         if (player.isBlocking()) {
             float cost = Energy.getInstance()
-                .scale(0.25F, Load.Unit(player)
+                .scale(ModType.FLAT, 0.25F, Load.Unit(player)
                     .getLevel());
             SpendResourceEvent event = new SpendResourceEvent(player, ResourceType.energy, cost);
             event.calculateEffects();

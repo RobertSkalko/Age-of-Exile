@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.IStatEffect;
@@ -99,8 +100,12 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
         return scaling;
     }
 
-    public final float scale(float stat, int lvl) {
-        return getScaling().scale(stat, lvl);
+    public final float scale(ModType mod, float stat, int lvl) {
+        if (mod.isFlat()) {
+            return getScaling().scale(stat, lvl);
+        } else {
+            return StatScaling.SLOW.scale(stat, lvl);
+        }
     }
 
     public List<IFormattableTextComponent> getCutDescTooltip() {

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.entity.LivingEntity;
 
 public class HealthUtils {
@@ -14,7 +15,7 @@ public class HealthUtils {
     public static float vanillaToReal(LivingEntity en, float dmg) {
 
         return Health.getInstance()
-            .scale(dmg, Load.Unit(en)
+            .scale(ModType.FLAT, dmg, Load.Unit(en)
                 .getLevel());
     }
 

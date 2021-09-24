@@ -23,25 +23,32 @@ public class OnEntityTick extends EventConsumer<ExileEvents.OnEntityTick> {
         if (entity.level.isClientSide) {
             return;
         }
-
-        Load.Unit(entity)
-            .getCooldowns()
-            .onTicksPass(1);
-
-        if (entity instanceof MobEntity) {
-            OnTickCancelTargettingOtherMobs.cancelTarget((MobEntity) entity);
-            OnTickDespawnIfFailedOrEmpty.despawn((MobEntity) entity);
-        }
-
-        OnTickRegenerate.regen(40, entity);
-
-        if (entity instanceof PlayerEntity == false) {
-            if (entity.tickCount % 40 != 0) {
-                return; // dont check gear of mobs as often as players
+        try {
+            if (Load.Unit(entity) == null) {
+                return; // it shouldnt be though
             }
-        }
 
-        checkGearChanged(entity);
+            Load.Unit(entity)
+                .getCooldowns()
+                .onTicksPass(1);
+
+            if (entity instanceof MobEntity) {
+                OnTickCancelTargettingOtherMobs.cancelTarget((MobEntity) entity);
+                OnTickDespawnIfFailedOrEmpty.despawn((MobEntity) entity);
+            }
+
+            OnTickRegenerate.regen(40, entity);
+
+            if (entity instanceof PlayerEntity == false) {
+                if (entity.tickCount % 40 != 0) {
+                    return; // dont check gear of mobs as often as players
+                }
+            }
+
+            checkGearChanged(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void checkGearChanged(LivingEntity entity) {

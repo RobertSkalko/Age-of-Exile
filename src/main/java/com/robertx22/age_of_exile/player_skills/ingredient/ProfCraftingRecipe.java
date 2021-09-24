@@ -147,16 +147,15 @@ public class ProfCraftingRecipe extends SpecialRecipe {
     public NonNullList<ItemStack> getRemainingItems(CraftingInventory inv) {
 
         NonNullList<ItemStack> list = NonNullList.withSize(inv.getContainerSize(), ItemStack.EMPTY);
-        NonNullList<ItemStack> remains = NonNullList.create();
 
         for (int i = 0; i < list.size(); ++i) {
             ItemStack stack = inv.getItem(i);
             if (stack.getItem() instanceof CraftToolItem) {
-                remains.add(new ItemStack(stack.getItem()));
+                list.set(i, stack.copy());
             }
         }
 
-        return remains;
+        return list;
     }
 
     @Override

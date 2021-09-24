@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -28,7 +29,7 @@ public abstract class FoodEffectPotion extends Effect {
 
     public float getTotalRestored(EntityData data, int amplifier) {
         return Health.getInstance()
-            .scale(amplifier, data.getLevel());
+            .scale(ModType.FLAT, amplifier, data.getLevel());
     }
 
     public float getValueRestoredPerRegen(EntityData data, int amplifier, int duration) {

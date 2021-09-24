@@ -181,11 +181,10 @@ public class WaterSpells implements ExileRegistryInit {
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.DROWNED_HURT, 1D, 1D)))
             .build();
 
-        SpellBuilder.of(NOURISHMENT, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Nourishment",
+        SpellBuilder.of(NOURISHMENT, SpellConfiguration.Builder.nonInstant(15, 20 * 30, 60), "Nourishment",
                 Arrays.asList(SpellTag.heal))
             .manualDesc(
                 "Apply buff to allies nearby ")
-
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SlashSounds.BUFF.get(), 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
