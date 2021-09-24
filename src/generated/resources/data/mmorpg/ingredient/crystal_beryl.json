@@ -1,6 +1,7 @@
 {
   "id": "crystal_beryl",
   "item_id": "mmorpg:ingredient/crystal_beryl",
+  "oaok": "",
   "weight": 2000,
   "rar": "uncommon",
   "stats": [

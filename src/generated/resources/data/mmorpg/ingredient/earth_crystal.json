@@ -1,6 +1,7 @@
 {
   "id": "earth_crystal",
   "item_id": "mmorpg:ingredient/earth_crystal",
+  "oaok": "",
   "weight": 100,
   "rar": "epic",
   "stats": [

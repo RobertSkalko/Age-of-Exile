@@ -5,6 +5,11 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
+import com.robertx22.age_of_exile.database.data.stats.Stat;
+import com.robertx22.age_of_exile.database.data.stats.types.crafting.CraftingSuccessChance;
+import com.robertx22.age_of_exile.database.data.stats.types.crafting.DoNotTransferToCraftedMarker;
+import com.robertx22.age_of_exile.database.data.stats.types.crafting.IncreaseMinRarityStat;
+import com.robertx22.age_of_exile.database.data.stats.types.crafting.PlusConsumableUses;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.CraftStatData;
@@ -40,7 +45,12 @@ public class CraftingProcessData {
     public List<IngredientData> ingredients = new ArrayList<>();
 
     public int getSuccessChance(PlayerEntity player) {
-        return 100 - ((ingredients.size() - 1) * 10);
+        int plus = getStat(CraftingSuccessChance.getInstance());
+
+        int total = 100 - ((ingredients.size() - 1) * 10);
+        total += plus;
+
+        return MathHelper.clamp(total, 0, 100);
     }
 
     public int getFailChance(PlayerEntity player) {
@@ -126,10 +136,12 @@ public class CraftingProcessData {
             int lvl = LevelUtils.tierToLevel(x.tier);
             int perc = RandomUtils.RandomRange(0, 100);
             for (StatModifier s : x.getIngredient().stats) {
-                ExactStatData stat = s.ToExactStat(perc, lvl);
-                stat.multiplyBy(skill.craftedStatMulti);
-                stat.multiplyBy(getStatMulti());
-                stats.add(stat);
+                if (s.GetStat() instanceof DoNotTransferToCraftedMarker == false) {
+                    ExactStatData stat = s.ToExactStat(perc, lvl);
+                    stat.multiplyBy(skill.craftedStatMulti);
+                    stat.multiplyBy(getStatMulti());
+                    stats.add(stat);
+                }
             }
         }
 
@@ -146,13 +158,34 @@ public class CraftingProcessData {
         GearRarity rar = ExileDB.GearRarities()
             .get(IRarity.COMMON_ID);
         int uptimes = getIngredientsCount() / 4;
+        int plusmin = getStat(IncreaseMinRarityStat.getInstance());
+        uptimes += plusmin;
 
         for (int i = 0; i < uptimes; i++) {
             if (rar.hasHigherRarity()) {
                 rar = rar.getHigherRarity();
             }
         }
+
         return rar;
+    }
+
+    int getStat(Stat stat) {
+        int num = 0;
+
+        for (IngredientData x : ingredients) {
+
+            for (StatModifier e : x.getIngredient().stats) {
+                if (e.GetStat()
+                    .equals(stat)) {
+                    num += (e.min + e.max) / 2;
+                }
+            }
+
+        }
+
+        return num;
+
     }
 
     GearRarity getMaxRarity() {
@@ -266,6 +299,11 @@ public class CraftingProcessData {
             data.maxuses = 3;
             data.seconds = 60 * 5;
         }
+
+        int plusUses = getStat(PlusConsumableUses.getInstance());
+
+        data.uses += plusUses;
+        data.maxuses += plusUses;
 
         return data;
 

@@ -77,6 +77,12 @@ public class IngredientData {
             tip.addAll(x.getEstimationTooltip(lvl));
         });
 
+        if (ingredient.isOneOfAKind()) {
+            tip.add(new StringTextComponent(""));
+            tip.add(new StringTextComponent("Can only have one: ").append(ingredient.getOneOfAKindId())
+                .withStyle(TextFormatting.LIGHT_PURPLE));
+        }
+
         tip.add(new StringTextComponent(""));
 
         tip.add(TooltipUtils.gearTier(tier));

@@ -1,6 +1,7 @@
 {
   "id": "crystal_amethyst",
   "item_id": "mmorpg:ingredient/crystal_amethyst",
+  "oaok": "",
   "weight": 300,
   "rar": "rare",
   "stats": [

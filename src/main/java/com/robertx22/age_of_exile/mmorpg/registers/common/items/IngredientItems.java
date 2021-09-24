@@ -10,6 +10,12 @@ public class IngredientItems {
 
     }
 
+    //specials
+    public static RegObj<IngredientItem> WISHING_BOWL = of("wishing_bowl", "Wishing Bowl");
+    public static RegObj<IngredientItem> POT_OF_GREED = of("pot_of_greed", "Pot of Greed");
+    public static RegObj<IngredientItem> SOUL_MATRIX = of("soul_matrix", "Soul Matrix");
+
+    //normal
     public static RegObj<IngredientItem> GUARDIAN_SCALES = of("guardian_scales", "Guardian Scales");
     public static RegObj<IngredientItem> FRESH_HEART = of("fresh_heart", "Fresh Heart");
     public static RegObj<IngredientItem> SLIME_BOLUS = of("slime_bolus", "Slime Bolus");

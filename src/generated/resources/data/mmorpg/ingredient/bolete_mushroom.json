@@ -1,6 +1,7 @@
 {
   "id": "bolete_mushroom",
   "item_id": "mmorpg:ingredient/bolete_mushroom",
+  "oaok": "",
   "weight": 5000,
   "rar": "common",
   "stats": [

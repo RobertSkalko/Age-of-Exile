@@ -1,6 +1,7 @@
 {
   "id": "guardian_scales",
   "item_id": "mmorpg:ingredient/guardian_scales",
+  "oaok": "",
   "weight": 5000,
   "rar": "common",
   "stats": [

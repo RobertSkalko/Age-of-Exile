@@ -1,6 +1,7 @@
 {
   "id": "blackpearl",
   "item_id": "mmorpg:ingredient/blackpearl",
+  "oaok": "",
   "weight": 100,
   "rar": "epic",
   "stats": [

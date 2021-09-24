@@ -1,6 +1,7 @@
 {
   "id": "enderman_heart",
   "item_id": "mmorpg:ingredient/enderman_heart",
+  "oaok": "",
   "weight": 300,
   "rar": "rare",
   "stats": [

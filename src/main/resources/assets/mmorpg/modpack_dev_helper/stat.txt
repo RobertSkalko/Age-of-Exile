@@ -24,6 +24,7 @@ inc_effect_of_song_buff_given
 trap_spell_dmg
 convert_water_to_phys
 arrow_cdr
+craft_suc_chance
 bonus_alchemy_yield
 food_eff_dur_u_cast
 heal_on_shielded_targets
@@ -219,6 +220,7 @@ transfer_health_to_physical_weapon_damage
 bonus_jewel_craft_yield
 damage_reflected
 all_earth_damage
+inc_min_rar_craft
 staff_damage
 bonus_day_yield
 spell_critical_hit
@@ -309,6 +311,7 @@ totem_resto
 heal_effect_on_self
 shield_duration
 fireball_chance_of_negative/5
+plus_consu_uses
 negative_eff_dur_u_cast
 water_any_wep_damage
 dmg_taken_to_mana

@@ -1,6 +1,7 @@
 {
   "id": "lootus_petals",
   "item_id": "mmorpg:ingredient/lootus_petals",
+  "oaok": "",
   "weight": 2000,
   "rar": "uncommon",
   "stats": [

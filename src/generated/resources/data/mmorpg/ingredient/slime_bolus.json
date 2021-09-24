@@ -1,6 +1,7 @@
 {
   "id": "slime_bolus",
   "item_id": "mmorpg:ingredient/slime_bolus",
+  "oaok": "",
   "weight": 5000,
   "rar": "common",
   "stats": [

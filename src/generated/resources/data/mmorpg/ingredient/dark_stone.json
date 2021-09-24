@@ -1,6 +1,7 @@
 {
   "id": "dark_stone",
   "item_id": "mmorpg:ingredient/dark_stone",
+  "oaok": "",
   "weight": 100,
   "rar": "epic",
   "stats": [

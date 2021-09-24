@@ -1,0 +1,20 @@
+{
+  "id": "pot_of_greed",
+  "item_id": "mmorpg:ingredient/pot_of_greed",
+  "oaok": "artifact",
+  "weight": 300,
+  "rar": "rare",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 2.0,
+      "stat": "plus_consu_uses",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "alchemy",
+    "cooking",
+    "inscribing"
+  ]
+}

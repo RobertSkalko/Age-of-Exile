@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 import com.google.common.base.Preconditions;
 import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
+import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
@@ -14,9 +15,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public class LevelUtils {
+
+    static boolean isTier(MinMax range, int lvl) {
+        return lvl > range.min && lvl < range.max;
+    }
 
     static Set<Integer> cachedTiers = new HashSet<>();
 
@@ -47,7 +54,7 @@ public class LevelUtils {
     }
 
     public static String tierToRomanNumeral(int tier) {
-        return RomanNumber.toRoman(tier + 1);
+        return RomanNumber.toRoman(tier);
     }
 
     public static int levelToTierToLevel(int level) {
@@ -55,11 +62,48 @@ public class LevelUtils {
     }
 
     public static int tierToLevel(int tier) {
-        return MathHelper.clamp((tier) * 10, 1, Integer.MAX_VALUE);
+
+        int lvl = 1;
+        try {
+            Optional<Map.Entry<MinMax, Integer>> opt = GameBalanceConfig.get()
+                .getTierMap()
+                .entrySet()
+                .stream()
+                .filter(e -> e.getValue() == tier)
+                .findAny();
+
+            if (opt.isPresent()) {
+                lvl = opt.get()
+                    .getKey().min + 1;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 1;
+        }
+        return lvl;
     }
 
     public static int levelToTier(int level) {
-        return MathHelper.clamp((level / 10), 0, Integer.MAX_VALUE);
+        int tier = 1;
+        try {
+            Optional<Map.Entry<MinMax, Integer>> opt = GameBalanceConfig.get()
+                .getTierMap()
+                .entrySet()
+                .stream()
+                .filter(e -> isTier(e.getKey(), level))
+                .findAny();
+            if (opt.isPresent()) {
+                tier = opt.get()
+                    .getValue();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 1;
+        }
+        return tier;
+
     }
 
     public static SkillItemTier levelToSkillTier(int lvl) {

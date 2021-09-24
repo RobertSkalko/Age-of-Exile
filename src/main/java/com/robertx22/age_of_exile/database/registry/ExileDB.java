@@ -23,7 +23,6 @@ import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
-import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -177,10 +176,6 @@ public class ExileDB {
 
     public static ExileRegistryContainer<BaseGearType> GearTypes() {
         return Database.getRegistry(ExileRegistryTypes.GEAR_TYPE);
-    }
-
-    public static ExileRegistryContainer<ScrollBuff> ScrollBuffs() {
-        return Database.getRegistry(ExileRegistryTypes.SCROLL_BUFFS);
     }
 
     public static ExileRegistryContainer<DungeonMobList> DungeonMobLists() {

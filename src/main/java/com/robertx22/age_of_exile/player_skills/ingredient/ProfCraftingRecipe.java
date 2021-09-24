@@ -15,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ProfCraftingRecipe extends SpecialRecipe {
@@ -51,6 +52,8 @@ public class ProfCraftingRecipe extends SpecialRecipe {
             }
         }
 
+        HashMap<String, Integer> countmap = new HashMap<>();
+
         for (int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack stack = inv.getItem(i);
             if (StackSaving.INGREDIENTS.has(stack)) {
@@ -60,7 +63,16 @@ public class ProfCraftingRecipe extends SpecialRecipe {
                         .isAllowedInProfession(skill.id)) {
                         return false;
                     }
-
+                    if (data.getIngredient()
+                        .isOneOfAKind()) {
+                        countmap.put(data.getIngredient()
+                            .getOneOfAKindId(), countmap.getOrDefault(data.getIngredient()
+                            .getOneOfAKindId(), 0) + 1);
+                    }
+                    if (countmap.getOrDefault(data.getIngredient()
+                        .getOneOfAKindId(), 0) > 1) {
+                        return false;
+                    }
                     list.add(data);
                 }
             }

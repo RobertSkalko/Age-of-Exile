@@ -3,6 +3,9 @@ package com.robertx22.age_of_exile.database.registrators;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
+import com.robertx22.age_of_exile.database.data.stats.types.crafting.CraftingSuccessChance;
+import com.robertx22.age_of_exile.database.data.stats.types.crafting.IncreaseMinRarityStat;
+import com.robertx22.age_of_exile.database.data.stats.types.crafting.PlusConsumableUses;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
@@ -100,6 +103,10 @@ public class StatsRegister implements ExileRegistryInit {
                     add(GlobalCriticalHit.getInstance());
                     add(DodgeRating.getInstance());
                     add(DamageShield.getInstance());
+
+                    add(IncreaseMinRarityStat.getInstance());
+                    add(PlusConsumableUses.getInstance());
+                    add(CraftingSuccessChance.getInstance());
 
                     add(new BonusSkillExp(PlayerSkillEnum.NONE));
 

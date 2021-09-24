@@ -41,6 +41,13 @@ public class IngredientBuilder {
         return this;
     }
 
+    static String ARTIFACT_ID = "artifact";
+
+    public IngredientBuilder setIsArtifact() {
+        this.ingredient.oaok = ARTIFACT_ID;
+        return this;
+    }
+
     public SlashIngredient build() {
         ingredient.addToSerializables();
         return ingredient;

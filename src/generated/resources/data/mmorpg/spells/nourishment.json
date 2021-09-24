@@ -113,7 +113,7 @@
       "min": 7.5,
       "max": 15.0
     },
-    "times_to_cast": 3,
+    "times_to_cast": 1,
     "charges": 0,
     "charge_regen": 0,
     "imbues": 1,

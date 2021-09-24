@@ -1,10 +1,13 @@
 package com.robertx22.age_of_exile.database.data.game_balance_config;
 
+import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.library_of_exile.registry.Database;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+
+import java.util.HashMap;
 
 public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, IAutoGson<GameBalanceConfig> {
 
@@ -30,6 +33,38 @@ public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, 
     public double STAT_POINTS_PER_LEVEL = 2;
     public double SPELL_POINTS_PER_LEVEL = 2;
     public double STARTING_TALENT_POINTS = 1;
+
+    public int levels_per_tier = 10;
+
+    public HashMap<MinMax, Integer> getTierMap() {
+
+        HashMap<MinMax, Integer> tiermap = new HashMap<>();
+
+        int tier = 1;
+        int lvl = 0;
+
+        while (lvl < MAX_LEVEL) {
+
+            int min = ((tier - 1) * levels_per_tier) - 1;
+            if (min < 0) {
+                min = 0;
+            }
+            int max = tier * levels_per_tier;
+
+            tier++;
+            lvl += levels_per_tier;
+
+            if (lvl == MAX_LEVEL) {
+                max += 100;
+            }
+
+            tiermap.put(new MinMax(min, max), tier);
+
+        }
+
+        return tiermap;
+
+    }
 
     @Override
     public ExileRegistryType getExileRegistryType() {

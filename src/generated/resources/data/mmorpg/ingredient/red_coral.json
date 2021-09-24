@@ -1,6 +1,7 @@
 {
   "id": "red_coral",
   "item_id": "mmorpg:ingredient/red_coral",
+  "oaok": "",
   "weight": 5000,
   "rar": "common",
   "stats": [

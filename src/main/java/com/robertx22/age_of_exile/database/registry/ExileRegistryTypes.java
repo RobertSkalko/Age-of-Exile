@@ -21,7 +21,6 @@ import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
-import com.robertx22.age_of_exile.database.data.scroll_buff.ScrollBuff;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -74,7 +73,6 @@ public class ExileRegistryTypes {
     public static ExileRegistryType BASE_STATS = ExileRegistryType.register(SlashRef.MODID, "base_stats", 22, BaseStatsConfig.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType SALVAGE_RECIPE = ExileRegistryType.register(SlashRef.MODID, "salvage_recipe", 27, SalvageRecipe.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType CRAFTING_REQ = ExileRegistryType.register(SlashRef.MODID, "crafting_req", 30, CraftingReq.SERIALIZER, SyncTime.ON_LOGIN);
-    public static ExileRegistryType SCROLL_BUFFS = ExileRegistryType.register(SlashRef.MODID, "scroll_buffs", 29, ScrollBuff.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType VALUE_CALC = ExileRegistryType.register(SlashRef.MODID, "value_calc", 40, ValueCalculation.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType GEAR_SET = ExileRegistryType.register(SlashRef.MODID, "set", 31, GearSet.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType DUNGEON_MOB_LIST = ExileRegistryType.register(SlashRef.MODID, "dungeon_mob_list", 32, DungeonMobList.SERIALIZER, SyncTime.ON_LOGIN);

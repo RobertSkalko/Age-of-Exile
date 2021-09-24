@@ -1,6 +1,7 @@
 {
   "id": "hemlock",
   "item_id": "mmorpg:ingredient/hemlock",
+  "oaok": "",
   "weight": 2000,
   "rar": "uncommon",
   "stats": [

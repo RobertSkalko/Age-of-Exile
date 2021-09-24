@@ -24,6 +24,7 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
     public void registerAll() {
 
         new EpicIngredientsAdder().registerAll();
+        new SpecialIngredientsAdder().registerAll();
 
         IngredientBuilder.of(IngredientItems.GUARDIAN_SCALES, IRarity.COMMON_ID)
             .allowedIn(PlayerSkillEnum.ALCHEMY)

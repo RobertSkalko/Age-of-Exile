@@ -20,12 +20,21 @@ public class SlashIngredient implements JsonExileRegistry<SlashIngredient>, IAut
     public String id;
     public transient String locname;
     public String item_id;
+    public String oaok = ""; // one of a kind
     public int weight;
 
     public String rar;
 
     public List<StatModifier> stats = new ArrayList<>();
     public List<String> allowed_in = new ArrayList<>();
+
+    public boolean isOneOfAKind() {
+        return !this.oaok.isEmpty();
+    }
+
+    public String getOneOfAKindId() {
+        return this.oaok;
+    }
 
     public Item getItem() {
         return ForgeRegistries.ITEMS.getValue(new ResourceLocation(item_id));

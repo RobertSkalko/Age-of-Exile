@@ -1,0 +1,23 @@
+{
+  "id": "soul_matrix",
+  "item_id": "mmorpg:ingredient/soul_matrix",
+  "oaok": "artifact",
+  "weight": 100,
+  "rar": "epic",
+  "stats": [
+    {
+      "min": 20.0,
+      "max": 20.0,
+      "stat": "craft_suc_chance",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "alchemy",
+    "cooking",
+    "inscribing",
+    "jewel_craft",
+    "wep_craft",
+    "armor_craft"
+  ]
+}

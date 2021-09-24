@@ -1,6 +1,7 @@
 {
   "id": "sage_flower",
   "item_id": "mmorpg:ingredient/sage_flower",
+  "oaok": "",
   "weight": 300,
   "rar": "rare",
   "stats": [

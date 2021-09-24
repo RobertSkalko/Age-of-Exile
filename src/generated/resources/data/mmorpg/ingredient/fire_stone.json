@@ -1,6 +1,7 @@
 {
   "id": "fire_stone",
   "item_id": "mmorpg:ingredient/fire_stone",
+  "oaok": "",
   "weight": 2000,
   "rar": "uncommon",
   "stats": [

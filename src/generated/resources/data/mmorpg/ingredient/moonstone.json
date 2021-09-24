@@ -1,6 +1,7 @@
 {
   "id": "moonstone",
   "item_id": "mmorpg:ingredient/moonstone",
+  "oaok": "",
   "weight": 2000,
   "rar": "uncommon",
   "stats": [

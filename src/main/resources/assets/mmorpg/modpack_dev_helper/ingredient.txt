@@ -8,8 +8,10 @@ guardian_scales
 redstone_crystal
 magic_log
 enderman_heart
+pot_of_greed
 slime_bolus
 crystal_beryl
+soul_matrix
 frigid_runestone
 dark_stone
 moonstone
@@ -17,6 +19,7 @@ sage_flower
 blackpearl
 bryony_root
 wisdom_fruit
+wishing_bowl
 ender_heart
 crystal_amethyst
 bolete_mushroom

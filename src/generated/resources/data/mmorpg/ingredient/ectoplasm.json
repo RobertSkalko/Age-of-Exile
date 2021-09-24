@@ -1,6 +1,7 @@
 {
   "id": "ectoplasm",
   "item_id": "mmorpg:ingredient/ectoplasm",
+  "oaok": "",
   "weight": 5000,
   "rar": "common",
   "stats": [

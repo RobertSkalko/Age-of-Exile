@@ -142,8 +142,6 @@ public class CreateLangFile {
         list.addAll(ExileDB.Stats()
             .getSerializable());
         list.addAll(stats);
-        list.addAll(ExileDB.ScrollBuffs()
-            .getSerializable());
 
         list.addAll(ExileDB.GearTypes()
             .getSerializable());
@@ -194,9 +192,6 @@ public class CreateLangFile {
         List<IAutoLocDesc> list = CreateLangFileUtils.getFromRegistries(IAutoLocDesc.class);
 
         list.addAll(ExileDB.Spells()
-            .getSerializable());
-
-        list.addAll(ExileDB.ScrollBuffs()
             .getSerializable());
 
         List<Stat> stats = ExileDB.Stats()

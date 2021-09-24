@@ -1,6 +1,7 @@
 {
   "id": "yarrow_flower",
   "item_id": "mmorpg:ingredient/yarrow_flower",
+  "oaok": "",
   "weight": 2000,
   "rar": "uncommon",
   "stats": [
