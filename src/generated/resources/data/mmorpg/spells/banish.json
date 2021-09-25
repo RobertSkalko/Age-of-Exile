@@ -68,6 +68,15 @@
                 "motion": "Upwards",
                 "push_str": 0.1
               }
+            },
+            {
+              "type": "exile_effect",
+              "map": {
+                "exile_potion_id": "negative/0",
+                "potion_action": "GIVE_STACKS",
+                "count": 1.0,
+                "potion_dur": 60.0
+              }
             }
           ],
           "ifs": [

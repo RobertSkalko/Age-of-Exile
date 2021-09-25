@@ -94,9 +94,6 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
                 .withStyle(TextFormatting.GREEN));
             stats.forEach(x -> list.addAll(x.GetTooltipString(info, data.lvl)));
         }
-        if (spell != null) {
-            // TODO add manual effect tooltip
-        }
 
         if (max_stacks > 1) {
             list.add(new StringTextComponent("Maximum Stacks: " + max_stacks));

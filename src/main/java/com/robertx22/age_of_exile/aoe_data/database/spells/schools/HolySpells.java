@@ -179,8 +179,7 @@ public class HolySpells implements ExileRegistryInit {
         SpellBuilder.of(BANISH, SpellConfiguration.Builder.instant(10, 20 * 45)
                 .setScaleManaToPlayer(), "Banish", Arrays.asList())
             .manualDesc(
-                "Summon a Magic circle that banishes enemies in the area, levitating them for a certain duration.")
-
+                "Summon a Magic circle that banishes enemies in the area, levitating them for a certain duration and applying a debuff.")
             .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(SlashBlocks.GLYPH.get(), 20D * 5)
@@ -190,6 +189,7 @@ public class HolySpells implements ExileRegistryInit {
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
             .onTick("block", PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, 0.1D, ParticleMotion.Upwards))
+                .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.ELE_WEAKNESS.effectId, ExileEffectAction.GiveOrTake.GIVE_STACKS, 60D))
                 .onTick(1D)
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
 

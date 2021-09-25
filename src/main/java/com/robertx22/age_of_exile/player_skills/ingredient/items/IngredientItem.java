@@ -35,7 +35,7 @@ public class IngredientItem extends AutoItem {
             for (SlashIngredient ing : ExileDB.Ingredients()
                 .getList()) {
 
-                for (int tier = 1; tier < LevelUtils.getMaxTier(); tier++) {
+                for (int tier = 1; tier <= LevelUtils.getMaxTier(); tier++) {
 
                     IngredientData data = new IngredientData();
                     data.tier = tier;
