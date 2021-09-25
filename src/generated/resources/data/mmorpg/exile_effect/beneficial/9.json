@@ -10,16 +10,16 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": 3.0,
+      "min": 1.0,
+      "max": 2.0,
       "stat": "earth_weapon_damage",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     },
     {
-      "v1": 20.0,
+      "min": 5.0,
+      "max": 15.0,
       "stat": "chance_of_poison",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     }
   ]
 }

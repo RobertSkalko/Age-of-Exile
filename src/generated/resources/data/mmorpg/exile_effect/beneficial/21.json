@@ -9,16 +9,16 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": 25.0,
+      "min": 10.0,
+      "max": 25.0,
       "stat": "threat_generated",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     },
     {
-      "v1": 50.0,
+      "min": 25.0,
+      "max": 50.0,
       "stat": "more_threat_on_take_dmg",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     }
   ],
   "spell": {

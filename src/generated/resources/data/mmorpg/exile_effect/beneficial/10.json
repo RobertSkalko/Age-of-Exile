@@ -9,10 +9,10 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": 3.0,
+      "min": 1.0,
+      "max": 3.0,
       "stat": "water_weapon_damage",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     }
   ]
 }

@@ -10,28 +10,28 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": 20.0,
+      "min": -10.0,
+      "max": 20.0,
       "stat": "melee_dmg_received",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     },
     {
-      "v1": 20.0,
+      "min": -10.0,
+      "max": 20.0,
       "stat": "magic_dmg_received",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     },
     {
-      "v1": 20.0,
+      "min": -10.0,
+      "max": 20.0,
       "stat": "ranged_dmg_received",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     },
     {
-      "v1": -10.0,
+      "min": -5.0,
+      "max": -10.0,
       "stat": "move_speed",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     }
   ],
   "spell": {

@@ -16,10 +16,10 @@
   ],
   "stats": [
     {
-      "v1": -10.0,
+      "min": -5.0,
+      "max": -10.0,
       "stat": "elemental_resist",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     }
   ],
   "spell": {

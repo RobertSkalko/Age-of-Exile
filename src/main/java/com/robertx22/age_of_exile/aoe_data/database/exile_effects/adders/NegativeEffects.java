@@ -54,16 +54,16 @@ public class NegativeEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(SHRED)
             .maxStacks(3)
-            .stat(-25, Armor.getInstance(), ModType.FLAT)
-            .stat(-3, new ElementalResist(Elements.Elemental), ModType.FLAT)
-            .stat(-5, Armor.getInstance(), ModType.PERCENT)
+            .stat(-10, -25, Armor.getInstance(), ModType.FLAT)
+            .stat(-1, -3, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .stat(-2, -5, Armor.getInstance(), ModType.PERCENT)
             .build();
 
         ExileEffectBuilder.of(MARK_OF_DEATH)
             .maxStacks(1)
-            .stat(-50, Armor.getInstance(), ModType.FLAT)
-            .stat(-25, DodgeRating.getInstance(), ModType.PERCENT)
-            .stat(-10, new ElementalResist(Elements.Elemental))
+            .stat(-20, -50, Armor.getInstance(), ModType.FLAT)
+            .stat(-10, -25, DodgeRating.getInstance(), ModType.PERCENT)
+            .stat(-5, -10, new ElementalResist(Elements.Elemental))
             .build();
 
         ExileEffectBuilder.of(GROUNDING)
@@ -78,17 +78,17 @@ public class NegativeEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(CHARM)
             .maxStacks(5)
-            .stat(-3, Armor.getInstance(), ModType.PERCENT)
-            .stat(-3, DodgeRating.getInstance(), ModType.PERCENT)
-            .stat(-3, new ElementalResist(Elements.Elemental))
+            .stat(-1, -3, Armor.getInstance(), ModType.PERCENT)
+            .stat(-1, -3, DodgeRating.getInstance(), ModType.PERCENT)
+            .stat(-1, -3, new ElementalResist(Elements.Elemental))
             .build();
 
         ExileEffectBuilder.of(AGONY)
             .maxStacks(1)
-            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee))
-            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
-            .stat(20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
-            .stat(-10, DatapackStats.MOVE_SPEED)
+            .stat(-10, 20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee))
+            .stat(-10, 20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
+            .stat(-10, 20, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
+            .stat(-5, -10, DatapackStats.MOVE_SPEED)
 
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
@@ -100,9 +100,9 @@ public class NegativeEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(WEAKNESS)
             .maxStacks(1)
-            .stat(-30, Armor.getInstance())
-            .stat(-30, DodgeRating.getInstance())
-            .stat(-15, new ElementalResist(Elements.Elemental))
+            .stat(-10, -30, Armor.getInstance())
+            .stat(-10, -30, DodgeRating.getInstance())
+            .stat(-5, -15, new ElementalResist(Elements.Elemental))
 
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
@@ -114,7 +114,7 @@ public class NegativeEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(DESPAIR)
             .maxStacks(1)
-            .stat(-20, Stats.TOTAL_DAMAGE.get())
+            .stat(-10, -20, Stats.TOTAL_DAMAGE.get())
             .spell(SpellBuilder.forEffect()
                 .onExpire(PartBuilder.damage(SpellCalcs.DESPAIR, Elements.Elemental))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
@@ -139,7 +139,7 @@ public class NegativeEffects implements ExileRegistryInit {
         ExileEffectBuilder.of(TORMENT)
             .maxStacks(1)
             .vanillaStat(VanillaStatData.create(MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
-            .stat(-10, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .stat(-5, -10, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.dotDamageOnTick(TORMENT.effectId, SpellCalcs.TORMENT, Elements.Elemental)
                     .onTick(20D))
@@ -160,7 +160,7 @@ public class NegativeEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(POISON)
             .maxStacks(5)
-            .stat(-5, new ElementalResist(Elements.Elemental), ModType.PERCENT)
+            .stat(-5, -5, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.dotDamageOnTick(POISON.effectId, SpellCalcs.POISON, Elements.Earth)
                     .onTick(20D))
@@ -194,7 +194,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(ELE_WEAKNESS)
-            .stat(-15, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .stat(-15, -15, new ElementalResist(Elements.Elemental), ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(BLIND)
@@ -209,7 +209,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(WOUNDS)
-            .stat(-25, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
+            .stat(-25, -25, Stats.HEAL_STRENGTH.get(), ModType.FLAT)
             .build();
 
         ExileEffectBuilder.of(PETRIFY)

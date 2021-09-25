@@ -9,16 +9,16 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": -75.0,
+      "min": -25.0,
+      "max": -75.0,
       "stat": "dmg_received",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     },
     {
-      "v1": 2.0,
+      "min": 1.0,
+      "max": 2.0,
       "stat": "health_regen",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     }
   ]
 }

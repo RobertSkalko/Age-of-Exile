@@ -9,10 +9,10 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": -25.0,
+      "min": -25.0,
+      "max": -25.0,
       "stat": "increase_healing",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     }
   ]
 }

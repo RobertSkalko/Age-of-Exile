@@ -17,22 +17,22 @@
   ],
   "stats": [
     {
-      "v1": 25.0,
+      "min": 10.0,
+      "max": 25.0,
       "stat": "technique_cdr",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     },
     {
-      "v1": 25.0,
+      "min": 10.0,
+      "max": 25.0,
       "stat": "technique_spell_dmg",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     },
     {
-      "v1": 25.0,
+      "min": 10.0,
+      "max": 25.0,
       "stat": "critical_damage",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     }
   ],
   "spell": {

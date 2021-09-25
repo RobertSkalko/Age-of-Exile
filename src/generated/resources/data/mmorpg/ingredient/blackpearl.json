@@ -6,16 +6,16 @@
   "rar": "epic",
   "stats": [
     {
-      "min": 2.0,
+      "min": 3.0,
       "max": 6.0,
       "stat": "critical_damage",
       "type": "FLAT"
     },
     {
-      "min": -3.0,
-      "max": -5.0,
-      "stat": "armor",
-      "type": "PERCENT"
+      "min": -20.0,
+      "max": -20.0,
+      "stat": "touch_this",
+      "type": "FLAT"
     }
   ],
   "allowed_in": [

@@ -10,22 +10,22 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": 25.0,
+      "min": 10.0,
+      "max": 25.0,
       "stat": "earth_resist",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     },
     {
-      "v1": 3.0,
+      "min": 2.0,
+      "max": 5.0,
       "stat": "armor",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     },
     {
-      "v1": 3.0,
+      "min": 2.0,
+      "max": 5.0,
       "stat": "dodge",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     }
   ],
   "spell": {

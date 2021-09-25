@@ -10,16 +10,16 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": 25.0,
+      "min": 10.0,
+      "max": 25.0,
       "stat": "spell_critical_damage",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     },
     {
-      "v1": 20.0,
+      "min": 5.0,
+      "max": 20.0,
       "stat": "spell_damage",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     }
   ]
 }

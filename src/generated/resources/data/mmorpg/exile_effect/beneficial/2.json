@@ -9,10 +9,10 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": 1.0,
+      "min": 0.5,
+      "max": 1.0,
       "stat": "health_regen",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     }
   ]
 }

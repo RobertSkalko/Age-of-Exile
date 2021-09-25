@@ -6,6 +6,8 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayerGUIs;
 
 public class ClientConfigs {
 
+    BooleanV
+
     public boolean ENABLE_FLOATING_DMG = true;
 
     public GuiPartConfig AREA_LVL_OVERLAY = new GuiPartConfig();

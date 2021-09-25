@@ -10,10 +10,10 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": -20.0,
+      "min": -10.0,
+      "max": -20.0,
       "stat": "total_damage",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     }
   ],
   "spell": {

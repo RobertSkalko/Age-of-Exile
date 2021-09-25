@@ -9,10 +9,10 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": 5.0,
+      "min": 2.0,
+      "max": 5.0,
       "stat": "lifesteal",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     }
   ]
 }

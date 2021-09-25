@@ -10,16 +10,16 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": 0.5,
+      "min": 0.25,
+      "max": 0.5,
       "stat": "health_regen",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     },
     {
-      "v1": 0.5,
+      "min": 0.25,
+      "max": 0.5,
       "stat": "mana_regen",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     }
   ]
 }

@@ -1,10 +1,13 @@
 package com.robertx22.age_of_exile.database.data.exile_effects;
 
-import com.robertx22.age_of_exile.database.OptScaleExactStat;
+import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.database.data.value_calc.LevelProvider;
+import com.robertx22.age_of_exile.database.data.value_calc.LeveledValue;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -16,6 +19,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +48,7 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
 
     public List<VanillaStatData> mc_stats = new ArrayList<>();
 
-    public List<OptScaleExactStat> stats = new ArrayList<>();
+    public List<StatModifier> stats = new ArrayList<>();
 
     public AttachedSpell spell;
 
@@ -83,6 +87,20 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
         return this.locName;
     }
 
+    public List<ExactStatData> getExactStats(World world, EntitySavedSpellData data) {
+        return this.stats.stream()
+            .map(x -> {
+
+                LeveledValue lvlval = new LeveledValue(0, 100);
+
+                int perc = (int) lvlval.getValue(new LevelProvider(data.getCaster(world), data.getSpell()));
+
+                return x.ToExactStat(perc, data.lvl);
+            })
+            .collect(Collectors.toList());
+
+    }
+
     public List<ITextComponent> GetTooltipString(TooltipInfo info, EntitySavedSpellData data) {
         List<ITextComponent> list = new ArrayList<>();
 
@@ -92,7 +110,9 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
             list.add(Words.Stats.locName()
                 .append(": ")
                 .withStyle(TextFormatting.GREEN));
-            stats.forEach(x -> list.addAll(x.GetTooltipString(info, data.lvl)));
+            getExactStats(info.player.level, data).forEach(x -> {
+                list.addAll(x.GetTooltipString(info));
+            });
         }
 
         if (max_stacks > 1) {

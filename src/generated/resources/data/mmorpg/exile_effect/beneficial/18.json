@@ -11,22 +11,22 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": 10.0,
+      "min": 3.0,
+      "max": 6.0,
       "stat": "total_damage",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     },
     {
-      "v1": 5.0,
+      "min": 2.0,
+      "max": 5.0,
       "stat": "attack_speed",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     },
     {
-      "v1": 5.0,
+      "min": 2.0,
+      "max": 5.0,
       "stat": "cast_speed",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     }
   ]
 }

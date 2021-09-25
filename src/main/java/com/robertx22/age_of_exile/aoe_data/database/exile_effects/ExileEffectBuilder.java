@@ -1,14 +1,13 @@
 package com.robertx22.age_of_exile.aoe_data.database.exile_effects;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
-import com.robertx22.age_of_exile.database.OptScaleExactStat;
+import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 
 public class ExileEffectBuilder {
@@ -51,7 +50,7 @@ public class ExileEffectBuilder {
         return this;
     }
 
-    public ExileEffectBuilder stat(OptScaleExactStat stat) {
+    public ExileEffectBuilder stat(StatModifier stat) {
         this.effect.stats.add(stat);
         return this;
     }
@@ -71,15 +70,14 @@ public class ExileEffectBuilder {
         return this;
     }
 
-    public ExileEffectBuilder stat(float first, Stat stat, ModType type) {
-        OptScaleExactStat data = new OptScaleExactStat(first, stat, type);
-        data.scale_to_lvl = stat.getScaling() != StatScaling.NONE;
+    public ExileEffectBuilder stat(float first, float second, Stat stat, ModType type) {
+        StatModifier data = new StatModifier(first, second, stat, type);
         this.effect.stats.add(data);
         return this;
     }
 
-    public ExileEffectBuilder stat(float first, Stat stat) {
-        return stat(first, stat, ModType.FLAT);
+    public ExileEffectBuilder stat(float first, float second, Stat stat) {
+        return stat(first, second, stat, ModType.FLAT);
     }
 
     public ExileEffect build() {

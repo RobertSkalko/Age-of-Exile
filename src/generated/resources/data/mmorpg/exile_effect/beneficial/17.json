@@ -9,22 +9,22 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": -10.0,
+      "min": -5.0,
+      "max": -10.0,
       "stat": "cd_ticks",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     },
     {
-      "v1": 25.0,
+      "min": 10.0,
+      "max": 25.0,
       "stat": "mana_cost",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     },
     {
-      "v1": -25.0,
+      "min": -25.0,
+      "max": -25.0,
       "stat": "move_speed",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     }
   ]
 }

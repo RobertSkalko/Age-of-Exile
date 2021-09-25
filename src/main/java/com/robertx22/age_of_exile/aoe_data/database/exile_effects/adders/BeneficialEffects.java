@@ -62,47 +62,47 @@ public class BeneficialEffects implements ExileRegistryInit {
     public void registerAll() {
 
         ExileEffectBuilder.of(ICY_WEAPON)
-            .stat(3, new AttackDamage(Elements.Water), ModType.FLAT)
+            .stat(1, 3, new AttackDamage(Elements.Water), ModType.FLAT)
             .maxStacks(1)
             .addTags(EffectTags.positive)
             .build();
 
         ExileEffectBuilder.of(FIRE_WEAPON)
-            .stat(3, new AttackDamage(Elements.Fire), ModType.FLAT)
+            .stat(1, 3, new AttackDamage(Elements.Fire), ModType.FLAT)
             .maxStacks(1)
             .addTags(EffectTags.positive)
             .build();
 
         ExileEffectBuilder.of(DRACONIC_BLOOD)
-            .stat(3, Stats.SPELL_LIFESTEAL.get(), ModType.FLAT)
+            .stat(2, 4, Stats.SPELL_LIFESTEAL.get(), ModType.FLAT)
             .maxStacks(1)
             .addTags(EffectTags.positive)
             .build();
 
         ExileEffectBuilder.of(VAMPIRIC_BLOOD)
-            .stat(5, Stats.LIFESTEAL.get(), ModType.FLAT)
+            .stat(2, 5, Stats.LIFESTEAL.get(), ModType.FLAT)
             .maxStacks(1)
             .addTags(EffectTags.positive)
             .build();
 
         ExileEffectBuilder.of(NOURISHMENT)
-            .stat(1, HealthRegen.getInstance(), ModType.FLAT)
+            .stat(0.5F, 1, HealthRegen.getInstance(), ModType.FLAT)
             .maxStacks(1)
             .addTags(EffectTags.positive)
             .build();
 
         ExileEffectBuilder.of(MAGE_CIRCLE)
-            .stat(25, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
-            .stat(20, SpellDamage.getInstance(), ModType.FLAT)
+            .stat(10, 25, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
+            .stat(5, 20, SpellDamage.getInstance(), ModType.FLAT)
             .maxStacks(1)
             .addTags(EffectTags.offensive)
             .build();
 
         ExileEffectBuilder.of(DEMON_TRANSFORMATION)
             .vanillaStat(VanillaStatData.create(Attributes.KNOCKBACK_RESISTANCE, 1, ModType.FLAT, UUID.fromString("116a0931-d576-4721-b286-8d11de1ee42b")))
-            .stat(25, Stats.COOLDOWN_REDUCTION_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
-            .stat(25, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
-            .stat(25, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
+            .stat(10, 25, Stats.COOLDOWN_REDUCTION_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
+            .stat(10, 25, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
+            .stat(10, 25, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
 
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 2D, 0.5D)
@@ -116,10 +116,10 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(MURDER_INSTINCT)
-            .stat(5, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
-            .stat(25, DodgeRating.getInstance(), ModType.PERCENT)
-            .stat(5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
-            .stat(10, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
+            .stat(3, 5, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
+            .stat(5, 25, DodgeRating.getInstance(), ModType.PERCENT)
+            .stat(3, 5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
+            .stat(3, 10, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
             .maxStacks(1)
             .addTags(EffectTags.offensive)
             .build();
@@ -133,8 +133,8 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(TAUNT_STANCE)
-            .stat(25, Stats.THREAT_GENERATED.get())
-            .stat(50, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
+            .stat(10, 25, Stats.THREAT_GENERATED.get())
+            .stat(25, 50, Stats.MORE_THREAT_WHEN_TAKING_DAMAGE.get())
 
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.justAction(SpellAction.AGGRO.create(SpellCalcs.TAUNT, AggroAction.Type.AGGRO))
@@ -145,38 +145,38 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(UNDYING_WILL)
-            .stat(-75, Stats.DAMAGE_RECEIVED.get())
-            .stat(2, HealthRegen.getInstance())
+            .stat(-25, -75, Stats.DAMAGE_RECEIVED.get())
+            .stat(1, 2, HealthRegen.getInstance())
             .maxStacks(1)
             .build();
 
         ExileEffectBuilder.of(VIGOR)
-            .stat(0.5F, HealthRegen.getInstance())
-            .stat(0.5F, ManaRegen.getInstance())
+            .stat(0.25F, 0.5F, HealthRegen.getInstance())
+            .stat(0.25F, 0.5F, ManaRegen.getInstance())
             .maxStacks(3)
             .addTags(EffectTags.song)
             .build();
 
         ExileEffectBuilder.of(PERSEVERANCE)
-            .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee))
-            .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
-            .stat(-5, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
+            .stat(-3, -6, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.melee))
+            .stat(-3, -6, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.ranged))
+            .stat(-3, -6, Stats.STYLE_DAMAGE_RECEIVED.get(PlayStyle.magic))
             .maxStacks(3)
             .addTags(EffectTags.song, EffectTags.defensive)
             .build();
 
         ExileEffectBuilder.of(VALOR)
-            .stat(10, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
-            .stat(5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
-            .stat(5, Stats.CAST_SPEED.get(), ModType.FLAT)
+            .stat(3, 6, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
+            .stat(2, 5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
+            .stat(2, 5, Stats.CAST_SPEED.get(), ModType.FLAT)
             .maxStacks(3)
             .addTags(EffectTags.song, EffectTags.offensive)
             .build();
 
         ExileEffectBuilder.of(OVERLOAD)
-            .stat(-10, Stats.COOLDOWN_TICKS.get(), ModType.FLAT)
-            .stat(25, Stats.MANA_COST.get(), ModType.FLAT)
-            .stat(-25, DatapackStats.MOVE_SPEED, ModType.FLAT)
+            .stat(-5, -10, Stats.COOLDOWN_TICKS.get(), ModType.FLAT)
+            .stat(10, 25, Stats.MANA_COST.get(), ModType.FLAT)
+            .stat(-25, -25, DatapackStats.MOVE_SPEED, ModType.FLAT)
             .maxStacks(1)
             .build();
 
@@ -200,9 +200,9 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(THORN_ARMOR)
-            .stat(25, new ElementalResist(Elements.Earth), ModType.FLAT)
-            .stat(3, Armor.getInstance(), ModType.FLAT)
-            .stat(3, DodgeRating.getInstance(), ModType.FLAT)
+            .stat(10, 25, new ElementalResist(Elements.Earth), ModType.FLAT)
+            .stat(2, 5, Armor.getInstance(), ModType.FLAT)
+            .stat(2, 5, DodgeRating.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.POISON.effectId, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
                     .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
@@ -216,8 +216,8 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(FROST_ARMOR)
-            .stat(20, new ElementalResist(Elements.Water), ModType.FLAT)
-            .stat(30, Armor.getInstance(), ModType.FLAT)
+            .stat(10, 20, new ElementalResist(Elements.Water), ModType.FLAT)
+            .stat(20, 30, Armor.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .buildForEffect())
             .addTags(EffectTags.defensive)
@@ -225,14 +225,14 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(DIVINE_SHIELD)
-            .stat(25, new ElementalResist(Elements.Elemental), ModType.FLAT)
-            .stat(7, Armor.getInstance(), ModType.FLAT)
+            .stat(10, 15, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .stat(5, 15, Armor.getInstance(), ModType.FLAT)
             .addTags(EffectTags.defensive)
             .build();
 
         ExileEffectBuilder.of(POISON_WEAPONS)
-            .stat(3, new AttackDamage(Elements.Earth), ModType.FLAT)
-            .stat(20, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT)
+            .stat(1, 2, new AttackDamage(Elements.Earth), ModType.FLAT)
+            .stat(5, 15, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT)
             .addTags(EffectTags.offensive)
             .build();
 

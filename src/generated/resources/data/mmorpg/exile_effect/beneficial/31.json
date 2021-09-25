@@ -10,28 +10,28 @@
   "mc_stats": [],
   "stats": [
     {
-      "v1": 5.0,
+      "min": 3.0,
+      "max": 5.0,
       "stat": "total_damage",
-      "type": "FLAT",
-      "scale_to_lvl": false
+      "type": "FLAT"
     },
     {
-      "v1": 25.0,
+      "min": 5.0,
+      "max": 25.0,
       "stat": "dodge",
-      "type": "PERCENT",
-      "scale_to_lvl": true
+      "type": "PERCENT"
     },
     {
-      "v1": 5.0,
+      "min": 3.0,
+      "max": 5.0,
       "stat": "attack_speed",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     },
     {
-      "v1": 10.0,
+      "min": 3.0,
+      "max": 10.0,
       "stat": "critical_damage",
-      "type": "FLAT",
-      "scale_to_lvl": true
+      "type": "FLAT"
     }
   ]
 }

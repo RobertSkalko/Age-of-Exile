@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.potion_effects.types;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
-import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffectInstanceData;
@@ -172,9 +171,10 @@ public class ExileStatusEffect extends Effect implements IGUID, IApplyableStats,
 
             if (data.spellData != null) {
                 int casterlvl = data.spellData.lvl;
-                getExileEffect().stats.stream()
-                    .map(x -> new OptScaleExactStat(x.v1 * stacks * data.str_multi, x.getStat(), x.getModType()))
-                    .forEach(x -> stats.add(x.ToExactScaleToLevel(casterlvl)));
+
+                getExileEffect().getExactStats(en.level, data.spellData)
+                    .stream()
+                    .forEach(x -> stats.add(x));
             }
         }
 
