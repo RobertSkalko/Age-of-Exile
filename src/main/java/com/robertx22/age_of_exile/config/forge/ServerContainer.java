@@ -72,7 +72,7 @@ public class ServerContainer {
                 "Put it here. The usage is: modid:path:gear_slot_id. Example: minecraft:diamond_sword:sword")
             .defineList("gear_compatibility", list, x -> {
                 String str = (String) x;
-                return str.split(":").length == 2;
+                return str.split(":").length == 3;
             });
         b.pop();
     }

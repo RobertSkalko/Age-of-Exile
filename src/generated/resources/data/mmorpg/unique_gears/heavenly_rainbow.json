@@ -1,0 +1,57 @@
+{
+  "id": "heavenly_rainbow",
+  "weight": 0,
+  "unique_stats": [
+    {
+      "min": -25.0,
+      "max": 25.0,
+      "stat": "all_water_damage",
+      "type": "flat"
+    },
+    {
+      "min": -25.0,
+      "max": 25.0,
+      "stat": "all_fire_damage",
+      "type": "flat"
+    },
+    {
+      "min": -25.0,
+      "max": 25.0,
+      "stat": "all_earth_damage",
+      "type": "flat"
+    }
+  ],
+  "base_stats": [
+    {
+      "min": 0.33,
+      "max": 0.99,
+      "stat": "water_weapon_damage",
+      "type": "flat"
+    },
+    {
+      "min": 0.33,
+      "max": 0.99,
+      "stat": "fire_weapon_damage",
+      "type": "flat"
+    },
+    {
+      "min": 0.33,
+      "max": 0.99,
+      "stat": "earth_weapon_damage",
+      "type": "flat"
+    },
+    {
+      "min": 2.0,
+      "max": 4.0,
+      "stat": "spell_power",
+      "type": "flat"
+    }
+  ],
+  "rarity": "runeword",
+  "set": "",
+  "replaces_name": true,
+  "base_gear": "staff",
+  "filters": {
+    "list": []
+  }
+}

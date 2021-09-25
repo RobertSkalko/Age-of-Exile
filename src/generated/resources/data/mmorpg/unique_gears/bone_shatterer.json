@@ -1,0 +1,32 @@
+{
+  "id": "bone_shatterer",
+  "weight": 0,
+  "unique_stats": [
+    {
+      "min": 10.0,
+      "max": 30.0,
+      "stat": "critical_damage",
+      "type": "flat"
+    },
+    {
+      "min": 10.0,
+      "max": 20.0,
+      "stat": "dmg_to_undead",
+      "type": "flat"
+    },
+    {
+      "min": -6.0,
+      "max": -3.0,
+      "stat": "lifesteal",
+      "type": "flat"
+    }
+  ],
+  "base_stats": [],
+  "rarity": "runeword",
+  "set": "",
+  "replaces_name": true,
+  "base_gear": "bow",
+  "filters": {
+    "list": []
+  }
+}

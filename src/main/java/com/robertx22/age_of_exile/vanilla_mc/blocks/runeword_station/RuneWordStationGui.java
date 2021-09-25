@@ -39,17 +39,54 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
 
     List<RuneWord> words = new ArrayList<>();
 
+    int index = 0;
+
+    public void moveUp() {
+        if (index >= words.size()) {
+            index = 0;
+        } else {
+            index++;
+        }
+        init();
+    }
+
+    boolean updateButtons = false;
+
+    public void moveDown() {
+        if (index <= 0) {
+            index = words.size() - 1;
+        } else {
+            index--;
+        }
+        init();
+
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double scroll) {
+        if (scroll < 0) {
+            moveUp();
+        }
+        if (scroll > 0) {
+            moveDown();
+        }
+        return true;
+    }
+
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float partialTicks) {
         super.render(matrix, mouseX, mouseY, partialTicks);
 
         if (tile != null) {
-            if (mc.player.tickCount % 20 == 0) {
+            if (mc.player.tickCount % 20 == 0 || updateButtons) {
+
+                updateButtons = false;
 
                 if (tile.getGearStack()
                     .isEmpty()) {
                     this.words = ExileDB.RuneWords()
                         .getList();
+
                 } else {
 
                     List<ItemStack> runes = new ArrayList<>();
@@ -78,17 +115,19 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
 
                     words = wrap.list;
                 }
+
                 int count = 0;
-                for (RuneWord word : words) {
 
-                    if (count > 10) {
-                        break;
+                this.buttons.removeIf(x -> x instanceof RuneWordButton);
+
+                for (int i = index; i < index + 9; i++) {
+                    if (words.size() > i) {
+                        RuneWord word = this.words.get(i);
+
+                        addButton(new RuneWordButton(word, true, this.leftPos + 5, this.topPos + 18 + count * RuneWordButton.Y));
+
+                        count++;
                     }
-
-                    addButton(new RuneWordButton(word, true, this.leftPos + 5, this.topPos + 18 + count * RuneWordButton.Y));
-
-                    count++;
-
                 }
 
             }
@@ -98,6 +137,8 @@ public class RuneWordStationGui extends ModificationGui<RuneWordStationContainer
     @Override
     protected void init() {
         super.init();
+
+        this.updateButtons = true;
 
         /*
         List<Text> list = new ArrayList<>();

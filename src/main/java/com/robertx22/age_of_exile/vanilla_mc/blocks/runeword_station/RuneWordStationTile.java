@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlockEntities;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseModificationStation;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.library_of_exile.utils.CLOC;
@@ -52,6 +53,10 @@ public class RuneWordStationTile extends BaseModificationStation {
     public boolean modifyItem(int number, PlayerEntity player) {
 
         ItemStack stack = getGearStack();
+
+        if (StackSaving.GEARS.has(stack)) {
+            return false;
+        }
 
         List<ItemStack> runes = new ArrayList<>();
 

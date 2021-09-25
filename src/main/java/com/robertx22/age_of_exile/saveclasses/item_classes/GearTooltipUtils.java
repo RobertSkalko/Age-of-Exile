@@ -60,7 +60,7 @@ public class GearTooltipUtils {
         //tip.add(new LiteralText(""));
 
         if (info.useInDepthStats()) {
-            if (gear.isUnique()) {
+            if (gear.uniqueStats != null) {
                 tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
             }
             tip.addAll(gear.affixes.GetTooltipString(info, gear));
@@ -80,7 +80,7 @@ public class GearTooltipUtils {
                     .GetAllStats(gear));
             }
             stats.addAll(gear.imp.GetAllStats(gear));
-            if (gear.isUnique()) {
+            if (gear.uniqueStats != null) {
                 stats.addAll(gear.uniqueStats.GetAllStats(gear));
             }
             List<ExactStatData> longstats = stats.stream()

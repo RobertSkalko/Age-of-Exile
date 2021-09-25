@@ -3,3 +3,7 @@ This registry is modify-able through datapacks.
 skull_cleaver
 insight
 air_disaster
+heavenly_rainbow
+heavenly_tear
+playful_hope
+bone_shatterer

@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.runeword_station;
 
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashContainers;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -20,7 +21,7 @@ public class RuneWordStationContainer extends BaseTileContainer {
     public RuneWordStationContainer(int i, PlayerInventory invPlayer, IInventory inventory,
                                     BlockPos pos) {
 
-        super(RuneWordStationTile.SLOT_COUNT, null, i, invPlayer);
+        super(RuneWordStationTile.SLOT_COUNT, SlashContainers.RUNEWORD.get(), i, invPlayer);
         this.tile = inventory;
         this.pos = pos;
         int count = 0;

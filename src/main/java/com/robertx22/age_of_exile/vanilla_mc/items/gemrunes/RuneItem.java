@@ -73,6 +73,7 @@ public class RuneItem extends Item implements IGUID, IAutoModel, IAutoLocName, I
 
     public enum RuneType {
         YUN(100, "yun", "Yun", 5),
+        VEN(100, "ven", "Ven", 5),
         NOS(1000, "nos", "Nos", 1),
         MOS(1000, "mos", "Mos", 1),
         ITA(1000, "ita", "Ita", 1),

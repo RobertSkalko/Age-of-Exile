@@ -1,0 +1,9 @@
+{
+  "on_armor_stats": [],
+  "on_jewelry_stats": [],
+  "on_weapons_stats": [],
+  "item_id": "mmorpg:runes/ven",
+  "identifier": "ven",
+  "tier": 5,
+  "weight": 100
+}
