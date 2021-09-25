@@ -18,6 +18,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.CraftStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.CraftedStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
@@ -58,6 +59,18 @@ public class CraftingProcessData {
 
         int total = 100 - ((this.getIngredientsCount() - 1) * 10);
         total += plus;
+
+        PlayerSkillEnum skill = getProfession();
+        int skillLvl = Load.playerRPGData(player).professions.getProfessionLevel(skill);
+
+        int itemLvl = LevelUtils.tierToLevel(getAverageTier());
+
+        // probably a bad way to do it, todo
+        if (skillLvl > itemLvl + 9) {
+            total += 10;
+        } else if (skillLvl > itemLvl + 4) {
+            total += 5;
+        }
 
         return MathHelper.clamp(total, 0, 100);
     }
@@ -158,6 +171,9 @@ public class CraftingProcessData {
         List<ExactStatData> stats = new ArrayList<>();
 
         for (CraftSlotData data : ingredients) {
+            if (data.ing == null) {
+                continue;
+            }
             IngredientData x = data.ing;
             int lvl = LevelUtils.tierToLevel(x.tier);
             int perc = RandomUtils.RandomRange(0, 100);

@@ -26,12 +26,17 @@ public class OnClientTick {
         NO_MANA_SOUND_COOLDOWN = 30;
     }
 
-
     public static void onEndTick(Minecraft mc) {
 
         PlayerEntity player = Minecraft.getInstance().player;
 
         if (player == null) {
+            return;
+        }
+        if (player.tickCount < 10) {
+            return;
+        }
+        if (Load.Unit(player) == null) {
             return;
         }
 
@@ -44,30 +49,30 @@ public class OnClientTick {
         if (player.is(player)) {
 
             Load.Unit(player)
-                    .getResources()
-                    .onTickBlock(player);
+                .getResources()
+                .onTickBlock(player);
 
             NO_MANA_SOUND_COOLDOWN--;
 
             EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
             List<String> onCooldown = spells.getCastingData()
-                    .getSpellsOnCooldown(player);
+                .getSpellsOnCooldown(player);
 
             Load.Unit(player)
-                    .getCooldowns()
-                    .onTicksPass(1);
+                .getCooldowns()
+                .onTicksPass(1);
 
             spells.getCastingData()
-                    .onTimePass(player, spells, 1); // ticks spells on client
+                .onTimePass(player, spells, 1); // ticks spells on client
 
             List<String> onCooldownAfter = spells.getCastingData()
-                    .getSpellsOnCooldown(player);
+                .getSpellsOnCooldown(player);
 
             onCooldown.removeAll(onCooldownAfter);
 
             COOLDOWN_READY_MAP.entrySet()
-                    .forEach(x -> x.setValue(x.getValue() - 1));
+                .forEach(x -> x.setValue(x.getValue() - 1));
 
             onCooldown.forEach(x -> {
                 COOLDOWN_READY_MAP.put(x, TICKS_TO_SHOW);

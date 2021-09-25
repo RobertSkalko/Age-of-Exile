@@ -6,6 +6,8 @@ import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftingProcessD
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -26,6 +28,8 @@ import java.util.List;
 public abstract class BaseCraftedConsumableItem extends AutoItem {
 
     PlayerSkillEnum skill;
+
+    public boolean isAOE = false;
 
     public BaseCraftedConsumableItem(PlayerSkillEnum skill) {
         super(new Item.Properties());
@@ -61,11 +65,26 @@ public abstract class BaseCraftedConsumableItem extends AutoItem {
                     StackSaving.CRAFTED_CONSUMABLE.saveTo(stack, data);
                 }
 
-                p.addEffect(new EffectInstance(
-                    SlashPotions.CRAFTED_CONSUMABLES_MAP.get(skill)
-                        .get(), data.seconds * 20, 1));
+                if (isAOE) {
 
-                Load.Unit(p).statusEffects.addConsumableEffect(skill, data);
+                    EntityFinder.start(en, LivingEntity.class, en.blockPosition())
+                        .distance(10)
+                        .searchFor(AllyOrEnemy.allies)
+                        .build()
+                        .forEach(x -> {
+                            x.addEffect(new EffectInstance(
+                                SlashPotions.CRAFTED_CONSUMABLES_MAP.get(skill)
+                                    .get(), data.seconds * 20, 1));
+                            Load.Unit(x).statusEffects.addConsumableEffect(skill, data);
+                        });
+
+                } else {
+                    p.addEffect(new EffectInstance(
+                        SlashPotions.CRAFTED_CONSUMABLES_MAP.get(skill)
+                            .get(), data.seconds * 20, 1));
+
+                    Load.Unit(p).statusEffects.addConsumableEffect(skill, data);
+                }
             }
 
         }

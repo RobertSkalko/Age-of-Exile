@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
@@ -76,7 +77,7 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
     public ShapedRecipeBuilder getRecipe() {
         return shaped(this)
             .define('t', CurrencyItems.CRYSTAL_OF_TRUTH.get())
-            .define('v', SlashItems.EssenceMaterials.ARCANA.get())
+            .define('v', Items.TORCH)
             .define('o', SlashItems.T3_DUST())
             .pattern("ovo")
             .pattern("vtv")

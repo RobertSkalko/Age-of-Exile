@@ -51,7 +51,6 @@ public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, 
             }
             int max = tier * levels_per_tier;
 
-            tier++;
             lvl += levels_per_tier;
 
             if (lvl == MAX_LEVEL) {
@@ -59,6 +58,8 @@ public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, 
             }
 
             tiermap.put(new MinMax(min, max), tier);
+
+            tier++;
 
         }
 

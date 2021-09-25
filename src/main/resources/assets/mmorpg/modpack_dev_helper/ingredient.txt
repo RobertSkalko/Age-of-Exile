@@ -27,6 +27,8 @@ bolete_mushroom
 ectoplasm
 blootroot
 earth_crystal
+ender_cream
 hemlock
+ender_crystal
 fresh_heart
 crystal_blue_rock

@@ -8,6 +8,7 @@ public class InscribingConsumableItem extends BaseCraftedConsumableItem {
 
     public InscribingConsumableItem() {
         super(PlayerSkillEnum.INSCRIBING);
+        this.isAOE = true;
     }
 
     @Override

@@ -65,7 +65,6 @@ public class SlashDeferred {
         ProfessionItems.init();
         SlashItems.init();
         SlashItems.GearItems.init();
-        SlashItems.EssenceMaterials.init();
         RuneItems.init();
         IngredientItems.init();
         GemItems.init();

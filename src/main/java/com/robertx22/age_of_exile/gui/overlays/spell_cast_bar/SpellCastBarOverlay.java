@@ -22,6 +22,10 @@ public class SpellCastBarOverlay extends AbstractGui {
 
         EntitySpellCap.ISpellsCap data = Load.spells(mc.player);
 
+        if (data == null) {
+            return;
+        }
+
         if (data.getCastingData()
             .isCasting() && data.getCastingData().castingTicksLeft > 0) {
 

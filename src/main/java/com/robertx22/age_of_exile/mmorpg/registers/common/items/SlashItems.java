@@ -27,7 +27,6 @@ import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.SpellResetPot
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.TalentResetPotion;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -141,21 +140,6 @@ public class SlashItems {
                 });
             return map;
         }
-
-    }
-
-    public static class EssenceMaterials {
-        public static void init() {
-
-        }
-
-        public static RegObj<CraftEssenceItem> ARCANA = Def.item(() -> new CraftEssenceItem("arcana", () -> Items.PURPLE_DYE, "Essence of Arcana"));
-        public static RegObj<CraftEssenceItem> ELEMENTAL = Def.item(() -> new CraftEssenceItem("elemental", () -> Items.WHITE_DYE, "Essence of Elements"));
-        public static RegObj<CraftEssenceItem> WATER = Def.item(() -> new CraftEssenceItem("water", () -> Items.CYAN_DYE, "Essence of Water"));
-        public static RegObj<CraftEssenceItem> NATURE = Def.item(() -> new CraftEssenceItem("nature", () -> Items.GREEN_DYE, "Essence of Nature"));
-        public static RegObj<CraftEssenceItem> FIRE = Def.item(() -> new CraftEssenceItem("fire", () -> Items.ORANGE_DYE, "Essence of Fire"));
-        public static RegObj<CraftEssenceItem> THUNDER = Def.item(() -> new CraftEssenceItem("thunder", () -> Items.YELLOW_DYE, "Essence of Thunder"));
-        public static RegObj<CraftEssenceItem> PHYSICAL = Def.item(() -> new CraftEssenceItem("physical", () -> Items.BLACK_DYE, "Essence of Physique"));
 
     }
 

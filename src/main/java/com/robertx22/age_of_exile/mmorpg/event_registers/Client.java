@@ -32,15 +32,11 @@ public class Client {
                 return;
             }
 
-            if (true) {
-                spellHotbarOverlay.onHudRender(event.getMatrixStack(), event.getPartialTicks());
-                castbar.onHudRender(event.getMatrixStack(), event.getPartialTicks());
-                death.onHudRender(event.getMatrixStack(), event.getPartialTicks());
-            }
+            spellHotbarOverlay.onHudRender(event.getMatrixStack(), event.getPartialTicks());
+            castbar.onHudRender(event.getMatrixStack(), event.getPartialTicks());
+            death.onHudRender(event.getMatrixStack(), event.getPartialTicks());
+            rpggui.onHudRender(event.getMatrixStack(), event.getPartialTicks());
 
-            if (true) {
-                rpggui.onHudRender(event.getMatrixStack(), event.getPartialTicks());
-            }
         });
     }
 }

@@ -12,8 +12,8 @@
       "type": "FLAT"
     },
     {
-      "min": -50.0,
-      "max": -50.0,
+      "min": -25.0,
+      "max": -25.0,
       "stat": "touch_this",
       "type": "FLAT"
     }

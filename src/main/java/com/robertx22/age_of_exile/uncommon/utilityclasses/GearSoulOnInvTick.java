@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulData;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.entity.player.PlayerEntity;
@@ -50,11 +51,19 @@ public class GearSoulOnInvTick {
                                 GearItemData data = pdata.craftGear(stack, player);
                                 stack.setTag(new CompoundNBT()); // clear the craft process nbt
                                 StackSaving.GEARS.saveTo(stack, data);
+
+                                int exp = (int) (25 * pdata.getIngredientsCount());
+                                Load.playerRPGData(player).professions.addExp(player, pdata.getProfession(), exp);
+
                             } else {
                                 CraftedConsumableData data = pdata.craftConsumable(player);
                                 stack.setTag(new CompoundNBT()); // clear the craft process nbt
                                 StackSaving.CRAFTED_CONSUMABLE.saveTo(stack, data);
+
+                                int exp = (int) (25 * pdata.getIngredientsCount());
+                                Load.playerRPGData(player).professions.addExp(player, pdata.getProfession(), exp);
                             }
+
                         } else {
                             stack.shrink(1);
                             PlayerUtils.giveItem(new ItemStack(Items.GUNPOWDER), player); // todo give specific fail items for each profession?
