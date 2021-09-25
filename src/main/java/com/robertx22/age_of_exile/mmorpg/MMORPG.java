@@ -18,7 +18,6 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashCapabilities;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashItemTags;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.SlashDeferred;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.divine_missions_addon.DMRegInit;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
@@ -53,8 +52,6 @@ public class MMORPG {
 
     public MMORPG() {
         Watch watch = new Watch();
-
-        LevelUtils.runTests();
 
         ExileEvents.CHECK_IF_DEV_TOOLS_SHOULD_RUN.register(new EventConsumer<ExileEvents.OnCheckIsDevToolsRunning>() {
             @Override

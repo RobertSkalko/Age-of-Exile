@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mmorpg;
 
 import com.robertx22.age_of_exile.mmorpg.registers.server.CommandRegister;
 import com.robertx22.age_of_exile.uncommon.testing.TestManager;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.main.ForgeEvents;
 import net.minecraft.world.GameRules;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
@@ -22,6 +23,9 @@ public class LifeCycleEvents {
         });
 
         ForgeEvents.registerForgeEvent(FMLServerStartedEvent.class, event -> {
+
+            LevelUtils.runTests();
+
             CommandRegister.Register(event.getServer());
 
             regenDefault = event.getServer()

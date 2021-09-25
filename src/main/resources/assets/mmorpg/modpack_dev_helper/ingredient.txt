@@ -15,6 +15,7 @@ crystal_beryl
 soul_matrix
 frigid_runestone
 dark_stone
+lotus_petals
 moonstone
 sage_flower
 blackpearl

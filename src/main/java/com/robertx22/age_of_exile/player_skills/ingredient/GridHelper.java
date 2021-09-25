@@ -21,7 +21,7 @@ public class GridHelper {
         int i = 0;
 
         for (int x = 0; x < 3; x++) {
-            for (int y = 0; y < 3; y++) {
+            for (int y = 0; y < 2; y++) {
                 grid[x][y] = ingredients.get(i);
                 placePointMap.put(i, new PointData(x, y));
                 i++;
@@ -31,7 +31,7 @@ public class GridHelper {
     }
 
     boolean isValidPoint(int x, int y) {
-        return x > -1 && y > -1 && x < 3 && y < 3;
+        return x > -1 && y > -1 && x < 3 && y < 2;
     }
 
     public void calcStats() {

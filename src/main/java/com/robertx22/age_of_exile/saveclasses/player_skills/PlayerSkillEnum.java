@@ -76,6 +76,7 @@ public enum PlayerSkillEnum implements IGUID {
 
         @Override
         public boolean gearMatchesProfession(Item item) {
+
             GearSlot slot = GearSlot.getSlotOf(item);
             if (slot == null) {
                 return false;

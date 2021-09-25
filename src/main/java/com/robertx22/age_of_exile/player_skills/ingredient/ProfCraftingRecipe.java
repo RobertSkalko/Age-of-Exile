@@ -1,54 +1,73 @@
 package com.robertx22.age_of_exile.player_skills.ingredient;
 
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
+import com.robertx22.age_of_exile.player_skills.crafting_inv.ProfCraftResult;
 import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftSlotData;
 import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftingProcessData;
 import com.robertx22.age_of_exile.player_skills.ingredient.data.IngredientData;
-import com.robertx22.age_of_exile.player_skills.ingredient.items.CraftToolItem;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.SpecialRecipe;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraft.network.play.server.STitlePacket;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ProfCraftingRecipe extends SpecialRecipe {
+public class ProfCraftingRecipe {
 
-    public ProfCraftingRecipe(ResourceLocation id) {
-        super(id);
-    }
-
-    @Override
-    public boolean matches(CraftingInventory inv, World world) {
+    public static ProfCraftResult canCraft(PlayerEntity player, CraftingInventory inv, Inventory resultinv, PlayerSkillEnum skill) {
         List<IngredientData> list = new ArrayList<>();
 
-        PlayerSkillEnum skill = null;
+        if (skill.isGearCraftingProf()) {
+            boolean hasgear = false;
 
-        for (int i = 0; i < inv.getContainerSize(); ++i) {
-            ItemStack stack = inv.getItem(i);
-            if (stack.getItem() instanceof CraftToolItem) {
-                CraftToolItem tool = (CraftToolItem) stack.getItem();
-                skill = tool.skill;
+            boolean hasgearwithdata = false;
+
+            for (int i = 0; i < inv.getContainerSize(); ++i) {
+                ItemStack stack = inv.getItem(i);
+                if (!stack.isEmpty()) {
+
+                    if (StackSaving.GEARS.has(stack)) {
+                        hasgearwithdata = true;
+                        break;
+                    }
+
+                    if (skill.gearMatchesProfession(stack.getItem())) {
+
+                        OnScreenMessageUtils.sendMessage((ServerPlayerEntity) player, new StringTextComponent("No gear"), STitlePacket.Type.SUBTITLE);
+
+                        hasgear = true;
+                    }
+
+                }
             }
-        }
-        if (skill == null) {
-            return false;
+            if (hasgearwithdata) {
+                return ProfCraftResult.fail(Words.GearHasData);
+            }
+            if (!hasgear) {
+                return ProfCraftResult.fail(Words.NoGear);
+            }
         }
 
         for (int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack stack = inv.getItem(i);
             if (!stack.isEmpty()) {
-                if (stack.getItem() instanceof CraftToolItem == false && !StackSaving.INGREDIENTS.has(stack)) {
-                    if (!skill.isGearCraftingProf()) {
-                        return false;
+
+                if (skill.isGearCraftingProf()) {
+                    if (skill.gearMatchesProfession(stack.getItem())) {
+                        continue;
                     }
+                }
+
+                if (!StackSaving.INGREDIENTS.has(stack)) {
+                    return ProfCraftResult.fail(Words.WrongIngredient);
                 }
             }
         }
@@ -62,7 +81,7 @@ public class ProfCraftingRecipe extends SpecialRecipe {
                 if (data != null) {
                     if (!data.getIngredient()
                         .isAllowedInProfession(skill.id)) {
-                        return false;
+                        return ProfCraftResult.fail(Words.WrongRecipeIngredient);
                     }
                     if (data.getIngredient()
                         .isOneOfAKind()) {
@@ -72,53 +91,29 @@ public class ProfCraftingRecipe extends SpecialRecipe {
                     }
                     if (countmap.getOrDefault(data.getIngredient()
                         .getOneOfAKindId(), 0) > 1) {
-                        return false;
+                        return ProfCraftResult.fail(Words.CantUseMoreOf);
                     }
                     list.add(data);
                 }
             }
         }
 
-        if (list.isEmpty() || list.size() > 6) {
-            return false;
+        if (list.isEmpty()) {
+            return ProfCraftResult.fail(Words.NoIngredients);
         }
 
-        if (skill.isGearCraftingProf()) {
-            boolean hasgear = false;
-
-            for (int i = 0; i < inv.getContainerSize(); ++i) {
-                ItemStack stack = inv.getItem(i);
-                if (skill.gearMatchesProfession(stack.getItem())) {
-                    hasgear = true;
-                }
-            }
-            if (!hasgear) {
-                return false;
-            }
+        if (list.size() > 6) {
+            return ProfCraftResult.fail(Words.NoIngredients);
         }
 
-        return true;
+        return ProfCraftResult.success();
+
     }
 
-    @Override
-    public ItemStack assemble(CraftingInventory inv) {
+    public static ItemStack craftResult(CraftingInventory inv, Inventory resultinv, PlayerSkillEnum skill) {
         List<CraftSlotData> list = new ArrayList<>();
 
         int ingredientCount = 0;
-
-        PlayerSkillEnum skill = null;
-
-        for (int i = 0; i < inv.getContainerSize(); ++i) {
-            ItemStack stack = inv.getItem(i);
-            if (stack.getItem() instanceof CraftToolItem) {
-                CraftToolItem tool = (CraftToolItem) stack.getItem();
-                skill = tool.skill;
-            }
-        }
-
-        if (skill == null) {
-            return ItemStack.EMPTY;
-        }
 
         for (int i = 0; i < inv.getContainerSize(); ++i) {
             ItemStack stack = inv.getItem(i);
@@ -151,15 +146,15 @@ public class ProfCraftingRecipe extends SpecialRecipe {
         ItemStack stack = ItemStack.EMPTY;
 
         if (skill.isGearCraftingProf()) {
-            boolean hasgear = false;
-
             for (int i = 0; i < inv.getContainerSize(); ++i) {
-                ItemStack gearstack = inv.getItem(i);
-                if (skill.gearMatchesProfession(gearstack.getItem())) {
-                    stack = gearstack.copy();
-                    break;
+                ItemStack gear = inv.getItem(i);
+                if (!gear.isEmpty()) {
+                    if (skill.gearMatchesProfession(gear.getItem())) {
+                        stack = gear.copy();
+                    }
                 }
             }
+
         } else {
             stack = new ItemStack(skill.getCraftResultItem());
         }
@@ -168,28 +163,4 @@ public class ProfCraftingRecipe extends SpecialRecipe {
         return stack;
     }
 
-    @Override
-    public NonNullList<ItemStack> getRemainingItems(CraftingInventory inv) {
-
-        NonNullList<ItemStack> list = NonNullList.withSize(inv.getContainerSize(), ItemStack.EMPTY);
-
-        for (int i = 0; i < list.size(); ++i) {
-            ItemStack stack = inv.getItem(i);
-            if (stack.getItem() instanceof CraftToolItem) {
-                list.set(i, stack.copy());
-            }
-        }
-
-        return list;
-    }
-
-    @Override
-    public boolean canCraftInDimensions(int x, int y) {
-        return x * y == 9;
-    }
-
-    @Override
-    public IRecipeSerializer<?> getSerializer() {
-        return SlashRecipeSers.PROF_CRAFTING.get();
-    }
 }

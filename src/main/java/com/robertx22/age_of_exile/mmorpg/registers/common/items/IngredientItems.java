@@ -26,7 +26,7 @@ public class IngredientItems {
     public static RegObj<IngredientItem> MOONSTONE = of("moonstone", "Moonstone");
     public static RegObj<IngredientItem> WISDOM_FRUIT = of("wisdom_fruit", "Wisdom Fruit");
     public static RegObj<IngredientItem> BRYONY_ROOT = of("bryony_root", "Bryony Root");
-    public static RegObj<IngredientItem> LOTUS_PETALS = of("lootus_petals", "Lotus Petals");
+    public static RegObj<IngredientItem> LOTUS_PETALS = of("lotus_petals", "Lotus Petals");
     public static RegObj<IngredientItem> SAGE_FLOWER = of("sage_flower", "Sage Flower");
     public static RegObj<IngredientItem> FRIGID_RUNESTONE = of("frigid_runestone", "Frigid Runestone");
     public static RegObj<IngredientItem> BLACKPEARL = of("blackpearl", "Black Pearl");

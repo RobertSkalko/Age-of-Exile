@@ -115,13 +115,13 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
         IngredientBuilder.of(IngredientItems.RED_CORAL, IRarity.COMMON_ID)
             .allowedIn(PlayerSkillEnum.COOKING)
             .allowedIn(PlayerSkillEnum.ALCHEMY)
-            .stats(new StatModifier(1, 3, HealthRegen.getInstance()))
+            .stats(new StatModifier(0.5F, 1, HealthRegen.getInstance()))
             .build();
 
         IngredientBuilder.of(IngredientItems.ECTOPLASM, IRarity.COMMON_ID)
             .allowedIn(PlayerSkillEnum.COOKING)
             .allowedIn(PlayerSkillEnum.ALCHEMY)
-            .stats(new StatModifier(0.5F, 1.5F, ManaRegen.getInstance()))
+            .stats(new StatModifier(0.5F, 1F, ManaRegen.getInstance()))
             .build();
 
         IngredientBuilder.of(IngredientItems.BLOOD_ROOT, IRarity.RARE_ID)
@@ -173,7 +173,7 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
 
         IngredientBuilder.of(IngredientItems.REDSTONE_CRYSTAL, IRarity.UNCOMMON)
             .allowedIn(PlayerSkillEnum.JEWEL_CRAFTING)
-            .allowedIn(PlayerSkillEnum.ARMOR_CRAFTING)
+            .allowedIn(PlayerSkillEnum.WEAPON_CRAFTING)
             .allowedIn(PlayerSkillEnum.INSCRIBING)
             .stats(new StatModifier(3, 6, Stats.SPELL_CRIT_DAMAGE.get()))
             .build();

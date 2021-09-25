@@ -83,7 +83,7 @@ public class CraftingProcessData {
         return getAllIngredients().stream()
             .mapToInt(x -> x.tier)
             .sum()
-            / ingredients.size();
+            / getAllIngredients().size();
     }
 
     public float getStatMulti() {
