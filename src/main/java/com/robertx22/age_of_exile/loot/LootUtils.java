@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.loot;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import com.robertx22.library_of_exile.utils.RandomUtils;
@@ -12,7 +12,7 @@ import net.minecraft.util.math.MathHelper;
 public class LootUtils {
 
     public static boolean preventLootDueToLevelPenalty(int level, int playerLevel) {
-        return ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_MIN_MULTI >= getLevelDistancePunishmentMulti(level, playerLevel);
+        return ServerContainer.get().LEVEL_DISTANCE_PENALTY_MIN_MULTI.get() >= getLevelDistancePunishmentMulti(level, playerLevel);
 
     }
 
@@ -28,9 +28,9 @@ public class LootUtils {
 
         int num = Math.abs(playerTier - tier);
 
-        float multi = (float) (1F - num * ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_PER_TIER);
+        float multi = (float) (1F - num * ServerContainer.get().LEVEL_DISTANCE_PENALTY_PER_TIER.get());
 
-        return (float) MathHelper.clamp(multi, ModConfig.get().Server.LEVEL_DISTANCE_PENALTY_MIN_MULTI, 1F);
+        return (float) MathHelper.clamp(multi, ServerContainer.get().LEVEL_DISTANCE_PENALTY_MIN_MULTI.get(), 1F);
     }
 
     public static float getMobHealthBasedLootMulti(EntityData mob, LivingEntity entity) {

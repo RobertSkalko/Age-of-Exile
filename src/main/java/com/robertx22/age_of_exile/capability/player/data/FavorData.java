@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.capability.player.data;
 
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusFavor;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -27,7 +27,7 @@ public class FavorData {
 
     public FavorRank getRank() {
         try {
-            if (!ModConfig.get().Server.ENABLE_FAVOR_SYSTEM) {
+            if (!ServerContainer.get().ENABLE_FAVOR_SYSTEM.get()) {
                 return getDefault(); // simplest way of disabling everything around the system
             }
             Optional<FavorRank> opt = ExileDB.FavorRanks()
@@ -61,7 +61,7 @@ public class FavorData {
         float lvlpenalty = LootUtils.getLevelDistancePunishmentMulti(info.level, info.playerData
             .getLevel());
 
-        float favorGained = ModConfig.get().Server.FAVOR_GAIN_PER_CHEST_LOOTED * lvlpenalty;
+        float favorGained = (float) (ServerContainer.get().FAVOR_GAIN_PER_CHEST_LOOTED.get() * lvlpenalty);
 
         favorGained *= info.playerData.getUnit()
             .getCalculatedStat(BonusFavor.getInstance())
@@ -93,7 +93,7 @@ public class FavorData {
     }
 
     private void onLowFavor(PlayerEntity player) {
-        if (ModConfig.get().Server.ENABLE_FAVOR_SYSTEM) {
+        if (ServerContainer.get().ENABLE_FAVOR_SYSTEM.get()) {
             player.displayClientMessage(new StringTextComponent("You are very low on favor.").withStyle(TextFormatting.RED), false);
         }
     }

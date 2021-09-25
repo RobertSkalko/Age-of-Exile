@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
@@ -34,7 +34,7 @@ public class TeamUtils {
 
     public static List<PlayerEntity> getOnlineTeamMembersInRange(PlayerEntity player) {
 
-        return getOnlineTeamMembersInRange(player, ModConfig.get().Server.PARTY_RADIUS);
+        return getOnlineTeamMembersInRange(player, ServerContainer.get().PARTY_RADIUS.get());
 
     }
 
@@ -63,7 +63,7 @@ public class TeamUtils {
     }
 
     public static boolean areOnSameTeam(PlayerEntity p1, PlayerEntity p2) {
-        if (ModConfig.get().Server.ALL_PLAYERS_ARE_TEAMED_PVE_MODE) {
+        if (ServerContainer.get().ALL_PLAYERS_ARE_TEAMED_PVE_MODE.get()) {
             return true;
         }
 

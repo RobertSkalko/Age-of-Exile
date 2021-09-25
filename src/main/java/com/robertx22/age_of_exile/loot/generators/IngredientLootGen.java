@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.loot.generators;
 
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.LootInfo;
@@ -19,7 +19,8 @@ public class IngredientLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return (float) (ModConfig.get().Server.INGREDIENT_DROPRATE);
+        return (float) (ServerContainer.get().INGREDIENT_DROPRATE.get()
+            .floatValue());
     }
 
     @Override

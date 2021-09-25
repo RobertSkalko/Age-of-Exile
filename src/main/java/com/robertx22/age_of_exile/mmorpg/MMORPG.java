@@ -6,6 +6,8 @@ import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditio
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.SynergyStats;
+import com.robertx22.age_of_exile.config.forge.ClientConfigs;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
@@ -28,7 +30,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -53,6 +57,9 @@ public class MMORPG {
     public MMORPG() {
         Watch watch = new Watch();
 
+        ModLoadingContext.get()
+            .registerConfig(ModConfig.Type.COMMON, ServerContainer.commonSpec);
+
         ExileEvents.CHECK_IF_DEV_TOOLS_SHOULD_RUN.register(new EventConsumer<ExileEvents.OnCheckIsDevToolsRunning>() {
             @Override
             public void accept(ExileEvents.OnCheckIsDevToolsRunning event) {
@@ -64,6 +71,8 @@ public class MMORPG {
             .getModEventBus();
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+            ModLoadingContext.get()
+                .registerConfig(ModConfig.Type.CLIENT, ClientConfigs.clientSpec);
             bus.addListener(ClientInit::onInitializeClient);
         });
 

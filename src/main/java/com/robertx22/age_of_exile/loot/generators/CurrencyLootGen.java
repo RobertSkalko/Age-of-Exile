@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.loot.generators;
 
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
@@ -15,7 +15,8 @@ public class CurrencyLootGen extends BaseLootGen<ItemBlueprint> {
 
     @Override
     public float baseDropChance() {
-        float chance = (float) ModConfig.get().Server.CURRENCY_DROPRATE;
+        float chance = (float) ServerContainer.get().CURRENCY_DROPRATE.get()
+            .floatValue();
 
         return chance;
 

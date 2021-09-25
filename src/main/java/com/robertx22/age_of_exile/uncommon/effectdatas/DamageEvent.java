@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.PlayerDamageChart;
 import com.robertx22.age_of_exile.capability.entity.CooldownsData;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
@@ -116,7 +116,7 @@ public class DamageEvent extends EffectEvent {
         }
 
         if (areBothPlayers()) {
-            dmg *= ModConfig.get().Server.PVP_DMG_MULTI;
+            dmg *= ServerContainer.get().PVP_DMG_MULTI.get();
         }
 
         if (!data.isDodged() && target instanceof PlayerEntity) { // todo this code sucks

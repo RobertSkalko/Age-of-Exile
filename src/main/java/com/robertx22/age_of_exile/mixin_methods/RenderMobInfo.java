@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.mixin_methods;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ClientConfigs;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -30,15 +30,15 @@ public class RenderMobInfo {
                                                         IRenderTypeBuffer vertex, int i) {
         try {
 
-            if (!ModConfig.get().client.RENDER_MOB_HEALTH_GUI) {
+            if (!ClientConfigs.getConfig().RENDER_MOB_HEALTH_GUI.get()) {
                 return;
             }
 
             double squaredDistance =
-                    dispatcher.distanceToSqr(entity);
+                dispatcher.distanceToSqr(entity);
             if (squaredDistance <= 300) {
 
-                if (ModConfig.get().client.ONLY_RENDER_MOB_LOOKED_AT) {
+                if (ClientConfigs.getConfig().ONLY_RENDER_MOB_LOOKED_AT.get()) {
                     if (LookUtils.getEntityLookedAt(Minecraft.getInstance().player) != entity) {
                         if (lastLooked != entity) {
                             return;
@@ -59,18 +59,18 @@ public class RenderMobInfo {
                 EntityData data = Load.Unit(entity);
 
                 boolean hidelvl = data.getLevel() - 10 > Load.Unit(Minecraft.getInstance().player)
-                        .getLevel();
+                    .getLevel();
 
                 IFormattableTextComponent lvlcomp =
-                        new StringTextComponent(" [" + data.getLevel() + "]").withStyle(TextFormatting.YELLOW);
+                    new StringTextComponent(" [" + data.getLevel() + "]").withStyle(TextFormatting.YELLOW);
 
                 if (hidelvl) {
                     lvlcomp =
-                            new StringTextComponent(" [" + "???" + "]").withStyle(TextFormatting.YELLOW);
+                        new StringTextComponent(" [" + "???" + "]").withStyle(TextFormatting.YELLOW);
                 }
 
                 ITextComponent text = data.getName()
-                        .append(lvlcomp);
+                    .append(lvlcomp);
 
                 float percent = HealthUtils.getCurrentHealth(entity) / HealthUtils.getMaxHealth(entity) * 100F;
 
@@ -82,11 +82,11 @@ public class RenderMobInfo {
 
                     if (percent > 0) {
                         hpText.append(new StringTextComponent("|")
-                                .withStyle(TextFormatting.RED)
+                            .withStyle(TextFormatting.RED)
                         );
                     } else {
                         hpText.append(new StringTextComponent("|")
-                                .withStyle(TextFormatting.DARK_RED)
+                            .withStyle(TextFormatting.DARK_RED)
                         );
                     }
 
@@ -105,9 +105,9 @@ public class RenderMobInfo {
                 matrixStack.scale(-0.025F, -0.025F, 0.025F);
 
                 Matrix4f matrix4f = matrixStack.last()
-                        .pose();
+                    .pose();
                 float bgAlpha =
-                        Minecraft.getInstance().options.getBackgroundOpacity(0.25F);
+                    Minecraft.getInstance().options.getBackgroundOpacity(0.25F);
                 int bgColor = (int) (bgAlpha * 255.0F) << 24;
 
                 if (matrix4f == null || textRenderer == null) {
@@ -116,16 +116,16 @@ public class RenderMobInfo {
 
                 try {
                     textRenderer.drawInBatch(text,
-                            -textRenderer.width(text) / 2.0f,
-                            -12, -1, true, matrix4f,
-                            vertex, false, bgColor, i);
+                        -textRenderer.width(text) / 2.0f,
+                        -12, -1, true, matrix4f,
+                        vertex, false, bgColor, i);
 
                     textRenderer.drawInBatch(hpText, -textRenderer.width(hpText) / 2.0f,
-                            0, -1, true, matrix4f,
-                            vertex, false, bgColor, i);
+                        0, -1, true, matrix4f,
+                        vertex, false, bgColor, i);
 
                     MobRarity rar = ExileDB.MobRarities()
-                            .get(data.getRarity());
+                        .get(data.getRarity());
 
                     String icon = rar.name_add;
                     if (!icon.isEmpty()) {
@@ -133,9 +133,9 @@ public class RenderMobInfo {
 
                         matrixStack.scale(2, 2, 2);
                         textRenderer.drawInBatch(icon, -textRenderer.width(icon) / 2.0f,
-                                -15, -1, true, matrix4f,
-                                vertex, false, TextFormatting.YELLOW
-                                        .getId(), i);
+                            -15, -1, true, matrix4f,
+                            vertex, false, TextFormatting.YELLOW
+                                .getId(), i);
                         matrixStack.scale(0.5F, 0.5F, 0.5F);
                     }
                 } catch (Exception e) {

@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.capability.entity;
 import com.robertx22.age_of_exile.capability.bases.EntityGears;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.bases.INeededForClient;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
@@ -322,7 +322,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
         if (entity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entity;
 
-            int expLoss = (int) (exp * ModConfig.get().Server.EXP_LOSS_ON_DEATH);
+            int expLoss = (int) (exp * ServerContainer.get().EXP_LOSS_ON_DEATH.get());
 
             if (expLoss > 0) {
                 this.exp = MathHelper.clamp(exp - expLoss, 0, Integer.MAX_VALUE);
@@ -486,12 +486,12 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
             if (isNewbie()) {
                 setNewbieStatus(false);
 
-                if (ModConfig.get().Server.GET_STARTER_ITEMS) {
+                if (ServerContainer.get().GET_STARTER_ITEMS.get()) {
                     OnLogin.GiveStarterItems(player);
                 }
 
                 Load.playerRPGData(player).favor
-                    .setFavor(ModConfig.get().Server.STARTING_FAVOR); // newbie starting favor
+                    .setFavor(ServerContainer.get().STARTING_FAVOR.get()); // newbie starting favor
 
             }
 
@@ -587,7 +587,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
             .get(data.getAttackerEntityData()
                 .getRarity());
 
-        float multi = (float) (ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG + (LevelUtils.getMaxLevelMultiplier(getLevel()) * (ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG_AT_MAX_LVL - ModConfig.get().Server.VANILLA_MOB_DMG_AS_EXILE_DMG)));
+        float multi = (float) (ServerContainer.get().VANILLA_MOB_DMG_AS_EXILE_DMG.get() + (LevelUtils.getMaxLevelMultiplier(getLevel()) * (ServerContainer.get().VANILLA_MOB_DMG_AS_EXILE_DMG_AT_MAX_LVL.get() - ServerContainer.get().VANILLA_MOB_DMG_AS_EXILE_DMG.get())));
 
         float vanilla = data.getAmount() * multi;
 

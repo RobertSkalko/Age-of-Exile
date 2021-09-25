@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.dimension.packets;
 
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.TeamSize;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
@@ -56,7 +56,7 @@ public class StartDungeonPacket extends MyPacket<StartDungeonPacket> {
         DungeonData dungeon = maps.maps.dungeonData;
 
         if (teamSize.requiredMemberAmount > 1) {
-            if (ModConfig.get().Server.REQUIRE_TEAM_FOR_TEAM_DUNGEONS) {
+            if (ServerContainer.get().REQUIRE_TEAM_FOR_TEAM_DUNGEONS.get()) {
                 if (TeamUtils.getOnlineTeamMembersInRange(ctx.getPlayer())
                     .size() < teamSize.requiredMemberAmount) {
                     ctx.getPlayer()

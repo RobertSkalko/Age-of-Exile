@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.vanilla_mc.packets;
 
 import com.robertx22.age_of_exile.a_libraries.dmg_number_particle.DamageParticleAdder;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ClientConfigs;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.library_of_exile.main.MyPacket;
 import com.robertx22.library_of_exile.packets.ExilePacketContext;
@@ -53,7 +53,7 @@ public class DmgNumPacket extends MyPacket<DmgNumPacket> {
 
     @Override
     public void onReceived(ExilePacketContext ctx) {
-        if (ModConfig.get().client.ENABLE_FLOATING_DMG) {
+        if (ClientConfigs.getConfig().ENABLE_FLOATING_DMG.get()) {
             DamageParticleAdder.displayParticle(ctx.getPlayer().level.getEntity(id), this);
         }
     }

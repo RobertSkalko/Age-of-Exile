@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.gui.overlays.bar_overlays.types;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ClientConfigs;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.TextUtils;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
@@ -94,7 +94,7 @@ public class RPGGuiOverlay extends AbstractGui {
                 return;
             }
 
-            if (ModConfig.get().client.PLAYER_GUI_TYPE == PlayerGUIs.NONE) {
+            if (ClientConfigs.getConfig().PLAYER_GUI_TYPE == PlayerGUIs.NONE) {
                 return;
             }
 
@@ -118,7 +118,7 @@ public class RPGGuiOverlay extends AbstractGui {
                 areaLvlTicks = 200;
             }
 
-            OverlayTypes.map.get(ModConfig.get().client.GUI_POSITION)
+            OverlayTypes.map.get(ClientConfigs.getConfig().GUI_POSITION)
                 .forEach(c -> {
 
                     if (c.type.shouldRender(data, mc.player)) {

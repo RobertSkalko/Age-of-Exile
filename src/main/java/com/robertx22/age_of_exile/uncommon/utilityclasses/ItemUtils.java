@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -27,7 +27,7 @@ public class ItemUtils {
             if (player == null) {
                 return;
             }
-            if (!ModConfig.get().Server.ENABLE_LOOT_ANNOUNCEMENTS) {
+            if (!ServerContainer.get().ENABLE_LOOT_ANNOUNCEMENTS.get()) {
                 return;
             }
 

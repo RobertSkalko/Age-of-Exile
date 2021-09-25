@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.event_hooks.ontick;
 
 import com.robertx22.age_of_exile.a_libraries.curios.MyCurioUtils;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -64,7 +64,7 @@ public class UnequipGear {
                     drop(player, slot, stack, new StringTextComponent("You do not meet the requirements of that item.").withStyle(TextFormatting.RED));
                 } else if (gear.isUnique()) {
                     uniques++;
-                    if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_WORN) {
+                    if (uniques > ServerContainer.get().MAX_UNIQUE_GEARS_WORN.get()) {
                         drop(player, slot, stack, new StringTextComponent("You cannot equip that many unique items.").withStyle(TextFormatting.RED));
                     }
                 }
@@ -88,7 +88,7 @@ public class UnequipGear {
                             drop(player, handler, i, stack, new StringTextComponent("You do not meet the requirements of that item.").withStyle(TextFormatting.RED));
                         } else if (gear.isUnique()) {
                             uniques++;
-                            if (uniques > ModConfig.get().Server.MAX_UNIQUE_GEARS_WORN) {
+                            if (uniques > ServerContainer.get().MAX_UNIQUE_GEARS_WORN.get()) {
                                 drop(player, handler, i, stack, new StringTextComponent("You cannot equip that many unique items.").withStyle(TextFormatting.RED));
                             }
                         }

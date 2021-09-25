@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.mixins;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.config.forge.ClientConfigs;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -28,7 +27,7 @@ public class ItemGlintMixin {
         try {
             ContainerScreen screen = (ContainerScreen) (Object) this;
 
-            if (ModConfig.get().client.RENDER_ITEM_RARITY_BACKGROUND) {
+            if (ClientConfigs.getConfig().RENDER_ITEM_RARITY_BACKGROUND.get()) {
                 ItemStack stack = slot.getItem();
 
                 GearRarity rar = null;
@@ -54,12 +53,12 @@ public class ItemGlintMixin {
                 }
 
                 RenderSystem.enableBlend();
-                RenderSystem.color4f(1.0F, 1.0F, 1.0F, ModConfig.get().client.ITEM_RARITY_OPACITY); // transparency
+                RenderSystem.color4f(1.0F, 1.0F, 1.0F, ClientConfigs.getConfig().ITEM_RARITY_OPACITY); // transparency
 
                 ResourceLocation tex = rar
                     .getGlintTextureFull();
 
-                if (ModConfig.get().client.ITEM_RARITY_BACKGROUND_TYPE == ClientConfigs.GlintType.BORDER) {
+                if (ClientConfigs.getConfig().ITEM_RARITY_BACKGROUND_TYPE == ClientConfigs.GlintType.BORDER) {
                     tex = rar
                         .getGlintTextureBorder();
                 }

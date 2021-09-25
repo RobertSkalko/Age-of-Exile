@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.gui.overlays.mob_bar;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ClientConfigs;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
@@ -41,7 +41,7 @@ public class MobBarScreen extends AbstractGui {
             if (true) {
                 return;
             }
-            if (!ModConfig.get().client.RENDER_SIMPLE_MOB_BAR) {
+            if (!ClientConfigs.getConfig().RENDER_SIMPLE_MOB_BAR.get()) {
                 return;
             }
 

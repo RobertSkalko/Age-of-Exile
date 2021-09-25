@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.loot.generators;
 
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -16,7 +16,8 @@ public class GearSoulLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        float chance = (float) ModConfig.get().Server.GEAR_DROPRATE;
+        float chance = (float) ServerContainer.get().GEAR_DROPRATE.get()
+            .floatValue();
 
         return chance;
     }

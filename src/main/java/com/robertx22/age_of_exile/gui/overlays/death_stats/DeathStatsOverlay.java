@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.gui.overlays.death_stats;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ClientConfigs;
 import com.robertx22.age_of_exile.gui.TextUtils;
 import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -30,7 +30,7 @@ public class DeathStatsOverlay extends AbstractGui {
             if (mc.options.renderDebug || mc.player.isCreative() || mc.player.isSpectator()) {
                 return;
             }
-            if (!ModConfig.get().client.RENDER_DEATH_STATISTICS) {
+            if (!ClientConfigs.getConfig().RENDER_DEATH_STATISTICS.get()) {
                 return;
             }
 

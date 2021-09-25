@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.saveclasses.spells;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -251,12 +251,12 @@ public class SpellCastingData {
             return true;
         }
 
-        if (!ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.isEmpty()) {
+        if (!ServerContainer.get().BLACKLIST_SPELLS_IN_DIMENSIONS.isEmpty()) {
             ResourceLocation id = ctx.caster.level.registryAccess()
                 .dimensionTypes()
                 .getKey(ctx.caster.level.dimensionType());
 
-            if (ModConfig.get().Server.BLACKLIST_SPELLS_IN_DIMENSIONS.stream()
+            if (ServerContainer.get().BLACKLIST_SPELLS_IN_DIMENSIONS.stream()
                 .anyMatch(x -> x.equals(id.toString()))) {
                 return false;
             }

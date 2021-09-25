@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.database.data.currency.base;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
@@ -70,7 +70,7 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
 
             if (this.getInstability() > 0) {
 
-                if (gear.getInstability() >= ModConfig.get().Server.MAX_INSTABILITY) {
+                if (gear.getInstability() >= ServerContainer.get().MAX_INSTABILITY.get()) {
                     return false;
                 }
             }

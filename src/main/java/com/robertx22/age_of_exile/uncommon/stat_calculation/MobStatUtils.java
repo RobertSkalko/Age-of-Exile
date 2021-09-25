@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.uncommon.stat_calculation;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
@@ -142,7 +142,7 @@ public class MobStatUtils {
 
         float hpToAdd = EntityUtils.getVanillaMaxHealth(en) * rar.ExtraHealthMulti();
 
-        hpToAdd += (ModConfig.get().Server.EXTRA_MOB_STATS_PER_LEVEL * lvl) * hpToAdd;
+        hpToAdd += (ServerContainer.get().EXTRA_MOB_STATS_PER_LEVEL.get() * lvl) * hpToAdd;
 
         if (hpToAdd < 0) {
             hpToAdd = 0;

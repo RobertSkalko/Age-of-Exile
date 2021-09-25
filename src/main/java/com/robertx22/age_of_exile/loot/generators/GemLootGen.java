@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.loot.generators;
 
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
@@ -17,7 +17,8 @@ public class GemLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return (float) (ModConfig.get().Server.GEM_DROPRATE);
+        return (float) (ServerContainer.get().GEM_DROPRATE.get()
+            .floatValue());
     }
 
     @Override

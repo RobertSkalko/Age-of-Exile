@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.event_hooks.ontick;
 
 import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
@@ -107,7 +107,8 @@ public class OnServerTick {
 
                         float percentHealed = hpevent.data.getNumber() / HealthUtils.getMaxHealth(player);
 
-                        float exhaustion = (float) ModConfig.get().Server.REGEN_HUNGER_COST * percentHealed;
+                        float exhaustion = (float) ServerContainer.get().REGEN_HUNGER_COST.get()
+                            .floatValue() * percentHealed;
 
                         player.getFoodData()
                             .addExhaustion(exhaustion);

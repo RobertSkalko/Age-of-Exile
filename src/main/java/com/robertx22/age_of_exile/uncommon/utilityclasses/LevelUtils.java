@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import com.google.common.base.Preconditions;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
@@ -151,7 +151,7 @@ public class LevelUtils {
 
         int lvl = 0;
 
-        if (ModConfig.get().Server.ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER || dimConfig.scale_to_nearest_player) {
+        if (ServerContainer.get().ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER.get() || dimConfig.scale_to_nearest_player) {
             if (nearestPlayer != null) {
 
                 if (isInMinLevelArea(sw, pos, dimConfig)) {

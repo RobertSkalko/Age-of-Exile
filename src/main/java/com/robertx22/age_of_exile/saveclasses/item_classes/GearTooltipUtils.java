@@ -1,7 +1,8 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
-import com.robertx22.age_of_exile.config.forge.ModConfig;
+import com.robertx22.age_of_exile.config.forge.ClientConfigs;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -156,7 +157,7 @@ public class GearTooltipUtils {
         tip.add(new StringTextComponent(""));
         ItemStack.appendEnchantmentNames(tip, stack.getEnchantmentTags());
 
-        if (ModConfig.get().client.SHOW_DURABILITY) {
+        if (ClientConfigs.getConfig().SHOW_DURABILITY.get()) {
             if (stack.isDamageableItem()) {
                 tip.add(new SText(TextFormatting.WHITE + "Durability: " + (stack.getMaxDamage() - stack.getDamageValue()) + "/" + stack.getMaxDamage()));
             } else {
@@ -171,12 +172,13 @@ public class GearTooltipUtils {
         } else {
             tip.add(Words.Instability.locName()
                 .withStyle(TextFormatting.RED)
-                .append(": " + (int) gear.getInstability() + "/" + (int) ModConfig.get().Server.MAX_INSTABILITY)
+                .append(": " + (int) gear.getInstability() + "/" + (int) ServerContainer.get().MAX_INSTABILITY.get()
+                    .intValue())
             );
         }
 
         List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip,
-            ModConfig.get().client.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES);
+            ClientConfigs.getConfig().REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES);
 
         tip.clear();
         tip.addAll(tool);
