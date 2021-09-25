@@ -1,5 +1,5 @@
 {
-  "type": "mmorpg:alchemy_shapeless",
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "minecraft:lapis_lazuli"

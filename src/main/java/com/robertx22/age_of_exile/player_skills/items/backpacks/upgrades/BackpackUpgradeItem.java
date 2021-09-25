@@ -2,17 +2,16 @@ package com.robertx22.age_of_exile.player_skills.items.backpacks.upgrades;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
+import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
-import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
-import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.text.IFormattableTextComponent;
@@ -26,7 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Arrays;
 import java.util.List;
 
-public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, ICurrencyItemEffect {
+public class BackpackUpgradeItem extends TieredItem implements IShapelessRecipe, ICurrencyItemEffect {
 
     String id;
     String locname;
@@ -51,13 +50,13 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
     }
 
     @Override
-    public StationShapelessFactory getStationRecipe() {
-        return StationShapelessFactory.create(SlashRecipeSers.SMITHING.get(), this, 1)
-            .input(ProfessionItems.STONE_TIER_MAP.get(tier)
+    public ShapelessRecipeBuilder getRecipe() {
+        return ShapelessRecipeBuilder.shapeless(this, 1)
+            .requires(ProfessionItems.STONE_TIER_MAP.get(tier)
                 .get(), 1)
-            .input(Items.GOLD_INGOT)
-            .input(upgrade.craftItem(), 1)
-            .criterion("player_level", trigger());
+            .requires(Items.GOLD_INGOT)
+            .requires(upgrade.craftItem(), 1)
+            .unlockedBy("player_level", trigger());
     }
 
     @Override
@@ -127,4 +126,5 @@ public class BackpackUpgradeItem extends TieredItem implements IStationRecipe, I
     public StationType forStation() {
         return StationType.MODIFY;
     }
+
 }

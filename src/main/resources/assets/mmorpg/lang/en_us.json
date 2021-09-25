@@ -1406,6 +1406,15 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.alchemy_consumable": "Alchemy",
+	"effect.mmorpg.cooking_consumable": "Cooking",
+	"effect.mmorpg.inscribing_consumable": "Inscribing",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.jewelry.necklace.diamond": "Necklace",
@@ -1420,15 +1429,6 @@
 	"item.mmorpg.weapon.staff.wood": "Staff",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.alchemy_consumable": "Alchemy",
-	"effect.mmorpg.cooking_consumable": "Cooking",
-	"effect.mmorpg.inscribing_consumable": "Inscribing",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",

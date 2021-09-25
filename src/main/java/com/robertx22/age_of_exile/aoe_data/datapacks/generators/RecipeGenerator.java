@@ -11,8 +11,6 @@ import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
-import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
-import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import joptsimple.internal.Strings;
 import net.minecraft.advancements.criterion.*;
@@ -107,17 +105,7 @@ public class RecipeGenerator {
                     }
                 }
             }
-            if (item instanceof IStationRecipe) {
-                IStationRecipe sr = (IStationRecipe) item;
-                StationShapelessFactory srec = sr.getStationRecipe();
-                if (srec != null) {
-                    try {
-                        srec.offerTo(consumer);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+
         }
 
         ProfessionItems.SMELTED_ESSENCE.values()

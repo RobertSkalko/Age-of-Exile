@@ -1,9 +1,16 @@
 package com.robertx22.age_of_exile.config.forge;
 
+import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class ServerContainer {
@@ -55,8 +62,46 @@ public class ServerContainer {
         RUNE_DROPRATE = b.defineInRange("pvp_dmg_multi", 0.05D, 0, 1000);
         CURRENCY_DROPRATE = b.defineInRange("pvp_dmg_multi", 0.2D, 0, 1000);
 
+        List<String> list = new ArrayList<>();
+
+        list.add("modid:itemid:gear_slot");
+        list.add("terraria:nice_spear:sword");
+
+        GEAR_COMPATS = b.comment("This is for modded gear that can't be automatically recognized by the mod." +
+                " If there's say a weapon like a staff in another mod, but this mod doesn't recognize it. " +
+                "Put it here. The usage is: modid:path:gear_slot_id. Example: minecraft:diamond_sword:sword")
+            .defineList("gear_compatibility", list, x -> {
+                String str = (String) x;
+                return str.split(":").length == 2;
+            });
         b.pop();
     }
+
+    private static HashMap<Item, GearSlot> cachedCompatMap = new HashMap<>();
+
+    public HashMap<Item, GearSlot> getCompatMap() {
+        if (cachedCompatMap.isEmpty()) {
+
+            GEAR_COMPATS.get()
+                .forEach(x -> {
+                    try {
+                        String[] array = x.split(":");
+                        ResourceLocation id = new ResourceLocation(array[0], array[1]);
+                        GearSlot slot = ExileDB.GearSlots()
+                            .get(array[2]);
+                        Item item = ForgeRegistries.ITEMS.getValue(id);
+                        cachedCompatMap.put(item, slot);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
+        }
+
+        return cachedCompatMap;
+    }
+
+    public ForgeConfigSpec.ConfigValue<List<? extends String>> GEAR_COMPATS;
 
     public ForgeConfigSpec.BooleanValue ENABLE_FAVOR_SYSTEM;
     public ForgeConfigSpec.BooleanValue ALL_PLAYERS_ARE_TEAMED_PVE_MODE;

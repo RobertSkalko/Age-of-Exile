@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.gear_slots;
 
 import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
@@ -41,6 +42,15 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, IAutoGson<GearSlot
     public static GearSlot getSlotOf(Item item) {
 
         if (CACHED.containsKey(item)) {
+            return CACHED.get(item);
+        }
+
+        if (ServerContainer.get()
+            .getCompatMap()
+            .containsKey(item)) {
+            CACHED.put(item, ServerContainer.get()
+                .getCompatMap()
+                .get(item));
             return CACHED.get(item);
         }
 

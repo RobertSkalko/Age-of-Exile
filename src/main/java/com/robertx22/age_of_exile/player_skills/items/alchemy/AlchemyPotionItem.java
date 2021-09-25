@@ -2,14 +2,12 @@ package com.robertx22.age_of_exile.player_skills.items.alchemy;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashRecipeSers;
+import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.AlchemyPotions;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
-import com.robertx22.age_of_exile.player_skills.recipe_types.StationShapelessFactory;
-import com.robertx22.age_of_exile.player_skills.recipe_types.base.IStationRecipe;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
 import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
@@ -17,6 +15,7 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -34,7 +33,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
+public class AlchemyPotionItem extends TieredItem implements IShapelessRecipe {
 
     PotionType type;
 
@@ -109,12 +108,12 @@ public class AlchemyPotionItem extends TieredItem implements IStationRecipe {
     }
 
     @Override
-    public StationShapelessFactory getStationRecipe() {
-        StationShapelessFactory fac = StationShapelessFactory.create(SlashRecipeSers.ALCHEMY.get(), this, 3);
-        fac.input(type.craftItem.get());
-        fac.input(Items.GLASS_BOTTLE);
-        fac.input(ProfessionItems.CONDENSED_ESSENCE_MAP.get(tier)
+    public ShapelessRecipeBuilder getRecipe() {
+        ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 3);
+        fac.requires(type.craftItem.get());
+        fac.requires(Items.GLASS_BOTTLE);
+        fac.requires(ProfessionItems.CONDENSED_ESSENCE_MAP.get(tier)
             .get());
-        return fac.criterion("player_level", trigger());
+        return fac.unlockedBy("player_level", trigger());
     }
 }
