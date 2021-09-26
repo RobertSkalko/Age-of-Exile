@@ -70,7 +70,8 @@ public class RenderMobInfo {
                 }
 
                 ITextComponent text = data.getName()
-                    .append(lvlcomp);
+                    .append(lvlcomp)
+                    .withStyle(TextFormatting.RED, TextFormatting.BOLD);
 
                 float percent = HealthUtils.getCurrentHealth(entity) / HealthUtils.getMaxHealth(entity) * 100F;
 

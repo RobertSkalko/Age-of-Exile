@@ -42,7 +42,7 @@ public class ItemNewbieGearBag extends Item {
     }
 
     static HashMap<String, NewbieContent> MAP = new HashMap<>();
-    static NewbieContent defaultContent = new NewbieContent(Arrays.asList(() -> SlashItems.GearItems.STAFFS.get(VanillaMaterial.WOOD)
+    static NewbieContent defaultContent = new NewbieContent(Arrays.asList(() -> SlashItems.GearItems.STAFFS.get(VanillaMaterial.IRON)
         .get()), Arrays.asList(GearSlots.STAFF));
 
     static {

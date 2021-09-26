@@ -21,6 +21,9 @@ public class LootCrateData {
 
     public ItemStack createStack() {
         ItemStack stack = new ItemStack(SlashItems.LOOT_CRATE.get());
+        stack.getTag()
+            .putInt("CustomModelData", type.custommodeldata);
+
         StackSaving.LOOT_CRATE.saveTo(stack, this);
         return stack;
     }

@@ -75,7 +75,7 @@ public class OnMobDeathDrops extends EventConsumer<ExileEvents.OnMobDeath> {
 
                     if (loot_multi > 0) {
                         MasterLootGen.genAndDrop(mobKilled, player);
-
+                        Load.playerRPGData(player).favor.onAnyMobKilledSpendFavor();
                     }
                     if (exp_multi > 0) {
                         GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);

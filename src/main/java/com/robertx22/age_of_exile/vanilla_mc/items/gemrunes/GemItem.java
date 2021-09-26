@@ -19,6 +19,7 @@ import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -176,7 +177,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(0.4F, 1.5F, HealthRegen.getInstance()));
+                return Arrays.asList(new StatModifier(4, 8, HealthRegen.getInstance(), ModType.PERCENT));
             }
 
             @Override
@@ -192,7 +193,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(0.5F, 1.5F, ManaRegen.getInstance()));
+                return Arrays.asList(new StatModifier(4, 8, ManaRegen.getInstance(), ModType.PERCENT));
             }
 
             @Override
@@ -209,7 +210,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(3, 10, Stats.CRIT_DAMAGE.get()));
+                return Arrays.asList(new StatModifier(4, 8, EnergyRegen.getInstance()));
             }
 
             @Override

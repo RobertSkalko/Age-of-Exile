@@ -21,6 +21,7 @@ public class IngredientItem extends AutoItem {
         super(new Properties().tab(CreativeTabs.Materials));
         this.id = id;
         this.locname = locname;
+
     }
 
     @Override

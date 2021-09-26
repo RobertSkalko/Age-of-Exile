@@ -25,58 +25,64 @@ public class GearSoulOnInvTick {
             }
 
             for (ItemStack stack : player.inventory.items) {
-
-                if (stack.isEmpty()) {
-                    continue;
-                }
-
-                if (StackSaving.STAT_SOULS.has(stack)) {
-                    StatSoulData soul = StackSaving.STAT_SOULS.loadFrom(stack);
-
-                    if (soul != null && soul.canInsertIntoStack(stack)) {
-                        try {
-                            GearItemData gear = soul.createGearData();
-                            stack.removeTagKey(StatSoulItem.TAG);
-                            gear.saveToStack(stack);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                } else if (StackSaving.CRAFT_PROCESS.has(stack)) {
-                    try {
-                        CraftingProcessData pdata = StackSaving.CRAFT_PROCESS.loadFrom(stack);
-                        if (RandomUtils.roll(pdata.getSuccessChance(player))) {
-                            PlayerSkillEnum skill = pdata.getProfession();
-                            if (skill.isGearCraftingProf()) {
-                                GearItemData data = pdata.craftGear(stack, player);
-                                stack.setTag(new CompoundNBT()); // clear the craft process nbt
-                                StackSaving.GEARS.saveTo(stack, data);
-
-                                int exp = (int) (25 * pdata.getIngredientsCount());
-                                Load.playerRPGData(player).professions.addExp(player, pdata.getProfession(), exp);
-
-                            } else {
-                                CraftedConsumableData data = pdata.craftConsumable(player);
-                                stack.setTag(new CompoundNBT()); // clear the craft process nbt
-                                StackSaving.CRAFTED_CONSUMABLE.saveTo(stack, data);
-
-                                int exp = (int) (25 * pdata.getIngredientsCount());
-                                Load.playerRPGData(player).professions.addExp(player, pdata.getProfession(), exp);
-                            }
-
-                        } else {
-                            stack.shrink(1);
-                            PlayerUtils.giveItem(new ItemStack(Items.GUNPOWDER), player); // todo give specific fail items for each profession?
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-
+                tryStack(player, stack);
+            }
+            for (ItemStack stack : player.inventory.armor) {
+                tryStack(player, stack);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+    }
+
+    static void tryStack(PlayerEntity player, ItemStack stack) {
+        if (stack.isEmpty()) {
+            return;
+        }
+
+        if (StackSaving.STAT_SOULS.has(stack)) {
+            StatSoulData soul = StackSaving.STAT_SOULS.loadFrom(stack);
+
+            if (soul != null && soul.canInsertIntoStack(stack)) {
+                try {
+                    GearItemData gear = soul.createGearData();
+                    stack.removeTagKey(StatSoulItem.TAG);
+                    gear.saveToStack(stack);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } else if (StackSaving.CRAFT_PROCESS.has(stack)) {
+            try {
+                CraftingProcessData pdata = StackSaving.CRAFT_PROCESS.loadFrom(stack);
+                if (RandomUtils.roll(pdata.getSuccessChance(player))) {
+                    PlayerSkillEnum skill = pdata.getProfession();
+                    if (skill.isGearCraftingProf()) {
+                        GearItemData data = pdata.craftGear(stack, player);
+                        stack.setTag(new CompoundNBT()); // clear the craft process nbt
+                        StackSaving.GEARS.saveTo(stack, data);
+
+                        int exp = (int) (25 * pdata.getIngredientsCount());
+                        Load.playerRPGData(player).professions.addExp(player, pdata.getProfession(), exp);
+
+                    } else {
+                        CraftedConsumableData data = pdata.craftConsumable(player);
+                        stack.setTag(new CompoundNBT()); // clear the craft process nbt
+                        StackSaving.CRAFTED_CONSUMABLE.saveTo(stack, data);
+
+                        int exp = (int) (25 * pdata.getIngredientsCount());
+                        Load.playerRPGData(player).professions.addExp(player, pdata.getProfession(), exp);
+                    }
+
+                } else {
+                    stack.shrink(1);
+                    PlayerUtils.giveItem(new ItemStack(Items.GUNPOWDER), player); // todo give specific fail items for each profession?
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
     }

@@ -67,15 +67,15 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
         IngredientBuilder.of(IngredientItems.WISDOM_FRUIT, IRarity.RARE_ID)
             .allowedIn(PlayerSkillEnum.ALCHEMY)
             .allowedIn(PlayerSkillEnum.COOKING)
-            .stats(new StatModifier(2, 6, Mana.getInstance(), ModType.PERCENT))
-            .stats(new StatModifier(1, 3, DatapackStats.WIS))
+            .stats(new StatModifier(4, 8, Mana.getInstance(), ModType.PERCENT))
+            .stats(new StatModifier(2, 4, DatapackStats.WIS))
             .build();
 
         IngredientBuilder.of(IngredientItems.SAGE_FLOWER, IRarity.RARE_ID)
             .allowedIn(PlayerSkillEnum.ALCHEMY)
             .allowedIn(PlayerSkillEnum.COOKING)
-            .stats(new StatModifier(1, 3, DatapackStats.INT))
-            .stats(new StatModifier(1, 3, SpellDamage.getInstance()))
+            .stats(new StatModifier(2, 4, DatapackStats.INT))
+            .stats(new StatModifier(3, 6, SpellDamage.getInstance()))
             .build();
 
         IngredientBuilder.of(IngredientItems.LOTUS_PETALS, IRarity.UNCOMMON)
@@ -83,7 +83,7 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
             .allowedIn(PlayerSkillEnum.COOKING)
             .allowedIn(PlayerSkillEnum.JEWEL_CRAFTING)
             .stats(new StatModifier(2, 6, Stats.HEAL_STRENGTH.get()))
-            .stats(new StatModifier(1, 3, Health.getInstance(), ModType.PERCENT))
+            .stats(new StatModifier(2, 4, Health.getInstance(), ModType.PERCENT))
             .build();
 
         IngredientBuilder.of(IngredientItems.BRYONY_ROOT, IRarity.RARE_ID)

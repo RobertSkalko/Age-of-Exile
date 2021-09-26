@@ -6,14 +6,14 @@
   "rar": "rare",
   "stats": [
     {
-      "min": 2.0,
-      "max": 6.0,
+      "min": 4.0,
+      "max": 8.0,
       "stat": "mana",
       "type": "PERCENT"
     },
     {
-      "min": 1.0,
-      "max": 3.0,
+      "min": 2.0,
+      "max": 4.0,
       "stat": "wisdom",
       "type": "FLAT"
     }

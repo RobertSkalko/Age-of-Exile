@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.player_skills.items.backpacks.mat_pouch;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashContainers;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackInventory;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -49,7 +50,7 @@ public class MatBagContainer extends BaseTileContainer {
                     int xpos = 8 + x * 18;
 
                     int ypos = 18 + (y) * 18;
-                    this.addSlot(new BackpackSlot(backpackInv, num, xpos, ypos));
+                    this.addSlot(new IngredientPouchSlot(backpackInv, num, xpos, ypos));
 
                     num++;
                 }
@@ -97,9 +98,9 @@ public class MatBagContainer extends BaseTileContainer {
         return true;
     }
 
-    private class BackpackSlot extends Slot {
+    private class IngredientPouchSlot extends Slot {
 
-        public BackpackSlot(BackpackInventory inventory, int index, int x, int y) {
+        public IngredientPouchSlot(BackpackInventory inventory, int index, int x, int y) {
             super(inventory, index, x, y);
         }
 
@@ -108,15 +109,19 @@ public class MatBagContainer extends BaseTileContainer {
             if (getItem().getItem() instanceof BackpackItem) {
                 return false;
             }
+
             return true;
         }
 
         @Override
         public boolean mayPlace(ItemStack stack) {
+
             if (stack.getItem() instanceof BackpackItem) {
                 return false;
             }
-
+            if (!StackSaving.INGREDIENTS.has(stack)) {
+                return false;
+            }
             return true;
         }
     }

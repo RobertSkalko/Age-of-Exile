@@ -72,7 +72,7 @@ public class SpellCalcs {
         .baseValue(1, 5)
         .build();
     public static ValueCalculation FIREBALL = ValueCalcBuilder.of("fireball")
-        .spellScaling(0.5F, 1F)
+        .spellScaling(0.75F, 1.5F)
         .build();
     public static ValueCalculation POWER_CHORD = ValueCalcBuilder.of("power_chord")
         .spellScaling(0.5F, 1F)
@@ -81,16 +81,16 @@ public class SpellCalcs {
         .spellScaling(0.5F, 1.25F)
         .build();
     public static ValueCalculation TIDAL_STRIKE = ValueCalcBuilder.of("tidal_strike")
-        .attackScaling(0.5F, 1F)
+        .attackScaling(0.4F, 0.75F)
         .build();
     public static ValueCalculation FIRE_NOVA = ValueCalcBuilder.of("fire_nova")
-        .spellScaling(0.5F, 1F)
+        .spellScaling(1F, 1.5F)
         .build();
     public static ValueCalculation METEOR = ValueCalcBuilder.of("meteor")
-        .spellScaling(0.75F, 2F)
+        .spellScaling(1F, 2F)
         .build();
     public static ValueCalculation FLAME_STRIKE = ValueCalcBuilder.of("flame_strike")
-        .attackScaling(0.5F, 1F)
+        .attackScaling(0.4F, 0.75F)
         .build();
     public static ValueCalculation HEALING_AURA = ValueCalcBuilder.of("healing_aura")
         .baseValue(4, 6)
@@ -99,7 +99,7 @@ public class SpellCalcs {
         .baseValue(10, 50)
         .build();
     public static ValueCalculation FROST_NOVA = ValueCalcBuilder.of("frost_nova")
-        .spellScaling(0.5F, 1F)
+        .spellScaling(1F, 1.5F)
         .build();
     public static ValueCalculation POISON_CLOUD = ValueCalcBuilder.of("poison_cloud")
         .baseValue(2, 4)
@@ -107,10 +107,10 @@ public class SpellCalcs {
         .build();
 
     public static ValueCalculation POISON_BALL = ValueCalcBuilder.of("poisonball")
-        .spellScaling(0.5F, 1F)
+        .spellScaling(0.75F, 1.5F)
         .build();
     public static ValueCalculation ICEBALL = ValueCalcBuilder.of("iceball")
-        .spellScaling(0.5F, 1F)
+        .spellScaling(0.75F, 1.5F)
         .build();
     public static ValueCalculation SHOUT_WARN = ValueCalcBuilder.of("shout_warn")
         .statScaling(Health.getInstance(), 0.05F, 0.1F)
@@ -149,7 +149,7 @@ public class SpellCalcs {
         .spellScaling(0.2F, 1F)
         .build();
     public static ValueCalculation CHILLING_FIELD = ValueCalcBuilder.of("chilling_field")
-        .spellScaling(0.1F, 0.5F)
+        .spellScaling(0.2F, 0.5F)
         .build();
     public static ValueCalculation SMOKE_BOMB = ValueCalcBuilder.of("lose_aggro")
         .baseValue(20, 40)

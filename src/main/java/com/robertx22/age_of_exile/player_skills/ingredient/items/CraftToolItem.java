@@ -1,14 +1,18 @@
 package com.robertx22.age_of_exile.player_skills.ingredient.items;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.player_skills.crafting_inv.ProfCraftContainer;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.AutoItem;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -22,7 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class CraftToolItem extends AutoItem {
+public class CraftToolItem extends AutoItem implements IShapedRecipe {
 
     public PlayerSkillEnum skill;
     public String locname;
@@ -85,4 +89,19 @@ public class CraftToolItem extends AutoItem {
     public String GUID() {
         return "craft_tools/" + skill.id;
     }
+
+    @Override
+    public ShapedRecipeBuilder getRecipe() {
+
+        Item item = skill.getToolCraftItem();
+
+        return shaped(this)
+            .define('t', item)
+            .define('v', SlashItems.T0_DUST())
+            .pattern(" v ")
+            .pattern("vtv")
+            .pattern(" v ")
+            .unlockedBy("player_level", trigger());
+    }
+
 }

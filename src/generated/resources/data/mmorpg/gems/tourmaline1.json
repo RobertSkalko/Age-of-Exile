@@ -11,10 +11,10 @@
   ],
   "on_jewelry_stats": [
     {
-      "min": 0.48000002,
-      "max": 1.8000001,
+      "min": 4.8,
+      "max": 9.6,
       "stat": "health_regen",
-      "type": "FLAT"
+      "type": "PERCENT"
     }
   ],
   "on_weapons_stats": [

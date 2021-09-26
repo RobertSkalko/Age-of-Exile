@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " v ",
+    "vtv",
+    " v "
+  ],
+  "key": {
+    "t": {
+      "item": "minecraft:bread"
+    },
+    "v": {
+      "item": "mmorpg:mat/salvage/salvage0"
+    }
+  },
+  "result": {
+    "item": "mmorpg:craft_tools/cooking"
+  }
+}

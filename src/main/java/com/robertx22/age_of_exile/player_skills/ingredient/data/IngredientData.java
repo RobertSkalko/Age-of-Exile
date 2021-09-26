@@ -42,7 +42,7 @@ public class IngredientData {
 
         String txt = "";
         if (rar.item_tier == 0) {
-            txt = " [✫✫✫]";
+            txt = " [" + STAR + STAR + STAR + "]";
         } else if (rar.item_tier == 1) {
             txt = " " + format + "[" + STAR + BLANK + STAR + STAR + format + "]";
         } else if (rar.item_tier == 2) {

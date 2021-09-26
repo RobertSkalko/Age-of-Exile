@@ -11,10 +11,10 @@
   ],
   "on_jewelry_stats": [
     {
-      "min": 0.9,
-      "max": 2.6999998,
+      "min": 7.2,
+      "max": 14.4,
       "stat": "mana_regen",
-      "type": "FLAT"
+      "type": "PERCENT"
     }
   ],
   "on_weapons_stats": [

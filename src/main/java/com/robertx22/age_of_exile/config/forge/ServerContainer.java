@@ -43,7 +43,10 @@ public class ServerContainer {
         STARTING_FAVOR = b.defineInRange("starting_favor", 100, 0, 100000);
         MAX_UNIQUE_GEARS_WORN = b.defineInRange("max_uniques_worn", 100, 0, 20);
 
-        FAVOR_GAIN_PER_CHEST_LOOTED = b.defineInRange("favor_per_chest", 10D, 0, 1000);
+        FAVOR_GAIN_PER_CHEST_LOOTED = b.defineInRange("favor_per_chest", 20D, 0, 1000);
+        FAVOR_GAIN_PER_SPAWNER_DESTROYED = b.comment("Set this to 0 if there is a way to create spawners in the modpack.")
+            .defineInRange("favor_per_spawner_destroyed", 5D, 0, 1000);
+
         REGEN_HUNGER_COST = b.defineInRange("regen_hunger_cost", 10D, 0, 1000);
         EXP_LOSS_ON_DEATH = b.defineInRange("death_exp_penalty", 0.1D, 0, 1);
         EXP_GAIN_MULTI = b.defineInRange("exp_gain_multi", 1D, 0, 1000);
@@ -56,11 +59,11 @@ public class ServerContainer {
         VANILLA_MOB_DMG_AS_EXILE_DMG_AT_MAX_LVL = b.defineInRange("vanilla_mob_dmg_as_exile_dmg_at_max_lvl", 1D, 0, 1000);
         PVP_DMG_MULTI = b.defineInRange("pvp_dmg_multi", 1D, 0, 1000);
 
-        GEAR_DROPRATE = b.defineInRange("pvp_dmg_multi", 7D, 0, 1000);
-        GEM_DROPRATE = b.defineInRange("pvp_dmg_multi", 0.5D, 0, 1000);
-        INGREDIENT_DROPRATE = b.defineInRange("pvp_dmg_multi", 5D, 0, 1000);
-        RUNE_DROPRATE = b.defineInRange("pvp_dmg_multi", 0.05D, 0, 1000);
-        CURRENCY_DROPRATE = b.defineInRange("pvp_dmg_multi", 0.2D, 0, 1000);
+        GEAR_DROPRATE = b.defineInRange("gear_drop_rate", 7D, 0, 1000);
+        GEM_DROPRATE = b.defineInRange("gem_drop_rate", 0.5D, 0, 1000);
+        INGREDIENT_DROPRATE = b.defineInRange("ingredient_drop_rate", 5D, 0, 1000);
+        RUNE_DROPRATE = b.defineInRange("rune_drop_rate", 0.05D, 0, 1000);
+        CURRENCY_DROPRATE = b.defineInRange("currency_drop_rate", 0.2D, 0, 1000);
 
         List<String> list = new ArrayList<>();
 
@@ -115,6 +118,7 @@ public class ServerContainer {
     public ForgeConfigSpec.IntValue MAX_UNIQUE_GEARS_WORN;
 
     public ForgeConfigSpec.DoubleValue FAVOR_GAIN_PER_CHEST_LOOTED;
+    public ForgeConfigSpec.DoubleValue FAVOR_GAIN_PER_SPAWNER_DESTROYED;
     public ForgeConfigSpec.DoubleValue REGEN_HUNGER_COST;
     public ForgeConfigSpec.DoubleValue EXP_LOSS_ON_DEATH;
     public ForgeConfigSpec.DoubleValue EXP_GAIN_MULTI;

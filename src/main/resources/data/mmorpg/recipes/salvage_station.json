@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " B ",
-    " A ",
-    " C "
+    "AAA",
+    "ABA",
+    "AAA"
   ],
   "key": {  
-	"C": {
-      "item": "minecraft:chest"
-    }, 
 	"A": {
-      "item": "minecraft:grindstone"
+      "item": "minecraft:cobblestone"
     }, 
 	"B": {
-      "item": "minecraft:redstone"
+      "item": "minecraft:furnace"
     }
   },
   "result": {

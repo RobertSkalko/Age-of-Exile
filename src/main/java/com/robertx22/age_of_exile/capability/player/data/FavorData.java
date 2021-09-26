@@ -18,7 +18,7 @@ import java.util.Optional;
 @Storable
 public class FavorData {
     @Store
-    int favor = 0;
+    float favor = 0;
 
     private FavorRank getDefault() {
         return ExileDB.FavorRanks()
@@ -49,11 +49,17 @@ public class FavorData {
     }
 
     public int getFavor() {
-        return favor;
+        return (int) favor;
     }
 
-    public void addFavor(int favor) {
+    public void addFavor(float favor) {
         this.favor += favor;
+    }
+
+    public void onAnyMobKilledSpendFavor() {
+        if (favor > 0) {
+            this.favor -= 0.25F;
+        }
     }
 
     public void onOpenNewLootChest(LootInfo info) {

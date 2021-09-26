@@ -4,10 +4,13 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiType;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.CraftedConsumableItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
@@ -17,6 +20,11 @@ import java.util.stream.Collectors;
 public enum PlayerSkillEnum implements IGUID {
 
     ALCHEMY("alchemy", WikiType.ALCHEMY_EXP, Words.Alchemy, Words.AlchemyDesc, TextFormatting.LIGHT_PURPLE, 3) {
+        @Override
+        public Item getToolCraftItem() {
+            return Items.WHEAT_SEEDS;
+        }
+
         @Override
         public Item getCraftResultItem() {
             return RandomUtils.randomFromList(CraftedConsumableItems.POTIONS)
@@ -29,12 +37,22 @@ public enum PlayerSkillEnum implements IGUID {
             return RandomUtils.randomFromList(CraftedConsumableItems.SCROLLS)
                 .get();
         }
+
+        @Override
+        public Item getToolCraftItem() {
+            return Items.PAPER;
+        }
     },
     COOKING("cooking", WikiType.COOKING_EXP, Words.Cooking, Words.CookingDesc, TextFormatting.RED, 1.5F) {
         @Override
         public Item getCraftResultItem() {
             return RandomUtils.randomFromList(CraftedConsumableItems.FOODS)
                 .get();
+        }
+
+        @Override
+        public Item getToolCraftItem() {
+            return Items.BREAD;
         }
     },
 
@@ -52,6 +70,12 @@ public enum PlayerSkillEnum implements IGUID {
             }
             return slot.fam == SlotFamily.Jewelry;
         }
+
+        @Override
+        public Item getToolCraftItem() {
+            return SlashItems.GearItems.RINGS.get(VanillaMaterial.IRON)
+                .get();
+        }
     },
     ARMOR_CRAFTING("armor_craft", WikiType.COOKING_EXP, Words.ArmorCrafting, Words.ArmorCraftingDesc, TextFormatting.BLUE, 1) {
         @Override
@@ -66,6 +90,11 @@ public enum PlayerSkillEnum implements IGUID {
                 return false;
             }
             return slot.fam == SlotFamily.Armor;
+        }
+
+        @Override
+        public Item getToolCraftItem() {
+            return Items.IRON_CHESTPLATE;
         }
     },
     WEAPON_CRAFTING("wep_craft", WikiType.COOKING_EXP, Words.WeaponCrafting, Words.WeaponCraftingDesc, TextFormatting.RED, 1) {
@@ -83,10 +112,26 @@ public enum PlayerSkillEnum implements IGUID {
             }
             return slot.fam == SlotFamily.Weapon;
         }
+
+        @Override
+        public Item getToolCraftItem() {
+            return Items.IRON_SWORD;
+        }
     },
 
-    ALL("all", null, Words.Skill, Words.Skill, TextFormatting.GREEN, 1),
-    NONE("none", null, Words.Skill, Words.Skill, TextFormatting.BLACK, 1);
+    ALL("all", null, Words.Skill, Words.Skill, TextFormatting.GREEN, 1) {
+        @Override
+        public Item getToolCraftItem() {
+            return Items.AIR;
+        }
+    },
+
+    NONE("none", null, Words.Skill, Words.Skill, TextFormatting.BLACK, 1) {
+        @Override
+        public Item getToolCraftItem() {
+            return Items.AIR;
+        }
+    };
 
     public String id;
     public Words word;
@@ -104,6 +149,8 @@ public enum PlayerSkillEnum implements IGUID {
     public boolean gearMatchesProfession(Item item) {
         return false;
     }
+
+    public abstract Item getToolCraftItem();
 
     PlayerSkillEnum(String id, WikiType wiki, Words word, Words desc, TextFormatting format, float craftedStatMulti) {
         this.id = id;

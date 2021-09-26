@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlockEntities;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
-import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.BaseSkillStation;
 import com.robertx22.library_of_exile.packets.particles.ParticleEnum;
@@ -62,14 +61,13 @@ public class TileGearSalvage extends BaseSkillStation {
 
     public static List<ItemStack> getSmeltingResultForItem(ItemStack st) {
 
-        ICommonDataItem data = ICommonDataItem.load(st);
+        ISalvagable data = ISalvagable.load(st);
 
         if (data != null) {
             if (data.isSalvagable(ISalvagable.SalvageContext.SALVAGE_STATION)) {
                 return data.getSalvageResult(0);
             }
         } else {
-
             Item item = st.getItem();
             if (item instanceof ISalvagable) {
                 ISalvagable sal = (ISalvagable) item;
@@ -179,7 +177,8 @@ public class TileGearSalvage extends BaseSkillStation {
         List<ItemStack> drops = lootTable.getRandomItems(lootContext);
 
         for (int inputSlot : INPUT_SLOTS) {
-            itemStacks[inputSlot] = ItemStack.EMPTY;
+            itemStacks[inputSlot].shrink(1);
+
         }
 
         ouputItems(drops);
@@ -201,7 +200,7 @@ public class TileGearSalvage extends BaseSkillStation {
                             return true;
                         }
 
-                        itemStacks[inputSlot] = ItemStack.EMPTY;
+                        itemStacks[inputSlot].shrink(1);
 
                         ouputItems(results);
                         return true;

@@ -3,7 +3,7 @@
     {
       "stat": "spell_power",
       "multi": {
-        "min": 0.75,
+        "min": 1.0,
         "max": 2.0
       }
     }

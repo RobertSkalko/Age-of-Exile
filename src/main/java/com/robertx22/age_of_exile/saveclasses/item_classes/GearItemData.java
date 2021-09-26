@@ -377,7 +377,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
                     .getFiltered(x -> x.isForItem(this.lvl))
                 );
                 if (sal != null) {
-                    return sal.getResult(this);
+                    return sal.getResult(getRarity());
                 }
             } catch (Exception e) {
                 e.printStackTrace();

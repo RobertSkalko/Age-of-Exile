@@ -11,9 +11,9 @@
   ],
   "on_jewelry_stats": [
     {
-      "min": 4.8,
-      "max": 16.0,
-      "stat": "critical_damage",
+      "min": 6.4,
+      "max": 12.8,
+      "stat": "energy_regen",
       "type": "FLAT"
     }
   ],

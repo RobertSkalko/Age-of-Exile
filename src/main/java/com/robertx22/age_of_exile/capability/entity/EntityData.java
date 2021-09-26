@@ -486,6 +486,9 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
             if (isNewbie()) {
                 setNewbieStatus(false);
 
+                resources.restore(entity, ResourceType.energy, 100);
+                resources.restore(entity, ResourceType.mana, 100);
+
                 if (ServerContainer.get().GET_STARTER_ITEMS.get()) {
                     OnLogin.GiveStarterItems(player);
                 }

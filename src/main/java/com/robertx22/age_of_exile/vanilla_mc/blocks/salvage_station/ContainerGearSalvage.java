@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.blocks.salvage_station;
 
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashContainers;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.bases.VanillaFuelSlot;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.slots.OutputSlot;
@@ -21,7 +22,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
 
     public ContainerGearSalvage(int num, PlayerInventory invPlayer, IInventory inventory,
                                 BlockPos pos) {
-        super(TileGearSalvage.TOTAL_SLOTS_COUNT, null, num, invPlayer);
+        super(TileGearSalvage.TOTAL_SLOTS_COUNT, SlashContainers.SALVAGE.get(), num, invPlayer);
 
         this.pos = pos;
         this.tile = inventory;
