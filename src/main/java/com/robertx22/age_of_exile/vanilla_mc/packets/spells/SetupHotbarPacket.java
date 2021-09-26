@@ -47,8 +47,8 @@ public class SetupHotbarPacket extends MyPacket<SetupHotbarPacket> {
         EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
         if (spells.getLevelOf(spell) > 0) {
-
             spells.getSpellsData().hotbars.put(number, spell);
+            spells.syncToClient(player);
         }
     }
 

@@ -210,7 +210,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(4, 8, EnergyRegen.getInstance()));
+                return Arrays.asList(new StatModifier(4, 8, EnergyRegen.getInstance(), ModType.PERCENT));
             }
 
             @Override
