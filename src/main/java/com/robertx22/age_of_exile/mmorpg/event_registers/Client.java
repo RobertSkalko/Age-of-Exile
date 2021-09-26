@@ -21,8 +21,10 @@ public class Client {
         RPGGuiOverlay rpggui = new RPGGuiOverlay();
 
         ForgeEvents.registerForgeEvent(TickEvent.ClientTickEvent.class, event -> {
-            OnClientTick.onEndTick(Minecraft.getInstance());
-            OnKeyPress.onEndTick(Minecraft.getInstance());
+            if (event.phase == TickEvent.Phase.END) {
+                OnClientTick.onEndTick(Minecraft.getInstance());
+                OnKeyPress.onEndTick(Minecraft.getInstance());
+            }
         });
 
         // todo does this work?

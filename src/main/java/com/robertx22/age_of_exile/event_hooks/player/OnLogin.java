@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.event_hooks.player;
 
+import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
@@ -29,8 +30,7 @@ public class OnLogin {
                 player.displayClientMessage(new StringTextComponent("To enable go to your server.properties file and put enable-command-block as true.").withStyle(TextFormatting.GREEN), false);
             }
 
-            Load.playerRPGData(player)
-                .syncToClient(player);
+            CapSyncUtil.syncAll(player);
 
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.displayClientMessage(Chats.Dev_tools_enabled_contact_the_author.locName(), false);

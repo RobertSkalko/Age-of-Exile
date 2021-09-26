@@ -36,10 +36,9 @@ public class OnServerTick {
 
     static {
 
-        TICK_ACTIONS.add(new PlayerTickAction("update_caps", 18, (player, data) -> {
-
+        TICK_ACTIONS.add(new PlayerTickAction("update_caps", 20, (player, data) -> {
             OnTickSetGameMode.onTick(player);
-            CapSyncUtil.syncAll(player);
+            CapSyncUtil.syncPerSecond(player);
             Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.level, player.blockPosition(), player)));
         }));
 

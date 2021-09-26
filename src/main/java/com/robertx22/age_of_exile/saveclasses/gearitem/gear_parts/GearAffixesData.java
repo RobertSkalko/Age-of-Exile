@@ -75,6 +75,10 @@ public class GearAffixesData implements IGearPartTooltip {
 
     public boolean canGetMore(Affix.Type type, GearItemData gear) {
 
+        if (gear.hasCraftedStats()) {
+            return false;
+        }
+
         int current;
         if (type == Affix.Type.prefix) {
             current = pre

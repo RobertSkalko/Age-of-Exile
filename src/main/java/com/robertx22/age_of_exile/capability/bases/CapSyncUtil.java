@@ -7,6 +7,11 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class CapSyncUtil {
 
+    public static void syncPerSecond(PlayerEntity player) {
+        syncEntityCap(player);
+        syncRpgStats(player);
+    }
+
     public static void syncAll(PlayerEntity player) {
         syncEntityCap(player);
         syncSpells(player);

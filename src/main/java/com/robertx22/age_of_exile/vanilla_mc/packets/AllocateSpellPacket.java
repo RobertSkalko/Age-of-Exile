@@ -67,6 +67,8 @@ public class AllocateSpellPacket extends MyPacket<AllocateSpellPacket> {
                 .learnSpell(spell, school);
         }
 
+        spells.syncToClient(ctx.getPlayer());
+
     }
 
     @Override
