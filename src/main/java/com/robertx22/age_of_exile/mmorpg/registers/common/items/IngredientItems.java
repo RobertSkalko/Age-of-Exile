@@ -47,6 +47,7 @@ public class IngredientItems {
     public static RegObj<IngredientItem> REDSTONE_CRYSTAL = of("redstone_crystal", "Redstone Crystal");
     public static RegObj<IngredientItem> ENDER_CRYSTAL = of("ender_crystal", "Ender Crystal");
     public static RegObj<IngredientItem> ENDER_CREAM = of("ender_cream", "Ender Cream");
+    public static RegObj<IngredientItem> ENIGMA_STONE = of("enigma_stone", "Enigma Stone");
 
     static RegObj<IngredientItem> of(String id, String locname) {
         RegObj<IngredientItem> def = Def.item("ingredient/" + id, () -> new IngredientItem(id, locname));

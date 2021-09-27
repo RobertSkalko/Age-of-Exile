@@ -1,6 +1,7 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 undying_will
+ice_comet
 healing_aura
 song_of_valor
 thorn_armor

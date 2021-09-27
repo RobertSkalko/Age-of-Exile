@@ -14,7 +14,7 @@
       "min": 5.6,
       "max": 11.2,
       "stat": "energy_regen",
-      "type": "FLAT"
+      "type": "PERCENT"
     }
   ],
   "on_weapons_stats": [
