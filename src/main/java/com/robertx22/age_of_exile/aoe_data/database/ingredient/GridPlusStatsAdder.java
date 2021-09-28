@@ -14,13 +14,13 @@ public class GridPlusStatsAdder implements ExileRegistryInit {
     public void registerAll() {
 
         IngredientBuilder.of(IngredientItems.ENIGMA_STONE, IRarity.RARE_ID)
-                .allowedIn(PlayerSkillEnum.JEWEL_CRAFTING)
-                .allowedIn(PlayerSkillEnum.WEAPON_CRAFTING)
-                .allowedIn(PlayerSkillEnum.ALCHEMY)
-                .stats(new StatModifier(-4, 15, Stats.SPELL_CRIT_DAMAGE.get()))
-                .stats(new StatModifier(-2, 6, Stats.SPELL_CRIT_CHANCE.get()))
-                .stats(new StatModifier(-25, -25, IngTouchThis.getInstance()))
-                .build();
+            .allowedIn(PlayerSkillEnum.JEWEL_CRAFTING)
+            .allowedIn(PlayerSkillEnum.WEAPON_CRAFTING)
+            .allowedIn(PlayerSkillEnum.ALCHEMY)
+            .stats(new StatModifier(-4, 12, Stats.SPELL_CRIT_DAMAGE.get()))
+            .stats(new StatModifier(-2, 6, Stats.SPELL_CRIT_CHANCE.get()))
+            .stats(new StatModifier(-25, -25, IngTouchThis.getInstance()))
+            .build();
 
     }
 }

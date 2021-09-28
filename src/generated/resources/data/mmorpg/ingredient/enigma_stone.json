@@ -1,0 +1,32 @@
+{
+  "id": "enigma_stone",
+  "item_id": "mmorpg:ingredient/enigma_stone",
+  "oaok": "",
+  "weight": 300,
+  "rar": "rare",
+  "stats": [
+    {
+      "min": -4.0,
+      "max": 15.0,
+      "stat": "spell_critical_damage",
+      "type": "FLAT"
+    },
+    {
+      "min": -2.0,
+      "max": 6.0,
+      "stat": "spell_critical_hit",
+      "type": "FLAT"
+    },
+    {
+      "min": -25.0,
+      "max": -25.0,
+      "stat": "touch_this",
+      "type": "FLAT"
+    }
+  ],
+  "allowed_in": [
+    "jewel_craft",
+    "wep_craft",
+    "alchemy"
+  ]
+}

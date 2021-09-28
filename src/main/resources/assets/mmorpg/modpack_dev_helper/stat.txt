@@ -99,6 +99,7 @@ vitality
 armor_penetration
 bow_damage
 dmg_to_living
+left_of_this
 inc_effect_of_defensive_buff_given
 block_ooc_regen
 positive_eff_duration
