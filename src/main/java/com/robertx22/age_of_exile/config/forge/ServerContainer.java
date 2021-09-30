@@ -67,7 +67,6 @@ public class ServerContainer {
 
         List<String> list = new ArrayList<>();
 
-        list.add("modid:itemid:gear_slot");
         list.add("terraria:nice_spear:sword");
 
         GEAR_COMPATS = b.comment("This is for modded gear that can't be automatically recognized by the mod." +

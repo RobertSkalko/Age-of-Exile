@@ -11,7 +11,7 @@ public class ItemRing extends BaseBaublesItem implements IRing {
     VanillaMaterial mat;
 
     public ItemRing(VanillaMaterial mat) {
-        super(new Properties().durability(mat.armormat.getDurabilityForSlot(EquipmentSlotType.CHEST))
+        super(new Properties().durability(mat.armormat.getDurabilityForSlot(EquipmentSlotType.CHEST) * 2)
             .tab(CreativeTabs.MyModTab), "Ring");
         this.mat = mat;
     }

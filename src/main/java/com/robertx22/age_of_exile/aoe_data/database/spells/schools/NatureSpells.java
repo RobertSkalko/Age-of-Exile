@@ -49,7 +49,7 @@ public class NatureSpells implements ExileRegistryInit {
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D)))
             .build();
 
-        SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(7, 20)
+        SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(5, 20)
                     .setSwingArm()
                     .applyCastSpeedToCooldown(), "Poison Ball",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
@@ -58,9 +58,10 @@ public class NatureSpells implements ExileRegistryInit {
                     + " " + Elements.Earth.getIconNameDmg())
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(SlashItems.SLIMEBALL.get(), 1D, 1D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(SlashItems.SLIMEBALL.get(), 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 8D, false)
+            ))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SNEEZE, 1D, 0.15D))
-            .onHit(PartBuilder.damage(SpellCalcs.POISON_BALL, Elements.Earth))
+            .onHit(PartBuilder.damageInAoe(SpellCalcs.POISON_BALL, Elements.Earth, 2D))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
 
             .build();

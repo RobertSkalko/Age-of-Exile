@@ -47,9 +47,9 @@ public abstract class SingleTargetWeapon extends TieredItem implements IAutoLocN
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.hurtAndBreak(1, attacker, (entity) -> {
-            entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
-        });
+        //  stack.hurtAndBreak(1, attacker, (entity) -> {
+        //      entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
+        // });
 
         return true;
     }

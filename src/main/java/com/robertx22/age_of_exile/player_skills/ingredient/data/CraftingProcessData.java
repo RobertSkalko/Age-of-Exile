@@ -80,6 +80,7 @@ public class CraftingProcessData {
     }
 
     public int getAverageTier() {
+
         return getAllIngredients().stream()
             .mapToInt(x -> x.tier)
             .sum()
@@ -286,9 +287,7 @@ public class CraftingProcessData {
         GearRarity rar = RandomUtils.weightedRandom(getPossibleRarities());
 
         data.rarity = rar.GUID();
-        int tier = getAllIngredients().stream()
-            .mapToInt(x -> x.tier)
-            .sum() / ingredients.size();
+        int tier = getAverageTier();
         int lvl = LevelUtils.tierToLevel(tier);
 
         data.lvl = lvl;

@@ -1,7 +1,7 @@
 {
   "max_lvl": 16,
   "weight": 1000,
-  "identifier": "frostball",
+  "identifier": "base_wand_attack",
   "attached": {
     "on_cast": [
       {
@@ -11,8 +11,8 @@
             "type": "sound",
             "map": {
               "volume": 1.0,
-              "sound": "minecraft:entity.snowball.throw",
-              "pitch": 1.0
+              "sound": "minecraft:entity.blaze.shoot",
+              "pitch": 0.6
             }
           }
         ],
@@ -30,12 +30,13 @@
           {
             "type": "projectile",
             "map": {
-              "proj_speed": 2.5,
-              "item": "mmorpg:projectile/snowball",
+              "proj_speed": 3.0,
+              "item": "minecraft:air",
               "entity_name": "default_entity_name",
               "gravity": false,
               "proj_count": 1.0,
-              "life_ticks": 8.0,
+              "expire_on_en_hit": false,
+              "life_ticks": 10.0,
               "proj_en": "mmorpg:spell_projectile"
             }
           }
@@ -57,10 +58,33 @@
             {
               "type": "particles_in_radius",
               "map": {
-                "particle_type": "minecraft:item_snowball",
+                "particle_type": "minecraft:smoke",
                 "motion": "None",
-                "radius": 0.15,
-                "particle_count": 2.0
+                "radius": 0.1,
+                "particle_count": 1.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 1.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:ash",
+                "motion": "None",
+                "radius": 0.3,
+                "particle_count": 1.0
               }
             }
           ],
@@ -89,8 +113,28 @@
             {
               "type": "damage",
               "map": {
-                "value_calculation": "iceball",
-                "element": "Water"
+                "value_calculation": "fireball",
+                "element": "Fire"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_hit",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "sound",
+              "map": {
+                "volume": 1.0,
+                "sound": "minecraft:entity.generic.hurt",
+                "pitch": 1.0
               }
             }
           ],
@@ -108,10 +152,10 @@
             {
               "type": "particles_in_radius",
               "map": {
-                "particle_type": "minecraft:item_snowball",
+                "particle_type": "minecraft:smoke",
                 "motion": "None",
-                "radius": 1.0,
-                "particle_count": 10.0
+                "radius": 0.5,
+                "particle_count": 5.0
               }
             }
           ],
@@ -131,8 +175,8 @@
     "apply_cast_speed_to_cd": true,
     "castingWeapon": "MAGE_WEAPON",
     "mana_cost": {
-      "min": 2.5,
-      "max": 5.0
+      "min": 0.0,
+      "max": 0.0
     },
     "times_to_cast": 1,
     "charges": 0,

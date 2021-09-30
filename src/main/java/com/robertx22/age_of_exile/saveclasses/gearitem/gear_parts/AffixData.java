@@ -82,7 +82,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
         this.BaseAffix()
             .getStats()
             .forEach(x -> {
-                ExactStatData exact = x.ToExactStat(perc, gear.lvl);
+                ExactStatData exact = x.ToExactStat(perc, gear.getEffectiveLevel());
                 list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, gear.getEffectiveLevel()));
             });
         return list;

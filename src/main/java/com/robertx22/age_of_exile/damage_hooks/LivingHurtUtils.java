@@ -20,7 +20,7 @@ import java.util.List;
 public class LivingHurtUtils {
 
     public static int getItemDamage(float dmg) {
-        return (int) MathHelper.clamp(dmg / 5F, 1, 5);
+        return (int) MathHelper.clamp(dmg / 10F, 1, 4);
     }
 
     public static void damageCurioItems(LivingEntity en, float dmg) {

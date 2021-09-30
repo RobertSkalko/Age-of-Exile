@@ -52,9 +52,10 @@ public class BackpackUpgradeItem extends TieredItem implements IShapelessRecipe,
     @Override
     public ShapelessRecipeBuilder getRecipe() {
         return ShapelessRecipeBuilder.shapeless(this, 1)
-            .requires(ProfessionItems.STONE_TIER_MAP.get(tier)
+            .requires(ProfessionItems.CONDENSED_ESSENCE_MAP.get(tier)
                 .get(), 1)
             .requires(Items.GOLD_INGOT)
+            .requires(Items.LEATHER, 3)
             .requires(upgrade.craftItem(), 1)
             .unlockedBy("player_level", trigger());
     }

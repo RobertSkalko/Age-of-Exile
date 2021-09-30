@@ -111,7 +111,7 @@ public class FireSpells implements ExileRegistryInit {
             .onCast(PartBuilder.damageInAoe(SpellCalcs.FIRE_NOVA, Elements.Fire, 3D))
             .build();
 
-        SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(7, 20)
+        SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(5, 20)
                     .setSwingArm()
                     .applyCastSpeedToCooldown(), "Fire Ball",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
@@ -121,15 +121,14 @@ public class FireSpells implements ExileRegistryInit {
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
             .onCast(PartBuilder.playSound(SoundEvents.BLAZE_SHOOT, 1D, 0.6D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(SlashItems.FIREBALL.get(), 1D, 1D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(SlashItems.FIREBALL.get(), 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 8D, false)
+            ))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.FLAME, 1D, 0.1D))
-
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.FALLING_LAVA, 1D, 0.5D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 1D, 0.01D))
-
-            .onHit(PartBuilder.damage(SpellCalcs.FIREBALL, Elements.Fire))
+            .onHit(PartBuilder.damageInAoe(SpellCalcs.FIREBALL, Elements.Fire, 2D))
             .onHit(PartBuilder.playSound(SoundEvents.GENERIC_BURN, 1D, 2D))
-            .onHit(PartBuilder.aoeParticles(ParticleTypes.LAVA, 1D, 0.5D))
+            .onHit(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 3D, 1D))
             .build();
 
     }

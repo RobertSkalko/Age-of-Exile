@@ -575,7 +575,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
             event.Activate();
 
             if (data.weapon != null) {
-                data.weapon.hurt(1, new Random(), null);
+                //data.weapon.hurt(1, new Random(), null);
             }
 
             data.weaponData.GetBaseGearType()

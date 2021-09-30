@@ -30,6 +30,7 @@ overload
 poison_cloud
 astral_totem
 draconic_blood
+base_wand_attack
 smoke_bomb
 gong_strike
 tidal_strike

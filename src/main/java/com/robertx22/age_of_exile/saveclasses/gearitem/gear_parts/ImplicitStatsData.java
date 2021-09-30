@@ -61,8 +61,8 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
         gear.GetBaseGearType()
             .implicitStats()
             .forEach(x -> {
-                ExactStatData exact = x.ToExactStat(perc, gear.lvl);
-                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, gear.lvl));
+                ExactStatData exact = x.ToExactStat(perc, gear.getEffectiveLevel());
+                list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, gear.getEffectiveLevel()));
             });
         return list;
     }

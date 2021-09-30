@@ -2,10 +2,19 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "mmorpg:stone/2"
+      "item": "mmorpg:mat/condensed_salvage/c2"
     },
     {
       "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "minecraft:leather"
     },
     {
       "item": "minecraft:furnace"

@@ -65,6 +65,8 @@ public class AllocateSynergyPacket extends MyPacket<AllocateSynergyPacket> {
         if (spells.canLearn(school, synergy)) {
             spells.getSpellsData()
                 .learnSynergy(synergy, school);
+
+            spells.syncToClient(ctx.getPlayer());
         }
 
     }

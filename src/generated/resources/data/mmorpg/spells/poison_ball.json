@@ -30,12 +30,12 @@
           {
             "type": "projectile",
             "map": {
-              "proj_speed": 1.0,
+              "proj_speed": 2.5,
               "item": "mmorpg:projectile/slimeball",
               "entity_name": "default_entity_name",
               "gravity": false,
               "proj_count": 1.0,
-              "life_ticks": 20.0,
+              "life_ticks": 8.0,
               "proj_en": "mmorpg:spell_projectile"
             }
           }
@@ -77,8 +77,12 @@
         {
           "targets": [
             {
-              "type": "target",
-              "map": {}
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 2.0
+              }
             }
           ],
           "acts": [
@@ -127,8 +131,8 @@
     "apply_cast_speed_to_cd": true,
     "castingWeapon": "MAGE_WEAPON",
     "mana_cost": {
-      "min": 3.5,
-      "max": 7.0
+      "min": 2.5,
+      "max": 5.0
     },
     "times_to_cast": 1,
     "charges": 0,

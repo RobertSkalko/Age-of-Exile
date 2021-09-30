@@ -44,21 +44,21 @@ import top.theillusivec4.curios.api.SlotTypeMessage;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = true;
+    public static boolean RUN_DEV_TOOLS = false;
 
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel NETWORK = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(SlashRef.MODID, "main"),
-            () -> PROTOCOL_VERSION,
-            PROTOCOL_VERSION::equals,
-            PROTOCOL_VERSION::equals
+        new ResourceLocation(SlashRef.MODID, "main"),
+        () -> PROTOCOL_VERSION,
+        PROTOCOL_VERSION::equals,
+        PROTOCOL_VERSION::equals
     );
 
     public MMORPG() {
         Watch watch = new Watch();
 
         ModLoadingContext.get()
-                .registerConfig(ModConfig.Type.COMMON, ServerContainer.commonSpec);
+            .registerConfig(ModConfig.Type.COMMON, ServerContainer.commonSpec);
 
         ExileEvents.CHECK_IF_DEV_TOOLS_SHOULD_RUN.register(new EventConsumer<ExileEvents.OnCheckIsDevToolsRunning>() {
             @Override
@@ -68,11 +68,11 @@ public class MMORPG {
         });
 
         final IEventBus bus = FMLJavaModLoadingContext.get()
-                .getModEventBus();
+            .getModEventBus();
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             ModLoadingContext.get()
-                    .registerConfig(ModConfig.Type.CLIENT, ClientConfigs.clientSpec);
+                .registerConfig(ModConfig.Type.CLIENT, ClientConfigs.clientSpec);
             bus.addListener(ClientInit::onInitializeClient);
         });
 
@@ -119,9 +119,9 @@ public class MMORPG {
     public void interMod(InterModEnqueueEvent event) {
 
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("ring").size(2)
-                .build());
+            .build());
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("necklace").size(1)
-                .build());
+            .build());
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {
