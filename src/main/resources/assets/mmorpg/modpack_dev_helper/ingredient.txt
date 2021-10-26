@@ -24,6 +24,7 @@ wisdom_fruit
 wishing_bowl
 ender_heart
 crystal_amethyst
+endergem
 bolete_mushroom
 ectoplasm
 blootroot
@@ -32,4 +33,5 @@ ender_cream
 hemlock
 ender_crystal
 fresh_heart
+rock_jade
 crystal_blue_rock

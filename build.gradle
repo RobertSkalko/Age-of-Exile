@@ -165,13 +165,12 @@ curseforge {
         id = "${curse_id}"
         releaseType = "${curse_release}"
         changelogType = 'text'
-        changelog = file('CHANGELOG.txt')
+        changelog = file('CHANGELOG.md')
         addGameVersion("${project.minecraft_version}")
         addGameVersion("Forge")
         addGameVersion("Java 8")
 
-        relations {
-            requiredDependency 'fabric-api'
+        relations {          
             requiredDependency 'library-of-exile'
             requiredDependency 'curios'
             requiredDependency 'dungeons-of-exile'
@@ -179,7 +178,7 @@ curseforge {
         mainArtifact(jar)
 
         afterEvaluate {
-            uploadTask.dependsOn("remapJar")
+            uploadTask.dependsOn("jar")
         }
     }
     options {

@@ -228,6 +228,7 @@ staff_damage
 bonus_day_yield
 spell_critical_hit
 blood_user
+random_craft_stat
 fire_dot_damage
 dmg_received
 melee_dmg

@@ -28,7 +28,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         uncommon.default_stat_percents = new MinMax(0, 100);
         uncommon.affix_stat_percents = new MinMax(80, 100);
         uncommon.bonus_effective_lvls = 2;
-        uncommon.affixes = new GearRarity.Part(1, 2, 15);
+        uncommon.affixes = new GearRarity.Part(1, 1, 0);
         uncommon.weight = 2000;
         uncommon.item_tier = 1;
         uncommon.item_model_data_num = 2;
@@ -47,7 +47,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         rare.essence_per_sal = new MinMax(2, 2);
         rare.item_tier = 2;
         rare.item_model_data_num = 3;
-        rare.affixes = new GearRarity.Part(2, 3, 15);
+        rare.affixes = new GearRarity.Part(3, 3, 0);
         rare.weight = 300;
         rare.item_tier_power = 1.5F;
         rare.item_value_multi = 1.5F;
@@ -60,7 +60,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         epic.base_stat_percents = new MinMax(30, 90);
         epic.default_stat_percents = new MinMax(20, 100);
         epic.affix_stat_percents = new MinMax(20, 100);
-        epic.affixes = new GearRarity.Part(4, 6, 25);
+        epic.affixes = new GearRarity.Part(5, 5, 0);
         epic.weight = 100;
         epic.item_tier = 3;
         epic.item_model_data_num = 4;

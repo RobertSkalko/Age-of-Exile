@@ -171,8 +171,6 @@ public class LevelUtils {
 
         lvl = MathHelper.clamp(lvl, 1, GameBalanceConfig.get().MAX_LEVEL);
 
-        lvl = LevelUtils.levelToTierToLevel(lvl);
-
         return lvl;
     }
 
@@ -207,7 +205,7 @@ public class LevelUtils {
 
         int lvl = 1;
 
-        lvl = (int) (config.min_lvl + (distance / (config.mob_lvl_per_distance)));
+        lvl = (int) (config.min_lvl + ((distance - config.min_lvl_area) / (config.mob_lvl_per_distance)));
 
         return MathHelper.clamp(lvl, config.min_lvl, config.max_lvl);
 

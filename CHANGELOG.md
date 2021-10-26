@@ -1,3 +1,6 @@
+v.3.0.1
+bug fixes
+
 #v3.0.0
 
 This update finally brings Mine and Slash to 1.16.5 Forge!

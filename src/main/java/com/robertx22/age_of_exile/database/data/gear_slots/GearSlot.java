@@ -69,7 +69,7 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, IAutoGson<GearSlot
 
     // has to use ugly stuff like this cus datapacks.
     public static boolean isItemOfThisSlot(GearSlot slot, Item item) {
-        CACHED_GEAR_SLOTS.clear();
+
         if (item == Items.AIR) {
             return false;
         }
@@ -92,6 +92,19 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, IAutoGson<GearSlot
         boolean bool = false;
 
         try {
+
+            if (ServerContainer.get()
+                .getCompatMap()
+                .containsKey(item)) {
+                if (ServerContainer.get()
+                    .getCompatMap()
+                    .get(item)
+                    .GUID()
+                    .equals(slot.GUID())) {
+                    bool = true;
+                }
+            }
+
             if (item instanceof ArmorItem) {
                 EquipmentSlotType eqslot = ((ArmorItem) item).getSlot();
                 if (eqslot == EquipmentSlotType.CHEST && id.equals(GearSlots.CHEST)) {

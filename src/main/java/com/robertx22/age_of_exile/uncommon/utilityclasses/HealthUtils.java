@@ -36,9 +36,13 @@ public class HealthUtils {
             return data.getSyncedMaxHealth(); // for client, health needs to be synced
         }
 
-        return data.getUnit()
-            .healthData()
-            .getValue();
+        try {
+            return data.getUnit()
+                .healthData()
+                .getValue();
+        } catch (Exception e) {
+            return 1;
+        }
 
     }
 

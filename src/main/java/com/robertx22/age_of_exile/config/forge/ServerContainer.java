@@ -67,7 +67,7 @@ public class ServerContainer {
 
         List<String> list = new ArrayList<>();
 
-        list.add("terraria:nice_spear:sword");
+        list.add("minecraft:iron_sword:sword");
 
         GEAR_COMPATS = b.comment("This is for modded gear that can't be automatically recognized by the mod." +
                 " If there's say a weapon like a staff in another mod, but this mod doesn't recognize it. " +

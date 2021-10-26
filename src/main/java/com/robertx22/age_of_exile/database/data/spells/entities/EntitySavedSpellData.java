@@ -38,7 +38,12 @@ public class EntitySavedSpellData {
     // so after restart of game, the caster is null
     // but works fine outside of dev
     public LivingEntity getCaster(World world) {
-        return Utilities.getLivingEntityByUUID(world, UUID.fromString(caster_uuid));
+        try {
+            return Utilities.getLivingEntityByUUID(world, UUID.fromString(caster_uuid));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static EntitySavedSpellData create(int lvl, LivingEntity caster, ExileEffect exEffect) {

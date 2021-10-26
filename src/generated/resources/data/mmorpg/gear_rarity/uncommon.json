@@ -1,8 +1,8 @@
 {
   "affixes": {
     "min_amount": 1,
-    "max_amount": 2,
-    "chance_for_more": 15
+    "max_amount": 1,
+    "chance_for_more": 0
   },
   "item_model_data_num": 2,
   "drops_after_tier": -1,

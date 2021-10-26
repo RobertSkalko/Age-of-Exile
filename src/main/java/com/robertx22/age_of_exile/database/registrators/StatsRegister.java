@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttrib
 import com.robertx22.age_of_exile.database.data.stats.types.crafting.CraftingSuccessChance;
 import com.robertx22.age_of_exile.database.data.stats.types.crafting.IncreaseMinRarityStat;
 import com.robertx22.age_of_exile.database.data.stats.types.crafting.MaxUsesStat;
+import com.robertx22.age_of_exile.database.data.stats.types.crafting.RandomCraftingStat;
 import com.robertx22.age_of_exile.database.data.stats.types.crafting.craft_grid.IngNotTouchThis;
 import com.robertx22.age_of_exile.database.data.stats.types.crafting.craft_grid.IngToLeft;
 import com.robertx22.age_of_exile.database.data.stats.types.crafting.craft_grid.IngTouchThis;
@@ -111,6 +112,7 @@ public class StatsRegister implements ExileRegistryInit {
                     add(IngNotTouchThis.getInstance());
                     add(IngToLeft.getInstance());
 
+                    add(RandomCraftingStat.getInstance());
                     add(IncreaseMinRarityStat.getInstance());
                     add(MaxUsesStat.getInstance());
                     add(CraftingSuccessChance.getInstance());

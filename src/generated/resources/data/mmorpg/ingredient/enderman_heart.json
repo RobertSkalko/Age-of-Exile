@@ -6,9 +6,15 @@
   "rar": "rare",
   "stats": [
     {
+      "min": 2.0,
+      "max": 4.0,
+      "stat": "spell_critical_damage",
+      "type": "FLAT"
+    },
+    {
       "min": 1.0,
       "max": 3.0,
-      "stat": "spell_accuracy",
+      "stat": "move_speed",
       "type": "FLAT"
     }
   ],

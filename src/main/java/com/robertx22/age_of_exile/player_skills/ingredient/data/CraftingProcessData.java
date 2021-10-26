@@ -6,10 +6,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.ingredient.SlashIngredient;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.CraftingSuccessChance;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.DoNotTransferToCraftedMarker;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.IncreaseMinRarityStat;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.MaxUsesStat;
+import com.robertx22.age_of_exile.database.data.stats.types.crafting.*;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.player_skills.ingredient.GridHelper;
@@ -178,6 +175,7 @@ public class CraftingProcessData {
             IngredientData x = data.ing;
             int lvl = LevelUtils.tierToLevel(x.tier);
             int perc = RandomUtils.RandomRange(0, 100);
+
             for (StatModifier s : x.getIngredient().stats) {
                 if (s.GetStat() instanceof DoNotTransferToCraftedMarker == false) {
                     ExactStatData stat = s.ToExactStat(perc, lvl);
@@ -186,7 +184,24 @@ public class CraftingProcessData {
                     stat.multiplyBy(data.multi);
                     stats.add(stat);
                 }
+                if (s.GetStat() instanceof RandomCraftingStat) {
+                    int random = (int) s.max;
+                    for (int i = 0; i < random; i++) {
+                        StatModifier mod = RandomUtils.randomFromList(ExileDB.Ingredients()
+                            .random().stats);
+                        while (mod.GetStat() instanceof DoNotTransferToCraftedMarker) {
+                            mod = RandomUtils.randomFromList(ExileDB.Ingredients()
+                                .random().stats);
+                        }
+                        ExactStatData stat = mod.ToExactStat(perc, lvl);
+                        stat.multiplyBy(skill.craftedStatMulti);
+                        stat.multiplyBy(getStatMulti());
+                        stat.multiplyBy(data.multi);
+                        stats.add(stat);
+                    }
+                }
             }
+
         }
 
         return stats;
