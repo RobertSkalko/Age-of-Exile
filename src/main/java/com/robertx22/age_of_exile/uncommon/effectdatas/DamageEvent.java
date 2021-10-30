@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.uncommon.effectdatas;
 
 import com.robertx22.age_of_exile.capability.PlayerDamageChart;
 import com.robertx22.age_of_exile.capability.entity.CooldownsData;
+import com.robertx22.age_of_exile.capability.player.data.ScalingPlayerDiffData;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
@@ -284,6 +285,10 @@ public class DamageEvent extends EffectEvent {
         }
 
         float dmg = info.totalDmg;
+
+        if (source instanceof PlayerEntity == false) {
+            dmg *= ScalingPlayerDiffData.getDMGMulti(sourceData.mobScalingDiff);
+        }
 
         float vanillaDamage = HealthUtils.realToVanilla(target, dmg);
 

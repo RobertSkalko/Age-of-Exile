@@ -14,10 +14,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +35,16 @@ public class GearTooltipUtils {
 
         tip.clear();
 
-        gear.GetDisplayName(stack)
-            .forEach(x -> {
-                tip.add(x);
-            });
+        List<IFormattableTextComponent> name = gear.GetDisplayName(stack);
+
+        if (gear.up.getUpgradeLevel() > 0) {
+            name.get(name.size() - 1)
+                .append(new StringTextComponent(TextFormatting.GREEN + " +[" + gear.up.getUpgradeLevel() + "]"));
+        }
+
+        name.forEach(x -> {
+            tip.add(x.withStyle(TextFormatting.BOLD));
+        });
 
         if (gear.baseStats != null) {
             tip.addAll(gear.baseStats.GetTooltipString(info, gear));
@@ -70,6 +73,9 @@ public class GearTooltipUtils {
                 tip.addAll(gear.getCraftedStats()
                     .GetTooltipString(info, gear));
             }
+            if (gear.trasc != null) {
+                tip.addAll(gear.trasc.GetTooltipString(info, gear));
+            }
         } else {
             List<ExactStatData> stats = new ArrayList<>();
             gear.affixes.getAllAffixesAndSockets()
@@ -91,6 +97,7 @@ public class GearTooltipUtils {
             MergedStats merged = new MergedStats(stats, info);
 
             list.add(merged);
+
         }
 
         int n = 0;
@@ -128,6 +135,9 @@ public class GearTooltipUtils {
             }
         }
 
+        if (gear.trasc != null) {
+            tip.addAll(gear.trasc.GetTooltipString(info, gear));
+        }
         if (Screen.hasShiftDown()) {
             if (!gear.can_sal) {
                 tip.add(
@@ -135,6 +145,24 @@ public class GearTooltipUtils {
                         .withStyle(TextFormatting.RED));
             }
         }
+
+        tip.add(new StringTextComponent(""));
+
+        IFormattableTextComponent lvl = TooltipUtils.gearLevel(gear.lvl);
+
+        if (Screen.hasShiftDown()) {
+            lvl.append(new StringTextComponent(TextFormatting.YELLOW + " [ILvl:" + (int) gear.getEffectiveLevel() + "]"));
+        }
+
+        if (gear.up.getTimesCanBeUpgradedInTotal() > 0) {
+            tip.add(TooltipUtils.upgradeStars(gear));
+        }
+        tip.add(lvl);
+        tip.add(TooltipUtils.gearTier(gear.getTier()));
+        tip.add(TooltipUtils.gearRarity(gear.getRarity()));
+
+        tip.add(new StringTextComponent(""));
+
         if (gear.isCorrupted()) {
             tip.add(new StringTextComponent(TextFormatting.RED + "").append(
                     Words.Corrupted.locName())
@@ -147,14 +175,8 @@ public class GearTooltipUtils {
         if (socketed > 0) {
             TooltipUtils.addSocketNamesLine(tip, gear);
         }
-
         tip.add(new StringTextComponent(""));
 
-        tip.add(TooltipUtils.gearTier(gear.getTier()));
-        tip.add(TooltipUtils.gearLevel(gear.lvl));
-        tip.add(TooltipUtils.gearRarity(gear.getRarity()));
-
-        tip.add(new StringTextComponent(""));
         ItemStack.appendEnchantmentNames(tip, stack.getEnchantmentTags());
 
         if (ClientConfigs.getConfig().SHOW_DURABILITY.get()) {

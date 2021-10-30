@@ -1,0 +1,13 @@
+{
+  "id": "crit",
+  "weight": 1000,
+  "stats": [
+    {
+      "min": 5.0,
+      "max": 15.0,
+      "stat": "critical_hit",
+      "type": "FLAT"
+    }
+  ],
+  "can_on_wep": true
+}

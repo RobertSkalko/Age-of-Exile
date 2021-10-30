@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatI
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.library_of_exile.registry.serialization.IByteBuf;
-import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.text.ITextComponent;
 
@@ -98,8 +97,7 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
     }
 
     public String getDebugString() {
-
-        return "" + (int) v1 + " " + getModType().name() + " " + CLOC.translate(getStat().locName());
+        return "" + (int) v1 + " " + getModType().name() + " " + getStat().translate();
     }
 
     public static void combine(List<OptScaleExactStat> list) {

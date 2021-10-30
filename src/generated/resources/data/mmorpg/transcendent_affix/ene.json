@@ -1,0 +1,13 @@
+{
+  "id": "ene",
+  "weight": 1000,
+  "stats": [
+    {
+      "min": 5.0,
+      "max": 20.0,
+      "stat": "energy",
+      "type": "FLAT"
+    }
+  ],
+  "can_on_wep": false
+}

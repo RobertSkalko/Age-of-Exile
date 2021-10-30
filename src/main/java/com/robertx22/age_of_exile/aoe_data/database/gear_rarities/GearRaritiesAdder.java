@@ -36,6 +36,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         uncommon.essence_per_sal = new MinMax(1, 2);
         uncommon.item_value_multi = 1.25F;
         uncommon.higher_rar = IRarity.RARE_ID;
+        uncommon.upgrades = new MinMax(0, 2);
         uncommon.setUncommonFields();
         uncommon.addToSerializables();
 
@@ -53,6 +54,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         rare.item_value_multi = 1.5F;
         rare.higher_rar = IRarity.EPIC_ID;
         rare.setRareFields();
+        rare.upgrades = new MinMax(1, 3);
         rare.addToSerializables();
 
         GearRarity epic = new GearRarity();
@@ -67,6 +69,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         epic.essence_per_sal = new MinMax(2, 3);
         epic.item_tier_power = 1.7F;
         epic.item_value_multi = 1.7F;
+        epic.upgrades = new MinMax(3, 5);
         epic.setEpicFields();
         epic.addToSerializables();
 
@@ -80,6 +83,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         unique.essence_per_sal = new MinMax(5, 5);
         unique.setUniqueFields();
         unique.addToSerializables();
+        unique.upgrades = new MinMax(4, 5);
         unique.announce_in_chat = true;
         unique.is_unique_item = true;
 
@@ -93,6 +97,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         runeword.essence_per_sal = new MinMax(5, 5);
         runeword.setRunewordFields();
         runeword.addToSerializables();
+        runeword.upgrades = new MinMax(4, 5);
         runeword.announce_in_chat = true;
         runeword.is_unique_item = true;
 

@@ -1,8 +1,10 @@
 package com.robertx22.age_of_exile.gui.overlays;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.BloodUser;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.HealthUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
@@ -118,6 +120,23 @@ public enum BarGuiType {
             return SlashRef.id("textures/gui/overlay/health.png");
         }
 
+    },
+    SCALING_DIFFICULTY {
+        @Override
+        public float getCurrent(EntityData data, PlayerEntity en) {
+            return Load.playerRPGData(en).scalingDifficulty.getDifficulty();
+        }
+
+        @Override
+        public float getMax(EntityData data, PlayerEntity en) {
+            return ServerContainer.get().MAX_DIFFICULTY.get()
+                .floatValue();
+        }
+
+        @Override
+        public ResourceLocation getTexture(EntityData data, PlayerEntity en) {
+            return SlashRef.id("textures/gui/overlay/difficulty.png");
+        }
     },
     SHIELD {
         @Override

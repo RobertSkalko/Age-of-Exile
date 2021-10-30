@@ -173,7 +173,7 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
         return list;
     }
 
-    public ExactStatData ToExactStat(int percent, int lvl) {
+    public ExactStatData ToExactStat(int percent, float lvl) {
         return ExactStatData.fromStatModifier(this, percent, lvl);
     }
 

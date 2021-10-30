@@ -100,7 +100,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
         return scaling;
     }
 
-    public final float scale(ModType mod, float stat, int lvl) {
+    public final float scale(ModType mod, float stat, float lvl) {
         if (mod.isFlat()) {
             return getScaling().scale(stat, lvl);
         } else {

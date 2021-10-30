@@ -54,6 +54,21 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 1000,
+          "name": "mmorpg:currency/plus_one_upgrade"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 25,
+          "name": "mmorpg:currency/plus_three_upgrade"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 100,
+          "name": "mmorpg:currency/plus_two_upgrade"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 250,
           "name": "mmorpg:currency/randomize_affixes"
         },

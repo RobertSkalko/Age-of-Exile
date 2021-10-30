@@ -301,8 +301,12 @@ public enum Words implements IAutoLocName {
     NoSuffix("Doesn't have suffix"),
     HasHigherRarity("Has higher rarity"),
     CantGetMoreAffixes("Can't get more affixes."),
+    UpgradeLvlTo5("Upgrade Level must be 0-4"),
+    UpgradeLvlTo10("Upgrade Level must be 5-9"),
+    UpgradeLvlTo15("Upgrade Level must be 10-14"),
 
     HasEmptySockets("Has Empty Sockets"),
+    HasUpgradeSlotsLeft("Has Upgrade Slots Left"),
     IsNotCorrupted("Is not corrupted"),
 
     CanGetMoreSockets("Can get more sockets "),

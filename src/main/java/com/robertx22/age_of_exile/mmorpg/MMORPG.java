@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
 import com.robertx22.age_of_exile.database.registry.ExileDBInit;
 import com.robertx22.age_of_exile.dimension.DimensionInit;
+import com.robertx22.age_of_exile.event_hooks.player.ScalingDifficultyEvents;
 import com.robertx22.age_of_exile.mmorpg.event_registers.CommonEvents;
 import com.robertx22.age_of_exile.mmorpg.init.ClientInit;
 import com.robertx22.age_of_exile.mmorpg.registers.client.S2CPacketRegister;
@@ -44,7 +45,7 @@ import top.theillusivec4.curios.api.SlotTypeMessage;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = false;
+    public static boolean RUN_DEV_TOOLS = true;
 
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel NETWORK = NetworkRegistry.newSimpleChannel(
@@ -80,6 +81,8 @@ public class MMORPG {
         bus.addListener(this::interMod);
 
         CurioEvents.reg();
+
+        ScalingDifficultyEvents.register();
 
         StatEffects.loadClass();
         StatConditions.loadClass();

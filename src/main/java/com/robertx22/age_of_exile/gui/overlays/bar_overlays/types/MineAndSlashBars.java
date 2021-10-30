@@ -22,7 +22,7 @@ public class MineAndSlashBars extends AbstractGui {
 
     static Minecraft mc = Minecraft.getInstance();
 
-    static void renderMineAndSlashBar(GuiPartConfig config, BarGuiType type, MatrixStack matrix, PointData point, String text, boolean drawText) {
+    public static void renderMineAndSlashBar(GuiPartConfig config, BarGuiType type, MatrixStack matrix, PointData point, String text, boolean drawText) {
 
         if (!drawText) {
             mc.getTextureManager()

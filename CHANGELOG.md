@@ -1,3 +1,26 @@
+v.3.0.2
+
+Added a scaling per player difficulty system. [Experimental]
+I always wanted some way to push player to progress and get stronger, and this could be a good way.
+I will be taking hints from the Scaling health mod everyone knows, to try and make this work.
+It is a bit more difficult because mob levels will increase and that's where extra balance work will be needed.
+In short, as you play more and kill mobs, difficulty will increase. If you are progressing fast enough, this will be good, as more areas are now useful and you don't have to travel that far out.
+On the other hand if you are progressing slowly, mobs will become too difficult to defeat, and you will have a hard time.
+There are enough configs to completely disable or alter the system.
+
+Added item upgrading. [Experimental]
+Every gear can now be upgraded with upgrade stones. 
+Each upgrade increases the item level.
+
+Added transcendent affixes.
+When you upgrade your item enough, a random one will appear.
+Further upgrades will enhance the affix at certain breakpoints.
+
+fix bow not working
+fix runeword border
+try fix a crash on some thrown weapons
+should fix crash with newest dungeons of exile version
+
 v.3.0.1
 bug fixes
 

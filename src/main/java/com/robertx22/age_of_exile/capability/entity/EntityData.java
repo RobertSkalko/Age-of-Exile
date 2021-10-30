@@ -127,6 +127,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     private static final String SCROLL_BUFF_SEED = "sb_seed";
     private static final String COOLDOWNS = "cds";
     private static final String THREAT = "th";
+    private static final String MOB_SCALE_DIFF = "msd";
 
     LivingEntity entity;
 
@@ -141,6 +142,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     int maxHealth = 0;
     MobAffixesData affixes = new MobAffixesData();
     int buffSeed = 0;
+    public float mobScalingDiff = 0;
 
     public EntityStatusEffectsData statusEffects = new EntityStatusEffectsData();
 
@@ -169,6 +171,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
         nbt.putInt(HP, (int) getUnit().getCalculatedStat(Health.getInstance())
             .getValue());
         nbt.putString(ENTITY_TYPE, this.type.toString());
+        nbt.putFloat(MOB_SCALE_DIFF, this.mobScalingDiff);
 
         if (affixes != null) {
             LoadSave.Save(affixes, nbt, AFFIXES);
@@ -180,6 +183,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     public void loadFromClientNBT(CompoundNBT nbt) {
 
         this.rarity = nbt.getString(RARITY);
+        this.mobScalingDiff = nbt.getFloat(MOB_SCALE_DIFF);
         this.race = nbt.getString(RACE);
         this.level = nbt.getInt(LEVEL);
         this.buffSeed = nbt.getInt(SCROLL_BUFF_SEED);
@@ -674,11 +678,15 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     private void setMobLvlNormally(LivingEntity entity, PlayerEntity nearestPlayer) {
         EntityConfig entityConfig = ExileDB.getEntityConfig(entity, this);
 
-        int lvl = LevelUtils.determineLevel(entity.level, entity.blockPosition(),
+        LevelUtils.LevelDetermInfo lvl = LevelUtils.determineLevel(entity.level, entity.blockPosition(),
             nearestPlayer
         );
 
-        setLevel(MathHelper.clamp(lvl, entityConfig.min_lvl, entityConfig.max_lvl));
+        if (nearestPlayer != null) {
+            this.mobScalingDiff = Load.playerRPGData(nearestPlayer).scalingDifficulty.getMobDifficultyAdder(lvl.levelWithoutScalingDifficulty);
+        }
+
+        setLevel(MathHelper.clamp(lvl.level, entityConfig.min_lvl, entityConfig.max_lvl));
     }
 
     public int GiveExp(PlayerEntity player, int i) {

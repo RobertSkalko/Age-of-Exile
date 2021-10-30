@@ -42,6 +42,7 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public MinMax unique_stat_percents = new MinMax(0, 100);
     public MinMax base_stat_percents = new MinMax(0, 100);
     public MinMax essence_per_sal = new MinMax(1, 1);
+    public MinMax upgrades = new MinMax(0, 0);
 
     public int item_tier = -1;
 

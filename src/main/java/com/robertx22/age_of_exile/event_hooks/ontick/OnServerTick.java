@@ -39,7 +39,7 @@ public class OnServerTick {
         TICK_ACTIONS.add(new PlayerTickAction("update_caps", 20, (player, data) -> {
             OnTickSetGameMode.onTick(player);
             CapSyncUtil.syncPerSecond(player);
-            Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.level, player.blockPosition(), player)));
+            Packets.sendToClient(player, new SyncAreaLevelPacket(LevelUtils.determineLevel(player.level, player.blockPosition(), player).level));
         }));
 
         TICK_ACTIONS.add(new
@@ -178,7 +178,7 @@ public class OnServerTick {
                     .getLevel();
 
                 if (lvl < 20) {
-                    data.isInHighLvlZone = LevelUtils.determineLevel(player.level, player.blockPosition(), player) - lvl > 10;
+                    data.isInHighLvlZone = LevelUtils.determineLevel(player.level, player.blockPosition(), player).level - lvl > 10;
 
                     if (wasnt && data.isInHighLvlZone) {
                         OnScreenMessageUtils.sendMessage(

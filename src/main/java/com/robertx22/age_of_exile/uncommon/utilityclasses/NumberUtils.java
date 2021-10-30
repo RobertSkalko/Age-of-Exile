@@ -41,6 +41,10 @@ public class NumberUtils {
         format.setMaximumFractionDigits(1);
     }
 
+    public static String singleDigitFloat(float num) {
+        return format.format(num);
+    }
+
     public static String formatForTooltip(float num) {
         if (Math.abs(num) < 1) {
             return format.format(num);

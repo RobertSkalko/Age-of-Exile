@@ -69,11 +69,9 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, IAutoGson<GearSlot
 
     // has to use ugly stuff like this cus datapacks.
     public static boolean isItemOfThisSlot(GearSlot slot, Item item) {
-
         if (item == Items.AIR) {
             return false;
         }
-
         String id = slot.GUID();
 
         if (id.isEmpty()) {
@@ -103,40 +101,41 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, IAutoGson<GearSlot
                     .equals(slot.GUID())) {
                     bool = true;
                 }
-            }
+            } else {
 
-            if (item instanceof ArmorItem) {
-                EquipmentSlotType eqslot = ((ArmorItem) item).getSlot();
-                if (eqslot == EquipmentSlotType.CHEST && id.equals(GearSlots.CHEST)) {
-                    bool = true;
-                } else if (eqslot == EquipmentSlotType.LEGS && id.equals(GearSlots.PANTS)) {
-                    bool = true;
-                } else if (eqslot == EquipmentSlotType.HEAD && id.equals(GearSlots.HELMET)) {
-                    bool = true;
-                } else if (eqslot == EquipmentSlotType.FEET && id.equals(GearSlots.BOOTS)) {
-                    bool = true;
+                if (item instanceof ArmorItem) {
+                    EquipmentSlotType eqslot = ((ArmorItem) item).getSlot();
+                    if (eqslot == EquipmentSlotType.CHEST && id.equals(GearSlots.CHEST)) {
+                        bool = true;
+                    } else if (eqslot == EquipmentSlotType.LEGS && id.equals(GearSlots.PANTS)) {
+                        bool = true;
+                    } else if (eqslot == EquipmentSlotType.HEAD && id.equals(GearSlots.HELMET)) {
+                        bool = true;
+                    } else if (eqslot == EquipmentSlotType.FEET && id.equals(GearSlots.BOOTS)) {
+                        bool = true;
+                    }
+
+                } else if (id.equals(GearSlots.SWORD)) {
+                    bool = item instanceof SwordItem;
+                } else if (id.equals(GearSlots.BOW)) {
+                    bool = item instanceof BowItem;
+                } else if (id.equals(GearSlots.AXE)) {
+                    bool = item instanceof AxeItem;
+                } else if (id.equals(GearSlots.SHIELD)) {
+                    bool = item instanceof ShieldItem;
+                } else if (id.equals(GearSlots.CROSBOW)) {
+                    bool = item instanceof CrossbowItem;
+                } else if (id.equals(GearSlots.SCEPTER) || id.equals(GearSlots.STAFF)) {
+                    bool = item instanceof StaffWeapon;
+                } else if (id.equals(GearSlots.NECKLACE)) {
+                    bool = CuriosApi.getCuriosHelper()
+                        .getCurioTags(item)
+                        .contains(RefCurio.NECKLACE);
+                } else if (id.equals(GearSlots.RING)) {
+                    bool = CuriosApi.getCuriosHelper()
+                        .getCurioTags(item)
+                        .contains(RefCurio.RING);
                 }
-
-            } else if (id.equals(GearSlots.SWORD)) {
-                bool = item instanceof SwordItem;
-            } else if (id.equals(GearSlots.BOW)) {
-                bool = item instanceof BowItem;
-            } else if (id.equals(GearSlots.AXE)) {
-                bool = item instanceof AxeItem;
-            } else if (id.equals(GearSlots.SHIELD)) {
-                bool = item instanceof ShieldItem;
-            } else if (id.equals(GearSlots.CROSBOW)) {
-                bool = item instanceof CrossbowItem;
-            } else if (id.equals(GearSlots.SCEPTER) || id.equals(GearSlots.STAFF)) {
-                bool = item instanceof StaffWeapon;
-            } else if (id.equals(GearSlots.NECKLACE)) {
-                bool = CuriosApi.getCuriosHelper()
-                    .getCurioTags(item)
-                    .contains(RefCurio.NECKLACE);
-            } else if (id.equals(GearSlots.RING)) {
-                bool = CuriosApi.getCuriosHelper()
-                    .getCurioTags(item)
-                    .contains(RefCurio.RING);
             }
 
             CACHED_GEAR_SLOTS.get(id)

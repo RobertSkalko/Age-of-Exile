@@ -2,6 +2,9 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.data.currency.*;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
+import com.robertx22.age_of_exile.database.data.currency.upgrades.PlusOneUpgradeItem;
+import com.robertx22.age_of_exile.database.data.currency.upgrades.PlusThreeUpgradeItem;
+import com.robertx22.age_of_exile.database.data.currency.upgrades.PlusTwoUpgradeItem;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -37,5 +40,9 @@ public class CurrencyItems {
     public static RegObj<CurrencyItem> ORB_OF_INFINITY = Def.item(() -> new OrbOfInfinityItem());
     public static RegObj<CurrencyItem> CLEAR_INSTABILITY = Def.item(() -> new ClearInstabilityItem());
     public static RegObj<CurrencyItem> ORB_OF_CORRUPTION = Def.item(() -> new OrbOfCorruption());
+
+    public static RegObj<CurrencyItem> PLUS_ONE_UPGRADE = Def.item(() -> new PlusOneUpgradeItem());
+    public static RegObj<CurrencyItem> PLUS_TWO_UPGRADE = Def.item(() -> new PlusTwoUpgradeItem());
+    public static RegObj<CurrencyItem> PLUS_THREE_UPGRADE = Def.item(() -> new PlusThreeUpgradeItem());
 
 }

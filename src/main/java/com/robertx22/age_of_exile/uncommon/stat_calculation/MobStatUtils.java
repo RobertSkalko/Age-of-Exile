@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.uncommon.stat_calculation;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
+import com.robertx22.age_of_exile.capability.player.data.ScalingPlayerDiffData;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
@@ -147,6 +148,8 @@ public class MobStatUtils {
         if (hpToAdd < 0) {
             hpToAdd = 0;
         }
+
+        hpToAdd *= ScalingPlayerDiffData.getHPMulti(unitdata.mobScalingDiff);
 
         stats.add(ExactStatData.scaleTo(hpToAdd, ModType.FLAT, Health.getInstance()
             .GUID(), lvl));

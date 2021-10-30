@@ -1,7 +1,8 @@
 package com.robertx22.age_of_exile.damage_hooks;
 
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
-import com.robertx22.age_of_exile.vanilla_mc.items.misc.ProjectileItem;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.Item;
@@ -26,8 +27,10 @@ public class RangedDamageUtil {
         DamageSource source = event.getSource();
         Item item = en.getMainHandItem()
             .getItem();
+        GearItemData gear = Gear.Load(en.getMainHandItem());
 
-        if (item instanceof ProjectileItem) {
+        if (gear != null && gear.GetBaseGearType()
+            .weaponType().isProjectile) {
             if (!VALID_PROJECTILE_NAMES.stream()
                 .anyMatch(x -> source.msgId.contains(x))) {
                 return false; // if a ranged weapon's damage entity isn't an arrow or similar, don't do damage

@@ -38,7 +38,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
         return data;
     }
 
-    public static ExactStatData fromStatModifier(StatModifier mod, int percent, int lvl) {
+    public static ExactStatData fromStatModifier(StatModifier mod, int percent, float lvl) {
         ExactStatData data = new ExactStatData();
 
         data.v1 = (mod.min + (mod.max - mod.min) * percent / 100F);
@@ -83,7 +83,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
 
     private boolean scaled = false;
 
-    private void scaleToLevel(int lvl) {
+    private void scaleToLevel(float lvl) {
         if (!scaled) {
             this.v1 = getStat().scale(type, v1, lvl);
         }

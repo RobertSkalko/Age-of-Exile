@@ -29,6 +29,7 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.FavorButton;
+import com.robertx22.age_of_exile.gui.buttons.ScalingDifficultyButton;
 import com.robertx22.age_of_exile.gui.screens.player_skills.ProfessionsScreen;
 import com.robertx22.age_of_exile.gui.screens.spell.SpellScreen;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiScreen;
@@ -228,7 +229,10 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         if (this.isMainScreen()) {
             addButton(new FavorButton(guiLeft + sizeX / 2 - FavorButton.FAVOR_BUTTON_SIZE_X / 2, guiTop - FavorButton.FAVOR_BUTTON_SIZE_Y));
 
+            addButton(new ScalingDifficultyButton(guiLeft + sizeX / 2 - ScalingDifficultyButton.BUTTON_SIZE_X / 2, guiTop + CharacterScreen.sizeY + 5));
+
             // hub buttons
+
             List<INamedScreen> screens = new ArrayList<>();
             screens.add(new SpellScreen());
             screens.add(new ProfessionsScreen());

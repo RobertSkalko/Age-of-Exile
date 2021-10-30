@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.player_skills.items.backpacks.mat_pouch.Materi
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.SalvageHammerItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
@@ -84,6 +85,7 @@ public class SlashItems {
     public static RegObj<CustomLootCrateItem> CUSTOM_CRATE = Def.item(() -> new CustomLootCrateItem(), "custom_crate");
 
     public static RegObj<Item> NEWBIE_GEAR_BAG = Def.item(() -> new ItemNewbieGearBag(), "newbie_gear_bag");
+    public static RegObj<Item> SALVAGE_HAMMER = Def.item(() -> new SalvageHammerItem(), "salvage_hammer");
 
     public static RegObj<Item> INFUSED_IRON = Def.item(() -> new SimpleMatItem(), "mat/infused_iron");
     public static RegObj<Item> CRYSTALLIZED_ESSENCE = Def.item(() -> new SimpleMatItem(), "mat/crystallized_essence");

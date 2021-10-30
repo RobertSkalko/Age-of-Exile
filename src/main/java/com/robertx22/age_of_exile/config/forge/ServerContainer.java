@@ -65,6 +65,17 @@ public class ServerContainer {
         RUNE_DROPRATE = b.defineInRange("rune_drop_rate", 0.05D, 0, 1000);
         CURRENCY_DROPRATE = b.defineInRange("currency_drop_rate", 0.2D, 0, 1000);
 
+        DIFFICULTY_PER_SECOND = b.defineInRange("DIFFICULTY_PER_SECOND", 0.001D, -1000, 1000);
+        DIFFICULTY_PER_HOSTILE_KILL = b.defineInRange("DIFFICULTY_PER_HOSTILE_KILL", 0.005D, -1000, 1000);
+        DIFFICULTY_PER_DEATH = b.defineInRange("DIFFICULTY_PER_DEATH", -0.5D, -1000, 1000);
+        DIFFICULTY_PER_INCREASE_ITEM = b.defineInRange("DIFFICULTY_PER_INCREASE_ITEM", 10D, -1000, 1000);
+        DIFFICULTY_PER_DECREASE_ITEM = b.defineInRange("DIFFICULTY_PER_DECREASE_ITEM", 10D, -1000, 1000);
+        MAX_DIFFICULTY = b.defineInRange("MAX_DIFFICULTY", 100D, -1000, 1000);
+        DEATH_DIFFICULTY_COOLDOWN = b.defineInRange("DEATH_DIFFICULTY_COOLDOWN", 20 * 60 * 60D, 0, 100000);
+        MOB_HP_MULTI_PER_DIFFICULTY = b.defineInRange("MOB_HP_MULTI_PER_DIFFICULTY", 0.01D, 0, 100000);
+        MOB_DMG_MULTI_PER_DIFFICULTY = b.defineInRange("MOB_DMG_MULTI_PER_DIFFICULTY", 0.01D, 0, 100000);
+        MOB_LOOT_MULTI_PER_DIFFICULTY = b.defineInRange("MOB_LOOT_MULTI_PER_DIFFICULTY", 0.01D, 0, 100000);
+
         List<String> list = new ArrayList<>();
 
         list.add("minecraft:iron_sword:sword");
@@ -101,7 +112,22 @@ public class ServerContainer {
         }
 
         return cachedCompatMap;
+
     }
+
+    public ForgeConfigSpec.DoubleValue DIFFICULTY_PER_SECOND;
+    public ForgeConfigSpec.DoubleValue DIFFICULTY_PER_HOSTILE_KILL;
+    public ForgeConfigSpec.DoubleValue DIFFICULTY_PER_DEATH;
+    public ForgeConfigSpec.DoubleValue DEATH_DIFFICULTY_COOLDOWN;
+    public ForgeConfigSpec.DoubleValue DIFFICULTY_PER_INCREASE_ITEM;
+    public ForgeConfigSpec.DoubleValue DIFFICULTY_PER_DECREASE_ITEM;
+    public ForgeConfigSpec.DoubleValue MAX_DIFFICULTY;
+
+    public ForgeConfigSpec.DoubleValue MOB_HP_MULTI_PER_DIFFICULTY;
+    public ForgeConfigSpec.DoubleValue MOB_DMG_MULTI_PER_DIFFICULTY;
+    public ForgeConfigSpec.DoubleValue MOB_LOOT_MULTI_PER_DIFFICULTY;
+
+    // at max difficulty, lvl 1 mobs are lvl 50. And lvl 50 mobs are increased in strength
 
     public ForgeConfigSpec.ConfigValue<List<? extends String>> GEAR_COMPATS;
 

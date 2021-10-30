@@ -120,7 +120,7 @@ public class LevelUtils {
         return Math.abs(lvl - max);
     }
 
-    public static float getMaxLevelMultiplier(int lvl) {
+    public static float getMaxLevelMultiplier(float lvl) {
         float max = GameBalanceConfig.get().MAX_LEVEL;
         return (float) lvl / max;
     }
@@ -143,7 +143,16 @@ public class LevelUtils {
         return (int) (Math.pow(exp * GameBalanceConfig.get().NORMAL_STAT_SCALING.getMultiFor(level), 1.1F));
     }
 
-    public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {
+    public static class LevelDetermInfo {
+
+        public int levelWithoutScalingDifficulty;
+        public int level;
+
+    }
+
+    public static LevelDetermInfo determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {
+
+        LevelDetermInfo info = new LevelDetermInfo();
 
         ServerWorld sw = (ServerWorld) world;
 
@@ -168,10 +177,21 @@ public class LevelUtils {
         }
 
         lvl = MathHelper.clamp(lvl, dimConfig.min_lvl, dimConfig.max_lvl);
-
         lvl = MathHelper.clamp(lvl, 1, GameBalanceConfig.get().MAX_LEVEL);
 
-        return lvl;
+        info.levelWithoutScalingDifficulty = lvl;
+
+        if (nearestPlayer != null) {
+            int bonusDiffLevel = Load.playerRPGData(nearestPlayer).scalingDifficulty.getBonusLevels();
+            lvl += bonusDiffLevel;
+        }
+
+        lvl = MathHelper.clamp(lvl, dimConfig.min_lvl, dimConfig.max_lvl);
+        lvl = MathHelper.clamp(lvl, 1, GameBalanceConfig.get().MAX_LEVEL);
+
+        info.level = lvl;
+
+        return info;
     }
 
     public static boolean isInMinLevelArea(ServerWorld world, BlockPos pos, DimensionConfig config) {

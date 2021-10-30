@@ -11,8 +11,6 @@ import net.minecraft.nbt.INBT;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 
-import java.lang.reflect.Field;
-
 public class WeaponFinderUtil {
 
     public static ItemStack getWeapon(DamageSource source) {
@@ -60,6 +58,7 @@ public class WeaponFinderUtil {
 
     private static ItemStack getWeaponStackFromThrownEntity(Entity en) {
 
+        /*
         for (Field field : en.getClass()
             .getFields()) {
 
@@ -77,6 +76,7 @@ public class WeaponFinderUtil {
 
             }
         }
+         */
 
         try {
             for (EntityDataManager.DataEntry<?> entry : en.getEntityData()

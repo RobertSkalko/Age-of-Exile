@@ -13,6 +13,7 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.feature.structure.VillageConfig;
 import net.minecraft.world.gen.feature.template.ProcessorLists;
 import net.minecraft.world.gen.feature.template.StructureProcessorList;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
 
 public class DungeonDimensionJigsaw extends StructureWrapper {
 
@@ -22,8 +23,15 @@ public class DungeonDimensionJigsaw extends StructureWrapper {
 
     public static FeatureConfig config;
 
+    static class MyHackyFastFix extends FeatureConfig.MyStructureConfig {
+        @Override
+        public StructureSeparationSettings get() {
+            return new StructureSeparationSettings(1, 0, 0);
+        }
+    }
+
     static {
-        config = new FeatureConfig(new FeatureConfig.MyStructureConfig(1, 0, 0));
+        config = new FeatureConfig(new MyHackyFastFix());
     }
 
     public DungeonDimensionJigsaw() {

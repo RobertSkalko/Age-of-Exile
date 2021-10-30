@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.loot;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
+import com.robertx22.age_of_exile.capability.player.data.ScalingPlayerDiffData;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
@@ -199,7 +200,7 @@ public class LootInfo {
                 if (mobData != null) {
                     level = mobData.getLevel();
                 } else {
-                    level = LevelUtils.determineLevel(world, pos, player);
+                    level = LevelUtils.determineLevel(world, pos, player).level;
                 }
             }
         }
@@ -232,6 +233,8 @@ public class LootInfo {
         modifier += multi - 1F;
 
         if (mobKilled != null && mobData != null) {
+
+            modifier += ScalingPlayerDiffData.getDMGMulti(mobData.mobScalingDiff) - 1F;
 
             if (this.playerData != null) {
                 modifier += LootUtils.getLevelDistancePunishmentMulti(mobData.getLevel(), playerData.getLevel()) - 1F;

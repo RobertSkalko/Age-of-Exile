@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
 import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
+import com.robertx22.age_of_exile.database.data.transc_affix.TranscendentAffix;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -18,6 +19,7 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -50,6 +52,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public CraftedStatsData cr;
     @Store
     public UniqueStatsData uniqueStats;
+    @Store
+    public TranscendantAffixData trasc = null;
+    @Store
+    public UpgradeData up = new UpgradeData();
 
     // Stats
 
@@ -84,6 +90,44 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Store
     public boolean c = false; // corrupted
 
+    public void onUpgrade(UpgradeData.SlotType type) {
+
+        for (int i = 0; i < this.up.ups.size(); i++) {
+            UpgradeData.SlotType upgrade = this.up.ups.get(i);
+            if (upgrade.isEmptySlot) {
+                this.up.ups.set(i, type);
+                break;
+            }
+        }
+
+        try {
+            if (trasc == null) {
+                if (this.up.getUpgradeLevel() >= 5) {
+                    FilterListWrap<TranscendentAffix> wrap = ExileDB.TranscendentAffixes()
+                        .getFilterWrapped(x -> true);
+                    if (this.GetBaseGearType()
+                        .isWeapon()) {
+                        wrap = wrap.of(x -> x.can_on_wep);
+                    }
+                    TranscendentAffix affix = wrap.random();
+
+                    this.trasc = new TranscendantAffixData();
+                    this.trasc.id = affix.id;
+                    this.trasc.perc = 0;
+                }
+            } else {
+                if (this.up.getUpgradeLevel() >= 10) {
+                    this.trasc.perc = 50;
+                }
+                if (this.up.getUpgradeLevel() >= 15) {
+                    this.trasc.perc = 100;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean isCorrupted() {
         return c;
     }
@@ -100,8 +144,12 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return LevelUtils.levelToTier(lvl);
     }
 
-    public int getEffectiveLevel() {
-        return lvl + getRarity().bonus_effective_lvls;
+    public float getEffectiveLevel() {
+        float ilvl = lvl + getRarity().bonus_effective_lvls;
+
+        ilvl += ilvl * 0.05 * this.up.getUpgradeLevel();
+
+        return ilvl;
     }
 
     public boolean canPlayerWear(EntityData data) {
@@ -111,8 +159,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         }
 
         return true;
-
-        //return getRequirement().meetsReq(lvl, data);
 
     }
 
@@ -315,6 +361,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         IfNotNullAdd(baseStats, list);
 
         IfNotNullAdd(cr, list);
+
+        IfNotNullAdd(trasc, list);
 
         IfNotNullAdd(imp, list);
 

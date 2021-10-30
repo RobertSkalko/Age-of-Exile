@@ -7,43 +7,43 @@ public enum StatScaling {
 
     NONE {
         @Override
-        public float scale(float val, int lvl) {
+        public float scale(float val, float lvl) {
             return val;
         }
     },
     DOUBLE_AT_MAX_LVL {
         @Override
-        public float scale(float val, int lvl) {
+        public float scale(float val, float lvl) {
             return val + (val * LevelUtils.getMaxLevelMultiplier(lvl));
         }
     },
     NORMAL {
         @Override
-        public float scale(float val, int lvl) {
+        public float scale(float val, float lvl) {
             return val * GameBalanceConfig.get().NORMAL_STAT_SCALING.getMultiFor(lvl);
         }
     },
     STAT_REQ {
         @Override
-        public float scale(float val, int lvl) {
+        public float scale(float val, float lvl) {
             return val * GameBalanceConfig.get().STAT_REQ_SCALING.getMultiFor(lvl);
         }
     },
     CORE_STAT {
         @Override
-        public float scale(float val, int lvl) {
+        public float scale(float val, float lvl) {
             return val * GameBalanceConfig.get().CORE_STAT_SCALING.getMultiFor(lvl);
         }
     },
     LINEAR {
         @Override
-        public float scale(float val, int lvl) {
+        public float scale(float val, float lvl) {
             return val * lvl;
         }
     },
     SLOW {
         @Override
-        public float scale(float val, int lvl) {
+        public float scale(float val, float lvl) {
             return val * GameBalanceConfig.get().SLOW_STAT_SCALING.getMultiFor(lvl);
         }
     };
@@ -52,5 +52,5 @@ public enum StatScaling {
 
     }
 
-    public abstract float scale(float val, int lvl);
+    public abstract float scale(float val, float lvl);
 }

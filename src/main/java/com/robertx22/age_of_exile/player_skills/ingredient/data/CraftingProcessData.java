@@ -184,13 +184,16 @@ public class CraftingProcessData {
                     stat.multiplyBy(data.multi);
                     stats.add(stat);
                 }
+
                 if (s.GetStat() instanceof RandomCraftingStat) {
                     int random = (int) s.max;
                     for (int i = 0; i < random; i++) {
                         StatModifier mod = RandomUtils.randomFromList(ExileDB.Ingredients()
+                            .getFilterWrapped(e -> e.isAllowedInProfession(prof))
                             .random().stats);
                         while (mod.GetStat() instanceof DoNotTransferToCraftedMarker) {
-                            mod = RandomUtils.randomFromList(ExileDB.Ingredients()
+                            mod = mod = RandomUtils.randomFromList(ExileDB.Ingredients()
+                                .getFilterWrapped(e -> e.isAllowedInProfession(prof))
                                 .random().stats);
                         }
                         ExactStatData stat = mod.ToExactStat(perc, lvl);

@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:currency/plus_one_upgrade"
+    },
+    {
+      "item": "mmorpg:currency/plus_one_upgrade"
+    },
+    {
+      "item": "mmorpg:currency/plus_one_upgrade"
+    },
+    {
+      "item": "mmorpg:currency/plus_one_upgrade"
+    },
+    {
+      "item": "mmorpg:currency/plus_one_upgrade"
+    },
+    {
+      "item": "mmorpg:currency/plus_one_upgrade"
+    },
+    {
+      "item": "mmorpg:currency/plus_one_upgrade"
+    },
+    {
+      "item": "mmorpg:currency/plus_one_upgrade"
+    },
+    {
+      "item": "mmorpg:currency/plus_one_upgrade"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:currency/plus_two_upgrade"
+  }
+}

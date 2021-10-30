@@ -36,6 +36,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.PlusToSpecificSpellLevelStats;
 import com.robertx22.age_of_exile.aoe_data.database.synergy.SynergiesAdder;
 import com.robertx22.age_of_exile.aoe_data.database.tiers.DifficultyAdders;
+import com.robertx22.age_of_exile.aoe_data.database.transcendent_affix.TranscendentAdder;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearReg;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 
@@ -74,6 +75,7 @@ public class GeneratedData {
         new DungeonAffixAdder().registerAll();
         new Prefixes().registerAll();
         new Suffixes().registerAll();
+        new TranscendentAdder().registerAll();
 
         new MobAffixes().registerAll();
         new DimConfigs().registerAll();

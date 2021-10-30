@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UpgradeData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -229,6 +230,23 @@ public class TooltipUtils {
             .withStyle(TextFormatting.WHITE)
             .append(new StringTextComponent(lvl + "")
                 .withStyle(TextFormatting.YELLOW));
+    }
+
+    public static String STAR = "\u272B";
+
+    public static IFormattableTextComponent upgradeStars(GearItemData gear) {
+
+        String txt = "Upgrades: [";
+
+        for (UpgradeData.SlotType up : gear.up.ups) {
+
+            txt += up.format;
+            txt += STAR;
+        }
+
+        txt += "]";
+
+        return new StringTextComponent(txt);
     }
 
     public static IFormattableTextComponent dragOntoGearToUse() {

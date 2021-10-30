@@ -17,7 +17,7 @@ public class LevelScalingConfig {
         this.cap_to_max_lvl = cap_to_max_lvl;
     }
 
-    public float getMultiFor(int lvl) {
+    public float getMultiFor(float lvl) {
         if (cap_to_max_lvl) {
             lvl = MathHelper.clamp(lvl, 1, GameBalanceConfig.get().MAX_LEVEL);
         }

@@ -86,8 +86,10 @@ public class StatSoulData implements ISalvagable {
             return false;
         }
 
-        return GearSlot.isItemOfThisSlot(ExileDB.GearSlots()
+        Boolean can = GearSlot.isItemOfThisSlot(ExileDB.GearSlots()
             .get(slot), stack.getItem());
+
+        return can;
     }
 
     @Override
