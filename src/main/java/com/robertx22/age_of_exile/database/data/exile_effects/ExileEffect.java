@@ -22,6 +22,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -88,6 +89,11 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
     }
 
     public List<ExactStatData> getExactStats(World world, EntitySavedSpellData data) {
+
+        if (data.getCaster(world) == null) {
+            return Arrays.asList();
+        }
+
         return this.stats.stream()
             .map(x -> {
 

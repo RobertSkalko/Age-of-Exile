@@ -84,13 +84,20 @@ public class OnItemInteract {
                 }
             } else if (cursor.getItem() == SlashItems.SALVAGE_HAMMER.get()) {
                 ISalvagable data = ISalvagable.load(stack);
-                stack.setCount(0);
-                data.getSalvageResult(0)
-                    .forEach(x -> PlayerUtils.giveItem(stack, player));
+                if (data != null) {
+                    stack.shrink(1);
+                    data.getSalvageResult(0)
+                        .forEach(x -> PlayerUtils.giveItem(x, player));
+                    //    SoundUtils.ding(player.level, player.blockPosition());
+                    SoundUtils.playSound(player.level, player.blockPosition(), SoundEvents.COW_DEATH, 1, 1);
+// WTFFFFF why does the sound
+                    ci.setReturnValue(ItemStack.EMPTY);
+                    ci.cancel();
+                    return;
+                }
             }
 
             if (success) {
-
                 SoundUtils.ding(player.level, player.blockPosition());
                 SoundUtils.playSound(player.level, player.blockPosition(), SoundEvents.ANVIL_USE, 1, 1);
 

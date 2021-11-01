@@ -6,5 +6,6 @@ crit
 grudge
 hp
 lifesteal
+spell_crit
 ene
 spell_lifesteal

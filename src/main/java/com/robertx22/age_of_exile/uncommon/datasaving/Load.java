@@ -26,7 +26,6 @@ public class Load {
     public static EntityData Unit(Entity entity) {
         return entity.getCapability(EntityData.Data)
             .orElse(null);
-
     }
 
     public static RPGPlayerData playerRPGData(PlayerEntity player) {

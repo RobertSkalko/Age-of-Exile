@@ -5,7 +5,7 @@ issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/"
 [[mods]]
 modId="mmorpg"
 version="${file.jarVersion}"
-displayName="Age Of Exile"
+displayName="Mine and Slash"
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
@@ -13,7 +13,7 @@ displayName="Age Of Exile"
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="icon.png" #
 credits="Thanks for this example mod goes to Java"
-authors="Love, Cheese and small house plants"
+authors="mcrobertx22"
 description='''
 Turns Minecraft into a hack and slash RPG!
 '''

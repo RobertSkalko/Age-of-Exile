@@ -15,29 +15,37 @@ public class ScalingDifficultyEvents {
         ForgeEvents.registerForgeEvent(TickEvent.PlayerTickEvent.class, event -> {
             if (event.phase == TickEvent.Phase.END) {
                 if (event.player.tickCount % 20 == 0) {
-                    Load.playerRPGData(event.player).scalingDifficulty.add(ServerContainer.get().DIFFICULTY_PER_SECOND.get()
-                        .floatValue());
-                    Load.playerRPGData(event.player).scalingDifficulty.tickDeathCooldown(20);
-
+                    if (!event.player.level.isClientSide) {
+                        Load.playerRPGData(event.player).scalingDifficulty.add(ServerContainer.get().DIFFICULTY_PER_SECOND.get()
+                            .floatValue());
+                        Load.playerRPGData(event.player).scalingDifficulty.tickDeathCooldown(20);
+                    }
                 }
             }
         });
 
         ForgeEvents.registerForgeEvent(LivingDeathEvent.class, event -> {
-            if (EntityTypeUtils.isMob(event.getEntity())) {
-                if (event.getSource() != null && event.getSource()
-                    .getEntity() instanceof PlayerEntity) {
-                    Load.playerRPGData((PlayerEntity) event.getSource()
-                        .getEntity()).scalingDifficulty.add(ServerContainer.get().DIFFICULTY_PER_HOSTILE_KILL.get()
-                        .floatValue());
+            try {
+                if (event.getEntityLiving().level.isClientSide) {
+                    return;
+                }
+                if (EntityTypeUtils.isMob(event.getEntity())) {
+                    if (event.getSource() != null && event.getSource()
+                        .getEntity() instanceof PlayerEntity) {
+                        Load.playerRPGData((PlayerEntity) event.getSource()
+                            .getEntity()).scalingDifficulty.add(ServerContainer.get().DIFFICULTY_PER_HOSTILE_KILL.get()
+                            .floatValue());
 
+                    }
                 }
-            }
-            if (event.getEntityLiving() instanceof PlayerEntity) {
-                if (Load.playerRPGData((PlayerEntity) event.getEntityLiving()).scalingDifficulty.canAddDeathDifficulty()) {
-                    Load.playerRPGData((PlayerEntity) event.getEntityLiving()).scalingDifficulty.add(ServerContainer.get().DIFFICULTY_PER_DEATH.get()
-                        .floatValue());
+                if (event.getEntityLiving() instanceof PlayerEntity) {
+                    if (Load.playerRPGData((PlayerEntity) event.getEntityLiving()).scalingDifficulty.canAddDeathDifficulty()) {
+                        Load.playerRPGData((PlayerEntity) event.getEntityLiving()).scalingDifficulty.add(ServerContainer.get().DIFFICULTY_PER_DEATH.get()
+                            .floatValue());
+                    }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
 
