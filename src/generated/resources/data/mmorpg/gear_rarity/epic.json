@@ -1,17 +1,16 @@
 {
-  "affixes": {
-    "min_amount": 5,
-    "max_amount": 5,
-    "chance_for_more": 0
-  },
   "item_model_data_num": 4,
   "drops_after_tier": -1,
+  "affixes": 3,
+  "sockets": 1,
+  "upgrade_lvl_to_increase_rar": -1,
+  "rar_ess_per_sal": 0,
   "default_stat_percents": {
-    "min": 20,
+    "min": 0,
     "max": 100
   },
   "affix_stat_percents": {
-    "min": 20,
+    "min": 0,
     "max": 100
   },
   "unique_stat_percents": {
@@ -19,10 +18,10 @@
     "max": 100
   },
   "base_stat_percents": {
-    "min": 30,
-    "max": 90
+    "min": 0,
+    "max": 100
   },
-  "essence_per_sal": {
+  "dust_per_sal": {
     "min": 2,
     "max": 3
   },

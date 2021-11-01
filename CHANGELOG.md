@@ -1,3 +1,13 @@
+v.3.0.3
+
+Removed salvaging station, added salvage hammer! (stick and 6 cobbles to craft it)
+Just tap the hammer on an item to salvage it.
+
+Higher rarity items now drop rarity dust too when salvaged. Click to combine it into an upgrade stone.
+
+changed rarity datapacks (modpackers note)
+
+
 v.3.0.2
 
 Added a scaling per player difficulty system. [Experimental]

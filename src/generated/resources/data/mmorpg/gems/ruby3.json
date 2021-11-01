@@ -6,7 +6,7 @@
       "min": 6.4,
       "max": 19.2,
       "stat": "fire_resist",
-      "type": "FLAT"
+      "type": "PERCENT"
     }
   ],
   "on_jewelry_stats": [

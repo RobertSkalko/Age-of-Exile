@@ -108,13 +108,11 @@ immobilizing_eff_duration
 magic_find
 inc_effect_of_negative_buff_given
 all_dot_damage
-max_fire_resist
 curse_spell_dmg
 more_food_stats
 earth_focus
 physical_mana_leech
 critical_hit_per_10_dexterity
-accuracy_per_10_dexterity
 mana_per_10_wisdom
 bonus_mountain_biome_yield
 spell_lifesteal
@@ -162,7 +160,6 @@ water_vuln_crit
 chance_of_burn
 area_dmg
 defensive_eff_duration
-max_earth_resist
 hp_resto_to_blood
 fire_health_leech
 lifesteal
@@ -204,7 +201,6 @@ increased_quantity
 elemental_dot_damage
 spell_critical_damage
 spell_power
-max_water_resist
 give_taunt_stance_to_self_on_tick
 damage_cdr
 all_mana_leech
@@ -301,7 +297,6 @@ armor_per_10_mana
 curse_cdr
 earth_dot_damage
 arrow_spell_dmg
-max_elemental_resist
 double_drop_chance
 health_on_kill
 plus_to_fire

@@ -1,0 +1,26 @@
+{
+  "guid": "strong_wis_armor_suf",
+  "loc_name": "Of the Wise",
+  "only_one_per_item": true,
+  "weight": 10000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "armor_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "suffix",
+  "stats": [
+    {
+      "min": 4.0,
+      "max": 8.0,
+      "stat": "wisdom",
+      "type": "FLAT"
+    }
+  ]
+}

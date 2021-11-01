@@ -157,14 +157,10 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
 
         sword(SlotFamily.Weapon),
         scepter(SlotFamily.Weapon),
-        dagger(SlotFamily.Weapon),
         staff(SlotFamily.Weapon),
-        glove(SlotFamily.Weapon),
         hammer(SlotFamily.Weapon),
-        mace(SlotFamily.Weapon),
         spear(SlotFamily.Weapon),
         axe(SlotFamily.Weapon),
-        scythe(SlotFamily.Weapon),
         bow(SlotFamily.Weapon),
         crossbow(SlotFamily.Weapon),
 

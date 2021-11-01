@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.stats;
 
-import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
@@ -28,7 +27,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDesc, JsonExileRegistry<BaseDatapackStat> {
 
@@ -53,7 +51,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     // can't serialize
     public transient IStatEffect statEffect = null;
     public transient IStatCtxModifier statContextModifier;
-    public transient Function<BaseGearType, Boolean> isLocalTo = x -> false;
 
     public float min = -1000;
     public float max = Integer.MAX_VALUE;

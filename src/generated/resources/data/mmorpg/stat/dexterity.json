@@ -7,7 +7,7 @@
     "base": 0.0,
     "perc": true,
     "ele": "Physical",
-    "scale": "CORE_STAT",
+    "scale": "NORMAL",
     "core_stat_data": {
       "stats": [
         {
@@ -18,7 +18,7 @@
         {
           "v1": 2.0,
           "stat": "dodge",
-          "type": "PERCENT"
+          "type": "FLAT"
         }
       ]
     }

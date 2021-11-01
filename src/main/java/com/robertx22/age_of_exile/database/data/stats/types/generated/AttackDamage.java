@@ -32,7 +32,7 @@ public class AttackDamage extends ElementalStat {
 
         this.format = element.format.getName();
         this.icon = element.icon;
-        this.isLocalTo = x -> x.isWeapon();
+
     }
 
     @Override

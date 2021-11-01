@@ -1,0 +1,26 @@
+{
+  "guid": "mana_reg",
+  "loc_name": "Soothing",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "ring"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "prefix",
+  "stats": [
+    {
+      "min": 6.0,
+      "max": 15.0,
+      "stat": "mana_regen",
+      "type": "PERCENT"
+    }
+  ]
+}

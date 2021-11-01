@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.saveclasses.stat_soul;
 
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
-import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
@@ -10,21 +9,19 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.utils.LoadSave;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public class StatSoulData implements ISalvagable {
+public class StatSoulData implements ISalvagable, IRarity {
 
     @Store
     public int tier = 1;
@@ -104,19 +101,8 @@ public class StatSoulData implements ISalvagable {
     }
 
     @Override
-    public List<ItemStack> getSalvageResult(float salvageBonus) {
-        List<ItemStack> list = new ArrayList<>();
-        try {
-            SalvageOutput sal = RandomUtils.weightedRandom(ExileDB.SalvageOutputs()
-                .getFiltered(x -> x.isForItem(LevelUtils.tierToLevel(tier)))
-            );
-            if (sal != null) {
-                return sal.getResult(getRarity());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return Arrays.asList();
+    public List<ItemStack> getSalvageResult(ItemStack stack) {
+        return GearItemData.getSalvagedResults(new GearItemData.SalvagedItemInfo(tier, getRarity()));
     }
 
     @Override

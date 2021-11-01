@@ -96,18 +96,6 @@
       "stat": "spell_critical_damage",
       "type": "FLAT",
       "scale_to_lvl": false
-    },
-    {
-      "v1": 10.0,
-      "stat": "spell_accuracy",
-      "type": "FLAT",
-      "scale_to_lvl": true
-    },
-    {
-      "v1": 20.0,
-      "stat": "accuracy",
-      "type": "FLAT",
-      "scale_to_lvl": true
     }
   ]
 }

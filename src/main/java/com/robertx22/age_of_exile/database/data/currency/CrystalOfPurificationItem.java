@@ -59,6 +59,11 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
     }
 
     @Override
+    public float getBreakChance() {
+        return 25;
+    }
+
+    @Override
     public String getRarityRank() {
         return IRarity.RARE_ID;
     }
@@ -70,13 +75,13 @@ public class CrystalOfPurificationItem extends CurrencyItem implements ICurrency
 
     @Override
     public String locDescForLangFile() {
-        return "Removes 250 instability from item..";
+        return "Removes 250 instability from item.";
     }
 
     @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(this)
-            .define('t', CurrencyItems.CRYSTAL_OF_TRUTH.get())
+            .define('t', CurrencyItems.ORB_OF_TRANSMUTATION.get())
             .define('v', Items.TORCH)
             .define('o', SlashItems.T3_DUST())
             .pattern("ovo")

@@ -116,8 +116,6 @@ public class StatConditions implements ExileRegistryInit {
         )
         , x -> new StringMatchesCondition(EventData.SPELL, x));
 
-    public static StatCondition CRIT_ROLL_DIDNT_FAIL = new IsBooleanTrueCondition(EventData.ACCURACY_CRIT_FAILED).flipCondition();
-
     public static void loadClass() {
     }
 
@@ -131,7 +129,6 @@ public class StatConditions implements ExileRegistryInit {
         IS_TARGET_SHIELDED.addToSerializables();
         IF_CRIT.addToSerializables();
         IF_RANDOM_ROLL.addToSerializables();
-        CRIT_ROLL_DIDNT_FAIL.addToSerializables();
         IS_SPELL.addToSerializables();
         WEAPON_TYPE_MATCHES.addToSerializables();
         IF_NOT_CRIT.addToSerializables();

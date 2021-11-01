@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.affixes;
 
+import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.GearSlotPowerAffixesAdder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.NonWeaponSuffixes;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.WeaponSuffixes;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.adders.jewelry.JewelrySuffixes;
@@ -17,6 +18,8 @@ public class Suffixes implements IRandomDefault<Affix>, ExileRegistryInit {
 
     @Override
     public void registerAll() {
+
+        new GearSlotPowerAffixesAdder().registerAll();
 
         new WeaponSuffixes().registerAll();
         new NonWeaponSuffixes().registerAll();

@@ -3,8 +3,8 @@
   "MAX_LEVEL": 50,
   "NORMAL_STAT_SCALING": {
     "base_scaling": 1.0,
-    "per_level_scaling": 0.5,
-    "cap_to_max_lvl": true
+    "per_level_scaling": 0.2,
+    "cap_to_max_lvl": false
   },
   "SLOW_STAT_SCALING": {
     "base_scaling": 1.0,

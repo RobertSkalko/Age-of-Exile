@@ -63,11 +63,6 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     @Override
-    public StationType forStation() {
-        return StationType.MODIFY;
-    }
-
-    @Override
     public String locNameLangFileGUID() {
         return Registry.ITEM.getKey(this)
             .toString();
@@ -153,7 +148,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
         @Override
         public List<StatModifier> onArmor() {
-            return Arrays.asList(new StatModifier(MIN_RES, MAX_RES, new ElementalResist(ele)));
+            return Arrays.asList(new StatModifier(MIN_RES, MAX_RES, new ElementalResist(ele), ModType.PERCENT));
         }
 
         @Override

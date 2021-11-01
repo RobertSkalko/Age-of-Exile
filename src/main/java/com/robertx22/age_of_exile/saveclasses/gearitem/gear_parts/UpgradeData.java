@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
+import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
+import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.TextFormatting;
@@ -35,6 +37,21 @@ public class UpgradeData {
 
     @Store
     public List<SlotType> ups = new ArrayList<>();    // upgrades
+
+    public void regenerate(GearRarity rarity) {
+
+        this.ups.clear();
+
+        int upgrades = rarity.upgrades.random();
+
+        for (int i = 0; i < upgrades; i++) {
+            if (RandomUtils.roll(10)) {
+                ups.add(UpgradeData.SlotType.Gold);
+            } else {
+                ups.add(UpgradeData.SlotType.Empty);
+            }
+        }
+    }
 
     public int getHowManyTimesCanBeUpgraded() {
         return getTimesCanBeUpgradedInTotal() - getTimesUpgraded();

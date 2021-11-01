@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
@@ -48,20 +47,9 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
     public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
 
         GearItemData gear = Gear.Load(stack);
-
-        GearBlueprint gearPrint = new GearBlueprint(stack.getItem(), gear.lvl);
-        gearPrint.gearItemSlot.set(gear.gear_type);
-        gearPrint.rarity.set(gear.getRarity()
-            .getHigherRarity());
-        gearPrint.level.set(gear.lvl);
-
-        GearItemData newgear = gearPrint.createData();
-        gear.WriteOverDataThatShouldStay(newgear);
-
-        ItemStack result = ItemStack.EMPTY;
-
-        result = stack;
-        Gear.Save(result, newgear);
+        gear.upgradeToHigherRarity();
+        ItemStack result = stack.copy();
+        Gear.Save(result, gear);
 
         return result;
     }

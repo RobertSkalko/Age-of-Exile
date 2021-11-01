@@ -6,7 +6,7 @@
       "min": 5.0,
       "max": 20.0,
       "stat": "mana",
-      "type": "FLAT"
+      "type": "PERCENT"
     }
   ],
   "can_on_wep": false

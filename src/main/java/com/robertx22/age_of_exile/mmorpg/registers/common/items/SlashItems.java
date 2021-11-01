@@ -12,8 +12,7 @@ import com.robertx22.age_of_exile.player_skills.items.backpacks.mat_pouch.Materi
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.SalvageHammerItem;
-import com.robertx22.age_of_exile.vanilla_mc.items.SimpleMatItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.*;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
@@ -42,7 +41,10 @@ public class SlashItems {
     }
 
     public static RegObj<StatSoulItem> STAT_SOUL = Def.item(() -> new StatSoulItem());
+    public static RegObj<RarityEssenceItem> RARITY_ESSENCE = Def.item(() -> new RarityEssenceItem());
+    public static RegObj<RarityUpgradeStone> RARITY_UPGRADE = Def.item(() -> new RarityUpgradeStone());
     public static RegObj<LootCrateItem> LOOT_CRATE = Def.item(() -> new LootCrateItem());
+    public static RegObj<SourceOfStrengthItem> SOURCE_OF_STRENGTH = Def.item(() -> new SourceOfStrengthItem());
 
     public static RegObj<ProjectileItem> FIREBALL = Def.item(() -> new ProjectileItem("fireball"));
     public static RegObj<ProjectileItem> SNOWBALL = Def.item(() -> new ProjectileItem("snowball"));
@@ -103,7 +105,6 @@ public class SlashItems {
 
     static Item.Properties stationProp = new Item.Properties().tab(CreativeTabs.MyModTab);
 
-    public static RegObj<Item> GEAR_SALVAGE = Def.item("salvage_station", () -> new BlockItem(SlashBlocks.GEAR_SALVAGE.get(), stationProp));
     public static RegObj<Item> TELEPORTER_BLOCK = Def.item("teleporter", () -> new BlockItem(SlashBlocks.TELEPORTER.get(), stationProp));
     public static RegObj<Item> RUNEWORD_STATION = Def.item("runeword_station", () -> new BlockItem(SlashBlocks.RUNEWORD.get(), stationProp));
     public static RegObj<Item> PORTAL = Def.item("portal", () -> new BlockItem(SlashBlocks.PORTAL.get(), stationProp));

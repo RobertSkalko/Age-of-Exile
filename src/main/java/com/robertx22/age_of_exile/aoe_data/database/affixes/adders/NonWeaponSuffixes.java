@@ -20,9 +20,9 @@ public class NonWeaponSuffixes implements ExileRegistryInit {
             .add(Elements.Water, "Of the Yeti")
             .add(Elements.Earth, "Of the Snake")
 
-            .stats(x -> Arrays.asList(new StatModifier(10, 30, new ElementalResist(x), ModType.FLAT)))
+            .stats(x -> Arrays.asList(new StatModifier(10, 25, new ElementalResist(x), ModType.PERCENT)))
             .includesTags(SlotTag.jewelry_family, SlotTag.armor_family, SlotTag.offhand_family)
-            .Weight(4000)
+            .Weight(2000)
             .Suffix()
             .Build();
 

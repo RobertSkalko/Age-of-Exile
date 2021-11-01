@@ -29,8 +29,6 @@ public class Armor extends Stat implements IUsableStat {
         this.icon = "\u2748";
         this.format = TextFormatting.BLUE.getName();
 
-        this.isLocalTo = x -> x.isArmor();
-
         this.statEffect = new ArmorEffect();
 
     }
@@ -62,7 +60,7 @@ public class Armor extends Stat implements IUsableStat {
 
     @Override
     public String locNameForLangFile() {
-        return "Armor";
+        return "Physical Defense";
     }
 
     private static class SingletonHolder {

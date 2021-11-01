@@ -15,7 +15,7 @@ public class ArmorPrefixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("scaled")
             .Named("Scaled")
-            .stats(new StatModifier(0.5F, 1.5F, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 1.5F, Health.getInstance(), ModType.FLAT))
+            .stats(new StatModifier(3, 5, Armor.getInstance(), ModType.PERCENT), new StatModifier(2, 4, Health.getInstance(), ModType.PERCENT))
             .includesTags(SlotTag.armor_stat)
             .Prefix()
             .Build();
@@ -29,8 +29,7 @@ public class ArmorPrefixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("virile")
             .Named("Virile")
-            .stats(new StatModifier(1, 3, Health.getInstance(), ModType.FLAT))
-
+            .stats(new StatModifier(4, 8, Health.getInstance(), ModType.PERCENT))
             .includesTags(SlotTag.armor_family, SlotTag.shield, SlotTag.jewelry_family)
             .Prefix()
             .Build();

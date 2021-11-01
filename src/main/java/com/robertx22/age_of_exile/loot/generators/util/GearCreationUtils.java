@@ -7,11 +7,9 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.BaseStatsData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UpgradeData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -37,16 +35,8 @@ public class GearCreationUtils {
         data.lvl = blueprint.level.get();
         data.rarity = rarity.GUID();
 
-        //upgrades
-        int upgrades = rarity.upgrades.random();
-
-        for (int i = 0; i < upgrades; i++) {
-            if (RandomUtils.roll(10)) {
-                data.up.ups.add(UpgradeData.SlotType.Gold);
-            } else {
-                data.up.ups.add(UpgradeData.SlotType.Empty);
-            }
-        }
+        data.sockets.slots = rarity.sockets;
+        data.up.regenerate(rarity);
 
         if (rarity.is_unique_item && blueprint.uniquePart.get() != null) {
 

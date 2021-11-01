@@ -29,11 +29,6 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 250,
-          "name": "mmorpg:currency/crystal_of_truth"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 500,
           "name": "mmorpg:currency/number_reroll"
         },

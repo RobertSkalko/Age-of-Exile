@@ -318,7 +318,7 @@ public class CraftingProcessData {
 
         data.cr = new CraftedStatsData();
 
-        while (stats.size() > rar.affixes.max_amount) {
+        while (stats.size() > rar.affixes) {
             // don't allow more stats than rarity allows
             stats.remove(RandomUtils.RandomRange(0, stats.size() - 1));
         }

@@ -7,6 +7,7 @@
     "tag_requirements": [
       {
         "included": [
+          "necklace",
           "mage_weapon"
         ],
         "excluded": []
@@ -17,7 +18,7 @@
   "type": "suffix",
   "stats": [
     {
-      "min": 3.0,
+      "min": 6.0,
       "max": 20.0,
       "stat": "spell_critical_damage",
       "type": "FLAT"

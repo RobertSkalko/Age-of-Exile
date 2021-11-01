@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
+import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import static com.robertx22.age_of_exile.database.data.transc_affix.TranscendentAffix.Builder.of;
@@ -21,10 +22,10 @@ public class TranscendentAdder implements ExileRegistryInit {
         of("spell_lifesteal", "Bitter Vengeance", 1000, true, new StatModifier(2, 6, Stats.SPELL_LIFESTEAL.get()));
         of("lifesteal", "Taste of Blood", 1000, true, new StatModifier(2, 6, Stats.LIFESTEAL.get()));
 
-        of("armor", "Bulwark", 1000, false, new StatModifier(5, 20, Armor.getInstance()));
-        of("hp", "Eternity", 1000, false, new StatModifier(4, 16, Health.getInstance()));
-        of("ene", "Youth", 1000, false, new StatModifier(5, 20, Energy.getInstance()));
-        of("mana", "Brilliance", 1000, false, new StatModifier(5, 20, Mana.getInstance()));
+        of("armor", "Bulwark", 1000, false, new StatModifier(5, 20, Armor.getInstance(), ModType.PERCENT));
+        of("hp", "Eternity", 1000, false, new StatModifier(4, 16, Health.getInstance(), ModType.PERCENT));
+        of("ene", "Youth", 1000, false, new StatModifier(5, 20, Energy.getInstance(), ModType.PERCENT));
+        of("mana", "Brilliance", 1000, false, new StatModifier(5, 20, Mana.getInstance(), ModType.PERCENT));
 
     }
 }

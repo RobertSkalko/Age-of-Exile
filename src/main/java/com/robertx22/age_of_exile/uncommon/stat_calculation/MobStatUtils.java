@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.SpellDodge;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -157,11 +156,7 @@ public class MobStatUtils {
         stats.add(ExactStatData.scaleTo(0.5F, ModType.FLAT, HealthRegen.getInstance()
             .GUID(), lvl));
 
-        stats.add(ExactStatData.scaleTo(20, ModType.FLAT, DodgeRating.getInstance()
-            .GUID(), lvl));
-        stats.add(ExactStatData.scaleTo(9, ModType.FLAT, SpellDodge.getInstance()
-            .GUID(), lvl));
-        stats.add(ExactStatData.scaleTo(2, ModType.FLAT, Stats.ACCURACY.get()
+        stats.add(ExactStatData.scaleTo(1, ModType.FLAT, Stats.ACCURACY.get()
             .GUID(), lvl));
         stats.add(ExactStatData.scaleTo(10 * rar.StatMultiplier(), ModType.FLAT, Armor.getInstance()
             .GUID(), lvl));

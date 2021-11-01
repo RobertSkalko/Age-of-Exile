@@ -12,9 +12,9 @@
   "implicit_stats": [],
   "base_stats": [
     {
-      "min": 2.0,
-      "max": 6.0,
-      "stat": "health",
+      "min": 3.0,
+      "max": 7.5,
+      "stat": "elemental_resist",
       "type": "FLAT"
     },
     {

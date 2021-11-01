@@ -31,12 +31,6 @@ public interface ICurrencyItemEffect {
         return 0;
     }
 
-    public enum StationType {
-        MODIFY, SOCKET
-    }
-
-    StationType forStation();
-
     default boolean canItemBeModified(LocReqContext context) {
 
         if (context.isGear()) {

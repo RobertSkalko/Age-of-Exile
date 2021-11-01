@@ -55,8 +55,8 @@ public class UniqueNecklaces implements ExileRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(1, 2, AllAttributes.getInstance(), ModType.FLAT),
                 new StatModifier(10, 20, ManaRegen.getInstance(), ModType.PERCENT),
-                new StatModifier(-5, -15, new ElementalResist(Elements.Water), ModType.FLAT),
-                new StatModifier(-5, -15, new ElementalResist(Elements.Fire), ModType.FLAT)
+                new StatModifier(-5, -15, new ElementalResist(Elements.Water), ModType.PERCENT),
+                new StatModifier(-5, -15, new ElementalResist(Elements.Fire), ModType.PERCENT)
             ))
             .build();
 

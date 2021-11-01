@@ -200,7 +200,7 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(THORN_ARMOR)
-            .stat(10, 25, new ElementalResist(Elements.Earth), ModType.FLAT)
+            .stat(10, 25, new ElementalResist(Elements.Earth), ModType.PERCENT)
             .stat(2, 5, Armor.getInstance(), ModType.FLAT)
             .stat(2, 5, DodgeRating.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
@@ -216,7 +216,7 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(FROST_ARMOR)
-            .stat(10, 20, new ElementalResist(Elements.Water), ModType.FLAT)
+            .stat(10, 20, new ElementalResist(Elements.Water), ModType.PERCENT)
             .stat(20, 30, Armor.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .buildForEffect())
@@ -225,7 +225,7 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(DIVINE_SHIELD)
-            .stat(10, 15, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .stat(10, 15, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .stat(5, 15, Armor.getInstance(), ModType.FLAT)
             .addTags(EffectTags.defensive)
             .build();

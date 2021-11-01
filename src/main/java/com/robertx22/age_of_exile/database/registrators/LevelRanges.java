@@ -1,8 +1,10 @@
 package com.robertx22.age_of_exile.database.registrators;
 
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class LevelRanges {
@@ -15,20 +17,16 @@ public class LevelRanges {
 
     public static LevelRange fromTier(int tier) {
 
-        if (tier == 0) {
-            return STARTER;
-        }
-        if (tier == 1) {
-            return LOW;
-        }
-        if (tier == 2) {
-            return MIDDLE;
-        }
-        if (tier == 3) {
-            return HIGH;
-        }
-        if (tier == 4) {
-            return ENDGAME;
+        int lvl = LevelUtils.tierToLevel(tier);
+
+        try {
+            return allNormal().stream()
+                .filter(x -> x.isLevelInRange(lvl))
+                .sorted(Comparator.comparingInt(e -> -e.getMaxLevel()))
+                .findFirst()
+                .get();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return STARTER;

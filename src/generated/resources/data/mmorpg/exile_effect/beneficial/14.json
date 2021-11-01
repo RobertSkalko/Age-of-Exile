@@ -13,7 +13,7 @@
       "min": 10.0,
       "max": 20.0,
       "stat": "water_resist",
-      "type": "FLAT"
+      "type": "PERCENT"
     },
     {
       "min": 20.0,

@@ -6,13 +6,13 @@
       "min": 10.0,
       "max": 15.0,
       "stat": "fire_resist",
-      "type": "flat"
+      "type": "percent"
     },
     {
       "min": 10.0,
       "max": 15.0,
       "stat": "earth_resist",
-      "type": "flat"
+      "type": "percent"
     },
     {
       "min": 5.0,

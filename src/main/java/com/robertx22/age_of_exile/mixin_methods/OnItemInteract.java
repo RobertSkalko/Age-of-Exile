@@ -76,21 +76,21 @@ public class OnItemInteract {
                 LocReqContext ctx = new LocReqContext(stack, cursor);
                 if (ctx.effect.canItemBeModified(ctx)) {
                     ItemStack result = ctx.effect.modifyItem(ctx).stack;
-
                     stack.shrink(1);
                     PlayerUtils.giveItem(result, player);
-
                     success = true;
                 }
             } else if (cursor.getItem() == SlashItems.SALVAGE_HAMMER.get()) {
                 ISalvagable data = ISalvagable.load(stack);
+
+                if (data == null && stack.getItem() instanceof ISalvagable) {
+                    data = (ISalvagable) stack.getItem();
+                }
+
                 if (data != null) {
                     stack.shrink(1);
-                    data.getSalvageResult(0)
+                    data.getSalvageResult(stack)
                         .forEach(x -> PlayerUtils.giveItem(x, player));
-                    //    SoundUtils.ding(player.level, player.blockPosition());
-                    SoundUtils.playSound(player.level, player.blockPosition(), SoundEvents.COW_DEATH, 1, 1);
-// WTFFFFF why does the sound
                     ci.setReturnValue(ItemStack.EMPTY);
                     ci.cancel();
                     return;

@@ -21,8 +21,6 @@ import com.robertx22.age_of_exile.aoe_data.database.mob_rarities.MobRaritiesAdde
 import com.robertx22.age_of_exile.aoe_data.database.perks.AllPerks;
 import com.robertx22.age_of_exile.aoe_data.database.player_skills.PlayerSkillsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.runes.Runes;
-import com.robertx22.age_of_exile.aoe_data.database.salvage_outputs.SalvageOutputsAdder;
-import com.robertx22.age_of_exile.aoe_data.database.salvage_recipes.SalvageRecipes;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.spell_schools.SpellSchoolsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
@@ -89,10 +87,8 @@ public class GeneratedData {
         new AutoDatapackStats().registerAll();
 
         new FavorAdder().registerAll();
-        new SalvageOutputsAdder().registerAll();
         new PlayerSkillsAdder().registerAll();
         new BaseStatsAdder().registerAll();
-        new SalvageRecipes().registerAll();
 
         GameBalanceConfig c = new GameBalanceConfig();
         c.addToSerializables();

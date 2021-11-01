@@ -33,7 +33,7 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
         IngredientBuilder.of(IngredientItems.GUARDIAN_SCALES, IRarity.COMMON_ID)
             .allowedIn(PlayerSkillEnum.ALCHEMY)
             .allowedIn(PlayerSkillEnum.ARMOR_CRAFTING)
-            .stats(new StatModifier(2, 6, new ElementalResist(Elements.Water)))
+            .stats(new StatModifier(2, 6, new ElementalResist(Elements.Water), ModType.PERCENT))
             .stats(new StatModifier(2, 4, Armor.getInstance(), ModType.PERCENT))
             .build();
 
@@ -96,7 +96,7 @@ public class SlashIngredientsAdder implements ExileRegistryInit {
         IngredientBuilder.of(IngredientItems.YARROW_FLOWER, IRarity.UNCOMMON)
             .allowedIn(PlayerSkillEnum.ALCHEMY)
             .allowedIn(PlayerSkillEnum.COOKING)
-            .stats(new StatModifier(2, 6, new ElementalResist(Elements.Fire)))
+            .stats(new StatModifier(2, 6, new ElementalResist(Elements.Fire), ModType.PERCENT))
             .stats(new StatModifier(1, 3, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)))
             .build();
 

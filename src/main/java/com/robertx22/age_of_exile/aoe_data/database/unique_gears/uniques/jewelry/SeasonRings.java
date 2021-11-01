@@ -34,7 +34,7 @@ public class SeasonRings implements ExileRegistryInit {
                 new StatModifier(10, 10, SpecialStats.HEAL_CLEANSE, ModType.FLAT),
                 new StatModifier(5, 10, HealthRegen.getInstance(), ModType.PERCENT),
                 new StatModifier(10, 15, Stats.HEAL_STRENGTH.get(), ModType.FLAT),
-                new StatModifier(15, 25, new ElementalResist(Elements.Earth), ModType.FLAT)
+                new StatModifier(15, 25, new ElementalResist(Elements.Earth), ModType.PERCENT)
             ))
 
             .gearSet(GearSetsAdder.SEASONS_SET)
@@ -49,9 +49,9 @@ public class SeasonRings implements ExileRegistryInit {
             .setReplacesName()
 
             .stats(Arrays.asList(
-                new StatModifier(10, 20, new ElementalResist(Elements.Earth), ModType.FLAT),
-                new StatModifier(10, 20, new ElementalResist(Elements.Fire), ModType.FLAT),
-                new StatModifier(10, 20, new ElementalResist(Elements.Water), ModType.FLAT),
+                new StatModifier(10, 20, new ElementalResist(Elements.Earth), ModType.PERCENT),
+                new StatModifier(10, 20, new ElementalResist(Elements.Fire), ModType.PERCENT),
+                new StatModifier(10, 20, new ElementalResist(Elements.Water), ModType.PERCENT),
                 new StatModifier(25, 25, SpecialStats.BETTER_FOOD_BUFFS, ModType.FLAT),
                 new StatModifier(5, 10, Armor.getInstance(), ModType.PERCENT),
                 new StatModifier(5, 10, DodgeRating.getInstance(), ModType.PERCENT),
@@ -69,7 +69,7 @@ public class SeasonRings implements ExileRegistryInit {
                 BaseGearTypes.RING)
             .setReplacesName()
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
-                new StatModifier(20, 40, new ElementalResist(Elements.Water), ModType.FLAT),
+                new StatModifier(20, 40, new ElementalResist(Elements.Water), ModType.PERCENT),
                 new StatModifier(10, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.CHILL), ModType.FLAT),
                 new StatModifier(10, 20, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.PERCENT),
@@ -86,7 +86,7 @@ public class SeasonRings implements ExileRegistryInit {
             .setReplacesName()
 
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
-                new StatModifier(20, 40, new ElementalResist(Elements.Fire), ModType.FLAT),
+                new StatModifier(20, 40, new ElementalResist(Elements.Fire), ModType.PERCENT),
                 new StatModifier(10, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT),
                 new StatModifier(10, 20, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.PERCENT),

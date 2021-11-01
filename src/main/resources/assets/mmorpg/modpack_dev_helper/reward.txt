@@ -8,7 +8,6 @@ divine_missions_enchanted_diamond_axe
 divine_missions_enchanted_diamond_pickaxe
 minecraft_chests/end_city_treasure
 minecraft_ender_pearl
-mmorpg_dungeon_keys
 favor
 minecraft_iron_ingot
 aoe_exp

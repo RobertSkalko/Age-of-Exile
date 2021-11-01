@@ -7,7 +7,6 @@
     "side": "Source",
     "ifs": [
       "is_crit_true",
-      "is_accu_crit_roll_fail_true_is_false",
       "attack_type_is_attack"
     ],
     "effects": [

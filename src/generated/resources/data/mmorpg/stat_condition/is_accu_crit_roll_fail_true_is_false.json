@@ -1,6 +1,0 @@
-{
-  "bool_id": "accu_crit_roll_fail",
-  "id": "is_accu_crit_roll_fail_true_is_false",
-  "ser": "is_bool_true",
-  "is": false
-}

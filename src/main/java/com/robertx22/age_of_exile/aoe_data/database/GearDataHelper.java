@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -66,6 +67,7 @@ public interface GearDataHelper {
 
     public enum ArmorStat {
         ARMOR(6, 15, Armor.getInstance()),
+        ELE_DEF(6, 15, new ElementalResist(Elements.Elemental)),
         DODGE(6, 15, DodgeRating.getInstance()),
         HEALTH(4, 12, Health.getInstance());
 

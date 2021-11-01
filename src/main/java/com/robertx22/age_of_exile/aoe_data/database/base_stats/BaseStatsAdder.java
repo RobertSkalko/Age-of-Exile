@@ -46,9 +46,6 @@ public class BaseStatsAdder implements ExileRegistryInit {
         c.nonScaled(Stats.SPELL_CRIT_CHANCE.get(), 1);
         c.nonScaled(Stats.SPELL_CRIT_DAMAGE.get(), 0);
 
-        c.scaled(Stats.SPELL_ACCURACY.get(), 10);
-        c.scaled(Stats.ACCURACY.get(), 20);
-
         return c;
 
     }

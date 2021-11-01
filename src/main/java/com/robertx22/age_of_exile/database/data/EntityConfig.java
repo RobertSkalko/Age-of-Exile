@@ -3,13 +3,8 @@ package com.robertx22.age_of_exile.database.data;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.OptScaleExactStat;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.generated.PhysConvertToEle;
-import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
@@ -120,38 +115,6 @@ public class EntityConfig implements JsonExileRegistry<EntityConfig>, ISerializa
                 this.stats.addAll(stat.stats);
             }
         }
-    }
-
-    public static SpecialMobStats FIRE = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats WATER = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats NATURE = new SpecialMobStats(new OptScaleExactStat(50, new PhysConvertToEle(Elements.Earth)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-
-    public static SpecialMobStats FIRE_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats WATER_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats NATURE_RES = new SpecialMobStats(new OptScaleExactStat(50, new ElementalResist(Elements.Earth)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-
-    public static SpecialMobStats LESS_FIRE_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Fire)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats LESS_WATER_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Water)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-    public static SpecialMobStats LESS_NATURE_RES = new SpecialMobStats(new OptScaleExactStat(-25, new ElementalResist(Elements.Earth)), new OptScaleExactStat(10, ExtraMobDropsStat.getInstance()));
-
-    public static SpecialMobStats LESS_DROPS = new SpecialMobStats(new OptScaleExactStat(-15, ExtraMobDropsStat.getInstance()));
-
-    public static SpecialMobStats SLOWER_PROJ() {
-        return new SpecialMobStats(new OptScaleExactStat(-30, Stats.PROJECTILE_SPEED.get()));
-    }
-
-    ;
-
-    public static SpecialMobStats fire() {
-        return new SpecialMobStats(FIRE, FIRE_RES, LESS_WATER_RES, SLOWER_PROJ());
-    }
-
-    public static SpecialMobStats water() {
-        return new SpecialMobStats(WATER, WATER_RES, LESS_FIRE_RES, SLOWER_PROJ());
-    }
-
-    public static SpecialMobStats nature() {
-        return new SpecialMobStats(NATURE, NATURE_RES, SLOWER_PROJ());
     }
 
 }

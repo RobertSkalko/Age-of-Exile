@@ -23,7 +23,7 @@ public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, 
 
     public int MAX_LEVEL = 50;
 
-    public LevelScalingConfig NORMAL_STAT_SCALING = new LevelScalingConfig(1, 0.5F, true);
+    public LevelScalingConfig NORMAL_STAT_SCALING = new LevelScalingConfig(1, 0.2F, false);
     public LevelScalingConfig SLOW_STAT_SCALING = new LevelScalingConfig(1, 0.02F, true);
     public LevelScalingConfig MANA_COST_SCALING = new LevelScalingConfig(1, 0.2F, true);
     public LevelScalingConfig CORE_STAT_SCALING = new LevelScalingConfig(1, 0.05F, true);

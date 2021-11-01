@@ -40,10 +40,6 @@ public class SpellDodgeEffect extends BaseDamageEffect {
         if (RandomUtils.roll(chance)) {
             effect.data.getNumber(EventData.NUMBER).number = 0;
             effect.data.setBoolean(EventData.IS_DODGED, true);
-        } else {
-            if (RandomUtils.roll(chance)) {
-                effect.data.setBoolean(EventData.ACCURACY_CRIT_FAILED, true);
-            }
         }
 
         return effect;

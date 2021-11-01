@@ -18,9 +18,9 @@
   "stats": [
     {
       "min": 5.0,
-      "max": 25.0,
+      "max": 12.0,
       "stat": "mana",
-      "type": "FLAT"
+      "type": "PERCENT"
     }
   ]
 }

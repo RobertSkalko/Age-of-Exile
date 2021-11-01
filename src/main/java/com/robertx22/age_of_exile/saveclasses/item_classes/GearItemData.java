@@ -6,10 +6,11 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
-import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
 import com.robertx22.age_of_exile.database.data.transc_affix.TranscendentAffix;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
+import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.*;
@@ -21,7 +22,6 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
@@ -90,6 +90,26 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Store
     public boolean c = false; // corrupted
 
+    public void upgradeToHigherRarity() {
+
+        GearRarity old = this.getRarity();
+        GearRarity rar = this.getRarity()
+            .getHigherRarity();
+
+        this.rarity = rar.GUID();
+
+        int affixes = rar.affixes - old.affixes;
+
+        for (int i = 0; i < affixes; i++) {
+            this.affixes.addOneRandomAffix(this);
+        }
+
+        this.up.regenerate(rar);
+
+        sockets.slots = rar.sockets;
+
+    }
+
     public void onUpgrade(UpgradeData.SlotType type) {
 
         for (int i = 0; i < this.up.ups.size(); i++) {
@@ -145,9 +165,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     public float getEffectiveLevel() {
+
         float ilvl = lvl + getRarity().bonus_effective_lvls;
 
-        ilvl += ilvl * 0.05 * this.up.getUpgradeLevel();
+        ilvl += ilvl * (0.025 * this.up.getUpgradeLevel());
 
         return ilvl;
     }
@@ -417,22 +438,49 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         }
     }
 
-    @Override
-    public List<ItemStack> getSalvageResult(float salvageBonus) {
-        if (this.can_sal) {
-            try {
-                SalvageOutput sal = RandomUtils.weightedRandom(ExileDB.SalvageOutputs()
-                    .getFiltered(x -> x.isForItem(this.lvl))
-                );
-                if (sal != null) {
-                    return sal.getResult(getRarity());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return Arrays.asList(ItemStack.EMPTY);
+    public static class SalvagedItemInfo {
 
-        } else return Arrays.asList(ItemStack.EMPTY);
+        public int tier;
+        public GearRarity rarity;
+
+        public SalvagedItemInfo(int tier, GearRarity rarity) {
+            this.tier = tier;
+            this.rarity = rarity;
+        }
+    }
+
+    public static List<ItemStack> getSalvagedResults(SalvagedItemInfo info) {
+        try {
+            List<ItemStack> list = new ArrayList<>();
+
+            ItemStack dust = new ItemStack(ProfessionItems.SALVAGED_ESSENCE_MAP.get(SkillItemTier.of(info.tier))
+                .get());
+
+            dust.setCount(info.rarity.dust_per_sal.random());
+
+            list.add(dust);
+
+            if (info.rarity.rar_ess_per_sal > 0) {
+                ItemStack essence = info.rarity.getRarityEssenceStack();
+                essence.setCount(info.rarity.rar_ess_per_sal);
+                list.add(essence);
+            }
+
+            return list;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Arrays.asList(ItemStack.EMPTY);
+    }
+
+    @Override
+    public List<ItemStack> getSalvageResult(ItemStack stack) {
+        if (this.can_sal) {
+            return getSalvagedResults(new SalvagedItemInfo(getTier(), getRarity()));
+        }
+
+        return Arrays.asList(ItemStack.EMPTY);
     }
 
     @Override

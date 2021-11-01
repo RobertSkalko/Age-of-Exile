@@ -10,8 +10,6 @@ ocean_tasks
 general_tasks
 general_rewards
 hunt_rewards
-aoe_tasks
-dungeon_keys
 favor
 aoe_exp
 wisdom_rewards

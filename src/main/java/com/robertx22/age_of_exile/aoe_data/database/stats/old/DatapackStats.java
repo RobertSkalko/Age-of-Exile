@@ -31,29 +31,30 @@ import java.util.UUID;
 
 public class DatapackStats implements ExileRegistryInit {
 
+    // todo crit rating stat
     public static Stat INT = new CoreStat("intelligence", "Intelligence", CoreStatData.of(Arrays.asList(
         new OptScaleExactStat(0.25F, Stats.STYLE_DAMAGE.get(PlayStyle.magic), ModType.FLAT),
-        new OptScaleExactStat(1, Mana.getInstance(), ModType.PERCENT)
+        new OptScaleExactStat(1, Mana.getInstance(), ModType.FLAT)
     )));
     public static Stat STR = new CoreStat("strength", "Strength", CoreStatData.of(Arrays.asList(
         new OptScaleExactStat(0.25F, Stats.STYLE_DAMAGE.get(PlayStyle.melee), ModType.FLAT),
-        new OptScaleExactStat(2, Armor.getInstance(), ModType.PERCENT)
+        new OptScaleExactStat(2, Armor.getInstance(), ModType.FLAT)
     )));
     public static Stat DEX = new CoreStat("dexterity", "Dexterity", CoreStatData.of(Arrays.asList(
         new OptScaleExactStat(0.25F, Stats.STYLE_DAMAGE.get(PlayStyle.ranged), ModType.FLAT),
-        new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.PERCENT)
+        new OptScaleExactStat(2, DodgeRating.getInstance(), ModType.FLAT)
     )));
     public static Stat VIT = new CoreStat("vitality", "Vitality", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(2, Health.getInstance(), ModType.PERCENT),
-        new OptScaleExactStat(1, HealthRegen.getInstance(), ModType.PERCENT)
+        new OptScaleExactStat(2, Health.getInstance(), ModType.FLAT),
+        new OptScaleExactStat(0.1F, HealthRegen.getInstance(), ModType.FLAT)
     )));
     public static Stat WIS = new CoreStat("wisdom", "Wisdom", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(2, Mana.getInstance(), ModType.PERCENT),
-        new OptScaleExactStat(1, ManaRegen.getInstance(), ModType.PERCENT)
+        new OptScaleExactStat(2, Mana.getInstance(), ModType.FLAT),
+        new OptScaleExactStat(0.1F, ManaRegen.getInstance(), ModType.FLAT)
     )));
     public static Stat AGI = new CoreStat("agility", "Agility", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(2, Energy.getInstance(), ModType.PERCENT),
-        new OptScaleExactStat(1, EnergyRegen.getInstance(), ModType.PERCENT)
+        new OptScaleExactStat(2, Energy.getInstance(), ModType.FLAT),
+        new OptScaleExactStat(0.1F, EnergyRegen.getInstance(), ModType.FLAT)
     )));
 
     public static Stat HEAL_TO_SPELL_DMG = new AddPerPercentOfOther(Stats.HEAL_STRENGTH.get(), SpellDamage.getInstance());
@@ -74,7 +75,6 @@ public class DatapackStats implements ExileRegistryInit {
     public static Stat MANA_PER_10_WIS = new MoreXPerYOf(DatapackStats.WIS, Mana.getInstance(), 10);
     public static Stat MINUS_MANA_PER_10_VIT = new MoreXPerYOf(DatapackStats.VIT, Mana.getInstance(), 10);
 
-    public static Stat ACCURACY_PER_DEX = new MoreXPerYOf(DatapackStats.DEX, Stats.ACCURACY.get(), 10);
     public static Stat CRIT_PER_STR = new MoreXPerYOf(DatapackStats.STR, Stats.CRIT_CHANCE.get(), 10);
     public static Stat CRIT_PER_DEX = new MoreXPerYOf(DatapackStats.DEX, Stats.CRIT_CHANCE.get(), 10);
     public static Stat HP_REGEN_PER_WISDOM = new MoreXPerYOf(DatapackStats.WIS, HealthRegen.getInstance(), 10);
@@ -96,7 +96,6 @@ public class DatapackStats implements ExileRegistryInit {
         CRIT_DMG_PER_10_ATK_SPEED_REG.addToSerializables();
         PROJ_DMG_PER_STR.addToSerializables();
         ARMOR_PER_MANA.addToSerializables();
-        ACCURACY_PER_DEX.addToSerializables();
         HP_PER_DEX.addToSerializables();
         HP_REGEN_PER_WISDOM.addToSerializables();
         CRIT_PER_DEX.addToSerializables();

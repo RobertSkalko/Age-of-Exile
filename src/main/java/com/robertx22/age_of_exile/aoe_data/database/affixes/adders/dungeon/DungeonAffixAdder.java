@@ -35,7 +35,7 @@ public class DungeonAffixAdder implements ExileRegistryInit {
             .add(Elements.Earth, "Of Diseases")
             .stats(x -> Arrays.asList(
                 new StatModifier(1, 2, new AttackDamage(x), ModType.FLAT),
-                new StatModifier(20, 30, new ElementalResist(x), ModType.FLAT)
+                new StatModifier(20, 30, new ElementalResist(x), ModType.PERCENT)
             ))
             .DungeonSuffix()
             .Build();
@@ -43,12 +43,6 @@ public class DungeonAffixAdder implements ExileRegistryInit {
         AffixBuilder.Normal("armored_mobs")
             .Named("Armored")
             .stats(new StatModifier(20, 50, Armor.getInstance(), ModType.PERCENT))
-            .DungeonPrefix()
-            .Build();
-
-        AffixBuilder.Normal("accurate_mobs")
-            .Named("Accurate")
-            .stats(new StatModifier(20, 50, Stats.ACCURACY.get(), ModType.PERCENT))
             .DungeonPrefix()
             .Build();
 

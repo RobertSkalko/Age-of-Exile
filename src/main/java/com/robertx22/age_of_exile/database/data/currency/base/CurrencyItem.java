@@ -40,11 +40,6 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
 
     public abstract String GUID();
 
-    @Override
-    public StationType forStation() {
-        return StationType.MODIFY;
-    }
-
     public CurrencyItem(String name) {
         super(new ItemDefault().stacksTo(64)
             .tab(CreativeTabs.GemRuneCurrency));

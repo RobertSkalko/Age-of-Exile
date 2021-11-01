@@ -26,7 +26,7 @@ public class HelmetRunewords implements ExileRegistryInit {
             .stats(Arrays.asList(
                 new StatModifier(20, 30, ManaRegen.getInstance(), ModType.PERCENT),
                 new StatModifier(10, 25, Mana.getInstance(), ModType.FLAT),
-                new StatModifier(10, 25, new ElementalResist(Elements.Fire), ModType.FLAT)
+                new StatModifier(10, 25, new ElementalResist(Elements.Fire), ModType.PERCENT)
             ))
             .makeRuneWordOnly(Arrays.asList(RuneItem.RuneType.ITA, RuneItem.RuneType.DOS, RuneItem.RuneType.TOQ))
             .devComment("Mana focused caster helmet")

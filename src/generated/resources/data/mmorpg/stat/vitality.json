@@ -7,18 +7,18 @@
     "base": 0.0,
     "perc": true,
     "ele": "Physical",
-    "scale": "CORE_STAT",
+    "scale": "NORMAL",
     "core_stat_data": {
       "stats": [
         {
           "v1": 2.0,
           "stat": "health",
-          "type": "PERCENT"
+          "type": "FLAT"
         },
         {
-          "v1": 1.0,
+          "v1": 0.1,
           "stat": "health_regen",
-          "type": "PERCENT"
+          "type": "FLAT"
         }
       ]
     }

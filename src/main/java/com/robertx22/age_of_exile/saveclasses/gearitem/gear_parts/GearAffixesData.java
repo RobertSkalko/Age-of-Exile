@@ -106,39 +106,37 @@ public class GearAffixesData implements IGearPartTooltip {
         for (int i = 0; i < rar
             .maximumOfOneAffixType(); i++) {
 
-            if (RandomUtils.roll(rar
-                .AffixChance())) {
-                AffixData suffix = new AffixData(Affix.Type.suffix);
-                suffix.RerollFully(gear);
-                suf.add(suffix);
-            }
+            AffixData suffix = new AffixData(Affix.Type.suffix);
+            suffix.RerollFully(gear);
+            suf.add(suffix);
 
-            if (RandomUtils.roll(rar
-                .AffixChance())) {
-                AffixData prefix = new AffixData(Affix.Type.prefix);
-                prefix.RerollFully(gear);
-                pre.add(prefix);
-            }
+            AffixData prefix = new AffixData(Affix.Type.prefix);
+            prefix.RerollFully(gear);
+            pre.add(prefix);
+
         }
 
         int minaffixes = rar
-            .minAffixes();
-        int affixesToGen = minaffixes - getNumberOfAffixes();
+            .affixes;
+        int affixesToGen = minaffixes - (this.getNumberOfAffixes());
 
         while (affixesToGen > 0) {
-            if (getNumberOfPrefixes() > getNumberOfSuffixes()) {
-                AffixData suffix = new AffixData(Affix.Type.suffix);
-                suffix.RerollFully(gear);
-                suf.add(suffix);
-            } else {
-                AffixData prefix = new AffixData(Affix.Type.prefix);
-                prefix.RerollFully(gear);
-                pre.add(prefix);
-            }
-
+            addOneRandomAffix(gear);
             affixesToGen--;
-        }
 
+        }
+    }
+
+    public void addOneRandomAffix(GearItemData gear) {
+        if (getNumberOfPrefixes() > getNumberOfSuffixes()) {
+            AffixData suffix = new AffixData(Affix.Type.suffix);
+            suffix.RerollFully(gear);
+            suf.add(suffix);
+        } else {
+            AffixData prefix = new AffixData(Affix.Type.prefix);
+            prefix.RerollFully(gear);
+            pre.add(prefix);
+        }
     }
 
     public boolean hasSuffix() {

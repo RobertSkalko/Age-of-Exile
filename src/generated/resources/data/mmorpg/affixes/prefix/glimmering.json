@@ -17,16 +17,16 @@
   "type": "prefix",
   "stats": [
     {
-      "min": 5.0,
-      "max": 20.0,
+      "min": 4.0,
+      "max": 10.0,
       "stat": "mana",
-      "type": "FLAT"
+      "type": "PERCENT"
     },
     {
-      "min": 5.0,
-      "max": 15.0,
+      "min": 4.0,
+      "max": 6.0,
       "stat": "armor",
-      "type": "FLAT"
+      "type": "PERCENT"
     }
   ]
 }

@@ -9,7 +9,7 @@
       "min": 2.0,
       "max": 6.0,
       "stat": "fire_resist",
-      "type": "FLAT"
+      "type": "PERCENT"
     },
     {
       "min": 1.0,

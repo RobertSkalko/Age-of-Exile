@@ -20,16 +20,12 @@ public interface IGearRarity extends Rarity, SalvagableItem, IStatPercents {
 
     MinMax uniqueStatPercents();
 
-    int AffixChance();
-
-    int maxAffixes();
-
-    int minAffixes();
-
     float itemTierPower();
 
+    int getAffixAmount();
+
     default int maximumOfOneAffixType() {
-        return maxAffixes() / 2;
+        return getAffixAmount() / 2;
     }
 
     default MinMax getStatPercentsFor(IGearPart.Part part) {

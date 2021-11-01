@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.Sl
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -28,15 +27,8 @@ public class JewelrySuffixes implements ExileRegistryInit {
             .add(Elements.Fire, "Of Embers")
             .add(Elements.Water, "Of Ice")
             .add(Elements.Earth, "Of Venom")
-            .stats(x -> Arrays.asList(new StatModifier(2, 15, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
+            .stats(x -> Arrays.asList(new StatModifier(3, 6, Stats.ELEMENTAL_DAMAGE.get(x), ModType.FLAT)))
             .includesTags(SlotTag.jewelry_family)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("of_energy")
-            .Named("Of Energy")
-            .stats(new StatModifier(5, 15, Energy.getInstance(), ModType.PERCENT))
-            .includesTags(SlotTag.jewelry_family, SlotTag.armor_family)
             .Suffix()
             .Build();
 
@@ -98,7 +90,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_the_troll")
             .Named("Of The Troll")
-            .stats(new StatModifier(0.5F, 2, HealthRegen.getInstance(), ModType.FLAT))
+            .stats(new StatModifier(3, 6, HealthRegen.getInstance(), ModType.PERCENT))
             .includesTags(SlotTag.jewelry_family, SlotTag.armor_family)
             .Weight(200)
             .Suffix()
@@ -106,7 +98,7 @@ public class JewelrySuffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("of_spirit_markings")
             .Named("Of Spirit Markings")
-            .stats(new StatModifier(0.3F, 2, ManaRegen.getInstance(), ModType.FLAT))
+            .stats(new StatModifier(3, 6, ManaRegen.getInstance(), ModType.PERCENT))
             .includesTags(SlotTag.jewelry_family, SlotTag.armor_family)
             .Weight(200)
             .Suffix()
@@ -122,13 +114,6 @@ public class JewelrySuffixes implements ExileRegistryInit {
         AffixBuilder.Normal("of_affluence")
             .Named("Of Affluence")
             .stats(new StatModifier(3, 10, TreasureQuantity.getInstance(), ModType.FLAT))
-            .includesTags(SlotTag.jewelry_family)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("jewel_accuracy_suffix")
-            .Named("Of Accuracy")
-            .stats(new StatModifier(5, 20, Stats.ACCURACY.get()))
             .includesTags(SlotTag.jewelry_family)
             .Suffix()
             .Build();

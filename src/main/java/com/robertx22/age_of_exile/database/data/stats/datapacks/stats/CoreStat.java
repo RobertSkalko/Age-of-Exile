@@ -38,7 +38,7 @@ public class CoreStat extends BaseDatapackStat implements ICoreStat {
         this.is_perc = true;
         this.min = 0;
         this.group = StatGroup.CORE;
-        this.scaling = StatScaling.CORE_STAT;
+        this.scaling = StatScaling.NORMAL;
         this.is_long = false;
 
         this.locname = locname;
@@ -57,42 +57,42 @@ public class CoreStat extends BaseDatapackStat implements ICoreStat {
         return str;
     }
 
-    public float getPercent(StatData data) {
-        return (data.getValue() - 1) * 100;
+    public float getValue(StatData data) {
+        return data.getValue();
     }
 
     public List<ITextComponent> getCoreStatTooltip(EntityData unitdata, StatData data) {
 
         TooltipInfo info = new TooltipInfo(unitdata, null);
 
-        int perc = (int) getPercent(data);
+        int val = (int) getValue(data);
 
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(
             new StringTextComponent("For each point: ").withStyle(TextFormatting.GREEN));
-        getMods(0, 1).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        getMods(1).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         list.add(new SText(""));
 
         list.add(
             new StringTextComponent("Total: ").withStyle(TextFormatting.GREEN));
-        getMods(perc, 1).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        getMods(val).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         return list;
 
     }
 
-    public List<ExactStatData> getMods(int perc, int lvl) {
+    public List<ExactStatData> getMods(int amount) {
 
-        List<ExactStatData> list = new ArrayList<>();
-        for (OptScaleExactStat x : this.statsThatBenefit()) {
-            ExactStatData exactStatData = x.toExactStat(1);
-            exactStatData.percentIncrease = perc;
-            exactStatData.increaseByAddedPercent();
-            list.add(exactStatData);
-        }
-        return list;
+        return data.stats.stream()
+            .map(x -> {
+                ExactStatData exact = ExactStatData.of(amount * x.v1, x.getStat()
+                    .getStat(), x.getStat()
+                    .getModType(), 1);
+                return exact;
+            })
+            .collect(Collectors.toList());
 
     }
 
@@ -105,8 +105,8 @@ public class CoreStat extends BaseDatapackStat implements ICoreStat {
 
     @Override
     public void addToOtherStats(EntityData unitdata, InCalcStatData data) {
-        int perc = (int) getPercent(data.getCalculated());
-        getMods(perc, unitdata.getLevel()).forEach(x -> x.applyStats(unitdata));
+
+        getMods((int) data.getValue()).forEach(x -> x.applyStats(unitdata));
     }
 
     @Override

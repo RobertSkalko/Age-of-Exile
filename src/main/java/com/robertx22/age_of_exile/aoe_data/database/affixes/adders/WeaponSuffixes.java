@@ -14,30 +14,9 @@ public class WeaponSuffixes implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        AffixBuilder.Normal("of_steadiness")
-            .Named("Of Steadiness")
-            .stats(new StatModifier(5, 20, Stats.ACCURACY.get(), ModType.FLAT))
-            .includesTags(SlotTag.weapon_family)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("of_precision")
-            .Named("Of Precision")
-            .stats(new StatModifier(2, 6, Stats.CRIT_CHANCE.get(), ModType.FLAT))
-            .includesTags(SlotTag.weapon_family)
-            .Suffix()
-            .Build();
-
         AffixBuilder.Normal("of_vampirism")
             .Named("Of Vampirism")
             .stats(new StatModifier(1, 5, Stats.LIFESTEAL.get(), ModType.FLAT))
-            .includesTags(SlotTag.weapon_family)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("of_brutality")
-            .Named("Of Brutality")
-            .stats(new StatModifier(3, 20, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
             .includesTags(SlotTag.weapon_family)
             .Suffix()
             .Build();
@@ -81,20 +60,6 @@ public class WeaponSuffixes implements ExileRegistryInit {
             .Named("Of Spell Damage")
             .stats(new StatModifier(6, 15, SpellDamage.getInstance(), ModType.FLAT))
             .includesTags(SlotTag.mage_weapon, SlotTag.jewelry_family)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("of_focus")
-            .Named("Of Focus")
-            .stats(new StatModifier(1, 8, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT))
-            .includesTags(SlotTag.mage_weapon)
-            .Suffix()
-            .Build();
-
-        AffixBuilder.Normal("of_devastation")
-            .Named("Of Devastation")
-            .stats(new StatModifier(3, 20, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT))
-            .includesTags(SlotTag.mage_weapon)
             .Suffix()
             .Build();
 

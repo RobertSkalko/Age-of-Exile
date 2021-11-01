@@ -55,7 +55,7 @@ public class NegativeEffects implements ExileRegistryInit {
         ExileEffectBuilder.of(SHRED)
             .maxStacks(3)
             .stat(-10, -25, Armor.getInstance(), ModType.FLAT)
-            .stat(-1, -3, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .stat(-1, -3, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .stat(-2, -5, Armor.getInstance(), ModType.PERCENT)
             .build();
 
@@ -63,7 +63,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(1)
             .stat(-20, -50, Armor.getInstance(), ModType.FLAT)
             .stat(-10, -25, DodgeRating.getInstance(), ModType.PERCENT)
-            .stat(-5, -10, new ElementalResist(Elements.Elemental))
+            .stat(-5, -10, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .build();
 
         ExileEffectBuilder.of(GROUNDING)
@@ -80,7 +80,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .stat(-1, -3, Armor.getInstance(), ModType.PERCENT)
             .stat(-1, -3, DodgeRating.getInstance(), ModType.PERCENT)
-            .stat(-1, -3, new ElementalResist(Elements.Elemental))
+            .stat(-1, -3, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .build();
 
         ExileEffectBuilder.of(AGONY)
@@ -139,7 +139,7 @@ public class NegativeEffects implements ExileRegistryInit {
         ExileEffectBuilder.of(TORMENT)
             .maxStacks(1)
             .vanillaStat(VanillaStatData.create(MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
-            .stat(-5, -10, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .stat(-5, -10, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.dotDamageOnTick(TORMENT.effectId, SpellCalcs.TORMENT, Elements.Elemental)
                     .onTick(20D))
@@ -194,7 +194,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(ELE_WEAKNESS)
-            .stat(-15, -15, new ElementalResist(Elements.Elemental), ModType.FLAT)
+            .stat(-15, -15, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .build();
 
         ExileEffectBuilder.of(BLIND)

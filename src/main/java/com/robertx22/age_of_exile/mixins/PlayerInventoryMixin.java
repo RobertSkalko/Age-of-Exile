@@ -26,7 +26,6 @@ import java.util.List;
 @Mixin(PlayerInventory.class)
 public class PlayerInventoryMixin {
 
-
     @Shadow
     @Final
     public PlayerEntity player;
@@ -57,7 +56,7 @@ public class PlayerInventoryMixin {
 
                         if (info.canSalvage(stack)) {
 
-                            List<ItemStack> results = gear.getSalvageResult(0);
+                            List<ItemStack> results = gear.getSalvageResult(stack);
 
                             stack.shrink(1);
 

@@ -17,8 +17,8 @@
   "type": "suffix",
   "stats": [
     {
-      "min": 2.0,
-      "max": 15.0,
+      "min": 3.0,
+      "max": 6.0,
       "stat": "all_earth_damage",
       "type": "FLAT"
     }

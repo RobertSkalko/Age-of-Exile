@@ -1,11 +1,10 @@
 {
-  "affixes": {
-    "min_amount": 0,
-    "max_amount": 0,
-    "chance_for_more": 0
-  },
   "item_model_data_num": 1,
   "drops_after_tier": -1,
+  "affixes": 0,
+  "sockets": 1,
+  "upgrade_lvl_to_increase_rar": -1,
+  "rar_ess_per_sal": 0,
   "default_stat_percents": {
     "min": 0,
     "max": 100
@@ -22,7 +21,7 @@
     "min": 0,
     "max": 75
   },
-  "essence_per_sal": {
+  "dust_per_sal": {
     "min": 1,
     "max": 1
   },

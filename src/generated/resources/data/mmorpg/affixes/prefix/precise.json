@@ -1,0 +1,27 @@
+{
+  "guid": "precise",
+  "loc_name": "Precise",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "necklace",
+          "weapon_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "prefix",
+  "stats": [
+    {
+      "min": 4.0,
+      "max": 8.0,
+      "stat": "critical_hit",
+      "type": "FLAT"
+    }
+  ]
+}

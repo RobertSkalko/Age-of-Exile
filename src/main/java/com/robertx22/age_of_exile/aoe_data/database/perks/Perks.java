@@ -52,9 +52,6 @@ public class Perks implements ExileRegistryInit {
 
         PerkBuilder.stat("physical_damage", new OptScaleExactStat(2, Stats.ELEMENTAL_DAMAGE.get(Elements.Physical), ModType.FLAT));
 
-        PerkBuilder.stat(new OptScaleExactStat(5, Stats.SPELL_ACCURACY.get(), ModType.PERCENT));
-        PerkBuilder.stat(new OptScaleExactStat(5, Stats.ACCURACY.get(), ModType.PERCENT));
-
         PerkBuilder.stat(new OptScaleExactStat(2, Stats.LIFESTEAL.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(2, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT));

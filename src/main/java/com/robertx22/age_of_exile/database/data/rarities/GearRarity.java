@@ -3,8 +3,10 @@ package com.robertx22.age_of_exile.database.data.rarities;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientTextureUtils;
 import com.robertx22.library_of_exile.registry.IAutoGson;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGson<GearRarity> {
@@ -19,29 +21,21 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
         return GearRarity.class;
     }
 
-    public static class Part {
-        public int min_amount;
-        public int max_amount;
-        public int chance_for_more;
-
-        public Part(int min_amount, int max_amount, int chance_for_more) {
-            this.min_amount = min_amount;
-            this.max_amount = max_amount;
-            this.chance_for_more = chance_for_more;
-        }
-    }
-
-    public Part affixes;
-
     public int item_model_data_num = -1;
 
     public int drops_after_tier = -1;
+
+    public int affixes = 0;
+    public int sockets = 1;
+    public int upgrade_lvl_to_increase_rar = -1;
+
+    public int rar_ess_per_sal = 0;
 
     public MinMax default_stat_percents = new MinMax(0, 100);
     public MinMax affix_stat_percents = new MinMax(0, 100);
     public MinMax unique_stat_percents = new MinMax(0, 100);
     public MinMax base_stat_percents = new MinMax(0, 100);
-    public MinMax essence_per_sal = new MinMax(1, 1);
+    public MinMax dust_per_sal = new MinMax(1, 1);
     public MinMax upgrades = new MinMax(0, 0);
 
     public int item_tier = -1;
@@ -59,6 +53,36 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
 
     transient ResourceLocation glintFull;
     transient ResourceLocation glintTexBorder;
+
+    public boolean canUpgradeRarityIfUpgradeLevelIsHighEnough() {
+        return this.hasHigherRarity() && upgrade_lvl_to_increase_rar > 0;
+    }
+
+    public ItemStack getRarityUpgradeStack() {
+        ItemStack stack = new ItemStack(SlashItems.RARITY_UPGRADE.get());
+        stack.getOrCreateTag()
+            .putString("rar", GUID());
+        stack.getOrCreateTag()
+            .putInt("CustomModelData", this.item_model_data_num);
+        return stack;
+    }
+
+    public ItemStack getRarityEssenceStack() {
+        ItemStack stack = new ItemStack(SlashItems.RARITY_ESSENCE.get());
+
+        stack.getOrCreateTag()
+            .putString("rar", GUID());
+        stack.getOrCreateTag()
+            .putInt("CustomModelData", this.item_model_data_num);
+
+        return stack;
+    }
+
+    public static GearRarity getRarityFromEssence(ItemStack stack) {
+        return ExileDB.GearRarities()
+            .get(stack.getOrCreateTag()
+                .getString("rar"));
+    }
 
     public ResourceLocation getGlintTextureFull() {
 
@@ -114,23 +138,13 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     }
 
     @Override
-    public int AffixChance() {
-        return affixes.chance_for_more;
-    }
-
-    @Override
-    public int maxAffixes() {
-        return affixes.max_amount;
-    }
-
-    @Override
-    public int minAffixes() {
-        return affixes.min_amount;
-    }
-
-    @Override
     public float itemTierPower() {
         return item_tier_power;
+    }
+
+    @Override
+    public int getAffixAmount() {
+        return affixes;
     }
 
     @Override

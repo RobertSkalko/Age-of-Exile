@@ -21,8 +21,8 @@ public class FabledJewelry implements ExileRegistryInit {
                 BaseGearTypes.RING)
             .setReplacesName()
             .stats(Arrays.asList(
-                new StatModifier(10, 15, new ElementalResist(Elements.Fire), ModType.FLAT),
-                new StatModifier(10, 15, new ElementalResist(Elements.Earth), ModType.FLAT),
+                new StatModifier(10, 15, new ElementalResist(Elements.Fire), ModType.PERCENT),
+                new StatModifier(10, 15, new ElementalResist(Elements.Earth), ModType.PERCENT),
                 new StatModifier(5, 5, DatapackStats.GLOBAL_CRIT_CHANCE_PER_MAGIC_FIND_25, ModType.FLAT),
                 new StatModifier(10, 10, DatapackStats.GLOBAL_CRIT_DMG_PER_ITEM_FIND_25, ModType.FLAT)
             ))

@@ -18,10 +18,10 @@
   "type": "suffix",
   "stats": [
     {
-      "min": 0.3,
-      "max": 2.0,
+      "min": 3.0,
+      "max": 6.0,
       "stat": "mana_regen",
-      "type": "FLAT"
+      "type": "PERCENT"
     }
   ]
 }

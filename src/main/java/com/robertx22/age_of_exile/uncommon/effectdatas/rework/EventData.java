@@ -22,7 +22,6 @@ public class EventData {
     public static String RESOURCE_TYPE = "resource_type";
     public static String RESTORE_TYPE = "restore_type";
     public static String ACCURACY = "accuracy";
-    public static String ACCURACY_CRIT_FAILED = "accu_crit_roll_fail";
     public static String SPELL = "spell";
     public static String WEAPON_TYPE = "weapon_type";
     public static String IS_BASIC_ATTACK = "is_basic_atk";

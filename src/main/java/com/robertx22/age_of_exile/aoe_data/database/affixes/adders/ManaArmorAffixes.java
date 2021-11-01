@@ -16,21 +16,23 @@ public class ManaArmorAffixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("glimmering")
             .Named("Glimmering")
-            .stats(new StatModifier(5, 20, Mana.getInstance(), ModType.FLAT), new StatModifier(5, 15, Armor.getInstance(), ModType.FLAT))
+            .stats(new StatModifier(4, 10, Mana.getInstance(), ModType.PERCENT),
+                new StatModifier(4, 6, Armor.getInstance(), ModType.PERCENT))
             .includesTags(SlotTag.armor_family)
             .Prefix()
             .Build();
 
         AffixBuilder.Normal("seraphim")
             .Named("Seraphim's")
-            .stats(new StatModifier(5, 20, Mana.getInstance(), ModType.FLAT), new StatModifier(3, 10, Health.getInstance(), ModType.FLAT))
+            .stats(new StatModifier(4, 10, Mana.getInstance(), ModType.PERCENT),
+                new StatModifier(3, 6, Health.getInstance(), ModType.PERCENT))
             .includesTags(SlotTag.armor_family)
             .Prefix()
             .Build();
 
         AffixBuilder.Normal("azure")
             .Named("Azure")
-            .stats(new StatModifier(5, 25, Mana.getInstance(), ModType.FLAT))
+            .stats(new StatModifier(5, 12, Mana.getInstance(), ModType.PERCENT))
             .includesTags(SlotTag.armor_family)
             .Prefix()
             .Build();

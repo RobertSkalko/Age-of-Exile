@@ -123,9 +123,4 @@ public class BackpackUpgradeItem extends TieredItem implements IShapelessRecipe,
         });
     }
 
-    @Override
-    public StationType forStation() {
-        return StationType.MODIFY;
-    }
-
 }

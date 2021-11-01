@@ -21,8 +21,6 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
-import com.robertx22.age_of_exile.database.data.salvage_outputs.SalvageOutput;
-import com.robertx22.age_of_exile.database.data.salvage_recipes.SalvageRecipe;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
 import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -111,10 +109,6 @@ public class ExileDB {
         return Database.getRegistry(ExileRegistryTypes.DIMENSION_CONFIGS);
     }
 
-    public static ExileRegistryContainer<SalvageOutput> SalvageOutputs() {
-        return Database.getRegistry(ExileRegistryTypes.SALVAGE_OUTPUT);
-    }
-
     public static ExileRegistryContainer<StatCondition> StatConditions() {
         return Database.getRegistry(ExileRegistryTypes.STAT_CONDITION);
     }
@@ -133,10 +127,6 @@ public class ExileDB {
 
     public static ExileRegistryContainer<ExileEffect> ExileEffects() {
         return Database.getRegistry(ExileRegistryTypes.EXILE_EFFECT);
-    }
-
-    public static ExileRegistryContainer<SalvageRecipe> SalvageRecipes() {
-        return Database.getRegistry(ExileRegistryTypes.SALVAGE_RECIPE);
     }
 
     public static ExileRegistryContainer<FavorRank> FavorRanks() {

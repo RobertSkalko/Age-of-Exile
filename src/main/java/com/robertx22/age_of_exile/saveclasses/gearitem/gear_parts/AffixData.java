@@ -69,7 +69,6 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     public void RerollNumbers(GearItemData gear) {
         perc = getMinMax(gear)
             .random();
-
     }
 
     public final Affix BaseAffix() {

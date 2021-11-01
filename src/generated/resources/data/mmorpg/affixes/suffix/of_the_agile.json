@@ -20,7 +20,7 @@
   "type": "suffix",
   "stats": [
     {
-      "min": 1.0,
+      "min": 2.0,
       "max": 6.0,
       "stat": "agility",
       "type": "FLAT"

@@ -24,7 +24,7 @@
       "min": -5.0,
       "max": -10.0,
       "stat": "elemental_resist",
-      "type": "FLAT"
+      "type": "PERCENT"
     }
   ]
 }

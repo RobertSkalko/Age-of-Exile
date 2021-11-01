@@ -77,8 +77,11 @@ public class AffixBuilder {
     }
 
     public AffixBuilder coreStat(Stat stat) {
-        return this.stats(new StatModifier(1, 6, stat, ModType.FLAT));
+        return this.stats(new StatModifier(2, 6, stat, ModType.FLAT));
+    }
 
+    public AffixBuilder bigCoreStat(Stat stat) {
+        return this.stats(new StatModifier(4, 8, stat, ModType.FLAT));
     }
 
     public AffixBuilder stats(StatModifier... stats) {

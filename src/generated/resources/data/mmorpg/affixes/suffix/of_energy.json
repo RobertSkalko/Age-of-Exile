@@ -7,8 +7,7 @@
     "tag_requirements": [
       {
         "included": [
-          "jewelry_family",
-          "armor_family"
+          "ring"
         ],
         "excluded": []
       }
@@ -18,7 +17,7 @@
   "type": "suffix",
   "stats": [
     {
-      "min": 5.0,
+      "min": 6.0,
       "max": 15.0,
       "stat": "energy",
       "type": "PERCENT"

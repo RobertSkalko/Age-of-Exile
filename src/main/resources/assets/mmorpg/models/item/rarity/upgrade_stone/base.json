@@ -1,0 +1,11 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "mmorpg:items/stat_soul/stat_soul"
+	},
+	"overrides": [
+		{ "predicate": {  "custom_model_data": 2 }, "model": "mmorpg:item/rarity/upgrade_stone/uncommon"},
+		{ "predicate": {  "custom_model_data": 3 }, "model": "mmorpg:item/rarity/upgrade_stone/rare"},
+		{ "predicate": {  "custom_model_data": 4 }, "model": "mmorpg:item/rarity/upgrade_stone/epic"}
+	]
+}

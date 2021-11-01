@@ -6,7 +6,7 @@
       "min": 4.8,
       "max": 14.400001,
       "stat": "water_resist",
-      "type": "FLAT"
+      "type": "PERCENT"
     }
   ],
   "on_jewelry_stats": [

@@ -1,0 +1,26 @@
+{
+  "guid": "energy_reg",
+  "loc_name": "Invirogating",
+  "only_one_per_item": true,
+  "weight": 1000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "ring"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "prefix",
+  "stats": [
+    {
+      "min": 6.0,
+      "max": 15.0,
+      "stat": "energy_regen",
+      "type": "PERCENT"
+    }
+  ]
+}

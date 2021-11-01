@@ -73,9 +73,7 @@ public class GearTooltipUtils {
                 tip.addAll(gear.getCraftedStats()
                     .GetTooltipString(info, gear));
             }
-            if (gear.trasc != null) {
-                tip.addAll(gear.trasc.GetTooltipString(info, gear));
-            }
+
         } else {
             List<ExactStatData> stats = new ArrayList<>();
             gear.affixes.getAllAffixesAndSockets()

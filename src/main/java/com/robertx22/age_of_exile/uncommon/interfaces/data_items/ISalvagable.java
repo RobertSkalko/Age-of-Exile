@@ -6,14 +6,14 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public interface ISalvagable extends IRarity {
+public interface ISalvagable {
 
     enum SalvageContext {
         SALVAGE_STATION
 
     }
 
-    List<ItemStack> getSalvageResult(float salvageBonus);
+    List<ItemStack> getSalvageResult(ItemStack stack);
 
     boolean isSalvagable(SalvageContext context);
 

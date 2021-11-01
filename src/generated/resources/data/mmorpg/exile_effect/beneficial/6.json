@@ -13,7 +13,7 @@
       "min": 10.0,
       "max": 25.0,
       "stat": "earth_resist",
-      "type": "FLAT"
+      "type": "PERCENT"
     },
     {
       "min": 2.0,
