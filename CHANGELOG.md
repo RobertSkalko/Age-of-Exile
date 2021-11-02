@@ -6,6 +6,7 @@ Just tap the hammer on an item to salvage it.
 Higher rarity items now drop rarity dust too when salvaged. Click to combine it into an upgrade stone.
 
 changed rarity datapacks (modpackers note)
+changed core stats to give only flat stats, and made core stats scale normally
 
 
 v.3.0.2

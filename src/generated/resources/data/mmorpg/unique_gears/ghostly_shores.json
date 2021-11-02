@@ -37,12 +37,6 @@
       "max": -6.0,
       "stat": "vitality",
       "type": "flat"
-    },
-    {
-      "min": 15.0,
-      "max": 25.0,
-      "stat": "bonus_regen_in_water",
-      "type": "flat"
     }
   ],
   "base_stats": [],

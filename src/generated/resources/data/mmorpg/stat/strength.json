@@ -11,8 +11,8 @@
     "core_stat_data": {
       "stats": [
         {
-          "v1": 0.25,
-          "stat": "melee_dmg",
+          "v1": 0.2,
+          "stat": "physical_weapon_damage",
           "type": "FLAT"
         },
         {

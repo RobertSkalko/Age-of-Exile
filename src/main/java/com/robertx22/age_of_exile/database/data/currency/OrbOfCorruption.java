@@ -90,7 +90,7 @@ public class OrbOfCorruption extends CurrencyItem implements ICurrencyItemEffect
     public ShapedRecipeBuilder getRecipe() {
         return shaped(CurrencyItems.ORB_OF_CORRUPTION.get())
             .define('#', SlashItems.MYTHIC_ESSENCE.get())
-            .define('t', CurrencyItems.ORB_OF_INFINITY.get())
+            .define('t', CurrencyItems.ORB_OF_TRANSMUTATION.get())
             .define('v', Items.EMERALD)
             .define('o', SlashItems.GOLDEN_ORB.get())
             .pattern("v#v")

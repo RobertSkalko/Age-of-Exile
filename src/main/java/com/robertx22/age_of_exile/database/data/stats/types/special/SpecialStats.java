@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseHealEffect;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BasePotionEffect;
-import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseRegenEffect;
 import com.robertx22.age_of_exile.database.data.stats.effects.base.BaseSpecialStatDamageEffect;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -40,33 +39,6 @@ public class SpecialStats {
 
     }
 
-    public static SpecialStat BONUS_REGEN_IN_WATER = new SpecialStat("bonus_regen_in_water",
-        format("Your Regeneration effects are " + VAL1 + "% stronger inside water."),
-
-        new BaseRegenEffect() {
-
-            @Override
-            public EffectSides Side() {
-                return EffectSides.Source;
-            }
-
-            @Override
-            public int GetPriority() {
-                return 0;
-            }
-
-            @Override
-            public RestoreResourceEvent activate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                effect.increaseByPercent(data.getValue());
-                return effect;
-            }
-
-            @Override
-            public boolean canActivate(RestoreResourceEvent effect, StatData data, Stat stat) {
-                return effect.source.isInWater();
-            }
-        }
-    );
     public static SpecialStat PERC_SELF_HP_DMG_WHEN_IMMOBILZING = new SpecialStat("perc_self_hp_dmg_when_immo",
         format("Deal " + VAL1 + "% of your health as " + Elements.Earth.getIconNameDmg() + " when you cast immobilizing effects"),
         new BasePotionEffect() {

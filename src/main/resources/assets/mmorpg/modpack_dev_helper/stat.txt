@@ -6,7 +6,6 @@ fire_mana_leech
 mana_on_spell_hit
 bonus_exp_for_t4_mob
 offensive_eff_duration
-bonus_regen_in_water
 accuracy
 dmg_when_low_hp
 energy_regen

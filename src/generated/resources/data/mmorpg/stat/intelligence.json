@@ -11,13 +11,13 @@
     "core_stat_data": {
       "stats": [
         {
-          "v1": 0.25,
-          "stat": "magic_dmg",
+          "v1": 0.2,
+          "stat": "spell_power",
           "type": "FLAT"
         },
         {
-          "v1": 1.0,
-          "stat": "mana",
+          "v1": 2.0,
+          "stat": "elemental_resist",
           "type": "FLAT"
         }
       ]

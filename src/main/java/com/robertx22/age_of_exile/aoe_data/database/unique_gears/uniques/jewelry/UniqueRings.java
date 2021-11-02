@@ -49,8 +49,7 @@ public class UniqueRings implements ExileRegistryInit {
                 new StatModifier(6, 15, Stats.RESOURCE_ON_KILL.get(ResourceType.mana), ModType.FLAT),
                 new StatModifier(10, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT),
                 new StatModifier(5, 10, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT),
-                new StatModifier(-3, -6, DatapackStats.VIT, ModType.FLAT),
-                new StatModifier(15, 25, SpecialStats.BONUS_REGEN_IN_WATER, ModType.FLAT)
+                new StatModifier(-3, -6, DatapackStats.VIT, ModType.FLAT)
             ))
 
             .build();
