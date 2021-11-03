@@ -9,17 +9,21 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 
 public class OnTrackEntity {
 
-
     public static void onPlayerStartTracking(ServerPlayerEntity serverPlayerEntity, Entity entity) {
 
         try {
+
+            if (entity.level.isClientSide) {
+                return;
+            }
+
             if (entity instanceof LivingEntity) {
                 if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {
                     return;
                 }
                 if (entity.is(serverPlayerEntity) == false) {
                     Packets.sendToClient(serverPlayerEntity,
-                            Unit.getUpdatePacketFor((LivingEntity) entity, Load.Unit(entity))
+                        Unit.getUpdatePacketFor((LivingEntity) entity, Load.Unit(entity))
                     );
 
                 }

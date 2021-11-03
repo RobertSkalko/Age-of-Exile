@@ -6,6 +6,8 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -34,4 +36,11 @@ public abstract class ItemStackMixin {
         OnItemStoppedUsingCastImbuedSpell.onStoppedUsing(stack, world, user, remainingUseTicks, ci);
     }
 
+    @Inject(method = {"use"}, cancellable = true, at = {@At("HEAD")})
+    public void onUseItemstackmethod(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<ActionResult<ItemStack>> ci) {
+        ItemStack stack = (ItemStack) (Object) this;
+
+        OnItemStoppedUsingCastImbuedSpell.crossbow(stack, world, user, hand, ci);
+
+    }
 }

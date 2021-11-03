@@ -1,4 +1,6 @@
-v.3.0.3
+v.4.0.3
+
+changed major version to 4 to differentiate from 1.15
 
 Removed salvaging station, added salvage hammer! (stick and 6 cobbles to craft it)
 Just tap the hammer on an item to salvage it.
@@ -7,6 +9,8 @@ Higher rarity items now drop rarity dust too when salvaged. Click to combine it 
 
 changed rarity datapacks (modpackers note)
 changed core stats to give only flat stats, and made core stats scale normally
+
+should allow crossbows to shoot spells
 
 
 v.3.0.2

@@ -8,7 +8,7 @@
   },
   "SLOW_STAT_SCALING": {
     "base_scaling": 1.0,
-    "per_level_scaling": 0.02,
+    "per_level_scaling": 0.01,
     "cap_to_max_lvl": true
   },
   "MANA_COST_SCALING": {

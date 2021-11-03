@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 public enum PlayerSkillEnum implements IGUID {
 
-    ALCHEMY("alchemy", WikiType.ALCHEMY_EXP, Words.Alchemy, Words.AlchemyDesc, TextFormatting.LIGHT_PURPLE, 3) {
+    ALCHEMY("alchemy", null, Words.Alchemy, Words.AlchemyDesc, TextFormatting.LIGHT_PURPLE, 3) {
         @Override
         public Item getToolCraftItem() {
             return Items.WHEAT_SEEDS;
@@ -31,7 +31,7 @@ public enum PlayerSkillEnum implements IGUID {
                 .get();
         }
     },
-    INSCRIBING("inscribing", WikiType.SCRIBE_EXP, Words.Inscribing, Words.InscribingDesc, TextFormatting.AQUA, 2) {
+    INSCRIBING("inscribing", null, Words.Inscribing, Words.InscribingDesc, TextFormatting.AQUA, 2) {
         @Override
         public Item getCraftResultItem() {
             return RandomUtils.randomFromList(CraftedConsumableItems.SCROLLS)
@@ -43,7 +43,7 @@ public enum PlayerSkillEnum implements IGUID {
             return Items.PAPER;
         }
     },
-    COOKING("cooking", WikiType.COOKING_EXP, Words.Cooking, Words.CookingDesc, TextFormatting.RED, 1.5F) {
+    COOKING("cooking", null, Words.Cooking, Words.CookingDesc, TextFormatting.RED, 1.5F) {
         @Override
         public Item getCraftResultItem() {
             return RandomUtils.randomFromList(CraftedConsumableItems.FOODS)
@@ -56,7 +56,7 @@ public enum PlayerSkillEnum implements IGUID {
         }
     },
 
-    JEWEL_CRAFTING("jewel_craft", WikiType.COOKING_EXP, Words.JewelCrafting, Words.JewelCraftingDesc, TextFormatting.GREEN, 1) {
+    JEWEL_CRAFTING("jewel_craft", null, Words.JewelCrafting, Words.JewelCraftingDesc, TextFormatting.GREEN, 1) {
         @Override
         public boolean isGearCraftingProf() {
             return true;
@@ -77,7 +77,7 @@ public enum PlayerSkillEnum implements IGUID {
                 .get();
         }
     },
-    ARMOR_CRAFTING("armor_craft", WikiType.COOKING_EXP, Words.ArmorCrafting, Words.ArmorCraftingDesc, TextFormatting.BLUE, 1) {
+    ARMOR_CRAFTING("armor_craft", null, Words.ArmorCrafting, Words.ArmorCraftingDesc, TextFormatting.BLUE, 1) {
         @Override
         public boolean isGearCraftingProf() {
             return true;
@@ -97,7 +97,7 @@ public enum PlayerSkillEnum implements IGUID {
             return Items.IRON_CHESTPLATE;
         }
     },
-    WEAPON_CRAFTING("wep_craft", WikiType.COOKING_EXP, Words.WeaponCrafting, Words.WeaponCraftingDesc, TextFormatting.RED, 1) {
+    WEAPON_CRAFTING("wep_craft", null, Words.WeaponCrafting, Words.WeaponCraftingDesc, TextFormatting.RED, 1) {
         @Override
         public boolean isGearCraftingProf() {
             return true;

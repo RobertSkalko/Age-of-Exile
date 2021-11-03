@@ -94,7 +94,7 @@ public class RPGGuiOverlay extends AbstractGui {
                 return;
             }
 
-            if (ClientConfigs.getConfig().PLAYER_GUI_TYPE == PlayerGUIs.NONE) {
+            if (ClientConfigs.getConfig().PLAYER_GUI_TYPE.get() == PlayerGUIs.NONE) {
                 return;
             }
 
@@ -118,7 +118,7 @@ public class RPGGuiOverlay extends AbstractGui {
                 areaLvlTicks = 200;
             }
 
-            OverlayTypes.map.get(ClientConfigs.getConfig().GUI_POSITION)
+            OverlayTypes.map.get(ClientConfigs.getConfig().GUI_POSITION.get())
                 .forEach(c -> {
 
                     if (c.type.shouldRender(data, mc.player)) {

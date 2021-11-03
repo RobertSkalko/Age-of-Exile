@@ -68,7 +68,7 @@ public class BaseGearsAdder implements ExileRegistryInit, GearDataHelper {
             .build();
 
         BaseGearBuilder.weapon(BaseGearTypes.CROSSBOW, GearSlots.CROSBOW, WeaponTypes.crossbow)
-            .tags(new TagList(SlotTag.crossbow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
+            .tags(new TagList(SlotTag.crossbow, SlotTag.ranger_casting_weapon, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
             .build();
 
         BaseGearBuilder.weapon(BaseGearTypes.AXE, GearSlots.AXE, WeaponTypes.axe)

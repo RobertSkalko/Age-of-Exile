@@ -53,12 +53,13 @@ public class ItemGlintMixin {
                 }
 
                 RenderSystem.enableBlend();
-                RenderSystem.color4f(1.0F, 1.0F, 1.0F, ClientConfigs.getConfig().ITEM_RARITY_OPACITY); // transparency
+                RenderSystem.color4f(1.0F, 1.0F, 1.0F, ClientConfigs.getConfig().ITEM_RARITY_OPACITY.get()
+                    .floatValue()); // transparency
 
                 ResourceLocation tex = rar
                     .getGlintTextureFull();
 
-                if (ClientConfigs.getConfig().ITEM_RARITY_BACKGROUND_TYPE == ClientConfigs.GlintType.BORDER) {
+                if (ClientConfigs.getConfig().ITEM_RARITY_BACKGROUND_TYPE.get() == ClientConfigs.GlintType.BORDER) {
                     tex = rar
                         .getGlintTextureBorder();
                 }

@@ -111,8 +111,6 @@ curse_spell_dmg
 more_food_stats
 earth_focus
 physical_mana_leech
-critical_hit_per_10_dexterity
-mana_per_10_wisdom
 bonus_mountain_biome_yield
 spell_lifesteal
 heal_cdr
@@ -174,7 +172,6 @@ chance_of_burn_on_crit
 water_weapon_damage
 elemental_vuln_crit
 bonus_wep_craft_exp
-mana_per_10_vitality
 water_mana_leech
 bonus_armor_craft_exp
 intelligence
@@ -208,7 +205,6 @@ magic_dmg_received
 dmg_per_curse_on_target
 fire_resist
 triple_drop_chance
-projectile_damage_per_10_strength
 plus_to_hunting
 curse_eff_dur_u_cast
 health

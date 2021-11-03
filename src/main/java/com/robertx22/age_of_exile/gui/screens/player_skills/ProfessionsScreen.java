@@ -6,8 +6,6 @@ import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
-import com.robertx22.age_of_exile.gui.screens.wiki.ExtraInfoButton;
-import com.robertx22.age_of_exile.gui.screens.wiki.WikiScreen;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -16,10 +14,8 @@ import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -90,11 +86,11 @@ public class ProfessionsScreen extends BaseScreen implements INamedScreen {
         }
 
         if (currentSkill.type_enum.wiki != null) {
-            addButton(new ExtraInfoButton(Arrays.asList(new StringTextComponent("Open Wiki")), guiLeft + 20, guiTop + sizeY - 50, a -> {
-                WikiScreen wiki = new WikiScreen();
-                wiki.changeType(currentSkill.type_enum.wiki);
-                mc.setScreen(wiki);
-            }));
+            //   addButton(new ExtraInfoButton(Arrays.asList(new StringTextComponent("Open Wiki")), guiLeft + 20, guiTop + sizeY - 50, a -> {
+            //      WikiScreen wiki = new WikiScreen();
+            //     wiki.changeType(currentSkill.type_enum.wiki);
+            //    mc.setScreen(wiki);
+            //}));
 
         }
 

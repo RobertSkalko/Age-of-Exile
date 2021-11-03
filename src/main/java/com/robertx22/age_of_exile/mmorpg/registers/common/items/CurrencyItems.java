@@ -38,6 +38,7 @@ public class CurrencyItems {
     public static RegObj<CurrencyItem> ORB_OF_UNIQUE_BLESSING = Def.item(() -> new OrbOfUniqueBlessingItem());
     public static RegObj<CurrencyItem> CLEAR_INSTABILITY = Def.item(() -> new ClearInstabilityItem());
     public static RegObj<CurrencyItem> ORB_OF_CORRUPTION = Def.item(() -> new OrbOfCorruption());
+    public static RegObj<CurrencyItem> ORB_OF_INFINITY = Def.item(() -> new OrbOfInfinityItem());
 
     public static RegObj<CurrencyItem> PLUS_ONE_UPGRADE = Def.item(() -> new PlusOneUpgradeItem());
     public static RegObj<CurrencyItem> PLUS_TWO_UPGRADE = Def.item(() -> new PlusTwoUpgradeItem());

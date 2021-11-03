@@ -47,40 +47,6 @@ public enum WikiType {
                 .collect(Collectors.toList());
         }
     },
-
-    COOKING_EXP("cooking") {
-        @Override
-        public List<WikiEntry> getAllEntries() {
-            return craftExp(PlayerSkillEnum.COOKING);
-        }
-
-        @Override
-        public boolean showsInWiki() {
-            return false; // only by linking from professions page
-        }
-    },
-    ALCHEMY_EXP("alchemy") {
-        @Override
-        public List<WikiEntry> getAllEntries() {
-            return craftExp(PlayerSkillEnum.ALCHEMY);
-        }
-
-        @Override
-        public boolean showsInWiki() {
-            return false; // only by linking from professions page
-        }
-    },
-    SCRIBE_EXP("scribe") {
-        @Override
-        public List<WikiEntry> getAllEntries() {
-            return craftExp(PlayerSkillEnum.INSCRIBING);
-        }
-
-        @Override
-        public boolean showsInWiki() {
-            return false; // only by linking from professions page
-        }
-    },
     DIMENSIONS("dimension") {
         @Override
         public List<WikiEntry> getAllEntries() {

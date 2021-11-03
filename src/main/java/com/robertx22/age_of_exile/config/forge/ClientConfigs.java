@@ -30,6 +30,12 @@ public class ClientConfigs {
         SHOW_DURABILITY = b.define("show_durability", true);
         ENABLE_FLOATING_DMG = b.define("render_floating_damage", true);
 
+        ITEM_RARITY_OPACITY = b.defineInRange("ITEM_RARITY_OPACITY", 0.75F, 0, 1F);
+
+        GUI_POSITION = b.defineEnum("GUI_POSITION", GuiPosition.TOP_LEFT);
+        ITEM_RARITY_BACKGROUND_TYPE = b.defineEnum("ITEM_RARITY_BACKGROUND_TYPE", GlintType.FULL);
+        PLAYER_GUI_TYPE = b.defineEnum("PLAYER_GUI_TYPE", PlayerGUIs.RPG);
+
         b.pop();
     }
 
@@ -42,16 +48,16 @@ public class ClientConfigs {
     public ForgeConfigSpec.BooleanValue RENDER_MOB_HEALTH_GUI;
     public ForgeConfigSpec.BooleanValue ONLY_RENDER_MOB_LOOKED_AT;
 
-    public GlintType ITEM_RARITY_BACKGROUND_TYPE = GlintType.FULL;
-    public GuiPosition GUI_POSITION = GuiPosition.TOP_LEFT;
-    public PlayerGUIs PLAYER_GUI_TYPE = PlayerGUIs.RPG;
+    public ForgeConfigSpec.EnumValue<GlintType> ITEM_RARITY_BACKGROUND_TYPE;
+    public ForgeConfigSpec.EnumValue<GuiPosition> GUI_POSITION;
+    public ForgeConfigSpec.EnumValue<PlayerGUIs> PLAYER_GUI_TYPE;
+    public ForgeConfigSpec.DoubleValue ITEM_RARITY_OPACITY;
+
+    public int REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES = 35;
 
     public enum GlintType {
         BORDER, FULL;
     }
-
-    public float ITEM_RARITY_OPACITY = 0.75F;
-    public int REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES = 35;
 
     public static ClientConfigs getConfig() {
         return CLIENT;

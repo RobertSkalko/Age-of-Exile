@@ -19,6 +19,7 @@ public class SpellPredicates {
         } catch (Exception e) {
             return false;
         }
+
     };
 
     private static Predicate<LivingEntity> MELEE_PRED = x -> {

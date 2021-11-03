@@ -12,7 +12,8 @@ public class GuiPartConfig {
     public IconRenderer icon_renderer = IconRenderer.NONE;
 
     public PointData getPosition() {
-        PointData pos = ClientConfigs.getConfig().GUI_POSITION.getPos();
+        PointData pos = ClientConfigs.getConfig().GUI_POSITION.get()
+            .getPos();
 
         return new PointData(pos.x + position_offset.x, pos.y + position_offset.y);
     }

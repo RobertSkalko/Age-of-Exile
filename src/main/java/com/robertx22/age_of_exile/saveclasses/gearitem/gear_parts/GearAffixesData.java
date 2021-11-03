@@ -101,6 +101,9 @@ public class GearAffixesData implements IGearPartTooltip {
 
     public void randomize(GearItemData gear) {
 
+        this.pre.clear();
+        this.suf.clear();
+
         GearRarity rar = gear.getRarity();
 
         for (int i = 0; i < rar

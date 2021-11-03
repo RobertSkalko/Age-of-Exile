@@ -168,7 +168,11 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         float ilvl = lvl + getRarity().bonus_effective_lvls;
 
-        ilvl += ilvl * (0.025 * this.up.getUpgradeLevel());
+        int upgrades = (int) (ilvl * (0.025 * this.up.getUpgradeLevel()));
+
+        if (upgrades > 0) {
+            ilvl += upgrades;
+        }
 
         return ilvl;
     }
