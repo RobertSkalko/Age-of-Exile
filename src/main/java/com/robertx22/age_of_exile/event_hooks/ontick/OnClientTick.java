@@ -28,57 +28,64 @@ public class OnClientTick {
 
     public static void onEndTick(Minecraft mc) {
 
-        PlayerEntity player = Minecraft.getInstance().player;
+        try {
+            PlayerEntity player = Minecraft.getInstance().player;
 
-        if (player == null) {
-            return;
-        }
-        if (player.tickCount < 10) {
-            return;
-        }
-        if (Load.Unit(player) == null) {
-            return;
-        }
+            if (player == null) {
+                return;
+            }
+            if (player.tickCount < 10) {
+                return;
+            }
+            if (player.isDeadOrDying()) {
+                return;
+            }
+            if (Load.Unit(player) == null) {
+                return;
+            }
 
-        if (ChatUtils.isChatOpen()) {
-            ClientOnly.ticksSinceChatWasOpened = 0;
-        } else {
-            ClientOnly.ticksSinceChatWasOpened--;
-        }
+            if (ChatUtils.isChatOpen()) {
+                ClientOnly.ticksSinceChatWasOpened = 0;
+            } else {
+                ClientOnly.ticksSinceChatWasOpened--;
+            }
 
-        if (player.is(player)) {
+            if (player.is(player)) {
 
-            Load.Unit(player)
-                .getResources()
-                .onTickBlock(player);
+                Load.Unit(player)
+                    .getResources()
+                    .onTickBlock(player);
 
-            NO_MANA_SOUND_COOLDOWN--;
+                NO_MANA_SOUND_COOLDOWN--;
 
-            EntitySpellCap.ISpellsCap spells = Load.spells(player);
+                EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
-            List<String> onCooldown = spells.getCastingData()
-                .getSpellsOnCooldown(player);
+                List<String> onCooldown = spells.getCastingData()
+                    .getSpellsOnCooldown(player);
 
-            Load.Unit(player)
-                .getCooldowns()
-                .onTicksPass(1);
+                Load.Unit(player)
+                    .getCooldowns()
+                    .onTicksPass(1);
 
-            spells.getCastingData()
-                .onTimePass(player, spells, 1); // ticks spells on client
+                spells.getCastingData()
+                    .onTimePass(player, spells, 1); // ticks spells on client
 
-            List<String> onCooldownAfter = spells.getCastingData()
-                .getSpellsOnCooldown(player);
+                List<String> onCooldownAfter = spells.getCastingData()
+                    .getSpellsOnCooldown(player);
 
-            onCooldown.removeAll(onCooldownAfter);
+                onCooldown.removeAll(onCooldownAfter);
 
-            COOLDOWN_READY_MAP.entrySet()
-                .forEach(x -> x.setValue(x.getValue() - 1));
+                COOLDOWN_READY_MAP.entrySet()
+                    .forEach(x -> x.setValue(x.getValue() - 1));
 
-            onCooldown.forEach(x -> {
-                COOLDOWN_READY_MAP.put(x, TICKS_TO_SHOW);
-                x.isEmpty();
-            });
+                onCooldown.forEach(x -> {
+                    COOLDOWN_READY_MAP.put(x, TICKS_TO_SHOW);
+                    x.isEmpty();
+                });
 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

@@ -62,6 +62,19 @@ public class StatModifier implements ISerializable<StatModifier>, IByteBuf<StatM
 
     }
 
+    public static StatModifier percent(float firstMin, float firstMax, Stat stat) {
+        StatModifier mod = new StatModifier();
+        mod.min = firstMin;
+        mod.max = firstMax;
+        mod.stat = stat.GUID();
+        if (!stat.IsPercent()) {
+            mod.type = ModType.PERCENT.name();
+        } else {
+            mod.type = ModType.FLAT.name();
+        }
+        return mod;
+    }
+
     public StatModifier(float firstMin, float firstMax, Stat stat) {
         this.min = firstMin;
         this.max = firstMax;

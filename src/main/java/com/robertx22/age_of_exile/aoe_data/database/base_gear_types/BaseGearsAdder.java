@@ -81,7 +81,6 @@ public class BaseGearsAdder implements ExileRegistryInit, GearDataHelper {
 
         BaseGearBuilder.weapon(BaseGearTypes.SCEPTER, GearSlots.SCEPTER, WeaponTypes.scepter)
             .tags(new TagList(SlotTag.mage_weapon, SlotTag.scepter, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
-            .implicitStat(new StatModifier(3, 10, Stats.HEAL_STRENGTH.get(), ModType.FLAT))
             .build();
 
         BaseGearBuilder.weapon(BaseGearTypes.STAFF, GearSlots.STAFF, WeaponTypes.staff)

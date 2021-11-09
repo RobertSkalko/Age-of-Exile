@@ -3,24 +3,24 @@
   "text_format": "LIGHT_PURPLE",
   "on_armor_stats": [
     {
-      "min": 1.4,
-      "max": 2.8,
-      "stat": "health",
+      "min": 0.6,
+      "max": 3.0,
+      "stat": "vitality",
       "type": "FLAT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 5.6,
-      "max": 11.2,
+      "min": 1.2,
+      "max": 9.0,
       "stat": "health_regen",
       "type": "PERCENT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 2.8,
-      "max": 7.0,
+      "min": 0.6,
+      "max": 3.0,
       "stat": "lifesteal",
       "type": "FLAT"
     }
@@ -28,5 +28,5 @@
   "item_id": "mmorpg:gems/tourmaline/2",
   "identifier": "tourmaline2",
   "tier": 3,
-  "weight": 1000
+  "weight": 250
 }

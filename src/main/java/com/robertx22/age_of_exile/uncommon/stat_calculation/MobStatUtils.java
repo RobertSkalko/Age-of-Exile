@@ -21,6 +21,7 @@ import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.library_of_exile.utils.EntityUtils;
@@ -111,9 +112,9 @@ public class MobStatUtils {
 
         config.stats.stats.forEach(x -> stats.add(x.toExactStat(unitdata.getLevel())));
 
-        float hp = (float) ((1F - config.hp_multi) * 100F);
-        float dmg = (float) ((1F - config.dmg_multi) * 100F);
-        float stat = (float) ((1F - config.stat_multi) * 100F);
+        float hp = (float) ((-1F + config.hp_multi) * 100F);
+        float dmg = (float) ((-1F + config.dmg_multi) * 100F);
+        float stat = (float) ((-1F + config.stat_multi) * 100F);
 
         stats.add(ExactStatData.noScaling(hp, ModType.GLOBAL_INCREASE, Health.getInstance()
             .GUID()));
@@ -123,6 +124,8 @@ public class MobStatUtils {
         stats.add(ExactStatData.noScaling(stat, ModType.GLOBAL_INCREASE, DodgeRating.getInstance()
             .GUID()));
         stats.add(ExactStatData.noScaling(stat, ModType.GLOBAL_INCREASE, Armor.getInstance()
+            .GUID()));
+        stats.add(ExactStatData.noScaling(stat, ModType.GLOBAL_INCREASE, new ElementalResist(Elements.Elemental)
             .GUID()));
         stats.add(ExactStatData.noScaling(stat, ModType.GLOBAL_INCREASE, Health.getInstance()
             .GUID()));
@@ -160,18 +163,14 @@ public class MobStatUtils {
             .GUID(), lvl));
         stats.add(ExactStatData.scaleTo(10 * rar.StatMultiplier(), ModType.FLAT, Armor.getInstance()
             .GUID(), lvl));
+        stats.add(ExactStatData.scaleTo(10 * rar.StatMultiplier(), ModType.FLAT, new ElementalResist(Elements.Elemental)
+            .GUID(), lvl));
 
         stats.add(ExactStatData.scaleTo(5 * rar.DamageMultiplier(), ModType.FLAT, Stats.CRIT_CHANCE.get()
             .GUID(), lvl));
 
         stats.add(ExactStatData.scaleTo(-25, ModType.FLAT, SpellDamage.getInstance()
             .GUID(), lvl));
-
-        ElementalResist.MAP.getList()
-            .forEach(x -> {
-                stats.add(ExactStatData.scaleTo(5 * rar.StatMultiplier(), ModType.FLAT, x
-                    .GUID(), lvl));
-            });
 
         list.add(new MiscStatCtx(stats));
 

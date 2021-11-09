@@ -67,7 +67,6 @@ public class GearTooltipUtils {
                 tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
             }
             tip.addAll(gear.affixes.GetTooltipString(info, gear));
-            tip.addAll(gear.sockets.GetTooltipString(info, gear));
             tip.addAll(gear.imp.GetTooltipString(info, gear));
             if (gear.hasCraftedStats()) {
                 tip.addAll(gear.getCraftedStats()
@@ -78,7 +77,6 @@ public class GearTooltipUtils {
             List<ExactStatData> stats = new ArrayList<>();
             gear.affixes.getAllAffixesAndSockets()
                 .forEach(x -> stats.addAll(x.GetAllStats(gear)));
-            stats.addAll(gear.sockets.GetAllStats(gear));
             if (gear.hasCraftedStats()) {
                 stats.addAll(gear.getCraftedStats()
                     .GetAllStats(gear));
@@ -102,18 +100,10 @@ public class GearTooltipUtils {
         for (IGearPartTooltip part : list) {
             if (part != null) {
                 tip.addAll(part.GetTooltipString(info, gear));
-
-                if (n == list.size() - 1) {
-                    for (int i = 0; i < gear.sockets.getEmptySockets(); i++) {
-                        tip.add(new SText(TextFormatting.YELLOW + "[Socket]"));
-                    }
-                }
-
                 tip.add(new StringTextComponent(""));
             }
             n++;
         }
-        tip.add(new StringTextComponent(""));
 
         specialStats.forEach(x -> {
             x.GetTooltipString(info)
@@ -133,9 +123,6 @@ public class GearTooltipUtils {
             }
         }
 
-        if (gear.trasc != null) {
-            tip.addAll(gear.trasc.GetTooltipString(info, gear));
-        }
         if (Screen.hasShiftDown()) {
             if (!gear.can_sal) {
                 tip.add(
@@ -143,6 +130,10 @@ public class GearTooltipUtils {
                         .withStyle(TextFormatting.RED));
             }
         }
+
+        tip.add(new StringTextComponent(""));
+        tip.addAll(gear.sockets.GetTooltipString(info, gear));
+        tip.add(new StringTextComponent(""));
 
         tip.add(new StringTextComponent(""));
 

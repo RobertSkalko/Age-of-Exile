@@ -19,17 +19,17 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1000,
+          "weight": 250,
           "name": "mmorpg:gems/tourmaline/2"
         },
         {
           "type": "minecraft:item",
-          "weight": 250,
+          "weight": 50,
           "name": "mmorpg:gems/tourmaline/3"
         },
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 5,
           "name": "mmorpg:gems/tourmaline/4"
         },
         {
@@ -44,17 +44,17 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1000,
+          "weight": 250,
           "name": "mmorpg:gems/azurite/2"
         },
         {
           "type": "minecraft:item",
-          "weight": 250,
+          "weight": 50,
           "name": "mmorpg:gems/azurite/3"
         },
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 5,
           "name": "mmorpg:gems/azurite/4"
         },
         {
@@ -69,17 +69,17 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1000,
+          "weight": 250,
           "name": "mmorpg:gems/garnet/2"
         },
         {
           "type": "minecraft:item",
-          "weight": 250,
+          "weight": 50,
           "name": "mmorpg:gems/garnet/3"
         },
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 5,
           "name": "mmorpg:gems/garnet/4"
         },
         {
@@ -94,17 +94,17 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1000,
+          "weight": 250,
           "name": "mmorpg:gems/opal/2"
         },
         {
           "type": "minecraft:item",
-          "weight": 250,
+          "weight": 50,
           "name": "mmorpg:gems/opal/3"
         },
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 5,
           "name": "mmorpg:gems/opal/4"
         },
         {
@@ -119,17 +119,17 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1000,
+          "weight": 250,
           "name": "mmorpg:gems/ruby/2"
         },
         {
           "type": "minecraft:item",
-          "weight": 250,
+          "weight": 50,
           "name": "mmorpg:gems/ruby/3"
         },
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 5,
           "name": "mmorpg:gems/ruby/4"
         },
         {
@@ -144,17 +144,17 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1000,
+          "weight": 250,
           "name": "mmorpg:gems/emerald/2"
         },
         {
           "type": "minecraft:item",
-          "weight": 250,
+          "weight": 50,
           "name": "mmorpg:gems/emerald/3"
         },
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 5,
           "name": "mmorpg:gems/emerald/4"
         },
         {
@@ -169,17 +169,17 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 1000,
+          "weight": 250,
           "name": "mmorpg:gems/sapphire/2"
         },
         {
           "type": "minecraft:item",
-          "weight": 250,
+          "weight": 50,
           "name": "mmorpg:gems/sapphire/3"
         },
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 5,
           "name": "mmorpg:gems/sapphire/4"
         }
       ]

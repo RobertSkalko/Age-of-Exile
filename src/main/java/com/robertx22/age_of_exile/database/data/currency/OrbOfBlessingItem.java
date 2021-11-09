@@ -5,6 +5,7 @@ import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffec
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.GearEnumLocReq;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
@@ -46,7 +47,7 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
-    public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
+    public ItemStack internalModifyMethod(LocReqContext ctx, ItemStack stack, ItemStack Currency) {
 
         GearItemData gear = Gear.Load(stack);
 

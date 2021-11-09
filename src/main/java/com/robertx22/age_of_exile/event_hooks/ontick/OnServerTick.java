@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpell
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
+import com.robertx22.age_of_exile.mixin_methods.OnItemStoppedUsingCastImbuedSpell;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
@@ -18,6 +19,7 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientEntityIsCastingSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.server.MinecraftServer;
@@ -35,6 +37,12 @@ public class OnServerTick {
     static List<PlayerTickAction> TICK_ACTIONS = new ArrayList<>();
 
     static {
+
+        TICK_ACTIONS.add(new PlayerTickAction("spawn_bow_cast_particles", 1, (player, data) -> {
+            if (OnItemStoppedUsingCastImbuedSpell.canCastImbuedSpell(player)) {
+                ParticleUtils.spawnParticles(ParticleTypes.WITCH, player.level, player.blockPosition(), 2);
+            }
+        }));
 
         TICK_ACTIONS.add(new PlayerTickAction("update_caps", 20, (player, data) -> {
             OnTickSetGameMode.onTick(player);

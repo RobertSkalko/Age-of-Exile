@@ -24,7 +24,7 @@ public interface IBaseAutoLoc extends IGUID {
         Item_Sets,
         Stats,
         Misc,
-        TranscendantAffixes,
+
         Races,
         Talents,
         Gear_Slots,

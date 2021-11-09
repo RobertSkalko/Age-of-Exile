@@ -30,8 +30,10 @@ import com.robertx22.age_of_exile.gui.bases.INamedScreen;
 import com.robertx22.age_of_exile.gui.buttons.FavorButton;
 import com.robertx22.age_of_exile.gui.buttons.ScalingDifficultyButton;
 import com.robertx22.age_of_exile.gui.screens.player_skills.ProfessionsScreen;
+import com.robertx22.age_of_exile.gui.screens.skill_tree.TalentsScreen;
 import com.robertx22.age_of_exile.gui.screens.spell.SpellScreen;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiScreen;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -233,6 +235,10 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
             List<INamedScreen> screens = new ArrayList<>();
             screens.add(new SpellScreen());
+            if (MMORPG.RUN_DEV_TOOLS) {
+                screens.add(new TalentsScreen());
+                // todo until talents are done
+            }
             screens.add(new ProfessionsScreen());
             screens.add(new WikiScreen());
 

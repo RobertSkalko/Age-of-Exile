@@ -85,7 +85,7 @@ public class LevelUtils {
     }
 
     public static int levelToTier(int level) {
-        int tier = 1;
+        int tier = 0;
         try {
             Optional<Map.Entry<MinMax, Integer>> opt = GameBalanceConfig.get()
                 .getTierMap()
@@ -100,7 +100,7 @@ public class LevelUtils {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return 1;
+            return 0;
         }
         return tier;
 

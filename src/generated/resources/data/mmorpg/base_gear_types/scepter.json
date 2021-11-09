@@ -9,14 +9,7 @@
   "weight": 1000,
   "weapon_offhand_stat_util": 0,
   "style": "magic",
-  "implicit_stats": [
-    {
-      "min": 3.0,
-      "max": 10.0,
-      "stat": "increase_healing",
-      "type": "FLAT"
-    }
-  ],
+  "implicit_stats": [],
   "base_stats": [
     {
       "min": 0.9,

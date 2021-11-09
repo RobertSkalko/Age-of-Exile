@@ -204,7 +204,7 @@ public class TooltipUtils {
 
     public static IFormattableTextComponent tier(int tier) {
         return Words.Tier.locName()
-            .append(": " + LevelUtils.tierToRomanNumeral(tier));
+            .append(": " + tier);
 
     }
 
@@ -216,7 +216,7 @@ public class TooltipUtils {
 
     public static IFormattableTextComponent gearTier(int tier) {
         return new StringTextComponent("Item Tier: ").withStyle(TextFormatting.WHITE)
-            .append(new StringTextComponent(LevelUtils.tierToRomanNumeral(tier)).withStyle(TextFormatting.AQUA));
+            .append(new StringTextComponent(tier + "").withStyle(TextFormatting.AQUA));
     }
 
     public static IFormattableTextComponent gearRarity(GearRarity rarity) {

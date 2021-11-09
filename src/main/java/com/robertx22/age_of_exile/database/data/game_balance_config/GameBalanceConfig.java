@@ -40,25 +40,15 @@ public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, 
 
         HashMap<MinMax, Integer> tiermap = new HashMap<>();
 
-        int tier = 1;
-        int lvl = 0;
+        int tier = 0;
 
-        while (lvl < MAX_LEVEL) {
+        int min = 0;
+        int max = levels_per_tier;
 
-            int min = ((tier - 1) * levels_per_tier) - 1;
-            if (min < 0) {
-                min = 0;
-            }
-            int max = tier * levels_per_tier;
-
-            lvl += levels_per_tier;
-
-            if (lvl == MAX_LEVEL) {
-                max += 100;
-            }
-
+        while (max < MAX_LEVEL) {
             tiermap.put(new MinMax(min, max), tier);
-
+            min += levels_per_tier;
+            max += levels_per_tier;
             tier++;
 
         }

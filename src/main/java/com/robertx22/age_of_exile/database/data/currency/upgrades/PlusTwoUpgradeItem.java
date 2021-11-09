@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
@@ -43,12 +44,12 @@ public class PlusTwoUpgradeItem extends CurrencyItem implements ICurrencyItemEff
     }
 
     @Override
-    public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
+    public ItemStack internalModifyMethod(LocReqContext ctx, ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
-        if (gear.up.isNextSlotGold() || RandomUtils.roll(75)) {
-            gear.onUpgrade(UpgradeData.SlotType.N2);
+        if (gear.up.isNextSlotGold() || RandomUtils.roll(80)) {
+            gear.onUpgrade(ctx.player, UpgradeData.SlotType.N2);
         } else {
-            gear.onUpgrade(UpgradeData.SlotType.M1);
+            gear.onUpgrade(ctx.player, UpgradeData.SlotType.M1);
         }
         Gear.Save(stack, gear);
         return stack;
@@ -71,7 +72,7 @@ public class PlusTwoUpgradeItem extends CurrencyItem implements ICurrencyItemEff
 
     @Override
     public String locDescForLangFile() {
-        return "75% chance of +2, else -1";
+        return "80% chance of +2, else -1";
     }
 
     @Override

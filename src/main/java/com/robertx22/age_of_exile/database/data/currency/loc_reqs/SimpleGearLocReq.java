@@ -18,7 +18,7 @@ public class SimpleGearLocReq extends BaseLocRequirement {
             .hasHigherRarity(), Words.HasHigherRarity.locName());
 
     public static final SimpleGearLocReq HAS_EMPTY_SOCKETS = new SimpleGearLocReq(
-        x -> x.sockets.getEmptySockets() > 0, Words.HasEmptySockets.locName());
+        x -> x.getEmptySockets() > 0, Words.HasEmptySockets.locName());
 
     public static final SimpleGearLocReq HAS_UPGRADE_SLOTS = new SimpleGearLocReq(
         x -> x.up.getHowManyTimesCanBeUpgraded() > 0, Words.HasUpgradeSlotsLeft.locName());

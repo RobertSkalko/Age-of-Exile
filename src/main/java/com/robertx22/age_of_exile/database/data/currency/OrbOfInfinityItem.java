@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
@@ -37,7 +38,7 @@ public class OrbOfInfinityItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
-    public ItemStack internalModifyMethod(ItemStack stack, ItemStack Currency) {
+    public ItemStack internalModifyMethod(LocReqContext ctx, ItemStack stack, ItemStack Currency) {
 
         GearItemData gear = Gear.Load(stack);
         gear.up.regenerate(gear.getRarity());

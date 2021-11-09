@@ -3,24 +3,24 @@
   "text_format": "GOLD",
   "on_armor_stats": [
     {
-      "min": 1.2,
-      "max": 3.6000001,
-      "stat": "armor",
+      "min": 0.4,
+      "max": 2.0,
+      "stat": "strength",
       "type": "FLAT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 2.4,
-      "max": 7.2000003,
+      "min": 0.4,
+      "max": 2.4,
       "stat": "critical_hit",
       "type": "FLAT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 3.6000001,
-      "max": 12.0,
+      "min": 1.2,
+      "max": 4.8,
       "stat": "critical_damage",
       "type": "FLAT"
     }

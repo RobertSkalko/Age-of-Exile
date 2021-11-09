@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.saveclasses.item_classes;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
-import com.robertx22.age_of_exile.database.data.transc_affix.TranscendentAffix;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
@@ -20,10 +20,10 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.library_of_exile.registry.FilterListWrap;
 import com.robertx22.library_of_exile.utils.ItemstackDataSaver;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
@@ -52,8 +52,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public CraftedStatsData cr;
     @Store
     public UniqueStatsData uniqueStats;
-    @Store
-    public TranscendantAffixData trasc = null;
     @Store
     public UpgradeData up = new UpgradeData();
 
@@ -105,12 +103,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         }
 
         this.up.regenerate(rar);
-
-        sockets.slots = rar.sockets;
-
     }
 
-    public void onUpgrade(UpgradeData.SlotType type) {
+    public void onUpgrade(PlayerEntity player, UpgradeData.SlotType type) {
 
         for (int i = 0; i < this.up.ups.size(); i++) {
             UpgradeData.SlotType upgrade = this.up.ups.get(i);
@@ -120,32 +115,13 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             }
         }
 
-        try {
-            if (trasc == null) {
-                if (this.up.getUpgradeLevel() >= 5) {
-                    FilterListWrap<TranscendentAffix> wrap = ExileDB.TranscendentAffixes()
-                        .getFilterWrapped(x -> true);
-                    if (this.GetBaseGearType()
-                        .isWeapon()) {
-                        wrap = wrap.of(x -> x.can_on_wep);
-                    }
-                    TranscendentAffix affix = wrap.random();
+        if (type.upgradeLevel > 0) {
+            player.displayClientMessage(new StringTextComponent("Upgraded Item to +" + up.getUpgradeLevel() + " with a +" + type.upgradeLevel).withStyle(TextFormatting.GREEN), false);
+        } else {
+            player.displayClientMessage(new StringTextComponent("Upgrade failed").withStyle(TextFormatting.RED), false);
 
-                    this.trasc = new TranscendantAffixData();
-                    this.trasc.id = affix.id;
-                    this.trasc.perc = 0;
-                }
-            } else {
-                if (this.up.getUpgradeLevel() >= 10) {
-                    this.trasc.perc = 50;
-                }
-                if (this.up.getUpgradeLevel() >= 15) {
-                    this.trasc.perc = 100;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
     }
 
     public boolean isCorrupted() {
@@ -168,12 +144,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         float ilvl = lvl + getRarity().bonus_effective_lvls;
 
-        int upgrades = (int) (ilvl * (0.025 * this.up.getUpgradeLevel()));
-
+        int upgrades = (int) (ServerContainer.get().ILVL_PER_UPGRADE_LEVEL.get() * this.up.getUpgradeLevel());
         if (upgrades > 0) {
             ilvl += upgrades;
         }
-
         return ilvl;
     }
 
@@ -191,6 +165,29 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         return ExileDB.GearTypes()
             .isRegistered(gear_type);
+    }
+
+    public int getTotalSockets() {
+        int sockets = 0;
+        sockets += getRarity().sockets;
+
+        int uplvl = this.up.getUpgradeLevel();
+
+        if (uplvl >= 4) {
+            sockets++;
+        }
+        if (uplvl >= 8) {
+            sockets++;
+        }
+        if (uplvl >= 12) {
+            sockets++;
+        }
+        return sockets;
+    }
+
+    public int getEmptySockets() {
+
+        return getTotalSockets() - this.sockets.getSocketedGemsCount();
     }
 
     public boolean canGetAffix(Affix affix) {
@@ -386,8 +383,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         IfNotNullAdd(baseStats, list);
 
         IfNotNullAdd(cr, list);
-
-        IfNotNullAdd(trasc, list);
 
         IfNotNullAdd(imp, list);
 

@@ -72,7 +72,7 @@ public class BackpackUpgradeItem extends TieredItem implements IShapelessRecipe,
     }
 
     @Override
-    public ItemStack internalModifyMethod(ItemStack stack, ItemStack currency) {
+    public ItemStack internalModifyMethod(LocReqContext ctx, ItemStack stack, ItemStack currency) {
 
         BagUpgradesData data = BagUpgradesData.load(stack);
 

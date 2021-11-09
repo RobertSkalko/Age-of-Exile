@@ -36,7 +36,7 @@ public class GemLootGen extends BaseLootGen<GearBlueprint> {
         }
 
         return !ExileDB.Gems()
-            .getFilterWrapped(x -> this.info.level >= x.getReqLevel()).list.isEmpty();
+            .getFilterWrapped(x -> this.info.level >= x.getReqLevelToDrop()).list.isEmpty();
     }
 
     @Override

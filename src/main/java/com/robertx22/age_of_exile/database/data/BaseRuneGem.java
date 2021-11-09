@@ -23,11 +23,7 @@ public class BaseRuneGem implements IGUID, IWeighted {
     public int tier = 1;
     public int weight = 1000;
 
-    public float getEffectiveLevel() {
-        return LevelUtils.tierToLevel(tier);
-    }
-
-    public int getReqLevel() {
+    public int getReqLevelToDrop() {
         return LevelUtils.tierToLevel(tier);
     }
 

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.mixins;
 import com.robertx22.age_of_exile.mixin_methods.OnItemStoppedUsingCastImbuedSpell;
 import com.robertx22.age_of_exile.mixin_methods.TooltipMethod;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -13,7 +12,6 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
@@ -30,11 +28,14 @@ public abstract class ItemStackMixin {
         TooltipMethod.getTooltip(stack, entity, tooltipContext, list);
     }
 
+    /*
     @Inject(method = {"releaseUsing"}, cancellable = true, at = {@At("HEAD")})
     public void onStoppedUsing(World world, LivingEntity user, int remainingUseTicks, CallbackInfo ci) {
         ItemStack stack = (ItemStack) (Object) this;
         OnItemStoppedUsingCastImbuedSpell.onStoppedUsing(stack, world, user, remainingUseTicks, ci);
     }
+
+     */
 
     @Inject(method = {"use"}, cancellable = true, at = {@At("HEAD")})
     public void onUseItemstackmethod(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<ActionResult<ItemStack>> ci) {

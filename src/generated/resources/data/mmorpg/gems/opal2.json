@@ -3,24 +3,24 @@
   "text_format": "GOLD",
   "on_armor_stats": [
     {
-      "min": 1.4,
-      "max": 4.2,
-      "stat": "armor",
+      "min": 0.6,
+      "max": 3.0,
+      "stat": "strength",
       "type": "FLAT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 2.8,
-      "max": 8.4,
+      "min": 0.6,
+      "max": 3.6000001,
       "stat": "critical_hit",
       "type": "FLAT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 4.2,
-      "max": 14.0,
+      "min": 1.8000001,
+      "max": 7.2000003,
       "stat": "critical_damage",
       "type": "FLAT"
     }
@@ -28,5 +28,5 @@
   "item_id": "mmorpg:gems/opal/2",
   "identifier": "opal2",
   "tier": 3,
-  "weight": 1000
+  "weight": 250
 }

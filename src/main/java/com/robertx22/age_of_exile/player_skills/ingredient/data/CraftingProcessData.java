@@ -331,6 +331,8 @@ public class CraftingProcessData {
             }
         });
 
+        data.up.regenerate(data.getRarity());
+
         return data; // todo
     }
 

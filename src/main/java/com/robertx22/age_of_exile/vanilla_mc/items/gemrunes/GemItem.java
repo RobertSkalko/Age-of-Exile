@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gemrunes;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack;
+import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
@@ -10,19 +11,15 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems.NoDuplicateSocketsReq;
-import com.robertx22.age_of_exile.database.data.currency.loc_reqs.gems.SocketLvlNotHigherThanItemLvl;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
-import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.GemItems;
@@ -41,6 +38,7 @@ import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -82,8 +80,8 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     static float MAX_WEP_DMG = 15;
     static float MIN_RES = 4;
     static float MAX_RES = 12;
-    static float MIN_ELE_DMG = 4;
-    static float MAX_ELE_DMG = 8;
+    static float MIN_ELE_DMG = 2;
+    static float MAX_ELE_DMG = 10;
 
     @Override
     public ShapelessRecipeBuilder getRecipe() {
@@ -101,7 +99,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     @Override
-    public ItemStack internalModifyMethod(ItemStack stack, ItemStack currency) {
+    public ItemStack internalModifyMethod(LocReqContext ctx, ItemStack stack, ItemStack currency) {
 
         GemItem gitem = (GemItem) currency.getItem();
         Gem gem = gitem.getGem();
@@ -109,10 +107,11 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
         SocketData socket = new SocketData();
         socket.gem = gem.identifier;
-        socket.lvl = gear.lvl;
         socket.perc = RandomUtils.RandomRange(0, 100);
 
         gear.sockets.sockets.add(socket);
+
+        ctx.player.displayClientMessage(new StringTextComponent("Gem Socketed"), false);
 
         Gear.Save(stack, gear);
 
@@ -121,17 +120,17 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_EMPTY_SOCKETS, new NoDuplicateSocketsReq(), new SocketLvlNotHigherThanItemLvl());
-    }
-
-    @Override
-    public float getStatValueMulti() {
-        return gemRank.valmulti;
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_EMPTY_SOCKETS, new NoDuplicateSocketsReq());
     }
 
     @Override
     public BaseRuneGem getBaseRuneGem() {
         return getGem();
+    }
+
+    @Override
+    public float getStatValueMulti() {
+        return this.gemRank.statmulti;
     }
 
     @Override
@@ -167,28 +166,28 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         TOURMALINE("tourmaline", "Tourmaline", TextFormatting.LIGHT_PURPLE, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(1, 2, Health.getInstance()));
+                return Arrays.asList(new StatModifier(1, 5, DatapackStats.VIT));
             }
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(4, 8, HealthRegen.getInstance(), ModType.PERCENT));
+                return Arrays.asList(new StatModifier(2, 15, HealthRegen.getInstance(), ModType.PERCENT));
             }
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(2, 5, Stats.LIFESTEAL.get()));
+                return Arrays.asList(new StatModifier(1, 5, Stats.LIFESTEAL.get()));
             }
         }),
         AZURITE("azurite", "Azurite", TextFormatting.AQUA, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(2, 4, Mana.getInstance()));
+                return Arrays.asList(new StatModifier(1, 5, DatapackStats.WIS));
             }
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(4, 8, ManaRegen.getInstance(), ModType.PERCENT));
+                return Arrays.asList(new StatModifier(2, 15, ManaRegen.getInstance(), ModType.PERCENT));
             }
 
             @Override
@@ -200,33 +199,33 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         GARNET("garnet", "Garnet", TextFormatting.GREEN, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(1, 3, DodgeRating.getInstance()));
+                return Arrays.asList(new StatModifier(1, 5, DatapackStats.DEX));
             }
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(4, 8, EnergyRegen.getInstance(), ModType.PERCENT));
+                return Arrays.asList(new StatModifier(2, 15, EnergyRegen.getInstance(), ModType.PERCENT));
             }
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(2, 6, Stats.CRIT_CHANCE.get()));
+                return Arrays.asList(new StatModifier(2, 8, Stats.CRIT_CHANCE.get()));
             }
         }),
         OPAL("opal", "Opal", TextFormatting.GOLD, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
-                return Arrays.asList(new StatModifier(1, 3, Armor.getInstance()));
+                return Arrays.asList(new StatModifier(1, 5, DatapackStats.STR));
             }
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(2, 6, Stats.CRIT_CHANCE.get()));
+                return Arrays.asList(new StatModifier(1, 6, Stats.CRIT_CHANCE.get()));
             }
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(3, 10, Stats.CRIT_DAMAGE.get()));
+                return Arrays.asList(new StatModifier(3, 12, Stats.CRIT_DAMAGE.get()));
             }
         }),
         //TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Air)),
@@ -249,22 +248,22 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     public enum GemRank {
-        CHIPPED("Chipped", 0, 1, 1),
-        FLAWED("Flawed", 1, 2, 1.2F),
-        REGULAR("Regular", 2, 3, 1.4F),
-        FLAWLESS("Flawless", 3, 4, 1.6F),
-        PERFECT("Perfect", 4, 5, 1.8F);
+        CHIPPED("Chipped", 0, 1, 0.2F),
+        FLAWED("Flawed", 1, 2, 0.4F),
+        REGULAR("Regular", 2, 3, 0.6F),
+        FLAWLESS("Flawless", 3, 4, 0.8F),
+        PERFECT("Perfect", 4, 5, 1F);
 
         public String locName;
         public int num;
         public int tier;
-        public float valmulti;
+        public float statmulti;
 
-        GemRank(String locName, int num, int tier, float valmulti) {
+        GemRank(String locName, int num, int tier, float statmulti) {
             this.locName = locName;
             this.num = num;
             this.tier = tier;
-            this.valmulti = valmulti;
+            this.statmulti = statmulti;
         }
 
         public GemRank lower() {
@@ -301,13 +300,13 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
             weight = 5000;
             levelToStartDrop = 0.2F;
         } else if (gemRank.num == 2) {
-            weight = 1000;
+            weight = 250;
             levelToStartDrop = 0.4F;
         } else if (gemRank.num == 3) {
-            weight = 250;
+            weight = 50;
             levelToStartDrop = 0.6F;
         } else if (gemRank.num == 4) {
-            weight = 50;
+            weight = 5;
             levelToStartDrop = 0.9F;
         } else {
             throw new RuntimeException("Gem rank not accounted for?");

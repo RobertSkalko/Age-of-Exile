@@ -3,24 +3,24 @@
   "text_format": "RED",
   "on_armor_stats": [
     {
-      "min": 6.4,
-      "max": 19.2,
+      "min": 3.2,
+      "max": 9.6,
       "stat": "fire_resist",
       "type": "PERCENT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 6.4,
-      "max": 12.8,
+      "min": 1.6,
+      "max": 8.0,
       "stat": "spell_fire_damage",
       "type": "FLAT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 3.2,
-      "max": 24.0,
+      "min": 1.6,
+      "max": 12.0,
       "stat": "all_fire_damage",
       "type": "FLAT"
     }
@@ -28,5 +28,5 @@
   "item_id": "mmorpg:gems/ruby/3",
   "identifier": "ruby3",
   "tier": 4,
-  "weight": 250
+  "weight": 50
 }

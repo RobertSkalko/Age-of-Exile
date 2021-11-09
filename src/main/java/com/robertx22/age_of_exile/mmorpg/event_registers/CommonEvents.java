@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnTickDungeonWorld;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
 import com.robertx22.age_of_exile.event_hooks.player.StopCastingIfInteract;
+import com.robertx22.age_of_exile.mixin_methods.OnItemStoppedUsingCastImbuedSpell;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.error_checks.base.ErrorChecks;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
@@ -38,6 +39,8 @@ import java.util.ArrayList;
 public class CommonEvents {
 
     public static void register() {
+
+        OnItemStoppedUsingCastImbuedSpell.register();
 
         ForgeEvents.registerForgeEvent(EntityJoinWorldEvent.class, event -> {
             OnMobSpawn.onLoad(event.getEntity());

@@ -19,7 +19,7 @@ import java.util.List;
 
 public interface ICurrencyItemEffect {
 
-    public abstract ItemStack internalModifyMethod(ItemStack stack, ItemStack currency);
+    public abstract ItemStack internalModifyMethod(LocReqContext ctx, ItemStack stack, ItemStack currency);
 
     public abstract List<BaseLocRequirement> requirements();
 
@@ -69,7 +69,7 @@ public interface ICurrencyItemEffect {
     default ResultItem modifyItem(LocReqContext context) {
         if (context.effect.canItemBeModified(context)) {
             ItemStack copy = context.stack.copy();
-            copy = context.effect.internalModifyMethod(copy, context.Currency);
+            copy = context.effect.internalModifyMethod(context, copy, context.Currency);
 
             if (context.isGear()) {
                 if (context.effect.getInstability() > 0) {

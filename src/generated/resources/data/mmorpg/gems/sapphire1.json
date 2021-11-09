@@ -3,24 +3,24 @@
   "text_format": "BLUE",
   "on_armor_stats": [
     {
-      "min": 4.8,
-      "max": 14.400001,
+      "min": 1.6,
+      "max": 4.8,
       "stat": "water_resist",
       "type": "PERCENT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 4.8,
-      "max": 9.6,
+      "min": 0.8,
+      "max": 4.0,
       "stat": "spell_water_damage",
       "type": "FLAT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 2.4,
-      "max": 18.0,
+      "min": 0.8,
+      "max": 6.0,
       "stat": "all_water_damage",
       "type": "FLAT"
     }

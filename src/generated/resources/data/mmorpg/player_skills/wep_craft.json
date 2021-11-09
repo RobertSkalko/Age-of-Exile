@@ -10,7 +10,7 @@
       "stats": [
         {
           "v1": 20.0,
-          "stat": "bonus_exp_for_t1_mob",
+          "stat": "bonus_exp_for_t0_mob",
           "type": "FLAT",
           "scale_to_lvl": false
         }
@@ -21,7 +21,7 @@
       "stats": [
         {
           "v1": 20.0,
-          "stat": "bonus_exp_for_t2_mob",
+          "stat": "bonus_exp_for_t1_mob",
           "type": "FLAT",
           "scale_to_lvl": false
         }
@@ -32,7 +32,7 @@
       "stats": [
         {
           "v1": 20.0,
-          "stat": "bonus_exp_for_t3_mob",
+          "stat": "bonus_exp_for_t2_mob",
           "type": "FLAT",
           "scale_to_lvl": false
         }
@@ -43,7 +43,7 @@
       "stats": [
         {
           "v1": 20.0,
-          "stat": "bonus_exp_for_t4_mob",
+          "stat": "bonus_exp_for_t3_mob",
           "type": "FLAT",
           "scale_to_lvl": false
         }
@@ -54,7 +54,7 @@
       "stats": [
         {
           "v1": 20.0,
-          "stat": "bonus_exp_for_t5_mob",
+          "stat": "bonus_exp_for_t4_mob",
           "type": "FLAT",
           "scale_to_lvl": false
         }

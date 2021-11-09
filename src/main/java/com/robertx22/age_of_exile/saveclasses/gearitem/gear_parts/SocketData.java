@@ -26,9 +26,6 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
     public Integer perc = -1;
 
     @Store
-    public Integer lvl = 0;
-
-    @Store
     public String gem = "";
 
     @Factory
@@ -45,8 +42,8 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
             getGem()
                 .getFor(fam)
                 .forEach(x -> {
-                    ExactStatData exact = x.ToExactStat(this.perc, this.lvl);
-                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, this.lvl));
+                    ExactStatData exact = x.ToExactStat(this.perc, gear.getEffectiveLevel());
+                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, (int) gear.getEffectiveLevel()));
                 });
         }
 
@@ -94,7 +91,7 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
                 getGem()
                     .getFor(fam)
                     .forEach(x -> {
-                        stats.add(x.ToExactStat(this.perc, this.lvl));
+                        stats.add(x.ToExactStat(this.perc, gear.getEffectiveLevel()));
                     });
             }
 

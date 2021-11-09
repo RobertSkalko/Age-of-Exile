@@ -22,9 +22,9 @@ public abstract class BaseGemRuneItem extends Item {
 
     public int weight;
 
-    public abstract float getStatValueMulti();
-
     public abstract BaseRuneGem getBaseRuneGem();
+
+    public abstract float getStatValueMulti();
 
     public abstract List<StatModifier> getStatModsForSerialization(SlotFamily family);
 
@@ -44,7 +44,6 @@ public abstract class BaseGemRuneItem extends Item {
             });
 
         return list;
-
     }
 
     public List<ITextComponent> getBaseTooltip() {
@@ -83,7 +82,7 @@ public abstract class BaseGemRuneItem extends Item {
         }
 
         tooltip.add(new StringTextComponent(""));
-        tooltip.add(TooltipUtils.level(gem.getReqLevel()));
+        tooltip.add(TooltipUtils.tier(gem.tier));
 
         return tooltip;
     }

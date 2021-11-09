@@ -115,7 +115,7 @@ repositories {
         dirs dev_mods_dir
     }
 }
-dependencies {
+dependencies {  
     dev_mods.each {
         implementation fg.deobf(it)
     }

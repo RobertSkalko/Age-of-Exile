@@ -27,7 +27,7 @@ public enum SkillItemTier {
     }
 
     public int getDisplayTierNumber() {
-        return tier + 1;
+        return tier;
     }
 
     public static SkillItemTier of(int tier) {

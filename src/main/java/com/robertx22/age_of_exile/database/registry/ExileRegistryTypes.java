@@ -26,7 +26,6 @@ import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapac
 import com.robertx22.age_of_exile.database.data.synergy.Synergy;
 import com.robertx22.age_of_exile.database.data.talent_tree.TalentTree;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
-import com.robertx22.age_of_exile.database.data.transc_affix.TranscendentAffix;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.empty_entries.EmptyAffix;
@@ -79,6 +78,5 @@ public class ExileRegistryTypes {
     public static ExileRegistryType SPELL_SCHOOL = ExileRegistryType.register(SlashRef.MODID, "spell_school", 26, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType SYNERGY = ExileRegistryType.register(SlashRef.MODID, "synergy", 26, Synergy.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType INGREDIENT = ExileRegistryType.register(SlashRef.MODID, "ingredient", 26, SlashIngredient.SERIALIZER, SyncTime.ON_LOGIN);
-    public static ExileRegistryType TRANSC_AFFIXES = ExileRegistryType.register(SlashRef.MODID, "transcendent_affix", 26, TranscendentAffix.SERIALIZER, SyncTime.ON_LOGIN);
 
 }

@@ -31,6 +31,7 @@ potion_strength
 all_any_wep_damage
 inc_effect_of_positive_buff_on_you
 cdr
+bonus_exp_for_t0_mob
 projectile_damage
 cast_speed
 inc_effect_of_defensive_buff_on_you
@@ -297,7 +298,6 @@ health_on_kill
 plus_to_fire
 bonus_wep_craft_yield
 fire_penetration
-bonus_exp_for_t5_mob
 dexterity
 bonus_rain_yield
 convert_earth_to_phys

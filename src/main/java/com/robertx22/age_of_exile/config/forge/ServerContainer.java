@@ -47,6 +47,8 @@ public class ServerContainer {
         FAVOR_GAIN_PER_SPAWNER_DESTROYED = b.comment("Set this to 0 if there is a way to create spawners in the modpack.")
             .defineInRange("favor_per_spawner_destroyed", 5D, 0, 1000);
 
+        ILVL_PER_UPGRADE_LEVEL = b.defineInRange("ILVL_PER_UPGRADE_LEVEL", 0.5D, 0, 1000);
+
         REGEN_HUNGER_COST = b.defineInRange("regen_hunger_cost", 10D, 0, 1000);
         EXP_LOSS_ON_DEATH = b.defineInRange("death_exp_penalty", 0.1D, 0, 1);
         EXP_GAIN_MULTI = b.defineInRange("exp_gain_multi", 1D, 0, 1000);
@@ -155,6 +157,7 @@ public class ServerContainer {
     public ForgeConfigSpec.DoubleValue VANILLA_MOB_DMG_AS_EXILE_DMG;
     public ForgeConfigSpec.DoubleValue VANILLA_MOB_DMG_AS_EXILE_DMG_AT_MAX_LVL;
     public ForgeConfigSpec.DoubleValue PVP_DMG_MULTI;
+    public ForgeConfigSpec.DoubleValue ILVL_PER_UPGRADE_LEVEL;
 
     public ForgeConfigSpec.DoubleValue GEAR_DROPRATE;
     public ForgeConfigSpec.DoubleValue GEM_DROPRATE;

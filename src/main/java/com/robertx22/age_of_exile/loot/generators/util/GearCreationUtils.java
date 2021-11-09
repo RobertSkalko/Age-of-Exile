@@ -35,7 +35,6 @@ public class GearCreationUtils {
         data.lvl = blueprint.level.get();
         data.rarity = rarity.GUID();
 
-        data.sockets.slots = rarity.sockets;
         data.up.regenerate(rarity);
 
         if (rarity.is_unique_item && blueprint.uniquePart.get() != null) {

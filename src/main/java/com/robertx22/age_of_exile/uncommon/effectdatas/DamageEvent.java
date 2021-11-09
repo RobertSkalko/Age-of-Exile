@@ -355,7 +355,11 @@ public class DamageEvent extends EffectEvent {
                 }
 
             } else {
+
+                int inv = target.invulnerableTime;
+                target.invulnerableTime = 0;
                 target.hurt(dmgsource, vanillaDamage);
+                target.invulnerableTime = inv;
             }
 
             if (target instanceof PlayerEntity == false) {

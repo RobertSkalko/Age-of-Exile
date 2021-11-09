@@ -3,24 +3,24 @@
   "text_format": "GREEN",
   "on_armor_stats": [
     {
-      "min": 1.8,
-      "max": 5.3999996,
-      "stat": "dodge",
+      "min": 1.0,
+      "max": 5.0,
+      "stat": "dexterity",
       "type": "FLAT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 7.2,
-      "max": 14.4,
+      "min": 2.0,
+      "max": 15.0,
       "stat": "energy_regen",
       "type": "PERCENT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 3.6,
-      "max": 10.799999,
+      "min": 2.0,
+      "max": 8.0,
       "stat": "critical_hit",
       "type": "FLAT"
     }
@@ -28,5 +28,5 @@
   "item_id": "mmorpg:gems/garnet/4",
   "identifier": "garnet4",
   "tier": 5,
-  "weight": 50
+  "weight": 5
 }

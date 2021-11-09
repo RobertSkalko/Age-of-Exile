@@ -119,7 +119,7 @@ public class RarityUpgradeStone extends Item implements ICurrencyItemEffect, IGU
     }
 
     @Override
-    public ItemStack internalModifyMethod(ItemStack stack, ItemStack currency) {
+    public ItemStack internalModifyMethod(LocReqContext ctx, ItemStack stack, ItemStack currency) {
         return null;
     }
 

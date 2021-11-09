@@ -110,7 +110,7 @@ public class RarityEssenceItem extends Item implements IGUID, ISalvagable {
 
             ItemStack res = new ItemStack(SlashItems.SOURCE_OF_STRENGTH.get());
 
-            int count = (int) Math.max(1, rar.item_tier_power);
+            int count = (int) Math.max(1, rar.dust_per_sal.random());
             res.setCount(count);
 
             list.add(res);

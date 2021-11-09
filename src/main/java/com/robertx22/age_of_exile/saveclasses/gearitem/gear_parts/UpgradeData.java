@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
@@ -69,9 +70,11 @@ public class UpgradeData {
     }
 
     public int getUpgradeLevel() {
-        return ups.stream()
+        int lvl = ups.stream()
             .mapToInt(x -> x.upgradeLevel)
             .sum();
+
+        return MathHelper.clamp(lvl, 0, 100);
     }
 
     public int getTimesUpgraded() {

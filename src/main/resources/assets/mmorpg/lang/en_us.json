@@ -484,21 +484,6 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
-"_comment": " [CATEGORY]: TRANSCENDANTAFFIXES - NAMES",
-
-	"transcendent_affix.armor": "Bulwark",
-	"transcendent_affix.crit": "Aspect of Malice",
-	"transcendent_affix.ene": "Youth",
-	"transcendent_affix.grudge": "Eternal Grudge",
-	"transcendent_affix.hp": "Eternity",
-	"transcendent_affix.lifesteal": "Taste of Blood",
-	"transcendent_affix.mana": "Brilliance",
-	"transcendent_affix.spell_crit": "Mana Hazard",
-	"transcendent_affix.spell_lifesteal": "Bitter Vengeance",
-
-"_comment": " [CATEGORY]: TRANSCENDANTAFFIXES - NAMES",
-
-
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.ingredient.blackpearl": "Black Pearl",
@@ -636,6 +621,28 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
+	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.plus_one_upgrade": "§cMagical Upgrade Stone",
+	"item.mmorpg.currency.plus_three_upgrade": "§cSupreme Upgrade Stone",
+	"item.mmorpg.currency.plus_two_upgrade": "§cExtraordinary Upgrade Stone",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 	"effect.mmorpg.beneficial.1": "Antidote",
@@ -679,28 +686,6 @@
 	"effect.mmorpg.negative.8": "Bleed",
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
-
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.clear_sockets": "§cOrb of Empty Sockets",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
-	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.plus_one_upgrade": "§cMagical Upgrade Stone",
-	"item.mmorpg.currency.plus_three_upgrade": "§cSupreme Upgrade Stone",
-	"item.mmorpg.currency.plus_two_upgrade": "§cExtraordinary Upgrade Stone",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -1111,11 +1096,11 @@
 	"mmorpg.stat.bonus_cooking_yield": "Cooking Yield",
 	"mmorpg.stat.bonus_day_yield": "Day Time Yield",
 	"mmorpg.stat.bonus_exp": "Bonus Experience",
+	"mmorpg.stat.bonus_exp_for_t0_mob": "Tier 0 Mob Exp",
 	"mmorpg.stat.bonus_exp_for_t1_mob": "Tier 1 Mob Exp",
 	"mmorpg.stat.bonus_exp_for_t2_mob": "Tier 2 Mob Exp",
 	"mmorpg.stat.bonus_exp_for_t3_mob": "Tier 3 Mob Exp",
 	"mmorpg.stat.bonus_exp_for_t4_mob": "Tier 4 Mob Exp",
-	"mmorpg.stat.bonus_exp_for_t5_mob": "Tier 5 Mob Exp",
 	"mmorpg.stat.bonus_favor": "Bonus Favor",
 	"mmorpg.stat.bonus_hot_biome_yield": "Hot Biome Yield",
 	"mmorpg.stat.bonus_inscribing_exp": "Bonus Inscribing Exp",
@@ -1500,8 +1485,8 @@
 	"item.mmorpg.currency.orb_of_infinity.desc": "Resets the gear's upgrade level and rerolls slots.",
 	"item.mmorpg.currency.orb_of_transmutation.desc": "Transform common item into higher rarity.",
 	"item.mmorpg.currency.plus_one_upgrade.desc": "90% chance of +1, else 0.",
-	"item.mmorpg.currency.plus_three_upgrade.desc": "50% chance of +3, else -3",
-	"item.mmorpg.currency.plus_two_upgrade.desc": "75% chance of +2, else -1",
+	"item.mmorpg.currency.plus_three_upgrade.desc": "70% chance of +3, else -2",
+	"item.mmorpg.currency.plus_two_upgrade.desc": "80% chance of +2, else -1",
 	"item.mmorpg.currency.randomize_affixes.desc": "Re-rolls all affixes.",
 	"item.mmorpg.currency.reroll_affix_numbers.desc": "Re-rolls all affix numbers.",
 	"item.mmorpg.currency.reroll_primary_stats_numbers.desc": "Re-rolls implicit stat numbers.",

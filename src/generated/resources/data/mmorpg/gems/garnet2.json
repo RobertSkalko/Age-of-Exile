@@ -3,24 +3,24 @@
   "text_format": "GREEN",
   "on_armor_stats": [
     {
-      "min": 1.4,
-      "max": 4.2,
-      "stat": "dodge",
+      "min": 0.6,
+      "max": 3.0,
+      "stat": "dexterity",
       "type": "FLAT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 5.6,
-      "max": 11.2,
+      "min": 1.2,
+      "max": 9.0,
       "stat": "energy_regen",
       "type": "PERCENT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 2.8,
-      "max": 8.4,
+      "min": 1.2,
+      "max": 4.8,
       "stat": "critical_hit",
       "type": "FLAT"
     }
@@ -28,5 +28,5 @@
   "item_id": "mmorpg:gems/garnet/2",
   "identifier": "garnet2",
   "tier": 3,
-  "weight": 1000
+  "weight": 250
 }

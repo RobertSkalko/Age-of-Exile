@@ -1,3 +1,23 @@
+v.4.0.6
+
+fix item tiers being wrong sometimes, when salvaging too
+fix arrows spells not being castable on servers
+
+
+v.4.0.5
+
+fix archers not doing mns damage
+
+v.4.0.4
+
+gems now no longer have a level. They now get the level of the gear.
+Higher tier gems have better stats. Droprates of higher tier gems heavily nerfed
+
+upgrades now add sockets at +4,8 and 12, instead of adding a transcendant affix
+transcendant affixes removed
+
+fix mobs not doing mns dmg because of attack cooldown..
+
 v.4.0.3
 
 changed major version to 4 to differentiate from 1.15

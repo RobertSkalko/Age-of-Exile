@@ -34,7 +34,7 @@ public class RuneLootGen extends BaseLootGen<GearBlueprint> {
             }
         }
         return !ExileDB.Runes()
-            .getFilterWrapped(x -> this.info.level >= x.getReqLevel()).list.isEmpty();
+            .getFilterWrapped(x -> this.info.level >= x.getReqLevelToDrop()).list.isEmpty();
     }
 
     @Override

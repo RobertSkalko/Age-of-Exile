@@ -42,8 +42,7 @@ public class MasterLootGen {
             }
 
             while (items.size() > info.getMaxItems()) {
-                ItemStack randomtoremove = RandomUtils.randomFromList(items);
-                items.removeIf(x -> x.equals(randomtoremove));
+                items.remove(RandomUtils.RandomRange(0, items.size() - 1));
             }
 
             if (info.rpgData != null && info.favorRank != null) {

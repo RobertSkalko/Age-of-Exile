@@ -17,6 +17,10 @@ public abstract class ItemInteractionHook {
     @Inject(method = "doClick(IILnet/minecraft/inventory/container/ClickType;Lnet/minecraft/entity/player/PlayerEntity;)Lnet/minecraft/item/ItemStack;", cancellable = true, at = @At(value = "HEAD"))
     public void method_30010(int i, int j, ClickType slotActionType, PlayerEntity player, CallbackInfoReturnable<ItemStack> ci) {
         Container screen = (Container) (Object) this;
-        OnItemInteract.on(screen, i, j, slotActionType, player, ci);
+        try {
+            OnItemInteract.on(screen, i, j, slotActionType, player, ci);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
