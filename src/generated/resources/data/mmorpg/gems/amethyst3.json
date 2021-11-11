@@ -1,0 +1,33 @@
+{
+  "gem_type": "amethyst",
+  "text_format": "DARK_PURPLE",
+  "perc_upgrade_chance": 25,
+  "on_armor_stats": [
+    {
+      "min": 0.4,
+      "max": 2.0,
+      "stat": "intelligence",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 0.4,
+      "max": 2.4,
+      "stat": "spell_damage",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 0.8,
+      "max": 4.0,
+      "stat": "spell_critical_damage",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/amethyst/3",
+  "identifier": "amethyst3",
+  "tier": 3,
+  "weight": 1000
+}

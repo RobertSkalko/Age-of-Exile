@@ -23,6 +23,7 @@ public class S2CPacketRegister {
         Packets.registerServerToClient(MMORPG.NETWORK, new SkillLevelUpToClient(), i++);
         Packets.registerServerToClient(MMORPG.NETWORK, new TellClientEntityIsCastingSpellPacket(), i++);
         Packets.registerServerToClient(MMORPG.NETWORK, new FailReasonPacket(), i++);
+        Packets.registerServerToClient(MMORPG.NETWORK, new TotemAnimationPacket(), i++);
 
     }
 }

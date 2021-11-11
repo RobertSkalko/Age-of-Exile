@@ -1,0 +1,33 @@
+{
+  "gem_type": "amethyst",
+  "text_format": "DARK_PURPLE",
+  "perc_upgrade_chance": 0,
+  "on_armor_stats": [
+    {
+      "min": 1.0,
+      "max": 5.0,
+      "stat": "intelligence",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 1.0,
+      "max": 6.0,
+      "stat": "spell_damage",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 2.0,
+      "max": 10.0,
+      "stat": "spell_critical_damage",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/amethyst/6",
+  "identifier": "amethyst6",
+  "tier": 6,
+  "weight": 1
+}

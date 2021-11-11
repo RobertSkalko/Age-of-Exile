@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "mmorpg:gems/sapphire/0",
+    "mmorpg:gems/topaz/0",
+    "mmorpg:gems/amethyst/0",
     "mmorpg:gems/tourmaline/0",
     "mmorpg:gems/azurite/0",   
     "mmorpg:gems/garnet/0",

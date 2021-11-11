@@ -1,0 +1,33 @@
+{
+  "gem_type": "amethyst",
+  "text_format": "DARK_PURPLE",
+  "perc_upgrade_chance": 100,
+  "on_armor_stats": [
+    {
+      "min": 0.1,
+      "max": 0.5,
+      "stat": "intelligence",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 0.1,
+      "max": 0.6,
+      "stat": "spell_damage",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 0.2,
+      "max": 1.0,
+      "stat": "spell_critical_damage",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/amethyst/0",
+  "identifier": "amethyst0",
+  "tier": 0,
+  "weight": 100999
+}

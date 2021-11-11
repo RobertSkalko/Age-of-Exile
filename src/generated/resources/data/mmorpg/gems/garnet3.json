@@ -1,32 +1,33 @@
 {
-  "socket_type": "garnet",
+  "gem_type": "garnet",
   "text_format": "GREEN",
+  "perc_upgrade_chance": 25,
   "on_armor_stats": [
     {
-      "min": 0.8,
-      "max": 4.0,
+      "min": 0.4,
+      "max": 2.0,
       "stat": "dexterity",
       "type": "FLAT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 1.6,
-      "max": 12.0,
+      "min": 0.8,
+      "max": 6.0,
       "stat": "energy_regen",
       "type": "PERCENT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 1.6,
-      "max": 6.4,
+      "min": 0.8,
+      "max": 3.2,
       "stat": "critical_hit",
       "type": "FLAT"
     }
   ],
   "item_id": "mmorpg:gems/garnet/3",
   "identifier": "garnet3",
-  "tier": 4,
-  "weight": 50
+  "tier": 3,
+  "weight": 1000
 }

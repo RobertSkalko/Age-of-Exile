@@ -1,32 +1,33 @@
 {
-  "socket_type": "tourmaline",
+  "gem_type": "tourmaline",
   "text_format": "LIGHT_PURPLE",
+  "perc_upgrade_chance": 50,
   "on_armor_stats": [
     {
-      "min": 0.6,
-      "max": 3.0,
+      "min": 0.3,
+      "max": 1.5,
       "stat": "vitality",
       "type": "FLAT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 1.2,
-      "max": 9.0,
+      "min": 0.6,
+      "max": 4.5,
       "stat": "health_regen",
       "type": "PERCENT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 0.6,
-      "max": 3.0,
+      "min": 0.3,
+      "max": 1.5,
       "stat": "lifesteal",
       "type": "FLAT"
     }
   ],
   "item_id": "mmorpg:gems/tourmaline/2",
   "identifier": "tourmaline2",
-  "tier": 3,
-  "weight": 250
+  "tier": 2,
+  "weight": 5000
 }

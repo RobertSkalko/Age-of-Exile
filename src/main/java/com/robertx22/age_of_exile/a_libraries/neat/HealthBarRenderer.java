@@ -1,72 +1,35 @@
 package com.robertx22.age_of_exile.a_libraries.neat;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ActiveRenderInfo;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.culling.ClippingHelper;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.container.PlayerContainer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Quaternion;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import javax.annotation.Nonnull;
-import java.awt.*;
-import java.util.List;
-import java.util.Optional;
-import java.util.Stack;
-
 public class HealthBarRenderer {
 
+    /*
     public static Entity getEntityLookedAt(Entity e) {
         Entity foundEntity = null;
         final double finalDistance = 32;
         double distance = finalDistance;
         RayTraceResult pos = raycast(e, finalDistance);
-        Vector3d positionVector = e.getPositionVec();
+        Vector3d positionVector = e.position();
 
         if (e instanceof PlayerEntity)
             positionVector = positionVector.add(0, e.getEyeHeight(e.getPose()), 0);
 
         if (pos != null)
-            distance = pos.getHitVec()
+            distance = pos.getLocation()
                 .distanceTo(positionVector);
 
-        Vector3d lookVector = e.getLookVec();
+        Vector3d lookVector = e.getLookAngle();
         Vector3d reachVector = positionVector.add(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance);
 
         Entity lookedEntity = null;
-        List<Entity> entitiesInBoundingBox = e.getEntityWorld()
-            .getEntitiesWithinAABBExcludingEntity(e, e.getBoundingBox()
-                .grow(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance)
-                .expand(1F, 1F, 1F));
+        List<Entity> entitiesInBoundingBox = e.level
+            .getEntities(e, e.getBoundingBox()
+                .inflate(lookVector.x * finalDistance, lookVector.y * finalDistance, lookVector.z * finalDistance)
+                .inflate(1F, 1F, 1F));
         double minDistance = distance;
 
         for (Entity entity : entitiesInBoundingBox) {
             if (entity.canBeCollidedWith()) {
-                AxisAlignedBB collisionBox = entity.getRenderBoundingBox();
+                AxisAlignedBB collisionBox = entity.getBoundingBox();
                 Optional<Vector3d> interceptPosition = collisionBox.rayTrace(positionVector, reachVector);
 
                 if (collisionBox.contains(positionVector)) {
@@ -92,7 +55,7 @@ public class HealthBarRenderer {
     }
 
     public static RayTraceResult raycast(Entity e, double len) {
-        Vector3d vec = new Vector3d(e.getPosX(), e.getPosY(), e.getPosZ());
+        Vector3d vec = new Vector3d(e.getPosX(), e.getY(), e.getZ());
         if (e instanceof PlayerEntity)
             vec = vec.add(new Vector3d(0, e.getEyeHeight(e.getPose()), 0));
 
@@ -114,7 +77,7 @@ public class HealthBarRenderer {
         if (boss) {
             return new ItemStack(Items.NETHER_STAR);
         }
-        CreatureAttribute attr = entity.getCreatureAttribute();
+        CreatureAttribute attr = entity.getMobType();
         if (attr == CreatureAttribute.ARTHROPOD) {
             return new ItemStack(Items.SPIDER_EYE);
         } else if (attr == CreatureAttribute.UNDEAD) {
@@ -206,8 +169,8 @@ public class HealthBarRenderer {
 
             processing:
             {
-                float distance = passedEntity.getDistance(viewPoint);
-                if (distance > NeatConfig.maxDistance || !passedEntity.canEntityBeSeen(viewPoint) || entity.isInvisible())
+                float distance = passedEntity.distanceTo(viewPoint);
+                if (distance > NeatConfig.maxDistance || !passedEntity.canSee(viewPoint) || entity.isInvisible())
                     break processing;
                 if (!NeatConfig.showOnBosses && !boss)
                     break processing;
@@ -218,9 +181,9 @@ public class HealthBarRenderer {
                 if (!NeatConfig.showFullHealth && entity.getHealth() == entity.getMaxHealth())
                     break processing;
 
-                double x = passedEntity.prevPosX + (passedEntity.getPosX() - passedEntity.prevPosX) * partialTicks;
-                double y = passedEntity.prevPosY + (passedEntity.getPosY() - passedEntity.prevPosY) * partialTicks;
-                double z = passedEntity.prevPosZ + (passedEntity.getPosZ() - passedEntity.prevPosZ) * partialTicks;
+                double x = passedEntity.xOld + (passedEntity.getX() - passedEntity.xOld) * partialTicks;
+                double y = passedEntity.yOld + (passedEntity.getY() - passedEntity.yOld) * partialTicks;
+                double z = passedEntity.zOld + (passedEntity.getZ() - passedEntity.zOld) * partialTicks;
 
                 EntityRendererManager renderManager = Minecraft.getInstance()
                     .getEntityRenderDispatcher();
@@ -238,7 +201,7 @@ public class HealthBarRenderer {
                 matrixStack.translate(0.0D, -(NeatConfig.backgroundHeight + NeatConfig.barHeight + NeatConfig.backgroundPadding), 0.0D);
             }
         }
-        matrixStack.pop();
+        matrixStack.popPose();
 
     }
 
@@ -246,7 +209,7 @@ public class HealthBarRenderer {
         Quaternion rotation = renderInfo.rotation()
             .copy();
         rotation.mul(-1.0F);
-        matrixStack.rotate(rotation);
+        matrixStack.mulPose(rotation);
         float scale = 0.026666672F;
         matrixStack.scale(-scale, -scale, scale);
         float health = MathHelper.clamp(entity.getHealth(), 0.0F, entity.getMaxHealth());
@@ -415,7 +378,7 @@ public class HealthBarRenderer {
 
     private void renderIcon(Minecraft mc, int vertexX, int vertexY, @Nonnull ItemStack icon, MatrixStack matrixStack, IRenderTypeBuffer buffer, int light) {
         matrixStack.pushPose();
-        matrixStack.rotate(Vector3f.ZP.rotationDegrees(-90));
+        matrixStack.mulPose(Vector3f.ZP.rotationDegrees(-90));
         matrixStack.translate(vertexY - 16, vertexX - 16, 0.0D);
         matrixStack.scale(16.0F, 16.0F, 1.0F);
         try {
@@ -425,9 +388,9 @@ public class HealthBarRenderer {
             TextureAtlasSprite sprite = mc.getTextureAtlas(pair.getFirst())
                 .apply(pair.getSecond());
             MatrixStack.Entry entry = matrixStack.getLast();
-            Matrix4f modelViewMatrix = entry.getMatrix();
+            Matrix4f modelViewMatrix = entry.pose();
             Vector3f normal = new Vector3f(0.0F, 1.0F, 0.0F);
-            normal.transform(entry.getNormal());
+            normal.transform(entry.normal());
             IVertexBuilder builder = buffer.getBuffer(NeatRenderType.getNoIconType());
             if (icon.isEmpty()) { //Wonky workaround to make text stay in position & make empty icon not rendering
                 builder.vertex(modelViewMatrix, 0.0F, 0.0F, 0.0F)
@@ -489,4 +452,6 @@ public class HealthBarRenderer {
         }
         matrixStack.pop();
     }
+    */
+
 }

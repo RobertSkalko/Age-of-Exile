@@ -5,6 +5,7 @@ set_bool_crit
 decrease_cast_ticks_num
 restore_mana_per_stat_data
 give_negative/11_to_target
+leech_energy
 multiply_number_num
 give_negative/5_to_target
 apply_cd_as_cast_time
@@ -19,6 +20,7 @@ give_negative/3_to_target
 leech_health
 decrease_cd_ticks_num
 give_negative/2_to_source
+restore_energy_per_stat_data
 add_perc_of_mana_to_num
 give_negative/8_to_target
 increase_effect_duration_ticks_num

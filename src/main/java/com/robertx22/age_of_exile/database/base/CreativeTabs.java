@@ -39,7 +39,7 @@ public class CreativeTabs {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(GemItems.MAP.get(GemItem.GemType.GARNET)
-                .get(GemItem.GemRank.PERFECT)
+                .get(GemItem.GemRank.GLORIOUS)
                 .get());
         }
     };

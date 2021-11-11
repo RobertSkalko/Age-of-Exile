@@ -1,0 +1,33 @@
+{
+  "gem_type": "tourmaline",
+  "text_format": "LIGHT_PURPLE",
+  "perc_upgrade_chance": 0,
+  "on_armor_stats": [
+    {
+      "min": 1.0,
+      "max": 5.0,
+      "stat": "vitality",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 2.0,
+      "max": 15.0,
+      "stat": "health_regen",
+      "type": "PERCENT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 1.0,
+      "max": 5.0,
+      "stat": "lifesteal",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/tourmaline/6",
+  "identifier": "tourmaline6",
+  "tier": 6,
+  "weight": 1
+}

@@ -17,8 +17,7 @@
   ],
   "client": [
     "ItemGlintMixin",
-    "ItemStackMixin",
-    "MobNameTagMixin",
+    "ItemStackMixin",    
     "WorldRendererMixin"
   ],
   "injectors": {

@@ -1,0 +1,33 @@
+{
+  "gem_type": "amethyst",
+  "text_format": "DARK_PURPLE",
+  "perc_upgrade_chance": 10,
+  "on_armor_stats": [
+    {
+      "min": 0.6,
+      "max": 3.0,
+      "stat": "intelligence",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 0.6,
+      "max": 3.6000001,
+      "stat": "spell_damage",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 1.2,
+      "max": 6.0,
+      "stat": "spell_critical_damage",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/amethyst/4",
+  "identifier": "amethyst4",
+  "tier": 4,
+  "weight": 200
+}

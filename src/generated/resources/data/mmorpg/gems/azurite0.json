@@ -1,32 +1,33 @@
 {
-  "socket_type": "azurite",
+  "gem_type": "azurite",
   "text_format": "AQUA",
+  "perc_upgrade_chance": 100,
   "on_armor_stats": [
     {
-      "min": 0.2,
-      "max": 1.0,
+      "min": 0.1,
+      "max": 0.5,
       "stat": "wisdom",
       "type": "FLAT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 0.4,
-      "max": 3.0,
+      "min": 0.2,
+      "max": 1.5,
       "stat": "mana_regen",
       "type": "PERCENT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 0.2,
-      "max": 0.6,
+      "min": 0.1,
+      "max": 0.3,
       "stat": "mana_on_attack_hit",
       "type": "FLAT"
     }
   ],
   "item_id": "mmorpg:gems/azurite/0",
   "identifier": "azurite0",
-  "tier": 1,
-  "weight": 20000
+  "tier": 0,
+  "weight": 100999
 }

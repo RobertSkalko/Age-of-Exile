@@ -1,0 +1,33 @@
+{
+  "gem_type": "topaz",
+  "text_format": "YELLOW",
+  "perc_upgrade_chance": 75,
+  "on_armor_stats": [
+    {
+      "min": 0.2,
+      "max": 1.0,
+      "stat": "agility",
+      "type": "FLAT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 0.4,
+      "max": 3.0,
+      "stat": "energy",
+      "type": "PERCENT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 0.2,
+      "max": 0.6,
+      "stat": "energy_on_all_hit",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/topaz/1",
+  "identifier": "topaz1",
+  "tier": 1,
+  "weight": 25999
+}

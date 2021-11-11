@@ -1,32 +1,33 @@
 {
-  "socket_type": "ruby",
+  "gem_type": "ruby",
   "text_format": "RED",
+  "perc_upgrade_chance": 10,
   "on_armor_stats": [
     {
-      "min": 4.0,
-      "max": 12.0,
+      "min": 2.4,
+      "max": 7.2000003,
       "stat": "fire_resist",
       "type": "PERCENT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 2.0,
-      "max": 10.0,
+      "min": 1.2,
+      "max": 6.0,
       "stat": "spell_fire_damage",
       "type": "FLAT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 2.0,
-      "max": 15.0,
+      "min": 1.2,
+      "max": 9.0,
       "stat": "all_fire_damage",
       "type": "FLAT"
     }
   ],
   "item_id": "mmorpg:gems/ruby/4",
   "identifier": "ruby4",
-  "tier": 5,
-  "weight": 5
+  "tier": 4,
+  "weight": 200
 }

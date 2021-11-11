@@ -1,32 +1,33 @@
 {
-  "socket_type": "opal",
+  "gem_type": "opal",
   "text_format": "GOLD",
+  "perc_upgrade_chance": 25,
   "on_armor_stats": [
     {
-      "min": 0.8,
-      "max": 4.0,
+      "min": 0.4,
+      "max": 2.0,
       "stat": "strength",
       "type": "FLAT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 0.8,
-      "max": 4.8,
+      "min": 0.4,
+      "max": 2.4,
       "stat": "critical_hit",
       "type": "FLAT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 2.4,
-      "max": 9.6,
+      "min": 1.2,
+      "max": 4.8,
       "stat": "critical_damage",
       "type": "FLAT"
     }
   ],
   "item_id": "mmorpg:gems/opal/3",
   "identifier": "opal3",
-  "tier": 4,
-  "weight": 50
+  "tier": 3,
+  "weight": 1000
 }

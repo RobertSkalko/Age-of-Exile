@@ -2,13 +2,13 @@ package com.robertx22.age_of_exile.vanilla_mc.items.loot_crate;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
-import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
@@ -86,7 +86,7 @@ public class LootCrateItem extends Item implements IGUID {
     public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> stacks) {
         if (this.allowdedIn(group)) {
 
-            for (int tier = 1; tier < GameBalanceConfig.get().MAX_LEVEL / 10; tier++) {
+            for (int tier = 0; tier < LevelUtils.getMaxTier(); tier++) {
                 for (LootType type : LOOT_TYPES) {
                     ItemStack stack = new ItemStack(this);
 
@@ -109,7 +109,6 @@ public class LootCrateItem extends Item implements IGUID {
     @Override
     public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip,
                                 ITooltipFlag flagIn) {
-
         LootCrateData data = getData(stack);
 
         if (data != null) {

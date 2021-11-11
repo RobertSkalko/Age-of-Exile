@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.BaseRuneGem;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
-import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.SimpleGearLocReq;
@@ -18,11 +17,12 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.Gea
 import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
+import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.GemItems;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.SocketData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -31,11 +31,21 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
+import com.robertx22.age_of_exile.vanilla_mc.packets.TotemAnimationPacket;
+import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.utils.RandomUtils;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -48,7 +58,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.Arrays;
 import java.util.List;
 
-public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAutoLocName, IShapelessRecipe, ICurrencyItemEffect {
+public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAutoLocName, ICurrencyItemEffect {
 
     @Override
     public AutoLocGroup locNameGroup() {
@@ -76,27 +86,80 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         manager.generated(this);
     }
 
+    @Override
+    public ActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        ItemStack itemStack = user.getItemInHand(hand);
+        user.startUsingItem(hand);
+        return ActionResult.success(itemStack);
+    }
+
+    @Override
+    public UseAction getUseAnimation(ItemStack p_77661_1_) {
+        return UseAction.BOW;
+    }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity en) {
+
+        if (world.isClientSide) {
+            return stack;
+        }
+
+        if (en instanceof PlayerEntity) {
+            PlayerEntity p = (PlayerEntity) en;
+
+            if (!getGem().hasHigherTierGem()) {
+                p.displayClientMessage(new StringTextComponent(TextFormatting.RED + "These gems are already maximum rank."), false);
+                return stack;
+            }
+            if (stack.getCount() < 3) {
+                p.displayClientMessage(new StringTextComponent(TextFormatting.RED + "You need 3 gems to attempt upgrade."), false);
+                return stack;
+            }
+
+            Gem gem = getGem();
+
+            if (stack.getCount() > 2) {
+                if (getGem().hasHigherTierGem()) {
+                    boolean success = RandomUtils.roll(gem.perc_upgrade_chance);
+
+                    stack.shrink(3);
+
+                    Item old = stack.getItem();
+
+                    if (success) {
+                        ItemStack newstack = new ItemStack(getGem().getHigherTierGem()
+                            .getItem());
+                        Packets.sendToClient(p, new TotemAnimationPacket(newstack));
+                        PlayerUtils.giveItem(newstack, p);
+                        p.displayClientMessage(new StringTextComponent(TextFormatting.GREEN + "").append(old.getName(new ItemStack(old)))
+                            .append(" has been upgraded to ")
+                            .append(newstack.getDisplayName()), false);
+
+                    } else {
+                        SoundUtils.playSound(p, SoundEvents.VILLAGER_NO, 1, 1);
+
+                        p.displayClientMessage(new StringTextComponent(TextFormatting.RED + "").append(old.getName(new ItemStack(old)))
+                            .append(" has failed the upgrade and was destroyed."), false);
+                    }
+                }
+            }
+        }
+
+        return stack;
+    }
+
+    @Override
+    public int getUseDuration(ItemStack stack) {
+        return 40;
+    }
+
     static float MIN_WEP_DMG = 2;
     static float MAX_WEP_DMG = 15;
     static float MIN_RES = 4;
     static float MAX_RES = 12;
     static float MIN_ELE_DMG = 2;
     static float MAX_ELE_DMG = 10;
-
-    @Override
-    public ShapelessRecipeBuilder getRecipe() {
-
-        if (this.gemRank.lower() == null) {
-            return null;
-        }
-        return ShapelessRecipeBuilder.shapeless(GemItems.MAP.get(gemType)
-                .get(gemRank)
-                .get())
-            .requires(GemItems.MAP.get(gemType)
-                .get(gemRank.lower())
-                .get(), 3)
-            .unlockedBy("player_level", trigger());
-    }
 
     @Override
     public ItemStack internalModifyMethod(LocReqContext ctx, ItemStack stack, ItemStack currency) {
@@ -228,8 +291,38 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
                 return Arrays.asList(new StatModifier(3, 12, Stats.CRIT_DAMAGE.get()));
             }
         }),
-        //TOPAZ("topaz", "Topaz", Formatting.YELLOW, new EleGem(Elements.Air)),
-        // AMETHYST("amethyst", "Amethyst", Formatting.DARK_PURPLE, new EleGem(Elements.Dark)),
+        TOPAZ("topaz", "Topaz", TextFormatting.YELLOW, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(1, 5, DatapackStats.AGI));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(2, 15, Energy.getInstance(), ModType.PERCENT));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(1, 3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.energy, AttackType.all))));
+            }
+        }),
+        AMETHYST("amethyst", "Amethyst", TextFormatting.DARK_PURPLE, new GemStatPerTypes() {
+            @Override
+            public List<StatModifier> onArmor() {
+                return Arrays.asList(new StatModifier(1, 5, DatapackStats.INT));
+            }
+
+            @Override
+            public List<StatModifier> onJewelry() {
+                return Arrays.asList(new StatModifier(1, 6, SpellDamage.getInstance(), ModType.FLAT));
+            }
+
+            @Override
+            public List<StatModifier> onWeapons() {
+                return Arrays.asList(new StatModifier(2, 10, Stats.SPELL_CRIT_DAMAGE.get()));
+            }
+        }),
         RUBY("ruby", "Ruby", TextFormatting.RED, new EleGem(Elements.Fire)),
         EMERALD("emerald", "Emerald", TextFormatting.GREEN, new EleGem(Elements.Earth)),
         SAPPHIRE("sapphire", "Sapphire", TextFormatting.BLUE, new EleGem(Elements.Water));
@@ -248,42 +341,30 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     public enum GemRank {
-        CHIPPED("Chipped", 0, 1, 0.2F),
-        FLAWED("Flawed", 1, 2, 0.4F),
-        REGULAR("Regular", 2, 3, 0.6F),
-        FLAWLESS("Flawless", 3, 4, 0.8F),
-        PERFECT("Perfect", 4, 5, 1F);
+        CRACKED("Cracked", 0, 0.1F, 100, 100999, 0F),
+        CHIPPED("Chipped", 1, 0.2F, 75, 25999, 0.1F),
+        FLAWED("Flawed", 2, 0.3F, 50, 5000, 0.2F),
+        REGULAR("Regular", 3, 0.4F, 25, 1000, 0.5F),
+        GRAND("Grand", 4, 0.6F, 10, 200, 0.75F),
+        GLORIOUS("Glorious", 5, 0.8F, 5, 25, 0.9F),
+        DIVINE("Divine", 6, 1F, 0, 1, 0.95F);
 
         public String locName;
-        public int num;
         public int tier;
         public float statmulti;
+        public int upgradeChance;
+        public int weight;
+        public float lvlToDrop;
 
-        GemRank(String locName, int num, int tier, float statmulti) {
+        GemRank(String locName, int tier, float statmulti, int upgradeChance, int weight, float lvlToDrop) {
             this.locName = locName;
-            this.num = num;
+            this.weight = weight;
+            this.lvlToDrop = lvlToDrop;
             this.tier = tier;
             this.statmulti = statmulti;
+            this.upgradeChance = upgradeChance;
         }
 
-        public GemRank lower() {
-            if (this == CHIPPED) {
-                return null;
-            }
-            if (this == FLAWED) {
-                return CHIPPED;
-            }
-            if (this == REGULAR) {
-                return FLAWED;
-            }
-            if (this == FLAWLESS) {
-                return REGULAR;
-            }
-            if (this == PERFECT) {
-                return FLAWLESS;
-            }
-            return null;
-        }
     }
 
     public GemItem(GemType type, GemRank gemRank) {
@@ -293,24 +374,9 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         this.gemType = type;
         this.gemRank = gemRank;
 
-        if (gemRank.num == 0) {
-            weight = 20000;
-            levelToStartDrop = 0;
-        } else if (gemRank.num == 1) {
-            weight = 5000;
-            levelToStartDrop = 0.2F;
-        } else if (gemRank.num == 2) {
-            weight = 250;
-            levelToStartDrop = 0.4F;
-        } else if (gemRank.num == 3) {
-            weight = 50;
-            levelToStartDrop = 0.6F;
-        } else if (gemRank.num == 4) {
-            weight = 5;
-            levelToStartDrop = 0.9F;
-        } else {
-            throw new RuntimeException("Gem rank not accounted for?");
-        }
+        this.weight = gemRank.weight;
+        this.levelToStartDrop = gemRank.lvlToDrop;
+
     }
 
     public GemType gemType;
@@ -319,7 +385,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
     @Override
     public String GUID() {
-        return "gems/" + gemType.id + "/" + gemRank.num;
+        return "gems/" + gemType.id + "/" + gemRank.tier;
     }
 
     public Gem getGem() {
@@ -342,6 +408,11 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         try {
 
             tooltip.addAll(getBaseTooltip());
+
+            tooltip.add(new StringTextComponent(""));
+
+            tooltip.add(new StringTextComponent("Hold 3 gems to attempt upgrade"));
+            tooltip.add(new StringTextComponent("Upgrade chance: " + getGem().perc_upgrade_chance + "%"));
 
         } catch (Exception e) {
             e.printStackTrace();

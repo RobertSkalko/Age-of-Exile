@@ -17,15 +17,17 @@ public class Gems implements ExileRegistryInit {
             Gem gem = new Gem();
             gem.item_id = Registry.ITEM.getKey(x)
                 .toString();
-            gem.identifier = x.gemType.id + x.gemRank.num;
+            gem.identifier = x.gemType.id + x.gemRank.tier;
 
             gem.on_armor_stats = x.getStatsForSerialization(SlotFamily.Armor);
             gem.on_weapons_stats = x.getStatsForSerialization(SlotFamily.Weapon);
             gem.on_jewelry_stats = x.getStatsForSerialization(SlotFamily.Jewelry);
 
             gem.tier = x.gemRank.tier;
-            gem.socket_type = x.gemType.id;
+            gem.gem_type = x.gemType.id;
             gem.text_format = x.gemType.format.name();
+
+            gem.perc_upgrade_chance = x.gemRank.upgradeChance;
 
             gem.weight = x.weight;
 

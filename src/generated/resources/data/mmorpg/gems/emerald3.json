@@ -1,32 +1,33 @@
 {
-  "socket_type": "emerald",
+  "gem_type": "emerald",
   "text_format": "GREEN",
+  "perc_upgrade_chance": 25,
   "on_armor_stats": [
     {
-      "min": 3.2,
-      "max": 9.6,
+      "min": 1.6,
+      "max": 4.8,
       "stat": "earth_resist",
       "type": "PERCENT"
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 1.6,
-      "max": 8.0,
+      "min": 0.8,
+      "max": 4.0,
       "stat": "spell_earth_damage",
       "type": "FLAT"
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 1.6,
-      "max": 12.0,
+      "min": 0.8,
+      "max": 6.0,
       "stat": "all_earth_damage",
       "type": "FLAT"
     }
   ],
   "item_id": "mmorpg:gems/emerald/3",
   "identifier": "emerald3",
-  "tier": 4,
-  "weight": 50
+  "tier": 3,
+  "weight": 1000
 }

@@ -121,10 +121,6 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
 
         TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(
-            Words.Item_modifiable_in_station.locName()
-                .withStyle(TextFormatting.BLUE));
-
         if (this.getInstability() > 0) {
             tooltip.add(Words.Instability.locName()
                 .withStyle(TextFormatting.RED)
@@ -137,6 +133,7 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
                 .append(": " + (int) getBreakChance())
                 .withStyle(TextFormatting.RED));
         }
+        tooltip.add(TooltipUtils.dragOntoGearToUse());
 
         TooltipUtils.addEmpty(tooltip);
 

@@ -1,0 +1,30 @@
+{
+  "ser": "data",
+  "id": "energy_on_all_hit",
+  "ele": "All",
+  "effect": {
+    "order": 100,
+    "side": "Source",
+    "ifs": [
+      "req_charged_atk",
+      "attack_type_is_all"
+    ],
+    "effects": [
+      "restore_energy_per_stat_data"
+    ],
+    "events": [
+      "on_damage"
+    ]
+  },
+  "show": true,
+  "min": 0.0,
+  "max": 2.14748365E9,
+  "base": 0.0,
+  "is_perc": false,
+  "scaling": "NORMAL",
+  "is_long": false,
+  "icon": "❁",
+  "order": 100,
+  "format": "aqua",
+  "group": "Misc"
+}

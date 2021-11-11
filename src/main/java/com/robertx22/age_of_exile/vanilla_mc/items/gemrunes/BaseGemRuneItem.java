@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.gemrunes;
 
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.BaseRuneGem;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
@@ -28,18 +29,17 @@ public abstract class BaseGemRuneItem extends Item {
 
     public abstract List<StatModifier> getStatModsForSerialization(SlotFamily family);
 
-    public List<StatModifier> getStatsForSerialization(SlotFamily family) {
+    public List<OptScaleExactStat> getStatsForSerialization(SlotFamily family) {
 
-        List<StatModifier> list = new ArrayList<>();
+        List<OptScaleExactStat> list = new ArrayList<>();
 
         float multi = getStatValueMulti();
 
         this.getStatModsForSerialization(family)
             .forEach(x -> {
-
-                list.add(new StatModifier(
-                    x.min * multi, x.max * multi,
-                    x.GetStat(), x.getModType()));
+                OptScaleExactStat stat = new OptScaleExactStat(x.max * multi, x.GetStat(), x.getModType());
+                stat.scale_to_lvl = true;
+                list.add(stat);
 
             });
 

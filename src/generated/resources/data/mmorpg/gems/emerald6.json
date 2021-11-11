@@ -1,0 +1,33 @@
+{
+  "gem_type": "emerald",
+  "text_format": "GREEN",
+  "perc_upgrade_chance": 0,
+  "on_armor_stats": [
+    {
+      "min": 4.0,
+      "max": 12.0,
+      "stat": "earth_resist",
+      "type": "PERCENT"
+    }
+  ],
+  "on_jewelry_stats": [
+    {
+      "min": 2.0,
+      "max": 10.0,
+      "stat": "spell_earth_damage",
+      "type": "FLAT"
+    }
+  ],
+  "on_weapons_stats": [
+    {
+      "min": 2.0,
+      "max": 15.0,
+      "stat": "all_earth_damage",
+      "type": "FLAT"
+    }
+  ],
+  "item_id": "mmorpg:gems/emerald/6",
+  "identifier": "emerald6",
+  "tier": 6,
+  "weight": 1
+}

@@ -10,6 +10,7 @@ accuracy
 dmg_when_low_hp
 energy_regen
 trident_damage
+energy_on_attack_hit
 increase_healing
 scepter_damage
 bonus_armor_craft_yield
@@ -201,6 +202,7 @@ spell_power
 give_taunt_stance_to_self_on_tick
 damage_cdr
 all_mana_leech
+energy_on_spell_hit
 offensive_eff_dur_u_cast
 magic_dmg_received
 dmg_per_curse_on_target
@@ -254,6 +256,7 @@ health_regen
 inc_effect_of_negative_buff_on_you
 spell_fire_damage
 bonus_exp_for_t1_mob
+energy_on_all_hit
 cd_ticks
 chance_of_bleed
 total_damage

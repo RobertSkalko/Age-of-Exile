@@ -45,8 +45,11 @@ public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, 
         int min = 0;
         int max = levels_per_tier;
 
-        while (max < MAX_LEVEL) {
-            tiermap.put(new MinMax(min, max), tier);
+        while (max <= MAX_LEVEL) {
+
+            int addlast = max + levels_per_tier >= MAX_LEVEL ? 1000 : 0;
+
+            tiermap.put(new MinMax(min, max + addlast), tier);
             min += levels_per_tier;
             max += levels_per_tier;
             tier++;

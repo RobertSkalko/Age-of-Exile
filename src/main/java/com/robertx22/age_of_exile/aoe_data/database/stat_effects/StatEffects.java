@@ -45,6 +45,7 @@ public class StatEffects implements ExileRegistryInit {
     public static DataHolder<ResourceType, StatEffect> LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA = new DataHolder<>(
         Arrays.asList(
             ResourceType.mana,
+            ResourceType.energy,
             ResourceType.health
         )
         , x -> new RestoreResourceAction("restore_" + x.id + "_per_stat_data", NumberProvider.ofStatData(), x, RestoreType.leech)
@@ -53,6 +54,7 @@ public class StatEffects implements ExileRegistryInit {
     public static DataHolder<ResourceType, StatEffect> LEECH_PERCENT_OF_DAMAGE_AS_RESOURCE = new DataHolder<>(
         Arrays.asList(
             ResourceType.mana,
+            ResourceType.energy,
             ResourceType.health
         )
         , x -> new RestoreResourceAction("leech_" + x.id, NumberProvider.ofPercentOfDataNumber(EventData.NUMBER), x, RestoreType.leech)

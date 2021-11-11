@@ -6,6 +6,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -14,6 +16,11 @@ import java.util.UUID;
 public class ClientOnly {
 
     public static int ticksSinceChatWasOpened = 0;
+
+    public static void totemAnimWithItem(ItemStack stack) {
+        Minecraft.getInstance().player.playSound(SoundEvents.TOTEM_USE, 1, 1);
+        Minecraft.getInstance().gameRenderer.displayItemActivation(stack);
+    }
 
     public static Entity getEntityByUUID(World world, UUID id) {
 
