@@ -11,12 +11,12 @@
     "core_stat_data": {
       "stats": [
         {
-          "v1": 0.2,
+          "v1": 0.1,
           "stat": "physical_weapon_damage",
           "type": "FLAT"
         },
         {
-          "v1": 2.0,
+          "v1": 1.0,
           "stat": "armor",
           "type": "FLAT"
         }

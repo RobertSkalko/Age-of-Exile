@@ -4,26 +4,26 @@
   "perc_upgrade_chance": 50,
   "on_armor_stats": [
     {
-      "min": 0.3,
-      "max": 1.5,
+      "v1": 1.5,
       "stat": "intelligence",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 0.3,
-      "max": 1.8000001,
+      "v1": 1.8000001,
       "stat": "spell_damage",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 0.6,
-      "max": 3.0,
+      "v1": 3.0,
       "stat": "spell_critical_damage",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "item_id": "mmorpg:gems/amethyst/2",

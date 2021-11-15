@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data;
 
+import com.robertx22.age_of_exile.database.OptScaleExactStat;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
@@ -10,11 +11,11 @@ import java.util.List;
 
 public class BaseRuneGem implements IGUID, IWeighted {
 
-    public List<StatModifier> on_armor_stats = new ArrayList<>();
+    public List<OptScaleExactStat> on_armor_stats = new ArrayList<>();
 
-    public List<StatModifier> on_jewelry_stats = new ArrayList<>();
+    public List<OptScaleExactStat> on_jewelry_stats = new ArrayList<>();
 
-    public List<StatModifier> on_weapons_stats = new ArrayList<>();
+    public List<OptScaleExactStat> on_weapons_stats = new ArrayList<>();
 
     public String item_id = "";
 
@@ -27,7 +28,7 @@ public class BaseRuneGem implements IGUID, IWeighted {
         return LevelUtils.tierToLevel(tier);
     }
 
-    public final List<StatModifier> getFor(SlotFamily sfor) {
+    public final List<OptScaleExactStat> getFor(SlotFamily sfor) {
         if (sfor == SlotFamily.Armor) {
             return on_armor_stats;
         }

@@ -4,6 +4,7 @@
   "affixes": 0,
   "sockets": 1,
   "upgrade_lvl_to_increase_rar": -1,
+  "unbreaking_chance": 0,
   "rar_ess_per_sal": 0,
   "default_stat_percents": {
     "min": 0,

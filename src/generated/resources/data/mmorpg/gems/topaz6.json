@@ -4,26 +4,26 @@
   "perc_upgrade_chance": 0,
   "on_armor_stats": [
     {
-      "min": 1.0,
-      "max": 5.0,
+      "v1": 5.0,
       "stat": "agility",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 2.0,
-      "max": 15.0,
+      "v1": 15.0,
       "stat": "energy",
-      "type": "PERCENT"
+      "type": "PERCENT",
+      "scale_to_lvl": true
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 1.0,
-      "max": 3.0,
+      "v1": 3.0,
       "stat": "energy_on_all_hit",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "item_id": "mmorpg:gems/topaz/6",

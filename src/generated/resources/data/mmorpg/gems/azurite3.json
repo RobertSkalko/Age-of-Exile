@@ -4,26 +4,26 @@
   "perc_upgrade_chance": 25,
   "on_armor_stats": [
     {
-      "min": 0.4,
-      "max": 2.0,
+      "v1": 2.0,
       "stat": "wisdom",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 0.8,
-      "max": 6.0,
+      "v1": 6.0,
       "stat": "mana_regen",
-      "type": "PERCENT"
+      "type": "PERCENT",
+      "scale_to_lvl": true
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 0.4,
-      "max": 1.2,
+      "v1": 1.2,
       "stat": "mana_on_attack_hit",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "item_id": "mmorpg:gems/azurite/3",

@@ -4,26 +4,26 @@
   "perc_upgrade_chance": 5,
   "on_armor_stats": [
     {
-      "min": 0.8,
-      "max": 4.0,
+      "v1": 4.0,
       "stat": "strength",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 0.8,
-      "max": 4.8,
+      "v1": 4.8,
       "stat": "critical_hit",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 2.4,
-      "max": 9.6,
+      "v1": 9.6,
       "stat": "critical_damage",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "item_id": "mmorpg:gems/opal/5",

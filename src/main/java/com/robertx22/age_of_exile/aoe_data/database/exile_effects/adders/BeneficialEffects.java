@@ -201,8 +201,8 @@ public class BeneficialEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(THORN_ARMOR)
             .stat(10, 25, new ElementalResist(Elements.Earth), ModType.PERCENT)
-            .stat(2, 5, Armor.getInstance(), ModType.FLAT)
-            .stat(2, 5, DodgeRating.getInstance(), ModType.FLAT)
+            .stat(5, 10, Armor.getInstance(), ModType.FLAT)
+            .stat(5, 10, DodgeRating.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.POISON.effectId, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
                     .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
@@ -217,7 +217,7 @@ public class BeneficialEffects implements ExileRegistryInit {
 
         ExileEffectBuilder.of(FROST_ARMOR)
             .stat(10, 20, new ElementalResist(Elements.Water), ModType.PERCENT)
-            .stat(20, 30, Armor.getInstance(), ModType.FLAT)
+            .stat(15, 25, Armor.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
                 .buildForEffect())
             .addTags(EffectTags.defensive)

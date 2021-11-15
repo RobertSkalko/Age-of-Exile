@@ -16,8 +16,8 @@
       "type": "PERCENT"
     },
     {
-      "min": 20.0,
-      "max": 30.0,
+      "min": 15.0,
+      "max": 25.0,
       "stat": "armor",
       "type": "FLAT"
     }

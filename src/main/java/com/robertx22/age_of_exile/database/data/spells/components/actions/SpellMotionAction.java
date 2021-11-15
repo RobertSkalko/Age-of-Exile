@@ -27,6 +27,7 @@ public class SpellMotionAction extends SpellAction {
 
         try {
             if (!ctx.world.isClientSide) {
+
                 float str = data.get(PUSH_STRENGTH)
                     .floatValue();
 
@@ -45,14 +46,22 @@ public class SpellMotionAction extends SpellAction {
                 }
 
                 for (LivingEntity x : targets) {
+
+                    Vector3d motionWithoutY = (new Vector3d(motion.x, 0.0D, motion.z)).normalize()
+                        .scale(str);
+                    Vector3d motionWithY = (new Vector3d(motion.x, motion.y, motion.z)).normalize()
+                        .scale(str);
+                    // this.setDeltaMovement(vector3d.x / 2.0D - vector3d1.x, this.onGround ? Math.min(0.4D, vector3d.y / 2.0D + (double)p_233627_1_) : vector3d.y, vector3d.z / 2.0D - vector3d1.z);
+
                     if (setAdd == SetAdd.SET) {
                         if (data.getOrDefault(MapField.IGNORE_Y, false)) {
-                            x.setDeltaMovement(new Vector3d(motion.x, x.getDeltaMovement().y, motion.z));
+                            x.setDeltaMovement(motionWithoutY);
                         } else {
-                            x.setDeltaMovement(new Vector3d(motion.x, motion.y, motion.z));
+                            x.setDeltaMovement(motionWithY);
                         }
                     } else {
-                        x.push(motion.x, motion.y, motion.z);
+                        x.setDeltaMovement(x.getDeltaMovement()
+                            .add(motionWithY));
                     }
 
                     PlayerUtils.getNearbyPlayers(ctx.world, ctx.pos, 100)

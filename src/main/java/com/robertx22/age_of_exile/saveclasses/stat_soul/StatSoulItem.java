@@ -4,8 +4,11 @@ import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.utils.LoadSave;
@@ -70,12 +73,17 @@ public class StatSoulItem extends Item implements IGUID {
                 GearSlot slot = ExileDB.GearSlots()
                     .get(data.slot);
 
-                return rar.locName()
-                    .append(" ")
-                    .append(slot.locName())
-                    .append(" ")
+                IFormattableTextComponent t = rar.locName();
+                if (!data.canBeOnAnySlot()) {
+                    t.append(" ")
+                        .append(slot.locName());
+                }
+
+                t.append(" ")
                     .append(Words.Soul.locName())
                     .withStyle(rar.textFormatting());
+
+                return t;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,15 +108,23 @@ public class StatSoulItem extends Item implements IGUID {
         StatSoulData data = StackSaving.STAT_SOULS.loadFrom(stack);
 
         if (data != null) {
-            tooltip.add(TooltipUtils.gearTier(data.tier));
-            tooltip.add(new StringTextComponent("Item Type: ").withStyle(TextFormatting.WHITE)
-                .append(ExileDB.GearSlots()
-                    .get(data.slot)
-                    .locName()
-                    .withStyle(TextFormatting.BLUE)));
-            tooltip.add(TooltipUtils.gearRarity(ExileDB.GearRarities()
-                .get(data.rar)));
+            if (data.gear != null) {
+                data.gear.BuildTooltip(new TooltipContext(stack, tooltip, Load.Unit(ClientOnly.getPlayer())));
+            } else {
+                tooltip.add(TooltipUtils.gearTier(data.tier));
+                if (data.canBeOnAnySlot()) {
 
+                } else {
+                    tooltip.add(new StringTextComponent("Item Type: ").withStyle(TextFormatting.WHITE)
+                        .append(ExileDB.GearSlots()
+                            .get(data.slot)
+                            .locName()
+                            .withStyle(TextFormatting.BLUE)));
+                }
+                tooltip.add(TooltipUtils.gearRarity(ExileDB.GearRarities()
+                    .get(data.rar)));
+
+            }
         }
 
         tooltip.add(new StringTextComponent(""));

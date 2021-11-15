@@ -29,6 +29,8 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public int sockets = 1;
     public int upgrade_lvl_to_increase_rar = -1;
 
+    public int unbreaking_chance = 0;
+
     public int rar_ess_per_sal = 0;
 
     public MinMax default_stat_percents = new MinMax(0, 100);

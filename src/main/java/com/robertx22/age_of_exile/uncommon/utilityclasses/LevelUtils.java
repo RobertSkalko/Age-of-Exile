@@ -14,10 +14,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class LevelUtils {
 
@@ -62,7 +60,6 @@ public class LevelUtils {
     }
 
     public static int tierToLevel(int tier) {
-
         int lvl = 1;
         try {
             Optional<Map.Entry<MinMax, Integer>> opt = GameBalanceConfig.get()
@@ -75,6 +72,10 @@ public class LevelUtils {
             if (opt.isPresent()) {
                 lvl = opt.get()
                     .getKey().min + 1;
+            } else {
+                if (tier > 0) {
+                    return GameBalanceConfig.get().MAX_LEVEL;
+                }
             }
 
         } catch (Exception e) {
@@ -87,15 +88,18 @@ public class LevelUtils {
     public static int levelToTier(int level) {
         int tier = 0;
         try {
-            Optional<Map.Entry<MinMax, Integer>> opt = GameBalanceConfig.get()
+            Stream<Map.Entry<MinMax, Integer>> opt = GameBalanceConfig.get()
                 .getTierMap()
                 .entrySet()
                 .stream()
-                .filter(e -> isTier(e.getKey(), level))
-                .findAny();
-            if (opt.isPresent()) {
-                tier = opt.get()
-                    .getValue();
+                .filter(e -> isTier(e.getKey(), level));
+
+            OptionalInt biggest = opt.mapToInt(x -> x.getValue())
+                .sorted()
+                .max();
+
+            if (biggest.isPresent()) {
+                tier = biggest.getAsInt();
             }
 
         } catch (Exception e) {

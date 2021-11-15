@@ -4,26 +4,26 @@
   "perc_upgrade_chance": 50,
   "on_armor_stats": [
     {
-      "min": 1.2,
-      "max": 3.6000001,
+      "v1": 3.6000001,
       "stat": "fire_resist",
-      "type": "PERCENT"
+      "type": "PERCENT",
+      "scale_to_lvl": true
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 0.6,
-      "max": 3.0,
+      "v1": 3.0,
       "stat": "spell_fire_damage",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 0.6,
-      "max": 4.5,
+      "v1": 4.5,
       "stat": "all_fire_damage",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "item_id": "mmorpg:gems/ruby/2",

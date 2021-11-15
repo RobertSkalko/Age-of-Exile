@@ -9,8 +9,6 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartToolt
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -23,15 +21,13 @@ import java.util.List;
 public class SocketData implements IGearPartTooltip, IStatsContainer {
 
     @Store
-    public Integer perc = -1;
-
-    @Store
     public String gem = "";
 
     @Factory
     public SocketData() {
     }
 
+    /*
     public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
         List<TooltipStatWithContext> list = new ArrayList<>();
 
@@ -42,16 +38,18 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
             getGem()
                 .getFor(fam)
                 .forEach(x -> {
-                    ExactStatData exact = x.ToExactStat(this.perc, gear.getEffectiveLevel());
-                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc, info), x, (int) gear.getEffectiveLevel()));
+                    ExactStatData exact = x.toExactStat((int) gear.getEffectiveLevel());
+                    list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, 100, info), x, (int) gear.getEffectiveLevel()));
                 });
         }
 
         return list;
     }
 
+     */
+
     public boolean isEmpty() {
-        return perc < 1;
+        return getGem() == null;
     }
 
     public boolean isGem() {
@@ -91,7 +89,7 @@ public class SocketData implements IGearPartTooltip, IStatsContainer {
                 getGem()
                     .getFor(fam)
                     .forEach(x -> {
-                        stats.add(x.ToExactStat(this.perc, gear.getEffectiveLevel()));
+                        stats.add(x.toExactStat((int) gear.getEffectiveLevel()));
                     });
             }
 

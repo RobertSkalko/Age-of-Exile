@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartToolt
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
@@ -30,18 +29,10 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
         return sockets.size();
     }
 
-    public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
-        List<TooltipStatWithContext> list = new ArrayList<>();
-
-        sockets.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
-        return list;
-    }
-
     @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
         List<ExactStatData> list = new ArrayList<>();
-
-        for (int i = 0; i < gear.getEmptySockets(); i++) {
+        for (int i = 0; i < gear.getTotalSockets(); i++) {
             if (sockets.size() > i) {
                 list.addAll(sockets.get(i)
                     .GetAllStats(gear));

@@ -47,7 +47,7 @@ public class GearSoulOnInvTick {
 
             if (soul != null && soul.canInsertIntoStack(stack)) {
                 try {
-                    GearItemData gear = soul.createGearData();
+                    GearItemData gear = soul.createGearData(stack);
                     stack.removeTagKey(StatSoulItem.TAG);
                     gear.saveToStack(stack);
                 } catch (Exception e) {

@@ -57,6 +57,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAutoLocName, ICurrencyItemEffect {
 
@@ -131,10 +132,10 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
                         ItemStack newstack = new ItemStack(getGem().getHigherTierGem()
                             .getItem());
                         Packets.sendToClient(p, new TotemAnimationPacket(newstack));
-                        PlayerUtils.giveItem(newstack, p);
                         p.displayClientMessage(new StringTextComponent(TextFormatting.GREEN + "").append(old.getName(new ItemStack(old)))
                             .append(" has been upgraded to ")
                             .append(newstack.getDisplayName()), false);
+                        PlayerUtils.giveItem(newstack, p);
 
                     } else {
                         SoundUtils.playSound(p, SoundEvents.VILLAGER_NO, 1, 1);
@@ -170,7 +171,6 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
         SocketData socket = new SocketData();
         socket.gem = gem.identifier;
-        socket.perc = RandomUtils.RandomRange(0, 100);
 
         gear.sockets.sockets.add(socket);
 
@@ -368,7 +368,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
     }
 
     public GemItem(GemType type, GemRank gemRank) {
-        super(new Properties().tab(CreativeTabs.GemRuneCurrency)
+        super(new Properties().tab(CreativeTabs.Gems)
             .stacksTo(16));
 
         this.gemType = type;
@@ -392,13 +392,13 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
         String id = Registry.ITEM.getKey(this)
             .toString();
 
-        Gem gem = ExileDB.Gems()
+        Optional<Gem> opt = ExileDB.Gems()
             .getList()
             .stream()
             .filter(x -> id.equals(x.item_id))
-            .findFirst()
-            .get();
-        return gem;
+            .findFirst();
+
+        return opt.orElse(new Gem());
     }
 
     @Override
@@ -411,9 +411,10 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             tooltip.add(new StringTextComponent(""));
 
-            tooltip.add(new StringTextComponent("Hold 3 gems to attempt upgrade"));
-            tooltip.add(new StringTextComponent("Upgrade chance: " + getGem().perc_upgrade_chance + "%"));
-
+            if (getGem().hasHigherTierGem()) {
+                tooltip.add(new StringTextComponent("Hold 3 gems to attempt upgrade"));
+                tooltip.add(new StringTextComponent("Upgrade chance: " + getGem().perc_upgrade_chance + "%"));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

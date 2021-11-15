@@ -4,26 +4,26 @@
   "perc_upgrade_chance": 5,
   "on_armor_stats": [
     {
-      "min": 0.8,
-      "max": 4.0,
+      "v1": 4.0,
       "stat": "dexterity",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 1.6,
-      "max": 12.0,
+      "v1": 12.0,
       "stat": "energy_regen",
-      "type": "PERCENT"
+      "type": "PERCENT",
+      "scale_to_lvl": true
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 1.6,
-      "max": 6.4,
+      "v1": 6.4,
       "stat": "critical_hit",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "item_id": "mmorpg:gems/garnet/5",

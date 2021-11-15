@@ -40,7 +40,10 @@ public class SlashItems {
 
     }
 
+    public static RegObj<CommonGearProducerItem> COMMON_SOUL_PRODUCE = Def.item(() -> new CommonGearProducerItem(), "common_soul_produce");
+
     public static RegObj<StatSoulItem> STAT_SOUL = Def.item(() -> new StatSoulItem());
+    public static RegObj<IdentifyTomeItem> IDENTIFY_TOME = Def.item(() -> new IdentifyTomeItem(), "identify_tome");
     public static RegObj<RarityEssenceItem> RARITY_ESSENCE = Def.item(() -> new RarityEssenceItem());
     public static RegObj<RarityUpgradeStone> RARITY_UPGRADE = Def.item(() -> new RarityUpgradeStone());
     public static RegObj<LootCrateItem> LOOT_CRATE = Def.item(() -> new LootCrateItem());
@@ -88,6 +91,7 @@ public class SlashItems {
 
     public static RegObj<Item> NEWBIE_GEAR_BAG = Def.item(() -> new ItemNewbieGearBag(), "newbie_gear_bag");
     public static RegObj<Item> SALVAGE_HAMMER = Def.item(() -> new SalvageHammerItem(), "salvage_hammer");
+    public static RegObj<Item> SOCKET_EXTRACTOR = Def.item(() -> new SocketExtractorItem(), "socket_extractor");
 
     public static RegObj<Item> INFUSED_IRON = Def.item(() -> new SimpleMatItem(), "mat/infused_iron");
     public static RegObj<Item> CRYSTALLIZED_ESSENCE = Def.item(() -> new SimpleMatItem(), "mat/crystallized_essence");

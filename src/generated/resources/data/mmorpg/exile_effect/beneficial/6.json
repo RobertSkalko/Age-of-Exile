@@ -16,14 +16,14 @@
       "type": "PERCENT"
     },
     {
-      "min": 2.0,
-      "max": 5.0,
+      "min": 5.0,
+      "max": 10.0,
       "stat": "armor",
       "type": "FLAT"
     },
     {
-      "min": 2.0,
-      "max": 5.0,
+      "min": 5.0,
+      "max": 10.0,
       "stat": "dodge",
       "type": "FLAT"
     }

@@ -4,26 +4,26 @@
   "perc_upgrade_chance": 10,
   "on_armor_stats": [
     {
-      "min": 0.6,
-      "max": 3.0,
+      "v1": 3.0,
       "stat": "vitality",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 1.2,
-      "max": 9.0,
+      "v1": 9.0,
       "stat": "health_regen",
-      "type": "PERCENT"
+      "type": "PERCENT",
+      "scale_to_lvl": true
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 0.6,
-      "max": 3.0,
+      "v1": 3.0,
       "stat": "lifesteal",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "item_id": "mmorpg:gems/tourmaline/4",

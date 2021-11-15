@@ -1,3 +1,21 @@
+v.4.0.8
+
+* higher gear rarity now has innate unbreaking, the higher the rarity, the better.
+* added a common gear stat soul producer item. This item can be crafted with vanilla materials and produces a soul which can create a common item out of anything. This is meant for people who lose their gear after death. The produced item can't be salvaged
+* added back identify tome, now identifies all souls in your inventory
+
+v4.0.7
+
+Gem system rework:
+1) gem stats are no longer random
+2) gems can now be extracted from their sockets with a gem extractor
+3) higher tier gems no longer drop
+4) crafting higher tier gems has a high chance to fail
+5) removed the original recipe
+
+increased base stats on weapons
+decreased int dex str stats given
+
 v.4.0.6
 
 fix item tiers being wrong sometimes, when salvaging too

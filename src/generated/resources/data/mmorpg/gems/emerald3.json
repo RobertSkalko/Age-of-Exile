@@ -4,26 +4,26 @@
   "perc_upgrade_chance": 25,
   "on_armor_stats": [
     {
-      "min": 1.6,
-      "max": 4.8,
+      "v1": 4.8,
       "stat": "earth_resist",
-      "type": "PERCENT"
+      "type": "PERCENT",
+      "scale_to_lvl": true
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 0.8,
-      "max": 4.0,
+      "v1": 4.0,
       "stat": "spell_earth_damage",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 0.8,
-      "max": 6.0,
+      "v1": 6.0,
       "stat": "all_earth_damage",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "item_id": "mmorpg:gems/emerald/3",

@@ -20,6 +20,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         common.item_model_data_num = 1;
         common.dust_per_sal = new MinMax(1, 1);
         common.higher_rar = IRarity.UNCOMMON;
+
         common.setCommonFields();
         common.addToSerializables();
 
@@ -36,6 +37,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         uncommon.upgrades = new MinMax(1, 2);
         uncommon.rar_ess_per_sal = 1;
         uncommon.upgrade_lvl_to_increase_rar = 4;
+        uncommon.unbreaking_chance = 10;
         uncommon.setUncommonFields();
         uncommon.addToSerializables();
 
@@ -52,6 +54,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         rare.rar_ess_per_sal = 1;
         rare.upgrade_lvl_to_increase_rar = 8;
         rare.setRareFields();
+        rare.unbreaking_chance = 25;
         rare.upgrades = new MinMax(1, 3);
         rare.addToSerializables();
 
@@ -65,6 +68,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         epic.item_tier_power = 1.7F;
         epic.item_value_multi = 1.7F;
         epic.rar_ess_per_sal = 0;
+        epic.unbreaking_chance = 50;
         epic.upgrades = new MinMax(3, 5);
         epic.setEpicFields();
         epic.addToSerializables();
@@ -80,6 +84,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         unique.dust_per_sal = new MinMax(5, 5);
         unique.setUniqueFields();
         unique.addToSerializables();
+        unique.unbreaking_chance = 50;
         unique.upgrades = new MinMax(4, 5);
         unique.announce_in_chat = true;
         unique.is_unique_item = true;
@@ -95,6 +100,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         runeword.dust_per_sal = new MinMax(5, 5);
         runeword.setRunewordFields();
         runeword.addToSerializables();
+        runeword.unbreaking_chance = 50;
         runeword.upgrades = new MinMax(4, 5);
         runeword.announce_in_chat = true;
         runeword.is_unique_item = true;

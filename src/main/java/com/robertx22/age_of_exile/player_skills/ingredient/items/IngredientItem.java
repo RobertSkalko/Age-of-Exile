@@ -38,10 +38,6 @@ public class IngredientItem extends AutoItem {
 
                 for (int tier = 0; tier <= LevelUtils.getMaxTier(); tier++) {
 
-                    int test = LevelUtils.getMaxTier();
-
-                    System.out.println(test);
-
                     IngredientData data = new IngredientData();
                     data.tier = tier;
                     data.id = ing.GUID();

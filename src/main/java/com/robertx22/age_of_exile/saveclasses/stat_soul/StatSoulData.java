@@ -18,6 +18,7 @@ import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 @Storable
@@ -35,25 +36,45 @@ public class StatSoulData implements ISalvagable, IRarity {
     @Store
     public String uniq = "";
 
+    @Store
+    public boolean can_sal = true;
+
+    @Store
+    public GearItemData gear = null;
+
+    public boolean canBeOnAnySlot() {
+        return slot.isEmpty();
+    }
+
+    public void setCanBeOnAnySlot() {
+        this.slot = "";
+    }
+
     public ItemStack toStack() {
 
         ItemStack stack = new ItemStack(SlashItems.STAT_SOUL.get());
 
         StackSaving.STAT_SOULS.saveTo(stack, this);
 
-        stack.getOrCreateTag()
-            .putInt("CustomModelData", ExileDB.GearSlots()
-                .get(slot).model_num);
+        if (!slot.isEmpty()) {
+            stack.getOrCreateTag()
+                .putInt("CustomModelData", ExileDB.GearSlots()
+                    .get(slot).model_num);
+        }
 
         return stack;
 
     }
 
     public void insertAsUnidentifiedOn(ItemStack stack) {
-        LoadSave.Save(this, stack.getOrCreateTag(), StatSoulItem.TAG);
+        if (gear != null) {
+            Gear.Save(stack, gear);
+        } else {
+            LoadSave.Save(this, stack.getOrCreateTag(), StatSoulItem.TAG);
+        }
     }
 
-    public GearItemData createGearData() {
+    public GearItemData createGearData(@Nullable ItemStack stack) {
 
         int lvl = LevelUtils.tierToLevel(tier);
 
@@ -70,17 +91,45 @@ public class StatSoulData implements ISalvagable, IRarity {
             b.rarity.set(uniq.getUniqueRarity());
         }
 
-        b.gearItemSlot.set(ExileDB.GearTypes()
-            .getFilterWrapped(x -> x.gear_slot.equals(slot))
-            .random());
+        if (this.canBeOnAnySlot()) {
+            GearSlot gearslot = ExileDB.GearSlots()
+                .random();
+            if (stack != null) {
+                gearslot = GearSlot.getSlotOf(stack.getItem());
+            }
+            String slotid = gearslot.GUID();
 
-        return b.createData();
+            b.gearItemSlot.set(ExileDB.GearTypes()
+                .getFilterWrapped(x -> x.gear_slot.equals(slotid))
+                .random());
+        } else {
+            b.gearItemSlot.set(ExileDB.GearTypes()
+                .getFilterWrapped(x -> x.gear_slot.equals(slot))
+                .random());
+        }
+
+        GearItemData gear = b.createData();
+        gear.can_sal = this.can_sal;
+        return gear;
     }
 
     public boolean canInsertIntoStack(ItemStack stack) {
 
         if (Gear.has(stack)) {
             return false;
+        }
+
+        if (this.gear != null) {
+            return GearSlot.isItemOfThisSlot(gear.GetBaseGearType()
+                .getGearSlot(), stack.getItem());
+        }
+
+        if (this.canBeOnAnySlot()) {
+            GearSlot slot = GearSlot.getSlotOf(stack.getItem());
+            if (slot != null && !slot.GUID()
+                .isEmpty()) {
+                return true;
+            }
         }
 
         Boolean can = GearSlot.isItemOfThisSlot(ExileDB.GearSlots()

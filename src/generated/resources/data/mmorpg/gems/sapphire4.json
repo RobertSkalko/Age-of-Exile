@@ -4,26 +4,26 @@
   "perc_upgrade_chance": 10,
   "on_armor_stats": [
     {
-      "min": 2.4,
-      "max": 7.2000003,
+      "v1": 7.2000003,
       "stat": "water_resist",
-      "type": "PERCENT"
+      "type": "PERCENT",
+      "scale_to_lvl": true
     }
   ],
   "on_jewelry_stats": [
     {
-      "min": 1.2,
-      "max": 6.0,
+      "v1": 6.0,
       "stat": "spell_water_damage",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "on_weapons_stats": [
     {
-      "min": 1.2,
-      "max": 9.0,
+      "v1": 9.0,
       "stat": "all_water_damage",
-      "type": "FLAT"
+      "type": "FLAT",
+      "scale_to_lvl": true
     }
   ],
   "item_id": "mmorpg:gems/sapphire/4",

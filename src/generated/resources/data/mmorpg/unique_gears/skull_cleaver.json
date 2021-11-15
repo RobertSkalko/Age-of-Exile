@@ -23,14 +23,14 @@
   ],
   "base_stats": [
     {
-      "min": 0.45,
-      "max": 1.3499999,
+      "min": 0.9,
+      "max": 1.8,
       "stat": "physical_weapon_damage",
       "type": "flat"
     },
     {
-      "min": 0.45,
-      "max": 1.3499999,
+      "min": 0.9,
+      "max": 1.8,
       "stat": "water_weapon_damage",
       "type": "flat"
     },

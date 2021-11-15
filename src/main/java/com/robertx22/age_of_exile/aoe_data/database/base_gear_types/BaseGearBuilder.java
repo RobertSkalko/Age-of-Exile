@@ -50,7 +50,7 @@ public class BaseGearBuilder implements GearDataHelper {
         b.attackStyle(type.style);
         b.weapon_offhand_stat_util = type.weapon_offhand_stat_util;
         b.baseStat(b.getAttackDamageStat(type, GearDataHelper.Number.FULL, Elements.Physical));
-        b.baseStat(new StatModifier(2, 4, SpellPower.getInstance()));
+        b.baseStat(new StatModifier(3, 5, SpellPower.getInstance()));
 
         return b;
     }
