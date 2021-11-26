@@ -45,7 +45,7 @@ import top.theillusivec4.curios.api.SlotTypeMessage;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = true;
+    public static boolean RUN_DEV_TOOLS = false;
 
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel NETWORK = NetworkRegistry.newSimpleChannel(
@@ -59,7 +59,7 @@ public class MMORPG {
         Watch watch = new Watch();
 
         ModLoadingContext.get()
-            .registerConfig(ModConfig.Type.COMMON, ServerContainer.commonSpec);
+            .registerConfig(ModConfig.Type.SERVER, ServerContainer.spec);
 
         ExileEvents.CHECK_IF_DEV_TOOLS_SHOULD_RUN.register(new EventConsumer<ExileEvents.OnCheckIsDevToolsRunning>() {
             @Override

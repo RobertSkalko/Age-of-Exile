@@ -226,7 +226,7 @@ public class TooltipUtils {
     }
 
     public static IFormattableTextComponent gearLevel(int lvl) {
-        return new StringTextComponent("Level: ")
+        return new StringTextComponent("Level Req: ")
             .withStyle(TextFormatting.WHITE)
             .append(new StringTextComponent(lvl + "")
                 .withStyle(TextFormatting.YELLOW));

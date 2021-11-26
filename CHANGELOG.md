@@ -1,3 +1,8 @@
+v.4.0.9
+
+* switched to server configs
+* fix some compat config bugs
+
 v.4.0.8
 
 * higher gear rarity now has innate unbreaking, the higher the rarity, the better.

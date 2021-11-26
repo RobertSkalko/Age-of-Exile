@@ -1,7 +1,7 @@
 modLoader="javafml" #mandatory
 loaderVersion="[36,)"
 license="All rights reserved"
-issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/"
+issueTrackerURL="https://github.com/RobertSkalko/Mine-and-Slash/issues"
 [[mods]]
 modId="mmorpg"
 version="${file.jarVersion}"
@@ -9,7 +9,7 @@ displayName="Mine and Slash"
 # A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
-#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
+#displayURL="https://www.curseforge.com/minecraft/mc-mods/mine-and-slash-reloaded" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="icon.png" #
 credits="Thanks for this example mod goes to Java"

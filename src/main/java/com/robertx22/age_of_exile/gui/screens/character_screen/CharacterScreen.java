@@ -4,6 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.stats.IUsableStat;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.CoreStat;
@@ -227,9 +228,13 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
         }
 
         if (this.isMainScreen()) {
-            addButton(new FavorButton(guiLeft + sizeX / 2 - FavorButton.FAVOR_BUTTON_SIZE_X / 2, guiTop - FavorButton.FAVOR_BUTTON_SIZE_Y));
+            if (ServerContainer.get().ENABLE_FAVOR_SYSTEM.get()) {
+                addButton(new FavorButton(guiLeft + sizeX / 2 - FavorButton.FAVOR_BUTTON_SIZE_X / 2, guiTop - FavorButton.FAVOR_BUTTON_SIZE_Y));
+            }
 
-            addButton(new ScalingDifficultyButton(guiLeft + sizeX / 2 - ScalingDifficultyButton.BUTTON_SIZE_X / 2, guiTop + CharacterScreen.sizeY + 5));
+            if (ServerContainer.get().MAX_DIFFICULTY.get() > 1) {
+                addButton(new ScalingDifficultyButton(guiLeft + sizeX / 2 - ScalingDifficultyButton.BUTTON_SIZE_X / 2, guiTop + CharacterScreen.sizeY + 5));
+            }
 
             // hub buttons
 

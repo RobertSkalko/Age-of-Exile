@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ClientOnly;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.utils.LoadSave;
@@ -40,7 +41,7 @@ public class StatSoulItem extends Item implements IGUID {
                 .getList()) {
                 for (GearSlot slot : ExileDB.GearSlots()
                     .getList()) {
-                    for (int i = 1; i < 6; i++) {
+                    for (int i = 0; i <= LevelUtils.getMaxTier(); i++) {
                         StatSoulData data = new StatSoulData();
                         data.tier = i;
                         data.rar = rarity.GUID();

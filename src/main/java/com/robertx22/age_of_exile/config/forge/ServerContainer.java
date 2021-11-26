@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.config.forge;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -15,17 +16,17 @@ import java.util.List;
 
 public class ServerContainer {
 
-    public static final ForgeConfigSpec commonSpec;
-    public static final ServerContainer COMMON;
+    public static final ForgeConfigSpec spec;
+    public static final ServerContainer CONTAINER;
 
     public static ServerContainer get() {
-        return COMMON;
+        return CONTAINER;
     }
 
     static {
         final Pair<ServerContainer, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(ServerContainer::new);
-        commonSpec = specPair.getRight();
-        COMMON = specPair.getLeft();
+        spec = specPair.getRight();
+        CONTAINER = specPair.getLeft();
     }
 
     ServerContainer(ForgeConfigSpec.Builder b) {
@@ -105,7 +106,12 @@ public class ServerContainer {
                         GearSlot slot = ExileDB.GearSlots()
                             .get(array[2]);
                         Item item = ForgeRegistries.ITEMS.getValue(id);
-                        cachedCompatMap.put(item, slot);
+                        if (item != Items.AIR && item != null) {
+                            if (slot != null && !slot.GUID()
+                                .isEmpty()) {
+                                cachedCompatMap.put(item, slot);
+                            }
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

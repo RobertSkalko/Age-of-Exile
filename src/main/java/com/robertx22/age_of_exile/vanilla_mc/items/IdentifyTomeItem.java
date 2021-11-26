@@ -22,7 +22,7 @@ public class IdentifyTomeItem extends AutoItem {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity player, Hand handIn) {
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand handIn) {
         ItemStack tomeStack = player.getItemInHand(handIn);
         List<ItemStack> list = new ArrayList<>();
 

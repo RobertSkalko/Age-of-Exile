@@ -28,7 +28,7 @@ public abstract class ItemStackMixin {
     public ItemStackMixin() {
     }
 
-    @Inject(method = {"hurt(ILjava/util/Random;Lnet/minecraft/entity/player/ServerPlayerEntity;)Z"}, at = {@At("RETURN")}, cancellable = true)
+    @Inject(method = {"hurt(ILjava/util/Random;Lnet/minecraft/entity/player/ServerPlayerEntity;)Z"}, at = {@At("HEAD")}, cancellable = true)
     private void getMaxDamage(int p_96631_1_, Random p_96631_2_, @Nullable ServerPlayerEntity p_96631_3_, CallbackInfoReturnable<Boolean> ci) {
         ItemStack stack = (ItemStack) (Object) this;
 

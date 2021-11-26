@@ -27,14 +27,16 @@ public class MyCurioUtils {
             .getCuriosHandler(player)
             .orElse(null);
 
-        for (String slot : slots) {
+        if (handler != null) {
+            for (String slot : slots) {
 
-            Optional<ICurioStacksHandler> sh = handler.getStacksHandler(slot);
+                Optional<ICurioStacksHandler> sh = handler.getStacksHandler(slot);
 
-            if (sh.isPresent()) {
-                list.add(sh.get());
+                if (sh.isPresent()) {
+                    list.add(sh.get());
+                }
+
             }
-
         }
         return list;
     }

@@ -72,6 +72,10 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, IAutoGson<GearSlot
         if (item == Items.AIR) {
             return false;
         }
+
+        if (slot == null) {
+            return false;
+        }
         String id = slot.GUID();
 
         if (id.isEmpty()) {

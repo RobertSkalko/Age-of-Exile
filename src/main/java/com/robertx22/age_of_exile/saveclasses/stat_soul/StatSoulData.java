@@ -115,6 +115,10 @@ public class StatSoulData implements ISalvagable, IRarity {
 
     public boolean canInsertIntoStack(ItemStack stack) {
 
+        if (stack.isEmpty()) {
+            return false;
+        }
+
         if (Gear.has(stack)) {
             return false;
         }
@@ -129,6 +133,8 @@ public class StatSoulData implements ISalvagable, IRarity {
             if (slot != null && !slot.GUID()
                 .isEmpty()) {
                 return true;
+            } else {
+                return false;
             }
         }
 
