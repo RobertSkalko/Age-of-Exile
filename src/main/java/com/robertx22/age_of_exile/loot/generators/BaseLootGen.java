@@ -28,8 +28,8 @@ public abstract class BaseLootGen<T extends ItemBlueprint> {
 
         List<ItemStack> list = new ArrayList<ItemStack>();
 
-        if (condition()) {
-            for (int i = 0; i < info.amount; i++) {
+        for (int i = 0; i < info.amount; i++) {
+            if (condition()) {
                 try {
                     list.add(generateOne());
                 } catch (Exception e) {

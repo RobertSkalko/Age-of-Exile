@@ -41,7 +41,14 @@ public class MasterLootGen {
                 }
             }
 
+            tries = 0;
+
             while (items.size() > info.getMaxItems()) {
+                tries++;
+                if (tries > 50) {
+                    System.out.println("Took too many tries to remove items from masterlootgen");
+                    break;
+                }
                 items.remove(RandomUtils.RandomRange(0, items.size() - 1));
             }
 

@@ -98,8 +98,11 @@ public class LootTableItem extends Item implements IAutoModel {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         try {
+            //LootTableManager
+
             tooltip.add(Words.ClickToOpen.locName()
                 .withStyle(TextFormatting.RED));
+
         } catch (Exception e) {
             // e.printStackTrace();
         }
