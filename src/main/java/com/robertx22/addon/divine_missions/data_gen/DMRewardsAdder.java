@@ -1,4 +1,4 @@
-package com.robertx22.divine_missions_addon.data_gen;
+package com.robertx22.addon.divine_missions.data_gen;
 
 import com.robertx22.divine_missions.database.RewardTypeIds;
 import com.robertx22.divine_missions.database.WorthTypeIds;

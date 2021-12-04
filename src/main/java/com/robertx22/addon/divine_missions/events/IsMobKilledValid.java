@@ -1,4 +1,4 @@
-package com.robertx22.divine_missions_addon.events;
+package com.robertx22.addon.divine_missions.events;
 
 import com.robertx22.age_of_exile.loot.LootUtils;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;

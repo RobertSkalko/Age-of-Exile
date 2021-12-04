@@ -1,5 +1,7 @@
 package com.robertx22.age_of_exile.mmorpg;
 
+import com.robertx22.addon.divine_missions.DMRegInit;
+import com.robertx22.addon.infinite_dungeons.IDAddonRegInit;
 import com.robertx22.age_of_exile.a_libraries.curios.CurioEvents;
 import com.robertx22.age_of_exile.aoe_data.GeneratedData;
 import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
@@ -11,6 +13,7 @@ import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
+import com.robertx22.age_of_exile.database.registrators.CurrencyItems;
 import com.robertx22.age_of_exile.database.registry.ExileDBInit;
 import com.robertx22.age_of_exile.dimension.DimensionInit;
 import com.robertx22.age_of_exile.event_hooks.player.ScalingDifficultyEvents;
@@ -21,7 +24,6 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashCapabilities;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashItemTags;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.SlashDeferred;
-import com.robertx22.divine_missions_addon.DMRegInit;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.utils.Watch;
@@ -31,6 +33,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -128,6 +131,14 @@ public class MMORPG {
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {
+
+        if (ModList.get()
+            .isLoaded("infinite_dungeons")) {
+            IDAddonRegInit.init();
+        }
+
+        new CurrencyItems().registerAll();
+        // need to happen after curerrency items are registered
 
         if (MMORPG.RUN_DEV_TOOLS) {
             GeneratedData.addAllObjectsToGenerate();

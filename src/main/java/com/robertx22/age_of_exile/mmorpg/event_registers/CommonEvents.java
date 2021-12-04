@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.mmorpg.event_registers;
 
+import com.robertx22.addon.divine_missions.events.IsMobKilledValid;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.damage_hooks.OnNonPlayerDamageEntityEvent;
 import com.robertx22.age_of_exile.damage_hooks.OnPlayerDamageEntityEvent;
@@ -21,7 +22,6 @@ import com.robertx22.age_of_exile.mixin_methods.OnItemStoppedUsingCastImbuedSpel
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.error_checks.base.ErrorChecks;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
-import com.robertx22.divine_missions_addon.events.IsMobKilledValid;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.main.ForgeEvents;

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.loot;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.capability.player.data.ScalingPlayerDiffData;
+import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
@@ -170,11 +171,13 @@ public class LootInfo {
             favorRank = rpgData.favor
                 .getRank();
 
-            if (lootOrigin != LootOrigin.CHEST) {
-                if (favorRank.favor_drain_per_item > 0) {
-                    this.maxItems = (int) (rpgData.favor.getFavor() * favorRank.favor_drain_per_item);
-                    if (minItems > maxItems) {
-                        minItems = maxItems;
+            if (ServerContainer.get().ENABLE_FAVOR_SYSTEM.get()) {
+                if (lootOrigin != LootOrigin.CHEST) {
+                    if (favorRank.favor_drain_per_item > 0) {
+                        this.maxItems = (int) (rpgData.favor.getFavor() * favorRank.favor_drain_per_item);
+                        if (minItems > maxItems) {
+                            minItems = maxItems;
+                        }
                     }
                 }
             }

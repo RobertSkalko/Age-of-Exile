@@ -1,14 +1,14 @@
-package com.robertx22.divine_missions_addon;
+package com.robertx22.addon.divine_missions;
 
+import com.robertx22.addon.divine_missions.data_gen.DMPoolsAdder;
+import com.robertx22.addon.divine_missions.data_gen.DMRewardsAdder;
+import com.robertx22.addon.divine_missions.data_gen.DMTasksAdder;
+import com.robertx22.addon.divine_missions.types.AoeLevelCondition;
+import com.robertx22.addon.divine_missions.types.CompleteDungeonTask;
+import com.robertx22.addon.divine_missions.types.GiveAoeExpReward;
+import com.robertx22.addon.divine_missions.types.GiveFavorReward;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.divine_missions.db_init.RegistryInit;
-import com.robertx22.divine_missions_addon.data_gen.DMPoolsAdder;
-import com.robertx22.divine_missions_addon.data_gen.DMRewardsAdder;
-import com.robertx22.divine_missions_addon.data_gen.DMTasksAdder;
-import com.robertx22.divine_missions_addon.types.AoeLevelCondition;
-import com.robertx22.divine_missions_addon.types.CompleteDungeonTask;
-import com.robertx22.divine_missions_addon.types.GiveAoeExpReward;
-import com.robertx22.divine_missions_addon.types.GiveFavorReward;
 
 public class DMRegInit {
 
@@ -25,7 +25,6 @@ public class DMRegInit {
         if (MMORPG.RUN_DEV_TOOLS) {
             DMRewardsAdder.init();
             DMTasksAdder.init();
-
             new DMPoolsAdder().registerAll();
         }
 

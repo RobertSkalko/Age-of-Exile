@@ -49,7 +49,6 @@ public class LootCrateItem extends Item implements IGUID {
             try {
 
                 ItemStack stack = player.getItemInHand(hand);
-                stack.shrink(1);
 
                 ItemStack reward = ItemStack.EMPTY;
 
@@ -69,8 +68,14 @@ public class LootCrateItem extends Item implements IGUID {
                     CurrencyItem currency = ExileDB.CurrencyItems()
                         .getFilterWrapped(x -> data.tier >= x.getTier())
                         .random();
+                    if (currency == null) {
+                        currency = ExileDB.CurrencyItems()
+                            .random();
+                    }
                     reward = new ItemStack(currency);
                 }
+
+                stack.shrink(1);
 
                 SoundUtils.ding(player.level, player.blockPosition());
                 PlayerUtils.giveItem(reward, player);
@@ -86,7 +91,7 @@ public class LootCrateItem extends Item implements IGUID {
     public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> stacks) {
         if (this.allowdedIn(group)) {
 
-            for (int tier = 0; tier < LevelUtils.getMaxTier(); tier++) {
+            for (int tier : LevelUtils.getAllTiers()) {
                 for (LootType type : LOOT_TYPES) {
                     ItemStack stack = new ItemStack(this);
 

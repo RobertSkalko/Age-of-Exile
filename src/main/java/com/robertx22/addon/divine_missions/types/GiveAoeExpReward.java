@@ -1,6 +1,7 @@
-package com.robertx22.divine_missions_addon.types;
+package com.robertx22.addon.divine_missions.types;
 
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.divine_missions.database.RewardTypeIds;
 import com.robertx22.divine_missions.database.db_types.RewardType;
 import com.robertx22.divine_missions.main.DivineMissions;
@@ -10,21 +11,25 @@ import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
-public class GiveFavorReward extends RewardType {
+public class GiveAoeExpReward extends RewardType {
 
-    public GiveFavorReward() {
-        super(RewardTypeIds.FAVOR);
+    public GiveAoeExpReward() {
+        super(RewardTypeIds.AOE_EXP);
     }
 
     @Override
-    public void giveReward(PlayerEntity playerEntity, RewardData rewardData) {
-        Load.playerRPGData(playerEntity).favor
-            .addFavor(rewardData.count);
+    public void giveReward(PlayerEntity player, RewardData data) {
+
+        int exp = LevelUtils.scaleExpReward(data.count, Load.Unit(player)
+            .getLevel());
+
+        Load.Unit(player)
+            .GiveExp(player, exp);
     }
 
     @Override
     public IFormattableTextComponent getTranslatable(RewardData rewardData) {
-        return new StringTextComponent(rewardData.count + " ").append(DivineMissions.ofTranslation("favor"))
-            .withStyle(TextFormatting.LIGHT_PURPLE);
+        return new StringTextComponent(rewardData.count + " ").append(DivineMissions.ofTranslation("aoe_exp"))
+            .withStyle(TextFormatting.GREEN);
     }
 }

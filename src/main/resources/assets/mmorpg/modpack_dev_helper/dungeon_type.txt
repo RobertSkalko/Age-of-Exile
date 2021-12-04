@@ -1,0 +1,5 @@
+These are all default registry entries of this type.
+This registry can't be modified or added to.
+clean_up
+wave_based
+slaughter

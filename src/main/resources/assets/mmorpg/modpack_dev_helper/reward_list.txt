@@ -1,0 +1,5 @@
+These are all default registry entries of this type.
+This registry can't be modified or added to.
+god_apple_pack
+totem_of_undying_pack
+elytra_pack

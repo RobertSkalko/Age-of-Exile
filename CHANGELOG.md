@@ -1,3 +1,11 @@
+v.4.0.12
+
+fix currencies not dropping
+
+v.4.0.11
+
+fix favor disabling to work, hopefully
+
 v.4.0.9
 
 * switched to server configs

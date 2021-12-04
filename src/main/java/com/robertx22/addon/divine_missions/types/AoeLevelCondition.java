@@ -1,4 +1,4 @@
-package com.robertx22.divine_missions_addon.types;
+package com.robertx22.addon.divine_missions.types;
 
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.divine_missions.database.condition_types.ConditionData;

@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 public class VanillaReg {
 
     public static ResourceLocation getId(World world) {
+
         return world.dimension()
             .location();
 

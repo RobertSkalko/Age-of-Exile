@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.capability.player.data;
 
+import com.robertx22.addon.divine_missions.types.CompleteDungeonTask;
 import com.robertx22.age_of_exile.capability.PlayerDamageChart;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.DungeonDimensionJigsawFeature;
@@ -11,7 +12,6 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.SignUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.divine_missions.mission_gen.MissionUtil;
-import com.robertx22.divine_missions_addon.types.CompleteDungeonTask;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.utils.Watch;
 import info.loenwind.autosave.annotations.Storable;

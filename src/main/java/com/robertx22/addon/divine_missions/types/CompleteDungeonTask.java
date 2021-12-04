@@ -1,4 +1,4 @@
-package com.robertx22.divine_missions_addon.types;
+package com.robertx22.addon.divine_missions.types;
 
 import com.robertx22.divine_missions.database.db_types.TaskType;
 import com.robertx22.divine_missions.main.DivineMissions;

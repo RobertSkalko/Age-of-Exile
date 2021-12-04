@@ -1,0 +1,7 @@
+These are all default registry entries of this type.
+This registry can't be modified or added to.
+imbued_tree_cave
+abandoned_prison
+undead_graveyard
+nether_fortress
+diamond_lich_crypt

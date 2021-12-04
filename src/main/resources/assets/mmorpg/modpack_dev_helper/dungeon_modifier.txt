@@ -1,0 +1,14 @@
+These are all default registry entries of this type.
+This registry can't be modified or added to.
+faster_mob_spawning
+leather_mobs
+lvl_20_ench_gear_mobs
+iron_mobs
+mob_death_tnt
+diamond_mobs
+strong_mobs
+speed_mobs
+50_chance_melee_skeleton
+lvl_30_ench_gear_mobs
+netherite_mobs
+lvl_10_ench_gear_mobs

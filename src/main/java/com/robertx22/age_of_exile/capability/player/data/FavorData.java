@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @Storable
 public class FavorData {
+
     @Store
     float favor = 0;
 

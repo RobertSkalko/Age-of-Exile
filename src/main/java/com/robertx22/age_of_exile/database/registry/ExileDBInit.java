@@ -16,7 +16,6 @@ import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.empty_entries.EmptyAffix;
 import com.robertx22.age_of_exile.database.empty_entries.EmptyStat;
-import com.robertx22.age_of_exile.database.registrators.CurrencyItems;
 import com.robertx22.age_of_exile.database.registrators.StatsRegister;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
 import com.robertx22.library_of_exile.registry.Database;
@@ -39,7 +38,6 @@ public class ExileDBInit {
     private static void registerAllNonDatapackEntries() {
         new StatsRegister().registerAll();// STATS MUST BE INIT FIRST
         // should be at least
-        new CurrencyItems().registerAll();
     }
 
     public static void initRegistries() {

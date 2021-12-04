@@ -43,6 +43,7 @@ public abstract class CurrencyItem extends Item implements ExileRegistry<Currenc
     public CurrencyItem(String name) {
         super(new ItemDefault().stacksTo(64)
             .tab(CreativeTabs.GemRuneCurrency));
+
     }
 
     public abstract int getTier();
