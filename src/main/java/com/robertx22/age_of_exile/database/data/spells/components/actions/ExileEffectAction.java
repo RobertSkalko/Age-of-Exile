@@ -44,6 +44,9 @@ public class ExileEffectAction extends SpellAction {
                     .set(x -> x.data.getNumber(EventData.STACKS).number = count)
                     .build();
 
+                potionEvent.spellid = ctx.calculatedSpellData.getSpell()
+                    .GUID();
+
                 potionEvent.Activate();
 
             });

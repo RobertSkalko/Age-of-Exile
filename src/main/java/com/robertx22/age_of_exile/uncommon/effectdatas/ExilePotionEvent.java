@@ -18,6 +18,8 @@ public class ExilePotionEvent extends EffectEvent {
 
     public static String ID = "on_exile_effect";
 
+    public String spellid = "";
+
     @Override
     public String GUID() {
         return ID;
@@ -99,6 +101,8 @@ public class ExilePotionEvent extends EffectEvent {
             }
 
             extraData.spellData = EntitySavedSpellData.create(lvl, source, effect);
+
+            extraData.spellData.spell_id = this.spellid;
 
             extraData.str_multi = data.getNumber();
 

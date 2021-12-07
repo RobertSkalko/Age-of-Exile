@@ -18,7 +18,7 @@ public class EntitySavedSpellData {
     @Store
     String caster_uuid = "";
     @Store
-    String spell_id = "";
+    public String spell_id = "";
     @Store
     String exile_effect_id = "";
     @Store

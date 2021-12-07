@@ -25,8 +25,10 @@ public class LevelProvider {
     }
 
     public int getCurrentLevel() {
-        return Load.spells(caster)
+        int lvl = Load.spells(caster)
             .getLevelOf(maxLevelProvider.GUID());
+
+        return lvl;
     }
 
     public int getCasterLevel() {

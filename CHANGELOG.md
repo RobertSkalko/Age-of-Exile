@@ -1,3 +1,6 @@
+v4.0.14
+fix effect spells not scaling to spell level
+
 v.4.0.13
 Infinite dungeons now scale to your level
 Additional infinite dungeon addon compat (Mine and slash specifics drops :))
