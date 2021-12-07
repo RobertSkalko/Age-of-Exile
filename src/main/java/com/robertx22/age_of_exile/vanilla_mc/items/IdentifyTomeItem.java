@@ -31,7 +31,7 @@ public class IdentifyTomeItem extends AutoItem {
             if (tomeStack.getCount() > 0) {
                 StatSoulData data = StackSaving.STAT_SOULS.loadFrom(stack);
 
-                if (data != null) {
+                if (data != null && data.gear != null) {
 
                     GearItemData gear = data.createGearData(null);
                     data.gear = gear;

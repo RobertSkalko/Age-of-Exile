@@ -24,6 +24,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.C2SPacketRegister;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashCapabilities;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashItemTags;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.SlashDeferred;
+import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.utils.Watch;
@@ -70,6 +71,8 @@ public class MMORPG {
                 event.run = MMORPG.RUN_DEV_TOOLS;
             }
         });
+
+        StackSaving.init();
 
         final IEventBus bus = FMLJavaModLoadingContext.get()
             .getModEventBus();
@@ -124,6 +127,11 @@ public class MMORPG {
 
     public void interMod(InterModEnqueueEvent event) {
 
+        if (ModList.get()
+            .isLoaded("infinite_dungeons")) {
+            IDAddonRegInit.init();
+        }
+
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("ring").size(2)
             .build());
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("necklace").size(1)
@@ -131,11 +139,6 @@ public class MMORPG {
     }
 
     public void commonSetupEvent(FMLCommonSetupEvent event) {
-
-        if (ModList.get()
-            .isLoaded("infinite_dungeons")) {
-            IDAddonRegInit.init();
-        }
 
         new CurrencyItems().registerAll();
         // need to happen after curerrency items are registered

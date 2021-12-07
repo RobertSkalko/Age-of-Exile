@@ -1,0 +1,43 @@
+{
+  "weight": 1000,
+  "id": "gem_box",
+  "format": "light_purple",
+  "rewards": [
+    {
+      "reward": {
+        "value": "mmorpg:loot_crate/default",
+        "data": "{CustomModelData:1,loot_crate:{tier:2,type:1}}",
+        "type": "ITEM",
+        "count": 1
+      },
+      "weight": 250
+    },
+    {
+      "reward": {
+        "value": "mmorpg:loot_crate/default",
+        "data": "{CustomModelData:1,loot_crate:{tier:1,type:1}}",
+        "type": "ITEM",
+        "count": 1
+      },
+      "weight": 500
+    },
+    {
+      "reward": {
+        "value": "mmorpg:loot_crate/default",
+        "data": "{CustomModelData:1,loot_crate:{tier:0,type:1}}",
+        "type": "ITEM",
+        "count": 1
+      },
+      "weight": 1000
+    }
+  ],
+  "jackpot": {
+    "reward": {
+      "value": "mmorpg:loot_crate/default",
+      "data": "{CustomModelData:1,loot_crate:{tier:4,type:1}}",
+      "type": "ITEM",
+      "count": 1
+    },
+    "weight": 25
+  }
+}

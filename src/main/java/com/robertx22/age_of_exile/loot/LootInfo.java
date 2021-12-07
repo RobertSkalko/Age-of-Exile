@@ -14,6 +14,7 @@ import com.robertx22.age_of_exile.loot.generators.BaseLootGen;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
+import com.robertx22.infinite_dungeons.components.PlayerIDCap;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
@@ -125,6 +126,13 @@ public class LootInfo {
         return info;
     }
 
+    public static LootInfo ofLevel(int level) {
+        LootInfo info = new LootInfo(LootOrigin.OTHER);
+        info.level = level;
+        info.setupAllFields();
+        return info;
+    }
+
     public static LootInfo ofLockedChestItem(PlayerEntity player, int level) {
         LootInfo info = new LootInfo(LootOrigin.LOOT_CRATE);
         info.player = player;
@@ -196,6 +204,7 @@ public class LootInfo {
     }
 
     private void setLevel() {
+
         if (dungeon != null) {
             this.level = dungeon.lv;
         } else {
@@ -207,6 +216,14 @@ public class LootInfo {
                 }
             }
         }
+        if (player != null) {
+            if (PlayerIDCap.get(player)
+                .isInDungeon()) {
+                level = Load.Unit(player)
+                    .getLevel();
+            }
+        }
+
         this.tier = LevelUtils.levelToTier(level);
     }
 

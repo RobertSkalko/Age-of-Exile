@@ -13,13 +13,14 @@ import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.player_skills.items.inscribing.EssencePaperItem;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.*;
+import com.robertx22.age_of_exile.vanilla_mc.items.crates.gem_crate.LootCrateItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.crates.rarity_gear.RarityGearCrateItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.EmptyFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.favor.FullFavorItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.baubles.ItemRing;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons.StaffWeapon;
-import com.robertx22.age_of_exile.vanilla_mc.items.loot_crate.LootCrateItem;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.*;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.ResetStatsPotion;
 import com.robertx22.age_of_exile.vanilla_mc.items.misc.reset_pots.SingleTalentResetPotion;
@@ -87,7 +88,7 @@ public class SlashItems {
     public static RegObj<FullFavorItem> FULL_FAVOR = Def.item(() -> new FullFavorItem(), "full_favor");
     public static RegObj<EmptyFavorItem> EMPTY_FAVOR = Def.item(() -> new EmptyFavorItem(), "empty_favor");
 
-    public static RegObj<CustomLootCrateItem> CUSTOM_CRATE = Def.item(() -> new CustomLootCrateItem(), "custom_crate");
+    public static RegObj<RarityGearCrateItem> RARITY_GEAR_CRATE = Def.item(() -> new RarityGearCrateItem(), "custom_crate");
 
     public static RegObj<Item> NEWBIE_GEAR_BAG = Def.item(() -> new ItemNewbieGearBag(), "newbie_gear_bag");
     public static RegObj<Item> SALVAGE_HAMMER = Def.item(() -> new SalvageHammerItem(), "salvage_hammer");

@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.bases.GearItemSlotPart;
 import com.robertx22.age_of_exile.loot.blueprints.bases.GearRarityPart;
 import com.robertx22.age_of_exile.loot.blueprints.bases.UniqueGearPart;
+import com.robertx22.age_of_exile.loot.generators.GearSoulLootGen;
 import com.robertx22.age_of_exile.loot.generators.util.GearCreationUtils;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import net.minecraft.item.Item;
@@ -15,9 +16,9 @@ import net.minecraft.item.Items;
 
 public class GearBlueprint extends ItemBlueprint {
 
-    Item item = Items.AIR;
+    public Item item = Items.AIR;
 
-    public GearBlueprint(Item item, int lvl) {
+    public GearBlueprint(int lvl) {
         super(lvl);
         this.item = item;
     }
@@ -49,7 +50,11 @@ public class GearBlueprint extends ItemBlueprint {
 
     @Override
     ItemStack generate() {
-        return GearCreationUtils.CreateStack(createData(), item);
+        if (item == Items.AIR) {
+            return GearSoulLootGen.createSoulBasedOnGear(this);
+        } else {
+            return GearCreationUtils.CreateStack(createData(), item);
+        }
     }
 
 }

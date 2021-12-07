@@ -4,7 +4,7 @@ import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.loot.LootInfo;
 import com.robertx22.age_of_exile.loot.blueprints.ItemBlueprint;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
-import com.robertx22.age_of_exile.vanilla_mc.items.loot_crate.LootCrateData;
+import com.robertx22.age_of_exile.vanilla_mc.items.crates.gem_crate.LootCrateData;
 import net.minecraft.item.ItemStack;
 
 public class CurrencyLootGen extends BaseLootGen<ItemBlueprint> {

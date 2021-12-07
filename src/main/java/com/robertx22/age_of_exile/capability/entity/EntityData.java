@@ -40,6 +40,7 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.EntityStatusEffectsData;
+import com.robertx22.infinite_dungeons.components.MobIDCap;
 import com.robertx22.library_of_exile.components.forge.BaseProvider;
 import com.robertx22.library_of_exile.components.forge.BaseStorage;
 import com.robertx22.library_of_exile.main.Packets;
@@ -654,6 +655,15 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
 
     public void SetMobLevelAtSpawn(PlayerEntity nearestPlayer) {
         this.setMobStats = true;
+
+        if (MobIDCap.get(entity)
+            .isDungeonMob()) {
+            if (nearestPlayer != null) {
+                this.setLevel(Load.Unit(nearestPlayer)
+                    .getLevel());
+                return;
+            }
+        }
 
         if (WorldUtils.isMapWorldClass(entity.level)) {
             try {

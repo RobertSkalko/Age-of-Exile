@@ -8,21 +8,29 @@ import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTier;
-import net.minecraft.item.TieredItem;
 import net.minecraft.util.registry.Registry;
 
-public abstract class SingleTargetWeapon extends TieredItem implements IAutoLocName {
+public abstract class SingleTargetWeapon extends Item implements IAutoLocName {
 
     public SingleTargetWeapon(ItemTier mat, Properties settings, String locname) {
 
-        super(mat, settings);
+        super(settings);
         this.locname = locname;
     }
 
     String locname;
     public float attackSpeed = -2.4F;
+
+    @Override
+    public boolean hurtEnemy(ItemStack p_77644_1_, LivingEntity p_77644_2_, LivingEntity p_77644_3_) {
+        p_77644_1_.hurtAndBreak(1, p_77644_3_, (p_220045_0_) -> {
+            p_220045_0_.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
+        });
+        return true;
+    }
 
     @Override
     public final String locNameForLangFile() {
@@ -43,15 +51,6 @@ public abstract class SingleTargetWeapon extends TieredItem implements IAutoLocN
     @Override
     public String GUID() {
         return "";
-    }
-
-    @Override
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        //  stack.hurtAndBreak(1, attacker, (entity) -> {
-        //      entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND);
-        // });
-
-        return true;
     }
 
     @Override

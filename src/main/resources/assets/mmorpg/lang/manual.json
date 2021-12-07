@@ -1,4 +1,13 @@
-"block.mmorpg.egg_loot_crate": "Loot Crate",
+
+"infinite_dungeons.reward_list.gem_box": "Lucky Gem Bag",
+"infinite_dungeons.reward_list.gear_crate": "Lucky Gear Bag",
+"infinite_dungeons.reward_list.any_slot_gear_crate": "Tailor Made Gear Bag",
+
+
+"item.mmorpg.custom_loot_crate": "Loot Crate",
+"item.mmorpg.loot_crate": "Loot Crate",
+"item.mmorpg.custom_crate": "Gear Crate",
+
 "block.mmorpg.ore_block0": "Common Ore Block",
 "block.mmorpg.ore_block1": "Uncommon Ore Block",
 "block.mmorpg.ore_block2": "Rare Ore Block",
@@ -33,7 +42,6 @@
 "mmorpg.tooltip.socketable_item": "This Gem can be inserted into a Socket slot",
 "_comment": "RARITY ITEM NAMES",
 "_comment": "MISC ITEMS",
-"item.mmorpg.player_levelup": "Player Level Up Token",
 "item.mmorpg.loot_bag": "Gear Loot Bag",
 "item.mmorpg.map_bag": "Map Bag",
 "item.mmorpg.currency_bag": "Currency Bag",
@@ -51,7 +59,6 @@
 "item.mmorpg.teleport_scroll": "Teleport Back Scroll",
 "item.mmorpg.prefix": "Prefix",
 "item.mmorpg.suffix": "Suffix",
-"item.mmorpg.custom_crate": "Crate",
 "_comment": "SPELL TOOLTIPS",
 "mmorpg.tooltip.aoe_spell_explosion": "Casts an elemental projectile that does AOE dmg on hit.",
 "mmorpg.tooltip.single_target_spell_bolt": "Casts a Single Target elemental projectile.",

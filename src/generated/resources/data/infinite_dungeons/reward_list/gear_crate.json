@@ -1,0 +1,43 @@
+{
+  "weight": 1000,
+  "id": "gear_crate",
+  "format": "light_purple",
+  "rewards": [
+    {
+      "reward": {
+        "value": "mmorpg:custom_crate",
+        "data": "{rarity_gear_crate:{set_to_player_lvl:1b,rar:\"epic\",tier:0}}",
+        "type": "ITEM",
+        "count": 1
+      },
+      "weight": 50
+    },
+    {
+      "reward": {
+        "value": "mmorpg:custom_crate",
+        "data": "{rarity_gear_crate:{set_to_player_lvl:1b,rar:\"rare\",tier:0}}",
+        "type": "ITEM",
+        "count": 1
+      },
+      "weight": 500
+    },
+    {
+      "reward": {
+        "value": "mmorpg:custom_crate",
+        "data": "{rarity_gear_crate:{set_to_player_lvl:1b,rar:\"uncommon\",tier:0}}",
+        "type": "ITEM",
+        "count": 1
+      },
+      "weight": 1000
+    }
+  ],
+  "jackpot": {
+    "reward": {
+      "value": "mmorpg:custom_crate",
+      "data": "{rarity_gear_crate:{set_to_player_lvl:1b,rar:\"unique\",tier:0}}",
+      "type": "ITEM",
+      "count": 1
+    },
+    "weight": 25
+  }
+}

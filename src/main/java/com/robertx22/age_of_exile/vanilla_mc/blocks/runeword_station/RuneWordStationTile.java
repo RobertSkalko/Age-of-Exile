@@ -15,7 +15,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.text.IFormattableTextComponent;
 
 import java.util.ArrayList;
@@ -82,7 +81,7 @@ public class RuneWordStationTile extends BaseModificationStation {
 
             runes.forEach(x -> x.shrink(1));
 
-            GearBlueprint b = new GearBlueprint(Items.AIR, Load.Unit(player)
+            GearBlueprint b = new GearBlueprint(Load.Unit(player)
                 .getLevel());
             UniqueGear uniq = ExileDB.UniqueGears()
                 .get(word.uniq_id);

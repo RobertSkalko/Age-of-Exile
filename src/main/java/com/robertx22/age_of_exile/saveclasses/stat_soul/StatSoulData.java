@@ -11,18 +11,18 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISettableLevelTier;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.library_of_exile.utils.LoadSave;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 @Storable
-public class StatSoulData implements ISalvagable, IRarity {
+public class StatSoulData implements ISalvagable, IRarity, ISettableLevelTier {
 
     @Store
     public int tier = 1;
@@ -41,6 +41,13 @@ public class StatSoulData implements ISalvagable, IRarity {
 
     @Store
     public GearItemData gear = null;
+
+    public static StatSoulData anySlotOfRarity(String rar) {
+        StatSoulData data = new StatSoulData();
+        data.tier = -1; // todo idk
+        data.rar = rar;
+        return data;
+    }
 
     public boolean canBeOnAnySlot() {
         return slot.isEmpty();
@@ -78,7 +85,7 @@ public class StatSoulData implements ISalvagable, IRarity {
 
         int lvl = LevelUtils.tierToLevel(tier);
 
-        GearBlueprint b = new GearBlueprint(Items.AIR, lvl);
+        GearBlueprint b = new GearBlueprint(lvl);
         b.level.set(lvl);
         b.rarity.set(ExileDB.GearRarities()
             .get(rar));
@@ -163,5 +170,10 @@ public class StatSoulData implements ISalvagable, IRarity {
     @Override
     public boolean isSalvagable(SalvageContext context) {
         return true;
+    }
+
+    @Override
+    public void setTier(int tier) {
+        this.tier = tier;
     }
 }

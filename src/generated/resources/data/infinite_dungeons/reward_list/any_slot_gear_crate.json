@@ -1,0 +1,43 @@
+{
+  "weight": 1000,
+  "id": "any_slot_gear_crate",
+  "format": "red",
+  "rewards": [
+    {
+      "reward": {
+        "value": "mmorpg:stat_soul/stat_soul",
+        "data": "{stat_soul:{rar:\"epic\",tier:-1,gear-:1b,can_sal:1b,uniq:\"\",slot:\"\"}}",
+        "type": "ITEM",
+        "count": 1
+      },
+      "weight": 40
+    },
+    {
+      "reward": {
+        "value": "mmorpg:stat_soul/stat_soul",
+        "data": "{stat_soul:{rar:\"rare\",tier:-1,gear-:1b,can_sal:1b,uniq:\"\",slot:\"\"}}",
+        "type": "ITEM",
+        "count": 1
+      },
+      "weight": 400
+    },
+    {
+      "reward": {
+        "value": "mmorpg:stat_soul/stat_soul",
+        "data": "{stat_soul:{rar:\"uncommon\",tier:-1,gear-:1b,can_sal:1b,uniq:\"\",slot:\"\"}}",
+        "type": "ITEM",
+        "count": 1
+      },
+      "weight": 2000
+    }
+  ],
+  "jackpot": {
+    "reward": {
+      "value": "mmorpg:stat_soul/stat_soul",
+      "data": "{stat_soul:{rar:\"unique\",tier:-1,gear-:1b,can_sal:1b,uniq:\"\",slot:\"\"}}",
+      "type": "ITEM",
+      "count": 1
+    },
+    "weight": 20
+  }
+}

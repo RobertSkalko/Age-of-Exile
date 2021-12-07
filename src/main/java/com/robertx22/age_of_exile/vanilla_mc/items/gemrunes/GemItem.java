@@ -365,6 +365,17 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
             this.upgradeChance = upgradeChance;
         }
 
+        public static GemRank ofTier(int tier) {
+
+            for (GemRank gr : GemRank.values()) {
+                if (gr.tier == tier) {
+                    return gr;
+                }
+            }
+
+            return GemRank.CHIPPED;
+
+        }
     }
 
     public GemItem(GemType type, GemRank gemRank) {

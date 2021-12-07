@@ -1,3 +1,8 @@
+v.4.0.13
+Infinite dungeons now scale to your level
+Additional infinite dungeon addon compat (Mine and slash specifics drops :))
+MNS crates from infinite dungeons should now nearly all be set to your level when you aquired them, not when you open
+
 v.4.0.12
 
 fix currencies not dropping

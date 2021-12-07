@@ -19,7 +19,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -90,7 +89,7 @@ public class ItemNewbieGearBag extends Item {
                 data.lvl = 1;
                 data.can_sal = false;
 
-                GearBlueprint b = new GearBlueprint(Items.AIR, 1);
+                GearBlueprint b = new GearBlueprint(1);
                 b.level.set(1);
                 b.rarity.set(ExileDB.GearRarities()
                     .get(IRarity.COMMON_ID));
@@ -157,7 +156,7 @@ public class ItemNewbieGearBag extends Item {
     }
 
     private static GearBlueprint getBlueprint(BaseGearType type) {
-        GearBlueprint print = new GearBlueprint(Items.AIR, 1);        //TODO
+        GearBlueprint print = new GearBlueprint(1);        //TODO
         print.gearItemSlot.set(type);
         print.rarity.set(ExileDB.GearRarities()
             .get(IRarity.COMMON_ID));

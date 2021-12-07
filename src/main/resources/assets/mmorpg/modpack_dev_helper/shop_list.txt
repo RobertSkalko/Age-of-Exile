@@ -1,7 +1,15 @@
 These are all default registry entries of this type.
-This registry can't be modified or added to.
-imbued_tree_cave
+This registry is modify-able through datapacks.
+infinite_dungeons_diamond_lich_crypt
 abandoned_prison
 undead_graveyard
+mmorpg_diamond_lich_crypt
+infinite_dungeons_undead_graveyard
+mmorpg_abandoned_prison
+infinite_dungeons_imbued_tree_cave
+imbued_tree_cave
+mmorpg_undead_graveyard
 nether_fortress
+infinite_dungeons_nether_fortress
 diamond_lich_crypt
+infinite_dungeons_abandoned_prison

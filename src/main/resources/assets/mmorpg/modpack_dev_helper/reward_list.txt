@@ -1,5 +1,8 @@
 These are all default registry entries of this type.
-This registry can't be modified or added to.
+This registry is modify-able through datapacks.
+any_slot_gear_crate
 god_apple_pack
 totem_of_undying_pack
 elytra_pack
+gear_crate
+gem_box

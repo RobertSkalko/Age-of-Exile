@@ -46,26 +46,8 @@ public class GearSoulLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public ItemStack generateOne() {
-
         GearBlueprint blueprint = new GearBlueprint(info);
-
         return createSoulBasedOnGear(blueprint);
-
-        /*
-        GearItemData gear = Gear.Load(stack);
-
-        if (gear != null) {
-
-            gear.can_sal = info.favorRank.can_salvage_loot;
-
-            Gear.Save(stack, gear);
-
-        }
-
-
-        return stack;
-        */
-
     }
 
 }

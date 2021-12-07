@@ -105,6 +105,7 @@ public class SpellCalcs {
     public static ValueCalculation FLAME_STRIKE = ValueCalcBuilder.of("flame_strike")
         .attackScaling(0.4F, 0.75F)
         .build();
+
     public static ValueCalculation HEALING_AURA = ValueCalcBuilder.of("healing_aura")
         .baseValue(4, 6)
         .build();

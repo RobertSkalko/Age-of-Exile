@@ -1,16 +1,19 @@
-package com.robertx22.age_of_exile.vanilla_mc.items.loot_crate;
+package com.robertx22.age_of_exile.vanilla_mc.items.crates.gem_crate;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TierColors;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -22,8 +25,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -39,24 +44,37 @@ public class LootCrateItem extends Item implements IGUID {
     public static List<LootType> LOOT_TYPES = Arrays.asList(LootType.Gem, LootType.Rune, LootType.Currency);
 
     public LootCrateData getData(ItemStack stack) {
-        return StackSaving.LOOT_CRATE.loadFrom(stack);
+        return StackSaving.GEM_CRATE.loadFrom(stack);
+    }
+
+    public static ItemStack ofGem(GemItem.GemRank rank) {
+        LootCrateData data = new LootCrateData();
+        data.tier = rank.tier;
+        data.type = data.type;
+        ItemStack stack = new ItemStack(SlashItems.LOOT_CRATE.get());
+        StackSaving.GEM_CRATE.saveTo(stack, data);
+        stack.getTag()
+            .putInt("CustomModelData", data.type.custommodeldata);
+
+        return stack;
+
     }
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getItemInHand(hand);
 
         if (!world.isClientSide) {
-            try {
 
-                ItemStack stack = player.getItemInHand(hand);
+            try {
 
                 ItemStack reward = ItemStack.EMPTY;
 
-                LootCrateData data = StackSaving.LOOT_CRATE.loadFrom(stack);
+                LootCrateData data = StackSaving.GEM_CRATE.loadFrom(stack);
 
                 if (data.type == LootType.Gem) {
                     Gem gem = ExileDB.Gems()
-                        .getFilterWrapped(x -> data.tier >= x.tier)
+                        .getFilterWrapped(x -> data.tier == x.tier)
                         .random();
                     reward = new ItemStack(gem.getItem());
                 } else if (data.type == LootType.Rune) {
@@ -99,7 +117,7 @@ public class LootCrateItem extends Item implements IGUID {
                     data.type = type;
                     data.tier = tier;
 
-                    StackSaving.LOOT_CRATE.saveTo(stack, data);
+                    StackSaving.GEM_CRATE.saveTo(stack, data);
 
                     stack.getTag()
                         .putInt("CustomModelData", type.custommodeldata);
@@ -124,14 +142,33 @@ public class LootCrateItem extends Item implements IGUID {
 
     @Override
     public ITextComponent getName(ItemStack stack) {
+
         LootCrateData data = getData(stack);
+
+        IFormattableTextComponent comp = new StringTextComponent("");
+
         if (data != null) {
-            return data.type.word.locName()
+
+            if (data.type == LootType.Gem) {
+                String gemrank = "";
+                GemItem.GemRank rank = GemItem.GemRank.ofTier(data.tier);
+                gemrank = rank.locName; // todo make loc
+                comp.append(gemrank)
+                    .append(" ");
+            }
+
+            comp.append(data.type.word.locName())
                 .append(" ")
                 .append(Words.Loot.locName())
                 .append(" ")
-                .append(Words.Crate.locName());
+                .append(Words.Crate.locName())
+                .withStyle(TierColors.get(data.tier))
+                .withStyle(TextFormatting.BOLD);
+
+            return comp;
+
         }
+
         return new StringTextComponent("Box");
 
     }

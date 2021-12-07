@@ -1,4 +1,4 @@
-package com.robertx22.age_of_exile.vanilla_mc.items.loot_crate;
+package com.robertx22.age_of_exile.vanilla_mc.items.crates.gem_crate;
 
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
@@ -24,7 +24,7 @@ public class LootCrateData {
         stack.getOrCreateTag()
             .putInt("CustomModelData", type.custommodeldata);
 
-        StackSaving.LOOT_CRATE.saveTo(stack, this);
+        StackSaving.GEM_CRATE.saveTo(stack, this);
         return stack;
     }
 

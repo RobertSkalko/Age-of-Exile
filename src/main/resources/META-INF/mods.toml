@@ -54,3 +54,9 @@ Turns Minecraft into a hack and slash RPG!
     versionRange="[0,)"
     ordering="NONE"
     side="BOTH"
+[[dependencies.infinite_dungeons]]
+    modId="infinite_dungeons"
+    mandatory=false
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
