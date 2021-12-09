@@ -19,7 +19,7 @@ public class OnPlayerDamageEntityEvent extends EventConsumer<ExileEvents.OnDamag
             return;
         }
         if (event.source.getEntity() instanceof PlayerEntity) {
-            OnHurtEvent.onHurtEvent(new AttackInformation(AttackInformation.Mitigation.POST, event.mob, event.source, event.damage));
+            OnHurtEvent.onHurtEvent(new AttackInformation(event, AttackInformation.Mitigation.POST, event.mob, event.source, event.damage));
         }
     }
 

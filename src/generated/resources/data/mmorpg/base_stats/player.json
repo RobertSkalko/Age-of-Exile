@@ -20,19 +20,31 @@
       "scale_to_lvl": true
     },
     {
+      "v1": 3.0,
+      "stat": "spell_power",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
+      "v1": 3.0,
+      "stat": "physical_weapon_damage",
+      "type": "FLAT",
+      "scale_to_lvl": false
+    },
+    {
       "v1": 10.0,
       "stat": "health",
       "type": "FLAT",
       "scale_to_lvl": true
     },
     {
-      "v1": 20.0,
+      "v1": 30.0,
       "stat": "mana",
       "type": "FLAT",
       "scale_to_lvl": true
     },
     {
-      "v1": 20.0,
+      "v1": 30.0,
       "stat": "energy",
       "type": "FLAT",
       "scale_to_lvl": true
@@ -56,19 +68,19 @@
       "scale_to_lvl": true
     },
     {
-      "v1": 1.0,
+      "v1": 2.0,
       "stat": "health_regen",
       "type": "FLAT",
       "scale_to_lvl": false
     },
     {
-      "v1": 1.0,
+      "v1": 2.0,
       "stat": "mana_regen",
       "type": "FLAT",
       "scale_to_lvl": false
     },
     {
-      "v1": 1.0,
+      "v1": 2.0,
       "stat": "energy_regen",
       "type": "FLAT",
       "scale_to_lvl": false

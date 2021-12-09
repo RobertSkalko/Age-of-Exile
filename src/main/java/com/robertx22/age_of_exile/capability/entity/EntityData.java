@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.capability.entity;
 
+import com.robertx22.addon.infinite_dungeons.InfiniteDungeonWrapper;
 import com.robertx22.age_of_exile.capability.bases.EntityGears;
 import com.robertx22.age_of_exile.capability.bases.ICommonPlayerCap;
 import com.robertx22.age_of_exile.capability.bases.INeededForClient;
@@ -8,6 +9,7 @@ import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -17,13 +19,12 @@ import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.dimension.dungeon_data.WorldDungeonCap;
+import com.robertx22.age_of_exile.event_hooks.my_events.CollectGearEvent;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.CustomExactStatsData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.saveclasses.unit.MobAffixesData;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
-import com.robertx22.age_of_exile.saveclasses.unit.ResourcesData;
-import com.robertx22.age_of_exile.saveclasses.unit.Unit;
+import com.robertx22.age_of_exile.saveclasses.unit.*;
 import com.robertx22.age_of_exile.threat_aggro.ThreatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
@@ -40,7 +41,6 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.OnScreenMessageUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.EntityStatusEffectsData;
-import com.robertx22.infinite_dungeons.components.MobIDCap;
 import com.robertx22.library_of_exile.components.forge.BaseProvider;
 import com.robertx22.library_of_exile.components.forge.BaseStorage;
 import com.robertx22.library_of_exile.main.Packets;
@@ -65,9 +65,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.Comparator;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @Mod.EventBusSubscriber
 public class EntityData implements ICommonPlayerCap, INeededForClient {
@@ -656,12 +654,13 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     public void SetMobLevelAtSpawn(PlayerEntity nearestPlayer) {
         this.setMobStats = true;
 
-        if (MobIDCap.get(entity)
-            .isDungeonMob()) {
-            if (nearestPlayer != null) {
-                this.setLevel(Load.Unit(nearestPlayer)
-                    .getLevel());
-                return;
+        if (MMORPG.isInfiniteDungeonsLoaded()) {
+            if (InfiniteDungeonWrapper.isDungeonMob(entity)) {
+                if (nearestPlayer != null) {
+                    this.setLevel(Load.Unit(nearestPlayer)
+                        .getLevel());
+                    return;
+                }
             }
         }
 
@@ -769,9 +768,36 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     }
 
     public int getLevel() {
-
         return level;
+    }
 
+    public int getAverageILVL() {
+
+        List<GearData> gears = new ArrayList<>();
+        new CollectGearEvent.CollectedGearStacks(entity, gears, null);
+
+        int divideBy = 4 + 3; // armors, jewelry
+
+        // dont count weapon and offhand for obvious reasons
+
+        int totalILVL = 0;
+
+        for (GearData x : gears) {
+            if (x.gear != null) {
+                if (!x.gear.GetBaseGearType()
+                    .isWeapon() && !x.gear.GetBaseGearType().tags.contains(BaseGearType.SlotTag.offhand_family)) {
+                    totalILVL += x.gear.getILVL();
+                }
+            }
+        }
+
+        if (totalILVL < 1) {
+            return 0;
+        }
+
+        totalILVL /= divideBy;
+
+        return totalILVL;
     }
 
     public void setLevel(int lvl) {

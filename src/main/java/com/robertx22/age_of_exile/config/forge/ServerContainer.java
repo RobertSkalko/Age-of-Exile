@@ -35,6 +35,7 @@ public class ServerContainer {
 
         ENABLE_FAVOR_SYSTEM = b.define("enable_favor", true);
         ALL_PLAYERS_ARE_TEAMED_PVE_MODE = b.define("all_players_are_allied", false);
+        TURN_REQ_ILVL_INTO_RECCOMENDATION = b.define("TURN_REQ_ILVL_INTO_RECCOMENDATION", false);
         GET_STARTER_ITEMS = b.define("start_items", true);
         ALWAYS_SCALE_MOB_LEVEL_TO_PLAYER = b.define("scale_mob_to_nearby_player_lvl", false);
         ENABLE_LOOT_ANNOUNCEMENTS = b.define("loot_announcements", true);
@@ -60,6 +61,7 @@ public class ServerContainer {
         EXTRA_MOB_STATS_PER_LEVEL = b.defineInRange("extra_mob_stats_per_lvl", 0.02D, 0, 1000);
         VANILLA_MOB_DMG_AS_EXILE_DMG = b.defineInRange("vanilla_mob_dmg_as_exile_dmg", 1D, 0, 1000);
         VANILLA_MOB_DMG_AS_EXILE_DMG_AT_MAX_LVL = b.defineInRange("vanilla_mob_dmg_as_exile_dmg_at_max_lvl", 1D, 0, 1000);
+        PLAYER_VANILLA_DMG_MULTI = b.defineInRange("PLAYER_VANILLA_DMG_MULTI", 0D, 0, 1000);
         PVP_DMG_MULTI = b.defineInRange("pvp_dmg_multi", 1D, 0, 1000);
 
         GEAR_DROPRATE = b.defineInRange("gear_drop_rate", 7D, 0, 1000);
@@ -68,12 +70,13 @@ public class ServerContainer {
         RUNE_DROPRATE = b.defineInRange("rune_drop_rate", 0.05D, 0, 1000);
         CURRENCY_DROPRATE = b.defineInRange("currency_drop_rate", 0.2D, 0, 1000);
 
-        DIFFICULTY_PER_SECOND = b.defineInRange("DIFFICULTY_PER_SECOND", 0.001D, -1000, 1000);
+        DIFFICULTY_PER_SECOND = b.defineInRange("DIFFICULTY_PER_SECOND", 0.0005D, -1000, 1000);
         DIFFICULTY_PER_HOSTILE_KILL = b.defineInRange("DIFFICULTY_PER_HOSTILE_KILL", 0.005D, -1000, 1000);
-        DIFFICULTY_PER_DEATH = b.defineInRange("DIFFICULTY_PER_DEATH", -0.5D, -1000, 1000);
+        DIFFICULTY_PER_DEATH = b.defineInRange("DIFFICULTY_PER_DEATH", -1D, -1000, 1000);
         DIFFICULTY_PER_INCREASE_ITEM = b.defineInRange("DIFFICULTY_PER_INCREASE_ITEM", 10D, -1000, 1000);
         DIFFICULTY_PER_DECREASE_ITEM = b.defineInRange("DIFFICULTY_PER_DECREASE_ITEM", 10D, -1000, 1000);
         MAX_DIFFICULTY = b.defineInRange("MAX_DIFFICULTY", 100D, -1000, 1000);
+        MAX_MOB_LVL_HIGHER_THAN_PLAYER_FOR_DIFF = b.defineInRange("MAX_MOB_LVL_HIGHER_THAN_PLAYER_FOR_DIFF", 5, -1000, 1000);
         DEATH_DIFFICULTY_COOLDOWN = b.defineInRange("DEATH_DIFFICULTY_COOLDOWN", 20 * 60 * 60D, 0, 100000);
         MOB_HP_MULTI_PER_DIFFICULTY = b.defineInRange("MOB_HP_MULTI_PER_DIFFICULTY", 0.01D, 0, 100000);
         MOB_DMG_MULTI_PER_DIFFICULTY = b.defineInRange("MOB_DMG_MULTI_PER_DIFFICULTY", 0.01D, 0, 100000);
@@ -130,6 +133,7 @@ public class ServerContainer {
     public ForgeConfigSpec.DoubleValue DIFFICULTY_PER_INCREASE_ITEM;
     public ForgeConfigSpec.DoubleValue DIFFICULTY_PER_DECREASE_ITEM;
     public ForgeConfigSpec.DoubleValue MAX_DIFFICULTY;
+    public ForgeConfigSpec.IntValue MAX_MOB_LVL_HIGHER_THAN_PLAYER_FOR_DIFF;
 
     public ForgeConfigSpec.DoubleValue MOB_HP_MULTI_PER_DIFFICULTY;
     public ForgeConfigSpec.DoubleValue MOB_DMG_MULTI_PER_DIFFICULTY;
@@ -146,6 +150,7 @@ public class ServerContainer {
     public ForgeConfigSpec.BooleanValue ENABLE_LOOT_ANNOUNCEMENTS;
     public ForgeConfigSpec.BooleanValue REQUIRE_TEAM_FOR_TEAM_DUNGEONS;
     public ForgeConfigSpec.BooleanValue DONT_SYNC_DATA_OF_AMBIENT_MOBS;
+    public ForgeConfigSpec.BooleanValue TURN_REQ_ILVL_INTO_RECCOMENDATION;
 
     public ForgeConfigSpec.IntValue STARTING_FAVOR;
     public ForgeConfigSpec.IntValue MAX_UNIQUE_GEARS_WORN;
@@ -164,6 +169,7 @@ public class ServerContainer {
     public ForgeConfigSpec.DoubleValue VANILLA_MOB_DMG_AS_EXILE_DMG_AT_MAX_LVL;
     public ForgeConfigSpec.DoubleValue PVP_DMG_MULTI;
     public ForgeConfigSpec.DoubleValue ILVL_PER_UPGRADE_LEVEL;
+    public ForgeConfigSpec.DoubleValue PLAYER_VANILLA_DMG_MULTI;
 
     public ForgeConfigSpec.DoubleValue GEAR_DROPRATE;
     public ForgeConfigSpec.DoubleValue GEM_DROPRATE;

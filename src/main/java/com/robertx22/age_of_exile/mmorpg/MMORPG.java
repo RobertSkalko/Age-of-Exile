@@ -125,10 +125,14 @@ public class MMORPG {
 
     }
 
+    public static boolean isInfiniteDungeonsLoaded() {
+        return ModList.get()
+            .isLoaded("infinite_dungeons");
+    }
+
     public void interMod(InterModEnqueueEvent event) {
 
-        if (ModList.get()
-            .isLoaded("infinite_dungeons")) {
+        if (isInfiniteDungeonsLoaded()) {
             IDAddonRegInit.init();
         }
 

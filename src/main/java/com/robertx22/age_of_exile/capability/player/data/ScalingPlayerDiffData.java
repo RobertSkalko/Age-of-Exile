@@ -67,7 +67,9 @@ public class ScalingPlayerDiffData {
     }
 
     public int getBonusLevels() {
-        return (int) (GameBalanceConfig.get().MAX_LEVEL * (diff / ServerContainer.get().MAX_DIFFICULTY.get()));
+        int bonus = (int) (GameBalanceConfig.get().MAX_LEVEL * (diff / ServerContainer.get().MAX_DIFFICULTY.get()));
+
+        return bonus;
     }
 
     public float getDifficulty() {
@@ -78,6 +80,7 @@ public class ScalingPlayerDiffData {
         diff += d;
         diff = MathHelper.clamp(diff, 0, ServerContainer.get().MAX_DIFFICULTY.get()
             .floatValue());
+
     }
 
 }

@@ -17,7 +17,17 @@
         },
         {
           "v1": 1.0,
-          "stat": "elemental_resist",
+          "stat": "fire_resist",
+          "type": "FLAT"
+        },
+        {
+          "v1": 1.0,
+          "stat": "water_resist",
+          "type": "FLAT"
+        },
+        {
+          "v1": 1.0,
+          "stat": "earth_resist",
           "type": "FLAT"
         }
       ]

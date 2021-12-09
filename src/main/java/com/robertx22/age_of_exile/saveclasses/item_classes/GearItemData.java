@@ -140,7 +140,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return LevelUtils.levelToTier(lvl);
     }
 
-    public float getEffectiveLevel() {
+    public float getILVL() {
 
         float ilvl = lvl + getRarity().bonus_effective_lvls;
 

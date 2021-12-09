@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +21,7 @@ import java.util.stream.Stream;
 public class LevelUtils {
 
     static boolean isTier(MinMax range, int lvl) {
-        return lvl > range.min && lvl < range.max;
+        return lvl >= range.min && lvl <= range.max;
     }
 
     static Set<Integer> cachedTiers = new HashSet<>();
@@ -48,7 +49,12 @@ public class LevelUtils {
     }
 
     public static void runTests() {
-        Preconditions.checkArgument(levelToTierToLevel(1) == 1);
+        if (MMORPG.RUN_DEV_TOOLS) {
+            Preconditions.checkArgument(levelToTierToLevel(1) == 1);
+            Preconditions.checkArgument(levelToTierToLevel(10) == 10);
+            Preconditions.checkArgument(levelToTierToLevel(20) == 20);
+            Preconditions.checkArgument(levelToTierToLevel(50) == 50);
+        }
     }
 
     public static String tierToRomanNumeral(int tier) {
@@ -56,7 +62,13 @@ public class LevelUtils {
     }
 
     public static int levelToTierToLevel(int level) {
-        return tierToLevel(levelToTier(level));
+
+        int tier = levelToTier(level);
+
+        int lvl = tierToLevel(tier);
+
+        return lvl;
+
     }
 
     public static int tierToLevel(int tier) {
@@ -71,7 +83,7 @@ public class LevelUtils {
 
             if (opt.isPresent()) {
                 lvl = opt.get()
-                    .getKey().min + 1;
+                    .getKey().min;
             } else {
                 if (tier > 0) {
                     return GameBalanceConfig.get().MAX_LEVEL;
@@ -82,6 +94,11 @@ public class LevelUtils {
             e.printStackTrace();
             return 1;
         }
+
+        if (lvl < 1) {
+            lvl = 1;
+        }
+
         return lvl;
     }
 
@@ -187,6 +204,19 @@ public class LevelUtils {
 
         if (nearestPlayer != null) {
             int bonusDiffLevel = Load.playerRPGData(nearestPlayer).scalingDifficulty.getBonusLevels();
+
+            int max = Load.Unit(nearestPlayer)
+                .getLevel() + ServerContainer.get().MAX_MOB_LVL_HIGHER_THAN_PLAYER_FOR_DIFF.get();
+
+            int cangive = max - lvl;
+            if (cangive < 0) {
+                cangive = 0;
+            }
+
+            if (bonusDiffLevel > cangive) {
+                bonusDiffLevel = cangive;
+            }
+
             lvl += bonusDiffLevel;
         }
 

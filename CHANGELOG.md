@@ -1,3 +1,16 @@
+v.4.0.17
+mod should now work without infinite dungeons 
+scaling diff now cant over lvl mobs TOO much
+there should be tier 5 (lvl 50+) gear now
+
+v4.0.16
+fix nullpointer making spells do no dmg
+
+v.4.0.15
+* added config for player vanilla dmg multi, defaulting to 0 as a test.
+It was like this in mine and slash 1.15, but i'm not sure which is preffered.
+Fixed wrong equality operator in identify tome, causing it to only identify already identified souls
+
 v4.0.14
 fix effect spells not scaling to spell level
 

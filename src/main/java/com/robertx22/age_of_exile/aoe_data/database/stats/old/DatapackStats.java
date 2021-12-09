@@ -34,8 +34,11 @@ public class DatapackStats implements ExileRegistryInit {
 
     public static Stat INT = new CoreStat("intelligence", "Intelligence", CoreStatData.of(Arrays.asList(
         new OptScaleExactStat(0.1F, SpellPower.getInstance(), ModType.FLAT),
-        new OptScaleExactStat(1, new ElementalResist(Elements.Elemental), ModType.FLAT)
+        new OptScaleExactStat(1, new ElementalResist(Elements.Fire), ModType.FLAT),
+        new OptScaleExactStat(1, new ElementalResist(Elements.Water), ModType.FLAT),
+        new OptScaleExactStat(1, new ElementalResist(Elements.Earth), ModType.FLAT)
     )));
+
     public static Stat STR = new CoreStat("strength", "Strength", CoreStatData.of(Arrays.asList(
         new OptScaleExactStat(0.1F, new AttackDamage(Elements.Physical), ModType.FLAT),
         new OptScaleExactStat(1, Armor.getInstance(), ModType.FLAT)

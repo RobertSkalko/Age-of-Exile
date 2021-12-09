@@ -356,6 +356,11 @@ public class DamageEvent extends EffectEvent {
 
             } else {
 
+                if (attackInfo != null && attackInfo.event != null) {
+                    if (source instanceof PlayerEntity) {
+                        attackInfo.event.damage *= ServerContainer.get().PLAYER_VANILLA_DMG_MULTI.get();
+                    }
+                }
                 int inv = target.invulnerableTime;
                 target.invulnerableTime = 0;
                 target.hurt(dmgsource, vanillaDamage);

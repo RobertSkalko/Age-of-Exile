@@ -140,7 +140,7 @@ public class GearTooltipUtils {
         IFormattableTextComponent lvl = TooltipUtils.gearLevel(gear.lvl);
 
         if (Screen.hasShiftDown()) {
-            lvl.append(new StringTextComponent(TextFormatting.YELLOW + " [ILvl:" + (int) gear.getEffectiveLevel() + "]"));
+            lvl.append(new StringTextComponent(TextFormatting.YELLOW + " [ILvl:" + (int) gear.getILVL() + "]"));
         }
 
         if (gear.up.getTimesCanBeUpgradedInTotal() > 0) {

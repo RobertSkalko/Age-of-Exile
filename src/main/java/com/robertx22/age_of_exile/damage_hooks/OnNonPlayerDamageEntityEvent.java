@@ -23,9 +23,8 @@ public class OnNonPlayerDamageEntityEvent extends EventConsumer<ExileEvents.OnDa
             return;
         }
         if (!(event.source.getEntity() instanceof PlayerEntity)) {
-
             // todo, i'm not sure if i want to override vanila damage or keep using both...
-            OnHurtEvent.onHurtEvent(new AttackInformation(AttackInformation.Mitigation.PRE, event.mob, event.source, event.damage));
+            OnHurtEvent.onHurtEvent(new AttackInformation(event, AttackInformation.Mitigation.PRE, event.mob, event.source, event.damage));
         }
     }
 }

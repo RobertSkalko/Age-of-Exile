@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.gui.ItemSlotButton;
+import com.robertx22.library_of_exile.utils.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -55,8 +56,16 @@ public class PlayerGearButton extends ImageButton {
         Minecraft mc = Minecraft.getInstance();
 
         // player 3d view
-        InventoryScreen.renderEntityInInventory(this.x + 50, this.y + 72, 30, this.x - x, this.y - y, player);
-        mc.font.draw(matrix, str, this.x + xSize / 2 - mc.font.width(str) / 2, this.y + 5, TextFormatting.YELLOW.getColor());
+        InventoryScreen.renderEntityInInventory(this.x + 50, this.y + 77, 30, this.x - x, this.y - y, player);
+        mc.font.draw(matrix, str, this.x + xSize / 2 - mc.font.width(str) / 2, this.y + 3, TextFormatting.YELLOW.getColor());
+
+        str = "Avg ILVL: " + Load.Unit(mc.player)
+            .getAverageILVL();
+
+        GuiUtils.renderScaledText(matrix, this.x + xSize / 2, this.y + 17, 0.8F, str, TextFormatting.GREEN);
+
+        // mc.font.draw(matrix, str, this.x + xSize / 2 - mc.font.width(str) / 2, this.y + 5, TextFormatting.GREEN.getColor());
+
         // player 3d view
 
     }

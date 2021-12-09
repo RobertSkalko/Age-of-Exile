@@ -80,7 +80,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
                     pairs.add(new Tuple(all.get(i)
                         .getStat()
                         , info.statTooltipType.impl.getTooltipList(gear.getRarity()
-                        .textFormatting(), new TooltipStatWithContext(ctx, stats.size() > i ? stats.get(i) : null, (int) gear.getEffectiveLevel()))));
+                        .textFormatting(), new TooltipStatWithContext(ctx, stats.size() > i ? stats.get(i) : null, (int) gear.getILVL()))));
                 }
             }
         }
@@ -113,14 +113,14 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
                 int i = 0;
                 for (StatModifier mod : gear.GetBaseGearType()
                     .baseStats()) {
-                    local.add(mod.ToExactStat(perc.get(i), gear.getEffectiveLevel()));
+                    local.add(mod.ToExactStat(perc.get(i), gear.getILVL()));
                     i++;
                 }
             } else {
                 int n = 0;
                 for (StatModifier mod : gear.uniqueStats.getUnique(gear)
                     .base_stats) {
-                    local.add(mod.ToExactStat(perc.get(n), gear.getEffectiveLevel()));
+                    local.add(mod.ToExactStat(perc.get(n), gear.getILVL()));
                     n++;
                 }
             }

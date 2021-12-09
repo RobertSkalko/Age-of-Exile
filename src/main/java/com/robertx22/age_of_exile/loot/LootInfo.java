@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.loot;
 
+import com.robertx22.addon.infinite_dungeons.InfiniteDungeonWrapper;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.capability.player.data.ScalingPlayerDiffData;
@@ -11,10 +12,10 @@ import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.loot.generators.BaseLootGen;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.WorldUtils;
-import com.robertx22.infinite_dungeons.components.PlayerIDCap;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.utils.EntityUtils;
 import net.minecraft.entity.LivingEntity;
@@ -216,9 +217,9 @@ public class LootInfo {
                 }
             }
         }
+
         if (player != null) {
-            if (PlayerIDCap.get(player)
-                .isInDungeon()) {
+            if (MMORPG.isInfiniteDungeonsLoaded() && InfiniteDungeonWrapper.isPlayerInDungeon(player)) {
                 level = Load.Unit(player)
                     .getLevel();
             }

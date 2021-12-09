@@ -33,16 +33,19 @@ public class BaseStatsAdder implements ExileRegistryInit {
         c.scaled(SpellPower.getInstance(), 1);
         c.scaled(new AttackDamage(Elements.Physical), 1);
 
+        c.nonScaled(SpellPower.getInstance(), 3);
+        c.nonScaled(new AttackDamage(Elements.Physical), 3);
+
         c.scaled(Health.getInstance(), 10);
-        c.scaled(Mana.getInstance(), 20);
-        c.scaled(Energy.getInstance(), 20);
+        c.scaled(Mana.getInstance(), 30);
+        c.scaled(Energy.getInstance(), 30);
         c.scaled(HealthRegen.getInstance(), 1);
         c.scaled(ManaRegen.getInstance(), 1);
         c.scaled(EnergyRegen.getInstance(), 1);
 
-        c.nonScaled(HealthRegen.getInstance(), 1);
-        c.nonScaled(ManaRegen.getInstance(), 1);
-        c.nonScaled(EnergyRegen.getInstance(), 1);
+        c.nonScaled(HealthRegen.getInstance(), 2);
+        c.nonScaled(ManaRegen.getInstance(), 2);
+        c.nonScaled(EnergyRegen.getInstance(), 2);
 
         // why did i add this again? I think its a must
         c.nonScaled(Stats.CRIT_CHANCE.get(), 1);

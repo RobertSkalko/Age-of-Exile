@@ -81,8 +81,8 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         for (StatModifier mod : ExileDB.UniqueGears()
             .get(gear.uniq_id)
             .uniqueStats()) {
-            ExactStatData exact = mod.ToExactStat(perc.get(i), gear.getEffectiveLevel());
-            list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc.get(i), info), mod, (int) gear.getEffectiveLevel()));
+            ExactStatData exact = mod.ToExactStat(perc.get(i), gear.getILVL());
+            list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc.get(i), info), mod, (int) gear.getILVL()));
             i++;
         }
         return list;
@@ -98,7 +98,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
             for (StatModifier mod : ExileDB.UniqueGears()
                 .get(gear.uniq_id)
                 .uniqueStats()) {
-                list.add(mod.ToExactStat(perc.get(i), gear.getEffectiveLevel()));
+                list.add(mod.ToExactStat(perc.get(i), gear.getILVL()));
                 i++;
             }
         } catch (Exception e) {

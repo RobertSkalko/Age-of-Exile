@@ -5,12 +5,14 @@ import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.library_of_exile.events.base.ExileEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 
 public class AttackInformation {
 
+    public ExileEvents.OnDamageEntity event;
     Mitigation mitigation;
     boolean canceled = false;
     LivingEntity targetEntity;
@@ -21,11 +23,12 @@ public class AttackInformation {
     public ItemStack weapon;
     public GearItemData weaponData;
 
-    public AttackInformation(Mitigation miti, LivingEntity target, DamageSource source, float amount) {
+    public AttackInformation(ExileEvents.OnDamageEntity event, Mitigation miti, LivingEntity target, DamageSource source, float amount) {
         this.targetEntity = target;
         this.damageSource = source;
         this.amount = amount;
         this.mitigation = miti;
+        this.event = event;
         this.weapon = WeaponFinderUtil.getWeapon(source);
         this.weaponData = Gear.Load(weapon);
 

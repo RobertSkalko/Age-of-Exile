@@ -203,7 +203,7 @@ public class RangerSpells implements ExileRegistryInit {
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 100D, 2D))
             .onHit(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.SPLASH_POTION_BREAK, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(SpellCalcs.POISON_ARROW, Elements.Earth, 2D)
+            .onExpire(PartBuilder.damageInAoe(SpellCalcs.POISON_ARROW, Elements.Earth, 2D)
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();

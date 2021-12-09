@@ -106,7 +106,9 @@ public class CoreStat extends BaseDatapackStat implements ICoreStat {
     @Override
     public void addToOtherStats(EntityData unitdata, InCalcStatData data) {
 
-        getMods((int) data.getValue()).forEach(x -> x.applyStats(unitdata));
+        for (ExactStatData x : getMods((int) data.getValue())) {
+            x.applyStats(unitdata);
+        }
     }
 
     @Override
