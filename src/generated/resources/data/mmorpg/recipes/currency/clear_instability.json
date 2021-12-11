@@ -7,10 +7,10 @@
   ],
   "key": {
     "t": {
-      "item": "mmorpg:currency/clear_sockets"
+      "item": "mmorpg:currency/orb_of_transmutation"
     },
     "v": {
-      "item": "mmorpg:mat/salvage/salvage4"
+      "item": "minecraft:diamond"
     },
     "o": {
       "item": "mmorpg:mat/condensed_salvage/c4"

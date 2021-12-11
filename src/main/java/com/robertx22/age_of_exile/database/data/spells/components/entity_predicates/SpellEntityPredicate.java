@@ -21,6 +21,7 @@ public abstract class SpellEntityPredicate extends BaseFieldNeeder implements IG
     public static HashMap<String, SpellEntityPredicate> MAP = new HashMap<>();
 
     public static IsCasterPredicate IS_CASTER = of(new IsCasterPredicate());
+    public static HasEffect HAS_EFFECT = of(new HasEffect());
 
     private static <T extends SpellEntityPredicate> T of(T s) {
         MAP.put(s.GUID(), s);

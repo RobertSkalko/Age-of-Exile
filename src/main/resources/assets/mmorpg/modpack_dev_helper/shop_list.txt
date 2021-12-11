@@ -11,5 +11,6 @@ imbued_tree_cave
 mmorpg_undead_graveyard
 nether_fortress
 infinite_dungeons_nether_fortress
+mmorpg_nether_fortress
 diamond_lich_crypt
 infinite_dungeons_abandoned_prison

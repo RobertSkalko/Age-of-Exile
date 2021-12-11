@@ -9,13 +9,13 @@ import com.robertx22.age_of_exile.database.data.currency.loc_reqs.item_types.Gea
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
@@ -84,8 +84,8 @@ public class ClearInstabilityItem extends CurrencyItem implements ICurrencyItemE
     @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(this)
-            .define('t', CurrencyItems.CLEAR_RUNES.get())
-            .define('v', SlashItems.T4_DUST())
+            .define('t', CurrencyItems.ORB_OF_TRANSMUTATION.get())
+            .define('v', Items.DIAMOND)
             .define('o', ProfessionItems.CONDENSED_ESSENCE_MAP.get(SkillItemTier.TIER4)
                 .get())
             .pattern("ovo")

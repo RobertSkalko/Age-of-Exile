@@ -46,10 +46,8 @@ public class PlusOneUpgradeItem extends CurrencyItem implements ICurrencyItemEff
     @Override
     public ItemStack internalModifyMethod(LocReqContext ctx, ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
-        if (gear.up.isNextSlotGold() || RandomUtils.roll(90)) {
-            gear.onUpgrade(ctx.player, UpgradeData.SlotType.N1);
-        } else {
-            gear.onUpgrade(ctx.player, UpgradeData.SlotType.Zero);
+        if (RandomUtils.roll(75)) {
+            gear.onUpgrade(ctx.player, UpgradeData.SlotType.UP1);
         }
         Gear.Save(stack, gear);
         return stack;
@@ -57,7 +55,7 @@ public class PlusOneUpgradeItem extends CurrencyItem implements ICurrencyItemEff
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_UPGRADE_SLOTS);
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_EMPTY_UPGRADE_SLOTS);
     }
 
     @Override
@@ -72,7 +70,7 @@ public class PlusOneUpgradeItem extends CurrencyItem implements ICurrencyItemEff
 
     @Override
     public String locDescForLangFile() {
-        return "90% chance of +1, else 0.";
+        return "75% to upgrade the item";
     }
 
     @Override

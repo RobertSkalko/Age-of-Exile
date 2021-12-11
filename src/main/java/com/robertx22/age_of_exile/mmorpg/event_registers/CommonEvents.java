@@ -1,12 +1,11 @@
 package com.robertx22.age_of_exile.mmorpg.event_registers;
 
 import com.robertx22.addon.divine_missions.events.IsMobKilledValid;
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
-import com.robertx22.age_of_exile.damage_hooks.OnNonPlayerDamageEntityEvent;
-import com.robertx22.age_of_exile.damage_hooks.OnPlayerDamageEntityEvent;
-import com.robertx22.age_of_exile.damage_hooks.ScaleVanillaMobDamage;
-import com.robertx22.age_of_exile.damage_hooks.ScaleVanillaPlayerDamage;
+import com.robertx22.age_of_exile.damage_hooks.*;
 import com.robertx22.age_of_exile.database.data.stats.datapacks.stats.AttributeStat;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.event_hooks.entity.OnMobSpawn;
 import com.robertx22.age_of_exile.event_hooks.entity.OnTrackEntity;
@@ -25,10 +24,12 @@ import com.robertx22.age_of_exile.uncommon.interfaces.data_items.Cached;
 import com.robertx22.library_of_exile.events.base.EventConsumer;
 import com.robertx22.library_of_exile.events.base.ExileEvents;
 import com.robertx22.library_of_exile.main.ForgeEvents;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -83,6 +84,29 @@ public class CommonEvents {
         ExileEvents.DAMAGE_AFTER_CALC.register(new OnPlayerDamageEntityEvent());
 
         ExileEvents.PLAYER_DEATH.register(new OnPlayerDeath());
+
+        ForgeEvents.registerForgeEvent(LivingHurtEvent.class, event -> {
+            // reduce enviro dmg based on total hp from formula
+            try {
+                if (event.getEntityLiving() instanceof PlayerEntity) {
+                    if (LivingHurtUtils.isEnviromentalDmg(event.getSource())) {
+                        EntityData data = Load.Unit(event.getEntityLiving());
+                        float reduction = Health.getInstance()
+                            .getUsableValue((int) data.getUnit()
+                                .healthData()
+                                .getValue(), data.getLevel());
+
+                        float multi = 1 - reduction;
+
+                        event.setAmount(event.getAmount() * multi);
+
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        });
 
         ExileEvents.PLAYER_DEATH.register(new EventConsumer<ExileEvents.OnPlayerDeath>() {
             @Override

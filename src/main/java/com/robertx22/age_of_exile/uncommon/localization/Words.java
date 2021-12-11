@@ -6,6 +6,11 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import java.util.Locale;
 
 public enum Words implements IAutoLocName {
+
+    DestroyProtect("Destruction Guard"),
+    WipeUpgradeProtect("Upgrade Guard"),
+    SafeguardsLeft("Safeguards Left:"),
+    FailedButSafe("Upgrade failed but the Protection Scroll effect safeguarded the item."),
     UpgradeStone("Upgrade Stone"),
     Essence("Essence"),
     EmptyString(" "),
@@ -306,6 +311,10 @@ public enum Words implements IAutoLocName {
     UpgradeLvlTo5("Upgrade Level must be 0-4"),
     UpgradeLvlTo10("Upgrade Level must be 5-9"),
     UpgradeLvlTo15("Upgrade Level must be 10-14"),
+
+    HasEmptyUpgrades("Has empty upgrade slots"),
+    HasGreenUpgrades("Has green upgrade slots"),
+    HasBlueUpgrades("Has blue upgrade slots"),
 
     HasEmptySockets("Has Empty Sockets"),
     HasUpgradeSlotsLeft("Has Upgrade Slots Left"),

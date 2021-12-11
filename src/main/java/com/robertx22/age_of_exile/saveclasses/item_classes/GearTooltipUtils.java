@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.item_classes;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ClientConfigs;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
+import com.robertx22.age_of_exile.database.data.currency.GearBlessingType;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -146,6 +147,12 @@ public class GearTooltipUtils {
         if (gear.up.getTimesCanBeUpgradedInTotal() > 0) {
             tip.add(TooltipUtils.upgradeStars(gear));
         }
+
+        if (gear.up.bless != GearBlessingType.NONE) {
+            tip.add(gear.up.bless.word.locName()
+                .withStyle(TextFormatting.GOLD));
+        }
+
         tip.add(lvl);
         tip.add(TooltipUtils.gearTier(gear.getTier()));
         tip.add(TooltipUtils.gearRarity(gear.getRarity()));

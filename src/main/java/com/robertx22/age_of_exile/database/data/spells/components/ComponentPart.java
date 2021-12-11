@@ -96,7 +96,7 @@ public class ComponentPart {
             List<LivingEntity> selected = selector.get(ctx, ctx.caster, ctx.target, ctx.pos, part);
 
             for (MapHolder entityPredicate : en_preds) {
-                SpellEntityPredicate pred = SpellEntityPredicate.MAP.get(part.type);
+                SpellEntityPredicate pred = SpellEntityPredicate.MAP.get(entityPredicate.type);
 
                 if (pred != null) {
                     selected = selected.stream()

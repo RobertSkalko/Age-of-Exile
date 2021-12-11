@@ -16,13 +16,7 @@
     },
     {
       "min": 10.0,
-      "max": 10.0,
-      "stat": "chance_of_chill",
-      "type": "flat"
-    },
-    {
-      "min": 10.0,
-      "max": 20.0,
+      "max": 25.0,
       "stat": "all_water_damage",
       "type": "flat"
     },

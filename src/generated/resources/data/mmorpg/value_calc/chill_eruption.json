@@ -1,0 +1,21 @@
+{
+  "stat_scalings": [
+    {
+      "stat": "spell_power",
+      "multi": {
+        "min": 1.0,
+        "max": 2.5
+      }
+    }
+  ],
+  "id": "chill_eruption",
+  "base_scaling_type": "NORMAL",
+  "attack_scaling": {
+    "min": 0.0,
+    "max": 0.0
+  },
+  "base": {
+    "min": 0.0,
+    "max": 0.0
+  }
+}

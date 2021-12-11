@@ -40,28 +40,6 @@
               "sound": "minecraft:block.fire.extinguish",
               "pitch": 1.6
             }
-          },
-          {
-            "type": "particles_in_radius",
-            "map": {
-              "particle_type": "minecraft:poof",
-              "y_rand": 0.5,
-              "set_add": "ADD",
-              "motion": "CasterLook",
-              "radius": 1.0,
-              "particle_count": 20.0
-            }
-          },
-          {
-            "type": "particles_in_radius",
-            "map": {
-              "particle_type": "minecraft:white_ash",
-              "y_rand": 0.5,
-              "set_add": "ADD",
-              "motion": "CasterLook",
-              "radius": 1.0,
-              "particle_count": 20.0
-            }
           }
         ],
         "ifs": [
@@ -73,27 +51,16 @@
         "en_preds": []
       },
       {
-        "targets": [
-          {
-            "type": "self",
-            "map": {}
-          }
-        ],
+        "targets": [],
         "acts": [
           {
-            "type": "sound",
+            "type": "summon_at_sight",
             "map": {
-              "volume": 1.0,
-              "sound": "minecraft:entity.creeper.primed",
-              "pitch": 1.6
-            }
-          },
-          {
-            "type": "motion",
-            "map": {
-              "set_add": "ADD",
-              "motion": "CasterLook",
-              "push_str": 1.0
+              "entity_name": "default_entity_name",
+              "gravity": false,
+              "life_ticks": 1.0,
+              "proj_en": "mmorpg:spell_projectile",
+              "height": 0.0
             }
           }
         ],
@@ -106,7 +73,56 @@
         "en_preds": []
       }
     ],
-    "entity_components": {}
+    "entity_components": {
+      "block": [
+        {
+          "targets": [
+            {
+              "type": "self",
+              "map": {}
+            }
+          ],
+          "acts": [
+            {
+              "type": "tp_target_to_self",
+              "map": {}
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        }
+      ],
+      "default_entity_name": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "summon_block",
+              "map": {
+                "entity_name": "block",
+                "is_falling_block": false,
+                "block_fall_speed": 0.0,
+                "life_ticks": 1.0,
+                "block": "minecraft:air",
+                "find_surface": false
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
   },
   "config": {
     "swing_arm": false,

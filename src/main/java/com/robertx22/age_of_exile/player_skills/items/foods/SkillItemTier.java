@@ -9,17 +9,18 @@ import java.util.Comparator;
 
 public enum SkillItemTier {
 
-    TIER0("Spiritual", LevelRanges.STARTER, 0, 0, 1, TextFormatting.YELLOW, 60 * 5, 20),
-    TIER1("Celestial", LevelRanges.LOW, 0.2F, 1, 1.25F, TextFormatting.AQUA, 60 * 6, 25),
-    TIER2("Empyrean", LevelRanges.MIDDLE, 0.4F, 2, 1.5F, TextFormatting.GOLD, 60 * 7, 30),
-    TIER3("Angelic", LevelRanges.HIGH, 0.6F, 3, 1.75F, TextFormatting.LIGHT_PURPLE, 60 * 8, 40),
-    TIER4("Divine", LevelRanges.ENDGAME, 0.8F, 4, 2, TextFormatting.DARK_PURPLE, 60 * 10, 50);
+    TIER0("Spiritual", LevelRanges.STARTER, 0, 0, 1, TextFormatting.YELLOW, 60 * 5, 20, 50),
+    TIER1("Celestial", LevelRanges.LOW, 0.2F, 1, 1.25F, TextFormatting.AQUA, 60 * 6, 25, 100),
+    TIER2("Empyrean", LevelRanges.MIDDLE, 0.4F, 2, 1.5F, TextFormatting.GOLD, 60 * 7, 30, 200),
+    TIER3("Angelic", LevelRanges.HIGH, 0.6F, 3, 1.75F, TextFormatting.LIGHT_PURPLE, 60 * 8, 40, 300),
+    TIER4("Divine", LevelRanges.ENDGAME, 0.8F, 4, 2, TextFormatting.DARK_PURPLE, 60 * 10, 50, 500);
 
-    SkillItemTier(String word, LevelRange levelRange, float lvl_req, int tier, float statMulti, TextFormatting format, int durationseconds, float percent_healed) {
+    SkillItemTier(String word, LevelRange levelRange, float lvl_req, int tier, float statMulti, TextFormatting format, int durationseconds, float percent_healed, int repairDurab) {
         this.word = word;
         this.tier = tier;
         this.statMulti = statMulti;
         this.format = format;
+        this.repairDurab = repairDurab;
         this.percent_healed = percent_healed;
         this.durationSeconds = durationseconds;
         this.lvl_req = lvl_req;
@@ -97,6 +98,7 @@ public enum SkillItemTier {
     public float statMulti;
     public TextFormatting format;
     public int durationSeconds;
+    public int repairDurab;
     public float percent_healed;
 
 }

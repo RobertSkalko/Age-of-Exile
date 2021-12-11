@@ -115,6 +115,10 @@ public class SpellCalcs {
     public static ValueCalculation FROST_NOVA = ValueCalcBuilder.of("frost_nova")
         .spellScaling(1F, 1.5F)
         .build();
+    public static ValueCalculation CHILL_ERUPTION = ValueCalcBuilder.of("chill_eruption")
+        .spellScaling(1F, 2.5F)
+        .build();
+
     public static ValueCalculation POISON_CLOUD = ValueCalcBuilder.of("poison_cloud")
         .baseValue(2, 4)
         .spellScaling(0.2F, 0.4F)

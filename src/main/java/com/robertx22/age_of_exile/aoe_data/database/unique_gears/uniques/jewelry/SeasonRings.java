@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelry;
 
 import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearTypes;
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
@@ -70,8 +69,7 @@ public class SeasonRings implements ExileRegistryInit {
             .setReplacesName()
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
                 new StatModifier(20, 40, new ElementalResist(Elements.Water), ModType.PERCENT),
-                new StatModifier(10, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.CHILL), ModType.FLAT),
-                new StatModifier(10, 20, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),
+                new StatModifier(10, 25, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.PERCENT),
                 new StatModifier(5, 15, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT)
             ))
@@ -87,8 +85,7 @@ public class SeasonRings implements ExileRegistryInit {
 
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
                 new StatModifier(20, 40, new ElementalResist(Elements.Fire), ModType.PERCENT),
-                new StatModifier(10, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT),
-                new StatModifier(10, 20, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT),
+                new StatModifier(10, 25, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.PERCENT),
                 new StatModifier(5, 15, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
             ))

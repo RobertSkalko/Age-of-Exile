@@ -45,18 +45,12 @@ Turns Minecraft into a hack and slash RPG!
 [[dependencies.mmorpg]]
     modId="library_of_exile"
     mandatory=true
-    versionRange="[0,)"
+    versionRange="[1.2.3,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.mmorpg]]
     modId="curios"
     mandatory=true
-    versionRange="[0,)"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.infinite_dungeons]]
-    modId="infinite_dungeons"
-    mandatory=false
     versionRange="[0,)"
     ordering="NONE"
     side="BOTH"

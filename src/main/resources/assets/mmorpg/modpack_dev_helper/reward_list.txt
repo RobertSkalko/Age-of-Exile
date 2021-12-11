@@ -4,5 +4,6 @@ any_slot_gear_crate
 god_apple_pack
 totem_of_undying_pack
 elytra_pack
+upgrade_box
 gear_crate
 gem_box

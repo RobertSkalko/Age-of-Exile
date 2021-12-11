@@ -2,6 +2,8 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.data.currency.*;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
+import com.robertx22.age_of_exile.database.data.currency.safes.EpicSafeScroll;
+import com.robertx22.age_of_exile.database.data.currency.safes.LegendarySafeScroll;
 import com.robertx22.age_of_exile.database.data.currency.upgrades.PlusOneUpgradeItem;
 import com.robertx22.age_of_exile.database.data.currency.upgrades.PlusThreeUpgradeItem;
 import com.robertx22.age_of_exile.database.data.currency.upgrades.PlusTwoUpgradeItem;
@@ -29,7 +31,6 @@ public class CurrencyItems {
     public static RegObj<CurrencyItem> ORB_OF_TRANSMUTATION = Def.item(() -> new OrbOfTransmutationItem());
     public static RegObj<CurrencyItem> CLEAR_CORRUPTION = Def.item(() -> new PurifyItem());
     public static RegObj<CurrencyItem> CRYSTAL_OF_PURIFICATION = Def.item(() -> new CrystalOfPurificationItem());
-    public static RegObj<CurrencyItem> CLEAR_RUNES = Def.item(() -> new ClearSocketsItem());
     public static RegObj<CurrencyItem> ORB_OF_DISORDER = Def.item(() -> new OrbOfDisorder());
     public static RegObj<CurrencyItem> ORB_OF_TURBULENCE = Def.item(() -> new OrbOfTurbulence());
     public static RegObj<CurrencyItem> STONE_OF_HOPE = Def.item(() -> new StoneOfHopeItem());
@@ -43,5 +44,8 @@ public class CurrencyItems {
     public static RegObj<CurrencyItem> PLUS_ONE_UPGRADE = Def.item(() -> new PlusOneUpgradeItem());
     public static RegObj<CurrencyItem> PLUS_TWO_UPGRADE = Def.item(() -> new PlusTwoUpgradeItem());
     public static RegObj<CurrencyItem> PLUS_THREE_UPGRADE = Def.item(() -> new PlusThreeUpgradeItem());
+
+    public static RegObj<CurrencyItem> EPIC_PROT_SCROLL = Def.item(() -> new EpicSafeScroll());
+    public static RegObj<CurrencyItem> LEGENDARY_PROT_SCROLL = Def.item(() -> new LegendarySafeScroll());
 
 }

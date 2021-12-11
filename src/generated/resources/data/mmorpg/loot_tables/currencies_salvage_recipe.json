@@ -20,12 +20,17 @@
         {
           "type": "minecraft:item",
           "weight": 0,
-          "name": "mmorpg:currency/clear_sockets"
+          "name": "mmorpg:currency/crystal_of_purification"
         },
         {
           "type": "minecraft:item",
           "weight": 0,
-          "name": "mmorpg:currency/crystal_of_purification"
+          "name": "mmorpg:currency/epic_safe_scroll"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 0,
+          "name": "mmorpg:currency/legendary_safe_scroll"
         },
         {
           "type": "minecraft:item",

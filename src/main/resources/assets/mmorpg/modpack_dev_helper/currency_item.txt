@@ -10,9 +10,10 @@ currency/plus_three_upgrade
 currency/orb_of_corruption
 currency/stone_of_hope
 currency/reroll_unique_numbers
+currency/epic_safe_scroll
 currency/crystal_of_purification
 currency/plus_two_upgrade
-currency/clear_sockets
 currency/randomize_affixes
 currency/clear_corruption
 currency/reroll_primary_stats_numbers
+currency/legendary_safe_scroll

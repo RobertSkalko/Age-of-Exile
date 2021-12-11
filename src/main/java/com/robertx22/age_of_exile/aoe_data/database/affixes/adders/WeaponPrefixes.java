@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes.adders;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
@@ -53,33 +52,6 @@ public class WeaponPrefixes implements ExileRegistryInit {
             .includesTags(SlotTag.weapon_family)
             .Prefix()
             .Build();
-
-        ///// chance of effect
-        AffixBuilder.Normal("snakes")
-            .Named("Snake's")
-            .stats(new StatModifier(5, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.POISON), ModType.FLAT))
-            .includesTags(SlotTag.weapon_family)
-            .Weight(50)
-            .Prefix()
-            .Build();
-
-        AffixBuilder.Normal("yetis")
-            .Named("Yeti's")
-            .stats(new StatModifier(5, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.CHILL), ModType.FLAT))
-            .includesTags(SlotTag.weapon_family)
-            .Weight(50)
-            .Prefix()
-            .Build();
-
-        AffixBuilder.Normal("drakes")
-            .Named("Drakes's")
-            .stats(new StatModifier(5, 10, Stats.CHANCE_OF_APPLYING_EFFECT.get(NegativeEffects.BURN), ModType.FLAT))
-            .includesTags(SlotTag.weapon_family)
-            .Weight(50)
-            .Prefix()
-            .Build();
-
-        ///// chance of effect
 
         AffixBuilder.Normal("true_hit")
             .Named("True Hit")

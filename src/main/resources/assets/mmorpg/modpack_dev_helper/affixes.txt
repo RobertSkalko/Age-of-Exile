@@ -37,9 +37,7 @@ of_the_titan
 glimmering
 fire_spell_ele_dmg
 mana_reg
-yetis
 water_wep_dmg_dun
-snakes
 water_ele_mobs
 of_the_wind
 of_treasure
@@ -72,5 +70,4 @@ of_gluttony
 strong_vit_armor_suf
 virile
 fire_res
-drakes
 archeologists

@@ -55,10 +55,16 @@ public class OnItemInteract {
 
                 SalvagedDustItem essence = (SalvagedDustItem) cursor.getItem();
 
-                if (essence.tier.getDisplayTierNumber() == gear.getTier()) {
-                    stack.setDamageValue(stack.getDamageValue() - 250);
-                    success = true;
+                SoundUtils.playSound(player, SoundEvents.ANVIL_USE, 1, 1);
+
+                int repair = essence.durabilityRepair;
+
+                if (gear.getTier() > essence.tier.tier) {
+                    repair /= 5;
                 }
+                stack.setDamageValue(stack.getDamageValue() - repair);
+                success = true;
+
             } else if (cursor.getItem() instanceof StatSoulItem) {
                 StatSoulData data = StackSaving.STAT_SOULS.loadFrom(cursor);
 
@@ -73,7 +79,7 @@ public class OnItemInteract {
                 if (ctx.effect.canItemBeModified(ctx)) {
                     ItemStack result = ctx.effect.modifyItem(ctx).stack;
                     stack.shrink(1);
-                    PlayerUtils.giveItem(result, player);
+                    slot.set(result);
                     success = true;
                 }
             } else if (cursor.getItem() == SlashItems.SALVAGE_HAMMER.get()) {
@@ -82,6 +88,8 @@ public class OnItemInteract {
                 if (data == null && stack.getItem() instanceof ISalvagable) {
                     data = (ISalvagable) stack.getItem();
                 }
+
+                SoundUtils.playSound(player, SoundEvents.ANVIL_USE, 1, 1);
 
                 if (data != null) {
                     stack.shrink(1);

@@ -1,0 +1,179 @@
+{
+  "max_lvl": 16,
+  "weight": 1000,
+  "identifier": "chill_eruption",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:block.glass.break",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:item_snowball",
+              "y_rand": 0.5,
+              "motion": "None",
+              "shape": "HORIZONTAL_CIRCLE_EDGE",
+              "radius": 5.0,
+              "particle_count": 250.0,
+              "height": 0.5
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [
+          {
+            "type": "aoe",
+            "map": {
+              "selection_type": "RADIUS",
+              "en_predicate": "enemies",
+              "radius": 5.0
+            }
+          }
+        ],
+        "acts": [
+          {
+            "type": "damage",
+            "map": {
+              "value_calculation": "chill_eruption",
+              "element": "Water"
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": [
+          {
+            "type": "has_effect",
+            "map": {
+              "potion_id": "mmorpg:negative/2"
+            }
+          }
+        ],
+        "per_entity_hit": [
+          {
+            "targets": [],
+            "acts": [
+              {
+                "type": "sound_per_target",
+                "map": {
+                  "volume": 1.0,
+                  "sound": "minecraft:block.glass.hit",
+                  "pitch": 1.0
+                }
+              }
+            ],
+            "ifs": [],
+            "en_preds": []
+          },
+          {
+            "targets": [],
+            "acts": [
+              {
+                "type": "sound_per_target",
+                "map": {
+                  "volume": 1.0,
+                  "sound": "minecraft:block.glass.break",
+                  "pitch": 1.0
+                }
+              }
+            ],
+            "ifs": [],
+            "en_preds": []
+          },
+          {
+            "targets": [],
+            "acts": [
+              {
+                "type": "particles_in_radius",
+                "map": {
+                  "particle_type": "minecraft:item_snowball",
+                  "motion": "None",
+                  "radius": 1.0,
+                  "particle_count": 100.0
+                }
+              }
+            ],
+            "ifs": [],
+            "en_preds": []
+          },
+          {
+            "targets": [],
+            "acts": [
+              {
+                "type": "particles_in_radius",
+                "map": {
+                  "particle_type": "minecraft:enchanted_hit",
+                  "motion": "None",
+                  "radius": 1.0,
+                  "particle_count": 50.0
+                }
+              }
+            ],
+            "ifs": [],
+            "en_preds": []
+          }
+        ]
+      }
+    ],
+    "entity_components": {}
+  },
+  "config": {
+    "swing_arm": false,
+    "apply_cast_speed_to_cd": false,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": {
+      "min": 15.0,
+      "max": 30.0
+    },
+    "times_to_cast": 1,
+    "charges": 0,
+    "charge_regen": 0,
+    "imbues": 1,
+    "charge_name": "",
+    "cast_time_ticks": 0,
+    "cooldown_ticks": 500,
+    "style": "magic",
+    "tags": [
+      "area",
+      "damage"
+    ],
+    "cast_type": "NORMAL",
+    "scale_mana_cost_to_player_lvl": false
+  },
+  "manual_tip": true,
+  "disabled_dims": [],
+  "effect_tip": ""
+}

@@ -108,8 +108,14 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public void onUpgrade(PlayerEntity player, UpgradeData.SlotType type) {
 
         for (int i = 0; i < this.up.ups.size(); i++) {
-            UpgradeData.SlotType upgrade = this.up.ups.get(i);
-            if (upgrade.isEmptySlot) {
+            UpgradeData.SlotType slot = this.up.ups.get(i);
+            if (slot == UpgradeData.SlotType.EMPTY && type == UpgradeData.SlotType.UP1) {
+                this.up.ups.set(i, type);
+                break;
+            } else if (slot == UpgradeData.SlotType.UP1 && type == UpgradeData.SlotType.UP2) {
+                this.up.ups.set(i, type);
+                break;
+            } else if (slot == UpgradeData.SlotType.UP2 && type == UpgradeData.SlotType.UP3) {
                 this.up.ups.set(i, type);
                 break;
             }
@@ -119,7 +125,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             player.displayClientMessage(new StringTextComponent("Upgraded Item to +" + up.getUpgradeLevel() + " with a +" + type.upgradeLevel).withStyle(TextFormatting.GREEN), false);
         } else {
             player.displayClientMessage(new StringTextComponent("Upgrade failed").withStyle(TextFormatting.RED), false);
-
         }
 
     }

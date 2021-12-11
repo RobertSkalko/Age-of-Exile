@@ -107,19 +107,10 @@ public class RangerSpells implements ExileRegistryInit {
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.CREEPER_PRIMED, 1D, 1.6D)
                 .addActions(SpellAction.CASTER_USE_COMMAND.create("effect give @p minecraft:slow_falling 1 1 true")))
-            .onCast(PartBuilder.playSound(SoundEvents.FIRE_EXTINGUISH, 1D, 1.6D)
-                .addActions(SpellAction.PARTICLES_IN_RADIUS.create(ParticleTypes.POOF, 20D, 1D)
-                    .put(MapField.Y_RANDOM, 0.5D)
-                    .put(MapField.MOTION, ParticleMotion.CasterLook.name())
-                    .put(MapField.SET_ADD, SetAdd.ADD.name()))
-                .addActions(SpellAction.PARTICLES_IN_RADIUS.create(ParticleTypes.WHITE_ASH, 20D, 1D)
-                    .put(MapField.Y_RANDOM, 0.5D)
-                    .put(MapField.MOTION, ParticleMotion.CasterLook.name())
-                    .put(MapField.SET_ADD, SetAdd.ADD.name())))
+            .onCast(PartBuilder.playSound(SoundEvents.FIRE_EXTINGUISH, 1D, 1.6D))
 
-            .onCast(PartBuilder.playSound(SoundEvents.CREEPER_PRIMED, 1D, 1.6D)
-                .addActions(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 1D, ParticleMotion.CasterLook))
-                .addTarget(TargetSelector.CASTER.create()))
+            .teleportForward()
+
             .build();
 
         SpellBuilder.of(CHARGED_BOLT, SpellConfiguration.Builder.arrowSpell(8, 20 * 15), "Charged Bolt",
@@ -199,10 +190,10 @@ public class RangerSpells implements ExileRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
 
-            .onHit(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.POISON.effectId, 2D, 20 * 8D))
-            .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 100D, 2D))
-            .onHit(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.playSound(SoundEvents.SPLASH_POTION_BREAK, 1D, 1D))
+            .onExpire(PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.POISON.effectId, 2D, 20 * 8D))
+            .onExpire(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 100D, 2D))
+            .onExpire(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
+            .onExpire(PartBuilder.playSound(SoundEvents.SPLASH_POTION_BREAK, 1D, 1D))
             .onExpire(PartBuilder.damageInAoe(SpellCalcs.POISON_ARROW, Elements.Earth, 2D)
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
@@ -215,10 +206,10 @@ public class RangerSpells implements ExileRegistryInit {
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
-            .onHit(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 0.1D))
-            .onHit(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(SpellCalcs.EXPLOSIVE_ARROW, Elements.Physical, 2D)
+            .onExpire(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 0.1D))
+            .onExpire(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
+            .onExpire(PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
+            .onExpire(PartBuilder.damageInAoe(SpellCalcs.EXPLOSIVE_ARROW, Elements.Physical, 2D)
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();

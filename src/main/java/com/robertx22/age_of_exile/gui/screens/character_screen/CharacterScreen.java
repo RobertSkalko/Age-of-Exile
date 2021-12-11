@@ -447,7 +447,7 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
             str += '%';
         }
 
-        if (stat instanceof IUsableStat) {
+        if (stat instanceof IUsableStat && stat instanceof Health == false) {
             IUsableStat usable = (IUsableStat) stat;
 
             String value = NumberUtils.format(

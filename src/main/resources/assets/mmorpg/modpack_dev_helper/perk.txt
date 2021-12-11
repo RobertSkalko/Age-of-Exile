@@ -34,7 +34,6 @@ mage
 physical_damage
 warrior
 critical_hit
-chance_of_blind
 faster_projectiles
 spell_critical_damage
 steady_hand
@@ -50,7 +49,6 @@ health
 more_dualwield_dmg
 all_earth_damage
 staff_damage
-chance_of_poison
 mana
 spell_critical_hit
 harmony
@@ -82,12 +80,10 @@ health_regen
 spell_fire_damage
 crit_damage
 templar
-chance_of_bleed
 elemental_purity
 armor
 ele_staff_damage
 elemental_resist
-chance_of_chill
 crit_chance
 spell_water_damage
 divinity
@@ -112,5 +108,4 @@ fire_penetration
 sword_damage
 crit_heal_chance
 health_on_hit
-chance_of_burn
 shield_duration

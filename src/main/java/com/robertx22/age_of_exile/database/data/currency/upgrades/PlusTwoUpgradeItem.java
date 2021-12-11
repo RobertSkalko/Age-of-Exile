@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.currency.upgrades;
 
+import com.robertx22.age_of_exile.database.data.currency.GearBlessingType;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
@@ -13,9 +14,12 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UpgradeData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,10 +50,17 @@ public class PlusTwoUpgradeItem extends CurrencyItem implements ICurrencyItemEff
     @Override
     public ItemStack internalModifyMethod(LocReqContext ctx, ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
-        if (gear.up.isNextSlotGold() || RandomUtils.roll(80)) {
-            gear.onUpgrade(ctx.player, UpgradeData.SlotType.N2);
+        if (RandomUtils.roll(75)) {
+            gear.onUpgrade(ctx.player, UpgradeData.SlotType.UP2);
         } else {
-            gear.onUpgrade(ctx.player, UpgradeData.SlotType.M1);
+            if (gear.up.bless == GearBlessingType.UP_WIPE_PROTECT) {
+                gear.up.bless = GearBlessingType.NONE;
+                ctx.player.displayClientMessage(Words.FailedButSafe.locName()
+                    .withStyle(TextFormatting.GOLD), false);
+            } else {
+                gear.up.regenerate(gear.getRarity());
+                ctx.player.displayClientMessage(new StringTextComponent(TextFormatting.RED + "Failure, all upgrades wiped."), false);
+            }
         }
         Gear.Save(stack, gear);
         return stack;
@@ -57,7 +68,7 @@ public class PlusTwoUpgradeItem extends CurrencyItem implements ICurrencyItemEff
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_UPGRADE_SLOTS);
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_GREEN_UPGRADE_SLOTS);
     }
 
     @Override
@@ -72,7 +83,7 @@ public class PlusTwoUpgradeItem extends CurrencyItem implements ICurrencyItemEff
 
     @Override
     public String locDescForLangFile() {
-        return "80% chance of +2, else -1";
+        return "75% chance to upgrade a green slot. 25% chance to wipe all upgrades";
     }
 
     @Override

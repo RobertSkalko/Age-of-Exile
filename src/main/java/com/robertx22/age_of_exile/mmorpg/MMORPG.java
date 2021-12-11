@@ -60,6 +60,7 @@ public class MMORPG {
     );
 
     public MMORPG() {
+
         Watch watch = new Watch();
 
         ModLoadingContext.get()

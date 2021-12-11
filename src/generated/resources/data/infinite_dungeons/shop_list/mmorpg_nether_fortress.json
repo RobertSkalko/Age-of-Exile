@@ -1,0 +1,78 @@
+{
+  "weight": 1000,
+  "id": "mmorpg_nether_fortress",
+  "for_layout_id": "nether_fortress",
+  "priority": 1,
+  "shop_entries": [
+    {
+      "cost": {
+        "item_id": "infinite_dungeons:nether_coin",
+        "count": 25
+      },
+      "reward": {
+        "value": "minecraft:ender_pearl",
+        "data": "",
+        "type": "ITEM",
+        "count": 3
+      },
+      "difficulty": "diff_0",
+      "max_uses": 1
+    },
+    {
+      "cost": {
+        "item_id": "infinite_dungeons:nether_coin",
+        "count": 25
+      },
+      "reward": {
+        "value": "minecraft:ender_eye",
+        "data": "",
+        "type": "ITEM",
+        "count": 1
+      },
+      "difficulty": "diff_5",
+      "max_uses": 1
+    },
+    {
+      "cost": {
+        "item_id": "infinite_dungeons:nether_coin",
+        "count": 15
+      },
+      "reward": {
+        "value": "minecraft:leather",
+        "data": "",
+        "type": "ITEM",
+        "count": 9
+      },
+      "difficulty": "diff_2",
+      "max_uses": 3
+    },
+    {
+      "cost": {
+        "item_id": "infinite_dungeons:nether_coin",
+        "count": 30
+      },
+      "reward": {
+        "value": "minecraft:diamond",
+        "data": "",
+        "type": "ITEM",
+        "count": 3
+      },
+      "difficulty": "diff_3",
+      "max_uses": 1
+    },
+    {
+      "cost": {
+        "item_id": "infinite_dungeons:skeletal_coin",
+        "count": 100
+      },
+      "reward": {
+        "value": "infinite_dungeons:reward_crate",
+        "data": "{reward_list:\"upgrade_box\"}",
+        "type": "ITEM",
+        "count": 1
+      },
+      "difficulty": "diff_3",
+      "max_uses": 1
+    }
+  ]
+}

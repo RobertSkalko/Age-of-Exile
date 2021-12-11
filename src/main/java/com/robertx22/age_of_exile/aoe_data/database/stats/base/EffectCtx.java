@@ -1,8 +1,10 @@
 package com.robertx22.age_of_exile.aoe_data.database.stats.base;
 
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.registry.IGUID;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.Objects;
 
@@ -13,6 +15,10 @@ public class EffectCtx extends AutoHashClass implements IGUID {
     public String id;
     public Elements element;
     public String locname;
+
+    public ResourceLocation getEffectLocation() {
+        return new ResourceLocation(SlashRef.MODID, effectId);
+    }
 
     @Override
     public int hashCode() {

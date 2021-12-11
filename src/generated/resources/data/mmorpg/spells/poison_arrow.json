@@ -75,7 +75,7 @@
           ],
           "ifs": [
             {
-              "type": "on_hit",
+              "type": "on_entity_expire",
               "map": {}
             }
           ],
@@ -96,7 +96,7 @@
           ],
           "ifs": [
             {
-              "type": "on_hit",
+              "type": "on_entity_expire",
               "map": {}
             }
           ],
@@ -116,7 +116,7 @@
           ],
           "ifs": [
             {
-              "type": "on_hit",
+              "type": "on_entity_expire",
               "map": {}
             }
           ],
@@ -136,7 +136,7 @@
           ],
           "ifs": [
             {
-              "type": "on_hit",
+              "type": "on_entity_expire",
               "map": {}
             }
           ],

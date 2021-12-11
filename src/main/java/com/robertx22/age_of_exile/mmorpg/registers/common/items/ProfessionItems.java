@@ -23,7 +23,7 @@ public class ProfessionItems {
 
             SMELTED_ESSENCE.put(tier, Def.item(() -> new SmeltedEssenceItem(tier)));
             CONDENSED_ESSENCE_MAP.put(tier, Def.item(() -> new CondensedEssenceItem(tier)));
-            SALVAGED_ESSENCE_MAP.put(tier, Def.item(() -> new SalvagedDustItem("Tier " + (tier.tier + 1) + " Purified Essence", tier, tier.levelRange)));
+            SALVAGED_ESSENCE_MAP.put(tier, Def.item(() -> new SalvagedDustItem("Tier " + tier.tier + " Purified Essence", tier, tier.levelRange, tier.repairDurab)));
 
             STONE_TIER_MAP.put(tier, Def.item(() -> new MiningStoneItem(tier)));
 

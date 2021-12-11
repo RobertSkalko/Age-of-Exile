@@ -30,12 +30,15 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
     public SkillItemTier tier;
     public LevelRange range;
 
-    public SalvagedDustItem(String name, SkillItemTier tier, LevelRange range) {
+    public int durabilityRepair;
+
+    public SalvagedDustItem(String name, SkillItemTier tier, LevelRange range, int durabilityRepair) {
         super(new Properties().stacksTo(64)
             .tab(CreativeTabs.MyModTab));
         this.name = name;
         this.tier = tier;
         this.range = range;
+        this.durabilityRepair = durabilityRepair;
     }
 
     @Override
@@ -48,7 +51,9 @@ public class SalvagedDustItem extends Item implements IAutoLocName, IWeighted, I
 
         tooltip.add(new StringTextComponent(""));
 
-        tooltip.add(new StringTextComponent("Repairs gear of equal tier."));
+        tooltip.add(new StringTextComponent("Repairs " + durabilityRepair + " durability."));
+        tooltip.add(new StringTextComponent("Less effective on higher tier gear."));
+
         tooltip.add(TooltipUtils.dragOntoGearToUse());
 
     }
