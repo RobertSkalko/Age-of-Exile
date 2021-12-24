@@ -60,8 +60,8 @@ public class ServerContainer {
         EXP_GAIN_MULTI = b.defineInRange("exp_gain_multi", 1D, 0, 1000);
         PARTY_RADIUS = b.defineInRange("party_radius", 200D, 0, 1000);
         MAX_INSTABILITY = b.defineInRange("max_instability", 1000D, 0, 10000000);
-        LEVEL_DISTANCE_PENALTY_PER_TIER = b.defineInRange("lvl_distance_penalty_per_tier", 0.5D, 0, 1D);
-        LEVEL_DISTANCE_PENALTY_MIN_MULTI = b.defineInRange("min_loot_chance", 0.01D, 0, 1);
+        LEVEL_DISTANCE_PENALTY_PER_LVL = b.defineInRange("lvl_distance_penalty_per_level", 0.1D, 0, 1D);
+        LEVEL_DISTANCE_PENALTY_MIN_MULTI = b.defineInRange("min_loot_chance", 0.1D, 0, 1);
         EXTRA_MOB_STATS_PER_LEVEL = b.defineInRange("extra_mob_stats_per_lvl", 0.02D, 0, 1000);
         VANILLA_MOB_DMG_AS_EXILE_DMG = b.defineInRange("vanilla_mob_dmg_as_exile_dmg", 1D, 0, 1000);
         VANILLA_MOB_DMG_AS_EXILE_DMG_AT_MAX_LVL = b.defineInRange("vanilla_mob_dmg_as_exile_dmg_at_max_lvl", 1D, 0, 1000);
@@ -80,7 +80,7 @@ public class ServerContainer {
         DIFFICULTY_PER_INCREASE_ITEM = b.defineInRange("DIFFICULTY_PER_INCREASE_ITEM", 10D, -1000, 1000);
         DIFFICULTY_PER_DECREASE_ITEM = b.defineInRange("DIFFICULTY_PER_DECREASE_ITEM", 10D, -1000, 1000);
         MAX_DIFFICULTY = b.defineInRange("MAX_DIFFICULTY", 100D, -1000, 1000);
-        MAX_MOB_LVL_HIGHER_THAN_PLAYER_FOR_DIFF = b.defineInRange("MAX_MOB_LVL_HIGHER_THAN_PLAYER_FOR_DIFF", 5, -1000, 1000);
+        MAX_MOB_LVL_HIGHER_THAN_PLAYER_FOR_DIFF = b.defineInRange("MAX_MOB_LVL_HIGHER_THAN_PLAYER_FOR_DIFF", 0, -1000, 1000);
         DEATH_DIFFICULTY_COOLDOWN = b.defineInRange("DEATH_DIFFICULTY_COOLDOWN", 20 * 60 * 60D, 0, 100000);
         MOB_HP_MULTI_PER_DIFFICULTY = b.defineInRange("MOB_HP_MULTI_PER_DIFFICULTY", 0.01D, 0, 100000);
         MOB_DMG_MULTI_PER_DIFFICULTY = b.defineInRange("MOB_DMG_MULTI_PER_DIFFICULTY", 0.01D, 0, 100000);
@@ -169,7 +169,7 @@ public class ServerContainer {
     public ForgeConfigSpec.DoubleValue EXP_GAIN_MULTI;
     public ForgeConfigSpec.DoubleValue PARTY_RADIUS;
     public ForgeConfigSpec.DoubleValue MAX_INSTABILITY;
-    public ForgeConfigSpec.DoubleValue LEVEL_DISTANCE_PENALTY_PER_TIER;
+    public ForgeConfigSpec.DoubleValue LEVEL_DISTANCE_PENALTY_PER_LVL;
     public ForgeConfigSpec.DoubleValue LEVEL_DISTANCE_PENALTY_MIN_MULTI;
     public ForgeConfigSpec.DoubleValue EXTRA_MOB_STATS_PER_LEVEL;
     public ForgeConfigSpec.DoubleValue VANILLA_MOB_DMG_AS_EXILE_DMG;

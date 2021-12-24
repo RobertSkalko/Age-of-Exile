@@ -13,10 +13,12 @@ public class StaffWeapon extends ModWeapon implements IAutoModel {
         super(mat.toolmat, new Properties().durability(mat.toolmat.getUses())
             .tab(CreativeTabs.MyModTab), WeaponTypes.staff);
         this.mat = mat;
+
     }
 
     @Override
     public void generateModel(ItemModelManager manager) {
         manager.handheld(this);
     }
+
 }
