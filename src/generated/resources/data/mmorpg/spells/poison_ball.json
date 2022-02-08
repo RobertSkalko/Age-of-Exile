@@ -144,7 +144,8 @@
     "style": "magic",
     "tags": [
       "projectile",
-      "damage"
+      "damage",
+      "staff_spell"
     ],
     "cast_type": "NORMAL",
     "scale_mana_cost_to_player_lvl": false

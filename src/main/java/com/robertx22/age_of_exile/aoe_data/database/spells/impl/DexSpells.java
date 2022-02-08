@@ -28,18 +28,6 @@ public class DexSpells implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        SpellBuilder.of("demon", SpellConfiguration.Builder.nonInstant(10, 60 * 20, 30)
-                ,
-                "Demon Transformation",
-                Arrays.asList())
-            .manualDesc(
-                "Temporarily transform into a demon, giving you increased offensive power and knockback resistance."
-            )
-            .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.WITHER_SKELETON_DEATH, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.DEMON_TRANSFORMATION, 20D * 20))
-            .build();
-
         SpellBuilder.of("execute", SpellConfiguration.Builder.instant(10, 20 * 60)
                     .setSwingArm(), "Execute",
                 Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.technique))

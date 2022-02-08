@@ -306,7 +306,7 @@ public class PartBuilder {
 
     public static ComponentPart giveSelfExileEffect(EffectCtx ctx, Double duration) {
         ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_EFFECT.create(ctx.effectId, GiveOrTake.GIVE_STACKS, duration));
+        c.acts.add(SpellAction.EXILE_EFFECT.create(ctx.resourcePath, GiveOrTake.GIVE_STACKS, duration));
         c.targets.add(BaseTargetSelector.CASTER.create());
         return c;
     }

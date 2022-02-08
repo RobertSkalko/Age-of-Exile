@@ -25,6 +25,7 @@ resource_type_is_health
 is_in_combat_is_false
 ele_match_stat
 is_day
+spell_has_tag_staff_spell
 spell_has_tag_movement
 is_crossbow_wep_type
 is_undead_is_false

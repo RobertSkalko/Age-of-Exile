@@ -377,7 +377,6 @@
 	"mmorpg.spell.curse_of_despair": "Curse of Despair",
 	"mmorpg.spell.curse_of_weak": "Curse of Weakness",
 	"mmorpg.spell.dash": "Dash",
-	"mmorpg.spell.demon": "Demon Transformation",
 	"mmorpg.spell.draconic_blood": "Draconic BLood",
 	"mmorpg.spell.entangling_seed": "Entangling Seed",
 	"mmorpg.spell.execute": "Execute",
@@ -580,7 +579,6 @@
 	"mmorpg.one_of_a_kind.curse_of_despair_mod": "Curse of Despair Modifier",
 	"mmorpg.one_of_a_kind.curse_of_weak_mod": "Curse of Weakness Modifier",
 	"mmorpg.one_of_a_kind.dash_mod": "Dash Modifier",
-	"mmorpg.one_of_a_kind.demon_mod": "Demon Transformation Modifier",
 	"mmorpg.one_of_a_kind.draconic_blood_mod": "Draconic BLood Modifier",
 	"mmorpg.one_of_a_kind.entangling_seed_mod": "Entangling Seed Modifier",
 	"mmorpg.one_of_a_kind.execute_mod": "Execute Modifier",
@@ -659,29 +657,6 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
-	"item.mmorpg.currency.epic_safe_scroll": "§d§lEpic Upgrade Protection Scroll",
-	"item.mmorpg.currency.legendary_safe_scroll": "§d§6Legendary Upgrade Protection Scroll",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
-	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.plus_one_upgrade": "§cMagical Upgrade Stone",
-	"item.mmorpg.currency.plus_three_upgrade": "§cSupreme Upgrade Stone",
-	"item.mmorpg.currency.plus_two_upgrade": "§cExtraordinary Upgrade Stone",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 	"effect.mmorpg.beneficial.1": "Antidote",
@@ -697,7 +672,7 @@
 	"effect.mmorpg.beneficial.3": "Vamp Blood",
 	"effect.mmorpg.beneficial.30": "Cleanse",
 	"effect.mmorpg.beneficial.31": "Murder Instinct",
-	"effect.mmorpg.beneficial.32": "Demon",
+	"effect.mmorpg.beneficial.32": "Angry",
 	"effect.mmorpg.beneficial.33": "Mage Circle",
 	"effect.mmorpg.beneficial.4": "Dragon Blood",
 	"effect.mmorpg.beneficial.5": "Nature Balm",
@@ -725,6 +700,29 @@
 	"effect.mmorpg.negative.8": "Bleed",
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
+
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
+	"item.mmorpg.currency.epic_safe_scroll": "§d§lEpic Upgrade Protection Scroll",
+	"item.mmorpg.currency.legendary_safe_scroll": "§d§6Legendary Upgrade Protection Scroll",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
+	"item.mmorpg.currency.orb_of_infinity": "§cOrb of Infinity",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.plus_one_upgrade": "§cMagical Upgrade Stone",
+	"item.mmorpg.currency.plus_three_upgrade": "§cSupreme Upgrade Stone",
+	"item.mmorpg.currency.plus_two_upgrade": "§cExtraordinary Upgrade Stone",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -1387,6 +1385,8 @@
 	"mmorpg.stat.spell_power": "Spell Power",
 	"mmorpg.stat.spell_water_damage": "Water Skill Damage",
 	"mmorpg.stat.staff_damage": "Staff Damage",
+	"mmorpg.stat.staff_spell_cdr": "Staff Spell Spell Cooldown Reduction",
+	"mmorpg.stat.staff_spell_spell_dmg": "Staff Spell Spell Damage",
 	"mmorpg.stat.strength": "Strength",
 	"mmorpg.stat.sword_damage": "Sword Damage",
 	"mmorpg.stat.technique_cdr": "Technique Spell Cooldown Reduction",
@@ -1475,6 +1475,15 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.alchemy_consumable": "Alchemy",
+	"effect.mmorpg.cooking_consumable": "Cooking",
+	"effect.mmorpg.inscribing_consumable": "Inscribing",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.jewelry.necklace.diamond": "Necklace",
@@ -1489,15 +1498,6 @@
 	"item.mmorpg.weapon.staff.wood": "Staff",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.alchemy_consumable": "Alchemy",
-	"effect.mmorpg.cooking_consumable": "Cooking",
-	"effect.mmorpg.inscribing_consumable": "Inscribing",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",
@@ -1562,7 +1562,6 @@
 	"spell.desc.curse_of_despair": "Curse enemies with Curse of Despair and deal [calc:curse] §d⚜ Elemental§7 Damage",
 	"spell.desc.curse_of_weak": "Curse enemies with Curse of Weakness and deal [calc:curse] §d⚜ Elemental§7 Damage",
 	"spell.desc.dash": "Dash in your direction and gain slowfall.",
-	"spell.desc.demon": "Temporarily transform into a demon, giving you increased offensive power and knockback resistance.",
 	"spell.desc.draconic_blood": "Gives effect to nearby allies.",
 	"spell.desc.entangling_seed": "Throw out a seed that explodes and petrifies enemies.",
 	"spell.desc.execute": "Slash enemies in front of you for [calc:execute] §6✦ Physical§7 Damage",
@@ -1750,6 +1749,7 @@
 	"mmorpg.stat_desc.spell_power": "Used for certain spells",
 	"mmorpg.stat_desc.spell_water_damage": "Increases damage of spells of that element.",
 	"mmorpg.stat_desc.staff_damage": "Increases damage done if it was caused by that weapon",
+	"mmorpg.stat_desc.staff_spell_cdr": "Reduces spell cooldown of spells with the tag.",
 	"mmorpg.stat_desc.strength": "Determines your total: Physical Damage, Physical Defense",
 	"mmorpg.stat_desc.sword_damage": "Increases damage done if it was caused by that weapon",
 	"mmorpg.stat_desc.technique_cdr": "Reduces spell cooldown of spells with the tag.",

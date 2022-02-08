@@ -195,6 +195,13 @@ public class GearTooltipUtils {
             );
         }
 
+        if (gear.hasSpell()) {
+            tooltip.add(new StringTextComponent(""));
+            tooltip.add(gear.getSpell()
+                .locName()
+                .withStyle(TextFormatting.LIGHT_PURPLE));
+        }
+
         List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip,
             ClientConfigs.getConfig().REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES);
 

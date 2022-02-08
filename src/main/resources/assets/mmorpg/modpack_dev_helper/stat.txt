@@ -111,6 +111,7 @@ inc_effect_of_negative_buff_given
 all_dot_damage
 curse_spell_dmg
 more_food_stats
+staff_spell_cdr
 earth_focus
 physical_mana_leech
 bonus_mountain_biome_yield
@@ -263,6 +264,7 @@ total_damage
 immobilizing_eff_dur_u_cast
 global_critical_damage_per_25_increased_quantity
 heal_over_time_eff_duration
+staff_spell_spell_dmg
 renamed_or_deleted_stat
 bonus_hot_biome_yield
 elemental_resist

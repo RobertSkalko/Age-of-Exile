@@ -62,7 +62,7 @@ public class ExileEffectAction extends SpellAction {
         dmg.put(COUNT, 1D);
         dmg.put(POTION_DURATION, seconds * 20D);
         dmg.put(POTION_ACTION, GiveOrTake.GIVE_STACKS.name());
-        dmg.put(EXILE_POTION_ID, ctx.effectId);
+        dmg.put(EXILE_POTION_ID, ctx.resourcePath);
         return dmg;
     }
 

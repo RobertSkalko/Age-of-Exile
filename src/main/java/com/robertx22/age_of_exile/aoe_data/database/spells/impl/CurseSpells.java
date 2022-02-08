@@ -38,7 +38,7 @@ public class CurseSpells implements ExileRegistryInit {
 
             .onExpire("block", PartBuilder.playSound(SoundEvents.WITHER_SKELETON_HURT, 1D, 1D))
             .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.CURSE, Elements.Elemental, 3D))
-            .onExpire("block", PartBuilder.addExileEffectToEnemiesInAoe(effect.effectId, 3D, 20 * 15D)
+            .onExpire("block", PartBuilder.addExileEffectToEnemiesInAoe(effect.resourcePath, 3D, 20 * 15D)
                 .addPerEntityHit(
                     PartBuilder.justAction(SpellAction.PARTICLES_IN_RADIUS.create(ParticleTypes.SMOKE, 50D, 0.3D)
                         .put(MapField.HEIGHT, 2.2D)

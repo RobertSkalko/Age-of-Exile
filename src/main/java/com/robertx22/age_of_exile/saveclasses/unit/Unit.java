@@ -381,6 +381,15 @@ public class Unit {
                 Load.spells(entity)
                     .getSpellsData().extra_lvls.clear();
 
+                // add 1 spell level if you have the spell on gear
+                gears.forEach(x -> {
+                    if (x.gear != null && x.gear.hasSpell()) {
+                        Load.spells(entity)
+                            .getSpellsData()
+                            .addToLevelsFromStat(x.gear.spell, 1);
+                    }
+                });
+
                 this.getStats().stats.values()
                     .forEach(x -> {
 

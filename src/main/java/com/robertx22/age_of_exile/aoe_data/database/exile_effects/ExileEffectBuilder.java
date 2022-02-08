@@ -17,7 +17,7 @@ public class ExileEffectBuilder {
     public static ExileEffectBuilder of(EffectCtx ctx) {
         ExileEffectBuilder b = new ExileEffectBuilder();
         b.effect.type = ctx.type;
-        b.effect.id = ctx.effectId;
+        b.effect.id = ctx.resourcePath;
         b.effect.locName = ctx.locname;
 
         if (ctx.type == EffectType.beneficial) {

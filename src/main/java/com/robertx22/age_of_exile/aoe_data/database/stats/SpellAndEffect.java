@@ -17,7 +17,7 @@ public class SpellAndEffect extends AutoHashClass {
 
     @Override
     public int hashCode() {
-        return Objects.hash(spell, effect.effectId);
+        return Objects.hash(spell, effect.resourcePath);
     }
 
 }

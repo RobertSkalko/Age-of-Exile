@@ -89,9 +89,9 @@ public class OnItemInteract {
                     data = (ISalvagable) stack.getItem();
                 }
 
-                SoundUtils.playSound(player, SoundEvents.ANVIL_USE, 1, 1);
-
                 if (data != null) {
+                    SoundUtils.playSound(player, SoundEvents.ANVIL_USE, 1, 1);
+
                     stack.shrink(1);
                     data.getSalvageResult(stack)
                         .forEach(x -> PlayerUtils.giveItem(x, player));

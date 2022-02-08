@@ -175,7 +175,7 @@ public class SpellBuilder {
     }
 
     public SpellBuilder addEffectToTooltip(EffectCtx eff) {
-        this.spell.effect_tip = eff.effectId;
+        this.spell.effect_tip = eff.resourcePath;
         return this;
     }
 

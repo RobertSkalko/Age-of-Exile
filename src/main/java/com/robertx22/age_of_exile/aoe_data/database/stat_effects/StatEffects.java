@@ -23,7 +23,7 @@ public class StatEffects implements ExileRegistryInit {
         Arrays.asList(
             BeneficialEffects.TAUNT_STANCE
         ),
-        x -> new GiveExileStatusEffect(x.effectId, EffectSides.Source, 10)
+        x -> new GiveExileStatusEffect(x.resourcePath, EffectSides.Source, 10)
     );
     public static DataHolder<EffectCtx, StatEffect> REMOVE_EFFECT_FROM_TARGET = new DataHolder<>(
         Arrays.asList(
@@ -33,13 +33,13 @@ public class StatEffects implements ExileRegistryInit {
             NegativeEffects.BLEED,
             NegativeEffects.BLIND
         ),
-        x -> new RemoveExileEffectAction(x.effectId, EffectSides.Source)
+        x -> new RemoveExileEffectAction(x.resourcePath, EffectSides.Source)
     );
 
     public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_IN_AOE = new DataHolder<>(
         Arrays.asList(BeneficialEffects.REGENERATE
         ),
-        x -> new GiveExileStatusInRadius("give_" + x.id + "_to_allies_in_radius", AllyOrEnemy.allies, 10, x.effectId)
+        x -> new GiveExileStatusInRadius("give_" + x.id + "_to_allies_in_radius", AllyOrEnemy.allies, 10, x.resourcePath)
     );
 
     public static DataHolder<ResourceType, StatEffect> LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA = new DataHolder<>(
@@ -64,7 +64,7 @@ public class StatEffects implements ExileRegistryInit {
         Arrays.asList(
             NegativeEffects.POISON
         )
-        , x -> new GiveExileStatusEffect(x.effectId, EffectSides.Source, 5));
+        , x -> new GiveExileStatusEffect(x.resourcePath, EffectSides.Source, 5));
 
     public static DataHolder<EffectCtx, StatEffect> GIVE_EFFECT_TO_TARGET = new DataHolder<>(
         Arrays.asList(
@@ -78,7 +78,7 @@ public class StatEffects implements ExileRegistryInit {
             NegativeEffects.BLIND,
             NegativeEffects.TORMENT
         )
-        , x -> new GiveExileStatusEffect(x.effectId, EffectSides.Target, 5));
+        , x -> new GiveExileStatusEffect(x.resourcePath, EffectSides.Target, 5));
 
     public static StatEffect SET_IS_CRIT = new SetBooleanEffect(EventData.CRIT);
     public static StatEffect INC_VALUE_PER_CURSE_ON_TARGET = new IncreaseNumberPerCurseOnTarget();

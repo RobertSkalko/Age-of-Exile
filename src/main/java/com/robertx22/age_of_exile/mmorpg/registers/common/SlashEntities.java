@@ -31,7 +31,8 @@ public class SlashEntities {
                                                                        String id, boolean itemRender) {
 
         EntityType<T> type = EntityType.Builder.of(factory, EntityClassification.MISC)
-            .sized(0.5F, 0.5F)
+            .sized(0.7F, 0.7F)
+            .setUpdateInterval(20)
             .setTrackingRange(10)
             .build(id);
 

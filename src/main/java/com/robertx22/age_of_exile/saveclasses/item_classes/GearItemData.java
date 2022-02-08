@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.requirements.bases.GearRequestedFor;
+import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
@@ -54,6 +55,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public UniqueStatsData uniqueStats;
     @Store
     public UpgradeData up = new UpgradeData();
+
+    @Store
+    public String spell = "";
 
     // Stats
 
@@ -170,6 +174,17 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         return ExileDB.GearTypes()
             .isRegistered(gear_type);
+    }
+
+    public boolean hasSpell() {
+        return ExileDB.Spells()
+            .isRegistered(spell);
+
+    }
+
+    public Spell getSpell() {
+        return ExileDB.Spells()
+            .get(spell);
     }
 
     public int getTotalSockets() {

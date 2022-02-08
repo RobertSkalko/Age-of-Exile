@@ -112,7 +112,7 @@ public class WaterSpells implements ExileRegistryInit {
                 .onTick(20D))
             .onTick("block", PartBuilder.damageInAoe(SpellCalcs.CHILLING_FIELD, Elements.Water, 2D)
                 .onTick(20D))
-            .onTick("block", PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.CHILL.effectId, 2D, 20 * 4D)
+            .onTick("block", PartBuilder.addExileEffectToEnemiesInAoe(NegativeEffects.CHILL.resourcePath, 2D, 20 * 4D)
                 .onTick(20D))
             .build();
 
@@ -120,7 +120,7 @@ public class WaterSpells implements ExileRegistryInit {
                 Arrays.asList())
             .manualDesc("Gives effect to nearby allies.")
             .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.ICY_WEAPON.effectId, 20 * 10D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.ICY_WEAPON.resourcePath, 20 * 10D))
             .build();
 
         SpellBuilder.of(HEART_OF_ICE, SpellConfiguration.Builder.instant(20, 20 * 30), "Heart of Ice",
@@ -200,7 +200,7 @@ public class WaterSpells implements ExileRegistryInit {
         SpellBuilder.of(FROSTBALL_ID, SpellConfiguration.Builder.instant(5, 20)
                     .setSwingArm()
                     .applyCastSpeedToCooldown(), "Ice Ball",
-                Arrays.asList(SpellTag.projectile, SpellTag.damage))
+                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
             .manualDesc(
                 "Throw out a ball of ice, dealing " + SpellCalcs.ICEBALL.getLocDmgTooltip()
                     + " " + Elements.Water.getIconNameDmg())
@@ -237,7 +237,7 @@ public class WaterSpells implements ExileRegistryInit {
             .onCast(PartBuilder.playSound(SlashSounds.BUFF.get(), 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
-            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.NOURISHMENT.effectId, 20D * 25))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.NOURISHMENT.resourcePath, 20D * 25))
             .build();
     }
 }

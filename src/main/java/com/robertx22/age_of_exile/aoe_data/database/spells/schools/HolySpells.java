@@ -139,7 +139,7 @@ public class HolySpells implements ExileRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
                 .addActions(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 20D * 5))
                 .addActions(SpellAction.DEAL_DAMAGE.create(SpellCalcs.PULL, Elements.Physical))
-                .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.STUN.effectId, ExileEffectAction.GiveOrTake.GIVE_STACKS, 20D * 2))
+                .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.STUN.resourcePath, ExileEffectAction.GiveOrTake.GIVE_STACKS, 20D * 2))
                 .addTarget(TargetSelector.AOE.create(8D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 100D, 6D, 0.1D))
             .build();
@@ -157,7 +157,7 @@ public class HolySpells implements ExileRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
 
             .onCast(PartBuilder.damageInFront(SpellCalcs.GONG_STRIKE, Elements.Physical, 2D, 3D))
-            .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.STUN.effectId, 2D, 2D, 20D * 3))
+            .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.STUN.resourcePath, 2D, 2D, 20D * 3))
 
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 300D, 2D, 0.1D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 5D, 2D, 0.1D))
@@ -189,7 +189,7 @@ public class HolySpells implements ExileRegistryInit {
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
             .onTick("block", PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, 0.1D, ParticleMotion.Upwards))
-                .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.ELE_WEAKNESS.effectId, ExileEffectAction.GiveOrTake.GIVE_STACKS, 60D))
+                .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.ELE_WEAKNESS.resourcePath, ExileEffectAction.GiveOrTake.GIVE_STACKS, 60D))
                 .onTick(1D)
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
 
@@ -266,7 +266,7 @@ public class HolySpells implements ExileRegistryInit {
             )
             .onCast(PartBuilder.playSound(SoundEvents.NOTE_BLOCK_CHIME, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.NOTE, 50D, 3D))
-            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, effect.effectId, 20 * 30D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, effect.resourcePath, 20 * 30D))
             .build();
     }
 }

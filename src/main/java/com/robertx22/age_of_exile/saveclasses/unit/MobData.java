@@ -12,10 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Storable
-public class MobAffixesData {
+public class MobData {
 
     @Store
     public List<String> affixes = new ArrayList<>();
+
+    @Store
+    public int player_hits = 0;
 
     public List<MobAffix> getAffixes() {
         try {

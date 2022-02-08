@@ -141,7 +141,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .vanillaStat(VanillaStatData.create(MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
             .stat(-5, -10, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.dotDamageOnTick(TORMENT.effectId, SpellCalcs.TORMENT, Elements.Elemental)
+                .onTick(PartBuilder.dotDamageOnTick(TORMENT.resourcePath, SpellCalcs.TORMENT, Elements.Elemental)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 1D)
                     .onTick(10D))
@@ -162,7 +162,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .stat(-5, -5, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.dotDamageOnTick(POISON.effectId, SpellCalcs.POISON, Elements.Earth)
+                .onTick(PartBuilder.dotDamageOnTick(POISON.resourcePath, SpellCalcs.POISON, Elements.Earth)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SNEEZE, 1D, 1D)
                     .onTick(2D))
@@ -173,7 +173,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BURN.effectId, SpellCalcs.BURN, Elements.Fire)
+                .onTick(PartBuilder.dotDamageOnTick(BURN.resourcePath, SpellCalcs.BURN, Elements.Fire)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 10D, 1D)
@@ -187,7 +187,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BLEED.effectId, SpellCalcs.BLEED, Elements.Physical)
+                .onTick(PartBuilder.dotDamageOnTick(BLEED.resourcePath, SpellCalcs.BLEED, Elements.Physical)
                     .onTick(20D))
 
                 .buildForEffect())

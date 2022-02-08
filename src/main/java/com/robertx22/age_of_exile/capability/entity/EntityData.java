@@ -139,7 +139,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
     int level = 1;
     int exp = 0;
     int maxHealth = 0;
-    MobAffixesData affixes = new MobAffixesData();
+    MobData affixes = new MobData();
     int buffSeed = 0;
     public float mobScalingDiff = 0;
 
@@ -198,9 +198,9 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
             this.type = EntityTypeUtils.EntityClassification.OTHER;
         }
 
-        this.affixes = LoadSave.Load(MobAffixesData.class, new MobAffixesData(), nbt, AFFIXES);
+        this.affixes = LoadSave.Load(MobData.class, new MobData(), nbt, AFFIXES);
         if (affixes == null) {
-            affixes = new MobAffixesData();
+            affixes = new MobData();
         }
 
         this.statusEffects = LoadSave.Load(EntityStatusEffectsData.class, new EntityStatusEffectsData(), nbt, STATUSES);
@@ -639,7 +639,7 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
         return gears;
     }
 
-    public MobAffixesData getAffixData() {
+    public MobData getAffixData() {
         return affixes;
     }
 

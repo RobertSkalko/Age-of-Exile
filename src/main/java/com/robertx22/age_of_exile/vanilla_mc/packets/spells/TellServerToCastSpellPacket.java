@@ -37,17 +37,13 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
         tag.writeInt(number);
     }
 
-    @Override
-    public void onReceived(ExilePacketContext ctx) {
-        PlayerEntity player = ctx.getPlayer();
+    public static boolean tryCastSpell(PlayerEntity player, Spell spell) {
 
         EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
-        if (player.isBlocking()) {
-            return;
+        if (player.isBlocking() || player.swinging) {
+            return false;
         }
-
-        Spell spell = spells.getSpellByNumber(number);
 
         if (spell != null) {
 
@@ -59,10 +55,25 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
                 SpellCastContext c = new SpellCastContext(player, 0, spell);
 
                 spell.spendResources(c);
+                spells.syncToClient(player);
 
+                return true;
             }
-            spells.syncToClient(player);
+
         }
+        return false;
+    }
+
+    @Override
+    public void onReceived(ExilePacketContext ctx) {
+        PlayerEntity player = ctx.getPlayer();
+
+        EntitySpellCap.ISpellsCap spells = Load.spells(player);
+
+        Spell spell = spells.getSpellByNumber(number);
+
+        tryCastSpell(player, spell);
+
     }
 
     @Override

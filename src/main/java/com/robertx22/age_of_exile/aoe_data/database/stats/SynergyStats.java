@@ -22,7 +22,7 @@ public class SynergyStats {
     }
 
     public static DataPackStatAccessor<SpellAndEffect> SPELl_CHANCE_TO_APPLY_ELEMENTAL_EFFECT = DatapackStatBuilder
-        .<SpellAndEffect>of(x -> x.spell + "_chance_of_" + x.effect.effectId, x -> x.effect.element)
+        .<SpellAndEffect>of(x -> x.spell + "_chance_of_" + x.effect.resourcePath, x -> x.effect.element)
         .addAllOfType(Arrays.asList(
                 new SpellAndEffect(WaterSpells.FROSTBALL_ID, NegativeEffects.CHILL),
                 new SpellAndEffect(FireSpells.FIREBALL_ID, NegativeEffects.BURN),

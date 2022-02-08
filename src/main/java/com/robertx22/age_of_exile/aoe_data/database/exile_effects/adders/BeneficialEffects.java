@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
-import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -55,7 +54,7 @@ public class BeneficialEffects implements ExileRegistryInit {
     public static EffectCtx UNDYING_WILL = new EffectCtx("undying_will", "Undying Will", 24, Elements.Physical, EffectType.beneficial);
     public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 30, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx MURDER_INSTINCT = new EffectCtx("murder_instinct", "Murder Instinct", 31, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx DEMON_TRANSFORMATION = new EffectCtx("demon", "Demon", 32, Elements.Physical, EffectType.beneficial);
+    public static EffectCtx MOB_ANGER_LVL1 = new EffectCtx("mob_anger_lvl1", "Angry", 32, Elements.Physical, EffectType.beneficial);
     public static EffectCtx MAGE_CIRCLE = new EffectCtx("mage_circle", "Mage Circle", 33, Elements.Elemental, EffectType.beneficial);
 
     @Override
@@ -98,19 +97,13 @@ public class BeneficialEffects implements ExileRegistryInit {
             .addTags(EffectTags.offensive)
             .build();
 
-        ExileEffectBuilder.of(DEMON_TRANSFORMATION)
-            .vanillaStat(VanillaStatData.create(Attributes.KNOCKBACK_RESISTANCE, 1, ModType.FLAT, UUID.fromString("116a0931-d576-4721-b286-8d11de1ee42b")))
-            .stat(10, 25, Stats.COOLDOWN_REDUCTION_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
-            .stat(10, 25, Stats.DAMAGE_PER_SPELL_TAG.get(SpellTag.technique), ModType.FLAT)
-            .stat(10, 25, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
-
+        ExileEffectBuilder.of(MOB_ANGER_LVL1)
+            .vanillaStat(VanillaStatData.create(Attributes.KNOCKBACK_RESISTANCE, 0.75F, ModType.FLAT, UUID.fromString("116a0931-d576-4721-b286-8d11de1ee42b")))
+            .vanillaStat(VanillaStatData.create(Attributes.MOVEMENT_SPEED, 1.2F, ModType.PERCENT, UUID.fromString("136a0931-d576-4721-b286-8d11de1ee42b")))
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 2D, 0.5D)
-                    .onTick(1D))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.LARGE_SMOKE, 1D, 0.1D)
+                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 5D, 1D)
                     .onTick(1D))
                 .buildForEffect())
-
             .maxStacks(1)
             .addTags(EffectTags.offensive)
             .build();
@@ -204,7 +197,7 @@ public class BeneficialEffects implements ExileRegistryInit {
             .stat(5, 10, Armor.getInstance(), ModType.FLAT)
             .stat(5, 10, DodgeRating.getInstance(), ModType.FLAT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.POISON.effectId, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
+                .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.POISON.resourcePath, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
                     .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
                     .onTick(40D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 5D, 1D)

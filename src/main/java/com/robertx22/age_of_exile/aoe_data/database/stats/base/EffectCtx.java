@@ -11,23 +11,23 @@ import java.util.Objects;
 public class EffectCtx extends AutoHashClass implements IGUID {
 
     public EffectType type;
-    public String effectId;
+    public String resourcePath;
     public String id;
     public Elements element;
     public String locname;
 
     public ResourceLocation getEffectLocation() {
-        return new ResourceLocation(SlashRef.MODID, effectId);
+        return new ResourceLocation(SlashRef.MODID, resourcePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(effectId, id);
+        return Objects.hash(resourcePath, id);
     }
 
     public EffectCtx(String id, String locname, int num, Elements element, EffectType type) {
         this.id = id;
-        this.effectId = type.name() + "/" + num;
+        this.resourcePath = type.name() + "/" + num;
         this.element = element;
         this.locname = locname;
         this.type = type;
@@ -35,6 +35,6 @@ public class EffectCtx extends AutoHashClass implements IGUID {
 
     @Override
     public String GUID() {
-        return effectId;
+        return resourcePath;
     }
 }

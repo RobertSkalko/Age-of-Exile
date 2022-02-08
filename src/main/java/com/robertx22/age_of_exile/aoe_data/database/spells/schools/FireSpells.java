@@ -52,28 +52,28 @@ public class FireSpells implements ExileRegistryInit {
                 Arrays.asList())
             .manualDesc("Gives effect to self.")
             .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.OVERLOAD.effectId, 20 * 10D))
+            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.OVERLOAD.resourcePath, 20 * 10D))
             .build();
 
         SpellBuilder.of(VAMP_BLOOD, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 3, 30), "Vampiric BLood",
                 Arrays.asList())
             .manualDesc("Gives effect to nearby allies.")
             .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.VAMPIRIC_BLOOD.effectId, 20 * 60D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.VAMPIRIC_BLOOD.resourcePath, 20 * 60D))
             .build();
 
         SpellBuilder.of(DRACONIC_BLOOD, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 3, 30), "Draconic BLood",
                 Arrays.asList())
             .manualDesc("Gives effect to nearby allies.")
             .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.DRACONIC_BLOOD.effectId, 20 * 60D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.DRACONIC_BLOOD.resourcePath, 20 * 60D))
             .build();
 
         SpellBuilder.of(FLAME_WEAPON, SpellConfiguration.Builder.instant(10, 20 * 30), "Flame Weapon",
                 Arrays.asList())
             .manualDesc("Gives effect to nearby allies.")
             .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.FIRE_WEAPON.effectId, 20 * 10D))
+            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.FIRE_WEAPON.resourcePath, 20 * 10D))
             .build();
 
         SpellBuilder.of(METEOR, SpellConfiguration.Builder.nonInstant(18, 20 * 30, 30), "Meteor",
@@ -114,7 +114,7 @@ public class FireSpells implements ExileRegistryInit {
         SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(5, 20)
                     .setSwingArm()
                     .applyCastSpeedToCooldown(), "Fire Ball",
-                Arrays.asList(SpellTag.projectile, SpellTag.damage))
+                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
             .manualDesc(
                 "Throw out a ball of fire, dealing " + SpellCalcs.FIREBALL.getLocDmgTooltip()
                     + " " + Elements.Fire.getIconNameDmg())

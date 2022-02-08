@@ -21,7 +21,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.server.STitlePacket;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.util.List;
@@ -126,10 +125,14 @@ public class SpellCastingData {
                     .isRegistered(spell)) {
                     spell.onCastingTick(ctx);
 
+                    /*
                     // slow down player when casting spells
                     Vector3d v = entity.getDeltaMovement();
                     entity.setDeltaMovement(new Vector3d(0.25D * v.x, v.y, 0.25D * v.z));
                     // slow down player when casting spells
+
+
+                     */
 
                 }
 
