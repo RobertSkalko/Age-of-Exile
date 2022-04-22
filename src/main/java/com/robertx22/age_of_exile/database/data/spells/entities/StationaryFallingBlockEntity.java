@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class StationaryFallingBlockEntity extends FallingBlockEntity implements IDatapackSpellEntity {
 
-    public StationaryFallingBlockEntity(EntityType<? extends FallingBlockEntity> entityType, World world) {
+    public StationaryFallingBlockEntity(EntityType entityType, World world) {
         super(SlashEntities.SIMPLE_BLOCK_ENTITY.get(), world);
     }
 

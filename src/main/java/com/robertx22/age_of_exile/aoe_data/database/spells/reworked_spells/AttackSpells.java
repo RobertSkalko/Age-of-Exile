@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.spells.reworked_spells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.VanillaEffectActionBuilder;
 import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
@@ -16,6 +17,7 @@ import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
@@ -48,7 +50,7 @@ public class AttackSpells implements ExileRegistryInit {
             .onHit(PartBuilder.aoeParticles(ParticleTypes.CRIT, 15D, 1D))
             .build();
 
-        SpellBuilder.of(SpellKeys.METEOR, SpellConfiguration.Builder.instant(18, 20 * 30), "Meteor",
+        SpellBuilder.of(SpellKeys.METEOR, SpellConfiguration.Builder.instant(18, 30), "Meteor",
                 Arrays.asList(SpellTag.area, SpellTag.damage)
             )
             .manualDesc("Summon a meteor that falls from the sky, dealing " +
@@ -69,6 +71,30 @@ public class AttackSpells implements ExileRegistryInit {
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.ASH, 100D, 3D))
             .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 25D, 3D))
             .onExpire("block", PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
+            .build();
+
+        SpellBuilder.of(SpellKeys.ICE_NOVA, SpellConfiguration.Builder.instant(20, 60), "Ice Nova",
+                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
+            .manualDesc(
+                "TODO " + SpellCalcs.MAGIC_PROJECTILE.getLocDmgTooltip()
+                    + " " + Elements.Physical.getIconNameDmg())
+            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .onCast(PartBuilder.playSound(SoundRefs.EXPLOSION))
+
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 3D, 3D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 200D, 3D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.POOF, 20D, 3D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.CRIT, 20D, 3D))
+
+            .onCast(PartBuilder.justAction(SpellAction.ICE_NOVA.create()))
+
+            .onCast(PartBuilder.damageInAoe(SpellCalcs.MAGIC_PROJECTILE, Elements.Water, 3D)) // todo
+
+            .onCast(new VanillaEffectActionBuilder(Effects.MOVEMENT_SLOWDOWN).radius(3)
+                .targetEnemies()
+                .seconds(6)
+                .build())
+
             .build();
 
     }

@@ -5,6 +5,8 @@ import net.minecraft.util.SoundEvents;
 
 public interface SoundRefs {
 
+    SavedSound EXPLOSION = new SavedSound(SoundEvents.GENERIC_EXPLODE);
+
     SavedSound FISHING_THROW = new SavedSound(SoundEvents.FISHING_BOBBER_THROW);
     SavedSound FISHING_THROW_LOW_PITCH = new SavedSound(SoundEvents.FISHING_BOBBER_THROW, 0);
 
@@ -14,5 +16,7 @@ public interface SoundRefs {
     SavedSound HURT = new SavedSound(SoundEvents.GENERIC_HURT);
 
     SavedSound ANVIl_NO = new SavedSound(SoundEvents.ANVIL_PLACE);
+
+    SavedSound ICE_BREAK = new SavedSound(SoundEvents.GLASS_BREAK, 1, 0.3F);
 
 }

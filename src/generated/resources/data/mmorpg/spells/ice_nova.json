@@ -1,7 +1,7 @@
 {
   "max_lvl": 16,
   "weight": 1000,
-  "identifier": "test_spell",
+  "identifier": "ice_nova",
   "attached": {
     "on_cast": [
       {
@@ -114,34 +114,6 @@
           {
             "type": "ice_nova",
             "map": {}
-          }
-        ],
-        "ifs": [
-          {
-            "type": "on_spell_cast",
-            "map": {}
-          }
-        ],
-        "en_preds": []
-      },
-      {
-        "targets": [
-          {
-            "type": "aoe",
-            "map": {
-              "selection_type": "RADIUS",
-              "en_predicate": "enemies",
-              "radius": 3.0
-            }
-          }
-        ],
-        "acts": [
-          {
-            "type": "damage",
-            "map": {
-              "value_calculation": "magic_projectile",
-              "element": "Water"
-            }
           }
         ],
         "ifs": [

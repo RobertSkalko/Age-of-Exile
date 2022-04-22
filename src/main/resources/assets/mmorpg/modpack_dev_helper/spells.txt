@@ -39,6 +39,7 @@ recoil_shot
 teleport
 banish
 chill_eruption
+ice_nova
 guard_totem
 mark_for_death
 mage_circle

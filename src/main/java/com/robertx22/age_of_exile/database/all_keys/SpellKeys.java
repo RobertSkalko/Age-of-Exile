@@ -7,6 +7,7 @@ public interface SpellKeys {
     SpellKey MAGIC_PROJECTILE = new SpellKey("magic_projectile");
     SpellKey METEOR = new SpellKey("meteor");
     SpellKey ICE_SHIELD = new SpellKey("ice_shield");
+    SpellKey ICE_NOVA = new SpellKey("ice_nova");
 
     public static void init() {
 

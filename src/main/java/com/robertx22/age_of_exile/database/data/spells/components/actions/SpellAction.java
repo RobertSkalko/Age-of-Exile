@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
 import com.robertx22.age_of_exile.database.data.spells.components.BaseFieldNeeder;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.special.IceNovaAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.*;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
@@ -52,6 +53,7 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static AggroAction AGGRO = of(new AggroAction());
     public static SummonAtTargetFeet SUMMON_AT_FEET = of(new SummonAtTargetFeet());
     public static TeleportTargetToSourceAction TP_TARGET_TO_SELF = of(new TeleportTargetToSourceAction());
+    public static IceNovaAction ICE_NOVA = of(new IceNovaAction());
 
     private static <T extends SpellAction> T of(T s) {
         MAP.put(s.GUID(), s);
