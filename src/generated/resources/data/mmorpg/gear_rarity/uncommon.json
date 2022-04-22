@@ -2,8 +2,6 @@
   "item_model_data_num": 2,
   "drops_after_tier": -1,
   "affixes": 1,
-  "sockets": 1,
-  "upgrade_lvl_to_increase_rar": 4,
   "unbreaking_chance": 10,
   "rar_ess_per_sal": 1,
   "default_stat_percents": {
@@ -26,11 +24,9 @@
     "min": 1,
     "max": 2
   },
-  "upgrades": 2,
   "item_tier": 1,
   "item_tier_power": 1.25,
   "item_value_multi": 1.25,
-  "bonus_effective_lvls": 2,
   "announce_in_chat": false,
   "is_unique_item": false,
   "rarity_type": "GEAR",

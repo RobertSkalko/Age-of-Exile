@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.player_skills.items.backpacks.mat_pouch;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashContainers;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackInventory;
 import com.robertx22.age_of_exile.player_skills.items.backpacks.BackpackItem;
-import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.vanilla_mc.blocks.BaseTileContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -119,9 +118,9 @@ public class MatBagContainer extends BaseTileContainer {
             if (stack.getItem() instanceof BackpackItem) {
                 return false;
             }
-            if (!StackSaving.INGREDIENTS.has(stack)) {
-                return false;
-            }
+
+            // todo allow only ingredients
+
             return true;
         }
     }

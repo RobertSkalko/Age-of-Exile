@@ -1,11 +1,9 @@
 {
   "id": "insight",
   "uniq_id": "insight",
-  "runes": [
-    "ita",
-    "dos",
-    "toq"
-  ],
+  "item_id": "mmorpg:runewords/insight",
+  "min_lvl": 0,
+  "max_lvl": 100,
   "slots": [
     "helmet"
   ]

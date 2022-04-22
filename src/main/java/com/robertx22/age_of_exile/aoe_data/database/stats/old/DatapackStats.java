@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalR
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellPower;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
@@ -33,7 +32,7 @@ import java.util.UUID;
 public class DatapackStats implements ExileRegistryInit {
 
     public static Stat INT = new CoreStat("intelligence", "Intelligence", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(0.1F, SpellPower.getInstance(), ModType.FLAT),
+        new OptScaleExactStat(0.1F, SpellDamage.getInstance(), ModType.FLAT),
         new OptScaleExactStat(1, new ElementalResist(Elements.Fire), ModType.FLAT),
         new OptScaleExactStat(1, new ElementalResist(Elements.Water), ModType.FLAT),
         new OptScaleExactStat(1, new ElementalResist(Elements.Earth), ModType.FLAT)

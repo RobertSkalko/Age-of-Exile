@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.player_skills.items.backpacks;
 
 import com.robertx22.age_of_exile.player_skills.items.backpacks.mat_pouch.MaterialBagItem;
-import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -48,7 +47,7 @@ public class TryAutoInsert {
                     continue; // if holding, dont put
                 }
 
-                if (!StackSaving.INGREDIENTS.has(stack)) {
+                if (false) {
                     return;
                 }
 

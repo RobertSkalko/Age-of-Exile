@@ -115,8 +115,6 @@ public class CreateLangFile {
 
         list.addAll(ExileDB.MobAffixes()
             .getSerializable());
-        list.addAll(ExileDB.Synergies()
-            .getSerializable());
         list.addAll(ExileDB.GearSlots()
             .getSerializable());
         list.addAll(ExileDB.Difficulties()
@@ -154,8 +152,6 @@ public class CreateLangFile {
             .getSerializable());
         list.addAll(Arrays.asList(Chats.values()));
         list.addAll(Arrays.asList(RandomTips.values()));
-        list.addAll(ExileDB.Ingredients()
-            .getSerializable());
 
         ExileDB.Spells()
             .getSerializable()

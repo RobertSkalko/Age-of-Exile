@@ -50,14 +50,11 @@ public class IntSpells implements ExileRegistryInit {
             .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.BLACK_HOLE, Elements.Elemental, 2D))
             .build();
 
-        SpellBuilder.of("teleport", SpellConfiguration.Builder.instant(20, 20 * 30)
-                    .setScaleManaToPlayer(), "Teleport",
+        SpellBuilder.of("teleport", SpellConfiguration.Builder.instant(20, 20 * 30), "Teleport",
                 Arrays.asList(SpellTag.damage, SpellTag.movement)
             )
             .manualDesc("Teleport yourself in the direction you're looking at.")
-
             .teleportForward()
-
             .onCast(PartBuilder.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 30D, 2D))
 

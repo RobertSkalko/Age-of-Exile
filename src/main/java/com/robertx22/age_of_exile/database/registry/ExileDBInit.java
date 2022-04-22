@@ -53,16 +53,14 @@ public class ExileDBInit {
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.AFFIX, EmptyAffix.getInstance()).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.MOB_AFFIX, new MobAffix("empty", "empty", TextFormatting.AQUA)).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.UNIQUE_GEAR, null).setIsDatapack());
-        Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.INGREDIENT, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.GEM, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.RUNE, null).setIsDatapack());
-        Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.SPELL, Spell.SERIALIZER).setIsDatapack());
+        Database.addRegistry(new SpellContainer(ExileRegistryTypes.SPELL, Spell.SERIALIZER).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.PERK, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.TALENT_TREE, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.FAVOR_RANK, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.PLAYER_SKILLS, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.SPELL_SCHOOL, null).setIsDatapack());
-        Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.SYNERGY, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.BASE_STATS, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.GAME_BALANCE, new GameBalanceConfig()).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.CRAFTING_REQ, new CraftingReq()).setIsDatapack());

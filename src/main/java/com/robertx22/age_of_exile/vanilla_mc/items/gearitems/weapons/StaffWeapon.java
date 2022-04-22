@@ -3,7 +3,9 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
+import com.robertx22.age_of_exile.database.data.spells.TestSpell;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
@@ -35,18 +37,15 @@ public class StaffWeapon extends ModWeapon implements IAutoModel {
         ItemStack stack = player.getItemInHand(hand);
 
         try {
+
             if (!world.isClientSide) {
-
                 GearItemData gear = Gear.Load(stack);
-
-                if (gear != null && gear.hasSpell()) {
-                    Spell spell = gear.getSpell();
-
+                if (gear != null && player.isCreative() && MMORPG.RUN_DEV_TOOLS) {
+                    Spell spell = TestSpell.get();
                     if (TellServerToCastSpellPacket.tryCastSpell(player, spell)) {
                         player.swing(hand);
                         return ActionResult.success(stack);
                     }
-
                 }
 
             }

@@ -1,7 +1,6 @@
 package com.robertx22.addon.infinite_dungeons.data_gen;
 
 import com.robertx22.addon.infinite_dungeons.IDAddonIds;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.vanilla_mc.items.crates.gem_crate.LootCrateItem;
@@ -36,13 +35,6 @@ public class IDAddonRewardListAdder implements ExileRegistryInit {
             .add(ShopReward.nbtItem(StatSoulItem.ofAnySlotOfRarity(IRarity.EPIC_ID), 1), 40)
             .add(ShopReward.nbtItem(StatSoulItem.ofAnySlotOfRarity(IRarity.RARE_ID), 1), 400)
             .add(ShopReward.nbtItem(StatSoulItem.ofAnySlotOfRarity(IRarity.UNCOMMON), 1), 2000)
-            .build();
-
-        RewardListBuilder.of(IDAddonIds.RewardLists.UPGRADE_BOX, TextFormatting.GOLD)
-            .jackpot(ShopReward.item(CurrencyItems.LEGENDARY_PROT_SCROLL.get(), 1), 20)
-            .add(ShopReward.item(CurrencyItems.PLUS_THREE_UPGRADE.get(), 3), 40)
-            .add(ShopReward.item(CurrencyItems.PLUS_TWO_UPGRADE.get(), 6), 400)
-            .add(ShopReward.item(CurrencyItems.PLUS_ONE_UPGRADE.get(), 9), 2000)
             .build();
 
     }

@@ -53,7 +53,7 @@ public class IDAddonShopListsAdder implements ExileRegistryInit {
                 x.setIdForMineAndSlashModPerLayoutId(DungeonLayoutIds.NETHER_FORTRESS);
                 x.shop_entries.addAll(defaultMineAndSlashShops(DungeonItems.NETHER_COIN.get()));
                 x.shop_entries.add(new ShopEntry(ShopCost.skeletalCoins(100),
-                    ShopReward.nbtItem(RewardCrateItem.create(IDAddonIds.RewardLists.UPGRADE_BOX), 1),
+                    ShopReward.nbtItem(RewardCrateItem.create(IDAddonIds.RewardLists.GEAR_CRATE), 1),
                     DungeonDifficultiesIds.DIFF_3, 1));
             })
             .addToSerializables();

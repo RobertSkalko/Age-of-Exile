@@ -5,6 +5,10 @@
       "x": 6,
       "y": 4
     },
+    "magic_projectile": {
+      "x": 0,
+      "y": 0
+    },
     "flame_strike": {
       "x": 5,
       "y": 0
@@ -17,10 +21,6 @@
       "x": 2,
       "y": 3
     },
-    "fireball": {
-      "x": 0,
-      "y": 0
-    },
     "overload": {
       "x": 10,
       "y": 5
@@ -28,12 +28,6 @@
     "vamp_blood": {
       "x": 5,
       "y": 4
-    }
-  },
-  "synergies": {
-    "fireball_burn": {
-      "x": 0,
-      "y": 1
     }
   },
   "lvl_reqs": [

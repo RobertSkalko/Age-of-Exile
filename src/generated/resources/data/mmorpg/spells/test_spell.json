@@ -1,6 +1,6 @@
 {
   "max_lvl": 16,
-  "weight": 0,
+  "weight": 1000,
   "identifier": "test_spell",
   "attached": {
     "on_cast": [
@@ -11,8 +11,8 @@
             "type": "sound",
             "map": {
               "volume": 1.0,
-              "sound": "minecraft:entity.blaze.shoot",
-              "pitch": 0.6
+              "sound": "minecraft:entity.experience_orb.pickup",
+              "pitch": 0.0
             }
           }
         ],
@@ -28,16 +28,80 @@
         "targets": [],
         "acts": [
           {
-            "type": "projectile",
+            "type": "particles_in_radius",
             "map": {
-              "proj_speed": 3.0,
-              "item": "minecraft:air",
-              "entity_name": "default_entity_name",
-              "gravity": false,
-              "proj_count": 1.0,
-              "expire_on_en_hit": false,
-              "life_ticks": 10.0,
-              "proj_en": "mmorpg:spell_projectile"
+              "particle_type": "minecraft:enchanted_hit",
+              "motion": "None",
+              "radius": 2.0,
+              "particle_count": 150.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:crit",
+              "motion": "None",
+              "radius": 2.0,
+              "particle_count": 25.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:effect",
+              "motion": "None",
+              "radius": 2.0,
+              "particle_count": 100.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [
+          {
+            "type": "self",
+            "map": {}
+          }
+        ],
+        "acts": [
+          {
+            "type": "exile_effect",
+            "map": {
+              "exile_potion_id": "beneficial/14",
+              "potion_action": "GIVE_STACKS",
+              "count": 1.0,
+              "potion_dur": 2400.0
             }
           }
         ],
@@ -50,133 +114,15 @@
         "en_preds": []
       }
     ],
-    "entity_components": {
-      "default_entity_name": [
-        {
-          "targets": [],
-          "acts": [
-            {
-              "type": "particles_in_radius",
-              "map": {
-                "particle_type": "minecraft:smoke",
-                "motion": "None",
-                "radius": 0.1,
-                "particle_count": 1.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "x_ticks_condition",
-              "map": {
-                "tick_rate": 1.0
-              }
-            }
-          ],
-          "en_preds": []
-        },
-        {
-          "targets": [],
-          "acts": [
-            {
-              "type": "particles_in_radius",
-              "map": {
-                "particle_type": "minecraft:ash",
-                "motion": "None",
-                "radius": 0.3,
-                "particle_count": 1.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "x_ticks_condition",
-              "map": {
-                "tick_rate": 1.0
-              }
-            }
-          ],
-          "en_preds": []
-        },
-        {
-          "targets": [
-            {
-              "type": "aoe",
-              "map": {
-                "selection_type": "RADIUS",
-                "en_predicate": "enemies",
-                "radius": 2.0
-              }
-            }
-          ],
-          "acts": [
-            {
-              "type": "damage",
-              "map": {
-                "value_calculation": "fireball",
-                "element": "Fire"
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_hit",
-              "map": {}
-            }
-          ],
-          "en_preds": []
-        },
-        {
-          "targets": [],
-          "acts": [
-            {
-              "type": "sound",
-              "map": {
-                "volume": 1.0,
-                "sound": "minecraft:entity.generic.hurt",
-                "pitch": 1.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_hit",
-              "map": {}
-            }
-          ],
-          "en_preds": []
-        },
-        {
-          "targets": [],
-          "acts": [
-            {
-              "type": "particles_in_radius",
-              "map": {
-                "particle_type": "minecraft:smoke",
-                "motion": "None",
-                "radius": 0.5,
-                "particle_count": 5.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_hit",
-              "map": {}
-            }
-          ],
-          "en_preds": []
-        }
-      ]
-    }
+    "entity_components": {}
   },
   "config": {
     "swing_arm": true,
-    "apply_cast_speed_to_cd": true,
-    "castingWeapon": "MAGE_WEAPON",
+    "apply_cast_speed_to_cd": false,
+    "castingWeapon": "ANY_WEAPON",
     "mana_cost": {
-      "min": 3.5,
-      "max": 7.0
+      "min": 7.5,
+      "max": 15.0
     },
     "times_to_cast": 1,
     "charges": 0,
@@ -184,16 +130,12 @@
     "imbues": 1,
     "charge_name": "",
     "cast_time_ticks": 0,
-    "cooldown_ticks": 20,
+    "cooldown_ticks": 2400,
     "style": "magic",
-    "tags": [
-      "projectile",
-      "damage"
-    ],
-    "cast_type": "NORMAL",
-    "scale_mana_cost_to_player_lvl": false
+    "tags": [],
+    "cast_type": "NORMAL"
   },
-  "manual_tip": false,
+  "manual_tip": true,
   "disabled_dims": [],
   "effect_tip": ""
 }

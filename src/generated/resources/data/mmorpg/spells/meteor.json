@@ -11,7 +11,7 @@
             "type": "sound",
             "map": {
               "volume": 1.0,
-              "sound": "minecraft:entity.illusioner.cast_spell",
+              "sound": "minecraft:entity.fishing_bobber.throw",
               "pitch": 1.0
             }
           }
@@ -34,7 +34,7 @@
               "gravity": false,
               "life_ticks": 1.0,
               "proj_en": "mmorpg:spell_projectile",
-              "height": 6.0
+              "height": 12.0
             }
           }
         ],
@@ -59,6 +59,29 @@
                 "motion": "None",
                 "radius": 0.5,
                 "particle_count": 2.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 2.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:explosion",
+                "motion": "None",
+                "radius": 0.1,
+                "particle_count": 1.0
               }
             }
           ],
@@ -127,10 +150,31 @@
             {
               "type": "particles_in_radius",
               "map": {
+                "particle_type": "minecraft:flame",
+                "motion": "None",
+                "radius": 3.0,
+                "particle_count": 30.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
                 "particle_type": "minecraft:ash",
                 "motion": "None",
                 "radius": 3.0,
-                "particle_count": 25.0
+                "particle_count": 100.0
               }
             }
           ],
@@ -150,8 +194,8 @@
               "map": {
                 "particle_type": "minecraft:explosion",
                 "motion": "None",
-                "radius": 1.0,
-                "particle_count": 1.0
+                "radius": 3.0,
+                "particle_count": 25.0
               }
             }
           ],
@@ -193,9 +237,9 @@
               "map": {
                 "entity_name": "block",
                 "is_falling_block": true,
-                "block_fall_speed": -0.03,
+                "block_fall_speed": -0.04,
                 "life_ticks": 200.0,
-                "block": "minecraft:magma_block",
+                "block": "minecraft:air",
                 "find_surface": false
               }
             }
@@ -212,7 +256,7 @@
     }
   },
   "config": {
-    "swing_arm": false,
+    "swing_arm": true,
     "apply_cast_speed_to_cd": false,
     "castingWeapon": "MAGE_WEAPON",
     "mana_cost": {
@@ -224,15 +268,14 @@
     "charge_regen": 0,
     "imbues": 1,
     "charge_name": "",
-    "cast_time_ticks": 30,
+    "cast_time_ticks": 0,
     "cooldown_ticks": 600,
     "style": "magic",
     "tags": [
       "area",
       "damage"
     ],
-    "cast_type": "NORMAL",
-    "scale_mana_cost_to_player_lvl": false
+    "cast_type": "NORMAL"
   },
   "manual_tip": true,
   "disabled_dims": [],

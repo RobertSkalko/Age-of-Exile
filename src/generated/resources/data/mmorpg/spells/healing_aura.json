@@ -103,7 +103,7 @@
     "entity_components": {}
   },
   "config": {
-    "swing_arm": false,
+    "swing_arm": true,
     "apply_cast_speed_to_cd": false,
     "castingWeapon": "ANY_WEAPON",
     "mana_cost": {
@@ -121,8 +121,7 @@
     "tags": [
       "heal"
     ],
-    "cast_type": "NORMAL",
-    "scale_mana_cost_to_player_lvl": false
+    "cast_type": "NORMAL"
   },
   "manual_tip": true,
   "disabled_dims": [],

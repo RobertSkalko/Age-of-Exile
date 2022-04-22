@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellPower;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -50,7 +49,6 @@ public class BaseGearBuilder implements GearDataHelper {
         b.attackStyle(type.style);
         b.weapon_offhand_stat_util = type.weapon_offhand_stat_util;
         b.baseStat(b.getAttackDamageStat(type, GearDataHelper.Number.FULL, Elements.Physical));
-        b.baseStat(new StatModifier(3, 5, SpellPower.getInstance()));
 
         return b;
     }

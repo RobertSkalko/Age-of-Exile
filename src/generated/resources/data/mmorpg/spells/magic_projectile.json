@@ -1,0 +1,307 @@
+{
+  "max_lvl": 16,
+  "weight": 1000,
+  "identifier": "magic_projectile",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.fishing_bobber.throw",
+              "pitch": 0.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "projectile",
+            "map": {
+              "proj_speed": 2.5,
+              "item": "minecraft:air",
+              "entity_name": "default_entity_name",
+              "gravity": false,
+              "proj_count": 1.0,
+              "life_ticks": 8.0,
+              "proj_en": "mmorpg:spell_projectile"
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      }
+    ],
+    "entity_components": {
+      "default_entity_name": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:poof",
+                "motion": "None",
+                "radius": 0.1,
+                "particle_count": 1.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 4.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:cloud",
+                "motion": "None",
+                "radius": 0.2,
+                "particle_count": 1.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 2.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:smoke",
+                "motion": "None",
+                "radius": 0.01,
+                "particle_count": 1.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 1.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:crit",
+                "motion": "None",
+                "radius": 0.3,
+                "particle_count": 5.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 1.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 2.0
+              }
+            }
+          ],
+          "acts": [
+            {
+              "type": "damage",
+              "map": {
+                "value_calculation": "magic_projectile",
+                "element": "Physical"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "sound",
+              "map": {
+                "volume": 1.0,
+                "sound": "minecraft:entity.generic.hurt",
+                "pitch": 2.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:smoke",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 3.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_hit",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:cloud",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 3.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_hit",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:poof",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 3.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_hit",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:crit",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 15.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_hit",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
+  },
+  "config": {
+    "swing_arm": true,
+    "apply_cast_speed_to_cd": false,
+    "castingWeapon": "MAGE_WEAPON",
+    "mana_cost": {
+      "min": 0.0,
+      "max": 0.0
+    },
+    "times_to_cast": 1,
+    "charges": 0,
+    "charge_regen": 0,
+    "imbues": 1,
+    "charge_name": "",
+    "cast_time_ticks": 0,
+    "cooldown_ticks": 20,
+    "style": "magic",
+    "tags": [
+      "projectile",
+      "damage",
+      "staff_spell"
+    ],
+    "cast_type": "NORMAL"
+  },
+  "manual_tip": true,
+  "disabled_dims": [],
+  "effect_tip": ""
+}

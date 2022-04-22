@@ -9,10 +9,6 @@
       "x": 2,
       "y": 1
     },
-    "poison_ball": {
-      "x": 0,
-      "y": 0
-    },
     "thorn_armor": {
       "x": 10,
       "y": 1
@@ -40,12 +36,6 @@
     "poison_cloud": {
       "x": 2,
       "y": 3
-    }
-  },
-  "synergies": {
-    "poisonball_poison": {
-      "x": 0,
-      "y": 1
     }
   },
   "lvl_reqs": [

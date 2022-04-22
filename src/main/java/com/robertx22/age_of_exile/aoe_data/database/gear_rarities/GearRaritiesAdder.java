@@ -25,7 +25,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         common.addToSerializables();
 
         GearRarity uncommon = new GearRarity();
-        uncommon.bonus_effective_lvls = 2;
         uncommon.affixes = 1;
         uncommon.weight = 2000;
         uncommon.item_tier = 1;
@@ -34,15 +33,12 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         uncommon.dust_per_sal = new MinMax(1, 2);
         uncommon.item_value_multi = 1.25F;
         uncommon.higher_rar = IRarity.RARE_ID;
-        uncommon.upgrades = 2;
         uncommon.rar_ess_per_sal = 1;
-        uncommon.upgrade_lvl_to_increase_rar = 4;
         uncommon.unbreaking_chance = 10;
         uncommon.setUncommonFields();
         uncommon.addToSerializables();
 
         GearRarity rare = new GearRarity();
-        rare.bonus_effective_lvls = 5;
         rare.dust_per_sal = new MinMax(2, 2);
         rare.item_tier = 2;
         rare.item_model_data_num = 3;
@@ -52,15 +48,12 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         rare.item_value_multi = 1.5F;
         rare.higher_rar = IRarity.EPIC_ID;
         rare.rar_ess_per_sal = 1;
-        rare.upgrade_lvl_to_increase_rar = 8;
         rare.setRareFields();
         rare.unbreaking_chance = 25;
-        rare.upgrades = 3;
         rare.addToSerializables();
 
         GearRarity epic = new GearRarity();
-        epic.bonus_effective_lvls = 10;
-        epic.affixes = 3;
+        epic.affixes = 4;
         epic.weight = 100;
         epic.item_tier = 3;
         epic.item_model_data_num = 4;
@@ -69,30 +62,37 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         epic.item_value_multi = 1.7F;
         epic.rar_ess_per_sal = 0;
         epic.unbreaking_chance = 50;
-        epic.upgrades = 5;
         epic.setEpicFields();
         epic.addToSerializables();
 
+        GearRarity legendary = new GearRarity();
+        legendary.affixes = 5;
+        legendary.weight = 20;
+        legendary.item_tier = 4;
+        legendary.item_model_data_num = 5;
+        legendary.dust_per_sal = new MinMax(3, 5);
+        legendary.item_tier_power = 2;
+        legendary.item_value_multi = 2;
+        legendary.rar_ess_per_sal = 0;
+        legendary.unbreaking_chance = 70;
+        legendary.setLegendaryFIelds();
+        legendary.addToSerializables();
+
         GearRarity unique = new GearRarity();
-        unique.bonus_effective_lvls = 10;
         unique.affixes = 0;
         unique.weight = 25;
         unique.item_tier_power = 2;
         unique.item_value_multi = 2;
-        unique.sockets = 0;
         unique.item_tier = 5;
         unique.dust_per_sal = new MinMax(5, 5);
         unique.setUniqueFields();
         unique.addToSerializables();
         unique.unbreaking_chance = 50;
-        unique.upgrades = 5;
         unique.announce_in_chat = true;
         unique.is_unique_item = true;
 
         GearRarity runeword = new GearRarity();
-        runeword.bonus_effective_lvls = 10;
         runeword.affixes = 0;
-        runeword.sockets = 0;
         runeword.weight = 0;
         runeword.item_tier_power = 2;
         runeword.item_value_multi = 2;
@@ -101,7 +101,6 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         runeword.setRunewordFields();
         runeword.addToSerializables();
         runeword.unbreaking_chance = 50;
-        runeword.upgrades = 5;
         runeword.announce_in_chat = true;
         runeword.is_unique_item = true;
 

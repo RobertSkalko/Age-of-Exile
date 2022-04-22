@@ -1,19 +1,13 @@
 These are all default registry entries of this type.
 This registry can't be modified or added to.
+currency/crystal_of_purification
 currency/clear_instability
-currency/plus_one_upgrade
+currency/randomize_affixes
 currency/number_reroll
 currency/reroll_affix_numbers
 currency/orb_of_transmutation
-currency/orb_of_infinity
-currency/plus_three_upgrade
+currency/clear_corruption
+currency/reroll_primary_stats_numbers
 currency/orb_of_corruption
 currency/stone_of_hope
 currency/reroll_unique_numbers
-currency/epic_safe_scroll
-currency/crystal_of_purification
-currency/plus_two_upgrade
-currency/randomize_affixes
-currency/clear_corruption
-currency/reroll_primary_stats_numbers
-currency/legendary_safe_scroll

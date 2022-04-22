@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.interfaces;
 
+import com.robertx22.library_of_exile.text_wrapper.ModTranslatedText;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -36,6 +37,10 @@ public interface IAutoLocName extends IBaseAutoLoc {
 
     public default IFormattableTextComponent locName() {
         return CLOC.blank(getFormatedForLangFile(locNameLangFileGUID()));
+    }
+
+    public default ModTranslatedText ModlocName() {
+        return new ModTranslatedText(getFormatedForLangFile(locNameLangFileGUID()));
     }
 
 }

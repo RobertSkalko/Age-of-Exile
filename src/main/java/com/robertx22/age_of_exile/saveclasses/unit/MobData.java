@@ -17,9 +17,6 @@ public class MobData {
     @Store
     public List<String> affixes = new ArrayList<>();
 
-    @Store
-    public int player_hits = 0;
-
     public List<MobAffix> getAffixes() {
         try {
             return affixes.stream()

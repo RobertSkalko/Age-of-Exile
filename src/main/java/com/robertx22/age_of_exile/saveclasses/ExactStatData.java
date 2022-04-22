@@ -144,11 +144,9 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
-
         Stat stat = getStat();
         TooltipStatInfo statInfo = new TooltipStatInfo(this, 100, info);
         return new ArrayList<>(stat.getTooltipList(new TooltipStatWithContext(statInfo, null, null)));
-
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.saveclasses.item_classes;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ClientConfigs;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
-import com.robertx22.age_of_exile.database.data.currency.GearBlessingType;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -38,11 +37,6 @@ public class GearTooltipUtils {
 
         List<IFormattableTextComponent> name = gear.GetDisplayName(stack);
 
-        if (gear.up.getUpgradeLevel() > 0) {
-            name.get(name.size() - 1)
-                .append(new StringTextComponent(TextFormatting.GREEN + " +[" + gear.up.getUpgradeLevel() + "]"));
-        }
-
         name.forEach(x -> {
             tip.add(x.withStyle(TextFormatting.BOLD));
         });
@@ -75,7 +69,13 @@ public class GearTooltipUtils {
             }
 
         } else {
+
             List<ExactStatData> stats = new ArrayList<>();
+            if (gear.baseStats != null) {
+                // todo
+                // gear.baseStats.GetAllStats(gear)
+                //   .forEach(x -> stats.add(x));
+            }
             gear.affixes.getAllAffixesAndSockets()
                 .forEach(x -> stats.addAll(x.GetAllStats(gear)));
             if (gear.hasCraftedStats()) {
@@ -132,30 +132,25 @@ public class GearTooltipUtils {
             }
         }
 
+        // todo
+        /*
         tip.add(new StringTextComponent(""));
         tip.addAll(gear.sockets.GetTooltipString(info, gear));
         tip.add(new StringTextComponent(""));
+
+         */
 
         tip.add(new StringTextComponent(""));
 
         IFormattableTextComponent lvl = TooltipUtils.gearLevel(gear.lvl);
 
-        if (Screen.hasShiftDown()) {
-            lvl.append(new StringTextComponent(TextFormatting.YELLOW + " [ILvl:" + (int) gear.getILVL() + "]"));
-        }
-
-        if (gear.up.getTimesCanBeUpgradedInTotal() > 0) {
-            tip.add(TooltipUtils.upgradeStars(gear));
-        }
-
-        if (gear.up.bless != GearBlessingType.NONE) {
-            tip.add(gear.up.bless.word.locName()
-                .withStyle(TextFormatting.GOLD));
-        }
-
-        tip.add(lvl);
-        tip.add(TooltipUtils.gearTier(gear.getTier()));
+        tip.add(TooltipUtils.gearLevel(gear.lvl));
         tip.add(TooltipUtils.gearRarity(gear.getRarity()));
+        tip.add(TooltipUtils.gearStars(gear));
+
+        //tip.add(lvl);
+        //tip.add(TooltipUtils.gearTier(gear.getTier()));
+        //tip.add(TooltipUtils.gearRarity(gear.getRarity()));
 
         tip.add(new StringTextComponent(""));
 
@@ -193,13 +188,6 @@ public class GearTooltipUtils {
                 .append(": " + (int) gear.getInstability() + "/" + (int) ServerContainer.get().MAX_INSTABILITY.get()
                     .intValue())
             );
-        }
-
-        if (gear.hasSpell()) {
-            tooltip.add(new StringTextComponent(""));
-            tooltip.add(gear.getSpell()
-                .locName()
-                .withStyle(TextFormatting.LIGHT_PURPLE));
         }
 
         List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip,

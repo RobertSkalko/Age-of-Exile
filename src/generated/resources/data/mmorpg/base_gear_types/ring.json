@@ -10,7 +10,14 @@
   "weapon_offhand_stat_util": 0,
   "style": "melee",
   "implicit_stats": [],
-  "base_stats": [],
+  "base_stats": [
+    {
+      "min": 6.0,
+      "max": 15.0,
+      "stat": "elemental_resist",
+      "type": "FLAT"
+    }
+  ],
   "weapon_type": "none",
   "tags": {
     "tags": [

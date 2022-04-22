@@ -50,12 +50,12 @@ public class RecipeGenerator {
 
     protected Path movePath(Path target) {
         String movedpath = target.toString();
-        movedpath = movedpath.replace("run", "src/generated/resources");
+        movedpath = movedpath.replace("run/", "src/generated/resources/");
+        movedpath = movedpath.replace("run\\", "src/generated/resources/");
         return Paths.get(movedpath);
     }
 
     private Path resolve(Path path, String id) {
-
         return path.resolve(
             "data/" + SlashRef.MODID + "/recipes/" + id
                 + ".json");

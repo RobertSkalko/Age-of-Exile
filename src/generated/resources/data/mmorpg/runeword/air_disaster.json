@@ -1,11 +1,9 @@
 {
   "id": "air_disaster",
   "uniq_id": "air_disaster",
-  "runes": [
-    "ano",
-    "oru",
-    "dos"
-  ],
+  "item_id": "mmorpg:runewords/air_disaster",
+  "min_lvl": 0,
+  "max_lvl": 100,
   "slots": [
     "ring"
   ]

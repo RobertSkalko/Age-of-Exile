@@ -9,21 +9,9 @@
     },
     {
       "v1": 1.0,
-      "stat": "spell_power",
-      "type": "FLAT",
-      "scale_to_lvl": true
-    },
-    {
-      "v1": 1.0,
       "stat": "physical_weapon_damage",
       "type": "FLAT",
       "scale_to_lvl": true
-    },
-    {
-      "v1": 3.0,
-      "stat": "spell_power",
-      "type": "FLAT",
-      "scale_to_lvl": false
     },
     {
       "v1": 3.0,

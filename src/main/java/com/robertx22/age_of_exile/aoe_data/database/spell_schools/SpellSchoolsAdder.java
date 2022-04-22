@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.spell_schools;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.impl.TotemSpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.schools.*;
-import com.robertx22.age_of_exile.aoe_data.database.synergy.SynergiesAdder;
+import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
@@ -66,7 +66,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .build();
 
         SchoolBuilder.of(NATURE, "Nature")
-            .addSpell(NatureSpells.POISONBALL_ID, new PointData(0, 0))
+
             .addSpell(NatureSpells.POISON_WEAPONS, new PointData(7, 0))
 
             .addSpell(NatureSpells.THORN_ARMOR, new PointData(10, 1))
@@ -81,45 +81,40 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .addSpell(NatureSpells.REFRESH, new PointData(10, 6))
 
-            .addSynergy(SynergiesAdder.POISONBALL_POISON, new PointData(0, 1))
-
             .build();
 
         SchoolBuilder.of(FIRE, "Fire")
-            .addSpell(FireSpells.FIREBALL_ID, new PointData(0, 0))
+            .addSpell(SpellKeys.MAGIC_PROJECTILE.id, new PointData(0, 0))
             .addSpell(FireSpells.FLAME_STRIKE_ID, new PointData(5, 0))
 
             .addSpell(FireSpells.FLAME_WEAPON, new PointData(7, 1))
 
-            .addSpell(FireSpells.METEOR, new PointData(2, 3))
+            .addSpell(SpellKeys.METEOR.id, new PointData(2, 3))
 
             .addSpell(FireSpells.VAMP_BLOOD, new PointData(5, 4))
             .addSpell(FireSpells.DRACONIC_BLOOD, new PointData(6, 4))
 
             .addSpell(FireSpells.OVERLOAD, new PointData(10, 5))
 
-            .addSynergy(SynergiesAdder.FIREBALL_BURN, new PointData(0, 1))
-
             .build();
 
         SchoolBuilder.of(WATER, "Water")
-            .addSpell(WaterSpells.FROSTBALL_ID, new PointData(0, 0))
             .addSpell(WaterSpells.TIDAL_STRIKE, new PointData(4, 0))
 
             .addSpell(WaterSpells.FROST_NOVA_AOE, new PointData(2, 1))
             .addSpell(WaterSpells.WATER_BREATH, new PointData(10, 1))
-            .addSpell(WaterSpells.FROST_ARMOR, new PointData(7, 1))
+            .addSpell(SpellKeys.ICE_SHIELD.id, new PointData(7, 1))
 
             .addSpell(WaterSpells.ICY_WEAPON, new PointData(10, 2))
             .addSpell(WaterSpells.CHILLING_FIELD, new PointData(5, 2))
 
             .addSpell(WaterSpells.NOURISHMENT, new PointData(7, 3))
-            .addSpell(WaterSpells.ICE_COMET, new PointData(1, 3))
             .addSpell(WaterSpells.CHILL_ERUPTION, new PointData(2, 3))
 
             .addSpell(WaterSpells.MAGE_CIRCLE, new PointData(10, 4))
 
-            .addSynergy(SynergiesAdder.FROSTBALL_CHILL, new PointData(0, 1))
+            //.addSynergy(SynergiesAdder.FROSTBALL_CHILL, new PointData(0, 1))
+
             .build();
 
     }

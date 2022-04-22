@@ -2,6 +2,8 @@ package com.robertx22.age_of_exile.mixin_methods;
 
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
+import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
+import com.robertx22.age_of_exile.database.data.runewords.RuneWordItem;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.stat_soul.StatSoulData;
@@ -73,6 +75,14 @@ public class OnItemInteract {
                         data.insertAsUnidentifiedOn(stack);
                         success = true;
                     }
+                }
+            } else if (RuneWordItem.getRuneword(cursor.getItem())
+                .isPresent()) {
+                RuneWord word = RuneWordItem.getRuneword(cursor.getItem())
+                    .get();
+                if (word.canApplyOnItem(stack)) {
+                    word.useRuneWord(player, stack);
+                    success = true;
                 }
             } else if (cursor.getItem() instanceof ICurrencyItemEffect) {
                 LocReqContext ctx = new LocReqContext(player, stack, cursor);

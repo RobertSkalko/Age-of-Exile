@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas;
 
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.capability.PlayerDamageChart;
 import com.robertx22.age_of_exile.capability.entity.CooldownsData;
 import com.robertx22.age_of_exile.capability.player.data.ScalingPlayerDiffData;
@@ -8,7 +7,6 @@ import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
-import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mixin_ducks.LivingEntityAccesor;
 import com.robertx22.age_of_exile.mixin_ducks.ProjectileEntityDuck;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
@@ -25,7 +23,6 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.age_of_exile.vanilla_mc.packets.DmgNumPacket;
 import com.robertx22.library_of_exile.main.Packets;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
@@ -371,22 +368,6 @@ public class DamageEvent extends EffectEvent {
             }
 
             if (target instanceof PlayerEntity == false) {
-
-                this.targetData.getAffixData().player_hits++;
-                if (this.targetData.getAffixData().player_hits > 5) {
-                    if (RandomUtils.roll(25)) {
-
-                        SoundUtils.playSound(target, SoundEvents.GENERIC_EXPLODE);
-
-                        this.targetData.getAffixData().player_hits = 0;
-                        ExilePotionEvent potionEvent = EventBuilder.ofEffect(target, target, targetData.getLevel(),
-                                ExileDB.ExileEffects()
-                                    .get(BeneficialEffects.MOB_ANGER_LVL1.GUID()), GiveOrTake.give, 8 * 20)
-                            .build();
-                        potionEvent.Activate();
-                    }
-                }
-
                 if (getAttackType() == AttackType.dot) {
                     target.invulnerableTime = 0; // disable iframes hopefully
                     target.hurtTime = 0;

@@ -3,12 +3,10 @@ package com.robertx22.age_of_exile.saveclasses.player_skills;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.gui.screens.wiki.WikiType;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.CraftedConsumableItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.library_of_exile.registry.IGUID;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.text.TextFormatting;
@@ -25,31 +23,14 @@ public enum PlayerSkillEnum implements IGUID {
             return Items.WHEAT_SEEDS;
         }
 
-        @Override
-        public Item getCraftResultItem() {
-            return RandomUtils.randomFromList(CraftedConsumableItems.POTIONS)
-                .get();
-        }
     },
     INSCRIBING("inscribing", null, Words.Inscribing, Words.InscribingDesc, TextFormatting.AQUA, 2) {
-        @Override
-        public Item getCraftResultItem() {
-            return RandomUtils.randomFromList(CraftedConsumableItems.SCROLLS)
-                .get();
-        }
-
         @Override
         public Item getToolCraftItem() {
             return Items.PAPER;
         }
     },
     COOKING("cooking", null, Words.Cooking, Words.CookingDesc, TextFormatting.RED, 1.5F) {
-        @Override
-        public Item getCraftResultItem() {
-            return RandomUtils.randomFromList(CraftedConsumableItems.FOODS)
-                .get();
-        }
-
         @Override
         public Item getToolCraftItem() {
             return Items.BREAD;
@@ -159,10 +140,6 @@ public enum PlayerSkillEnum implements IGUID {
         this.format = format;
         this.desc = desc;
         this.wiki = wiki;
-    }
-
-    public Item getCraftResultItem() {
-        return null;
     }
 
     public static List<PlayerSkillEnum> getAll() {

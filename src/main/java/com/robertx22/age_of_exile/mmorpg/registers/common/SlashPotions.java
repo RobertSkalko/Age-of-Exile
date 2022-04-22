@@ -5,8 +5,6 @@ import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
-import com.robertx22.age_of_exile.player_skills.ingredient.ConsumablePotionEffect;
-import com.robertx22.age_of_exile.saveclasses.player_skills.PlayerSkillEnum;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.ModStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.compat_food_effects.HealthRegenFoodEffect;
@@ -16,16 +14,12 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class SlashPotions {
 
     public static ResourceLocation FOOD_HP = new ResourceLocation(SlashRef.MODID, "food_health_regen");
     public static ResourceLocation FOOD_MANA = new ResourceLocation(SlashRef.MODID, "food_mana_regen");
-
-    public static HashMap<PlayerSkillEnum, RegObj<Effect>> CRAFTED_CONSUMABLES_MAP = new HashMap<>();
 
     public static RegObj<Effect> KNOCKBACK_RESISTANCE = Def.potion("knockback_resist", () -> new ModStatusEffect(net.minecraft.potion.EffectType.BENEFICIAL, 1)
         .addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, "648D7564-6A60-4F59-8ABE-C2C27A6DD7A9", 0.75F, AttributeModifier.Operation.ADDITION));
@@ -39,13 +33,6 @@ public class SlashPotions {
     }
 
     public static void init() {
-
-        List<PlayerSkillEnum> professions = Arrays.asList(PlayerSkillEnum.ALCHEMY, PlayerSkillEnum.COOKING, PlayerSkillEnum.INSCRIBING);
-
-        professions.forEach(x -> {
-            RegObj<Effect> ef = Def.potion(x.id + "_consumable", () -> new ConsumablePotionEffect(x));
-            CRAFTED_CONSUMABLES_MAP.put(x, ef);
-        });
 
         for (int i = 0; i < 20; i++) {
             String key = ExileStatusEffect.getIdPath(EffectType.negative, i);

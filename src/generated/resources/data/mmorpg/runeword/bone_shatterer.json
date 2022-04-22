@@ -1,11 +1,9 @@
 {
   "id": "bone_shatterer",
   "uniq_id": "bone_shatterer",
-  "runes": [
-    "cen",
-    "dos",
-    "yun"
-  ],
+  "item_id": "mmorpg:runewords/bone_shatterer",
+  "min_lvl": 0,
+  "max_lvl": 100,
   "slots": [
     "bow"
   ]

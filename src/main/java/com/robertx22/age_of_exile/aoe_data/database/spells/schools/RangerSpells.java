@@ -84,8 +84,7 @@ public class RangerSpells implements ExileRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 50D, 3D))
             .build();
 
-        SpellBuilder.of(NIGHT_VISION, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 5, 40)
-                    .setScaleManaToPlayer(),
+        SpellBuilder.of(NIGHT_VISION, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 5, 40),
                 "Night Vision",
                 Arrays.asList())
             .manualDesc(
@@ -97,7 +96,7 @@ public class RangerSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of(DASH_ID, SpellConfiguration.Builder.instant(10, 15)
-                    .setScaleManaToPlayer()
+
                     .setChargesAndRegen("dash", 3, 20 * 30)
                 , "Dash",
                 Arrays.asList(SpellTag.movement, SpellTag.technique))
@@ -138,7 +137,7 @@ public class RangerSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of(THE_HUNT, SpellConfiguration.Builder.nonInstant(5, 60 * 20 * 2, 20)
-                    .setScaleManaToPlayer(),
+                ,
                 "The Hunt",
                 Arrays.asList())
             .manualDesc(
@@ -229,7 +228,7 @@ public class RangerSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of(MAKE_ARROWS, SpellConfiguration.Builder.nonInstant(10, 20 * 60 * 5, 80)
-                    .setScaleManaToPlayer(), "Produce Arrows",
+                , "Produce Arrows",
                 Arrays.asList())
             .manualDesc("Produce a stack of arrows.")
             .weaponReq(CastingWeapon.ANY_WEAPON)

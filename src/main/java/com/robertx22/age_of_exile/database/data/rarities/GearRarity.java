@@ -26,8 +26,6 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public int drops_after_tier = -1;
 
     public int affixes = 0;
-    public int sockets = 1;
-    public int upgrade_lvl_to_increase_rar = -1;
 
     public int unbreaking_chance = 0;
 
@@ -38,7 +36,6 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     public MinMax unique_stat_percents = new MinMax(0, 100);
     public MinMax base_stat_percents = new MinMax(0, 100);
     public MinMax dust_per_sal = new MinMax(1, 1);
-    public int upgrades = 0;
 
     public int item_tier = -1;
 
@@ -48,26 +45,12 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
 
     public float item_tier_power;
     public float item_value_multi;
-    public int bonus_effective_lvls = 0;
     public boolean announce_in_chat = false;
 
     public boolean is_unique_item = false;
 
     transient ResourceLocation glintFull;
     transient ResourceLocation glintTexBorder;
-
-    public boolean canUpgradeRarityIfUpgradeLevelIsHighEnough() {
-        return this.hasHigherRarity() && upgrade_lvl_to_increase_rar > 0;
-    }
-
-    public ItemStack getRarityUpgradeStack() {
-        ItemStack stack = new ItemStack(SlashItems.RARITY_UPGRADE.get());
-        stack.getOrCreateTag()
-            .putString("rar", GUID());
-        stack.getOrCreateTag()
-            .putInt("CustomModelData", this.item_model_data_num);
-        return stack;
-    }
 
     public ItemStack getRarityEssenceStack() {
         ItemStack stack = new ItemStack(SlashItems.RARITY_ESSENCE.get());

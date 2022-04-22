@@ -1,18 +1,12 @@
 package com.robertx22.age_of_exile.database.data.spells;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.item.Items;
+import com.robertx22.age_of_exile.uncommon.SoundRefs;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
@@ -21,24 +15,18 @@ public class TestSpell {
     public static String USE_THIS_EXACT_ID = "test_spell"; // USE THE EXACT "ID" HERE OR THE TEST SPELL GEM WONT WORK
 
     public static Spell get() {
+
         return
-            SpellBuilder.of(USE_THIS_EXACT_ID, SpellConfiguration.Builder.instant(7, 20)
-                        .setSwingArm()
-                        .applyCastSpeedToCooldown(), "Poison Ball",
-                    Arrays.asList(SpellTag.projectile, SpellTag.damage))
-                .weaponReq(CastingWeapon.MAGE_WEAPON)
+            SpellBuilder.of(USE_THIS_EXACT_ID, SpellConfiguration.Builder.instant(15, 120 * 20), "Frost Armor",
+                    Arrays.asList())
+                .manualDesc("Give self effect:")
+                .onCast(PartBuilder.playSound(SoundRefs.DING_LOW_PITCH))
 
-                .onCast(PartBuilder.playSound(SoundEvents.BLAZE_SHOOT, 1D, 0.6D))
-                .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 3D, SlashEntities.SIMPLE_PROJECTILE.get(), 10D, false)
-                    .put(MapField.EXPIRE_ON_ENTITY_HIT, false)))
-                .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 1D, 0.1D))
-                .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ASH, 1D, 0.3D))
+                .onCast(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 150D, 2D))
+                .onCast(PartBuilder.aoeParticles(ParticleTypes.CRIT, 25D, 2D))
+                .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 100D, 2D))
 
-                .onHit(PartBuilder.damageInAoe(SpellCalcs.FIREBALL, Elements.Fire, 2D))
-                .onHit(PartBuilder.playSound(SoundEvents.GENERIC_HURT, 1D, 1D))
-                .onHit(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 5D, 0.5D))
-
-                .weight(0)
+                .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.FROST_ARMOR, 20 * 120D))
                 .buildForEffect();
 
     }

@@ -15,7 +15,6 @@ import com.robertx22.age_of_exile.aoe_data.database.gear_rarities.GearRaritiesAd
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.aoe_data.database.gems.Gems;
 import com.robertx22.age_of_exile.aoe_data.database.groups.GearRarityGroupAdder;
-import com.robertx22.age_of_exile.aoe_data.database.ingredient.SlashIngredientsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
 import com.robertx22.age_of_exile.aoe_data.database.mob_rarities.MobRaritiesAdder;
 import com.robertx22.age_of_exile.aoe_data.database.perks.AllPerks;
@@ -32,7 +31,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.AutoDatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.PlusToSpecificSpellLevelStats;
-import com.robertx22.age_of_exile.aoe_data.database.synergy.SynergiesAdder;
 import com.robertx22.age_of_exile.aoe_data.database.tiers.DifficultyAdders;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearReg;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
@@ -55,7 +53,6 @@ public class GeneratedData {
 
         SpellCalcs.init();
         new Spells().registerAll();
-        new SynergiesAdder().registerAll();
         new SpellSchoolsAdder().registerAll();
 
         new PlusToSpecificSpellLevelStats().registerAll();
@@ -93,8 +90,6 @@ public class GeneratedData {
 
         new CraftReqAdder().registerAll();
         new GearSetsAdder().registerAll();
-
-        new SlashIngredientsAdder().registerAll();
 
     }
 }

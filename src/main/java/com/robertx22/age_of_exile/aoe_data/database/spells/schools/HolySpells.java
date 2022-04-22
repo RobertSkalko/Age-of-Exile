@@ -77,7 +77,7 @@ public class HolySpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of(CHARGE_ID, SpellConfiguration.Builder.multiCast(10, 20 * 10, 60, 60)
-                    .setScaleManaToPlayer(), "Charge",
+                , "Charge",
                 Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.movement))
             .manualDesc(
                 "Charge in a direction, stopping upon first enemy hit to deal "
@@ -165,7 +165,7 @@ public class HolySpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of(UNDYING_WILL, SpellConfiguration.Builder.instant(7, 20 * 60)
-                    .setScaleManaToPlayer(), "Undying Will",
+                , "Undying Will",
                 Arrays.asList())
             .manualDesc("Gives buff to self.")
             .attackStyle(PlayStyle.melee)
@@ -177,7 +177,7 @@ public class HolySpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of(BANISH, SpellConfiguration.Builder.instant(10, 20 * 45)
-                .setScaleManaToPlayer(), "Banish", Arrays.asList())
+                , "Banish", Arrays.asList())
             .manualDesc(
                 "Summon a Magic circle that banishes enemies in the area, levitating them for a certain duration and applying a debuff.")
             .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))

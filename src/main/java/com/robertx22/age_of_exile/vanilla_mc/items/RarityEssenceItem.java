@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.library_of_exile.registry.IGUID;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -54,12 +53,15 @@ public class RarityEssenceItem extends Item implements IGUID, ISalvagable {
         if (!worldIn.isClientSide) {
 
             try {
+                /*
                 GearRarity rar = GearRarity.getRarityFromEssence(stack);
 
                 if (stack.getCount() >= 9) {
                     stack.shrink(9);
                     PlayerUtils.giveItem(rar.getRarityUpgradeStack(), player);
                 }
+
+                 */
             } catch (Exception e) {
                 e.printStackTrace();
             }

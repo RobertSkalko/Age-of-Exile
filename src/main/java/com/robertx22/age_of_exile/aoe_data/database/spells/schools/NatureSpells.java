@@ -12,7 +12,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashSounds;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -23,7 +22,6 @@ import net.minecraft.util.SoundEvents;
 import java.util.Arrays;
 
 public class NatureSpells implements ExileRegistryInit {
-    public static String POISONBALL_ID = "poison_ball";
 
     public static String THORN_ARMOR = "thorn_armor";
     public static String REFRESH = "refresh";
@@ -49,22 +47,6 @@ public class NatureSpells implements ExileRegistryInit {
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D)))
             .build();
 
-        SpellBuilder.of(POISONBALL_ID, SpellConfiguration.Builder.instant(5, 20)
-                    .setSwingArm()
-                    .applyCastSpeedToCooldown(), "Poison Ball",
-                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
-            .manualDesc(
-                "Throw out a ball of poison, dealing " + SpellCalcs.POISON_BALL.getLocDmgTooltip()
-                    + " " + Elements.Earth.getIconNameDmg())
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(SlashItems.SLIMEBALL.get(), 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 8D, false)
-            ))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SNEEZE, 1D, 0.15D))
-            .onHit(PartBuilder.damageInAoe(SpellCalcs.POISON_BALL, Elements.Earth, 2D))
-            .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D))
-
-            .build();
         SpellBuilder.of(THORN_ARMOR, SpellConfiguration.Builder.instant(15, 200 * 20), "Thorn Armor",
                 Arrays.asList(SpellTag.damage))
             .manualDesc("Gives buff to self:")
@@ -74,7 +56,7 @@ public class NatureSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of(REFRESH, SpellConfiguration.Builder.nonInstant(40, 20 * 60 * 3, 20)
-                    .setScaleManaToPlayer(), "Refresh",
+                , "Refresh",
                 Arrays.asList())
 
             .manualDesc(
@@ -100,7 +82,7 @@ public class NatureSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of(NATURE_BALM, SpellConfiguration.Builder.nonInstant(15, 60 * 20, 30)
-                    .setScaleManaToPlayer(), "Nature's Balm",
+                , "Nature's Balm",
                 Arrays.asList(SpellTag.heal))
             .manualDesc("Gives buff to allies nearby:")
             .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))

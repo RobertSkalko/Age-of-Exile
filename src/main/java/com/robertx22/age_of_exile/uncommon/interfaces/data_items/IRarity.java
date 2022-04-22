@@ -17,6 +17,7 @@ public interface IRarity<R extends Rarity> {
     String UNCOMMON = "uncommon";
     String RARE_ID = "rare";
     String EPIC_ID = "epic";
+    String LEGENDARY_ID = "legendary";
 
     String BOSS_ID = "boss";
 

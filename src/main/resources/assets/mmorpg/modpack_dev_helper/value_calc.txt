@@ -9,14 +9,12 @@ chilling_field
 whirlwind
 breath
 wish
-iceball
 nature_balm
 arrow_storm
 black_hole
 shred
 totem_heal
 lose_aggro
-fireball
 charged_bolt
 burn
 explosive_arrow
@@ -25,6 +23,7 @@ heart_of_ice
 poison
 hunter_pot_heal
 poison_arrow
+magic_projectile
 shout_warn
 direct_arrow_hit
 flame_strike
@@ -44,6 +43,5 @@ curse
 fire_nova
 tidal_strike
 totem_mana
-poisonball
 despair
 taunt

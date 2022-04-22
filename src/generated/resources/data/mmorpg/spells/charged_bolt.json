@@ -229,8 +229,7 @@
       "area",
       "damage"
     ],
-    "cast_type": "USE_ITEM",
-    "scale_mana_cost_to_player_lvl": false
+    "cast_type": "USE_ITEM"
   },
   "manual_tip": true,
   "disabled_dims": [],

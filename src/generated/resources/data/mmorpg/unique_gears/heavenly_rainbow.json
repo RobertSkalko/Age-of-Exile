@@ -39,12 +39,6 @@
       "max": 1.32,
       "stat": "earth_weapon_damage",
       "type": "flat"
-    },
-    {
-      "min": 2.0,
-      "max": 4.0,
-      "stat": "spell_power",
-      "type": "flat"
     }
   ],
   "rarity": "runeword",

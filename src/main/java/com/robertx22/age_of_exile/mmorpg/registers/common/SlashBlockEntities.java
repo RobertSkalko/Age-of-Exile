@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.dimension.teleporter.TeleportedBlockEntity;
 import com.robertx22.age_of_exile.dimension.teleporter.portal_block.PortalBlockEntity;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
-import com.robertx22.age_of_exile.vanilla_mc.blocks.runeword_station.RuneWordStationTile;
 import net.minecraft.tileentity.TileEntityType;
 
 public class SlashBlockEntities {
@@ -14,8 +13,6 @@ public class SlashBlockEntities {
 
     }
 
-    public static RegObj<TileEntityType<RuneWordStationTile>> RUNEWORD = Def.blockEntity("runeword", () -> TileEntityType.Builder.of(RuneWordStationTile::new, SlashBlocks.RUNEWORD.get())
-        .build(null));
     public static RegObj<TileEntityType<TeleportedBlockEntity>> TELEPORTER = Def.blockEntity("teleporter", () -> TileEntityType.Builder.of(TeleportedBlockEntity::new, SlashBlocks.TELEPORTER.get())
         .build(null));
     public static RegObj<TileEntityType<PortalBlockEntity>> PORTAL = Def.blockEntity("portal", () -> TileEntityType.Builder.of(PortalBlockEntity::new, SlashBlocks.PORTAL.get())

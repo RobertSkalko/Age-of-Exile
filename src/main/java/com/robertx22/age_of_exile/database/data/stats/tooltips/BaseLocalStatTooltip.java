@@ -18,12 +18,22 @@ public class BaseLocalStatTooltip implements IStatTooltipType {
         TooltipStatInfo info = ctx.statinfo;
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
+
+        String circleIcon = "\u25CF";
+
+        IFormattableTextComponent testCircle = new StringTextComponent(format + "" + TextFormatting.BOLD + "[")
+            .append(new StringTextComponent(circleIcon)
+                .withStyle(format)
+                .withStyle(TextFormatting.BOLD)
+            )
+            .append(format + "" + TextFormatting.BOLD + "] ");
+
         if (true) {
-            String icon = "\u25CF";
-            list.add(new StringTextComponent(icon + " ")
+
+            list.add(testCircle
                 .append(info.stat.locName())
                 .append(": ")
-                .withStyle(format != null ? format : TextFormatting.WHITE)
+                .withStyle(TextFormatting.GRAY)
                 .append(new StringTextComponent((int) info.firstValue + "")
                     .withStyle(TextFormatting.GRAY)));
 

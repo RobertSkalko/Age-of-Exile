@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "mmorpg:runes/ano"
+    },
+    {
+      "item": "mmorpg:runes/oru"
+    },
+    {
+      "item": "mmorpg:runes/dos"
+    }
+  ],
+  "result": {
+    "item": "mmorpg:runewords/air_disaster"
+  }
+}

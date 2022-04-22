@@ -10,6 +10,7 @@
           {
             "type": "summon_at_sight",
             "map": {
+              "distance": 16.0,
               "entity_name": "default_entity_name",
               "gravity": false,
               "life_ticks": 1.0,
@@ -120,7 +121,7 @@
     }
   },
   "config": {
-    "swing_arm": false,
+    "swing_arm": true,
     "apply_cast_speed_to_cd": false,
     "castingWeapon": "ANY_WEAPON",
     "mana_cost": {
@@ -139,8 +140,7 @@
       "damage",
       "movement"
     ],
-    "cast_type": "NORMAL",
-    "scale_mana_cost_to_player_lvl": true
+    "cast_type": "NORMAL"
   },
   "manual_tip": true,
   "disabled_dims": [],

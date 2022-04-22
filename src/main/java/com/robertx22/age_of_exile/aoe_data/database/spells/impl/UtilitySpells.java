@@ -28,8 +28,7 @@ public class UtilitySpells implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        SpellBuilder.of("conjure_ender_chest", SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 2, 40)
-                    .setScaleManaToPlayer(),
+        SpellBuilder.of("conjure_ender_chest", SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 2, 40),
                 "Conjure Ender Chest",
                 Arrays.asList())
             .manualDesc(
@@ -42,8 +41,7 @@ public class UtilitySpells implements ExileRegistryInit {
             .disableInDimension(DimensionIds.DUNGEON_DIMENSION)
             .build();
 
-        SpellBuilder.of("jump_field", SpellConfiguration.Builder.instant(10, 20 * 45)
-                .setScaleManaToPlayer(), "Jump Field", Arrays.asList(SpellTag.movement))
+        SpellBuilder.of("jump_field", SpellConfiguration.Builder.instant(10, 20 * 45), "Jump Field", Arrays.asList(SpellTag.movement))
             .manualDesc(
                 "Summon a Jump Field, stepping on it will propel you upwards at high speeds.")
 
@@ -65,8 +63,7 @@ public class UtilitySpells implements ExileRegistryInit {
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
             .build();
 
-        SpellBuilder.of("levitation", SpellConfiguration.Builder.instant(1, 1)
-                    .setScaleManaToPlayer(), "Levitation",
+        SpellBuilder.of("levitation", SpellConfiguration.Builder.instant(1, 1), "Levitation",
                 Arrays.asList(SpellTag.movement))
 
             .manualDesc(

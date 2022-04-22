@@ -28,4 +28,9 @@ public class RuneItems {
 
     }
 
+    public static RuneItem get(RuneItem.RuneType type) {
+        return MAP.get(type.id)
+            .get();
+    }
+
 }

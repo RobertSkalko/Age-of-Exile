@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
 import com.robertx22.age_of_exile.database.data.value_calc.LevelProvider;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.EventData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
@@ -26,14 +25,10 @@ public class SpellStatsCalculationEvent extends EffectEvent {
         super(caster, caster);
 
         this.savedData = savedData;
-        this.lvl = Load.Unit(caster)
-            .getLevel();
+        this.lvl = sourceData.getLevel();
 
         Spell spell = ExileDB.Spells()
             .get(spellid);
-        if (spell.config.scale_mana_cost_to_player_lvl) {
-            lvl = this.sourceData.getLevel();
-        }
 
         this.data.setString(EventData.STYLE, spell.config.style.name());
 

@@ -1,12 +1,9 @@
 {
   "id": "heavenly_tear",
   "uniq_id": "heavenly_tear",
-  "runes": [
-    "toq",
-    "dos",
-    "yun",
-    "wir"
-  ],
+  "item_id": "mmorpg:runewords/heavenly_tear",
+  "min_lvl": 0,
+  "max_lvl": 100,
   "slots": [
     "necklace"
   ]

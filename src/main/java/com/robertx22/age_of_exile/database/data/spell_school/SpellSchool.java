@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.spell_school;
 
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.synergy.Synergy;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.PointData;
@@ -27,7 +26,6 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
     public static int MAX_X_ROWS = 10;
 
     public HashMap<String, PointData> spells = new HashMap<>();
-    public HashMap<String, PointData> synergies = new HashMap<>();
 
     public List<Integer> lvl_reqs = Arrays.asList(1, 5, 10, 20, 30, 40, 50);
 
@@ -43,11 +41,6 @@ public class SpellSchool implements JsonExileRegistry<SpellSchool>, IAutoGson<Sp
     public boolean isLevelEnoughForSpell(LivingEntity en, Spell spell) {
         return Load.Unit(en)
             .getLevel() >= getLevelNeededToAllocate(spells.get(spell.GUID()));
-    }
-
-    public boolean isLevelEnoughForSynergy(LivingEntity en, Synergy synergy) {
-        return Load.Unit(en)
-            .getLevel() >= getLevelNeededToAllocate(synergies.get(synergy.GUID()));
     }
 
     public ResourceLocation getIconLoc() {

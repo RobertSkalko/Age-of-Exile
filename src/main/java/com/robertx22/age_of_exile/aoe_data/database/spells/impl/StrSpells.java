@@ -46,23 +46,5 @@ public class StrSpells implements ExileRegistryInit {
 
             .build();
 
-
-
-        /*
-        SpellBuilder.of("thirst_strike", SpellConfiguration.Builder.instant(5, 15)
-                    .setSwingArm(), "Thirsting Strike",
-                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
-
-            .attackStyle(PlayStyle.melee)
-            .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, 1D, 1D))
-            .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.damageInFront(ValueCalculation.scaleWithAttack("thirst_strike", 0.25F, 1), Elements.Physical, 1.25D, 1.25D)
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 75D, 0.5D, 0.1D))
-                .addPerEntityHit(PartBuilder.healCaster(ValueCalculation.base("thirst_strike_heal", 1)))
-            )
-            .build();
-        */
-
     }
 }

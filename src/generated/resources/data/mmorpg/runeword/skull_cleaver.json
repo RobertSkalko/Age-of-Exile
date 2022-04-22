@@ -1,12 +1,9 @@
 {
   "id": "skull_cleaver",
   "uniq_id": "skull_cleaver",
-  "runes": [
-    "ano",
-    "toq",
-    "mos",
-    "har"
-  ],
+  "item_id": "mmorpg:runewords/skull_cleaver",
+  "min_lvl": 0,
+  "max_lvl": 100,
   "slots": [
     "sword"
   ]

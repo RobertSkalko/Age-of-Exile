@@ -3,22 +3,13 @@ package com.robertx22.age_of_exile.database.registrators;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.CraftingSuccessChance;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.IncreaseMinRarityStat;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.MaxUsesStat;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.RandomCraftingStat;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.craft_grid.IngNotTouchThis;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.craft_grid.IngToLeft;
-import com.robertx22.age_of_exile.database.data.stats.types.crafting.craft_grid.IngTouchThis;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.*;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.DarknessDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DualWieldDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellPower;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.*;
@@ -58,10 +49,6 @@ public class StatsRegister implements ExileRegistryInit {
                     add(RegeneratePercentStat.HEALTH);
                     add(RegeneratePercentStat.MANA);
                     add(ArmorPenetration.getInstance());
-
-                    add(DarknessDamage.getInstance());
-
-                    add(SpellPower.getInstance());
 
                     add(SpellDodge.getInstance());
 
@@ -106,15 +93,6 @@ public class StatsRegister implements ExileRegistryInit {
                     add(GlobalCriticalHit.getInstance());
                     add(DodgeRating.getInstance());
                     add(DamageShield.getInstance());
-
-                    add(IngTouchThis.getInstance());
-                    add(IngNotTouchThis.getInstance());
-                    add(IngToLeft.getInstance());
-
-                    add(RandomCraftingStat.getInstance());
-                    add(IncreaseMinRarityStat.getInstance());
-                    add(MaxUsesStat.getInstance());
-                    add(CraftingSuccessChance.getInstance());
 
                     add(new BonusSkillExp(PlayerSkillEnum.NONE));
 

@@ -20,6 +20,17 @@ public class TooltipInfo implements Cloneable {
         this.player = ClientOnly.getPlayer();
     }
 
+    public TooltipInfo(MinMax minmax) {
+        this.minmax = minmax;
+
+        this.unitdata = unitdata;
+
+        this.hasAltDown = Screen.hasAltDown();
+        this.hasShiftDown = Screen.hasShiftDown();
+        this.player = ClientOnly.getPlayer();
+        this.unitdata = Load.Unit(player);
+    }
+
     public TooltipInfo(EntityData unitdata) {
         this.minmax = new MinMax(100, 100);
 

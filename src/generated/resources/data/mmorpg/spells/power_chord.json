@@ -151,8 +151,7 @@
       "projectile",
       "damage"
     ],
-    "cast_type": "NORMAL",
-    "scale_mana_cost_to_player_lvl": false
+    "cast_type": "NORMAL"
   },
   "manual_tip": false,
   "disabled_dims": [],

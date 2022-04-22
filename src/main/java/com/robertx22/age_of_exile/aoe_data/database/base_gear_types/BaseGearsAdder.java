@@ -20,7 +20,6 @@ public class BaseGearsAdder implements ExileRegistryInit, GearDataHelper {
         BaseGearBuilder.of(BaseGearTypes.BOOTS, GearSlots.BOOTS, "Boots")
             .tags(new TagList(SlotTag.armor_stat, SlotTag.boots, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
-                getStat(ArmorStat.ELE_DEF, ArmorType.HEAVY, ArmorSlot.BOOTS),
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.BOOTS)
             )
             .build();
@@ -28,7 +27,6 @@ public class BaseGearsAdder implements ExileRegistryInit, GearDataHelper {
         BaseGearBuilder.of(BaseGearTypes.PANTS, GearSlots.PANTS, "Pants")
             .tags(new TagList(SlotTag.armor_stat, SlotTag.pants, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
-                getStat(ArmorStat.ELE_DEF, ArmorType.HEAVY, ArmorSlot.PANTS),
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.PANTS)
             )
             .build();
@@ -36,7 +34,6 @@ public class BaseGearsAdder implements ExileRegistryInit, GearDataHelper {
         BaseGearBuilder.of(BaseGearTypes.CHEST, GearSlots.CHEST, "Chest")
             .tags(new TagList(SlotTag.armor_stat, SlotTag.chest, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
-                getStat(ArmorStat.ELE_DEF, ArmorType.HEAVY, ArmorSlot.CHEST),
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.CHEST)
             )
             .build();
@@ -44,17 +41,22 @@ public class BaseGearsAdder implements ExileRegistryInit, GearDataHelper {
         BaseGearBuilder.of(BaseGearTypes.HELMET, GearSlots.HELMET, "Helmet")
             .tags(new TagList(SlotTag.armor_stat, SlotTag.helmet, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
-                getStat(ArmorStat.ELE_DEF, ArmorType.HEAVY, ArmorSlot.HELMET),
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.HELMET)
             )
             .build();
 
         BaseGearBuilder.of(BaseGearTypes.RING, GearSlots.RING, "Ring")
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
+            .baseStat(
+                getStat(ArmorStat.ELE_DEF, ArmorType.HEAVY, ArmorSlot.CHEST)
+            )
             .build();
 
         BaseGearBuilder.of(BaseGearTypes.NECKLACE, GearSlots.NECKLACE, "Necklace")
             .tags(new TagList(SlotTag.necklace, SlotTag.jewelry_family))
+            .baseStat(
+                getStat(ArmorStat.ELE_DEF, ArmorType.HEAVY, ArmorSlot.CHEST)
+            )
             .build();
 
         BaseGearBuilder.of(BaseGearTypes.SHIELD, GearSlots.SHIELD, "Tower Shield")

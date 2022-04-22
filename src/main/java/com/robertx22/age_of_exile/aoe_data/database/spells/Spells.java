@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.impl.*;
+import com.robertx22.age_of_exile.aoe_data.database.spells.reworked_spells.AttackSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.reworked_spells.BuffSpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.schools.*;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
@@ -19,6 +21,9 @@ public class Spells implements ExileRegistryInit {
         new IntSpells().registerAll();
         new StrSpells().registerAll();
         new TotemSpells().registerAll();
+
+        new AttackSpells().registerAll();
+        new BuffSpells().registerAll();
 
         new FireSpells().registerAll();
         new NatureSpells().registerAll();

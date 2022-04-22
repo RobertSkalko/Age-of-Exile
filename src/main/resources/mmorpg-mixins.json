@@ -16,8 +16,9 @@
     "StopFireInDungeonMixin"
   ],
   "client": [
+    "StopExperimentalAnnoyanceMixin",
     "ItemGlintMixin",
-    "ItemStackMixin",    
+    "ItemStackMixin",
     "WorldRendererMixin"
   ],
   "injectors": {

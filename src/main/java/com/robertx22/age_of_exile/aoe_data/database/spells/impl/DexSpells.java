@@ -46,7 +46,7 @@ public class DexSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of("mark_for_death", SpellConfiguration.Builder.instant(5, 60 * 20 * 2)
-                    .setScaleManaToPlayer(),
+                ,
                 "Marked for Death",
                 Arrays.asList())
             .attackStyle(PlayStyle.ranged)

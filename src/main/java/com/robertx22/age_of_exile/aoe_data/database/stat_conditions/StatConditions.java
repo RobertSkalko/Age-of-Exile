@@ -1,9 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.stat_conditions;
 
 import com.robertx22.age_of_exile.aoe_data.DataHolder;
-import com.robertx22.age_of_exile.aoe_data.database.spells.schools.FireSpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.schools.NatureSpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.schools.WaterSpells;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
@@ -108,13 +105,6 @@ public class StatConditions implements ExileRegistryInit {
             .GUID(), ATTACK_TYPE_MATCHES.get(AttackType.spell)
             .GUID())
     );
-    public static DataHolder<String, StatCondition> IS_SPECIFIC_SPELL = new DataHolder<>(
-        Arrays.asList(
-            WaterSpells.FROSTBALL_ID,
-            FireSpells.FIREBALL_ID,
-            NatureSpells.POISONBALL_ID
-        )
-        , x -> new StringMatchesCondition(EventData.SPELL, x));
 
     public static void loadClass() {
     }
@@ -122,7 +112,6 @@ public class StatConditions implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        IS_SPECIFIC_SPELL.addToSerializables();
         ATTACK_TYPE_MATCHES.addToSerializables();
         REQUIRE_CHARGED_ATTACK.addToSerializables();
         IS_NOT_IN_COMBAT.addToSerializables();

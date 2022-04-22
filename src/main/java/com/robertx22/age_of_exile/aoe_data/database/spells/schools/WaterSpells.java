@@ -16,7 +16,6 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeap
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashSounds;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -29,17 +28,14 @@ import java.util.Arrays;
 
 public class WaterSpells implements ExileRegistryInit {
     public static String FROST_NOVA_AOE = "frost_nova";
-    public static String FROSTBALL_ID = "frostball";
 
     public static String WATER_BREATH = "water_breath";
     public static String MAGE_CIRCLE = "mage_circle";
-    public static String FROST_ARMOR = "frost_armor";
     public static String TIDAL_STRIKE = "tidal_strike";
     public static String NOURISHMENT = "nourishment";
     public static String HEART_OF_ICE = "heart_of_ice";
     public static String ICY_WEAPON = "ice_weapon";
     public static String CHILLING_FIELD = "chilling_field";
-    public static String ICE_COMET = "ice_comet";
     public static String CHILL_ERUPTION = "chill_eruption";
 
     @Override
@@ -66,31 +62,7 @@ public class WaterSpells implements ExileRegistryInit {
 
             .build();
 
-        SpellBuilder.of(ICE_COMET, SpellConfiguration.Builder.instant(18, 20 * 1)
-                    .setChargesAndRegen(ICE_COMET, 3, 20 * 20), "Meteor",
-                Arrays.asList(SpellTag.area, SpellTag.damage)
-            )
-            .manualDesc("Summon a meteor that falls from the sky, dealing " +
-                SpellCalcs.ICE_COMET.getLocDmgTooltip(Elements.Water))
-
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 5D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.PACKED_ICE, 200D)
-                .put(MapField.ENTITY_NAME, "block")
-                .put(MapField.BLOCK_FALL_SPEED, -0.03D)
-                .put(MapField.FIND_NEAREST_SURFACE, false)
-                .put(MapField.IS_BLOCK_FALLING, true)))
-            .onTick("block", PartBuilder.particleOnTick(2D, ParticleTypes.ITEM_SNOWBALL, 2D, 0.5D))
-            .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.ICE_COMET, Elements.Water, 3D))
-            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 150D, 3D))
-            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.ASH, 25D, 3D))
-            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 1D))
-            .onExpire("block", PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
-            .build();
-
-        SpellBuilder.of(CHILLING_FIELD, SpellConfiguration.Builder.nonInstant(30, 20 * 60, 30)
-                    .setSwingArm(), "Chilling Field",
+        SpellBuilder.of(CHILLING_FIELD, SpellConfiguration.Builder.instant(30, 20 * 60), "Chilling Field",
                 Arrays.asList(SpellTag.damage, SpellTag.area))
             .weaponReq(CastingWeapon.ANY_WEAPON)
 
@@ -106,7 +78,6 @@ public class WaterSpells implements ExileRegistryInit {
                 .put(MapField.BLOCK_FALL_SPEED, 0D)
                 .put(MapField.FIND_NEAREST_SURFACE, true)
                 .put(MapField.IS_BLOCK_FALLING, false)))
-
             .onTick("block", PartBuilder.groundParticles(ParticleTypes.CLOUD, 20D, 2D, 0.2D))
             .onTick("block", PartBuilder.playSound(SoundEvents.HORSE_BREATHE, 1.1D, 1.5D)
                 .onTick(20D))
@@ -137,7 +108,7 @@ public class WaterSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of(WATER_BREATH, SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 5, 40)
-                    .setScaleManaToPlayer(),
+                ,
                 "Water Breathing",
                 Arrays.asList())
             .manualDesc(
@@ -150,7 +121,7 @@ public class WaterSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of(MAGE_CIRCLE, SpellConfiguration.Builder.instant(10, 20 * 45)
-                .setScaleManaToPlayer(), "Mage Circle", Arrays.asList(SpellTag.movement))
+                , "Mage Circle", Arrays.asList(SpellTag.movement))
 
             .manualDesc(
                 "Summon a Magic Circle. Standing in it provides you a buff." +
@@ -175,13 +146,6 @@ public class WaterSpells implements ExileRegistryInit {
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
             .build();
 
-        SpellBuilder.of(FROST_ARMOR, SpellConfiguration.Builder.instant(15, 120 * 20), "Frost Armor",
-                Arrays.asList())
-            .manualDesc("Give self effect:")
-            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.FROST_ARMOR, 20 * 120D))
-            .build();
-
         SpellBuilder.of(TIDAL_STRIKE, SpellConfiguration.Builder.instant(8, 12)
                     .setSwingArm(), "Tidal Strike",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
@@ -195,23 +159,6 @@ public class WaterSpells implements ExileRegistryInit {
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SPLASH, 50D, 1D, 0.1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.BUBBLE, 100D, 1D, 0.1D))
             )
-            .build();
-
-        SpellBuilder.of(FROSTBALL_ID, SpellConfiguration.Builder.instant(5, 20)
-                    .setSwingArm()
-                    .applyCastSpeedToCooldown(), "Ice Ball",
-                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
-            .manualDesc(
-                "Throw out a ball of ice, dealing " + SpellCalcs.ICEBALL.getLocDmgTooltip()
-                    + " " + Elements.Water.getIconNameDmg())
-
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(SlashItems.SNOWBALL.get(), 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 8D, false)
-            ))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ITEM_SNOWBALL, 2D, 0.15D))
-            .onHit(PartBuilder.damageInAoe(SpellCalcs.ICEBALL, Elements.Water, 2D))
-            .onHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D))
             .build();
 
         SpellBuilder.of(FROST_NOVA_AOE, SpellConfiguration.Builder.instant(30, 25 * 20), "Frost Nova",

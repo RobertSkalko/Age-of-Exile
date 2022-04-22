@@ -66,10 +66,8 @@ public class SlashDeferred {
         SlashItems.init();
         SlashItems.GearItems.init();
         RuneItems.init();
-        IngredientItems.init();
+        RunewordItems.init();
         GemItems.init();
-        CraftToolItems.init();
-        CraftedConsumableItems.init();
     }
 
 }

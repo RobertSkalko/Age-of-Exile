@@ -4,7 +4,6 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.synergy.Synergy;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.gui.bases.BaseScreen;
 import com.robertx22.age_of_exile.gui.bases.INamedScreen;
@@ -80,22 +79,6 @@ public class SpellScreen extends BaseScreen implements INamedScreen, ILeftRight 
                         int y = this.guiTop + 177 - (point.y * SLOT_SPACING);
 
                         this.addButton(new LearnSpellButton(this, spell, x, y));
-                    }
-                });
-
-            currentSchool().synergies.entrySet()
-                .forEach(e -> {
-
-                    PointData point = e.getValue();
-                    Synergy synergy = ExileDB.Synergies()
-                        .get(e.getKey());
-
-                    if (synergy != null) {
-
-                        int x = this.guiLeft + 12 + (point.x * SLOT_SPACING);
-                        int y = this.guiTop + 177 - (point.y * SLOT_SPACING);
-
-                        this.addButton(new LearnSynergyButton(this, synergy, x, y));
                     }
                 });
 

@@ -49,7 +49,7 @@ public class GearSocketsData implements IStatsContainer, IGearPartTooltip {
             if (sockets.size() > i) {
                 SocketData data = sockets.get(i);
                 Gem gem = data.getGem();
-                list.add(new SText(gem.getFormat() + "[" + TooltipUtils.STAR + "] ").append(data.GetTooltipString(info, gear)
+                list.add(new SText(gem.getFormat() + "[" + TooltipUtils.STAR_2 + "] ").append(data.GetTooltipString(info, gear)
                     .get(0)));
             }
         }

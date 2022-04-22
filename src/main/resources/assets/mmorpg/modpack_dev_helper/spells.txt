@@ -1,7 +1,6 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 undying_will
-ice_comet
 healing_aura
 song_of_valor
 thorn_armor
@@ -12,6 +11,7 @@ whirlwind
 curse_of_despair
 arrow_storm
 conjure_ender_chest
+ice_shield
 shred
 poison_trap
 jump_field
@@ -20,7 +20,6 @@ charged_bolt
 night_vision
 shout_warn
 curse_of_weak
-frost_armor
 backflip
 song_of_perseverance
 shooting_star
@@ -37,7 +36,6 @@ song_of_vigor
 dash
 nourishment
 recoil_shot
-poison_ball
 teleport
 banish
 chill_eruption
@@ -48,19 +46,16 @@ entangling_seed
 nature_balm
 black_hole
 rejuv_totem
-demon
-test_spell
-fireball
 levitation
 water_breath
 explosive_arrow
 charge
 heart_of_ice
 poison_arrow
+magic_projectile
 curse_of_agony
 frost_trap
 fire_trap
-frostball
 flame_strike
 meteor
 refresh
@@ -68,7 +63,6 @@ frost_nova
 make_arrows
 power_chord
 pull
-test_command
 awaken_mana
 the_hunt
 fire_nova

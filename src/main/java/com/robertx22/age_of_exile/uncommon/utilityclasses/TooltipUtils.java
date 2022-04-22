@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UpgradeData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -220,34 +219,53 @@ public class TooltipUtils {
     }
 
     public static IFormattableTextComponent gearRarity(GearRarity rarity) {
-        return new StringTextComponent("Rarity: ").withStyle(TextFormatting.WHITE)
+        return new StringTextComponent(TextFormatting.GRAY + "Rarity: ")
             .append(rarity.locName()
-                .withStyle(rarity.textFormatting()));
+                .withStyle(rarity.textFormatting(), TextFormatting.BOLD));
     }
 
     public static IFormattableTextComponent gearLevel(int lvl) {
-        return new StringTextComponent("Level Req: ")
-            .withStyle(TextFormatting.WHITE)
+        return new StringTextComponent(TextFormatting.GRAY + "Level: ")
             .append(new StringTextComponent(lvl + "")
                 .withStyle(TextFormatting.YELLOW));
     }
 
-    public static String STAR = "\u272B";
+    public static IFormattableTextComponent gearLevelAndRarity(GearItemData gear) {
 
-    public static IFormattableTextComponent upgradeStars(GearItemData gear) {
+        // todo
 
-        String txt = "Upgrades: [";
+        return gear.getRarity()
+            .locName()
+            .withStyle(gear.getRarity()
+                .textFormatting())
+            .append(" ")
+            .append(gear.GetBaseGearType()
+                .locName())
+            .append(" ")
+            .append(Words.Level.locName())
+            .append(" " + gear.lvl);
 
-        for (UpgradeData.SlotType up : gear.up.ups) {
+    }
 
-            txt += up.format;
-            txt += STAR;
+    public static String STAR = "\u2605";
+
+    public static IFormattableTextComponent gearStars(GearItemData gear) {
+
+        int stars = 5; // todo
+
+        IFormattableTextComponent txt = new StringTextComponent(TextFormatting.GRAY + "Rating: ");
+
+        for (int i = 0; i < stars; i++) {
+            txt = txt.append(gear.getRarity()
+                .textFormatting() + STAR);
         }
 
-        txt += "]";
+        // todo
 
-        return new StringTextComponent(txt);
+        return txt;
     }
+
+    public static String STAR_2 = "\u272B";
 
     public static IFormattableTextComponent dragOntoGearToUse() {
         return new StringTextComponent("[Drag onto gear to use]").withStyle(TextFormatting.AQUA, TextFormatting.BOLD);

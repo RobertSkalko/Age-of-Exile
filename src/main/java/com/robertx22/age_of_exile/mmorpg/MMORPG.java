@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.SynergyStats;
 import com.robertx22.age_of_exile.config.forge.ClientConfigs;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
+import com.robertx22.age_of_exile.database.all_keys.base.AllDataKeys;
 import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.stats.types.special.SpecialStats;
@@ -62,6 +63,8 @@ public class MMORPG {
     public MMORPG() {
 
         Watch watch = new Watch();
+
+        AllDataKeys.initAll();
 
         ModLoadingContext.get()
             .registerConfig(ModConfig.Type.SERVER, ServerContainer.spec);

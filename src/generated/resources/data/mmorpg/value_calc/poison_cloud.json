@@ -1,7 +1,7 @@
 {
   "stat_scalings": [
     {
-      "stat": "spell_power",
+      "stat": "spell_damage",
       "multi": {
         "min": 0.2,
         "max": 0.4

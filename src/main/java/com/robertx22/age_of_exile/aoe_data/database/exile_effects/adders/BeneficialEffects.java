@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
-import com.robertx22.age_of_exile.database.data.exile_effects.VanillaStatData;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
@@ -27,11 +26,8 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
-
-import java.util.UUID;
 
 public class BeneficialEffects implements ExileRegistryInit {
 
@@ -54,7 +50,6 @@ public class BeneficialEffects implements ExileRegistryInit {
     public static EffectCtx UNDYING_WILL = new EffectCtx("undying_will", "Undying Will", 24, Elements.Physical, EffectType.beneficial);
     public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 30, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx MURDER_INSTINCT = new EffectCtx("murder_instinct", "Murder Instinct", 31, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx MOB_ANGER_LVL1 = new EffectCtx("mob_anger_lvl1", "Angry", 32, Elements.Physical, EffectType.beneficial);
     public static EffectCtx MAGE_CIRCLE = new EffectCtx("mage_circle", "Mage Circle", 33, Elements.Elemental, EffectType.beneficial);
 
     @Override
@@ -93,17 +88,6 @@ public class BeneficialEffects implements ExileRegistryInit {
         ExileEffectBuilder.of(MAGE_CIRCLE)
             .stat(10, 25, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
             .stat(5, 20, SpellDamage.getInstance(), ModType.FLAT)
-            .maxStacks(1)
-            .addTags(EffectTags.offensive)
-            .build();
-
-        ExileEffectBuilder.of(MOB_ANGER_LVL1)
-            .vanillaStat(VanillaStatData.create(Attributes.KNOCKBACK_RESISTANCE, 0.75F, ModType.FLAT, UUID.fromString("116a0931-d576-4721-b286-8d11de1ee42b")))
-            .vanillaStat(VanillaStatData.create(Attributes.MOVEMENT_SPEED, 1.2F, ModType.PERCENT, UUID.fromString("136a0931-d576-4721-b286-8d11de1ee42b")))
-            .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 5D, 1D)
-                    .onTick(1D))
-                .buildForEffect())
             .maxStacks(1)
             .addTags(EffectTags.offensive)
             .build();

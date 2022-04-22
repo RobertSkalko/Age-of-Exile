@@ -16,6 +16,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.library_of_exile.utils.SavedSound;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.SoundEvent;
@@ -288,6 +289,12 @@ public class PartBuilder {
     public static ComponentPart playSound(SoundEvent sound, Double volume, Double pitch) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PLAY_SOUND.create(sound, volume, pitch));
+        return c;
+    }
+
+    public static ComponentPart playSound(SavedSound sound) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.PLAY_SOUND.create(sound.sound, (double) sound.volume, (double) sound.pitch));
         return c;
     }
 

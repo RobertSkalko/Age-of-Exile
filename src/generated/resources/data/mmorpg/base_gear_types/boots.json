@@ -14,12 +14,6 @@
     {
       "min": 3.0,
       "max": 7.5,
-      "stat": "elemental_resist",
-      "type": "FLAT"
-    },
-    {
-      "min": 3.0,
-      "max": 7.5,
       "stat": "armor",
       "type": "FLAT"
     }

@@ -12,7 +12,7 @@
       "stats": [
         {
           "v1": 0.1,
-          "stat": "spell_power",
+          "stat": "spell_damage",
           "type": "FLAT"
         },
         {

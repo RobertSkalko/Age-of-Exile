@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
+import com.robertx22.age_of_exile.database.all_keys.base.SpellKey;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart;
@@ -14,11 +15,13 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
+import com.robertx22.age_of_exile.uncommon.SoundRefs;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.particles.BasicParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
@@ -45,6 +48,20 @@ public class SpellBuilder {
                 .build());
     }
 
+    public static SpellBuilder of(SpellKey key, SpellConfiguration config, String name, List<SpellTag> tags) {
+        SpellBuilder builder = new SpellBuilder();
+
+        builder.spell = new Spell();
+        builder.spell.identifier = key.id;
+        builder.spell.config = config;
+        builder.spell.locName = name;
+
+        builder.spell.getConfig().tags = tags;
+
+        return builder;
+    }
+
+    // todo remove eventually
     public static SpellBuilder of(String id, SpellConfiguration config, String name, List<SpellTag> tags) {
         SpellBuilder builder = new SpellBuilder();
 
@@ -56,6 +73,21 @@ public class SpellBuilder {
         builder.spell.getConfig().tags = tags;
 
         return builder;
+    }
+
+    public static SpellBuilder buffSelfSpell(SpellKey key,
+                                             SpellConfiguration config,
+                                             String name,
+                                             EffectCtx ctx,
+                                             int seconds) {
+        return SpellBuilder.of(key.id, config, name,
+                Arrays.asList())
+            .manualDesc("Give self effect:")
+            .onCast(PartBuilder.playSound(SoundRefs.DING_LOW_PITCH))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 150D, 2D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.CRIT, 25D, 2D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 100D, 2D))
+            .onCast(PartBuilder.giveSelfExileEffect(ctx, (double) (20 * seconds)));
     }
 
     public static SpellBuilder forEffect() {
@@ -100,7 +132,8 @@ public class SpellBuilder {
     }
 
     public SpellBuilder teleportForward() {
-        this.onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
+        this.onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)
+                .put(MapField.DISTANCE, 16D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 1D)
                 .put(MapField.ENTITY_NAME, "block")
                 .put(MapField.BLOCK_FALL_SPEED, 0D)

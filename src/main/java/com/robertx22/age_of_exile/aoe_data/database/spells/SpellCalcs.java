@@ -10,13 +10,7 @@ public class SpellCalcs {
 
     }
 
-    public static ValueCalculation POISON_BALL = ValueCalcBuilder.of("poisonball")
-        .spellScaling(0.5F, 1F)
-        .build();
-    public static ValueCalculation ICEBALL = ValueCalcBuilder.of("iceball")
-        .spellScaling(0.5F, 1F)
-        .build();
-    public static ValueCalculation FIREBALL = ValueCalcBuilder.of("fireball")
+    public static ValueCalculation MAGIC_PROJECTILE = ValueCalcBuilder.of("magic_projectile")
         .spellScaling(0.5F, 1F)
         .build();
 

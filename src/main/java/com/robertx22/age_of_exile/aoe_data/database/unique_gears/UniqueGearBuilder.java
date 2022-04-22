@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears;
 import com.robertx22.age_of_exile.aoe_data.database.runewords.RunewordBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellPower;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -52,10 +51,7 @@ public class UniqueGearBuilder {
 
     public UniqueGearBuilder baseStats(List<StatModifier> stat) {
         this.uniq.base_stats.addAll(stat);
-        if (uniq.getBaseGear()
-            .isWeapon()) {
-            uniq.base_stats.add(new StatModifier(2, 4, SpellPower.getInstance()));
-        }
+
         return this;
     }
 

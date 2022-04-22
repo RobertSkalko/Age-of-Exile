@@ -9,8 +9,8 @@ public enum Elements {
 
     Physical(false, "Physical", TextFormatting.GOLD, "physical", "\u2726"),
     Fire(true, "Fire", TextFormatting.RED, "fire", "\u2600"),
-    Water(true, "Water", TextFormatting.AQUA, "water", "\u2749"),
-    Earth(true, "Earth", TextFormatting.DARK_GREEN, "earth", "\u273F"), /* Reminder: if i rename this to "earth" satte will get pissed off */
+    Water(true, "Ice", TextFormatting.AQUA, "water", "\u2749"),
+    Earth(true, "Poison", TextFormatting.DARK_GREEN, "earth", "\u273F"),
 
     Elemental(false, "Elemental", TextFormatting.LIGHT_PURPLE, "elemental", "\u269C"),
     All(false, "All", TextFormatting.LIGHT_PURPLE, "all", "\u273F");

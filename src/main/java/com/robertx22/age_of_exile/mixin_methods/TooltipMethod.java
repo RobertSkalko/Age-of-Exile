@@ -3,14 +3,13 @@ package com.robertx22.age_of_exile.mixin_methods;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
-import com.robertx22.age_of_exile.player_skills.ingredient.data.CraftingProcessData;
-import com.robertx22.age_of_exile.player_skills.ingredient.data.IngredientData;
+import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
+import com.robertx22.age_of_exile.database.data.runewords.RuneWordItem;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.Unit;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.Database;
@@ -26,6 +25,7 @@ import net.minecraft.util.text.TextFormatting;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class TooltipMethod {
     public static void getTooltip(ItemStack stack, PlayerEntity entity, ITooltipFlag tooltipContext, CallbackInfoReturnable<List<ITextComponent>> list) {
@@ -38,34 +38,6 @@ public class TooltipMethod {
         PlayerEntity player = Minecraft.getInstance().player;
 
         try {
-
-            CraftingProcessData pdata = StackSaving.CRAFT_PROCESS.loadFrom(stack);
-
-            if (pdata != null) {
-                pdata.makeTooltip(stack, tooltip);
-                return;
-            }
-
-            if (StackSaving.INGREDIENTS.has(stack)) {
-                IngredientData data = StackSaving.INGREDIENTS.loadFrom(stack);
-                if (data != null) {
-                    data.makeTooltip(tooltip);
-                    return;
-                }
-            }
-
-            if (stack.getItem() instanceof TieredItem) {
-                TieredItem tier = (TieredItem) stack.getItem();
-
-                tooltip.add(new StringTextComponent("Tier " + tier.tier.getDisplayTierNumber()).withStyle(TextFormatting.LIGHT_PURPLE));
-            }
-
-            if (Screen.hasControlDown()) {
-                GearItemData gear = Gear.Load(stack);
-                if (gear != null) {
-                    return;
-                }
-            }
 
             if (player == null || player.level == null) {
                 return;
@@ -90,20 +62,39 @@ public class TooltipMethod {
 
             boolean hasdata = false;
 
+            Optional<RuneWord> word = RuneWordItem.getRuneword(stack.getItem());
+            // todo this could use some performance update
+            if (word.isPresent()) {
+                for (ITextComponent txt : word.get()
+                    .getTooltip(Load.Unit(player)
+                        .getLevel())
+                    .build()) {
+                    tooltip.add(txt);
+                }
+                return;
+            }
+            if (stack.getItem() instanceof TieredItem) {
+                TieredItem tier = (TieredItem) stack.getItem();
+                tooltip.add(new StringTextComponent("Tier " + tier.tier.getDisplayTierNumber()).withStyle(TextFormatting.LIGHT_PURPLE));
+            }
+
+            if (Screen.hasControlDown()) {
+                GearItemData gear = Gear.Load(stack);
+                if (gear != null) {
+                    return;
+                }
+            }
+
             if (stack.hasTag()) {
-
                 ICommonDataItem data = ICommonDataItem.load(stack);
-
                 if (data != null) {
                     data.BuildTooltip(ctx);
                     hasdata = true;
                 }
-
                 IFormattableTextComponent broken = TooltipUtils.itemBrokenText(stack, data);
                 if (broken != null) {
                     tooltip.add(broken);
                 }
-
             }
 
             if (!hasdata) {

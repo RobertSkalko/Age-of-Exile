@@ -196,8 +196,7 @@
       "area",
       "trap"
     ],
-    "cast_type": "NORMAL",
-    "scale_mana_cost_to_player_lvl": false
+    "cast_type": "NORMAL"
   },
   "manual_tip": true,
   "disabled_dims": [],

@@ -1,12 +1,26 @@
 package com.robertx22.age_of_exile.database.data.runewords;
 
+import com.robertx22.age_of_exile.database.data.MinMax;
+import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
+import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+import com.robertx22.library_of_exile.text_wrapper.TextBuilder;
+import com.robertx22.library_of_exile.text_wrapper.TooltipBuilder;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +28,21 @@ import java.util.List;
 public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord> {
     public static RuneWord SERIALIZER = new RuneWord();
 
+    public transient List<RuneItem.RuneType> runes = new ArrayList<>();
+
     public String id = "";
     public String uniq_id = "";
-    public List<String> runes = new ArrayList<>();
+    public String item_id = "";
+
+    public int min_lvl = 0; // todo use these
+    public int max_lvl = 100;
+
     public List<String> slots = new ArrayList<>();
+
+    public UniqueGear getUnique() {
+        return ExileDB.UniqueGears()
+            .get(uniq_id);
+    }
 
     @Override
     public ExileRegistryType getExileRegistryType() {
@@ -35,7 +60,9 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
     }
 
     public boolean canApplyOnItem(ItemStack stack) {
-
+        if (Gear.has(stack)) {
+            return false;
+        }
         if (slots.stream()
             .noneMatch(e -> {
                 return GearSlot.isItemOfThisSlot(ExileDB.GearSlots()
@@ -47,34 +74,65 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
         return true;
     }
 
-    public boolean runesCanActivateRuneWord(List<String> craftrunes, boolean requireExact) {
+    public void useRuneWord(PlayerEntity player, ItemStack stack) {
 
-        List<String> copy = new ArrayList<>(craftrunes);
+        int lvl = MathHelper.clamp(Load.Unit(player)
+            .getLevel(), min_lvl, max_lvl);
 
-        boolean nope = false;
-        for (String runeid : runes) {
-            if (copy.contains(runeid)) {
-                copy.remove(runeid);
-            } else {
-                nope = true;
+        GearBlueprint b = new GearBlueprint(lvl);
+        UniqueGear uniq = ExileDB.UniqueGears()
+            .get(uniq_id);
+        b.level.override(lvl);
+        b.uniquePart.set(uniq);
+        b.rarity.set(uniq.getUniqueRarity());
+        GearItemData gear = b.createData();
+        gear.saveToStack(stack);
+
+    }
+
+    public TooltipBuilder getTooltip(int lvl) {
+
+        TooltipBuilder tooltip = TooltipBuilder.of();
+
+        UniqueGear uniq = ExileDB.UniqueGears()
+            .get(uniq_id);
+
+        tooltip.add(TextBuilder.of()
+            .append(uniq.ModlocName()
+                .format(uniq.getUniqueRarity()
+                    .textFormatting())));
+
+        tooltip.addEmptyLine();
+
+        for (StatModifier stat : uniq.uniqueStats) {
+            for (ITextComponent txt : stat.ToExactStat(100, lvl)
+                .GetTooltipString(new TooltipInfo(new MinMax((int) stat.min, (int) stat.max)))) {
+                tooltip.add(TextBuilder.of()
+                    .append(txt));
             }
         }
-        if (nope) {
-            return false;
+
+        TextBuilder txt = TextBuilder.of()
+            .append("Slots: ");
+        for (String slotid : this.slots) {
+            GearSlot slot = ExileDB.GearSlots()
+                .get(slotid);
+            txt.append(slot.ModlocName());
+            txt.append(" ");
         }
 
-        if (!requireExact) {
-            return true;
-        }
+        tooltip.addEmptyLine();
 
-        if (copy.isEmpty()) {
-            return true;
-        }
-        return false;
+        tooltip.add(txt);
+        tooltip.add(TextBuilder.of()
+            .append("Level: " + min_lvl + " - " + max_lvl));
+
+        return tooltip;
     }
 
     @Override
     public int Weight() {
         return 1000;
     }
+
 }

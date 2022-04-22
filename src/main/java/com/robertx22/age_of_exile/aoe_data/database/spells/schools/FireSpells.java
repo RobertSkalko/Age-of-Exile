@@ -6,22 +6,16 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import net.minecraft.block.Blocks;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
 public class FireSpells implements ExileRegistryInit {
-    public static String FIREBALL_ID = "fireball";
     public static String FIRE_NOVA_ID = "fire_nova";
     public static String FLAME_STRIKE_ID = "flame_strike";
 
@@ -76,28 +70,6 @@ public class FireSpells implements ExileRegistryInit {
             .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, BeneficialEffects.FIRE_WEAPON.resourcePath, 20 * 10D))
             .build();
 
-        SpellBuilder.of(METEOR, SpellConfiguration.Builder.nonInstant(18, 20 * 30, 30), "Meteor",
-                Arrays.asList(SpellTag.area, SpellTag.damage)
-            )
-            .manualDesc("Summon a meteor that falls from the sky, dealing " +
-                SpellCalcs.METEOR.getLocDmgTooltip(Elements.Fire))
-
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 6D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.MAGMA_BLOCK, 200D)
-                .put(MapField.ENTITY_NAME, "block")
-                .put(MapField.BLOCK_FALL_SPEED, -0.03D)
-                .put(MapField.FIND_NEAREST_SURFACE, false)
-                .put(MapField.IS_BLOCK_FALLING, true)))
-            .onTick("block", PartBuilder.particleOnTick(2D, ParticleTypes.LAVA, 2D, 0.5D))
-            .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.METEOR, Elements.Fire, 3D))
-            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.LAVA, 150D, 3D))
-            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.ASH, 25D, 3D))
-            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 1D))
-            .onExpire("block", PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
-            .build();
-
         SpellBuilder.of(FIRE_NOVA_ID, SpellConfiguration.Builder.instant(20, 20 * 25), "Fire Nova",
                 Arrays.asList(SpellTag.area, SpellTag.damage))
             .onCast(PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
@@ -109,26 +81,6 @@ public class FireSpells implements ExileRegistryInit {
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 1D, 0D, 0.2D))
 
             .onCast(PartBuilder.damageInAoe(SpellCalcs.FIRE_NOVA, Elements.Fire, 3D))
-            .build();
-
-        SpellBuilder.of(FIREBALL_ID, SpellConfiguration.Builder.instant(5, 20)
-                    .setSwingArm()
-                    .applyCastSpeedToCooldown(), "Fire Ball",
-                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
-            .manualDesc(
-                "Throw out a ball of fire, dealing " + SpellCalcs.FIREBALL.getLocDmgTooltip()
-                    + " " + Elements.Fire.getIconNameDmg())
-            .weaponReq(CastingWeapon.MAGE_WEAPON)
-
-            .onCast(PartBuilder.playSound(SoundEvents.BLAZE_SHOOT, 1D, 0.6D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(SlashItems.FIREBALL.get(), 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 8D, false)
-            ))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.FLAME, 1D, 0.1D))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.FALLING_LAVA, 1D, 0.5D))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 1D, 0.01D))
-            .onHit(PartBuilder.damageInAoe(SpellCalcs.FIREBALL, Elements.Fire, 2D))
-            .onHit(PartBuilder.playSound(SoundEvents.GENERIC_BURN, 1D, 2D))
-            .onHit(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 3D, 1D))
             .build();
 
     }

@@ -60,7 +60,7 @@ public class Armor extends Stat implements IUsableStat {
 
     @Override
     public String locNameForLangFile() {
-        return "Physical Defense";
+        return "Armor";
     }
 
     private static class SingletonHolder {

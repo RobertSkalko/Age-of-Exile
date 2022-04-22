@@ -46,7 +46,6 @@ public class SlashItems {
     public static RegObj<StatSoulItem> STAT_SOUL = Def.item(() -> new StatSoulItem());
     public static RegObj<IdentifyTomeItem> IDENTIFY_TOME = Def.item(() -> new IdentifyTomeItem(), "identify_tome");
     public static RegObj<RarityEssenceItem> RARITY_ESSENCE = Def.item(() -> new RarityEssenceItem());
-    public static RegObj<RarityUpgradeStone> RARITY_UPGRADE = Def.item(() -> new RarityUpgradeStone());
     public static RegObj<LootCrateItem> LOOT_CRATE = Def.item(() -> new LootCrateItem());
     public static RegObj<SourceOfStrengthItem> SOURCE_OF_STRENGTH = Def.item(() -> new SourceOfStrengthItem());
 
@@ -111,7 +110,6 @@ public class SlashItems {
     static Item.Properties stationProp = new Item.Properties().tab(CreativeTabs.MyModTab);
 
     public static RegObj<Item> TELEPORTER_BLOCK = Def.item("teleporter", () -> new BlockItem(SlashBlocks.TELEPORTER.get(), stationProp));
-    public static RegObj<Item> RUNEWORD_STATION = Def.item("runeword_station", () -> new BlockItem(SlashBlocks.RUNEWORD.get(), stationProp));
     public static RegObj<Item> PORTAL = Def.item("portal", () -> new BlockItem(SlashBlocks.PORTAL.get(), stationProp));
 
     public static class GearItems {

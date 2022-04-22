@@ -16,15 +16,6 @@ public class SchoolBuilder {
         return b;
     }
 
-    public SchoolBuilder addSynergy(String id, PointData point) {
-
-        Preconditions.checkArgument(SpellSchool.MAX_X_ROWS >= point.x && point.x > -1);
-        Preconditions.checkArgument(SpellSchool.MAX_Y_ROWS >= point.y && point.y > -1);
-
-        school.synergies.put(id, point);
-        return this;
-    }
-
     public SchoolBuilder addSpell(String id, PointData point) {
 
         Preconditions.checkArgument(SpellSchool.MAX_X_ROWS >= point.x && point.x > -1);
