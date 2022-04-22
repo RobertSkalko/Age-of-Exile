@@ -5,6 +5,8 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.ExileEffectActionBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.VanillaEffectActionBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
@@ -13,11 +15,9 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroA
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
-import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashSounds;
@@ -38,12 +38,10 @@ public class HolySpells implements ExileRegistryInit {
     public static String HEALING_AURA_ID = "healing_aura";
     public static String WISH = "wish";
     public static String UNDYING_WILL = "undying_will";
-    public static String BANISH = "banish";
     public static String INSPIRATION = "awaken_mana";
     public static String SHOOTING_STAR = "shooting_star";
 
     public static String CHARGE_ID = "charge";
-    public static String GONG_STRIKE_ID = "gong_strike";
     public static String WHIRLWIND = "whirlwind";
     public static String TAUNT = "taunt";
     public static String SHOUT_WARN = "shout_warn";
@@ -68,7 +66,11 @@ public class HolySpells implements ExileRegistryInit {
 
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.giveSelfEffect(SlashPotions.KNOCKBACK_RESISTANCE.get(), 100D))
+
+            .onCast(new VanillaEffectActionBuilder(SlashPotions.KNOCKBACK_RESISTANCE.get()).giveToSelfOnly()
+                .seconds(5)
+                .build())
+
             .onCast(PartBuilder.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1D, 1D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 2D, 0.5D))
             .onCast(PartBuilder.damageInAoe(SpellCalcs.WHIRLWIND, Elements.Physical, 1.5D)
@@ -115,6 +117,7 @@ public class HolySpells implements ExileRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 20D, 3D))
 
             .build();
+
         SpellBuilder.of(SHOUT_WARN, SpellConfiguration.Builder.instant(10, 60 * 20), "Warning Shout",
                 Arrays.asList(SpellTag.area, SpellTag.shout, SpellTag.shield))
 
@@ -142,62 +145,6 @@ public class HolySpells implements ExileRegistryInit {
                 .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.STUN.resourcePath, ExileEffectAction.GiveOrTake.GIVE_STACKS, 20D * 2))
                 .addTarget(TargetSelector.AOE.create(8D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 100D, 6D, 0.1D))
-            .build();
-
-        SpellBuilder.of(GONG_STRIKE_ID, SpellConfiguration.Builder.instant(8, 20 * 10)
-                    .setSwingArm(), "Gong Strike",
-                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
-            .manualDesc("Bash enemies around you for " +
-                SpellCalcs.GONG_STRIKE.getLocDmgTooltip(Elements.Physical))
-
-            .attackStyle(PlayStyle.melee)
-            .weaponReq(CastingWeapon.MELEE_WEAPON)
-
-            .onCast(PartBuilder.playSound(SoundEvents.ANVIL_PLACE, 1D, 1D))
-            .onCast(PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
-
-            .onCast(PartBuilder.damageInFront(SpellCalcs.GONG_STRIKE, Elements.Physical, 2D, 3D))
-            .onCast(PartBuilder.addExileEffectToEnemiesInFront(NegativeEffects.STUN.resourcePath, 2D, 2D, 20D * 3))
-
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 300D, 2D, 0.1D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 5D, 2D, 0.1D))
-
-            .build();
-
-        SpellBuilder.of(UNDYING_WILL, SpellConfiguration.Builder.instant(7, 20 * 60)
-                , "Undying Will",
-                Arrays.asList())
-            .manualDesc("Gives buff to self.")
-            .attackStyle(PlayStyle.melee)
-            .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.RAVAGER_ROAR, 1D, 1D))
-            .onCast(PartBuilder.giveSelfExileEffect(BeneficialEffects.UNDYING_WILL, 20D * 10))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 50D, 1D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.ENCHANT, 50D, 1D))
-            .build();
-
-        SpellBuilder.of(BANISH, SpellConfiguration.Builder.instant(10, 20 * 45)
-                , "Banish", Arrays.asList())
-            .manualDesc(
-                "Summon a Magic circle that banishes enemies in the area, levitating them for a certain duration and applying a debuff.")
-            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(SlashBlocks.GLYPH.get(), 20D * 5)
-                .put(MapField.ENTITY_NAME, "block")
-                .put(MapField.BLOCK_FALL_SPEED, 0D)
-                .put(MapField.FIND_NEAREST_SURFACE, false)
-                .put(MapField.IS_BLOCK_FALLING, false)))
-
-            .onTick("block", PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.SET, 0.1D, ParticleMotion.Upwards))
-                .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.ELE_WEAKNESS.resourcePath, ExileEffectAction.GiveOrTake.GIVE_STACKS, 60D))
-                .onTick(1D)
-                .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
-
-            .onTick("block", PartBuilder.playSound(SoundEvents.SOUL_SOIL_HIT, 0.5D, 1D)
-                .addCondition(EffectCondition.EVERY_X_TICKS.create(40D)))
-
-            .onTick("block", PartBuilder.groundEdgeParticles(ParticleTypes.SOUL_FIRE_FLAME, 15D, 3D, 0.5D)
-                .addCondition(EffectCondition.EVERY_X_TICKS.create(3D)))
             .build();
 
         SpellBuilder.of(INSPIRATION, SpellConfiguration.Builder.instant(0, 300 * 20), "Inspiration",
@@ -266,7 +213,11 @@ public class HolySpells implements ExileRegistryInit {
             )
             .onCast(PartBuilder.playSound(SoundEvents.NOTE_BLOCK_CHIME, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.NOTE, 50D, 3D))
-            .onCast(PartBuilder.giveExileEffectToAlliesInRadius(5D, effect.resourcePath, 20 * 30D))
+
+            .onCast(new ExileEffectActionBuilder(effect).radius(8)
+                .seconds(30)
+                .build())
+
             .build();
     }
 }

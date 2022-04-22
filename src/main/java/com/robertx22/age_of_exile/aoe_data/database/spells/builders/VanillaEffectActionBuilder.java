@@ -17,10 +17,17 @@ public class VanillaEffectActionBuilder extends BaseEffectActionBuilder<VanillaE
     @Override
     public ComponentPart build() {
         ComponentPart c = new ComponentPart();
+
         c.acts.add(SpellAction.POTION.createGive(effect, this.seconds * 20D));
-        c.targets.add(BaseTargetSelector.AOE.create((double) radius,
-            EntityFinder.SelectionType.RADIUS,
-            this.targetSelector));
+
+        if (giveToSelfOnly) {
+            c.targets.add(BaseTargetSelector.CASTER.create());
+        } else {
+            c.targets.add(BaseTargetSelector.AOE.create((double) radius,
+                EntityFinder.SelectionType.RADIUS,
+                this.targetSelector));
+        }
+
         return c;
     }
 }

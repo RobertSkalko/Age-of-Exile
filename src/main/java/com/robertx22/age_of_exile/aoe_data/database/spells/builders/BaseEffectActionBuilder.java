@@ -8,9 +8,15 @@ public abstract class BaseEffectActionBuilder<T extends BaseEffectActionBuilder>
     AllyOrEnemy targetSelector = AllyOrEnemy.allies;
     float radius = 3;
     float seconds = 5;
+    boolean giveToSelfOnly = false;
 
     public T targetEnemies() {
         this.targetSelector = AllyOrEnemy.enemies;
+        return (T) this;
+    }
+
+    public T giveToSelfOnly() {
+        this.giveToSelfOnly = true;
         return (T) this;
     }
 

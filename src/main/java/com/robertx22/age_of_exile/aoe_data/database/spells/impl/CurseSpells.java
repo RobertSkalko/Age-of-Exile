@@ -4,6 +4,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.ExileEffectActionBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
@@ -38,12 +39,15 @@ public class CurseSpells implements ExileRegistryInit {
 
             .onExpire("block", PartBuilder.playSound(SoundEvents.WITHER_SKELETON_HURT, 1D, 1D))
             .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.CURSE, Elements.Elemental, 3D))
-            .onExpire("block", PartBuilder.addExileEffectToEnemiesInAoe(effect.resourcePath, 3D, 20 * 15D)
+
+            .onExpire("block", new ExileEffectActionBuilder(effect).seconds(20)
+                .radius(3)
+                .targetEnemies()
+                .build()
                 .addPerEntityHit(
                     PartBuilder.justAction(SpellAction.PARTICLES_IN_RADIUS.create(ParticleTypes.SMOKE, 50D, 0.3D)
                         .put(MapField.HEIGHT, 2.2D)
                     )))
-
             .build();
     }
 

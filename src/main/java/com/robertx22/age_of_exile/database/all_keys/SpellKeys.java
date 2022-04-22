@@ -8,6 +8,8 @@ public interface SpellKeys {
     SpellKey METEOR = new SpellKey("meteor");
     SpellKey ICE_SHIELD = new SpellKey("ice_shield");
     SpellKey ICE_NOVA = new SpellKey("ice_nova");
+    SpellKey NATURE_BALM = new SpellKey("nature_balm");
+    SpellKey POISON_CLOUD = new SpellKey("poison_cloud");
 
     public static void init() {
 

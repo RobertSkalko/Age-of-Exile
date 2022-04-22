@@ -16,5 +16,10 @@ public class BuffSpells implements ExileRegistryInit {
                 BeneficialEffects.FROST_ARMOR, 30)
             .build();
 
+        SpellBuilder.buffAlliesSpell(SpellKeys.NATURE_BALM,
+                SpellConfiguration.Builder.instant(20, 60), "Nature's Balm",
+                BeneficialEffects.REGENERATE, 15)
+            .build();
+
     }
 }

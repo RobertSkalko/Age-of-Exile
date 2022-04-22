@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.ExileEffectActionBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.all_keys.base.SpellKey;
 import com.robertx22.age_of_exile.database.data.StatModifier;
@@ -80,6 +81,7 @@ public class SpellBuilder {
                                              String name,
                                              EffectCtx ctx,
                                              int seconds) {
+
         return SpellBuilder.of(key.id, config, name,
                 Arrays.asList())
             .manualDesc("Give self effect:")
@@ -87,7 +89,31 @@ public class SpellBuilder {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 150D, 2D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CRIT, 25D, 2D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 100D, 2D))
-            .onCast(PartBuilder.giveSelfExileEffect(ctx, (double) (20 * seconds)));
+
+            .onCast(new ExileEffectActionBuilder(ctx).giveToSelfOnly()
+                .seconds(seconds)
+                .build());
+    }
+
+    public static SpellBuilder buffAlliesSpell(SpellKey key,
+                                               SpellConfiguration config,
+                                               String name,
+                                               EffectCtx ctx,
+                                               int seconds) {
+
+        return SpellBuilder.of(key.id, config, name,
+                Arrays.asList())
+            .manualDesc("Give allies effect:")
+            .onCast(PartBuilder.playSound(SoundRefs.DING_LOW_PITCH))
+
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 250D, 3D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.CRIT, 55D, 3D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 200D, 3D))
+
+            .onCast(new ExileEffectActionBuilder(ctx).radius(8)
+                .seconds(seconds)
+                .build());
+
     }
 
     public static SpellBuilder forEffect() {

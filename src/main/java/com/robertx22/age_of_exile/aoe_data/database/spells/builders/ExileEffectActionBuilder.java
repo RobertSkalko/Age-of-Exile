@@ -18,7 +18,12 @@ public class ExileEffectActionBuilder extends BaseEffectActionBuilder<ExileEffec
     public ComponentPart build() {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.EXILE_EFFECT.create(effect.resourcePath, ExileEffectAction.GiveOrTake.GIVE_STACKS, seconds * 20D));
-        c.targets.add(BaseTargetSelector.AOE.create((double) radius, EntityFinder.SelectionType.RADIUS, targetSelector));
+
+        if (giveToSelfOnly) {
+            c.targets.add(BaseTargetSelector.CASTER.create());
+        } else {
+            c.targets.add(BaseTargetSelector.AOE.create((double) radius, EntityFinder.SelectionType.RADIUS, targetSelector));
+        }
         return c;
     }
 }

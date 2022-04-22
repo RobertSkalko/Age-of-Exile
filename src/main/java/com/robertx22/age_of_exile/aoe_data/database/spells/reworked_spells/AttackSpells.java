@@ -19,6 +19,7 @@ import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 
@@ -95,6 +96,32 @@ public class AttackSpells implements ExileRegistryInit {
                 .seconds(6)
                 .build())
 
+            .build();
+
+        SpellBuilder.of(SpellKeys.POISON_CLOUD, SpellConfiguration.Builder.instant(30, 25 * 20), "Poison Cloud",
+                Arrays.asList(SpellTag.area, SpellTag.damage))
+            .manualDesc(
+                "Erupt with poisonous gas, dealing " + SpellCalcs.FROST_NOVA.getLocDmgTooltip()
+                    + " " + Elements.Earth.getIconNameDmg() + " to nearby enemies and applying Poison.")
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
+
+            .onExpire(PartBuilder.justAction(SpellAction.POTION_AREA_PARTICLES.create(TextFormatting.GREEN, 10)))
+
+            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 20D * 8)
+                .put(MapField.ENTITY_NAME, "block")
+                .put(MapField.BLOCK_FALL_SPEED, 0D)
+                .put(MapField.FIND_NEAREST_SURFACE, true)
+                .put(MapField.IS_BLOCK_FALLING, false)))
+
+            .onTick("block", PartBuilder.groundParticles(ParticleTypes.SNEEZE, 20D, 3D, 0.2D))
+            .onTick("block", PartBuilder.playSound(SoundEvents.PANDA_SNEEZE, 1.1D, 1.5D)
+                .onTick(20D))
+            .onTick("block", PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, Elements.Earth, 3D)
+                .onTick(20D)
+                .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
+            )
             .build();
 
     }

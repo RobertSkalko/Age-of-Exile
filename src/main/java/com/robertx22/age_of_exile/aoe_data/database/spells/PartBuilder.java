@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
-import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction.GiveOrTake;
@@ -304,34 +303,6 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart giveSelfExileEffect(String effect, Double duration) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
-        c.targets.add(BaseTargetSelector.CASTER.create());
-        return c;
-    }
-
-    public static ComponentPart giveSelfExileEffect(EffectCtx ctx, Double duration) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_EFFECT.create(ctx.resourcePath, GiveOrTake.GIVE_STACKS, duration));
-        c.targets.add(BaseTargetSelector.CASTER.create());
-        return c;
-    }
-
-    public static ComponentPart giveSelfEffect(Effect effect, Double dura) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.POTION.createGive(effect, dura));
-        c.targets.add(BaseTargetSelector.CASTER.create());
-        return c;
-    }
-
-    public static ComponentPart giveEffectToAlliesInRadius(Effect effect, Double dura, Double radius) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.POTION.createGive(effect, dura));
-        c.targets.add(BaseTargetSelector.AOE.alliesInRadius(radius));
-        return c;
-    }
-
     public static ComponentPart giveShieldInRadius(Double radius, ValueCalculation calc, double duration) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.GIVE_SHIELD.create(calc, duration));
@@ -339,53 +310,10 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart giveExileEffectToAlliesInRadius(Double radius, String effect, Double dura) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, dura));
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies));
-        return c;
-    }
-
-    public static ComponentPart giveSelfEffect(Effect effect, Double dura, Double str) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.POTION.createGive(effect, dura)
-            .put(MapField.POTION_STRENGTH, str));
-        c.targets.add(BaseTargetSelector.CASTER.create());
-        return c;
-    }
-
     public static ComponentPart removeSelfEffect(Effect effect) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.POTION.createRemove(effect));
         c.targets.add(BaseTargetSelector.CASTER.create());
-        return c;
-    }
-
-    public static ComponentPart giveToAlliesInRadius(String effect, Double radius, Double duration) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies));
-        return c;
-    }
-
-    public static ComponentPart addExileEffectToEnemiesInAoe(String effect, Double radius, Double duration) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies));
-        return c;
-    }
-
-    public static ComponentPart addEffectToEnemiesInAoe(Effect effect, Double radius, Double duration) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.POTION.createGive(effect, duration));
-        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies));
-        return c;
-    }
-
-    public static ComponentPart addExileEffectToEnemiesInFront(String effect, Double distance, Double width, Double duration) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.EXILE_EFFECT.create(effect, GiveOrTake.GIVE_STACKS, duration));
-        c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, AllyOrEnemy.enemies));
         return c;
     }
 

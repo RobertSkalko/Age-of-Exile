@@ -1,7 +1,10 @@
 package com.robertx22.age_of_exile.aoe_data.database.spell_schools;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.impl.TotemSpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.schools.*;
+import com.robertx22.age_of_exile.aoe_data.database.spells.schools.HolySpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.schools.NatureSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.schools.RangerSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.schools.WaterSpells;
 import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -19,7 +22,6 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
         SchoolBuilder.of(DIVINE, "Divine")
             .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 0))
-            .addSpell(HolySpells.GONG_STRIKE_ID, new PointData(2, 0))
 
             .addSpell(HolySpells.WHIRLWIND, new PointData(6, 1))
             .addSpell(HolySpells.CHARGE_ID, new PointData(4, 1))
@@ -36,7 +38,6 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(HolySpells.HYMN_OF_VIGOR, new PointData(3, 4))
 
             .addSpell(HolySpells.TAUNT, new PointData(5, 5))
-            .addSpell(HolySpells.BANISH, new PointData(10, 5))
 
             .addSpell(HolySpells.WISH, new PointData(3, 6))
 
@@ -77,7 +78,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(TotemSpells.MANA_TOTEM_ID, new PointData(7, 2))
             .addSpell(TotemSpells.GUARD_TOTEM_ID, new PointData(8, 2))
 
-            .addSpell(NatureSpells.POISON_CLOUD, new PointData(2, 3))
+            .addSpell(SpellKeys.POISON_CLOUD.id, new PointData(2, 3))
 
             .addSpell(NatureSpells.REFRESH, new PointData(10, 6))
 
@@ -85,16 +86,8 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
         SchoolBuilder.of(FIRE, "Fire")
             .addSpell(SpellKeys.MAGIC_PROJECTILE.id, new PointData(0, 0))
-            .addSpell(FireSpells.FLAME_STRIKE_ID, new PointData(5, 0))
-
-            .addSpell(FireSpells.FLAME_WEAPON, new PointData(7, 1))
 
             .addSpell(SpellKeys.METEOR.id, new PointData(2, 3))
-
-            .addSpell(FireSpells.VAMP_BLOOD, new PointData(5, 4))
-            .addSpell(FireSpells.DRACONIC_BLOOD, new PointData(6, 4))
-
-            .addSpell(FireSpells.OVERLOAD, new PointData(10, 5))
 
             .build();
 
