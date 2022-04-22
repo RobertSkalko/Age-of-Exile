@@ -127,7 +127,7 @@
               "map": {
                 "selection_type": "RADIUS",
                 "en_predicate": "enemies",
-                "radius": 2.0
+                "radius": 3.0
               }
             }
           ],
@@ -138,7 +138,7 @@
                 "exile_potion_id": "negative/2",
                 "potion_action": "GIVE_STACKS",
                 "count": 1.0,
-                "potion_dur": 80.0
+                "potion_dur": 100.0
               }
             }
           ],

@@ -52,7 +52,7 @@
             "map": {
               "selection_type": "RADIUS",
               "en_predicate": "allies",
-              "radius": 5.0
+              "radius": 8.0
             }
           }
         ],

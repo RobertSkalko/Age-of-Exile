@@ -269,7 +269,7 @@
     "imbues": 1,
     "charge_name": "",
     "cast_time_ticks": 0,
-    "cooldown_ticks": 600,
+    "cooldown_ticks": 30,
     "style": "magic",
     "tags": [
       "area",

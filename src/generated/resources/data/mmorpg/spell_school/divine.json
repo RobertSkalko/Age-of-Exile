@@ -1,9 +1,25 @@
 {
   "id": "divine",
   "spells": {
+    "whirlwind": {
+      "x": 6,
+      "y": 1
+    },
+    "wish": {
+      "x": 3,
+      "y": 6
+    },
     "undying_will": {
       "x": 3,
       "y": 2
+    },
+    "pull": {
+      "x": 8,
+      "y": 3
+    },
+    "awaken_mana": {
+      "x": 7,
+      "y": 4
     },
     "charge": {
       "x": 4,
@@ -24,30 +40,6 @@
     "shooting_star": {
       "x": 1,
       "y": 2
-    },
-    "banish": {
-      "x": 10,
-      "y": 5
-    },
-    "whirlwind": {
-      "x": 6,
-      "y": 1
-    },
-    "wish": {
-      "x": 3,
-      "y": 6
-    },
-    "pull": {
-      "x": 8,
-      "y": 3
-    },
-    "gong_strike": {
-      "x": 2,
-      "y": 0
-    },
-    "awaken_mana": {
-      "x": 7,
-      "y": 4
     },
     "song_of_vigor": {
       "x": 3,

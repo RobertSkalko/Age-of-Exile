@@ -105,6 +105,8 @@ public class AttackSpells implements ExileRegistryInit {
                     + " " + Elements.Earth.getIconNameDmg() + " to nearby enemies and applying Poison.")
             .weaponReq(CastingWeapon.ANY_WEAPON)
 
+            .onCast(PartBuilder.playSound(SoundRefs.DING_LOW_PITCH))
+
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
 
             .onExpire(PartBuilder.justAction(SpellAction.POTION_AREA_PARTICLES.create(TextFormatting.GREEN, 10)))
@@ -116,8 +118,6 @@ public class AttackSpells implements ExileRegistryInit {
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
             .onTick("block", PartBuilder.groundParticles(ParticleTypes.SNEEZE, 20D, 3D, 0.2D))
-            .onTick("block", PartBuilder.playSound(SoundEvents.PANDA_SNEEZE, 1.1D, 1.5D)
-                .onTick(20D))
             .onTick("block", PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, Elements.Earth, 3D)
                 .onTick(20D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))

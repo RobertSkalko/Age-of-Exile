@@ -123,6 +123,64 @@
           }
         ],
         "en_preds": []
+      },
+      {
+        "targets": [
+          {
+            "type": "aoe",
+            "map": {
+              "selection_type": "RADIUS",
+              "en_predicate": "enemies",
+              "radius": 3.0
+            }
+          }
+        ],
+        "acts": [
+          {
+            "type": "damage",
+            "map": {
+              "value_calculation": "magic_projectile",
+              "element": "Water"
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [
+          {
+            "type": "aoe",
+            "map": {
+              "selection_type": "RADIUS",
+              "en_predicate": "enemies",
+              "radius": 3.0
+            }
+          }
+        ],
+        "acts": [
+          {
+            "type": "potion",
+            "map": {
+              "potion_action": "GIVE_STACKS",
+              "potion_id": "minecraft:slowness",
+              "count": 1.0,
+              "potion_dur": 120.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
       }
     ],
     "entity_components": {}
@@ -132,8 +190,8 @@
     "apply_cast_speed_to_cd": false,
     "castingWeapon": "MAGE_WEAPON",
     "mana_cost": {
-      "min": 0.0,
-      "max": 0.0
+      "min": 10.0,
+      "max": 20.0
     },
     "times_to_cast": 1,
     "charges": 0,
@@ -141,7 +199,7 @@
     "imbues": 1,
     "charge_name": "",
     "cast_time_ticks": 0,
-    "cooldown_ticks": 20,
+    "cooldown_ticks": 60,
     "style": "magic",
     "tags": [
       "projectile",
