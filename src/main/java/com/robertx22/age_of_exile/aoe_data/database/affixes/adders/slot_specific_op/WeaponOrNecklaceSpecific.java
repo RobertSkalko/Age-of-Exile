@@ -26,14 +26,15 @@ public class WeaponOrNecklaceSpecific implements ExileRegistryInit {
 
         AffixBuilder.Normal("focused")
             .Named("Focused")
-            .stats(new StatModifier(4, 8, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT))
-            .includesTags(SlotTag.necklace, SlotTag.mage_weapon)
+            .stats(new StatModifier(4, 8, Stats.CRIT_CHANCE.get(), ModType.FLAT))
+            .includesTags(SlotTag.necklace)
             .Prefix()
             .Build();
+
         AffixBuilder.Normal("of_devastation")
             .Named("Of Devastation")
-            .stats(new StatModifier(6, 20, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT))
-            .includesTags(SlotTag.necklace, SlotTag.mage_weapon)
+            .stats(new StatModifier(6, 20, Stats.CRIT_DAMAGE.get(), ModType.FLAT))
+            .includesTags(SlotTag.mage_weapon)
             .Suffix()
             .Build();
     }

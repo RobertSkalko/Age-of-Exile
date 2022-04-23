@@ -19,13 +19,13 @@
     {
       "min": 2.0,
       "max": 6.0,
-      "stat": "spell_critical_hit",
+      "stat": "critical_hit",
       "type": "FLAT"
     },
     {
       "min": 3.0,
       "max": 10.0,
-      "stat": "spell_critical_damage",
+      "stat": "critical_damage",
       "type": "FLAT"
     }
   ]

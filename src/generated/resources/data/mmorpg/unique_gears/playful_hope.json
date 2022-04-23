@@ -5,7 +5,7 @@
     {
       "min": -75.0,
       "max": 25.0,
-      "stat": "global_critical_damage",
+      "stat": "critical_hit",
       "type": "flat"
     },
     {

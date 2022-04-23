@@ -17,13 +17,13 @@
     {
       "min": 5.0,
       "max": 5.0,
-      "stat": "global_critical_hit_per_25_magic_find",
+      "stat": "critical_hit_per_25_magic_find",
       "type": "flat"
     },
     {
       "min": 10.0,
       "max": 10.0,
-      "stat": "global_critical_damage_per_25_increased_quantity",
+      "stat": "critical_damage_per_25_increased_quantity",
       "type": "flat"
     }
   ],

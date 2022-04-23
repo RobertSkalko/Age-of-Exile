@@ -7,7 +7,7 @@
     "side": "Source",
     "ifs": [
       "is_crit_true",
-      "attack_type_is_attack"
+      "is_attack_or_spell_attack"
     ],
     "effects": [
       "multiply_number_num"

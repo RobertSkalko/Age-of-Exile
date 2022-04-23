@@ -29,7 +29,7 @@
     {
       "min": 5.0,
       "max": 15.0,
-      "stat": "spell_critical_damage",
+      "stat": "critical_damage",
       "type": "flat"
     }
   ],

@@ -66,7 +66,7 @@ public class SeasonRings implements ExileRegistryInit {
                 new StatModifier(20, 40, new ElementalResist(Elements.Water), ModType.PERCENT),
                 new StatModifier(10, 25, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.PERCENT),
-                new StatModifier(5, 15, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT)
+                new StatModifier(5, 15, Stats.CRIT_CHANCE.get(), ModType.FLAT)
             ))
             .devComment("")
             .build();
@@ -81,7 +81,7 @@ public class SeasonRings implements ExileRegistryInit {
                 new StatModifier(20, 40, new ElementalResist(Elements.Fire), ModType.PERCENT),
                 new StatModifier(10, 25, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT),
                 new StatModifier(5, 15, Mana.getInstance(), ModType.PERCENT),
-                new StatModifier(5, 15, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
+                new StatModifier(5, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
             ))
             .devComment("")
             .build();

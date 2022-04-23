@@ -11,7 +11,7 @@
     {
       "min": 3.0,
       "max": 10.0,
-      "stat": "spell_critical_hit",
+      "stat": "critical_hit",
       "type": "flat"
     },
     {

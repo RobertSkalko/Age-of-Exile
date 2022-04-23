@@ -86,7 +86,7 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(MAGE_CIRCLE)
-            .stat(10, 25, Stats.SPELL_CRIT_DAMAGE.get(), ModType.FLAT)
+            .stat(10, 25, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
             .stat(5, 20, SpellDamage.getInstance(), ModType.FLAT)
             .maxStacks(1)
             .addTags(EffectTags.offensive)

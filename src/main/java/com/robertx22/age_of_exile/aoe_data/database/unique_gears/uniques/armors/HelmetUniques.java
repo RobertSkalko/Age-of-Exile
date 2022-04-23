@@ -23,7 +23,7 @@ public class HelmetUniques implements ExileRegistryInit {
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(25, 50, Mana.getInstance(), ModType.PERCENT),
-                new StatModifier(3, 10, Stats.SPELL_CRIT_CHANCE.get(), ModType.FLAT),
+                new StatModifier(3, 10, Stats.CRIT_CHANCE.get(), ModType.FLAT),
                 new StatModifier(-10, -25, Health.getInstance(), ModType.PERCENT),
                 new StatModifier(1, 10, DatapackStats.MANA_PER_10_INT, ModType.FLAT)
             ))

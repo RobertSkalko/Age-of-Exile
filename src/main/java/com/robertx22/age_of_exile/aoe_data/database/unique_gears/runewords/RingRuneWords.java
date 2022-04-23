@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.database.all_keys.BaseGearKeys;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -39,7 +38,7 @@ public class RingRuneWords implements ExileRegistryInit {
                 BaseGearKeys.RING)
             .setReplacesName()
             .stats(Arrays.asList(
-                new StatModifier(-75, 25, GlobalCriticalDamage.getInstance()),
+                new StatModifier(-75, 25, Stats.CRIT_CHANCE.get()),
                 new StatModifier(-50, 15, new ElementalResist(Elements.Water), ModType.PERCENT),
                 new StatModifier(-50, 15, new ElementalResist(Elements.Fire), ModType.PERCENT),
                 new StatModifier(-50, 15, new ElementalResist(Elements.Earth), ModType.PERCENT)

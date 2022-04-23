@@ -325,30 +325,6 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EffectCtx> CHANCE_TO_APPLY_EFFECT_WHEN_HIT = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_of_" + x.id + "_when_hit", x -> x.element)
-        .addAllOfType(Arrays.asList(
-                NegativeEffects.POISON
-            )
-        )
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Target)
-        .addCondition(x -> StatConditions.IF_RANDOM_ROLL)
-        .addEffect(x -> StatEffects.GIVE_EFFECT_TO_SOURCE.get(x))
-        .setLocName(x -> Stat.format(
-            Stat.format(Stat.VAL1 + "% chance to apply " + x.locname + " to enemies that hit you.")
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
     public static DataPackStatAccessor<EffectCtx> CHANCE_OF_APPLYING_EFFECT = DatapackStatBuilder
         .<EffectCtx>of(x -> "chance_of_" + x.id, x -> x.element)
         .addAllOfType(Arrays.asList(
@@ -381,43 +357,16 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EffectCtx> CHANCE_OF_APPLYING_EFFECT_ON_CRIT = DatapackStatBuilder
-        .<EffectCtx>of(x -> "chance_of_" + x.id + "_on_crit", x -> x.element)
-        .addAllOfType(Arrays.asList(
-                NegativeEffects.BURN
-            )
-        )
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IF_CRIT)
-        .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
-        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
-        .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
-        .setLocName(x -> Stat.format(
-            "Your " + x.element.getIconNameFormat() + " Criticals have " + Stat.VAL1 + "% chance of applying " + x.locname
-        ))
-        .setLocDesc(x -> "Chance to give effect")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 100;
-            x.is_long = true;
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
     public static DataPackStatAccessor<EmptyAccessor> CRIT_CHANCE = DatapackStatBuilder
         .ofSingle("critical_hit", Elements.Physical)
         .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
+        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
         .addEffect(StatEffects.SET_IS_CRIT)
         .setLocName(x -> "Crit Chance")
-        .setLocDesc(x -> "Chance to multiply attack damage by critical damage")
+        .setLocDesc(x -> "Chance to multiply damage")
         .modifyAfterDone(x -> {
             x.is_perc = true;
             x.base = 1;
@@ -426,28 +375,6 @@ public class Stats implements ExileRegistryInit {
             x.group = StatGroup.MAIN;
             x.icon = "\u2694";
             x.format = TextFormatting.YELLOW.getName();
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> SPELL_CRIT_CHANCE = DatapackStatBuilder
-        .ofSingle("spell_critical_hit", Elements.Physical)
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IF_RANDOM_ROLL)
-        .addCondition(StatConditions.IS_SPELL)
-        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.spell))
-        .addEffect(StatEffects.SET_IS_CRIT)
-        .setLocName(x -> "Spell Crit Chance")
-        .setLocDesc(x -> "Chance to multiply attack damage by critical damage")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.base = 1;
-            x.max = 100;
-            x.min = 0;
-            x.group = StatGroup.MAIN;
-            x.icon = "\u2739";
-            x.format = TextFormatting.LIGHT_PURPLE.getName();
         })
         .build();
 
@@ -480,7 +407,7 @@ public class Stats implements ExileRegistryInit {
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IF_CRIT)
-        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
+        .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
         .addEffect(StatEffects.MULTIPLY_VALUE)
         .setLocName(x -> "Crit Damage")
         .setLocDesc(x -> "If Critical, multiply by x")
@@ -493,28 +420,6 @@ public class Stats implements ExileRegistryInit {
 
             x.icon = "\u2694";
             x.format = TextFormatting.RED.getName();
-
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> SPELL_CRIT_DAMAGE = DatapackStatBuilder
-        .ofSingle("spell_critical_damage", Elements.Physical)
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IF_CRIT)
-        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.spell))
-        .addEffect(StatEffects.MULTIPLY_VALUE)
-        .setLocName(x -> "Spell Crit Damage")
-        .setLocDesc(x -> "If Critical, multiply by x")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.base = 50;
-            x.min = 0;
-            x.max = 500;
-            x.group = StatGroup.MAIN;
-            x.icon = "\u2739";
-            x.format = TextFormatting.DARK_PURPLE.getName();
 
         })
         .build();

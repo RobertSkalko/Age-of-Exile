@@ -10,8 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantit
 import com.robertx22.age_of_exile.database.data.stats.types.misc.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DualWieldDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalCriticalHit;
 import com.robertx22.age_of_exile.database.data.stats.types.professions.all.*;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.DamageAbsorbedByMana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.RegeneratePercentStat;
@@ -89,8 +87,6 @@ public class StatsRegister implements ExileRegistryInit {
                     // Resources
 
                     add(Armor.getInstance());
-                    add(GlobalCriticalDamage.getInstance());
-                    add(GlobalCriticalHit.getInstance());
                     add(DodgeRating.getInstance());
                     add(DamageShield.getInstance());
 

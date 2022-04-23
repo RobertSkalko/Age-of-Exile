@@ -40,7 +40,7 @@ public class WeaponPrefixes implements ExileRegistryInit {
 
         AffixBuilder.Normal("desolation")
             .Named("Desolation")
-            .stats(new StatModifier(2, 6, Stats.SPELL_CRIT_CHANCE.get()), new StatModifier(3, 10, Stats.SPELL_CRIT_DAMAGE.get()))
+            .stats(new StatModifier(2, 6, Stats.CRIT_CHANCE.get()), new StatModifier(3, 10, Stats.CRIT_DAMAGE.get()))
             .includesTags(SlotTag.mage_weapon)
             .Weight(100)
             .Prefix()

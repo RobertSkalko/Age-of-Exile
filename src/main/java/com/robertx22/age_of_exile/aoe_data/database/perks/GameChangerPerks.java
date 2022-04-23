@@ -79,7 +79,7 @@ public class GameChangerPerks implements ExileRegistryInit {
 
         PerkBuilder.gameChanger("steady_hand", "Steady Hand",
             new OptScaleExactStat(-100, Stats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-100, Stats.SPELL_CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
+            new OptScaleExactStat(-100, Stats.CRIT_CHANCE.get(), ModType.GLOBAL_INCREASE),
             new OptScaleExactStat(20, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
         );
 
@@ -102,8 +102,7 @@ public class GameChangerPerks implements ExileRegistryInit {
 
         PerkBuilder.gameChanger("divinity", "Divinity",
             new OptScaleExactStat(25, DatapackStats.HEAL_TO_SPELL_DMG, ModType.FLAT),
-            new OptScaleExactStat(-50, Stats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE),
-            new OptScaleExactStat(-50, Stats.SPELL_CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE)
+            new OptScaleExactStat(-50, Stats.CRIT_DAMAGE.get(), ModType.GLOBAL_INCREASE)
         );
 
         PerkBuilder.gameChanger("tormentor", "Tormentor",

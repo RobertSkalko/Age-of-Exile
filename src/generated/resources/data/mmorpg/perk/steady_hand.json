@@ -13,7 +13,7 @@
     },
     {
       "v1": -100.0,
-      "stat": "spell_critical_damage",
+      "stat": "critical_hit",
       "type": "GLOBAL_INCREASE",
       "scale_to_lvl": false
     },

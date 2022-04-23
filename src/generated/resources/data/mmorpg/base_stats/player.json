@@ -87,25 +87,13 @@
     },
     {
       "v1": 1.0,
-      "stat": "spell_critical_damage",
-      "type": "FLAT",
-      "scale_to_lvl": false
-    },
-    {
-      "v1": 1.0,
       "stat": "heal_crit_dmg",
       "type": "FLAT",
       "scale_to_lvl": false
     },
     {
       "v1": 1.0,
-      "stat": "spell_critical_hit",
-      "type": "FLAT",
-      "scale_to_lvl": false
-    },
-    {
-      "v1": 0.0,
-      "stat": "spell_critical_damage",
+      "stat": "crit_heal_chance",
       "type": "FLAT",
       "scale_to_lvl": false
     }

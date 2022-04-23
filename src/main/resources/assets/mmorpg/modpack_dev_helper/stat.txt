@@ -160,7 +160,6 @@ lifesteal
 ele_bow_damage
 spell_earth_damage
 health_per_10_intelligence
-global_critical_damage
 bonus_exp_for_t2_mob
 ele_axe_damage
 bonus_cooking_exp
@@ -223,7 +222,6 @@ shout_spell_dmg
 perc_self_hp_dmg_when_immo
 magic_dmg
 song_cdr
-global_critical_hit
 damage_shield
 inc_effect_of_positive_buff_given
 physical_any_wep_damage

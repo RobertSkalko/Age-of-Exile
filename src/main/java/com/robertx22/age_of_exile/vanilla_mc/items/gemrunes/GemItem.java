@@ -320,7 +320,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onWeapons() {
-                return Arrays.asList(new StatModifier(2, 10, Stats.SPELL_CRIT_DAMAGE.get()));
+                return Arrays.asList(new StatModifier(2, 10, Stats.CRIT_DAMAGE.get()));
             }
         }),
         RUBY("ruby", "Ruby", TextFormatting.RED, new EleGem(Elements.Fire)),
