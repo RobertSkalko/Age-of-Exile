@@ -135,7 +135,6 @@
     "castingWeapon": "MAGE_WEAPON",
     "mana_cost": 7,
     "times_to_cast": 1,
-    "imbues": 1,
     "cast_time_ticks": 0,
     "cooldown_ticks": 15,
     "style": "magic",
@@ -143,7 +142,9 @@
       "projectile",
       "damage"
     ],
-    "cast_type": "NORMAL"
+    "cast_type": "NORMAL",
+    "imbues": 1,
+    "imbue_type": "ON_RANGED_ATTACK"
   },
   "manual_tip": false,
   "disabled_dims": [],

@@ -179,7 +179,6 @@
     "castingWeapon": "ANY_WEAPON",
     "mana_cost": 7,
     "times_to_cast": 1,
-    "imbues": 1,
     "cast_time_ticks": 0,
     "cooldown_ticks": 100,
     "style": "ranged",
@@ -188,7 +187,9 @@
       "area",
       "trap"
     ],
-    "cast_type": "NORMAL"
+    "cast_type": "NORMAL",
+    "imbues": 1,
+    "imbue_type": "ON_RANGED_ATTACK"
   },
   "manual_tip": true,
   "disabled_dims": [],

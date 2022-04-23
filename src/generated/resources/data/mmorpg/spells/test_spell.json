@@ -11,8 +11,8 @@
             "type": "sound",
             "map": {
               "volume": 1.0,
-              "sound": "minecraft:entity.experience_orb.pickup",
-              "pitch": 0.0
+              "sound": "minecraft:block.fire.extinguish",
+              "pitch": 1.0
             }
           }
         ],
@@ -28,13 +28,99 @@
         "targets": [],
         "acts": [
           {
-            "type": "summon_at_sight",
+            "type": "sound",
             "map": {
-              "entity_name": "default_entity_name",
-              "gravity": false,
-              "life_ticks": 1.0,
-              "proj_en": "mmorpg:spell_projectile",
-              "height": 0.0
+              "volume": 1.0,
+              "sound": "minecraft:entity.generic.explode",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "sword_sweep_particles",
+            "map": {}
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:explosion",
+              "motion": "None",
+              "radius": 3.0,
+              "particle_count": 3.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:flame",
+              "y_rand": 0.1,
+              "motion": "None",
+              "shape": "HORIZONTAL_CIRCLE_EDGE",
+              "radius": 3.0,
+              "particle_count": 45.0,
+              "height": 0.5
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [
+          {
+            "type": "in_front",
+            "map": {
+              "en_predicate": "enemies",
+              "distance": 2.0,
+              "width": 3.0
+            }
+          }
+        ],
+        "acts": [
+          {
+            "type": "damage",
+            "map": {
+              "value_calculation": "magic_projectile"
             }
           }
         ],
@@ -47,134 +133,24 @@
         "en_preds": []
       }
     ],
-    "entity_components": {
-      "block": [
-        {
-          "targets": [],
-          "acts": [
-            {
-              "type": "particles_in_radius",
-              "map": {
-                "particle_type": "minecraft:sneeze",
-                "y_rand": 0.2,
-                "motion": "None",
-                "shape": "HORIZONTAL_CIRCLE",
-                "radius": 3.0,
-                "particle_count": 20.0,
-                "height": 0.5
-              }
-            }
-          ],
-          "ifs": [],
-          "en_preds": []
-        },
-        {
-          "targets": [
-            {
-              "type": "aoe",
-              "map": {
-                "selection_type": "RADIUS",
-                "en_predicate": "enemies",
-                "radius": 3.0
-              }
-            }
-          ],
-          "acts": [
-            {
-              "type": "damage",
-              "map": {
-                "value_calculation": "poison_cloud"
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "x_ticks_condition",
-              "map": {
-                "tick_rate": 20.0
-              }
-            }
-          ],
-          "en_preds": [],
-          "per_entity_hit": [
-            {
-              "targets": [],
-              "acts": [
-                {
-                  "type": "sound_per_target",
-                  "map": {
-                    "volume": 1.0,
-                    "sound": "minecraft:entity.generic.hurt",
-                    "pitch": 1.0
-                  }
-                }
-              ],
-              "ifs": [],
-              "en_preds": []
-            }
-          ]
-        }
-      ],
-      "default_entity_name": [
-        {
-          "targets": [],
-          "acts": [
-            {
-              "type": "effect_cloud",
-              "map": {
-                "color": 5635925.0,
-                "potion_dur": 200.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_entity_expire",
-              "map": {}
-            }
-          ],
-          "en_preds": []
-        },
-        {
-          "targets": [],
-          "acts": [
-            {
-              "type": "summon_block",
-              "map": {
-                "entity_name": "block",
-                "is_falling_block": false,
-                "block_fall_speed": 0.0,
-                "life_ticks": 160.0,
-                "block": "minecraft:air",
-                "find_surface": true
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_entity_expire",
-              "map": {}
-            }
-          ],
-          "en_preds": []
-        }
-      ]
-    }
+    "entity_components": {}
   },
   "config": {
     "swing_arm": true,
-    "castingWeapon": "ANY_WEAPON",
-    "mana_cost": 30,
+    "castingWeapon": "MELEE_WEAPON",
+    "mana_cost": 8,
     "times_to_cast": 1,
-    "imbues": 1,
     "cast_time_ticks": 0,
-    "cooldown_ticks": 500,
-    "style": "magic",
+    "cooldown_ticks": 100,
+    "style": "melee",
     "tags": [
+      "technique",
       "area",
       "damage"
     ],
-    "cast_type": "NORMAL"
+    "cast_type": "IMBUE",
+    "imbues": 3,
+    "imbue_type": "ON_CRIT"
   },
   "manual_tip": true,
   "disabled_dims": [],

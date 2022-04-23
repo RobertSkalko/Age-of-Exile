@@ -148,19 +148,20 @@
     }
   },
   "config": {
-    "swing_arm": false,
+    "swing_arm": true,
     "castingWeapon": "RANGED",
     "mana_cost": 20,
     "times_to_cast": 1,
-    "imbues": 1,
-    "cast_time_ticks": 20,
+    "cast_time_ticks": 0,
     "cooldown_ticks": 500,
     "style": "ranged",
     "tags": [
       "projectile",
       "damage"
     ],
-    "cast_type": "USE_ITEM"
+    "cast_type": "IMBUE",
+    "imbues": 1,
+    "imbue_type": "ON_RANGED_ATTACK"
   },
   "manual_tip": true,
   "disabled_dims": [],

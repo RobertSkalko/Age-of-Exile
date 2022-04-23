@@ -15,6 +15,7 @@ import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
+import com.robertx22.age_of_exile.uncommon.SoundRefs;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
@@ -29,6 +30,7 @@ import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -166,6 +168,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
         if (imbue && this.config.cast_type == SpellCastType.IMBUE) {
             ctx.spellsCap.getCastingData()
                 .imbueSpell(this, config.imbues);
+            SoundUtils.playSound(ctx.caster, SoundRefs.DING_LOW_PITCH);
         } else {
             attached.onCast(SpellCtx.onCast(caster, ctx.calcData));
         }

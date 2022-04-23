@@ -12,6 +12,7 @@ curse_of_despair
 entangling_seed
 nature_balm
 arrow_storm
+meteor_strike
 conjure_ender_chest
 ice_shield
 black_hole

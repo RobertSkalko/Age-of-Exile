@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.mixin_methods;
 
 import com.robertx22.age_of_exile.database.data.spells.components.ImbueType;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.ForgeEvents;
 import net.minecraft.entity.LivingEntity;
@@ -27,16 +26,9 @@ public class OnItemStoppedUsingCastImbuedSpell {
         });
 
         ForgeEvents.registerForgeEvent(CriticalHitEvent.class, event -> {
-            if (!event.getPlayer().level.isClientSide) {
-                Spell spell = Load.spells(event.getPlayer())
-                    .getCastingData()
-                    .getSpellBeingCast();
-                if (spell != null) {
-                    Load.spells(event.getPlayer())
-                        .getCastingData()
-                        .tryCastImbuedSpell(event.getPlayer(), ImbueType.ON_CRIT);
-                }
-            }
+            Load.spells(event.getPlayer())
+                .getCastingData()
+                .tryCastImbuedSpell(event.getPlayer(), ImbueType.ON_CRIT);
         });
     }
 

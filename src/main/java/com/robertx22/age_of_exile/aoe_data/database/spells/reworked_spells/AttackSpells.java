@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeap
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.uncommon.SoundRefs;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
@@ -121,6 +122,24 @@ public class AttackSpells implements ExileRegistryInit {
             .onTick("block", PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, 3D)
                 .onTick(20D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
+            )
+            .build();
+
+        SpellBuilder.of(SpellKeys.METEOR_STRIKE, SpellConfiguration.Builder.onJumpCritImbue(8, 100, 3)
+                , "Meteor Strike",
+                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+            .manualDesc("Strike enemies in front for " +
+                SpellCalcs.MAGIC_PROJECTILE.getLocDmgTooltip(Elements.Fire)) // todo
+            .attackStyle(PlayStyle.melee)
+            .weaponReq(CastingWeapon.MELEE_WEAPON)
+            .onCast(PartBuilder.playSound(SoundEvents.FIRE_EXTINGUISH, 1D, 1D))
+            .onCast(PartBuilder.playSound(SoundRefs.EXPLOSION))
+            .onCast(PartBuilder.swordSweepParticles())
+
+            .onCast(PartBuilder.damageInFront(SpellCalcs.MAGIC_PROJECTILE, 2D, 3D) // todo dmg
+                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D))
+                .addPerEntityHit(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 15D, 1D))
+
             )
             .build();
 

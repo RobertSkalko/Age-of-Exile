@@ -5,16 +5,12 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.uncommon.SoundRefs;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.block.Blocks;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 
@@ -25,30 +21,27 @@ public class TestSpell {
     public static Spell get() {
 
         return
-            SpellBuilder.of(USE_THIS_EXACT_ID, SpellConfiguration.Builder.instant(30, 25 * 20), "Poison Cloud",
-                    Arrays.asList(SpellTag.area, SpellTag.damage))
-                .manualDesc(
-                    "Erupt with poisonous gas, dealing " + SpellCalcs.FROST_NOVA.getLocDmgTooltip()
-                        + " " + Elements.Earth.getIconNameDmg() + " to nearby enemies and applying Poison.")
-                .weaponReq(CastingWeapon.ANY_WEAPON)
+            SpellBuilder.of(USE_THIS_EXACT_ID,
+                    // LEAVE THIS SPACE
 
-                .onCast(PartBuilder.playSound(SoundRefs.DING_LOW_PITCH))
+                    SpellConfiguration.Builder.onJumpCritImbue(8, 100, 3)
+                    , "Meteor Strike",
+                    Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
+                .manualDesc("Strike enemies in front for " +
+                    SpellCalcs.MAGIC_PROJECTILE.getLocDmgTooltip(Elements.Fire)) // todo
+                .attackStyle(PlayStyle.melee)
+                .weaponReq(CastingWeapon.MELEE_WEAPON)
+                .onCast(PartBuilder.playSound(SoundEvents.FIRE_EXTINGUISH, 1D, 1D))
+                .onCast(PartBuilder.playSound(SoundRefs.EXPLOSION))
+                .onCast(PartBuilder.swordSweepParticles())
 
-                .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
+                .onCast(PartBuilder.damageInFront(SpellCalcs.MAGIC_PROJECTILE, 2D, 3D)
+                    .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D))
+                    .addPerEntityHit(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 15D, 1D))
 
-                .onExpire(PartBuilder.justAction(SpellAction.POTION_AREA_PARTICLES.create(TextFormatting.GREEN, 10)))
-
-                .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 20D * 8)
-                    .put(MapField.ENTITY_NAME, "block")
-                    .put(MapField.BLOCK_FALL_SPEED, 0D)
-                    .put(MapField.FIND_NEAREST_SURFACE, true)
-                    .put(MapField.IS_BLOCK_FALLING, false)))
-
-                .onTick("block", PartBuilder.groundParticles(ParticleTypes.SNEEZE, 20D, 3D, 0.2D))
-                .onTick("block", PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, 3D)
-                    .onTick(20D)
-                    .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
                 )
+
+                // LEAVE THIS SPACE
                 // leave this part
                 .buildForEffect();
 

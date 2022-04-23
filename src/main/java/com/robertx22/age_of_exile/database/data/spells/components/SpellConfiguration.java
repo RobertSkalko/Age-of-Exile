@@ -53,7 +53,6 @@ public class SpellConfiguration {
 
         public static SpellConfiguration arrowImbue(int mana, int cd) {
             SpellConfiguration c = new SpellConfiguration();
-            c.cast_time_ticks = 20;
             c.mana_cost = mana;
             c.cooldown_ticks = cd;
             // c.swing_arm = false; todo
@@ -63,7 +62,6 @@ public class SpellConfiguration {
 
         public static SpellConfiguration onJumpCritImbue(int mana, int cd, int imbueCount) {
             SpellConfiguration c = new SpellConfiguration();
-            c.cast_time_ticks = 20;
             c.mana_cost = mana;
             c.imbues = imbueCount;
             c.cooldown_ticks = cd;

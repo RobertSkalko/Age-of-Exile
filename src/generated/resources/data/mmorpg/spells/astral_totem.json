@@ -182,7 +182,6 @@
     "castingWeapon": "ANY_WEAPON",
     "mana_cost": 18,
     "times_to_cast": 1,
-    "imbues": 1,
     "cast_time_ticks": 0,
     "cooldown_ticks": 600,
     "style": "magic",
@@ -190,7 +189,9 @@
       "totem",
       "area"
     ],
-    "cast_type": "NORMAL"
+    "cast_type": "NORMAL",
+    "imbues": 1,
+    "imbue_type": "ON_RANGED_ATTACK"
   },
   "manual_tip": true,
   "disabled_dims": [],

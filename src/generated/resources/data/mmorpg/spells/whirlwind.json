@@ -130,7 +130,6 @@
     "castingWeapon": "MELEE_WEAPON",
     "mana_cost": 10,
     "times_to_cast": 10,
-    "imbues": 1,
     "cast_time_ticks": 100,
     "cooldown_ticks": 0,
     "style": "melee",
@@ -139,7 +138,9 @@
       "area",
       "damage"
     ],
-    "cast_type": "NORMAL"
+    "cast_type": "NORMAL",
+    "imbues": 1,
+    "imbue_type": "ON_RANGED_ATTACK"
   },
   "manual_tip": true,
   "disabled_dims": [],

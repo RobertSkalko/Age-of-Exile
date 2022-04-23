@@ -10,6 +10,7 @@ public interface SpellKeys {
     SpellKey ICE_NOVA = new SpellKey("ice_nova");
     SpellKey NATURE_BALM = new SpellKey("nature_balm");
     SpellKey POISON_CLOUD = new SpellKey("poison_cloud");
+    SpellKey METEOR_STRIKE = new SpellKey("meteor_strike");
 
     public static void init() {
 
