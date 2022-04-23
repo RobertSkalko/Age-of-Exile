@@ -163,7 +163,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
             caster.swing(Hand.MAIN_HAND);
         }
 
-        if (imbue && this.config.cast_type == SpellCastType.USE_ITEM) {
+        if (imbue && this.config.cast_type == SpellCastType.IMBUE) {
             ctx.spellsCap.getCastingData()
                 .imbueSpell(this, config.imbues);
         } else {

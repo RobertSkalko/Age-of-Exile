@@ -14,12 +14,14 @@ public class SpellConfiguration {
     public CastingWeapon castingWeapon = CastingWeapon.ANY_WEAPON;
     public int mana_cost;
     public int times_to_cast = 1;
-    public int imbues = 1;
     private int cast_time_ticks = 0;
     public int cooldown_ticks = 20;
     public PlayStyle style = PlayStyle.magic;
     public List<SpellTag> tags = new ArrayList<>();
     public SpellCastType cast_type = SpellCastType.NORMAL;
+
+    public int imbues = 1;
+    public ImbueType imbue_type = ImbueType.ON_RANGED_ATTACK;
 
     public int getCastTimeTicks() {
         return cast_time_ticks;
@@ -49,13 +51,24 @@ public class SpellConfiguration {
             return c;
         }
 
-        public static SpellConfiguration arrowSpell(int mana, int cd) {
+        public static SpellConfiguration arrowImbue(int mana, int cd) {
             SpellConfiguration c = new SpellConfiguration();
             c.cast_time_ticks = 20;
             c.mana_cost = mana;
             c.cooldown_ticks = cd;
-            c.swing_arm = false;
-            c.cast_type = SpellCastType.USE_ITEM;
+            // c.swing_arm = false; todo
+            c.cast_type = SpellCastType.IMBUE;
+            return c;
+        }
+
+        public static SpellConfiguration onJumpCritImbue(int mana, int cd, int imbueCount) {
+            SpellConfiguration c = new SpellConfiguration();
+            c.cast_time_ticks = 20;
+            c.mana_cost = mana;
+            c.imbues = imbueCount;
+            c.cooldown_ticks = cd;
+            c.imbue_type = ImbueType.ON_CRIT;
+            c.cast_type = SpellCastType.IMBUE;
             return c;
         }
 

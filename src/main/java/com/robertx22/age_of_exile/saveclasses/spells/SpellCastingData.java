@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.saveclasses.spells;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
+import com.robertx22.age_of_exile.database.data.spells.components.ImbueType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -60,16 +61,17 @@ public class SpellCastingData {
         }
     }
 
-    public boolean tryCastImbuedSpell(LivingEntity en) {
+    public boolean tryCastImbuedSpell(LivingEntity en, ImbueType type) {
         if (imbued_spell_stacks > 0) {
-
             Spell spell = ExileDB.Spells()
                 .get(imbued_spell);
 
             if (spell != null) {
-                spell.cast(new SpellCastContext(en, 0, spell), false);
-                consumeImbuedSpell();
-                return true;
+                if (spell.config.imbue_type == type) {
+                    spell.cast(new SpellCastContext(en, 0, spell), false);
+                    consumeImbuedSpell();
+                    return true;
+                }
             }
         }
         return false;

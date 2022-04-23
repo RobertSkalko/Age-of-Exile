@@ -39,7 +39,7 @@ public class OnServerTick {
     static {
 
         TICK_ACTIONS.add(new PlayerTickAction("spawn_bow_cast_particles", 1, (player, data) -> {
-            if (OnItemStoppedUsingCastImbuedSpell.canCastImbuedSpell(player)) {
+            if (OnItemStoppedUsingCastImbuedSpell.isCorrectRangedAttackFinish(player)) {
                 if (Load.spells(player)
                     .getCastingData().imbued_spell_stacks > 0) {
                     ParticleUtils.spawnParticles(ParticleTypes.WITCH, player.level, player.blockPosition(), 2);

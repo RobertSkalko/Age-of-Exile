@@ -95,7 +95,7 @@ public class RangerSpells implements ExileRegistryInit {
 
             .build();
 
-        SpellBuilder.of(CHARGED_BOLT, SpellConfiguration.Builder.arrowSpell(8, 20 * 15), "Charged Bolt",
+        SpellBuilder.of(CHARGED_BOLT, SpellConfiguration.Builder.arrowImbue(8, 20 * 15), "Charged Bolt",
                 Arrays.asList(SpellTag.projectile, SpellTag.area, SpellTag.damage))
 
             .manualDesc(
@@ -119,7 +119,7 @@ public class RangerSpells implements ExileRegistryInit {
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ENCHANTED_HIT, 4D, 0.1D))
             .build();
 
-        SpellBuilder.of(ARROW_STORM, SpellConfiguration.Builder.arrowSpell(20, 20 * 25), "Arrow Storm",
+        SpellBuilder.of(ARROW_STORM, SpellConfiguration.Builder.arrowImbue(20, 20 * 25), "Arrow Storm",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
             .manualDesc("Shoot out arrows in an arc, dealing " + SpellCalcs.ARROW_STORM.getLocDmgTooltip(Elements.Physical))
@@ -132,7 +132,7 @@ public class RangerSpells implements ExileRegistryInit {
             .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D))
             .build();
 
-        SpellBuilder.of(EXPLOSIVE_ARROW_ID, SpellConfiguration.Builder.arrowSpell(10, 20 * 10), "Explosive Arrow",
+        SpellBuilder.of(EXPLOSIVE_ARROW_ID, SpellConfiguration.Builder.arrowImbue(10, 20 * 10), "Explosive Arrow",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
             .manualDesc("Shoot an arrow that does " + SpellCalcs.EXPLOSIVE_ARROW.getLocDmgTooltip(Elements.Physical) + " around it")
