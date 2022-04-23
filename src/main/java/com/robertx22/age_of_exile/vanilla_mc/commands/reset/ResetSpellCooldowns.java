@@ -28,10 +28,6 @@ public class ResetSpellCooldowns {
                 .getCooldowns()
                 .onTicksPass(555555);
 
-            for (int i = 0; i < 10; i++) {
-                Load.spells(en)
-                    .getCastingData().charges.onTicks(en, 500000);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

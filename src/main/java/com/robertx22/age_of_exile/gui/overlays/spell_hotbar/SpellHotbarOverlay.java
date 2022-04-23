@@ -150,46 +150,19 @@ public class SpellHotbarOverlay extends AbstractGui {
                     .bind(spell.getIconLoc());
                 this.blit(matrix, xs, ys, 0, 0, 16, 16, 16, 16);
 
-                if (spell.config.charges > 0) {
-                    int charges = data.getCastingData().charges.getCharges(spell.config.charge_name);
+                CooldownsData cds = Load.Unit(mc.player)
+                    .getCooldowns();
 
-                    if (charges == 0) {
-                        float needed = (float) spell.config.charge_regen;
-                        float currentticks = (float) data.getCastingData().charges.getCurrentTicksChargingOf(spell.config.charge_name);
+                float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) cds.getNeededTicks(spell.GUID());
+                if (cds.getCooldownTicks(spell.GUID()) > 1) {
+                    percent = MathHelper.clamp(percent, 0, 1F);
+                    drawCooldown(percent, matrix, xs, ys);
+                }
 
-                        float ticksleft = needed - currentticks;
-
-                        float percent = ticksleft / needed;
-                        percent = MathHelper.clamp(percent, 0, 1F);
-                        drawCooldown(percent, matrix, xs, ys);
-
-                    }
-
-                    mc.getTextureManager()
-                        .bind(CHARGE);
-                    int chargex = x + 21;
-
-                    for (int i = 0; i < charges; i++) {
-                        this.blit(matrix, chargex, y + 5, 0, 0, CHARGE_SIZE, CHARGE_SIZE, CHARGE_SIZE, CHARGE_SIZE);
-                        chargex += CHARGE_SIZE + 1;
-                    }
-
-                } else {
-
-                    CooldownsData cds = Load.Unit(mc.player)
-                        .getCooldowns();
-
-                    float percent = (float) cds.getCooldownTicks(spell.GUID()) / (float) cds.getNeededTicks(spell.GUID());
-                    if (cds.getCooldownTicks(spell.GUID()) > 1) {
-                        percent = MathHelper.clamp(percent, 0, 1F);
-                        drawCooldown(percent, matrix, xs, ys);
-                    }
-
-                    int cdsec = cds.getCooldownTicks(spell.GUID()) / 20;
-                    if (cdsec > 1) {
-                        String stext = cdsec + "s";
-                        GuiUtils.renderScaledText(matrix, xs + 27, ys + 10, 0.75F, stext, TextFormatting.YELLOW);
-                    }
+                int cdsec = cds.getCooldownTicks(spell.GUID()) / 20;
+                if (cdsec > 1) {
+                    String stext = cdsec + "s";
+                    GuiUtils.renderScaledText(matrix, xs + 27, ys + 10, 0.75F, stext, TextFormatting.YELLOW);
                 }
 
                 String txt = CLOC.translate(KeybindsRegister.getSpellHotbar(place)

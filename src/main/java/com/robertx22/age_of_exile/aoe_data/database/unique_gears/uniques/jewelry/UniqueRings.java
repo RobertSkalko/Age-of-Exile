@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelry;
 
-import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearTypes;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
+import com.robertx22.age_of_exile.database.all_keys.BaseGearKeys;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
@@ -25,7 +25,7 @@ public class UniqueRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "witch_brew",
                 "Witch's Brew",
-                BaseGearTypes.RING)
+                BaseGearKeys.RING)
 
             .stats(Arrays.asList(
                 new StatModifier(15, 25, new ElementalResist(Elements.Earth), ModType.PERCENT),
@@ -41,7 +41,7 @@ public class UniqueRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "ghostly_shores",
                 "Ghostly Shores",
-                BaseGearTypes.RING)
+                BaseGearKeys.RING)
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(5, 15, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT),

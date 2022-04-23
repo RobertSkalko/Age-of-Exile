@@ -12,14 +12,10 @@ import java.util.List;
 public class SpellConfiguration {
 
     public boolean swing_arm = true;
-    public boolean apply_cast_speed_to_cd = false;
     public CastingWeapon castingWeapon = CastingWeapon.ANY_WEAPON;
     public LeveledValue mana_cost;
     public int times_to_cast = 1;
-    public int charges = 0;
-    public int charge_regen = 0;
     public int imbues = 1;
-    public String charge_name = "";
     private int cast_time_ticks = 0;
     public int cooldown_ticks = 20;
     public PlayStyle style = PlayStyle.magic;
@@ -28,22 +24,6 @@ public class SpellConfiguration {
 
     public int getCastTimeTicks() {
         return cast_time_ticks;
-    }
-
-    public SpellConfiguration applyCastSpeedToCooldown() {
-        this.apply_cast_speed_to_cd = true;
-        return this;
-    }
-
-    public boolean usesCharges() {
-        return charges > 0;
-    }
-
-    public SpellConfiguration setChargesAndRegen(String name, int charges, int ticksToRegen) {
-        this.charge_regen = ticksToRegen;
-        this.charges = charges;
-        this.charge_name = name;
-        return this;
     }
 
     public SpellConfiguration setCastType(SpellCastType type) {

@@ -44,9 +44,6 @@ public class SpellCastingData {
     public Boolean casting = false;
 
     @Store
-    public ChargeData charges = new ChargeData();
-
-    @Store
     public String imbued_spell = "";
     @Store
     public int imbued_spell_stacks = 0;
@@ -236,12 +233,6 @@ public class SpellCastingData {
             }
         }
 
-        if (spell.config.charges > 0) {
-            if (!charges.hasCharge(spell.config.charge_name)) {
-                return false;
-            }
-        }
-
         SpellCastContext ctx = new SpellCastContext(player, 0, spell);
 
         LivingEntity caster = ctx.caster;
@@ -316,12 +307,6 @@ public class SpellCastingData {
 
         ctx.data.getCooldowns()
             .setOnCooldown(ctx.spell.GUID(), cd);
-
-        if (ctx.spell.config.charges > 0) {
-            if (ctx.caster instanceof PlayerEntity) {
-                this.charges.spendCharge((PlayerEntity) ctx.caster, ctx.spell.config.charge_name);
-            }
-        }
 
         if (ctx.caster instanceof PlayerEntity) {
             PlayerEntity p = (PlayerEntity) ctx.caster;

@@ -22,8 +22,7 @@ public class SongSpells implements ExileRegistryInit {
     public void registerAll() {
 
         SpellBuilder.of("power_chord", SpellConfiguration.Builder.instant(7, 15)
-                    .setSwingArm()
-                    .applyCastSpeedToCooldown(), "Power Chord",
+                    .setSwingArm(), "Power Chord",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))

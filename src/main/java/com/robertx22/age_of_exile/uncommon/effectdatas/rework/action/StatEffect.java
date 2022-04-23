@@ -18,7 +18,6 @@ public abstract class StatEffect implements JsonExileRegistry<StatEffect>, IAuto
     public static HashMap<String, StatEffect> SERIALIZERS = new HashMap<>();
 
     static {
-        addSer(new ApplyCooldownAsCastTimeEffect());
         addSer(new IncreaseNumberPerCurseOnTarget());
         addSer(new DoubleDamageAction());
         addSer(new RemoveExileEffectAction());

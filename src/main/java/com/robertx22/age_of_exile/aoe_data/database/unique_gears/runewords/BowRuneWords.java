@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.runewords;
 
-import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearTypes;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
+import com.robertx22.age_of_exile.database.all_keys.BaseGearKeys;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -17,7 +17,7 @@ public class BowRuneWords implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "bone_shatterer",
                 "Bone Shatterer",
-                BaseGearTypes.BOW)
+                BaseGearKeys.BOW)
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(10, 30, Stats.CRIT_DAMAGE.get()),

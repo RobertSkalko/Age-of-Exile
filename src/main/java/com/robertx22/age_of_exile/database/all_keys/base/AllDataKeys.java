@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.all_keys.base;
 
+import com.robertx22.age_of_exile.database.all_keys.BaseGearKeys;
 import com.robertx22.age_of_exile.database.all_keys.RunewordKeys;
 import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 
@@ -12,7 +13,9 @@ public class AllDataKeys {
 
     public static void initAll() {
 
+        BaseGearKeys.init();
         RunewordKeys.init();
         SpellKeys.init();
+
     }
 }

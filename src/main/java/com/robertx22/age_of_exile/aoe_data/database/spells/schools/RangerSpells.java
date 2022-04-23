@@ -81,8 +81,6 @@ public class RangerSpells implements ExileRegistryInit {
             .build();
 
         SpellBuilder.of(DASH_ID, SpellConfiguration.Builder.instant(10, 15)
-
-                    .setChargesAndRegen("dash", 3, 20 * 30)
                 , "Dash",
                 Arrays.asList(SpellTag.movement, SpellTag.technique))
             .manualDesc(
@@ -163,8 +161,7 @@ public class RangerSpells implements ExileRegistryInit {
 
     static SpellBuilder trap(String id, String name, BasicParticleType particle, ValueCalculation dmg, Elements element) {
 
-        return SpellBuilder.of(id, SpellConfiguration.Builder.instant(7, 20)
-                    .setChargesAndRegen("trap", 3, 20 * 30)
+        return SpellBuilder.of(id, SpellConfiguration.Builder.instant(7, 100)
                     .setSwingArm(), name,
                 Arrays.asList(SpellTag.damage, SpellTag.area, SpellTag.trap))
             .manualDesc(

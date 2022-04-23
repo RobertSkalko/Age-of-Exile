@@ -22,7 +22,7 @@ public class StrSpells implements ExileRegistryInit {
 
         SpellBuilder.of("shred", SpellConfiguration.Builder.instant(10, 20 * 1)
                     .setSwingArm()
-                    .setChargesAndRegen("shred", 3, 20 * 15), "Shred",
+                , "Shred",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)
             .manualDesc(

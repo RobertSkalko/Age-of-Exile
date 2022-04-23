@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.aoe_data.database.base_gear_types;
 import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
+import com.robertx22.age_of_exile.database.all_keys.BaseGearKeys;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
@@ -17,75 +18,75 @@ public class BaseGearsAdder implements ExileRegistryInit, GearDataHelper {
     @Override
     public void registerAll() {
 
-        BaseGearBuilder.of(BaseGearTypes.BOOTS, GearSlots.BOOTS, "Boots")
+        BaseGearBuilder.of(BaseGearKeys.BOOTS, GearSlots.BOOTS, "Boots")
             .tags(new TagList(SlotTag.armor_stat, SlotTag.boots, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.BOOTS)
             )
             .build();
 
-        BaseGearBuilder.of(BaseGearTypes.PANTS, GearSlots.PANTS, "Pants")
+        BaseGearBuilder.of(BaseGearKeys.PANTS, GearSlots.PANTS, "Pants")
             .tags(new TagList(SlotTag.armor_stat, SlotTag.pants, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.PANTS)
             )
             .build();
 
-        BaseGearBuilder.of(BaseGearTypes.CHEST, GearSlots.CHEST, "Chest")
+        BaseGearBuilder.of(BaseGearKeys.CHEST, GearSlots.CHEST, "Chest")
             .tags(new TagList(SlotTag.armor_stat, SlotTag.chest, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.CHEST)
             )
             .build();
 
-        BaseGearBuilder.of(BaseGearTypes.HELMET, GearSlots.HELMET, "Helmet")
+        BaseGearBuilder.of(BaseGearKeys.HELMET, GearSlots.HELMET, "Helmet")
             .tags(new TagList(SlotTag.armor_stat, SlotTag.helmet, SlotTag.armor_family, SlotTag.strength))
             .baseStat(
                 getStat(ArmorStat.ARMOR, ArmorType.HEAVY, ArmorSlot.HELMET)
             )
             .build();
 
-        BaseGearBuilder.of(BaseGearTypes.RING, GearSlots.RING, "Ring")
+        BaseGearBuilder.of(BaseGearKeys.RING, GearSlots.RING, "Ring")
             .tags(new TagList(SlotTag.ring, SlotTag.jewelry_family))
             .baseStat(
                 getStat(ArmorStat.ELE_DEF, ArmorType.HEAVY, ArmorSlot.CHEST)
             )
             .build();
 
-        BaseGearBuilder.of(BaseGearTypes.NECKLACE, GearSlots.NECKLACE, "Necklace")
+        BaseGearBuilder.of(BaseGearKeys.NECKLACE, GearSlots.NECKLACE, "Necklace")
             .tags(new TagList(SlotTag.necklace, SlotTag.jewelry_family))
             .baseStat(
                 getStat(ArmorStat.ELE_DEF, ArmorType.HEAVY, ArmorSlot.CHEST)
             )
             .build();
 
-        BaseGearBuilder.of(BaseGearTypes.SHIELD, GearSlots.SHIELD, "Tower Shield")
+        BaseGearBuilder.of(BaseGearKeys.SHIELD, GearSlots.SHIELD, "Tower Shield")
             .tags(new TagList(SlotTag.shield, SlotTag.offhand_family, SlotTag.armor_stat, SlotTag.strength))
             .baseStat(new StatModifier(6, 12, Armor.getInstance(), ModType.FLAT))
             .baseStat(new StatModifier(-25, -25, Stats.STYLE_DAMAGE.get(PlayStyle.magic)))
             .build();
 
-        BaseGearBuilder.weapon(BaseGearTypes.BOW, GearSlots.BOW, WeaponTypes.bow)
+        BaseGearBuilder.weapon(BaseGearKeys.BOW, GearSlots.BOW, WeaponTypes.bow)
             .tags(new TagList(SlotTag.ranger_casting_weapon, SlotTag.bow, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
             .build();
 
-        BaseGearBuilder.weapon(BaseGearTypes.CROSSBOW, GearSlots.CROSBOW, WeaponTypes.crossbow)
+        BaseGearBuilder.weapon(BaseGearKeys.CROSSBOW, GearSlots.CROSBOW, WeaponTypes.crossbow)
             .tags(new TagList(SlotTag.crossbow, SlotTag.ranger_casting_weapon, SlotTag.weapon_family, SlotTag.ranged_weapon, SlotTag.dexterity))
             .build();
 
-        BaseGearBuilder.weapon(BaseGearTypes.AXE, GearSlots.AXE, WeaponTypes.axe)
+        BaseGearBuilder.weapon(BaseGearKeys.AXE, GearSlots.AXE, WeaponTypes.axe)
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.axe, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.strength))
             .build();
 
-        BaseGearBuilder.weapon(BaseGearTypes.SWORD, GearSlots.SWORD, WeaponTypes.sword)
+        BaseGearBuilder.weapon(BaseGearKeys.SWORD, GearSlots.SWORD, WeaponTypes.sword)
             .tags(new TagList(SlotTag.warrior_casting_weapon, SlotTag.sword, SlotTag.melee_weapon, SlotTag.weapon_family, SlotTag.strength, SlotTag.dexterity))
             .build();
 
-        BaseGearBuilder.weapon(BaseGearTypes.SCEPTER, GearSlots.SCEPTER, WeaponTypes.scepter)
+        BaseGearBuilder.weapon(BaseGearKeys.SCEPTER, GearSlots.SCEPTER, WeaponTypes.scepter)
             .tags(new TagList(SlotTag.mage_weapon, SlotTag.scepter, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
             .build();
 
-        BaseGearBuilder.weapon(BaseGearTypes.STAFF, GearSlots.STAFF, WeaponTypes.staff)
+        BaseGearBuilder.weapon(BaseGearKeys.STAFF, GearSlots.STAFF, WeaponTypes.staff)
             .tags(new TagList(SlotTag.mage_weapon, SlotTag.staff, SlotTag.weapon_family, SlotTag.melee_weapon, SlotTag.intelligence))
             .build();
 

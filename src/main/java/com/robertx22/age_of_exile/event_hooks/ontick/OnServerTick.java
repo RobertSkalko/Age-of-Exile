@@ -67,8 +67,7 @@ public class OnServerTick {
             }
 
             UnequipGear.onTick(player);
-            Load.spells(player)
-                .getCastingData().charges.onTicks(player, 20);
+
         }));
 
         TICK_ACTIONS.add(new

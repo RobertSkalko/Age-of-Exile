@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.jewelry;
 
-import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearTypes;
 import com.robertx22.age_of_exile.aoe_data.database.sets.GearSetsAdder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
+import com.robertx22.age_of_exile.database.all_keys.BaseGearKeys;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
@@ -27,7 +27,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "spring_blossoms",
                 "Spring Blossoms",
-                BaseGearTypes.RING)
+                BaseGearKeys.RING)
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(10, 10, SpecialStats.HEAL_CLEANSE, ModType.FLAT),
@@ -44,7 +44,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "autumn_harvest",
                 "Autumn Harvest",
-                BaseGearTypes.RING)
+                BaseGearKeys.RING)
             .setReplacesName()
 
             .stats(Arrays.asList(
@@ -65,7 +65,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "winter_chill",
                 "Winter Chill",
-                BaseGearTypes.RING)
+                BaseGearKeys.RING)
             .setReplacesName()
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),
                 new StatModifier(20, 40, new ElementalResist(Elements.Water), ModType.PERCENT),
@@ -80,7 +80,7 @@ public class SeasonRings implements ExileRegistryInit {
         UniqueGearBuilder.of(
                 "summer_heat",
                 "Summer Heat",
-                BaseGearTypes.RING)
+                BaseGearKeys.RING)
             .setReplacesName()
 
             .stats(Arrays.asList(new StatModifier(5, 10, Health.getInstance(), ModType.FLAT),

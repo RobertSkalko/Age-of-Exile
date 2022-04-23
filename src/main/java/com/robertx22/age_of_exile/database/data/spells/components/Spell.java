@@ -220,13 +220,8 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
         TooltipUtils.addEmpty(list);
 
         list.add(new StringTextComponent(TextFormatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
-        if (config.usesCharges()) {
-            list.add(new StringTextComponent(TextFormatting.YELLOW + "Max Charges: " + config.charges));
-            list.add(new StringTextComponent(TextFormatting.YELLOW + "Charge Regen: " + config.charge_regen / 20 + "s"));
 
-        } else {
-            list.add(new StringTextComponent(TextFormatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
-        }
+        list.add(new StringTextComponent(TextFormatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
 
         int casttime = getCastTimeTicks(ctx);
 

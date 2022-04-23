@@ -1,8 +1,8 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.fabled;
 
-import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearTypes;
 import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
+import com.robertx22.age_of_exile.database.all_keys.BaseGearKeys;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -15,10 +15,11 @@ public class FabledJewelry implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
+
         UniqueGearBuilder.of(
                 "azuna_ring",
                 "Azuna's Eternal Decree",
-                BaseGearTypes.RING)
+                BaseGearKeys.RING)
             .setReplacesName()
             .stats(Arrays.asList(
                 new StatModifier(10, 15, new ElementalResist(Elements.Fire), ModType.PERCENT),

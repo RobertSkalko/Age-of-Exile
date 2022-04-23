@@ -1,9 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.database.unique_gears.runewords;
 
 import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
-import com.robertx22.age_of_exile.aoe_data.database.base_gear_types.BaseGearTypes;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
+import com.robertx22.age_of_exile.database.all_keys.BaseGearKeys;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
@@ -20,7 +20,7 @@ public class StaffRuneWords implements ExileRegistryInit, GearDataHelper {
         UniqueGearBuilder.of(
                 "heavenly_rainbow",
                 "Heavenly Rainbow",
-                BaseGearTypes.STAFF)
+                BaseGearKeys.STAFF)
             .setReplacesName()
             .baseStats(
                 Arrays.asList(

@@ -1,12 +1,12 @@
 package com.robertx22.age_of_exile.aoe_data.database.base_gear_types;
 
 import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
+import com.robertx22.age_of_exile.database.all_keys.base.BaseGearKey;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
@@ -25,13 +25,12 @@ public class BaseGearBuilder implements GearDataHelper {
     private TagList tags;
     private List<StatModifier> basestats = new ArrayList<>();
     private List<StatModifier> implicitstats = new ArrayList<>();
-    private StatRequirement req = new StatRequirement();
     private WeaponTypes wep = WeaponTypes.none;
     private int weapon_offhand_stat_util = 0;
     private float atkspeed = 1F;
     private int weight = 1000;
 
-    public static BaseGearBuilder of(DataGenKey<BaseGearType> id, String slot, String locnamesuffix) {
+    public static BaseGearBuilder of(BaseGearKey id, String slot, String locnamesuffix) {
         BaseGearBuilder b = new BaseGearBuilder();
         b.locnamesuffix = locnamesuffix;
         b.id = id.GUID();
@@ -39,7 +38,7 @@ public class BaseGearBuilder implements GearDataHelper {
         return b;
     }
 
-    public static BaseGearBuilder weapon(DataGenKey<BaseGearType> id, String slot, WeaponTypes type) {
+    public static BaseGearBuilder weapon(BaseGearKey id, String slot, WeaponTypes type) {
         BaseGearBuilder b = new BaseGearBuilder();
         b.locnamesuffix = type.locName();
         b.id = id.GUID();
