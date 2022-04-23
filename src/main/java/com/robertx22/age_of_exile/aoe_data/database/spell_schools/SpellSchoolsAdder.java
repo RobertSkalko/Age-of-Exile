@@ -76,7 +76,6 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(NatureSpells.ENTANGLE_SEED, new PointData(4, 2))
             .addSpell(TotemSpells.HEAL_TOTEM_ID, new PointData(6, 2))
             .addSpell(TotemSpells.MANA_TOTEM_ID, new PointData(7, 2))
-            .addSpell(TotemSpells.GUARD_TOTEM_ID, new PointData(8, 2))
 
             .addSpell(SpellKeys.POISON_CLOUD.id, new PointData(2, 3))
 

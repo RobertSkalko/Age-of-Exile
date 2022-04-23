@@ -4,12 +4,6 @@
     "damages": []
   },
   "stat_scalings": [],
-  "attack_scaling": {
-    "min": 0.2,
-    "max": 0.3
-  },
-  "base": {
-    "min": 0.0,
-    "max": 0.0
-  }
+  "attack_scaling": 0.3,
+  "base": 0.0
 }

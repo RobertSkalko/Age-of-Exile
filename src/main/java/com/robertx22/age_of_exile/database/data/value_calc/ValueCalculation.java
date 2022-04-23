@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.value_calc;
 
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -36,11 +37,11 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
     public DamageCalcs damage_calcs = new DamageCalcs();
 
     public List<ScalingCalc> stat_scalings = new ArrayList<>();
-    public LeveledValue attack_scaling = new LeveledValue(0, 0);
-    public LeveledValue base = new LeveledValue(0, 0);
+    public float attack_scaling = 0F;
+    public float base = 0F;
 
-    public int getCalculatedBaseValue(LevelProvider provider) {
-        return (int) StatScaling.NORMAL.scale(base.getValue(provider), provider.getCasterLevel());
+    public int getCalculatedBaseValue(EntityData data) {
+        return (int) StatScaling.NORMAL.scale(base, data.getLevel());
     }
 
     public String getLocDmgTooltip(Elements element) {
@@ -51,56 +52,56 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
         return "[calc:" + id + "]";
     }
 
-    private int getCalculatedScalingValue(LevelProvider provider) {
+    private int getCalculatedScalingValue(EntityData data) {
 
         float amount = 0;
-        if (attack_scaling.getValue(provider) > 0) {
+        if (attack_scaling > 0) {
             for (Stat stat : new AttackDamage(Elements.Earth).generateAllPossibleStatVariations()) {
-                amount += provider.getCasterData()
+                amount += data
                     .getUnit()
                     .getCalculatedStat(stat.GUID())
-                    .getValue() * attack_scaling.getValue(provider);
+                    .getValue() * attack_scaling;
             }
         }
         amount += getAllScalingValues().stream()
-            .mapToInt(x -> x.getCalculatedValue(provider))
+            .mapToInt(x -> x.getCalculatedValue(data))
             .sum();
 
         return (int) amount;
     }
 
-    public int getCalculatedValue(LevelProvider provider) {
-        int val = getCalculatedScalingValue(provider);
-        val += getCalculatedBaseValue(provider);
+    public int getCalculatedValue(EntityData data) {
+        int val = getCalculatedScalingValue(data);
+        val += getCalculatedBaseValue(data);
         return val;
-
     }
 
-    public ITextComponent getShortTooltip(LevelProvider provider) {
+    public ITextComponent getShortTooltip(EntityData data) {
+        int lvl = data.getLevel();
         IFormattableTextComponent text = new StringTextComponent("");
 
-        int val = getCalculatedValue(provider);
+        int val = getCalculatedValue(data);
 
-        if (this.base.getValue(provider) > 0) {
+        if (this.base > 0) {
             text.append(val + "");
         }
 
-        if (attack_scaling.getValue(provider) > 0) {
+        if (attack_scaling > 0) {
             if (val > 0) {
                 text.append(val + "");
             }
 
             if (val < 1 || Screen.hasShiftDown()) {
-                text.append(" (" + (int) (attack_scaling.getValue(provider) * 100) + "% Weapon Damage)")
+                text.append(" (" + (int) (attack_scaling * 100) + "% Weapon Damage)")
                     .withStyle(TextFormatting.YELLOW);
             }
         }
 
         stat_scalings.forEach(x -> {
-            text.append(getCalculatedValue(provider) + "");
+            text.append(getCalculatedValue(data) + "");
 
             text.append(" ")
-                .append(x.GetTooltipString(provider));
+                .append(x.GetTooltipString());
         });
 
         return text;

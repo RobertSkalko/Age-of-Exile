@@ -3,8 +3,6 @@ package com.robertx22.age_of_exile.database.data.exile_effects;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
-import com.robertx22.age_of_exile.database.data.value_calc.LevelProvider;
-import com.robertx22.age_of_exile.database.data.value_calc.LeveledValue;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
@@ -95,14 +93,7 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
         }
 
         return this.stats.stream()
-            .map(x -> {
-
-                LeveledValue lvlval = new LeveledValue(0, 100);
-
-                int perc = (int) lvlval.getValue(new LevelProvider(data.getCaster(world), data.getSpell()));
-
-                return x.ToExactStat(perc, data.lvl);
-            })
+            .map(x -> x.ToExactStat(100, data.lvl))
             .collect(Collectors.toList());
 
     }

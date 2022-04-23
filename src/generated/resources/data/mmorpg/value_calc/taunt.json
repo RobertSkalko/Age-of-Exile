@@ -6,18 +6,9 @@
   "stat_scalings": [
     {
       "stat": "health",
-      "multi": {
-        "min": 0.05,
-        "max": 0.1
-      }
+      "multi": 0.1
     }
   ],
-  "attack_scaling": {
-    "min": 0.0,
-    "max": 0.0
-  },
-  "base": {
-    "min": 0.0,
-    "max": 0.0
-  }
+  "attack_scaling": 0.0,
+  "base": 0.0
 }

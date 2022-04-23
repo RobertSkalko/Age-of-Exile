@@ -34,9 +34,6 @@ public class ResourcesData {
     @Store
     private float blood = 0;
 
-    @Store
-    public AllShieldsData shields = new AllShieldsData();
-
     public float getMana() {
         return mana;
     }
@@ -62,10 +59,6 @@ public class ResourcesData {
         this.cap(player, ResourceType.block);
     }
 
-    public float getShield() {
-        return shields.getTotalShields();
-    }
-
     public float getModifiedValue(LivingEntity en, ResourceType type, Use use, float amount) {
         if (use == Use.RESTORE) {
             return get(en, type) + amount;
@@ -79,9 +72,7 @@ public class ResourcesData {
         if (type == ResourceType.mana) {
             return mana;
         }
-        if (type == ResourceType.shield) {
-            return getShield();
-        } else if (type == ResourceType.blood) {
+        if (type == ResourceType.blood) {
             return blood;
         } else if (type == ResourceType.energy) {
             return energy;

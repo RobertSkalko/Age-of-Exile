@@ -9,7 +9,6 @@
   "weight": 1000,
   "weapon_offhand_stat_util": 0,
   "style": "magic",
-  "implicit_stats": [],
   "base_stats": [
     {
       "min": 2.0,

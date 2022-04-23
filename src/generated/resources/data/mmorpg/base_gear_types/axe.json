@@ -9,7 +9,6 @@
   "weight": 1000,
   "weapon_offhand_stat_util": 15,
   "style": "melee",
-  "implicit_stats": [],
   "base_stats": [
     {
       "min": 2.5,

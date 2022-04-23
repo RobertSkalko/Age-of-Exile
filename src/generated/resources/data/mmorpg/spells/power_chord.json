@@ -133,10 +133,7 @@
   "config": {
     "swing_arm": true,
     "castingWeapon": "MAGE_WEAPON",
-    "mana_cost": {
-      "min": 3.5,
-      "max": 7.0
-    },
+    "mana_cost": 7,
     "times_to_cast": 1,
     "imbues": 1,
     "cast_time_ticks": 0,

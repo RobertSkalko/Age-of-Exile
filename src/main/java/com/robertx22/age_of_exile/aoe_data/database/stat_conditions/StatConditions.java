@@ -27,7 +27,6 @@ public class StatConditions implements ExileRegistryInit {
     public static StatCondition IS_SPELL = new IsSpellCondition();
     public static StatCondition ELEMENT_MATCH_STAT = new ElementMatchesStat();
     public static StatCondition IS_DAY = new IsDayCondition();
-    public static StatCondition IS_TARGET_SHIELDED = new IsTargetShieldedCondition();
     public static StatCondition IS_NIGHT = new IsDayCondition().flipCondition();
     public static StatCondition IS_TARGET_UNDEAD = new IsUndeadCondition();
     public static StatCondition IS_TARGET_NOT_UNDEAD = new IsUndeadCondition().flipCondition();
@@ -115,7 +114,6 @@ public class StatConditions implements ExileRegistryInit {
         ATTACK_TYPE_MATCHES.addToSerializables();
         REQUIRE_CHARGED_ATTACK.addToSerializables();
         IS_NOT_IN_COMBAT.addToSerializables();
-        IS_TARGET_SHIELDED.addToSerializables();
         IF_CRIT.addToSerializables();
         IF_RANDOM_ROLL.addToSerializables();
         IS_SPELL.addToSerializables();

@@ -63,8 +63,8 @@ public class LearnSpellButton extends ImageButton {
         blit(matrix, x + 1, y + 1, 16, 16, 16, 16, 16, 16);
 
         int currentlvl = Load.spells(mc.player)
-            .getLevelOf(spell.GUID());
-        int maxlvl = spell.getMaxLevel();
+            .hasSpell(spell) ? 1 : 0;
+        int maxlvl = 1;
         String lvltext = currentlvl + "/" + maxlvl;
         TextUtils.renderText(matrix, 0.8F, lvltext, x + BUTTON_SIZE_X / 2, (int) (y + BUTTON_SIZE_Y * 0.85F), TextFormatting.GREEN);
 

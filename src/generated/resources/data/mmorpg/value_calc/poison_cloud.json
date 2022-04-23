@@ -3,21 +3,7 @@
   "damage_calcs": {
     "damages": []
   },
-  "stat_scalings": [
-    {
-      "stat": "spell_damage",
-      "multi": {
-        "min": 0.2,
-        "max": 0.4
-      }
-    }
-  ],
-  "attack_scaling": {
-    "min": 0.0,
-    "max": 0.0
-  },
-  "base": {
-    "min": 2.0,
-    "max": 4.0
-  }
+  "stat_scalings": [],
+  "attack_scaling": 0.0,
+  "base": 4.0
 }

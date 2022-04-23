@@ -12,8 +12,7 @@
       "increase_number_num"
     ],
     "events": [
-      "on_spend_resource",
-      "on_absorb_damage"
+      "on_spend_resource"
     ]
   },
   "show": true,

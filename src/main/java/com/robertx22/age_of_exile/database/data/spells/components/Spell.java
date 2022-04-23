@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.age_of_exile.database.data.value_calc.MaxLevelProvider;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
@@ -45,7 +44,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<Spell>, IAutoLocName, IAutoLocDesc, MaxLevelProvider {
+public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<Spell>, IAutoLocName, IAutoLocDesc {
     public static Spell SERIALIZER = new Spell();
 
     public static String DEFAULT_EN_NAME = "default_entity_name";
@@ -275,11 +274,14 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
             }
         }
 
-        int currentlvl = Load.spells(info.player)
-            .getLevelOf(GUID());
-        int maxlvl = getMaxLevel();
+        boolean learned = Load.spells(info.player)
+            .hasSpell(this);
 
-        list.add(new StringTextComponent("Level: " + currentlvl + "/" + maxlvl).withStyle(TextFormatting.YELLOW));
+        if (learned) {
+            list.add(new StringTextComponent("Learned").withStyle(TextFormatting.GREEN));
+        } else {
+
+        }
 
         TooltipUtils.removeDoubleBlankLines(list);
 
@@ -334,13 +336,4 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
         return locDesc;
     }
 
-    @Override
-    public int getMaxLevel() {
-        return max_lvl;
-    }
-
-    @Override
-    public int getMaxLevelWithBonuses() {
-        return getMaxLevel() + 4;
-    }
 }

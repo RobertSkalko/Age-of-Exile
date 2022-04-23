@@ -20,13 +20,11 @@ public class OverlayTypes {
         topleft.add(new GuiPartConfig(BarGuiType.MANA, new PointData(5, 16)));
         topleft.add(new GuiPartConfig(BarGuiType.ENERGY, new PointData(5, 27)));
         topleft.add(new GuiPartConfig(BarGuiType.EXP, new PointData(5, 38)));
-        topleft.add(new GuiPartConfig(BarGuiType.SHIELD, new PointData(5, 49)));
         map.put(GuiPosition.TOP_LEFT, topleft);
 
         List<GuiPartConfig> middle = new ArrayList<>();
         middle.add(new GuiPartConfig(BarGuiType.HEALTH, new PointData(-198, -22)));
         middle.add(new GuiPartConfig(BarGuiType.EXP, new PointData(-198, -11)));
-        middle.add(new GuiPartConfig(BarGuiType.SHIELD, new PointData(-198, -33)));
 
         middle.add(new GuiPartConfig(BarGuiType.MANA, new PointData(90, -22)));
         middle.add(new GuiPartConfig(BarGuiType.ENERGY, new PointData(90, -11)));

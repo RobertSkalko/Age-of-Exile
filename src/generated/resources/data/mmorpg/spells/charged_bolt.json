@@ -210,10 +210,7 @@
   "config": {
     "swing_arm": false,
     "castingWeapon": "RANGED",
-    "mana_cost": {
-      "min": 4.0,
-      "max": 8.0
-    },
+    "mana_cost": 8,
     "times_to_cast": 1,
     "imbues": 1,
     "cast_time_ticks": 20,

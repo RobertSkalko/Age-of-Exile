@@ -3,12 +3,6 @@
   "weight": 1000,
   "unique_stats": [
     {
-      "min": 1.0,
-      "max": 2.0,
-      "stat": "plus_to_water",
-      "type": "flat"
-    },
-    {
       "min": 25.0,
       "max": 25.0,
       "stat": "mana_per_10_intelligence",

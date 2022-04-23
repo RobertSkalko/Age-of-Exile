@@ -124,9 +124,6 @@ public class DamageEvent extends EffectEvent {
             dmg = DamageAbsorbedByMana.modifyEntityDamage(this, dmg);
 
             if (dmg > 0) {
-
-                int reduced = targetData.getResources().shields.spendShieldsToReduceDamage(dmg);
-                dmg -= reduced;
             }
 
         }

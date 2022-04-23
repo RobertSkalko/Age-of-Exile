@@ -786,7 +786,6 @@ public class Stats implements ExileRegistryInit {
     public static DataPackStatAccessor<EmptyAccessor> TOTEM_RESTORATION_STRENGTH = DatapackStatBuilder
         .ofSingle("totem_resto", Elements.All)
         .worksWithEvent(RestoreResourceEvent.ID)
-        .worksWithEvent(GiveShieldEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.totem))
@@ -798,46 +797,6 @@ public class Stats implements ExileRegistryInit {
             x.is_long = true;
             x.scaling = StatScaling.NONE;
             x.base = 0;
-            x.format = TextFormatting.YELLOW.getName();
-            x.group = StatGroup.RESTORATION;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> TOTEM_SHIELD = DatapackStatBuilder
-        .ofSingle("totem_shield", Elements.All)
-        .worksWithEvent(GiveShieldEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.totem))
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> "Your Totem shield effects are " + Stat.VAL1 + "% stronger.")
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.is_long = true;
-            x.scaling = StatScaling.NONE;
-            x.base = 0;
-            x.format = TextFormatting.YELLOW.getName();
-            x.group = StatGroup.RESTORATION;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> HEAL_STRENGTH_ON_SHIELDED_TARGETS = DatapackStatBuilder
-        .ofSingle("heal_on_shielded_targets", Elements.All)
-        .worksWithEvent(RestoreResourceEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_SPELL)
-        .addCondition(StatConditions.IS_TARGET_SHIELDED)
-        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
-        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.heal))
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> Stat.format("Your heals are " + Stat.VAL1 + "% more effective on shielded targets."))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.base = 0;
-            x.is_long = true;
             x.format = TextFormatting.YELLOW.getName();
             x.group = StatGroup.RESTORATION;
         })
@@ -934,38 +893,6 @@ public class Stats implements ExileRegistryInit {
             x.scaling = StatScaling.NONE;
             x.format = TextFormatting.RED.getName();
             x.group = StatGroup.RESTORATION;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> SHIELD_STRENGTH = DatapackStatBuilder
-        .ofSingle("shield_strength", Elements.Physical)
-        .worksWithEvent(GiveShieldEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> "Shield Strength")
-        .setLocDesc(x -> "Boosts the shield amount you get from spells and other sources.")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.base = 0;
-            x.icon = "\u2748";
-            x.format = TextFormatting.RED.getName();
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> SHIELD_DURATION = DatapackStatBuilder
-        .ofSingle("shield_duration", Elements.Physical)
-        .worksWithEvent(GiveShieldEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addEffect(StatEffects.INCREASE_SECONDS)
-        .setLocName(x -> "Shield Strength")
-        .setLocDesc(x -> "Boosts the shield amount from spells and other sources.")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.base = 0;
-            x.icon = "\u2748";
-            x.format = TextFormatting.GREEN.getName();
         })
         .build();
 

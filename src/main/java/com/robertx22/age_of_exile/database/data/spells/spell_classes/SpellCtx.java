@@ -2,7 +2,6 @@ package com.robertx22.age_of_exile.database.data.spells.spell_classes;
 
 import com.robertx22.age_of_exile.database.data.spells.components.EntityActivation;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
-import com.robertx22.age_of_exile.database.data.value_calc.LevelProvider;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -27,8 +26,6 @@ public class SpellCtx {
 
     public final EntityActivation activation;
 
-    public final LevelProvider levelProvider;
-
     public EntitySavedSpellData calculatedSpellData;
 
     private SpellCtx(EntityActivation act, Entity sourceEntity, LivingEntity caster, LivingEntity target, BlockPos pos, Vector3d vec, EntitySavedSpellData calculatedSpellData) {
@@ -40,8 +37,6 @@ public class SpellCtx {
         this.world = caster.level;
         this.vecPos = vec;
         this.activation = act;
-
-        this.levelProvider = new LevelProvider(caster, calculatedSpellData.getSpell());
 
     }
 

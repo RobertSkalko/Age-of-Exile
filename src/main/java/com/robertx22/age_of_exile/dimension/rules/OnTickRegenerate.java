@@ -30,9 +30,6 @@ public class OnTickRegenerate {
 
         EntityData unitdata = Load.Unit(en);
 
-        unitdata.getResources()
-            .shields.onTicksPassed(50);
-
         unitdata.tryRecalculateStats();
 
         RestoreResourceEvent restore = EventBuilder.ofRestore(en, en, ResourceType.health, RestoreType.regen, 0)

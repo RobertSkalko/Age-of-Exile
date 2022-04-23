@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.value_calc;
 
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -15,7 +16,7 @@ import java.util.List;
 public class ScalingCalc {
 
     public String stat;
-    public LeveledValue multi;
+    public float multi;
 
     public Stat getStat() {
         return ExileDB.Stats()
@@ -27,22 +28,22 @@ public class ScalingCalc {
 
     }
 
-    public ScalingCalc(Stat stat, LeveledValue multi) {
+    public ScalingCalc(Stat stat, float multi) {
         super();
         this.stat = stat.GUID();
         this.multi = multi;
     }
 
-    public LeveledValue getMulti() {
+    public float getMulti() {
         return multi;
     }
 
-    public int getMultiAsPercent(LevelProvider provider) {
-        return (int) (multi.getValue(provider) * 100);
+    public int getMultiAsPercent() {
+        return (int) (multi * 100);
     }
 
-    public ITextComponent GetTooltipString(LevelProvider provider) {
-        return new StringTextComponent("(" + getMultiAsPercent(provider) + "% of " + getStat().getIconNameFormat() + ")");
+    public ITextComponent GetTooltipString() {
+        return new StringTextComponent("(" + getMultiAsPercent() + "% of " + getStat().getIconNameFormat() + ")");
     }
 
     public List<ITextComponent> getTooltipFor(float multi, float value, IFormattableTextComponent statname, Elements el) {
@@ -63,9 +64,9 @@ public class ScalingCalc {
         return list;
     }
 
-    public int getCalculatedValue(LevelProvider provider) {
+    public int getCalculatedValue(EntityData data) {
 
-        return (int) (getMulti().getValue(provider) * provider.getCasterData()
+        return (int) (getMulti() * data
             .getUnit()
             .getCalculatedStat(stat)
             .getValue());

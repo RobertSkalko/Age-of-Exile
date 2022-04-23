@@ -91,7 +91,7 @@ public class EntitySpellCap {
 
         public abstract boolean alreadyHit(Entity spellEntity, LivingEntity target);
 
-        public abstract int getLevelOf(String id);
+        public abstract boolean hasSpell(Spell spell);
 
     }
 
@@ -161,10 +161,7 @@ public class EntitySpellCap {
         }
 
         public int getSpentSpellPoints() {
-            int total = 0;
-            for (Integer x : this.spellData.allocated_lvls.values()) {
-                total += x;
-            }
+            int total = this.spellData.spells.size();
             return total;
         }
 
@@ -187,7 +184,7 @@ public class EntitySpellCap {
                     return false;
                 }
             }
-            if (spellData.allocated_lvls.getOrDefault(spell.GUID(), 0) >= spell.getMaxLevel()) {
+            if (hasSpell(spell)) {
                 return false;
             }
 
@@ -197,7 +194,7 @@ public class EntitySpellCap {
         @Override
         public List<Spell> getLearnedSpells() {
             return ExileDB.Spells()
-                .getFilterWrapped(x -> getLevelOf(x.GUID()) > 0).list;
+                .getFilterWrapped(x -> hasSpell(x)).list;
         }
 
         @Override
@@ -246,8 +243,8 @@ public class EntitySpellCap {
         }
 
         @Override
-        public int getLevelOf(String id) {
-            return spellData.getLevelOf(id);
+        public boolean hasSpell(Spell spell) {
+            return this.spellData.spells.contains(spell.GUID());
         }
 
         @Override

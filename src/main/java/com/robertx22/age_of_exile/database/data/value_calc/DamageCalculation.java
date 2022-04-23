@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.value_calc;
 
+import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
@@ -14,22 +15,22 @@ public class DamageCalculation {
     public List<ScalingCalc> scaling = new ArrayList<>();
     public float base = 0;
 
-    public int getCalculatedValue(LevelProvider provider) {
-        int val = getCalculatedScalingValue(provider);
-        val += getCalculatedBaseValue(provider);
+    public int getCalculatedValue(EntityData data) {
+        int val = getCalculatedScalingValue(data);
+        val += getCalculatedBaseValue(data);
         return val;
     }
 
-    private int getCalculatedScalingValue(LevelProvider provider) {
+    private int getCalculatedScalingValue(EntityData data) {
         float amount = 0;
         amount += scaling.stream()
-            .mapToInt(x -> x.getCalculatedValue(provider))
+            .mapToInt(x -> x.getCalculatedValue(data))
             .sum();
         return (int) amount;
     }
 
-    private int getCalculatedBaseValue(LevelProvider provider) {
-        return (int) StatScaling.NORMAL.scale(base, provider.getCasterLevel());
+    private int getCalculatedBaseValue(EntityData data) {
+        return (int) StatScaling.NORMAL.scale(base, data.getLevel());
     }
 
     public static class Builder {
@@ -47,12 +48,12 @@ public class DamageCalculation {
         }
 
         public Builder scaling(float scaling) {
-            dmg.scaling.add(new ScalingCalc(new AttackDamage(dmg.element), new LeveledValue(scaling, scaling)));
+            dmg.scaling.add(new ScalingCalc(new AttackDamage(dmg.element), scaling));
             return this;
         }
 
         public Builder stat(Stat stat, float scaling) {
-            dmg.scaling.add(new ScalingCalc(stat, new LeveledValue(scaling, scaling)));
+            dmg.scaling.add(new ScalingCalc(stat, scaling));
             return this;
         }
 

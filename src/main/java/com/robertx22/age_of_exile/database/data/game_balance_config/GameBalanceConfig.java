@@ -25,7 +25,6 @@ public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, 
 
     public LevelScalingConfig NORMAL_STAT_SCALING = new LevelScalingConfig(1, 0.2F, false);
     public LevelScalingConfig SLOW_STAT_SCALING = new LevelScalingConfig(1, 0.01F, true);
-    public LevelScalingConfig MANA_COST_SCALING = new LevelScalingConfig(1, 0.2F, true);
     public LevelScalingConfig CORE_STAT_SCALING = new LevelScalingConfig(1, 0.05F, true);
     public LevelScalingConfig STAT_REQ_SCALING = new LevelScalingConfig(2, 2, true);
 

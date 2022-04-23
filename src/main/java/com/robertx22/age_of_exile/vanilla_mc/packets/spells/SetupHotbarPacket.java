@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.vanilla_mc.packets.spells;
 
 import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.main.MyPacket;
@@ -46,7 +47,8 @@ public class SetupHotbarPacket extends MyPacket<SetupHotbarPacket> {
 
         EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
-        if (spells.getLevelOf(spell) > 0) {
+        if (spells.hasSpell(ExileDB.Spells()
+            .get(spell))) {
             spells.getSpellsData().hotbars.put(number, spell);
             spells.syncToClient(player);
         }

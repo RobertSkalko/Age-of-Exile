@@ -138,29 +138,6 @@ public enum BarGuiType {
             return SlashRef.id("textures/gui/overlay/difficulty.png");
         }
     },
-    SHIELD {
-        @Override
-        public float getCurrent(EntityData data, PlayerEntity en) {
-            return data.getResources()
-                .getShield();
-        }
-
-        @Override
-        public float getMax(EntityData data, PlayerEntity en) {
-            return HealthUtils.getMaxHealth(en);
-        }
-
-        @Override
-        public ResourceLocation getTexture(EntityData data, PlayerEntity en) {
-            return SlashRef.id("textures/gui/overlay/shield.png");
-        }
-
-        @Override
-        public boolean shouldRender(EntityData data, PlayerEntity en) {
-            return getCurrent(data, en) > 0;
-        }
-
-    },
 
     HUNGER {
         @Override

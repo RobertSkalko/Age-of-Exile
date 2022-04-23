@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.database.data.value_calc;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class ValueCalcBuilder {
@@ -14,22 +13,18 @@ public class ValueCalcBuilder {
         return b;
     }
 
-    public ValueCalcBuilder baseValue(float min, float max) {
-        calc.base = new LeveledValue(min, max);
+    public ValueCalcBuilder baseValue(float val) {
+        calc.base = val;
         return this;
     }
 
-    public ValueCalcBuilder attackScaling(float min, float max) {
-        calc.attack_scaling = new LeveledValue(min, max);
+    public ValueCalcBuilder attackScaling(float scaling) {
+        calc.attack_scaling = scaling;
         return this;
     }
 
-    public ValueCalcBuilder spellScaling(float min, float max) {
-        return statScaling(SpellDamage.getInstance(), min, max); // todo test CHANGE THIS TO FLAT
-    }
-
-    public ValueCalcBuilder statScaling(Stat stat, float min, float max) {
-        calc.stat_scalings.add(new ScalingCalc(stat, new LeveledValue(min, max)));
+    public ValueCalcBuilder statScaling(Stat stat, float scaling) {
+        calc.stat_scalings.add(new ScalingCalc(stat, scaling));
         return this;
     }
 

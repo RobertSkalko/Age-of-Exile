@@ -44,7 +44,6 @@ public class HolySpells implements ExileRegistryInit {
     public static String CHARGE_ID = "charge";
     public static String WHIRLWIND = "whirlwind";
     public static String TAUNT = "taunt";
-    public static String SHOUT_WARN = "shout_warn";
     public static String PULL = "pull";
 
     public static String HYMN_OF_VALOR = "song_of_valor";
@@ -116,18 +115,6 @@ public class HolySpells implements ExileRegistryInit {
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 20D, 3D))
 
-            .build();
-
-        SpellBuilder.of(SHOUT_WARN, SpellConfiguration.Builder.instant(10, 60 * 20), "Warning Shout",
-                Arrays.asList(SpellTag.area, SpellTag.shout, SpellTag.shield))
-
-            .manualDesc(
-                "Let out a warning shout, giving a "
-                    + SpellCalcs.SHOUT_WARN.getLocDmgTooltip() + " Shield to all nearby allies.")
-
-            .attackStyle(PlayStyle.melee)
-            .onCast(PartBuilder.playSound(SoundEvents.WOLF_HOWL, 1D, 1D))
-            .onCast(PartBuilder.giveShieldInRadius(10D, SpellCalcs.SHOUT_WARN, 10D))
             .build();
 
         SpellBuilder.of(PULL, SpellConfiguration.Builder.instant(5, 60 * 20), "Pull",

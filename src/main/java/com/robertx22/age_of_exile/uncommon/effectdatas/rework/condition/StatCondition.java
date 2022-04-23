@@ -19,7 +19,6 @@ public abstract class StatCondition implements JsonExileRegistry<StatCondition>,
 
     static {
         addSer(new RequireChargedAttack());
-        addSer(new IsTargetShieldedCondition());
         addSer(new IsHealthAbovePercentCondition());
         addSer(new IsUndeadCondition());
         addSer(new IsHealthBellowPercentCondition());

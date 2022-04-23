@@ -9,7 +9,6 @@
   "weight": 1000,
   "weapon_offhand_stat_util": 0,
   "style": "ranged",
-  "implicit_stats": [],
   "base_stats": [
     {
       "min": 1.6,

@@ -55,7 +55,7 @@ public class DamageAction extends SpellAction {
 
                 for (DamageCalculation dmgcalc : calc.damage_calcs.damages) {
 
-                    int value = dmgcalc.getCalculatedValue(ctx.levelProvider);
+                    int value = dmgcalc.getCalculatedValue(Load.Unit(ctx.caster));
                     Elements element = dmgcalc.element;
 
                     DamageEvent dmg = EventBuilder.ofSpellDamage(ctx.caster, t, value * stacks, ctx.calculatedSpellData.getSpell())
