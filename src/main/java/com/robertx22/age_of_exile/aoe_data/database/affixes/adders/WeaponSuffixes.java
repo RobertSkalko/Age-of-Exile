@@ -1,18 +1,35 @@
 package com.robertx22.age_of_exile.aoe_data.database.affixes.adders;
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.affixes.ElementalAffixBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType.SlotTag;
+import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
+
+import java.util.Arrays;
 
 public class WeaponSuffixes implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
+
+        ElementalAffixBuilder.start()
+            .guid(x -> x.guidName + "_atk_dmg")
+            .add(Elements.Fire, "Of Fire")
+            .add(Elements.Water, "Of Ice")
+            .add(Elements.Earth, "Of Poison")
+            .add(Elements.Physical, "Of Brutality")
+            .stats(x -> Arrays.asList(new StatModifier(1, 2, new AttackDamage(x), ModType.FLAT)))
+            .includesTags(SlotTag.weapon_family)
+            .Weight(3000)
+            .Suffix()
+            .Build();
 
         AffixBuilder.Normal("of_vampirism")
             .Named("Of Vampirism")

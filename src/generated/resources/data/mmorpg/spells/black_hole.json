@@ -172,17 +172,13 @@
   },
   "config": {
     "swing_arm": true,
-    "apply_cast_speed_to_cd": false,
     "castingWeapon": "MAGE_WEAPON",
     "mana_cost": {
       "min": 15.0,
       "max": 30.0
     },
     "times_to_cast": 1,
-    "charges": 0,
-    "charge_regen": 0,
     "imbues": 1,
-    "charge_name": "",
     "cast_time_ticks": 30,
     "cooldown_ticks": 1200,
     "style": "magic",

@@ -176,19 +176,15 @@
   },
   "config": {
     "swing_arm": true,
-    "apply_cast_speed_to_cd": false,
     "castingWeapon": "ANY_WEAPON",
     "mana_cost": {
       "min": 3.5,
       "max": 7.0
     },
     "times_to_cast": 1,
-    "charges": 3,
-    "charge_regen": 600,
     "imbues": 1,
-    "charge_name": "trap",
     "cast_time_ticks": 0,
-    "cooldown_ticks": 20,
+    "cooldown_ticks": 100,
     "style": "ranged",
     "tags": [
       "damage",

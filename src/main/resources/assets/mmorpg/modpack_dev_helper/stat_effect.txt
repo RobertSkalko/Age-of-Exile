@@ -8,7 +8,6 @@ give_negative/11_to_target
 leech_energy
 multiply_number_num
 give_negative/5_to_target
-apply_cd_as_cast_time
 give_beneficial/21_to_source
 increase_proj_speed_num
 reduce_cd_by_ticks

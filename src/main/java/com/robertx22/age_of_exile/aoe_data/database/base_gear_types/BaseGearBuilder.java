@@ -24,7 +24,6 @@ public class BaseGearBuilder implements GearDataHelper {
     private String slot;
     private TagList tags;
     private List<StatModifier> basestats = new ArrayList<>();
-    private List<StatModifier> implicitstats = new ArrayList<>();
     private WeaponTypes wep = WeaponTypes.none;
     private int weapon_offhand_stat_util = 0;
     private float atkspeed = 1F;
@@ -82,11 +81,6 @@ public class BaseGearBuilder implements GearDataHelper {
         return this;
     }
 
-    public BaseGearBuilder implicitStat(StatModifier mod) {
-        this.implicitstats.add(mod);
-        return this;
-    }
-
     public DataGenKey<BaseGearType> build() {
 
         LevelRange x = LevelRanges.FULL;
@@ -96,7 +90,6 @@ public class BaseGearBuilder implements GearDataHelper {
         BaseGearType type = new BaseGearType(slot, id, x, name);
         type.weapon_type = wep;
         type.tags = tags;
-        type.implicit_stats = implicitstats;
         type.base_stats = basestats;
         type.attacksPerSecond = atkspeed;
         type.weight = weight;

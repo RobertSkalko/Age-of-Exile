@@ -18,6 +18,7 @@ of_spell_dmg
 strong_int_armor_suf
 earth_res
 of_energy
+physical_atk_dmg
 strong_wis_armor_suf
 earth_wep_dmg
 azure
@@ -28,6 +29,7 @@ of_the_virile
 armored_mobs
 physical_wep_dmg_dun
 of_the_wise
+water_atk_dmg
 of_brutality
 focused
 of_affluence
@@ -46,9 +48,11 @@ earth_spell_ele_dmg
 crit_prefix
 physical_wep_dmg
 earth_ele_dmg_jewelry
+fire_atk_dmg
 of_the_troll
 scavanger
 of_the_sky
+earth_atk_dmg
 fire_wep_dmg_dun
 of_the_agile
 strong_str_armor_suf

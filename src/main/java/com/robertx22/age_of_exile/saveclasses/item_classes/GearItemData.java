@@ -41,8 +41,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Store
     public BaseStatsData baseStats = new BaseStatsData();
     @Store
-    public ImplicitStatsData imp = new ImplicitStatsData(); // implicit stats
-    @Store
     public GearAffixesData affixes = new GearAffixesData();
     @Store
     public GearSocketsData sockets = new GearSocketsData();
@@ -345,8 +343,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         IfNotNullAdd(cr, list);
 
-        IfNotNullAdd(imp, list);
-
         affixes.getAllAffixesAndSockets()
             .forEach(x -> IfNotNullAdd(x, list));
 
@@ -385,8 +381,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         affixes.getAllAffixesAndSockets()
             .forEach(x -> IfNotNullAdd(x, list));
-
-        list.add(imp);
 
         IfNotNullAdd(uniqueStats, list);
         return list;

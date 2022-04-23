@@ -1,0 +1,26 @@
+{
+  "guid": "fire_atk_dmg",
+  "loc_name": "Of Fire",
+  "only_one_per_item": true,
+  "weight": 3000,
+  "requirements": {
+    "tag_requirements": [
+      {
+        "included": [
+          "weapon_family"
+        ],
+        "excluded": []
+      }
+    ]
+  },
+  "tags": [],
+  "type": "suffix",
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 2.0,
+      "stat": "fire_weapon_damage",
+      "type": "FLAT"
+    }
+  ]
+}

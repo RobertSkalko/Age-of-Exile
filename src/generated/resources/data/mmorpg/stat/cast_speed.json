@@ -9,8 +9,7 @@
       "style_is_magic"
     ],
     "effects": [
-      "decrease_cast_ticks_num",
-      "apply_cd_as_cast_time"
+      "decrease_cast_ticks_num"
     ],
     "events": [
       "on_spell_stat_calc"

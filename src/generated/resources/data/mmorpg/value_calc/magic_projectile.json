@@ -13,7 +13,7 @@
             }
           }
         ],
-        "base": 5.0
+        "base": 0.0
       },
       {
         "element": "Fire",
@@ -21,8 +21,8 @@
           {
             "stat": "fire_weapon_damage",
             "multi": {
-              "min": 1.0,
-              "max": 1.0
+              "min": 0.8,
+              "max": 0.8
             }
           }
         ],
@@ -34,8 +34,8 @@
           {
             "stat": "water_weapon_damage",
             "multi": {
-              "min": 1.0,
-              "max": 1.0
+              "min": 0.8,
+              "max": 0.8
             }
           }
         ],
@@ -47,8 +47,8 @@
           {
             "stat": "earth_weapon_damage",
             "multi": {
-              "min": 1.0,
-              "max": 1.0
+              "min": 0.8,
+              "max": 0.8
             }
           }
         ],

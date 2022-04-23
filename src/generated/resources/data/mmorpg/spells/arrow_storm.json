@@ -149,17 +149,13 @@
   },
   "config": {
     "swing_arm": false,
-    "apply_cast_speed_to_cd": false,
     "castingWeapon": "RANGED",
     "mana_cost": {
       "min": 10.0,
       "max": 20.0
     },
     "times_to_cast": 1,
-    "charges": 0,
-    "charge_regen": 0,
     "imbues": 1,
-    "charge_name": "",
     "cast_time_ticks": 20,
     "cooldown_ticks": 500,
     "style": "ranged",

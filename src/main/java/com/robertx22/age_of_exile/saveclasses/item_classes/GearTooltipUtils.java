@@ -47,10 +47,6 @@ public class GearTooltipUtils {
 
         tip.add(new SText(""));
 
-        if (gear.imp != null) {
-            tip.addAll(gear.imp.GetTooltipString(info, gear));
-        }
-
         List<IGearPartTooltip> list = new ArrayList<IGearPartTooltip>();
 
         List<ExactStatData> specialStats = new ArrayList<>();
@@ -62,7 +58,6 @@ public class GearTooltipUtils {
                 tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
             }
             tip.addAll(gear.affixes.GetTooltipString(info, gear));
-            tip.addAll(gear.imp.GetTooltipString(info, gear));
             if (gear.hasCraftedStats()) {
                 tip.addAll(gear.getCraftedStats()
                     .GetTooltipString(info, gear));
@@ -82,7 +77,6 @@ public class GearTooltipUtils {
                 stats.addAll(gear.getCraftedStats()
                     .GetAllStats(gear));
             }
-            stats.addAll(gear.imp.GetAllStats(gear));
             if (gear.uniqueStats != null) {
                 stats.addAll(gear.uniqueStats.GetAllStats(gear));
             }

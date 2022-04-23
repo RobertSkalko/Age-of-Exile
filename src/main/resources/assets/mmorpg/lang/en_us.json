@@ -275,9 +275,6 @@
 	"item.mmorpg.potions.reset_all_perks": "Talent Reset Potion",
 	"item.mmorpg.potions.reset_spells": "Spells Reset Potion",
 	"item.mmorpg.potions.reset_stats": "Stat Reset Potion",
-	"item.mmorpg.projectile.fireball": "Projectile",
-	"item.mmorpg.projectile.slimeball": "Projectile",
-	"item.mmorpg.projectile.snowball": "Projectile",
 	"item.mmorpg.runes.ano": "Ano Rune",
 	"item.mmorpg.runes.cen": "Cen Rune",
 	"item.mmorpg.runes.dos": "Dos Rune",
@@ -310,6 +307,7 @@
 	"mmorpg.affix.crit_prefix": "Critical",
 	"mmorpg.affix.cruel": "Cruel",
 	"mmorpg.affix.desolation": "Desolation",
+	"mmorpg.affix.earth_atk_dmg": "Of Poison",
 	"mmorpg.affix.earth_ele_dmg_jewelry": "Of Venom",
 	"mmorpg.affix.earth_ele_mobs": "Of Diseases",
 	"mmorpg.affix.earth_res": "Of the Snake",
@@ -317,6 +315,7 @@
 	"mmorpg.affix.earth_wep_dmg": "Poisoned",
 	"mmorpg.affix.earth_wep_dmg_dun": "Poisonous",
 	"mmorpg.affix.energy_reg": "Invirogating",
+	"mmorpg.affix.fire_atk_dmg": "Of Fire",
 	"mmorpg.affix.fire_ele_dmg_jewelry": "Of Embers",
 	"mmorpg.affix.fire_ele_mobs": "Of Embers",
 	"mmorpg.affix.fire_res": "Of the Drake",
@@ -353,6 +352,7 @@
 	"mmorpg.affix.of_the_wise": "Of the Wise",
 	"mmorpg.affix.of_treasure": "Of Treasure",
 	"mmorpg.affix.of_vampirism": "Of Vampirism",
+	"mmorpg.affix.physical_atk_dmg": "Of Brutality",
 	"mmorpg.affix.physical_wep_dmg": "Tyrannical",
 	"mmorpg.affix.physical_wep_dmg_dun": "Tyrannical",
 	"mmorpg.affix.precise": "Precise",
@@ -369,6 +369,7 @@
 	"mmorpg.affix.true_hit": "True Hit",
 	"mmorpg.affix.vampiric": "Vampiric",
 	"mmorpg.affix.virile": "Virile",
+	"mmorpg.affix.water_atk_dmg": "Of Ice",
 	"mmorpg.affix.water_ele_dmg_jewelry": "Of Ice",
 	"mmorpg.affix.water_ele_mobs": "Of Frost",
 	"mmorpg.affix.water_res": "Of the Yeti",
@@ -508,6 +509,23 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 	"effect.mmorpg.beneficial.1": "Antidote",
@@ -550,23 +568,6 @@
 	"effect.mmorpg.negative.8": "Bleed",
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
-
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_corruption": "§cOrb of Corruption",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -1251,30 +1252,6 @@
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
-	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
-	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
-	"mmorpg.unique_gear.bone_shatterer.name": "Bone Shatterer",
-	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
-	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
-	"mmorpg.unique_gear.heavenly_rainbow.name": "Heavenly Rainbow",
-	"mmorpg.unique_gear.heavenly_tear.name": "Heavenly Tear",
-	"mmorpg.unique_gear.insight.name": "Insight",
-	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
-	"mmorpg.unique_gear.playful_hope.name": "Playful Hope",
-	"mmorpg.unique_gear.rabbit_paw.name": "Rabbit's Paw",
-	"mmorpg.unique_gear.skull_cleaver.name": "Skull Cleaver",
-	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
-	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
-	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
-	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
-	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.axe": "Axe",
@@ -1305,6 +1282,30 @@
 	"mmorpg.gearslot.sword": "Sword",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"mmorpg.unique_gear.air_disaster.name": "Aria of Disaster",
+	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
+	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
+	"mmorpg.unique_gear.bone_shatterer.name": "Bone Shatterer",
+	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
+	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
+	"mmorpg.unique_gear.heavenly_rainbow.name": "Heavenly Rainbow",
+	"mmorpg.unique_gear.heavenly_tear.name": "Heavenly Tear",
+	"mmorpg.unique_gear.insight.name": "Insight",
+	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
+	"mmorpg.unique_gear.playful_hope.name": "Playful Hope",
+	"mmorpg.unique_gear.rabbit_paw.name": "Rabbit's Paw",
+	"mmorpg.unique_gear.skull_cleaver.name": "Skull Cleaver",
+	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
+	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
+	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
+	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
+	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",

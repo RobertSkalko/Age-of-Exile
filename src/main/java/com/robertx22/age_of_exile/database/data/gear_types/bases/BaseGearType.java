@@ -35,7 +35,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
     public int weapon_offhand_stat_util = 0;
     public PlayStyle style = PlayStyle.melee;
 
-    public List<StatModifier> implicit_stats = new ArrayList<>();
     public List<StatModifier> base_stats = new ArrayList<>();
 
     public WeaponTypes weapon_type = WeaponTypes.none;
@@ -52,10 +51,6 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
 
     private BaseGearType() {
 
-    }
-
-    public List<StatModifier> implicitStats() {
-        return implicit_stats;
     }
 
     public List<StatModifier> baseStats() {

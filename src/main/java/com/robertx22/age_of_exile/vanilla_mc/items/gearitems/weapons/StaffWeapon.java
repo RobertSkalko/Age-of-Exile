@@ -48,6 +48,7 @@ public class StaffWeapon extends ModWeapon implements IAutoModel {
                     if (player.isCreative() && MMORPG.RUN_DEV_TOOLS) {
                         spell = TestSpell.get();
                     }
+
                     if (TellServerToCastSpellPacket.tryCastSpell(player, spell)) {
                         player.swing(hand);
                         return ActionResult.success(stack);
