@@ -21,12 +21,6 @@
       "max": 5.0,
       "stat": "attack_speed",
       "type": "FLAT"
-    },
-    {
-      "min": 2.0,
-      "max": 5.0,
-      "stat": "cast_speed",
-      "type": "FLAT"
     }
   ]
 }

@@ -3,9 +3,6 @@ package com.robertx22.age_of_exile.event_hooks.ontick;
 import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
-import com.robertx22.age_of_exile.database.data.spells.components.Spell;
-import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
-import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.dimension.PopulateDungeonChunks;
 import com.robertx22.age_of_exile.dimension.rules.OnTickSetGameMode;
 import com.robertx22.age_of_exile.mixin_methods.OnItemStoppedUsingCastImbuedSpell;
@@ -16,7 +13,6 @@ import com.robertx22.age_of_exile.uncommon.effectdatas.RestoreResourceEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.rework.RestoreType;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.*;
 import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
-import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientEntityIsCastingSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -133,39 +129,11 @@ public class OnServerTick {
         TICK_ACTIONS.add(new
             PlayerTickAction("every_tick", 1, (player, data) ->
         {
-            if (player.isBlocking()) {
-                if (Load.spells(player)
-                    .getCastingData()
-                    .isCasting()) {
-                    Load.spells(player)
-                        .getCastingData()
-                        .cancelCast(player);
-                }
-            }
-
-            Load.spells(player)
-                .getCastingData()
-                .onTimePass(player, Load.spells(player), 1);
 
             Load.Unit(player)
                 .getResources()
                 .onTickBlock(player);
 
-            Spell spell = Load.spells(player)
-                .getCastingData()
-                .getSpellBeingCast();
-
-            if (spell != null) {
-                spell.getAttached()
-                    .tryActivate(Spell.CASTER_NAME, SpellCtx.onTick(player, player, EntitySavedSpellData.create(Load.Unit(player)
-                        .getLevel(), player, spell)));
-
-                PlayerUtils.getNearbyPlayers(player, 50)
-                    .forEach(x -> {
-                        Packets.sendToClient(x, new TellClientEntityIsCastingSpellPacket(player, spell));
-                    });
-
-            }
         }));
 
         TICK_ACTIONS.add(new

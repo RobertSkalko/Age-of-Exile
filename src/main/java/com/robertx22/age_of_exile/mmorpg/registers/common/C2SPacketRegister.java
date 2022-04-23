@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.AllocateStatPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.ModifyItemPacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.perks.PerkChangePacket;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.SetupHotbarPacket;
-import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCancelSpellCast;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCastSpellPacket;
 import com.robertx22.library_of_exile.main.Packets;
 
@@ -24,7 +23,6 @@ public class C2SPacketRegister {
         Packets.registerClientToServerPacket(MMORPG.NETWORK, new PerkChangePacket(), i++);
         Packets.registerClientToServerPacket(MMORPG.NETWORK, new AllocateSpellPacket(), i++);
         Packets.registerClientToServerPacket(MMORPG.NETWORK, new AllocateStatPacket(), i++);
-        Packets.registerClientToServerPacket(MMORPG.NETWORK, new TellServerToCancelSpellCast(), i++);
         Packets.registerClientToServerPacket(MMORPG.NETWORK, new SetupHotbarPacket(), i++);
     }
 

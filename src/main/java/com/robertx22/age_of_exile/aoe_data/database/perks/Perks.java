@@ -36,8 +36,6 @@ public class Perks implements ExileRegistryInit {
         PerkBuilder.stat("wis", new OptScaleExactStat(1, DatapackStats.WIS, ModType.FLAT));
         PerkBuilder.stat("vit", new OptScaleExactStat(1, DatapackStats.VIT, ModType.FLAT));
 
-        PerkBuilder.stat("cast_speed", new OptScaleExactStat(3, Stats.CAST_SPEED.get(), ModType.FLAT));
-
         PerkBuilder.stat(new OptScaleExactStat(-2, Stats.MANA_COST.get(), ModType.FLAT));
 
         PerkBuilder.stat(new OptScaleExactStat(3, Stats.ATTACK_SPEED.get(), ModType.FLAT));

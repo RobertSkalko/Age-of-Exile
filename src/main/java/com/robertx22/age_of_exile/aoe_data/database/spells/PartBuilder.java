@@ -190,12 +190,6 @@ public class PartBuilder {
 
     }
 
-    public static ComponentPart cancelSpell() {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.CANCEL_CAST.create());
-        return c;
-    }
-
     public static ComponentPart groundEdgeParticles(BasicParticleType particle, Double count, Double radius, Double randomY) {
         return groundEdgeParticles(particle, count, radius, randomY, ParticleMotion.None);
     }

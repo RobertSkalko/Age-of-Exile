@@ -80,8 +80,6 @@
     "swing_arm": true,
     "castingWeapon": "MELEE_WEAPON",
     "mana_cost": 0,
-    "times_to_cast": 1,
-    "cast_time_ticks": 0,
     "cooldown_ticks": 600,
     "style": "melee",
     "tags": [

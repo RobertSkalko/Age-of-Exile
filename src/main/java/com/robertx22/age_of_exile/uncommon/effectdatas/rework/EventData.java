@@ -40,7 +40,6 @@ public class EventData {
     public static String IGNORE_RESIST = "ignore_resist";
     public static String SECONDS = "seconds";
 
-    public static String CAST_TICKS = "cast_ticks";
     public static String EFFECT_DURATION_TICKS = "effect_duration_ticks";
     public static String COOLDOWN_TICKS = "cd_ticks";
     public static String MANA_COST = "mana_cost";

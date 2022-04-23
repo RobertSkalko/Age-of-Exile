@@ -145,7 +145,6 @@ public class BeneficialEffects implements ExileRegistryInit {
         ExileEffectBuilder.of(VALOR)
             .stat(3, 6, Stats.TOTAL_DAMAGE.get(), ModType.FLAT)
             .stat(2, 5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
-            .stat(2, 5, Stats.CAST_SPEED.get(), ModType.FLAT)
             .maxStacks(3)
             .addTags(EffectTags.song, EffectTags.offensive)
             .build();

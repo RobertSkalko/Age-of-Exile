@@ -151,8 +151,6 @@
     "swing_arm": true,
     "castingWeapon": "RANGED",
     "mana_cost": 20,
-    "times_to_cast": 1,
-    "cast_time_ticks": 0,
     "cooldown_ticks": 500,
     "style": "ranged",
     "tags": [

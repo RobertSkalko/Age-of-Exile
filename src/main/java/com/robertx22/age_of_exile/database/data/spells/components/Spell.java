@@ -123,46 +123,15 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
         return WeaponTypes.none;
     }
 
-    public final void onCastingTick(SpellCastContext ctx) {
-
-        int timesToCast = (int) ctx.spell.getConfig().times_to_cast;
-
-        if (timesToCast > 1) {
-
-            int castTimeTicks = (int) getCastTimeTicks(ctx);
-
-            // if i didnt do this then cast time reduction would reduce amount of spell hits.
-            int castEveryXTicks = castTimeTicks / timesToCast;
-
-            if (timesToCast > 1) {
-                if (castEveryXTicks < 1) {
-                    castEveryXTicks = 1;
-                }
-            }
-
-            if (ctx.isLastCastTick) {
-                this.cast(ctx, true);
-            } else {
-                if (ctx.ticksInUse > 0 && ctx.ticksInUse % castEveryXTicks == 0) {
-                    this.cast(ctx, true);
-                }
-            }
-
-        } else if (timesToCast < 1) {
-            System.out.println("Times to cast spell is: " + timesToCast + " . this seems like a bug.");
-        }
-
-    }
-
     public void cast(SpellCastContext ctx, boolean imbue) {
 
         LivingEntity caster = ctx.caster;
 
-        ctx.castedThisTick = true;
-
         if (this.config.swing_arm) {
-            caster.swingTime = -1; // this makes sure hand swings
-            caster.swing(Hand.MAIN_HAND);
+            if (!caster.level.isClientSide) {
+                caster.swingTime = -1; // this makes sure hand swings
+                caster.swing(Hand.MAIN_HAND, true);
+            }
         }
 
         if (imbue && this.config.cast_type == SpellCastType.IMBUE) {
@@ -176,10 +145,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
     public final int getCooldownTicks(SpellCastContext ctx) {
         return (int) ctx.event.data.getNumber(EventData.COOLDOWN_TICKS).number;
-    }
-
-    public final int getCastTimeTicks(SpellCastContext ctx) {
-        return (int) ctx.event.data.getNumber(EventData.CAST_TICKS).number;
     }
 
     @Override
@@ -204,7 +169,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
     public final List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
-        SpellCastContext ctx = new SpellCastContext(info.player, 0, this);
+        SpellCastContext ctx = new SpellCastContext(info.player, this);
 
         List<ITextComponent> list = new ArrayList<>();
 
@@ -225,27 +190,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
         list.add(new StringTextComponent(TextFormatting.YELLOW + "Cooldown: " + (getCooldownTicks(ctx) / 20) + "s"));
 
-        int casttime = getCastTimeTicks(ctx);
-
-        if (casttime == 0) {
-            list.add(new StringTextComponent(TextFormatting.GREEN + "Cast time: " + "Instant"));
-
-        } else {
-            list.add(new StringTextComponent(TextFormatting.GREEN + "Cast time: " + casttime / 20 + "s"));
-
-        }
-
         TooltipUtils.addEmpty(list);
 
         list.add(getConfig().castingWeapon.predicate.text);
 
         TooltipUtils.addEmpty(list);
-
-        if (this.config.times_to_cast > 1) {
-            TooltipUtils.addEmpty(list);
-            list.add(new StringTextComponent("Casted " + config.times_to_cast + " times during channel.").withStyle(TextFormatting.RED));
-
-        }
 
         if (true || Screen.hasShiftDown()) {
 

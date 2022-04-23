@@ -129,8 +129,6 @@
     "swing_arm": true,
     "castingWeapon": "NON_MAGE_WEAPON",
     "mana_cost": 10,
-    "times_to_cast": 1,
-    "cast_time_ticks": 0,
     "cooldown_ticks": 15,
     "style": "ranged",
     "tags": [

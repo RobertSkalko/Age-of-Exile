@@ -1,10 +1,6 @@
 {
   "id": "divine",
   "spells": {
-    "whirlwind": {
-      "x": 6,
-      "y": 1
-    },
     "wish": {
       "x": 3,
       "y": 6
@@ -20,10 +16,6 @@
     "awaken_mana": {
       "x": 7,
       "y": 4
-    },
-    "charge": {
-      "x": 4,
-      "y": 1
     },
     "healing_aura": {
       "x": 0,

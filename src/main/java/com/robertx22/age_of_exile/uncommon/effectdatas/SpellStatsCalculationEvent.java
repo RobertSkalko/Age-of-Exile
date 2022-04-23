@@ -34,7 +34,6 @@ public class SpellStatsCalculationEvent extends EffectEvent {
 
         this.data.setString(EventData.SPELL, spellid);
 
-        this.data.setupNumber(EventData.CAST_TICKS, spell.config.getCastTimeTicks());
         this.data.setupNumber(EventData.MANA_COST, Mana.getInstance().scaling.scale(spell.config.mana_cost, Load.Unit(caster)
             .getLevel()));
         this.data.setupNumber(EventData.COOLDOWN_TICKS, spell.config.cooldown_ticks);

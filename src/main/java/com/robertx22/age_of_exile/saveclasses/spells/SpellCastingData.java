@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.saveclasses.spells;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
-import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.spells.components.ImbueType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
@@ -30,21 +29,6 @@ import java.util.List;
 public class SpellCastingData {
 
     @Store
-    public int castingTicksLeft = 0;
-
-    @Store
-    public int castingTicksDone = 0;
-
-    @Store
-    public int lastSpellCastTimeInTicks = 0;
-
-    @Store
-    public String spellBeingCast = "";
-
-    @Store
-    public Boolean casting = false;
-
-    @Store
     public String imbued_spell = "";
     @Store
     public int imbued_spell_stacks = 0;
@@ -68,7 +52,7 @@ public class SpellCastingData {
 
             if (spell != null) {
                 if (spell.config.imbue_type == type) {
-                    spell.cast(new SpellCastContext(en, 0, spell), false);
+                    spell.cast(new SpellCastContext(en, spell), false);
                     consumeImbuedSpell();
                     return true;
                 }
@@ -77,140 +61,23 @@ public class SpellCastingData {
         return false;
     }
 
-    public void cancelCast(LivingEntity entity) {
-        try {
-            if (isCasting()) {
-                SpellCastContext ctx = new SpellCastContext(entity, 0, getSpellBeingCast());
-
-                Spell spell = getSpellBeingCast();
-                if (spell != null) {
-                    int cd = ctx.spell.getCooldownTicks(ctx);
-                    Load.Unit(entity)
-                        .getCooldowns()
-                        .setOnCooldown(spell.GUID(), cd);
-
-                }
-
-                spellBeingCast = "";
-                castingTicksLeft = 0;
-                lastSpellCastTimeInTicks = 0;
-                castingTicksDone = 0;
-                this.casting = false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public boolean isCasting() {
-        return spellBeingCast != null && casting && ExileDB.Spells()
-            .isRegistered(spellBeingCast);
-    }
-
-    transient static Spell lastSpell = null;
-
-    public void onTimePass(LivingEntity entity, EntitySpellCap.ISpellsCap spells, int ticks) {
-
-        try {
-
-            if (isCasting()) {
-                Spell spell = ExileDB.Spells()
-                    .get(spellBeingCast);
-
-                SpellCastContext ctx = new SpellCastContext(entity, castingTicksDone, spell);
-
-                if (spell != null && spells != null && ExileDB.Spells()
-                    .isRegistered(spell)) {
-                    spell.onCastingTick(ctx);
-
-                    /*
-                    // slow down player when casting spells
-                    Vector3d v = entity.getDeltaMovement();
-                    entity.setDeltaMovement(new Vector3d(0.25D * v.x, v.y, 0.25D * v.z));
-                    // slow down player when casting spells
-
-
-                     */
-
-                }
-
-                tryCast(ctx);
-
-                lastSpell = spell;
-
-                castingTicksLeft--;
-                castingTicksDone++;
-
-                if (castingTicksLeft < 0) {
-                    this.spellBeingCast = "";
-                }
-            } else {
-
-                lastSpell = null;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            this.cancelCast(entity);
-            // cancel when error, cus this is called on tick, so it doesn't crash servers when 1 spell fails
-        }
-    }
-
     public List<String> getSpellsOnCooldown(LivingEntity en) {
         return Load.Unit(en)
             .getCooldowns()
             .getAllSpellsOnCooldown();
     }
 
-    public void setToCast(Spell spell, LivingEntity entity) {
-        SpellCastContext ctx = new SpellCastContext(entity, 0, spell);
-
-        this.spellBeingCast = spell.GUID();
-        this.castingTicksLeft = ctx.spell.getCastTimeTicks(ctx);
-        this.lastSpellCastTimeInTicks = this.castingTicksLeft;
-        this.castingTicksDone = 0;
-        this.casting = true;
-    }
-
     public void tryCast(SpellCastContext ctx) {
-
-        if (getSpellBeingCast() != null) {
-            if (castingTicksLeft <= 0) {
-                Spell spell = getSpellBeingCast();
-
-                int timesToCast = ctx.spell.getConfig().times_to_cast;
-
-                if (timesToCast == 1) {
-                    spell.cast(ctx, true);
-                }
-
-                onSpellCast(ctx);
-                spellBeingCast = "";
-
-            }
+        if (ctx.spell != null) {
+            Spell spell = ctx.spell;
+            spell.cast(ctx, true);
+            onSpellCast(ctx);
         }
-
-    }
-
-    public Spell getSpellBeingCast() {
-
-        if (!ExileDB.Spells()
-            .isRegistered(spellBeingCast)) {
-            return null;
-        }
-
-        return ExileDB.Spells()
-            .get(spellBeingCast);
     }
 
     public boolean canCast(Spell spell, PlayerEntity player) {
 
         if (player.level.isClientSide) {
-            return false;
-        }
-
-        if (isCasting()) {
             return false;
         }
 
@@ -235,7 +102,7 @@ public class SpellCastingData {
             }
         }
 
-        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+        SpellCastContext ctx = new SpellCastContext(player, spell);
 
         LivingEntity caster = ctx.caster;
 
@@ -320,8 +187,6 @@ public class SpellCastingData {
                 }
             }
         }
-
-        this.casting = false;
 
         if (ctx.caster instanceof ServerPlayerEntity) {
             Load.Unit(ctx.caster)

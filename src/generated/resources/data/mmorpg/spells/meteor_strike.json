@@ -115,7 +115,7 @@
                   "particle_type": "minecraft:explosion",
                   "motion": "None",
                   "radius": 1.0,
-                  "particle_count": 3.0
+                  "particle_count": 15.0
                 }
               }
             ],
@@ -131,8 +131,6 @@
     "swing_arm": true,
     "castingWeapon": "MELEE_WEAPON",
     "mana_cost": 8,
-    "times_to_cast": 1,
-    "cast_time_ticks": 0,
     "cooldown_ticks": 100,
     "style": "melee",
     "tags": [

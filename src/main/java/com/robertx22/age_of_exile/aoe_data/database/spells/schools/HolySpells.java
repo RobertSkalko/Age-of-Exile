@@ -6,20 +6,16 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.spells.builders.ExileEffectActionBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.spells.builders.VanillaEffectActionBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
-import com.robertx22.age_of_exile.database.data.spells.SetAdd;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashSounds;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -41,8 +37,6 @@ public class HolySpells implements ExileRegistryInit {
     public static String INSPIRATION = "awaken_mana";
     public static String SHOOTING_STAR = "shooting_star";
 
-    public static String CHARGE_ID = "charge";
-    public static String WHIRLWIND = "whirlwind";
     public static String TAUNT = "taunt";
     public static String PULL = "pull";
 
@@ -56,50 +50,6 @@ public class HolySpells implements ExileRegistryInit {
         song(HYMN_OF_VALOR, "Hymn of Valor", BeneficialEffects.VALOR);
         song(HYMN_OF_PERSERVANCE, "Hymn of Perseverance", BeneficialEffects.PERSEVERANCE);
         song(HYMN_OF_VIGOR, "Hymn of Vigor", BeneficialEffects.VIGOR);
-
-        SpellBuilder.of(WHIRLWIND, SpellConfiguration.Builder.multiCast(10, 0, 100, 10)
-                    .setSwingArm(), "Whirlwind",
-                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
-            .manualDesc("Strike enemies around you for " +
-                SpellCalcs.WHIRLWIND.getLocDmgTooltip(Elements.Fire) + ". Scales with attack speed.")
-
-            .attackStyle(PlayStyle.melee)
-            .weaponReq(CastingWeapon.MELEE_WEAPON)
-
-            .onCast(new VanillaEffectActionBuilder(SlashPotions.KNOCKBACK_RESISTANCE.get()).giveToSelfOnly()
-                .seconds(5)
-                .build())
-
-            .onCast(PartBuilder.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1D, 1D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 2D, 0.5D))
-            .onCast(PartBuilder.damageInAoe(SpellCalcs.WHIRLWIND, 1.5D)
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 50D, 0.5D, 0.1D))
-            )
-            .build();
-
-        SpellBuilder.of(CHARGE_ID, SpellConfiguration.Builder.multiCast(10, 20 * 10, 60, 60)
-                , "Charge",
-                Arrays.asList(SpellTag.area, SpellTag.damage, SpellTag.movement))
-            .manualDesc(
-                "Charge in a direction, stopping upon first enemy hit to deal "
-                    + SpellCalcs.CHARGE.getLocDmgTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius."
-
-            )
-            .attackStyle(PlayStyle.melee)
-            .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.ANCIENT_DEBRIS_STEP, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 0.2D, ParticleMotion.CasterLook)
-                    .put(MapField.IGNORE_Y, true))
-                .addTarget(TargetSelector.CASTER.create()))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 20D, 1D, 0.5D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 1D, 1D, 0.5D))
-            .onCast(PartBuilder.damageInAoe(SpellCalcs.CHARGE, 1.75D)
-                .addPerEntityHit(PartBuilder.playSound(SoundEvents.ANVIL_LAND, 1D, 1D))
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 0.5D, 0.1D))
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 100D, 0.5D, 0.1D))
-                .addPerEntityHit(PartBuilder.cancelSpell())
-            )
-            .build();
 
         SpellBuilder.of(TAUNT, SpellConfiguration.Builder.instant(0, 20 * 30)
                     .setSwingArm(), "Taunt",
@@ -162,7 +112,7 @@ public class HolySpells implements ExileRegistryInit {
             .onExpire(PartBuilder.aoeParticles(ParticleTypes.SOUL_FIRE_FLAME, 10D, 1D))
             .build();
 
-        SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.multiCast(15, 20 * 30, 60, 3), "Healing Aura",
+        SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.instant(15, 20 * 30), "Healing Aura",
                 Arrays.asList(SpellTag.heal))
             .manualDesc(
                 "Heal allies around you for " + SpellCalcs.HEALING_AURA.getLocDmgTooltip() +

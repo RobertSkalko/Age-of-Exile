@@ -67,9 +67,6 @@ public class OnClientTick {
                     .getCooldowns()
                     .onTicksPass(1);
 
-                spells.getCastingData()
-                    .onTimePass(player, spells, 1); // ticks spells on client
-
                 List<String> onCooldownAfter = spells.getCastingData()
                     .getSpellsOnCooldown(player);
 

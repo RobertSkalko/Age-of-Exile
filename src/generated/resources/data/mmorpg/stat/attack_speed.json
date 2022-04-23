@@ -8,9 +8,7 @@
     "ifs": [
       "style_is_magic_is_false"
     ],
-    "effects": [
-      "decrease_cast_ticks_num"
-    ],
+    "effects": [],
     "events": [
       "on_spell_stat_calc"
     ]

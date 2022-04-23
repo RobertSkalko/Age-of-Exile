@@ -13,8 +13,6 @@ public class SpellConfiguration {
     public boolean swing_arm = true;
     public CastingWeapon castingWeapon = CastingWeapon.ANY_WEAPON;
     public int mana_cost;
-    public int times_to_cast = 1;
-    private int cast_time_ticks = 0;
     public int cooldown_ticks = 20;
     public PlayStyle style = PlayStyle.magic;
     public List<SpellTag> tags = new ArrayList<>();
@@ -22,10 +20,6 @@ public class SpellConfiguration {
 
     public int imbues = 1;
     public ImbueType imbue_type = ImbueType.ON_RANGED_ATTACK;
-
-    public int getCastTimeTicks() {
-        return cast_time_ticks;
-    }
 
     public SpellConfiguration setCastType(SpellCastType type) {
         this.cast_type = type;
@@ -45,7 +39,6 @@ public class SpellConfiguration {
 
         public static SpellConfiguration instant(int mana, int cd) {
             SpellConfiguration c = new SpellConfiguration();
-            c.cast_time_ticks = 0;
             c.mana_cost = mana;
             c.cooldown_ticks = cd;
             return c;
@@ -70,18 +63,9 @@ public class SpellConfiguration {
             return c;
         }
 
+        // todo
         public static SpellConfiguration nonInstant(int mana, int cd, int casttime) {
             SpellConfiguration c = new SpellConfiguration();
-            c.cast_time_ticks = casttime;
-            c.mana_cost = mana;
-            c.cooldown_ticks = cd;
-            return c;
-        }
-
-        public static SpellConfiguration multiCast(int mana, int cd, int casttime, int times) {
-            SpellConfiguration c = new SpellConfiguration();
-            c.times_to_cast = times;
-            c.cast_time_ticks = casttime;
             c.mana_cost = mana;
             c.cooldown_ticks = cd;
             return c;

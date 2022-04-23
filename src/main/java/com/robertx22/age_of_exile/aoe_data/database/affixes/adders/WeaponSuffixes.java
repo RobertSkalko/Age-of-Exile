@@ -59,13 +59,6 @@ public class WeaponSuffixes implements ExileRegistryInit {
             .Suffix()
             .Build();
 
-        AffixBuilder.Normal("of_fast_cast")
-            .Named("Of Faster Casting")
-            .stats(new StatModifier(7, 20, Stats.CAST_SPEED.get(), ModType.FLAT))
-            .includesTags(SlotTag.mage_weapon, SlotTag.jewelry_family)
-            .Suffix()
-            .Build();
-
         AffixBuilder.Normal("of_less_cd")
             .Named("Of Repetition")
             .stats(new StatModifier(6, 15, Stats.COOLDOWN_REDUCTION.get(), ModType.FLAT))

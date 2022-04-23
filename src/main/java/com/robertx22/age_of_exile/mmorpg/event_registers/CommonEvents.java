@@ -16,7 +16,6 @@ import com.robertx22.age_of_exile.event_hooks.my_events.OnPlayerDeath;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnServerTick;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnTickDungeonWorld;
 import com.robertx22.age_of_exile.event_hooks.player.OnLogin;
-import com.robertx22.age_of_exile.event_hooks.player.StopCastingIfInteract;
 import com.robertx22.age_of_exile.mixin_methods.OnItemStoppedUsingCastImbuedSpell;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.error_checks.base.ErrorChecks;
@@ -30,7 +29,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -56,12 +54,6 @@ public class CommonEvents {
         ForgeEvents.registerForgeEvent(TickEvent.WorldTickEvent.class, event -> {
             if (event.phase == TickEvent.Phase.END && event.world instanceof ServerWorld) {
                 OnTickDungeonWorld.onEndTick((ServerWorld) event.world);
-            }
-        });
-
-        ForgeEvents.registerForgeEvent(AttackEntityEvent.class, event -> {
-            if (event.getEntityLiving() instanceof ServerPlayerEntity) {
-                StopCastingIfInteract.interact(event.getPlayer());
             }
         });
 

@@ -134,8 +134,6 @@
     "swing_arm": true,
     "castingWeapon": "MAGE_WEAPON",
     "mana_cost": 7,
-    "times_to_cast": 1,
-    "cast_time_ticks": 0,
     "cooldown_ticks": 15,
     "style": "magic",
     "tags": [

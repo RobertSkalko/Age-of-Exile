@@ -23,9 +23,6 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
         SchoolBuilder.of(DIVINE, "Divine")
             .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 0))
 
-            .addSpell(HolySpells.WHIRLWIND, new PointData(6, 1))
-            .addSpell(HolySpells.CHARGE_ID, new PointData(4, 1))
-
             .addSpell(HolySpells.SHOOTING_STAR, new PointData(1, 2))
             .addSpell(HolySpells.UNDYING_WILL, new PointData(3, 2))
 

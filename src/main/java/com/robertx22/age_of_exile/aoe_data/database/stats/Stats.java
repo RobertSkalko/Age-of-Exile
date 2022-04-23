@@ -910,30 +910,12 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EmptyAccessor> CAST_SPEED = DatapackStatBuilder
-        .ofSingle("cast_speed", Elements.Physical)
-        .worksWithEvent(SpellStatsCalculationEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_STYLE.get(PlayStyle.magic))
-        .addEffect(StatEffects.DECREASE_CAST_TIME)
-        .setLocName(x -> "Cast Speed")
-        .setLocDesc(x -> "Affects amount of time needed to cast spells. If the spell is instant, it reduces the cooldown")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.base = 0;
-            x.min = -75;
-            x.max = 75;
-        })
-        .build();
-
     public static DataPackStatAccessor<EmptyAccessor> ATTACK_SPEED = DatapackStatBuilder
         .ofSingle("attack_speed", Elements.Physical)
         .worksWithEvent(SpellStatsCalculationEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Source)
         .addCondition(StatConditions.IS_NON_MAGIC_STYLE)
-        .addEffect(StatEffects.DECREASE_CAST_TIME)
         .setLocName(x -> "Attack Speed")
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {

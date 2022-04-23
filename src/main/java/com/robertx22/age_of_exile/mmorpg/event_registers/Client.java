@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.a_libraries.neat.AnotherTry;
 import com.robertx22.age_of_exile.event_hooks.ontick.OnClientTick;
 import com.robertx22.age_of_exile.event_hooks.player.OnKeyPress;
 import com.robertx22.age_of_exile.gui.overlays.bar_overlays.types.RPGGuiOverlay;
-import com.robertx22.age_of_exile.gui.overlays.spell_cast_bar.SpellCastBarOverlay;
 import com.robertx22.age_of_exile.gui.overlays.spell_hotbar.SpellHotbarOverlay;
 import com.robertx22.library_of_exile.main.ForgeEvents;
 import net.minecraft.client.Minecraft;
@@ -16,7 +15,6 @@ public class Client {
     public static void register() {
 
         SpellHotbarOverlay spellHotbarOverlay = new SpellHotbarOverlay();
-        SpellCastBarOverlay castbar = new SpellCastBarOverlay();
         RPGGuiOverlay rpggui = new RPGGuiOverlay();
 
         AnotherTry.register();
@@ -36,7 +34,6 @@ public class Client {
             }
 
             spellHotbarOverlay.onHudRender(event.getMatrixStack(), event.getPartialTicks());
-            castbar.onHudRender(event.getMatrixStack(), event.getPartialTicks());
             rpggui.onHudRender(event.getMatrixStack(), event.getPartialTicks());
 
         });
