@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.particles.ParticleTypes;
@@ -26,9 +25,7 @@ public class StrSpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .attackStyle(PlayStyle.melee)
             .manualDesc(
-                "Slash all nearby enemies, dealing "
-                    + SpellCalcs.SHRED.getLocDmgTooltip() + " " + Elements.Physical.getIconNameDmg()
-                    + " damage and reducing their defenses."
+                "Slash all nearby enemies, dealing  damage and reducing their defenses."
             )
 
             .onCast(PartBuilder.playSound(SoundEvents.WITHER_SKELETON_HURT, 1D, 1D))

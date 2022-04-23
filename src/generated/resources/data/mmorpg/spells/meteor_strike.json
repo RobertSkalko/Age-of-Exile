@@ -1,5 +1,4 @@
 {
-  "max_lvl": 16,
   "weight": 1000,
   "identifier": "meteor_strike",
   "attached": {
@@ -75,7 +74,7 @@
           {
             "type": "damage",
             "map": {
-              "value_calculation": "magic_projectile"
+              "value_calculation": "meteor_strike"
             }
           }
         ],
@@ -131,7 +130,7 @@
     "swing_arm": true,
     "castingWeapon": "MELEE_WEAPON",
     "mana_cost": 8,
-    "cooldown_ticks": 100,
+    "cooldown_ticks": 600,
     "style": "melee",
     "tags": [
       "technique",
@@ -142,7 +141,6 @@
     "imbues": 3,
     "imbue_type": "ON_CRIT"
   },
-  "manual_tip": true,
   "disabled_dims": [],
   "effect_tip": ""
 }

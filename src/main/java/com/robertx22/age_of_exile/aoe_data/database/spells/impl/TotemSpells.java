@@ -53,7 +53,7 @@ public class TotemSpells implements ExileRegistryInit {
         of(SlashBlocks.BLUE_TOTEM.get(), MANA_TOTEM_ID, SpellConfiguration.Builder.instant(18, 20 * 30), "Astral Totem",
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.WITCH)
             .manualDesc(
-                "Summon a totem which restores " + SpellCalcs.TOTEM_MANA.getLocDmgTooltip() + " mana to allies around it."
+                "Summon a totem which restores  mana to allies around it."
             )
             .onTick("block", PartBuilder.restoreManaInRadius(SpellCalcs.TOTEM_MANA, RADIUS)
                 .onTick(20D))
@@ -63,7 +63,7 @@ public class TotemSpells implements ExileRegistryInit {
             Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.HAPPY_VILLAGER)
 
             .manualDesc(
-                "Summon a totem which restores " + SpellCalcs.TOTEM_HEAL.getLocDmgTooltip() + " health to allies around it."
+                "Summon a totem which restores  health to allies around it."
             )
             .onTick("block", PartBuilder.healInAoe(SpellCalcs.TOTEM_HEAL, RADIUS)
                 .onTick(20D))

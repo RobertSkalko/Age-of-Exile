@@ -2,13 +2,13 @@ package com.robertx22.age_of_exile.database.data.spells.components;
 
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellDesc;
-import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.exile_effects.ExileEffect;
 import com.robertx22.age_of_exile.database.data.spells.SpellCastType;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
@@ -50,22 +50,18 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
     public static Spell SERIALIZER = new Spell();
 
     public static String DEFAULT_EN_NAME = "default_entity_name";
-    public static String CASTER_NAME = "caster";
 
     public static Gson GSON = new Gson();
 
-    public int max_lvl = 16;
     public int weight = 1000;
     public String identifier = "";
     public AttachedSpell attached = new AttachedSpell();
     public SpellConfiguration config = new SpellConfiguration();
 
-    public boolean manual_tip = false;
     public List<String> disabled_dims = new ArrayList<>();
     public String effect_tip = "";
 
     public transient String locDesc = "";
-    public transient List<StatModifier> statsForSkillGem = new ArrayList<>();
 
     public boolean isAllowedInDimension(World world) {
         if (disabled_dims.isEmpty()) {
@@ -224,6 +220,11 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+
+        for (ValueCalculation calc : this.attached.getAllCalculations()) {
+            // todo
+            list.addAll(calc.getTooltip(Load.Unit(ctx.caster)));
         }
 
         boolean learned = Load.spells(info.player)

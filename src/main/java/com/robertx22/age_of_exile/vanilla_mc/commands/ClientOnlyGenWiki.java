@@ -31,10 +31,8 @@ public class ClientOnlyGenWiki {
 
             String desc = "";
 
-            if (spell.manual_tip) {
-                desc = StringUtils.join(SpellDesc.getTooltip(Minecraft.getInstance().player, spell), " ");
-                desc = TextFormatting.stripFormatting(desc);
-            }
+            desc = StringUtils.join(SpellDesc.getTooltip(Minecraft.getInstance().player, spell), " ");
+            desc = TextFormatting.stripFormatting(desc);
 
             content += '\n';
             content += "| " + icon + " | " + CLOC.translate(spell.locName()) + " | " + desc + " | ";

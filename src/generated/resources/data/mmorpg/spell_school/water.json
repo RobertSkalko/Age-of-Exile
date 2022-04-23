@@ -1,17 +1,13 @@
 {
   "id": "water",
   "spells": {
-    "water_breath": {
-      "x": 10,
-      "y": 1
+    "tidal_wave": {
+      "x": 4,
+      "y": 0
     },
     "ice_shield": {
       "x": 7,
       "y": 1
-    },
-    "tidal_strike": {
-      "x": 4,
-      "y": 0
     },
     "ice_weapon": {
       "x": 10,
@@ -24,10 +20,6 @@
     "chill_eruption": {
       "x": 2,
       "y": 3
-    },
-    "mage_circle": {
-      "x": 10,
-      "y": 4
     },
     "nourishment": {
       "x": 7,

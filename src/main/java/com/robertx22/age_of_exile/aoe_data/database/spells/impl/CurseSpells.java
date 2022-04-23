@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.SpellConfigura
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.particles.ParticleTypes;
@@ -28,7 +27,7 @@ public class CurseSpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.area, SpellTag.curse))
             .manualDesc(
                 "Curse enemies with " + effect.locname +
-                    " and deal " + SpellCalcs.CURSE.getLocDmgTooltip() + " " + Elements.Elemental.getIconNameDmg())
+                    " and deal dmg")
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 1D)

@@ -17,7 +17,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashSounds;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -56,7 +55,7 @@ public class HolySpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.area))
             .manualDesc(
                 "Shout, making enemies nearby want to attack you. " +
-                    "Generates " + SpellCalcs.TAUNT.getLocDmgTooltip() + " threat."
+                    "Generates theat"
             )
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
@@ -70,9 +69,7 @@ public class HolySpells implements ExileRegistryInit {
         SpellBuilder.of(PULL, SpellConfiguration.Builder.instant(5, 60 * 20), "Pull",
                 Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
             .manualDesc(
-                "Pull enemies in area to you, dealing " +
-                    SpellCalcs.PULL.getLocDmgTooltip() + " " +
-                    Elements.Physical.getIconNameDmg() + " and slowing them."
+                "Pull enemies in area to you, dealing damage and slowing them."
             )
             .attackStyle(PlayStyle.melee)
             .onCast(PartBuilder.playSound(SoundEvents.ANVIL_HIT, 1D, 1D))
@@ -87,7 +84,7 @@ public class HolySpells implements ExileRegistryInit {
         SpellBuilder.of(INSPIRATION, SpellConfiguration.Builder.instant(0, 300 * 20), "Inspiration",
                 Arrays.asList(SpellTag.heal)
             )
-            .manualDesc("Restores " + SpellCalcs.AWAKEN_MANA.getLocDmgTooltip() + " mana.")
+            .manualDesc("Restores  mana.")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
@@ -98,7 +95,7 @@ public class HolySpells implements ExileRegistryInit {
         SpellBuilder.of(SHOOTING_STAR, SpellConfiguration.Builder.instant(10, 20)
                     .setSwingArm(), "Shooting Star",
                 Arrays.asList(SpellTag.projectile, SpellTag.heal))
-            .manualDesc("Shoots a star that heals allies for " + SpellCalcs.SHOOTING_STAR.getLocDmgTooltip() + " health on hit.")
+            .manualDesc("Shoots a star that heals allies")
 
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.BEACON_ACTIVATE, 1D, 1.7D))
@@ -115,8 +112,7 @@ public class HolySpells implements ExileRegistryInit {
         SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.instant(15, 20 * 30), "Healing Aura",
                 Arrays.asList(SpellTag.heal))
             .manualDesc(
-                "Heal allies around you for " + SpellCalcs.HEALING_AURA.getLocDmgTooltip() +
-                    " health")
+                "Heal allies around you")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SlashSounds.BUFF.get(), 1D, 1D))
@@ -128,8 +124,7 @@ public class HolySpells implements ExileRegistryInit {
         SpellBuilder.of(WISH, SpellConfiguration.Builder.instant(20, 20 * 60), "Wish",
                 Arrays.asList(SpellTag.heal))
             .manualDesc(
-                "Heal allies around you for " + SpellCalcs.HEALING_AURA.getLocDmgTooltip() +
-                    " health")
+                "Heal allies around you for")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SlashSounds.BUFF.get(), 1D, 1D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 5D, 0.2D))

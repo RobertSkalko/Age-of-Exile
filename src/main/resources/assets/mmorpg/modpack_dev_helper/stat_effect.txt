@@ -2,7 +2,6 @@ These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 decrease_number_num
 set_bool_crit
-decrease_cast_ticks_num
 restore_mana_per_stat_data
 give_negative/11_to_target
 leech_energy

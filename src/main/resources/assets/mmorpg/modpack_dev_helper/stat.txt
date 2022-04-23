@@ -32,7 +32,6 @@ inc_effect_of_positive_buff_on_you
 cdr
 bonus_exp_for_t0_mob
 projectile_damage
-cast_speed
 inc_effect_of_defensive_buff_on_you
 mana_on_attack_hit
 melee_dmg_received
@@ -90,7 +89,6 @@ non_crit_damage
 health_per_sec
 convert_fire_to_phys
 fire_any_wep_damage
-global_critical_hit_per_25_magic_find
 water_resist
 bonus_exp_for_t3_mob
 vitality
@@ -163,7 +161,6 @@ health_per_10_intelligence
 bonus_exp_for_t2_mob
 ele_axe_damage
 bonus_cooking_exp
-chance_of_burn_on_crit
 water_weapon_damage
 elemental_vuln_crit
 bonus_wep_craft_exp
@@ -182,12 +179,12 @@ projectile_spell_dmg
 chance_of_blind
 spell_damage_per_perc_of_increase_healing
 positive_eff_dur_u_cast
+critical_damage_per_25_increased_quantity
 bonus_alchemy_exp
 shield_spell_dmg
 water_dmg_when_target_low_hp
 increased_quantity
 elemental_dot_damage
-spell_critical_damage
 give_taunt_stance_to_self_on_tick
 damage_cdr
 all_mana_leech
@@ -207,7 +204,6 @@ damage_reflected
 all_earth_damage
 staff_damage
 bonus_day_yield
-spell_critical_hit
 blood_user
 fire_dot_damage
 dmg_received
@@ -232,7 +228,6 @@ mana_cost
 inc_effect_of_song_buff_on_you
 blood_ooc_regen
 food_eff_duration
-chance_of_poison_when_hit
 ele_trident_damage
 physical_weapon_damage
 health_regen
@@ -244,7 +239,6 @@ cd_ticks
 chance_of_bleed
 total_damage
 immobilizing_eff_dur_u_cast
-global_critical_damage_per_25_increased_quantity
 heal_over_time_eff_duration
 staff_spell_spell_dmg
 renamed_or_deleted_stat
@@ -261,6 +255,7 @@ inc_leech
 area_cdr
 health_per_10_dexterity
 physical_vuln_crit
+critical_hit_per_25_magic_find
 dual_wield_dmg
 spell_dodge
 crossbow_damage

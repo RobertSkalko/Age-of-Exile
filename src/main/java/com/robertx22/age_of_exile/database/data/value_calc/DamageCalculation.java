@@ -5,6 +5,10 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +18,24 @@ public class DamageCalculation {
     public Elements element = Elements.Physical;
     public List<ScalingCalc> scaling = new ArrayList<>();
     public float base = 0;
+
+    public ITextComponent getTooltipLine(EntityData data) {
+        int dmg = getCalculatedValue(data);
+
+        IFormattableTextComponent txt = new StringTextComponent("" + dmg + " " +
+            element.getIconNameDmg());
+
+        if (Screen.hasShiftDown()) {
+            txt.append(" [" + (int) base + " + ");
+            for (ScalingCalc scal : scaling) {
+                txt.append(scal.GetTooltipString());
+            }
+        }
+        txt.append("]");
+
+        return txt;
+
+    }
 
     public int getCalculatedValue(EntityData data) {
         int val = getCalculatedScalingValue(data);

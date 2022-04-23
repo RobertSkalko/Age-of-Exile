@@ -3,13 +3,16 @@ This registry is modify-able through datapacks.
 petrify
 torment
 healing_aura
+venom_strike
 chill_eruption
 chilling_field
 whirlwind
 breath
 wish
 nature_balm
+tidal_wave
 arrow_storm
+meteor_strike
 black_hole
 shred
 totem_heal

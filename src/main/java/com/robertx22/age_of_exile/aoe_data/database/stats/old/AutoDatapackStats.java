@@ -14,4 +14,5 @@ public class AutoDatapackStats implements ExileRegistryInit {
         STATS_TO_ADD_TO_SERIALIZATION
             .forEach(x -> x.addToSerializables());
     }
+
 }

@@ -22,7 +22,6 @@ physical_atk_dmg
 strong_wis_armor_suf
 earth_wep_dmg
 azure
-of_fast_cast
 cruel
 reinforced
 of_the_virile

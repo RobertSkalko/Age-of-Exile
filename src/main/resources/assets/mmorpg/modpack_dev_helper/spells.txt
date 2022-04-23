@@ -3,14 +3,15 @@ This registry is modify-able through datapacks.
 healing_aura
 song_of_valor
 teleport
+venom_strike
 chill_eruption
 chilling_field
 ice_nova
-whirlwind
 wish
 curse_of_despair
 entangling_seed
 nature_balm
+tidal_wave
 arrow_storm
 meteor_strike
 conjure_ender_chest
@@ -23,7 +24,6 @@ jump_field
 levitation
 charged_bolt
 explosive_arrow
-charge
 heart_of_ice
 magic_projectile
 frost_trap

@@ -1,6 +1,6 @@
 {
   "weight": 1000,
-  "identifier": "test_spell",
+  "identifier": "venom_strike",
   "attached": {
     "on_cast": [
       {
@@ -54,7 +54,7 @@
           {
             "type": "damage",
             "map": {
-              "value_calculation": "magic_projectile"
+              "value_calculation": "venom_strike"
             }
           }
         ],

@@ -263,6 +263,12 @@ public class PartBuilder {
         return c;
     }
 
+    public static ComponentPart playSound(SoundEvent sound) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.PLAY_SOUND.create(sound, 1D, 1D));
+        return c;
+    }
+
     public static ComponentPart playSound(SavedSound sound) {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PLAY_SOUND.create(sound.sound, (double) sound.volume, (double) sound.pitch));

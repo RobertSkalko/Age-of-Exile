@@ -10,6 +10,7 @@ public interface IBaseAutoLoc extends IGUID {
 
     enum AutoLocGroup {
         Enchants,
+        Calculations,
         Foods,
         Runes,
         StatusEffects,
@@ -25,7 +26,6 @@ public interface IBaseAutoLoc extends IGUID {
         Stats,
         Misc,
 
-        Races,
         Talents,
         Gear_Slots,
         World_Types,

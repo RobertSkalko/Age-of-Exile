@@ -11,6 +11,8 @@ public interface SpellKeys {
     SpellKey NATURE_BALM = new SpellKey("nature_balm");
     SpellKey POISON_CLOUD = new SpellKey("poison_cloud");
     SpellKey METEOR_STRIKE = new SpellKey("meteor_strike");
+    SpellKey TIDAL_WAVE = new SpellKey("tidal_wave");
+    SpellKey VENOM_STRIKE = new SpellKey("venom_strike");
 
     public static void init() {
 

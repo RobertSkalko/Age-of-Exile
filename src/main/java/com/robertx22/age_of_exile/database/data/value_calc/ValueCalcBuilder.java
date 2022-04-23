@@ -13,6 +13,14 @@ public class ValueCalcBuilder {
         return b;
     }
 
+    public static ValueCalcBuilder of(String id, String locname) {
+        ValueCalcBuilder b = new ValueCalcBuilder();
+        b.calc = new ValueCalculation();
+        b.calc.locname = locname;
+        b.calc.id = id;
+        return b;
+    }
+
     public ValueCalcBuilder baseValue(float val) {
         calc.base = val;
         return this;

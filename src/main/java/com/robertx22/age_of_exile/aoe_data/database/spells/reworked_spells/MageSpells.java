@@ -12,8 +12,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.uncommon.SoundRefs;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
@@ -24,7 +22,7 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 
-public class AttackSpells implements ExileRegistryInit {
+public class MageSpells implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
@@ -32,8 +30,7 @@ public class AttackSpells implements ExileRegistryInit {
         SpellBuilder.of(SpellKeys.MAGIC_PROJECTILE, SpellConfiguration.Builder.instant(0, 15), "Magic Projectile",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
             .manualDesc(
-                "Throw out a magical spark, dealing " + SpellCalcs.MAGIC_PROJECTILE.getLocDmgTooltip()
-                    + " " + Elements.Physical.getIconNameDmg())
+                "Throw out a magical spark, dealing damage")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundRefs.FISHING_THROW_LOW_PITCH))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 8D, false)
@@ -55,8 +52,7 @@ public class AttackSpells implements ExileRegistryInit {
         SpellBuilder.of(SpellKeys.METEOR, SpellConfiguration.Builder.instant(18, 30), "Meteor",
                 Arrays.asList(SpellTag.area, SpellTag.damage)
             )
-            .manualDesc("Summon a meteor that falls from the sky, dealing " +
-                SpellCalcs.METEOR.getLocDmgTooltip(Elements.Fire))
+            .manualDesc("Summon a meteor that falls from the sky, dealing damage")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.FISHING_BOBBER_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 12D)))
@@ -78,8 +74,7 @@ public class AttackSpells implements ExileRegistryInit {
         SpellBuilder.of(SpellKeys.ICE_NOVA, SpellConfiguration.Builder.instant(20, 60), "Ice Nova",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
             .manualDesc(
-                "TODO " + SpellCalcs.MAGIC_PROJECTILE.getLocDmgTooltip()
-                    + " " + Elements.Physical.getIconNameDmg())
+                "Damage enemies around you")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundRefs.EXPLOSION))
 
@@ -102,8 +97,7 @@ public class AttackSpells implements ExileRegistryInit {
         SpellBuilder.of(SpellKeys.POISON_CLOUD, SpellConfiguration.Builder.instant(30, 25 * 20), "Poison Cloud",
                 Arrays.asList(SpellTag.area, SpellTag.damage))
             .manualDesc(
-                "Erupt with poisonous gas, dealing " + SpellCalcs.FROST_NOVA.getLocDmgTooltip()
-                    + " " + Elements.Earth.getIconNameDmg() + " to nearby enemies and applying Poison.")
+                "Erupt with poisonous gas, dealing damage to nearby enemies and spawning a poison cloud.")
             .weaponReq(CastingWeapon.ANY_WEAPON)
 
             .onCast(PartBuilder.playSound(SoundRefs.DING_LOW_PITCH))
@@ -122,24 +116,6 @@ public class AttackSpells implements ExileRegistryInit {
             .onTick("block", PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, 3D)
                 .onTick(20D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
-            )
-            .build();
-
-        SpellBuilder.of(SpellKeys.METEOR_STRIKE, SpellConfiguration.Builder.onJumpCritImbue(8, 100, 3)
-                , "Meteor Strike",
-                Arrays.asList(SpellTag.technique, SpellTag.area, SpellTag.damage))
-            .manualDesc("Strike enemies in front for " +
-                SpellCalcs.MAGIC_PROJECTILE.getLocDmgTooltip(Elements.Fire)) // todo
-            .attackStyle(PlayStyle.melee)
-            .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.FIRE_EXTINGUISH, 1D, 1D))
-            .onCast(PartBuilder.playSound(SoundRefs.EXPLOSION))
-            .onCast(PartBuilder.swordSweepParticles())
-
-            .onCast(PartBuilder.damageInFront(SpellCalcs.MAGIC_PROJECTILE, 2D, 3D) // todo dmg
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D))
-                .addPerEntityHit(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 15D, 1D))
-
             )
             .build();
 

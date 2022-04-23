@@ -1,8 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.impl.*;
-import com.robertx22.age_of_exile.aoe_data.database.spells.reworked_spells.AttackSpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.reworked_spells.BuffSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.reworked_spells.MageSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.reworked_spells.OnCritImbueSpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.schools.HolySpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.schools.NatureSpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.schools.RangerSpells;
@@ -22,7 +23,8 @@ public class Spells implements ExileRegistryInit {
         new StrSpells().registerAll();
         new TotemSpells().registerAll();
 
-        new AttackSpells().registerAll();
+        new MageSpells().registerAll();
+        new OnCritImbueSpells().registerAll();
         new BuffSpells().registerAll();
 
         new NatureSpells().registerAll();

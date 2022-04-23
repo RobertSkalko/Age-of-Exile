@@ -1,6 +1,8 @@
 package com.robertx22.age_of_exile.database.data.spells.components;
 
+import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +35,22 @@ public class AttachedSpell {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<ValueCalculation> getAllCalculations() {
+
+        List<ValueCalculation> list = new ArrayList<>();
+
+        for (ComponentPart comp : getAllComponents()) {
+            for (MapHolder act : comp.acts) {
+                if (act.has(MapField.VALUE_CALCULATION)) {
+                    list.add(act.get(MapField.VALUE_CALCULATION));
+                }
+            }
+        }
+
+        return list;
+
     }
 
     public List<ComponentPart> getAllComponents() {

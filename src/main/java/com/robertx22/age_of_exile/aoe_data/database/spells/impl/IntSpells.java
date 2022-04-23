@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -30,9 +29,7 @@ public class IntSpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.area))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
 
-            .manualDesc("Summon a dark sphere that attracts nearby enemies to it, dealing "
-                + SpellCalcs.BLACK_HOLE.getLocDmgTooltip()
-                + Elements.Elemental.getIconNameDmg() + " when it expires.")
+            .manualDesc("Summon a dark sphere that attracts nearby enemies to it, dealing damage when it expires.")
 
             .onCast(PartBuilder.playSound(SoundEvents.END_PORTAL_SPAWN, 1D, 1D))
 

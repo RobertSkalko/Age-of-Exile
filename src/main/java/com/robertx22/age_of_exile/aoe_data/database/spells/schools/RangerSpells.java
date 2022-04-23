@@ -55,7 +55,7 @@ public class RangerSpells implements ExileRegistryInit {
         SpellBuilder.of(HUNTER_POTION, SpellConfiguration.Builder.instant(0, 60 * 20 * 3), "Hunter's Potion",
                 Arrays.asList(SpellTag.heal)
             )
-            .manualDesc("Drink a potion, healing you for " + SpellCalcs.HUNTER_POTION_HEAL.getLocDmgTooltip() + " health")
+            .manualDesc("Drink a potion, healing you")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .onCast(PartBuilder.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
@@ -99,8 +99,7 @@ public class RangerSpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.projectile, SpellTag.area, SpellTag.damage))
 
             .manualDesc(
-                "Shoot a charged arrow that goes through enemies and deals "
-                    + SpellCalcs.CHARGED_BOLT.getLocDmgTooltip() + " " + Elements.Physical.getIconNameDmg() + " in radius and slows.")
+                "Shoot a charged arrow that goes through enemies and deals dmg in radius and slows.")
 
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)
@@ -122,7 +121,7 @@ public class RangerSpells implements ExileRegistryInit {
         SpellBuilder.of(ARROW_STORM, SpellConfiguration.Builder.arrowImbue(20, 20 * 25), "Arrow Storm",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
-            .manualDesc("Shoot out arrows in an arc, dealing " + SpellCalcs.ARROW_STORM.getLocDmgTooltip(Elements.Physical))
+            .manualDesc("Shoot out arrows in an arc, dealing ")
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(5D)))
@@ -135,7 +134,7 @@ public class RangerSpells implements ExileRegistryInit {
         SpellBuilder.of(EXPLOSIVE_ARROW_ID, SpellConfiguration.Builder.arrowImbue(10, 20 * 10), "Explosive Arrow",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.RANGED)
-            .manualDesc("Shoot an arrow that does " + SpellCalcs.EXPLOSIVE_ARROW.getLocDmgTooltip(Elements.Physical) + " around it")
+            .manualDesc("Shoot an arrow that does ")
             .attackStyle(PlayStyle.ranged)
             .onCast(PartBuilder.playSound(SoundEvents.ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
@@ -165,8 +164,7 @@ public class RangerSpells implements ExileRegistryInit {
                     .setSwingArm(), name,
                 Arrays.asList(SpellTag.damage, SpellTag.area, SpellTag.trap))
             .manualDesc(
-                "Throw out a trap that stays on the ground and activates when an enemy approaches to deal "
-                    + dmg.getLocDmgTooltip() + element.getIconNameDmg() + " damage in area around itself."
+                "Throw out a trap that stays on the ground and activates when an enemy approaches to deal damage in area around itself."
             )
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(PlayStyle.ranged)

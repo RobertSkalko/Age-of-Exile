@@ -88,10 +88,10 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .build();
 
         SchoolBuilder.of(WATER, "Water")
-            .addSpell(WaterSpells.TIDAL_STRIKE, new PointData(4, 0))
+            .addSpell(SpellKeys.TIDAL_WAVE.id, new PointData(4, 0))
 
             .addSpell(SpellKeys.ICE_SHIELD.id, new PointData(2, 1))
-            .addSpell(WaterSpells.WATER_BREATH, new PointData(10, 1))
+
             .addSpell(SpellKeys.ICE_SHIELD.id, new PointData(7, 1))
 
             .addSpell(WaterSpells.ICY_WEAPON, new PointData(10, 2))
@@ -99,8 +99,6 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .addSpell(WaterSpells.NOURISHMENT, new PointData(7, 3))
             .addSpell(WaterSpells.CHILL_ERUPTION, new PointData(2, 3))
-
-            .addSpell(WaterSpells.MAGE_CIRCLE, new PointData(10, 4))
 
             //.addSynergy(SynergiesAdder.FROSTBALL_CHILL, new PointData(0, 1))
 

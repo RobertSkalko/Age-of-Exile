@@ -3,25 +3,19 @@ package com.robertx22.age_of_exile.aoe_data.database.spells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.builders.ExileEffectActionBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.all_keys.base.SpellKey;
-import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart;
 import com.robertx22.age_of_exile.database.data.spells.components.EntityActivation;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.ParticleMotion;
-import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.uncommon.SoundRefs;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.Items;
-import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ResourceLocation;
 
@@ -32,22 +26,6 @@ import java.util.Objects;
 
 public class SpellBuilder {
     Spell spell;
-
-    public static SpellBuilder breath(String id, String name, Elements ele, BasicParticleType particle) {
-
-        return SpellBuilder.of(id, SpellConfiguration.Builder.instant(2, 1), name,
-                Arrays.asList(SpellTag.damage))
-
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)
-                .put(MapField.IS_SILENT, true)))
-            .onHit(PartBuilder.damageInAoe(SpellCalcs.BREATH, 1.5D)
-                .addCondition(EffectCondition.IS_NOT_ON_COOLDOWN.create("breath"))
-                .addActions(SpellAction.SET_ON_COOLDOWN.create("breath", 20D)))
-            .onCast(PartBuilder.Particle.builder(particle, 50D, 0.3D)
-                .set(MapField.MOTION, ParticleMotion.CasterLook.name())
-                .set(MapField.HEIGHT, 1D)
-                .build());
-    }
 
     public static SpellBuilder of(SpellKey key, SpellConfiguration config, String name, List<SpellTag> tags) {
         SpellBuilder builder = new SpellBuilder();
@@ -141,11 +119,6 @@ public class SpellBuilder {
         return this;
     }
 
-    public SpellBuilder addStat(StatModifier stat) {
-        this.spell.statsForSkillGem.add(stat);
-        return this;
-    }
-
     public SpellBuilder disableInDimension(ResourceLocation id) {
         this.spell.disabled_dims.add(id.toString());
         return this;
@@ -190,12 +163,9 @@ public class SpellBuilder {
     }
 
     public SpellBuilder manualDesc(String desc) {
-
         if (!spell.locDesc.isEmpty()) {
             throw new RuntimeException("Already set manual desc!");
         }
-
-        this.spell.manual_tip = true;
         this.spell.locDesc = desc;
         return this;
     }

@@ -8,11 +8,7 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class SpellCalcs {
 
-    public static void init() {
-
-    }
-
-    public static ValueCalculation METEOR = ValueCalcBuilder.of("meteor")
+    public static ValueCalculation METEOR = ValueCalcBuilder.of("meteor", "Meteor")
         .damage(DamageCalculation.Builder.of(Elements.Physical)
             .base(10)
             .scaling(2F)
@@ -24,7 +20,19 @@ public class SpellCalcs {
         .addAllElementsScaling(1.5F)
         .build();
 
-    public static ValueCalculation FROST_NOVA = ValueCalcBuilder.of("frost_nova")
+    public static ValueCalculation METEOR_STRIKE = ValueCalcBuilder.of("meteor_strike", "Meteor Strike")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(3)
+            .scaling(1.25F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Fire)
+            .base(3)
+            .scaling(1.25F)
+            .build())
+        .addAllElementsScaling(1.5F)
+        .build();
+
+    public static ValueCalculation FROST_NOVA = ValueCalcBuilder.of("frost_nova", "Frost Nova")
         .damage(DamageCalculation.Builder.of(Elements.Physical)
             .base(8)
             .scaling(1.5F)
@@ -36,14 +44,38 @@ public class SpellCalcs {
         .addAllElementsScaling(1)
         .build();
 
-    public static ValueCalculation MAGIC_PROJECTILE = ValueCalcBuilder.of("magic_projectile")
+    public static ValueCalculation TIDAL_WAVE = ValueCalcBuilder.of("tidal_wave", "Tidal Wave")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(3)
+            .scaling(1.25F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Water)
+            .base(3)
+            .scaling(1.25F)
+            .build())
+        .addAllElementsScaling(1)
+        .build();
+
+    public static ValueCalculation VENOM_STRIKE = ValueCalcBuilder.of("venom_strike", "Venom Strike")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(2)
+            .scaling(1F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Earth)
+            .base(2)
+            .scaling(1F)
+            .build())
+        .addAllElementsScaling(0.75F)
+        .build();
+
+    public static ValueCalculation MAGIC_PROJECTILE = ValueCalcBuilder.of("magic_projectile", "Magic Projectile")
         .damage(DamageCalculation.Builder.of(Elements.Physical)
             .scaling(1)
             .build())
         .addAllElementsScaling(0.8F)
         .build();
 
-    public static ValueCalculation POISON = ValueCalcBuilder.of("poison")
+    public static ValueCalculation POISON = ValueCalcBuilder.of("poison", "Poison Tick")
         .damage(DamageCalculation.Builder.of(Elements.Earth)
             .base(2)
             .build())
@@ -149,5 +181,9 @@ public class SpellCalcs {
     public static ValueCalculation SMOKE_BOMB = ValueCalcBuilder.of("lose_aggro")
         .baseValue(40)
         .build();
+
+    public static void init() {
+
+    }
 
 }

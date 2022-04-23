@@ -21,7 +21,6 @@ mana_on_hit
 cdr
 str
 projectile_damage
-cast_speed
 tormentor
 spell_damage
 all_elemental_damage
@@ -35,7 +34,6 @@ physical_damage
 warrior
 critical_hit
 faster_projectiles
-spell_critical_damage
 steady_hand
 nightcrawler
 all_all_damage
@@ -50,7 +48,6 @@ more_dualwield_dmg
 all_earth_damage
 staff_damage
 mana
-spell_critical_hit
 harmony
 earth_penetration
 mantra

@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.aoe_data.database.spells;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.utils.CLOC;
 import net.minecraft.entity.LivingEntity;
@@ -24,7 +23,8 @@ public class SpellDesc {
             .getList()) {
             String id = "[calc:" + calc.id + "]";
 
-            tip = tip.replace(id, CLOC.translate(calc.getShortTooltip(Load.Unit(caster))));
+            // todo
+            ///   tip = tip.replace(id, CLOC.translate(calc.getShortTooltip(Load.Unit(caster))));
         }
 
         List<String> list = TooltipUtils.cutIfTooLong(tip);

@@ -1,5 +1,4 @@
 {
-  "max_lvl": 16,
   "weight": 1000,
   "identifier": "chilling_field",
   "attached": {
@@ -193,7 +192,6 @@
     "imbues": 1,
     "imbue_type": "ON_RANGED_ATTACK"
   },
-  "manual_tip": true,
   "disabled_dims": [],
   "effect_tip": ""
 }

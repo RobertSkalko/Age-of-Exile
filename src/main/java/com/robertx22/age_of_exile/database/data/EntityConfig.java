@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class EntityConfig implements JsonExileRegistry<EntityConfig>, ISerializable<EntityConfig> {
+    public static EntityConfig SERIALIZER = new EntityConfig();
 
     public EntityConfig() {
 

@@ -5,7 +5,9 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
+import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
@@ -19,7 +21,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IAutoGson<ValueCalculation> {
+public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IAutoGson<ValueCalculation>, IAutoLocName {
 
     public static ValueCalculation SERIALIZER = new ValueCalculation();
 
@@ -33,6 +35,7 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
     }
 
     public String id = "";
+    public transient String locname = "";
 
     public DamageCalcs damage_calcs = new DamageCalcs();
 
@@ -42,14 +45,6 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
 
     public int getCalculatedBaseValue(EntityData data) {
         return (int) StatScaling.NORMAL.scale(base, data.getLevel());
-    }
-
-    public String getLocDmgTooltip(Elements element) {
-        return "[calc:" + id + "]" + " " + element.getIconNameDmg();
-    }
-
-    public String getLocDmgTooltip() {
-        return "[calc:" + id + "]";
     }
 
     private int getCalculatedScalingValue(EntityData data) {
@@ -76,7 +71,28 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
         return val;
     }
 
-    public ITextComponent getShortTooltip(EntityData data) {
+    public List<ITextComponent> getTooltip(EntityData data) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(locName().append(" Formula:"));
+
+        if (damage_calcs.damages.isEmpty()) {
+            list.add(getNonDamageTooltip(data));
+        } else {
+
+            for (DamageCalculation dmg : this.damage_calcs.damages) {
+                ITextComponent txt = dmg.getTooltipLine(data);
+                list.add(txt);
+            }
+
+        }
+
+        return list;
+
+    }
+
+    public ITextComponent getNonDamageTooltip(EntityData data) {
         int lvl = data.getLevel();
         IFormattableTextComponent text = new StringTextComponent("");
 
@@ -99,7 +115,6 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
 
         stat_scalings.forEach(x -> {
             text.append(getCalculatedValue(data) + "");
-
             text.append(" ")
                 .append(x.GetTooltipString());
         });
@@ -126,5 +141,20 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
     @Override
     public int Weight() {
         return 1000;
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Calculations;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return SlashRef.MODID + ".calculation." + id;
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return locname;
     }
 }
