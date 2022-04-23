@@ -3,19 +3,24 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
+import com.robertx22.age_of_exile.database.all_keys.base.AllDataKeys;
+import com.robertx22.age_of_exile.database.all_keys.base.RunewordKey;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.RuneItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
+import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneType;
 import joptsimple.internal.Strings;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.IItemProvider;
@@ -85,6 +90,7 @@ public class RecipeGenerator {
     }
 
     private void generate(Consumer<IFinishedRecipe> consumer) {
+
         for (Item item : ForgeRegistries.ITEMS) {
             if (item instanceof IShapedRecipe) {
                 IShapedRecipe ir = (IShapedRecipe) item;
@@ -106,6 +112,16 @@ public class RecipeGenerator {
                 }
             }
 
+        }
+
+        for (RunewordKey key : AllDataKeys.RUNEWORDS) {
+            ItemStack stack = key.getStack();
+            ShapelessNBTRecipe b = ShapelessNBTRecipe.shapeless(stack, SlashRef.id("runewords/" + key.id));
+            for (RuneType rune : key.runes) {
+                Item item = RuneItems.get(rune);
+                b.requires(item);
+            }
+            b.save(consumer);
         }
 
         ProfessionItems.SMELTED_ESSENCE.values()

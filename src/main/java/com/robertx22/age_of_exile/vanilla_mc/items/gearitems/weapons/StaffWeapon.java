@@ -41,7 +41,7 @@ public class StaffWeapon extends ModWeapon implements IAutoModel {
 
             if (!world.isClientSide) {
                 GearItemData gear = Gear.Load(stack);
-                if (gear != null && player.isCreative() && MMORPG.RUN_DEV_TOOLS) {
+                if (gear != null) {
                     Spell spell = ExileDB.Spells()
                         .get(SpellKeys.MAGIC_PROJECTILE.id);
 

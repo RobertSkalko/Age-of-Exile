@@ -26,7 +26,6 @@ convert_water_to_phys
 arrow_cdr
 bonus_alchemy_yield
 food_eff_dur_u_cast
-heal_on_shielded_targets
 potion_strength
 all_any_wep_damage
 inc_effect_of_positive_buff_on_you
@@ -214,7 +213,6 @@ blood_user
 fire_dot_damage
 dmg_received
 melee_dmg
-shield_strength
 mana_regen
 heal_spell_dmg
 shout_cdr
@@ -258,7 +256,6 @@ health_regen_per_10_wisdom
 chance_of_chill
 heal_cleanse
 all_vuln_crit
-totem_shield
 earth_any_wep_damage
 earth_mana_leech
 bonus_cold_biome_yield
@@ -292,7 +289,6 @@ bonus_rain_yield
 convert_earth_to_phys
 totem_resto
 heal_effect_on_self
-shield_duration
 negative_eff_dur_u_cast
 water_any_wep_damage
 dmg_taken_to_mana

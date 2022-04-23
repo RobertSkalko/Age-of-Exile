@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
@@ -34,7 +33,7 @@ public class SwordRunewords implements ExileRegistryInit, GearDataHelper {
                 new StatModifier(1, 10, Stats.CRIT_CHANCE.get(), ModType.FLAT),
                 new StatModifier(5, 25, Stats.INCREASED_LEECH.get(), ModType.FLAT)
             ))
-            .makeRuneWordOnly(Arrays.asList(RuneItem.RuneType.ANO, RuneItem.RuneType.TOQ, RuneItem.RuneType.MOS, RuneItem.RuneType.HAR))
+            .makeRuneWordOnly()
             .devComment("undead dmg / leech multi")
             .build();
 

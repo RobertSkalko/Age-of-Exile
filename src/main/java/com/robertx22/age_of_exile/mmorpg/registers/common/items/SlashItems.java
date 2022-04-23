@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.level_ranges.LevelRange;
+import com.robertx22.age_of_exile.database.data.runewords.RuneWordItem;
 import com.robertx22.age_of_exile.database.registrators.LevelRanges;
 import com.robertx22.age_of_exile.dimension.item.TeleportBackItem;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
@@ -47,6 +48,7 @@ public class SlashItems {
     public static RegObj<CommonGearProducerItem> COMMON_SOUL_PRODUCE = Def.item(() -> new CommonGearProducerItem(), "common_soul_produce");
 
     public static RegObj<StatSoulItem> STAT_SOUL = Def.item(() -> new StatSoulItem());
+    public static RegObj<RuneWordItem> RUNEWORD = Def.item(() -> new RuneWordItem(), "runeword");
     public static RegObj<IdentifyTomeItem> IDENTIFY_TOME = Def.item(() -> new IdentifyTomeItem(), "identify_tome");
     public static RegObj<RarityEssenceItem> RARITY_ESSENCE = Def.item(() -> new RarityEssenceItem());
     public static RegObj<LootCrateItem> LOOT_CRATE = Def.item(() -> new LootCrateItem());

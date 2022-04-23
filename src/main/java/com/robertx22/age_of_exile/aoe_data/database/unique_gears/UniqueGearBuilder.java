@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.ErrorUtils;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 
 import java.util.List;
 
@@ -41,8 +40,8 @@ public class UniqueGearBuilder {
         return this;
     }
 
-    public UniqueGearBuilder makeRuneWordOnly(List<RuneItem.RuneType> runes) {
-        RunewordBuilder.of(uniq.guid, uniq.guid, runes, uniq.getBaseGear().gear_slot);
+    public UniqueGearBuilder makeRuneWordOnly() {
+        RunewordBuilder.of(uniq.guid, uniq.guid, uniq.getBaseGear().gear_slot);
         this.uniq.uniqueRarity = IRarity.RUNEWORD_ID;
         this.uniq.weight = 0;
         return this;

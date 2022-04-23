@@ -284,7 +284,7 @@
     "times_to_cast": 1,
     "imbues": 1,
     "cast_time_ticks": 0,
-    "cooldown_ticks": 20,
+    "cooldown_ticks": 15,
     "style": "magic",
     "tags": [
       "projectile",

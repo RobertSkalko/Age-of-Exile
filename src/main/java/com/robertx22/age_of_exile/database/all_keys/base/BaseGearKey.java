@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 public class BaseGearKey extends DataKey<BaseGearType> {
     public BaseGearKey(String id) {
         super(id);
+        AllDataKeys.BASE_GEARS.add(this);
     }
 
     @Override

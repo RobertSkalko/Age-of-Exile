@@ -76,13 +76,13 @@ public class OnItemInteract {
                         success = true;
                     }
                 }
-            } else if (RuneWordItem.getRuneword(cursor.getItem())
-                .isPresent()) {
-                RuneWord word = RuneWordItem.getRuneword(cursor.getItem())
-                    .get();
-                if (word.canApplyOnItem(stack)) {
-                    word.useRuneWord(player, stack);
-                    success = true;
+            } else if (cursor.getItem() instanceof RuneWordItem) {
+                RuneWord word = RuneWordItem.getRuneWord(cursor);
+                if (word != null) {
+                    if (word.canApplyOnItem(stack)) {
+                        word.useRuneWord(player, stack);
+                        success = true;
+                    }
                 }
             } else if (cursor.getItem() instanceof ICurrencyItemEffect) {
                 LocReqContext ctx = new LocReqContext(player, stack, cursor);

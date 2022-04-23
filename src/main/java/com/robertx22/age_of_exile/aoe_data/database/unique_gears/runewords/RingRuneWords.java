@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.offense.crit.GlobalC
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
@@ -30,7 +29,7 @@ public class RingRuneWords implements ExileRegistryInit {
                 new StatModifier(5, 15, Stats.AREA_DAMAGE.get(), ModType.FLAT),
                 new StatModifier(3, 10, ManaRegen.getInstance(), ModType.FLAT)
             ))
-            .makeRuneWordOnly(Arrays.asList(RuneItem.RuneType.ANO, RuneItem.RuneType.ORU, RuneItem.RuneType.DOS))
+            .makeRuneWordOnly()
             .devComment("song buffer / area damage")
             .build();
 
@@ -45,7 +44,7 @@ public class RingRuneWords implements ExileRegistryInit {
                 new StatModifier(-50, 15, new ElementalResist(Elements.Fire), ModType.PERCENT),
                 new StatModifier(-50, 15, new ElementalResist(Elements.Earth), ModType.PERCENT)
             ))
-            .makeRuneWordOnly(Arrays.asList(RuneItem.RuneType.YUN, RuneItem.RuneType.FEY, RuneItem.RuneType.ORU))
+            .makeRuneWordOnly()
             .devComment("global crit + res, high RNG")
             .build();
 

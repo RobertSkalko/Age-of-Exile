@@ -4,6 +4,5 @@ skull_cleaver
 insight
 air_disaster
 heavenly_rainbow
-heavenly_tear
 playful_hope
 bone_shatterer

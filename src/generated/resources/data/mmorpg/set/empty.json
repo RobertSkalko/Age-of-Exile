@@ -1,0 +1,13 @@
+{
+  "id": "empty",
+  "stats": {
+    "1": [
+      {
+        "v1": 0.0,
+        "stat": "health",
+        "type": "FLAT",
+        "scale_to_lvl": true
+      }
+    ]
+  }
+}

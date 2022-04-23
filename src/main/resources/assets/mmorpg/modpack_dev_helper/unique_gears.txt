@@ -12,7 +12,6 @@ rabbit_paw
 heavenly_rainbow
 autumn_harvest
 skull_of_spirits
-heavenly_tear
 summer_heat
 playful_hope
 witch_brew

@@ -1,54 +1,64 @@
 package com.robertx22.age_of_exile.database.data.runewords;
 
-import com.robertx22.age_of_exile.database.data.currency.base.IShapelessRecipe;
+import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.RuneItems;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
-import com.robertx22.age_of_exile.uncommon.utilityclasses.Ids;
 import com.robertx22.age_of_exile.vanilla_mc.items.ItemDefault;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
-import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
-import java.util.Optional;
-
-public class RuneWordItem extends Item implements IShapelessRecipe, IAutoLocName {
+public class RuneWordItem extends Item implements IAutoLocName {
 
     public RuneWordItem() {
-        super(new ItemDefault());
+        super(new ItemDefault().tab(CreativeTabs.RuneWords));
     }
 
     public static String getIdPath(String id) {
         return "runewords/" + id;
     }
 
-    public static Optional<RuneWord> getRuneword(Item item) {
-        return ExileDB.RuneWords()
-            .getFiltered(x -> x.item_id.equals(Ids.item(item)
-                .toString()))
-            .stream()
-            .findAny();
+    public static RuneWord getRuneWord(ItemStack stack) {
+
+        try {
+            return ExileDB.RuneWords()
+                .get(stack.getOrCreateTag()
+                    .getString("runeword"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> list) {
+        if (this.allowdedIn(group)) {
+            for (RuneWord word : ExileDB.RuneWords()
+                .getList()) {
+                list.add(word.getStack());
+            }
+        }
 
     }
 
     @Override
-    public ShapelessRecipeBuilder getRecipe() {
-        ShapelessRecipeBuilder fac = ShapelessRecipeBuilder.shapeless(this, 1);
+    public ITextComponent getName(ItemStack stack) {
 
-        RuneWord word = ExileDB.RuneWords()
-            .getSerializable()
-            .stream()
-            .filter(x -> x.item_id.equals(Ids.item(this)
-                .toString()))
-            .findAny()
-            .get();
-
-        for (RuneItem.RuneType rune : word.runes) {
-            Item mat = RuneItems.get(rune);
-            fac.requires(mat);
+        RuneWord word = getRuneWord(stack);
+        if (word != null) {
+            return new TranslationTextComponent(this.getDescriptionId(stack)).append(" ")
+                .append(word.getUnique()
+                    .locName())
+                .withStyle(word.getUnique()
+                    .getUniqueRarity()
+                    .textFormatting());
         }
-        return fac.unlockedBy("player_level", trigger());
+        return super.getName(stack);
+
     }
 
     @Override
@@ -64,10 +74,7 @@ public class RuneWordItem extends Item implements IShapelessRecipe, IAutoLocName
 
     @Override
     public String locNameForLangFile() {
-        RuneWord word = getRuneword(this).get();
-        return ExileDB.UniqueGears()
-            .getFromSerializables(word.uniq_id)
-            .locNameForLangFile();
+        return "Rune Word";
     }
 
     @Override

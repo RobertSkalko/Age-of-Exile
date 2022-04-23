@@ -7,11 +7,11 @@ import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
+import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
@@ -27,8 +27,6 @@ import java.util.List;
 
 public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord> {
     public static RuneWord SERIALIZER = new RuneWord();
-
-    public transient List<RuneItem.RuneType> runes = new ArrayList<>();
 
     public String id = "";
     public String uniq_id = "";
@@ -57,6 +55,13 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
     @Override
     public Class<RuneWord> getClassForSerialization() {
         return RuneWord.class;
+    }
+
+    public ItemStack getStack() {
+        ItemStack stack = new ItemStack(SlashItems.RUNEWORD.get());
+        stack.getOrCreateTag()
+            .putString("runeword", id);
+        return stack;
     }
 
     public boolean canApplyOnItem(ItemStack stack) {
@@ -97,10 +102,13 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
         UniqueGear uniq = ExileDB.UniqueGears()
             .get(uniq_id);
 
+        /*
         tooltip.add(TextBuilder.of()
             .append(uniq.ModlocName()
                 .format(uniq.getUniqueRarity()
                     .textFormatting())));
+
+         */
 
         tooltip.addEmptyLine();
 

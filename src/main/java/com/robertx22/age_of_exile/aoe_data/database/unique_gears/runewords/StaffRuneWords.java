@@ -7,7 +7,6 @@ import com.robertx22.age_of_exile.database.all_keys.BaseGearKeys;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
@@ -34,7 +33,7 @@ public class StaffRuneWords implements ExileRegistryInit, GearDataHelper {
                 new StatModifier(-25, 25, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire)),
                 new StatModifier(-25, 25, Stats.ELEMENTAL_DAMAGE.get(Elements.Earth))
             ))
-            .makeRuneWordOnly(Arrays.asList(RuneItem.RuneType.YUN, RuneItem.RuneType.MOS, RuneItem.RuneType.ORU, RuneItem.RuneType.VEN))
+            .makeRuneWordOnly()
             .devComment("all ele high rng staff")
             .build();
 

@@ -6,6 +6,7 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 public class SpellKey extends DataKey<Spell> {
     public SpellKey(String id) {
         super(id);
+        AllDataKeys.SPELLS.add(this);
     }
 
     @Override

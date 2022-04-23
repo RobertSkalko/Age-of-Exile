@@ -55,7 +55,6 @@ harmony
 earth_penetration
 mantra
 melee_dmg
-shield_strength
 ele_scepter_damage
 mana_regen
 attack_speed
@@ -108,4 +107,3 @@ fire_penetration
 sword_damage
 crit_heal_chance
 health_on_hit
-shield_duration

@@ -8,7 +8,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
@@ -28,7 +27,7 @@ public class HelmetRunewords implements ExileRegistryInit {
                 new StatModifier(10, 25, Mana.getInstance(), ModType.FLAT),
                 new StatModifier(10, 25, new ElementalResist(Elements.Fire), ModType.PERCENT)
             ))
-            .makeRuneWordOnly(Arrays.asList(RuneItem.RuneType.ITA, RuneItem.RuneType.DOS, RuneItem.RuneType.TOQ))
+            .makeRuneWordOnly()
             .devComment("Mana focused caster helmet")
             .build();
 

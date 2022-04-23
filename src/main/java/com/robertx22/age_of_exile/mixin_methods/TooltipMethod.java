@@ -13,6 +13,8 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.library_of_exile.registry.Database;
+import com.robertx22.library_of_exile.registry.ExileRegistryType;
+import com.robertx22.library_of_exile.registry.SyncTime;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
@@ -25,7 +27,6 @@ import net.minecraft.util.text.TextFormatting;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
-import java.util.Optional;
 
 public class TooltipMethod {
     public static void getTooltip(ItemStack stack, PlayerEntity entity, ITooltipFlag tooltipContext, CallbackInfoReturnable<List<ITextComponent>> list) {
@@ -55,6 +56,17 @@ public class TooltipMethod {
                 return;
             }
             if (!Database.areDatapacksLoaded(player.level)) {
+
+                tooltip.add(new StringTextComponent("Empty MNS Registries: "));
+
+                ExileRegistryType.getInRegisterOrder(SyncTime.ON_LOGIN)
+                    .stream()
+                    .filter((x) -> !Database.getRegistry(x)
+                        .isRegistrationDone())
+                    .forEach(e -> {
+                        tooltip.add(new StringTextComponent(e.id));
+                    });
+
                 return;
             }
 
@@ -62,16 +74,18 @@ public class TooltipMethod {
 
             boolean hasdata = false;
 
-            Optional<RuneWord> word = RuneWordItem.getRuneword(stack.getItem());
-            // todo this could use some performance update
-            if (word.isPresent()) {
-                for (ITextComponent txt : word.get()
-                    .getTooltip(Load.Unit(player)
-                        .getLevel())
-                    .build()) {
-                    tooltip.add(txt);
+            if (stack.getItem() instanceof RuneWordItem) {
+                RuneWord word = RuneWordItem.getRuneWord(stack);
+                // todo this could use some performance update
+                if (word != null) {
+                    for (ITextComponent txt : word
+                        .getTooltip(Load.Unit(player)
+                            .getLevel())
+                        .build()) {
+                        tooltip.add(txt);
+                    }
+                    return;
                 }
-                return;
             }
             if (stack.getItem() instanceof TieredItem) {
                 TieredItem tier = (TieredItem) stack.getItem();

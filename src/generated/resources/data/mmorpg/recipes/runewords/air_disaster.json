@@ -12,6 +12,7 @@
     }
   ],
   "result": {
-    "item": "mmorpg:runewords/air_disaster"
+    "item": "mmorpg:runeword",
+    "nbt": "{\"runeword\":\"air_disaster\"}"
   }
 }

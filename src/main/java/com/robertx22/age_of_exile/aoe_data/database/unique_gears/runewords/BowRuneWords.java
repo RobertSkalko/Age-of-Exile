@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.UniqueGearBuilder;
 import com.robertx22.age_of_exile.database.all_keys.BaseGearKeys;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
@@ -24,7 +23,7 @@ public class BowRuneWords implements ExileRegistryInit {
                 new StatModifier(10, 20, Stats.DAMAGE_TO_UNDEAD.get()),
                 new StatModifier(-6, -3, Stats.LIFESTEAL.get())
             ))
-            .makeRuneWordOnly(Arrays.asList(RuneItem.RuneType.CEN, RuneItem.RuneType.DOS, RuneItem.RuneType.YUN))
+            .makeRuneWordOnly()
             .devComment("crit dmg to undead bow")
             .build();
     }

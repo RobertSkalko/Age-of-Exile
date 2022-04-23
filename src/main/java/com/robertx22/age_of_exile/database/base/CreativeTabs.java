@@ -29,10 +29,10 @@ public class CreativeTabs {
             return new ItemStack(Items.SOUL_LANTERN);
         }
     };
-    public static ItemGroup Materials = new ItemGroup("mmorpg_mats") {
+    public static ItemGroup RuneWords = new ItemGroup("mmorpg_runewords") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(Items.GRASS);
+            return new ItemStack(SlashItems.RUNEWORD.get());
         }
     };
     public static ItemGroup GemRuneCurrency = new ItemGroup("mmorpg_currency") {

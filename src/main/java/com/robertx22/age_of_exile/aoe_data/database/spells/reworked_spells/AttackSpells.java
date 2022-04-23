@@ -28,7 +28,7 @@ public class AttackSpells implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        SpellBuilder.of(SpellKeys.MAGIC_PROJECTILE, SpellConfiguration.Builder.instant(0, 20), "Magic Projectile",
+        SpellBuilder.of(SpellKeys.MAGIC_PROJECTILE, SpellConfiguration.Builder.instant(0, 15), "Magic Projectile",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
             .manualDesc(
                 "Throw out a magical spark, dealing " + SpellCalcs.MAGIC_PROJECTILE.getLocDmgTooltip()

@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.mmorpg.registers.common.items;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.Def;
 import com.robertx22.age_of_exile.mmorpg.registers.deferred_wrapper.RegObj;
 import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneItem;
+import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.RuneType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ public class RuneItems {
 
     public static void init() {
 
-        for (RuneItem.RuneType type : RuneItem.RuneType.values()) {
+        for (RuneType type : RuneType.values()) {
 
             RuneItem item = new RuneItem(type);
 
@@ -28,7 +29,7 @@ public class RuneItems {
 
     }
 
-    public static RuneItem get(RuneItem.RuneType type) {
+    public static RuneItem get(RuneType type) {
         return MAP.get(type.id)
             .get();
     }
