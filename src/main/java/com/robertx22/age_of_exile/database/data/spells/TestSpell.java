@@ -45,7 +45,7 @@ public class TestSpell {
                     .put(MapField.IS_BLOCK_FALLING, false)))
 
                 .onTick("block", PartBuilder.groundParticles(ParticleTypes.SNEEZE, 20D, 3D, 0.2D))
-                .onTick("block", PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, Elements.Earth, 3D)
+                .onTick("block", PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, 3D)
                     .onTick(20D)
                     .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
                 )

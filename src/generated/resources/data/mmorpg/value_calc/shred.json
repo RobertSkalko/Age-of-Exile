@@ -1,7 +1,9 @@
 {
-  "stat_scalings": [],
   "id": "shred",
-  "base_scaling_type": "NORMAL",
+  "damage_calcs": {
+    "damages": []
+  },
+  "stat_scalings": [],
   "attack_scaling": {
     "min": 0.3,
     "max": 0.6

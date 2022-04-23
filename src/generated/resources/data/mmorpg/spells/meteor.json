@@ -110,8 +110,7 @@
             {
               "type": "damage",
               "map": {
-                "value_calculation": "meteor",
-                "element": "Fire"
+                "value_calculation": "meteor"
               }
             }
           ],

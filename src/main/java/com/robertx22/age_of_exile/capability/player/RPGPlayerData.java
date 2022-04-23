@@ -5,7 +5,6 @@ import com.robertx22.age_of_exile.capability.player.data.*;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.dimension.dungeon_data.DungeonData;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
-import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
 import com.robertx22.age_of_exile.saveclasses.perks.TalentsData;
 import com.robertx22.age_of_exile.saveclasses.player_skills.ProfessionsData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
@@ -66,7 +65,6 @@ public class RPGPlayerData implements ICommonPlayerCap {
     private static final String FAVOR_DATA = "favor";
     private static final String TALENTS_DATA = "talents";
     private static final String STAT_POINTS = "stat_points";
-    private static final String DEATH_STATS = "death_stats";
     private static final String PROFESSIONS = "profs";
     private static final String DIFF = "diff";
 
@@ -77,7 +75,6 @@ public class RPGPlayerData implements ICommonPlayerCap {
     public FavorData favor = new FavorData();
     public TalentsData talents = new TalentsData();
     public StatPointsData statPoints = new StatPointsData();
-    public DeathStatsData deathStats = new DeathStatsData();
     public ProfessionsData professions = new ProfessionsData();
     public ScalingPlayerDiffData scalingDifficulty = new ScalingPlayerDiffData();
 
@@ -110,7 +107,6 @@ public class RPGPlayerData implements ICommonPlayerCap {
         LoadSave.Save(favor, nbt, FAVOR_DATA);
         LoadSave.Save(talents, nbt, TALENTS_DATA);
         LoadSave.Save(statPoints, nbt, STAT_POINTS);
-        LoadSave.Save(deathStats, nbt, DEATH_STATS);
         LoadSave.Save(professions, nbt, PROFESSIONS);
         LoadSave.Save(scalingDifficulty, nbt, DIFF);
 
@@ -125,7 +121,6 @@ public class RPGPlayerData implements ICommonPlayerCap {
         this.favor = loadOrBlank(FavorData.class, new FavorData(), nbt, FAVOR_DATA, new FavorData());
         this.talents = loadOrBlank(TalentsData.class, new TalentsData(), nbt, TALENTS_DATA, new TalentsData());
         this.statPoints = loadOrBlank(StatPointsData.class, new StatPointsData(), nbt, STAT_POINTS, new StatPointsData());
-        this.deathStats = loadOrBlank(DeathStatsData.class, new DeathStatsData(), nbt, DEATH_STATS, new DeathStatsData());
         this.professions = loadOrBlank(ProfessionsData.class, new ProfessionsData(), nbt, PROFESSIONS, new ProfessionsData());
         this.scalingDifficulty = loadOrBlank(ScalingPlayerDiffData.class, new ScalingPlayerDiffData(), nbt, DIFF, new ScalingPlayerDiffData());
 

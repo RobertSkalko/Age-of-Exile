@@ -1,6 +1,5 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-ice_comet
 petrify
 torment
 healing_aura
@@ -22,26 +21,19 @@ charge
 heart_of_ice
 poison
 hunter_pot_heal
-poison_arrow
 magic_projectile
 shout_warn
-direct_arrow_hit
-flame_strike
 shooting_star
 meteor
 frost_nova
 ranger_trap
-execute
 bleed
 poison_cloud
 totem_guard
 power_chord
 pull
 awaken_mana
-gong_strike
 curse
-fire_nova
-tidal_strike
 totem_mana
 despair
 taunt

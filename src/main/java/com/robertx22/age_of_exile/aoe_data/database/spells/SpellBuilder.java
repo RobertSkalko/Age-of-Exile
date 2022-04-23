@@ -40,7 +40,7 @@ public class SpellBuilder {
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)
                 .put(MapField.IS_SILENT, true)))
-            .onHit(PartBuilder.damageInAoe(SpellCalcs.BREATH, ele, 1.5D)
+            .onHit(PartBuilder.damageInAoe(SpellCalcs.BREATH, 1.5D)
                 .addCondition(EffectCondition.IS_NOT_ON_COOLDOWN.create("breath"))
                 .addActions(SpellAction.SET_ON_COOLDOWN.create("breath", 20D)))
             .onCast(PartBuilder.Particle.builder(particle, 50D, 0.3D)

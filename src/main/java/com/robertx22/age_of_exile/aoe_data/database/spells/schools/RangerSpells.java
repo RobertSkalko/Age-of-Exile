@@ -115,7 +115,7 @@ public class RangerSpells implements ExileRegistryInit {
 
             .onHit(PartBuilder.aoeParticles(ParticleTypes.CRIT, 100D, 1D))
             .onHit(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(SpellCalcs.CHARGED_BOLT, Elements.Physical, 2D)
+            .onHit(PartBuilder.damageInAoe(SpellCalcs.CHARGED_BOLT, 2D)
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ENCHANTED_HIT, 4D, 0.1D))
@@ -130,7 +130,7 @@ public class RangerSpells implements ExileRegistryInit {
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(5D)))
             .onHit(PartBuilder.particleOnTick(3D, ParticleTypes.CLOUD, 3D, 0.1D))
             .onHit(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damage(SpellCalcs.ARROW_STORM, Elements.Physical))
+            .onHit(PartBuilder.damage(SpellCalcs.ARROW_STORM))
             .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D))
             .build();
 
@@ -144,7 +144,7 @@ public class RangerSpells implements ExileRegistryInit {
             .onExpire(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 0.1D))
             .onExpire(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
             .onExpire(PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
-            .onExpire(PartBuilder.damageInAoe(SpellCalcs.EXPLOSIVE_ARROW, Elements.Physical, 2D)
+            .onExpire(PartBuilder.damageInAoe(SpellCalcs.EXPLOSIVE_ARROW, 2D)
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 40D))))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
             .build();
@@ -186,7 +186,7 @@ public class RangerSpells implements ExileRegistryInit {
                 .addActions(SpellAction.SPECIFIC_ACTION.create("expire"))
                 .onTick(2D))
 
-            .addSpecificAction("expire", PartBuilder.damageInAoe(dmg, element, 3D))
+            .addSpecificAction("expire", PartBuilder.damageInAoe(dmg, 3D))
             .addSpecificAction("expire", PartBuilder.aoeParticles(particle, 30D, 3D))
             .addSpecificAction("expire", PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D));
 

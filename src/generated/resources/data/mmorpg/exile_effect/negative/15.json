@@ -31,8 +31,7 @@
             {
               "type": "damage",
               "map": {
-                "value_calculation": "despair",
-                "element": "Elemental"
+                "value_calculation": "despair"
               }
             }
           ],

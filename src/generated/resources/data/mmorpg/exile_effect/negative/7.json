@@ -39,8 +39,7 @@
               "map": {
                 "exile_potion_id": "negative/7",
                 "dmg_effect_type": "dot",
-                "value_calculation": "torment",
-                "element": "Elemental"
+                "value_calculation": "torment"
               }
             }
           ],

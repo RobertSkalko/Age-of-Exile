@@ -116,7 +116,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(1)
             .stat(-10, -20, Stats.TOTAL_DAMAGE.get())
             .spell(SpellBuilder.forEffect()
-                .onExpire(PartBuilder.damage(SpellCalcs.DESPAIR, Elements.Elemental))
+                .onExpire(PartBuilder.damage(SpellCalcs.DESPAIR))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
                     .onTick(20D))
                 .buildForEffect())
@@ -141,7 +141,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .vanillaStat(VanillaStatData.create(MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
             .stat(-5, -10, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.dotDamageOnTick(TORMENT.resourcePath, SpellCalcs.TORMENT, Elements.Elemental)
+                .onTick(PartBuilder.dotDamageOnTick(TORMENT.resourcePath, SpellCalcs.TORMENT)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 1D)
                     .onTick(10D))
@@ -162,7 +162,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .stat(-5, -5, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.dotDamageOnTick(POISON.resourcePath, SpellCalcs.POISON, Elements.Earth)
+                .onTick(PartBuilder.dotDamageOnTick(POISON.resourcePath, SpellCalcs.POISON)
                     .onTick(20D))
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.SNEEZE, 1D, 1D)
                     .onTick(2D))
@@ -173,7 +173,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BURN.resourcePath, SpellCalcs.BURN, Elements.Fire)
+                .onTick(PartBuilder.dotDamageOnTick(BURN.resourcePath, SpellCalcs.BURN)
                     .onTick(20D))
 
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 10D, 1D)
@@ -187,7 +187,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BLEED.resourcePath, SpellCalcs.BLEED, Elements.Physical)
+                .onTick(PartBuilder.dotDamageOnTick(BLEED.resourcePath, SpellCalcs.BLEED)
                     .onTick(20D))
 
                 .buildForEffect())
@@ -218,7 +218,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D)
                     .onTick(20D))
-                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(SpellCalcs.PETRIFY, Elements.Earth))
+                .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(SpellCalcs.PETRIFY))
                     .setTarget(TargetSelector.TARGET.create()))
                 .onExpire(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 15D, 1D))
                 .onExpire(PartBuilder.justAction(SpellAction.PLAY_SOUND.create(SoundEvents.SHEEP_SHEAR, 1D, 1D)))

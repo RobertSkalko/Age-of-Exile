@@ -158,8 +158,7 @@
             {
               "type": "damage",
               "map": {
-                "value_calculation": "magic_projectile",
-                "element": "Physical"
+                "value_calculation": "magic_projectile"
               }
             }
           ],

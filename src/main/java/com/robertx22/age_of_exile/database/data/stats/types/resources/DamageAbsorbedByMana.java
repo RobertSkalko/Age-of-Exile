@@ -2,12 +2,10 @@ package com.robertx22.age_of_exile.database.data.stats.types.resources;
 
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
-import com.robertx22.age_of_exile.saveclasses.DeathStatsData;
 import com.robertx22.age_of_exile.saveclasses.unit.ResourceType;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
 
 public class DamageAbsorbedByMana extends Stat {
@@ -72,10 +70,6 @@ public class DamageAbsorbedByMana extends Stat {
             float dmgReduced = MathHelper.clamp(dmg * data.getValue() / 100F, 0, currentMana - (maxMana * 0.5F));
 
             if (dmgReduced > 0) {
-
-                if (effect.target instanceof PlayerEntity) {
-                    DeathStatsData.record((PlayerEntity) effect.target, effect.getElement(), dmgReduced);
-                }
 
                 effect.targetData.getResources()
                     .spend(effect.target, ResourceType.mana, dmgReduced);

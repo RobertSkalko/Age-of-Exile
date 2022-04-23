@@ -1,13 +1,21 @@
 {
-  "stat_scalings": [],
   "id": "poison",
-  "base_scaling_type": "NORMAL",
+  "damage_calcs": {
+    "damages": [
+      {
+        "element": "Earth",
+        "scaling": [],
+        "base": 2.0
+      }
+    ]
+  },
+  "stat_scalings": [],
   "attack_scaling": {
     "min": 0.0,
     "max": 0.0
   },
   "base": {
-    "min": 2.0,
-    "max": 2.0
+    "min": 0.0,
+    "max": 0.0
   }
 }

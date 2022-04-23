@@ -73,7 +73,7 @@ public class HolySpells implements ExileRegistryInit {
 
             .onCast(PartBuilder.playSound(SoundEvents.PLAYER_ATTACK_SWEEP, 1D, 1D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 2D, 0.5D))
-            .onCast(PartBuilder.damageInAoe(SpellCalcs.WHIRLWIND, Elements.Physical, 1.5D)
+            .onCast(PartBuilder.damageInAoe(SpellCalcs.WHIRLWIND, 1.5D)
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 50D, 0.5D, 0.1D))
             )
             .build();
@@ -94,7 +94,7 @@ public class HolySpells implements ExileRegistryInit {
                 .addTarget(TargetSelector.CASTER.create()))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 20D, 1D, 0.5D))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.EXPLOSION, 1D, 1D, 0.5D))
-            .onCast(PartBuilder.damageInAoe(SpellCalcs.CHARGE, Elements.Physical, 1.75D)
+            .onCast(PartBuilder.damageInAoe(SpellCalcs.CHARGE, 1.75D)
                 .addPerEntityHit(PartBuilder.playSound(SoundEvents.ANVIL_LAND, 1D, 1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.EFFECT, 100D, 0.5D, 0.1D))
                 .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.CLOUD, 100D, 0.5D, 0.1D))
@@ -141,7 +141,7 @@ public class HolySpells implements ExileRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.ANVIL_HIT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
                 .addActions(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 20D * 5))
-                .addActions(SpellAction.DEAL_DAMAGE.create(SpellCalcs.PULL, Elements.Physical))
+                .addActions(SpellAction.DEAL_DAMAGE.create(SpellCalcs.PULL))
                 .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.STUN.resourcePath, ExileEffectAction.GiveOrTake.GIVE_STACKS, 20D * 2))
                 .addTarget(TargetSelector.AOE.create(8D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 100D, 6D, 0.1D))

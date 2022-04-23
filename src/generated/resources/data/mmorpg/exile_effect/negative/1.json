@@ -54,8 +54,7 @@
             {
               "type": "damage",
               "map": {
-                "value_calculation": "petrify",
-                "element": "Earth"
+                "value_calculation": "petrify"
               }
             }
           ],

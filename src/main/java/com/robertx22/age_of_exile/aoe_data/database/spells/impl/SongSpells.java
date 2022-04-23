@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.SpellConfigura
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
@@ -30,7 +29,7 @@ public class SongSpells implements ExileRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 1D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.NOTE, 2D, 0.15D))
-            .onHit(PartBuilder.damage(SpellCalcs.POWER_CHORD, Elements.Elemental)
+            .onHit(PartBuilder.damage(SpellCalcs.POWER_CHORD)
                 .addActions(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.CHARM, 6)))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 10D, 1D))
             .build();

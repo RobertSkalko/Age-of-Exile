@@ -1,4 +1,8 @@
 {
+  "id": "taunt",
+  "damage_calcs": {
+    "damages": []
+  },
   "stat_scalings": [
     {
       "stat": "health",
@@ -8,8 +12,6 @@
       }
     }
   ],
-  "id": "taunt",
-  "base_scaling_type": "NORMAL",
   "attack_scaling": {
     "min": 0.0,
     "max": 0.0

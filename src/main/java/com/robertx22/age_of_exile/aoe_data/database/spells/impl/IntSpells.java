@@ -47,7 +47,7 @@ public class IntSpells implements ExileRegistryInit {
             .onTick("block", PartBuilder.particleOnTick(1D, ParticleTypes.WITCH, 8D, 1D))
             .onTick("block", PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
-            .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.BLACK_HOLE, Elements.Elemental, 2D))
+            .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.BLACK_HOLE, 2D))
             .build();
 
         SpellBuilder.of("teleport", SpellConfiguration.Builder.instant(20, 20 * 30), "Teleport",

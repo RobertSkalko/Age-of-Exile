@@ -20,7 +20,6 @@ public class OnPlayerDeath extends EventConsumer<ExileEvents.OnPlayerDeath> {
                 .setEquipsChanged(true);
 
             RPGPlayerData data = Load.playerRPGData(event.player);
-            data.deathStats.died = true;
 
             data.syncToClient(event.player);
 

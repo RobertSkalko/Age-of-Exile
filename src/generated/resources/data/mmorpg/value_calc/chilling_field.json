@@ -1,4 +1,8 @@
 {
+  "id": "chilling_field",
+  "damage_calcs": {
+    "damages": []
+  },
   "stat_scalings": [
     {
       "stat": "spell_damage",
@@ -8,8 +12,6 @@
       }
     }
   ],
-  "id": "chilling_field",
-  "base_scaling_type": "NORMAL",
   "attack_scaling": {
     "min": 0.0,
     "max": 0.0

@@ -94,7 +94,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
         SchoolBuilder.of(WATER, "Water")
             .addSpell(WaterSpells.TIDAL_STRIKE, new PointData(4, 0))
 
-            .addSpell(WaterSpells.FROST_NOVA_AOE, new PointData(2, 1))
+            .addSpell(SpellKeys.ICE_SHIELD.id, new PointData(2, 1))
             .addSpell(WaterSpells.WATER_BREATH, new PointData(10, 1))
             .addSpell(SpellKeys.ICE_SHIELD.id, new PointData(7, 1))
 

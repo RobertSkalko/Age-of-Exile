@@ -1,7 +1,9 @@
 {
-  "stat_scalings": [],
   "id": "explosive_arrow",
-  "base_scaling_type": "NORMAL",
+  "damage_calcs": {
+    "damages": []
+  },
+  "stat_scalings": [],
   "attack_scaling": {
     "min": 0.5,
     "max": 1.5

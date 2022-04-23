@@ -8,6 +8,26 @@
         "targets": [],
         "acts": [
           {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.experience_orb.pickup",
+              "pitch": 0.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
             "type": "summon_at_sight",
             "map": {
               "entity_name": "default_entity_name",
@@ -49,28 +69,6 @@
           "en_preds": []
         },
         {
-          "targets": [],
-          "acts": [
-            {
-              "type": "sound",
-              "map": {
-                "volume": 1.1,
-                "sound": "minecraft:entity.panda.sneeze",
-                "pitch": 1.5
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "x_ticks_condition",
-              "map": {
-                "tick_rate": 20.0
-              }
-            }
-          ],
-          "en_preds": []
-        },
-        {
           "targets": [
             {
               "type": "aoe",
@@ -85,8 +83,7 @@
             {
               "type": "damage",
               "map": {
-                "value_calculation": "poison_cloud",
-                "element": "Earth"
+                "value_calculation": "poison_cloud"
               }
             }
           ],

@@ -11,7 +11,6 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Base
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -27,16 +26,16 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart damage(ValueCalculation calc, Elements ele) {
+    public static ComponentPart damage(ValueCalculation calc) {
         ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
+        c.acts.add(SpellAction.DEAL_DAMAGE.create(calc));
         c.targets.add(BaseTargetSelector.TARGET.create());
         return c;
     }
 
-    public static ComponentPart dotDamageOnTick(String effect, ValueCalculation calc, Elements ele) {
+    public static ComponentPart dotDamageOnTick(String effect, ValueCalculation calc) {
         ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele)
+        c.acts.add(SpellAction.DEAL_DAMAGE.create(calc)
             .put(MapField.EXILE_POTION_ID, effect)
             .put(MapField.DMG_EFFECT_TYPE, AttackType.dot.name()));
 
@@ -65,45 +64,31 @@ public class PartBuilder {
         return c;
     }
 
-    public static ComponentPart onTickDamageInAoe(Double ticks, ValueCalculation calc, Elements ele, Double radius) {
-        ComponentPart c = damageInAoe(calc, ele, radius);
+    public static ComponentPart onTickDamageInAoe(Double ticks, ValueCalculation calc, Double radius) {
+        ComponentPart c = damageInAoe(calc, radius);
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         return c;
     }
 
-    public static ComponentPart damageInAoe(ValueCalculation calc, Elements ele, Double radius) {
+    public static ComponentPart damageInAoe(ValueCalculation calc, Double radius) {
         ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
+        c.acts.add(SpellAction.DEAL_DAMAGE.create(calc));
         c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies));
         return c;
     }
 
-    public static ComponentPart damageInFront(ValueCalculation calc, Elements ele, Double distance, Double width) {
+    public static ComponentPart damageInFront(ValueCalculation calc, Double distance, Double width) {
         ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
+        c.acts.add(SpellAction.DEAL_DAMAGE.create(calc));
         c.targets.add(BaseTargetSelector.IN_FRONT.create(distance, width, AllyOrEnemy.enemies));
         return c;
     }
 
-    public static ComponentPart onTickRaycast(Double ticks, ValueCalculation calc, Elements ele, Double distance) {
+    public static ComponentPart onTickRaycast(Double ticks, ValueCalculation calc, Double distance) {
         ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.DEAL_DAMAGE.create(calc, ele));
+        c.acts.add(SpellAction.DEAL_DAMAGE.create(calc));
         c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         c.targets.add(BaseTargetSelector.RAY_CAST.create(distance, AllyOrEnemy.enemies));
-        return c;
-    }
-
-    public static ComponentPart onTickRayHeal(Double ticks, ValueCalculation calc, Double distance) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(SpellAction.RESTORE_HEALTH.create(calc));
-        c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
-        c.targets.add(BaseTargetSelector.RAY_CAST.create(distance, AllyOrEnemy.allies));
-        return c;
-    }
-
-    public static ComponentPart onTickHealInAoe(Double ticks, ValueCalculation calc, Double radius) {
-        ComponentPart c = healInAoe(calc, radius);
-        c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         return c;
     }
 
@@ -132,13 +117,6 @@ public class PartBuilder {
         ComponentPart c = new ComponentPart();
         c.acts.add(SpellAction.PUSH.create((double) str.num, way));
         c.targets.add(BaseTargetSelector.CASTER.create());
-        return c;
-    }
-
-    public static ComponentPart onTickAction(Double ticks, MapHolder action) {
-        ComponentPart c = new ComponentPart();
-        c.acts.add(action);
-        c.ifs.add(EffectCondition.EVERY_X_TICKS.create(ticks));
         return c;
     }
 

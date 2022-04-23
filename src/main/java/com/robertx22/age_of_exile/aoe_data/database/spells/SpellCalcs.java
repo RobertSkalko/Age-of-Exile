@@ -1,8 +1,10 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
+import com.robertx22.age_of_exile.database.data.value_calc.DamageCalculation;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalcBuilder;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
+import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class SpellCalcs {
 
@@ -10,14 +12,44 @@ public class SpellCalcs {
 
     }
 
+    public static ValueCalculation METEOR = ValueCalcBuilder.of("meteor")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(10)
+            .scaling(2F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Fire)
+            .base(10)
+            .scaling(2F)
+            .build())
+        .addAllElementsScaling(1.5F)
+        .build();
+
+    public static ValueCalculation FROST_NOVA = ValueCalcBuilder.of("frost_nova")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(8)
+            .scaling(1.5F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Water)
+            .base(8)
+            .scaling(1.5F)
+            .build())
+        .addAllElementsScaling(1)
+        .build();
+
     public static ValueCalculation MAGIC_PROJECTILE = ValueCalcBuilder.of("magic_projectile")
-        .spellScaling(0.5F, 1F)
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .scaling(1)
+            .build())
+        .addAllElementsScaling(0.8F)
         .build();
 
     public static ValueCalculation POISON = ValueCalcBuilder.of("poison")
-        .baseValue(2, 2)
+        .damage(DamageCalculation.Builder.of(Elements.Earth)
+            .base(2)
+            .build())
         .build();
 
+    // todo redo all these
     public static ValueCalculation BLEED = ValueCalcBuilder.of("bleed")
         .baseValue(4, 4)
         .build();
@@ -36,13 +68,6 @@ public class SpellCalcs {
     public static ValueCalculation DESPAIR = ValueCalcBuilder.of("despair")
         .baseValue(2, 6)
         .build();
-    public static ValueCalculation DIRECT_ARROW_HIT = ValueCalcBuilder.of("direct_arrow_hit")
-        .baseValue(2, 6)
-        .build();
-
-    public static ValueCalculation GONG_STRIKE = ValueCalcBuilder.of("gong_strike")
-        .statScaling(Health.getInstance(), 0.1F, 0.25F)
-        .build();
 
     public static ValueCalculation WHIRLWIND = ValueCalcBuilder.of("whirlwind")
         .attackScaling(0.2F, 0.6F)
@@ -56,9 +81,6 @@ public class SpellCalcs {
         .build();
     public static ValueCalculation EXPLOSIVE_ARROW = ValueCalcBuilder.of("explosive_arrow")
         .attackScaling(0.5F, 1.5F)
-        .build();
-    public static ValueCalculation POISON_ARROW = ValueCalcBuilder.of("poison_arrow")
-        .attackScaling(0.5F, 1F)
         .build();
     public static ValueCalculation RANGER_TRAP = ValueCalcBuilder.of("ranger_trap")
         .attackScaling(0.5F, 1F)
@@ -82,23 +104,6 @@ public class SpellCalcs {
     public static ValueCalculation SHOOTING_STAR = ValueCalcBuilder.of("shooting_star")
         .spellScaling(0.5F, 1.25F)
         .build();
-    public static ValueCalculation TIDAL_STRIKE = ValueCalcBuilder.of("tidal_strike")
-        .attackScaling(0.4F, 0.75F)
-        .build();
-    public static ValueCalculation FIRE_NOVA = ValueCalcBuilder.of("fire_nova")
-        .spellScaling(1F, 1.5F)
-        .build();
-    public static ValueCalculation METEOR = ValueCalcBuilder.of("meteor")
-        .spellScaling(1F, 2F)
-        .build();
-
-    public static ValueCalculation ICE_COMET = ValueCalcBuilder.of("ice_comet")
-        .spellScaling(0.75F, 1.5F)
-        .build();
-
-    public static ValueCalculation FLAME_STRIKE = ValueCalcBuilder.of("flame_strike")
-        .attackScaling(0.4F, 0.75F)
-        .build();
 
     public static ValueCalculation HEALING_AURA = ValueCalcBuilder.of("healing_aura")
         .baseValue(4, 6)
@@ -106,9 +111,7 @@ public class SpellCalcs {
     public static ValueCalculation HEART_OF_ICE = ValueCalcBuilder.of("heart_of_ice")
         .baseValue(10, 50)
         .build();
-    public static ValueCalculation FROST_NOVA = ValueCalcBuilder.of("frost_nova")
-        .spellScaling(1F, 1.5F)
-        .build();
+
     public static ValueCalculation CHILL_ERUPTION = ValueCalcBuilder.of("chill_eruption")
         .spellScaling(1F, 2.5F)
         .build();
@@ -123,9 +126,6 @@ public class SpellCalcs {
         .build();
     public static ValueCalculation CHARGED_BOLT = ValueCalcBuilder.of("charged_bolt")
         .attackScaling(0.5F, 1F)
-        .build();
-    public static ValueCalculation EXECUTE = ValueCalcBuilder.of("execute")
-        .attackScaling(1F, 2F)
         .build();
     public static ValueCalculation CHARGE = ValueCalcBuilder.of("charge")
         .attackScaling(0.3F, 0.6F)

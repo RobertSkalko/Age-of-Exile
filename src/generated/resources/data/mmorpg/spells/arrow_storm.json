@@ -109,8 +109,7 @@
             {
               "type": "damage",
               "map": {
-                "value_calculation": "arrow_storm",
-                "element": "Physical"
+                "value_calculation": "arrow_storm"
               }
             }
           ],

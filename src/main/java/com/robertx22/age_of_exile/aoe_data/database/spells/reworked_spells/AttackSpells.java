@@ -42,7 +42,7 @@ public class AttackSpells implements ExileRegistryInit {
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.SMOKE, 1D, 0.01D))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 5D, 0.3D))
 
-            .onExpire(PartBuilder.damageInAoe(SpellCalcs.MAGIC_PROJECTILE, Elements.Physical, 2D))
+            .onExpire(PartBuilder.damageInAoe(SpellCalcs.MAGIC_PROJECTILE, 2D))
             .onExpire(PartBuilder.playSound(SoundEvents.GENERIC_HURT, 1D, 2D))
 
             .onHit(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 3D, 1D))
@@ -66,11 +66,11 @@ public class AttackSpells implements ExileRegistryInit {
                 .put(MapField.IS_BLOCK_FALLING, true)))
             .onTick("block", PartBuilder.particleOnTick(2D, ParticleTypes.LAVA, 2D, 0.5D))
             .onTick("block", PartBuilder.particleOnTick(2D, ParticleTypes.EXPLOSION, 1D, 0.1D))
-            .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.METEOR, Elements.Fire, 3D))
-            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.LAVA, 150D, 3D))
-            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.FLAME, 30D, 3D))
-            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.ASH, 100D, 3D))
-            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 25D, 3D))
+            .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.METEOR, 4D))
+            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.LAVA, 200D, 4D))
+            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.FLAME, 40D, 4D))
+            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.ASH, 120D, 4D))
+            .onExpire("block", PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 35D, 4D))
             .onExpire("block", PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
             .build();
 
@@ -89,7 +89,7 @@ public class AttackSpells implements ExileRegistryInit {
 
             .onCast(PartBuilder.justAction(SpellAction.ICE_NOVA.create()))
 
-            .onCast(PartBuilder.damageInAoe(SpellCalcs.MAGIC_PROJECTILE, Elements.Water, 3D)) // todo
+            .onCast(PartBuilder.damageInAoe(SpellCalcs.FROST_NOVA, 3D))
 
             .onCast(new VanillaEffectActionBuilder(Effects.MOVEMENT_SLOWDOWN).radius(3)
                 .targetEnemies()
@@ -118,7 +118,7 @@ public class AttackSpells implements ExileRegistryInit {
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
             .onTick("block", PartBuilder.groundParticles(ParticleTypes.SNEEZE, 20D, 3D, 0.2D))
-            .onTick("block", PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, Elements.Earth, 3D)
+            .onTick("block", PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, 3D)
                 .onTick(20D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
             )

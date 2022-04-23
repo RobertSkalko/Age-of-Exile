@@ -25,8 +25,7 @@
               "map": {
                 "exile_potion_id": "negative/5",
                 "dmg_effect_type": "dot",
-                "value_calculation": "burn",
-                "element": "Fire"
+                "value_calculation": "burn"
               }
             }
           ],

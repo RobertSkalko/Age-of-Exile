@@ -66,8 +66,7 @@
             {
               "type": "damage",
               "map": {
-                "value_calculation": "ranger_trap",
-                "element": "Earth"
+                "value_calculation": "ranger_trap"
               }
             }
           ],

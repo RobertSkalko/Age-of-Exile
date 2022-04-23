@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.data.stats.StatScaling;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
-import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
@@ -32,21 +31,16 @@ public class ValueCalculation implements JsonExileRegistry<ValueCalculation>, IA
         return new ArrayList<>(stat_scalings);
     }
 
-    public List<ScalingCalc> stat_scalings = new ArrayList<>();
-
     public String id = "";
-    public StatScaling base_scaling_type = StatScaling.NORMAL;
+
+    public DamageCalcs damage_calcs = new DamageCalcs();
+
+    public List<ScalingCalc> stat_scalings = new ArrayList<>();
     public LeveledValue attack_scaling = new LeveledValue(0, 0);
     public LeveledValue base = new LeveledValue(0, 0);
 
     public int getCalculatedBaseValue(LevelProvider provider) {
-
-        if (base_scaling_type == null) {
-            MMORPG.logError("base scaling type null");
-            return 0;
-        }
-
-        return (int) base_scaling_type.scale(base.getValue(provider), provider.getCasterLevel());
+        return (int) StatScaling.NORMAL.scale(base.getValue(provider), provider.getCasterLevel());
     }
 
     public String getLocDmgTooltip(Elements element) {

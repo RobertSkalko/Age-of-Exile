@@ -22,7 +22,6 @@ import net.minecraft.util.SoundEvents;
 import java.util.Arrays;
 
 public class WaterSpells implements ExileRegistryInit {
-    public static String FROST_NOVA_AOE = "frost_nova";
 
     public static String WATER_BREATH = "water_breath";
     public static String MAGE_CIRCLE = "mage_circle";
@@ -47,7 +46,7 @@ public class WaterSpells implements ExileRegistryInit {
 
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.ITEM_SNOWBALL, 250D, 5D, 0.5D))
 
-            .onCast(PartBuilder.damageInAoe(SpellCalcs.CHILL_ERUPTION, Elements.Water, 5D)
+            .onCast(PartBuilder.damageInAoe(SpellCalcs.CHILL_ERUPTION, 5D)
                 .addEntityPredicate(SpellEntityPredicate.HAS_EFFECT.create(NegativeEffects.CHILL))
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GLASS_HIT, 1D, 1D))
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GLASS_BREAK, 1D, 1D))
@@ -76,7 +75,7 @@ public class WaterSpells implements ExileRegistryInit {
             .onTick("block", PartBuilder.groundParticles(ParticleTypes.CLOUD, 20D, 2D, 0.2D))
             .onTick("block", PartBuilder.playSound(SoundEvents.HORSE_BREATHE, 1.1D, 1.5D)
                 .onTick(20D))
-            .onTick("block", PartBuilder.damageInAoe(SpellCalcs.CHILLING_FIELD, Elements.Water, 2D)
+            .onTick("block", PartBuilder.damageInAoe(SpellCalcs.CHILLING_FIELD, 2D)
                 .onTick(20D))
 
             .onTick("block", new ExileEffectActionBuilder(NegativeEffects.CHILL).seconds(5)
