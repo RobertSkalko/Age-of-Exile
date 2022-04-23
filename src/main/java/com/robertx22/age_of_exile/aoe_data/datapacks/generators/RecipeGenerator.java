@@ -121,6 +121,9 @@ public class RecipeGenerator {
                 Item item = RuneItems.get(rune);
                 b.requires(item);
             }
+            for (Item item : key.items.get()) {
+                b.requires(item);
+            }
             b.save(consumer);
         }
 

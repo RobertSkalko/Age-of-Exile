@@ -15,12 +15,14 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
+import com.robertx22.library_of_exile.text_wrapper.ModStringText;
 import com.robertx22.library_of_exile.text_wrapper.TextBuilder;
 import com.robertx22.library_of_exile.text_wrapper.TooltipBuilder;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,8 +120,10 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
         }
 
         if (uniq.random_affixes > 0) {
-            tooltip.add(TextBuilder.of()
-                .append("+ " + uniq.random_affixes + " Random Affixes"));
+            for (int i = 0; i < uniq.random_affixes; i++) {
+                tooltip.add(TextBuilder.of()
+                    .append(new ModStringText("[Random Affix]").format(TextFormatting.GREEN)));
+            }
         }
 
         TextBuilder txt = TextBuilder.of()

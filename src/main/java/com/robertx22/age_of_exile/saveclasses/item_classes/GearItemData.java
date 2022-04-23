@@ -215,7 +215,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             if (useFullAffixedName()) {
                 return getFullAffixedName();
             } else {
-                if (isUnique()) {
+                if (uniqueStats != null) {
                     return getUniqueName();
                 } else {
                     return getTooManyAffixesName();
@@ -323,7 +323,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     private boolean useFullAffixedName() {
 
-        if (isUnique() && affixes.getNumberOfAffixes() == 0) {
+        if (getRarity().is_unique_item) {
             return false;
         }
         if (affixes.getNumberOfPrefixes() > 1) {

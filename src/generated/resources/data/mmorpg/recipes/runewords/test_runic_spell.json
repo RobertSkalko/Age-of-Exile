@@ -1,6 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "ingredients": [],
+  "ingredients": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:golden_apple"
+    }
+  ],
   "result": {
     "item": "mmorpg:runeword",
     "nbt": "{\"runeword\":\"test_runic_spell\"}"
