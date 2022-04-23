@@ -42,7 +42,6 @@ public class RuneWordItem extends Item implements IAutoLocName {
                 list.add(word.getStack());
             }
         }
-
     }
 
     @Override

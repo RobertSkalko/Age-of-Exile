@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.event_hooks.player;
 import com.robertx22.age_of_exile.capability.bases.CapSyncUtil;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
+import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
@@ -10,8 +11,13 @@ import com.robertx22.library_of_exile.utils.Watch;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class OnLogin {
 
@@ -40,6 +46,8 @@ public class OnLogin {
 
             data.onLogin(player);
 
+            tryUnlockAllCraftingRecipes(player);
+
             data.syncToClient(player);
 
         } catch (
@@ -50,6 +58,19 @@ public class OnLogin {
         if (MMORPG.RUN_DEV_TOOLS) {
             total.print("Total on login actions took ");
         }
+    }
+
+    public static void tryUnlockAllCraftingRecipes(ServerPlayerEntity player) {
+        // todo this might be very laggy on large modpacks
+        Collection<IRecipe<?>> recipes = player.level.getRecipeManager()
+            .getAllRecipesFor(IRecipeType.CRAFTING)
+            .stream()
+            .filter(x -> x.getId()
+                .getNamespace()
+                .equals(SlashRef.MODID))
+            .collect(Collectors.toList());
+        player.awardRecipes(recipes);
+
     }
 
     public static void GiveStarterItems(PlayerEntity player) {

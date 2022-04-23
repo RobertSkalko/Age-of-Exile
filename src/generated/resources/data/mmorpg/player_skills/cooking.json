@@ -6,7 +6,7 @@
   "dropTables": [],
   "stat_rewards": [
     {
-      "lvl_req": 5,
+      "lvl_req": 10,
       "stats": [
         {
           "v1": 20.0,
@@ -17,7 +17,7 @@
       ]
     },
     {
-      "lvl_req": 15,
+      "lvl_req": 30,
       "stats": [
         {
           "v1": 20.0,
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "lvl_req": 25,
+      "lvl_req": 50,
       "stats": [
         {
           "v1": 20.0,
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "lvl_req": 35,
+      "lvl_req": 70,
       "stats": [
         {
           "v1": 20.0,
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "lvl_req": 45,
+      "lvl_req": 90,
       "stats": [
         {
           "v1": 20.0,

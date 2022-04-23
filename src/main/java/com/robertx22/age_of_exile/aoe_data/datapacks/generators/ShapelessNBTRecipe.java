@@ -8,7 +8,10 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.advancements.IRequirementsStrategy;
-import net.minecraft.advancements.criterion.*;
+import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -109,7 +112,7 @@ public class ShapelessNBTRecipe {
     public void save(Consumer<IFinishedRecipe> finished, ResourceLocation key) {
         this.ensureValid(key);
         this.advancement.parent(new ResourceLocation("recipes/root"))
-            .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(key))
+            // REMOVE THIS SHIT.addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(key))
             .rewards(AdvancementRewards.Builder.recipe(key))
             .requirements(IRequirementsStrategy.OR);
         finished.accept(new ShapelessNBTRecipe.Result(key, this.result, this.count, this.group == null ? "" : this.group, this.ingredients, this.advancement, new ResourceLocation(key.getNamespace(), "recipes/" + this.result.getItem()

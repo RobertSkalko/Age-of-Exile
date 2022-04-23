@@ -51,14 +51,10 @@ public class LevelUtils {
     public static void runTests() {
         if (MMORPG.RUN_DEV_TOOLS) {
             Preconditions.checkArgument(levelToTierToLevel(1) == 1);
-            Preconditions.checkArgument(levelToTierToLevel(10) == 10);
             Preconditions.checkArgument(levelToTierToLevel(20) == 20);
-            Preconditions.checkArgument(levelToTierToLevel(50) == 50);
+            Preconditions.checkArgument(levelToTierToLevel(40) == 40);
+            Preconditions.checkArgument(levelToTierToLevel(100) == 100);
         }
-    }
-
-    public static String tierToRomanNumeral(int tier) {
-        return RomanNumber.toRoman(tier);
     }
 
     public static int levelToTierToLevel(int level) {
@@ -123,6 +119,7 @@ public class LevelUtils {
             e.printStackTrace();
             return 0;
         }
+
         return tier;
 
     }

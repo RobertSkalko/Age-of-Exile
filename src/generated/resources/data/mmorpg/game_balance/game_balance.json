@@ -1,6 +1,6 @@
 {
   "id": "game_balance",
-  "MAX_LEVEL": 50,
+  "MAX_LEVEL": 100,
   "NORMAL_STAT_SCALING": {
     "base_scaling": 1.0,
     "per_level_scaling": 0.2,
@@ -23,7 +23,7 @@
   },
   "TALENT_POINTS_AT_MAX_LEVEL": 100.0,
   "STAT_POINTS_PER_LEVEL": 2.0,
-  "SPELL_POINTS_PER_LEVEL": 2.0,
+  "SPELL_POINTS_PER_LEVEL": 1.0,
   "STARTING_TALENT_POINTS": 1.0,
-  "levels_per_tier": 10
+  "levels_per_tier": 20
 }

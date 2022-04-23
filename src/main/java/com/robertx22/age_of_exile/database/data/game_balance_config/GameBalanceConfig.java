@@ -21,7 +21,7 @@ public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, 
             .get(ID);
     }
 
-    public int MAX_LEVEL = 50;
+    public int MAX_LEVEL = 100;
 
     public LevelScalingConfig NORMAL_STAT_SCALING = new LevelScalingConfig(1, 0.2F, false);
     public LevelScalingConfig SLOW_STAT_SCALING = new LevelScalingConfig(1, 0.01F, true);
@@ -30,10 +30,10 @@ public class GameBalanceConfig implements JsonExileRegistry<GameBalanceConfig>, 
 
     public double TALENT_POINTS_AT_MAX_LEVEL = 100;
     public double STAT_POINTS_PER_LEVEL = 2;
-    public double SPELL_POINTS_PER_LEVEL = 2;
+    public double SPELL_POINTS_PER_LEVEL = 1;
     public double STARTING_TALENT_POINTS = 1;
 
-    public int levels_per_tier = 10;
+    public int levels_per_tier = 20;
 
     public HashMap<MinMax, Integer> getTierMap() {
 
