@@ -101,8 +101,19 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         runeword.setRunewordFields();
         runeword.addToSerializables();
         runeword.unbreaking_chance = 50;
-        runeword.announce_in_chat = true;
         runeword.is_unique_item = true;
+
+        GearRarity runicSpell = new GearRarity();
+        runicSpell.affixes = 0;
+        runicSpell.weight = 0;
+        runicSpell.item_tier_power = 2;
+        runicSpell.item_value_multi = 2;
+        runicSpell.item_tier = 5;
+        runicSpell.dust_per_sal = new MinMax(5, 5);
+        runicSpell.setRunicSpellFields();
+        runicSpell.addToSerializables();
+        runicSpell.unbreaking_chance = 50;
+        runicSpell.is_unique_item = true;
 
     }
 }

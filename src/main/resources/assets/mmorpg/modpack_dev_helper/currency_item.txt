@@ -8,6 +8,5 @@ currency/reroll_affix_numbers
 currency/orb_of_transmutation
 currency/clear_corruption
 currency/reroll_primary_stats_numbers
-currency/orb_of_corruption
 currency/stone_of_hope
 currency/reroll_unique_numbers

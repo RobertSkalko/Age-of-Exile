@@ -3,6 +3,7 @@ package com.robertx22.age_of_exile.database.data.runewords;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.items.ItemDefault;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -10,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 public class RuneWordItem extends Item implements IAutoLocName {
 
@@ -47,12 +48,19 @@ public class RuneWordItem extends Item implements IAutoLocName {
     @Override
     public ITextComponent getName(ItemStack stack) {
 
-        RuneWord word = getRuneWord(stack);
-        if (word != null) {
-            return new TranslationTextComponent(this.getDescriptionId(stack)).append(" ")
-                .append(word.getUnique()
+        Words word = Words.Runeword;
+
+        RuneWord runeword = getRuneWord(stack);
+
+        if (runeword != null) {
+            if (runeword.isRunicSpell()) {
+                word = Words.RunicSpell;
+            }
+            return new StringTextComponent("").append(word.locName())
+                .append(" ")
+                .append(runeword.getUnique()
                     .locName())
-                .withStyle(word.getUnique()
+                .withStyle(runeword.getUnique()
                     .getUniqueRarity()
                     .textFormatting());
         }

@@ -120,6 +120,13 @@ public abstract class BaseRarity implements Rarity {
         onSetFields();
     }
 
+    public void setRunicSpellFields() {
+        this.guid = IRarity.RUNIC_SPELL_ID;
+        this.loc_name = "Runic Spell";
+        this.text_format = TextFormatting.DARK_PURPLE.name();
+        onSetFields();
+    }
+
     private void onSetFields() {
 
     }

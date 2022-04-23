@@ -23,5 +23,6 @@ public interface IRarity<R extends Rarity> {
 
     String UNIQUE_ID = "unique";
     String RUNEWORD_ID = "runeword";
+    String RUNIC_SPELL_ID = "runic_spell";
 
 }

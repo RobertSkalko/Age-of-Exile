@@ -29,11 +29,6 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 40,
-          "name": "mmorpg:currency/orb_of_corruption"
-        },
-        {
-          "type": "minecraft:item",
           "weight": 3000,
           "name": "mmorpg:currency/orb_of_transmutation"
         },

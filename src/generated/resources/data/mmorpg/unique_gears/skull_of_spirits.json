@@ -31,6 +31,7 @@
   "rarity": "unique",
   "set": "",
   "replaces_name": false,
+  "random_affixes": 0,
   "base_gear": "necklace",
   "filters": {
     "list": []

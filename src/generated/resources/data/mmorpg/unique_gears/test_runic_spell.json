@@ -1,5 +1,5 @@
 {
-  "id": "bone_shatterer",
+  "id": "test_runic_spell",
   "weight": 0,
   "unique_stats": [
     {
@@ -22,10 +22,10 @@
     }
   ],
   "base_stats": [],
-  "rarity": "runeword",
+  "rarity": "runic_spell",
   "set": "",
   "replaces_name": true,
-  "random_affixes": 0,
+  "random_affixes": 2,
   "base_gear": "bow",
   "filters": {
     "list": []

@@ -42,6 +42,11 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
             .get(uniq_id);
     }
 
+    // todo test
+    public boolean isRunicSpell() {
+        return getUnique().random_affixes > 0;
+    }
+
     @Override
     public ExileRegistryType getExileRegistryType() {
         return ExileRegistryTypes.RUNEWORDS;
@@ -102,14 +107,6 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
         UniqueGear uniq = ExileDB.UniqueGears()
             .get(uniq_id);
 
-        /*
-        tooltip.add(TextBuilder.of()
-            .append(uniq.ModlocName()
-                .format(uniq.getUniqueRarity()
-                    .textFormatting())));
-
-         */
-
         tooltip.addEmptyLine();
 
         for (StatModifier stat : uniq.uniqueStats) {
@@ -118,6 +115,11 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
                 tooltip.add(TextBuilder.of()
                     .append(txt));
             }
+        }
+
+        if (uniq.random_affixes > 0) {
+            tooltip.add(TextBuilder.of()
+                .append("+ " + uniq.random_affixes + " Random Affixes"));
         }
 
         TextBuilder txt = TextBuilder.of()

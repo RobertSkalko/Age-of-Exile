@@ -6,6 +6,7 @@ mana_dominion
 winter_chill
 bone_shatterer
 spring_blossoms
+test_runic_spell
 insight
 air_disaster
 rabbit_paw

@@ -30,8 +30,8 @@ public class DamageCalculation {
             for (ScalingCalc scal : scaling) {
                 txt.append(scal.GetTooltipString());
             }
+            txt.append("]");
         }
-        txt.append("]");
 
         return txt;
 

@@ -38,6 +38,7 @@
   "rarity": "runeword",
   "set": "",
   "replaces_name": true,
+  "random_affixes": 0,
   "base_gear": "sword",
   "filters": {
     "list": []

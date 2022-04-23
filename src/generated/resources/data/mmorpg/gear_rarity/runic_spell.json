@@ -31,7 +31,7 @@
   "is_unique_item": true,
   "rarity_type": "GEAR",
   "weight": 0,
-  "text_format": "YELLOW",
+  "text_format": "DARK_PURPLE",
   "higher_rar": "",
-  "guid": "runeword"
+  "guid": "runic_spell"
 }

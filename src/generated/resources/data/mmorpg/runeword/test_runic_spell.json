@@ -1,0 +1,10 @@
+{
+  "id": "test_runic_spell",
+  "uniq_id": "test_runic_spell",
+  "item_id": "mmorpg:runewords/test_runic_spell",
+  "min_lvl": 0,
+  "max_lvl": 100,
+  "slots": [
+    "bow"
+  ]
+}

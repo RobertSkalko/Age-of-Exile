@@ -43,6 +43,7 @@
   "rarity": "unique",
   "set": "",
   "replaces_name": true,
+  "random_affixes": 0,
   "base_gear": "ring",
   "filters": {
     "list": []

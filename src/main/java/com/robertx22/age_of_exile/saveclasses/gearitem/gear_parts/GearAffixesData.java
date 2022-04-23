@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartToolt
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
-import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -23,25 +22,6 @@ public class GearAffixesData implements IGearPartTooltip {
     public List<AffixData> pre = new ArrayList<>();
     @Store
     public List<AffixData> cor = new ArrayList<>();
-
-    public boolean canCorrupt() {
-        return cor.isEmpty();
-    }
-
-    public void addCorruptAffix(GearItemData gear) {
-        // todo currently just gives a normal affix
-
-        if (RandomUtils.roll(50)) {
-            AffixData suffix = new AffixData(Affix.Type.suffix);
-            suffix.RerollFully(gear);
-            cor.add(suffix);
-        } else {
-            AffixData prefix = new AffixData(Affix.Type.prefix);
-            prefix.RerollFully(gear);
-            cor.add(prefix);
-        }
-
-    }
 
     public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
         List<TooltipStatWithContext> list = new ArrayList<>();
@@ -61,6 +41,11 @@ public class GearAffixesData implements IGearPartTooltip {
     public int getMaxAffixesPerType(GearItemData gear) {
         int affixes = gear.getRarity()
             .maximumOfOneAffixType();
+
+        if (gear.uniqueStats != null) {
+            // todo test
+            affixes = gear.uniqueStats.getUnique(gear).random_affixes / 2;
+        }
 
         return affixes;
     }
@@ -106,9 +91,7 @@ public class GearAffixesData implements IGearPartTooltip {
 
         GearRarity rar = gear.getRarity();
 
-        for (int i = 0; i < rar
-            .maximumOfOneAffixType(); i++) {
-
+        for (int i = 0; i < getMaxAffixesPerType(gear); i++) {
             AffixData suffix = new AffixData(Affix.Type.suffix);
             suffix.RerollFully(gear);
             suf.add(suffix);
@@ -116,7 +99,6 @@ public class GearAffixesData implements IGearPartTooltip {
             AffixData prefix = new AffixData(Affix.Type.prefix);
             prefix.RerollFully(gear);
             pre.add(prefix);
-
         }
 
         int minaffixes = rar

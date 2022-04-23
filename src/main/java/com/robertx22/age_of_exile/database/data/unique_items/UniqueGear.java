@@ -31,6 +31,7 @@ public class UniqueGear implements IAutoLocName, JsonExileRegistry<UniqueGear>, 
     public String uniqueRarity = IRarity.UNIQUE_ID;
     public String set = "";
     public boolean replaces_name = false;
+    public int random_affixes = 0;
 
     public String base_gear = "";
 
@@ -58,6 +59,7 @@ public class UniqueGear implements IAutoLocName, JsonExileRegistry<UniqueGear>, 
         json.addProperty("rarity", this.uniqueRarity);
         json.addProperty("set", this.set);
         json.addProperty("replaces_name", this.replaces_name);
+        json.addProperty("random_affixes", this.random_affixes);
 
         json.addProperty("base_gear", base_gear);
 
@@ -78,6 +80,8 @@ public class UniqueGear implements IAutoLocName, JsonExileRegistry<UniqueGear>, 
 
         uniq.base_gear = json.get("base_gear")
             .getAsString();
+        uniq.random_affixes = json.get("random_affixes")
+            .getAsInt();
         uniq.uniqueRarity = json.get("rarity")
             .getAsString();
         if (json.has("set")) {

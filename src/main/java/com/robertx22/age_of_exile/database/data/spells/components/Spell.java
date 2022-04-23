@@ -223,7 +223,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
         }
 
         for (ValueCalculation calc : this.attached.getAllCalculations()) {
-            // todo
             list.addAll(calc.getTooltip(Load.Unit(ctx.caster)));
         }
 

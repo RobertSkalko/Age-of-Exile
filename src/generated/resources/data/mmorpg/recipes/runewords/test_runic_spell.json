@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [],
+  "result": {
+    "item": "mmorpg:runeword",
+    "nbt": "{\"runeword\":\"test_runic_spell\"}"
+  }
+}

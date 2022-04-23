@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.unique_gears;
 
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.fabled.FabledUniques;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.runewords.*;
+import com.robertx22.age_of_exile.aoe_data.database.unique_gears.runic_spells.ArmorRunicSpells;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.UniqueArmors;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.UniqueJewelry;
 import com.robertx22.age_of_exile.aoe_data.database.unique_gears.uniques.UniqueWeapons;
@@ -24,6 +25,8 @@ public class UniqueGearReg implements ExileRegistryInit {
         new RingRuneWords().registerAll();
         new StaffRuneWords().registerAll();
         new BowRuneWords().registerAll();
+
+        new ArmorRunicSpells().registerAll();
 
     }
 }

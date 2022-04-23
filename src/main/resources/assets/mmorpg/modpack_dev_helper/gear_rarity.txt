@@ -4,6 +4,7 @@ uncommon
 common
 legendary
 rare
+runic_spell
 unique
 epic
 runeword
