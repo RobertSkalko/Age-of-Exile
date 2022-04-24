@@ -37,6 +37,10 @@
       "x": 0,
       "y": 0
     },
+    "poison_trap": {
+      "x": 8,
+      "y": 4
+    },
     "dash": {
       "x": 5,
       "y": 1
@@ -44,10 +48,6 @@
     "hunter_potion": {
       "x": 10,
       "y": 1
-    },
-    "poison_trap": {
-      "x": 8,
-      "y": 4
     }
   },
   "lvl_reqs": [

@@ -39,7 +39,39 @@ public class ElementalistSpells implements ExileRegistryInit {
                 SpellConfiguration.Builder.instant(20, 60), "Nature's Balm",
                 BeneficialEffects.REGENERATE, 15)
             .build();
+
+        SpellBuilder.buffAlliesSpell(SpellKeys.FROST_STEPS,
+                SpellConfiguration.Builder.instant(20, 60), "Frost Steps",
+                BeneficialEffects.FROST_STEPS, 15)
+            .build();
         //buffs
+
+        SpellBuilder.of(SpellKeys.ICE_SNAKE, SpellConfiguration.Builder.instant(0, 15), "Ice Snake",
+                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
+            .manualDesc(
+                "Summon an ice snake in your direction, slowing enemies.")
+            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .onCast(PartBuilder.playSound(SoundRefs.FISHING_THROW_LOW_PITCH))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 8D, false)
+            ))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ITEM_SNOWBALL, 5D, 0.5D))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 5D, 0.3D))
+
+            .onTick(PartBuilder.playSound(SoundRefs.ICE_BREAK))
+
+            .onTick(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.ICE, 20D * 4)
+                .put(MapField.ENTITY_NAME, "block")
+                .put(MapField.BLOCK_FALL_SPEED, 0D)
+                .put(MapField.IS_BLOCK_FALLING, true)))
+
+            .onTick(PartBuilder.damageInAoe(SpellCalcs.MAGIC_PROJECTILE, 2D)
+                .addPerEntityHit(
+                    PartBuilder.playSound(SoundEvents.GENERIC_HURT)
+                )
+                .onTick(1D)) // todo
+            .onExpire(PartBuilder.playSound(SoundEvents.GENERIC_HURT, 1D, 2D))
+
+            .build();
 
         SpellBuilder.of(SpellKeys.MAGIC_PROJECTILE, SpellConfiguration.Builder.instant(0, 15), "Magic Projectile",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))

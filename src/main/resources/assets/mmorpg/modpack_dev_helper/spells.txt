@@ -6,9 +6,11 @@ teleport
 venom_strike
 chill_eruption
 chilling_field
+frost_steps
 ice_nova
 curse_of_despair
 entangling_seed
+ice_snake
 nature_balm
 tidal_wave
 arrow_storm

@@ -12,11 +12,11 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroA
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
+import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
@@ -25,8 +25,10 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
+import net.minecraft.block.Blocks;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.text.TextFormatting;
 
 public class BeneficialEffects implements ExileRegistryInit {
 
@@ -48,7 +50,7 @@ public class BeneficialEffects implements ExileRegistryInit {
     public static EffectCtx UNDYING_WILL = new EffectCtx("undying_will", "Undying Will", 24, Elements.Physical, EffectType.beneficial);
     public static EffectCtx CLEANSE = new EffectCtx("cleanse", "Cleanse", 30, Elements.Elemental, EffectType.beneficial);
     public static EffectCtx MURDER_INSTINCT = new EffectCtx("murder_instinct", "Murder Instinct", 31, Elements.Physical, EffectType.beneficial);
-    public static EffectCtx MAGE_CIRCLE = new EffectCtx("mage_circle", "Mage Circle", 33, Elements.Elemental, EffectType.beneficial);
+    public static EffectCtx FROST_STEPS = new EffectCtx("frost_steps", "Frost Steps", 33, Elements.Water, EffectType.beneficial);
 
     @Override
     public void registerAll() {
@@ -83,9 +85,23 @@ public class BeneficialEffects implements ExileRegistryInit {
             .addTags(EffectTags.positive)
             .build();
 
-        ExileEffectBuilder.of(MAGE_CIRCLE)
-            .stat(10, 25, Stats.CRIT_DAMAGE.get(), ModType.FLAT)
-            .stat(5, 20, SpellDamage.getInstance(), ModType.FLAT)
+        ExileEffectBuilder.of(FROST_STEPS)
+
+            .spell(SpellBuilder.forEffect()
+
+                .onTick(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 20D * 8)
+                        .put(MapField.ENTITY_NAME, "block")
+                        .put(MapField.BLOCK_FALL_SPEED, 0D)
+                        .put(MapField.FIND_NEAREST_SURFACE, true)
+                        .put(MapField.IS_BLOCK_FALLING, false))
+                    .onTick(10D))
+                .onTick("block", PartBuilder.justAction(SpellAction.POTION_AREA_PARTICLES.create(TextFormatting.BLUE, 10))
+                    .onTick(10D))
+                .onTick("block", PartBuilder.damageInAoe(SpellCalcs.FROST_NOVA, 2D)
+                    .onTick(10D))
+
+                .buildForEffect())
+
             .maxStacks(1)
             .addTags(EffectTags.offensive)
             .build();

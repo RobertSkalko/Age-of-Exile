@@ -10,8 +10,8 @@
             "type": "sound",
             "map": {
               "volume": 1.0,
-              "sound": "minecraft:entity.snowball.throw",
-              "pitch": 1.0
+              "sound": "minecraft:entity.fishing_bobber.throw",
+              "pitch": 0.0
             }
           }
         ],
@@ -29,12 +29,13 @@
           {
             "type": "projectile",
             "map": {
-              "proj_speed": 0.5,
-              "item": "minecraft:iron_ingot",
+              "proj_speed": 0.7,
+              "item": "minecraft:air",
               "entity_name": "default_entity_name",
-              "gravity": true,
+              "gravity": false,
               "proj_count": 1.0,
-              "life_ticks": 100.0,
+              "expire_on_en_hit": false,
+              "life_ticks": 60.0,
               "proj_en": "mmorpg:spell_projectile"
             }
           }
@@ -49,27 +50,28 @@
       }
     ],
     "entity_components": {
-      "expire": [
+      "default_entity_name": [
         {
-          "targets": [
-            {
-              "type": "aoe",
-              "map": {
-                "selection_type": "RADIUS",
-                "en_predicate": "enemies",
-                "radius": 3.0
-              }
-            }
-          ],
+          "targets": [],
           "acts": [
             {
-              "type": "damage",
+              "type": "particles_in_radius",
               "map": {
-                "value_calculation": "ranger_trap"
+                "particle_type": "minecraft:item_snowball",
+                "motion": "None",
+                "radius": 0.5,
+                "particle_count": 5.0
               }
             }
           ],
-          "ifs": [],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 1.0
+              }
+            }
+          ],
           "en_preds": []
         },
         {
@@ -78,14 +80,21 @@
             {
               "type": "particles_in_radius",
               "map": {
-                "particle_type": "minecraft:item_slime",
+                "particle_type": "minecraft:enchanted_hit",
                 "motion": "None",
-                "radius": 3.0,
-                "particle_count": 30.0
+                "radius": 0.3,
+                "particle_count": 5.0
               }
             }
           ],
-          "ifs": [],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 1.0
+              }
+            }
+          ],
           "en_preds": []
         },
         {
@@ -94,27 +103,27 @@
             {
               "type": "sound",
               "map": {
-                "volume": 1.0,
-                "sound": "minecraft:entity.generic.explode",
+                "volume": 0.30000001192092896,
+                "sound": "minecraft:block.glass.break",
                 "pitch": 1.0
               }
             }
           ],
           "ifs": [],
           "en_preds": []
-        }
-      ],
-      "trap": [
+        },
         {
           "targets": [],
           "acts": [
             {
-              "type": "particles_in_radius",
+              "type": "summon_block",
               "map": {
-                "particle_type": "minecraft:item_slime",
-                "motion": "None",
-                "radius": 1.0,
-                "particle_count": 5.0
+                "entity_name": "block",
+                "is_falling_block": true,
+                "block_fall_speed": -0.02,
+                "life_ticks": 20.0,
+                "block": "minecraft:ice",
+                "find_surface": false
               }
             }
           ],
@@ -127,20 +136,66 @@
             }
           ],
           "en_preds": []
-        }
-      ],
-      "default_entity_name": [
+        },
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 1.0
+              }
+            }
+          ],
+          "acts": [
+            {
+              "type": "damage",
+              "map": {
+                "value_calculation": "magic_projectile"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "did_not_hit_entity_already",
+              "map": {}
+            },
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 1.0
+              }
+            }
+          ],
+          "en_preds": [],
+          "per_entity_hit": [
+            {
+              "targets": [],
+              "acts": [
+                {
+                  "type": "sound",
+                  "map": {
+                    "volume": 1.0,
+                    "sound": "minecraft:entity.generic.hurt",
+                    "pitch": 1.0
+                  }
+                }
+              ],
+              "ifs": [],
+              "en_preds": []
+            }
+          ]
+        },
         {
           "targets": [],
           "acts": [
             {
-              "type": "summon_block",
+              "type": "sound",
               "map": {
-                "entity_name": "trap",
-                "is_falling_block": false,
-                "life_ticks": 60.0,
-                "block": "mmorpg:trap",
-                "find_surface": true
+                "volume": 1.0,
+                "sound": "minecraft:entity.generic.hurt",
+                "pitch": 2.0
               }
             }
           ],
@@ -157,14 +212,14 @@
   },
   "config": {
     "swing_arm": true,
-    "castingWeapon": "ANY_WEAPON",
-    "mana_cost": 7,
+    "castingWeapon": "MAGE_WEAPON",
+    "mana_cost": 20,
     "cooldown_ticks": 100,
-    "style": "ranged",
+    "style": "magic",
     "tags": [
+      "projectile",
       "damage",
-      "area",
-      "trap"
+      "staff_spell"
     ],
     "cast_type": "NORMAL",
     "imbues": 1,

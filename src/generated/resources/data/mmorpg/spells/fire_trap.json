@@ -10,7 +10,7 @@
             "type": "sound",
             "map": {
               "volume": 1.0,
-              "sound": "minecraft:entity.snowball.throw",
+              "sound": "minecraft:entity.fishing_bobber.throw",
               "pitch": 1.0
             }
           }
@@ -30,7 +30,7 @@
             "type": "projectile",
             "map": {
               "proj_speed": 0.5,
-              "item": "minecraft:iron_ingot",
+              "item": "minecraft:tripwire_hook",
               "entity_name": "default_entity_name",
               "gravity": true,
               "proj_count": 1.0,
@@ -49,7 +49,30 @@
       }
     ],
     "entity_components": {
-      "expire": [
+      "trap": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:flame",
+                "motion": "None",
+                "radius": 0.5,
+                "particle_count": 5.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 2.0
+              }
+            }
+          ],
+          "en_preds": []
+        },
         {
           "targets": [
             {
@@ -69,7 +92,12 @@
               }
             }
           ],
-          "ifs": [],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
           "en_preds": []
         },
         {
@@ -81,11 +109,58 @@
                 "particle_type": "minecraft:flame",
                 "motion": "None",
                 "radius": 3.0,
-                "particle_count": 30.0
+                "particle_count": 300.0
               }
             }
           ],
-          "ifs": [],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:explosion",
+                "motion": "None",
+                "radius": 0.5,
+                "particle_count": 3.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:smoke",
+                "motion": "None",
+                "radius": 3.0,
+                "particle_count": 100.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
           "en_preds": []
         },
         {
@@ -100,30 +175,10 @@
               }
             }
           ],
-          "ifs": [],
-          "en_preds": []
-        }
-      ],
-      "trap": [
-        {
-          "targets": [],
-          "acts": [
-            {
-              "type": "particles_in_radius",
-              "map": {
-                "particle_type": "minecraft:flame",
-                "motion": "None",
-                "radius": 1.0,
-                "particle_count": 5.0
-              }
-            }
-          ],
           "ifs": [
             {
-              "type": "x_ticks_condition",
-              "map": {
-                "tick_rate": 2.0
-              }
+              "type": "on_entity_expire",
+              "map": {}
             }
           ],
           "en_preds": []
@@ -138,7 +193,7 @@
               "map": {
                 "entity_name": "trap",
                 "is_falling_block": false,
-                "life_ticks": 60.0,
+                "life_ticks": 80.0,
                 "block": "mmorpg:trap",
                 "find_surface": true
               }

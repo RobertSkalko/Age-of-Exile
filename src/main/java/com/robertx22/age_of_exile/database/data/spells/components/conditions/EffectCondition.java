@@ -28,6 +28,7 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
     public static CasterHasStatCondition CASTER_HAS_STAT;
     public static IsAllyCondition IS_TARGET_ALLY;
     public static TargetHasEffectCondition TARGET_HAS_POTION;
+    public static DidNotHitAlready DID_NOT_HIT_ENTITY_ALREADY;
 
     public abstract boolean canActivate(SpellCtx ctx, MapHolder data);
 
@@ -40,6 +41,7 @@ public abstract class EffectCondition extends BaseFieldNeeder implements IGUID {
 
     public static void init() {
         IS_TARGET_CASTER = of(new IsCasterCondition());
+        DID_NOT_HIT_ENTITY_ALREADY = of(new DidNotHitAlready());
         IS_NOT_ON_COOLDOWN = of(new IsNotOnCooldownCondition());
         IS_ENTITY_IN_RADIUS = of(new EntityInRadiusCondition());
         TARGET_HAS_POTION = of(new TargetHasEffectCondition());

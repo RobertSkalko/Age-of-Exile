@@ -5,9 +5,16 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
+import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
+import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
+import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.uncommon.SoundRefs;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
@@ -18,18 +25,38 @@ public class TestSpell {
     public static Spell get() {
 
         return
+
             SpellBuilder.of(USE_THIS_EXACT_ID,
                     // LEAVE THIS SPACE
-
-                    SpellConfiguration.Builder.instant(20, 20 * 60), "Healing Aria",
-                    Arrays.asList(SpellTag.heal))
+                    SpellConfiguration.Builder.instant(20, 100), "Ice Snake",
+                    Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
                 .manualDesc(
-                    "Heal allies around you for")
-                .weaponReq(CastingWeapon.ANY_WEAPON)
-                .onCast(PartBuilder.playSound(SoundRefs.DING))
-                .onCast(PartBuilder.groundParticles(ParticleTypes.NOTE, 50D, 5D, 0.2D))
-                .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
-                .onCast(PartBuilder.healInAoe(SpellCalcs.HEALING_ARIA, 5D))
+                    "Summon an ice snake in your direction, slowing enemies.")
+                .weaponReq(CastingWeapon.MAGE_WEAPON)
+                .onCast(PartBuilder.playSound(SoundRefs.FISHING_THROW_LOW_PITCH))
+                .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 0.7D, SlashEntities.SIMPLE_PROJECTILE.get(), 60D, false)
+                    .put(MapField.EXPIRE_ON_ENTITY_HIT, false)
+                    .put(MapField.GRAVITY, false)
+                ))
+                .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ITEM_SNOWBALL, 5D, 0.5D))
+                .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ENCHANTED_HIT, 5D, 0.3D))
+
+                .onTick(PartBuilder.playSound(SoundRefs.ICE_BREAK))
+
+                .onTick(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.ICE, 20D * 1)
+                        .put(MapField.ENTITY_NAME, "block")
+                        .put(MapField.BLOCK_FALL_SPEED, -0.02D)
+                        .put(MapField.FIND_NEAREST_SURFACE, false)
+                        .put(MapField.IS_BLOCK_FALLING, true))
+                    .onTick(2D))
+
+                .onTick(PartBuilder.damageInAoe(SpellCalcs.MAGIC_PROJECTILE, 3D)
+                    .addCondition(EffectCondition.DID_NOT_HIT_ENTITY_ALREADY.create())
+                    .addPerEntityHit(
+                        PartBuilder.playSound(SoundEvents.GENERIC_HURT)
+                    )
+                    .onTick(1D)) // todo
+                .onExpire(PartBuilder.playSound(SoundEvents.GENERIC_HURT, 1D, 2D))
 
                 // LEAVE THIS SPACE
                 // leave this part

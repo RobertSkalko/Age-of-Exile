@@ -13,6 +13,8 @@ public interface SpellKeys {
     SpellKey POISON_CLOUD = new SpellKey("poison_cloud");
     SpellKey TELEPORT = new SpellKey("teleport");
     SpellKey REFRESH = new SpellKey("refresh");
+    SpellKey FROST_STEPS = new SpellKey("frost_steps");
+    SpellKey ICE_SNAKE = new SpellKey("ice_snake");
 
     // WARRIOR
     SpellKey METEOR_STRIKE = new SpellKey("meteor_strike");

@@ -222,7 +222,7 @@ public class EntitySpellCap {
             mobsHit.get(key)
                 .add(id);
 
-            if (mobsHit.size() > 1000) {
+            if (mobsHit.size() > 50) {
                 mobsHit.clear();
             }
 

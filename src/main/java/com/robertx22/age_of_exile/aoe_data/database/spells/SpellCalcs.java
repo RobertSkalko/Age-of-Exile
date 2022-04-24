@@ -12,6 +12,18 @@ public class SpellCalcs {
         .baseValue(80)
         .build();
 
+    public static ValueCalculation ICE_SNAKE = ValueCalcBuilder.of("ice_snake", "Ice Snake")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(8)
+            .scaling(1.5F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Water)
+            .base(8)
+            .scaling(1.5F)
+            .build())
+        .addAllElementsScaling(1)
+        .build();
+
     public static ValueCalculation EXPLOSIVE_ARROW = ValueCalcBuilder.of("explosive_arrow", "Explosive Arrow")
         .damage(DamageCalculation.Builder.of(Elements.Fire)
             .base(5)
