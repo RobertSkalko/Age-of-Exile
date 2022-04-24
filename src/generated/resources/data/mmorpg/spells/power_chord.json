@@ -132,15 +132,15 @@
   "config": {
     "swing_arm": true,
     "castingWeapon": "MAGE_WEAPON",
-    "mana_cost": 7,
-    "cooldown_ticks": 15,
+    "mana_cost": 30,
+    "cooldown_ticks": 500,
     "style": "magic",
     "tags": [
       "projectile",
       "damage"
     ],
     "cast_type": "IMBUE",
-    "imbues": 5,
+    "imbues": 10,
     "imbue_type": "STAFF_IMBUE"
   },
   "disabled_dims": [],
