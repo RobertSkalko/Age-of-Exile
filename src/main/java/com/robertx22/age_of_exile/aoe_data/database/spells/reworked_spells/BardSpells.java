@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.SpellConfigura
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
+import com.robertx22.age_of_exile.uncommon.SoundRefs;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
@@ -38,6 +39,17 @@ public class BardSpells implements ExileRegistryInit {
             .onHit(PartBuilder.damage(SpellCalcs.POWER_CHORD)
                 .addActions(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.CHARM, 6)))
             .onHit(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 10D, 1D))
+            .build();
+
+        SpellBuilder.of(SpellKeys.HEALING_ARIA, SpellConfiguration.Builder.instant(25, 20 * 30), "Healing Aria",
+                Arrays.asList(SpellTag.heal))
+            .manualDesc(
+                "Heal allies around you for")
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+            .onCast(PartBuilder.playSound(SoundRefs.DING))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.NOTE, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.healInAoe(SpellCalcs.HEALING_ARIA, 5D))
             .build();
 
     }

@@ -42,15 +42,13 @@ public class ValueCalcBuilder {
     }
 
     public ValueCalcBuilder addAllElementsScaling(float scaling) {
-        if (!this.calc.damage_calcs.damages.isEmpty()) {
-            for (Elements ele : Elements.getAllSingleIncludingPhysical()) {
-                if (calc.damage_calcs.damages.stream()
-                    .noneMatch(x -> x.element == ele)) {
-                    calc.damage_calcs.damages.add(DamageCalculation.Builder.of(ele)
-                        .scaling(scaling)
-                        .build());
-                    // add default sclaing of 1 to every spell
-                }
+        for (Elements ele : Elements.getAllSingleIncludingPhysical()) {
+            if (calc.damage_calcs.damages.stream()
+                .noneMatch(x -> x.element == ele)) {
+                calc.damage_calcs.damages.add(DamageCalculation.Builder.of(ele)
+                    .scaling(scaling)
+                    .build());
+                // add default sclaing of 1 to every spell
             }
         }
         return this;

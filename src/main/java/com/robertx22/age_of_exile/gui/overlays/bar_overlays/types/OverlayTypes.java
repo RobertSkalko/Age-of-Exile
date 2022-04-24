@@ -25,7 +25,7 @@ public class OverlayTypes {
         middle.add(new GuiPartConfig(BarGuiType.HEALTH, new PointData(-198, -22)));
         middle.add(new GuiPartConfig(BarGuiType.EXP, new PointData(-198, -11)));
 
-        middle.add(new GuiPartConfig(BarGuiType.MANA, new PointData(90, -22)));
+        middle.add(new GuiPartConfig(BarGuiType.MANA, new PointData(90, -11)));
         //  middle.add(new GuiPartConfig(BarGuiType.ENERGY, new PointData(90, -11)));
         map.put(GuiPosition.BOTTOM_CENTER, middle);
 

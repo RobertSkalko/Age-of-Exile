@@ -22,9 +22,7 @@ import java.util.Arrays;
 
 public class WaterSpells implements ExileRegistryInit {
 
-    public static String NOURISHMENT = "nourishment";
     public static String HEART_OF_ICE = "heart_of_ice";
-    public static String ICY_WEAPON = "ice_weapon";
     public static String CHILLING_FIELD = "chilling_field";
     public static String CHILL_ERUPTION = "chill_eruption";
 

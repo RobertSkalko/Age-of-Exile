@@ -1,6 +1,6 @@
 {
   "weight": 1000,
-  "identifier": "wish",
+  "identifier": "healing_aria",
   "attached": {
     "on_cast": [
       {
@@ -10,7 +10,7 @@
             "type": "sound",
             "map": {
               "volume": 1.0,
-              "sound": "mmorpg:buff",
+              "sound": "minecraft:entity.experience_orb.pickup",
               "pitch": 1.0
             }
           }
@@ -29,7 +29,7 @@
           {
             "type": "particles_in_radius",
             "map": {
-              "particle_type": "minecraft:composter",
+              "particle_type": "minecraft:note",
               "y_rand": 0.2,
               "motion": "None",
               "shape": "HORIZONTAL_CIRCLE",
@@ -86,7 +86,7 @@
           {
             "type": "restore_health",
             "map": {
-              "value_calculation": "wish"
+              "value_calculation": "healing_aria"
             }
           }
         ],
@@ -104,8 +104,8 @@
   "config": {
     "swing_arm": true,
     "castingWeapon": "ANY_WEAPON",
-    "mana_cost": 20,
-    "cooldown_ticks": 1200,
+    "mana_cost": 25,
+    "cooldown_ticks": 600,
     "style": "magic",
     "tags": [
       "heal"

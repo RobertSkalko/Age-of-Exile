@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.spell_schools;
 
 import com.google.common.base.Preconditions;
+import com.robertx22.age_of_exile.database.all_keys.base.SpellKey;
 import com.robertx22.age_of_exile.database.data.spell_school.SpellSchool;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 
@@ -26,6 +27,10 @@ public class SchoolBuilder {
 
         school.spells.put(id, point);
         return this;
+    }
+
+    public SchoolBuilder addSpell(SpellKey id, PointData point) {
+        return addSpell(id.id, point);
     }
 
     public SpellSchool build() {

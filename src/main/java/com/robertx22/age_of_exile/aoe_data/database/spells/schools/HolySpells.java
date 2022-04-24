@@ -28,7 +28,6 @@ import java.util.Arrays;
 public class HolySpells implements ExileRegistryInit {
 
     public static String HEALING_AURA_ID = "healing_aura";
-    public static String WISH = "wish";
     public static String UNDYING_WILL = "undying_will";
     public static String INSPIRATION = "awaken_mana";
     public static String SHOOTING_STAR = "shooting_star";
@@ -108,17 +107,6 @@ public class HolySpells implements ExileRegistryInit {
             .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
             .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
             .onCast(PartBuilder.healInAoe(SpellCalcs.HEALING_AURA, 2D))
-            .build();
-
-        SpellBuilder.of(WISH, SpellConfiguration.Builder.instant(20, 20 * 60), "Wish",
-                Arrays.asList(SpellTag.heal))
-            .manualDesc(
-                "Heal allies around you for")
-            .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SlashSounds.BUFF.get(), 1D, 1D))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 5D, 0.2D))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
-            .onCast(PartBuilder.healInAoe(SpellCalcs.WISH, 5D))
             .build();
 
     }

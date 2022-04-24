@@ -12,8 +12,7 @@ import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 import java.util.Arrays;
 
-public class HelmetRunewords implements ExileRegistryInit {
-
+public class ArmorRunewords implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
@@ -30,7 +29,5 @@ public class HelmetRunewords implements ExileRegistryInit {
             .makeRuneWordOnly()
             .devComment("Mana focused caster helmet")
             .build();
-
     }
 }
-

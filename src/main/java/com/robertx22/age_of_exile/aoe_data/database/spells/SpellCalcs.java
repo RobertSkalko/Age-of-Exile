@@ -8,6 +8,20 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class SpellCalcs {
 
+    public static ValueCalculation HEALING_ARIA = ValueCalcBuilder.of("healing_aria", "Healing Aria")
+        .baseValue(80)
+        .build();
+
+    public static ValueCalculation EXPLOSIVE_ARROW = ValueCalcBuilder.of("explosive_arrow", "Explosive Arrow")
+        .damage(DamageCalculation.Builder.of(Elements.Fire)
+            .base(5)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(5)
+            .build())
+        .addAllElementsScaling(2)
+        .build();
+
     public static ValueCalculation POISON_CLOUD = ValueCalcBuilder.of("poison_cloud", "Poison Cloud")
         .damage(DamageCalculation.Builder.of(Elements.Earth)
             .base(2)
@@ -81,10 +95,11 @@ public class SpellCalcs {
         .build();
 
     public static ValueCalculation MAGIC_PROJECTILE = ValueCalcBuilder.of("magic_projectile", "Magic Projectile")
-        .damage(DamageCalculation.Builder.of(Elements.Physical)
-            .scaling(1)
-            .build())
         .addAllElementsScaling(0.8F)
+        .build();
+
+    public static ValueCalculation POWER_CHORD = ValueCalcBuilder.of("power_chord")
+        .addAllElementsScaling(0.75F)
         .build();
 
     public static ValueCalculation POISON = ValueCalcBuilder.of("poison", "Poison Tick")
@@ -126,9 +141,7 @@ public class SpellCalcs {
     public static ValueCalculation ARROW_STORM = ValueCalcBuilder.of("arrow_storm")
         .attackScaling(0.6F)
         .build();
-    public static ValueCalculation EXPLOSIVE_ARROW = ValueCalcBuilder.of("explosive_arrow")
-        .attackScaling(1.5F)
-        .build();
+
     public static ValueCalculation RANGER_TRAP = ValueCalcBuilder.of("ranger_trap")
         .attackScaling(1F)
         .build();
@@ -138,15 +151,11 @@ public class SpellCalcs {
     public static ValueCalculation HUNTER_POTION_HEAL = ValueCalcBuilder.of("hunter_pot_heal")
         .baseValue(100)
         .build();
-    public static ValueCalculation WISH = ValueCalcBuilder.of("wish")
-        .baseValue(80)
-        .build();
+
     public static ValueCalculation NATURE_BALM = ValueCalcBuilder.of("nature_balm")
         .baseValue(5)
         .build();
 
-    public static ValueCalculation POWER_CHORD = ValueCalcBuilder.of("power_chord")
-        .build();
     public static ValueCalculation SHOOTING_STAR = ValueCalcBuilder.of("shooting_star")
         .build();
 

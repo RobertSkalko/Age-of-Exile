@@ -5,13 +5,17 @@
       "x": 0,
       "y": 3
     },
+    "explosive_arrow": {
+      "x": 0,
+      "y": 2
+    },
+    "smoke_bomb": {
+      "x": 7,
+      "y": 2
+    },
     "night_vision": {
       "x": 10,
       "y": 4
-    },
-    "explosive_arrow": {
-      "x": 2,
-      "y": 5
     },
     "poison_arrow": {
       "x": 2,
@@ -30,27 +34,15 @@
       "y": 3
     },
     "make_arrows": {
-      "x": 10,
-      "y": 0
-    },
-    "hunter_potion": {
-      "x": 10,
-      "y": 1
-    },
-    "smoke_bomb": {
-      "x": 7,
-      "y": 2
-    },
-    "the_hunt": {
-      "x": 10,
-      "y": 2
-    },
-    "arrow_storm": {
       "x": 0,
       "y": 0
     },
     "dash": {
       "x": 5,
+      "y": 1
+    },
+    "hunter_potion": {
+      "x": 10,
       "y": 1
     },
     "poison_trap": {

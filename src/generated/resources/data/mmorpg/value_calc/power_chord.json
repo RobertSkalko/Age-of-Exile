@@ -1,7 +1,48 @@
 {
   "id": "power_chord",
   "damage_calcs": {
-    "damages": []
+    "damages": [
+      {
+        "element": "Physical",
+        "scaling": [
+          {
+            "stat": "physical_weapon_damage",
+            "multi": 0.75
+          }
+        ],
+        "base": 0.0
+      },
+      {
+        "element": "Fire",
+        "scaling": [
+          {
+            "stat": "fire_weapon_damage",
+            "multi": 0.75
+          }
+        ],
+        "base": 0.0
+      },
+      {
+        "element": "Water",
+        "scaling": [
+          {
+            "stat": "water_weapon_damage",
+            "multi": 0.75
+          }
+        ],
+        "base": 0.0
+      },
+      {
+        "element": "Earth",
+        "scaling": [
+          {
+            "stat": "earth_weapon_damage",
+            "multi": 0.75
+          }
+        ],
+        "base": 0.0
+      }
+    ]
   },
   "stat_scalings": [],
   "attack_scaling": 0.0,

@@ -1,13 +1,9 @@
 {
   "id": "bard",
   "spells": {
-    "wish": {
-      "x": 3,
-      "y": 6
-    },
     "power_chord": {
       "x": 0,
-      "y": 1
+      "y": 2
     },
     "undying_will": {
       "x": 3,
@@ -23,7 +19,7 @@
     },
     "healing_aura": {
       "x": 0,
-      "y": 0
+      "y": 5
     },
     "song_of_valor": {
       "x": 2,

@@ -10,7 +10,7 @@
             "type": "sound",
             "map": {
               "volume": 1.0,
-              "sound": "minecraft:entity.snowball.throw",
+              "sound": "minecraft:entity.experience_orb.pickup",
               "pitch": 1.0
             }
           }
@@ -27,15 +27,66 @@
         "targets": [],
         "acts": [
           {
-            "type": "projectile",
+            "type": "particles_in_radius",
             "map": {
-              "proj_speed": 1.0,
-              "item": "minecraft:air",
-              "entity_name": "default_entity_name",
-              "gravity": false,
-              "proj_count": 1.0,
-              "life_ticks": 20.0,
-              "proj_en": "mmorpg:spell_projectile"
+              "particle_type": "minecraft:note",
+              "y_rand": 0.2,
+              "motion": "None",
+              "shape": "HORIZONTAL_CIRCLE",
+              "radius": 5.0,
+              "particle_count": 50.0,
+              "height": 0.5
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:heart",
+              "y_rand": 0.2,
+              "motion": "None",
+              "shape": "HORIZONTAL_CIRCLE",
+              "radius": 5.0,
+              "particle_count": 50.0,
+              "height": 0.5
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ],
+        "en_preds": []
+      },
+      {
+        "targets": [
+          {
+            "type": "aoe",
+            "map": {
+              "selection_type": "RADIUS",
+              "en_predicate": "allies",
+              "radius": 5.0
+            }
+          }
+        ],
+        "acts": [
+          {
+            "type": "restore_health",
+            "map": {
+              "value_calculation": "healing_aria"
             }
           }
         ],
@@ -48,100 +99,20 @@
         "en_preds": []
       }
     ],
-    "entity_components": {
-      "default_entity_name": [
-        {
-          "targets": [],
-          "acts": [
-            {
-              "type": "particles_in_radius",
-              "map": {
-                "particle_type": "minecraft:note",
-                "motion": "None",
-                "radius": 0.15,
-                "particle_count": 2.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "x_ticks_condition",
-              "map": {
-                "tick_rate": 1.0
-              }
-            }
-          ],
-          "en_preds": []
-        },
-        {
-          "targets": [
-            {
-              "type": "target",
-              "map": {}
-            }
-          ],
-          "acts": [
-            {
-              "type": "damage",
-              "map": {
-                "value_calculation": "power_chord"
-              }
-            },
-            {
-              "type": "exile_effect",
-              "map": {
-                "exile_potion_id": "negative/16",
-                "potion_action": "GIVE_STACKS",
-                "count": 1.0,
-                "potion_dur": 120.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_hit",
-              "map": {}
-            }
-          ],
-          "en_preds": []
-        },
-        {
-          "targets": [],
-          "acts": [
-            {
-              "type": "particles_in_radius",
-              "map": {
-                "particle_type": "minecraft:enchanted_hit",
-                "motion": "None",
-                "radius": 1.0,
-                "particle_count": 10.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_hit",
-              "map": {}
-            }
-          ],
-          "en_preds": []
-        }
-      ]
-    }
+    "entity_components": {}
   },
   "config": {
     "swing_arm": true,
-    "castingWeapon": "MAGE_WEAPON",
-    "mana_cost": 7,
-    "cooldown_ticks": 15,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": 20,
+    "cooldown_ticks": 1200,
     "style": "magic",
     "tags": [
-      "projectile",
-      "damage"
+      "heal"
     ],
-    "cast_type": "IMBUE",
-    "imbues": 5,
-    "imbue_type": "STAFF_IMBUE"
+    "cast_type": "NORMAL",
+    "imbues": 1,
+    "imbue_type": "ON_RANGED_ATTACK"
   },
   "disabled_dims": [],
   "effect_tip": ""

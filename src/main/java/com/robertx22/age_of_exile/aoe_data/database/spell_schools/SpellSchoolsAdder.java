@@ -20,7 +20,8 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
         SchoolBuilder.of(BARD, "Bard")
 
             .addSpell(SpellKeys.POWER_CHORD.id, new PointData(0, 0))
-            .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 2))
+            .addSpell(SpellKeys.POWER_CHORD.id, new PointData(0, 2))
+            .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 5))
 
             .addSpell(HolySpells.SHOOTING_STAR, new PointData(1, 2))
             .addSpell(HolySpells.UNDYING_WILL, new PointData(3, 2))
@@ -35,18 +36,16 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .addSpell(HolySpells.TAUNT, new PointData(5, 5))
 
-            .addSpell(HolySpells.WISH, new PointData(3, 6))
-
             .build();
 
         SchoolBuilder.of(HUNTER, "Hunting")
-            .addSpell(HunterSpells.ARROW_STORM, new PointData(0, 0))
-            .addSpell(HunterSpells.MAKE_ARROWS, new PointData(10, 0))
+
+            .addSpell(SpellKeys.MAKE_ARROWS, new PointData(0, 0))
+            .addSpell(SpellKeys.EXPLOSIVE_ARROW, new PointData(0, 2))
 
             .addSpell(HunterSpells.DASH_ID, new PointData(5, 1))
             .addSpell(HunterSpells.HUNTER_POTION, new PointData(10, 1))
 
-            .addSpell(HunterSpells.THE_HUNT, new PointData(10, 2))
             .addSpell(HunterSpells.POISON_ARROW, new PointData(2, 2))
             .addSpell(HunterSpells.SMOKE_BOMB, new PointData(7, 2))
 
@@ -57,8 +56,6 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(HunterSpells.FROST_TRAP, new PointData(7, 4))
             .addSpell(HunterSpells.POISON_TRAP, new PointData(8, 4))
             .addSpell(HunterSpells.NIGHT_VISION, new PointData(10, 4))
-
-            .addSpell(HunterSpells.EXPLOSIVE_ARROW_ID, new PointData(2, 5))
 
             .build();
 

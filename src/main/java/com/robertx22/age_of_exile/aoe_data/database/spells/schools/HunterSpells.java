@@ -31,14 +31,10 @@ import java.util.Arrays;
 
 public class HunterSpells implements ExileRegistryInit {
 
-    public static String EXPLOSIVE_ARROW_ID = "explosive_arrow";
-    public static String MAKE_ARROWS = "make_arrows";
     public static String CHARGED_BOLT = "charged_bolt";
-    public static String THE_HUNT = "the_hunt";
     public static String BACKFLIP = "backflip";
     public static String ARROW_STORM = "arrow_storm";
     public static String POISON_ARROW = "poison_arrow";
-    public static String RECOIL_SHOT = "recoil_shot";
     public static String DASH_ID = "dash";
 
     public static String FROST_TRAP = "frost_trap";
@@ -129,31 +125,6 @@ public class HunterSpells implements ExileRegistryInit {
             .onHit(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
             .onHit(PartBuilder.damage(SpellCalcs.ARROW_STORM))
             .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D))
-            .build();
-
-        SpellBuilder.of(EXPLOSIVE_ARROW_ID, SpellConfiguration.Builder.arrowImbue(10, 20 * 10), "Explosive Arrow",
-                Arrays.asList(SpellTag.projectile, SpellTag.damage))
-            .weaponReq(CastingWeapon.RANGED)
-            .manualDesc("Shoot an arrow that does ")
-            .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.ARROW_SHOOT, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
-            .onExpire(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 0.1D))
-            .onExpire(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
-            .onExpire(PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D))
-            .onExpire(PartBuilder.damageInAoe(SpellCalcs.EXPLOSIVE_ARROW, 2D)
-                .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 40D))))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
-            .build();
-
-        SpellBuilder.of(MAKE_ARROWS, SpellConfiguration.Builder.nonInstant(10, 20 * 60 * 5, 80)
-                , "Produce Arrows",
-                Arrays.asList())
-            .manualDesc("Produce a stack of arrows.")
-            .weaponReq(CastingWeapon.ANY_WEAPON)
-            .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.ARROW_SHOOT, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.CASTER_USE_COMMAND.create("/give @s minecraft:arrow 64")))
             .build();
 
     }
