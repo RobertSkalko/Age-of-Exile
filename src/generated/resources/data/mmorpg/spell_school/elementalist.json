@@ -6,7 +6,7 @@
       "y": 1
     },
     "teleport": {
-      "x": 3,
+      "x": 1,
       "y": 5
     },
     "ice_shield": {
@@ -16,6 +16,10 @@
     "meteor": {
       "x": 0,
       "y": 0
+    },
+    "refresh": {
+      "x": 5,
+      "y": 2
     },
     "ice_nova": {
       "x": 10,

@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
+import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
@@ -140,6 +141,23 @@ public class ElementalistSpells implements ExileRegistryInit {
             .onCast(PartBuilder.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1D, 1D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 30D, 2D))
 
+            .build();
+
+        SpellBuilder.of(SpellKeys.REFRESH, SpellConfiguration.Builder.instant(40, 20 * 60 * 3)
+                // if this becomes useless due to lower cooldowns, buff it or make it instead a spell that decreases mana cost
+                , "Refresh",
+                Arrays.asList())
+            .manualDesc(
+                "Refreshes all your spell cooldowns by 1 minute.")
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+            .onCast(PartBuilder.playSound(SoundRefs.DING_LOW_PITCH))
+
+            .onCast(PartBuilder.justAction(SpellAction.REFRESH_COOLDOWNS_BY_X_TICKS.create(20 * 60D))
+                .addTarget(TargetSelector.CASTER.create()))
+
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.FALLING_WATER, 100D, 1.5D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.DRIPPING_WATER, 50D, 1.5D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 50D, 1.5D))
             .build();
 
     }

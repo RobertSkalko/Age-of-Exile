@@ -14,6 +14,7 @@ public interface SpellKeys {
     SpellKey TIDAL_WAVE = new SpellKey("tidal_wave");
     SpellKey VENOM_STRIKE = new SpellKey("venom_strike");
     SpellKey TELEPORT = new SpellKey("teleport");
+    SpellKey REFRESH = new SpellKey("refresh");
 
     public static void init() {
 

@@ -11,10 +11,8 @@ import com.robertx22.age_of_exile.database.data.spells.components.conditions.Eff
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.dimension.DimensionIds;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -27,19 +25,6 @@ public class UtilitySpells implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
-
-        SpellBuilder.of("conjure_ender_chest", SpellConfiguration.Builder.nonInstant(10, 60 * 20 * 2, 40),
-                "Conjure Ender Chest",
-                Arrays.asList())
-            .manualDesc(
-                "Allows you to access your Ender Chest from any place.")
-
-            .attackStyle(PlayStyle.magic)
-            .onCast(PartBuilder.playSound(SoundEvents.ENDER_CHEST_OPEN, 1D, 1D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.PORTAL, 100D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.OPEN_ENDER_CHEST.create()))
-            .disableInDimension(DimensionIds.DUNGEON_DIMENSION)
-            .build();
 
         SpellBuilder.of("jump_field", SpellConfiguration.Builder.instant(10, 20 * 45), "Jump Field", Arrays.asList(SpellTag.movement))
             .manualDesc(

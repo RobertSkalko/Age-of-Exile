@@ -43,21 +43,22 @@ public class StatSoulItem extends Item implements IGUID {
 
     public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> stacks) {
         if (this.allowdedIn(group)) {
-
             for (GearRarity rarity : ExileDB.GearRarities()
                 .getList()) {
-                for (GearSlot slot : ExileDB.GearSlots()
-                    .getList()) {
-                    for (int i = 0; i <= LevelUtils.getMaxTier(); i++) {
-                        StatSoulData data = new StatSoulData();
-                        data.tier = i;
-                        data.rar = rarity.GUID();
-                        data.slot = slot.GUID();
+                if (!rarity.is_unique_item) {
+                    for (GearSlot slot : ExileDB.GearSlots()
+                        .getList()) {
 
-                        ItemStack stack = data.toStack();
-                        stacks.add(stack);
+                        for (int i = 0; i <= LevelUtils.getMaxTier(); i++) {
+                            StatSoulData data = new StatSoulData();
+                            data.tier = i;
+                            data.rar = rarity.GUID();
+                            data.slot = slot.GUID();
+
+                            ItemStack stack = data.toStack();
+                            stacks.add(stack);
+                        }
                     }
-
                 }
             }
 

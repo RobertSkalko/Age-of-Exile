@@ -29,7 +29,7 @@ import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
-public class RangerSpells implements ExileRegistryInit {
+public class HunterSpells implements ExileRegistryInit {
 
     public static String EXPLOSIVE_ARROW_ID = "explosive_arrow";
     public static String MAKE_ARROWS = "make_arrows";

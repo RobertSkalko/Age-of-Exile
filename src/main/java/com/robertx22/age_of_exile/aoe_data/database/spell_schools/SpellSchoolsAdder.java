@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.spell_schools;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.impl.TotemSpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.schools.HolySpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.schools.RangerSpells;
+import com.robertx22.age_of_exile.aoe_data.database.spells.schools.HunterSpells;
 import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
@@ -38,37 +38,41 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .build();
 
         SchoolBuilder.of(HUNTER, "Hunting")
-            .addSpell(RangerSpells.ARROW_STORM, new PointData(0, 0))
-            .addSpell(RangerSpells.MAKE_ARROWS, new PointData(10, 0))
+            .addSpell(HunterSpells.ARROW_STORM, new PointData(0, 0))
+            .addSpell(HunterSpells.MAKE_ARROWS, new PointData(10, 0))
 
-            .addSpell(RangerSpells.DASH_ID, new PointData(5, 1))
-            .addSpell(RangerSpells.HUNTER_POTION, new PointData(10, 1))
+            .addSpell(HunterSpells.DASH_ID, new PointData(5, 1))
+            .addSpell(HunterSpells.HUNTER_POTION, new PointData(10, 1))
 
-            .addSpell(RangerSpells.THE_HUNT, new PointData(10, 2))
-            .addSpell(RangerSpells.POISON_ARROW, new PointData(2, 2))
-            .addSpell(RangerSpells.SMOKE_BOMB, new PointData(7, 2))
+            .addSpell(HunterSpells.THE_HUNT, new PointData(10, 2))
+            .addSpell(HunterSpells.POISON_ARROW, new PointData(2, 2))
+            .addSpell(HunterSpells.SMOKE_BOMB, new PointData(7, 2))
 
-            .addSpell(RangerSpells.CHARGED_BOLT, new PointData(0, 3))
-            .addSpell(RangerSpells.BACKFLIP, new PointData(4, 3))
+            .addSpell(HunterSpells.CHARGED_BOLT, new PointData(0, 3))
+            .addSpell(HunterSpells.BACKFLIP, new PointData(4, 3))
 
-            .addSpell(RangerSpells.FIRE_TRAP, new PointData(6, 4))
-            .addSpell(RangerSpells.FROST_TRAP, new PointData(7, 4))
-            .addSpell(RangerSpells.POISON_TRAP, new PointData(8, 4))
-            .addSpell(RangerSpells.NIGHT_VISION, new PointData(10, 4))
+            .addSpell(HunterSpells.FIRE_TRAP, new PointData(6, 4))
+            .addSpell(HunterSpells.FROST_TRAP, new PointData(7, 4))
+            .addSpell(HunterSpells.POISON_TRAP, new PointData(8, 4))
+            .addSpell(HunterSpells.NIGHT_VISION, new PointData(10, 4))
 
-            .addSpell(RangerSpells.EXPLOSIVE_ARROW_ID, new PointData(2, 5))
+            .addSpell(HunterSpells.EXPLOSIVE_ARROW_ID, new PointData(2, 5))
 
             .build();
 
         SchoolBuilder.of(ELEMENTALIST, "Elementalist")
             //.addSpell(SpellKeys.MAGIC_PROJECTILE.id, new PointData(0, 0))
 
+            // fire
             .addSpell(SpellKeys.METEOR.id, new PointData(0, 0))
-            .addSpell(SpellKeys.POISON_CLOUD.id, new PointData(5, 0))
-            .addSpell(SpellKeys.ICE_NOVA.id, new PointData(10, 0))
 
-            //.addSpell(SpellKeys.METEOR.id, new PointData(0, 1))
+            // poison
+            .addSpell(SpellKeys.POISON_CLOUD.id, new PointData(5, 0))
             .addSpell(SpellKeys.NATURE_BALM.id, new PointData(5, 1))
+            .addSpell(SpellKeys.REFRESH.id, new PointData(5, 2))
+
+            // ice
+            .addSpell(SpellKeys.ICE_NOVA.id, new PointData(10, 0))
             .addSpell(SpellKeys.ICE_SHIELD.id, new PointData(10, 1))
 
             // misc
