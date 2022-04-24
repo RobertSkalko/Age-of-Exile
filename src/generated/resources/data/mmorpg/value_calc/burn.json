@@ -1,9 +1,15 @@
 {
   "id": "burn",
   "damage_calcs": {
-    "damages": []
+    "damages": [
+      {
+        "element": "Fire",
+        "scaling": [],
+        "base": 4.0
+      }
+    ]
   },
   "stat_scalings": [],
   "attack_scaling": 0.0,
-  "base": 4.0
+  "base": 0.0
 }

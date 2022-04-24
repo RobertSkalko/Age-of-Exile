@@ -8,7 +8,7 @@ public class MixinConnector implements IMixinConnector {
     @Override
     public void connect() {
         Mixins.addConfiguration(
-            "mmorpg-mixins.json"
+            "mmorpg.mixins.json"
         );
     }
 }

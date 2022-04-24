@@ -344,8 +344,8 @@ public class Stats implements ExileRegistryInit {
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
         .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
-        .setLocDesc(x -> x.locname + " Chance")
-        .setLocDesc(x -> "Chance to give effect")
+        .setLocName(x -> x.locname + " Chance")
+        .setLocDesc(x -> "Chance to give effect. Depends on amount of damage you deal")
         .modifyAfterDone(x -> {
             x.min = 0;
             x.max = 1000; // as it's multiplied by dmg dealet/target max hp. More than 100% can be useful!

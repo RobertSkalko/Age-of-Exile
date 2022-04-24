@@ -1,9 +1,15 @@
 {
   "id": "bleed",
   "damage_calcs": {
-    "damages": []
+    "damages": [
+      {
+        "element": "Physical",
+        "scaling": [],
+        "base": 4.0
+      }
+    ]
   },
   "stat_scalings": [],
   "attack_scaling": 0.0,
-  "base": 4.0
+  "base": 0.0
 }

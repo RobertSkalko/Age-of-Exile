@@ -111,6 +111,7 @@ public class SlashItems {
     static Item.Properties stationProp = new Item.Properties().tab(CreativeTabs.MyModTab);
 
     public static RegObj<Item> TELEPORTER_BLOCK = Def.item("teleporter", () -> new BlockItem(SlashBlocks.TELEPORTER.get(), stationProp));
+    public static RegObj<Item> MNS_TABLE = Def.item("mns_crafting_table", () -> new BlockItem(SlashBlocks.MNS_CRAFTING_TABLE.get(), stationProp));
     public static RegObj<Item> PORTAL = Def.item("portal", () -> new BlockItem(SlashBlocks.PORTAL.get(), stationProp));
 
     public static class GearItems {
