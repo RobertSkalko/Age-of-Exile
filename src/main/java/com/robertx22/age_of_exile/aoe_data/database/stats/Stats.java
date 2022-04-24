@@ -348,7 +348,7 @@ public class Stats implements ExileRegistryInit {
         .setLocDesc(x -> "Chance to give effect")
         .modifyAfterDone(x -> {
             x.min = 0;
-            x.max = 100;
+            x.max = 1000; // as it's multiplied by dmg dealet/target max hp. More than 100% can be useful!
             x.is_perc = true;
             x.scaling = StatScaling.NONE;
         })
@@ -463,40 +463,6 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EmptyAccessor> ACCURACY = DatapackStatBuilder
-        .ofSingle("accuracy", Elements.Physical)
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
-        .addEffect(StatEffects.SET_ACCURACY)
-        .setLocName(x -> "Accuracy")
-        .setLocDesc(x -> "Increases your chance to hit, low accuracy also causes crits to fail. Specifically it decreases opponent's chance to dodge")
-        .modifyAfterDone(x -> {
-            x.base = 0;
-            x.min = 0;
-            x.scaling = StatScaling.NORMAL;
-            x.group = StatGroup.MAIN;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> SPELL_ACCURACY = DatapackStatBuilder
-        .ofSingle("spell_accuracy", Elements.Physical)
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.spell))
-        .addEffect(StatEffects.SET_ACCURACY)
-        .setLocName(x -> "Spell Accuracy")
-        .setLocDesc(x -> "Increases your chance to hit, low accuracy also causes crits to fail. Specifically it decreases opponent's chance to dodge")
-        .modifyAfterDone(x -> {
-            x.base = 0;
-            x.min = 0;
-            x.scaling = StatScaling.NORMAL;
-            x.group = StatGroup.MAIN;
-        })
-        .build();
-
     public static DataPackStatAccessor<EmptyAccessor> PROJECTILE_DAMAGE = DatapackStatBuilder
         .ofSingle("projectile_damage", Elements.Physical)
         .worksWithEvent(DamageEvent.ID)
@@ -542,38 +508,6 @@ public class Stats implements ExileRegistryInit {
             x.is_perc = true;
             x.base = 0;
             x.format = TextFormatting.BLUE.getName();
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> NIGHT_DAMAGE = DatapackStatBuilder
-        .ofSingle("night_dmg", Elements.All)
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_NIGHT)
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> "Night Damage")
-        .setLocDesc(x -> "Increases dmg at night.")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.base = 0;
-            x.format = TextFormatting.DARK_PURPLE.getName();
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> DAY_DAMAGE = DatapackStatBuilder
-        .ofSingle("day_dmg", Elements.All)
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_NIGHT)
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> "Day Damage")
-        .setLocDesc(x -> "Increases dmg at daytime.")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.base = 0;
-            x.format = TextFormatting.YELLOW.getName();
         })
         .build();
 

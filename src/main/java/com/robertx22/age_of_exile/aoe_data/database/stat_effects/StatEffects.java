@@ -89,7 +89,6 @@ public class StatEffects implements ExileRegistryInit {
     public static StatEffect DECREASE_VALUE = new DecreaseNumberByPercentEffect(EventData.NUMBER);
     public static StatEffect INCREASE_EFFECT_DURATION = new IncreaseNumberByPercentEffect(EventData.EFFECT_DURATION_TICKS);
     public static StatEffect INCREASE_SECONDS = new IncreaseNumberByPercentEffect(EventData.SECONDS);
-    public static StatEffect SET_ACCURACY = new SetDataNumberAction(EventData.ACCURACY);
     public static StatEffect ADD_STAT_DATA_TO_NUMBER = new AddToNumberEffect("add_stat_data_to_num", EventData.NUMBER, NumberProvider.ofStatData());
 
     public static StatEffect DECREASE_COOLDOWN = new DecreaseNumberByPercentEffect(EventData.COOLDOWN_TICKS);
@@ -121,7 +120,6 @@ public class StatEffects implements ExileRegistryInit {
         GIVE_EFFECT_TO_TARGET.addToSerializables();
         SET_IS_CRIT.addToSerializables();
         INCREASE_VALUE.addToSerializables();
-        SET_ACCURACY.addToSerializables();
         LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.addToSerializables();
         ADD_PERC_OF_STAT_TO_NUMBER.addToSerializables();
         ADD_STAT_DATA_TO_NUMBER.addToSerializables();

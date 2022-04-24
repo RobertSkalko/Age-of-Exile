@@ -33,7 +33,7 @@ public class SpellDodgeEffect extends BaseDamageEffect {
     public DamageEvent activate(DamageEvent effect, StatData data, Stat stat) {
         SpellDodge dodge = (SpellDodge) stat;
 
-        float totalDodge = MathHelper.clamp(data.getValue() - effect.data.getNumber(EventData.ACCURACY).number, 0, Integer.MAX_VALUE);
+        float totalDodge = MathHelper.clamp(data.getValue(), 0, Integer.MAX_VALUE);
 
         float chance = dodge.getUsableValue((int) totalDodge, effect.sourceData.getLevel()) * 100;
 
