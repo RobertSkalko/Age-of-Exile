@@ -13,7 +13,7 @@ import net.minecraft.world.chunk.Chunk;
 
 public class Load {
 
-    public static EntitySpellCap.ISpellsCap spells(LivingEntity provider) {
+    public static EntitySpellCap.SpellCap spells(LivingEntity provider) {
         return provider.getCapability(EntitySpellCap.Data)
             .orElse(null);
     }

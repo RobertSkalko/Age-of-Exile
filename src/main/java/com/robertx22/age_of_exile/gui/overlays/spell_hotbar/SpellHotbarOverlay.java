@@ -50,7 +50,7 @@ public class SpellHotbarOverlay extends AbstractGui {
 
     Minecraft mc = Minecraft.getInstance();
 
-    EntitySpellCap.ISpellsCap data;
+    EntitySpellCap.SpellCap data;
 
     public void onHudRender(MatrixStack matrix, float v) {
 

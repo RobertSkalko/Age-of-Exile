@@ -58,7 +58,7 @@ public class OnClientTick {
 
                 NO_MANA_SOUND_COOLDOWN--;
 
-                EntitySpellCap.ISpellsCap spells = Load.spells(player);
+                EntitySpellCap.SpellCap spells = Load.spells(player);
 
                 List<String> onCooldown = spells.getCastingData()
                     .getSpellsOnCooldown(player);

@@ -46,7 +46,7 @@ public class StaffWeapon extends ModWeapon implements IAutoModel {
                 GearItemData gear = Gear.Load(stack);
                 if (gear != null) {
 
-                    EntitySpellCap.ISpellsCap spells = Load.spells(player);
+                    EntitySpellCap.SpellCap spells = Load.spells(player);
 
                     if (spells.getCastingData()
                         .hasImbuedSpell(ImbueType.STAFF_IMBUE)) {

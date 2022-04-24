@@ -13,7 +13,7 @@ public class SlashCapabilities {
     public static void register() {
 
         CapabilityManager.INSTANCE.register(
-            EntitySpellCap.ISpellsCap.class,
+            EntitySpellCap.SpellCap.class,
             new EntitySpellCap.Storage(),
             () -> {
                 return new EntitySpellCap.SpellCap(null);

@@ -45,7 +45,7 @@ public class SetupHotbarPacket extends MyPacket<SetupHotbarPacket> {
     public void onReceived(ExilePacketContext ctx) {
         PlayerEntity player = ctx.getPlayer();
 
-        EntitySpellCap.ISpellsCap spells = Load.spells(player);
+        EntitySpellCap.SpellCap spells = Load.spells(player);
 
         if (spells.hasSpell(ExileDB.Spells()
             .get(spell))) {

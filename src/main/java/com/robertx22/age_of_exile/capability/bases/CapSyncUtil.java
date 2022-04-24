@@ -19,7 +19,7 @@ public class CapSyncUtil {
     }
 
     public static void syncSpells(PlayerEntity player) {
-        EntitySpellCap.ISpellsCap data = Load.spells(player);
+        EntitySpellCap.SpellCap data = Load.spells(player);
         data.syncToClient(player);
     }
 

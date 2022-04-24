@@ -39,7 +39,7 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
 
     public static boolean tryCastSpell(PlayerEntity player, Spell spell) {
 
-        EntitySpellCap.ISpellsCap spells = Load.spells(player);
+        EntitySpellCap.SpellCap spells = Load.spells(player);
 
         if (player.isBlocking() || player.swinging) {
             return false;
@@ -67,7 +67,7 @@ public class TellServerToCastSpellPacket extends MyPacket<TellServerToCastSpellP
     public void onReceived(ExilePacketContext ctx) {
         PlayerEntity player = ctx.getPlayer();
 
-        EntitySpellCap.ISpellsCap spells = Load.spells(player);
+        EntitySpellCap.SpellCap spells = Load.spells(player);
 
         Spell spell = spells.getSpellByNumber(number);
 

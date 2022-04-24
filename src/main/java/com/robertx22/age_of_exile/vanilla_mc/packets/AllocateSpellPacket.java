@@ -55,7 +55,7 @@ public class AllocateSpellPacket extends MyPacket<AllocateSpellPacket> {
     @Override
     public void onReceived(ExilePacketContext ctx) {
 
-        EntitySpellCap.ISpellsCap spells = Load.spells(ctx.getPlayer());
+        EntitySpellCap.SpellCap spells = Load.spells(ctx.getPlayer());
 
         Spell spell = ExileDB.Spells()
             .get(this.spellid);

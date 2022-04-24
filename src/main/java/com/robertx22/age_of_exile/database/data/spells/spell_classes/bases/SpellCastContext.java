@@ -17,7 +17,7 @@ public class SpellCastContext {
     public boolean isCastFromClientPacket = false;
     public final LivingEntity caster;
     public final EntityData data;
-    public final EntitySpellCap.ISpellsCap spellsCap;
+    public final EntitySpellCap.SpellCap spellsCap;
     public final Spell spell;
     public SpellStatsCalculationEvent event;
     public EntitySavedSpellData calcData;

@@ -48,54 +48,30 @@ public class EntitySpellCap {
         }
     }
 
-    public static class Storage implements BaseStorage<ISpellsCap> {
+    public static class Storage implements BaseStorage<SpellCap> {
 
     }
 
-    public static class Provider extends BaseProvider<ISpellsCap, LivingEntity> {
+    public static class Provider extends BaseProvider<SpellCap, LivingEntity> {
         public Provider(LivingEntity owner) {
             super(owner);
         }
 
         @Override
-        public ISpellsCap newDefaultImpl(LivingEntity owner) {
+        public SpellCap newDefaultImpl(LivingEntity owner) {
             return new SpellCap(owner);
         }
 
         @Override
-        public Capability<ISpellsCap> dataInstance() {
+        public Capability<SpellCap> dataInstance() {
             return Data;
         }
     }
 
-    @CapabilityInject(ISpellsCap.class)
-    public static final Capability<ISpellsCap> Data = null;
+    @CapabilityInject(SpellCap.class)
+    public static final Capability<SpellCap> Data = null;
 
-    public abstract static class ISpellsCap implements ICommonPlayerCap, IApplyableStats {
-
-        public abstract Spell getSpellByNumber(int key);
-
-        public abstract void reset();
-
-        public abstract int getFreeSpellPoints();
-
-        public abstract boolean canLearn(SpellSchool school, Spell spell);
-
-        public abstract List<Spell> getLearnedSpells();
-
-        public abstract SpellCastingData getCastingData();
-
-        public abstract SpellsData getSpellsData();
-
-        public abstract void onSpellHitTarget(Entity spellEntity, LivingEntity target);
-
-        public abstract boolean alreadyHit(Entity spellEntity, LivingEntity target);
-
-        public abstract boolean hasSpell(Spell spell);
-
-    }
-
-    public static class SpellCap extends ISpellsCap {
+    public static class SpellCap implements ICommonPlayerCap, IApplyableStats {
 
         SpellCastingData spellCastingData = new SpellCastingData();
 
@@ -143,7 +119,6 @@ public class EntitySpellCap {
             }
         }
 
-        @Override
         public Spell getSpellByNumber(int key) {
             String spellid = this.spellData.hotbars.get(key);
             if (spellid != null && !spellid.isEmpty()) {
@@ -155,7 +130,6 @@ public class EntitySpellCap {
             return null;
         }
 
-        @Override
         public void reset() {
             this.spellData = new SpellsData();
         }
@@ -165,13 +139,11 @@ public class EntitySpellCap {
             return total;
         }
 
-        @Override
         public int getFreeSpellPoints() {
             return (int) (GameBalanceConfig.get().SPELL_POINTS_PER_LEVEL * Load.Unit(entity)
                 .getLevel()) - getSpentSpellPoints();
         }
 
-        @Override
         public boolean canLearn(SpellSchool school, Spell spell) {
             if (getFreeSpellPoints() < 1) {
                 return false;
@@ -191,25 +163,21 @@ public class EntitySpellCap {
             return true;
         }
 
-        @Override
         public List<Spell> getLearnedSpells() {
             return ExileDB.Spells()
                 .getFilterWrapped(x -> hasSpell(x)).list;
         }
 
-        @Override
         public SpellCastingData getCastingData() {
             return this.spellCastingData;
         }
 
-        @Override
         public SpellsData getSpellsData() {
             return this.spellData;
         }
 
         public HashMap<UUID, List<UUID>> mobsHit = new HashMap<>();
 
-        @Override
         public void onSpellHitTarget(Entity spellEntity, LivingEntity target) {
 
             UUID id = target.getUUID();
@@ -228,7 +196,6 @@ public class EntitySpellCap {
 
         }
 
-        @Override
         public boolean alreadyHit(Entity spellEntity, LivingEntity target) {
             // this makes sure piercing projectiles hit target only once and then pass through
             // i can replace this with an effect that tags them too
@@ -242,7 +209,6 @@ public class EntitySpellCap {
                 .contains(target.getUUID());
         }
 
-        @Override
         public boolean hasSpell(Spell spell) {
             return this.spellData.spells.contains(spell.GUID());
         }
