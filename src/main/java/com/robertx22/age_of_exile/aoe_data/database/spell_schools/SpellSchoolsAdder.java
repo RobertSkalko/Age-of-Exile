@@ -20,21 +20,15 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
         SchoolBuilder.of(BARD, "Bard")
 
             .addSpell(SpellKeys.POWER_CHORD.id, new PointData(0, 0))
-            .addSpell(SpellKeys.POWER_CHORD.id, new PointData(0, 2))
-            .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 5))
-
-            .addSpell(HolySpells.SHOOTING_STAR, new PointData(1, 2))
-            .addSpell(HolySpells.UNDYING_WILL, new PointData(3, 2))
-
-            .addSpell(HolySpells.PULL, new PointData(8, 3))
-
-            .addSpell(HolySpells.INSPIRATION, new PointData(7, 4))
+            .addSpell(SpellKeys.HEALING_ARIA.id, new PointData(2, 0))
 
             .addSpell(SpellKeys.SONG_OF_PERSEVERANCE.id, new PointData(1, 4))
             .addSpell(SpellKeys.SONG_OF_VALOR.id, new PointData(2, 4))
             .addSpell(SpellKeys.SONG_OF_VIGOR.id, new PointData(3, 4))
 
-            .addSpell(HolySpells.TAUNT, new PointData(5, 5))
+            .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 5))
+
+            .addSpell(HolySpells.SHOOTING_STAR, new PointData(1, 2))
 
             .build();
 
@@ -87,6 +81,8 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .addSpell(TotemSpells.HEAL_TOTEM_ID, new PointData(6, 2))
             .addSpell(TotemSpells.MANA_TOTEM_ID, new PointData(7, 2))
+
+            .addSpell(HolySpells.TAUNT, new PointData(5, 5))
 
             .build();
 

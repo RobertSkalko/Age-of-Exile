@@ -1,19 +1,14 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 ghostly_shores
-skull_cleaver
+insight
+test_runic_spell
 mana_dominion
 winter_chill
-bone_shatterer
-spring_blossoms
-test_runic_spell
-insight
-air_disaster
-heavenly_rainbow
 autumn_harvest
 skull_of_spirits
 summer_heat
-playful_hope
 witch_brew
 azuna_ring
+spring_blossoms
 ghast_necklace

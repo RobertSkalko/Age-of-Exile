@@ -3,19 +3,11 @@
   "spells": {
     "power_chord": {
       "x": 0,
-      "y": 2
+      "y": 0
     },
-    "undying_will": {
-      "x": 3,
-      "y": 2
-    },
-    "pull": {
-      "x": 8,
-      "y": 3
-    },
-    "awaken_mana": {
-      "x": 7,
-      "y": 4
+    "healing_aria": {
+      "x": 2,
+      "y": 0
     },
     "healing_aura": {
       "x": 0,
@@ -36,10 +28,6 @@
     "song_of_vigor": {
       "x": 3,
       "y": 4
-    },
-    "taunt": {
-      "x": 5,
-      "y": 5
     }
   },
   "lvl_reqs": [

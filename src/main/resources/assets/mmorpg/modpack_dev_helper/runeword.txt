@@ -1,9 +1,4 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
-skull_cleaver
 insight
 test_runic_spell
-air_disaster
-heavenly_rainbow
-playful_hope
-bone_shatterer

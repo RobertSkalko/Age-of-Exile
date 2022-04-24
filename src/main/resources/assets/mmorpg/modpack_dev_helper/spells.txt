@@ -7,7 +7,6 @@ venom_strike
 chill_eruption
 chilling_field
 ice_nova
-wish
 curse_of_despair
 entangling_seed
 nature_balm
@@ -22,6 +21,7 @@ poison_trap
 jump_field
 levitation
 charged_bolt
+healing_aria
 explosive_arrow
 heart_of_ice
 magic_projectile

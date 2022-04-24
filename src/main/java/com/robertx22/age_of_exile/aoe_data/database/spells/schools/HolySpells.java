@@ -29,7 +29,6 @@ public class HolySpells implements ExileRegistryInit {
 
     public static String HEALING_AURA_ID = "healing_aura";
     public static String UNDYING_WILL = "undying_will";
-    public static String INSPIRATION = "awaken_mana";
     public static String SHOOTING_STAR = "shooting_star";
 
     public static String TAUNT = "taunt";
@@ -67,17 +66,6 @@ public class HolySpells implements ExileRegistryInit {
                 .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.STUN.resourcePath, ExileEffectAction.GiveOrTake.GIVE_STACKS, 20D * 2))
                 .addTarget(TargetSelector.AOE.create(8D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
             .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 100D, 6D, 0.1D))
-            .build();
-
-        SpellBuilder.of(INSPIRATION, SpellConfiguration.Builder.instant(0, 300 * 20), "Inspiration",
-                Arrays.asList(SpellTag.heal)
-            )
-            .manualDesc("Restores  mana.")
-            .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1D, 1D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
-            .onCast(PartBuilder.restoreManaToCaster(SpellCalcs.AWAKEN_MANA))
             .build();
 
         SpellBuilder.of(SHOOTING_STAR, SpellConfiguration.Builder.instant(10, 20)

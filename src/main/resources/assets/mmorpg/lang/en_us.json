@@ -374,7 +374,6 @@
 
 	"mmorpg.spell.arrow_storm": "Arrow Storm",
 	"mmorpg.spell.astral_totem": "Astral Totem",
-	"mmorpg.spell.awaken_mana": "Inspiration",
 	"mmorpg.spell.black_hole": "Black Hole",
 	"mmorpg.spell.charged_bolt": "Charged Bolt",
 	"mmorpg.spell.chill_eruption": "Chill Eruption",
@@ -432,7 +431,6 @@
 
 	"mmorpg.one_of_a_kind.arrow_storm_mod": "Arrow Storm Modifier",
 	"mmorpg.one_of_a_kind.astral_totem_mod": "Astral Totem Modifier",
-	"mmorpg.one_of_a_kind.awaken_mana_mod": "Inspiration Modifier",
 	"mmorpg.one_of_a_kind.black_hole_mod": "Black Hole Modifier",
 	"mmorpg.one_of_a_kind.charged_bolt_mod": "Charged Bolt Modifier",
 	"mmorpg.one_of_a_kind.chill_eruption_mod": "Chill Eruption Modifier",
@@ -1461,7 +1459,6 @@
 
 	"spell.desc.arrow_storm": "Shoot out arrows in an arc, dealing ",
 	"spell.desc.astral_totem": "Summon a totem which restores  mana to allies around it.",
-	"spell.desc.awaken_mana": "Restores  mana.",
 	"spell.desc.black_hole": "Summon a dark sphere that attracts nearby enemies to it, dealing damage when it expires.",
 	"spell.desc.charged_bolt": "Shoot a charged arrow that goes through enemies and deals dmg in radius and slows.",
 	"spell.desc.chill_eruption": "Detonate every enemy affected by Chill to deal damage",

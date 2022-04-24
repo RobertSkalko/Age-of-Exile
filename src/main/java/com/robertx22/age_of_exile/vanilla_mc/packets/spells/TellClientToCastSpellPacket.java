@@ -47,7 +47,8 @@ public class TellClientToCastSpellPacket extends MyPacket<TellClientToCastSpellP
         Spell spell = ExileDB.Spells()
             .get(spellid);
         SpellCastContext c = new SpellCastContext(en, spell);
-        spell.cast(c, true);
+        c.isCastFromClientPacket = true;
+        spell.cast(c, false);
 
     }
 

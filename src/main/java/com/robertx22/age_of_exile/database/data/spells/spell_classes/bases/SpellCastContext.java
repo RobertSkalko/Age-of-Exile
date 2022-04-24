@@ -14,6 +14,7 @@ import java.util.Objects;
 
 public class SpellCastContext {
 
+    public boolean isCastFromClientPacket = false;
     public final LivingEntity caster;
     public final EntityData data;
     public final EntitySpellCap.ISpellsCap spellsCap;
