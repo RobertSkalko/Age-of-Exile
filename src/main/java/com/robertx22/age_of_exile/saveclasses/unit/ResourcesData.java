@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.saveclasses.unit;
 
 import com.robertx22.age_of_exile.capability.entity.EntityData;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
+import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -30,16 +30,10 @@ public class ResourcesData {
     @Store
     private float mana = 0;
     @Store
-    private float energy = 0;
-    @Store
     private float blood = 0;
 
     public float getMana() {
         return mana;
-    }
-
-    public float getEnergy() {
-        return energy;
     }
 
     public float getBlood() {
@@ -48,10 +42,10 @@ public class ResourcesData {
 
     public void onTickBlock(PlayerEntity player) {
         if (player.isBlocking()) {
-            float cost = Energy.getInstance()
+            float cost = Mana.getInstance()
                 .scale(ModType.FLAT, 0.25F, Load.Unit(player)
                     .getLevel());
-            SpendResourceEvent event = new SpendResourceEvent(player, ResourceType.energy, cost);
+            SpendResourceEvent event = new SpendResourceEvent(player, ResourceType.mana, cost);
             event.calculateEffects();
             event.Activate();
         }
@@ -74,8 +68,6 @@ public class ResourcesData {
         }
         if (type == ResourceType.blood) {
             return blood;
-        } else if (type == ResourceType.energy) {
-            return energy;
         } else if (type == ResourceType.health) {
             return HealthUtils.getCurrentHealth(en);
         }
@@ -101,10 +93,6 @@ public class ResourcesData {
             return data.getUnit()
                 .bloodData()
                 .getValue();
-        } else if (type == ResourceType.energy) {
-            return data.getUnit()
-                .energyData()
-                .getValue();
         } else if (type == ResourceType.health) {
             return HealthUtils.getMaxHealth(en);
         }
@@ -128,8 +116,6 @@ public class ResourcesData {
             mana = getModifiedValue(en, type, use, amount);
         } else if (type == ResourceType.blood) {
             blood = getModifiedValue(en, type, use, amount);
-        } else if (type == ResourceType.energy) {
-            energy = getModifiedValue(en, type, use, amount);
         } else if (type == ResourceType.health) {
             if (use == Use.RESTORE) {
                 HealthUtils.heal(en, amount);
@@ -142,9 +128,6 @@ public class ResourcesData {
     private void cap(LivingEntity en, ResourceType type) {
         if (type == ResourceType.mana) {
             mana = MathHelper.clamp(mana, 0, Load.Unit(en)
-                .getMaximumResource(type));
-        } else if (type == ResourceType.energy) {
-            energy = MathHelper.clamp(energy, 0, Load.Unit(en)
                 .getMaximumResource(type));
         } else if (type == ResourceType.blood) {
             blood = MathHelper.clamp(blood, 0, Load.Unit(en)

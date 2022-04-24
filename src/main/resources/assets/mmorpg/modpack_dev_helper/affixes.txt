@@ -5,7 +5,6 @@ scaled
 heal_suff
 water_spell_ele_dmg
 fire_ele_dmg_jewelry
-energy_reg
 seraphim
 of_consumption
 heal_crit_dmg_prefix
@@ -17,7 +16,6 @@ fire_wep_dmg
 of_spell_dmg
 strong_int_armor_suf
 earth_res
-of_energy
 physical_atk_dmg
 strong_wis_armor_suf
 earth_wep_dmg

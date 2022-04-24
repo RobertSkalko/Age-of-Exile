@@ -13,8 +13,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -53,9 +51,10 @@ public class DatapackStats implements ExileRegistryInit {
         new OptScaleExactStat(0.1F, ManaRegen.getInstance(), ModType.FLAT)
     )));
     public static Stat AGI = new CoreStat("agility", "Agility", CoreStatData.of(Arrays.asList(
-        new OptScaleExactStat(2, Energy.getInstance(), ModType.FLAT),
-        new OptScaleExactStat(0.1F, EnergyRegen.getInstance(), ModType.FLAT)
+
     )));
+
+    // todo
 
     public static Stat HEAL_TO_SPELL_DMG = new AddPerPercentOfOther(Stats.HEAL_STRENGTH.get(), SpellDamage.getInstance());
     public static Stat PHYS_DMG_PER_MANA = new AddPerPercentOfOther(Mana.getInstance(), new AttackDamage(Elements.Physical));

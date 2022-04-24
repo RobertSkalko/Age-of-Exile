@@ -9,18 +9,7 @@
     "ele": "Physical",
     "scale": "NORMAL",
     "core_stat_data": {
-      "stats": [
-        {
-          "v1": 2.0,
-          "stat": "energy",
-          "type": "FLAT"
-        },
-        {
-          "v1": 0.1,
-          "stat": "energy_regen",
-          "type": "FLAT"
-        }
-      ]
+      "stats": []
     }
   }
 }

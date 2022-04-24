@@ -16,8 +16,6 @@ import com.robertx22.age_of_exile.vanilla_mc.packets.SyncAreaLevelPacket;
 import com.robertx22.library_of_exile.main.Packets;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -53,15 +51,6 @@ public class OnServerTick {
             PlayerTickAction("second_pass", 20, (player, data) ->
         {
 
-            if (Load.Unit(player)
-                .getResources()
-                .getEnergy() < Load.Unit(player)
-                .getUnit()
-                .energyData()
-                .getValue() / 10) {
-                player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20 * 3, 1));
-            }
-
             UnequipGear.onTick(player);
 
         }));
@@ -83,12 +72,6 @@ public class OnServerTick {
                 RestoreResourceEvent mana = EventBuilder.ofRestore(player, player, ResourceType.mana, RestoreType.regen, 0)
                     .build();
                 mana.Activate();
-
-                if (!player.isSprinting()) {
-                    RestoreResourceEvent energy = EventBuilder.ofRestore(player, player, ResourceType.energy, RestoreType.regen, 0)
-                        .build();
-                    energy.Activate();
-                }
 
                 boolean restored = false;
 

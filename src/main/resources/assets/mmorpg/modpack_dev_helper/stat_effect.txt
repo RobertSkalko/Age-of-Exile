@@ -4,7 +4,6 @@ decrease_number_num
 set_bool_crit
 restore_mana_per_stat_data
 give_negative/11_to_target
-leech_energy
 multiply_number_num
 give_negative/5_to_target
 give_beneficial/21_to_source
@@ -18,7 +17,6 @@ give_negative/3_to_target
 leech_health
 decrease_cd_ticks_num
 give_negative/2_to_source
-restore_energy_per_stat_data
 add_perc_of_mana_to_num
 give_negative/8_to_target
 increase_effect_duration_ticks_num
@@ -34,7 +32,6 @@ increase_area_num
 give_negative/8_to_source
 give_negative/3_to_source
 give_negative/2_to_target
-set_data_num_accuracy
 give_negative/10_to_source
 add_stat_data_to_num
 give_negative/7_to_target

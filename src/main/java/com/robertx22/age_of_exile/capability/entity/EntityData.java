@@ -8,12 +8,10 @@ import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
-import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.mob_affixes.MobAffix;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -27,12 +25,10 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.saveclasses.unit.*;
 import com.robertx22.age_of_exile.threat_aggro.ThreatData;
 import com.robertx22.age_of_exile.uncommon.datasaving.CustomExactStats;
-import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.datasaving.UnitNbt;
 import com.robertx22.age_of_exile.uncommon.effectdatas.DamageEvent;
 import com.robertx22.age_of_exile.uncommon.effectdatas.EventBuilder;
-import com.robertx22.age_of_exile.uncommon.effectdatas.SpendResourceEvent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.*;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.localization.Chats;
@@ -311,9 +307,6 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
                 .getValue();
         } else if (type == ResourceType.health) {
             return entity.getMaxHealth();
-        } else if (type == ResourceType.energy) {
-            return getUnit().energyData()
-                .getValue();
         }
 
         return 0;
@@ -469,10 +462,6 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
         this.unit = unit;
     }
 
-    public GearItemData setupWeaponData() {
-        return Gear.Load(entity.getMainHandItem());
-    }
-
     public boolean canUseWeapon(GearItemData weaponData) {
         return weaponData != null;
     }
@@ -489,7 +478,6 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
             if (isNewbie()) {
                 setNewbieStatus(false);
 
-                resources.restore(entity, ResourceType.energy, 100);
                 resources.restore(entity, ResourceType.mana, 100);
 
                 if (ServerContainer.get().GET_STARTER_ITEMS.get()) {
@@ -560,32 +548,10 @@ public class EntityData implements ICommonPlayerCap, INeededForClient {
 
     public void attackWithWeapon(AttackInformation data) {
 
-        if (data.weaponData.GetBaseGearType()
-            .getWeaponMechanic() != null) {
+        data.weaponData.GetBaseGearType()
+            .getWeaponMechanic()
+            .attack(data);
 
-            GearSlot slot = data.weaponData.GetBaseGearType()
-                .getGearSlot();
-
-            float cost = Energy.getInstance()
-                .scale(ModType.FLAT, slot.energy_cost, getLevel());
-            SpendResourceEvent event = new SpendResourceEvent(entity, ResourceType.energy, cost);
-            event.calculateEffects();
-
-            if (event.data.getNumber() > resources.getEnergy()) {
-                return;
-            }
-
-            event.Activate();
-
-            if (data.weapon != null) {
-                //data.weapon.hurt(1, new Random(), null);
-            }
-
-            data.weaponData.GetBaseGearType()
-                .getWeaponMechanic()
-                .attack(data);
-
-        }
     }
 
     public void mobBasicAttack(AttackInformation data) {

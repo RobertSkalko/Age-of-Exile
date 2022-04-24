@@ -1,7 +1,6 @@
 {
   "id": "shield",
   "weight": 1000,
-  "energy_cost": 0,
   "model_num": 11,
   "fam": "OffHand"
 }

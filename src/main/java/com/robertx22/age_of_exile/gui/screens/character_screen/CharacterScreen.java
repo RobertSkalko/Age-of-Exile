@@ -19,8 +19,6 @@ import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality
 import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.BonusExp;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
@@ -111,8 +109,8 @@ public class CharacterScreen extends BaseScreen implements INamedScreen {
 
     static {
 
-        addTo(StatType.MAIN, Arrays.asList(Health.getInstance(), Mana.getInstance(), Energy.getInstance()));
-        addTo(StatType.MAIN, Arrays.asList(HealthRegen.getInstance(), ManaRegen.getInstance(), EnergyRegen.getInstance()));
+        addTo(StatType.MAIN, Arrays.asList(Health.getInstance(), Mana.getInstance()));
+        addTo(StatType.MAIN, Arrays.asList(HealthRegen.getInstance(), ManaRegen.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(Armor.getInstance(), DodgeRating.getInstance()));
         addTo(StatType.MAIN, Arrays.asList(Stats.CRIT_CHANCE.get(), Stats.CRIT_DAMAGE.get()));
         addTo(StatType.MAIN, Arrays.asList(SpellDamage.getInstance(), Stats.ATTACK_SPEED.get(), Stats.COOLDOWN_REDUCTION.get()));

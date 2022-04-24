@@ -47,27 +47,6 @@ public enum BarGuiType {
             return "Level " + data.getLevel() + " " + (int) (getMulti(data, en) * 100) + "%";
         }
     },
-    ENERGY {
-        @Override
-        public float getCurrent(EntityData data, PlayerEntity en) {
-
-            return data.getResources()
-                .getEnergy();
-        }
-
-        @Override
-        public float getMax(EntityData data, PlayerEntity en) {
-            return data.getUnit()
-                .energyData()
-                .getValue();
-        }
-
-        @Override
-        public ResourceLocation getTexture(EntityData data, PlayerEntity en) {
-            return SlashRef.id("textures/gui/overlay/energy.png");
-        }
-    },
-
     MANA {
         @Override
         public float getCurrent(EntityData data, PlayerEntity en) {

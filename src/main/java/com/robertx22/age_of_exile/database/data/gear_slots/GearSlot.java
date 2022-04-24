@@ -19,21 +19,19 @@ import java.util.HashMap;
 
 public class GearSlot implements JsonExileRegistry<GearSlot>, IAutoGson<GearSlot>, IAutoLocName {
 
-    public static GearSlot SERIALIZER = new GearSlot("", "", SlotFamily.NONE, 1, -1, 0);
+    public static GearSlot SERIALIZER = new GearSlot("", "", SlotFamily.NONE, -1, 0);
     private static HashMap<String, HashMap<Item, Boolean>> CACHED_GEAR_SLOTS = new HashMap<>();
     static HashMap<Item, GearSlot> CACHED = new HashMap<>();
 
     public String id;
     public int weight;
-    public int energy_cost;
     public int model_num = -1;
     public transient String locname = "";
     public SlotFamily fam = SlotFamily.Armor;
 
-    public GearSlot(String id, String name, SlotFamily fam, int energy_cost, int modelnnum, int weight) {
+    public GearSlot(String id, String name, SlotFamily fam, int modelnnum, int weight) {
         this.id = id;
         this.fam = fam;
-        this.energy_cost = energy_cost;
         this.locname = name;
         this.model_num = modelnnum;
         this.weight = weight;

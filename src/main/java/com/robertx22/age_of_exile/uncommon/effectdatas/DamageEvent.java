@@ -81,7 +81,7 @@ public class DamageEvent extends EffectEvent {
 
         if (targetData
             .getResources()
-            .getEnergy() < 1) {
+            .getMana() < 1) {
             return;
         }
 

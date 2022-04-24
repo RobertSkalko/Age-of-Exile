@@ -2,8 +2,6 @@ package com.robertx22.age_of_exile.aoe_data.database.affixes.adders.slot_specifi
 
 import com.robertx22.age_of_exile.aoe_data.database.affixes.AffixBuilder;
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.Mana;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -15,12 +13,6 @@ public class RingSpecific implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        AffixBuilder.Normal("of_energy")
-            .Named("Of Energy")
-            .stats(new StatModifier(6, 15, Energy.getInstance(), ModType.PERCENT))
-            .includesTags(SlotTag.ring)
-            .Suffix()
-            .Build();
         AffixBuilder.Normal("of_mana")
             .Named("Of Mana")
             .stats(new StatModifier(6, 15, Mana.getInstance(), ModType.PERCENT))
@@ -31,12 +23,6 @@ public class RingSpecific implements ExileRegistryInit {
         AffixBuilder.Normal("mana_reg")
             .Named("Soothing")
             .stats(new StatModifier(6, 15, ManaRegen.getInstance(), ModType.PERCENT))
-            .includesTags(SlotTag.ring)
-            .Prefix()
-            .Build();
-        AffixBuilder.Normal("energy_reg")
-            .Named("Invirogating")
-            .stats(new StatModifier(6, 15, EnergyRegen.getInstance(), ModType.PERCENT))
             .includesTags(SlotTag.ring)
             .Prefix()
             .Build();

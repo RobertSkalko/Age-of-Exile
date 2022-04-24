@@ -1,7 +1,6 @@
 {
   "id": "axe",
   "weight": 1000,
-  "energy_cost": 5,
   "model_num": 4,
   "fam": "Weapon"
 }

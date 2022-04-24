@@ -1,7 +1,6 @@
 {
   "id": "crossbow",
   "weight": 750,
-  "energy_cost": 7,
   "model_num": 6,
   "fam": "Weapon"
 }

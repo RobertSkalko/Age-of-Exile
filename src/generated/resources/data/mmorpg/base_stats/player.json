@@ -32,12 +32,6 @@
       "scale_to_lvl": true
     },
     {
-      "v1": 30.0,
-      "stat": "energy",
-      "type": "FLAT",
-      "scale_to_lvl": true
-    },
-    {
       "v1": 1.0,
       "stat": "health_regen",
       "type": "FLAT",
@@ -50,12 +44,6 @@
       "scale_to_lvl": true
     },
     {
-      "v1": 1.0,
-      "stat": "energy_regen",
-      "type": "FLAT",
-      "scale_to_lvl": true
-    },
-    {
       "v1": 2.0,
       "stat": "health_regen",
       "type": "FLAT",
@@ -64,12 +52,6 @@
     {
       "v1": 2.0,
       "stat": "mana_regen",
-      "type": "FLAT",
-      "scale_to_lvl": false
-    },
-    {
-      "v1": 2.0,
-      "stat": "energy_regen",
       "type": "FLAT",
       "scale_to_lvl": false
     },

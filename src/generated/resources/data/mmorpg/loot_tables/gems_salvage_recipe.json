@@ -146,40 +146,6 @@
         {
           "type": "minecraft:item",
           "weight": 100999,
-          "name": "mmorpg:gems/topaz/0"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 25999,
-          "name": "mmorpg:gems/topaz/1"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5000,
-          "name": "mmorpg:gems/topaz/2"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1000,
-          "name": "mmorpg:gems/topaz/3"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 200,
-          "name": "mmorpg:gems/topaz/4"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 25,
-          "name": "mmorpg:gems/topaz/5"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "mmorpg:gems/topaz/6"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 100999,
           "name": "mmorpg:gems/amethyst/0"
         },
         {

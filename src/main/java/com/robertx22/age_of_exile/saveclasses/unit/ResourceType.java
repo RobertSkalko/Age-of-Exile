@@ -5,7 +5,6 @@ public enum ResourceType {
     mana("mana", "Mana"),
     shield("shield", "Shield"),
     block("block", "Block"),
-    energy("energy", "Energy"),
     blood("blood", "Blood");
 
     public String id;

@@ -13,8 +13,8 @@
   "on_jewelry_stats": [
     {
       "v1": 1.5,
-      "stat": "energy_regen",
-      "type": "PERCENT",
+      "stat": "critical_damage",
+      "type": "FLAT",
       "scale_to_lvl": true
     }
   ],

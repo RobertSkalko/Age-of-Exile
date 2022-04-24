@@ -1,7 +1,6 @@
 {
   "id": "necklace",
   "weight": 750,
-  "energy_cost": 0,
   "model_num": 13,
   "fam": "Jewelry"
 }

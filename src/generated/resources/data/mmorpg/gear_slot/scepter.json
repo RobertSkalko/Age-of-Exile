@@ -1,7 +1,6 @@
 {
   "id": "scepter",
   "weight": 1000,
-  "energy_cost": 3,
   "model_num": 2,
   "fam": "Weapon"
 }

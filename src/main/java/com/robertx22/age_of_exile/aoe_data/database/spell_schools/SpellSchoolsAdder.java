@@ -18,8 +18,9 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
     public void registerAll() {
 
         SchoolBuilder.of(BARD, "Bard")
-            .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 0))
-            .addSpell(SpellKeys.POWER_CHORD.id, new PointData(0, 1))
+
+            .addSpell(SpellKeys.POWER_CHORD.id, new PointData(0, 0))
+            .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 2))
 
             .addSpell(HolySpells.SHOOTING_STAR, new PointData(1, 2))
             .addSpell(HolySpells.UNDYING_WILL, new PointData(3, 2))

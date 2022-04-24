@@ -1,7 +1,6 @@
 {
   "id": "sword",
   "weight": 1000,
-  "energy_cost": 4,
   "model_num": 1,
   "fam": "Weapon"
 }

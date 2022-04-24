@@ -18,8 +18,6 @@ import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.Energy;
-import com.robertx22.age_of_exile.database.data.stats.types.resources.energy.EnergyRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.HealthRegen;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.mana.ManaRegen;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -267,7 +265,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
 
             @Override
             public List<StatModifier> onJewelry() {
-                return Arrays.asList(new StatModifier(2, 15, EnergyRegen.getInstance(), ModType.PERCENT));
+                return Arrays.asList(new StatModifier(2, 15, Stats.CRIT_DAMAGE.get(), ModType.FLAT));
             }
 
             @Override
@@ -291,6 +289,7 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
                 return Arrays.asList(new StatModifier(3, 12, Stats.CRIT_DAMAGE.get()));
             }
         }),
+        /*
         TOPAZ("topaz", "Topaz", TextFormatting.YELLOW, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {
@@ -307,6 +306,8 @@ public class GemItem extends BaseGemRuneItem implements IGUID, IAutoModel, IAuto
                 return Arrays.asList(new StatModifier(1, 3, Stats.RESOURCE_ON_HIT.get(new ResourceAndAttack(ResourceType.energy, AttackType.all))));
             }
         }),
+
+         */
         AMETHYST("amethyst", "Amethyst", TextFormatting.DARK_PURPLE, new GemStatPerTypes() {
             @Override
             public List<StatModifier> onArmor() {

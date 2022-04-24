@@ -9,7 +9,6 @@ spring_blossoms
 test_runic_spell
 insight
 air_disaster
-rabbit_paw
 heavenly_rainbow
 autumn_harvest
 skull_of_spirits

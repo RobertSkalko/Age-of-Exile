@@ -52,7 +52,6 @@ restore_type_is_leech
 attack_type_is_dot
 spell_has_tag_shout
 effect_has_tag_curse
-resource_type_is_energy
 restore_type_is_heal
 spell_has_tag_shield
 is_trident_wep_type

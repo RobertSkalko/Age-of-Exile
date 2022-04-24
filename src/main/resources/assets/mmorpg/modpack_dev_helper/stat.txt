@@ -6,11 +6,8 @@ fire_mana_leech
 mana_on_spell_hit
 bonus_exp_for_t4_mob
 offensive_eff_duration
-accuracy
 dmg_when_low_hp
-energy_regen
 trident_damage
-energy_on_attack_hit
 increase_healing
 scepter_damage
 bonus_armor_craft_yield
@@ -18,7 +15,6 @@ give_regenerate_to_allies_in_aoe
 bonus_exp
 bonus_favor
 all_water_damage
-energy
 heal_crit_dmg
 inc_effect_of_song_buff_given
 trap_spell_dmg
@@ -138,7 +134,6 @@ dot_dmg
 dmg_when_target_is_low_hp
 mana_shield
 bonus_night_yield
-spell_accuracy
 mana_per_sec
 mana_on_all_hit
 health_ooc_regen
@@ -170,7 +165,6 @@ intelligence
 song_spell_dmg
 song_eff_dur_u_cast
 spell_damage
-night_dmg
 earth_weapon_damage
 water_penetration
 technique_cdr
@@ -188,7 +182,6 @@ elemental_dot_damage
 give_taunt_stance_to_self_on_tick
 damage_cdr
 all_mana_leech
-energy_on_spell_hit
 offensive_eff_dur_u_cast
 magic_dmg_received
 dmg_per_curse_on_target
@@ -221,7 +214,6 @@ song_cdr
 damage_shield
 inc_effect_of_positive_buff_given
 physical_any_wep_damage
-day_dmg
 critical_damage
 inc_effect_of_food_buff_on_you
 mana_cost
@@ -234,7 +226,6 @@ health_regen
 inc_effect_of_negative_buff_on_you
 spell_fire_damage
 bonus_exp_for_t1_mob
-energy_on_all_hit
 cd_ticks
 chance_of_bleed
 total_damage
@@ -267,7 +258,6 @@ inc_aoe
 water_health_leech
 ele_crossbow_damage
 crit_water_dmg_mana
-energy_ooc_regen
 negative_eff_duration
 armor_per_10_mana
 curse_cdr
