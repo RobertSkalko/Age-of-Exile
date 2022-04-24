@@ -70,11 +70,6 @@ public class DamageAction extends SpellAction {
 
             }
 
-            // todo
-            for (LivingEntity target : targets) {
-                Load.spells(ctx.caster)
-                    .onSpellHitTarget(ctx.sourceEntity, target);
-            }
         }
 
     }

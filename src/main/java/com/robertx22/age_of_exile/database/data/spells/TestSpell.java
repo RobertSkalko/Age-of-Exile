@@ -50,12 +50,11 @@ public class TestSpell {
                         .put(MapField.IS_BLOCK_FALLING, true))
                     .onTick(2D))
 
-                .onTick(PartBuilder.damageInAoe(SpellCalcs.MAGIC_PROJECTILE, 3D)
-                    .addCondition(EffectCondition.DID_NOT_HIT_ENTITY_ALREADY.create())
-                    .addPerEntityHit(
-                        PartBuilder.playSound(SoundEvents.GENERIC_HURT)
-                    )
-                    .onTick(1D)) // todo
+                .onTick(PartBuilder.damageInAoe(SpellCalcs.ICE_SNAKE, 6D)
+                    .addCondition(EffectCondition.DID_NOT_AFFECT_ENTITY_ALREADY.create())
+                    .addPerEntityHit(PartBuilder.playSound(SoundEvents.GENERIC_HURT))
+                    .addPerEntityHit(PartBuilder.justAction(SpellAction.MARK_AS_AFFECTED_BY_ENTITY.create()))
+                    .onTick(1D))
                 .onExpire(PartBuilder.playSound(SoundEvents.GENERIC_HURT, 1D, 2D))
 
                 // LEAVE THIS SPACE

@@ -589,6 +589,7 @@
 
 	"mmorpg.calculation.explosive_arrow": "Explosive Arrow",
 	"mmorpg.calculation.frost_nova": "Frost Nova",
+	"mmorpg.calculation.frost_steps": "Frost Steps",
 	"mmorpg.calculation.healing_aria": "Healing Aria",
 	"mmorpg.calculation.ice_snake": "Ice Snake",
 	"mmorpg.calculation.magic_projectile": "Magic Projectile",
@@ -1230,24 +1231,6 @@
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
-	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
-	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
-	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
-	"mmorpg.unique_gear.insight.name": "Insight",
-	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
-	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
-	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
-	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
-	"mmorpg.unique_gear.test_runic_spell.name": "Bone Test",
-	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
-	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.axe": "Axe",
@@ -1278,6 +1261,24 @@
 	"mmorpg.gearslot.sword": "Sword",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
+	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
+	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
+	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
+	"mmorpg.unique_gear.insight.name": "Insight",
+	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
+	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
+	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
+	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
+	"mmorpg.unique_gear.test_runic_spell.name": "Bone Test",
+	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
+	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",

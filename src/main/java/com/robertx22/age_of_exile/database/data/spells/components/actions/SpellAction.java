@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.components.actions;
 
 import com.robertx22.age_of_exile.database.data.spells.components.BaseFieldNeeder;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
+import com.robertx22.age_of_exile.database.data.spells.components.MarkAsAffectedBySpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.special.IceNovaAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.vanity.*;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
@@ -53,6 +54,8 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static TeleportTargetToSourceAction TP_TARGET_TO_SELF = of(new TeleportTargetToSourceAction());
     public static IceNovaAction ICE_NOVA = of(new IceNovaAction());
     public static EffectCloudAction POTION_AREA_PARTICLES = of(new EffectCloudAction());
+    public static MarkAsAffectedEntityAction MARK_AS_AFFECTED_BY_ENTITY = of(new MarkAsAffectedEntityAction());
+    public static MarkAsAffectedBySpellAction MARK_AS_AFFECTED_BY_SPELL = of(new MarkAsAffectedBySpellAction());
 
     private static <T extends SpellAction> T of(T s) {
         MAP.put(s.GUID(), s);

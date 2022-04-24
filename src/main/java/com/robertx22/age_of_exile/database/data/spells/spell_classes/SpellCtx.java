@@ -51,8 +51,7 @@ public class SpellCtx {
         Objects.requireNonNull(sourceEntity);
         Objects.requireNonNull(data);
 
-        Load.spells(caster)
-            .onSpellHitTarget(sourceEntity, target);
+        Load.spells(caster).mobsHit.onSpellHitTarget(sourceEntity, target);
         return new SpellCtx(EntityActivation.ON_HIT, sourceEntity, caster, target, target.blockPosition(), target.position(), data);
     }
 

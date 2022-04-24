@@ -6,8 +6,10 @@ healing_aura
 venom_strike
 chill_eruption
 chilling_field
+frost_steps
 whirlwind
 breath
+ice_snake
 nature_balm
 tidal_wave
 arrow_storm

@@ -24,6 +24,18 @@ public class SpellCalcs {
         .addAllElementsScaling(1)
         .build();
 
+    public static ValueCalculation FROST_STEPS = ValueCalcBuilder.of("frost_steps", "Frost Steps")
+        .damage(DamageCalculation.Builder.of(Elements.Water)
+            .base(4)
+            .scaling(1)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(1)
+            .scaling(0.75F)
+            .build())
+        .addAllElementsScaling(0.5F)
+        .build();
+
     public static ValueCalculation EXPLOSIVE_ARROW = ValueCalcBuilder.of("explosive_arrow", "Explosive Arrow")
         .damage(DamageCalculation.Builder.of(Elements.Fire)
             .base(5)

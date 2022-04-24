@@ -7,16 +7,26 @@ import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 
 import java.util.Arrays;
 
-public class DidNotHitAlready extends EffectCondition {
+public class DidNotAffectByEntity extends EffectCondition {
 
-    public DidNotHitAlready() {
+    public DidNotAffectByEntity() {
         super(Arrays.asList(MapField.CHANCE));
     }
 
     @Override
     public boolean canActivate(SpellCtx ctx, MapHolder data) {
-        return !Load.spells(ctx.caster)
-            .alreadyHit(ctx.sourceEntity, ctx.target);
+
+        if (ctx.target == null) {
+            return false;
+        }
+
+        try {
+            return !Load.spells(ctx.caster).mobsAffectedByEntity
+                .alreadyHit(ctx.sourceEntity, ctx.target);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public MapHolder create() {
@@ -27,6 +37,6 @@ public class DidNotHitAlready extends EffectCondition {
 
     @Override
     public String GUID() {
-        return "did_not_hit_entity_already";
+        return "did_not_affect_by_entity_already";
     }
 }

@@ -28,7 +28,6 @@ import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.text.TextFormatting;
 
 public class BeneficialEffects implements ExileRegistryInit {
 
@@ -94,10 +93,6 @@ public class BeneficialEffects implements ExileRegistryInit {
                         .put(MapField.BLOCK_FALL_SPEED, 0D)
                         .put(MapField.FIND_NEAREST_SURFACE, true)
                         .put(MapField.IS_BLOCK_FALLING, false))
-                    .onTick(10D))
-                .onTick("block", PartBuilder.justAction(SpellAction.POTION_AREA_PARTICLES.create(TextFormatting.BLUE, 10))
-                    .onTick(10D))
-                .onTick("block", PartBuilder.damageInAoe(SpellCalcs.FROST_NOVA, 2D)
                     .onTick(10D))
 
                 .buildForEffect())

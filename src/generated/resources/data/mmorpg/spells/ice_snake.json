@@ -29,12 +29,13 @@
           {
             "type": "projectile",
             "map": {
-              "proj_speed": 2.5,
+              "proj_speed": 0.7,
               "item": "minecraft:air",
               "entity_name": "default_entity_name",
               "gravity": false,
               "proj_count": 1.0,
-              "life_ticks": 8.0,
+              "expire_on_en_hit": false,
+              "life_ticks": 60.0,
               "proj_en": "mmorpg:spell_projectile"
             }
           }
@@ -79,7 +80,7 @@
             {
               "type": "particles_in_radius",
               "map": {
-                "particle_type": "minecraft:crit",
+                "particle_type": "minecraft:enchanted_hit",
                 "motion": "None",
                 "radius": 0.3,
                 "particle_count": 5.0
@@ -119,13 +120,21 @@
               "map": {
                 "entity_name": "block",
                 "is_falling_block": true,
-                "block_fall_speed": 0.0,
-                "life_ticks": 80.0,
-                "block": "minecraft:ice"
+                "block_fall_speed": -0.02,
+                "life_ticks": 20.0,
+                "block": "minecraft:ice",
+                "find_surface": false
               }
             }
           ],
-          "ifs": [],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 2.0
+              }
+            }
+          ],
           "en_preds": []
         },
         {
@@ -135,7 +144,7 @@
               "map": {
                 "selection_type": "RADIUS",
                 "en_predicate": "enemies",
-                "radius": 2.0
+                "radius": 6.0
               }
             }
           ],
@@ -148,6 +157,10 @@
             }
           ],
           "ifs": [
+            {
+              "type": "did_not_affect_by_entity_already",
+              "map": {}
+            },
             {
               "type": "x_ticks_condition",
               "map": {
@@ -167,6 +180,17 @@
                     "sound": "minecraft:entity.generic.hurt",
                     "pitch": 1.0
                   }
+                }
+              ],
+              "ifs": [],
+              "en_preds": []
+            },
+            {
+              "targets": [],
+              "acts": [
+                {
+                  "type": "mark_as_affected",
+                  "map": {}
                 }
               ],
               "ifs": [],
@@ -200,8 +224,8 @@
   "config": {
     "swing_arm": true,
     "castingWeapon": "MAGE_WEAPON",
-    "mana_cost": 0,
-    "cooldown_ticks": 15,
+    "mana_cost": 20,
+    "cooldown_ticks": 100,
     "style": "magic",
     "tags": [
       "projectile",

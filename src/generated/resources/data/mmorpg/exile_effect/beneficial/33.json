@@ -12,58 +12,6 @@
   "spell": {
     "on_cast": [],
     "entity_components": {
-      "block": [
-        {
-          "targets": [],
-          "acts": [
-            {
-              "type": "effect_cloud",
-              "map": {
-                "color": 5592575.0,
-                "potion_dur": 200.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "x_ticks_condition",
-              "map": {
-                "tick_rate": 10.0
-              }
-            }
-          ],
-          "en_preds": []
-        },
-        {
-          "targets": [
-            {
-              "type": "aoe",
-              "map": {
-                "selection_type": "RADIUS",
-                "en_predicate": "enemies",
-                "radius": 2.0
-              }
-            }
-          ],
-          "acts": [
-            {
-              "type": "damage",
-              "map": {
-                "value_calculation": "frost_nova"
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "x_ticks_condition",
-              "map": {
-                "tick_rate": 10.0
-              }
-            }
-          ],
-          "en_preds": []
-        }
-      ],
       "default_entity_name": [
         {
           "targets": [],

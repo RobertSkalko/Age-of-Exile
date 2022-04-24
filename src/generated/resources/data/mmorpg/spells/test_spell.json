@@ -144,7 +144,7 @@
               "map": {
                 "selection_type": "RADIUS",
                 "en_predicate": "enemies",
-                "radius": 1.0
+                "radius": 6.0
               }
             }
           ],
@@ -152,13 +152,13 @@
             {
               "type": "damage",
               "map": {
-                "value_calculation": "magic_projectile"
+                "value_calculation": "ice_snake"
               }
             }
           ],
           "ifs": [
             {
-              "type": "did_not_hit_entity_already",
+              "type": "did_not_affect_by_entity_already",
               "map": {}
             },
             {
@@ -180,6 +180,17 @@
                     "sound": "minecraft:entity.generic.hurt",
                     "pitch": 1.0
                   }
+                }
+              ],
+              "ifs": [],
+              "en_preds": []
+            },
+            {
+              "targets": [],
+              "acts": [
+                {
+                  "type": "mark_as_affected",
+                  "map": {}
                 }
               ],
               "ifs": [],

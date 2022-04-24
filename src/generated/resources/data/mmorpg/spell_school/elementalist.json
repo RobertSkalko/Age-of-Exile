@@ -1,6 +1,10 @@
 {
   "id": "elementalist",
   "spells": {
+    "ice_snake": {
+      "x": 10,
+      "y": 0
+    },
     "nature_balm": {
       "x": 5,
       "y": 1
@@ -11,7 +15,7 @@
     },
     "ice_shield": {
       "x": 10,
-      "y": 1
+      "y": 2
     },
     "meteor": {
       "x": 0,
@@ -23,11 +27,11 @@
     },
     "ice_nova": {
       "x": 10,
-      "y": 0
+      "y": 1
     },
     "frost_steps": {
       "x": 10,
-      "y": 2
+      "y": 3
     },
     "poison_cloud": {
       "x": 5,

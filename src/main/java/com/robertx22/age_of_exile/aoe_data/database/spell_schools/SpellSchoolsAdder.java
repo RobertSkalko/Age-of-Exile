@@ -66,9 +66,10 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(SpellKeys.REFRESH.id, new PointData(5, 2))
 
             // ice
-            .addSpell(SpellKeys.ICE_NOVA.id, new PointData(10, 0))
-            .addSpell(SpellKeys.ICE_SHIELD.id, new PointData(10, 1))
-            .addSpell(SpellKeys.FROST_STEPS.id, new PointData(10, 2))
+            .addSpell(SpellKeys.ICE_SNAKE.id, new PointData(10, 0))
+            .addSpell(SpellKeys.ICE_NOVA.id, new PointData(10, 1))
+            .addSpell(SpellKeys.ICE_SHIELD.id, new PointData(10, 2))
+            .addSpell(SpellKeys.FROST_STEPS.id, new PointData(10, 3))
 
             // misc
             .addSpell(SpellKeys.TELEPORT.id, new PointData(1, 5))

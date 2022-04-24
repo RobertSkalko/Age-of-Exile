@@ -311,7 +311,7 @@ public class SimpleProjectileEntity extends AbstractArrowEntity implements IMyRe
             }
 
             if (caster != null) {
-                if (!Load.spells(caster)
+                if (!Load.spells(caster).mobsHit
                     .alreadyHit(this, en)) {
                     this.getSpellData()
                         .getSpell()

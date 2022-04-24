@@ -1,14 +1,17 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.reworked_spells;
 
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.ExileEffectActionBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.builders.VanillaEffectActionBuilder;
 import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
+import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
@@ -43,32 +46,51 @@ public class ElementalistSpells implements ExileRegistryInit {
         SpellBuilder.buffAlliesSpell(SpellKeys.FROST_STEPS,
                 SpellConfiguration.Builder.instant(20, 60), "Frost Steps",
                 BeneficialEffects.FROST_STEPS, 15)
+
+            // todo this is a bit messy code
+            // but basically when effects spawn an entity,
+            // the entity's ontick calls the spell's components, not the effect's
+
+            // .onTick("block", PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 25D, 0.5D)
+            //   .onTick(1D))
+            .onTick("block", PartBuilder.groundParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 0.4D, 0.1D)
+                .onTick(1D))
+
+            .onTick("block", new ExileEffectActionBuilder(NegativeEffects.CHILL).targetEnemies()
+                .radius(2)
+                .seconds(5)
+                .build())
+
             .build();
         //buffs
 
-        SpellBuilder.of(SpellKeys.ICE_SNAKE, SpellConfiguration.Builder.instant(0, 15), "Ice Snake",
+        SpellBuilder.of(SpellKeys.ICE_SNAKE, SpellConfiguration.Builder.instant(20, 100), "Ice Snake",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
             .manualDesc(
                 "Summon an ice snake in your direction, slowing enemies.")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .onCast(PartBuilder.playSound(SoundRefs.FISHING_THROW_LOW_PITCH))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 8D, false)
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 0.7D, SlashEntities.SIMPLE_PROJECTILE.get(), 60D, false)
+                .put(MapField.EXPIRE_ON_ENTITY_HIT, false)
+                .put(MapField.GRAVITY, false)
             ))
             .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ITEM_SNOWBALL, 5D, 0.5D))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 5D, 0.3D))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ENCHANTED_HIT, 5D, 0.3D))
 
             .onTick(PartBuilder.playSound(SoundRefs.ICE_BREAK))
 
-            .onTick(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.ICE, 20D * 4)
-                .put(MapField.ENTITY_NAME, "block")
-                .put(MapField.BLOCK_FALL_SPEED, 0D)
-                .put(MapField.IS_BLOCK_FALLING, true)))
+            .onTick(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.ICE, 20D * 1)
+                    .put(MapField.ENTITY_NAME, "block")
+                    .put(MapField.BLOCK_FALL_SPEED, -0.02D)
+                    .put(MapField.FIND_NEAREST_SURFACE, false)
+                    .put(MapField.IS_BLOCK_FALLING, true))
+                .onTick(2D))
 
-            .onTick(PartBuilder.damageInAoe(SpellCalcs.MAGIC_PROJECTILE, 2D)
-                .addPerEntityHit(
-                    PartBuilder.playSound(SoundEvents.GENERIC_HURT)
-                )
-                .onTick(1D)) // todo
+            .onTick(PartBuilder.damageInAoe(SpellCalcs.ICE_SNAKE, 6D)
+                .addCondition(EffectCondition.DID_NOT_AFFECT_ENTITY_ALREADY.create())
+                .addPerEntityHit(PartBuilder.playSound(SoundEvents.GENERIC_HURT))
+                .addPerEntityHit(PartBuilder.justAction(SpellAction.MARK_AS_AFFECTED_BY_ENTITY.create()))
+                .onTick(1D))
             .onExpire(PartBuilder.playSound(SoundEvents.GENERIC_HURT, 1D, 2D))
 
             .build();
@@ -190,6 +212,36 @@ public class ElementalistSpells implements ExileRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.FALLING_WATER, 100D, 1.5D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.DRIPPING_WATER, 50D, 1.5D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 50D, 1.5D))
+            .build();
+
+        SpellBuilder.of(SpellKeys.ICE_SNAKE, SpellConfiguration.Builder.instant(20, 100), "Ice Snake",
+                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
+            .manualDesc(
+                "Summon an ice snake in your direction, slowing enemies.")
+            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .onCast(PartBuilder.playSound(SoundRefs.FISHING_THROW_LOW_PITCH))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 0.7D, SlashEntities.SIMPLE_PROJECTILE.get(), 60D, false)
+                .put(MapField.EXPIRE_ON_ENTITY_HIT, false)
+                .put(MapField.GRAVITY, false)
+            ))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ITEM_SNOWBALL, 5D, 0.5D))
+            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ENCHANTED_HIT, 5D, 0.3D))
+
+            .onTick(PartBuilder.playSound(SoundRefs.ICE_BREAK))
+
+            .onTick(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.ICE, 20D * 1)
+                    .put(MapField.ENTITY_NAME, "block")
+                    .put(MapField.BLOCK_FALL_SPEED, -0.02D)
+                    .put(MapField.FIND_NEAREST_SURFACE, false)
+                    .put(MapField.IS_BLOCK_FALLING, true))
+                .onTick(2D))
+
+            .onTick(PartBuilder.damageInAoe(SpellCalcs.MAGIC_PROJECTILE, 6D)
+                .addCondition(EffectCondition.DID_NOT_AFFECT_ENTITY_ALREADY.create())
+                .addPerEntityHit(PartBuilder.playSound(SoundEvents.GENERIC_HURT))
+                .addPerEntityHit(PartBuilder.justAction(SpellAction.MARK_AS_AFFECTED_BY_ENTITY.create()))
+                .onTick(1D))
+            .onExpire(PartBuilder.playSound(SoundEvents.GENERIC_HURT, 1D, 2D))
             .build();
 
     }

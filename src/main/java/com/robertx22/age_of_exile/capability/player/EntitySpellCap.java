@@ -176,38 +176,46 @@ public class EntitySpellCap {
             return this.spellData;
         }
 
-        public HashMap<UUID, List<UUID>> mobsHit = new HashMap<>();
+        public static class AlreadyHitData {
+            public HashMap<UUID, List<UUID>> mobsHit = new HashMap<>();
 
-        public void onSpellHitTarget(Entity spellEntity, LivingEntity target) {
+            public void onSpellHitTarget(Entity spellEntity, LivingEntity target) {
 
-            UUID id = target.getUUID();
+                UUID id = target.getUUID();
 
-            UUID key = spellEntity.getUUID();
+                UUID key = spellEntity.getUUID();
 
-            if (!mobsHit.containsKey(key)) {
-                mobsHit.put(key, new ArrayList<>());
+                if (!mobsHit.containsKey(key)) {
+                    mobsHit.put(key, new ArrayList<>());
+                }
+                mobsHit.get(key)
+                    .add(id);
+
+                if (mobsHit.size() > 50) {
+                    mobsHit.clear();
+                }
+
             }
-            mobsHit.get(key)
-                .add(id);
 
-            if (mobsHit.size() > 50) {
-                mobsHit.clear();
+            public boolean alreadyHit(Entity spellEntity, LivingEntity target) {
+                // this makes sure piercing projectiles hit target only once and then pass through
+                // i can replace this with an effect that tags them too
+
+                UUID key = spellEntity.getUUID();
+
+                if (!mobsHit.containsKey(key)) {
+                    return false;
+                }
+                boolean hit = mobsHit.get(key)
+                    .contains(target.getUUID());
+
+                return hit;
             }
-
         }
 
-        public boolean alreadyHit(Entity spellEntity, LivingEntity target) {
-            // this makes sure piercing projectiles hit target only once and then pass through
-            // i can replace this with an effect that tags them too
-
-            UUID key = spellEntity.getUUID();
-
-            if (!mobsHit.containsKey(key)) {
-                return false;
-            }
-            return mobsHit.get(key)
-                .contains(target.getUUID());
-        }
+        public AlreadyHitData mobsHit = new AlreadyHitData();
+        public AlreadyHitData mobsAffectedByEntity = new AlreadyHitData();
+        public AlreadyHitData mobsAffectedBySpell = new AlreadyHitData();
 
         public boolean hasSpell(Spell spell) {
             return this.spellData.spells.contains(spell.GUID());
