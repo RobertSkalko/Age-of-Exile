@@ -23,6 +23,7 @@ public class StatConditions implements ExileRegistryInit {
     public static StatCondition IF_CRIT = new IsBooleanTrueCondition(EventData.CRIT);
     public static StatCondition IF_NOT_CRIT = new IsBooleanTrueCondition(EventData.CRIT).flipCondition();
     public static StatCondition IF_RANDOM_ROLL = new RandomRollCondition();
+    public static RandomRollBasedOnPercentDmgCondition RANDOM_ROLL_BASED_ON_PERCENT_HEALTH_DAMAGED = new RandomRollBasedOnPercentDmgCondition();
     public static StatCondition REQUIRE_CHARGED_ATTACK = new RequireChargedAttack();
     public static StatCondition IS_SPELL = new IsSpellCondition();
     public static StatCondition ELEMENT_MATCH_STAT = new ElementMatchesStat();
@@ -111,6 +112,7 @@ public class StatConditions implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
+        RANDOM_ROLL_BASED_ON_PERCENT_HEALTH_DAMAGED.addToSerializables();
         ATTACK_TYPE_MATCHES.addToSerializables();
         REQUIRE_CHARGED_ATTACK.addToSerializables();
         IS_NOT_IN_COMBAT.addToSerializables();

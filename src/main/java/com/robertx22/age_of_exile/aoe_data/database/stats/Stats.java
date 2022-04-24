@@ -340,18 +340,15 @@ public class Stats implements ExileRegistryInit {
         .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IF_RANDOM_ROLL)
+        .addCondition(StatConditions.RANDOM_ROLL_BASED_ON_PERCENT_HEALTH_DAMAGED)
         .addCondition(StatConditions.ELEMENT_MATCH_STAT)
         .addCondition(StatConditions.IS_ATTACK_OR_SPELL_ATTACK)
         .addEffect(x -> StatEffects.GIVE_EFFECT_TO_TARGET.get(x))
-        .setLocName(x -> Stat.format(
-            "Your " + x.element.getIconNameFormat() + " Attacks have " + Stat.VAL1 + "% chance of applying " + x.locname
-        ))
+        .setLocDesc(x -> x.locname + " Chance")
         .setLocDesc(x -> "Chance to give effect")
         .modifyAfterDone(x -> {
             x.min = 0;
             x.max = 100;
-            x.is_long = true;
             x.is_perc = true;
             x.scaling = StatScaling.NONE;
         })

@@ -83,11 +83,15 @@ public class SpellCalcs {
 
     // todo redo all these
     public static ValueCalculation BLEED = ValueCalcBuilder.of("bleed")
-        .baseValue(4)
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(4)
+            .build())
         .build();
 
     public static ValueCalculation BURN = ValueCalcBuilder.of("burn")
-        .baseValue(4)
+        .damage(DamageCalculation.Builder.of(Elements.Fire)
+            .base(4)
+            .build())
         .build();
 
     public static ValueCalculation PETRIFY = ValueCalcBuilder.of("petrify")
