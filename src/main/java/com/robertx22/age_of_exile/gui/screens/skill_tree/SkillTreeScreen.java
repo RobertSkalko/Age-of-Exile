@@ -37,7 +37,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     static ResourceLocation BIG_PANEL = new ResourceLocation(SlashRef.MODID, "textures/gui/skill_tree/background.png");
     static ResourceLocation SMALL_PANEL = new ResourceLocation(SlashRef.MODID, "textures/gui/skill_tree/small_panel.png");
 
-    public SchoolType schoolType;
+    public SchoolType treeType;
 
     public SkillTreeScreen(SchoolType type) {
         super(Minecraft.getInstance()
@@ -45,7 +45,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             .getGuiScaledWidth(), Minecraft.getInstance()
             .getWindow()
             .getGuiScaledHeight());
-        this.schoolType = type;
+        this.treeType = type;
 
     }
 
@@ -78,16 +78,16 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
     HashMap<Widget, PointData> originalButtonLocMap = new HashMap<>();
     HashMap<PointData, PerkButton> pointPerkButtonMap = new HashMap<>();
 
-    public List<TalentTree> schoolsInOrder;
+    public List<TalentTree> orderedTrees;
 
     public TalentTree getSchoolByIndexAllowsOutOfBounds(int i) {
-        if (i >= schoolsInOrder.size()) {
-            return schoolsInOrder.get(i - schoolsInOrder.size());
+        if (i >= orderedTrees.size()) {
+            return orderedTrees.get(i - orderedTrees.size());
         }
         if (i < 0) {
-            return schoolsInOrder.get(schoolsInOrder.size() + i);
+            return orderedTrees.get(orderedTrees.size() + i);
         }
-        return schoolsInOrder.get(i);
+        return orderedTrees.get(i);
 
     }
 
@@ -95,7 +95,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
     RPGPlayerData playerData = Load.playerRPGData(mc.player);
 
-    public TalentTree school;
+    public TalentTree tree;
 
     @Override
     protected void init() {
@@ -103,13 +103,13 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
 
         try {
 
-            schoolsInOrder = ExileDB.TalentTrees()
+            orderedTrees = ExileDB.TalentTrees()
                 .getFiltered(x -> {
-                    return x.getSchool_type() == this.schoolType;
+                    return x.getSchool_type() == this.treeType;
                 });
-            schoolsInOrder.sort(Comparator.comparingInt(x -> x.order));
+            orderedTrees.sort(Comparator.comparingInt(x -> x.order));
 
-            this.school = schoolsInOrder.get(0);
+            this.tree = orderedTrees.get(0);
 
             refreshButtons();
 
@@ -134,7 +134,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             if (b instanceof PerkButton) {
                 PerkButton pb = (PerkButton) b;
 
-                Set<PointData> connections = this.school.calcData.connections.getOrDefault(pb.point, def);
+                Set<PointData> connections = this.tree.calcData.connections.getOrDefault(pb.point, def);
 
                 int x1 = pb.x + pb.getWidth() / 2;
                 int y1 = pb.y + pb.getHeight() / 2;
@@ -168,7 +168,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                         int x = (int) (point.x - ((float) size / 2));
                         int y = (int) (point.y - ((float) size / 2));
 
-                        newButton(new ConnectionButton(this, school, p, pb.point, x, y));
+                        newButton(new ConnectionButton(this, tree, p, pb.point, x, y));
 
                     }
 
@@ -191,7 +191,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         this.scrollX = 0;
         this.scrollY = 0;
 
-        for (Map.Entry<PointData, String> e : school.calcData.perks.entrySet()) {
+        for (Map.Entry<PointData, String> e : tree.calcData.perks.entrySet()) {
             Perk perk = ExileDB.Perks()
                 .get(e.getValue());
 
@@ -212,7 +212,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
                 int x = getPosForPoint(e.getKey()).x + addx - subx + TalentTreeButton.XSIZE / 2;
                 int y = getPosForPoint(e.getKey()).y + addy - suby + TalentTreeButton.YSIZE / 2;
 
-                this.newButton(new PerkButton(this, playerData, school, e.getKey(), perk, x, y));
+                this.newButton(new PerkButton(this, playerData, tree, e.getKey(), perk, x, y));
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -222,11 +222,11 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             .getGuiScaledWidth() / 2 - TalentTreeButton.XSIZE / 2;
         int sy = 0;
 
-        if (this.schoolsInOrder.size() > 1) {
+        if (this.orderedTrees.size() > 1) {
 
-            this.addButton(new TalentTreeButton(this, school, sx, sy));
+            this.addButton(new TalentTreeButton(this, tree, sx, sy));
 
-            int place = this.schoolsInOrder.indexOf(school);
+            int place = this.orderedTrees.indexOf(tree);
 
             for (int i = 0; i < 2; i++) {
                 int xadd = TalentTreeButton.XSIZE * (i + 1) + i + 1;
@@ -261,8 +261,8 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         float halfy = mc.getWindow()
             .getGuiScaledHeight() / 2F;
 
-        float x = (point.x - school.calcData.center.x) * PerkButton.SPACING + 2;
-        float y = (point.y - school.calcData.center.y) * PerkButton.SPACING + 2;
+        float x = (point.x - tree.calcData.center.x) * PerkButton.SPACING + 2;
+        float y = (point.y - tree.calcData.center.y) * PerkButton.SPACING + 2;
 
         x -= TalentTreeButton.XSIZE / 2F;
         y -= TalentTreeButton.YSIZE / 2F;
@@ -447,7 +447,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
             .getGuiScaledWidth() / 2 - BG_WIDTH / 2;
         int yp = 0;
 
-        if (this.schoolsInOrder.size() > 1) {
+        if (this.orderedTrees.size() > 1) {
             blit(matrix, xp, yp, 0, 0, BG_WIDTH, 39);
         }
 
@@ -462,7 +462,7 @@ public abstract class SkillTreeScreen extends BaseScreen implements INamedScreen
         xp = savedx;
         yp = savedy;
 
-        String text = "Points: " + playerData.talents.getFreePoints(Load.Unit(mc.player), this.schoolType);
+        String text = "Points: " + playerData.talents.getFreePoints(Load.Unit(mc.player), this.treeType);
 
         int tx = xp - mc.font.width(text) - 10;
         int yx = yp + BG_HEIGHT / 2 - mc.font.lineHeight / 2;

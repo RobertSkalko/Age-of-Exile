@@ -179,8 +179,8 @@ public class EntitySpellCap {
             if (!school.isLevelEnoughForSpell(entity, spell)) {
                 return false;
             }
-            if (spellData.schools.size() > 1) {
-                if (!spellData.schools.contains(school.GUID())) {
+            if (!spellData.school.isEmpty()) {
+                if (!spellData.school.equals(school.GUID())) {
                     return false;
                 }
             }

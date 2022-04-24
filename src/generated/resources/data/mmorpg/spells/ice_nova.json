@@ -7,26 +7,6 @@
         "targets": [],
         "acts": [
           {
-            "type": "sound",
-            "map": {
-              "volume": 1.0,
-              "sound": "minecraft:entity.generic.explode",
-              "pitch": 1.0
-            }
-          }
-        ],
-        "ifs": [
-          {
-            "type": "on_spell_cast",
-            "map": {}
-          }
-        ],
-        "en_preds": []
-      },
-      {
-        "targets": [],
-        "acts": [
-          {
             "type": "particles_in_radius",
             "map": {
               "particle_type": "minecraft:smoke",

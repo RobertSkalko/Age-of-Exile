@@ -42,6 +42,18 @@ public class SpellScreen extends BaseScreen implements INamedScreen, ILeftRight 
     public SpellScreen() {
         super(sizeX, sizeY);
         IS_PICKING_HOTBAR_SPELL = false;
+
+        // always show the learned one first
+        int i = 0;
+        for (SpellSchool school : schoolsInOrder) {
+            if (Load.spells(mc.player)
+                .getSpellsData().school.equals(school.GUID())) {
+                this.currentIndex = i;
+                break;
+            }
+            i++;
+        }
+
     }
 
     @Override

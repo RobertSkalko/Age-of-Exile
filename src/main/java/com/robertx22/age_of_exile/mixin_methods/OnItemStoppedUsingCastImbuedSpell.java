@@ -26,9 +26,11 @@ public class OnItemStoppedUsingCastImbuedSpell {
         });
 
         ForgeEvents.registerForgeEvent(CriticalHitEvent.class, event -> {
-            Load.spells(event.getPlayer())
-                .getCastingData()
-                .tryCastImbuedSpell(event.getPlayer(), ImbueType.ON_CRIT);
+            if (event.isVanillaCritical()) {
+                Load.spells(event.getPlayer())
+                    .getCastingData()
+                    .tryCastImbuedSpell(event.getPlayer(), ImbueType.ON_CRIT);
+            }
         });
     }
 

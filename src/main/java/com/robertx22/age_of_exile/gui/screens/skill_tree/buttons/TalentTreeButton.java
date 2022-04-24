@@ -30,7 +30,7 @@ public class TalentTreeButton extends ImageButton implements IMarkOnTop {
 
     @Override
     public void onPress() {
-        screen.school = school;
+        screen.tree = school;
         screen.refreshButtons();
     }
 

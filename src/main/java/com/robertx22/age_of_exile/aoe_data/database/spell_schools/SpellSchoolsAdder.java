@@ -2,25 +2,22 @@ package com.robertx22.age_of_exile.aoe_data.database.spell_schools;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.impl.TotemSpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.schools.HolySpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.schools.NatureSpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.schools.RangerSpells;
-import com.robertx22.age_of_exile.aoe_data.database.spells.schools.WaterSpells;
 import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.saveclasses.PointData;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 
 public class SpellSchoolsAdder implements ExileRegistryInit {
 
-    public static String DIVINE = "divine";
-    public static String HUNTING = "hunting";
-    public static String FIRE = "fire";
-    public static String NATURE = "nature";
-    public static String WATER = "water";
+    public static String BARD = "bard";
+    public static String HUNTER = "hunter";
+    public static String ELEMENTALIST = "elementalist";
+    public static String WARRIOR = "warrior";
 
     @Override
     public void registerAll() {
 
-        SchoolBuilder.of(DIVINE, "Divine")
+        SchoolBuilder.of(BARD, "Bard")
             .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 0))
 
             .addSpell(HolySpells.SHOOTING_STAR, new PointData(1, 2))
@@ -40,7 +37,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .build();
 
-        SchoolBuilder.of(HUNTING, "Hunting")
+        SchoolBuilder.of(HUNTER, "Hunting")
             .addSpell(RangerSpells.ARROW_STORM, new PointData(0, 0))
             .addSpell(RangerSpells.MAKE_ARROWS, new PointData(10, 0))
 
@@ -63,44 +60,30 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .build();
 
-        SchoolBuilder.of(NATURE, "Nature")
+        SchoolBuilder.of(ELEMENTALIST, "Elementalist")
+            //.addSpell(SpellKeys.MAGIC_PROJECTILE.id, new PointData(0, 0))
 
-            .addSpell(NatureSpells.POISON_WEAPONS, new PointData(7, 0))
+            .addSpell(SpellKeys.METEOR.id, new PointData(0, 0))
+            .addSpell(SpellKeys.POISON_CLOUD.id, new PointData(5, 0))
+            .addSpell(SpellKeys.ICE_NOVA.id, new PointData(10, 0))
 
-            .addSpell(NatureSpells.THORN_ARMOR, new PointData(10, 1))
-            .addSpell(NatureSpells.NATURE_BALM, new PointData(2, 1))
+            //.addSpell(SpellKeys.METEOR.id, new PointData(0, 1))
+            .addSpell(SpellKeys.NATURE_BALM.id, new PointData(5, 1))
+            .addSpell(SpellKeys.ICE_SHIELD.id, new PointData(10, 1))
 
-            .addSpell(NatureSpells.ENTANGLE_SEED, new PointData(4, 2))
+            // misc
+            .addSpell(SpellKeys.TELEPORT.id, new PointData(1, 5))
+
+            .build();
+
+        SchoolBuilder.of(WARRIOR, "Warrior")
+
+            .addSpell(SpellKeys.METEOR_STRIKE.id, new PointData(0, 0))
+            .addSpell(SpellKeys.VENOM_STRIKE.id, new PointData(5, 0))
+            .addSpell(SpellKeys.TIDAL_WAVE.id, new PointData(10, 0))
+
             .addSpell(TotemSpells.HEAL_TOTEM_ID, new PointData(6, 2))
             .addSpell(TotemSpells.MANA_TOTEM_ID, new PointData(7, 2))
-
-            .addSpell(SpellKeys.POISON_CLOUD.id, new PointData(2, 3))
-
-            .addSpell(NatureSpells.REFRESH, new PointData(10, 6))
-
-            .build();
-
-        SchoolBuilder.of(FIRE, "Fire")
-            .addSpell(SpellKeys.MAGIC_PROJECTILE.id, new PointData(0, 0))
-
-            .addSpell(SpellKeys.METEOR.id, new PointData(2, 3))
-
-            .build();
-
-        SchoolBuilder.of(WATER, "Water")
-            .addSpell(SpellKeys.TIDAL_WAVE.id, new PointData(4, 0))
-
-            .addSpell(SpellKeys.ICE_SHIELD.id, new PointData(2, 1))
-
-            .addSpell(SpellKeys.ICE_SHIELD.id, new PointData(7, 1))
-
-            .addSpell(WaterSpells.ICY_WEAPON, new PointData(10, 2))
-            .addSpell(WaterSpells.CHILLING_FIELD, new PointData(5, 2))
-
-            .addSpell(WaterSpells.NOURISHMENT, new PointData(7, 3))
-            .addSpell(WaterSpells.CHILL_ERUPTION, new PointData(2, 3))
-
-            //.addSynergy(SynergiesAdder.FROSTBALL_CHILL, new PointData(0, 1))
 
             .build();
 

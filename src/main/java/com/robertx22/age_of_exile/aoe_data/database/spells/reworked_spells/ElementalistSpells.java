@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.reworked_spells;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
@@ -22,10 +23,22 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 
-public class MageSpells implements ExileRegistryInit {
+public class ElementalistSpells implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
+
+        //buffs
+        SpellBuilder.buffSelfSpell(SpellKeys.ICE_SHIELD,
+                SpellConfiguration.Builder.instant(20, 60), "Ice Shield",
+                BeneficialEffects.FROST_ARMOR, 30)
+            .build();
+
+        SpellBuilder.buffAlliesSpell(SpellKeys.NATURE_BALM,
+                SpellConfiguration.Builder.instant(20, 60), "Nature's Balm",
+                BeneficialEffects.REGENERATE, 15)
+            .build();
+        //buffs
 
         SpellBuilder.of(SpellKeys.MAGIC_PROJECTILE, SpellConfiguration.Builder.instant(0, 15), "Magic Projectile",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
@@ -76,7 +89,7 @@ public class MageSpells implements ExileRegistryInit {
             .manualDesc(
                 "Damage enemies around you")
             .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundRefs.EXPLOSION))
+            //.onCast(PartBuilder.playSound(SoundRefs.EXPLOSION))
 
             .onCast(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 3D, 3D))
             .onCast(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 200D, 3D))
@@ -117,6 +130,16 @@ public class MageSpells implements ExileRegistryInit {
                 .onTick(20D)
                 .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
             )
+            .build();
+
+        SpellBuilder.of(SpellKeys.TELEPORT, SpellConfiguration.Builder.instant(30, 20 * 15), "Teleport",
+                Arrays.asList(SpellTag.damage, SpellTag.movement)
+            )
+            .manualDesc("Teleport yourself in the direction you're looking at.")
+            .teleportForward()
+            .onCast(PartBuilder.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1D, 1D))
+            .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 30D, 2D))
+
             .build();
 
     }

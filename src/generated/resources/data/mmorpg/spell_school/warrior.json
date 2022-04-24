@@ -1,0 +1,34 @@
+{
+  "id": "warrior",
+  "spells": {
+    "tidal_wave": {
+      "x": 10,
+      "y": 0
+    },
+    "meteor_strike": {
+      "x": 0,
+      "y": 0
+    },
+    "venom_strike": {
+      "x": 5,
+      "y": 0
+    },
+    "rejuv_totem": {
+      "x": 6,
+      "y": 2
+    },
+    "astral_totem": {
+      "x": 7,
+      "y": 2
+    }
+  },
+  "lvl_reqs": [
+    1,
+    5,
+    10,
+    20,
+    30,
+    40,
+    50
+  ]
+}

@@ -13,6 +13,7 @@ public interface SpellKeys {
     SpellKey METEOR_STRIKE = new SpellKey("meteor_strike");
     SpellKey TIDAL_WAVE = new SpellKey("tidal_wave");
     SpellKey VENOM_STRIKE = new SpellKey("venom_strike");
+    SpellKey TELEPORT = new SpellKey("teleport");
 
     public static void init() {
 

@@ -122,8 +122,8 @@
   "config": {
     "swing_arm": true,
     "castingWeapon": "ANY_WEAPON",
-    "mana_cost": 20,
-    "cooldown_ticks": 600,
+    "mana_cost": 30,
+    "cooldown_ticks": 300,
     "style": "magic",
     "tags": [
       "damage",

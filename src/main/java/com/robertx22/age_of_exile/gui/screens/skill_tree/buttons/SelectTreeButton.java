@@ -21,12 +21,12 @@ public class SelectTreeButton extends ImageButton implements IMarkOnTop {
 
     public SelectTreeButton(SkillTreeScreen screen, LeftOrRight way, int x, int y) {
         super(x, y, XSIZE, YSIZE, getXoffset(way), 0, 1, ID, (action) -> {
-            int place = screen.schoolsInOrder.indexOf(screen.school);
+            int place = screen.orderedTrees.indexOf(screen.tree);
 
             if (way == LeftOrRight.LEFT) {
-                screen.school = screen.getSchoolByIndexAllowsOutOfBounds(place - 1);
+                screen.tree = screen.getSchoolByIndexAllowsOutOfBounds(place - 1);
             } else {
-                screen.school = screen.getSchoolByIndexAllowsOutOfBounds(place + 1);
+                screen.tree = screen.getSchoolByIndexAllowsOutOfBounds(place + 1);
             }
             screen.refreshButtons();
         });

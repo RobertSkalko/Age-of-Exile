@@ -20,7 +20,7 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 
-public class OnCritImbueSpells implements ExileRegistryInit {
+public class WarriorSpells implements ExileRegistryInit {
 
     @Override
     public void registerAll() {

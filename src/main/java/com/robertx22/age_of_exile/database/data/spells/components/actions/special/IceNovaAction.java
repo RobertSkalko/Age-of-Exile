@@ -27,9 +27,9 @@ public class IceNovaAction extends SpellAction {
                 .above(), 1)
             .inflate(5, 0, 5);
 
-        SoundUtils.playSound(ctx.caster, SoundRefs.ICE_BREAK);
-
         BoxUtils.iterateBoxAsCircle(box, x -> {
+
+            SoundUtils.playSound(ctx.caster, SoundRefs.ICE_BREAK);
 
             FallingBlockEntity fb = new FallingBlockEntity(ctx.world, x.getX(), x.getY(), x.getZ(), Blocks.ICE.defaultBlockState());
 

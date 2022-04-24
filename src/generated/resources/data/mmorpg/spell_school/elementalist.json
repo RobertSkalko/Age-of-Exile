@@ -1,0 +1,38 @@
+{
+  "id": "elementalist",
+  "spells": {
+    "nature_balm": {
+      "x": 5,
+      "y": 1
+    },
+    "teleport": {
+      "x": 3,
+      "y": 5
+    },
+    "ice_shield": {
+      "x": 10,
+      "y": 1
+    },
+    "meteor": {
+      "x": 0,
+      "y": 0
+    },
+    "ice_nova": {
+      "x": 10,
+      "y": 0
+    },
+    "poison_cloud": {
+      "x": 5,
+      "y": 0
+    }
+  },
+  "lvl_reqs": [
+    1,
+    5,
+    10,
+    20,
+    30,
+    40,
+    50
+  ]
+}

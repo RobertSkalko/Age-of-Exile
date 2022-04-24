@@ -8,6 +8,18 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class SpellCalcs {
 
+    public static ValueCalculation POISON_CLOUD = ValueCalcBuilder.of("poison_cloud", "Poison Cloud")
+        .damage(DamageCalculation.Builder.of(Elements.Earth)
+            .base(2)
+            .scaling(0.5F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(2)
+            .scaling(0.5F)
+            .build())
+        .addAllElementsScaling(0.3F)
+        .build();
+
     public static ValueCalculation METEOR = ValueCalcBuilder.of("meteor", "Meteor")
         .damage(DamageCalculation.Builder.of(Elements.Physical)
             .base(10)
@@ -146,10 +158,6 @@ public class SpellCalcs {
         .build();
 
     public static ValueCalculation CHILL_ERUPTION = ValueCalcBuilder.of("chill_eruption")
-        .build();
-
-    public static ValueCalculation POISON_CLOUD = ValueCalcBuilder.of("poison_cloud")
-        .baseValue(4)
         .build();
 
     public static ValueCalculation SHOUT_WARN = ValueCalcBuilder.of("shout_warn")

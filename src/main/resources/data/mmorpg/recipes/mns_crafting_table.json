@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA",
+    "AA"
+  ],
+  "key": {  
+	"A": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "mmorpg:mns_crafting_table",
+	"count": 1
+  }
+}
