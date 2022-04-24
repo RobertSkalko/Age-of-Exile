@@ -139,9 +139,9 @@
       "projectile",
       "damage"
     ],
-    "cast_type": "NORMAL",
-    "imbues": 1,
-    "imbue_type": "ON_RANGED_ATTACK"
+    "cast_type": "IMBUE",
+    "imbues": 5,
+    "imbue_type": "STAFF_IMBUE"
   },
   "disabled_dims": [],
   "effect_tip": ""

@@ -16,6 +16,11 @@ public interface SpellKeys {
     SpellKey TELEPORT = new SpellKey("teleport");
     SpellKey REFRESH = new SpellKey("refresh");
 
+    SpellKey SONG_OF_VALOR = new SpellKey("song_of_valor");
+    SpellKey SONG_OF_PERSEVERANCE = new SpellKey("song_of_perseverance");
+    SpellKey SONG_OF_VIGOR = new SpellKey("song_of_vigor");
+    SpellKey POWER_CHORD = new SpellKey("power_chord");
+
     public static void init() {
 
     }

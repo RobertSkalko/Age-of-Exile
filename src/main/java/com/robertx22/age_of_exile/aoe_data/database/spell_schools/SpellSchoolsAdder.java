@@ -19,6 +19,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
         SchoolBuilder.of(BARD, "Bard")
             .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 0))
+            .addSpell(SpellKeys.POWER_CHORD.id, new PointData(0, 1))
 
             .addSpell(HolySpells.SHOOTING_STAR, new PointData(1, 2))
             .addSpell(HolySpells.UNDYING_WILL, new PointData(3, 2))
@@ -27,9 +28,9 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .addSpell(HolySpells.INSPIRATION, new PointData(7, 4))
 
-            .addSpell(HolySpells.HYMN_OF_PERSERVANCE, new PointData(1, 4))
-            .addSpell(HolySpells.HYMN_OF_VALOR, new PointData(2, 4))
-            .addSpell(HolySpells.HYMN_OF_VIGOR, new PointData(3, 4))
+            .addSpell(SpellKeys.SONG_OF_PERSEVERANCE.id, new PointData(1, 4))
+            .addSpell(SpellKeys.SONG_OF_VALOR.id, new PointData(2, 4))
+            .addSpell(SpellKeys.SONG_OF_VIGOR.id, new PointData(3, 4))
 
             .addSpell(HolySpells.TAUNT, new PointData(5, 5))
 

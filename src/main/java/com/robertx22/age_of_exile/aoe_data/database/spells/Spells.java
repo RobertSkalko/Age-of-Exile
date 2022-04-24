@@ -18,7 +18,6 @@ public class Spells implements ExileRegistryInit {
         new UtilitySpells().registerAll();
         new TestSpells().registerAll();
         new CurseSpells().registerAll();
-        new SongSpells().registerAll();
         new IntSpells().registerAll();
         new StrSpells().registerAll();
         new TotemSpells().registerAll();

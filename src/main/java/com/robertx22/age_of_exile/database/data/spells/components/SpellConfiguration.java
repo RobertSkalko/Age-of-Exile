@@ -63,6 +63,16 @@ public class SpellConfiguration {
             return c;
         }
 
+        public static SpellConfiguration staffImbue(int mana, int cd, int imbueCount) {
+            SpellConfiguration c = new SpellConfiguration();
+            c.mana_cost = mana;
+            c.imbues = imbueCount;
+            c.cooldown_ticks = cd;
+            c.imbue_type = ImbueType.STAFF_IMBUE;
+            c.cast_type = SpellCastType.IMBUE;
+            return c;
+        }
+
         // todo
         public static SpellConfiguration nonInstant(int mana, int cd, int casttime) {
             SpellConfiguration c = new SpellConfiguration();

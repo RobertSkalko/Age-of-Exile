@@ -2,14 +2,17 @@ package com.robertx22.age_of_exile.vanilla_mc.items.gearitems.weapons;
 
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.IAutoModel;
 import com.robertx22.age_of_exile.aoe_data.datapacks.models.ItemModelManager;
+import com.robertx22.age_of_exile.capability.player.EntitySpellCap;
 import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.spells.TestSpell;
+import com.robertx22.age_of_exile.database.data.spells.components.ImbueType;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.MMORPG;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.enumclasses.WeaponTypes;
 import com.robertx22.age_of_exile.vanilla_mc.items.gearitems.VanillaMaterial;
 import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellServerToCastSpellPacket;
@@ -42,16 +45,27 @@ public class StaffWeapon extends ModWeapon implements IAutoModel {
             if (!world.isClientSide) {
                 GearItemData gear = Gear.Load(stack);
                 if (gear != null) {
-                    Spell spell = ExileDB.Spells()
-                        .get(SpellKeys.MAGIC_PROJECTILE.id);
 
-                    if (player.isCreative() && MMORPG.RUN_DEV_TOOLS) {
-                        spell = TestSpell.get();
-                    }
+                    EntitySpellCap.ISpellsCap spells = Load.spells(player);
 
-                    if (TellServerToCastSpellPacket.tryCastSpell(player, spell)) {
-                        player.swing(hand);
-                        return ActionResult.success(stack);
+                    if (spells.getCastingData()
+                        .hasImbuedSpell(ImbueType.STAFF_IMBUE)) {
+
+                        spells.getCastingData()
+                            .tryCastImbuedSpell(player, ImbueType.STAFF_IMBUE);
+
+                    } else {
+                        Spell spell = ExileDB.Spells()
+                            .get(SpellKeys.MAGIC_PROJECTILE.id);
+
+                        if (player.isCreative() && MMORPG.RUN_DEV_TOOLS) {
+                            spell = TestSpell.get();
+                        }
+
+                        if (TellServerToCastSpellPacket.tryCastSpell(player, spell)) {
+                            player.swing(hand);
+                            return ActionResult.success(stack);
+                        }
                     }
                 }
 

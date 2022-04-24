@@ -1,12 +1,9 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.schools;
 
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
-import com.robertx22.age_of_exile.aoe_data.database.spells.builders.ExileEffectActionBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
@@ -39,16 +36,8 @@ public class HolySpells implements ExileRegistryInit {
     public static String TAUNT = "taunt";
     public static String PULL = "pull";
 
-    public static String HYMN_OF_VALOR = "song_of_valor";
-    public static String HYMN_OF_PERSERVANCE = "song_of_perseverance";
-    public static String HYMN_OF_VIGOR = "song_of_vigor";
-
     @Override
     public void registerAll() {
-
-        song(HYMN_OF_VALOR, "Hymn of Valor", BeneficialEffects.VALOR);
-        song(HYMN_OF_PERSERVANCE, "Hymn of Perseverance", BeneficialEffects.PERSEVERANCE);
-        song(HYMN_OF_VIGOR, "Hymn of Vigor", BeneficialEffects.VIGOR);
 
         SpellBuilder.of(TAUNT, SpellConfiguration.Builder.instant(0, 20 * 30)
                     .setSwingArm(), "Taunt",
@@ -134,21 +123,4 @@ public class HolySpells implements ExileRegistryInit {
 
     }
 
-    static void song(String id, String name, EffectCtx effect) {
-
-        SpellBuilder.of(id, SpellConfiguration.Builder.nonInstant(10, 20 * 10, 30)
-                , name,
-                Arrays.asList(SpellTag.area, SpellTag.song))
-            .manualDesc(
-                "Give a stack of " + effect.locname + " to all allies around you."
-            )
-            .onCast(PartBuilder.playSound(SoundEvents.NOTE_BLOCK_CHIME, 1D, 1D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.NOTE, 50D, 3D))
-
-            .onCast(new ExileEffectActionBuilder(effect).radius(8)
-                .seconds(30)
-                .build())
-
-            .build();
-    }
 }

@@ -45,6 +45,23 @@ public class SpellCastingData {
         }
     }
 
+    public boolean hasImbuedSpell(ImbueType type) {
+
+        if (imbued_spell_stacks > 0) {
+            if (imbued_spell != null) {
+                Spell spell = ExileDB.Spells()
+                    .get(imbued_spell);
+
+                if (spell != null) {
+                    if (spell.config.imbue_type == type) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public boolean tryCastImbuedSpell(LivingEntity en, ImbueType type) {
         if (imbued_spell_stacks > 0) {
             Spell spell = ExileDB.Spells()

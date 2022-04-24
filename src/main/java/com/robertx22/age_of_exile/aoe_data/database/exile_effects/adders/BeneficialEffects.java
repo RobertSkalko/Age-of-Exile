@@ -6,7 +6,6 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.stats.Stats;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
-import com.robertx22.age_of_exile.aoe_data.database.stats.old.DatapackStats;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectType;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
@@ -42,7 +41,6 @@ public class BeneficialEffects implements ExileRegistryInit {
     public static EffectCtx POISON_WEAPONS = new EffectCtx("poison_weapons", "Poison Wep", 9, Elements.Earth, EffectType.beneficial);
     public static EffectCtx ICY_WEAPON = new EffectCtx("ice_weapon", "Icy Weapon", 10, Elements.Water, EffectType.beneficial);
     public static EffectCtx FROST_ARMOR = new EffectCtx("frost_armor", "Frost Armor", 14, Elements.Water, EffectType.beneficial);
-    public static EffectCtx OVERLOAD = new EffectCtx("overload", "Overload", 17, Elements.Physical, EffectType.beneficial);
     public static EffectCtx VALOR = new EffectCtx("valor", "Valor", 18, Elements.Physical, EffectType.beneficial);
     public static EffectCtx PERSEVERANCE = new EffectCtx("perseverance", "Perseverance", 19, Elements.Physical, EffectType.beneficial);
     public static EffectCtx VIGOR = new EffectCtx("vigor", "Vigor", 20, Elements.Physical, EffectType.beneficial);
@@ -147,13 +145,6 @@ public class BeneficialEffects implements ExileRegistryInit {
             .stat(2, 5, Stats.ATTACK_SPEED.get(), ModType.FLAT)
             .maxStacks(3)
             .addTags(EffectTags.song, EffectTags.offensive)
-            .build();
-
-        ExileEffectBuilder.of(OVERLOAD)
-            .stat(-5, -10, Stats.COOLDOWN_TICKS.get(), ModType.FLAT)
-            .stat(10, 25, Stats.MANA_COST.get(), ModType.FLAT)
-            .stat(-25, -25, DatapackStats.MOVE_SPEED, ModType.FLAT)
-            .maxStacks(1)
             .build();
 
         ExileEffectBuilder.of(ANTIDOTE)
