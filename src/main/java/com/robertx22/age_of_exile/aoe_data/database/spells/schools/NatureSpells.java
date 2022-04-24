@@ -16,9 +16,6 @@ import java.util.Arrays;
 
 public class NatureSpells implements ExileRegistryInit {
 
-    public static String THORN_ARMOR = "thorn_armor";
-    public static String POISON_WEAPONS = "poisoned_weapons";
-    public static String NATURE_BALM = "nature_balm";
     public static String ENTANGLE_SEED = "entangling_seed";
 
     @Override

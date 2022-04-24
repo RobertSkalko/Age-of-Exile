@@ -10,7 +10,7 @@
             "type": "sound",
             "map": {
               "volume": 1.0,
-              "sound": "minecraft:entity.experience_orb.pickup",
+              "sound": "minecraft:entity.snowball.throw",
               "pitch": 1.0
             }
           }
@@ -27,66 +27,15 @@
         "targets": [],
         "acts": [
           {
-            "type": "particles_in_radius",
+            "type": "projectile",
             "map": {
-              "particle_type": "minecraft:note",
-              "y_rand": 0.2,
-              "motion": "None",
-              "shape": "HORIZONTAL_CIRCLE",
-              "radius": 5.0,
-              "particle_count": 50.0,
-              "height": 0.5
-            }
-          }
-        ],
-        "ifs": [
-          {
-            "type": "on_spell_cast",
-            "map": {}
-          }
-        ],
-        "en_preds": []
-      },
-      {
-        "targets": [],
-        "acts": [
-          {
-            "type": "particles_in_radius",
-            "map": {
-              "particle_type": "minecraft:heart",
-              "y_rand": 0.2,
-              "motion": "None",
-              "shape": "HORIZONTAL_CIRCLE",
-              "radius": 5.0,
-              "particle_count": 50.0,
-              "height": 0.5
-            }
-          }
-        ],
-        "ifs": [
-          {
-            "type": "on_spell_cast",
-            "map": {}
-          }
-        ],
-        "en_preds": []
-      },
-      {
-        "targets": [
-          {
-            "type": "aoe",
-            "map": {
-              "selection_type": "RADIUS",
-              "en_predicate": "allies",
-              "radius": 5.0
-            }
-          }
-        ],
-        "acts": [
-          {
-            "type": "restore_health",
-            "map": {
-              "value_calculation": "healing_aria"
+              "proj_speed": 0.5,
+              "item": "minecraft:iron_ingot",
+              "entity_name": "default_entity_name",
+              "gravity": true,
+              "proj_count": 1.0,
+              "life_ticks": 100.0,
+              "proj_en": "mmorpg:spell_projectile"
             }
           }
         ],
@@ -99,16 +48,123 @@
         "en_preds": []
       }
     ],
-    "entity_components": {}
+    "entity_components": {
+      "expire": [
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 3.0
+              }
+            }
+          ],
+          "acts": [
+            {
+              "type": "damage",
+              "map": {
+                "value_calculation": "ranger_trap"
+              }
+            }
+          ],
+          "ifs": [],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:item_slime",
+                "motion": "None",
+                "radius": 3.0,
+                "particle_count": 30.0
+              }
+            }
+          ],
+          "ifs": [],
+          "en_preds": []
+        },
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "sound",
+              "map": {
+                "volume": 1.0,
+                "sound": "minecraft:entity.generic.explode",
+                "pitch": 1.0
+              }
+            }
+          ],
+          "ifs": [],
+          "en_preds": []
+        }
+      ],
+      "trap": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:item_slime",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 5.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 2.0
+              }
+            }
+          ],
+          "en_preds": []
+        }
+      ],
+      "default_entity_name": [
+        {
+          "targets": [],
+          "acts": [
+            {
+              "type": "summon_block",
+              "map": {
+                "entity_name": "trap",
+                "is_falling_block": false,
+                "life_ticks": 60.0,
+                "block": "mmorpg:trap",
+                "find_surface": true
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ],
+          "en_preds": []
+        }
+      ]
+    }
   },
   "config": {
     "swing_arm": true,
     "castingWeapon": "ANY_WEAPON",
-    "mana_cost": 20,
-    "cooldown_ticks": 1200,
-    "style": "magic",
+    "mana_cost": 7,
+    "cooldown_ticks": 100,
+    "style": "ranged",
     "tags": [
-      "heal"
+      "damage",
+      "area",
+      "trap"
     ],
     "cast_type": "NORMAL",
     "imbues": 1,

@@ -116,27 +116,9 @@
                 "radius": 1.0,
                 "particle_count": 5.0
               }
-            },
-            {
-              "type": "expire",
-              "map": {}
-            },
-            {
-              "type": "specific_action",
-              "map": {
-                "specific_action": "expire"
-              }
             }
           ],
           "ifs": [
-            {
-              "type": "is_en_in_radius",
-              "map": {
-                "selection_type": "RADIUS",
-                "en_predicate": "enemies",
-                "radius": 1.0
-              }
-            },
             {
               "type": "x_ticks_condition",
               "map": {
@@ -156,7 +138,7 @@
               "map": {
                 "entity_name": "trap",
                 "is_falling_block": false,
-                "life_ticks": 300.0,
+                "life_ticks": 60.0,
                 "block": "mmorpg:trap",
                 "find_surface": true
               }

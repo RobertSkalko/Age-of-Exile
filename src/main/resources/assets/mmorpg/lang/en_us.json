@@ -413,7 +413,7 @@
 	"mmorpg.spell.song_of_vigor": "Hymn of Vigor",
 	"mmorpg.spell.taunt": "Taunt",
 	"mmorpg.spell.teleport": "Teleport",
-	"mmorpg.spell.test_spell": "Healing Aria",
+	"mmorpg.spell.test_spell": "Poison Trap",
 	"mmorpg.spell.tidal_wave": "Tidal Wave",
 	"mmorpg.spell.venom_strike": "Venom Strike",
 
@@ -470,7 +470,7 @@
 	"mmorpg.one_of_a_kind.song_of_vigor_mod": "Hymn of Vigor Modifier",
 	"mmorpg.one_of_a_kind.taunt_mod": "Taunt Modifier",
 	"mmorpg.one_of_a_kind.teleport_mod": "Teleport Modifier",
-	"mmorpg.one_of_a_kind.test_spell_mod": "Healing Aria Modifier",
+	"mmorpg.one_of_a_kind.test_spell_mod": "Poison Trap Modifier",
 	"mmorpg.one_of_a_kind.tidal_wave_mod": "Tidal Wave Modifier",
 	"mmorpg.one_of_a_kind.venom_strike_mod": "Venom Strike Modifier",
 
@@ -492,22 +492,6 @@
 	"mmorpg.rarity.gear.unique": "Unique",
 
 "_comment": " [CATEGORY]: RARITIES - NAMES",
-
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
@@ -551,6 +535,22 @@
 	"effect.mmorpg.negative.8": "Bleed",
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
+
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: TALENTS - NAMES",
@@ -1225,24 +1225,6 @@
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
-	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
-	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
-	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
-	"mmorpg.unique_gear.insight.name": "Insight",
-	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
-	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
-	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
-	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
-	"mmorpg.unique_gear.test_runic_spell.name": "Bone Test",
-	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
-	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.axe": "Axe",
@@ -1273,6 +1255,24 @@
 	"mmorpg.gearslot.sword": "Sword",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
+	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
+	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
+	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
+	"mmorpg.unique_gear.insight.name": "Insight",
+	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
+	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
+	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
+	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
+	"mmorpg.unique_gear.test_runic_spell.name": "Bone Test",
+	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
+	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -1498,7 +1498,7 @@
 	"spell.desc.song_of_vigor": "Give a stack of Vigor to all allies around you.",
 	"spell.desc.taunt": "Shout, making enemies nearby want to attack you. Generates theat",
 	"spell.desc.teleport": "Teleport yourself in the direction you're looking at.",
-	"spell.desc.test_spell": "Heal allies around you for",
+	"spell.desc.test_spell": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal damage in area around itself.",
 	"spell.desc.tidal_wave": "Strike enemies in front of you",
 	"spell.desc.venom_strike": "Strike enemies in front of you and leave a poison trail.",
 

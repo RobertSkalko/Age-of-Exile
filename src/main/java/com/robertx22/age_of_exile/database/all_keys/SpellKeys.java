@@ -22,6 +22,9 @@ public interface SpellKeys {
     // HUNTER
     SpellKey MAKE_ARROWS = new SpellKey("make_arrows");
     SpellKey EXPLOSIVE_ARROW = new SpellKey("explosive_arrow");
+    SpellKey FROST_TRAP = new SpellKey("frost_trap");
+    SpellKey POISON_TRAP = new SpellKey("poison_trap");
+    SpellKey FIRE_TRAP = new SpellKey("fire_trap");
 
     // BARD
     SpellKey SONG_OF_VALOR = new SpellKey("song_of_valor");

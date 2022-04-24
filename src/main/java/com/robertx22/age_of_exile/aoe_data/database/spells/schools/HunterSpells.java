@@ -9,20 +9,13 @@ import com.robertx22.age_of_exile.database.data.spells.components.SpellConfigura
 import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
-import net.minecraft.item.Items;
-import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
@@ -37,9 +30,6 @@ public class HunterSpells implements ExileRegistryInit {
     public static String POISON_ARROW = "poison_arrow";
     public static String DASH_ID = "dash";
 
-    public static String FROST_TRAP = "frost_trap";
-    public static String POISON_TRAP = "poison_trap";
-    public static String FIRE_TRAP = "fire_trap";
     public static String HUNTER_POTION = "hunter_potion";
     public static String NIGHT_VISION = "night_vision";
     public static String SMOKE_BOMB = "smoke_bomb";
@@ -58,10 +48,6 @@ public class HunterSpells implements ExileRegistryInit {
             .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
             .onCast(PartBuilder.healCaster(SpellCalcs.HUNTER_POTION_HEAL))
             .build();
-
-        trap(FROST_TRAP, "Frost Trap", ParticleTypes.ITEM_SNOWBALL, SpellCalcs.RANGER_TRAP, Elements.Water).build();
-        trap(POISON_TRAP, "Poison Trap", ParticleTypes.ITEM_SLIME, SpellCalcs.RANGER_TRAP, Elements.Earth).build();
-        trap(FIRE_TRAP, "Fire Trap", ParticleTypes.FLAME, SpellCalcs.RANGER_TRAP, Elements.Fire).build();
 
         SpellBuilder.of(SMOKE_BOMB, SpellConfiguration.Builder.instant(7, 20 * 60), "Smoke Bomb",
                 Arrays.asList())
@@ -126,35 +112,6 @@ public class HunterSpells implements ExileRegistryInit {
             .onHit(PartBuilder.damage(SpellCalcs.ARROW_STORM))
             .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D))
             .build();
-
-    }
-
-    static SpellBuilder trap(String id, String name, BasicParticleType particle, ValueCalculation dmg, Elements element) {
-
-        return SpellBuilder.of(id, SpellConfiguration.Builder.instant(7, 100)
-                    .setSwingArm(), name,
-                Arrays.asList(SpellTag.damage, SpellTag.area, SpellTag.trap))
-            .manualDesc(
-                "Throw out a trap that stays on the ground and activates when an enemy approaches to deal damage in area around itself."
-            )
-            .weaponReq(CastingWeapon.ANY_WEAPON)
-            .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.IRON_INGOT, 1D, 0.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 100D, true)))
-            .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(SlashBlocks.TRAP.get(), 20 * 15D)
-                .put(MapField.ENTITY_NAME, "trap")
-                .put(MapField.FIND_NEAREST_SURFACE, true)
-                .put(MapField.IS_BLOCK_FALLING, false)))
-
-            .onTick("trap", PartBuilder.aoeParticles(particle, 5D, 1D)
-                .addCondition(EffectCondition.IS_ENTITY_IN_RADIUS.enemiesInRadius(1D))
-                .addActions(SpellAction.EXPIRE.create())
-                .addActions(SpellAction.SPECIFIC_ACTION.create("expire"))
-                .onTick(2D))
-
-            .addSpecificAction("expire", PartBuilder.damageInAoe(dmg, 3D))
-            .addSpecificAction("expire", PartBuilder.aoeParticles(particle, 30D, 3D))
-            .addSpecificAction("expire", PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D));
 
     }
 
