@@ -37,6 +37,9 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
     public int min_lvl = 0; // todo use these
     public int max_lvl = 100;
 
+    // todo
+    public int model_num = 0;
+
     public List<String> slots = new ArrayList<>();
 
     public UniqueGear getUnique() {

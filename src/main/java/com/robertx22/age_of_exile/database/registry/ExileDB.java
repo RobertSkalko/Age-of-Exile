@@ -17,6 +17,7 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.data.reforge.Reforge;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
@@ -183,6 +184,10 @@ public class ExileDB {
 
     public static ExileRegistryContainer<SpellSchool> SpellSchools() {
         return Database.getRegistry(ExileRegistryTypes.SPELL_SCHOOL);
+    }
+
+    public static ExileRegistryContainer<Reforge> Reforges() {
+        return Database.getRegistry(ExileRegistryTypes.REFORGE);
     }
 
     public static ExileRegistryContainer<CraftingReq> ItemCraftReq() {

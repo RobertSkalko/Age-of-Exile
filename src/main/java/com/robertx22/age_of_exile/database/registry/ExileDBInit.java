@@ -60,6 +60,7 @@ public class ExileDBInit {
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.FAVOR_RANK, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.PLAYER_SKILLS, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.SPELL_SCHOOL, null).setIsDatapack());
+        Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.REFORGE, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.BASE_STATS, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.GAME_BALANCE, new GameBalanceConfig()).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.CRAFTING_REQ, new CraftingReq()).setIsDatapack());

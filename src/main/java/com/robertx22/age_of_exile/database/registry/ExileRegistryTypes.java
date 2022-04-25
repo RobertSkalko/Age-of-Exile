@@ -15,6 +15,7 @@ import com.robertx22.age_of_exile.database.data.perks.Perk;
 import com.robertx22.age_of_exile.database.data.player_skills.PlayerSkill;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
+import com.robertx22.age_of_exile.database.data.reforge.Reforge;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
@@ -72,5 +73,6 @@ public class ExileRegistryTypes {
     public static ExileRegistryType STAT_CONDITION = ExileRegistryType.register(SlashRef.MODID, "stat_condition", 32, StatCondition.SERIALIZER, SyncTime.NEVER);
     public static ExileRegistryType GAME_BALANCE = ExileRegistryType.register(SlashRef.MODID, "game_balance", 26, GameBalanceConfig.SERIALIZER, SyncTime.ON_LOGIN);
     public static ExileRegistryType SPELL_SCHOOL = ExileRegistryType.register(SlashRef.MODID, "spell_school", 26, SpellSchool.SERIALIZER, SyncTime.ON_LOGIN);
+    public static ExileRegistryType REFORGE = ExileRegistryType.register(SlashRef.MODID, "reforge", 26, Reforge.SERIALIZER, SyncTime.ON_LOGIN);
 
 }

@@ -9,6 +9,7 @@ import net.minecraft.potion.Effect;
 public interface IBaseAutoLoc extends IGUID {
 
     enum AutoLocGroup {
+        Reforges,
         Enchants,
         Calculations,
         Foods,
