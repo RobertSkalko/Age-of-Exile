@@ -9,6 +9,17 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class SpellCalcs {
 
+    public static ValueCalculation SEEKER_FLAMES = ValueCalcBuilder.of(SpellKeys.SEEKER_FLAMES, "Seeker Flames")
+        .damage(DamageCalculation.Builder.of(Elements.Fire)
+            .base(5)
+            .scaling(1.5F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(5)
+            .scaling(1.5F)
+            .build())
+        .addAllElementsScaling(1.25F)
+        .build();
     public static ValueCalculation FROST_TRAP = ValueCalcBuilder.of(SpellKeys.FROST_TRAP, "Frost Trap")
         .damage(DamageCalculation.Builder.of(Elements.Physical)
             .base(5)

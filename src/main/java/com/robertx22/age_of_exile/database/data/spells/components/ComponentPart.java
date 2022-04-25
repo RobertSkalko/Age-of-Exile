@@ -30,6 +30,13 @@ public class ComponentPart {
         return this;
     }
 
+    public ComponentPart addPerEntityHit(ComponentPart... add) {
+        for (ComponentPart part : add) {
+            addPerEntityHit(part);
+        }
+        return this;
+    }
+
     public ComponentPart enemiesInRadius(Double radius) {
         targets.add(TargetSelector.AOE.enemiesInRadius(radius));
         return this;

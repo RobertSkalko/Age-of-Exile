@@ -4,7 +4,6 @@ import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.library_of_exile.registry.IGUID;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class MapField<T> implements IGUID {
 
@@ -46,7 +45,6 @@ public class MapField<T> implements IGUID {
     // string
     public static MapField<String> PROJECTILE_ENTITY = make("proj_en");
     public static MapField<String> ITEM = make("item");
-    public static MapField<String> ELEMENT = make(new MapField<String>("element"));
     public static MapField<String> SELECTION_TYPE = make("selection_type");
     public static MapField<String> RESOURCE_TYPE = make("resource_type");
     public static MapField<String> ENTITY_PREDICATE = make("en_predicate");
@@ -77,8 +75,7 @@ public class MapField<T> implements IGUID {
     public static MapField<Boolean> IS_SILENT = make("is_silent");
     public static MapField<Boolean> HITS_ALLIES = make("hits_allies");
     public static MapField<Boolean> IGNORE_Y = make("ignore_y");
-
-    public static MapField<List<String>> ENTITY_PREDICATES = make("entity_predicates");
+    public static MapField<Boolean> ON_FIRE = make("on_fire"); // doesnt work, probably needs syncing to client
 
     public static MapField<ValueCalculation> VALUE_CALCULATION = make("value_calculation");
 

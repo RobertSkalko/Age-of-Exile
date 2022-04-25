@@ -50,4 +50,8 @@ public class SpellEntityBuilder {
         return this;
     }
 
+    public SpellEntityBuilder onTick(ComponentPart... comps) {
+        return this.onTick(1, comps);
+    }
+
 }

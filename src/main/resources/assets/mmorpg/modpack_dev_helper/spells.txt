@@ -43,6 +43,7 @@ power_chord
 pull
 smoke_bomb
 awaken_mana
+seeker_flames
 song_of_vigor
 dash
 taunt

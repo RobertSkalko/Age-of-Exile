@@ -13,13 +13,17 @@
       "x": 1,
       "y": 5
     },
+    "seeker_flames": {
+      "x": 0,
+      "y": 0
+    },
     "ice_shield": {
       "x": 10,
       "y": 2
     },
     "meteor": {
       "x": 0,
-      "y": 0
+      "y": 1
     },
     "refresh": {
       "x": 5,

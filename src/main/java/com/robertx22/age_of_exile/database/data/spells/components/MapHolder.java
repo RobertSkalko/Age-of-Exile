@@ -10,7 +10,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.uncommon.enumclasses.AttackType;
-import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DashUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
@@ -65,10 +64,6 @@ public class MapHolder {
 
     public Effect getPotion() {
         return Registry.MOB_EFFECT.get(new ResourceLocation(get(POTION_ID)));
-    }
-
-    public Elements getElement() {
-        return Elements.valueOf(get(MapField.ELEMENT));
     }
 
     public DashUtils.Way getPushWay() {

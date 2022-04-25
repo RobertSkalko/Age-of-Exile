@@ -15,6 +15,7 @@ public interface SpellKeys {
     SpellKey REFRESH = new SpellKey("refresh");
     SpellKey FROST_STEPS = new SpellKey("frost_steps");
     SpellKey ICE_SNAKE = new SpellKey("ice_snake");
+    SpellKey SEEKER_FLAMES = new SpellKey("seeker_flames");
 
     // WARRIOR
     SpellKey METEOR_STRIKE = new SpellKey("meteor_strike");

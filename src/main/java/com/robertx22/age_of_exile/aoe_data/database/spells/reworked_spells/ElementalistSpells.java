@@ -6,6 +6,8 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.spells.builders.ExileEffectActionBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.NewSpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.SpellEntityBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.builders.VanillaEffectActionBuilder;
 import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
@@ -23,6 +25,7 @@ import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 
@@ -30,7 +33,7 @@ public class ElementalistSpells implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
-        TestNewSpellBuilder.reg();
+
         //buffs
         SpellBuilder.buffSelfSpell(SpellKeys.ICE_SHIELD,
                 SpellConfiguration.Builder.instant(20, 60), "Ice Shield",
@@ -192,6 +195,57 @@ public class ElementalistSpells implements ExileRegistryInit {
             .onCast(PartBuilder.Particles.aoe(ParticleTypes.FALLING_WATER, 100D, 1.5D))
             .onCast(PartBuilder.Particles.aoe(ParticleTypes.DRIPPING_WATER, 50D, 1.5D))
             .onCast(PartBuilder.Particles.aoe(ParticleTypes.EFFECT, 50D, 1.5D))
+            .build();
+
+        NewSpellBuilder.of(SpellKeys.POISON_CLOUD, SpellConfiguration.Builder.instant(30, 25 * 20), "Poison Cloud")
+            .desc("Erupt with poisonous gas, dealing damage to nearby enemies and spawning a poison cloud.")
+            .weaponReq(CastingWeapon.ANY_WEAPON)
+            .tags(SpellTag.area, SpellTag.damage)
+            .onCast(
+                PartBuilder.Sound.play(SoundRefs.DING_LOW_PITCH),
+                PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D))
+            )
+            .addEntity(
+                SpellEntityBuilder.defaultId()
+                    .onExpire(PartBuilder.justAction(SpellAction.POTION_AREA_PARTICLES.create(TextFormatting.GREEN, 10)))
+                    .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 20D * 8)
+                        .put(MapField.ENTITY_NAME, "block")
+                        .put(MapField.BLOCK_FALL_SPEED, 0D)
+                        .put(MapField.FIND_NEAREST_SURFACE, true)
+                        .put(MapField.IS_BLOCK_FALLING, false)))
+            )
+            .addEntity(SpellEntityBuilder.of("block")
+                .onTick(1, PartBuilder.Particles.ground(ParticleTypes.SNEEZE, 20D, 3D, 0.2D))
+                .onTick(20, PartBuilder.Damage.aoe(SpellCalcs.POISON_CLOUD, 3D)
+                    .addPerEntityHit(PartBuilder.Sound.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
+                )
+            )
+            .build();
+
+        NewSpellBuilder.of(SpellKeys.SEEKER_FLAMES, SpellConfiguration.Builder.staffImbue(20, 20 * 15, 5), "Seeker Flames")
+            .tags(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell)
+            .desc(
+                "Summon a ball of flame seeking the targeted enemy.")
+            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .onCast(PartBuilder.Sound.play(SoundEvents.BLAZE_SHOOT, 1D, 1D))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 30D, false)
+            ))
+
+            .addEntity(SpellEntityBuilder.defaultId()
+                .onTick(PartBuilder.Particles.tickAoe(4D, ParticleTypes.EFFECT, 1D, 0.1D))
+                .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.FLAME, 5D, 0.2D))
+
+                .onTick(PartBuilder.justAction(SpellAction.HOME_ON_TARGET.create()))
+
+                .onExpire(PartBuilder.Damage.aoe(SpellCalcs.SEEKER_FLAMES, 2D)
+                    .addPerEntityHit(
+                        PartBuilder.Particles.aoe(ParticleTypes.FLAME, 30D, 1D),
+                        PartBuilder.Particles.aoe(ParticleTypes.SMOKE, 30D, 1D),
+                        PartBuilder.Particles.aoe(ParticleTypes.FLAME, 30D, 1D),
+                        PartBuilder.Sound.play(SoundEvents.GENERIC_HURT, 1D, 2D)
+                    ))
+            )
+
             .build();
 
     }

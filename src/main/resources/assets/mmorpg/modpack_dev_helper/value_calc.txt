@@ -41,6 +41,7 @@ power_chord
 pull
 awaken_mana
 curse
+seeker_flames
 totem_mana
 despair
 taunt

@@ -58,7 +58,8 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             //.addSpell(SpellKeys.MAGIC_PROJECTILE.id, new PointData(0, 0))
 
             // fire
-            .addSpell(SpellKeys.METEOR.id, new PointData(0, 0))
+            .addSpell(SpellKeys.SEEKER_FLAMES.id, new PointData(0, 0))
+            .addSpell(SpellKeys.METEOR.id, new PointData(0, 1))
 
             // poison
             .addSpell(SpellKeys.POISON_CLOUD.id, new PointData(5, 0))

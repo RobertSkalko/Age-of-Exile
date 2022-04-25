@@ -1,22 +1,18 @@
 package com.robertx22.age_of_exile.database.data.spells;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.NewSpellBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.SpellEntityBuilder;
+import com.robertx22.age_of_exile.database.all_keys.base.SpellKey;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.components.entity_predicates.SpellEntityPredicate;
-import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.uncommon.SoundRefs;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
-
-import java.util.Arrays;
 
 public class TestSpell {
 
@@ -26,36 +22,31 @@ public class TestSpell {
 
         return
 
-            SpellBuilder.of(USE_THIS_EXACT_ID,
+            NewSpellBuilder.of(new SpellKey(USE_THIS_EXACT_ID),
                     // LEAVE THIS SPACE
-                    SpellConfiguration.Builder.instant(20, 100), "Ice Snake",
-                    Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
-                .manualDesc(
-                    "Summon an ice snake in your direction, slowing enemies.")
+                    SpellConfiguration.Builder.staffImbue(20, 20 * 15, 5), "Seeker Flames")
+                .tags(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell)
+                .desc(
+                    "Summon a ball of flame seeking the targeted enemy.")
                 .weaponReq(CastingWeapon.MAGE_WEAPON)
-                .onCast(PartBuilder.Sound.play(SoundRefs.FISHING_THROW_LOW_PITCH))
-                .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 0.7D, SlashEntities.SIMPLE_PROJECTILE.get(), 60D, false)
-                    .put(MapField.EXPIRE_ON_ENTITY_HIT, false)
-                    .put(MapField.GRAVITY, false)
+                .onCast(PartBuilder.Sound.play(SoundEvents.BLAZE_SHOOT, 1D, 1D))
+                .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 30D, false)
                 ))
-                .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.ITEM_SNOWBALL, 5D, 0.5D))
-                .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.ENCHANTED_HIT, 5D, 0.3D))
 
-                .onTick(PartBuilder.Sound.play(SoundRefs.ICE_BREAK))
+                .addEntity(SpellEntityBuilder.defaultId()
+                    .onTick(PartBuilder.Particles.tickAoe(4D, ParticleTypes.EFFECT, 1D, 0.1D))
+                    .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.FLAME, 5D, 0.2D))
 
-                .onTick(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.ICE, 20D * 1)
-                        .put(MapField.ENTITY_NAME, "block")
-                        .put(MapField.BLOCK_FALL_SPEED, -0.02D)
-                        .put(MapField.FIND_NEAREST_SURFACE, false)
-                        .put(MapField.IS_BLOCK_FALLING, true))
-                    .onTick(2D))
+                    .onTick(PartBuilder.justAction(SpellAction.HOME_ON_TARGET.create()))
 
-                .onTick(PartBuilder.Damage.aoe(SpellCalcs.ICE_SNAKE, 6D)
-                    .addEntityPredicate(SpellEntityPredicate.DID_NOT_AFFECT_BY_ENTITY.create())
-                    .addPerEntityHit(PartBuilder.Sound.play(SoundEvents.GENERIC_HURT))
-                    .addPerEntityHit(PartBuilder.justAction(SpellAction.MARK_AS_AFFECTED_BY_ENTITY.create()))
-                    .onTick(1D))
-                .onExpire(PartBuilder.Sound.play(SoundEvents.GENERIC_HURT, 1D, 2D))
+                    .onExpire(PartBuilder.Damage.aoe(SpellCalcs.SEEKER_FLAMES, 2D)
+                        .addPerEntityHit(
+                            PartBuilder.Particles.aoe(ParticleTypes.FLAME, 30D, 1D),
+                            PartBuilder.Particles.aoe(ParticleTypes.SMOKE, 30D, 1D),
+                            PartBuilder.Particles.aoe(ParticleTypes.FLAME, 30D, 1D),
+                            PartBuilder.Sound.play(SoundEvents.GENERIC_HURT, 1D, 2D)
+                        ))
+                )
 
                 // LEAVE THIS SPACE
                 // leave this part

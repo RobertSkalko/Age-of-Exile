@@ -486,6 +486,10 @@ public class SimpleProjectileEntity extends AbstractArrowEntity implements IMyRe
             this.entityData.set(EXPIRE_ON_ENTITY_HIT, false);
         }
 
+        if (holder.getOrDefault(MapField.ON_FIRE, false)) {
+            this.setSecondsOnFire(Integer.MAX_VALUE);
+        }
+
         data.item_id = holder.get(MapField.ITEM);
         CompoundNBT nbt = new CompoundNBT();
         nbt.putString("spell", GSON.toJson(spellData));

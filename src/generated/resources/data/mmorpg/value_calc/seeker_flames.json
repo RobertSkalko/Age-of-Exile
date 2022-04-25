@@ -1,0 +1,50 @@
+{
+  "id": "seeker_flames",
+  "damage_calcs": {
+    "damages": [
+      {
+        "element": "Fire",
+        "scaling": [
+          {
+            "stat": "fire_weapon_damage",
+            "multi": 1.5
+          }
+        ],
+        "base": 5.0
+      },
+      {
+        "element": "Physical",
+        "scaling": [
+          {
+            "stat": "physical_weapon_damage",
+            "multi": 1.5
+          }
+        ],
+        "base": 5.0
+      },
+      {
+        "element": "Water",
+        "scaling": [
+          {
+            "stat": "water_weapon_damage",
+            "multi": 1.25
+          }
+        ],
+        "base": 0.0
+      },
+      {
+        "element": "Earth",
+        "scaling": [
+          {
+            "stat": "earth_weapon_damage",
+            "multi": 1.25
+          }
+        ],
+        "base": 0.0
+      }
+    ]
+  },
+  "stat_scalings": [],
+  "attack_scaling": 0.0,
+  "base": 0.0
+}
