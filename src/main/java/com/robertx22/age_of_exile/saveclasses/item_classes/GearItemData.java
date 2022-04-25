@@ -45,8 +45,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Store
     public GearSocketsData sockets = new GearSocketsData();
     @Store
-    public CraftedStatsData cr;
-    @Store
     public UniqueStatsData uniqueStats;
 
     // Stats
@@ -99,14 +97,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public boolean isCorrupted() {
         return c;
-    }
-
-    public boolean hasCraftedStats() {
-        return cr != null;
-    }
-
-    public CraftedStatsData getCraftedStats() {
-        return cr;
     }
 
     public int getTier() {
@@ -340,8 +330,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         List<IStatsContainer> list = new ArrayList<IStatsContainer>();
 
         IfNotNullAdd(baseStats, list);
-
-        IfNotNullAdd(cr, list);
 
         affixes.getAllAffixesAndSockets()
             .forEach(x -> IfNotNullAdd(x, list));

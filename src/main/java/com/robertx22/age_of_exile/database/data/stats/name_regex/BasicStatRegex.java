@@ -14,20 +14,15 @@ public class BasicStatRegex extends StatNameRegex {
         }
 
         if (type == ModType.FLAT) {
-
-            String adds = "";
-
-            String to = " ";
-
-            return adds + VALUE + to + NAME;
+            return NAME + ": " + VALUE;
 
         }
         if (type == ModType.PERCENT) {
-            String s = v1 > 0 && stat.IsPercent() ? " Extra " : " ";
-            return VALUE + s + NAME;
+            String s = v1 > 0 && stat.IsPercent() ? "Extra " : "";
+            return s + NAME + ": " + VALUE;
         }
         if (type == ModType.GLOBAL_INCREASE) {
-            return VALUE + " Total " + NAME;
+            return "Total " + NAME + ": " + VALUE;
         }
 
         return null;

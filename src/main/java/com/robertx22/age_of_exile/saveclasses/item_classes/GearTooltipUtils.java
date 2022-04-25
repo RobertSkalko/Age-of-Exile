@@ -42,7 +42,7 @@ public class GearTooltipUtils {
         });
 
         if (gear.baseStats != null) {
-            tip.addAll(gear.baseStats.GetTooltipString(info, gear));
+            //tip.addAll(gear.baseStats.GetTooltipString(info, gear));
         }
 
         tip.add(new SText(""));
@@ -58,25 +58,18 @@ public class GearTooltipUtils {
                 tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
             }
             tip.addAll(gear.affixes.GetTooltipString(info, gear));
-            if (gear.hasCraftedStats()) {
-                tip.addAll(gear.getCraftedStats()
-                    .GetTooltipString(info, gear));
-            }
 
         } else {
 
             List<ExactStatData> stats = new ArrayList<>();
             if (gear.baseStats != null) {
                 // todo
-                // gear.baseStats.GetAllStats(gear)
-                //   .forEach(x -> stats.add(x));
+                gear.baseStats.GetAllStats(gear)
+                    .forEach(x -> stats.add(x));
             }
             gear.affixes.getAllAffixesAndSockets()
                 .forEach(x -> stats.addAll(x.GetAllStats(gear)));
-            if (gear.hasCraftedStats()) {
-                stats.addAll(gear.getCraftedStats()
-                    .GetAllStats(gear));
-            }
+
             if (gear.uniqueStats != null) {
                 stats.addAll(gear.uniqueStats.GetAllStats(gear));
             }
@@ -126,25 +119,11 @@ public class GearTooltipUtils {
             }
         }
 
-        // todo
-        /*
         tip.add(new StringTextComponent(""));
-        tip.addAll(gear.sockets.GetTooltipString(info, gear));
-        tip.add(new StringTextComponent(""));
-
-         */
-
-        tip.add(new StringTextComponent(""));
-
-        IFormattableTextComponent lvl = TooltipUtils.gearLevel(gear.lvl);
 
         tip.add(TooltipUtils.gearLevel(gear.lvl));
         tip.add(TooltipUtils.gearRarity(gear.getRarity()));
         tip.add(TooltipUtils.gearStars(gear));
-
-        //tip.add(lvl);
-        //tip.add(TooltipUtils.gearTier(gear.getTier()));
-        //tip.add(TooltipUtils.gearRarity(gear.getRarity()));
 
         tip.add(new StringTextComponent(""));
 
@@ -153,9 +132,7 @@ public class GearTooltipUtils {
                     Words.Corrupted.locName())
                 .withStyle(TextFormatting.RED));
         }
-        if (gear.hasCraftedStats()) {
-            tip.add(new StringTextComponent("Crafted").withStyle(TextFormatting.GOLD));
-        }
+
         int socketed = gear.sockets.sockets.size();
         if (socketed > 0) {
             TooltipUtils.addSocketNamesLine(tip, gear);
