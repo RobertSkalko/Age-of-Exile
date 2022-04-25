@@ -26,6 +26,7 @@
               "map": {}
             }
           ],
+          "en_preds": [],
           "acts": [
             {
               "type": "damage",
@@ -43,11 +44,11 @@
                 "tick_rate": 20.0
               }
             }
-          ],
-          "en_preds": []
+          ]
         },
         {
           "targets": [],
+          "en_preds": [],
           "acts": [
             {
               "type": "particles_in_radius",
@@ -66,8 +67,7 @@
                 "tick_rate": 2.0
               }
             }
-          ],
-          "en_preds": []
+          ]
         }
       ]
     }

@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.spells.components.entity_predic
 
 import com.robertx22.age_of_exile.database.data.spells.components.BaseFieldNeeder;
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
+import com.robertx22.age_of_exile.database.data.spells.components.conditions.IsNotOnCooldownCondition;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.library_of_exile.registry.IGUID;
@@ -22,6 +23,9 @@ public abstract class SpellEntityPredicate extends BaseFieldNeeder implements IG
 
     public static IsCasterPredicate IS_CASTER = of(new IsCasterPredicate());
     public static HasEffect HAS_EFFECT = of(new HasEffect());
+    public static DidNotAffectBySpellAlready DID_NOT_AFFECT_BY_SPELL = of(new DidNotAffectBySpellAlready());
+    public static DidNotAffectByEntity DID_NOT_AFFECT_BY_ENTITY = of(new DidNotAffectByEntity());
+    public static IsNotOnCooldownCondition IS_NOT_ON_COOLDOWN = of(new IsNotOnCooldownCondition());
 
     private static <T extends SpellEntityPredicate> T of(T s) {
         MAP.put(s.GUID(), s);

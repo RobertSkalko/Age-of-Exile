@@ -26,7 +26,7 @@ public class DamageCalculation {
             element.getIconNameDmg());
 
         if (Screen.hasShiftDown()) {
-            txt.append(" [" + (int) base + " + ");
+            txt.append(" [" + (int) getCalculatedBaseValue(data) + " + ");
             for (ScalingCalc scal : scaling) {
                 txt.append(scal.GetTooltipString());
             }

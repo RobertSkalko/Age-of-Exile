@@ -1,31 +1,17 @@
-package com.robertx22.age_of_exile.database.data.spells.components.conditions;
+package com.robertx22.age_of_exile.database.data.spells.components.entity_predicates;
 
 import com.robertx22.age_of_exile.database.data.spells.components.MapHolder;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
+import net.minecraft.entity.LivingEntity;
 
 import java.util.Arrays;
 
-public class DidNotAffectBySpellAlready extends EffectCondition {
+public class DidNotAffectBySpellAlready extends SpellEntityPredicate {
 
     public DidNotAffectBySpellAlready() {
         super(Arrays.asList(MapField.CHANCE));
-    }
-
-    @Override
-    public boolean canActivate(SpellCtx ctx, MapHolder data) {
-
-        if (ctx.target == null) {
-            return false;
-        }
-        try {
-            return !Load.spells(ctx.caster).mobsAffectedBySpell
-                .alreadyHit(ctx.sourceEntity, ctx.target);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 
     public MapHolder create() {
@@ -37,6 +23,12 @@ public class DidNotAffectBySpellAlready extends EffectCondition {
     @Override
     public String GUID() {
         return "did_not_affect_by_spell_already";
+    }
+
+    @Override
+    public boolean is(SpellCtx ctx, LivingEntity target, MapHolder data) {
+        return !Load.spells(ctx.caster).mobsAffectedBySpell
+            .alreadyHit(ctx.sourceEntity, target);
     }
 }
 

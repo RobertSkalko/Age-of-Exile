@@ -5,6 +5,7 @@
     "on_cast": [
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "sound",
@@ -20,11 +21,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "particles_in_radius",
@@ -41,11 +42,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "particles_in_radius",
@@ -62,11 +63,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "particles_in_radius",
@@ -83,8 +84,7 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [
@@ -97,6 +97,7 @@
             }
           }
         ],
+        "en_preds": [],
         "acts": [
           {
             "type": "exile_effect",
@@ -113,24 +114,24 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       }
     ],
     "entity_components": {
       "block": [
         {
           "targets": [],
+          "en_preds": [],
           "acts": [
             {
               "type": "particles_in_radius",
               "map": {
                 "particle_type": "minecraft:item_snowball",
-                "y_rand": 0.2,
+                "y_rand": 0.1,
                 "motion": "None",
                 "shape": "HORIZONTAL_CIRCLE",
-                "radius": 0.5,
-                "particle_count": 25.0,
+                "radius": 0.4,
+                "particle_count": 10.0,
                 "height": 0.5
               }
             }
@@ -142,33 +143,7 @@
                 "tick_rate": 1.0
               }
             }
-          ],
-          "en_preds": []
-        },
-        {
-          "targets": [
-            {
-              "type": "aoe",
-              "map": {
-                "selection_type": "RADIUS",
-                "en_predicate": "enemies",
-                "radius": 2.0
-              }
-            }
-          ],
-          "acts": [
-            {
-              "type": "exile_effect",
-              "map": {
-                "exile_potion_id": "negative/2",
-                "potion_action": "GIVE_STACKS",
-                "count": 1.0,
-                "potion_dur": 100.0
-              }
-            }
-          ],
-          "ifs": [],
-          "en_preds": []
+          ]
         },
         {
           "targets": [
@@ -181,55 +156,62 @@
               }
             }
           ],
+          "en_preds": [
+            {
+              "type": "is_not_on_cd",
+              "map": {
+                "cooldown_id": "frost_steps"
+              }
+            }
+          ],
           "acts": [
             {
               "type": "damage",
               "map": {
                 "value_calculation": "frost_steps"
               }
+            },
+            {
+              "type": "set_on_cd",
+              "map": {
+                "cooldown_id": "frost_steps",
+                "cooldown_ticks": 20.0
+              }
             }
           ],
           "ifs": [
             {
-              "type": "did_not_affect_by_spell_already",
-              "map": {}
-            },
-            {
               "type": "x_ticks_condition",
               "map": {
-                "tick_rate": 5.0
+                "tick_rate": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 2.0
               }
             }
           ],
           "en_preds": [],
-          "per_entity_hit": [
+          "acts": [
             {
-              "targets": [],
-              "acts": [
-                {
-                  "type": "sound",
-                  "map": {
-                    "volume": 1.0,
-                    "sound": "minecraft:entity.generic.hurt",
-                    "pitch": 1.0
-                  }
-                }
-              ],
-              "ifs": [],
-              "en_preds": []
-            },
-            {
-              "targets": [],
-              "acts": [
-                {
-                  "type": "mark_as_affected_by_spell",
-                  "map": {}
-                }
-              ],
-              "ifs": [],
-              "en_preds": []
+              "type": "exile_effect",
+              "map": {
+                "exile_potion_id": "negative/2",
+                "potion_action": "GIVE_STACKS",
+                "count": 1.0,
+                "potion_dur": 100.0
+              }
             }
-          ]
+          ],
+          "ifs": []
         }
       ]
     }

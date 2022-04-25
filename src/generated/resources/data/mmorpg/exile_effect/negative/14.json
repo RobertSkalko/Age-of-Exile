@@ -34,6 +34,7 @@
       "default_entity_name": [
         {
           "targets": [],
+          "en_preds": [],
           "acts": [
             {
               "type": "particles_in_radius",
@@ -52,8 +53,7 @@
                 "tick_rate": 20.0
               }
             }
-          ],
-          "en_preds": []
+          ]
         }
       ]
     }

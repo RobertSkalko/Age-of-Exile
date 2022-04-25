@@ -14,9 +14,10 @@ import java.util.stream.Collectors;
 public class ComponentPart {
 
     public List<MapHolder> targets = new ArrayList<>();
+    public List<MapHolder> en_preds = new ArrayList<>();
+
     public List<MapHolder> acts = new ArrayList<>();
     public List<MapHolder> ifs = new ArrayList<>();
-    public List<MapHolder> en_preds = new ArrayList<>();
 
     List<ComponentPart> per_entity_hit = null;
 
@@ -100,7 +101,9 @@ public class ComponentPart {
 
                 if (pred != null) {
                     selected = selected.stream()
-                        .filter(x -> pred.is(ctx, x, entityPredicate))
+                        .filter(x -> {
+                            return x != null && pred.is(ctx, x, entityPredicate);
+                        })
                         .collect(Collectors.toList());
                 }
             }

@@ -233,6 +233,7 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
             }
             try {
                 effect.forEach(x -> list.addAll(x.GetTooltipString(info, ctx.calcData)));
+                list.add(new StringTextComponent(""));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -241,6 +242,8 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
         for (ValueCalculation calc : this.attached.getAllCalculations()) {
             list.addAll(calc.getTooltip(Load.Unit(ctx.caster)));
         }
+
+        list.add(new StringTextComponent(""));
 
         boolean learned = Load.spells(info.player)
             .hasSpell(this);

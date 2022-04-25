@@ -19,6 +19,7 @@
               "map": {}
             }
           ],
+          "en_preds": [],
           "acts": [
             {
               "type": "potion",
@@ -36,8 +37,7 @@
                 "tick_rate": 10.0
               }
             }
-          ],
-          "en_preds": []
+          ]
         }
       ]
     }

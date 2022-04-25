@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
+import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
 import com.robertx22.age_of_exile.database.data.value_calc.DamageCalculation;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalcBuilder;
@@ -7,6 +8,40 @@ import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class SpellCalcs {
+
+    public static ValueCalculation FROST_TRAP = ValueCalcBuilder.of(SpellKeys.FROST_TRAP, "Frost Trap")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(5)
+            .scaling(1.5F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Water)
+            .base(5)
+            .scaling(1.5F)
+            .build())
+        .addAllElementsScaling(1.25F)
+        .build();
+    public static ValueCalculation FIRE_TRAP = ValueCalcBuilder.of(SpellKeys.FIRE_TRAP, "Fire Trap")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(5)
+            .scaling(1.5F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Fire)
+            .base(5)
+            .scaling(1.5F)
+            .build())
+        .addAllElementsScaling(1.25F)
+        .build();
+    public static ValueCalculation POISON_TRAP = ValueCalcBuilder.of(SpellKeys.POISON_TRAP, "Poison Trap")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(5)
+            .scaling(1.5F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Earth)
+            .base(5)
+            .scaling(1.5F)
+            .build())
+        .addAllElementsScaling(1.25F)
+        .build();
 
     public static ValueCalculation HEALING_ARIA = ValueCalcBuilder.of("healing_aria", "Healing Aria")
         .baseValue(80)
@@ -166,9 +201,6 @@ public class SpellCalcs {
         .attackScaling(0.6F)
         .build();
 
-    public static ValueCalculation RANGER_TRAP = ValueCalcBuilder.of("ranger_trap")
-        .attackScaling(1F)
-        .build();
     public static ValueCalculation AWAKEN_MANA = ValueCalcBuilder.of("awaken_mana")
         .baseValue(100)
         .build();

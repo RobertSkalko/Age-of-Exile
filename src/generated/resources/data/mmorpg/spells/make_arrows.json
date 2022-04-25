@@ -5,6 +5,7 @@
     "on_cast": [
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "sound",
@@ -20,11 +21,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "sound",
@@ -40,11 +41,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "caster_command",
@@ -58,8 +59,7 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       }
     ],
     "entity_components": {}

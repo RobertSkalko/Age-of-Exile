@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
-import com.robertx22.age_of_exile.database.data.spells.components.conditions.EffectCondition;
+import com.robertx22.age_of_exile.database.data.spells.components.entity_predicates.SpellEntityPredicate;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
@@ -51,7 +51,7 @@ public class TestSpell {
                     .onTick(2D))
 
                 .onTick(PartBuilder.damageInAoe(SpellCalcs.ICE_SNAKE, 6D)
-                    .addCondition(EffectCondition.DID_NOT_AFFECT_ENTITY_ALREADY.create())
+                    .addEntityPredicate(SpellEntityPredicate.DID_NOT_AFFECT_BY_ENTITY.create())
                     .addPerEntityHit(PartBuilder.playSound(SoundEvents.GENERIC_HURT))
                     .addPerEntityHit(PartBuilder.justAction(SpellAction.MARK_AS_AFFECTED_BY_ENTITY.create()))
                     .onTick(1D))

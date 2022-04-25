@@ -5,6 +5,7 @@
     "on_cast": [
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "sound",
@@ -20,11 +21,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "particles_in_radius",
@@ -44,8 +45,7 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [
@@ -55,6 +55,14 @@
               "selection_type": "RADIUS",
               "en_predicate": "enemies",
               "radius": 5.0
+            }
+          }
+        ],
+        "en_preds": [
+          {
+            "type": "has_effect",
+            "map": {
+              "potion_id": "mmorpg:negative/2"
             }
           }
         ],
@@ -72,17 +80,10 @@
             "map": {}
           }
         ],
-        "en_preds": [
-          {
-            "type": "has_effect",
-            "map": {
-              "potion_id": "mmorpg:negative/2"
-            }
-          }
-        ],
         "per_entity_hit": [
           {
             "targets": [],
+            "en_preds": [],
             "acts": [
               {
                 "type": "sound_per_target",
@@ -93,11 +94,11 @@
                 }
               }
             ],
-            "ifs": [],
-            "en_preds": []
+            "ifs": []
           },
           {
             "targets": [],
+            "en_preds": [],
             "acts": [
               {
                 "type": "sound_per_target",
@@ -108,11 +109,11 @@
                 }
               }
             ],
-            "ifs": [],
-            "en_preds": []
+            "ifs": []
           },
           {
             "targets": [],
+            "en_preds": [],
             "acts": [
               {
                 "type": "particles_in_radius",
@@ -124,11 +125,11 @@
                 }
               }
             ],
-            "ifs": [],
-            "en_preds": []
+            "ifs": []
           },
           {
             "targets": [],
+            "en_preds": [],
             "acts": [
               {
                 "type": "particles_in_radius",
@@ -140,8 +141,7 @@
                 }
               }
             ],
-            "ifs": [],
-            "en_preds": []
+            "ifs": []
           }
         ]
       }

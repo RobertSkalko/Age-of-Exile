@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.data.value_calc;
 
+import com.robertx22.age_of_exile.database.all_keys.base.SpellKey;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
@@ -18,6 +19,14 @@ public class ValueCalcBuilder {
         b.calc = new ValueCalculation();
         b.calc.locname = locname;
         b.calc.id = id;
+        return b;
+    }
+
+    public static ValueCalcBuilder of(SpellKey key, String locname) {
+        ValueCalcBuilder b = new ValueCalcBuilder();
+        b.calc = new ValueCalculation();
+        b.calc.locname = locname;
+        b.calc.id = key.id;
         return b;
     }
 

@@ -5,6 +5,7 @@
     "on_cast": [
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "sound",
@@ -20,11 +21,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "summon_at_sight",
@@ -42,14 +43,14 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       }
     ],
     "entity_components": {
       "block": [
         {
           "targets": [],
+          "en_preds": [],
           "acts": [
             {
               "type": "particles_in_radius",
@@ -64,8 +65,7 @@
               }
             }
           ],
-          "ifs": [],
-          "en_preds": []
+          "ifs": []
         },
         {
           "targets": [
@@ -78,6 +78,7 @@
               }
             }
           ],
+          "en_preds": [],
           "acts": [
             {
               "type": "damage",
@@ -94,10 +95,10 @@
               }
             }
           ],
-          "en_preds": [],
           "per_entity_hit": [
             {
               "targets": [],
+              "en_preds": [],
               "acts": [
                 {
                   "type": "sound_per_target",
@@ -108,8 +109,7 @@
                   }
                 }
               ],
-              "ifs": [],
-              "en_preds": []
+              "ifs": []
             }
           ]
         }
@@ -117,6 +117,7 @@
       "default_entity_name": [
         {
           "targets": [],
+          "en_preds": [],
           "acts": [
             {
               "type": "effect_cloud",
@@ -131,11 +132,11 @@
               "type": "on_entity_expire",
               "map": {}
             }
-          ],
-          "en_preds": []
+          ]
         },
         {
           "targets": [],
+          "en_preds": [],
           "acts": [
             {
               "type": "summon_block",
@@ -154,8 +155,7 @@
               "type": "on_entity_expire",
               "map": {}
             }
-          ],
-          "en_preds": []
+          ]
         }
       ]
     }

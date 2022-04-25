@@ -43,6 +43,7 @@
               }
             }
           ],
+          "en_preds": [],
           "acts": [
             {
               "type": "exile_effect",
@@ -61,11 +62,11 @@
                 "tick_rate": 40.0
               }
             }
-          ],
-          "en_preds": []
+          ]
         },
         {
           "targets": [],
+          "en_preds": [],
           "acts": [
             {
               "type": "particles_in_radius",
@@ -84,8 +85,7 @@
                 "tick_rate": 40.0
               }
             }
-          ],
-          "en_preds": []
+          ]
         }
       ]
     }

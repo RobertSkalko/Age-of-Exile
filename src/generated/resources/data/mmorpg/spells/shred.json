@@ -5,6 +5,7 @@
     "on_cast": [
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "sound",
@@ -20,11 +21,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "sword_sweep_particles",
@@ -36,11 +37,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "particles_in_radius",
@@ -60,11 +61,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "particles_in_radius",
@@ -84,11 +85,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "particles_in_radius",
@@ -108,11 +109,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "particles_in_radius",
@@ -132,8 +133,7 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [
@@ -146,6 +146,7 @@
             }
           }
         ],
+        "en_preds": [],
         "acts": [
           {
             "type": "exile_effect",
@@ -162,8 +163,7 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [
@@ -176,6 +176,7 @@
             }
           }
         ],
+        "en_preds": [],
         "acts": [
           {
             "type": "damage",
@@ -190,10 +191,10 @@
             "map": {}
           }
         ],
-        "en_preds": [],
         "per_entity_hit": [
           {
             "targets": [],
+            "en_preds": [],
             "acts": [
               {
                 "type": "particles_in_radius",
@@ -208,8 +209,7 @@
                 }
               }
             ],
-            "ifs": [],
-            "en_preds": []
+            "ifs": []
           }
         ]
       }

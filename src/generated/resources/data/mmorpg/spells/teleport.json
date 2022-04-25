@@ -5,6 +5,7 @@
     "on_cast": [
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "summon_at_sight",
@@ -23,11 +24,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "sound",
@@ -43,11 +44,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "particles_in_radius",
@@ -64,8 +65,7 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       }
     ],
     "entity_components": {
@@ -77,6 +77,7 @@
               "map": {}
             }
           ],
+          "en_preds": [],
           "acts": [
             {
               "type": "tp_target_to_self",
@@ -88,13 +89,13 @@
               "type": "on_entity_expire",
               "map": {}
             }
-          ],
-          "en_preds": []
+          ]
         }
       ],
       "default_entity_name": [
         {
           "targets": [],
+          "en_preds": [],
           "acts": [
             {
               "type": "summon_block",
@@ -113,8 +114,7 @@
               "type": "on_entity_expire",
               "map": {}
             }
-          ],
-          "en_preds": []
+          ]
         }
       ]
     }

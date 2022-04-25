@@ -36,6 +36,7 @@
               }
             }
           ],
+          "en_preds": [],
           "acts": [
             {
               "type": "aggro",
@@ -52,8 +53,7 @@
                 "tick_rate": 60.0
               }
             }
-          ],
-          "en_preds": []
+          ]
         }
       ]
     }

@@ -28,9 +28,9 @@ public class RangerSpells implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        trap(SpellKeys.FROST_TRAP.id, "Frost Trap", ParticleTypes.ITEM_SNOWBALL, SpellCalcs.RANGER_TRAP).build();
-        trap(SpellKeys.POISON_TRAP.id, "Poison Trap", ParticleTypes.ITEM_SLIME, SpellCalcs.RANGER_TRAP).build();
-        trap(SpellKeys.FIRE_TRAP.id, "Fire Trap", ParticleTypes.FLAME, SpellCalcs.RANGER_TRAP).build();
+        trap(SpellKeys.FROST_TRAP.id, "Frost Trap", ParticleTypes.ITEM_SNOWBALL, SpellCalcs.FROST_TRAP).build();
+        trap(SpellKeys.POISON_TRAP.id, "Poison Trap", ParticleTypes.ITEM_SLIME, SpellCalcs.POISON_TRAP).build();
+        trap(SpellKeys.FIRE_TRAP.id, "Fire Trap", ParticleTypes.FLAME, SpellCalcs.FIRE_TRAP).build();
 
         SpellBuilder.of(SpellKeys.EXPLOSIVE_ARROW,
                 SpellConfiguration.Builder.arrowImbue(10, 20 * 10), "Explosive Arrow",

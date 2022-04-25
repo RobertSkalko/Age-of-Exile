@@ -5,6 +5,7 @@
     "on_cast": [
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "sound",
@@ -20,11 +21,11 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       },
       {
         "targets": [],
+        "en_preds": [],
         "acts": [
           {
             "type": "projectile",
@@ -44,14 +45,14 @@
             "type": "on_spell_cast",
             "map": {}
           }
-        ],
-        "en_preds": []
+        ]
       }
     ],
     "entity_components": {
       "default_entity_name": [
         {
           "targets": [],
+          "en_preds": [],
           "acts": [
             {
               "type": "particles_in_radius",
@@ -74,11 +75,11 @@
               "type": "on_hit",
               "map": {}
             }
-          ],
-          "en_preds": []
+          ]
         },
         {
           "targets": [],
+          "en_preds": [],
           "acts": [
             {
               "type": "sound",
@@ -94,8 +95,7 @@
               "type": "on_hit",
               "map": {}
             }
-          ],
-          "en_preds": []
+          ]
         },
         {
           "targets": [
@@ -104,6 +104,7 @@
               "map": {}
             }
           ],
+          "en_preds": [],
           "acts": [
             {
               "type": "damage",
@@ -117,11 +118,11 @@
               "type": "on_hit",
               "map": {}
             }
-          ],
-          "en_preds": []
+          ]
         },
         {
           "targets": [],
+          "en_preds": [],
           "acts": [
             {
               "type": "particles_in_radius",
@@ -140,8 +141,7 @@
                 "tick_rate": 5.0
               }
             }
-          ],
-          "en_preds": []
+          ]
         }
       ]
     }
