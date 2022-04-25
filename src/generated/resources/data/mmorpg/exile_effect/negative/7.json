@@ -6,22 +6,8 @@
   "tags": [
     "negative"
   ],
-  "mc_stats": [
-    {
-      "val": 0.2,
-      "uuid": "bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8",
-      "id": "minecraft:generic.movement_speed",
-      "type": "GLOBAL_INCREASE"
-    }
-  ],
-  "stats": [
-    {
-      "min": -5.0,
-      "max": -10.0,
-      "stat": "elemental_resist",
-      "type": "PERCENT"
-    }
-  ],
+  "mc_stats": [],
+  "stats": [],
   "spell": {
     "on_cast": [],
     "entity_components": {

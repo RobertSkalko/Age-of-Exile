@@ -288,6 +288,7 @@
       "staff_spell"
     ],
     "cast_type": "NORMAL",
+    "everyone_has": true,
     "imbues": 1,
     "imbue_type": "ON_RANGED_ATTACK"
   },

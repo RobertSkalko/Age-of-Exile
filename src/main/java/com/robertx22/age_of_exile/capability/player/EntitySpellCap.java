@@ -218,7 +218,7 @@ public class EntitySpellCap {
         public AlreadyHitData mobsAffectedBySpell = new AlreadyHitData();
 
         public boolean hasSpell(Spell spell) {
-            return this.spellData.spells.contains(spell.GUID());
+            return this.spellData.hasSpell(spell);
         }
 
         @Override

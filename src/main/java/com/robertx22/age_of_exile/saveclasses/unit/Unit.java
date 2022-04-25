@@ -3,7 +3,6 @@ package com.robertx22.age_of_exile.saveclasses.unit;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.damage_hooks.util.AttackInformation;
-import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.database.data.game_balance_config.GameBalanceConfig;
 import com.robertx22.age_of_exile.database.data.rarities.MobRarity;
 import com.robertx22.age_of_exile.database.data.set.GearSet;
@@ -368,9 +367,6 @@ public class Unit {
                 });
 
             if (entity instanceof PlayerEntity) {
-
-                Load.spells(entity)
-                    .getSpellsData().spells.add(SpellKeys.MAGIC_PROJECTILE.id); // todo
 
                 this.getStats().stats.values()
                     .forEach(x -> {

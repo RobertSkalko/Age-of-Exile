@@ -95,7 +95,8 @@ public class ElementalistSpells implements ExileRegistryInit {
 
             .build();
 
-        SpellBuilder.of(SpellKeys.MAGIC_PROJECTILE, SpellConfiguration.Builder.instant(0, 15), "Magic Projectile",
+        SpellBuilder.of(SpellKeys.MAGIC_PROJECTILE, SpellConfiguration.Builder.instant(0, 15)
+                    .setEveryoneHas(), "Magic Projectile",
                 Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
             .manualDesc(
                 "Throw out a magical spark, dealing damage")

@@ -140,6 +140,7 @@
       "damage"
     ],
     "cast_type": "IMBUE",
+    "everyone_has": false,
     "imbues": 10,
     "imbue_type": "STAFF_IMBUE"
   },

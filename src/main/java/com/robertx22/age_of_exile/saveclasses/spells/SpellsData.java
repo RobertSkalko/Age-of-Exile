@@ -22,6 +22,18 @@ public class SpellsData {
     @Store
     public String school = "";
 
+    public boolean hasSpell(Spell spell) {
+        if (spells.contains(spell.GUID())) {
+            return true;
+        }
+        if (spell.config.everyone_has) {
+            return true;
+        }
+
+        return false;
+
+    }
+
     public void learnSpell(Spell spell, SpellSchool school) {
 
         //spells.removeIf(x -> x.equals(spell.GUID()));

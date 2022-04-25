@@ -12,7 +12,7 @@
       "val": -0.5,
       "uuid": "6122802e-52c0-44ee-81d5-a9f58db48880",
       "id": "minecraft:generic.movement_speed",
-      "type": "FLAT"
+      "type": "PERCENT"
     }
   ],
   "stats": [

@@ -159,6 +159,7 @@
       "heal"
     ],
     "cast_type": "NORMAL",
+    "everyone_has": false,
     "imbues": 1,
     "imbue_type": "ON_RANGED_ATTACK"
   },

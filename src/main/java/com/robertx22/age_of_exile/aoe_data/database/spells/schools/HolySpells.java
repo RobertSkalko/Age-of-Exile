@@ -28,7 +28,6 @@ import java.util.Arrays;
 public class HolySpells implements ExileRegistryInit {
 
     public static String HEALING_AURA_ID = "healing_aura";
-    public static String UNDYING_WILL = "undying_will";
     public static String SHOOTING_STAR = "shooting_star";
 
     public static String TAUNT = "taunt";

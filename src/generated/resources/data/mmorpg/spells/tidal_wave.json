@@ -149,6 +149,7 @@
       "damage"
     ],
     "cast_type": "IMBUE",
+    "everyone_has": false,
     "imbues": 5,
     "imbue_type": "ON_CRIT"
   },

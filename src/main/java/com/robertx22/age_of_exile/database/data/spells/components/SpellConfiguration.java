@@ -17,12 +17,18 @@ public class SpellConfiguration {
     public PlayStyle style = PlayStyle.magic;
     public List<SpellTag> tags = new ArrayList<>();
     public SpellCastType cast_type = SpellCastType.NORMAL;
+    public boolean everyone_has = false;
 
     public int imbues = 1;
     public ImbueType imbue_type = ImbueType.ON_RANGED_ATTACK;
 
     public SpellConfiguration setCastType(SpellCastType type) {
         this.cast_type = type;
+        return this;
+    }
+
+    public SpellConfiguration setEveryoneHas() {
+        this.everyone_has = true;
         return this;
     }
 
