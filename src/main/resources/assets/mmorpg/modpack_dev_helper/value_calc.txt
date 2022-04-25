@@ -8,6 +8,7 @@ chill_eruption
 chilling_field
 frost_steps
 whirlwind
+damage_totem
 breath
 ice_snake
 nature_balm
@@ -31,6 +32,7 @@ magic_projectile
 frost_trap
 fire_trap
 shout_warn
+magma_flower_heal
 shooting_star
 meteor
 frost_nova

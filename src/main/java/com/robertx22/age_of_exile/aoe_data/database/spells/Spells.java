@@ -21,7 +21,6 @@ public class Spells implements ExileRegistryInit {
         new CurseSpells().registerAll();
         new IntSpells().registerAll();
         new StrSpells().registerAll();
-        new TotemSpells().registerAll();
 
         new ElementalistSpells().registerAll();
         new WarriorSpells().registerAll();

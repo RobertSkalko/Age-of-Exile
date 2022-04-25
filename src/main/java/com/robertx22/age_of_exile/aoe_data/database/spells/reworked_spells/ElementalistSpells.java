@@ -5,10 +5,7 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.Negativ
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
-import com.robertx22.age_of_exile.aoe_data.database.spells.builders.ExileEffectActionBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.spells.builders.NewSpellBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.spells.builders.SpellEntityBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.spells.builders.VanillaEffectActionBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.*;
 import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
@@ -248,5 +245,14 @@ public class ElementalistSpells implements ExileRegistryInit {
 
             .build();
 
+        CommonSpellBuilders.totemSpell(Blocks.FIRE_CORAL, SpellKeys.MAGMA_FLOWER, SpellConfiguration.Builder.instant(18, 20 * 30), "Magma Flower",
+                Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.FLAME)
+            .desc(
+                "Summon a magic flower that heals allies"
+            )
+            .addEntity(SpellEntityBuilder.of("block")
+                .onTick(20, PartBuilder.Restore.Health.aoe(SpellCalcs.MAGMA_FLOWER_HEAL, CommonSpellBuilders.DEFAULT_TOTEM_RADIUS))
+            )
+            .build();
     }
 }

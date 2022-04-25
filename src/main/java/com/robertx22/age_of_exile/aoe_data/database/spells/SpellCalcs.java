@@ -9,6 +9,23 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class SpellCalcs {
 
+    public static ValueCalculation DAMAGE_TOTEM = ValueCalcBuilder.of("damage_totem", "Damage Totem")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(8)
+            .scaling(1.5F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Fire)
+            .base(8)
+            .scaling(1.5F)
+            .build())
+        .addAllElementsScaling(1)
+        .build();
+
+    public static ValueCalculation MAGMA_FLOWER_HEAL = ValueCalcBuilder.of("magma_flower_heal", "Magma Flower Heal")
+        .baseValue(3)
+        .addAllElementsScaling(0.25F)
+        .build();
+
     public static ValueCalculation SEEKER_FLAMES = ValueCalcBuilder.of(SpellKeys.SEEKER_FLAMES, "Seeker Flames")
         .damage(DamageCalculation.Builder.of(Elements.Fire)
             .base(5)
@@ -254,10 +271,10 @@ public class SpellCalcs {
     public static ValueCalculation SHRED = ValueCalcBuilder.of("shred")
         .attackScaling(0.6F)
         .build();
-    public static ValueCalculation TOTEM_HEAL = ValueCalcBuilder.of("totem_heal")
+    public static ValueCalculation TOTEM_HEAL = ValueCalcBuilder.of("totem_heal", "Totem Heal")
         .baseValue(3)
         .build();
-    public static ValueCalculation TOTEM_MANA = ValueCalcBuilder.of("totem_mana")
+    public static ValueCalculation TOTEM_MANA = ValueCalcBuilder.of("totem_mana", "Totem Mana")
         .baseValue(6)
         .build();
     public static ValueCalculation CURSE = ValueCalcBuilder.of("curse")

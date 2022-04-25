@@ -16,11 +16,15 @@ public interface SpellKeys {
     SpellKey FROST_STEPS = new SpellKey("frost_steps");
     SpellKey ICE_SNAKE = new SpellKey("ice_snake");
     SpellKey SEEKER_FLAMES = new SpellKey("seeker_flames");
+    SpellKey MAGMA_FLOWER = new SpellKey("magma_flower");
 
     // WARRIOR
     SpellKey METEOR_STRIKE = new SpellKey("meteor_strike");
     SpellKey TIDAL_WAVE = new SpellKey("tidal_wave");
     SpellKey VENOM_STRIKE = new SpellKey("venom_strike");
+    SpellKey MANA_TOTEM = new SpellKey("mana_totem");
+    SpellKey HEAL_TOTEM = new SpellKey("heal_totem");
+    SpellKey DAMAGE_TOTEM = new SpellKey("damage_totem");
 
     // HUNTER
     SpellKey MAKE_ARROWS = new SpellKey("make_arrows");

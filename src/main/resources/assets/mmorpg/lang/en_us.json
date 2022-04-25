@@ -295,7 +295,6 @@
 "_comment": " [CATEGORY]: SPELLS - NAMES",
 
 	"mmorpg.spell.arrow_storm": "Arrow Storm",
-	"mmorpg.spell.astral_totem": "Astral Totem",
 	"mmorpg.spell.black_hole": "Black Hole",
 	"mmorpg.spell.charged_bolt": "Charged Bolt",
 	"mmorpg.spell.chill_eruption": "Chill Eruption",
@@ -303,12 +302,14 @@
 	"mmorpg.spell.curse_of_agony": "Curse of Agony",
 	"mmorpg.spell.curse_of_despair": "Curse of Despair",
 	"mmorpg.spell.curse_of_weak": "Curse of Weakness",
+	"mmorpg.spell.damage_totem": "Damage Totem",
 	"mmorpg.spell.dash": "Dash",
 	"mmorpg.spell.entangling_seed": "Entangling Seed",
 	"mmorpg.spell.explosive_arrow": "Explosive Arrow",
 	"mmorpg.spell.fire_trap": "Fire Trap",
 	"mmorpg.spell.frost_steps": "Frost Steps",
 	"mmorpg.spell.frost_trap": "Frost Trap",
+	"mmorpg.spell.heal_totem": "Rejuvenating Totem",
 	"mmorpg.spell.healing_aria": "Healing Aria",
 	"mmorpg.spell.healing_aura": "Healing Aura",
 	"mmorpg.spell.heart_of_ice": "Heart of Ice",
@@ -319,7 +320,9 @@
 	"mmorpg.spell.jump_field": "Jump Field",
 	"mmorpg.spell.levitation": "Levitation",
 	"mmorpg.spell.magic_projectile": "Magic Projectile",
+	"mmorpg.spell.magma_flower": "Magma Flower",
 	"mmorpg.spell.make_arrows": "Produce Arrows",
+	"mmorpg.spell.mana_totem": "Astral Totem",
 	"mmorpg.spell.meteor": "Meteor",
 	"mmorpg.spell.meteor_strike": "Meteor Strike",
 	"mmorpg.spell.nature_balm": "Nature's Balm",
@@ -328,7 +331,6 @@
 	"mmorpg.spell.power_chord": "Power Chord",
 	"mmorpg.spell.pull": "Pull",
 	"mmorpg.spell.refresh": "Refresh",
-	"mmorpg.spell.rejuv_totem": "Rejuvenating Totem",
 	"mmorpg.spell.seeker_flames": "Seeker Flames",
 	"mmorpg.spell.shooting_star": "Shooting Star",
 	"mmorpg.spell.shred": "Shred",
@@ -433,7 +435,6 @@
 "_comment": " [CATEGORY]: ONEOFAKIND - NAMES",
 
 	"mmorpg.one_of_a_kind.arrow_storm_mod": "Arrow Storm Modifier",
-	"mmorpg.one_of_a_kind.astral_totem_mod": "Astral Totem Modifier",
 	"mmorpg.one_of_a_kind.black_hole_mod": "Black Hole Modifier",
 	"mmorpg.one_of_a_kind.charged_bolt_mod": "Charged Bolt Modifier",
 	"mmorpg.one_of_a_kind.chill_eruption_mod": "Chill Eruption Modifier",
@@ -441,12 +442,14 @@
 	"mmorpg.one_of_a_kind.curse_of_agony_mod": "Curse of Agony Modifier",
 	"mmorpg.one_of_a_kind.curse_of_despair_mod": "Curse of Despair Modifier",
 	"mmorpg.one_of_a_kind.curse_of_weak_mod": "Curse of Weakness Modifier",
+	"mmorpg.one_of_a_kind.damage_totem_mod": "Damage Totem Modifier",
 	"mmorpg.one_of_a_kind.dash_mod": "Dash Modifier",
 	"mmorpg.one_of_a_kind.entangling_seed_mod": "Entangling Seed Modifier",
 	"mmorpg.one_of_a_kind.explosive_arrow_mod": "Explosive Arrow Modifier",
 	"mmorpg.one_of_a_kind.fire_trap_mod": "Fire Trap Modifier",
 	"mmorpg.one_of_a_kind.frost_steps_mod": "Frost Steps Modifier",
 	"mmorpg.one_of_a_kind.frost_trap_mod": "Frost Trap Modifier",
+	"mmorpg.one_of_a_kind.heal_totem_mod": "Rejuvenating Totem Modifier",
 	"mmorpg.one_of_a_kind.healing_aria_mod": "Healing Aria Modifier",
 	"mmorpg.one_of_a_kind.healing_aura_mod": "Healing Aura Modifier",
 	"mmorpg.one_of_a_kind.heart_of_ice_mod": "Heart of Ice Modifier",
@@ -457,7 +460,9 @@
 	"mmorpg.one_of_a_kind.jump_field_mod": "Jump Field Modifier",
 	"mmorpg.one_of_a_kind.levitation_mod": "Levitation Modifier",
 	"mmorpg.one_of_a_kind.magic_projectile_mod": "Magic Projectile Modifier",
+	"mmorpg.one_of_a_kind.magma_flower_mod": "Magma Flower Modifier",
 	"mmorpg.one_of_a_kind.make_arrows_mod": "Produce Arrows Modifier",
+	"mmorpg.one_of_a_kind.mana_totem_mod": "Astral Totem Modifier",
 	"mmorpg.one_of_a_kind.meteor_mod": "Meteor Modifier",
 	"mmorpg.one_of_a_kind.meteor_strike_mod": "Meteor Strike Modifier",
 	"mmorpg.one_of_a_kind.nature_balm_mod": "Nature's Balm Modifier",
@@ -466,7 +471,6 @@
 	"mmorpg.one_of_a_kind.power_chord_mod": "Power Chord Modifier",
 	"mmorpg.one_of_a_kind.pull_mod": "Pull Modifier",
 	"mmorpg.one_of_a_kind.refresh_mod": "Refresh Modifier",
-	"mmorpg.one_of_a_kind.rejuv_totem_mod": "Rejuvenating Totem Modifier",
 	"mmorpg.one_of_a_kind.seeker_flames_mod": "Seeker Flames Modifier",
 	"mmorpg.one_of_a_kind.shooting_star_mod": "Shooting Star Modifier",
 	"mmorpg.one_of_a_kind.shred_mod": "Shred Modifier",
@@ -498,22 +502,6 @@
 	"mmorpg.rarity.gear.unique": "Unique",
 
 "_comment": " [CATEGORY]: RARITIES - NAMES",
-
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
@@ -559,6 +547,22 @@
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_corruption": "§cOrb of Purification",
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: TALENTS - NAMES",
 
 	"mmorpg.talent.battle_mage": "Battle Mage",
@@ -589,6 +593,7 @@
 
 "_comment": " [CATEGORY]: CALCULATIONS - NAMES",
 
+	"mmorpg.calculation.damage_totem": "Damage Totem",
 	"mmorpg.calculation.explosive_arrow": "Explosive Arrow",
 	"mmorpg.calculation.fire_trap": "Fire Trap",
 	"mmorpg.calculation.frost_nova": "Frost Nova",
@@ -597,6 +602,7 @@
 	"mmorpg.calculation.healing_aria": "Healing Aria",
 	"mmorpg.calculation.ice_snake": "Ice Snake",
 	"mmorpg.calculation.magic_projectile": "Magic Projectile",
+	"mmorpg.calculation.magma_flower_heal": "Magma Flower Heal",
 	"mmorpg.calculation.meteor": "Meteor",
 	"mmorpg.calculation.meteor_strike": "Meteor Strike",
 	"mmorpg.calculation.poison": "Poison Tick",
@@ -604,6 +610,8 @@
 	"mmorpg.calculation.poison_trap": "Poison Trap",
 	"mmorpg.calculation.seeker_flames": "Seeker Flames",
 	"mmorpg.calculation.tidal_wave": "Tidal Wave",
+	"mmorpg.calculation.totem_heal": "Totem Heal",
+	"mmorpg.calculation.totem_mana": "Totem Mana",
 	"mmorpg.calculation.venom_strike": "Venom Strike",
 
 "_comment": " [CATEGORY]: CALCULATIONS - NAMES",
@@ -1237,24 +1245,6 @@
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
-	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
-	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
-	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
-	"mmorpg.unique_gear.insight.name": "Insight",
-	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
-	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
-	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
-	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
-	"mmorpg.unique_gear.test_runic_spell.name": "Bone Test",
-	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
-	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.axe": "Axe",
@@ -1285,6 +1275,24 @@
 	"mmorpg.gearslot.sword": "Sword",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"mmorpg.unique_gear.autumn_harvest.name": "Autumn Harvest",
+	"mmorpg.unique_gear.azuna_ring.name": "Azuna's Eternal Decree",
+	"mmorpg.unique_gear.ghast_necklace.name": "Ghast Tear",
+	"mmorpg.unique_gear.ghostly_shores.name": "Ghostly Shores",
+	"mmorpg.unique_gear.insight.name": "Insight",
+	"mmorpg.unique_gear.mana_dominion.name": "Dominion of Mana",
+	"mmorpg.unique_gear.skull_of_spirits.name": "Skull of Spirits",
+	"mmorpg.unique_gear.spring_blossoms.name": "Spring Blossoms",
+	"mmorpg.unique_gear.summer_heat.name": "Summer Heat",
+	"mmorpg.unique_gear.test_runic_spell.name": "Bone Test",
+	"mmorpg.unique_gear.winter_chill.name": "Winter Chill",
+	"mmorpg.unique_gear.witch_brew.name": "Witch's Brew",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -1339,59 +1347,6 @@
 	"item.mmorpg.currency.stone_of_hope.desc": "Transform any rarity gear into higher rarity.",
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
-
-
-"_comment": " [CATEGORY]: SPELLS - DESCRIPTIONS",
-
-	"spell.desc.arrow_storm": "Shoot out arrows in an arc, dealing ",
-	"spell.desc.astral_totem": "Summon a totem which restores  mana to allies around it.",
-	"spell.desc.black_hole": "Summon a dark sphere that attracts nearby enemies to it, dealing damage when it expires.",
-	"spell.desc.charged_bolt": "Shoot a charged arrow that goes through enemies and deals dmg in radius and slows.",
-	"spell.desc.chill_eruption": "Detonate every enemy affected by Chill to deal damage",
-	"spell.desc.chilling_field": "Freeze area of sight, applying chill and damaging enemies  every second.",
-	"spell.desc.curse_of_agony": "Curse enemies with Curse of Agony and deal dmg",
-	"spell.desc.curse_of_despair": "Curse enemies with Curse of Despair and deal dmg",
-	"spell.desc.curse_of_weak": "Curse enemies with Curse of Weakness and deal dmg",
-	"spell.desc.dash": "Dash in your direction and gain slowfall.",
-	"spell.desc.entangling_seed": "Throw out a seed that explodes and petrifies enemies.",
-	"spell.desc.explosive_arrow": "Shoot an arrow that does ",
-	"spell.desc.fire_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal damage in area around itself.",
-	"spell.desc.frost_steps": "Give self effect:",
-	"spell.desc.frost_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal damage in area around itself.",
-	"spell.desc.healing_aria": "Heal allies around you for",
-	"spell.desc.healing_aura": "Heal allies around you",
-	"spell.desc.heart_of_ice": "Heal allies around you",
-	"spell.desc.hunter_potion": "Drink a potion, healing you",
-	"spell.desc.ice_nova": "Damage enemies around you",
-	"spell.desc.ice_shield": "Give self effect:",
-	"spell.desc.ice_snake": "Summon an ice snake in your direction, slowing enemies.",
-	"spell.desc.jump_field": "Summon a Jump Field, stepping on it will propel you upwards at high speeds.",
-	"spell.desc.levitation": "Levitate in the air, but you can't move around besides upwards.",
-	"spell.desc.magic_projectile": "Throw out a magical spark, dealing damage",
-	"spell.desc.make_arrows": "Produce a stack of arrows.",
-	"spell.desc.meteor": "Summon a meteor that falls from the sky, dealing damage",
-	"spell.desc.meteor_strike": "Strike enemies in front of you.",
-	"spell.desc.nature_balm": "Give allies effect:",
-	"spell.desc.poison_cloud": "Erupt with poisonous gas, dealing damage to nearby enemies and spawning a poison cloud.",
-	"spell.desc.poison_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal damage in area around itself.",
-	"spell.desc.power_chord": "Imbue your staff with Word: Power.",
-	"spell.desc.pull": "Pull enemies in area to you, dealing damage and slowing them.",
-	"spell.desc.refresh": "Refreshes all your spell cooldowns by 1 minute.",
-	"spell.desc.rejuv_totem": "Summon a totem which restores  health to allies around it.",
-	"spell.desc.seeker_flames": "Summon a ball of flame seeking the targeted enemy.",
-	"spell.desc.shooting_star": "Shoots a star that heals allies",
-	"spell.desc.shred": "Slash all nearby enemies, dealing  damage and reducing their defenses.",
-	"spell.desc.smoke_bomb": "Throw out a smoke bomb, blinding enemies and reducing threat.",
-	"spell.desc.song_of_perseverance": "Give a stack of Perseverance to all allies around you.",
-	"spell.desc.song_of_valor": "Give a stack of Valor to all allies around you.",
-	"spell.desc.song_of_vigor": "Give a stack of Vigor to all allies around you.",
-	"spell.desc.taunt": "Shout, making enemies nearby want to attack you. Generates theat",
-	"spell.desc.teleport": "Teleport yourself in the direction you're looking at.",
-	"spell.desc.test_spell": "Summon a ball of flame seeking the targeted enemy.",
-	"spell.desc.tidal_wave": "Strike enemies in front of you",
-	"spell.desc.venom_strike": "Strike enemies in front of you and leave a poison trail.",
-
-"_comment": " [CATEGORY]: SPELLS - DESCRIPTIONS",
 
 
 "_comment": " [CATEGORY]: STATS - DESCRIPTIONS",
@@ -1517,7 +1472,62 @@
 	"mmorpg.stat_desc.water_dot_damage": "Fire damage over time increases damage of burn, for example.",
 	"mmorpg.stat_desc.wisdom": "Determines your total: Mana, Mana Regen",
 
-"_comment": " [CATEGORY]: STATS - DESCRIPTIONS"
+"_comment": " [CATEGORY]: STATS - DESCRIPTIONS",
+
+
+"_comment": " [CATEGORY]: SPELLS - DESCRIPTIONS",
+
+	"spell.desc.arrow_storm": "Shoot out arrows in an arc, dealing ",
+	"spell.desc.black_hole": "Summon a dark sphere that attracts nearby enemies to it, dealing damage when it expires.",
+	"spell.desc.charged_bolt": "Shoot a charged arrow that goes through enemies and deals dmg in radius and slows.",
+	"spell.desc.chill_eruption": "Detonate every enemy affected by Chill to deal damage",
+	"spell.desc.chilling_field": "Freeze area of sight, applying chill and damaging enemies  every second.",
+	"spell.desc.curse_of_agony": "Curse enemies with Curse of Agony and deal dmg",
+	"spell.desc.curse_of_despair": "Curse enemies with Curse of Despair and deal dmg",
+	"spell.desc.curse_of_weak": "Curse enemies with Curse of Weakness and deal dmg",
+	"spell.desc.damage_totem": "Summon a totem which damages enemies around it.",
+	"spell.desc.dash": "Dash in your direction and gain slowfall.",
+	"spell.desc.entangling_seed": "Throw out a seed that explodes and petrifies enemies.",
+	"spell.desc.explosive_arrow": "Shoot an arrow that does ",
+	"spell.desc.fire_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal damage in area around itself.",
+	"spell.desc.frost_steps": "Give self effect:",
+	"spell.desc.frost_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal damage in area around itself.",
+	"spell.desc.heal_totem": "Summon a totem which restores  health to allies around it.",
+	"spell.desc.healing_aria": "Heal allies around you for",
+	"spell.desc.healing_aura": "Heal allies around you",
+	"spell.desc.heart_of_ice": "Heal allies around you",
+	"spell.desc.hunter_potion": "Drink a potion, healing you",
+	"spell.desc.ice_nova": "Damage enemies around you",
+	"spell.desc.ice_shield": "Give self effect:",
+	"spell.desc.ice_snake": "Summon an ice snake in your direction, slowing enemies.",
+	"spell.desc.jump_field": "Summon a Jump Field, stepping on it will propel you upwards at high speeds.",
+	"spell.desc.levitation": "Levitate in the air, but you can't move around besides upwards.",
+	"spell.desc.magic_projectile": "Throw out a magical spark, dealing damage",
+	"spell.desc.magma_flower": "Summon a magic flower that heals allies",
+	"spell.desc.make_arrows": "Produce a stack of arrows.",
+	"spell.desc.mana_totem": "Summon a totem which restores  mana to allies around it.",
+	"spell.desc.meteor": "Summon a meteor that falls from the sky, dealing damage",
+	"spell.desc.meteor_strike": "Strike enemies in front of you.",
+	"spell.desc.nature_balm": "Give allies effect:",
+	"spell.desc.poison_cloud": "Erupt with poisonous gas, dealing damage to nearby enemies and spawning a poison cloud.",
+	"spell.desc.poison_trap": "Throw out a trap that stays on the ground and activates when an enemy approaches to deal damage in area around itself.",
+	"spell.desc.power_chord": "Imbue your staff with Word: Power.",
+	"spell.desc.pull": "Pull enemies in area to you, dealing damage and slowing them.",
+	"spell.desc.refresh": "Refreshes all your spell cooldowns by 1 minute.",
+	"spell.desc.seeker_flames": "Summon a ball of flame seeking the targeted enemy.",
+	"spell.desc.shooting_star": "Shoots a star that heals allies",
+	"spell.desc.shred": "Slash all nearby enemies, dealing  damage and reducing their defenses.",
+	"spell.desc.smoke_bomb": "Throw out a smoke bomb, blinding enemies and reducing threat.",
+	"spell.desc.song_of_perseverance": "Give a stack of Perseverance to all allies around you.",
+	"spell.desc.song_of_valor": "Give a stack of Valor to all allies around you.",
+	"spell.desc.song_of_vigor": "Give a stack of Vigor to all allies around you.",
+	"spell.desc.taunt": "Shout, making enemies nearby want to attack you. Generates theat",
+	"spell.desc.teleport": "Teleport yourself in the direction you're looking at.",
+	"spell.desc.test_spell": "Summon a ball of flame seeking the targeted enemy.",
+	"spell.desc.tidal_wave": "Strike enemies in front of you",
+	"spell.desc.venom_strike": "Strike enemies in front of you and leave a poison trail.",
+
+"_comment": " [CATEGORY]: SPELLS - DESCRIPTIONS"
 
 
 }

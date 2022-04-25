@@ -3,12 +3,15 @@ package com.robertx22.age_of_exile.aoe_data.database.spells.reworked_spells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.CommonSpellBuilders;
+import com.robertx22.age_of_exile.aoe_data.database.spells.builders.SpellEntityBuilder;
 import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.mmorpg.registers.common.SlashBlocks;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.uncommon.SoundRefs;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
@@ -91,6 +94,40 @@ public class WarriorSpells implements ExileRegistryInit {
                 .addPerEntityHit(PartBuilder.Sound.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
             )
 
+            .build();
+
+        CommonSpellBuilders.totemSpell(SlashBlocks.GUARD_TOTEM.get(), SpellKeys.DAMAGE_TOTEM, SpellConfiguration.Builder.instant(18, 20 * 30), "Damage Totem",
+                Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.WITCH)
+            .desc(
+                "Summon a totem which damages enemies around it."
+            )
+            .addEntity(SpellEntityBuilder.of("block")
+                .onTick(20, PartBuilder.Damage.aoe(SpellCalcs.DAMAGE_TOTEM, CommonSpellBuilders.DEFAULT_TOTEM_RADIUS)
+                    .addPerEntityHit(PartBuilder.Particles.aoe(ParticleTypes.FLAME, 30D, 1D)
+                        .addPerEntityHit(PartBuilder.Sound.play(SoundEvents.FIRE_EXTINGUISH))
+                    )
+                )
+            )
+            .build();
+
+        CommonSpellBuilders.totemSpell(SlashBlocks.BLUE_TOTEM.get(), SpellKeys.MANA_TOTEM, SpellConfiguration.Builder.instant(18, 20 * 30), "Astral Totem",
+                Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.WITCH)
+            .desc(
+                "Summon a totem which restores  mana to allies around it."
+            )
+            .addEntity(SpellEntityBuilder.of("block")
+                .onTick(20, PartBuilder.Restore.Mana.aoe(SpellCalcs.TOTEM_MANA, CommonSpellBuilders.DEFAULT_TOTEM_RADIUS))
+            )
+            .build();
+
+        CommonSpellBuilders.totemSpell(SlashBlocks.GREEN_TOTEM.get(), SpellKeys.HEAL_TOTEM, SpellConfiguration.Builder.instant(18, 20 * 30), "Rejuvenating Totem",
+                Arrays.asList(SpellTag.totem, SpellTag.area), ParticleTypes.HAPPY_VILLAGER)
+            .desc(
+                "Summon a totem which restores  health to allies around it."
+            )
+            .addEntity(SpellEntityBuilder.of("block")
+                .onTick(20, PartBuilder.Restore.Health.aoe(SpellCalcs.TOTEM_HEAL, CommonSpellBuilders.DEFAULT_TOTEM_RADIUS))
+            )
             .build();
 
     }

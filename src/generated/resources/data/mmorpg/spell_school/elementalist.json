@@ -1,6 +1,10 @@
 {
   "id": "elementalist",
   "spells": {
+    "magma_flower": {
+      "x": 0,
+      "y": 2
+    },
     "ice_snake": {
       "x": 10,
       "y": 0

@@ -1,6 +1,14 @@
 {
   "id": "warrior",
   "spells": {
+    "damage_totem": {
+      "x": 0,
+      "y": 1
+    },
+    "heal_totem": {
+      "x": 5,
+      "y": 1
+    },
     "tidal_wave": {
       "x": 10,
       "y": 0
@@ -13,17 +21,13 @@
       "x": 5,
       "y": 0
     },
-    "rejuv_totem": {
-      "x": 6,
-      "y": 2
+    "mana_totem": {
+      "x": 10,
+      "y": 1
     },
     "taunt": {
       "x": 5,
       "y": 5
-    },
-    "astral_totem": {
-      "x": 7,
-      "y": 2
     }
   },
   "lvl_reqs": [

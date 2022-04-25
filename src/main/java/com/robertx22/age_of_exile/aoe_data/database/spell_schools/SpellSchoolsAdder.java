@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.aoe_data.database.spell_schools;
 
-import com.robertx22.age_of_exile.aoe_data.database.spells.impl.TotemSpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.schools.HolySpells;
 import com.robertx22.age_of_exile.aoe_data.database.spells.schools.HunterSpells;
 import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
@@ -60,6 +59,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             // fire
             .addSpell(SpellKeys.SEEKER_FLAMES.id, new PointData(0, 0))
             .addSpell(SpellKeys.METEOR.id, new PointData(0, 1))
+            .addSpell(SpellKeys.MAGMA_FLOWER.id, new PointData(0, 2))
 
             // poison
             .addSpell(SpellKeys.POISON_CLOUD.id, new PointData(5, 0))
@@ -80,11 +80,13 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
         SchoolBuilder.of(WARRIOR, "Warrior")
 
             .addSpell(SpellKeys.METEOR_STRIKE.id, new PointData(0, 0))
-            .addSpell(SpellKeys.VENOM_STRIKE.id, new PointData(5, 0))
-            .addSpell(SpellKeys.TIDAL_WAVE.id, new PointData(10, 0))
+            .addSpell(SpellKeys.DAMAGE_TOTEM.id, new PointData(0, 1))
 
-            .addSpell(TotemSpells.HEAL_TOTEM_ID, new PointData(6, 2))
-            .addSpell(TotemSpells.MANA_TOTEM_ID, new PointData(7, 2))
+            .addSpell(SpellKeys.VENOM_STRIKE.id, new PointData(5, 0))
+            .addSpell(SpellKeys.HEAL_TOTEM.id, new PointData(5, 1))
+
+            .addSpell(SpellKeys.TIDAL_WAVE.id, new PointData(10, 0))
+            .addSpell(SpellKeys.MANA_TOTEM.id, new PointData(10, 1))
 
             .addSpell(HolySpells.TAUNT, new PointData(5, 5))
 

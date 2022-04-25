@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeap
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class NewSpellBuilder {
@@ -36,6 +37,11 @@ public class NewSpellBuilder {
         return this;
     }
 
+    public NewSpellBuilder tags(List<SpellTag> tags) {
+        this.spell.config.tags = tags;
+        return this;
+    }
+
     public NewSpellBuilder desc(String desc) {
         if (!spell.locDesc.isEmpty()) {
             throw new RuntimeException("Already set  desc!");
@@ -45,7 +51,12 @@ public class NewSpellBuilder {
     }
 
     public NewSpellBuilder addEntity(SpellEntityBuilder entity) {
-        this.spell.attached.entity_components.put(entity.entity_id, entity.list);
+        if (!spell.attached.entity_components.containsKey(entity.entity_id)) {
+            spell.attached.entity_components.put(entity.entity_id, entity.list);
+        } else {
+            spell.attached.entity_components.get(entity.entity_id)
+                .addAll(entity.list);
+        }
         return this;
     }
 
