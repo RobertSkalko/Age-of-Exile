@@ -17,7 +17,6 @@ import com.robertx22.age_of_exile.uncommon.SoundRefs;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.block.Blocks;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -119,11 +118,6 @@ public class SpellBuilder {
         return this;
     }
 
-    public SpellBuilder disableInDimension(ResourceLocation id) {
-        this.spell.disabled_dims.add(id.toString());
-        return this;
-    }
-
     public SpellBuilder onCast(ComponentPart comp) {
         this.spell.attached.on_cast.add(comp);
         comp.addActivationRequirement(EntityActivation.ON_CAST);
@@ -200,11 +194,6 @@ public class SpellBuilder {
         this.spell.attached.getDataForEntity(entity)
             .add(comp);
 
-        return this;
-    }
-
-    public SpellBuilder addEffectToTooltip(EffectCtx eff) {
-        this.spell.effect_tip = eff.resourcePath;
         return this;
     }
 

@@ -9,7 +9,6 @@ import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.SpellCtx;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
-import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -62,7 +61,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
     public SpellConfiguration config = new SpellConfiguration();
 
     public List<String> disabled_dims = new ArrayList<>();
-    public String effect_tip = "";
 
     public transient String locDesc = "";
 
@@ -211,12 +209,6 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
         if (true || Screen.hasShiftDown()) {
 
             Set<ExileEffect> effect = new HashSet<>();
-
-            if (ExileDB.ExileEffects()
-                .isRegistered(effect_tip)) {
-                effect.add(ExileDB.ExileEffects()
-                    .get(effect_tip));
-            }
 
             try {
                 this.getAttached()
