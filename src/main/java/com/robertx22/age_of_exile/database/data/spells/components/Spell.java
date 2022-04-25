@@ -25,8 +25,6 @@ import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.MapManager;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.age_of_exile.vanilla_mc.packets.spells.TellClientToCastSpellPacket;
-import com.robertx22.library_of_exile.main.Packets;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.IGUID;
@@ -122,13 +120,13 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
     public void cast(SpellCastContext ctx, boolean imbue) {
 
-        if (ctx.caster.level.isClientSide) {
+        LivingEntity caster = ctx.caster;
+
+        if (caster.level.isClientSide) {
             if (!ctx.isCastFromClientPacket) {
                 return;
             }
         }
-
-        LivingEntity caster = ctx.caster;
 
         if (this.config.swing_arm) {
             if (!caster.level.isClientSide) {
@@ -146,8 +144,8 @@ public final class Spell implements IGUID, IAutoGson<Spell>, JsonExileRegistry<S
 
             // todo make this send to all players and make the packet work
             if (caster instanceof ServerPlayerEntity) {
-                ServerPlayerEntity sp = (ServerPlayerEntity) caster;
-                Packets.sendToClient(sp, new TellClientToCastSpellPacket(sp, this));
+                //ServerPlayerEntity sp = (ServerPlayerEntity) caster;
+                // Packets.sendToClient(sp, new TellClientToCastSpellPacket(sp, this));
             }
 
         }

@@ -29,7 +29,7 @@ public class ParticleInRadiusAction extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        if (ctx.world.isClientSide) {
+        if (!ctx.world.isClientSide) {
 
             Shape shape = data.getParticleShape();
 

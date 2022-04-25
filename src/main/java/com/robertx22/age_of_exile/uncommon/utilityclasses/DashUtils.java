@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.uncommon.utilityclasses;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.server.SEntityVelocityPacket;
 import net.minecraft.util.math.MathHelper;
@@ -68,8 +69,11 @@ public class DashUtils {
         push(entity, str, x, z);
 
         if (entity instanceof ServerPlayerEntity) {
-            ((ServerPlayerEntity) entity).connection.send(new SEntityVelocityPacket(entity));
-            entity.hurtMarked = false;
+            for (PlayerEntity player : entity.level.players()) {
+                ((ServerPlayerEntity) player).connection.send(new SEntityVelocityPacket(entity));
+                entity.hurtMarked = false;
+            }
+
         }
     }
 

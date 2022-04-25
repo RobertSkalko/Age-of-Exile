@@ -11,6 +11,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class ParticleUtils {
     public static void spawnDefaultSlashingWeaponParticles(Entity en) {
@@ -22,18 +23,30 @@ public class ParticleUtils {
         }
     }
 
+    public static void spawn(World world, Vector3d pos, IParticleData particle, Vector3d vel) {
+
+        if (world.isClientSide) {
+            world.addParticle(particle, pos.x, pos.y, pos.z, vel.x, vel.y, vel.z);
+        } else {
+            if (world instanceof ServerWorld) {
+                ServerWorld sw = (ServerWorld) world;
+                sw.sendParticles(particle, pos.x, pos.y, pos.z, 1, vel.x, vel.y, vel.z, 0);
+            }
+        }
+
+    }
+
     public static void spawn(IParticleData type, World world, Vector3d vec, Vector3d mot) {
-        world.addParticle(type, vec.x, vec.y, vec.z, mot.x, mot.y, mot.z);
+        spawn(world, vec, type, mot);
     }
 
     public static void spawn(IParticleData type, World world, Vector3d vec) {
-        world.addParticle(type, vec.x, vec.y, vec.z, 0, 0, 0);
+        spawn(world, vec, type, new Vector3d(0, 0, 0));
     }
 
     public static void spawn(IParticleData particleData, World world, double x, double y, double z, double xSpeed,
                              double ySpeed, double zSpeed) {
-        world.addParticle(particleData, x, y, z, xSpeed, ySpeed, zSpeed);
-
+        spawn(world, new Vector3d(x, y, z), particleData, new Vector3d(xSpeed, ySpeed, zSpeed));
     }
 
     public static void spawnParticles(ParticleType particle, World world, BlockPos pos, int amount) {

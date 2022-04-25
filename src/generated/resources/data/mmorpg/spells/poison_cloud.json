@@ -53,48 +53,6 @@
           "en_preds": [],
           "acts": [
             {
-              "type": "effect_cloud",
-              "map": {
-                "color": 5635925.0,
-                "potion_dur": 200.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_entity_expire",
-              "map": {}
-            }
-          ]
-        },
-        {
-          "targets": [],
-          "en_preds": [],
-          "acts": [
-            {
-              "type": "summon_block",
-              "map": {
-                "entity_name": "block",
-                "is_falling_block": false,
-                "block_fall_speed": 0.0,
-                "life_ticks": 160.0,
-                "block": "minecraft:air",
-                "find_surface": true
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_entity_expire",
-              "map": {}
-            }
-          ]
-        },
-        {
-          "targets": [],
-          "en_preds": [],
-          "acts": [
-            {
               "type": "particles_in_radius",
               "map": {
                 "particle_type": "minecraft:sneeze",
@@ -169,13 +127,33 @@
           "en_preds": [],
           "acts": [
             {
-              "type": "summon_at_sight",
+              "type": "effect_cloud",
               "map": {
-                "entity_name": "default_entity_name",
-                "gravity": false,
-                "life_ticks": 1.0,
-                "proj_en": "mmorpg:spell_projectile",
-                "height": 0.0
+                "color": 5635925.0,
+                "potion_dur": 200.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ]
+        },
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "summon_block",
+              "map": {
+                "entity_name": "block",
+                "is_falling_block": false,
+                "block_fall_speed": 0.0,
+                "life_ticks": 160.0,
+                "block": "minecraft:air",
+                "find_surface": true
               }
             }
           ],

@@ -20,12 +20,13 @@ public class PushAction extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        float str = data.get(PUSH_STRENGTH)
-            .floatValue();
-        DashUtils.Way way = data.getPushWay();
+        if (!ctx.world.isClientSide) {
+            float str = data.get(PUSH_STRENGTH)
+                .floatValue();
+            DashUtils.Way way = data.getPushWay();
 
-        targets.forEach(x -> DashUtils.dash(x, str, way));
-
+            targets.forEach(x -> DashUtils.dash(x, str, way));
+        }
     }
 
     public MapHolder create(Double str, DashUtils.Way way) {
