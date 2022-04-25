@@ -33,15 +33,15 @@ public class TestSpell {
                 .manualDesc(
                     "Summon an ice snake in your direction, slowing enemies.")
                 .weaponReq(CastingWeapon.MAGE_WEAPON)
-                .onCast(PartBuilder.playSound(SoundRefs.FISHING_THROW_LOW_PITCH))
+                .onCast(PartBuilder.Sound.play(SoundRefs.FISHING_THROW_LOW_PITCH))
                 .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 0.7D, SlashEntities.SIMPLE_PROJECTILE.get(), 60D, false)
                     .put(MapField.EXPIRE_ON_ENTITY_HIT, false)
                     .put(MapField.GRAVITY, false)
                 ))
-                .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ITEM_SNOWBALL, 5D, 0.5D))
-                .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ENCHANTED_HIT, 5D, 0.3D))
+                .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.ITEM_SNOWBALL, 5D, 0.5D))
+                .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.ENCHANTED_HIT, 5D, 0.3D))
 
-                .onTick(PartBuilder.playSound(SoundRefs.ICE_BREAK))
+                .onTick(PartBuilder.Sound.play(SoundRefs.ICE_BREAK))
 
                 .onTick(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.ICE, 20D * 1)
                         .put(MapField.ENTITY_NAME, "block")
@@ -50,12 +50,12 @@ public class TestSpell {
                         .put(MapField.IS_BLOCK_FALLING, true))
                     .onTick(2D))
 
-                .onTick(PartBuilder.damageInAoe(SpellCalcs.ICE_SNAKE, 6D)
+                .onTick(PartBuilder.Damage.aoe(SpellCalcs.ICE_SNAKE, 6D)
                     .addEntityPredicate(SpellEntityPredicate.DID_NOT_AFFECT_BY_ENTITY.create())
-                    .addPerEntityHit(PartBuilder.playSound(SoundEvents.GENERIC_HURT))
+                    .addPerEntityHit(PartBuilder.Sound.play(SoundEvents.GENERIC_HURT))
                     .addPerEntityHit(PartBuilder.justAction(SpellAction.MARK_AS_AFFECTED_BY_ENTITY.create()))
                     .onTick(1D))
-                .onExpire(PartBuilder.playSound(SoundEvents.GENERIC_HURT, 1D, 2D))
+                .onExpire(PartBuilder.Sound.play(SoundEvents.GENERIC_HURT, 1D, 2D))
 
                 // LEAVE THIS SPACE
                 // leave this part

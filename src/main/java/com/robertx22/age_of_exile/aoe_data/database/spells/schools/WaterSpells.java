@@ -35,16 +35,16 @@ public class WaterSpells implements ExileRegistryInit {
                 "Detonate every enemy affected by Chill to deal damage")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.GLASS_BREAK, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.GLASS_BREAK, 1D, 1D))
 
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.ITEM_SNOWBALL, 250D, 5D, 0.5D))
+            .onCast(PartBuilder.Particles.groundEdge(ParticleTypes.ITEM_SNOWBALL, 250D, 5D, 0.5D))
 
-            .onCast(PartBuilder.damageInAoe(SpellCalcs.CHILL_ERUPTION, 5D)
+            .onCast(PartBuilder.Damage.aoe(SpellCalcs.CHILL_ERUPTION, 5D)
                 .addEntityPredicate(SpellEntityPredicate.HAS_EFFECT.create(NegativeEffects.CHILL))
-                .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GLASS_HIT, 1D, 1D))
-                .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GLASS_BREAK, 1D, 1D))
-                .addPerEntityHit(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 100D, 1D))
-                .addPerEntityHit(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 50D, 1D))
+                .addPerEntityHit(PartBuilder.Sound.playSoundPerTarget(SoundEvents.GLASS_HIT, 1D, 1D))
+                .addPerEntityHit(PartBuilder.Sound.playSoundPerTarget(SoundEvents.GLASS_BREAK, 1D, 1D))
+                .addPerEntityHit(PartBuilder.Particles.aoe(ParticleTypes.ITEM_SNOWBALL, 100D, 1D))
+                .addPerEntityHit(PartBuilder.Particles.aoe(ParticleTypes.ENCHANTED_HIT, 50D, 1D))
             )
 
             .build();
@@ -55,7 +55,7 @@ public class WaterSpells implements ExileRegistryInit {
 
             .manualDesc("Freeze area of sight, applying chill and damaging enemies  every second.")
 
-            .onCast(PartBuilder.playSound(SoundEvents.END_PORTAL_SPAWN, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.END_PORTAL_SPAWN, 1D, 1D))
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 20D * 8)
@@ -63,10 +63,10 @@ public class WaterSpells implements ExileRegistryInit {
                 .put(MapField.BLOCK_FALL_SPEED, 0D)
                 .put(MapField.FIND_NEAREST_SURFACE, true)
                 .put(MapField.IS_BLOCK_FALLING, false)))
-            .onTick("block", PartBuilder.groundParticles(ParticleTypes.CLOUD, 20D, 2D, 0.2D))
-            .onTick("block", PartBuilder.playSound(SoundEvents.HORSE_BREATHE, 1.1D, 1.5D)
+            .onTick("block", PartBuilder.Particles.ground(ParticleTypes.CLOUD, 20D, 2D, 0.2D))
+            .onTick("block", PartBuilder.Sound.play(SoundEvents.HORSE_BREATHE, 1.1D, 1.5D)
                 .onTick(20D))
-            .onTick("block", PartBuilder.damageInAoe(SpellCalcs.CHILLING_FIELD, 2D)
+            .onTick("block", PartBuilder.Damage.aoe(SpellCalcs.CHILLING_FIELD, 2D)
                 .onTick(20D))
 
             .onTick("block", new ExileEffectActionBuilder(NegativeEffects.CHILL).seconds(5)
@@ -82,11 +82,11 @@ public class WaterSpells implements ExileRegistryInit {
             .manualDesc(
                 "Heal allies around you")
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SlashSounds.BUFF.get(), 1D, 1D))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.SPLASH, 50D, 5D, 0.2D))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.DRIPPING_WATER, 50D, 5D, 0.2D))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
-            .onCast(PartBuilder.healInAoe(SpellCalcs.HEART_OF_ICE, 5D))
+            .onCast(PartBuilder.Sound.play(SlashSounds.BUFF.get(), 1D, 1D))
+            .onCast(PartBuilder.Particles.ground(ParticleTypes.SPLASH, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.Particles.ground(ParticleTypes.DRIPPING_WATER, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.Particles.ground(ParticleTypes.HEART, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.Restore.Health.aoe(SpellCalcs.HEART_OF_ICE, 5D))
             .build();
 
     }

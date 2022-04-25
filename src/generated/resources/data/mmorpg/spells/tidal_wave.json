@@ -152,6 +152,5 @@
     "imbues": 5,
     "imbue_type": "ON_CRIT"
   },
-  "disabled_dims": [],
-  "effect_tip": ""
+  "disabled_dims": []
 }

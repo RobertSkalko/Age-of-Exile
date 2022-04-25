@@ -31,13 +31,13 @@ public class WarriorSpells implements ExileRegistryInit {
             .manualDesc("Strike enemies in front of you.")
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.FIRE_EXTINGUISH, 1D, 1D))
-            .onCast(PartBuilder.playSound(SoundRefs.EXPLOSION))
-            .onCast(PartBuilder.swordSweepParticles())
+            .onCast(PartBuilder.Sound.play(SoundEvents.FIRE_EXTINGUISH, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundRefs.EXPLOSION))
+            .onCast(PartBuilder.Particles.swordSweep())
 
-            .onCast(PartBuilder.damageInFront(SpellCalcs.METEOR_STRIKE, 2D, 3D)
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.FLAME, 45D, 1D, 0.1D))
-                .addPerEntityHit(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 15D, 1D))
+            .onCast(PartBuilder.Damage.inFront(SpellCalcs.METEOR_STRIKE, 2D, 3D)
+                .addPerEntityHit(PartBuilder.Particles.groundEdge(ParticleTypes.FLAME, 45D, 1D, 0.1D))
+                .addPerEntityHit(PartBuilder.Particles.aoe(ParticleTypes.EXPLOSION, 15D, 1D))
             )
             .build();
 
@@ -47,15 +47,15 @@ public class WarriorSpells implements ExileRegistryInit {
             .manualDesc("Strike enemies in front of you")
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.GENERIC_SPLASH))
+            .onCast(PartBuilder.Sound.play(SoundEvents.GENERIC_SPLASH))
 
-            .onCast(PartBuilder.swordSweepParticles())
+            .onCast(PartBuilder.Particles.swordSweep())
 
-            .onCast(PartBuilder.damageInFront(SpellCalcs.TIDAL_WAVE, 2D, 3D)
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.DRIPPING_WATER, 30D, 1D, 0.1D))
-                .addPerEntityHit(PartBuilder.aoeParticles(ParticleTypes.DRIPPING_WATER, 50D, 1D))
-                .addPerEntityHit(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 1D))
-                .addPerEntityHit(PartBuilder.playSound(SoundEvents.GENERIC_HURT))
+            .onCast(PartBuilder.Damage.inFront(SpellCalcs.TIDAL_WAVE, 2D, 3D)
+                .addPerEntityHit(PartBuilder.Particles.groundEdge(ParticleTypes.DRIPPING_WATER, 30D, 1D, 0.1D))
+                .addPerEntityHit(PartBuilder.Particles.aoe(ParticleTypes.DRIPPING_WATER, 50D, 1D))
+                .addPerEntityHit(PartBuilder.Particles.aoe(ParticleTypes.EXPLOSION, 1D, 1D))
+                .addPerEntityHit(PartBuilder.Sound.play(SoundEvents.GENERIC_HURT))
             )
 
             .build();
@@ -66,15 +66,15 @@ public class WarriorSpells implements ExileRegistryInit {
             .manualDesc("Strike enemies in front of you and leave a poison trail.")
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.GENERIC_SPLASH))
+            .onCast(PartBuilder.Sound.play(SoundEvents.GENERIC_SPLASH))
 
-            .onCast(PartBuilder.swordSweepParticles())
+            .onCast(PartBuilder.Particles.swordSweep())
 
-            .onCast(PartBuilder.damageInFront(SpellCalcs.VENOM_STRIKE, 2D, 3D)
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.SNEEZE, 30D, 1D, 0.1D))
-                .addPerEntityHit(PartBuilder.aoeParticles(ParticleTypes.SNEEZE, 50D, 1D))
-                .addPerEntityHit(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 1D, 1D))
-                .addPerEntityHit(PartBuilder.playSound(SoundEvents.GENERIC_HURT))
+            .onCast(PartBuilder.Damage.inFront(SpellCalcs.VENOM_STRIKE, 2D, 3D)
+                .addPerEntityHit(PartBuilder.Particles.groundEdge(ParticleTypes.SNEEZE, 30D, 1D, 0.1D))
+                .addPerEntityHit(PartBuilder.Particles.aoe(ParticleTypes.SNEEZE, 50D, 1D))
+                .addPerEntityHit(PartBuilder.Particles.aoe(ParticleTypes.EXPLOSION, 1D, 1D))
+                .addPerEntityHit(PartBuilder.Sound.play(SoundEvents.GENERIC_HURT))
 
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION_AREA_PARTICLES.create(TextFormatting.GREEN, 5)))
@@ -85,10 +85,10 @@ public class WarriorSpells implements ExileRegistryInit {
                     .put(MapField.IS_BLOCK_FALLING, false)))
 
             )
-            .onTick("block", PartBuilder.groundParticles(ParticleTypes.SNEEZE, 10D, 2D, 0.2D))
-            .onTick("block", PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, 3D)
+            .onTick("block", PartBuilder.Particles.ground(ParticleTypes.SNEEZE, 10D, 2D, 0.2D))
+            .onTick("block", PartBuilder.Damage.aoe(SpellCalcs.POISON_CLOUD, 3D)
                 .onTick(20D)
-                .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
+                .addPerEntityHit(PartBuilder.Sound.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
             )
 
             .build();

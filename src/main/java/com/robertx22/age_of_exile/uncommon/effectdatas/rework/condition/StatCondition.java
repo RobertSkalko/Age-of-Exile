@@ -1,7 +1,6 @@
 package com.robertx22.age_of_exile.uncommon.effectdatas.rework.condition;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
@@ -20,6 +19,7 @@ public abstract class StatCondition implements JsonExileRegistry<StatCondition>,
 
     static {
         addSer(new RequireChargedAttack());
+        addSer(new RandomRollBasedOnPercentDmgCondition());
         addSer(new IsHealthAbovePercentCondition());
         addSer(new IsUndeadCondition());
         addSer(new IsHealthBellowPercentCondition());
@@ -73,7 +73,7 @@ public abstract class StatCondition implements JsonExileRegistry<StatCondition>,
         try {
             t = GSON.fromJson(json, SERIALIZERS.get(ser)
                 .getSerClass());
-        } catch (JsonSyntaxException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

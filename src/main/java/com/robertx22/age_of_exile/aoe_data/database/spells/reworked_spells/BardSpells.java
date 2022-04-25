@@ -33,12 +33,12 @@ public class BardSpells implements ExileRegistryInit {
                 Arrays.asList(SpellTag.projectile, SpellTag.damage))
             .weaponReq(CastingWeapon.MAGE_WEAPON)
             .manualDesc("Imbue your staff with Word: Power.")
-            .onCast(PartBuilder.playSound(SoundEvents.SNOWBALL_THROW, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.SNOWBALL_THROW, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.AIR, 1D, 1D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.NOTE, 2D, 0.15D))
-            .onHit(PartBuilder.damage(SpellCalcs.POWER_CHORD)
+            .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.NOTE, 2D, 0.15D))
+            .onHit(PartBuilder.Damage.of(SpellCalcs.POWER_CHORD)
                 .addActions(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.CHARM, 6)))
-            .onHit(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 10D, 1D))
+            .onHit(PartBuilder.Particles.aoe(ParticleTypes.ENCHANTED_HIT, 10D, 1D))
             .build();
 
         SpellBuilder.of(SpellKeys.HEALING_ARIA, SpellConfiguration.Builder.instant(25, 20 * 30), "Healing Aria",
@@ -46,10 +46,10 @@ public class BardSpells implements ExileRegistryInit {
             .manualDesc(
                 "Heal allies around you for")
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundRefs.DING))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.NOTE, 50D, 5D, 0.2D))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 50D, 5D, 0.2D))
-            .onCast(PartBuilder.healInAoe(SpellCalcs.HEALING_ARIA, 5D))
+            .onCast(PartBuilder.Sound.play(SoundRefs.DING))
+            .onCast(PartBuilder.Particles.ground(ParticleTypes.NOTE, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.Particles.ground(ParticleTypes.HEART, 50D, 5D, 0.2D))
+            .onCast(PartBuilder.Restore.Health.aoe(SpellCalcs.HEALING_ARIA, 5D))
             .build();
 
     }
@@ -62,8 +62,8 @@ public class BardSpells implements ExileRegistryInit {
             .manualDesc(
                 "Give a stack of " + effect.locname + " to all allies around you."
             )
-            .onCast(PartBuilder.playSound(SoundEvents.NOTE_BLOCK_CHIME, 1D, 1D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.NOTE, 50D, 3D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.NOTE_BLOCK_CHIME, 1D, 1D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.NOTE, 50D, 3D))
 
             .onCast(new ExileEffectActionBuilder(effect).radius(8)
                 .seconds(30)

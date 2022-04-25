@@ -46,10 +46,10 @@ public class HolySpells implements ExileRegistryInit {
             )
             .attackStyle(PlayStyle.melee)
             .weaponReq(CastingWeapon.MELEE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.SHIELD_BLOCK, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.SHIELD_BLOCK, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(SpellCalcs.TAUNT, AggroAction.Type.AGGRO))
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 20D, 3D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.CLOUD, 20D, 3D))
 
             .build();
 
@@ -59,13 +59,13 @@ public class HolySpells implements ExileRegistryInit {
                 "Pull enemies in area to you, dealing damage and slowing them."
             )
             .attackStyle(PlayStyle.melee)
-            .onCast(PartBuilder.playSound(SoundEvents.ANVIL_HIT, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.ANVIL_HIT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
                 .addActions(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 20D * 5))
                 .addActions(SpellAction.DEAL_DAMAGE.create(SpellCalcs.PULL))
                 .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.STUN.resourcePath, ExileEffectAction.GiveOrTake.GIVE_STACKS, 20D * 2))
                 .addTarget(TargetSelector.AOE.create(8D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 100D, 6D, 0.1D))
+            .onCast(PartBuilder.Particles.groundEdge(ParticleTypes.CRIT, 100D, 6D, 0.1D))
             .build();
 
         SpellBuilder.of(SHOOTING_STAR, SpellConfiguration.Builder.instant(10, 20)
@@ -74,15 +74,15 @@ public class HolySpells implements ExileRegistryInit {
             .manualDesc("Shoots a star that heals allies")
 
             .weaponReq(CastingWeapon.MAGE_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.BEACON_ACTIVATE, 1D, 1.7D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.BEACON_ACTIVATE, 1D, 1.7D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.NETHER_STAR, 1D, 1D, SlashEntities.SIMPLE_PROJECTILE.get(), 20D, false)
                 .put(MapField.HITS_ALLIES, true)))
-            .onTick(PartBuilder.aoeParticles(ParticleTypes.CRIT, 1D, 0.5D)
+            .onTick(PartBuilder.Particles.aoe(ParticleTypes.CRIT, 1D, 0.5D)
                 .onTick(1D))
-            .onTick(PartBuilder.aoeParticles(ParticleTypes.ENCHANT, 1D, 0.7D)
+            .onTick(PartBuilder.Particles.aoe(ParticleTypes.ENCHANT, 1D, 0.7D)
                 .onTick(1D))
-            .onExpire(PartBuilder.healInAoe(SpellCalcs.SHOOTING_STAR, 2D))
-            .onExpire(PartBuilder.aoeParticles(ParticleTypes.SOUL_FIRE_FLAME, 10D, 1D))
+            .onExpire(PartBuilder.Restore.Health.aoe(SpellCalcs.SHOOTING_STAR, 2D))
+            .onExpire(PartBuilder.Particles.aoe(ParticleTypes.SOUL_FIRE_FLAME, 10D, 1D))
             .build();
 
         SpellBuilder.of(HEALING_AURA_ID, SpellConfiguration.Builder.instant(15, 20 * 30), "Healing Aura",
@@ -91,10 +91,10 @@ public class HolySpells implements ExileRegistryInit {
                 "Heal allies around you")
 
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SlashSounds.BUFF.get(), 1D, 1D))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
-            .onCast(PartBuilder.groundParticles(ParticleTypes.HEART, 20D, 2D, 0.2D))
-            .onCast(PartBuilder.healInAoe(SpellCalcs.HEALING_AURA, 2D))
+            .onCast(PartBuilder.Sound.play(SlashSounds.BUFF.get(), 1D, 1D))
+            .onCast(PartBuilder.Particles.ground(ParticleTypes.COMPOSTER, 50D, 2D, 0.2D))
+            .onCast(PartBuilder.Particles.ground(ParticleTypes.HEART, 20D, 2D, 0.2D))
+            .onCast(PartBuilder.Restore.Health.aoe(SpellCalcs.HEALING_AURA, 2D))
             .build();
 
     }

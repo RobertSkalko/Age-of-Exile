@@ -17,6 +17,7 @@ meteor_strike
 black_hole
 shred
 totem_heal
+poison_trap
 lose_aggro
 charged_bolt
 burn
@@ -27,6 +28,8 @@ heart_of_ice
 poison
 hunter_pot_heal
 magic_projectile
+frost_trap
+fire_trap
 shout_warn
 shooting_star
 meteor

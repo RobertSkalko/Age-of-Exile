@@ -30,7 +30,7 @@ public class TotemSpells implements ExileRegistryInit {
 
         return SpellBuilder.of(id, config, name, tags)
 
-            .onCast(PartBuilder.playSound(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.ILLUSIONER_CAST_SPELL, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(block, 20D * 7.5D)
                 .put(MapField.ENTITY_NAME, "block")
@@ -38,11 +38,11 @@ public class TotemSpells implements ExileRegistryInit {
                 .put(MapField.FIND_NEAREST_SURFACE, false)
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
-            .onTick("block", PartBuilder.playSound(SoundEvents.NOTE_BLOCK_CHIME, 0.5D, 1D)
+            .onTick("block", PartBuilder.Sound.play(SoundEvents.NOTE_BLOCK_CHIME, 0.5D, 1D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(20D)))
 
-            .onTick("block", PartBuilder.particleOnTick(2D, particle, 2D, 0.5D))
-            .onTick("block", PartBuilder.groundEdgeParticles(particle, 50D, RADIUS, 0.5D)
+            .onTick("block", PartBuilder.Particles.tickAoe(2D, particle, 2D, 0.5D))
+            .onTick("block", PartBuilder.Particles.groundEdge(particle, 50D, RADIUS, 0.5D)
                 .addCondition(EffectCondition.EVERY_X_TICKS.create(20D)));
 
     }
@@ -55,7 +55,7 @@ public class TotemSpells implements ExileRegistryInit {
             .manualDesc(
                 "Summon a totem which restores  mana to allies around it."
             )
-            .onTick("block", PartBuilder.restoreManaInRadius(SpellCalcs.TOTEM_MANA, RADIUS)
+            .onTick("block", PartBuilder.Restore.Mana.aoe(SpellCalcs.TOTEM_MANA, RADIUS)
                 .onTick(20D))
             .build();
 
@@ -65,7 +65,7 @@ public class TotemSpells implements ExileRegistryInit {
             .manualDesc(
                 "Summon a totem which restores  health to allies around it."
             )
-            .onTick("block", PartBuilder.healInAoe(SpellCalcs.TOTEM_HEAL, RADIUS)
+            .onTick("block", PartBuilder.Restore.Health.aoe(SpellCalcs.TOTEM_HEAL, RADIUS)
                 .onTick(20D))
             .build();
 

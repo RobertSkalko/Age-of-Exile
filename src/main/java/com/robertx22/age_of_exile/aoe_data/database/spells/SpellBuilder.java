@@ -62,10 +62,10 @@ public class SpellBuilder {
         return SpellBuilder.of(key.id, config, name,
                 Arrays.asList())
             .manualDesc("Give self effect:")
-            .onCast(PartBuilder.playSound(SoundRefs.DING_LOW_PITCH))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 150D, 2D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.CRIT, 25D, 2D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 100D, 2D))
+            .onCast(PartBuilder.Sound.play(SoundRefs.DING_LOW_PITCH))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.ENCHANTED_HIT, 150D, 2D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.CRIT, 25D, 2D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.EFFECT, 100D, 2D))
 
             .onCast(new ExileEffectActionBuilder(ctx).giveToSelfOnly()
                 .seconds(seconds)
@@ -81,11 +81,11 @@ public class SpellBuilder {
         return SpellBuilder.of(key.id, config, name,
                 Arrays.asList())
             .manualDesc("Give allies effect:")
-            .onCast(PartBuilder.playSound(SoundRefs.DING_LOW_PITCH))
+            .onCast(PartBuilder.Sound.play(SoundRefs.DING_LOW_PITCH))
 
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.ENCHANTED_HIT, 250D, 3D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.CRIT, 55D, 3D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 200D, 3D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.ENCHANTED_HIT, 250D, 3D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.CRIT, 55D, 3D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.EFFECT, 200D, 3D))
 
             .onCast(new ExileEffectActionBuilder(ctx).radius(8)
                 .seconds(seconds)

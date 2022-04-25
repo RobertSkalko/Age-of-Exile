@@ -38,18 +38,18 @@ public class RangerSpells implements ExileRegistryInit {
             .weaponReq(CastingWeapon.RANGED)
             .manualDesc("Shoot an arrow that does ")
             .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.ARROW_SHOOT, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)))
 
-            .onExpire(PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 15D, 3D))
-            .onExpire(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
-            .onExpire(PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 2D, 1D))
-            .onExpire(PartBuilder.damageInAoe(SpellCalcs.EXPLOSIVE_ARROW, 3D)
+            .onExpire(PartBuilder.Particles.aoe(ParticleTypes.EXPLOSION, 15D, 3D))
+            .onExpire(PartBuilder.Sound.play(SoundEvents.ARROW_HIT, 1D, 1D))
+            .onExpire(PartBuilder.Sound.play(SoundEvents.GENERIC_EXPLODE, 2D, 1D))
+            .onExpire(PartBuilder.Damage.aoe(SpellCalcs.EXPLOSIVE_ARROW, 3D)
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 40D))))
 
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.EXPLOSION, 1D, 0.1D))
-            .onTick(PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D)
+            .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.CRIT, 4D, 0.1D))
+            .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.EXPLOSION, 1D, 0.1D))
+            .onTick(PartBuilder.Sound.play(SoundEvents.GENERIC_EXPLODE, 1D, 1D)
                 .onTick(2D))
 
             .build();
@@ -60,8 +60,8 @@ public class RangerSpells implements ExileRegistryInit {
             .manualDesc("Produce a stack of arrows.")
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.ITEM_PICKUP))
-            .onCast(PartBuilder.playSound(SoundRefs.DING))
+            .onCast(PartBuilder.Sound.play(SoundEvents.ITEM_PICKUP))
+            .onCast(PartBuilder.Sound.play(SoundRefs.DING))
             .onCast(PartBuilder.justAction(SpellAction.CASTER_USE_COMMAND.create("/give @s minecraft:arrow 64")))
             .build();
     }
@@ -75,7 +75,7 @@ public class RangerSpells implements ExileRegistryInit {
             )
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundRefs.FISHING_THROW))
+            .onCast(PartBuilder.Sound.play(SoundRefs.FISHING_THROW))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.TRIPWIRE_HOOK, 1D, 0.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 100D, true)))
 
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(SlashBlocks.TRAP.get(), 20 * 4D)
@@ -83,14 +83,14 @@ public class RangerSpells implements ExileRegistryInit {
                 .put(MapField.FIND_NEAREST_SURFACE, true)
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
-            .onTick("trap", PartBuilder.aoeParticles(particle, 5D, 0.5D)
+            .onTick("trap", PartBuilder.Particles.aoe(particle, 5D, 0.5D)
                 .onTick(2D))
 
-            .onExpire("trap", PartBuilder.damageInAoe(dmg, 3D))
-            .onExpire("trap", PartBuilder.aoeParticles(particle, 300D, 3D))
-            .onExpire("trap", PartBuilder.aoeParticles(ParticleTypes.EXPLOSION, 3D, 0.5D))
-            .onExpire("trap", PartBuilder.aoeParticles(ParticleTypes.SMOKE, 100D, 3D))
-            .onExpire("trap", PartBuilder.playSound(SoundEvents.GENERIC_EXPLODE, 1D, 1D));
+            .onExpire("trap", PartBuilder.Damage.aoe(dmg, 3D))
+            .onExpire("trap", PartBuilder.Particles.aoe(particle, 300D, 3D))
+            .onExpire("trap", PartBuilder.Particles.aoe(ParticleTypes.EXPLOSION, 3D, 0.5D))
+            .onExpire("trap", PartBuilder.Particles.aoe(ParticleTypes.SMOKE, 100D, 3D))
+            .onExpire("trap", PartBuilder.Sound.play(SoundEvents.GENERIC_EXPLODE, 1D, 1D));
 
     }
 }

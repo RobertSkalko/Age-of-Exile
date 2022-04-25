@@ -32,8 +32,8 @@
             "map": {
               "particle_type": "minecraft:enchanted_hit",
               "motion": "None",
-              "radius": 3.0,
-              "particle_count": 250.0
+              "radius": 2.0,
+              "particle_count": 150.0
             }
           }
         ],
@@ -53,8 +53,8 @@
             "map": {
               "particle_type": "minecraft:crit",
               "motion": "None",
-              "radius": 3.0,
-              "particle_count": 55.0
+              "radius": 2.0,
+              "particle_count": 25.0
             }
           }
         ],
@@ -74,8 +74,8 @@
             "map": {
               "particle_type": "minecraft:effect",
               "motion": "None",
-              "radius": 3.0,
-              "particle_count": 200.0
+              "radius": 2.0,
+              "particle_count": 100.0
             }
           }
         ],
@@ -89,12 +89,8 @@
       {
         "targets": [
           {
-            "type": "aoe",
-            "map": {
-              "selection_type": "RADIUS",
-              "en_predicate": "allies",
-              "radius": 8.0
-            }
+            "type": "self",
+            "map": {}
           }
         ],
         "en_preds": [],
@@ -152,7 +148,7 @@
               "map": {
                 "selection_type": "RADIUS",
                 "en_predicate": "enemies",
-                "radius": 3.0
+                "radius": 2.0
               }
             }
           ],
@@ -183,7 +179,7 @@
             {
               "type": "x_ticks_condition",
               "map": {
-                "tick_rate": 1.0
+                "tick_rate": 3.0
               }
             }
           ]
@@ -211,7 +207,14 @@
               }
             }
           ],
-          "ifs": []
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 20.0
+              }
+            }
+          ]
         }
       ]
     }
@@ -227,6 +230,5 @@
     "imbues": 1,
     "imbue_type": "ON_RANGED_ATTACK"
   },
-  "disabled_dims": [],
-  "effect_tip": ""
+  "disabled_dims": []
 }

@@ -143,6 +143,5 @@
     "imbues": 10,
     "imbue_type": "STAFF_IMBUE"
   },
-  "disabled_dims": [],
-  "effect_tip": ""
+  "disabled_dims": []
 }

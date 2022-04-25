@@ -123,6 +123,5 @@
     "imbues": 1,
     "imbue_type": "ON_RANGED_ATTACK"
   },
-  "disabled_dims": [],
-  "effect_tip": ""
+  "disabled_dims": []
 }

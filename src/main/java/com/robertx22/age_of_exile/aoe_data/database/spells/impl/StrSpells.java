@@ -28,18 +28,18 @@ public class StrSpells implements ExileRegistryInit {
                 "Slash all nearby enemies, dealing  damage and reducing their defenses."
             )
 
-            .onCast(PartBuilder.playSound(SoundEvents.WITHER_SKELETON_HURT, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.WITHER_SKELETON_HURT, 1D, 1D))
 
-            .onCast(PartBuilder.swordSweepParticles())
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 50D, 2.8D, 0.5D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.ENCHANTED_HIT, 25D, 2D, 0.5D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.CRIT, 25D, 1D, 0.5D))
-            .onCast(PartBuilder.groundEdgeParticles(ParticleTypes.ENCHANTED_HIT, 50D, 1D, 0.5D))
+            .onCast(PartBuilder.Particles.swordSweep())
+            .onCast(PartBuilder.Particles.groundEdge(ParticleTypes.CRIT, 50D, 2.8D, 0.5D))
+            .onCast(PartBuilder.Particles.groundEdge(ParticleTypes.ENCHANTED_HIT, 25D, 2D, 0.5D))
+            .onCast(PartBuilder.Particles.groundEdge(ParticleTypes.CRIT, 25D, 1D, 0.5D))
+            .onCast(PartBuilder.Particles.groundEdge(ParticleTypes.ENCHANTED_HIT, 50D, 1D, 0.5D))
 
             .onCast(PartBuilder.justAction(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.SHRED, 10))
                 .enemiesInRadius(3D))
-            .onCast(PartBuilder.damageInAoe(SpellCalcs.SHRED, 3D)
-                .addPerEntityHit(PartBuilder.groundEdgeParticles(ParticleTypes.ENCHANTED_HIT, 15D, 0.5D, 1D)))
+            .onCast(PartBuilder.Damage.aoe(SpellCalcs.SHRED, 3D)
+                .addPerEntityHit(PartBuilder.Particles.groundEdge(ParticleTypes.ENCHANTED_HIT, 15D, 0.5D, 1D)))
 
             .build();
 

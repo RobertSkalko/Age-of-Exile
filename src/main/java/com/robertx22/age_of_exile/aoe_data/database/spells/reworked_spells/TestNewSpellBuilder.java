@@ -27,24 +27,28 @@ public class TestNewSpellBuilder {
             .weaponReq(CastingWeapon.ANY_WEAPON)
             .tags(SpellTag.area, SpellTag.damage)
             .onCast(
-                PartBuilder.playSound(SoundRefs.DING_LOW_PITCH),
+                PartBuilder.Sound.play(SoundRefs.DING_LOW_PITCH),
                 PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D))
             )
-            .addEntity(SpellEntityBuilder.defaultId()
-                .onExpire(PartBuilder.justAction(SpellAction.POTION_AREA_PARTICLES.create(TextFormatting.GREEN, 10)))
-                .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 20D * 8)
-                    .put(MapField.ENTITY_NAME, "block")
-                    .put(MapField.BLOCK_FALL_SPEED, 0D)
-                    .put(MapField.FIND_NEAREST_SURFACE, true)
-                    .put(MapField.IS_BLOCK_FALLING, false)))
-                .onTick(1, PartBuilder.groundParticles(ParticleTypes.SNEEZE, 20D, 3D, 0.2D))
-                .onTick(20, PartBuilder.damageInAoe(SpellCalcs.POISON_CLOUD, 3D)
-                    .addPerEntityHit(PartBuilder.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
+            .addEntity(
+                SpellEntityBuilder.defaultId()
+                    .onExpire(PartBuilder.justAction(SpellAction.POTION_AREA_PARTICLES.create(TextFormatting.GREEN, 10)))
+                    .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(Blocks.AIR, 20D * 8)
+                        .put(MapField.ENTITY_NAME, "block")
+                        .put(MapField.BLOCK_FALL_SPEED, 0D)
+                        .put(MapField.FIND_NEAREST_SURFACE, true)
+                        .put(MapField.IS_BLOCK_FALLING, false)))
+            )
+            .addEntity(SpellEntityBuilder.of("block")
+                .onTick(1, PartBuilder.Particles.ground(ParticleTypes.SNEEZE, 20D, 3D, 0.2D))
+                .onTick(20, PartBuilder.Damage.aoe(SpellCalcs.POISON_CLOUD, 3D)
+                    .addPerEntityHit(PartBuilder.Sound.playSoundPerTarget(SoundEvents.GENERIC_HURT, 1D, 1D))
                 )
             )
             .build()
 
         ;
+
 
         /*
         SpellBuilder.of(SpellKeys.POISON_CLOUD, SpellConfiguration.Builder.instant(30, 25 * 20), "Poison Cloud",

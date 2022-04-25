@@ -172,7 +172,7 @@ public class BeneficialEffects implements ExileRegistryInit {
                 .onTick(PartBuilder.justAction(SpellAction.RESTORE_HEALTH.create(SpellCalcs.NATURE_BALM))
                     .setTarget(TargetSelector.TARGET.create())
                     .onTick(20D))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.HEART, 5D, 1D)
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.HEART, 5D, 1D)
                     .onTick(20D))
                 .buildForEffect())
             .build();
@@ -185,7 +185,7 @@ public class BeneficialEffects implements ExileRegistryInit {
                 .onTick(PartBuilder.justAction(SpellAction.EXILE_EFFECT.create(NegativeEffects.POISON.resourcePath, ExileEffectAction.GiveOrTake.GIVE_STACKS, 80D))
                     .setTarget(TargetSelector.AOE.create(2D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies))
                     .onTick(40D))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 5D, 1D)
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.ITEM_SLIME, 5D, 1D)
                     .onTick(40D))
 
                 .buildForEffect())

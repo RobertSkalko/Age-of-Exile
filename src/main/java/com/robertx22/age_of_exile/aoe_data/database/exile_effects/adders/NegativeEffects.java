@@ -71,7 +71,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .spell(SpellBuilder.forEffect()
                 .onTick(PartBuilder.justAction(SpellAction.SET_ADD_MOTION.create(SetAdd.ADD, 1D, ParticleMotion.Downwards))
                     .addTarget(TargetSelector.CASTER.create()))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 2D, 0.5D)
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.SQUID_INK, 2D, 0.5D)
                     .onTick(20D))
                 .buildForEffect())
             .build();
@@ -91,7 +91,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .stat(-5, -10, DatapackStats.MOVE_SPEED)
 
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.WITCH, 2D, 0.5D)
                     .onTick(20D))
                 .buildForEffect())
 
@@ -105,7 +105,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .stat(-5, -15, new ElementalResist(Elements.Elemental))
 
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.WITCH, 2D, 0.5D)
                     .onTick(20D))
                 .buildForEffect())
 
@@ -116,8 +116,8 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(1)
             .stat(-10, -20, Stats.TOTAL_DAMAGE.get())
             .spell(SpellBuilder.forEffect()
-                .onExpire(PartBuilder.damage(SpellCalcs.DESPAIR))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.WITCH, 2D, 0.5D)
+                .onExpire(PartBuilder.Damage.of(SpellCalcs.DESPAIR))
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.WITCH, 2D, 0.5D)
                     .onTick(20D))
                 .buildForEffect())
             .addTags(EffectTags.curse, EffectTags.negative)
@@ -141,9 +141,9 @@ public class NegativeEffects implements ExileRegistryInit {
             .vanillaStat(VanillaStatData.create(MOVEMENT_SPEED, 0.2F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9f32fa-c8c1-455c-92aa-4a94c2a70cd8")))
             .stat(-5, -10, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.dotDamageOnTick(TORMENT.resourcePath, SpellCalcs.TORMENT)
+                .onTick(PartBuilder.Damage.dotOnTick(TORMENT.resourcePath, SpellCalcs.TORMENT)
                     .onTick(20D))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.SOUL, 10D, 1D)
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.SOUL, 10D, 1D)
                     .onTick(10D))
                 .buildForEffect())
             .build();
@@ -153,7 +153,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .vanillaStat(VanillaStatData.create(MOVEMENT_SPEED, -0.1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd8")))
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 10D, 1D)
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.ITEM_SNOWBALL, 10D, 1D)
                     .onTick(10D))
                 .buildForEffect())
             .build();
@@ -162,9 +162,9 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .stat(-5, -5, new ElementalResist(Elements.Elemental), ModType.PERCENT)
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.dotDamageOnTick(POISON.resourcePath, SpellCalcs.POISON)
+                .onTick(PartBuilder.Damage.dotOnTick(POISON.resourcePath, SpellCalcs.POISON)
                     .onTick(20D))
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.SNEEZE, 1D, 1D)
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.SNEEZE, 1D, 1D)
                     .onTick(2D))
                 .buildForEffect())
             .build();
@@ -173,12 +173,12 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BURN.resourcePath, SpellCalcs.BURN)
+                .onTick(PartBuilder.Damage.dotOnTick(BURN.resourcePath, SpellCalcs.BURN)
                     .onTick(20D))
 
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.FLAME, 10D, 1D)
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.FLAME, 10D, 1D)
                     .onTick(20D))
-                .onTick(PartBuilder.playSound(SoundEvents.CAMPFIRE_CRACKLE, 0.5D, 1D)
+                .onTick(PartBuilder.Sound.play(SoundEvents.CAMPFIRE_CRACKLE, 0.5D, 1D)
                     .onTick(20D))
                 .buildForEffect())
             .build();
@@ -187,7 +187,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .maxStacks(5)
             .spell(SpellBuilder.forEffect()
 
-                .onTick(PartBuilder.dotDamageOnTick(BLEED.resourcePath, SpellCalcs.BLEED)
+                .onTick(PartBuilder.Damage.dotOnTick(BLEED.resourcePath, SpellCalcs.BLEED)
                     .onTick(20D))
 
                 .buildForEffect())
@@ -201,7 +201,7 @@ public class NegativeEffects implements ExileRegistryInit {
             .vanillaStat(VanillaStatData.create(ATTACK_DAMAGE, -1000F, ModType.GLOBAL_INCREASE, UUID.fromString("5eccf34c-29f7-4eea-bbad-82a905594064")))
             .vanillaStat(VanillaStatData.create(ATTACK_SPEED, -1000F, ModType.GLOBAL_INCREASE, UUID.fromString("57eb6210-2a42-4ad3-a604-6f679d440a9b")))
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.SQUID_INK, 3D, 1D)
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.SQUID_INK, 3D, 1D)
                     .onTick(20D))
                 .buildForEffect()
             )
@@ -216,11 +216,11 @@ public class NegativeEffects implements ExileRegistryInit {
             .addTags(EffectTags.immobilizing)
             .vanillaStat(VanillaStatData.create(MOVEMENT_SPEED, -1F, ModType.GLOBAL_INCREASE, UUID.fromString("bd9d32fa-c8c2-455c-92aa-4a94c2a70cd5")))
             .spell(SpellBuilder.forEffect()
-                .onTick(PartBuilder.aoeParticles(ParticleTypes.ITEM_SLIME, 10D, 1D)
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.ITEM_SLIME, 10D, 1D)
                     .onTick(20D))
                 .onExpire(PartBuilder.justAction(SpellAction.DEAL_DAMAGE.create(SpellCalcs.PETRIFY))
                     .setTarget(TargetSelector.TARGET.create()))
-                .onExpire(PartBuilder.aoeParticles(ParticleTypes.CLOUD, 15D, 1D))
+                .onExpire(PartBuilder.Particles.aoe(ParticleTypes.CLOUD, 15D, 1D))
                 .onExpire(PartBuilder.justAction(SpellAction.PLAY_SOUND.create(SoundEvents.SHEEP_SHEAR, 1D, 1D)))
                 .buildForEffect())
             .build();

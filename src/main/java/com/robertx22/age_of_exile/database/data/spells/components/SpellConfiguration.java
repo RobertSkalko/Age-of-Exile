@@ -12,7 +12,7 @@ public class SpellConfiguration {
 
     public boolean swing_arm = true;
     public CastingWeapon castingWeapon = CastingWeapon.ANY_WEAPON;
-    public int mana_cost;
+    public int mana_cost = 0;
     public int cooldown_ticks = 20;
     public PlayStyle style = PlayStyle.magic;
     public List<SpellTag> tags = new ArrayList<>();

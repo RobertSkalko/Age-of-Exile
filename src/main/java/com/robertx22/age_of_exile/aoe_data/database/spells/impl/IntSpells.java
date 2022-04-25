@@ -31,7 +31,7 @@ public class IntSpells implements ExileRegistryInit {
 
             .manualDesc("Summon a dark sphere that attracts nearby enemies to it, dealing damage when it expires.")
 
-            .onCast(PartBuilder.playSound(SoundEvents.END_PORTAL_SPAWN, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.END_PORTAL_SPAWN, 1D, 1D))
 
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_AT_SIGHT.create(SlashEntities.SIMPLE_PROJECTILE.get(), 1D, 0D)))
             .onExpire(PartBuilder.justAction(SpellAction.SUMMON_BLOCK.create(SlashBlocks.BLACK_HOLE.get(), 20D * 5)
@@ -40,11 +40,11 @@ public class IntSpells implements ExileRegistryInit {
                 .put(MapField.FIND_NEAREST_SURFACE, true)
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
-            .onTick("block", PartBuilder.particleOnTick(1D, ParticleTypes.PORTAL, 40D, 1D))
-            .onTick("block", PartBuilder.particleOnTick(1D, ParticleTypes.WITCH, 8D, 1D))
+            .onTick("block", PartBuilder.Particles.tickAoe(1D, ParticleTypes.PORTAL, 40D, 1D))
+            .onTick("block", PartBuilder.Particles.tickAoe(1D, ParticleTypes.WITCH, 8D, 1D))
             .onTick("block", PartBuilder.justAction(SpellAction.TP_TARGET_TO_SELF.create())
                 .addTarget(TargetSelector.AOE.create(3D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
-            .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.BLACK_HOLE, 2D))
+            .onExpire("block", PartBuilder.Damage.aoe(SpellCalcs.BLACK_HOLE, 2D))
             .build();
 
         ;

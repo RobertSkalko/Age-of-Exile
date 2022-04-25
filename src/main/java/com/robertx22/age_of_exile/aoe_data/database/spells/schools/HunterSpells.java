@@ -43,10 +43,10 @@ public class HunterSpells implements ExileRegistryInit {
             )
             .manualDesc("Drink a potion, healing you")
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1D, 1D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.WITCH, 40D, 1.5D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.HEART, 12D, 1.5D))
-            .onCast(PartBuilder.healCaster(SpellCalcs.HUNTER_POTION_HEAL))
+            .onCast(PartBuilder.Sound.play(SoundEvents.CHORUS_FRUIT_TELEPORT, 1D, 1D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.WITCH, 40D, 1.5D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.HEART, 12D, 1.5D))
+            .onCast(PartBuilder.Restore.Health.caster(SpellCalcs.HUNTER_POTION_HEAL))
             .build();
 
         SpellBuilder.of(SMOKE_BOMB, SpellConfiguration.Builder.instant(7, 20 * 60), "Smoke Bomb",
@@ -54,12 +54,12 @@ public class HunterSpells implements ExileRegistryInit {
             .manualDesc("Throw out a smoke bomb, blinding enemies and reducing threat.")
             .attackStyle(PlayStyle.ranged)
             .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.playSound(SoundEvents.SPLASH_POTION_BREAK, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.SPLASH_POTION_BREAK, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.AGGRO.create(SpellCalcs.SMOKE_BOMB, AggroAction.Type.DE_AGGRO))
                 .addActions(SpellAction.EXILE_EFFECT.create(NegativeEffects.BLIND.resourcePath, ExileEffectAction.GiveOrTake.GIVE_STACKS, 20D * 5))
                 .addTarget(TargetSelector.AOE.create(10D, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.enemies)))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.SMOKE, 200D, 3D))
-            .onCast(PartBuilder.aoeParticles(ParticleTypes.EFFECT, 50D, 3D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.SMOKE, 200D, 3D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.EFFECT, 50D, 3D))
             .build();
 
         SpellBuilder.of(DASH_ID, SpellConfiguration.Builder.instant(10, 15)
@@ -69,9 +69,9 @@ public class HunterSpells implements ExileRegistryInit {
                 "Dash in your direction and gain slowfall.")
             .weaponReq(CastingWeapon.NON_MAGE_WEAPON)
             .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.CREEPER_PRIMED, 1D, 1.6D)
+            .onCast(PartBuilder.Sound.play(SoundEvents.CREEPER_PRIMED, 1D, 1.6D)
                 .addActions(SpellAction.CASTER_USE_COMMAND.create("effect give @p minecraft:slow_falling 1 1 true")))
-            .onCast(PartBuilder.playSound(SoundEvents.FIRE_EXTINGUISH, 1D, 1.6D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.FIRE_EXTINGUISH, 1D, 1.6D))
 
             .teleportForward()
 
@@ -85,19 +85,19 @@ public class HunterSpells implements ExileRegistryInit {
 
             .weaponReq(CastingWeapon.RANGED)
             .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.ARROW_SHOOT, 1D, 1D))
-            .onCast(PartBuilder.playSound(SoundEvents.DRAGON_FIREBALL_EXPLODE, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.ARROW_SHOOT, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.DRAGON_FIREBALL_EXPLODE, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)
                 .put(MapField.PROJECTILE_SPEED, 1D)
                 .put(MapField.EXPIRE_ON_ENTITY_HIT, false)
                 .put(MapField.GRAVITY, false)))
 
-            .onHit(PartBuilder.aoeParticles(ParticleTypes.CRIT, 100D, 1D))
-            .onHit(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damageInAoe(SpellCalcs.CHARGED_BOLT, 2D)
+            .onHit(PartBuilder.Particles.aoe(ParticleTypes.CRIT, 100D, 1D))
+            .onHit(PartBuilder.Sound.play(SoundEvents.ARROW_HIT, 1D, 1D))
+            .onHit(PartBuilder.Damage.aoe(SpellCalcs.CHARGED_BOLT, 2D)
                 .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 40D))))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.CRIT, 4D, 0.1D))
-            .onTick(PartBuilder.particleOnTick(1D, ParticleTypes.ENCHANTED_HIT, 4D, 0.1D))
+            .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.CRIT, 4D, 0.1D))
+            .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.ENCHANTED_HIT, 4D, 0.1D))
             .build();
 
         SpellBuilder.of(ARROW_STORM, SpellConfiguration.Builder.arrowImbue(20, 20 * 25), "Arrow Storm",
@@ -105,12 +105,12 @@ public class HunterSpells implements ExileRegistryInit {
             .weaponReq(CastingWeapon.RANGED)
             .manualDesc("Shoot out arrows in an arc, dealing ")
             .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.playSound(SoundEvents.ARROW_SHOOT, 1D, 1D))
+            .onCast(PartBuilder.Sound.play(SoundEvents.ARROW_SHOOT, 1D, 1D))
             .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(5D)))
-            .onHit(PartBuilder.particleOnTick(3D, ParticleTypes.CLOUD, 3D, 0.1D))
-            .onHit(PartBuilder.playSound(SoundEvents.ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.damage(SpellCalcs.ARROW_STORM))
-            .onTick(PartBuilder.particleOnTick(5D, ParticleTypes.CRIT, 5D, 0.1D))
+            .onHit(PartBuilder.Particles.tickAoe(3D, ParticleTypes.CLOUD, 3D, 0.1D))
+            .onHit(PartBuilder.Sound.play(SoundEvents.ARROW_HIT, 1D, 1D))
+            .onHit(PartBuilder.Damage.of(SpellCalcs.ARROW_STORM))
+            .onTick(PartBuilder.Particles.tickAoe(5D, ParticleTypes.CRIT, 5D, 0.1D))
             .build();
 
     }

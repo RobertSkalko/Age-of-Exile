@@ -30,9 +30,9 @@ public class NatureSpells implements ExileRegistryInit {
 
             .onExpire(PartBuilder.justAction(SpellAction.EXILE_EFFECT.giveSeconds(NegativeEffects.PETRIFY, 5))
                 .enemiesInRadius(3D))
-            .onExpire(PartBuilder.groundParticles(ParticleTypes.LARGE_SMOKE, 50D, 3D, 0.25D))
-            .onExpire(PartBuilder.groundParticles(ParticleTypes.ITEM_SLIME, 100D, 3D, 0.25D))
-            .onExpire(PartBuilder.playSound(SlashSounds.STONE_CRACK.get(), 1D, 1D))
+            .onExpire(PartBuilder.Particles.ground(ParticleTypes.LARGE_SMOKE, 50D, 3D, 0.25D))
+            .onExpire(PartBuilder.Particles.ground(ParticleTypes.ITEM_SLIME, 100D, 3D, 0.25D))
+            .onExpire(PartBuilder.Sound.play(SlashSounds.STONE_CRACK.get(), 1D, 1D))
             .build();
     }
 }

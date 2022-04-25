@@ -36,8 +36,8 @@ public class CurseSpells implements ExileRegistryInit {
                 .put(MapField.FIND_NEAREST_SURFACE, false)
                 .put(MapField.IS_BLOCK_FALLING, false)))
 
-            .onExpire("block", PartBuilder.playSound(SoundEvents.WITHER_SKELETON_HURT, 1D, 1D))
-            .onExpire("block", PartBuilder.damageInAoe(SpellCalcs.CURSE, 3D))
+            .onExpire("block", PartBuilder.Sound.play(SoundEvents.WITHER_SKELETON_HURT, 1D, 1D))
+            .onExpire("block", PartBuilder.Damage.aoe(SpellCalcs.CURSE, 3D))
 
             .onExpire("block", new ExileEffectActionBuilder(effect).seconds(20)
                 .radius(3)
