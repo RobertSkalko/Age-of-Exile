@@ -58,47 +58,24 @@ public class RenderMobInfo {
 
                 EntityData data = Load.Unit(entity);
 
-                boolean hidelvl = data.getLevel() - 10 > Load.Unit(Minecraft.getInstance().player)
-                    .getLevel();
+                int currentHP = HealthUtils.getCurrentHealth(entity);
+
+                if (currentHP == 0) {
+                    return;
+                }
+
+                IFormattableTextComponent hpText = new StringTextComponent(currentHP + "")
+                    .withStyle(TextFormatting.GREEN)
+                    .append(new StringTextComponent("\u2764").withStyle(TextFormatting.RED)); // todo
 
                 IFormattableTextComponent lvlcomp =
-                    new StringTextComponent(" [" + data.getLevel() + "]").withStyle(TextFormatting.YELLOW);
 
-                if (hidelvl) {
-                    lvlcomp =
-                        new StringTextComponent(" [" + "???" + "]").withStyle(TextFormatting.YELLOW);
-                }
+                    new StringTextComponent("Lvl " + data.getLevel() + "").withStyle(TextFormatting.YELLOW);
 
-                ITextComponent text = data.getName()
-                    .append(lvlcomp)
-                    .withStyle(TextFormatting.RED, TextFormatting.BOLD);
-
-                float percent = HealthUtils.getCurrentHealth(entity) / HealthUtils.getMaxHealth(entity) * 100F;
-
-                IFormattableTextComponent hpText = new StringTextComponent("[").withStyle(TextFormatting.DARK_RED);
-                int times = 0;
-
-                for (int x = 0; x < 10; x++) {
-                    times++;
-
-                    if (percent > 0) {
-                        hpText.append(new StringTextComponent("|")
-                            .withStyle(TextFormatting.RED)
-                        );
-                    } else {
-                        hpText.append(new StringTextComponent("|")
-                            .withStyle(TextFormatting.DARK_RED)
-                        );
-                    }
-
-                    if (times == 5) {
-                        hpText.append(new StringTextComponent((int) HealthUtils.getCurrentHealth(entity) + "").withStyle(TextFormatting.GOLD));
-                    }
-                    percent -= 10;
-
-                }
-
-                hpText.append(new StringTextComponent("]").withStyle(TextFormatting.DARK_RED));
+                ITextComponent text = lvlcomp.append(new StringTextComponent(" ").append(entity.getName())
+                        .withStyle(TextFormatting.RED))
+                    .append(" ")
+                    .append(hpText);
 
                 matrixStack.pushPose();
                 matrixStack.translate(0.0D, yOffset, 0.0D);
@@ -121,24 +98,16 @@ public class RenderMobInfo {
                         -12, -1, true, matrix4f,
                         vertex, false, bgColor, i);
 
-                    textRenderer.drawInBatch(hpText, -textRenderer.width(hpText) / 2.0f,
-                        0, -1, true, matrix4f,
-                        vertex, false, bgColor, i);
-
                     MobRarity rar = ExileDB.MobRarities()
                         .get(data.getRarity());
 
-                    String icon = rar.name_add;
-                    if (!icon.isEmpty()) {
-                        icon = rar.textFormatting() + icon;
+                    IFormattableTextComponent rarname = rar.locName()
+                        .withStyle(rar.textFormatting());
 
-                        matrixStack.scale(2, 2, 2);
-                        textRenderer.drawInBatch(icon, -textRenderer.width(icon) / 2.0f,
-                            -15, -1, true, matrix4f,
-                            vertex, false, TextFormatting.YELLOW
-                                .getId(), i);
-                        matrixStack.scale(0.5F, 0.5F, 0.5F);
-                    }
+                    textRenderer.drawInBatch(rarname, -textRenderer.width(rarname) / 2.0f,
+                        0, -1, true, matrix4f,
+                        vertex, false, bgColor, i);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

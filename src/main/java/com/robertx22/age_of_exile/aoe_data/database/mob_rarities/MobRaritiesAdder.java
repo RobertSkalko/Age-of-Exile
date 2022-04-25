@@ -21,7 +21,6 @@ public class MobRaritiesAdder implements ExileRegistryInit {
         normal.weight = 1000;
         normal.higher_rar = IRarity.UNCOMMON;
         normal.setCommonFields();
-        normal.loc_name = "";
         normal.addToSerializables();
 
         MobRarity elite = new MobRarity();

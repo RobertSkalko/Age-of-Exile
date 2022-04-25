@@ -19,16 +19,6 @@ public class NormalStatTooltip implements IStatTooltipType {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        // todo
-
-        String icon = "\u25CF";
-
-        IFormattableTextComponent testCircle = new StringTextComponent("[")
-            .append(new StringTextComponent(icon)
-                .withStyle(TextFormatting.GREEN)
-                .withStyle(TextFormatting.BOLD))
-            .append("] ");
-
         IFormattableTextComponent txt = new StringTextComponent(info.stat.getStatNameRegex()
             .translate(format, ctx, info.type, info.firstValue, info.stat));
 
