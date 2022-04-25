@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.reworked_spells;
 
+import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
@@ -23,10 +24,14 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 
-public class WarriorSpells implements ExileRegistryInit {
+public class ShamanSpells implements ExileRegistryInit {
 
     @Override
     public void registerAll() {
+
+        CommonSpellBuilders.curse(SpellKeys.CURSE_OF_AGONY, "Curse of Agony", NegativeEffects.AGONY, 15);
+        CommonSpellBuilders.curse(SpellKeys.CURSE_OF_WEAKNESS, "Curse of Weakness", NegativeEffects.WEAKNESS, 20);
+        CommonSpellBuilders.curse(SpellKeys.CURSE_OF_DESPAIR, "Curse of Despair", NegativeEffects.DESPAIR, 5);
 
         SpellBuilder.of(SpellKeys.METEOR_STRIKE, SpellConfiguration.Builder.onJumpCritImbue(8, 20 * 30, 3)
                 , "Meteor Strike",

@@ -1,5 +1,5 @@
 {
-  "id": "warrior",
+  "id": "shaman",
   "spells": {
     "damage_totem": {
       "x": 0,
@@ -8,6 +8,14 @@
     "heal_totem": {
       "x": 5,
       "y": 1
+    },
+    "curse_of_despair": {
+      "x": 5,
+      "y": 2
+    },
+    "curse_of_agony": {
+      "x": 0,
+      "y": 2
     },
     "tidal_wave": {
       "x": 10,
@@ -20,6 +28,10 @@
     "venom_strike": {
       "x": 5,
       "y": 0
+    },
+    "curse_of_weakness": {
+      "x": 10,
+      "y": 2
     },
     "mana_totem": {
       "x": 10,

@@ -126,6 +126,7 @@ wisdom
 dmg_to_undead
 absorb_ele_dmg_to_hp
 projectile_cdr
+dmg_reduction
 area_spell_dmg
 fire_weapon_damage
 bonus_jewel_craft_exp

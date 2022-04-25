@@ -1,7 +1,5 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells;
 
-import com.robertx22.age_of_exile.aoe_data.database.spells.builders.ExileEffectActionBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.all_keys.base.SpellKey;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.spells.components.ComponentPart;
@@ -13,13 +11,10 @@ import com.robertx22.age_of_exile.database.data.spells.components.selectors.Targ
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
-import com.robertx22.age_of_exile.uncommon.SoundRefs;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.block.Blocks;
-import net.minecraft.particles.ParticleTypes;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -51,46 +46,6 @@ public class SpellBuilder {
         builder.spell.getConfig().tags = tags;
 
         return builder;
-    }
-
-    public static SpellBuilder buffSelfSpell(SpellKey key,
-                                             SpellConfiguration config,
-                                             String name,
-                                             EffectCtx ctx,
-                                             int seconds) {
-
-        return SpellBuilder.of(key.id, config, name,
-                Arrays.asList())
-            .manualDesc("Give self effect:")
-            .onCast(PartBuilder.Sound.play(SoundRefs.DING_LOW_PITCH))
-            .onCast(PartBuilder.Particles.aoe(ParticleTypes.ENCHANTED_HIT, 150D, 2D))
-            .onCast(PartBuilder.Particles.aoe(ParticleTypes.CRIT, 25D, 2D))
-            .onCast(PartBuilder.Particles.aoe(ParticleTypes.EFFECT, 100D, 2D))
-
-            .onCast(new ExileEffectActionBuilder(ctx).giveToSelfOnly()
-                .seconds(seconds)
-                .build());
-    }
-
-    public static SpellBuilder buffAlliesSpell(SpellKey key,
-                                               SpellConfiguration config,
-                                               String name,
-                                               EffectCtx ctx,
-                                               int seconds) {
-
-        return SpellBuilder.of(key.id, config, name,
-                Arrays.asList())
-            .manualDesc("Give allies effect:")
-            .onCast(PartBuilder.Sound.play(SoundRefs.DING_LOW_PITCH))
-
-            .onCast(PartBuilder.Particles.aoe(ParticleTypes.ENCHANTED_HIT, 250D, 3D))
-            .onCast(PartBuilder.Particles.aoe(ParticleTypes.CRIT, 55D, 3D))
-            .onCast(PartBuilder.Particles.aoe(ParticleTypes.EFFECT, 200D, 3D))
-
-            .onCast(new ExileEffectActionBuilder(ctx).radius(8)
-                .seconds(seconds)
-                .build());
-
     }
 
     public static SpellBuilder forEffect() {

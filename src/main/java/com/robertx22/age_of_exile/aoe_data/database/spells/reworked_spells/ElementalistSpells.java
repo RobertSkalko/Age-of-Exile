@@ -32,17 +32,17 @@ public class ElementalistSpells implements ExileRegistryInit {
     public void registerAll() {
 
         //buffs
-        SpellBuilder.buffSelfSpell(SpellKeys.ICE_SHIELD,
+        CommonSpellBuilders.buffSelfSpell(SpellKeys.ICE_SHIELD,
                 SpellConfiguration.Builder.instant(20, 60), "Ice Shield",
                 BeneficialEffects.FROST_ARMOR, 30)
             .build();
 
-        SpellBuilder.buffAlliesSpell(SpellKeys.NATURE_BALM,
+        CommonSpellBuilders.buffAlliesSpell(SpellKeys.NATURE_BALM,
                 SpellConfiguration.Builder.instant(20, 60), "Nature's Balm",
                 BeneficialEffects.REGENERATE, 15)
             .build();
 
-        SpellBuilder.buffSelfSpell(SpellKeys.FROST_STEPS,
+        CommonSpellBuilders.buffSelfSpell(SpellKeys.FROST_STEPS,
                 SpellConfiguration.Builder.instant(20, 60), "Frost Steps",
                 BeneficialEffects.FROST_STEPS, 15)
 
@@ -50,22 +50,17 @@ public class ElementalistSpells implements ExileRegistryInit {
             // but basically when effects spawn an entity,
             // the entity's ontick calls the spell's components, not the effect's
 
-            // .onTick("block", PartBuilder.aoeParticles(ParticleTypes.ITEM_SNOWBALL, 25D, 0.5D)
-            //   .onTick(1D))
-            .onTick("block", PartBuilder.Particles.ground(ParticleTypes.ITEM_SNOWBALL, 10D, 0.4D, 0.1D)
-                .onTick(1D))
-
-            .onTick("block", PartBuilder.Damage.aoe(SpellCalcs.FROST_STEPS, 2D)
-                .addEntityPredicate(SpellEntityPredicate.IS_NOT_ON_COOLDOWN.create(SpellKeys.FROST_STEPS.id))
-                .addActions(SpellAction.SET_ON_COOLDOWN.create(SpellKeys.FROST_STEPS.id, 20D))
-                .onTick(3D))
-
-            .onTick("block", new ExileEffectActionBuilder(NegativeEffects.CHILL).targetEnemies()
-                .radius(2)
-                .seconds(5)
-                .build()
-                .onTick(20D))
-
+            .addEntity(SpellEntityBuilder.of("block")
+                .onTick(PartBuilder.Particles.ground(ParticleTypes.ITEM_SNOWBALL, 10D, 0.4D, 0.1D))
+                .onTick(3, PartBuilder.Damage.aoe(SpellCalcs.FROST_STEPS, 2D)
+                    .addEntityPredicate(SpellEntityPredicate.IS_NOT_ON_COOLDOWN.create(SpellKeys.FROST_STEPS.id))
+                    .addActions(SpellAction.SET_ON_COOLDOWN.create(SpellKeys.FROST_STEPS.id, 20D))
+                    .onTick(3D))
+                .onTick(20, new ExileEffectActionBuilder(NegativeEffects.CHILL).targetEnemies()
+                    .radius(2)
+                    .seconds(5)
+                    .build())
+            )
             .build();
         //buffs
 

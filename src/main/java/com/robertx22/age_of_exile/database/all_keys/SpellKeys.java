@@ -40,6 +40,10 @@ public interface SpellKeys {
     SpellKey POWER_CHORD = new SpellKey("power_chord");
     SpellKey HEALING_ARIA = new SpellKey("healing_aria");
 
+    SpellKey CURSE_OF_AGONY = new SpellKey("curse_of_agony");
+    SpellKey CURSE_OF_WEAKNESS = new SpellKey("curse_of_weakness");
+    SpellKey CURSE_OF_DESPAIR = new SpellKey("curse_of_despair");
+
     public static void init() {
 
     }

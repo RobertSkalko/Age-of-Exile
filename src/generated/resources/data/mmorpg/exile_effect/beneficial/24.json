@@ -9,13 +9,13 @@
   "mc_stats": [],
   "stats": [
     {
-      "min": -25.0,
-      "max": -75.0,
-      "stat": "dmg_received",
+      "min": 50.0,
+      "max": 50.0,
+      "stat": "dmg_reduction",
       "type": "FLAT"
     },
     {
-      "min": 1.0,
+      "min": 2.0,
       "max": 2.0,
       "stat": "health_regen",
       "type": "FLAT"

@@ -10,27 +10,9 @@
   "mc_stats": [],
   "stats": [
     {
-      "min": -10.0,
-      "max": 20.0,
-      "stat": "melee_dmg_received",
-      "type": "FLAT"
-    },
-    {
-      "min": -10.0,
-      "max": 20.0,
-      "stat": "magic_dmg_received",
-      "type": "FLAT"
-    },
-    {
-      "min": -10.0,
-      "max": 20.0,
-      "stat": "ranged_dmg_received",
-      "type": "FLAT"
-    },
-    {
-      "min": -5.0,
-      "max": -10.0,
-      "stat": "move_speed",
+      "min": -25.0,
+      "max": -25.0,
+      "stat": "dmg_reduction",
       "type": "FLAT"
     }
   ],

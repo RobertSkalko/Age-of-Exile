@@ -181,6 +181,12 @@
               "map": {
                 "tick_rate": 3.0
               }
+            },
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 3.0
+              }
             }
           ]
         },

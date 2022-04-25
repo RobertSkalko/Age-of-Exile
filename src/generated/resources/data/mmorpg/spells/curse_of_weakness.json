@@ -1,6 +1,6 @@
 {
   "weight": 1000,
-  "identifier": "curse_of_agony",
+  "identifier": "curse_of_weakness",
   "attached": {
     "on_cast": [
       {
@@ -91,10 +91,10 @@
             {
               "type": "exile_effect",
               "map": {
-                "exile_potion_id": "negative/13",
+                "exile_potion_id": "negative/14",
                 "potion_action": "GIVE_STACKS",
                 "count": 1.0,
-                "potion_dur": 300.0
+                "potion_dur": 400.0
               }
             }
           ],

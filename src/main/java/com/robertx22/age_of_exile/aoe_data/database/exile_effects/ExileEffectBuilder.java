@@ -76,8 +76,13 @@ public class ExileEffectBuilder {
         return this;
     }
 
+    // remove this
     public ExileEffectBuilder stat(float first, float second, Stat stat) {
         return stat(first, second, stat, ModType.FLAT);
+    }
+
+    public ExileEffectBuilder stat(float first, Stat stat) {
+        return stat(first, first, stat, ModType.FLAT);
     }
 
     public ExileEffect build() {

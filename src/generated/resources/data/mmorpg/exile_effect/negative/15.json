@@ -8,14 +8,7 @@
     "curse"
   ],
   "mc_stats": [],
-  "stats": [
-    {
-      "min": -10.0,
-      "max": -20.0,
-      "stat": "total_damage",
-      "type": "FLAT"
-    }
-  ],
+  "stats": [],
   "spell": {
     "on_cast": [],
     "entity_components": {

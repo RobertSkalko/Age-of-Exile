@@ -11,7 +11,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
     public static String BARD = "bard";
     public static String HUNTER = "hunter";
     public static String ELEMENTALIST = "elementalist";
-    public static String WARRIOR = "warrior";
+    public static String SHAMAN = "shaman";
 
     @Override
     public void registerAll() {
@@ -77,16 +77,19 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .build();
 
-        SchoolBuilder.of(WARRIOR, "Warrior")
+        SchoolBuilder.of(SHAMAN, "Shaman")
 
             .addSpell(SpellKeys.METEOR_STRIKE.id, new PointData(0, 0))
             .addSpell(SpellKeys.DAMAGE_TOTEM.id, new PointData(0, 1))
+            .addSpell(SpellKeys.CURSE_OF_AGONY.id, new PointData(0, 2))
 
             .addSpell(SpellKeys.VENOM_STRIKE.id, new PointData(5, 0))
             .addSpell(SpellKeys.HEAL_TOTEM.id, new PointData(5, 1))
+            .addSpell(SpellKeys.CURSE_OF_DESPAIR.id, new PointData(5, 2))
 
             .addSpell(SpellKeys.TIDAL_WAVE.id, new PointData(10, 0))
             .addSpell(SpellKeys.MANA_TOTEM.id, new PointData(10, 1))
+            .addSpell(SpellKeys.CURSE_OF_WEAKNESS.id, new PointData(10, 2))
 
             .addSpell(HolySpells.TAUNT, new PointData(5, 5))
 

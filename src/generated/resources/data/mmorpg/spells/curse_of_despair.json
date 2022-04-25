@@ -94,7 +94,7 @@
                 "exile_potion_id": "negative/15",
                 "potion_action": "GIVE_STACKS",
                 "count": 1.0,
-                "potion_dur": 400.0
+                "potion_dur": 100.0
               }
             }
           ],
@@ -114,8 +114,8 @@
                   "map": {
                     "particle_type": "minecraft:smoke",
                     "motion": "None",
-                    "radius": 0.3,
-                    "particle_count": 50.0,
+                    "radius": 0.4,
+                    "particle_count": 100.0,
                     "height": 2.2
                   }
                 }

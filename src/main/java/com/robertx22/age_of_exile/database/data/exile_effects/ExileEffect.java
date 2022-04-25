@@ -3,10 +3,12 @@ package com.robertx22.age_of_exile.database.data.exile_effects;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.spells.components.AttachedSpell;
 import com.robertx22.age_of_exile.database.data.spells.entities.EntitySavedSpellData;
+import com.robertx22.age_of_exile.database.data.value_calc.ValueCalculation;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.vanilla_mc.potion_effects.types.ExileStatusEffect;
@@ -114,6 +116,13 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
 
         if (max_stacks > 1) {
             list.add(new StringTextComponent("Maximum Stacks: " + max_stacks));
+        }
+
+        if (spell != null) {
+            for (ValueCalculation calc : spell.getAllCalculations()) {
+                list.addAll(calc.getTooltip(Load.Unit(info.player)));
+            }
+
         }
 
         List<EffectTags> tags = this.tags.stream()

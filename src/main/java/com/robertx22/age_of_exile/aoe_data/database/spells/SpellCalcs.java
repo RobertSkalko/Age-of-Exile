@@ -9,6 +9,17 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class SpellCalcs {
 
+    public static ValueCalculation CURSE = ValueCalcBuilder.of("curse", "Curse")
+        .addAllElementsScaling(0.5F)
+        .build();
+
+    public static ValueCalculation DESPAIR = ValueCalcBuilder.of("despair", "Despair")
+        .damage(DamageCalculation.Builder.of(Elements.Earth)
+            .base(5)
+            .build())
+        .addAllElementsScaling(2)
+        .build();
+
     public static ValueCalculation DAMAGE_TOTEM = ValueCalcBuilder.of("damage_totem", "Damage Totem")
         .damage(DamageCalculation.Builder.of(Elements.Physical)
             .base(8)
@@ -215,23 +226,11 @@ public class SpellCalcs {
     public static ValueCalculation TORMENT = ValueCalcBuilder.of("torment")
         .baseValue(6)
         .build();
-    public static ValueCalculation DESPAIR = ValueCalcBuilder.of("despair")
-        .baseValue(6)
-        .build();
-
-    public static ValueCalculation WHIRLWIND = ValueCalcBuilder.of("whirlwind")
-        .attackScaling(0.6F)
-        .build();
-    public static ValueCalculation BREATH = ValueCalcBuilder.of("breath")
-        .build();
 
     public static ValueCalculation ARROW_STORM = ValueCalcBuilder.of("arrow_storm")
         .attackScaling(0.6F)
         .build();
 
-    public static ValueCalculation AWAKEN_MANA = ValueCalcBuilder.of("awaken_mana")
-        .baseValue(100)
-        .build();
     public static ValueCalculation HUNTER_POTION_HEAL = ValueCalcBuilder.of("hunter_pot_heal")
         .baseValue(100)
         .build();
@@ -277,8 +276,7 @@ public class SpellCalcs {
     public static ValueCalculation TOTEM_MANA = ValueCalcBuilder.of("totem_mana", "Totem Mana")
         .baseValue(6)
         .build();
-    public static ValueCalculation CURSE = ValueCalcBuilder.of("curse")
-        .build();
+
     public static ValueCalculation BLACK_HOLE = ValueCalcBuilder.of("black_hole")
         .build();
     public static ValueCalculation CHILLING_FIELD = ValueCalcBuilder.of("chilling_field")

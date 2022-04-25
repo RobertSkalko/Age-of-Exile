@@ -28,6 +28,7 @@ seeker_flames
 song_of_vigor
 dash
 teleport
+curse_of_weakness
 chill_eruption
 frost_steps
 ice_nova

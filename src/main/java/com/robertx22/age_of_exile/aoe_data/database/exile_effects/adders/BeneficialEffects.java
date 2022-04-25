@@ -131,8 +131,8 @@ public class BeneficialEffects implements ExileRegistryInit {
             .build();
 
         ExileEffectBuilder.of(UNDYING_WILL)
-            .stat(-25, -75, Stats.DAMAGE_RECEIVED.get())
-            .stat(1, 2, HealthRegen.getInstance())
+            .stat(50, Stats.DAMAGE_REDUCTION.get())
+            .stat(2, HealthRegen.getInstance())
             .maxStacks(1)
             .build();
 

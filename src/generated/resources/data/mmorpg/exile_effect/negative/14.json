@@ -7,24 +7,19 @@
     "negative",
     "curse"
   ],
-  "mc_stats": [],
+  "mc_stats": [
+    {
+      "val": -0.5,
+      "uuid": "6122802e-52c0-44ee-81d5-a9f58db48880",
+      "id": "minecraft:generic.movement_speed",
+      "type": "FLAT"
+    }
+  ],
   "stats": [
     {
-      "min": -10.0,
+      "min": -30.0,
       "max": -30.0,
-      "stat": "armor",
-      "type": "FLAT"
-    },
-    {
-      "min": -10.0,
-      "max": -30.0,
-      "stat": "dodge",
-      "type": "FLAT"
-    },
-    {
-      "min": -5.0,
-      "max": -15.0,
-      "stat": "elemental_resist",
+      "stat": "total_damage",
       "type": "FLAT"
     }
   ],

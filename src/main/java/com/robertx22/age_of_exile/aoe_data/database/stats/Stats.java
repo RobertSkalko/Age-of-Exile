@@ -183,13 +183,13 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_RECEIVED = DatapackStatBuilder
-        .ofSingle("dmg_received", Elements.Physical)
+    public static DataPackStatAccessor<EmptyAccessor> DAMAGE_REDUCTION = DatapackStatBuilder
+        .ofSingle("dmg_reduction", Elements.Physical)
         .worksWithEvent(DamageEvent.ID)
         .setPriority(0)
         .setSide(EffectSides.Target)
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> "Damage Received")
+        .addEffect(StatEffects.DECREASE_VALUE)
+        .setLocName(x -> "Damage Reduction")
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.is_perc = true;
