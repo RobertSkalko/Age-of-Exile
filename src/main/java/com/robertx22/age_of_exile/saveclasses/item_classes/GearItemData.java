@@ -12,7 +12,10 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.*;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.AffixData;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.BaseStatsData;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.GearAffixesData;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -43,8 +46,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Store
     public GearAffixesData affixes = new GearAffixesData();
     @Store
-    public GearSocketsData sockets = new GearSocketsData();
-    @Store
     public UniqueStatsData uniqueStats;
 
     // Stats
@@ -53,32 +54,22 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     // apparently people had big issues with many storage mods, So i should try minimize the nbt.
     @Store
     public String uniq_id = ""; // uniq_id
-
     @Store
     public String rarity = IRarity.COMMON_ID; // rar
-
     @Store
     public String item_id = ""; // item registry name
-
     @Store
     public int rp = -1; // pre_name rare prefix
     @Store
     public int rs = -1; // suf_name rare suffix
-
     @Store
     public int lvl = 1; // lvl
-
     @Store
     public String gear_type = "";
-
     @Store
     private float in = 0;
-
     @Store
     public boolean can_sal = true;
-
-    @Store
-    public boolean c = false; // corrupted
 
     public void upgradeToHigherRarity() {
 
@@ -93,10 +84,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         for (int i = 0; i < affixes; i++) {
             this.affixes.addOneRandomAffix(this);
         }
-    }
-
-    public boolean isCorrupted() {
-        return c;
     }
 
     public int getTier() {
@@ -132,11 +119,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         return sockets;
 
-    }
-
-    public int getEmptySockets() {
-
-        return getTotalSockets() - this.sockets.getSocketedGemsCount();
     }
 
     public boolean canGetAffix(Affix affix) {
@@ -333,8 +315,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         affixes.getAllAffixesAndSockets()
             .forEach(x -> IfNotNullAdd(x, list));
-
-        IfNotNullAdd(sockets, list);
 
         IfNotNullAdd(uniqueStats, list);
 

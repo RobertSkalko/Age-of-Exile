@@ -13,7 +13,6 @@ import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.ExileEf
 import com.robertx22.age_of_exile.aoe_data.database.favor.FavorAdder;
 import com.robertx22.age_of_exile.aoe_data.database.gear_rarities.GearRaritiesAdder;
 import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
-import com.robertx22.age_of_exile.aoe_data.database.gems.Gems;
 import com.robertx22.age_of_exile.aoe_data.database.groups.GearRarityGroupAdder;
 import com.robertx22.age_of_exile.aoe_data.database.mob_affixes.MobAffixes;
 import com.robertx22.age_of_exile.aoe_data.database.mob_rarities.MobRaritiesAdder;
@@ -69,7 +68,6 @@ public class GeneratedData {
         new DimConfigs().registerAll();
         new EntityConfigs().registerAll();
 
-        new Gems().registerAll();
         new Runes().registerAll();
 
         new AllPerks().registerAll();

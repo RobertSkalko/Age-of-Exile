@@ -26,7 +26,7 @@ public class IDAddonShopListsAdder implements ExileRegistryInit {
                 x.setIdForMineAndSlashModPerLayoutId(DungeonLayoutIds.DIAMOND_LICH_CRYPT);
                 x.shop_entries.addAll(defaultMineAndSlashShops(DungeonItems.SKELETAL_COIN.get()));
                 x.shop_entries.add(new ShopEntry(ShopCost.skeletalCoins(25),
-                    ShopReward.nbtItem(RewardCrateItem.create(IDAddonIds.RewardLists.GEM_BOX), 1),
+                    ShopReward.nbtItem(RewardCrateItem.create(IDAddonIds.RewardLists.GEAR_CRATE), 1),
                     DungeonDifficultiesIds.DIFF_3, 1));
             })
             .addToSerializables();

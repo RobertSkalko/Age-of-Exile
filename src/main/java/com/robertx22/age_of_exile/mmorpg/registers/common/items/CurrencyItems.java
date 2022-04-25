@@ -24,7 +24,6 @@ public class CurrencyItems {
     }
 
     public static RegObj<CurrencyItem> ORB_OF_TRANSMUTATION = Def.item(() -> new OrbOfTransmutationItem());
-    public static RegObj<CurrencyItem> CLEAR_CORRUPTION = Def.item(() -> new PurifyItem());
     public static RegObj<CurrencyItem> CRYSTAL_OF_PURIFICATION = Def.item(() -> new CrystalOfPurificationItem());
     public static RegObj<CurrencyItem> ORB_OF_DISORDER = Def.item(() -> new OrbOfDisorder());
     public static RegObj<CurrencyItem> ORB_OF_TURBULENCE = Def.item(() -> new OrbOfTurbulence());

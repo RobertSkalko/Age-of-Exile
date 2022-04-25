@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.currency.loc_reqs;
 
-import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.groups.GearRarityGroups;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
@@ -16,15 +15,6 @@ public class SimpleGearLocReq extends BaseLocRequirement {
     public static final SimpleGearLocReq HAS_HIGHER_RARITY = new SimpleGearLocReq(
         x -> x.getRarity()
             .hasHigherRarity(), Words.HasHigherRarity.locName());
-
-    public static final SimpleGearLocReq HAS_EMPTY_SOCKETS = new SimpleGearLocReq(
-        x -> x.getEmptySockets() > 0, Words.HasEmptySockets.locName());
-
-    public static final SimpleGearLocReq IS_NOT_CORRUPTED = new SimpleGearLocReq(
-        x -> !x.isCorrupted(), Words.IsNotCorrupted.locName());
-
-    public static final SimpleGearLocReq CAN_GET_MORE_AFFIXES = new SimpleGearLocReq(
-        x -> x.affixes.canGetMore(Affix.Type.prefix, x) || x.affixes.canGetMore(Affix.Type.suffix, x), Words.CantGetMoreAffixes.locName());
 
     public static final SimpleGearLocReq IS_COMMON = new SimpleGearLocReq(
         x -> x.rarity.equals(IRarity.COMMON_ID), Words.IsCommon.locName());

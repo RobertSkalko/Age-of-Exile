@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 public class LootCrateData {
 
     @Store
-    public LootType type = LootType.Gem;
+    public LootType type = LootType.Currency;
     @Store
     public int tier = 1;
 

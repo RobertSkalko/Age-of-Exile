@@ -109,29 +109,7 @@ public class OnItemInteract {
                     ci.cancel();
                     return;
                 }
-            } else if (cursor.getItem() == SlashItems.SOCKET_EXTRACTOR.get()) {
-
-                GearItemData gear = Gear.Load(stack);
-
-                if (gear != null) {
-                    if (gear.sockets != null && gear.sockets.sockets.size() > 0) {
-                        try {
-                            ItemStack gem = new ItemStack(gear.sockets.sockets.get(0)
-                                .getGem()
-                                .getItem());
-                            gear.sockets.sockets.remove(0);
-                            Gear.Save(stack, gear);
-                            PlayerUtils.giveItem(gem, player);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        ci.setReturnValue(ItemStack.EMPTY);
-                        ci.cancel();
-                        return;
-                    }
-                }
             }
-
             if (success) {
                 SoundUtils.ding(player.level, player.blockPosition());
                 SoundUtils.playSound(player.level, player.blockPosition(), SoundEvents.ANVIL_USE, 1, 1);

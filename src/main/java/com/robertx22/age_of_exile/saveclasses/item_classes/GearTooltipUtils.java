@@ -127,18 +127,6 @@ public class GearTooltipUtils {
 
         tip.add(new StringTextComponent(""));
 
-        if (gear.isCorrupted()) {
-            tip.add(new StringTextComponent(TextFormatting.RED + "").append(
-                    Words.Corrupted.locName())
-                .withStyle(TextFormatting.RED));
-        }
-
-        int socketed = gear.sockets.sockets.size();
-        if (socketed > 0) {
-            TooltipUtils.addSocketNamesLine(tip, gear);
-        }
-        tip.add(new StringTextComponent(""));
-
         ItemStack.appendEnchantmentNames(tip, stack.getEnchantmentTags());
 
         if (ClientConfigs.getConfig().SHOW_DURABILITY.get()) {

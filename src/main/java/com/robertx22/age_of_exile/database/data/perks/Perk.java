@@ -26,7 +26,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipList, IByteBuf<Perk>, IAutoLocName {
     public static Perk SERIALIZER = new Perk();
 
@@ -111,10 +110,9 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
                 list.add(locName().withStyle(type.format));
             }
 
-            info.statTooltipType = StatTooltipType.BASE_LOCAL_STATS;
+            info.statTooltipType = StatTooltipType.NORMAL;
 
             stats.forEach(x -> list.addAll(x.GetTooltipString(info)));
-
 
             if (this.one_of_a_kind != null) {
                 list.add(new StringTextComponent("Can only have one Perk of this type: ").withStyle(TextFormatting.GREEN));
@@ -124,8 +122,8 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
 
             if (lvl_req > 1) {
                 list.add(Words.RequiresLevel.locName()
-                        .append(": " + lvl_req)
-                        .withStyle(TextFormatting.YELLOW));
+                    .append(": " + lvl_req)
+                    .withStyle(TextFormatting.YELLOW));
             }
 
             if (this.type == PerkType.MAJOR) {
@@ -134,7 +132,7 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
             }
 
             list.add(Words.PressAltForStatInfo.locName()
-                    .withStyle(TextFormatting.BLUE));
+                .withStyle(TextFormatting.BLUE));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -190,7 +188,6 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
 
     }
 
-
     public PerkType getType() {
         return type;
     }
@@ -198,7 +195,7 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
     public boolean isLockedToPlayer(PlayerEntity player) {
 
         if (Load.Unit(player)
-                .getLevel() < lvl_req) {
+            .getLevel() < lvl_req) {
             return true;
         }
 
@@ -206,23 +203,21 @@ public class Perk implements JsonExileRegistry<Perk>, IAutoGson<Perk>, ITooltipL
             if (!one_of_a_kind.isEmpty()) {
 
                 if (Load.playerRPGData(player).talents
-                        .getAllAllocatedPerks()
-                        .values()
-                        .stream()
-                        .filter(x -> {
-                            return this.one_of_a_kind.equals(x.one_of_a_kind);
-                        })
-                        .count() > 0) {
+                    .getAllAllocatedPerks()
+                    .values()
+                    .stream()
+                    .filter(x -> {
+                        return this.one_of_a_kind.equals(x.one_of_a_kind);
+                    })
+                    .count() > 0) {
                     return true;
                 }
             }
         }
 
-
         return false;
 
     }
-
 
     @Override
     public Class<Perk> getClassForSerialization() {

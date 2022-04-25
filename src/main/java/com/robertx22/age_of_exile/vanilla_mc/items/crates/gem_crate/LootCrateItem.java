@@ -2,10 +2,8 @@ package com.robertx22.age_of_exile.vanilla_mc.items.crates.gem_crate;
 
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.currency.base.CurrencyItem;
-import com.robertx22.age_of_exile.database.data.gems.Gem;
 import com.robertx22.age_of_exile.database.data.runes.Rune;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.enumclasses.LootType;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -13,7 +11,6 @@ import com.robertx22.age_of_exile.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TierColors;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.age_of_exile.vanilla_mc.items.gemrunes.GemItem;
 import com.robertx22.library_of_exile.registry.IGUID;
 import com.robertx22.library_of_exile.utils.SoundUtils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -41,23 +38,10 @@ public class LootCrateItem extends Item implements IGUID {
         super(new Properties().tab(CreativeTabs.GemRuneCurrency));
     }
 
-    public static List<LootType> LOOT_TYPES = Arrays.asList(LootType.Gem, LootType.Rune, LootType.Currency);
+    public static List<LootType> LOOT_TYPES = Arrays.asList(LootType.Rune, LootType.Currency);
 
     public LootCrateData getData(ItemStack stack) {
         return StackSaving.GEM_CRATE.loadFrom(stack);
-    }
-
-    public static ItemStack ofGem(GemItem.GemRank rank) {
-        LootCrateData data = new LootCrateData();
-        data.tier = rank.tier;
-        data.type = data.type;
-        ItemStack stack = new ItemStack(SlashItems.LOOT_CRATE.get());
-        StackSaving.GEM_CRATE.saveTo(stack, data);
-        stack.getTag()
-            .putInt("CustomModelData", data.type.custommodeldata);
-
-        return stack;
-
     }
 
     @Override
@@ -72,12 +56,7 @@ public class LootCrateItem extends Item implements IGUID {
 
                 LootCrateData data = StackSaving.GEM_CRATE.loadFrom(stack);
 
-                if (data.type == LootType.Gem) {
-                    Gem gem = ExileDB.Gems()
-                        .getFilterWrapped(x -> data.tier == x.tier)
-                        .random();
-                    reward = new ItemStack(gem.getItem());
-                } else if (data.type == LootType.Rune) {
+                if (data.type == LootType.Rune) {
                     Rune rune = ExileDB.Runes()
                         .getFilterWrapped(x -> data.tier >= x.tier)
                         .random();
@@ -148,14 +127,6 @@ public class LootCrateItem extends Item implements IGUID {
         IFormattableTextComponent comp = new StringTextComponent("");
 
         if (data != null) {
-
-            if (data.type == LootType.Gem) {
-                String gemrank = "";
-                GemItem.GemRank rank = GemItem.GemRank.ofTier(data.tier);
-                gemrank = rank.locName; // todo make loc
-                comp.append(gemrank)
-                    .append(" ");
-            }
 
             comp.append(data.type.word.locName())
                 .append(" ")

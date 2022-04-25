@@ -88,17 +88,6 @@ public enum BackpackUpgrade {
             return Items.ROTTEN_FLESH;
         }
     },
-    AUTO_GEM_PICKUP {
-        @Override
-        public void upgrade(BackpackUpgradeItem item, BackpackInfo info) {
-            info.autoPickups.add(AutoPickupType.GEM);
-        }
-
-        @Override
-        public Item craftItem() {
-            return Items.GOLD_INGOT;
-        }
-    },
     AUTO_ESSENCE_PICKUP {
         @Override
         public void upgrade(BackpackUpgradeItem item, BackpackInfo info) {

@@ -51,7 +51,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
 
         List<ExactStatData> all = GetAllStats(gear);
 
-        info.statTooltipType = StatTooltipType.BASE_LOCAL_STATS;
+        info.statTooltipType = StatTooltipType.NORMAL;
 
         List<ITextComponent> list = new ArrayList<>();
         list.add(new StringTextComponent(" "));

@@ -3,17 +3,10 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 import com.google.gson.Gson;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
-import com.robertx22.age_of_exile.mmorpg.registers.common.items.GemItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.RuneItems;
-import net.minecraft.advancements.criterion.StatePropertiesPredicate;
-import net.minecraft.block.Block;
-import net.minecraft.block.CropsBlock;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
-import net.minecraft.item.Item;
 import net.minecraft.loot.*;
-import net.minecraft.loot.conditions.BlockStateProperty;
-import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.loading.FMLPaths;
 
@@ -86,15 +79,6 @@ public class LootTableGenerator {
     private HashMap<ResourceLocation, LootTable> getLootTables() {
         HashMap<ResourceLocation, LootTable> map = new HashMap<ResourceLocation, LootTable>();
 
-        LootTable.Builder gems = LootTable.lootTable();
-        LootPool.Builder gemloot = LootPool.lootPool();
-        gemloot.setRolls(RandomValueRange.between(1, 3));
-        GemItems.ALL.forEach(x -> {
-            gemloot.add(ItemLootEntry.lootTableItem(x.get())
-                .setWeight(x.get().weight));
-        });
-        gems.withPool(gemloot);
-
         LootTable.Builder runes = LootTable.lootTable();
         LootPool.Builder runeloot = LootPool.lootPool();
         runeloot.setRolls(RandomValueRange.between(1, 3));
@@ -116,36 +100,10 @@ public class LootTableGenerator {
         currencies.withPool(curLoot);
 
         map.put(RUNE_SALVAGE_RECIPE, runes.build());
-        map.put(GEM_SALVAGE_RECIPE, gems.build());
         map.put(CURRENCIES_SALVAGE_RECIPE, currencies.build());
 
         return map;
 
-    }
-
-    private void addFarming(Block block, Item item, Item seed, int age, HashMap<ResourceLocation, LootTable> map) {
-
-        ILootCondition.IBuilder condition = BlockStateProperty.hasBlockStateProperties(block)
-            .setProperties(StatePropertiesPredicate.Builder.properties()
-                .hasProperty(CropsBlock.AGE, age));
-
-        LootTable.Builder b = LootTable.lootTable();
-
-        LootPool.Builder loot = LootPool.lootPool();
-        loot.when(condition);
-        loot.setRolls(RandomValueRange.between(1, 3));
-        loot.add(ItemLootEntry.lootTableItem(item));
-        b.withPool(loot);
-
-        if (seed != null) {
-            LootPool.Builder seedpool = LootPool.lootPool();
-            seedpool.when(condition);
-            seedpool.setRolls(RandomValueRange.between(1, 2));
-            seedpool.add(ItemLootEntry.lootTableItem(seed));
-            b.withPool(seedpool);
-        }
-
-        map.put(block.getLootTable(), b.build());
     }
 
 }

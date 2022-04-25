@@ -44,12 +44,6 @@ public class TooltipUtils {
             .GetTooltipString(lvl, data));
     }
 
-    public static void addSocketNamesLine(List<ITextComponent> tip, GearItemData gear) {
-        if (gear.sockets.sockets.size() > 0) {
-            tip.add(new StringTextComponent("Gemmed").withStyle(TextFormatting.LIGHT_PURPLE));
-        }
-    }
-
     public static void addEmpty(List<ITextComponent> tooltip) {
         tooltip.add(CLOC.blank(""));
     }

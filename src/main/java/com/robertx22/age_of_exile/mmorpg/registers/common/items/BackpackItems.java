@@ -29,7 +29,6 @@ public class BackpackItems {
 
     public static HashMap<SkillItemTier, RegObj<BackpackUpgradeItem>> SIZE = new HashMap<>();
 
-    static RegObj<BackpackUpgradeItem> GEM = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_GEM_PICKUP, SkillItemTier.TIER1, "gem", "Auto Gem Pickup Upgrade"));
     static RegObj<BackpackUpgradeItem> TRASH = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_TRASH_PICKUP, SkillItemTier.TIER0, "trash", "Auto Trash Pickup Upgrade"));
     static RegObj<BackpackUpgradeItem> RUNE = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_RUNE_PICKUP, SkillItemTier.TIER2, "rune", "Auto Rune Pickup Upgrade"));
     static RegObj<BackpackUpgradeItem> CURRENCY = upgrade(new BackpackUpgradeItem(BackpackUpgrade.AUTO_CURRENCY_PICKUP, SkillItemTier.TIER3, "currency", "Auto Currency Pickup Upgrade"));

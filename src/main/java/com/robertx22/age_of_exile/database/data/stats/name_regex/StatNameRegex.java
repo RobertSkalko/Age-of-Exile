@@ -10,7 +10,6 @@ import net.minecraft.util.text.TextFormatting;
 public abstract class StatNameRegex {
 
     public static StatNameRegex BASIC = new BasicStatRegex();
-    public static StatNameRegex BASIC_LOCAL = new BasicLocalStatRegex().setAddPlus(false);
     public static StatNameRegex JUST_NAME = new JustNameRegex();
 
     public static String VALUE = "VALUE";
