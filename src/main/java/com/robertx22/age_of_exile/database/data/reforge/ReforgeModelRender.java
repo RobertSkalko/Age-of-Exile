@@ -29,6 +29,7 @@ public class ReforgeModelRender extends ItemStackTileEntityRenderer {
                 }
             }
         }
+
     }
 
     public static void renderSkull(String id, float float1, float float2, MatrixStack p_228879_5_, IRenderTypeBuffer buffer, int p_228879_7_) {

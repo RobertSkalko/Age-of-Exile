@@ -1,7 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "mmorpg:items/stat_soul/ring",
-        "layer1": "mmorpg:items/stat_soul/question"
-    }
-}
