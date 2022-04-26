@@ -16,6 +16,7 @@
     "LootTableMixin",
     "PlayerInventoryMixin",
     "ServerPlayerEntityAccessor",
+    "SkullTileEntityRendererAccessor",
     "StopFireInDungeonMixin",
     "WorkbenchContainerAccessor"
   ],
