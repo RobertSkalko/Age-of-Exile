@@ -17,8 +17,10 @@ poison_trap
 jump_field
 charged_bolt
 healing_aria
+poison_arrows
 song_of_perseverance
 shooting_star
+survival_potion
 hunter_potion
 mana_totem
 poison_cloud
@@ -36,6 +38,8 @@ heal_totem
 entangling_seed
 nature_balm
 tidal_wave
+ice_needles
+ender_arrow
 black_hole
 levitation
 explosive_arrow
@@ -46,6 +50,7 @@ frost_trap
 fire_trap
 meteor
 refresh
+frost_arrow
 make_arrows
 power_chord
 pull

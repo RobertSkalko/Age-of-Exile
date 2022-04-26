@@ -1,51 +1,47 @@
 {
   "id": "hunter",
   "spells": {
-    "charged_bolt": {
-      "x": 0,
-      "y": 3
+    "poison_device": {
+      "x": 10,
+      "y": 2
     },
     "explosive_arrow": {
-      "x": 0,
-      "y": 2
+      "x": 4,
+      "y": 0
     },
-    "smoke_bomb": {
-      "x": 7,
-      "y": 2
-    },
-    "night_vision": {
+    "poison_arrows": {
       "x": 10,
-      "y": 4
-    },
-    "poison_arrow": {
-      "x": 2,
-      "y": 2
+      "y": 0
     },
     "fire_trap": {
-      "x": 6,
-      "y": 4
+      "x": 4,
+      "y": 1
     },
     "frost_trap": {
       "x": 7,
-      "y": 4
+      "y": 1
     },
-    "backflip": {
-      "x": 4,
-      "y": 3
+    "ender_arrow": {
+      "x": 0,
+      "y": 1
+    },
+    "ice_needles": {
+      "x": 7,
+      "y": 2
+    },
+    "survival_potion": {
+      "x": 0,
+      "y": 2
     },
     "make_arrows": {
       "x": 0,
       "y": 0
     },
+    "frost_arrow": {
+      "x": 7,
+      "y": 0
+    },
     "poison_trap": {
-      "x": 8,
-      "y": 4
-    },
-    "dash": {
-      "x": 5,
-      "y": 1
-    },
-    "hunter_potion": {
       "x": 10,
       "y": 1
     }

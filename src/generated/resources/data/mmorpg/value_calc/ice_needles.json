@@ -1,5 +1,5 @@
 {
-  "id": "frost_arrow",
+  "id": "ice_needles",
   "damage_calcs": {
     "damages": [
       {
@@ -7,27 +7,27 @@
         "scaling": [
           {
             "stat": "water_weapon_damage",
-            "multi": 2.0
+            "multi": 0.2
           }
         ],
-        "base": 8.0
+        "base": 1.0
       },
       {
         "element": "Physical",
         "scaling": [
           {
             "stat": "physical_weapon_damage",
-            "multi": 2.0
+            "multi": 0.2
           }
         ],
-        "base": 8.0
+        "base": 1.0
       },
       {
         "element": "Fire",
         "scaling": [
           {
             "stat": "fire_weapon_damage",
-            "multi": 1.0
+            "multi": 0.1
           }
         ],
         "base": 0.0
@@ -37,7 +37,7 @@
         "scaling": [
           {
             "stat": "earth_weapon_damage",
-            "multi": 1.0
+            "multi": 0.1
           }
         ],
         "base": 0.0

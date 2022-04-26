@@ -1,0 +1,109 @@
+{
+  "weight": 1000,
+  "identifier": "survival_potion",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:item.chorus_fruit.teleport",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:effect",
+              "motion": "None",
+              "radius": 1.5,
+              "particle_count": 100.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:heart",
+              "motion": "None",
+              "radius": 1.5,
+              "particle_count": 50.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [
+          {
+            "type": "self",
+            "map": {}
+          }
+        ],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "restore_health",
+            "map": {
+              "value_calculation": "hunter_pot_heal"
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      }
+    ],
+    "entity_components": {}
+  },
+  "config": {
+    "swing_arm": true,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": 20,
+    "cooldown_ticks": 3600,
+    "style": "magic",
+    "tags": [
+      "heal"
+    ],
+    "cast_type": "NORMAL",
+    "everyone_has": false,
+    "imbues": 1,
+    "imbue_type": "ON_RANGED_ATTACK"
+  },
+  "disabled_dims": []
+}

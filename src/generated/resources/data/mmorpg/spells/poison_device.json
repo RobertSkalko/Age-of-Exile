@@ -1,6 +1,6 @@
 {
   "weight": 1000,
-  "identifier": "test_spell",
+  "identifier": "poison_device",
   "attached": {
     "on_cast": [
       {

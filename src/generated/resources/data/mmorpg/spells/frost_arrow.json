@@ -1,0 +1,251 @@
+{
+  "weight": 1000,
+  "identifier": "frost_arrow",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.arrow.shoot",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.dragon_fireball.explode",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "projectile",
+            "map": {
+              "proj_speed": 1.0,
+              "item": "minecraft:air",
+              "entity_name": "default_entity_name",
+              "gravity": false,
+              "proj_count": 1.0,
+              "expire_on_en_hit": false,
+              "life_ticks": 80.0,
+              "proj_en": "mmorpg:spell_arrow"
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      }
+    ],
+    "entity_components": {
+      "default_entity_name": [
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:item_snowball",
+                "motion": "None",
+                "radius": 0.3,
+                "particle_count": 50.0
+              }
+            }
+          ],
+          "ifs": []
+        },
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 6.0
+              }
+            }
+          ],
+          "en_preds": [
+            {
+              "type": "did_not_affect_by_entity_already",
+              "map": {}
+            }
+          ],
+          "acts": [
+            {
+              "type": "damage",
+              "map": {
+                "value_calculation": "frost_arrow"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 1.0
+              }
+            }
+          ],
+          "per_entity_hit": [
+            {
+              "targets": [],
+              "en_preds": [],
+              "acts": [
+                {
+                  "type": "particles_in_radius",
+                  "map": {
+                    "particle_type": "minecraft:item_snowball",
+                    "motion": "None",
+                    "radius": 1.0,
+                    "particle_count": 500.0
+                  }
+                }
+              ],
+              "ifs": []
+            },
+            {
+              "targets": [],
+              "en_preds": [],
+              "acts": [
+                {
+                  "type": "particles_in_radius",
+                  "map": {
+                    "particle_type": "minecraft:instant_effect",
+                    "motion": "None",
+                    "radius": 1.0,
+                    "particle_count": 500.0
+                  }
+                }
+              ],
+              "ifs": []
+            },
+            {
+              "targets": [],
+              "en_preds": [],
+              "acts": [
+                {
+                  "type": "particles_in_radius",
+                  "map": {
+                    "particle_type": "minecraft:firework",
+                    "motion": "None",
+                    "radius": 1.0,
+                    "particle_count": 50.0
+                  }
+                }
+              ],
+              "ifs": []
+            },
+            {
+              "targets": [],
+              "en_preds": [],
+              "acts": [
+                {
+                  "type": "sound",
+                  "map": {
+                    "volume": 1.0,
+                    "sound": "minecraft:entity.generic.hurt",
+                    "pitch": 1.0
+                  }
+                }
+              ],
+              "ifs": []
+            },
+            {
+              "targets": [],
+              "en_preds": [],
+              "acts": [
+                {
+                  "type": "sound",
+                  "map": {
+                    "volume": 1.0,
+                    "sound": "minecraft:entity.generic.explode",
+                    "pitch": 1.0
+                  }
+                }
+              ],
+              "ifs": []
+            },
+            {
+              "targets": [],
+              "en_preds": [],
+              "acts": [
+                {
+                  "type": "mark_as_affected",
+                  "map": {}
+                }
+              ],
+              "ifs": []
+            },
+            {
+              "targets": [],
+              "en_preds": [],
+              "acts": [
+                {
+                  "type": "potion",
+                  "map": {
+                    "potion_action": "GIVE_STACKS",
+                    "potion_id": "minecraft:slowness",
+                    "count": 1.0,
+                    "potion_dur": 40.0
+                  }
+                }
+              ],
+              "ifs": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "config": {
+    "swing_arm": true,
+    "castingWeapon": "RANGED",
+    "mana_cost": 8,
+    "cooldown_ticks": 300,
+    "style": "ranged",
+    "tags": [
+      "projectile",
+      "area",
+      "damage"
+    ],
+    "cast_type": "IMBUE",
+    "everyone_has": false,
+    "imbues": 1,
+    "imbue_type": "ON_RANGED_ATTACK"
+  },
+  "disabled_dims": []
+}

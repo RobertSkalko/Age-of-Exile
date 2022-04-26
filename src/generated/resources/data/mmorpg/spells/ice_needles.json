@@ -1,0 +1,274 @@
+{
+  "weight": 1000,
+  "identifier": "ice_needles",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.arrow.shoot",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.arrow.shoot",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.arrow.shoot",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [
+          {
+            "type": "self",
+            "map": {}
+          }
+        ],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "potion",
+            "map": {
+              "potion_action": "GIVE_STACKS",
+              "potion_id": "minecraft:slowness",
+              "count": 1.0,
+              "potion_str": 0.0,
+              "potion_dur": 60.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "summon_block",
+            "map": {
+              "entity_name": "block",
+              "is_falling_block": false,
+              "block_fall_speed": 0.0,
+              "life_ticks": 60.0,
+              "block": "minecraft:air"
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      }
+    ],
+    "entity_components": {
+      "block": [
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "projectile",
+              "map": {
+                "proj_speed": 1.5,
+                "item": "minecraft:air",
+                "entity_name": "default_entity_name",
+                "gravity": false,
+                "proj_count": 15.0,
+                "pitch_zero": true,
+                "life_ticks": 20.0,
+                "proj_en": "mmorpg:spell_arrow",
+                "proj_apart": 360.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 3.0
+              }
+            }
+          ]
+        },
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "sound",
+              "map": {
+                "volume": 1.0,
+                "sound": "minecraft:entity.arrow.shoot",
+                "pitch": 1.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "x_ticks_condition",
+              "map": {
+                "tick_rate": 3.0
+              }
+            }
+          ]
+        }
+      ],
+      "default_entity_name": [
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:item_snowball",
+                "motion": "None",
+                "radius": 0.3,
+                "particle_count": 1.0
+              }
+            }
+          ],
+          "ifs": []
+        },
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 2.0
+              }
+            }
+          ],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "damage",
+              "map": {
+                "value_calculation": "ice_needles"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_hit",
+              "map": {}
+            }
+          ]
+        },
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:item_snowball",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 100.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_hit",
+              "map": {}
+            }
+          ]
+        },
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "sound",
+              "map": {
+                "volume": 1.0,
+                "sound": "minecraft:entity.generic.hurt",
+                "pitch": 1.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_hit",
+              "map": {}
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "config": {
+    "swing_arm": true,
+    "castingWeapon": "RANGED",
+    "mana_cost": 8,
+    "cooldown_ticks": 300,
+    "style": "ranged",
+    "tags": [
+      "projectile",
+      "area",
+      "damage"
+    ],
+    "cast_type": "NORMAL",
+    "everyone_has": false,
+    "imbues": 1,
+    "imbue_type": "ON_RANGED_ATTACK"
+  },
+  "disabled_dims": []
+}

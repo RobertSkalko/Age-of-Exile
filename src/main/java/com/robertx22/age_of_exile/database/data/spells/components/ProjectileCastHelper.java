@@ -78,6 +78,7 @@ public class ProjectileCastHelper {
             }
 
             AbstractArrowEntity en = (AbstractArrowEntity) projectile.create(world);
+
             SpellUtils.shootProjectile(pos.add(posAdd), en, caster, shootSpeed, pitch, yaw + addYaw);
             SpellUtils.initSpellEntity(en, caster, data, holder);
 

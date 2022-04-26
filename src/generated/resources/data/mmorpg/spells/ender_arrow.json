@@ -1,0 +1,178 @@
+{
+  "weight": 1000,
+  "identifier": "ender_arrow",
+  "attached": {
+    "on_cast": [
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.arrow.shoot",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "projectile",
+            "map": {
+              "proj_speed": 3.0,
+              "item": "minecraft:air",
+              "entity_name": "default_entity_name",
+              "gravity": true,
+              "proj_count": 1.0,
+              "life_ticks": 80.0,
+              "proj_en": "mmorpg:spell_arrow"
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      }
+    ],
+    "entity_components": {
+      "default_entity_name": [
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:witch",
+                "motion": "None",
+                "radius": 0.1,
+                "particle_count": 100.0
+              }
+            }
+          ],
+          "ifs": []
+        },
+        {
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 1.0
+              }
+            }
+          ],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "damage",
+              "map": {
+                "value_calculation": "ender_arrow"
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ]
+        },
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:witch",
+                "motion": "None",
+                "radius": 2.0,
+                "particle_count": 500.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ]
+        },
+        {
+          "targets": [
+            {
+              "type": "self",
+              "map": {}
+            }
+          ],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "tp_target_to_self",
+              "map": {}
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ]
+        },
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "sound",
+              "map": {
+                "volume": 1.0,
+                "sound": "minecraft:entity.enderman.teleport",
+                "pitch": 1.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "config": {
+    "swing_arm": true,
+    "castingWeapon": "RANGED",
+    "mana_cost": 8,
+    "cooldown_ticks": 300,
+    "style": "ranged",
+    "tags": [
+      "projectile",
+      "area",
+      "damage"
+    ],
+    "cast_type": "IMBUE",
+    "everyone_has": false,
+    "imbues": 1,
+    "imbue_type": "ON_RANGED_ATTACK"
+  },
+  "disabled_dims": []
+}

@@ -7,6 +7,7 @@ import com.robertx22.age_of_exile.database.data.spells.components.EntityActivati
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +30,11 @@ public class NewSpellBuilder {
 
     public NewSpellBuilder weaponReq(CastingWeapon wep) {
         this.spell.config.castingWeapon = wep;
+        return this;
+    }
+
+    public NewSpellBuilder attackStyle(PlayStyle style) {
+        this.spell.config.style = style;
         return this;
     }
 

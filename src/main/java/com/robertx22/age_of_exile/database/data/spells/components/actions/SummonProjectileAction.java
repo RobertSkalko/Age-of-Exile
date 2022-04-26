@@ -34,18 +34,27 @@ public class SummonProjectileAction extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
+        if (ctx.world.isClientSide) {
+            return;
+        }
+
         Optional<EntityType<?>> projectile = EntityType.byString(data.get(MapField.PROJECTILE_ENTITY));
 
         PositionSource posSource = data.getOrDefault(PositionSource.CASTER);
         ShootWay shootWay = data.getOrDefault(ShootWay.FROM_PLAYER_VIEW);
 
         Vector3d pos = ctx.caster.position();
+        pos = new Vector3d(pos.x, ctx.caster.getEyeY() - 0.1F, pos.z);
+
         if (posSource == PositionSource.SOURCE_ENTITY) {
             pos = ctx.sourceEntity.position();
         }
+        pos = pos.add(0, data.getOrDefault(MapField.HEIGHT, 0D), 0);
+
         boolean silent = data.getOrDefault(MapField.IS_SILENT, false);
 
         ProjectileCastHelper builder = new ProjectileCastHelper(pos, data, ctx.caster, projectile.get(), ctx.calculatedSpellData);
+
         builder.projectilesAmount = data.get(MapField.PROJECTILE_COUNT)
             .intValue() + ctx.calculatedSpellData.extra_proj;
         builder.silent = silent;
@@ -64,6 +73,10 @@ public class SummonProjectileAction extends SpellAction {
         }
         if (shootWay == ShootWay.DOWN) {
             builder.fallDown = true;
+        }
+
+        if (data.getOrDefault(MapField.PITCH_ZERO, false)) {
+            builder.pitch = 0;
         }
 
         builder.cast();

@@ -77,6 +77,7 @@ public class MapField<T> implements IGUID {
     public static MapField<Boolean> HITS_ALLIES = make("hits_allies");
     public static MapField<Boolean> IGNORE_Y = make("ignore_y");
     public static MapField<Boolean> ON_FIRE = make("on_fire"); // doesnt work, probably needs syncing to client
+    public static MapField<Boolean> PITCH_ZERO = make("pitch_zero");
 
     public static MapField<ValueCalculation> VALUE_CALCULATION = make("value_calculation");
 

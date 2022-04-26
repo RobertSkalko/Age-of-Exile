@@ -1,43 +1,43 @@
 {
-  "id": "frost_arrow",
+  "id": "poison_arrows",
   "damage_calcs": {
     "damages": [
       {
-        "element": "Water",
+        "element": "Earth",
         "scaling": [
           {
-            "stat": "water_weapon_damage",
-            "multi": 2.0
+            "stat": "earth_weapon_damage",
+            "multi": 0.5
           }
         ],
-        "base": 8.0
+        "base": 2.0
       },
       {
         "element": "Physical",
         "scaling": [
           {
             "stat": "physical_weapon_damage",
-            "multi": 2.0
+            "multi": 0.5
           }
         ],
-        "base": 8.0
+        "base": 2.0
       },
       {
         "element": "Fire",
         "scaling": [
           {
             "stat": "fire_weapon_damage",
-            "multi": 1.0
+            "multi": 0.3
           }
         ],
         "base": 0.0
       },
       {
-        "element": "Earth",
+        "element": "Water",
         "scaling": [
           {
-            "stat": "earth_weapon_damage",
-            "multi": 1.0
+            "stat": "water_weapon_damage",
+            "multi": 0.3
           }
         ],
         "base": 0.0

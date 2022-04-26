@@ -22,29 +22,14 @@ import java.util.Arrays;
 
 public class HunterSpells implements ExileRegistryInit {
 
-    public static String BACKFLIP = "backflip";
     public static String ARROW_STORM = "arrow_storm";
-    public static String POISON_ARROW = "poison_arrow";
     public static String DASH_ID = "dash";
 
-    public static String HUNTER_POTION = "hunter_potion";
-    public static String NIGHT_VISION = "night_vision";
     public static String SMOKE_BOMB = "smoke_bomb";
 
     @Override
 
     public void registerAll() {
-
-        SpellBuilder.of(HUNTER_POTION, SpellConfiguration.Builder.instant(0, 60 * 20 * 3), "Hunter's Potion",
-                Arrays.asList(SpellTag.heal)
-            )
-            .manualDesc("Drink a potion, healing you")
-            .weaponReq(CastingWeapon.ANY_WEAPON)
-            .onCast(PartBuilder.Sound.play(SoundEvents.CHORUS_FRUIT_TELEPORT, 1D, 1D))
-            .onCast(PartBuilder.Particles.aoe(ParticleTypes.WITCH, 40D, 1.5D))
-            .onCast(PartBuilder.Particles.aoe(ParticleTypes.HEART, 12D, 1.5D))
-            .onCast(PartBuilder.Restore.Health.caster(SpellCalcs.HUNTER_POTION_HEAL))
-            .build();
 
         SpellBuilder.of(SMOKE_BOMB, SpellConfiguration.Builder.instant(7, 20 * 60), "Smoke Bomb",
                 Arrays.asList())

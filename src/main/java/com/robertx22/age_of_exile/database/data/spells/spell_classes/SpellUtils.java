@@ -43,7 +43,7 @@ public class SpellUtils {
     public static void shootProjectile(Vector3d pos, AbstractArrowEntity projectile, LivingEntity caster, float speed,
                                        float pitch, float yaw) {
 
-        ((Entity) projectile).setPos(pos.x, caster.getEyeY() - 0.1F, pos.z);
+        ((Entity) projectile).setPos(pos.x, pos.y, pos.z);
 
         projectile.shootFromRotation(caster, pitch, yaw, 0, speed, 1F);
 

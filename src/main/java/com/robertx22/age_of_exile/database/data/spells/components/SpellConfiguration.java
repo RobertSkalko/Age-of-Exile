@@ -54,8 +54,13 @@ public class SpellConfiguration {
             SpellConfiguration c = new SpellConfiguration();
             c.mana_cost = mana;
             c.cooldown_ticks = cd;
-            // c.swing_arm = false; todo
             c.cast_type = SpellCastType.IMBUE;
+            return c;
+        }
+
+        public static SpellConfiguration arrowImbue(int mana, int cd, int amount) {
+            SpellConfiguration c = arrowImbue(mana, cd);
+            c.imbues = amount;
             return c;
         }
 

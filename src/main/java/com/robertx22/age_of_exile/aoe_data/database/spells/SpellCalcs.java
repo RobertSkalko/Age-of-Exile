@@ -9,8 +9,43 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class SpellCalcs {
 
-    public static ValueCalculation FROST_ARROW = ValueCalcBuilder.of("frost_arrow")
-        .damage(DamageCalculation.Builder.of(Elements.Elemental)
+    public static ValueCalculation ICE_NEEDLES = ValueCalcBuilder.of(SpellKeys.ICE_NEEDLES, "Ice Needles")
+        .damage(DamageCalculation.Builder.of(Elements.Water)
+            .base(1)
+            .scaling(0.2F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(1)
+            .scaling(0.2F)
+            .build())
+        .addAllElementsScaling(0.1F)
+        .build();
+
+    public static ValueCalculation HUNTER_POTION_HEAL = ValueCalcBuilder.of("hunter_pot_heal", "Survival Potion")
+        .baseValue(100)
+        .build();
+
+    public static ValueCalculation POISON_ARROW = ValueCalcBuilder.of(SpellKeys.POISON_ARROWS, "Poison Arrow")
+        .damage(DamageCalculation.Builder.of(Elements.Earth)
+            .base(2)
+            .scaling(0.5F)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(2)
+            .scaling(0.5F)
+            .build())
+        .addAllElementsScaling(0.3F)
+        .build();
+    public static ValueCalculation ENDER_ARROW = ValueCalcBuilder.of(SpellKeys.ENDER_ARROW, "Ender Arrow")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(8)
+            .scaling(2)
+            .build())
+        .addAllElementsScaling(2)
+        .build();
+
+    public static ValueCalculation FROST_ARROW = ValueCalcBuilder.of(SpellKeys.FROST_ARROW, "Frost Arrow")
+        .damage(DamageCalculation.Builder.of(Elements.Water)
             .base(8)
             .scaling(2)
             .build())
@@ -267,11 +302,7 @@ public class SpellCalcs {
         .attackScaling(0.6F)
         .build();
 
-    public static ValueCalculation HUNTER_POTION_HEAL = ValueCalcBuilder.of("hunter_pot_heal")
-        .baseValue(100)
-        .build();
-
-    public static ValueCalculation NATURE_BALM = ValueCalcBuilder.of("nature_balm")
+    public static ValueCalculation NATURE_BALM = ValueCalcBuilder.of("nature_balm", "Nature's Balm")
         .baseValue(5)
         .build();
 
@@ -285,13 +316,6 @@ public class SpellCalcs {
     public static ValueCalculation CHILL_ERUPTION = ValueCalcBuilder.of("chill_eruption")
         .build();
 
-    public static ValueCalculation SHOUT_WARN = ValueCalcBuilder.of("shout_warn")
-        .statScaling(Health.getInstance(), 0.1F)
-        .build();
-
-    public static ValueCalculation CHARGE = ValueCalcBuilder.of("charge")
-        .attackScaling(0.6F)
-        .build();
     public static ValueCalculation TAUNT = ValueCalcBuilder.of("taunt")
         .statScaling(Health.getInstance(), 0.1F)
         .build();

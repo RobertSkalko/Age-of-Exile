@@ -37,6 +37,11 @@ public interface SpellKeys {
     SpellKey POISON_TRAP = new SpellKey("poison_trap");
     SpellKey FIRE_TRAP = new SpellKey("fire_trap");
     SpellKey FROST_ARROW = new SpellKey("frost_arrow");
+    SpellKey ENDER_ARROW = new SpellKey("ender_arrow");
+    SpellKey POISON_ARROWS = new SpellKey("poison_arrows");
+    SpellKey SURVIVAL_POTION = new SpellKey("survival_potion");
+    SpellKey ICE_NEEDLES = new SpellKey("ice_needles");
+    SpellKey POISON_DEVICE = new SpellKey("poison_device");
 
     // BARD
     SpellKey SONG_OF_VALOR = new SpellKey("song_of_valor");

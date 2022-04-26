@@ -1,17 +1,7 @@
 {
-  "id": "frost_arrow",
+  "id": "ender_arrow",
   "damage_calcs": {
     "damages": [
-      {
-        "element": "Water",
-        "scaling": [
-          {
-            "stat": "water_weapon_damage",
-            "multi": 2.0
-          }
-        ],
-        "base": 8.0
-      },
       {
         "element": "Physical",
         "scaling": [
@@ -27,7 +17,17 @@
         "scaling": [
           {
             "stat": "fire_weapon_damage",
-            "multi": 1.0
+            "multi": 2.0
+          }
+        ],
+        "base": 0.0
+      },
+      {
+        "element": "Water",
+        "scaling": [
+          {
+            "stat": "water_weapon_damage",
+            "multi": 2.0
           }
         ],
         "base": 0.0
@@ -37,7 +37,7 @@
         "scaling": [
           {
             "stat": "earth_weapon_damage",
-            "multi": 1.0
+            "multi": 2.0
           }
         ],
         "base": 0.0
