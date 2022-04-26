@@ -20,7 +20,7 @@
       "min": 5.0,
       "max": 15.0,
       "stat": "physical_weapon_damage",
-      "type": "PERCENT"
+      "type": "FLAT"
     }
   ]
 }

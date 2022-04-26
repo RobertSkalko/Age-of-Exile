@@ -76,7 +76,6 @@ health_regen
 spell_fire_damage
 crit_damage
 templar
-elemental_purity
 armor
 ele_staff_damage
 elemental_resist

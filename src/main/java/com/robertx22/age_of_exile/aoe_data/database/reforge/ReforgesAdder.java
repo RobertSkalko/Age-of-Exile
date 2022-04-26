@@ -21,12 +21,6 @@ public class ReforgesAdder implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        Reforge.Builder.of(1, "test", "Test")
-            .gearSlot(GearSlotKeys.SWORD)
-            .rarity(IRarity.RARE_ID)
-            .stat(new StatModifier(2, 4, Health.getInstance()))
-            .build();
-
         Reforge.Builder.of(2, "aqua", "Aqua")
             .gearSlot(GearSlotKeys.RING)
             .rarity(IRarity.EPIC_ID)
@@ -45,7 +39,7 @@ public class ReforgesAdder implements ExileRegistryInit {
             .gearSlot(GearSlotKeys.HELMET)
             .rarity(IRarity.LEGENDARY_ID)
             .stat(new StatModifier(2, 6, Health.getInstance()))
-            .stat(new StatModifier(2, 10, Stats.ELEMENTAL_DAMAGE.get(), ModType.FLAT))
+            .stat(new StatModifier(2, 10, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT))
             .build();
 
         Reforge.Builder.of(4, "pride", "Pride")

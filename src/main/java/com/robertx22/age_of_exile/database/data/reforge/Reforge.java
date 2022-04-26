@@ -116,6 +116,8 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
 
         tooltip.addEmptyLine();
 
+        tooltip.add(TextBuilder.of()
+            .append("Stats: "));
         for (StatModifier stat : stats) {
             for (ITextComponent text : stat.getEstimationTooltip(lvl)) {
                 tooltip.add(new VanillaText(text));
@@ -140,6 +142,10 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
         tooltip.add(TextBuilder.of()
             .append(getRarity().ModlocName()
                 .format(getRarity().textFormatting())));
+
+        tooltip.addEmptyLine();
+        tooltip.add(TextBuilder.of()
+            .append("Can Apply To Gear"));
 
         return tooltip;
     }

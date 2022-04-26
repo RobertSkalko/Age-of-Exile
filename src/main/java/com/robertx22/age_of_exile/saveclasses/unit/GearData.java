@@ -19,6 +19,9 @@ public class GearData {
         this.stack = stack;
         if (stack != null) {
             this.gear = Gear.Load(stack);
+            if (!gear.isValidItem()) {
+                gear = null;
+            }
         }
         this.slot = slot;
 

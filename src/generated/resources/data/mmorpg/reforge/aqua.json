@@ -13,8 +13,8 @@
     {
       "min": 1.0,
       "max": 5.0,
-      "stat": "water_weapon_damage",
-      "type": "PERCENT"
+      "stat": "all_water_damage",
+      "type": "FLAT"
     }
   ],
   "gear_slots": [

@@ -13,8 +13,8 @@
     {
       "min": 2.0,
       "max": 10.0,
-      "stat": "fire_weapon_damage",
-      "type": "PERCENT"
+      "stat": "all_fire_damage",
+      "type": "FLAT"
     }
   ],
   "gear_slots": [

@@ -13,7 +13,7 @@
     {
       "min": 2.0,
       "max": 10.0,
-      "stat": "critical_hit",
+      "stat": "critical_damage",
       "type": "FLAT"
     }
   ],

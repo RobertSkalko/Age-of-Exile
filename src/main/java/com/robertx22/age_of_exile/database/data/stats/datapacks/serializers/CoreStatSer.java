@@ -25,7 +25,7 @@ public class CoreStatSer implements IStatSerializer<CoreStat> {
         CoreStatData data = AutoStatGson.GSON.fromJson(json.get("core_stat_data"), CoreStatData.class);
         String id = json.get("id")
             .getAsString();
-        CoreStat stat = new CoreStat(id, id, data);
+        CoreStat stat = new CoreStat(id, "", data);
         this.loadBaseStatValues(stat, json);
         return stat;
     }

@@ -106,7 +106,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     public boolean isValidItem() {
-
         return ExileDB.GearTypes()
             .isRegistered(gear_type);
     }

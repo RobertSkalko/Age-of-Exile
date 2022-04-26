@@ -54,7 +54,7 @@ public class ReforgeItem extends Item implements IAutoLocName {
 
         if (reforge != null) {
             return new StringTextComponent("").append(word.locName())
-                .append(" ")
+                .append(" Stone: ")
                 .append(reforge.locName())
                 .withStyle(reforge.getRarity()
                     .textFormatting());
