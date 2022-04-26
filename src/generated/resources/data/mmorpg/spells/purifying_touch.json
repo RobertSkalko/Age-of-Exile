@@ -1,6 +1,6 @@
 {
   "weight": 1000,
-  "identifier": "ice_nova",
+  "identifier": "purifying_touch",
   "attached": {
     "on_cast": [
       {
@@ -8,12 +8,11 @@
         "en_preds": [],
         "acts": [
           {
-            "type": "particles_in_radius",
+            "type": "sound",
             "map": {
-              "particle_type": "minecraft:smoke",
-              "motion": "None",
-              "radius": 3.0,
-              "particle_count": 3.0
+              "volume": 1.0,
+              "sound": "mmorpg:buff",
+              "pitch": 1.0
             }
           }
         ],
@@ -31,10 +30,13 @@
           {
             "type": "particles_in_radius",
             "map": {
-              "particle_type": "minecraft:item_snowball",
+              "particle_type": "minecraft:composter",
+              "y_rand": 0.2,
               "motion": "None",
-              "radius": 3.0,
-              "particle_count": 200.0
+              "shape": "HORIZONTAL_CIRCLE",
+              "radius": 2.0,
+              "particle_count": 50.0,
+              "height": 0.5
             }
           }
         ],
@@ -52,48 +54,14 @@
           {
             "type": "particles_in_radius",
             "map": {
-              "particle_type": "minecraft:poof",
+              "particle_type": "minecraft:heart",
+              "y_rand": 0.2,
               "motion": "None",
-              "radius": 3.0,
-              "particle_count": 20.0
+              "shape": "HORIZONTAL_CIRCLE",
+              "radius": 2.0,
+              "particle_count": 20.0,
+              "height": 0.5
             }
-          }
-        ],
-        "ifs": [
-          {
-            "type": "on_spell_cast",
-            "map": {}
-          }
-        ]
-      },
-      {
-        "targets": [],
-        "en_preds": [],
-        "acts": [
-          {
-            "type": "particles_in_radius",
-            "map": {
-              "particle_type": "minecraft:crit",
-              "motion": "None",
-              "radius": 3.0,
-              "particle_count": 20.0
-            }
-          }
-        ],
-        "ifs": [
-          {
-            "type": "on_spell_cast",
-            "map": {}
-          }
-        ]
-      },
-      {
-        "targets": [],
-        "en_preds": [],
-        "acts": [
-          {
-            "type": "ice_nova",
-            "map": {}
           }
         ],
         "ifs": [
@@ -109,7 +77,7 @@
             "type": "aoe",
             "map": {
               "selection_type": "RADIUS",
-              "en_predicate": "enemies",
+              "en_predicate": "allies",
               "radius": 3.0
             }
           }
@@ -117,9 +85,9 @@
         "en_preds": [],
         "acts": [
           {
-            "type": "damage",
+            "type": "restore_health",
             "map": {
-              "value_calculation": "frost_nova"
+              "value_calculation": "purifying_touch"
             }
           }
         ],
@@ -136,7 +104,7 @@
             "type": "aoe",
             "map": {
               "selection_type": "RADIUS",
-              "en_predicate": "enemies",
+              "en_predicate": "allies",
               "radius": 3.0
             }
           }
@@ -146,11 +114,8 @@
           {
             "type": "potion",
             "map": {
-              "potion_action": "GIVE_STACKS",
-              "potion_id": "minecraft:slowness",
-              "count": 1.0,
-              "potion_str": 0.0,
-              "potion_dur": 120.0
+              "potion_action": "REMOVE_NEGATIVE",
+              "count": 1.0
             }
           }
         ],
@@ -166,19 +131,17 @@
   },
   "config": {
     "swing_arm": true,
-    "castingWeapon": "MAGE_WEAPON",
-    "mana_cost": 20,
-    "cooldown_ticks": 60,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": 15,
+    "cooldown_ticks": 600,
     "style": "magic",
     "tags": [
-      "projectile",
-      "damage",
-      "staff_spell"
+      "heal"
     ],
-    "cast_type": "NORMAL",
+    "cast_type": "IMBUE",
     "everyone_has": false,
-    "imbues": 1,
-    "imbue_type": "ON_RANGED_ATTACK"
+    "imbues": 3,
+    "imbue_type": "STAFF_IMBUE"
   },
   "disabled_dims": []
 }

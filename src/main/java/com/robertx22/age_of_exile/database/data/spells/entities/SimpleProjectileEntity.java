@@ -62,6 +62,7 @@ public class SimpleProjectileEntity extends AbstractArrowEntity implements IMyRe
     private static final DataParameter<Boolean> PIERCE = EntityDataManager.defineId(SimpleProjectileEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> DEATH_TIME = EntityDataManager.defineId(SimpleProjectileEntity.class, DataSerializers.INT);
     private static final DataParameter<Boolean> EXPIRE_ON_BLOCK_HIT = EntityDataManager.defineId(SimpleProjectileEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Float> SCALE = EntityDataManager.defineId(SimpleProjectileEntity.class, DataSerializers.FLOAT);
 
     public Entity ignoreEntity;
 
@@ -414,6 +415,7 @@ public class SimpleProjectileEntity extends AbstractArrowEntity implements IMyRe
         this.entityData.define(HIT_ALLIES, false);
         this.entityData.define(PIERCE, false);
         this.entityData.define(DEATH_TIME, 100);
+        this.entityData.define(SCALE, 1F);
         super.defineSynchedData();
     }
 
@@ -467,6 +469,11 @@ public class SimpleProjectileEntity extends AbstractArrowEntity implements IMyRe
     }
 
     @Override
+    public float getScale() {
+        return getEntityData().get(SCALE);
+    }
+
+    @Override
     public void init(LivingEntity caster, EntitySavedSpellData data, MapHolder holder) {
         this.spellData = data;
 
@@ -479,6 +486,8 @@ public class SimpleProjectileEntity extends AbstractArrowEntity implements IMyRe
         this.entityData.set(EXPIRE_ON_ENTITY_HIT, holder.getOrDefault(MapField.EXPIRE_ON_ENTITY_HIT, true));
         this.entityData.set(EXPIRE_ON_BLOCK_HIT, holder.getOrDefault(MapField.EXPIRE_ON_BLOCK_HIT, true));
         this.entityData.set(HIT_ALLIES, holder.getOrDefault(MapField.HITS_ALLIES, false));
+        this.entityData.set(SCALE, holder.getOrDefault(MapField.SCALE, 1D)
+            .floatValue());
 
         this.checkInsideBlocks();
 

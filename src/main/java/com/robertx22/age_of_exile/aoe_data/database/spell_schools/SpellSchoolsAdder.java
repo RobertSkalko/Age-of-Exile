@@ -19,15 +19,16 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
         SchoolBuilder.of(BARD, "Bard")
 
             .addSpell(SpellKeys.POWER_CHORD.id, new PointData(0, 0))
-            .addSpell(SpellKeys.HEALING_ARIA.id, new PointData(2, 0))
+            .addSpell(SpellKeys.EXPLOSIVE_NOTE.id, new PointData(0, 1))
+            .addSpell(SpellKeys.NOCTURNE.id, new PointData(0, 2))
 
-            .addSpell(SpellKeys.SONG_OF_PERSEVERANCE.id, new PointData(1, 4))
-            .addSpell(SpellKeys.SONG_OF_VALOR.id, new PointData(2, 4))
-            .addSpell(SpellKeys.SONG_OF_VIGOR.id, new PointData(3, 4))
+            .addSpell(SpellKeys.SHOOTING_STAR, new PointData(5, 0))
+            .addSpell(SpellKeys.HEALING_ARIA.id, new PointData(5, 1))
+            .addSpell(SpellKeys.PURIFYING_TOUCH, new PointData(5, 2))
 
-            .addSpell(HolySpells.HEALING_AURA_ID, new PointData(0, 5))
-
-            .addSpell(HolySpells.SHOOTING_STAR, new PointData(1, 2))
+            .addSpell(SpellKeys.SONG_OF_VIGOR.id, new PointData(10, 0))
+            .addSpell(SpellKeys.SONG_OF_PERSEVERANCE.id, new PointData(10, 1))
+            .addSpell(SpellKeys.SONG_OF_VALOR.id, new PointData(10, 2))
 
             .build();
 
@@ -54,7 +55,6 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .build();
 
         SchoolBuilder.of(ELEMENTALIST, "Elementalist")
-            //.addSpell(SpellKeys.MAGIC_PROJECTILE.id, new PointData(0, 0))
 
             // fire
             .addSpell(SpellKeys.SEEKER_FLAMES.id, new PointData(0, 0))
@@ -64,7 +64,8 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             // poison
             .addSpell(SpellKeys.POISON_CLOUD.id, new PointData(5, 0))
             .addSpell(SpellKeys.NATURE_BALM.id, new PointData(5, 1))
-            .addSpell(SpellKeys.REFRESH.id, new PointData(5, 2))
+            .addSpell(SpellKeys.BOULDER_TOSS.id, new PointData(5, 2))
+            .addSpell(SpellKeys.REFRESH.id, new PointData(5, 3))
 
             // ice
             .addSpell(SpellKeys.ICE_SNAKE.id, new PointData(10, 0))

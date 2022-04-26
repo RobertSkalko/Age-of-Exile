@@ -173,6 +173,26 @@ public class ElementalistSpells implements ExileRegistryInit {
 
             .build();
 
+        SpellBuilder.of(SpellKeys.BOULDER_TOSS, SpellConfiguration.Builder.staffImbue(20, 20 * 15, 5), "Boulder Toss",
+                Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
+            .manualDesc(
+                "Toss out multiple boulders, dealing heavy physical damage.")
+            .weaponReq(CastingWeapon.MAGE_WEAPON)
+            .onCast(PartBuilder.Sound.play(SoundRefs.FISHING_THROW_LOW_PITCH))
+            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.COBBLESTONE, 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 8D, false)
+                .put(MapField.SCALE, 7D)
+            ))
+
+            .onExpire(PartBuilder.Damage.aoe(SpellCalcs.BOULDER_TOSS, 2D))
+            .onExpire(PartBuilder.Sound.play(SoundEvents.GENERIC_HURT, 1D, 2D))
+            .onExpire(PartBuilder.Sound.play(SoundEvents.GENERIC_EXPLODE))
+
+            .onExpire(PartBuilder.Particles.aoe(ParticleTypes.SMOKE, 15D, 1D))
+            .onExpire(PartBuilder.Particles.aoe(ParticleTypes.EXPLOSION, 3D, 1D))
+            .onExpire(PartBuilder.Particles.aoe(ParticleTypes.POOF, 5D, 1D))
+            .onExpire(PartBuilder.Particles.aoe(ParticleTypes.CRIT, 30D, 1D))
+            .build();
+
         SpellBuilder.of(SpellKeys.REFRESH, SpellConfiguration.Builder.instant(40, 20 * 60 * 3)
                 // if this becomes useless due to lower cooldowns, buff it or make it instead a spell that decreases mana cost
                 , "Refresh",

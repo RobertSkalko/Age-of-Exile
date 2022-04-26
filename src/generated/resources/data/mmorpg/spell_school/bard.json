@@ -6,28 +6,36 @@
       "y": 0
     },
     "healing_aria": {
-      "x": 2,
-      "y": 0
-    },
-    "healing_aura": {
-      "x": 0,
-      "y": 5
+      "x": 5,
+      "y": 1
     },
     "song_of_valor": {
-      "x": 2,
-      "y": 4
-    },
-    "song_of_perseverance": {
-      "x": 1,
-      "y": 4
-    },
-    "shooting_star": {
-      "x": 1,
+      "x": 10,
       "y": 2
     },
+    "song_of_perseverance": {
+      "x": 10,
+      "y": 1
+    },
+    "nocturne": {
+      "x": 0,
+      "y": 2
+    },
+    "shooting_star": {
+      "x": 5,
+      "y": 0
+    },
     "song_of_vigor": {
-      "x": 3,
-      "y": 4
+      "x": 10,
+      "y": 0
+    },
+    "explosive_note": {
+      "x": 0,
+      "y": 1
+    },
+    "purifying_touch": {
+      "x": 5,
+      "y": 2
     }
   },
   "lvl_reqs": [

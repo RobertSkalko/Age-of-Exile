@@ -4,6 +4,7 @@ petrify
 torment
 healing_aura
 venom_strike
+purge
 chill_eruption
 chilling_field
 frost_steps
@@ -41,5 +42,6 @@ pull
 curse
 seeker_flames
 totem_mana
+purifying_touch
 despair
 taunt

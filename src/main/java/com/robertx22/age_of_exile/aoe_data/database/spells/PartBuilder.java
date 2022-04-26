@@ -37,6 +37,13 @@ public class PartBuilder {
         return c;
     }
 
+    public static ComponentPart removeNegativeEffectInAoe(double radius) {
+        ComponentPart c = new ComponentPart();
+        c.acts.add(SpellAction.POTION.removeNegative(1D));
+        c.targets.add(BaseTargetSelector.AOE.create(radius, EntityFinder.SelectionType.RADIUS, AllyOrEnemy.allies));
+        return c;
+    }
+
     public static class Restore {
 
         public static class Health {

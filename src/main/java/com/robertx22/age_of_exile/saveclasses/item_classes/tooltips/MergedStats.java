@@ -24,8 +24,13 @@ public class MergedStats implements IGearPartTooltip {
 
         this.mergedList = TooltipStatInfo.mergeDuplicates(infolist);
 
-        this.mergedList.sort(Comparator.comparingInt(x -> 100 - x.stat.translate()
-            .length()));
+        this.mergedList.sort(Comparator.comparingInt(x -> {
+            if (x.type.isFlat()) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }));
 
     }
 

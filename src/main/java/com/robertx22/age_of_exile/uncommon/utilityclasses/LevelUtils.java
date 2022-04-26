@@ -216,7 +216,6 @@ public class LevelUtils {
 
             lvl += bonusDiffLevel;
         }
-
         lvl = MathHelper.clamp(lvl, dimConfig.min_lvl, dimConfig.max_lvl);
         lvl = MathHelper.clamp(lvl, 1, GameBalanceConfig.get().MAX_LEVEL);
 

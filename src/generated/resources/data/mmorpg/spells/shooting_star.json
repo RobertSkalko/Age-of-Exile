@@ -61,7 +61,7 @@
                 "particle_type": "minecraft:crit",
                 "motion": "None",
                 "radius": 0.5,
-                "particle_count": 1.0
+                "particle_count": 3.0
               }
             }
           ],
@@ -84,7 +84,7 @@
                 "particle_type": "minecraft:enchant",
                 "motion": "None",
                 "radius": 0.7,
-                "particle_count": 1.0
+                "particle_count": 3.0
               }
             }
           ],
@@ -104,7 +104,7 @@
               "map": {
                 "selection_type": "RADIUS",
                 "en_predicate": "allies",
-                "radius": 2.0
+                "radius": 3.0
               }
             }
           ],
@@ -134,7 +134,7 @@
                 "particle_type": "minecraft:soul_fire_flame",
                 "motion": "None",
                 "radius": 1.0,
-                "particle_count": 10.0
+                "particle_count": 30.0
               }
             }
           ],

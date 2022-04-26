@@ -26,9 +26,14 @@ public class DamageCalculation {
             element.getIconNameDmg());
 
         if (Screen.hasShiftDown()) {
-            txt.append(" [" + (int) getCalculatedBaseValue(data) + " + ");
-            for (ScalingCalc scal : scaling) {
-                txt.append(scal.GetTooltipString());
+
+            txt.append(" [" + (int) getCalculatedBaseValue(data));
+
+            if (!scaling.isEmpty()) {
+                txt.append(" + ");
+                for (ScalingCalc scal : scaling) {
+                    txt.append(scal.GetTooltipString());
+                }
             }
             txt.append("]");
         }

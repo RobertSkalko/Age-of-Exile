@@ -13,8 +13,10 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.GameRules;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -25,7 +27,23 @@ public class OnLogin {
 
         Watch total = null;
         if (MMORPG.RUN_DEV_TOOLS) {
+
             total = new Watch();
+
+            if (true) {
+                MinecraftServer server = player.getServer();
+                GameRules rules = player.getServer()
+                    .getGameRules();
+
+                rules.getRule(GameRules.RULE_DOMOBSPAWNING)
+                    .set(false, server);
+                rules.getRule(GameRules.RULE_WEATHER_CYCLE)
+                    .set(false, server);
+                rules.getRule(GameRules.RULE_DAYLIGHT)
+                    .set(false, server);
+                rules.getRule(GameRules.RULE_KEEPINVENTORY)
+                    .set(true, server);
+            }
         }
 
         try {

@@ -1,6 +1,6 @@
 {
   "weight": 1000,
-  "identifier": "ice_nova",
+  "identifier": "nocturne",
   "attached": {
     "on_cast": [
       {
@@ -8,12 +8,31 @@
         "en_preds": [],
         "acts": [
           {
-            "type": "particles_in_radius",
+            "type": "sound",
             "map": {
-              "particle_type": "minecraft:smoke",
-              "motion": "None",
-              "radius": 3.0,
-              "particle_count": 3.0
+              "volume": 1.0,
+              "sound": "minecraft:entity.experience_orb.pickup",
+              "pitch": 0.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.ghast.scream",
+              "pitch": 0.0
             }
           }
         ],
@@ -31,10 +50,37 @@
           {
             "type": "particles_in_radius",
             "map": {
-              "particle_type": "minecraft:item_snowball",
+              "particle_type": "minecraft:note",
+              "y_rand": 0.1,
               "motion": "None",
-              "radius": 3.0,
-              "particle_count": 200.0
+              "shape": "HORIZONTAL_CIRCLE_EDGE",
+              "radius": 5.0,
+              "particle_count": 100.0,
+              "height": 0.5
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "particles_in_radius",
+            "map": {
+              "particle_type": "minecraft:witch",
+              "y_rand": 0.2,
+              "motion": "None",
+              "shape": "HORIZONTAL_CIRCLE",
+              "radius": 4.0,
+              "particle_count": 400.0,
+              "height": 0.5
             }
           }
         ],
@@ -53,73 +99,12 @@
             "type": "particles_in_radius",
             "map": {
               "particle_type": "minecraft:poof",
+              "y_rand": 0.3,
               "motion": "None",
-              "radius": 3.0,
-              "particle_count": 20.0
-            }
-          }
-        ],
-        "ifs": [
-          {
-            "type": "on_spell_cast",
-            "map": {}
-          }
-        ]
-      },
-      {
-        "targets": [],
-        "en_preds": [],
-        "acts": [
-          {
-            "type": "particles_in_radius",
-            "map": {
-              "particle_type": "minecraft:crit",
-              "motion": "None",
-              "radius": 3.0,
-              "particle_count": 20.0
-            }
-          }
-        ],
-        "ifs": [
-          {
-            "type": "on_spell_cast",
-            "map": {}
-          }
-        ]
-      },
-      {
-        "targets": [],
-        "en_preds": [],
-        "acts": [
-          {
-            "type": "ice_nova",
-            "map": {}
-          }
-        ],
-        "ifs": [
-          {
-            "type": "on_spell_cast",
-            "map": {}
-          }
-        ]
-      },
-      {
-        "targets": [
-          {
-            "type": "aoe",
-            "map": {
-              "selection_type": "RADIUS",
-              "en_predicate": "enemies",
-              "radius": 3.0
-            }
-          }
-        ],
-        "en_preds": [],
-        "acts": [
-          {
-            "type": "damage",
-            "map": {
-              "value_calculation": "frost_nova"
+              "shape": "HORIZONTAL_CIRCLE_EDGE",
+              "radius": 1.5,
+              "particle_count": 25.0,
+              "height": 0.5
             }
           }
         ],
@@ -137,7 +122,7 @@
             "map": {
               "selection_type": "RADIUS",
               "en_predicate": "enemies",
-              "radius": 3.0
+              "radius": 5.0
             }
           }
         ],
@@ -149,8 +134,39 @@
               "potion_action": "GIVE_STACKS",
               "potion_id": "minecraft:slowness",
               "count": 1.0,
-              "potion_str": 0.0,
-              "potion_dur": 120.0
+              "potion_str": 3.0,
+              "potion_dur": 200.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [
+          {
+            "type": "aoe",
+            "map": {
+              "selection_type": "RADIUS",
+              "en_predicate": "enemies",
+              "radius": 5.0
+            }
+          }
+        ],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "potion",
+            "map": {
+              "potion_action": "GIVE_STACKS",
+              "potion_id": "minecraft:weakness",
+              "count": 1.0,
+              "potion_str": 1.0,
+              "potion_dur": 200.0
             }
           }
         ],
@@ -166,14 +182,12 @@
   },
   "config": {
     "swing_arm": true,
-    "castingWeapon": "MAGE_WEAPON",
-    "mana_cost": 20,
-    "cooldown_ticks": 60,
+    "castingWeapon": "ANY_WEAPON",
+    "mana_cost": 10,
+    "cooldown_ticks": 900,
     "style": "magic",
     "tags": [
-      "projectile",
-      "damage",
-      "staff_spell"
+      "area"
     ],
     "cast_type": "NORMAL",
     "everyone_has": false,

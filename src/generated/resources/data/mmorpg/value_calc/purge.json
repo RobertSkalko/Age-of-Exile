@@ -1,23 +1,18 @@
 {
-  "id": "power_chord",
+  "id": "purge",
   "damage_calcs": {
     "damages": [
       {
         "element": "Physical",
-        "scaling": [
-          {
-            "stat": "physical_weapon_damage",
-            "multi": 1.0
-          }
-        ],
-        "base": 2.0
+        "scaling": [],
+        "base": 5.0
       },
       {
         "element": "Fire",
         "scaling": [
           {
             "stat": "fire_weapon_damage",
-            "multi": 0.75
+            "multi": 2.0
           }
         ],
         "base": 0.0
@@ -27,7 +22,7 @@
         "scaling": [
           {
             "stat": "water_weapon_damage",
-            "multi": 0.75
+            "multi": 2.0
           }
         ],
         "base": 0.0
@@ -37,7 +32,7 @@
         "scaling": [
           {
             "stat": "earth_weapon_damage",
-            "multi": 0.75
+            "multi": 2.0
           }
         ],
         "base": 0.0

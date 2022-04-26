@@ -4,4 +4,9 @@ import net.minecraft.item.ItemStack;
 
 public interface IMyRenderAsItem {
     ItemStack getItem();
+
+    default float getScale() {
+        return 1;
+    }
+
 }

@@ -17,14 +17,18 @@ public interface SpellKeys {
     SpellKey ICE_SNAKE = new SpellKey("ice_snake");
     SpellKey SEEKER_FLAMES = new SpellKey("seeker_flames");
     SpellKey MAGMA_FLOWER = new SpellKey("magma_flower");
+    SpellKey BOULDER_TOSS = new SpellKey("boulder_toss");
 
-    // WARRIOR
+    // SHAMAN
     SpellKey METEOR_STRIKE = new SpellKey("meteor_strike");
     SpellKey TIDAL_WAVE = new SpellKey("tidal_wave");
     SpellKey VENOM_STRIKE = new SpellKey("venom_strike");
     SpellKey MANA_TOTEM = new SpellKey("mana_totem");
     SpellKey HEAL_TOTEM = new SpellKey("heal_totem");
     SpellKey DAMAGE_TOTEM = new SpellKey("damage_totem");
+    SpellKey CURSE_OF_AGONY = new SpellKey("curse_of_agony");
+    SpellKey CURSE_OF_WEAKNESS = new SpellKey("curse_of_weakness");
+    SpellKey CURSE_OF_DESPAIR = new SpellKey("curse_of_despair");
 
     // HUNTER
     SpellKey MAKE_ARROWS = new SpellKey("make_arrows");
@@ -39,10 +43,10 @@ public interface SpellKeys {
     SpellKey SONG_OF_VIGOR = new SpellKey("song_of_vigor");
     SpellKey POWER_CHORD = new SpellKey("power_chord");
     SpellKey HEALING_ARIA = new SpellKey("healing_aria");
-
-    SpellKey CURSE_OF_AGONY = new SpellKey("curse_of_agony");
-    SpellKey CURSE_OF_WEAKNESS = new SpellKey("curse_of_weakness");
-    SpellKey CURSE_OF_DESPAIR = new SpellKey("curse_of_despair");
+    SpellKey EXPLOSIVE_NOTE = new SpellKey("explosive_note");
+    SpellKey PURIFYING_TOUCH = new SpellKey("purifying_touch");
+    SpellKey SHOOTING_STAR = new SpellKey("shooting_star");
+    SpellKey NOCTURNE = new SpellKey("nocturne");
 
     public static void init() {
 

@@ -1,6 +1,7 @@
 package com.robertx22.age_of_exile.aoe_data.database.spells.builders;
 
 import com.robertx22.age_of_exile.aoe_data.database.spells.PartBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.spells.SpellBuilder;
 import com.robertx22.age_of_exile.aoe_data.database.spells.SpellCalcs;
 import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
 import com.robertx22.age_of_exile.database.all_keys.base.SpellKey;
@@ -17,10 +18,28 @@ import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 
+import java.util.Arrays;
 import java.util.List;
 
 // todo add stuff here
 public class CommonSpellBuilders {
+    public static void buffSongSpell(String id, String name, EffectCtx effect) {
+
+        SpellBuilder.of(id, SpellConfiguration.Builder.instant(10, 20 * 10)
+                , name,
+                Arrays.asList(SpellTag.area, SpellTag.song))
+            .manualDesc(
+                "Give a stack of " + effect.locname + " to all allies around you."
+            )
+            .onCast(PartBuilder.Sound.play(SoundEvents.NOTE_BLOCK_CHIME, 1D, 1D))
+            .onCast(PartBuilder.Particles.aoe(ParticleTypes.NOTE, 50D, 3D))
+
+            .onCast(new ExileEffectActionBuilder(effect).radius(8)
+                .seconds(30)
+                .build())
+
+            .build();
+    }
 
     public static NewSpellBuilder buffSelfSpell(SpellKey key,
                                                 SpellConfiguration config,

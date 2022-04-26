@@ -9,6 +9,26 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class SpellCalcs {
 
+    public static ValueCalculation PURIFYING_TOUCH = ValueCalcBuilder.of("purifying_touch")
+        .baseValue(6)
+        .build();
+
+    public static ValueCalculation BOULDER_TOSS = ValueCalcBuilder.of("boulder_toss", "Boulder Toss")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(5)
+            .scaling(1.5F)
+            .build())
+        .addAllElementsScaling(1F)
+        .build();
+
+    public static ValueCalculation EXPLOSIVE_NOTE = ValueCalcBuilder.of("explosive_note", "Explosive Note")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(5)
+            .scaling(2.5F)
+            .build())
+        .addAllElementsScaling(2F)
+        .build();
+
     public static ValueCalculation CURSE = ValueCalcBuilder.of("curse", "Curse")
         .addAllElementsScaling(0.5F)
         .build();
@@ -196,7 +216,11 @@ public class SpellCalcs {
         .addAllElementsScaling(0.8F)
         .build();
 
-    public static ValueCalculation POWER_CHORD = ValueCalcBuilder.of("power_chord")
+    public static ValueCalculation POWER_CHORD = ValueCalcBuilder.of("power_chord", " Power Chord")
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(2)
+            .scaling(1)
+            .build())
         .addAllElementsScaling(0.75F)
         .build();
 
@@ -242,9 +266,6 @@ public class SpellCalcs {
     public static ValueCalculation SHOOTING_STAR = ValueCalcBuilder.of("shooting_star")
         .build();
 
-    public static ValueCalculation HEALING_AURA = ValueCalcBuilder.of("healing_aura")
-        .baseValue(6)
-        .build();
     public static ValueCalculation HEART_OF_ICE = ValueCalcBuilder.of("heart_of_ice")
         .baseValue(50)
         .build();

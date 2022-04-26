@@ -1,6 +1,6 @@
 {
   "weight": 1000,
-  "identifier": "test_spell",
+  "identifier": "explosive_note",
   "attached": {
     "on_cast": [
       {
@@ -11,8 +11,28 @@
             "type": "sound",
             "map": {
               "volume": 1.0,
-              "sound": "minecraft:entity.fishing_bobber.throw",
-              "pitch": 0.0
+              "sound": "minecraft:entity.blaze.shoot",
+              "pitch": 1.0
+            }
+          }
+        ],
+        "ifs": [
+          {
+            "type": "on_spell_cast",
+            "map": {}
+          }
+        ]
+      },
+      {
+        "targets": [],
+        "en_preds": [],
+        "acts": [
+          {
+            "type": "sound",
+            "map": {
+              "volume": 1.0,
+              "sound": "minecraft:entity.enderman.scream",
+              "pitch": 0.5
             }
           }
         ],
@@ -31,12 +51,11 @@
             "type": "projectile",
             "map": {
               "proj_speed": 2.5,
-              "item": "minecraft:cobblestone",
+              "item": "minecraft:player_head",
               "entity_name": "default_entity_name",
               "gravity": false,
               "proj_count": 1.0,
-              "life_ticks": 8.0,
-              "scale": 3.0,
+              "life_ticks": 60.0,
               "proj_en": "mmorpg:spell_projectile"
             }
           }
@@ -52,69 +71,25 @@
     "entity_components": {
       "default_entity_name": [
         {
-          "targets": [
-            {
-              "type": "aoe",
-              "map": {
-                "selection_type": "RADIUS",
-                "en_predicate": "enemies",
-                "radius": 2.0
-              }
-            }
-          ],
-          "en_preds": [],
-          "acts": [
-            {
-              "type": "damage",
-              "map": {
-                "value_calculation": "magic_projectile"
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_entity_expire",
-              "map": {}
-            }
-          ]
-        },
-        {
           "targets": [],
           "en_preds": [],
           "acts": [
             {
-              "type": "sound",
+              "type": "particles_in_radius",
               "map": {
-                "volume": 1.0,
-                "sound": "minecraft:entity.generic.hurt",
-                "pitch": 2.0
+                "particle_type": "minecraft:instant_effect",
+                "motion": "None",
+                "radius": 0.5,
+                "particle_count": 100.0
               }
             }
           ],
           "ifs": [
             {
-              "type": "on_entity_expire",
-              "map": {}
-            }
-          ]
-        },
-        {
-          "targets": [],
-          "en_preds": [],
-          "acts": [
-            {
-              "type": "sound",
+              "type": "x_ticks_condition",
               "map": {
-                "volume": 1.0,
-                "sound": "minecraft:entity.generic.explode",
-                "pitch": 1.0
+                "tick_rate": 1.0
               }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_entity_expire",
-              "map": {}
             }
           ]
         },
@@ -125,16 +100,16 @@
             {
               "type": "particles_in_radius",
               "map": {
-                "particle_type": "minecraft:smoke",
+                "particle_type": "minecraft:instant_effect",
                 "motion": "None",
-                "radius": 1.0,
-                "particle_count": 15.0
+                "radius": 4.0,
+                "particle_count": 600.0
               }
             }
           ],
           "ifs": [
             {
-              "type": "on_hit",
+              "type": "on_entity_expire",
               "map": {}
             }
           ]
@@ -148,14 +123,14 @@
               "map": {
                 "particle_type": "minecraft:explosion",
                 "motion": "None",
-                "radius": 1.0,
-                "particle_count": 3.0
+                "radius": 4.0,
+                "particle_count": 40.0
               }
             }
           ],
           "ifs": [
             {
-              "type": "on_hit",
+              "type": "on_entity_expire",
               "map": {}
             }
           ]
@@ -165,40 +140,62 @@
           "en_preds": [],
           "acts": [
             {
-              "type": "particles_in_radius",
+              "type": "sound",
               "map": {
-                "particle_type": "minecraft:poof",
-                "motion": "None",
-                "radius": 1.0,
-                "particle_count": 5.0
+                "volume": 2.0,
+                "sound": "minecraft:entity.generic.explode",
+                "pitch": 1.0
               }
             }
           ],
           "ifs": [
             {
-              "type": "on_hit",
+              "type": "on_entity_expire",
               "map": {}
             }
           ]
         },
         {
-          "targets": [],
+          "targets": [
+            {
+              "type": "aoe",
+              "map": {
+                "selection_type": "RADIUS",
+                "en_predicate": "enemies",
+                "radius": 4.0
+              }
+            }
+          ],
           "en_preds": [],
           "acts": [
             {
-              "type": "particles_in_radius",
+              "type": "damage",
               "map": {
-                "particle_type": "minecraft:crit",
-                "motion": "None",
-                "radius": 1.0,
-                "particle_count": 30.0
+                "value_calculation": "explosive_note"
               }
             }
           ],
           "ifs": [
             {
-              "type": "on_hit",
+              "type": "on_entity_expire",
               "map": {}
+            }
+          ],
+          "per_entity_hit": [
+            {
+              "targets": [],
+              "en_preds": [],
+              "acts": [
+                {
+                  "type": "sound",
+                  "map": {
+                    "volume": 1.0,
+                    "sound": "minecraft:entity.generic.hurt",
+                    "pitch": 2.0
+                  }
+                }
+              ],
+              "ifs": []
             }
           ]
         }
@@ -216,10 +213,10 @@
       "damage",
       "staff_spell"
     ],
-    "cast_type": "IMBUE",
-    "everyone_has": true,
-    "imbues": 5,
-    "imbue_type": "STAFF_IMBUE"
+    "cast_type": "NORMAL",
+    "everyone_has": false,
+    "imbues": 1,
+    "imbue_type": "ON_RANGED_ATTACK"
   },
   "disabled_dims": []
 }

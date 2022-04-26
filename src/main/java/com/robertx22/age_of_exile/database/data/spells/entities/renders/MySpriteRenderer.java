@@ -38,7 +38,13 @@ public class MySpriteRenderer<T extends Entity & IMyRenderAsItem> extends Entity
     public void render(T entity, float yaw, float tickDelta, MatrixStack matrices, IRenderTypeBuffer vertexConsumers, int light) {
         if (entity.tickCount >= 3) {
             matrices.pushPose();
-            matrices.scale(this.scale, this.scale, this.scale);
+
+            if (entity.getScale() != 1F) {
+                float s = entity.getScale();
+                matrices.scale(s, s, s);
+            } else {
+                matrices.scale(this.scale, this.scale, this.scale);
+            }
             matrices.mulPose(this.entityRenderDispatcher.cameraOrientation());
             matrices.mulPose(Vector3f.YP.rotationDegrees(180.0F));
             this.itemRenderer.renderStatic(((IMyRenderAsItem) entity).getItem(), ItemCameraTransforms.TransformType.GROUND, light, OverlayTexture.NO_OVERLAY, matrices, vertexConsumers);
