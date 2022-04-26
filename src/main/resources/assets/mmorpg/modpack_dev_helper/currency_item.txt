@@ -6,7 +6,6 @@ currency/randomize_affixes
 currency/number_reroll
 currency/reroll_affix_numbers
 currency/orb_of_transmutation
-currency/clear_corruption
 currency/reroll_primary_stats_numbers
 currency/stone_of_hope
 currency/reroll_unique_numbers

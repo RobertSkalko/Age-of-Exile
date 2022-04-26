@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.capability.player.RPGPlayerData;
 import com.robertx22.age_of_exile.capability.player.data.ScalingPlayerDiffData;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.favor.FavorRank;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.ItemFind;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.ExtraMobDropsStat;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
@@ -277,7 +277,7 @@ public class LootInfo {
             if (lootOrigin != LootOrigin.LOOT_CRATE) {
                 if (this.lootOrigin == LootOrigin.CHEST) {
                     modifier += playerData.getUnit()
-                        .getCalculatedStat(TreasureQuantity.getInstance())
+                        .getCalculatedStat(ItemFind.getInstance())
                         .getMultiplier() - 1F;
                 }
             }

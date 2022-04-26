@@ -1,0 +1,23 @@
+{
+  "weight": 1000,
+  "id": "aqua",
+  "rarity": "epic",
+  "model_num": 2,
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 5.0,
+      "stat": "mana",
+      "type": "FLAT"
+    },
+    {
+      "min": 1.0,
+      "max": 5.0,
+      "stat": "water_weapon_damage",
+      "type": "PERCENT"
+    }
+  ],
+  "gear_slots": [
+    "ring"
+  ]
+}

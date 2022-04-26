@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.registry;
 
+import com.robertx22.age_of_exile.database.all_keys.base.GearSlotKey;
 import com.robertx22.age_of_exile.database.data.DimensionConfig;
 import com.robertx22.age_of_exile.database.data.EntityConfig;
 import com.robertx22.age_of_exile.database.data.crafting_req.CraftingReq;
@@ -44,7 +45,7 @@ public class ExileDBInit {
         // data pack ones
         Database.addRegistry(new RarityRegistryContainer<>(ExileRegistryTypes.GEAR_RARITY, new GearRarity()).setIsDatapack());
         Database.addRegistry(new RarityRegistryContainer<MobRarity>(ExileRegistryTypes.MOB_RARITY, null).setIsDatapack());
-        Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.GEAR_SLOT, new GearSlot("", "", SlotFamily.NONE, -1, 0)).setIsDatapack());
+        Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.GEAR_SLOT, new GearSlot(new GearSlotKey(""), "", SlotFamily.NONE, -1, 0)).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.GEAR_RARITY_GROUP, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.GEAR_TYPE, null).setIsDatapack());
         Database.addRegistry(new ExileRegistryContainer<>(ExileRegistryTypes.RUNEWORDS, null).setIsDatapack());

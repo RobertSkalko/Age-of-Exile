@@ -151,10 +151,7 @@ public final class BaseGearType implements IAutoLocName, JsonExileRegistry<BaseG
     public enum SlotTag {
 
         sword(SlotFamily.Weapon),
-        scepter(SlotFamily.Weapon),
         staff(SlotFamily.Weapon),
-        hammer(SlotFamily.Weapon),
-        spear(SlotFamily.Weapon),
         axe(SlotFamily.Weapon),
         bow(SlotFamily.Weapon),
         crossbow(SlotFamily.Weapon),

@@ -19,6 +19,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         common.item_value_multi = 1;
         common.item_model_data_num = 1;
         common.dust_per_sal = new MinMax(1, 1);
+        common.reforge_stat_percent = 20;
         common.higher_rar = IRarity.UNCOMMON;
 
         common.setCommonFields();
@@ -35,6 +36,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         uncommon.higher_rar = IRarity.RARE_ID;
         uncommon.rar_ess_per_sal = 1;
         uncommon.unbreaking_chance = 10;
+        uncommon.reforge_stat_percent = 40;
         uncommon.setUncommonFields();
         uncommon.addToSerializables();
 
@@ -50,6 +52,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         rare.rar_ess_per_sal = 1;
         rare.setRareFields();
         rare.unbreaking_chance = 25;
+        rare.reforge_stat_percent = 60;
         rare.addToSerializables();
 
         GearRarity epic = new GearRarity();
@@ -62,6 +65,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         epic.item_value_multi = 1.7F;
         epic.rar_ess_per_sal = 0;
         epic.unbreaking_chance = 50;
+        epic.reforge_stat_percent = 80;
         epic.setEpicFields();
         epic.addToSerializables();
 
@@ -75,6 +79,7 @@ public class GearRaritiesAdder implements ExileRegistryInit {
         legendary.item_value_multi = 2;
         legendary.rar_ess_per_sal = 0;
         legendary.unbreaking_chance = 70;
+        legendary.reforge_stat_percent = 100;
         legendary.setLegendaryFIelds();
         legendary.addToSerializables();
 

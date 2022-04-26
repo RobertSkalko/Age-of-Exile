@@ -13,12 +13,6 @@
     },
     {
       "v1": 25.0,
-      "stat": "inc_effect_of_song_buff_given",
-      "type": "FLAT",
-      "scale_to_lvl": false
-    },
-    {
-      "v1": 25.0,
       "stat": "crit_heal_chance",
       "type": "FLAT",
       "scale_to_lvl": false

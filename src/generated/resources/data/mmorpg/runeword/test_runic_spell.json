@@ -4,6 +4,7 @@
   "item_id": "mmorpg:runewords/test_runic_spell",
   "min_lvl": 0,
   "max_lvl": 100,
+  "model_num": 0,
   "slots": [
     "bow"
   ]

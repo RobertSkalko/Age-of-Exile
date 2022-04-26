@@ -6,7 +6,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 public interface IGearPart {
 
     public enum Part {
-        AFFIX, BASE_STATS, IMPLICIT_STATS, UNIQUE_STATS, SOCKETS, OTHER;
+        AFFIX, BASE_STATS, UNIQUE_STATS, SOCKETS, OTHER;
     }
 
     Part getPart();

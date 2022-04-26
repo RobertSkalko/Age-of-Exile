@@ -3,6 +3,8 @@ package com.robertx22.age_of_exile.mixin_methods;
 import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
+import com.robertx22.age_of_exile.database.data.reforge.Reforge;
+import com.robertx22.age_of_exile.database.data.reforge.ReforgeItem;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWordItem;
 import com.robertx22.age_of_exile.player_skills.items.TieredItem;
@@ -76,13 +78,24 @@ public class TooltipMethod {
 
             if (stack.getItem() instanceof RuneWordItem) {
                 RuneWord word = RuneWordItem.getRuneWord(stack);
-                // todo this could use some performance update
                 if (word != null) {
                     for (ITextComponent txt : word
                         .getTooltip(Load.Unit(player)
                             .getLevel())
                         .build()) {
                         tooltip.add(txt);
+                    }
+                    return;
+                }
+            }
+
+            if (stack.getItem() instanceof ReforgeItem) {
+                Reforge word = ReforgeItem.getReforge(stack);
+                if (word != null) {
+                    for (ITextComponent text : word.getTooltip(Load.Unit(player)
+                            .getLevel())
+                        .build()) {
+                        tooltip.add(text);
                     }
                     return;
                 }

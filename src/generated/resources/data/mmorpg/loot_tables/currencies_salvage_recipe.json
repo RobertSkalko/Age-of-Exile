@@ -10,11 +10,6 @@
         {
           "type": "minecraft:item",
           "weight": 0,
-          "name": "mmorpg:currency/clear_corruption"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 0,
           "name": "mmorpg:currency/clear_instability"
         },
         {

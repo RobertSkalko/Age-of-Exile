@@ -2,7 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.datapacks.generators;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
+import com.robertx22.age_of_exile.database.all_keys.GearSlotKeys;
 import com.robertx22.age_of_exile.database.all_keys.base.AllDataKeys;
 import com.robertx22.age_of_exile.database.all_keys.base.RunewordKey;
 import com.robertx22.age_of_exile.database.data.currency.base.IShapedRecipe;
@@ -147,9 +147,9 @@ public class RecipeGenerator {
                 }
             });
 
-        gearRecipe(consumer, SlashItems.GearItems.NECKLACES, GearSlots.NECKLACE);
-        gearRecipe(consumer, SlashItems.GearItems.RINGS, GearSlots.RING);
-        gearRecipe(consumer, SlashItems.GearItems.STAFFS, GearSlots.STAFF);
+        gearRecipe(consumer, SlashItems.GearItems.NECKLACES, GearSlotKeys.NECKLACE.id);
+        gearRecipe(consumer, SlashItems.GearItems.RINGS, GearSlotKeys.RING.id);
+        gearRecipe(consumer, SlashItems.GearItems.STAFFS, GearSlotKeys.STAFF.id);
 
     }
 
@@ -198,31 +198,7 @@ public class RecipeGenerator {
 
         String id = type.id;
 
-        if (id.equals(GearSlots.SWORD)) {
-            return new String[]{
-                " M ",
-                " M ",
-                " S "
-            };
-        }
-
-        if (id.equals(GearSlots.AXE)) {
-            return new String[]{
-                "MM ",
-                " S ",
-                " S "
-            };
-        }
-
-        if (id.equals(GearSlots.SCEPTER)) {
-            return new String[]{
-                "M  ",
-                "MS ",
-                "SS "
-            };
-        }
-
-        if (id.equals(GearSlots.STAFF)) {
+        if (id.equals(GearSlotKeys.STAFF.id)) {
             return new String[]{
                 "  M",
                 "SM ",
@@ -230,56 +206,14 @@ public class RecipeGenerator {
             };
         }
 
-        if (id.equals(GearSlots.BOW)) {
-            return new String[]{
-                " MB",
-                "M B",
-                " MB"
-            };
-        }
-        if (id.equals(GearSlots.CROSBOW)) {
-            return new String[]{
-                "MSM",
-                "S S",
-                " S "
-            };
-        }
-
-        if (id.equals(GearSlots.CHEST)) {
-            return new String[]{
-                "M M",
-                "MMM",
-                "MMM"
-            };
-        }
-        if (id.equals(GearSlots.BOW)) {
-            return new String[]{
-                "M M",
-                "M M"
-            };
-        }
-        if (id.equals(GearSlots.PANTS)) {
-            return new String[]{
-                "MMM",
-                "M M",
-                "M M"
-            };
-        }
-        if (id.equals(GearSlots.HELMET)) {
-            return new String[]{
-                "MMM",
-                "M M"
-            };
-        }
-
-        if (id.equals(GearSlots.NECKLACE)) {
+        if (id.equals(GearSlotKeys.NECKLACE.id)) {
             return new String[]{
                 "MMM",
                 "M M",
                 "MMM"
             };
         }
-        if (id.equals(GearSlots.RING)) {
+        if (id.equals(GearSlotKeys.RING.id)) {
             return new String[]{
                 " M ",
                 "M M",

@@ -1,9 +1,0 @@
-{
-  "id": "breath",
-  "damage_calcs": {
-    "damages": []
-  },
-  "stat_scalings": [],
-  "attack_scaling": 0.0,
-  "base": 0.0
-}

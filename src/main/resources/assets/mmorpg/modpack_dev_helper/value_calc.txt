@@ -7,9 +7,7 @@ venom_strike
 chill_eruption
 chilling_field
 frost_steps
-whirlwind
 damage_totem
-breath
 ice_snake
 nature_balm
 tidal_wave
@@ -36,12 +34,10 @@ magma_flower_heal
 shooting_star
 meteor
 frost_nova
-ranger_trap
 bleed
 poison_cloud
 power_chord
 pull
-awaken_mana
 curse
 seeker_flames
 totem_mana

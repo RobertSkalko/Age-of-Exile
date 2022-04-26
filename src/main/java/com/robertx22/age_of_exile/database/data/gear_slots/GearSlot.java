@@ -1,8 +1,9 @@
 package com.robertx22.age_of_exile.database.data.gear_slots;
 
 import com.robertx22.age_of_exile.a_libraries.curios.RefCurio;
-import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
+import com.robertx22.age_of_exile.database.all_keys.GearSlotKeys;
+import com.robertx22.age_of_exile.database.all_keys.base.GearSlotKey;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.SlotFamily;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
@@ -19,7 +20,7 @@ import java.util.HashMap;
 
 public class GearSlot implements JsonExileRegistry<GearSlot>, IAutoGson<GearSlot>, IAutoLocName {
 
-    public static GearSlot SERIALIZER = new GearSlot("", "", SlotFamily.NONE, -1, 0);
+    public static GearSlot SERIALIZER = new GearSlot(new GearSlotKey(""), "", SlotFamily.NONE, -1, 0);
     private static HashMap<String, HashMap<Item, Boolean>> CACHED_GEAR_SLOTS = new HashMap<>();
     static HashMap<Item, GearSlot> CACHED = new HashMap<>();
 
@@ -29,8 +30,8 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, IAutoGson<GearSlot
     public transient String locname = "";
     public SlotFamily fam = SlotFamily.Armor;
 
-    public GearSlot(String id, String name, SlotFamily fam, int modelnnum, int weight) {
-        this.id = id;
+    public GearSlot(GearSlotKey key, String name, SlotFamily fam, int modelnnum, int weight) {
+        this.id = key.id;
         this.fam = fam;
         this.locname = name;
         this.model_num = modelnnum;
@@ -107,33 +108,33 @@ public class GearSlot implements JsonExileRegistry<GearSlot>, IAutoGson<GearSlot
 
                 if (item instanceof ArmorItem) {
                     EquipmentSlotType eqslot = ((ArmorItem) item).getSlot();
-                    if (eqslot == EquipmentSlotType.CHEST && id.equals(GearSlots.CHEST)) {
+                    if (eqslot == EquipmentSlotType.CHEST && id.equals(GearSlotKeys.CHEST.id)) {
                         bool = true;
-                    } else if (eqslot == EquipmentSlotType.LEGS && id.equals(GearSlots.PANTS)) {
+                    } else if (eqslot == EquipmentSlotType.LEGS && id.equals(GearSlotKeys.PANTS.id)) {
                         bool = true;
-                    } else if (eqslot == EquipmentSlotType.HEAD && id.equals(GearSlots.HELMET)) {
+                    } else if (eqslot == EquipmentSlotType.HEAD && id.equals(GearSlotKeys.HELMET.id)) {
                         bool = true;
-                    } else if (eqslot == EquipmentSlotType.FEET && id.equals(GearSlots.BOOTS)) {
+                    } else if (eqslot == EquipmentSlotType.FEET && id.equals(GearSlotKeys.BOOTS.id)) {
                         bool = true;
                     }
 
-                } else if (id.equals(GearSlots.SWORD)) {
+                } else if (id.equals(GearSlotKeys.SWORD.id)) {
                     bool = item instanceof SwordItem;
-                } else if (id.equals(GearSlots.BOW)) {
+                } else if (id.equals(GearSlotKeys.BOW.id)) {
                     bool = item instanceof BowItem;
-                } else if (id.equals(GearSlots.AXE)) {
+                } else if (id.equals(GearSlotKeys.AXE.id)) {
                     bool = item instanceof AxeItem;
-                } else if (id.equals(GearSlots.SHIELD)) {
+                } else if (id.equals(GearSlotKeys.SHIELD.id)) {
                     bool = item instanceof ShieldItem;
-                } else if (id.equals(GearSlots.CROSBOW)) {
+                } else if (id.equals(GearSlotKeys.CROSBOW.id)) {
                     bool = item instanceof CrossbowItem;
-                } else if (id.equals(GearSlots.SCEPTER) || id.equals(GearSlots.STAFF)) {
+                } else if (id.equals(GearSlotKeys.STAFF.id)) {
                     bool = item instanceof StaffWeapon;
-                } else if (id.equals(GearSlots.NECKLACE)) {
+                } else if (id.equals(GearSlotKeys.NECKLACE.id)) {
                     bool = CuriosApi.getCuriosHelper()
                         .getCurioTags(item)
                         .contains(RefCurio.NECKLACE);
-                } else if (id.equals(GearSlots.RING)) {
+                } else if (id.equals(GearSlotKeys.RING.id)) {
                     bool = CuriosApi.getCuriosHelper()
                         .getCurioTags(item)
                         .contains(RefCurio.RING);

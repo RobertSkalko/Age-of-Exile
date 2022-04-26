@@ -1,0 +1,23 @@
+{
+  "weight": 1000,
+  "id": "fortune",
+  "rarity": "legendary",
+  "model_num": 3,
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "magic_find",
+      "type": "FLAT"
+    },
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "increased_quantity",
+      "type": "FLAT"
+    }
+  ],
+  "gear_slots": [
+    "necklace"
+  ]
+}

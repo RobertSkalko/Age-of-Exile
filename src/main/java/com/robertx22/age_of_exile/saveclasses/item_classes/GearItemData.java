@@ -12,10 +12,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.AffixData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.BaseStatsData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.GearAffixesData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.UniqueStatsData;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.*;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -45,6 +42,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public BaseStatsData baseStats = new BaseStatsData();
     @Store
     public GearAffixesData affixes = new GearAffixesData();
+    @Store
+    public ReforgeData reforge = new ReforgeData();
     @Store
     public UniqueStatsData uniqueStats;
 

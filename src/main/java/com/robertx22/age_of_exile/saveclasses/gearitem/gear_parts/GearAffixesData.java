@@ -20,14 +20,11 @@ public class GearAffixesData implements IGearPartTooltip {
     public List<AffixData> suf = new ArrayList<>();
     @Store
     public List<AffixData> pre = new ArrayList<>();
-    @Store
-    public List<AffixData> cor = new ArrayList<>();
 
     public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
         List<TooltipStatWithContext> list = new ArrayList<>();
         this.suf.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
         this.pre.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
-        this.cor.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
         return list;
     }
 
@@ -133,7 +130,6 @@ public class GearAffixesData implements IGearPartTooltip {
 
         list.addAll(pre);
         list.addAll(suf);
-        list.addAll(cor);
 
         return list;
     }

@@ -9,8 +9,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.defense.Armor;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.DodgeRating;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.AttackDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.ElementalResist;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.ItemFind;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.blood.Blood;
 import com.robertx22.age_of_exile.database.data.stats.types.resources.health.Health;
@@ -64,8 +64,8 @@ public class DatapackStats implements ExileRegistryInit {
     public static Stat MANA_PER_10_INT = new MoreXPerYOf(DatapackStats.INT, Mana.getInstance(), 10);
     public static Stat CRIT_DMG_PER_10_ATK_SPEED_REG = new MoreXPerYOf(Stats.ATTACK_SPEED.get(), Stats.CRIT_DAMAGE.get(), 10);
 
-    public static Stat GLOBAL_CRIT_CHANCE_PER_MAGIC_FIND_25 = new MoreXPerYOf(TreasureQuality.getInstance(), Stats.CRIT_CHANCE.get(), 25);
-    public static Stat GLOBAL_CRIT_DMG_PER_ITEM_FIND_25 = new MoreXPerYOf(TreasureQuantity.getInstance(), Stats.CRIT_DAMAGE.get(), 25);
+    public static Stat GLOBAL_CRIT_CHANCE_PER_MAGIC_FIND_25 = new MoreXPerYOf(MagicFind.getInstance(), Stats.CRIT_CHANCE.get(), 25);
+    public static Stat GLOBAL_CRIT_DMG_PER_ITEM_FIND_25 = new MoreXPerYOf(ItemFind.getInstance(), Stats.CRIT_DAMAGE.get(), 25);
 
     public static Stat CONVERT_HEALTH_TO_PHYS_DMG = new ConvertFromOneToOtherStat(Health.getInstance(), new AttackDamage(Elements.Physical));
 

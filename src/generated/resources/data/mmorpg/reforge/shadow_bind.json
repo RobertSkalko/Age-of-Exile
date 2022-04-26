@@ -1,0 +1,25 @@
+{
+  "weight": 1000,
+  "id": "shadow_bind",
+  "rarity": "epic",
+  "model_num": 7,
+  "stats": [
+    {
+      "min": 1.0,
+      "max": 2.0,
+      "stat": "health_leech",
+      "type": "PERCENT"
+    },
+    {
+      "min": 1.0,
+      "max": 2.0,
+      "stat": "mana_leech",
+      "type": "PERCENT"
+    }
+  ],
+  "gear_slots": [
+    "sword",
+    "staff",
+    "bow"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "mmorpg:items/stat_soul/stat_soul"
+	},
+	"overrides": [
+		{ "predicate": {  "custom_model_data": -1 }, "model": "mmorpg:reforge" }
+	]
+}

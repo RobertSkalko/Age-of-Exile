@@ -111,6 +111,9 @@ public class GearTooltipUtils {
             }
         }
 
+        if (gear.reforge.hasReforge()) {
+            tip.addAll(gear.reforge.GetTooltipString(info, gear));
+        }
         if (Screen.hasShiftDown()) {
             if (!gear.can_sal) {
                 tip.add(
@@ -129,11 +132,12 @@ public class GearTooltipUtils {
 
         ItemStack.appendEnchantmentNames(tip, stack.getEnchantmentTags());
 
+        // todo
         if (ClientConfigs.getConfig().SHOW_DURABILITY.get()) {
             if (stack.isDamageableItem()) {
-                tip.add(new SText(TextFormatting.WHITE + "Durability: " + (stack.getMaxDamage() - stack.getDamageValue()) + "/" + stack.getMaxDamage()));
+                tip.add(new SText(TextFormatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamageValue()) + "/" + stack.getMaxDamage()));
             } else {
-                tip.add(new SText(TextFormatting.WHITE + "Unbreakable"));
+                tip.add(new SText(TextFormatting.GRAY + "Unbreakable"));
             }
         }
 
@@ -141,6 +145,7 @@ public class GearTooltipUtils {
             tooltip.add(new StringTextComponent(TextFormatting.BLUE + "").append(new TranslationTextComponent(SlashRef.MODID + ".tooltip." + "press_shift_more_info")
                 )
                 .withStyle(TextFormatting.BLUE));
+
         } else {
             tip.add(Words.Instability.locName()
                 .withStyle(TextFormatting.RED)

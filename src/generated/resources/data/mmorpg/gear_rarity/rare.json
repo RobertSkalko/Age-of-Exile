@@ -4,15 +4,12 @@
   "affixes": 2,
   "unbreaking_chance": 25,
   "rar_ess_per_sal": 1,
+  "reforge_stat_percent": 60,
   "default_stat_percents": {
     "min": 0,
     "max": 100
   },
   "affix_stat_percents": {
-    "min": 0,
-    "max": 100
-  },
-  "unique_stat_percents": {
     "min": 0,
     "max": 100
   },

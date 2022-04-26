@@ -18,6 +18,11 @@ public class TooltipBuilder {
         list.add(txt);
     }
 
+    public void add(IHasText single) {
+        list.add(TextBuilder.of()
+            .append(single));
+    }
+
     public void addEmptyLine() {
         list.add(TextBuilder.empty());
     }

@@ -67,7 +67,7 @@
       },
       "reward": {
         "value": "infinite_dungeons:reward_crate",
-        "data": "{reward_list:\"gem_box\"}",
+        "data": "{reward_list:\"gear_crate\"}",
         "type": "ITEM",
         "count": 1
       },

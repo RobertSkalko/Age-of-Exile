@@ -1,0 +1,23 @@
+{
+  "weight": 1000,
+  "id": "dragon_breath",
+  "rarity": "legendary",
+  "model_num": 3,
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "health",
+      "type": "FLAT"
+    },
+    {
+      "min": 2.0,
+      "max": 10.0,
+      "stat": "fire_weapon_damage",
+      "type": "PERCENT"
+    }
+  ],
+  "gear_slots": [
+    "helmet"
+  ]
+}

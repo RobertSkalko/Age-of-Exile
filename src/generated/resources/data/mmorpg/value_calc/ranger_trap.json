@@ -1,9 +1,0 @@
-{
-  "id": "ranger_trap",
-  "damage_calcs": {
-    "damages": []
-  },
-  "stat_scalings": [],
-  "attack_scaling": 1.0,
-  "base": 0.0
-}

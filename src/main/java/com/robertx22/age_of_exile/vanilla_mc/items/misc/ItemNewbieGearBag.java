@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.vanilla_mc.items.misc;
 
-import com.robertx22.age_of_exile.aoe_data.database.gear_slots.GearSlots;
+import com.robertx22.age_of_exile.database.all_keys.GearSlotKeys;
 import com.robertx22.age_of_exile.database.base.CreativeTabs;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.perks.Perk;
@@ -42,7 +42,7 @@ public class ItemNewbieGearBag extends Item {
 
     static HashMap<String, NewbieContent> MAP = new HashMap<>();
     static NewbieContent defaultContent = new NewbieContent(Arrays.asList(() -> SlashItems.GearItems.STAFFS.get(VanillaMaterial.IRON)
-        .get()), Arrays.asList(GearSlots.STAFF));
+        .get()), Arrays.asList(GearSlotKeys.STAFF.id));
 
     static {
     }

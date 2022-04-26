@@ -1,9 +1,6 @@
 package com.robertx22.age_of_exile.database.all_keys.base;
 
-import com.robertx22.age_of_exile.database.all_keys.BaseGearKeys;
-import com.robertx22.age_of_exile.database.all_keys.RunewordKeys;
-import com.robertx22.age_of_exile.database.all_keys.RunicSpellKeys;
-import com.robertx22.age_of_exile.database.all_keys.SpellKeys;
+import com.robertx22.age_of_exile.database.all_keys.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +13,7 @@ public class AllDataKeys {
     public static List<RunewordKey> RUNEWORDS = new ArrayList<>();
     public static List<BaseGearKey> BASE_GEARS = new ArrayList<>();
     public static List<SpellKey> SPELLS = new ArrayList<>();
+    public static List<GearSlotKey> GEAR_SLOTS = new ArrayList<>();
 
     public static void initAll() {
 
@@ -23,5 +21,6 @@ public class AllDataKeys {
         RunicSpellKeys.init();
         RunewordKeys.init();
         SpellKeys.init();
+        GearSlotKeys.init();
     }
 }

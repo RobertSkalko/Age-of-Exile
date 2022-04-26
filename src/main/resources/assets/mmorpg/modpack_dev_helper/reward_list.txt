@@ -5,4 +5,3 @@ god_apple_pack
 totem_of_undying_pack
 elytra_pack
 gear_crate
-gem_box

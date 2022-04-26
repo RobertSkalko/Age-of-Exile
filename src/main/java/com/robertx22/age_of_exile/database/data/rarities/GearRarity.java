@@ -31,9 +31,10 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
 
     public int rar_ess_per_sal = 0;
 
+    public int reforge_stat_percent = 0;
+
     public MinMax default_stat_percents = new MinMax(0, 100);
     public MinMax affix_stat_percents = new MinMax(0, 100);
-    public MinMax unique_stat_percents = new MinMax(0, 100);
     public MinMax base_stat_percents = new MinMax(0, 100);
     public MinMax dust_per_sal = new MinMax(1, 1);
 
@@ -115,11 +116,6 @@ public final class GearRarity extends BaseRarity implements IGearRarity, IAutoGs
     @Override
     public float valueMulti() {
         return this.item_value_multi;
-    }
-
-    @Override
-    public MinMax uniqueStatPercents() {
-        return unique_stat_percents;
     }
 
     @Override

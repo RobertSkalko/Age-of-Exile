@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.aoe_data.database.base_gear_types;
 
 import com.robertx22.age_of_exile.aoe_data.database.GearDataHelper;
 import com.robertx22.age_of_exile.database.all_keys.base.BaseGearKey;
+import com.robertx22.age_of_exile.database.all_keys.base.GearSlotKey;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.BaseGearType;
 import com.robertx22.age_of_exile.database.data.gear_types.bases.TagList;
@@ -29,19 +30,19 @@ public class BaseGearBuilder implements GearDataHelper {
     private float atkspeed = 1F;
     private int weight = 1000;
 
-    public static BaseGearBuilder of(BaseGearKey id, String slot, String locnamesuffix) {
+    public static BaseGearBuilder of(BaseGearKey id, GearSlotKey slot, String locnamesuffix) {
         BaseGearBuilder b = new BaseGearBuilder();
         b.locnamesuffix = locnamesuffix;
         b.id = id.GUID();
-        b.slot = slot;
+        b.slot = slot.id;
         return b;
     }
 
-    public static BaseGearBuilder weapon(BaseGearKey id, String slot, WeaponTypes type) {
+    public static BaseGearBuilder weapon(BaseGearKey id, GearSlotKey slot, WeaponTypes type) {
         BaseGearBuilder b = new BaseGearBuilder();
         b.locnamesuffix = type.locName();
         b.id = id.GUID();
-        b.slot = slot;
+        b.slot = slot.id;
         b.atkspeed = type.atkPerSec;
         b.weaponType(type);
         b.attackStyle(type.style);

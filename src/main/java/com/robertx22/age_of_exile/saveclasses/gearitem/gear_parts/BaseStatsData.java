@@ -98,11 +98,6 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
     }
 
     @Override
-    public boolean isBaseStats() {
-        return true;
-    }
-
-    @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
 
         List<ExactStatData> local = new ArrayList<>();

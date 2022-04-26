@@ -1,9 +1,0 @@
-{
-  "id": "awaken_mana",
-  "damage_calcs": {
-    "damages": []
-  },
-  "stat_scalings": [],
-  "attack_scaling": 0.0,
-  "base": 100.0
-}

@@ -1,10 +1,12 @@
 package com.robertx22.age_of_exile.aoe_data.database.stats;
 
-import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.BeneficialEffects;
 import com.robertx22.age_of_exile.aoe_data.database.exile_effects.adders.NegativeEffects;
 import com.robertx22.age_of_exile.aoe_data.database.stat_conditions.StatConditions;
 import com.robertx22.age_of_exile.aoe_data.database.stat_effects.StatEffects;
-import com.robertx22.age_of_exile.aoe_data.database.stats.base.*;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.DatapackStatBuilder;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.EffectCtx;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.EmptyAccessor;
+import com.robertx22.age_of_exile.aoe_data.database.stats.base.ResourceAndAttack;
 import com.robertx22.age_of_exile.database.data.exile_effects.EffectTags;
 import com.robertx22.age_of_exile.database.data.spells.SpellTag;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
@@ -67,86 +69,19 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EffectCtx> GIVE_EFFECT_TO_ALLIES_IN_RADIUS = DatapackStatBuilder
-        .<EffectCtx>of(x -> "give_" + x.id + "_to_allies_in_aoe", x -> x.element)
-        .addAllOfType(Arrays.asList(
-            BeneficialEffects.REGENERATE
-        ))
-        .worksWithEvent(RestoreResourceEvent.ID) // todo should be tick event, BUT LAG
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
-        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.regen))
-        .addCondition(StatConditions.IS_IN_COMBAT)
-        .addEffect(e -> StatEffects.GIVE_EFFECT_IN_AOE.get(e))
-        .setLocName(x -> Stat.format(
-            "Give " + x.locname + " to allies in Radius."
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 1;
-            x.is_long = true;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EffectCtx> GIVE_EFFECT_TO_SELF_ON_TICK = DatapackStatBuilder
-        .<EffectCtx>of(x -> "give_" + x.id + "_to_self_on_tick", x -> x.element)
-        .addAllOfType(Arrays.asList(
-            BeneficialEffects.TAUNT_STANCE
-        ))
-        .worksWithEvent(RestoreResourceEvent.ID) // todo should be tick event, BUT LAG
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_RESOURCE.get(ResourceType.health))
-        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.regen))
-        .addEffect(e -> StatEffects.GIVE_SELF_EFFECT.get(e))
-        .setLocName(x -> Stat.format(
-            "Give " + x.locname + " to self"
-        ))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.max = 1;
-            x.is_long = true;
-        })
-        .build();
-
-    public static DataPackStatAccessor<LeechInfo> ELEMENT_LEECH_RESOURCE = DatapackStatBuilder
-        .<LeechInfo>of(x -> x.element.guidName + "_" + x.resourceType.id + "_leech", x -> x.element)
-        .addAllOfType(LeechInfo.allCombos())
+    public static DataPackStatAccessor<ResourceType> LEECH_RESOURCE = DatapackStatBuilder
+        .<ResourceType>of(x -> x.id + "_leech", x -> Elements.All)
+        .addAllOfType(Arrays.asList(ResourceType.mana, ResourceType.health))
         .worksWithEvent(DamageEvent.ID)
         .setPriority(100)
         .setSide(EffectSides.Source)
-        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
-        .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e.resourceType))
-        .setLocName(x ->
-            Stat.format(
-                "Leech " + Stat.VAL1 + "% of your " + x.element.getIconNameFormat() + " Damage as " + x.resourceType.locname
-            )
-        )
+        .addEffect(e -> StatEffects.LEECH_RESTORE_RESOURCE_BASED_ON_STAT_DATA.get(e))
+        .setLocName(x -> x.locname + " Leech")
         .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
-            x.is_long = true;
             x.min = 0;
             x.is_perc = true;
             x.scaling = StatScaling.NONE;
-        })
-        .build();
-
-    public static DataPackStatAccessor<Elements> ALWAYS_CRIT_WHEN_HIT_BY_ELEMENT = DatapackStatBuilder
-        .<Elements>of(x -> x.guidName + "_vuln_crit", x -> x)
-        .addAllOfType(Elements.values())
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Target)
-        .addCondition(StatConditions.ELEMENT_MATCH_STAT)
-        .addEffect(StatEffects.SET_IS_CRIT)
-        .setLocName(x -> Stat.format(x.dmgName + " Damage always crits you."))
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.is_long = true;
         })
         .build();
 
@@ -263,24 +198,6 @@ public class Stats implements ExileRegistryInit {
         .addEffect(StatEffects.INCREASE_VALUE)
         .setLocName(x -> "Elemental " + x.locName() + " Damage")
         .setLocDesc(x -> "Increases elemental damage done if it was caused by that weapon")
-        .modifyAfterDone(x -> {
-            x.min = 0;
-            x.is_perc = true;
-            x.group = StatGroup.WEAPON;
-        })
-        .build();
-
-    public static DataPackStatAccessor<Elements> ELEMENTAL_ANY_WEAPON_DAMAGE = DatapackStatBuilder
-        .<Elements>of(x -> x.guidName + "_any_wep_damage", x -> x)
-        .addAllOfType(Elements.values())
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(x -> StatConditions.ELEMENT_MATCH_STAT)
-        .addCondition(StatConditions.ATTACK_TYPE_MATCHES.get(AttackType.attack))
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> x.dmgName + " Weapon Damage")
-        .setLocDesc(x -> "")
         .modifyAfterDone(x -> {
             x.min = 0;
             x.is_perc = true;
@@ -480,21 +397,6 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EmptyAccessor> PROJECTILE_DAMAGE_RECEIVED = DatapackStatBuilder
-        .ofSingle("proj_dmg_received", Elements.Physical)
-        .worksWithEvent(DamageEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Target)
-        .addCondition(StatConditions.IS_ANY_PROJECTILE)
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> "Projectile Damage Receieved")
-        .setLocDesc(x -> "Affects projectile damage, includes projectile spells like fireballs, and ranged basic attacks.")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.base = 0;
-        })
-        .build();
-
     public static DataPackStatAccessor<EmptyAccessor> AREA_DAMAGE = DatapackStatBuilder
         .ofSingle("area_dmg", Elements.All)
         .worksWithEvent(DamageEvent.ID)
@@ -579,27 +481,6 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<ResourceType> OUT_OF_COMBAT_REGEN = DatapackStatBuilder
-        .<ResourceType>of(x -> x.id + "_ooc_regen", x -> Elements.Physical)
-        .addAllOfType(ResourceType.values())
-        .worksWithEvent(RestoreResourceEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(x -> StatConditions.IS_RESOURCE.get(x))
-        .addCondition(x -> StatConditions.IS_NOT_IN_COMBAT)
-        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.regen))
-        .addEffect(StatEffects.ADD_STAT_DATA_TO_NUMBER)
-        .setLocName(x -> "Out of Combat " + x.locname + " Regen")
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.is_perc = false;
-            x.scaling = StatScaling.NORMAL;
-            x.base = 0;
-            x.format = TextFormatting.YELLOW.getName();
-            x.group = StatGroup.RESTORATION;
-        })
-        .build();
-
     public static DataPackStatAccessor<EmptyAccessor> HEAL_STRENGTH = DatapackStatBuilder
         .ofSingle("increase_healing", Elements.All)
         .worksWithEvent(RestoreResourceEvent.ID)
@@ -634,23 +515,6 @@ public class Stats implements ExileRegistryInit {
             x.scaling = StatScaling.NONE;
             x.base = 0;
             x.format = TextFormatting.YELLOW.getName();
-            x.group = StatGroup.RESTORATION;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EmptyAccessor> POTION_STRENGTH = DatapackStatBuilder
-        .ofSingle("potion_strength", Elements.All)
-        .worksWithEvent(RestoreResourceEvent.ID)
-        .setPriority(100)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.IS_RESTORE_TYPE.get(RestoreType.potion))
-        .addEffect(StatEffects.INCREASE_VALUE)
-        .setLocName(x -> "Potion Effectiveness")
-        .setLocDesc(x -> "Increases effectiveness of instant potions that restore mana and health.")
-        .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.base = 0;
-            x.format = TextFormatting.GREEN.getName();
             x.group = StatGroup.RESTORATION;
         })
         .build();
@@ -807,21 +671,6 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EmptyAccessor> COOLDOWN_TICKS = DatapackStatBuilder
-        .ofSingle("cd_ticks", Elements.Physical)
-        .worksWithEvent(SpellStatsCalculationEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addEffect(StatEffects.DECREASE_COOLDOWN_BY_X_TICKS)
-        .setLocName(x -> "Cooldown Ticks")
-        .setLocDesc(x -> "Reduces spell cooldown by x ticks")
-        .modifyAfterDone(x -> {
-            x.is_perc = false;
-            x.min = -15;
-            x.max = 10000;
-        })
-        .build();
-
     public static DataPackStatAccessor<EmptyAccessor> PROJECTILE_SPEED = DatapackStatBuilder
         .ofSingle("faster_projectiles", Elements.Physical)
         .worksWithEvent(SpellStatsCalculationEvent.ID)
@@ -852,21 +701,6 @@ public class Stats implements ExileRegistryInit {
         })
         .build();
 
-    public static DataPackStatAccessor<EmptyAccessor> PIERCING_PROJECTILES = DatapackStatBuilder
-        .ofSingle("piercing_projectiles", Elements.Physical)
-        .worksWithEvent(SpellStatsCalculationEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(StatConditions.SPELL_HAS_TAG.get(SpellTag.projectile))
-        .addEffect(StatEffects.SET_PIERCE)
-        .setLocName(x -> "Piercing Projectiles")
-        .setLocDesc(x -> "Makes spell pierce enemies and keep on")
-        .modifyAfterDone(x -> {
-            x.is_perc = false;
-            x.is_long = true;
-        })
-        .build();
-
     public static DataPackStatAccessor<EmptyAccessor> DAMAGE_REFLECTED = DatapackStatBuilder
         .ofSingle("damage_reflected", Elements.Physical)
         .worksWithEvent(DamageEvent.ID)
@@ -891,23 +725,6 @@ public class Stats implements ExileRegistryInit {
         .setLocName(x -> "Threat Generated")
         .setLocDesc(x -> "Modifies amount of threat you generate. Mobs attack targets with highest threat.")
         .modifyAfterDone(x -> {
-            x.is_perc = true;
-            x.scaling = StatScaling.NONE;
-        })
-        .build();
-
-    public static DataPackStatAccessor<EffectTags> EFFECT_OF_BUFFS_GIVEN_PER_EFFECT_TAG = DatapackStatBuilder
-        .<EffectTags>of(x -> "inc_effect_of_" + x.name() + "_buff_given", x -> Elements.Physical)
-        .addAllOfType(EffectTags.values())
-        .worksWithEvent(ExilePotionEvent.ID)
-        .setPriority(0)
-        .setSide(EffectSides.Source)
-        .addCondition(x -> StatConditions.EFFECT_HAS_TAG.get(x))
-        .addEffect(e -> StatEffects.INCREASE_VALUE)
-        .setLocName(x -> Stat.VAL1 + "% to effectiveness of " + x.getLocName() + " effects you cast.")
-        .setLocDesc(x -> "")
-        .modifyAfterDone(x -> {
-            x.is_long = true;
             x.is_perc = true;
             x.scaling = StatScaling.NONE;
         })

@@ -2,6 +2,8 @@ package com.robertx22.age_of_exile.mixin_methods;
 
 import com.robertx22.age_of_exile.database.data.currency.base.ICurrencyItemEffect;
 import com.robertx22.age_of_exile.database.data.currency.loc_reqs.LocReqContext;
+import com.robertx22.age_of_exile.database.data.reforge.Reforge;
+import com.robertx22.age_of_exile.database.data.reforge.ReforgeItem;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWord;
 import com.robertx22.age_of_exile.database.data.runewords.RuneWordItem;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
@@ -81,6 +83,14 @@ public class OnItemInteract {
                 if (word != null) {
                     if (word.canApplyOnItem(stack)) {
                         word.useRuneWord(player, stack);
+                        success = true;
+                    }
+                }
+            } else if (cursor.getItem() instanceof ReforgeItem) {
+                Reforge reforge = ReforgeItem.getReforge(cursor);
+                if (reforge != null) {
+                    if (reforge.canApplyOnItem(stack)) {
+                        reforge.useReforgeStone(stack, Gear.Load(stack));
                         success = true;
                     }
                 }

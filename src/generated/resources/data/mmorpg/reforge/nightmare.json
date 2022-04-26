@@ -1,0 +1,23 @@
+{
+  "weight": 1000,
+  "id": "nightmare",
+  "rarity": "epic",
+  "model_num": 5,
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 5.0,
+      "stat": "critical_hit",
+      "type": "FLAT"
+    },
+    {
+      "min": 2.0,
+      "max": 10.0,
+      "stat": "critical_hit",
+      "type": "FLAT"
+    }
+  ],
+  "gear_slots": [
+    "sword"
+  ]
+}

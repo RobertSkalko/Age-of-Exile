@@ -496,6 +496,7 @@ public enum Words implements IAutoLocName {
     Runes("Runes"),
 
     Runeword("Runeword"),
+    Reforge("Reforge"),
     RunicSpell("Runic Spell"),
 
     Sacrifice_Map_For_Level("Sacrifice Map For Level"),

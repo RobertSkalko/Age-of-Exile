@@ -8,6 +8,8 @@ import com.robertx22.age_of_exile.uncommon.localization.Chats;
 import com.robertx22.age_of_exile.uncommon.localization.RandomTips;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.DirUtils;
+import com.robertx22.library_of_exile.registry.Database;
+import com.robertx22.library_of_exile.registry.ExileRegistryContainer;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -113,51 +115,34 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocName>> getMap() {
         List<IAutoLocName> list = CreateLangFileUtils.getFromRegistries(IAutoLocName.class);
 
-        list.addAll(ExileDB.MobAffixes()
-            .getSerializable());
-        list.addAll(ExileDB.ValueCalculations()
-            .getSerializable());
-        list.addAll(ExileDB.GearSlots()
-            .getSerializable());
-        list.addAll(ExileDB.Difficulties()
-            .getSerializable());
-        list.addAll(ExileDB.Sets()
-            .getSerializable());
-        list.addAll(ExileDB.Perks()
-            .getSerializable());
-        list.addAll(ExileDB.Spells()
-            .getSerializable());
-        list.addAll(ExileDB.UniqueGears()
-            .getSerializable());
-        list.addAll(ExileDB.Affixes()
-            .getSerializable());
-        list.addAll(ExileDB.FavorRanks()
-            .getSerializable());
+        for (ExileRegistryContainer registry : Database.getAllRegistries()) {
+            for (Object o : registry.getList()) {
+                if (o instanceof IAutoLocName) {
+                    list.add((IAutoLocName) o);
+                }
+            }
+            for (Object o : registry.getSerializable()) {
+                if (o instanceof IAutoLocName) {
+                    list.add((IAutoLocName) o);
+                }
+            }
+        }
 
+        /*
         List<Stat> stats = ExileDB.Stats()
             .getList()
             .stream()
             .filter(x -> !x.isFromDatapack())
             .collect(Collectors.toList());
-        list.addAll(ExileDB.Stats()
-            .getSerializable());
-        list.addAll(stats);
 
-        list.addAll(ExileDB.GearTypes()
-            .getSerializable());
-        list.addAll(ExileDB.ExileEffects()
-            .getSerializable());
-        list.addAll(Arrays.asList(Words.values()));
-        list.addAll(ExileDB.GearRarities()
-            .getSerializable());
-        list.addAll(ExileDB.MobRarities()
-            .getSerializable());
+         list.addAll(stats);
+
+
+         */
+
         list.addAll(Arrays.asList(Chats.values()));
+        list.addAll(Arrays.asList(Words.values()));
         list.addAll(Arrays.asList(RandomTips.values()));
-
-        ExileDB.Spells()
-            .getSerializable()
-            .forEach(x -> list.add(new OneOfAKindName(x)));
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();
 

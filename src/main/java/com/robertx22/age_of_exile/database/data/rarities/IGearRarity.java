@@ -18,8 +18,6 @@ public interface IGearRarity extends Rarity, SalvagableItem, IStatPercents {
 
     float valueMulti();
 
-    MinMax uniqueStatPercents();
-
     float itemTierPower();
 
     int getAffixAmount();
@@ -28,6 +26,7 @@ public interface IGearRarity extends Rarity, SalvagableItem, IStatPercents {
         return getAffixAmount() / 2;
     }
 
+    // todo remove this
     default MinMax getStatPercentsFor(IGearPart.Part part) {
 
         if (part == IGearPart.Part.AFFIX) {
@@ -35,8 +34,6 @@ public interface IGearRarity extends Rarity, SalvagableItem, IStatPercents {
         }
         if (part == IGearPart.Part.BASE_STATS) {
             return affixStatPercents();
-        } else if (part == IGearPart.Part.UNIQUE_STATS) {
-            return uniqueStatPercents();
         } else {
             return StatPercents();
         }

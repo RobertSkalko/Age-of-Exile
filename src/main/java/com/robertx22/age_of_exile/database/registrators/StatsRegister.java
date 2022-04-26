@@ -5,8 +5,8 @@ import com.robertx22.age_of_exile.database.data.stats.types.UnknownStat;
 import com.robertx22.age_of_exile.database.data.stats.types.core_stats.AllAttributes;
 import com.robertx22.age_of_exile.database.data.stats.types.defense.*;
 import com.robertx22.age_of_exile.database.data.stats.types.generated.*;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuality;
-import com.robertx22.age_of_exile.database.data.stats.types.loot.TreasureQuantity;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.ItemFind;
+import com.robertx22.age_of_exile.database.data.stats.types.loot.MagicFind;
 import com.robertx22.age_of_exile.database.data.stats.types.misc.*;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.DualWieldDamage;
 import com.robertx22.age_of_exile.database.data.stats.types.offense.SpellDamage;
@@ -48,8 +48,8 @@ public class StatsRegister implements ExileRegistryInit {
 
                     add(SpellDodge.getInstance());
 
-                    add(TreasureQuality.getInstance());
-                    add(TreasureQuantity.getInstance());
+                    add(MagicFind.getInstance());
+                    add(ItemFind.getInstance());
 
                     add(new AttackDamage(Elements.Physical));
                     add(new ElementalResist(Elements.Physical));
