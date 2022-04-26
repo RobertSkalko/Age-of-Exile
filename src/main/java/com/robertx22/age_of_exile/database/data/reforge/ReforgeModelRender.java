@@ -32,18 +32,22 @@ public class ReforgeModelRender extends ItemStackTileEntityRenderer {
 
     }
 
-    public static void renderSkull(String id, float float1, float float2, MatrixStack p_228879_5_, IRenderTypeBuffer buffer, int p_228879_7_) {
+    public static void renderSkull(String id, float float1, float float2, MatrixStack matrix, IRenderTypeBuffer buffer, int p_228879_7_) {
         GenericHeadModel genericheadmodel = SkullTileEntityRendererAccessor.getMODEL_BY_TYPE()
             .get(SkullBlock.Types.PLAYER);
-        p_228879_5_.pushPose();
+        matrix.pushPose();
 
-        p_228879_5_.translate(0.5D, 0.0D, 0.5D);
+        matrix.translate(0.5D, 0.0D, 0.5D);
 
-        p_228879_5_.scale(-1.0F, -1.0F, 1.0F);
+        matrix.scale(-1.0F, -1.0F, 1.0F);
+
+        float scale = 1.1F;
+        matrix.scale(scale, scale, scale);
+
         IVertexBuilder ivertexbuilder = buffer.getBuffer(getRenderType(id));
         genericheadmodel.setupAnim(float2, float1, 0.0F);
-        genericheadmodel.renderToBuffer(p_228879_5_, ivertexbuilder, p_228879_7_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
-        p_228879_5_.popPose();
+        genericheadmodel.renderToBuffer(matrix, ivertexbuilder, p_228879_7_, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+        matrix.popPose();
     }
 
     private static RenderType getRenderType(String id) {

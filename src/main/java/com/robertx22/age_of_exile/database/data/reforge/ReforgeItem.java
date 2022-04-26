@@ -16,7 +16,7 @@ import net.minecraft.util.text.StringTextComponent;
 public class ReforgeItem extends Item implements IAutoLocName {
 
     public ReforgeItem() {
-        super(new ItemDefault().tab(CreativeTabs.RuneWords)
+        super(new ItemDefault().tab(CreativeTabs.Reforges)
             .setISTER(() -> ReforgeModelRender::new));
     }
 

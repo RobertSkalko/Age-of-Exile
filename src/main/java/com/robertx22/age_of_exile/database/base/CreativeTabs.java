@@ -1,5 +1,6 @@
 package com.robertx22.age_of_exile.database.base;
 
+import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.AlchemyPotions;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.CurrencyItems;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
@@ -31,6 +32,15 @@ public class CreativeTabs {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(SlashItems.RUNEWORD.get());
+        }
+    };
+
+    public static ItemGroup Reforges = new ItemGroup("mmorpg_reforges") {
+        @Override
+        public ItemStack makeIcon() {
+            return ExileDB.Reforges()
+                .get("fortune")
+                .getStack();
         }
     };
     public static ItemGroup GemRuneCurrency = new ItemGroup("mmorpg_currency") {
