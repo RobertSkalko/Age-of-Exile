@@ -1,6 +1,6 @@
 {
   "weight": 1000,
-  "identifier": "charged_bolt",
+  "identifier": "boulder_toss",
   "attached": {
     "on_cast": [
       {
@@ -11,28 +11,8 @@
             "type": "sound",
             "map": {
               "volume": 1.0,
-              "sound": "minecraft:entity.arrow.shoot",
-              "pitch": 1.0
-            }
-          }
-        ],
-        "ifs": [
-          {
-            "type": "on_spell_cast",
-            "map": {}
-          }
-        ]
-      },
-      {
-        "targets": [],
-        "en_preds": [],
-        "acts": [
-          {
-            "type": "sound",
-            "map": {
-              "volume": 1.0,
-              "sound": "minecraft:entity.dragon_fireball.explode",
-              "pitch": 1.0
+              "sound": "minecraft:entity.fishing_bobber.throw",
+              "pitch": 0.0
             }
           }
         ],
@@ -50,14 +30,14 @@
           {
             "type": "projectile",
             "map": {
-              "proj_speed": 1.0,
-              "item": "minecraft:air",
+              "proj_speed": 2.5,
+              "item": "minecraft:cobblestone",
               "entity_name": "default_entity_name",
               "gravity": false,
               "proj_count": 1.0,
-              "expire_on_en_hit": false,
-              "life_ticks": 80.0,
-              "proj_en": "mmorpg:spell_arrow"
+              "life_ticks": 8.0,
+              "scale": 7.0,
+              "proj_en": "mmorpg:spell_projectile"
             }
           }
         ],
@@ -71,47 +51,6 @@
     ],
     "entity_components": {
       "default_entity_name": [
-        {
-          "targets": [],
-          "en_preds": [],
-          "acts": [
-            {
-              "type": "particles_in_radius",
-              "map": {
-                "particle_type": "minecraft:crit",
-                "motion": "None",
-                "radius": 1.0,
-                "particle_count": 100.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_hit",
-              "map": {}
-            }
-          ]
-        },
-        {
-          "targets": [],
-          "en_preds": [],
-          "acts": [
-            {
-              "type": "sound",
-              "map": {
-                "volume": 1.0,
-                "sound": "minecraft:entity.arrow.hit",
-                "pitch": 1.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "on_hit",
-              "map": {}
-            }
-          ]
-        },
         {
           "targets": [
             {
@@ -128,32 +67,117 @@
             {
               "type": "damage",
               "map": {
-                "value_calculation": "frost_arrow"
+                "value_calculation": "boulder_toss"
               }
             }
           ],
           "ifs": [
             {
-              "type": "on_hit",
+              "type": "on_entity_expire",
               "map": {}
             }
-          ],
-          "per_entity_hit": [
+          ]
+        },
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
             {
-              "targets": [],
-              "en_preds": [],
-              "acts": [
-                {
-                  "type": "potion",
-                  "map": {
-                    "potion_action": "GIVE_STACKS",
-                    "potion_id": "minecraft:slowness",
-                    "count": 1.0,
-                    "potion_dur": 40.0
-                  }
-                }
-              ],
-              "ifs": []
+              "type": "sound",
+              "map": {
+                "volume": 1.0,
+                "sound": "minecraft:entity.generic.hurt",
+                "pitch": 2.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ]
+        },
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "sound",
+              "map": {
+                "volume": 1.0,
+                "sound": "minecraft:entity.generic.explode",
+                "pitch": 1.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ]
+        },
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:smoke",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 15.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ]
+        },
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:explosion",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 3.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
+            }
+          ]
+        },
+        {
+          "targets": [],
+          "en_preds": [],
+          "acts": [
+            {
+              "type": "particles_in_radius",
+              "map": {
+                "particle_type": "minecraft:poof",
+                "motion": "None",
+                "radius": 1.0,
+                "particle_count": 5.0
+              }
+            }
+          ],
+          "ifs": [
+            {
+              "type": "on_entity_expire",
+              "map": {}
             }
           ]
         },
@@ -166,40 +190,15 @@
               "map": {
                 "particle_type": "minecraft:crit",
                 "motion": "None",
-                "radius": 0.1,
-                "particle_count": 4.0
+                "radius": 1.0,
+                "particle_count": 30.0
               }
             }
           ],
           "ifs": [
             {
-              "type": "x_ticks_condition",
-              "map": {
-                "tick_rate": 1.0
-              }
-            }
-          ]
-        },
-        {
-          "targets": [],
-          "en_preds": [],
-          "acts": [
-            {
-              "type": "particles_in_radius",
-              "map": {
-                "particle_type": "minecraft:enchanted_hit",
-                "motion": "None",
-                "radius": 0.1,
-                "particle_count": 4.0
-              }
-            }
-          ],
-          "ifs": [
-            {
-              "type": "x_ticks_condition",
-              "map": {
-                "tick_rate": 1.0
-              }
+              "type": "on_entity_expire",
+              "map": {}
             }
           ]
         }
@@ -208,19 +207,19 @@
   },
   "config": {
     "swing_arm": true,
-    "castingWeapon": "RANGED",
-    "mana_cost": 8,
+    "castingWeapon": "MAGE_WEAPON",
+    "mana_cost": 20,
     "cooldown_ticks": 300,
-    "style": "ranged",
+    "style": "magic",
     "tags": [
       "projectile",
-      "area",
-      "damage"
+      "damage",
+      "staff_spell"
     ],
     "cast_type": "IMBUE",
     "everyone_has": false,
-    "imbues": 1,
-    "imbue_type": "ON_RANGED_ATTACK"
+    "imbues": 5,
+    "imbue_type": "STAFF_IMBUE"
   },
   "disabled_dims": []
 }

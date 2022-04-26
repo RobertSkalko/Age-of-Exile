@@ -10,21 +10,18 @@ import com.robertx22.age_of_exile.database.data.spells.components.actions.AggroA
 import com.robertx22.age_of_exile.database.data.spells.components.actions.ExileEffectAction;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
 import com.robertx22.age_of_exile.database.data.spells.components.selectors.TargetSelector;
-import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
 import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.AllyOrEnemy;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.library_of_exile.registry.ExileRegistryInit;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
 
 public class HunterSpells implements ExileRegistryInit {
 
-    public static String CHARGED_BOLT = "charged_bolt";
     public static String BACKFLIP = "backflip";
     public static String ARROW_STORM = "arrow_storm";
     public static String POISON_ARROW = "poison_arrow";
@@ -75,29 +72,6 @@ public class HunterSpells implements ExileRegistryInit {
 
             .teleportForward()
 
-            .build();
-
-        SpellBuilder.of(CHARGED_BOLT, SpellConfiguration.Builder.arrowImbue(8, 20 * 15), "Charged Bolt",
-                Arrays.asList(SpellTag.projectile, SpellTag.area, SpellTag.damage))
-
-            .manualDesc(
-                "Shoot a charged arrow that goes through enemies and deals dmg in radius and slows.")
-
-            .weaponReq(CastingWeapon.RANGED)
-            .attackStyle(PlayStyle.ranged)
-            .onCast(PartBuilder.Sound.play(SoundEvents.ARROW_SHOOT, 1D, 1D))
-            .onCast(PartBuilder.Sound.play(SoundEvents.DRAGON_FIREBALL_EXPLODE, 1D, 1D))
-            .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)
-                .put(MapField.PROJECTILE_SPEED, 1D)
-                .put(MapField.EXPIRE_ON_ENTITY_HIT, false)
-                .put(MapField.GRAVITY, false)))
-
-            .onHit(PartBuilder.Particles.aoe(ParticleTypes.CRIT, 100D, 1D))
-            .onHit(PartBuilder.Sound.play(SoundEvents.ARROW_HIT, 1D, 1D))
-            .onHit(PartBuilder.Damage.aoe(SpellCalcs.CHARGED_BOLT, 2D)
-                .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 40D))))
-            .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.CRIT, 4D, 0.1D))
-            .onTick(PartBuilder.Particles.tickAoe(1D, ParticleTypes.ENCHANTED_HIT, 4D, 0.1D))
             .build();
 
         SpellBuilder.of(ARROW_STORM, SpellConfiguration.Builder.arrowImbue(20, 20 * 25), "Arrow Storm",

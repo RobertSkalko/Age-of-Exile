@@ -7,12 +7,13 @@ import com.robertx22.age_of_exile.database.all_keys.base.SpellKey;
 import com.robertx22.age_of_exile.database.data.spells.components.Spell;
 import com.robertx22.age_of_exile.database.data.spells.components.SpellConfiguration;
 import com.robertx22.age_of_exile.database.data.spells.components.actions.SpellAction;
+import com.robertx22.age_of_exile.database.data.spells.components.entity_predicates.SpellEntityPredicate;
 import com.robertx22.age_of_exile.database.data.spells.map_fields.MapField;
 import com.robertx22.age_of_exile.database.data.spells.spell_classes.CastingWeapon;
-import com.robertx22.age_of_exile.mmorpg.registers.common.SlashEntities;
 import com.robertx22.age_of_exile.uncommon.SoundRefs;
-import net.minecraft.item.Items;
+import com.robertx22.age_of_exile.uncommon.enumclasses.PlayStyle;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 
 import java.util.Arrays;
@@ -28,25 +29,33 @@ public class TestSpell {
             SpellBuilder.of(new SpellKey(USE_THIS_EXACT_ID),
                     // LEAVE THIS SPACE
 
-                    SpellConfiguration.Builder.staffImbue(20, 20 * 15, 5)
-                        .setEveryoneHas(), "Boulder Toss",
-                    Arrays.asList(SpellTag.projectile, SpellTag.damage, SpellTag.staff_spell))
+                    SpellConfiguration.Builder.arrowImbue(8, 20 * 15), "Frost Arrow",
+                    Arrays.asList(SpellTag.projectile, SpellTag.area, SpellTag.damage))
+
                 .manualDesc(
-                    "Toss out multiple boulders, dealing heavy physical damage.")
-                .weaponReq(CastingWeapon.MAGE_WEAPON)
-                .onCast(PartBuilder.Sound.play(SoundRefs.FISHING_THROW_LOW_PITCH))
-                .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.create(Items.COBBLESTONE, 1D, 2.5D, SlashEntities.SIMPLE_PROJECTILE.get(), 8D, false)
-                    .put(MapField.SCALE, 7D)
-                ))
+                    "Shoot an arrow that goes through enemies and deals dmg in radius and slows.")
 
-                .onExpire(PartBuilder.Damage.aoe(SpellCalcs.MAGIC_PROJECTILE, 2D))
-                .onExpire(PartBuilder.Sound.play(SoundEvents.GENERIC_HURT, 1D, 2D))
-                .onExpire(PartBuilder.Sound.play(SoundEvents.GENERIC_EXPLODE))
+                .weaponReq(CastingWeapon.RANGED)
+                .attackStyle(PlayStyle.ranged)
+                .onCast(PartBuilder.Sound.play(SoundEvents.ARROW_SHOOT, 1D, 1D))
+                .onCast(PartBuilder.Sound.play(SoundEvents.DRAGON_FIREBALL_EXPLODE, 1D, 1D))
+                .onCast(PartBuilder.justAction(SpellAction.SUMMON_PROJECTILE.createArrow(1D)
+                    .put(MapField.PROJECTILE_SPEED, 1D)
+                    .put(MapField.EXPIRE_ON_ENTITY_HIT, false)
+                    .put(MapField.GRAVITY, false)))
 
-                .onExpire(PartBuilder.Particles.aoe(ParticleTypes.SMOKE, 15D, 1D))
-                .onExpire(PartBuilder.Particles.aoe(ParticleTypes.EXPLOSION, 3D, 1D))
-                .onExpire(PartBuilder.Particles.aoe(ParticleTypes.POOF, 5D, 1D))
-                .onExpire(PartBuilder.Particles.aoe(ParticleTypes.CRIT, 30D, 1D))
+                .onTick(PartBuilder.Particles.aoe(ParticleTypes.ITEM_SNOWBALL, 50D, 0.3D))
+
+                .onTick(PartBuilder.Damage.aoe(SpellCalcs.FROST_ARROW, 6D)
+                    .addEntityPredicate(SpellEntityPredicate.DID_NOT_AFFECT_BY_ENTITY.create())
+                    .addPerEntityHit(PartBuilder.Particles.aoe(ParticleTypes.ITEM_SNOWBALL, 500d, 1D))
+                    .addPerEntityHit(PartBuilder.Particles.aoe(ParticleTypes.INSTANT_EFFECT, 500d, 1D))
+                    .addPerEntityHit(PartBuilder.Particles.aoe(ParticleTypes.FIREWORK, 50D, 1D))
+                    .addPerEntityHit(PartBuilder.Sound.play(SoundRefs.HURT))
+                    .addPerEntityHit(PartBuilder.Sound.play(SoundRefs.EXPLOSION))
+                    .addPerEntityHit(PartBuilder.justAction(SpellAction.MARK_AS_AFFECTED_BY_ENTITY.create()))
+                    .addPerEntityHit(PartBuilder.justAction(SpellAction.POTION.createGive(Effects.MOVEMENT_SLOWDOWN, 40D)))
+                    .onTick(1D))
 
                 // LEAVE THIS SPACE
                 // leave this part

@@ -49,5 +49,6 @@ refresh
 make_arrows
 power_chord
 pull
+boulder_toss
 explosive_note
 taunt

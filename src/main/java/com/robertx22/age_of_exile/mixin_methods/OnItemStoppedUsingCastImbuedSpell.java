@@ -21,7 +21,10 @@ public class OnItemStoppedUsingCastImbuedSpell {
 
         ForgeEvents.registerForgeEvent(LivingEntityUseItemEvent.Stop.class, event -> {
             if (!event.getEntityLiving().level.isClientSide) {
-                onStoppedUsingBow(event.getEntityLiving());
+                boolean used = onStoppedUsingBow(event.getEntityLiving());
+                if (used) {
+                    event.setCanceled(true);
+                }
             }
         });
 
@@ -64,17 +67,17 @@ public class OnItemStoppedUsingCastImbuedSpell {
 
     }
 
-    public static void onStoppedUsingBow(LivingEntity user) {
+    public static boolean onStoppedUsingBow(LivingEntity user) {
         if (isCorrectRangedAttackFinish(user)) {
-            if (Load.spells(user)
+            return Load.spells(user)
                 .getCastingData()
-                .tryCastImbuedSpell(user, ImbueType.ON_RANGED_ATTACK)) {
-            }
+                .tryCastImbuedSpell(user, ImbueType.ON_RANGED_ATTACK);
         }
-
+        return false;
     }
 
-    public static void crossbow(ItemStack stack, World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<ActionResult<ItemStack>> ci) {
+    public static void crossbow(ItemStack stack, World world, PlayerEntity user, Hand
+        hand, CallbackInfoReturnable<ActionResult<ItemStack>> ci) {
 
         try {
             if (user.level.isClientSide) {

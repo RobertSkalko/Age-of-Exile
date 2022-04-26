@@ -9,6 +9,18 @@ import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 
 public class SpellCalcs {
 
+    public static ValueCalculation FROST_ARROW = ValueCalcBuilder.of("frost_arrow")
+        .damage(DamageCalculation.Builder.of(Elements.Elemental)
+            .base(8)
+            .scaling(2)
+            .build())
+        .damage(DamageCalculation.Builder.of(Elements.Physical)
+            .base(8)
+            .scaling(2)
+            .build())
+        .addAllElementsScaling(1F)
+        .build();
+
     public static ValueCalculation PURIFYING_TOUCH = ValueCalcBuilder.of("purifying_touch")
         .baseValue(6)
         .build();
@@ -276,9 +288,7 @@ public class SpellCalcs {
     public static ValueCalculation SHOUT_WARN = ValueCalcBuilder.of("shout_warn")
         .statScaling(Health.getInstance(), 0.1F)
         .build();
-    public static ValueCalculation CHARGED_BOLT = ValueCalcBuilder.of("charged_bolt")
-        .attackScaling(1F)
-        .build();
+
     public static ValueCalculation CHARGE = ValueCalcBuilder.of("charge")
         .attackScaling(0.6F)
         .build();

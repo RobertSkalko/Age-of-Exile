@@ -23,13 +23,13 @@ public class IceNovaAction extends SpellAction {
     @Override
     public void tryActivate(Collection<LivingEntity> targets, SpellCtx ctx, MapHolder data) {
 
-        AxisAlignedBB box = BoxUtils.createBoxOfRadius(ctx.caster.blockPosition()
+        AxisAlignedBB box = BoxUtils.createBoxOfRadius(ctx.sourceEntity.blockPosition()
                 .above(), 1)
             .inflate(5, 0, 5);
 
         BoxUtils.iterateBoxAsCircle(box, x -> {
 
-            SoundUtils.playSound(ctx.caster, SoundRefs.ICE_BREAK);
+            SoundUtils.playSound(ctx.sourceEntity, SoundRefs.ICE_BREAK);
 
             FallingBlockEntity fb = new FallingBlockEntity(ctx.world, x.getX(), x.getY(), x.getZ(), Blocks.ICE.defaultBlockState());
 

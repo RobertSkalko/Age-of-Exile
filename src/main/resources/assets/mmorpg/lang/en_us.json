@@ -244,6 +244,7 @@
 	"shaman": "mmorpg.spell_school.shaman",
 	"mmorpg.spell.arrow_storm": "Arrow Storm",
 	"mmorpg.spell.black_hole": "Black Hole",
+	"mmorpg.spell.boulder_toss": "Boulder Toss",
 	"mmorpg.spell.charged_bolt": "Charged Bolt",
 	"mmorpg.spell.chill_eruption": "Chill Eruption",
 	"mmorpg.spell.chilling_field": "Chilling Field",
@@ -290,7 +291,7 @@
 	"mmorpg.spell.song_of_vigor": "Hymn of Vigor",
 	"mmorpg.spell.taunt": "Taunt",
 	"mmorpg.spell.teleport": "Teleport",
-	"mmorpg.spell.test_spell": "Boulder Toss",
+	"mmorpg.spell.test_spell": "Charged Bolt",
 	"mmorpg.spell.tidal_wave": "Tidal Wave",
 	"mmorpg.spell.venom_strike": "Venom Strike",
 
@@ -400,21 +401,6 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
-	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
-
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 	"effect.mmorpg.beneficial.1": "Antidote",
@@ -458,6 +444,21 @@
 "_comment": " [CATEGORY]: STATUSEFFECTS - NAMES",
 
 
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.clear_instability": "§cOrb of Cooling",
+	"item.mmorpg.currency.crystal_of_purification": "§cCrystal of Purification",
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: TALENTS - NAMES",
 
 	"mmorpg.talent.battle_mage": "Battle Mage",
@@ -487,6 +488,7 @@
 
 "_comment": " [CATEGORY]: CALCULATIONS - NAMES",
 
+	"mmorpg.calculation.boulder_toss": "Boulder Toss",
 	"mmorpg.calculation.curse": "Curse",
 	"mmorpg.calculation.damage_totem": "Damage Totem",
 	"mmorpg.calculation.despair": "Despair",
@@ -1220,6 +1222,7 @@
 
 	"spell.desc.arrow_storm": "Shoot out arrows in an arc, dealing ",
 	"spell.desc.black_hole": "Summon a dark sphere that attracts nearby enemies to it, dealing damage when it expires.",
+	"spell.desc.boulder_toss": "Toss out multiple boulders, dealing heavy physical damage.",
 	"spell.desc.charged_bolt": "Shoot a charged arrow that goes through enemies and deals dmg in radius and slows.",
 	"spell.desc.chill_eruption": "Detonate every enemy affected by Chill to deal damage",
 	"spell.desc.chilling_field": "Freeze area of sight, applying chill and damaging enemies  every second.",
@@ -1266,7 +1269,7 @@
 	"spell.desc.song_of_vigor": "Give a stack of Vigor to all allies around you.",
 	"spell.desc.taunt": "Shout, making enemies nearby want to attack you. Generates theat",
 	"spell.desc.teleport": "Teleport yourself in the direction you're looking at.",
-	"spell.desc.test_spell": "Toss out multiple boulders, dealing heavy physical damage.",
+	"spell.desc.test_spell": "Shoot a charged arrow that goes through enemies and deals dmg in radius and slows.",
 	"spell.desc.tidal_wave": "Strike enemies in front of you",
 	"spell.desc.venom_strike": "Strike enemies in front of you and leave a poison trail.",
 

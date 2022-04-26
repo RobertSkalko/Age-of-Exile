@@ -32,6 +32,7 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
 
             .build();
 
+        // todo teleport arrow
         SchoolBuilder.of(HUNTER, "Hunting")
 
             .addSpell(SpellKeys.MAKE_ARROWS, new PointData(0, 0))
@@ -41,13 +42,14 @@ public class SpellSchoolsAdder implements ExileRegistryInit {
             .addSpell(SpellKeys.FROST_TRAP, new PointData(7, 4))
             .addSpell(SpellKeys.POISON_TRAP, new PointData(8, 4))
 
+            .addSpell(SpellKeys.FROST_ARROW, new PointData(0, 3))
+
             .addSpell(HunterSpells.DASH_ID, new PointData(5, 1))
             .addSpell(HunterSpells.HUNTER_POTION, new PointData(10, 1))
 
             .addSpell(HunterSpells.POISON_ARROW, new PointData(2, 2))
             .addSpell(HunterSpells.SMOKE_BOMB, new PointData(7, 2))
 
-            .addSpell(HunterSpells.CHARGED_BOLT, new PointData(0, 3))
             .addSpell(HunterSpells.BACKFLIP, new PointData(4, 3))
 
             .addSpell(HunterSpells.NIGHT_VISION, new PointData(10, 4))

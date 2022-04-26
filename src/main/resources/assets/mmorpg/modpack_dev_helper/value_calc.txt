@@ -39,9 +39,11 @@ bleed
 poison_cloud
 power_chord
 pull
+boulder_toss
 curse
 seeker_flames
 totem_mana
+explosive_note
 purifying_touch
 despair
 taunt
