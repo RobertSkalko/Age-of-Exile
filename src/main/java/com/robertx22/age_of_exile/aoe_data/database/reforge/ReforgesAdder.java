@@ -21,28 +21,42 @@ public class ReforgesAdder implements ExileRegistryInit {
     @Override
     public void registerAll() {
 
-        Reforge.Builder.of(2, "aqua", "Aqua")
+        Reforge.Builder.of("aqua", "Aqua")
             .gearSlot(GearSlotKeys.RING)
             .rarity(IRarity.EPIC_ID)
             .stat(new StatModifier(2, 5, Mana.getInstance()))
             .stat(new StatModifier(1, 5, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT))
             .build();
 
-        Reforge.Builder.of(3, "fortune", "Fortune")
+        Reforge.Builder.of("earth", "Earth")
+            .gearSlot(GearSlotKeys.CHEST)
+            .rarity(IRarity.EPIC_ID)
+            .stat(new StatModifier(2, 6, Health.getInstance(), ModType.PERCENT))
+            .stat(new StatModifier(1, 5, Stats.ELEMENTAL_DAMAGE.get(Elements.Earth), ModType.FLAT))
+            .build();
+
+        Reforge.Builder.of("nature", "Nature")
+            .gearSlot(GearSlotKeys.PANTS)
+            .rarity(IRarity.EPIC_ID)
+            .stat(new StatModifier(2, 8, Health.getInstance(), ModType.PERCENT))
+            .stat(new StatModifier(2, 6, Stats.HEAL_STRENGTH.get()))
+            .build();
+
+        Reforge.Builder.of("fortune", "Fortune")
             .gearSlot(GearSlotKeys.NECKLACE)
             .rarity(IRarity.LEGENDARY_ID)
             .stat(new StatModifier(2, 6, MagicFind.getInstance()))
             .stat(new StatModifier(2, 6, ItemFind.getInstance()))
             .build();
 
-        Reforge.Builder.of(3, "dragon_breath", "Dragon Breath")
+        Reforge.Builder.of("dragon_breath", "Dragon Breath")
             .gearSlot(GearSlotKeys.HELMET)
             .rarity(IRarity.LEGENDARY_ID)
             .stat(new StatModifier(2, 6, Health.getInstance()))
             .stat(new StatModifier(2, 10, Stats.ELEMENTAL_DAMAGE.get(Elements.Fire), ModType.FLAT))
             .build();
 
-        Reforge.Builder.of(4, "pride", "Pride")
+        Reforge.Builder.of("pride", "Pride")
             .gearSlot(GearSlotKeys.CHEST)
             .rarity(IRarity.LEGENDARY_ID)
             .stat(new StatModifier(2, 6, DatapackStats.INT))
@@ -50,21 +64,21 @@ public class ReforgesAdder implements ExileRegistryInit {
             .stat(new StatModifier(2, 6, DatapackStats.DEX))
             .build();
 
-        Reforge.Builder.of(5, "nightmare", "Nightmare")
+        Reforge.Builder.of("nightmare", "Nightmare")
             .gearSlot(GearSlotKeys.SWORD)
             .rarity(IRarity.EPIC_ID)
             .stat(new StatModifier(2, 5, Stats.CRIT_CHANCE.get()))
             .stat(new StatModifier(2, 10, Stats.CRIT_DAMAGE.get()))
             .build();
 
-        Reforge.Builder.of(6, "insight", "Insight")
+        Reforge.Builder.of("insight", "Insight")
             .gearSlot(GearSlotKeys.SWORD)
             .rarity(IRarity.EPIC_ID)
             .stat(new StatModifier(2, 6, Mana.getInstance()))
             .stat(new StatModifier(2, 15, ManaRegen.getInstance(), ModType.PERCENT))
             .build();
 
-        Reforge.Builder.of(7, "shadow_bind", "Shadow Bind")
+        Reforge.Builder.of("shadow_bind", "Shadow Bind")
             .weapons()
             .rarity(IRarity.EPIC_ID)
             .stat(new StatModifier(1, 2, Stats.LEECH_RESOURCE.get(ResourceType.health), ModType.PERCENT))

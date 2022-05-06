@@ -2,7 +2,6 @@
   "weight": 1000,
   "id": "shadow_bind",
   "rarity": "epic",
-  "model_num": 7,
   "stats": [
     {
       "min": 1.0,

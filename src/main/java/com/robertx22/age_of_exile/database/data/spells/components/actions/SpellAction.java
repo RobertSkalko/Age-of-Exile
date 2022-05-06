@@ -57,6 +57,7 @@ public abstract class SpellAction extends BaseFieldNeeder implements IGUID {
     public static MarkAsAffectedEntityAction MARK_AS_AFFECTED_BY_ENTITY = of(new MarkAsAffectedEntityAction());
     public static MarkAsAffectedBySpellAction MARK_AS_AFFECTED_BY_SPELL = of(new MarkAsAffectedBySpellAction());
     public static HomeInOnNearestTargetAction HOME_ON_TARGET = of(new HomeInOnNearestTargetAction());
+    public static IceSpikeParticlesAction ICE_BURST_PARTICLES = of(new IceSpikeParticlesAction());
 
     private static <T extends SpellAction> T of(T s) {
         MAP.put(s.GUID(), s);

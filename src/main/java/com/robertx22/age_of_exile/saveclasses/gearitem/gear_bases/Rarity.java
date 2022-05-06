@@ -9,10 +9,6 @@ public interface Rarity extends IWeighted, IAutoLocName, JsonExileRegistry<Rarit
 
     String GUID();
 
-    default String Color() {
-        return textFormatting().toString();
-    }
-
     int Weight();
 
     TextFormatting textFormatting();

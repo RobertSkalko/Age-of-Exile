@@ -1,22 +1,22 @@
 {
   "weight": 1000,
-  "id": "aqua",
+  "id": "earth",
   "rarity": "epic",
   "stats": [
     {
       "min": 2.0,
-      "max": 5.0,
-      "stat": "mana",
-      "type": "FLAT"
+      "max": 6.0,
+      "stat": "health",
+      "type": "PERCENT"
     },
     {
       "min": 1.0,
       "max": 5.0,
-      "stat": "all_water_damage",
+      "stat": "all_earth_damage",
       "type": "FLAT"
     }
   ],
   "gear_slots": [
-    "ring"
+    "chest"
   ]
 }

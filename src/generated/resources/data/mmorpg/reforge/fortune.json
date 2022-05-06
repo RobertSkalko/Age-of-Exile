@@ -2,7 +2,6 @@
   "weight": 1000,
   "id": "fortune",
   "rarity": "legendary",
-  "model_num": 3,
   "stats": [
     {
       "min": 2.0,

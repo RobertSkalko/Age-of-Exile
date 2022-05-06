@@ -197,6 +197,21 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return Arrays.asList();
     }
 
+    public int getAverageStatPercent() {
+
+        int stats = 0;
+        int percents = 0;
+
+        // todo
+
+        if (percents < 1) {
+            return 0;
+        }
+
+        return percents / stats;
+
+    }
+
     public boolean uniqueBaseStatsReplaceBaseStats() {
         return uniqueStats != null && this.uniqueStats.getUnique(this) != null && !uniqueStats.getUnique(this).base_stats.isEmpty();
     }

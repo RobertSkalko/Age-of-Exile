@@ -244,19 +244,35 @@ public class TooltipUtils {
     public static String STAR = "\u2605";
 
     public static IFormattableTextComponent gearStars(GearItemData gear) {
-
-        int stars = 5; // todo
-
+        int stars = gear.star
         IFormattableTextComponent txt = new StringTextComponent(TextFormatting.GRAY + "Rating: ");
-
         for (int i = 0; i < stars; i++) {
             txt = txt.append(gear.getRarity()
                 .textFormatting() + STAR);
         }
-
-        // todo
-
         return txt;
+    }
+
+    public static IFormattableTextComponent reforgeStars(GearItemData gear) {
+        int stars = gear.reforge.getRarity().item_tier;
+
+        IFormattableTextComponent starstext = new StringTextComponent("");
+
+        IFormattableTextComponent txt = new StringTextComponent("").append(gear.reforge.getReforge()
+                .locName())
+            .append(":");
+
+        for (int i = 0; i < stars; i++) {
+            starstext = starstext.append(gear.reforge.getRarity()
+                .textFormatting() + STAR);
+        }
+        if (stars > 0) {
+            txt.append(" (");
+            txt.append(starstext);
+            txt.append(")");
+        }
+
+        return txt.withStyle(TextFormatting.GREEN);
     }
 
     public static String STAR_2 = "\u272B";

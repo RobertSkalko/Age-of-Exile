@@ -2,7 +2,6 @@
   "weight": 1000,
   "id": "insight",
   "rarity": "epic",
-  "model_num": 6,
   "stats": [
     {
       "min": 2.0,

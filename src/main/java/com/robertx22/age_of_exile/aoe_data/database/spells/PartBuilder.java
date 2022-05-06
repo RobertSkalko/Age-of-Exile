@@ -83,6 +83,12 @@ public class PartBuilder {
 
     public static class Particles {
 
+        public static ComponentPart iceBurst(double count) {
+            ComponentPart c = new ComponentPart();
+            c.acts.add(SpellAction.ICE_BURST_PARTICLES.create(count));
+            return c;
+        }
+
         public static ComponentPart tickAoe(Double ticks, BasicParticleType particle, Double count, Double radius) {
             ComponentPart c = new ComponentPart();
             c.acts.add(SpellAction.PARTICLES_IN_RADIUS.create(particle, count, radius));

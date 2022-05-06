@@ -1,22 +1,22 @@
 {
   "weight": 1000,
-  "id": "dragon_breath",
-  "rarity": "legendary",
+  "id": "nature",
+  "rarity": "epic",
   "stats": [
     {
       "min": 2.0,
-      "max": 6.0,
+      "max": 8.0,
       "stat": "health",
-      "type": "FLAT"
+      "type": "PERCENT"
     },
     {
       "min": 2.0,
-      "max": 10.0,
-      "stat": "all_fire_damage",
+      "max": 6.0,
+      "stat": "increase_healing",
       "type": "FLAT"
     }
   ],
   "gear_slots": [
-    "helmet"
+    "pants"
   ]
 }

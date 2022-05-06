@@ -136,10 +136,12 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
     }
 
     public void applyStats(EntityData data) {
+        Integ
         data.getUnit()
             .getStats()
             .getStatInCalculation(stat)
             .add(this, data);
+
     }
 
     @Override

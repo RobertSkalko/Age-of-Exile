@@ -2,7 +2,6 @@
   "weight": 1000,
   "id": "pride",
   "rarity": "legendary",
-  "model_num": 4,
   "stats": [
     {
       "min": 2.0,

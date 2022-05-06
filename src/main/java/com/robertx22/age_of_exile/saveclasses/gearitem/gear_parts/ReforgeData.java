@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IStatsContaine
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -49,10 +50,7 @@ public class ReforgeData implements IStatsContainer, IGearPartTooltip {
 
         list.add(new StringTextComponent(" "));
 
-        list.add(getRarity().locName()
-            .append(" ")
-            .append(getReforge().locName())
-            .withStyle(getRarity().textFormatting()));
+        list.add(TooltipUtils.reforgeStars(gear));
 
         for (ExactStatData stat : GetAllStats(gear)) {
             list.addAll(stat.GetTooltipString(info));

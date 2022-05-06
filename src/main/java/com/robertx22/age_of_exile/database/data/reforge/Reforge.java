@@ -30,7 +30,6 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
     public int weight = 1000;
     public String id = "";
     public String rarity = "";
-    public int model_num = 0;
     public List<StatModifier> stats = new ArrayList<>();
     public List<String> gear_slots = new ArrayList<>();
 
@@ -40,8 +39,6 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
         ItemStack stack = new ItemStack(SlashItems.REFORGE.get());
         stack.getOrCreateTag()
             .putString("reforge", id);
-        stack.getOrCreateTag()
-            .putInt("CustomModelData", this.model_num);
         return stack;
     }
 
@@ -154,11 +151,10 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
 
         Reforge object = new Reforge();
 
-        public static Builder of(int modelnum, String id, String locname) {
+        public static Builder of(String id, String locname) {
 
             Builder b = new Builder();
             b.object.id = id;
-            b.object.model_num = modelnum;
             b.object.locname = locname;
             return b;
         }
