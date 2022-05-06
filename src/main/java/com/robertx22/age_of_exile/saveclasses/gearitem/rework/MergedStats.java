@@ -1,8 +1,8 @@
-package com.robertx22.age_of_exile.saveclasses.item_classes.tooltips;
+package com.robertx22.age_of_exile.saveclasses.gearitem.rework;
 
+import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatModifierInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import net.minecraft.util.text.ITextComponent;
 
@@ -10,19 +10,23 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-// todo reimplement merging
 public class MergedStats implements IGearPartTooltip {
 
-    public List<StatModifierInfo> mergedList = new ArrayList<>();
+    public List<ExactStatData> mergedList = new ArrayList<>();
 
     public MergedStats(List<StatModifierInfo> stats) {
 
         stats.removeIf(x -> x.exactStat.getStat().is_long);
 
-        mergedList.addAll(stats);
+        for (StatModifierInfo stat : stats) {
+
+            mergedList.add(stat.exactStat);
+        }
+
+        ExactStatData.combine(mergedList);
 
         this.mergedList.sort(Comparator.comparingInt(x -> {
-            if (x.exactStat.getType()
+            if (x.getType()
                 .isFlat()) {
                 return 0;
             } else {
@@ -35,7 +39,8 @@ public class MergedStats implements IGearPartTooltip {
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
         List<ITextComponent> tooltip = new ArrayList<>();
-        mergedList.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
+        mergedList.forEach(x -> tooltip.addAll(x.getStat()
+            .getTooltipList(new ExactStatInfo(x))));
         return tooltip;
     }
 

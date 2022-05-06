@@ -65,8 +65,6 @@ public class TooltipInfo implements Cloneable {
         return this;
     }
 
-    public boolean showAbilityExtraInfo = true;
-
     public PlayerEntity player;
     public EntityData unitdata;
     public MinMax minmax = new MinMax(0, 100);

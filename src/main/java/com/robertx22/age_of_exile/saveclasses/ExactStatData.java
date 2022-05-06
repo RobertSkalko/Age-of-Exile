@@ -86,6 +86,7 @@ public class ExactStatData implements ISerializable<ExactStatData> {
     private void scaleToLevel(float lvl) {
         if (!scaled) {
             this.v1 = getStat().scale(type, v1, lvl);
+            this.scaled = true;
         }
     }
 
@@ -96,8 +97,6 @@ public class ExactStatData implements ISerializable<ExactStatData> {
 
     @Store
     private String stat = "";
-
-    public transient float percentIncrease = 0;
 
     public String getStatId() {
         return stat;
@@ -193,7 +192,7 @@ public class ExactStatData implements ISerializable<ExactStatData> {
 
                 if (i == 0) {
                     toRemove.add(stat);
-                    current = ExactStatData.of(stat.v1, stat.getStat(), stat.getType(), 1);
+                    current = ExactStatData.noScaling(stat.v1, stat.getType(), stat.stat);
                     i++;
                     continue;
                 }

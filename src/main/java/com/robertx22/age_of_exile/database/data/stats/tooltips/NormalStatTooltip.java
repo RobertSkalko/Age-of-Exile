@@ -2,6 +2,7 @@ package com.robertx22.age_of_exile.database.data.stats.tooltips;
 
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatModifierInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatTooltipInfo;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -13,28 +14,31 @@ import java.util.List;
 public class NormalStatTooltip implements IStatTooltipType {
 
     @Override
-    public List<ITextComponent> getTooltipList(TextFormatting format, StatModifierInfo info) {
+    public List<ITextComponent> getTooltipList(TextFormatting format, StatTooltipInfo info) {
 
         TooltipInfo tinfo = new TooltipInfo();
         List<ITextComponent> list = new ArrayList<>();
 
-        IFormattableTextComponent txt = new StringTextComponent(info.mod.GetStat()
+        IFormattableTextComponent txt = new StringTextComponent(info.getStat()
             .getStatNameRegex()
-            .translate(format, info, info.mod.getModType(), info.exactStat.getAverageValue(), info.exactStat.getStat()));
+            .translate(format, info, info.getType(), info.getValue(), info.getStat()));
 
-        if (info.mod.GetStat().is_long) {
+        if (info.getStat().is_long) {
             return longStat(info, txt);
         }
 
         if (tinfo.hasShiftDown) {
-            txt.append(" ")
-                .append(getPercentageView(info.percent.get()));
+            if (info instanceof StatModifierInfo) {
+                StatModifierInfo modinfo = (StatModifierInfo) info;
+                txt.append(" ")
+                    .append(getPercentageView(modinfo.percent.get()));
+            }
         }
 
         list.add(txt);
 
         if (tinfo.hasAltDown) {
-            list.addAll(info.mod.GetStat()
+            list.addAll(info.getStat()
                 .getCutDescTooltip());
         }
 
