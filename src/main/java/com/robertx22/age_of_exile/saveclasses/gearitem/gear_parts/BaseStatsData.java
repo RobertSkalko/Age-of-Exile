@@ -1,18 +1,18 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.age_of_exile.database.data.StatModifier;
-import com.robertx22.age_of_exile.database.data.stats.Stat;
-import com.robertx22.age_of_exile.database.data.stats.tooltips.StatTooltipType;
-import com.robertx22.age_of_exile.saveclasses.ExactStatData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
-import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatContainer;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IRerollable;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.RareItemAffixNames;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.IStatContainer;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatModifierInfo;
 import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatsWithContext;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.StatPercent;
 import com.robertx22.library_of_exile.utils.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.util.Tuple;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartTooltip, StatContainer {
+public class BaseStatsData implements IRerollable, IGearPartTooltip, IStatContainer {
 
     @Store
     public Integer perc = 50;
@@ -43,53 +43,16 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
-        List<ExactStatData> all = GetAllStats(gear);
-
-        info.statTooltipType = StatTooltipType.NORMAL;
 
         List<ITextComponent> list = new ArrayList<>();
         list.add(new StringTextComponent(" "));
 
-        List<Tuple<Stat, List<ITextComponent>>> pairs = new ArrayList<>();
-
-        ExactStatData.combine(all);
-
-        for (ExactStatData stat : all) {
-            TooltipStatInfo ctx = new TooltipStatInfo(stat, perc, info);
-            list.addAll(ctx.GetTooltipString(info));
+        for (StatModifierInfo stat : getStatsWithContext(gear).list) {
+            list.addAll(stat.GetTooltipString(info));
         }
-
-        info.statTooltipType = StatTooltipType.NORMAL;
 
         return list;
 
-    }
-
-    @Override
-    public List<ExactStatData> GetAllStats(GearItemData gear) {
-
-        List<ExactStatData> local = new ArrayList<>();
-
-        try {
-
-            if (!gear.uniqueBaseStatsReplaceBaseStats()) {
-                for (StatModifier mod : gear.GetBaseGearType()
-                    .baseStats()) {
-                    local.add(mod.ToExactStat(perc, gear.getILVL()));
-
-                }
-            } else {
-                for (StatModifier mod : gear.uniqueStats.getUnique(gear)
-                    .base_stats) {
-                    local.add(mod.ToExactStat(perc, gear.getILVL()));
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return local;
     }
 
     @Override
@@ -98,9 +61,28 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
     }
 
     @Override
-    public StatsWithContext getStatsWithContext() {
-// todo
+    public StatsWithContext getStatsWithContext(GearItemData gear) {
+        List<StatModifierInfo> list = new ArrayList<>();
 
-        return null;
+        try {
+
+            if (!gear.uniqueBaseStatsReplaceBaseStats()) {
+                for (StatModifier mod : gear.GetBaseGearType()
+                    .baseStats()) {
+                    list.add(new StatModifierInfo(mod, new StatPercent(perc), gear.getLevel()));
+
+                }
+            } else {
+                for (StatModifier mod : gear.uniqueStats.getUnique(gear)
+                    .base_stats) {
+                    list.add(new StatModifierInfo(mod, new StatPercent(perc), gear.getLevel()));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new StatsWithContext(list);
     }
 }

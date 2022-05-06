@@ -2,9 +2,10 @@ package com.robertx22.age_of_exile.database.data.stats;
 
 import com.robertx22.age_of_exile.database.data.stats.datapacks.base.BaseDatapackStat;
 import com.robertx22.age_of_exile.database.data.stats.name_regex.StatNameRegex;
+import com.robertx22.age_of_exile.database.data.stats.tooltips.StatTooltipType;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatModifierInfo;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.modify.IStatCtxModifier;
 import com.robertx22.age_of_exile.uncommon.enumclasses.Elements;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
@@ -188,8 +189,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IAutoLocDe
     public abstract Elements getElement();
 
     @OnlyIn(Dist.CLIENT)
-    public List<ITextComponent> getTooltipList(TooltipStatWithContext info) {
-        return info.statinfo.tooltipInfo.statTooltipType.impl.getTooltipList(null, info);
+    public List<ITextComponent> getTooltipList(StatModifierInfo info) {
+        return StatTooltipType.NORMAL.impl.getTooltipList(null, info);
     }
 
     public enum StatGroup {

@@ -4,6 +4,8 @@ dragon_breath
 aqua
 insight
 fortune
+nature
+earth
 pride
 nightmare
 shadow_bind

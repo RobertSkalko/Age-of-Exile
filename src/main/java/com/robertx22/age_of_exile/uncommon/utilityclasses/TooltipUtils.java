@@ -219,32 +219,38 @@ public class TooltipUtils {
     }
 
     public static IFormattableTextComponent gearLevel(int lvl) {
-        return new StringTextComponent(TextFormatting.GRAY + "Level: ")
-            .append(new StringTextComponent(lvl + "")
-                .withStyle(TextFormatting.YELLOW));
+        IFormattableTextComponent txt = Words.Level.locName()
+            .append(" " + lvl);
+        txt.withStyle(TextFormatting.BOLD, TextFormatting.YELLOW);
+        return txt;
+
     }
 
     public static IFormattableTextComponent gearLevelAndRarity(GearItemData gear) {
 
-        // todo
+        IFormattableTextComponent txt = new StringTextComponent("")
+            .append(gear.getRarity()
+                .locName()
+                .withStyle(gear.getRarity()
+                    .textFormatting(), TextFormatting.BOLD));
 
-        return gear.getRarity()
-            .locName()
-            .withStyle(gear.getRarity()
-                .textFormatting())
-            .append(" ")
-            .append(gear.GetBaseGearType()
-                .locName())
-            .append(" ")
-            .append(Words.Level.locName())
-            .append(" " + gear.lvl);
+        int stars = gear.getStarsAmount();
+        IFormattableTextComponent starText = new StringTextComponent("");
+        for (int i = 0; i < stars; i++) {
+            starText = starText.append(gear.getRarity()
+                .textFormatting() + STAR);
+        }
 
+        txt.append(" (");
+        txt.append(starText);
+        txt.append(")");
+        return txt.withStyle(TextFormatting.GREEN);
     }
 
     public static String STAR = "\u2605";
 
     public static IFormattableTextComponent gearStars(GearItemData gear) {
-        int stars = gear.star
+        int stars = gear.getStarsAmount();
         IFormattableTextComponent txt = new StringTextComponent(TextFormatting.GRAY + "Rating: ");
         for (int i = 0; i < stars; i++) {
             txt = txt.append(gear.getRarity()

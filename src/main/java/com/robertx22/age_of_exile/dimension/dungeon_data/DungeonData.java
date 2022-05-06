@@ -3,7 +3,7 @@ package com.robertx22.age_of_exile.dimension.dungeon_data;
 import com.robertx22.age_of_exile.database.data.tiers.base.Difficulty;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.dimension.database.dungeon_mob_lists.DungeonMobList;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.RpgLevel;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -73,10 +73,8 @@ public class DungeonData {
 
         list.add(getAffixedName());
 
-        TooltipInfo info = new TooltipInfo();
-
         af.getStats(lv)
-            .forEach(x -> list.addAll(x.GetTooltipString(info)));
+            .forEach(x -> list.addAll(x.GetTooltipString(new RpgLevel(this.lv))));
 
         list.add(TooltipUtils.level(lv));
 

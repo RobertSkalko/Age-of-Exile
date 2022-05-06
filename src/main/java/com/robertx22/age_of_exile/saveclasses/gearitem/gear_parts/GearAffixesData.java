@@ -4,8 +4,10 @@ import com.robertx22.age_of_exile.database.data.affixes.Affix;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.IStatContainer;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatModifierInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatsWithContext;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -14,24 +16,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class GearAffixesData implements IGearPartTooltip {
+public class GearAffixesData implements IGearPartTooltip, IStatContainer {
 
     @Store
     public List<AffixData> suf = new ArrayList<>();
     @Store
     public List<AffixData> pre = new ArrayList<>();
 
-    public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
-        List<TooltipStatWithContext> list = new ArrayList<>();
-        this.suf.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
-        this.pre.forEach(x -> list.addAll(x.getAllStatsWithCtx(gear, info)));
-        return list;
-    }
-
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
         List<ITextComponent> list = new ArrayList<ITextComponent>();
-        getAllStatsWithCtx(gear, info).forEach(x -> list.addAll(x.GetTooltipString(info)));
+
+        for (StatModifierInfo stat : getStatsWithContext(gear).list) {
+            list.addAll(stat.GetTooltipString(info));
+        }
         return list;
     }
 
@@ -53,20 +51,6 @@ public class GearAffixesData implements IGearPartTooltip {
         } else {
             pre.add(affix);
         }
-    }
-
-    public boolean canGetMore(Affix.Type type, GearItemData gear) {
-
-        int current;
-        if (type == Affix.Type.prefix) {
-            current = pre
-                .size();
-        } else {
-            current = suf.size();
-        }
-
-        return current < getMaxAffixesPerType(gear);
-
     }
 
     public int getNumberOfPrefixes() {
@@ -150,5 +134,20 @@ public class GearAffixesData implements IGearPartTooltip {
     @Override
     public Part getPart() {
         return Part.AFFIX;
+    }
+
+    @Override
+    public StatsWithContext getStatsWithContext(GearItemData gear) {
+        List<StatModifierInfo> list = new ArrayList<>();
+
+        try {
+            this.suf.forEach(x -> list.addAll(x.getStatModInfo(gear)));
+            this.pre.forEach(x -> list.addAll(x.getStatModInfo(gear)));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new StatsWithContext(list);
     }
 }

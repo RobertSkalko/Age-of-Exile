@@ -3,14 +3,14 @@ package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.IStatContainer;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatModifierInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatsWithContext;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.StatPercent;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsContainer {
+public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatContainer {
 
     public UniqueStatsData() {
 
@@ -37,14 +37,12 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
 
     @Override
     public void RerollNumbers(GearItemData gear) {
-
         perc.clear();
         // wont ever have more than 12 unique stats.
         for (int i = 0; i < MAX_STATS; i++) {
             perc.add(getMinMax(gear)
                 .random());
         }
-
     }
 
     @Override
@@ -54,11 +52,9 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        getAllStatsWithCtx(gear, info).forEach(x -> {
-            if (!x.mod.GetStat().is_long) {
-                list.addAll(x.GetTooltipString(info));
-            }
-        });
+        for (StatModifierInfo stat : getStatsWithContext(gear).list) {
+            list.addAll(stat.GetTooltipString(info));
+        }
 
         return list;
 
@@ -75,36 +71,22 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         return Part.UNIQUE_STATS;
     }
 
-    public List<TooltipStatWithContext> getAllStatsWithCtx(GearItemData gear, TooltipInfo info) {
-        List<TooltipStatWithContext> list = new ArrayList<>();
-        int i = 0;
-        for (StatModifier mod : ExileDB.UniqueGears()
-            .get(gear.uniq_id)
-            .uniqueStats()) {
-            ExactStatData exact = mod.ToExactStat(perc.get(i), gear.getILVL());
-            list.add(new TooltipStatWithContext(new TooltipStatInfo(exact, perc.get(i), info), mod, (int) gear.getILVL()));
-            i++;
-        }
-        return list;
-    }
-
     @Override
-    public List<ExactStatData> GetAllStats(GearItemData gear) {
-
-        List<ExactStatData> list = new ArrayList<>();
+    public StatsWithContext getStatsWithContext(GearItemData gear) {
+        List<StatModifierInfo> list = new ArrayList<>();
 
         try {
             int i = 0;
             for (StatModifier mod : ExileDB.UniqueGears()
                 .get(gear.uniq_id)
                 .uniqueStats()) {
-                list.add(mod.ToExactStat(perc.get(i), gear.getILVL()));
+                list.add(new StatModifierInfo(mod, new StatPercent(perc.get(i)), gear.getLevel()));
                 i++;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return list;
 
+        return new StatsWithContext(list);
     }
 }

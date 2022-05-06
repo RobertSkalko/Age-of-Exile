@@ -10,6 +10,7 @@ import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.MiscStatCtx;
 import com.robertx22.age_of_exile.saveclasses.unit.stat_ctx.StatContext;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.RpgLevel;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
@@ -82,7 +83,7 @@ public class GearSet implements JsonExileRegistry<GearSet>, IAutoGson<GearSet>, 
                 x.getValue()
                     .forEach(s -> {
                         list.addAll(s.toExactStat(lvl)
-                            .GetTooltipString(info));
+                            .GetTooltipString(new RpgLevel(lvl)));
                     });
 
             });

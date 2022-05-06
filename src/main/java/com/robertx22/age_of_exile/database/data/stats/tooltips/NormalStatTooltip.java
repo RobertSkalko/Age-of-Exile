@@ -1,7 +1,7 @@
 package com.robertx22.age_of_exile.database.data.stats.tooltips;
 
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatModifierInfo;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -13,28 +13,29 @@ import java.util.List;
 public class NormalStatTooltip implements IStatTooltipType {
 
     @Override
-    public List<ITextComponent> getTooltipList(TextFormatting format, TooltipStatWithContext ctx) {
+    public List<ITextComponent> getTooltipList(TextFormatting format, StatModifierInfo info) {
 
-        TooltipStatInfo info = ctx.statinfo;
-
+        TooltipInfo tinfo = new TooltipInfo();
         List<ITextComponent> list = new ArrayList<>();
 
-        IFormattableTextComponent txt = new StringTextComponent(info.stat.getStatNameRegex()
-            .translate(format, ctx, info.type, info.firstValue, info.stat));
+        IFormattableTextComponent txt = new StringTextComponent(info.mod.GetStat()
+            .getStatNameRegex()
+            .translate(format, info, info.mod.getModType(), info.exactStat.getAverageValue(), info.exactStat.getStat()));
 
-        if (ctx.statinfo.stat.is_long) {
-            return longStat(ctx, txt);
+        if (info.mod.GetStat().is_long) {
+            return longStat(info, txt);
         }
 
-        if (ctx.showStatRanges()) {
+        if (tinfo.hasShiftDown) {
             txt.append(" ")
-                .append(getPercentageView(ctx.statinfo.percent));
+                .append(getPercentageView(info.percent.get()));
         }
 
         list.add(txt);
 
-        if (info.shouldShowDescriptions()) {
-            list.addAll(info.stat.getCutDescTooltip());
+        if (tinfo.hasAltDown) {
+            list.addAll(info.mod.GetStat()
+                .getCutDescTooltip());
         }
 
         return list;

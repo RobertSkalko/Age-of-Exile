@@ -8,6 +8,7 @@ import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.registers.common.SlashPotions;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.RpgLevel;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
@@ -110,7 +111,7 @@ public class ExileEffect implements JsonExileRegistry<ExileEffect>, IAutoGson<Ex
                 .append(": ")
                 .withStyle(TextFormatting.GREEN));
             getExactStats(info.player.level, data).forEach(x -> {
-                list.addAll(x.GetTooltipString(info));
+                list.addAll(x.GetTooltipString(new RpgLevel(data.lvl)));
             });
         }
 

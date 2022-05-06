@@ -4,8 +4,7 @@ import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.RpgLevel;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.library_of_exile.registry.serialization.IByteBuf;
 import net.minecraft.network.PacketBuffer;
@@ -55,15 +54,12 @@ public class OptScaleExactStat implements IByteBuf<OptScaleExactStat> {
     }
 
     public List<ITextComponent> GetTooltipString(TooltipInfo info, int lvl) {
-        Stat stat = getStat();
-        TooltipStatInfo statInfo = new TooltipStatInfo(this.toExactStat(this.scale_to_lvl ? lvl : 1), -99, info);
-        return new ArrayList<>(stat.getTooltipList(new TooltipStatWithContext(statInfo, null, null)));
+        return toExactStat(lvl).GetTooltipString(new RpgLevel(lvl));
     }
 
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
-        Stat stat = getStat();
-        TooltipStatInfo statInfo = new TooltipStatInfo(this.toExactStat(this.scale_to_lvl ? info.unitdata.getLevel() : 1), -99, info);
-        return new ArrayList<>(stat.getTooltipList(new TooltipStatWithContext(statInfo, null, null)));
+        int lvl = scale_to_lvl ? info.unitdata.getLevel() : 1;
+        return toExactStat(lvl).GetTooltipString(new RpgLevel(lvl));
     }
 
     public OptScaleExactStat scale() {

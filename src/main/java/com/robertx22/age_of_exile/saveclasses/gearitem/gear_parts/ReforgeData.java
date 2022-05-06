@@ -1,14 +1,17 @@
 package com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts;
 
+import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.rarities.GearRarity;
 import com.robertx22.age_of_exile.database.data.reforge.Reforge;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPart;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.IStatContainer;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatModifierInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatsWithContext;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.StatPercent;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -18,10 +21,9 @@ import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Storable
-public class ReforgeData implements IStatsContainer, IGearPartTooltip {
+public class ReforgeData implements IStatContainer, IGearPartTooltip {
 
     @Store
     public String rarity = IRarity.COMMON_ID;
@@ -52,16 +54,10 @@ public class ReforgeData implements IStatsContainer, IGearPartTooltip {
 
         list.add(TooltipUtils.reforgeStars(gear));
 
-        for (ExactStatData stat : GetAllStats(gear)) {
+        for (StatModifierInfo stat : getStatsWithContext(gear).list) {
             list.addAll(stat.GetTooltipString(info));
         }
-        /*
-        list.add(TextBuilder.of()
-            .append(getRarity().ModlocName()
-                .format(getRarity().textFormatting()))
-            .build());
 
-         */
         list.add(new StringTextComponent(" "));
 
         return list;
@@ -74,10 +70,21 @@ public class ReforgeData implements IStatsContainer, IGearPartTooltip {
     }
 
     @Override
-    public List<ExactStatData> GetAllStats(GearItemData gear) {
-        return getReforge().stats.stream()
-            .map(x -> x.ToExactStat(getRarity().reforge_stat_percent, gear.lvl))
-            .collect(Collectors.toList());
+    public StatsWithContext getStatsWithContext(GearItemData gear) {
+        List<StatModifierInfo> list = new ArrayList<>();
+
+        try {
+            for (StatModifier stat : getReforge().stats) {
+                list.add(new StatModifierInfo(stat,
+                    new StatPercent(this.getRarity().reforge_stat_percent),
+                    gear.getLevel()));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new StatsWithContext(list);
     }
 }
 

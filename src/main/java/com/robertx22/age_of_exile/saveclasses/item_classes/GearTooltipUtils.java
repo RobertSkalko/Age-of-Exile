@@ -5,9 +5,9 @@ import com.robertx22.age_of_exile.config.forge.ClientConfigs;
 import com.robertx22.age_of_exile.config.forge.ServerContainer;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
-import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatModifierInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.MergedStats;
 import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
@@ -41,19 +41,16 @@ public class GearTooltipUtils {
             tip.add(x.withStyle(TextFormatting.BOLD));
         });
 
-        if (gear.baseStats != null) {
-            //tip.addAll(gear.baseStats.GetTooltipString(info, gear));
-        }
-
         tip.add(new SText(""));
 
         List<IGearPartTooltip> list = new ArrayList<IGearPartTooltip>();
 
-        List<ExactStatData> specialStats = new ArrayList<>();
-
-        //tip.add(new LiteralText(""));
+        List<StatModifierInfo> specialStats = new ArrayList<>();
 
         if (info.useInDepthStats()) {
+            if (gear.baseStats != null) {
+                tip.addAll(gear.baseStats.GetTooltipString(info, gear));
+            }
             if (gear.uniqueStats != null) {
                 tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
             }
@@ -61,24 +58,24 @@ public class GearTooltipUtils {
 
         } else {
 
-            List<ExactStatData> stats = new ArrayList<>();
+            List<StatModifierInfo> stats = new ArrayList<>();
             if (gear.baseStats != null) {
-                // todo
-                gear.baseStats.GetAllStats(gear)
-                    .forEach(x -> stats.add(x));
+                stats.addAll(gear.baseStats.getStatsWithContext(gear).list);
             }
-            gear.affixes.getAllAffixesAndSockets()
-                .forEach(x -> stats.addAll(x.GetAllStats(gear)));
+
+            stats.addAll(gear.affixes.getStatsWithContext(gear).list);
 
             if (gear.uniqueStats != null) {
-                stats.addAll(gear.uniqueStats.GetAllStats(gear));
+                stats.addAll(gear.uniqueStats.getStatsWithContext(gear)
+                    .list);
             }
-            List<ExactStatData> longstats = stats.stream()
-                .filter(x -> x.getStat().is_long)
+
+            List<StatModifierInfo> longstats = stats.stream()
+                .filter(x -> x.exactStat.getStat().is_long)
                 .collect(Collectors.toList());
             specialStats.addAll(longstats);
 
-            MergedStats merged = new MergedStats(stats, info);
+            MergedStats merged = new MergedStats(stats);
 
             list.add(merged);
 
@@ -124,9 +121,11 @@ public class GearTooltipUtils {
 
         tip.add(new StringTextComponent(""));
 
+        tip.add(TooltipUtils.gearLevelAndRarity(gear));
         tip.add(TooltipUtils.gearLevel(gear.lvl));
-        tip.add(TooltipUtils.gearRarity(gear.getRarity()));
-        tip.add(TooltipUtils.gearStars(gear));
+
+        //tip.add(TooltipUtils.gearRarity(gear.getRarity()));
+        //tip.add(TooltipUtils.gearStars(gear));
 
         tip.add(new StringTextComponent(""));
 

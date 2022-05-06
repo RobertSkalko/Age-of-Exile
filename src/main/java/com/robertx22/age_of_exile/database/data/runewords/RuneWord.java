@@ -1,6 +1,5 @@
 package com.robertx22.age_of_exile.database.data.runewords;
 
-import com.robertx22.age_of_exile.database.data.MinMax;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.gear_slots.GearSlot;
 import com.robertx22.age_of_exile.database.data.unique_items.UniqueGear;
@@ -8,8 +7,8 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.loot.blueprints.GearBlueprint;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.RpgLevel;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.datasaving.Load;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
@@ -116,7 +115,7 @@ public class RuneWord implements IAutoGson<RuneWord>, JsonExileRegistry<RuneWord
 
         for (StatModifier stat : uniq.uniqueStats) {
             for (ITextComponent txt : stat.ToExactStat(100, lvl)
-                .GetTooltipString(new TooltipInfo(new MinMax((int) stat.min, (int) stat.max)))) {
+                .GetTooltipString(new RpgLevel(lvl))) {
                 tooltip.add(TextBuilder.of()
                     .append(txt));
             }

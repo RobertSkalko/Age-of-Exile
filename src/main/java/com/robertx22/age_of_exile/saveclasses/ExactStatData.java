@@ -5,10 +5,10 @@ import com.robertx22.age_of_exile.capability.entity.EntityData;
 import com.robertx22.age_of_exile.database.data.StatModifier;
 import com.robertx22.age_of_exile.database.data.stats.Stat;
 import com.robertx22.age_of_exile.database.registry.ExileDB;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatInfo;
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatModifierInfo;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.RpgLevel;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.StatPercent;
 import com.robertx22.age_of_exile.uncommon.enumclasses.ModType;
 import com.robertx22.library_of_exile.registry.serialization.ISerializable;
 import info.loenwind.autosave.annotations.Factory;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList {
+public class ExactStatData implements ISerializable<ExactStatData> {
 
     public static ExactStatData EMPTY = new ExactStatData();
 
@@ -115,13 +115,6 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
         }
     }
 
-    public void increaseByAddedPercent() {
-
-        v1 += v1 * percentIncrease / 100F;
-
-        percentIncrease = 0;
-    }
-
     public float getFirstValue() {
         return v1;
     }
@@ -136,7 +129,6 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
     }
 
     public void applyStats(EntityData data) {
-        Integ
         data.getUnit()
             .getStats()
             .getStatInCalculation(stat)
@@ -144,11 +136,13 @@ public class ExactStatData implements ISerializable<ExactStatData>, ITooltipList
 
     }
 
-    @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
-        Stat stat = getStat();
-        TooltipStatInfo statInfo = new TooltipStatInfo(this, 100, info);
-        return new ArrayList<>(stat.getTooltipList(new TooltipStatWithContext(statInfo, null, null)));
+    public List<ITextComponent> GetTooltipString(RpgLevel level) {
+        StatModifierInfo statInfo = new StatModifierInfo(toStatMod(), new StatPercent(100), level);
+        return new ArrayList<>(statInfo.GetTooltipString(new TooltipInfo()));
+    }
+
+    public StatModifier toStatMod() {
+        return new StatModifier(v1, v1, getStat(), getType());
     }
 
     @Override

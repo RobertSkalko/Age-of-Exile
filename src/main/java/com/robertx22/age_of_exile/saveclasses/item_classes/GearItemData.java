@@ -11,8 +11,13 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.ProfessionItems;
 import com.robertx22.age_of_exile.player_skills.items.foods.SkillItemTier;
 import com.robertx22.age_of_exile.saveclasses.ExactStatData;
-import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.*;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.GearItemEnum;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.IRerollable;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.RareItemAffixNames;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.*;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.IStatContainer;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.RpgLevel;
 import com.robertx22.age_of_exile.uncommon.datasaving.StackSaving;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
@@ -110,6 +115,10 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             .isRegistered(gear_type);
     }
 
+    public RpgLevel getLevel() {
+        return new RpgLevel(lvl);
+    }
+
     public int getTotalSockets() {
         int sockets = 0;
 
@@ -202,7 +211,11 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         int stats = 0;
         int percents = 0;
 
-        // todo
+        for (IStatContainer con : GetAllStatContainers()) {
+            percents += con.getStatsWithContext(this)
+                .getAveragePercent();
+            stats++;
+        }
 
         if (percents < 1) {
             return 0;
@@ -210,6 +223,25 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         return percents / stats;
 
+    }
+
+    public int getStarsAmount() {
+        int perc = getAverageStatPercent();
+
+        if (perc < 20) {
+            return 1;
+        }
+        if (perc < 40) {
+            return 2;
+        }
+        if (perc < 60) {
+            return 3;
+        }
+        if (perc < 80) {
+            return 4;
+        } else {
+            return 5;
+        }
     }
 
     public boolean uniqueBaseStatsReplaceBaseStats() {
@@ -320,15 +352,12 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return true;
     }
 
-    public List<IStatsContainer> GetAllStatContainers() {
+    public List<IStatContainer> GetAllStatContainers() {
 
-        List<IStatsContainer> list = new ArrayList<IStatsContainer>();
+        List<IStatContainer> list = new ArrayList();
 
         IfNotNullAdd(baseStats, list);
-
-        affixes.getAllAffixesAndSockets()
-            .forEach(x -> IfNotNullAdd(x, list));
-
+        IfNotNullAdd(affixes, list);
         IfNotNullAdd(uniqueStats, list);
 
         return list;
@@ -338,9 +367,11 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public List<ExactStatData> GetAllStats() {
 
         List<ExactStatData> list = new ArrayList<>();
-        for (IStatsContainer x : GetAllStatContainers()) {
 
-            List<ExactStatData> stats = x.GetAllStats(this);
+        for (IStatContainer x : GetAllStatContainers()) {
+
+            List<ExactStatData> stats = x.getStatsWithContext(this)
+                .getExactStats();
 
             stats.forEach(s -> {
                 list.add(s);

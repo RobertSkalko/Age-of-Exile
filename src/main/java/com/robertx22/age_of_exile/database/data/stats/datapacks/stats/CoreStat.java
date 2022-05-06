@@ -11,6 +11,7 @@ import com.robertx22.age_of_exile.saveclasses.ExactStatData;
 import com.robertx22.age_of_exile.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.age_of_exile.saveclasses.unit.InCalcStatData;
 import com.robertx22.age_of_exile.saveclasses.unit.StatData;
+import com.robertx22.age_of_exile.saveclasses.wrapped_primitives.RpgLevel;
 import com.robertx22.age_of_exile.uncommon.wrappers.SText;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -71,13 +72,13 @@ public class CoreStat extends BaseDatapackStat implements ICoreStat {
 
         list.add(
             new StringTextComponent("For each point: ").withStyle(TextFormatting.GREEN));
-        getMods(1).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        getMods(1).forEach(x -> list.addAll(x.GetTooltipString(new RpgLevel(1))));
 
         list.add(new SText(""));
 
         list.add(
             new StringTextComponent("Total: ").withStyle(TextFormatting.GREEN));
-        getMods(val).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        getMods(val).forEach(x -> list.addAll(x.GetTooltipString(new RpgLevel(1))));
 
         return list;
 

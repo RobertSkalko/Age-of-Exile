@@ -1,6 +1,6 @@
 package com.robertx22.age_of_exile.database.data.stats.tooltips;
 
-import com.robertx22.age_of_exile.saveclasses.item_classes.tooltips.TooltipStatWithContext;
+import com.robertx22.age_of_exile.saveclasses.gearitem.rework.StatModifierInfo;
 import com.robertx22.age_of_exile.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
@@ -11,9 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IStatTooltipType {
-    List<ITextComponent> getTooltipList(TextFormatting format, TooltipStatWithContext info);
 
-    default List<ITextComponent> longStat(TooltipStatWithContext ctx, IFormattableTextComponent txt) {
+    List<ITextComponent> getTooltipList(TextFormatting format, StatModifierInfo info);
+
+    default List<ITextComponent> longStat(StatModifierInfo ctx, IFormattableTextComponent txt) {
         List<ITextComponent> list = new ArrayList<>();
 
         int i = 0;
