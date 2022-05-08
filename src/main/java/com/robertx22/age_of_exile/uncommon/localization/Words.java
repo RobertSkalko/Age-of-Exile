@@ -444,7 +444,7 @@ public enum Words implements IAutoLocName {
     SocketLvlIsntHigherThanItemLvl("Socket lvl not higher than gear lvl"),
 
     Left("Left"),
-
+    DragToGearToUse("[Drag onto gear to use]"),
     Level("Level"),
 
     Mana_Cost("Mana Cost"),

@@ -284,6 +284,7 @@ public class TooltipUtils {
     public static String STAR_2 = "\u272B";
 
     public static IFormattableTextComponent dragOntoGearToUse() {
-        return new StringTextComponent("[Drag onto gear to use]").withStyle(TextFormatting.AQUA, TextFormatting.BOLD);
+        return Words.DragToGearToUse.locName()
+            .withStyle(TextFormatting.AQUA, TextFormatting.BOLD);
     }
 }

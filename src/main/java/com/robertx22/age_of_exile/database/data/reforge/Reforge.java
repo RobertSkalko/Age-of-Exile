@@ -13,6 +13,7 @@ import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
 import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.age_of_exile.uncommon.localization.Words;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
@@ -45,6 +46,9 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
 
     public boolean canApplyOnItem(ItemStack stack) {
         if (!Gear.has(stack)) {
+            return false;
+        }
+        if (Gear.Load(stack).reforge.hasReforge()) {
             return false;
         }
         if (gear_slots.stream()
@@ -141,8 +145,9 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
                 .format(getRarity().textFormatting())));
 
         tooltip.addEmptyLine();
+
         tooltip.add(TextBuilder.of()
-            .append("Can Apply To Gear"));
+            .append(Words.DragToGearToUse.locName()));
 
         return tooltip;
     }
