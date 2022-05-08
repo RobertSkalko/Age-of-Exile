@@ -1,24 +1,22 @@
 {
   "weight": 1000,
-  "id": "nature",
+  "id": "darkness",
   "rarity": "legendary",
   "stats": [
     {
-      "min": 1.0,
+      "min": 2.0,
       "max": 4.0,
-      "stat": "earth_weapon_damage",
+      "stat": "dot_dmg",
       "type": "FLAT"
     },
     {
       "min": 2.0,
       "max": 6.0,
-      "stat": "all_earth_damage",
+      "stat": "critical_damage",
       "type": "FLAT"
     }
   ],
   "gear_slots": [
-    "sword",
-    "staff",
-    "bow"
+    "necklace"
   ]
 }

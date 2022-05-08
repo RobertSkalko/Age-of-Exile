@@ -1,0 +1,22 @@
+{
+  "weight": 1000,
+  "id": "mana",
+  "rarity": "epic",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 4.0,
+      "stat": "mana",
+      "type": "PERCENT"
+    },
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "mana_regen",
+      "type": "PERCENT"
+    }
+  ],
+  "gear_slots": [
+    "ring"
+  ]
+}

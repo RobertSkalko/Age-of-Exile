@@ -1,0 +1,19 @@
+{
+  "weight": 1000,
+  "id": "rock_golem",
+  "rarity": "epic",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 8.0,
+      "stat": "armor",
+      "type": "PERCENT"
+    }
+  ],
+  "gear_slots": [
+    "helmet",
+    "chest",
+    "pants",
+    "boots"
+  ]
+}

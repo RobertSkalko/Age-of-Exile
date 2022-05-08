@@ -12,6 +12,7 @@ import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
+import com.robertx22.age_of_exile.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.library_of_exile.registry.ExileRegistryType;
 import com.robertx22.library_of_exile.registry.IAutoGson;
 import com.robertx22.library_of_exile.registry.JsonExileRegistry;
@@ -100,7 +101,6 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
 
         data.reforge.rarity = ExileDB.GearRarities()
             .getFilterWrapped(x -> !x.is_unique_item)
-            .of(x -> x.item_tier <= getRarity().item_tier)
             .random()
             .GUID();
 
@@ -169,6 +169,14 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
             return this;
         }
 
+        public Builder armors() {
+            gearSlot(GearSlotKeys.HELMET);
+            gearSlot(GearSlotKeys.CHEST);
+            gearSlot(GearSlotKeys.PANTS);
+            gearSlot(GearSlotKeys.BOOTS);
+            return this;
+        }
+
         public Builder weapons() {
             gearSlot(GearSlotKeys.SWORD);
             gearSlot(GearSlotKeys.STAFF);
@@ -178,6 +186,17 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
 
         public Builder rarity(String rar) {
             this.object.rarity = rar;
+
+            if (rar.equals(IRarity.LEGENDARY_ID)) {
+                object.weight = 200;
+            }
+            if (rar.equals(IRarity.EPIC_ID)) {
+                object.weight = 400;
+            }
+            if (rar.equals(IRarity.RARE_ID)) {
+                object.weight = 600;
+            }
+
             return this;
         }
 

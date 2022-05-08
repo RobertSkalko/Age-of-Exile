@@ -1,0 +1,22 @@
+{
+  "weight": 1000,
+  "id": "arcane_power",
+  "rarity": "legendary",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "spell_damage",
+      "type": "FLAT"
+    },
+    {
+      "min": 2.0,
+      "max": 8.0,
+      "stat": "critical_damage",
+      "type": "FLAT"
+    }
+  ],
+  "gear_slots": [
+    "necklace"
+  ]
+}

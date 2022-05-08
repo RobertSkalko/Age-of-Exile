@@ -1,18 +1,18 @@
 {
   "weight": 1000,
-  "id": "nature",
+  "id": "lava",
   "rarity": "legendary",
   "stats": [
     {
       "min": 1.0,
       "max": 4.0,
-      "stat": "earth_weapon_damage",
+      "stat": "fire_weapon_damage",
       "type": "FLAT"
     },
     {
       "min": 2.0,
       "max": 6.0,
-      "stat": "all_earth_damage",
+      "stat": "all_fire_damage",
       "type": "FLAT"
     }
   ],

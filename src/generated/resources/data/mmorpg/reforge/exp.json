@@ -1,0 +1,16 @@
+{
+  "weight": 1000,
+  "id": "exp",
+  "rarity": "epic",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 8.0,
+      "stat": "bonus_exp",
+      "type": "FLAT"
+    }
+  ],
+  "gear_slots": [
+    "ring"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "weight": 1000,
+  "id": "sorcery",
+  "rarity": "epic",
+  "stats": [
+    {
+      "min": 2.0,
+      "max": 6.0,
+      "stat": "spell_damage",
+      "type": "FLAT"
+    },
+    {
+      "min": -2.0,
+      "max": -6.0,
+      "stat": "mana_cost",
+      "type": "FLAT"
+    }
+  ],
+  "gear_slots": [
+    "necklace"
+  ]
+}

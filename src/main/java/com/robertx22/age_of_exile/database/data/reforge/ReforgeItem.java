@@ -12,6 +12,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 public class ReforgeItem extends Item implements IAutoLocName {
 
@@ -57,7 +58,7 @@ public class ReforgeItem extends Item implements IAutoLocName {
             return new StringTextComponent("").append(word.locName())
                 .append(" Stone: ")
                 .append(reforge.locName())
-                .withStyle(reforge.getRarity()
+                .withStyle(TextFormatting.BOLD, reforge.getRarity()
                     .textFormatting());
         }
         return super.getName(stack);
