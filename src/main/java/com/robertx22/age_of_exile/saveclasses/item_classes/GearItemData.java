@@ -48,7 +48,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Store
     public GearAffixesData affixes = new GearAffixesData();
     @Store
-    public ReforgeData reforge = new ReforgeData();
+    public AllReforgesData reforge = new AllReforgesData();
     @Store
     public UniqueStatsData uniqueStats;
 

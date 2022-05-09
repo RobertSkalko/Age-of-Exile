@@ -84,7 +84,7 @@ public class ReforgesAdder implements ExileRegistryInit {
         Reforge.Builder.of("sapphire", "Sapphire")
             .gearSlot(GearSlotKeys.HELMET)
             .rarity(IRarity.EPIC_ID)
-            .stat(new StatModifier(2, 8, new ElementalResist(Elements.Water)))
+            .stat(new StatModifier(2, 8, new ElementalResist(Elements.Water), ModType.PERCENT))
             .stat(new StatModifier(1, 5, Stats.ELEMENTAL_DAMAGE.get(Elements.Water), ModType.FLAT))
             .build();
 

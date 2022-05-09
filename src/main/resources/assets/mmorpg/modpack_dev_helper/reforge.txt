@@ -1,6 +1,7 @@
 These are all default registry entries of this type.
 This registry is modify-able through datapacks.
 dragon_breath
+arcane_power
 fortune
 nature
 nightmare
@@ -16,4 +17,5 @@ rock_golem
 darkness
 exp
 energy
+sapphire
 shadow_bind

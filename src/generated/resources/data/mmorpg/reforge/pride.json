@@ -1,23 +1,23 @@
 {
-  "weight": 1000,
+  "weight": 200,
   "id": "pride",
   "rarity": "legendary",
   "stats": [
     {
-      "min": 2.0,
-      "max": 6.0,
+      "min": 1.0,
+      "max": 2.0,
       "stat": "intelligence",
       "type": "FLAT"
     },
     {
-      "min": 2.0,
-      "max": 6.0,
+      "min": 1.0,
+      "max": 2.0,
       "stat": "strength",
       "type": "FLAT"
     },
     {
-      "min": 2.0,
-      "max": 6.0,
+      "min": 1.0,
+      "max": 2.0,
       "stat": "dexterity",
       "type": "FLAT"
     }

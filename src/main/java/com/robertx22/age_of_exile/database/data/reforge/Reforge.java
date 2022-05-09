@@ -9,6 +9,7 @@ import com.robertx22.age_of_exile.database.registry.ExileDB;
 import com.robertx22.age_of_exile.database.registry.ExileRegistryTypes;
 import com.robertx22.age_of_exile.mmorpg.SlashRef;
 import com.robertx22.age_of_exile.mmorpg.registers.common.items.SlashItems;
+import com.robertx22.age_of_exile.saveclasses.gearitem.gear_parts.ReforgeData;
 import com.robertx22.age_of_exile.saveclasses.item_classes.GearItemData;
 import com.robertx22.age_of_exile.uncommon.datasaving.Gear;
 import com.robertx22.age_of_exile.uncommon.interfaces.IAutoLocName;
@@ -48,7 +49,8 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
         if (!Gear.has(stack)) {
             return false;
         }
-        if (Gear.Load(stack).reforge.hasReforge()) {
+        if (Gear.Load(stack).reforge.reforges.stream()
+            .anyMatch(x -> x.reforge.equals(this.GUID()))) {
             return false;
         }
         if (gear_slots.stream()
@@ -101,12 +103,15 @@ public class Reforge implements IAutoGson<Reforge>, JsonExileRegistry<Reforge>, 
     }
 
     public void useReforgeStone(ItemStack stack, GearItemData data) {
-        data.reforge.reforge = GUID();
 
-        data.reforge.rarity = ExileDB.GearRarities()
+        ReforgeData redata = new ReforgeData();
+        redata.reforge = GUID();
+        redata.rarity = ExileDB.GearRarities()
             .getFilterWrapped(x -> !x.is_unique_item)
             .random()
             .GUID();
+
+        data.reforge.tryAddReforge(redata);
 
         data.saveToStack(stack);
     }

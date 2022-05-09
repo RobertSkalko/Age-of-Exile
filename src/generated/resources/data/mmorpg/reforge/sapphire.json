@@ -1,22 +1,22 @@
 {
   "weight": 400,
-  "id": "earth",
+  "id": "sapphire",
   "rarity": "epic",
   "stats": [
     {
       "min": 2.0,
-      "max": 6.0,
-      "stat": "health",
-      "type": "PERCENT"
+      "max": 8.0,
+      "stat": "water_resist",
+      "type": "FLAT"
     },
     {
       "min": 1.0,
       "max": 5.0,
-      "stat": "all_earth_damage",
+      "stat": "all_water_damage",
       "type": "FLAT"
     }
   ],
   "gear_slots": [
-    "chest"
+    "helmet"
   ]
 }

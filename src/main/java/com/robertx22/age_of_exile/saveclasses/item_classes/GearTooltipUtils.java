@@ -108,9 +108,10 @@ public class GearTooltipUtils {
             }
         }
 
-        if (gear.reforge.hasReforge()) {
+        if (!gear.reforge.reforges.isEmpty()) {
             tip.addAll(gear.reforge.GetTooltipString(info, gear));
         }
+
         if (Screen.hasShiftDown()) {
             if (!gear.can_sal) {
                 tip.add(
