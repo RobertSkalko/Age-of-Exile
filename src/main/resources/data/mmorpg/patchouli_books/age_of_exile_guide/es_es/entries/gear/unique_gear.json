@@ -1,0 +1,18 @@
+{
+  "name": "Equipo Único",
+  "category": "gear",
+  "icon": "minecraft:gold_ingot",
+  "sortnum": 2,
+  "pages": [
+	{  
+	    "type": "spotlight",
+		"item": "minecraft:gold_ingot",		
+		"text": "Se trata de un tipo especial de objeto que no tiene afijos, sino que posee estadísticas únicas. No se pueden fabricar de forma normal. Sin embargo, es posible que al fabricar equipo normal pueda dar como resultado equipo único. También lo puedes encontrar como tesoros que caen de mobs."
+	},
+	{  
+		"type": "text",   
+		"title": "Precaución",
+		"text": "Pueden ser muy poderosos, pero suelen ser muy específicos para tu equipo. A veces, pueden ser perjudiciales para tu equipo. El equipo único de nivel bajo suelen ser útiles para la mayoría de las builds, pero los de nivel más alto son cada vez más específicos. Por ejemplo, un único puede ser bueno sólo para un mago de fuego que usa armadura de placas."
+	}
+  ]
+}

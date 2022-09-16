@@ -1,0 +1,17 @@
+{
+  "name": "Equipamiento normal",
+  "category": "gear",
+  "icon": "mmorpg:weapon/wand/wand0",
+  "sortnum": 0,
+  "pages": [
+	{  
+	    "type": "spotlight",
+		"item": "mmorpg:weapon/wand/wand0",		
+		"text": "El equipamiento normal consta de las estadísticas bases y los afijos. Algunos tienen estadísticas implícitas y afijos. Cuanto mayor sea la rareza, más afijos puede tener un objeto. Todos las partes de equipamiento tienen requisitos de nivel."
+	},
+	{  
+		"type": "text",   
+		"text": "Algunas partes de equipamiento también tienen estadísticas implícitas, por ejemplo, las varitas aumentan el daño de hechizo y los cetros aumentan la curación."
+	}
+  ]
+}

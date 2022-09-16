@@ -1,0 +1,17 @@
+{
+  "name": "Reparando",
+  "category": "getting_started",
+  "icon": "mmorpg:repair_station",
+  "sortnum": 1,
+  "pages": [
+	{  
+		"type": "text",   
+		"title": "La estación de reparación",
+		"text": "En esta estación puedes utilizar muchos materiales diferentes (como hierro, oro, diamante, etc) para reparar tu equipo."
+	},  
+    {
+		"type": "crafting",
+		"recipe": "mmorpg:repair_station"   
+    }
+  ]
+}
